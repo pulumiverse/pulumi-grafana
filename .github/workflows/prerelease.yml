@@ -355,6 +355,10 @@ jobs:
         - 14.x
         pythonversion:
         - "3.7"
+
+permissions:
+  contents: write
+
 name: prerelease
 "on":
   push:
