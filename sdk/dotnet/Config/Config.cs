@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Lbrlabs_Pulumi.Grafana
+namespace Lbrlabs.PulumiPackage.Grafana
 {
     public static class Config
     {
