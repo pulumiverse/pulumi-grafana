@@ -44,7 +44,7 @@ To use from Dotnet, use `dotnet add package` to install into your project. You m
 
 
 ```
-$ dotnet add package Lbrlabs_Pulumi.grafana
+$ dotnet add package Lbrlabs.PulumiPackage.grafana
 ```
 
 ## Reference
