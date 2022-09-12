@@ -1,0 +1,36 @@
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
+  PROVIDER: grafana
+  PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+  PULUMI_API: https://api.pulumi.com
+  PULUMI_GO_DEP_ROOT: ${{ github.workspace }}/..
+  PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
+  PULUMI_TEST_OWNER: "lbrlabs"
+  PYPI_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+  PYPI_USERNAME: "__token__"
+  GRAFANA_AUTH: ${{ secrets.GRAFANA_AUTH }}
+  GRAFANA_URL: ${{ secrets.GRAFANA_URL }}
+  TRAVIS_OS_NAME: linux
+jobs:
+  command-dispatch-for-testing:
+    name: command-dispatch-for-testing
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+    - uses: peter-evans/slash-command-dispatch@v2
+      with:
+        commands: run-acceptance-tests
+        issue-type: pull-request
+        permission: write
+        reaction-token: ${{ secrets.GITHUB_TOKEN }}
+        repository: jaxxstorm/pulumi-scaleway
+        token: ${{ secrets.PULUMI_BOT_TOKEN }}
+    strategy: {}
+"on":
+  issue_comment:
+    types:
+    - created
+    - edited

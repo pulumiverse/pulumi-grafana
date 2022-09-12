@@ -1,0 +1,3 @@
+name: grafana_provider_service_account_ts
+description: A minimal TypeScript Pulumi program
+runtime: nodejs

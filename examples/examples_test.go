@@ -1,3 +1,5 @@
+// Copyright 2016-2017, Pulumi Corporation.  All rights reserved.
+
 package examples
 
 import (
@@ -6,6 +8,24 @@ import (
 
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
 )
+
+func getUrl(t *testing.T) string {
+	name := os.Getenv("GRAFANA_URL")
+	if name == "" {
+		t.Skipf("Skipping test due to missing GRAFANA_URL environment variable")
+	}
+
+	return name
+}
+
+func getAuth(t *testing.T) string {
+	name := os.Getenv("GRAFANA_AUTH")
+	if name == "" {
+		t.Skipf("Skipping test due to missing GRAFANA_AUTH environment variable")
+	}
+
+	return name
+}
 
 func getCwd(t *testing.T) string {
 	cwd, err := os.Getwd()
@@ -16,9 +36,13 @@ func getCwd(t *testing.T) string {
 	return cwd
 }
 
-func getBaseOptions() integration.ProgramTestOptions {
+func getBaseOptions(t *testing.T) integration.ProgramTestOptions {
+	url := getUrl(t)
+	auth := getAuth(t)
 	return integration.ProgramTestOptions{
-		RunUpdateTest:        false,
-		ExpectRefreshChanges: true,
+		Config: map[string]string{
+			"url": url,
+			"auth": auth,
+		},
 	}
 }

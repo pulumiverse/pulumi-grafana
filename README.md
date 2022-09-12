@@ -51,4 +51,4 @@ $ dotnet add package Lbrlabs_Pulumi.grafana
 
 See the Pulumi registry for API docs:
 
-https://www.pulumi.com/registry/packages/scaleway/api-docs/
+https://www.pulumi.com/registry/packages/grafana/api-docs/
