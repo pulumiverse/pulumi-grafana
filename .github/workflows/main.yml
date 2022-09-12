@@ -1,4 +1,5 @@
 env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
@@ -356,7 +357,7 @@ jobs:
         - "3.7"
 permissions:
   contents: write
-  
+
 name: main
 "on":
   push:
