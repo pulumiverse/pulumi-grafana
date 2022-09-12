@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
- * import * as pulumi_grafana from "@lbrlabs/pulumi-grafana";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
  *
  * const metrics = new grafana.Dashboard("metrics", {configJson: fs.readFileSync("grafana-dashboard.json")});
  * const team = new grafana.Team("team", {});

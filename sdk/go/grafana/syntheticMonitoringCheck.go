@@ -28,7 +28,6 @@ import (
 // import (
 //
 //	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
-//	"github.com/pulumi/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -69,7 +68,6 @@ import (
 // import (
 //
 //	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
-//	"github.com/pulumi/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -147,7 +145,6 @@ import (
 // import (
 //
 //	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
-//	"github.com/pulumi/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -190,7 +187,6 @@ import (
 //	"fmt"
 //
 //	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
-//	"github.com/pulumi/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -302,7 +298,6 @@ import (
 // import (
 //
 //	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
-//	"github.com/pulumi/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -343,7 +338,6 @@ import (
 // import (
 //
 //	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
-//	"github.com/pulumi/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -389,7 +383,6 @@ import (
 // import (
 //
 //	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
-//	"github.com/pulumi/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -432,7 +425,6 @@ import (
 //	"fmt"
 //
 //	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
-//	"github.com/pulumi/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -521,7 +513,6 @@ import (
 // import (
 //
 //	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
-//	"github.com/pulumi/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -564,7 +555,6 @@ import (
 // import (
 //
 //	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
-//	"github.com/pulumi/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )

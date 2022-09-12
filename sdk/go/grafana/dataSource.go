@@ -27,7 +27,6 @@ import (
 //	"encoding/json"
 //
 //	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
-//	"github.com/pulumi/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )

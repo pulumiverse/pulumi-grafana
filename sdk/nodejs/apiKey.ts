@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_grafana from "@lbrlabs/pulumi-grafana";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
  *
  * const foo = new grafana.ApiKey("foo", {role: "Viewer"});
  * const bar = new grafana.ApiKey("bar", {

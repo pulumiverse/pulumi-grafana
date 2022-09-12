@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
- * import * as pulumi_grafana from "@lbrlabs/pulumi-grafana";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
  *
  * const team = new grafana.Team("team", {});
  * const user = new grafana.User("user", {email: "user.name@example.com"});

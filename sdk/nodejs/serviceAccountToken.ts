@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_grafana from "@lbrlabs/pulumi-grafana";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
  *
  * const foo = new grafana.ServiceAccountToken("foo", {serviceAccountId: 1});
  * const bar = new grafana.ServiceAccountToken("bar", {

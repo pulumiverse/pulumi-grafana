@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_grafana from "@lbrlabs/pulumi-grafana";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
  *
  * const test_acc_outgoingWebhook = new grafana.OncallOutgoingWebhook("test-acc-outgoingWebhook", {url: "https://example.com/"}, {
  *     provider: grafana.oncall,
