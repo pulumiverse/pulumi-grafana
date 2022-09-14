@@ -60,33 +60,18 @@ func Provider() tfbridge.ProviderInfo {
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:           p,
-		Name:        "grafana",
-		DisplayName: "Grafana",
-		// The default publisher for all packages is Pulumi.
-		// Change this to your personal name (or a company name) that you
-		// would like to be shown in the Pulumi Registry if this package is published
-		// there.
-		Publisher: "lbrlabs",
-		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
-		// if this package is published there.
-		//
-		// You may host a logo on a domain you control or add an SVG logo for your package
-		// in your repository and use the raw content URL for that file as your logo URL.
-		LogoURL: "",
-		// PluginDownloadURL is an optional URL used to download the Provider
-		// for use in Pulumi programs
-		// e.g https://github.com/org/pulumi-provider-name/releases/
+		P:                 p,
+		Name:              "grafana",
+		DisplayName:       "Grafana",
+		Publisher:         "lbrlabs",
+		LogoURL:           "https://raw.githubusercontent.com/lbrlabs/pulumi-grafana/master/assets/121px-Grafana_logo.svg.png", // nolint[:lll]
 		PluginDownloadURL: "github://api.github.com/lbrlabs",
 		Description:       "A Pulumi package for creating and managing grafana.",
-		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
-		// For all available categories, see `Keywords` in
-		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
-		Keywords:   []string{"pulumi", "grafana", "lbrlabs"},
-		License:    "Apache-2.0",
-		Homepage:   "https://www.pulumi.com",
-		Repository: "https://github.com/lbrlabs/pulumi-grafana",
-		GitHubOrg:  "grafana",
+		Keywords:          []string{"pulumi", "grafana", "lbrlabs"},
+		License:           "Apache-2.0",
+		Homepage:          "https://www.pulumi.com",
+		Repository:        "https://github.com/lbrlabs/pulumi-grafana",
+		GitHubOrg:         "grafana",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"url": {
 				Default: &tfbridge.DefaultInfo{
