@@ -227,6 +227,8 @@ class ServiceAccountToken(pulumi.CustomResource):
             __props__.__dict__["expiration"] = None
             __props__.__dict__["has_expired"] = None
             __props__.__dict__["key"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["key"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(ServiceAccountToken, __self__).__init__(
             'grafana:index/serviceAccountToken:ServiceAccountToken',
             resource_name,

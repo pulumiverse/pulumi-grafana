@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetOncallEscalationChainResult> InvokeAsync(GetOncallEscalationChainArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOncallEscalationChainResult>("grafana:index/getOncallEscalationChain:getOncallEscalationChain", args ?? new GetOncallEscalationChainArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallEscalationChainResult>("grafana:index/getOncallEscalationChain:getOncallEscalationChain", args ?? new GetOncallEscalationChainArgs(), options.WithDefaults());
 
         /// <summary>
         /// * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/escalation_chains/)
@@ -64,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetOncallEscalationChainResult> Invoke(GetOncallEscalationChainInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetOncallEscalationChainResult>("grafana:index/getOncallEscalationChain:getOncallEscalationChain", args ?? new GetOncallEscalationChainInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetOncallEscalationChainResult>("grafana:index/getOncallEscalationChain:getOncallEscalationChain", args ?? new GetOncallEscalationChainInvokeArgs(), options.WithDefaults());
     }
 
 

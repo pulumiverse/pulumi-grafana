@@ -34,7 +34,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetSyntheticMonitoringProbesResult> InvokeAsync(GetSyntheticMonitoringProbesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetSyntheticMonitoringProbesResult>("grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes", args ?? new GetSyntheticMonitoringProbesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetSyntheticMonitoringProbesResult>("grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes", args ?? new GetSyntheticMonitoringProbesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Data source for retrieving all probes.
@@ -58,7 +58,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetSyntheticMonitoringProbesResult> Invoke(GetSyntheticMonitoringProbesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetSyntheticMonitoringProbesResult>("grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes", args ?? new GetSyntheticMonitoringProbesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetSyntheticMonitoringProbesResult>("grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes", args ?? new GetSyntheticMonitoringProbesInvokeArgs(), options.WithDefaults());
     }
 
 

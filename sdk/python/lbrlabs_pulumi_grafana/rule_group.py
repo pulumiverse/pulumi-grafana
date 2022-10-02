@@ -23,7 +23,7 @@ class RuleGroupArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RuleGroup resource.
-        :param pulumi.Input[str] folder_uid: The UID of the group that the folder belongs to.
+        :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[int] org_id: The ID of the org to which the group belongs.
         :param pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleArgs']]] rules: The rules within the group.
@@ -40,7 +40,7 @@ class RuleGroupArgs:
     @pulumi.getter(name="folderUid")
     def folder_uid(self) -> pulumi.Input[str]:
         """
-        The UID of the group that the folder belongs to.
+        The UID of the folder that the group belongs to.
         """
         return pulumi.get(self, "folder_uid")
 
@@ -107,7 +107,7 @@ class _RuleGroupState:
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering RuleGroup resources.
-        :param pulumi.Input[str] folder_uid: The UID of the group that the folder belongs to.
+        :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[str] name: The name of the rule group.
         :param pulumi.Input[int] org_id: The ID of the org to which the group belongs.
@@ -128,7 +128,7 @@ class _RuleGroupState:
     @pulumi.getter(name="folderUid")
     def folder_uid(self) -> Optional[pulumi.Input[str]]:
         """
-        The UID of the group that the folder belongs to.
+        The UID of the folder that the group belongs to.
         """
         return pulumi.get(self, "folder_uid")
 
@@ -201,6 +201,8 @@ class RuleGroup(pulumi.CustomResource):
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
+
+        This resource requires Grafana 9.1.0 or later.
 
         ## Example Usage
 
@@ -300,7 +302,7 @@ class RuleGroup(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] folder_uid: The UID of the group that the folder belongs to.
+        :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[str] name: The name of the rule group.
         :param pulumi.Input[int] org_id: The ID of the org to which the group belongs.
@@ -317,6 +319,8 @@ class RuleGroup(pulumi.CustomResource):
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
+
+        This resource requires Grafana 9.1.0 or later.
 
         ## Example Usage
 
@@ -478,7 +482,7 @@ class RuleGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] folder_uid: The UID of the group that the folder belongs to.
+        :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[str] name: The name of the rule group.
         :param pulumi.Input[int] org_id: The ID of the org to which the group belongs.
@@ -499,7 +503,7 @@ class RuleGroup(pulumi.CustomResource):
     @pulumi.getter(name="folderUid")
     def folder_uid(self) -> pulumi.Output[str]:
         """
-        The UID of the group that the folder belongs to.
+        The UID of the folder that the group belongs to.
         """
         return pulumi.get(self, "folder_uid")
 

@@ -30,7 +30,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
             }
         }
 
-        private static readonly Pulumi.Config __config = new Pulumi.Config("grafana");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("grafana");
 
         private static readonly __Value<string?> _auth = new __Value<string?>(() => __config.Get("auth") ?? Utilities.GetEnv("GRAFANA_AUTH"));
         /// <summary>

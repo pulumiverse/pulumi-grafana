@@ -35,7 +35,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetOncallTeamResult> InvokeAsync(GetOncallTeamArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOncallTeamResult>("grafana:index/getOncallTeam:getOncallTeam", args ?? new GetOncallTeamArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallTeamResult>("grafana:index/getOncallTeam:getOncallTeam", args ?? new GetOncallTeamArgs(), options.WithDefaults());
 
         /// <summary>
         /// {{% examples %}}
@@ -60,7 +60,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetOncallTeamResult> Invoke(GetOncallTeamInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetOncallTeamResult>("grafana:index/getOncallTeam:getOncallTeam", args ?? new GetOncallTeamInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetOncallTeamResult>("grafana:index/getOncallTeam:getOncallTeam", args ?? new GetOncallTeamInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -48,7 +48,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetFoldersResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetFoldersResult>("grafana:index/getFolders:getFolders", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetFoldersResult>("grafana:index/getFolders:getFolders", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetOncallUserGroupResult> InvokeAsync(GetOncallUserGroupArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOncallUserGroupResult>("grafana:index/getOncallUserGroup:getOncallUserGroup", args ?? new GetOncallUserGroupArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallUserGroupResult>("grafana:index/getOncallUserGroup:getOncallUserGroup", args ?? new GetOncallUserGroupArgs(), options.WithDefaults());
 
         /// <summary>
         /// * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/user_groups/)
@@ -64,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetOncallUserGroupResult> Invoke(GetOncallUserGroupInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetOncallUserGroupResult>("grafana:index/getOncallUserGroup:getOncallUserGroup", args ?? new GetOncallUserGroupInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetOncallUserGroupResult>("grafana:index/getOncallUserGroup:getOncallUserGroup", args ?? new GetOncallUserGroupInvokeArgs(), options.WithDefaults());
     }
 
 

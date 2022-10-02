@@ -46,7 +46,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public InputMap<string> Settings
         {
             get => _settings ?? (_settings = new InputMap<string>());
-            set => _settings = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _settings = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         /// <summary>

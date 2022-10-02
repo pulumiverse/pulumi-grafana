@@ -71,6 +71,10 @@ func NewServiceAccountToken(ctx *pulumi.Context,
 	if args.ServiceAccountId == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceAccountId'")
 	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"key",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource ServiceAccountToken
 	err := ctx.RegisterResource("grafana:index/serviceAccountToken:ServiceAccountToken", name, args, &resource, opts...)

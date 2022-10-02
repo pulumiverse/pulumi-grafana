@@ -67,6 +67,7 @@
         "provider.ts",
         "report.ts",
         "role.ts",
+        "roleAssignment.ts",
         "ruleGroup.ts",
         "serviceAccount.ts",
         "serviceAccountToken.ts",

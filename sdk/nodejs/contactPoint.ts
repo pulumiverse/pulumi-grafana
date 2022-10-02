@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -10,6 +11,8 @@ import * as utilities from "./utilities";
  *
  * * [Official documentation](https://grafana.com/docs/grafana/next/alerting/contact-points)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#contact-points)
+ *
+ * This resource requires Grafana 9.1.0 or later.
  *
  * ## Example Usage
  *

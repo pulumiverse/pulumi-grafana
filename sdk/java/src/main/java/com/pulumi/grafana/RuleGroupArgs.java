@@ -19,14 +19,14 @@ public final class RuleGroupArgs extends com.pulumi.resources.ResourceArgs {
     public static final RuleGroupArgs Empty = new RuleGroupArgs();
 
     /**
-     * The UID of the group that the folder belongs to.
+     * The UID of the folder that the group belongs to.
      * 
      */
     @Import(name="folderUid", required=true)
     private Output<String> folderUid;
 
     /**
-     * @return The UID of the group that the folder belongs to.
+     * @return The UID of the folder that the group belongs to.
      * 
      */
     public Output<String> folderUid() {
@@ -122,7 +122,7 @@ public final class RuleGroupArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param folderUid The UID of the group that the folder belongs to.
+         * @param folderUid The UID of the folder that the group belongs to.
          * 
          * @return builder
          * 
@@ -133,7 +133,7 @@ public final class RuleGroupArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param folderUid The UID of the group that the folder belongs to.
+         * @param folderUid The UID of the folder that the group belongs to.
          * 
          * @return builder
          * 

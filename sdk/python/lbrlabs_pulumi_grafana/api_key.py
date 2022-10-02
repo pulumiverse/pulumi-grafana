@@ -248,6 +248,8 @@ class ApiKey(pulumi.CustomResource):
             __props__.__dict__["seconds_to_live"] = seconds_to_live
             __props__.__dict__["expiration"] = None
             __props__.__dict__["key"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["key"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(ApiKey, __self__).__init__(
             'grafana:index/apiKey:ApiKey',
             resource_name,

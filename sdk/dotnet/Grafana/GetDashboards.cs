@@ -20,7 +20,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
         /// </summary>
         public static Task<GetDashboardsResult> InvokeAsync(GetDashboardsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDashboardsResult>("grafana:index/getDashboards:getDashboards", args ?? new GetDashboardsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDashboardsResult>("grafana:index/getDashboards:getDashboards", args ?? new GetDashboardsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
@@ -30,7 +30,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
         /// </summary>
         public static Output<GetDashboardsResult> Invoke(GetDashboardsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDashboardsResult>("grafana:index/getDashboards:getDashboards", args ?? new GetDashboardsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetDashboardsResult>("grafana:index/getDashboards:getDashboards", args ?? new GetDashboardsInvokeArgs(), options.WithDefaults());
     }
 
 

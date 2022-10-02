@@ -16,6 +16,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules)
     /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
     /// 
+    /// This resource requires Grafana 9.1.0 or later.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -139,7 +141,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public partial class RuleGroup : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The UID of the group that the folder belongs to.
+        /// The UID of the folder that the group belongs to.
         /// </summary>
         [Output("folderUid")]
         public Output<string> FolderUid { get; private set; } = null!;
@@ -216,7 +218,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class RuleGroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The UID of the group that the folder belongs to.
+        /// The UID of the folder that the group belongs to.
         /// </summary>
         [Input("folderUid", required: true)]
         public Input<string> FolderUid { get; set; } = null!;
@@ -260,7 +262,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class RuleGroupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The UID of the group that the folder belongs to.
+        /// The UID of the folder that the group belongs to.
         /// </summary>
         [Input("folderUid")]
         public Input<string>? FolderUid { get; set; }

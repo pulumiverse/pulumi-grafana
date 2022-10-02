@@ -22,6 +22,8 @@ import javax.annotation.Nullable;
  * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
  * 
+ * This resource requires Grafana 9.1.0 or later.
+ * 
  * ## Example Usage
  * ```java
  * package generated_program;
@@ -149,14 +151,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="grafana:index/ruleGroup:RuleGroup")
 public class RuleGroup extends com.pulumi.resources.CustomResource {
     /**
-     * The UID of the group that the folder belongs to.
+     * The UID of the folder that the group belongs to.
      * 
      */
     @Export(name="folderUid", type=String.class, parameters={})
     private Output<String> folderUid;
 
     /**
-     * @return The UID of the group that the folder belongs to.
+     * @return The UID of the folder that the group belongs to.
      * 
      */
     public Output<String> folderUid() {

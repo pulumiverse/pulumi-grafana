@@ -849,10 +849,10 @@ class DataSource(pulumi.CustomResource):
             if basic_auth_password is not None and not opts.urn:
                 warnings.warn("""Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.""", DeprecationWarning)
                 pulumi.log.warn("""basic_auth_password is deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.""")
-            __props__.__dict__["basic_auth_password"] = basic_auth_password
+            __props__.__dict__["basic_auth_password"] = None if basic_auth_password is None else pulumi.Output.secret(basic_auth_password)
             __props__.__dict__["basic_auth_username"] = basic_auth_username
             __props__.__dict__["database_name"] = database_name
-            __props__.__dict__["http_headers"] = http_headers
+            __props__.__dict__["http_headers"] = None if http_headers is None else pulumi.Output.secret(http_headers)
             __props__.__dict__["is_default"] = is_default
             __props__.__dict__["json_data_encoded"] = json_data_encoded
             if json_datas is not None and not opts.urn:
@@ -863,18 +863,20 @@ class DataSource(pulumi.CustomResource):
             if password is not None and not opts.urn:
                 warnings.warn("""Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.""", DeprecationWarning)
                 pulumi.log.warn("""password is deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.""")
-            __props__.__dict__["password"] = password
-            __props__.__dict__["secure_json_data_encoded"] = secure_json_data_encoded
+            __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["secure_json_data_encoded"] = None if secure_json_data_encoded is None else pulumi.Output.secret(secure_json_data_encoded)
             if secure_json_datas is not None and not opts.urn:
                 warnings.warn("""Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.""", DeprecationWarning)
                 pulumi.log.warn("""secure_json_datas is deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.""")
-            __props__.__dict__["secure_json_datas"] = secure_json_datas
+            __props__.__dict__["secure_json_datas"] = None if secure_json_datas is None else pulumi.Output.secret(secure_json_datas)
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
             __props__.__dict__["uid"] = uid
             __props__.__dict__["url"] = url
             __props__.__dict__["username"] = username
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["basicAuthPassword", "httpHeaders", "password", "secureJsonDataEncoded", "secureJsonDatas"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(DataSource, __self__).__init__(
             'grafana:index/dataSource:DataSource',
             resource_name,

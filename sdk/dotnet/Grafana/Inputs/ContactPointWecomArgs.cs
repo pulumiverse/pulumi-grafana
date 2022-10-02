@@ -34,7 +34,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public InputMap<string> Settings
         {
             get => _settings ?? (_settings = new InputMap<string>());
-            set => _settings = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _settings = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         /// <summary>
@@ -49,11 +53,21 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         [Input("uid")]
         public Input<string>? Uid { get; set; }
 
+        [Input("url", required: true)]
+        private Input<string>? _url;
+
         /// <summary>
         /// The WeCom webhook URL.
         /// </summary>
-        [Input("url", required: true)]
-        public Input<string> Url { get; set; } = null!;
+        public Input<string>? Url
+        {
+            get => _url;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _url = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public ContactPointWecomArgs()
         {

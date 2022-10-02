@@ -141,6 +141,8 @@ export class SyntheticMonitoringProbe extends pulumi.CustomResource {
             resourceInputs["tenantId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["authToken"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SyntheticMonitoringProbe.__pulumiType, name, resourceInputs, opts);
     }
 }

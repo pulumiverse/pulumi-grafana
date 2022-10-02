@@ -83,6 +83,13 @@ func NewUser(ctx *pulumi.Context,
 	if args.Password == nil {
 		return nil, errors.New("invalid value for required argument 'Password'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource User
 	err := ctx.RegisterResource("grafana:index/user:User", name, args, &resource, opts...)

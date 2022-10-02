@@ -13,83 +13,213 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class DataSourceSecureJsonDataGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("accessKey")]
+        private Input<string>? _accessKey;
+
         /// <summary>
         /// (CloudWatch, Athena) The access key used to access the data source.
         /// </summary>
-        [Input("accessKey")]
-        public Input<string>? AccessKey { get; set; }
+        public Input<string>? AccessKey
+        {
+            get => _accessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("accessToken")]
+        private Input<string>? _accessToken;
 
         /// <summary>
         /// (Github) The access token used to access the data source.
         /// </summary>
-        [Input("accessToken")]
-        public Input<string>? AccessToken { get; set; }
+        public Input<string>? AccessToken
+        {
+            get => _accessToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accessToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("authToken")]
+        private Input<string>? _authToken;
 
         /// <summary>
         /// (Sentry) Authorization token.
         /// </summary>
-        [Input("authToken")]
-        public Input<string>? AuthToken { get; set; }
+        public Input<string>? AuthToken
+        {
+            get => _authToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _authToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("basicAuthPassword")]
+        private Input<string>? _basicAuthPassword;
 
         /// <summary>
         /// (All) Password to use for basic authentication.
         /// </summary>
-        [Input("basicAuthPassword")]
-        public Input<string>? BasicAuthPassword { get; set; }
+        public Input<string>? BasicAuthPassword
+        {
+            get => _basicAuthPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _basicAuthPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("clientSecret")]
+        private Input<string>? _clientSecret;
 
         /// <summary>
         /// (Azure Monitor) Client secret for authentication.
         /// </summary>
-        [Input("clientSecret")]
-        public Input<string>? ClientSecret { get; set; }
+        public Input<string>? ClientSecret
+        {
+            get => _clientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("password")]
+        private Input<string>? _password;
 
         /// <summary>
         /// (All) Password to use for authentication.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("privateKey")]
+        private Input<string>? _privateKey;
 
         /// <summary>
         /// (Stackdriver) The service account key `private_key` to use to access the data source.
         /// </summary>
-        [Input("privateKey")]
-        public Input<string>? PrivateKey { get; set; }
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("secretKey")]
+        private Input<string>? _secretKey;
 
         /// <summary>
         /// (CloudWatch, Athena) The secret key to use to access the data source.
         /// </summary>
-        [Input("secretKey")]
-        public Input<string>? SecretKey { get; set; }
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("sigv4AccessKey")]
+        private Input<string>? _sigv4AccessKey;
 
         /// <summary>
         /// (Elasticsearch and Prometheus) SigV4 access key. Required when using 'keys' auth provider.
         /// </summary>
-        [Input("sigv4AccessKey")]
-        public Input<string>? Sigv4AccessKey { get; set; }
+        public Input<string>? Sigv4AccessKey
+        {
+            get => _sigv4AccessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _sigv4AccessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("sigv4SecretKey")]
+        private Input<string>? _sigv4SecretKey;
 
         /// <summary>
         /// (Elasticsearch and Prometheus) SigV4 secret key. Required when using 'keys' auth provider.
         /// </summary>
-        [Input("sigv4SecretKey")]
-        public Input<string>? Sigv4SecretKey { get; set; }
+        public Input<string>? Sigv4SecretKey
+        {
+            get => _sigv4SecretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _sigv4SecretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("tlsCaCert")]
+        private Input<string>? _tlsCaCert;
 
         /// <summary>
         /// (All) CA cert for out going requests.
         /// </summary>
-        [Input("tlsCaCert")]
-        public Input<string>? TlsCaCert { get; set; }
+        public Input<string>? TlsCaCert
+        {
+            get => _tlsCaCert;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tlsCaCert = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("tlsClientCert")]
+        private Input<string>? _tlsClientCert;
 
         /// <summary>
         /// (All) TLS Client cert for outgoing requests.
         /// </summary>
-        [Input("tlsClientCert")]
-        public Input<string>? TlsClientCert { get; set; }
+        public Input<string>? TlsClientCert
+        {
+            get => _tlsClientCert;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tlsClientCert = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("tlsClientKey")]
+        private Input<string>? _tlsClientKey;
 
         /// <summary>
         /// (All) TLS Client key for outgoing requests.
         /// </summary>
-        [Input("tlsClientKey")]
-        public Input<string>? TlsClientKey { get; set; }
+        public Input<string>? TlsClientKey
+        {
+            get => _tlsClientKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tlsClientKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public DataSourceSecureJsonDataGetArgs()
         {

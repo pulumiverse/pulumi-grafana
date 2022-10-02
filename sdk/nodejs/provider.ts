@@ -90,17 +90,17 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["auth"] = (args ? args.auth : undefined) ?? utilities.getEnv("GRAFANA_AUTH");
+            resourceInputs["auth"] = (args?.auth ? pulumi.secret(args.auth) : undefined) ?? utilities.getEnv("GRAFANA_AUTH");
             resourceInputs["caCert"] = (args ? args.caCert : undefined) ?? utilities.getEnv("GRAFANA_CA_CERT");
-            resourceInputs["cloudApiKey"] = (args ? args.cloudApiKey : undefined) ?? utilities.getEnv("GRAFANA_CLOUD_API_KEY");
+            resourceInputs["cloudApiKey"] = (args?.cloudApiKey ? pulumi.secret(args.cloudApiKey) : undefined) ?? utilities.getEnv("GRAFANA_CLOUD_API_KEY");
             resourceInputs["cloudApiUrl"] = (args ? args.cloudApiUrl : undefined) ?? utilities.getEnv("GRAFANA_CLOUD_API_URL");
-            resourceInputs["httpHeaders"] = pulumi.output(args ? args.httpHeaders : undefined).apply(JSON.stringify);
+            resourceInputs["httpHeaders"] = pulumi.output(args?.httpHeaders ? pulumi.secret(args.httpHeaders) : undefined).apply(JSON.stringify);
             resourceInputs["insecureSkipVerify"] = pulumi.output((args ? args.insecureSkipVerify : undefined) ?? utilities.getEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY")).apply(JSON.stringify);
-            resourceInputs["oncallAccessToken"] = (args ? args.oncallAccessToken : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_ACCESS_TOKEN");
+            resourceInputs["oncallAccessToken"] = (args?.oncallAccessToken ? pulumi.secret(args.oncallAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_ACCESS_TOKEN");
             resourceInputs["oncallUrl"] = (args ? args.oncallUrl : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_URL");
             resourceInputs["orgId"] = pulumi.output((args ? args.orgId : undefined) ?? utilities.getEnvNumber("GRAFANA_ORG_ID")).apply(JSON.stringify);
             resourceInputs["retries"] = pulumi.output((args ? args.retries : undefined) ?? utilities.getEnvNumber("GRAFANA_RETRIES")).apply(JSON.stringify);
-            resourceInputs["smAccessToken"] = (args ? args.smAccessToken : undefined) ?? utilities.getEnv("GRAFANA_SM_ACCESS_TOKEN");
+            resourceInputs["smAccessToken"] = (args?.smAccessToken ? pulumi.secret(args.smAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_SM_ACCESS_TOKEN");
             resourceInputs["smUrl"] = (args ? args.smUrl : undefined) ?? utilities.getEnv("GRAFANA_SM_URL");
             resourceInputs["storeDashboardSha256"] = pulumi.output((args ? args.storeDashboardSha256 : undefined) ?? utilities.getEnvBoolean("GRAFANA_STORE_DASHBOARD_SHA256")).apply(JSON.stringify);
             resourceInputs["tlsCert"] = (args ? args.tlsCert : undefined) ?? utilities.getEnv("GRAFANA_TLS_CERT");
@@ -108,6 +108,8 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["url"] = (args ? args.url : undefined) ?? utilities.getEnv("GRAFANA_URL");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["auth", "cloudApiKey", "oncallAccessToken", "smAccessToken"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }

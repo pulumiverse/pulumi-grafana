@@ -99,6 +99,10 @@ func NewSyntheticMonitoringProbe(ctx *pulumi.Context,
 	if args.Region == nil {
 		return nil, errors.New("invalid value for required argument 'Region'")
 	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"authToken",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SyntheticMonitoringProbe
 	err := ctx.RegisterResource("grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe", name, args, &resource, opts...)

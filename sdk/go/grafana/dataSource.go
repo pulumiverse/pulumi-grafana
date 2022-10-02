@@ -196,6 +196,29 @@ func NewDataSource(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	if args.BasicAuthPassword != nil {
+		args.BasicAuthPassword = pulumi.ToSecret(args.BasicAuthPassword).(pulumi.StringPtrOutput)
+	}
+	if args.HttpHeaders != nil {
+		args.HttpHeaders = pulumi.ToSecret(args.HttpHeaders).(pulumi.StringMapOutput)
+	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrOutput)
+	}
+	if args.SecureJsonDataEncoded != nil {
+		args.SecureJsonDataEncoded = pulumi.ToSecret(args.SecureJsonDataEncoded).(pulumi.StringPtrOutput)
+	}
+	if args.SecureJsonDatas != nil {
+		args.SecureJsonDatas = pulumi.ToSecret(args.SecureJsonDatas).(DataSourceSecureJsonDataArrayOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"basicAuthPassword",
+		"httpHeaders",
+		"password",
+		"secureJsonDataEncoded",
+		"secureJsonDatas",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource DataSource
 	err := ctx.RegisterResource("grafana:index/dataSource:DataSource", name, args, &resource, opts...)

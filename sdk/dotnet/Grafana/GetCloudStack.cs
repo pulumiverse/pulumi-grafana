@@ -16,13 +16,13 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// Data source for Grafana Stack
         /// </summary>
         public static Task<GetCloudStackResult> InvokeAsync(GetCloudStackArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCloudStackResult>("grafana:index/getCloudStack:getCloudStack", args ?? new GetCloudStackArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudStackResult>("grafana:index/getCloudStack:getCloudStack", args ?? new GetCloudStackArgs(), options.WithDefaults());
 
         /// <summary>
         /// Data source for Grafana Stack
         /// </summary>
         public static Output<GetCloudStackResult> Invoke(GetCloudStackInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetCloudStackResult>("grafana:index/getCloudStack:getCloudStack", args ?? new GetCloudStackInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetCloudStackResult>("grafana:index/getCloudStack:getCloudStack", args ?? new GetCloudStackInvokeArgs(), options.WithDefaults());
     }
 
 

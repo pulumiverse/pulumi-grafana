@@ -5,67 +5,314 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./alertNotification";
-export * from "./annotation";
-export * from "./apiKey";
-export * from "./builtinRoleAssignment";
-export * from "./cloudApiKey";
-export * from "./cloudPluginInstallation";
-export * from "./cloudStack";
-export * from "./contactPoint";
-export * from "./dashboard";
-export * from "./dashboardPermission";
-export * from "./dataSource";
-export * from "./dataSourcePermission";
-export * from "./folder";
-export * from "./folderPermission";
-export * from "./getCloudIps";
-export * from "./getCloudStack";
-export * from "./getDashboard";
-export * from "./getDashboards";
-export * from "./getFolder";
-export * from "./getFolders";
-export * from "./getLibraryPanel";
-export * from "./getOnCallSlackChannel";
-export * from "./getOncallAction";
-export * from "./getOncallEscalationChain";
-export * from "./getOncallOutgoingWebhook";
-export * from "./getOncallSchedule";
-export * from "./getOncallTeam";
-export * from "./getOncallUser";
-export * from "./getOncallUserGroup";
-export * from "./getOrganization";
-export * from "./getSyntheticMonitoringProbe";
-export * from "./getSyntheticMonitoringProbes";
-export * from "./getTeam";
-export * from "./getUser";
-export * from "./libraryPanel";
-export * from "./machineLearningJob";
-export * from "./messageTemplate";
-export * from "./muteTiming";
-export * from "./notificationPolicy";
-export * from "./oncallEscalation";
-export * from "./oncallEscalationChain";
-export * from "./oncallIntegration";
-export * from "./oncallOnCallShift";
-export * from "./oncallOutgoingWebhook";
-export * from "./oncallRoute";
-export * from "./oncallSchedule";
-export * from "./organization";
-export * from "./playlist";
-export * from "./provider";
-export * from "./report";
-export * from "./role";
-export * from "./ruleGroup";
-export * from "./serviceAccount";
-export * from "./serviceAccountToken";
-export * from "./syntheticMonitoringCheck";
-export * from "./syntheticMonitoringInstallation";
-export * from "./syntheticMonitoringProbe";
-export * from "./team";
-export * from "./teamExternalGroup";
-export * from "./teamPreferences";
-export * from "./user";
+export { AlertNotificationArgs, AlertNotificationState } from "./alertNotification";
+export type AlertNotification = import("./alertNotification").AlertNotification;
+export const AlertNotification: typeof import("./alertNotification").AlertNotification = null as any;
+
+export { AnnotationArgs, AnnotationState } from "./annotation";
+export type Annotation = import("./annotation").Annotation;
+export const Annotation: typeof import("./annotation").Annotation = null as any;
+
+export { ApiKeyArgs, ApiKeyState } from "./apiKey";
+export type ApiKey = import("./apiKey").ApiKey;
+export const ApiKey: typeof import("./apiKey").ApiKey = null as any;
+
+export { BuiltinRoleAssignmentArgs, BuiltinRoleAssignmentState } from "./builtinRoleAssignment";
+export type BuiltinRoleAssignment = import("./builtinRoleAssignment").BuiltinRoleAssignment;
+export const BuiltinRoleAssignment: typeof import("./builtinRoleAssignment").BuiltinRoleAssignment = null as any;
+
+export { CloudApiKeyArgs, CloudApiKeyState } from "./cloudApiKey";
+export type CloudApiKey = import("./cloudApiKey").CloudApiKey;
+export const CloudApiKey: typeof import("./cloudApiKey").CloudApiKey = null as any;
+
+export { CloudPluginInstallationArgs, CloudPluginInstallationState } from "./cloudPluginInstallation";
+export type CloudPluginInstallation = import("./cloudPluginInstallation").CloudPluginInstallation;
+export const CloudPluginInstallation: typeof import("./cloudPluginInstallation").CloudPluginInstallation = null as any;
+
+export { CloudStackArgs, CloudStackState } from "./cloudStack";
+export type CloudStack = import("./cloudStack").CloudStack;
+export const CloudStack: typeof import("./cloudStack").CloudStack = null as any;
+
+export { ContactPointArgs, ContactPointState } from "./contactPoint";
+export type ContactPoint = import("./contactPoint").ContactPoint;
+export const ContactPoint: typeof import("./contactPoint").ContactPoint = null as any;
+
+export { DashboardArgs, DashboardState } from "./dashboard";
+export type Dashboard = import("./dashboard").Dashboard;
+export const Dashboard: typeof import("./dashboard").Dashboard = null as any;
+
+export { DashboardPermissionArgs, DashboardPermissionState } from "./dashboardPermission";
+export type DashboardPermission = import("./dashboardPermission").DashboardPermission;
+export const DashboardPermission: typeof import("./dashboardPermission").DashboardPermission = null as any;
+
+export { DataSourceArgs, DataSourceState } from "./dataSource";
+export type DataSource = import("./dataSource").DataSource;
+export const DataSource: typeof import("./dataSource").DataSource = null as any;
+
+export { DataSourcePermissionArgs, DataSourcePermissionState } from "./dataSourcePermission";
+export type DataSourcePermission = import("./dataSourcePermission").DataSourcePermission;
+export const DataSourcePermission: typeof import("./dataSourcePermission").DataSourcePermission = null as any;
+
+export { FolderArgs, FolderState } from "./folder";
+export type Folder = import("./folder").Folder;
+export const Folder: typeof import("./folder").Folder = null as any;
+
+export { FolderPermissionArgs, FolderPermissionState } from "./folderPermission";
+export type FolderPermission = import("./folderPermission").FolderPermission;
+export const FolderPermission: typeof import("./folderPermission").FolderPermission = null as any;
+
+export { GetCloudIpsResult } from "./getCloudIps";
+export const getCloudIps: typeof import("./getCloudIps").getCloudIps = null as any;
+
+export { GetCloudStackArgs, GetCloudStackResult, GetCloudStackOutputArgs } from "./getCloudStack";
+export const getCloudStack: typeof import("./getCloudStack").getCloudStack = null as any;
+export const getCloudStackOutput: typeof import("./getCloudStack").getCloudStackOutput = null as any;
+
+export { GetDashboardArgs, GetDashboardResult, GetDashboardOutputArgs } from "./getDashboard";
+export const getDashboard: typeof import("./getDashboard").getDashboard = null as any;
+export const getDashboardOutput: typeof import("./getDashboard").getDashboardOutput = null as any;
+
+export { GetDashboardsArgs, GetDashboardsResult, GetDashboardsOutputArgs } from "./getDashboards";
+export const getDashboards: typeof import("./getDashboards").getDashboards = null as any;
+export const getDashboardsOutput: typeof import("./getDashboards").getDashboardsOutput = null as any;
+
+export { GetFolderArgs, GetFolderResult, GetFolderOutputArgs } from "./getFolder";
+export const getFolder: typeof import("./getFolder").getFolder = null as any;
+export const getFolderOutput: typeof import("./getFolder").getFolderOutput = null as any;
+
+export { GetFoldersResult } from "./getFolders";
+export const getFolders: typeof import("./getFolders").getFolders = null as any;
+
+export { GetLibraryPanelArgs, GetLibraryPanelResult, GetLibraryPanelOutputArgs } from "./getLibraryPanel";
+export const getLibraryPanel: typeof import("./getLibraryPanel").getLibraryPanel = null as any;
+export const getLibraryPanelOutput: typeof import("./getLibraryPanel").getLibraryPanelOutput = null as any;
+
+export { GetOnCallSlackChannelArgs, GetOnCallSlackChannelResult, GetOnCallSlackChannelOutputArgs } from "./getOnCallSlackChannel";
+export const getOnCallSlackChannel: typeof import("./getOnCallSlackChannel").getOnCallSlackChannel = null as any;
+export const getOnCallSlackChannelOutput: typeof import("./getOnCallSlackChannel").getOnCallSlackChannelOutput = null as any;
+
+export { GetOncallActionArgs, GetOncallActionResult, GetOncallActionOutputArgs } from "./getOncallAction";
+export const getOncallAction: typeof import("./getOncallAction").getOncallAction = null as any;
+export const getOncallActionOutput: typeof import("./getOncallAction").getOncallActionOutput = null as any;
+
+export { GetOncallEscalationChainArgs, GetOncallEscalationChainResult, GetOncallEscalationChainOutputArgs } from "./getOncallEscalationChain";
+export const getOncallEscalationChain: typeof import("./getOncallEscalationChain").getOncallEscalationChain = null as any;
+export const getOncallEscalationChainOutput: typeof import("./getOncallEscalationChain").getOncallEscalationChainOutput = null as any;
+
+export { GetOncallOutgoingWebhookArgs, GetOncallOutgoingWebhookResult, GetOncallOutgoingWebhookOutputArgs } from "./getOncallOutgoingWebhook";
+export const getOncallOutgoingWebhook: typeof import("./getOncallOutgoingWebhook").getOncallOutgoingWebhook = null as any;
+export const getOncallOutgoingWebhookOutput: typeof import("./getOncallOutgoingWebhook").getOncallOutgoingWebhookOutput = null as any;
+
+export { GetOncallScheduleArgs, GetOncallScheduleResult, GetOncallScheduleOutputArgs } from "./getOncallSchedule";
+export const getOncallSchedule: typeof import("./getOncallSchedule").getOncallSchedule = null as any;
+export const getOncallScheduleOutput: typeof import("./getOncallSchedule").getOncallScheduleOutput = null as any;
+
+export { GetOncallTeamArgs, GetOncallTeamResult, GetOncallTeamOutputArgs } from "./getOncallTeam";
+export const getOncallTeam: typeof import("./getOncallTeam").getOncallTeam = null as any;
+export const getOncallTeamOutput: typeof import("./getOncallTeam").getOncallTeamOutput = null as any;
+
+export { GetOncallUserArgs, GetOncallUserResult, GetOncallUserOutputArgs } from "./getOncallUser";
+export const getOncallUser: typeof import("./getOncallUser").getOncallUser = null as any;
+export const getOncallUserOutput: typeof import("./getOncallUser").getOncallUserOutput = null as any;
+
+export { GetOncallUserGroupArgs, GetOncallUserGroupResult, GetOncallUserGroupOutputArgs } from "./getOncallUserGroup";
+export const getOncallUserGroup: typeof import("./getOncallUserGroup").getOncallUserGroup = null as any;
+export const getOncallUserGroupOutput: typeof import("./getOncallUserGroup").getOncallUserGroupOutput = null as any;
+
+export { GetOrganizationArgs, GetOrganizationResult, GetOrganizationOutputArgs } from "./getOrganization";
+export const getOrganization: typeof import("./getOrganization").getOrganization = null as any;
+export const getOrganizationOutput: typeof import("./getOrganization").getOrganizationOutput = null as any;
+
+export { GetSyntheticMonitoringProbeArgs, GetSyntheticMonitoringProbeResult, GetSyntheticMonitoringProbeOutputArgs } from "./getSyntheticMonitoringProbe";
+export const getSyntheticMonitoringProbe: typeof import("./getSyntheticMonitoringProbe").getSyntheticMonitoringProbe = null as any;
+export const getSyntheticMonitoringProbeOutput: typeof import("./getSyntheticMonitoringProbe").getSyntheticMonitoringProbeOutput = null as any;
+
+export { GetSyntheticMonitoringProbesArgs, GetSyntheticMonitoringProbesResult, GetSyntheticMonitoringProbesOutputArgs } from "./getSyntheticMonitoringProbes";
+export const getSyntheticMonitoringProbes: typeof import("./getSyntheticMonitoringProbes").getSyntheticMonitoringProbes = null as any;
+export const getSyntheticMonitoringProbesOutput: typeof import("./getSyntheticMonitoringProbes").getSyntheticMonitoringProbesOutput = null as any;
+
+export { GetTeamArgs, GetTeamResult, GetTeamOutputArgs } from "./getTeam";
+export const getTeam: typeof import("./getTeam").getTeam = null as any;
+export const getTeamOutput: typeof import("./getTeam").getTeamOutput = null as any;
+
+export { GetUserArgs, GetUserResult, GetUserOutputArgs } from "./getUser";
+export const getUser: typeof import("./getUser").getUser = null as any;
+export const getUserOutput: typeof import("./getUser").getUserOutput = null as any;
+
+export { LibraryPanelArgs, LibraryPanelState } from "./libraryPanel";
+export type LibraryPanel = import("./libraryPanel").LibraryPanel;
+export const LibraryPanel: typeof import("./libraryPanel").LibraryPanel = null as any;
+
+export { MachineLearningJobArgs, MachineLearningJobState } from "./machineLearningJob";
+export type MachineLearningJob = import("./machineLearningJob").MachineLearningJob;
+export const MachineLearningJob: typeof import("./machineLearningJob").MachineLearningJob = null as any;
+
+export { MessageTemplateArgs, MessageTemplateState } from "./messageTemplate";
+export type MessageTemplate = import("./messageTemplate").MessageTemplate;
+export const MessageTemplate: typeof import("./messageTemplate").MessageTemplate = null as any;
+
+export { MuteTimingArgs, MuteTimingState } from "./muteTiming";
+export type MuteTiming = import("./muteTiming").MuteTiming;
+export const MuteTiming: typeof import("./muteTiming").MuteTiming = null as any;
+
+export { NotificationPolicyArgs, NotificationPolicyState } from "./notificationPolicy";
+export type NotificationPolicy = import("./notificationPolicy").NotificationPolicy;
+export const NotificationPolicy: typeof import("./notificationPolicy").NotificationPolicy = null as any;
+
+export { OncallEscalationArgs, OncallEscalationState } from "./oncallEscalation";
+export type OncallEscalation = import("./oncallEscalation").OncallEscalation;
+export const OncallEscalation: typeof import("./oncallEscalation").OncallEscalation = null as any;
+
+export { OncallEscalationChainArgs, OncallEscalationChainState } from "./oncallEscalationChain";
+export type OncallEscalationChain = import("./oncallEscalationChain").OncallEscalationChain;
+export const OncallEscalationChain: typeof import("./oncallEscalationChain").OncallEscalationChain = null as any;
+
+export { OncallIntegrationArgs, OncallIntegrationState } from "./oncallIntegration";
+export type OncallIntegration = import("./oncallIntegration").OncallIntegration;
+export const OncallIntegration: typeof import("./oncallIntegration").OncallIntegration = null as any;
+
+export { OncallOnCallShiftArgs, OncallOnCallShiftState } from "./oncallOnCallShift";
+export type OncallOnCallShift = import("./oncallOnCallShift").OncallOnCallShift;
+export const OncallOnCallShift: typeof import("./oncallOnCallShift").OncallOnCallShift = null as any;
+
+export { OncallOutgoingWebhookArgs, OncallOutgoingWebhookState } from "./oncallOutgoingWebhook";
+export type OncallOutgoingWebhook = import("./oncallOutgoingWebhook").OncallOutgoingWebhook;
+export const OncallOutgoingWebhook: typeof import("./oncallOutgoingWebhook").OncallOutgoingWebhook = null as any;
+
+export { OncallRouteArgs, OncallRouteState } from "./oncallRoute";
+export type OncallRoute = import("./oncallRoute").OncallRoute;
+export const OncallRoute: typeof import("./oncallRoute").OncallRoute = null as any;
+
+export { OncallScheduleArgs, OncallScheduleState } from "./oncallSchedule";
+export type OncallSchedule = import("./oncallSchedule").OncallSchedule;
+export const OncallSchedule: typeof import("./oncallSchedule").OncallSchedule = null as any;
+
+export { OrganizationArgs, OrganizationState } from "./organization";
+export type Organization = import("./organization").Organization;
+export const Organization: typeof import("./organization").Organization = null as any;
+
+export { PlaylistArgs, PlaylistState } from "./playlist";
+export type Playlist = import("./playlist").Playlist;
+export const Playlist: typeof import("./playlist").Playlist = null as any;
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+
+export { ReportArgs, ReportState } from "./report";
+export type Report = import("./report").Report;
+export const Report: typeof import("./report").Report = null as any;
+
+export { RoleArgs, RoleState } from "./role";
+export type Role = import("./role").Role;
+export const Role: typeof import("./role").Role = null as any;
+
+export { RoleAssignmentArgs, RoleAssignmentState } from "./roleAssignment";
+export type RoleAssignment = import("./roleAssignment").RoleAssignment;
+export const RoleAssignment: typeof import("./roleAssignment").RoleAssignment = null as any;
+
+export { RuleGroupArgs, RuleGroupState } from "./ruleGroup";
+export type RuleGroup = import("./ruleGroup").RuleGroup;
+export const RuleGroup: typeof import("./ruleGroup").RuleGroup = null as any;
+
+export { ServiceAccountArgs, ServiceAccountState } from "./serviceAccount";
+export type ServiceAccount = import("./serviceAccount").ServiceAccount;
+export const ServiceAccount: typeof import("./serviceAccount").ServiceAccount = null as any;
+
+export { ServiceAccountTokenArgs, ServiceAccountTokenState } from "./serviceAccountToken";
+export type ServiceAccountToken = import("./serviceAccountToken").ServiceAccountToken;
+export const ServiceAccountToken: typeof import("./serviceAccountToken").ServiceAccountToken = null as any;
+
+export { SyntheticMonitoringCheckArgs, SyntheticMonitoringCheckState } from "./syntheticMonitoringCheck";
+export type SyntheticMonitoringCheck = import("./syntheticMonitoringCheck").SyntheticMonitoringCheck;
+export const SyntheticMonitoringCheck: typeof import("./syntheticMonitoringCheck").SyntheticMonitoringCheck = null as any;
+
+export { SyntheticMonitoringInstallationArgs, SyntheticMonitoringInstallationState } from "./syntheticMonitoringInstallation";
+export type SyntheticMonitoringInstallation = import("./syntheticMonitoringInstallation").SyntheticMonitoringInstallation;
+export const SyntheticMonitoringInstallation: typeof import("./syntheticMonitoringInstallation").SyntheticMonitoringInstallation = null as any;
+
+export { SyntheticMonitoringProbeArgs, SyntheticMonitoringProbeState } from "./syntheticMonitoringProbe";
+export type SyntheticMonitoringProbe = import("./syntheticMonitoringProbe").SyntheticMonitoringProbe;
+export const SyntheticMonitoringProbe: typeof import("./syntheticMonitoringProbe").SyntheticMonitoringProbe = null as any;
+
+export { TeamArgs, TeamState } from "./team";
+export type Team = import("./team").Team;
+export const Team: typeof import("./team").Team = null as any;
+
+export { TeamExternalGroupArgs, TeamExternalGroupState } from "./teamExternalGroup";
+export type TeamExternalGroup = import("./teamExternalGroup").TeamExternalGroup;
+export const TeamExternalGroup: typeof import("./teamExternalGroup").TeamExternalGroup = null as any;
+
+export { TeamPreferencesArgs, TeamPreferencesState } from "./teamPreferences";
+export type TeamPreferences = import("./teamPreferences").TeamPreferences;
+export const TeamPreferences: typeof import("./teamPreferences").TeamPreferences = null as any;
+
+export { UserArgs, UserState } from "./user";
+export type User = import("./user").User;
+export const User: typeof import("./user").User = null as any;
+
+utilities.lazyLoad(exports, ["AlertNotification"], () => require("./alertNotification"));
+utilities.lazyLoad(exports, ["Annotation"], () => require("./annotation"));
+utilities.lazyLoad(exports, ["ApiKey"], () => require("./apiKey"));
+utilities.lazyLoad(exports, ["BuiltinRoleAssignment"], () => require("./builtinRoleAssignment"));
+utilities.lazyLoad(exports, ["CloudApiKey"], () => require("./cloudApiKey"));
+utilities.lazyLoad(exports, ["CloudPluginInstallation"], () => require("./cloudPluginInstallation"));
+utilities.lazyLoad(exports, ["CloudStack"], () => require("./cloudStack"));
+utilities.lazyLoad(exports, ["ContactPoint"], () => require("./contactPoint"));
+utilities.lazyLoad(exports, ["Dashboard"], () => require("./dashboard"));
+utilities.lazyLoad(exports, ["DashboardPermission"], () => require("./dashboardPermission"));
+utilities.lazyLoad(exports, ["DataSource"], () => require("./dataSource"));
+utilities.lazyLoad(exports, ["DataSourcePermission"], () => require("./dataSourcePermission"));
+utilities.lazyLoad(exports, ["Folder"], () => require("./folder"));
+utilities.lazyLoad(exports, ["FolderPermission"], () => require("./folderPermission"));
+utilities.lazyLoad(exports, ["getCloudIps"], () => require("./getCloudIps"));
+utilities.lazyLoad(exports, ["getCloudStack","getCloudStackOutput"], () => require("./getCloudStack"));
+utilities.lazyLoad(exports, ["getDashboard","getDashboardOutput"], () => require("./getDashboard"));
+utilities.lazyLoad(exports, ["getDashboards","getDashboardsOutput"], () => require("./getDashboards"));
+utilities.lazyLoad(exports, ["getFolder","getFolderOutput"], () => require("./getFolder"));
+utilities.lazyLoad(exports, ["getFolders"], () => require("./getFolders"));
+utilities.lazyLoad(exports, ["getLibraryPanel","getLibraryPanelOutput"], () => require("./getLibraryPanel"));
+utilities.lazyLoad(exports, ["getOnCallSlackChannel","getOnCallSlackChannelOutput"], () => require("./getOnCallSlackChannel"));
+utilities.lazyLoad(exports, ["getOncallAction","getOncallActionOutput"], () => require("./getOncallAction"));
+utilities.lazyLoad(exports, ["getOncallEscalationChain","getOncallEscalationChainOutput"], () => require("./getOncallEscalationChain"));
+utilities.lazyLoad(exports, ["getOncallOutgoingWebhook","getOncallOutgoingWebhookOutput"], () => require("./getOncallOutgoingWebhook"));
+utilities.lazyLoad(exports, ["getOncallSchedule","getOncallScheduleOutput"], () => require("./getOncallSchedule"));
+utilities.lazyLoad(exports, ["getOncallTeam","getOncallTeamOutput"], () => require("./getOncallTeam"));
+utilities.lazyLoad(exports, ["getOncallUser","getOncallUserOutput"], () => require("./getOncallUser"));
+utilities.lazyLoad(exports, ["getOncallUserGroup","getOncallUserGroupOutput"], () => require("./getOncallUserGroup"));
+utilities.lazyLoad(exports, ["getOrganization","getOrganizationOutput"], () => require("./getOrganization"));
+utilities.lazyLoad(exports, ["getSyntheticMonitoringProbe","getSyntheticMonitoringProbeOutput"], () => require("./getSyntheticMonitoringProbe"));
+utilities.lazyLoad(exports, ["getSyntheticMonitoringProbes","getSyntheticMonitoringProbesOutput"], () => require("./getSyntheticMonitoringProbes"));
+utilities.lazyLoad(exports, ["getTeam","getTeamOutput"], () => require("./getTeam"));
+utilities.lazyLoad(exports, ["getUser","getUserOutput"], () => require("./getUser"));
+utilities.lazyLoad(exports, ["LibraryPanel"], () => require("./libraryPanel"));
+utilities.lazyLoad(exports, ["MachineLearningJob"], () => require("./machineLearningJob"));
+utilities.lazyLoad(exports, ["MessageTemplate"], () => require("./messageTemplate"));
+utilities.lazyLoad(exports, ["MuteTiming"], () => require("./muteTiming"));
+utilities.lazyLoad(exports, ["NotificationPolicy"], () => require("./notificationPolicy"));
+utilities.lazyLoad(exports, ["OncallEscalation"], () => require("./oncallEscalation"));
+utilities.lazyLoad(exports, ["OncallEscalationChain"], () => require("./oncallEscalationChain"));
+utilities.lazyLoad(exports, ["OncallIntegration"], () => require("./oncallIntegration"));
+utilities.lazyLoad(exports, ["OncallOnCallShift"], () => require("./oncallOnCallShift"));
+utilities.lazyLoad(exports, ["OncallOutgoingWebhook"], () => require("./oncallOutgoingWebhook"));
+utilities.lazyLoad(exports, ["OncallRoute"], () => require("./oncallRoute"));
+utilities.lazyLoad(exports, ["OncallSchedule"], () => require("./oncallSchedule"));
+utilities.lazyLoad(exports, ["Organization"], () => require("./organization"));
+utilities.lazyLoad(exports, ["Playlist"], () => require("./playlist"));
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+utilities.lazyLoad(exports, ["Report"], () => require("./report"));
+utilities.lazyLoad(exports, ["Role"], () => require("./role"));
+utilities.lazyLoad(exports, ["RoleAssignment"], () => require("./roleAssignment"));
+utilities.lazyLoad(exports, ["RuleGroup"], () => require("./ruleGroup"));
+utilities.lazyLoad(exports, ["ServiceAccount"], () => require("./serviceAccount"));
+utilities.lazyLoad(exports, ["ServiceAccountToken"], () => require("./serviceAccountToken"));
+utilities.lazyLoad(exports, ["SyntheticMonitoringCheck"], () => require("./syntheticMonitoringCheck"));
+utilities.lazyLoad(exports, ["SyntheticMonitoringInstallation"], () => require("./syntheticMonitoringInstallation"));
+utilities.lazyLoad(exports, ["SyntheticMonitoringProbe"], () => require("./syntheticMonitoringProbe"));
+utilities.lazyLoad(exports, ["Team"], () => require("./team"));
+utilities.lazyLoad(exports, ["TeamExternalGroup"], () => require("./teamExternalGroup"));
+utilities.lazyLoad(exports, ["TeamPreferences"], () => require("./teamPreferences"));
+utilities.lazyLoad(exports, ["User"], () => require("./user"));
 
 // Export sub-modules:
 import * as config from "./config";
@@ -75,48 +322,6 @@ export {
     config,
     types,
 };
-
-// Import resources to register:
-import { AlertNotification } from "./alertNotification";
-import { Annotation } from "./annotation";
-import { ApiKey } from "./apiKey";
-import { BuiltinRoleAssignment } from "./builtinRoleAssignment";
-import { CloudApiKey } from "./cloudApiKey";
-import { CloudPluginInstallation } from "./cloudPluginInstallation";
-import { CloudStack } from "./cloudStack";
-import { ContactPoint } from "./contactPoint";
-import { Dashboard } from "./dashboard";
-import { DashboardPermission } from "./dashboardPermission";
-import { DataSource } from "./dataSource";
-import { DataSourcePermission } from "./dataSourcePermission";
-import { Folder } from "./folder";
-import { FolderPermission } from "./folderPermission";
-import { LibraryPanel } from "./libraryPanel";
-import { MachineLearningJob } from "./machineLearningJob";
-import { MessageTemplate } from "./messageTemplate";
-import { MuteTiming } from "./muteTiming";
-import { NotificationPolicy } from "./notificationPolicy";
-import { OncallEscalation } from "./oncallEscalation";
-import { OncallEscalationChain } from "./oncallEscalationChain";
-import { OncallIntegration } from "./oncallIntegration";
-import { OncallOnCallShift } from "./oncallOnCallShift";
-import { OncallOutgoingWebhook } from "./oncallOutgoingWebhook";
-import { OncallRoute } from "./oncallRoute";
-import { OncallSchedule } from "./oncallSchedule";
-import { Organization } from "./organization";
-import { Playlist } from "./playlist";
-import { Report } from "./report";
-import { Role } from "./role";
-import { RuleGroup } from "./ruleGroup";
-import { ServiceAccount } from "./serviceAccount";
-import { ServiceAccountToken } from "./serviceAccountToken";
-import { SyntheticMonitoringCheck } from "./syntheticMonitoringCheck";
-import { SyntheticMonitoringInstallation } from "./syntheticMonitoringInstallation";
-import { SyntheticMonitoringProbe } from "./syntheticMonitoringProbe";
-import { Team } from "./team";
-import { TeamExternalGroup } from "./teamExternalGroup";
-import { TeamPreferences } from "./teamPreferences";
-import { User } from "./user";
 
 const _module = {
     version: utilities.getVersion(),
@@ -182,6 +387,8 @@ const _module = {
                 return new Report(name, <any>undefined, { urn })
             case "grafana:index/role:Role":
                 return new Role(name, <any>undefined, { urn })
+            case "grafana:index/roleAssignment:RoleAssignment":
+                return new RoleAssignment(name, <any>undefined, { urn })
             case "grafana:index/ruleGroup:RuleGroup":
                 return new RuleGroup(name, <any>undefined, { urn })
             case "grafana:index/serviceAccount:ServiceAccount":
@@ -237,6 +444,7 @@ pulumi.runtime.registerResourceModule("grafana", "index/organization", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/playlist", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/report", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/role", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/roleAssignment", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/ruleGroup", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/serviceAccount", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/serviceAccountToken", _module)
@@ -247,9 +455,6 @@ pulumi.runtime.registerResourceModule("grafana", "index/team", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/teamExternalGroup", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/teamPreferences", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/user", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("grafana", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

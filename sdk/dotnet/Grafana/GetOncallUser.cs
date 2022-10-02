@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetOncallUserResult> InvokeAsync(GetOncallUserArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOncallUserResult>("grafana:index/getOncallUser:getOncallUser", args ?? new GetOncallUserArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallUserResult>("grafana:index/getOncallUser:getOncallUser", args ?? new GetOncallUserArgs(), options.WithDefaults());
 
         /// <summary>
         /// * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/users/)
@@ -64,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetOncallUserResult> Invoke(GetOncallUserInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetOncallUserResult>("grafana:index/getOncallUser:getOncallUser", args ?? new GetOncallUserInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetOncallUserResult>("grafana:index/getOncallUser:getOncallUser", args ?? new GetOncallUserInvokeArgs(), options.WithDefaults());
     }
 
 

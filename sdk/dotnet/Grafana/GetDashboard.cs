@@ -64,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDashboardResult> InvokeAsync(GetDashboardArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDashboardResult>("grafana:index/getDashboard:getDashboard", args ?? new GetDashboardArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDashboardResult>("grafana:index/getDashboard:getDashboard", args ?? new GetDashboardArgs(), options.WithDefaults());
 
         /// <summary>
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
@@ -118,7 +118,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDashboardResult> Invoke(GetDashboardInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDashboardResult>("grafana:index/getDashboard:getDashboard", args ?? new GetDashboardInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetDashboardResult>("grafana:index/getDashboard:getDashboard", args ?? new GetDashboardInvokeArgs(), options.WithDefaults());
     }
 
 

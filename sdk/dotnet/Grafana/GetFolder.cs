@@ -45,7 +45,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetFolderResult> InvokeAsync(GetFolderArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetFolderResult>("grafana:index/getFolder:getFolder", args ?? new GetFolderArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetFolderResult>("grafana:index/getFolder:getFolder", args ?? new GetFolderArgs(), options.WithDefaults());
 
         /// <summary>
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
@@ -80,7 +80,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetFolderResult> Invoke(GetFolderInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetFolderResult>("grafana:index/getFolder:getFolder", args ?? new GetFolderInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetFolderResult>("grafana:index/getFolder:getFolder", args ?? new GetFolderInvokeArgs(), options.WithDefaults());
     }
 
 

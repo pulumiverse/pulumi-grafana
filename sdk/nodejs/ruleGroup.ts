@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -10,6 +11,8 @@ import * as utilities from "./utilities";
  *
  * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
+ *
+ * This resource requires Grafana 9.1.0 or later.
  *
  * ## Example Usage
  *
@@ -136,7 +139,7 @@ export class RuleGroup extends pulumi.CustomResource {
     }
 
     /**
-     * The UID of the group that the folder belongs to.
+     * The UID of the folder that the group belongs to.
      */
     public readonly folderUid!: pulumi.Output<string>;
     /**
@@ -204,7 +207,7 @@ export class RuleGroup extends pulumi.CustomResource {
  */
 export interface RuleGroupState {
     /**
-     * The UID of the group that the folder belongs to.
+     * The UID of the folder that the group belongs to.
      */
     folderUid?: pulumi.Input<string>;
     /**
@@ -230,7 +233,7 @@ export interface RuleGroupState {
  */
 export interface RuleGroupArgs {
     /**
-     * The UID of the group that the folder belongs to.
+     * The UID of the folder that the group belongs to.
      */
     folderUid: pulumi.Input<string>;
     /**

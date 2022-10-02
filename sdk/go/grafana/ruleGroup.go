@@ -16,6 +16,8 @@ import (
 // * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules)
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
 //
+// This resource requires Grafana 9.1.0 or later.
+//
 // ## Example Usage
 //
 // ```go
@@ -148,7 +150,7 @@ import (
 type RuleGroup struct {
 	pulumi.CustomResourceState
 
-	// The UID of the group that the folder belongs to.
+	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringOutput `pulumi:"folderUid"`
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds pulumi.IntOutput `pulumi:"intervalSeconds"`
@@ -202,7 +204,7 @@ func GetRuleGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RuleGroup resources.
 type ruleGroupState struct {
-	// The UID of the group that the folder belongs to.
+	// The UID of the folder that the group belongs to.
 	FolderUid *string `pulumi:"folderUid"`
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds *int `pulumi:"intervalSeconds"`
@@ -215,7 +217,7 @@ type ruleGroupState struct {
 }
 
 type RuleGroupState struct {
-	// The UID of the group that the folder belongs to.
+	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringPtrInput
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds pulumi.IntPtrInput
@@ -232,7 +234,7 @@ func (RuleGroupState) ElementType() reflect.Type {
 }
 
 type ruleGroupArgs struct {
-	// The UID of the group that the folder belongs to.
+	// The UID of the folder that the group belongs to.
 	FolderUid string `pulumi:"folderUid"`
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds int `pulumi:"intervalSeconds"`
@@ -246,7 +248,7 @@ type ruleGroupArgs struct {
 
 // The set of arguments for constructing a RuleGroup resource.
 type RuleGroupArgs struct {
-	// The UID of the group that the folder belongs to.
+	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringInput
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds pulumi.IntInput
@@ -345,7 +347,7 @@ func (o RuleGroupOutput) ToRuleGroupOutputWithContext(ctx context.Context) RuleG
 	return o
 }
 
-// The UID of the group that the folder belongs to.
+// The UID of the folder that the group belongs to.
 func (o RuleGroupOutput) FolderUid() pulumi.StringOutput {
 	return o.ApplyT(func(v *RuleGroup) pulumi.StringOutput { return v.FolderUid }).(pulumi.StringOutput)
 }

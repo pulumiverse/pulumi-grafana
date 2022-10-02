@@ -18,8 +18,11 @@ import javax.annotation.Nullable;
 
 /**
  * Sets the global notification policy for Grafana. Note that this resource manages the entire notification policy tree, and will overwrite any existing policies.
+ * 
  * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/notifications/)
  * * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#notification-policies)
+ * 
+ * This resource requires Grafana 9.1.0 or later.
  * 
  * ## Example Usage
  * ```java
@@ -112,7 +115,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * # The policy is a singleton, so the ID is a constant &#34;policy&#34; value.
+ * The policy is a singleton, so the ID is a constant &#34;policy&#34; value.
  * 
  * ```sh
  *  $ pulumi import grafana:index/notificationPolicy:NotificationPolicy notification_policy_name &#34;policy&#34;

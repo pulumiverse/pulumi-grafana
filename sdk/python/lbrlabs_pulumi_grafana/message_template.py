@@ -99,8 +99,12 @@ class MessageTemplate(pulumi.CustomResource):
                  template: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        Manages Grafana Alerting message templates.
+
         * [Official documentation](https://grafana.com/docs/grafana/next/alerting/contact-points/message-templating/)
         * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#templates)
+
+        This resource requires Grafana 9.1.0 or later.
 
         ## Example Usage
 
@@ -132,8 +136,12 @@ class MessageTemplate(pulumi.CustomResource):
                  args: MessageTemplateArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages Grafana Alerting message templates.
+
         * [Official documentation](https://grafana.com/docs/grafana/next/alerting/contact-points/message-templating/)
         * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#templates)
+
+        This resource requires Grafana 9.1.0 or later.
 
         ## Example Usage
 

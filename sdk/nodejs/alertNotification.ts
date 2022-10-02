@@ -128,13 +128,15 @@ export class AlertNotification extends pulumi.CustomResource {
             resourceInputs["frequency"] = args ? args.frequency : undefined;
             resourceInputs["isDefault"] = args ? args.isDefault : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["secureSettings"] = args ? args.secureSettings : undefined;
+            resourceInputs["secureSettings"] = args?.secureSettings ? pulumi.secret(args.secureSettings) : undefined;
             resourceInputs["sendReminder"] = args ? args.sendReminder : undefined;
             resourceInputs["settings"] = args ? args.settings : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["uid"] = args ? args.uid : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["secureSettings"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(AlertNotification.__pulumiType, name, resourceInputs, opts);
     }
 }

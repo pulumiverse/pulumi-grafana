@@ -102,8 +102,12 @@ class MuteTiming(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        Manages Grafana Alerting mute timings.
+
         * [Official documentation](https://grafana.com/docs/grafana/next/alerting/notifications/mute-timings/)
         * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#mute-timings)
+
+        This resource requires Grafana 9.1.0 or later.
 
         ## Example Usage
 
@@ -153,8 +157,12 @@ class MuteTiming(pulumi.CustomResource):
                  args: Optional[MuteTimingArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages Grafana Alerting mute timings.
+
         * [Official documentation](https://grafana.com/docs/grafana/next/alerting/notifications/mute-timings/)
         * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#mute-timings)
+
+        This resource requires Grafana 9.1.0 or later.
 
         ## Example Usage
 

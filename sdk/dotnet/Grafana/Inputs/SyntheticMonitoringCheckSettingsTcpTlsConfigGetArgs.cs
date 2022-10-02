@@ -20,7 +20,16 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public Input<string>? ClientCert { get; set; }
 
         [Input("clientKey")]
-        public Input<string>? ClientKey { get; set; }
+        private Input<string>? _clientKey;
+        public Input<string>? ClientKey
+        {
+            get => _clientKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("insecureSkipVerify")]
         public Input<bool>? InsecureSkipVerify { get; set; }

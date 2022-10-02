@@ -56,6 +56,7 @@ from .playlist import *
 from .provider import *
 from .report import *
 from .role import *
+from .role_assignment import *
 from .rule_group import *
 from .service_account import *
 from .service_account_token import *
@@ -317,6 +318,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_grafana",
   "classes": {
    "grafana:index/role:Role": "Role"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/roleAssignment",
+  "fqn": "lbrlabs_pulumi_grafana",
+  "classes": {
+   "grafana:index/roleAssignment:RoleAssignment": "RoleAssignment"
   }
  },
  {

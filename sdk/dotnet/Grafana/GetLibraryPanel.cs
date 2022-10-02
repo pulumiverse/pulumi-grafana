@@ -16,13 +16,13 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// Data source for retrieving a single library panel by name or uid.
         /// </summary>
         public static Task<GetLibraryPanelResult> InvokeAsync(GetLibraryPanelArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetLibraryPanelResult>("grafana:index/getLibraryPanel:getLibraryPanel", args ?? new GetLibraryPanelArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetLibraryPanelResult>("grafana:index/getLibraryPanel:getLibraryPanel", args ?? new GetLibraryPanelArgs(), options.WithDefaults());
 
         /// <summary>
         /// Data source for retrieving a single library panel by name or uid.
         /// </summary>
         public static Output<GetLibraryPanelResult> Invoke(GetLibraryPanelInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetLibraryPanelResult>("grafana:index/getLibraryPanel:getLibraryPanel", args ?? new GetLibraryPanelInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetLibraryPanelResult>("grafana:index/getLibraryPanel:getLibraryPanel", args ?? new GetLibraryPanelInvokeArgs(), options.WithDefaults());
     }
 
 

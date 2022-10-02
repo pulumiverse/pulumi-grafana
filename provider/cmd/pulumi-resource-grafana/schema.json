@@ -64,7 +64,8 @@
                     "environment": [
                         "GRAFANA_AUTH"
                     ]
-                }
+                },
+                "secret": true
             },
             "caCert": {
                 "type": "string",
@@ -82,7 +83,8 @@
                     "environment": [
                         "GRAFANA_CLOUD_API_KEY"
                     ]
-                }
+                },
+                "secret": true
             },
             "cloudApiUrl": {
                 "type": "string",
@@ -98,7 +100,8 @@
                 "additionalProperties": {
                     "type": "string"
                 },
-                "description": "Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the\n`GRAFANA_HTTP_HEADERS` environment variable in JSON format.\n"
+                "description": "Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the\n`GRAFANA_HTTP_HEADERS` environment variable in JSON format.\n",
+                "secret": true
             },
             "insecureSkipVerify": {
                 "type": "boolean",
@@ -116,7 +119,8 @@
                     "environment": [
                         "GRAFANA_ONCALL_ACCESS_TOKEN"
                     ]
-                }
+                },
+                "secret": true
             },
             "oncallUrl": {
                 "type": "string",
@@ -152,7 +156,8 @@
                     "environment": [
                         "GRAFANA_SM_ACCESS_TOKEN"
                     ]
-                }
+                },
+                "secret": true
             },
             "smUrl": {
                 "type": "string",
@@ -242,7 +247,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "basicAuthUser": {
                     "type": "string",
@@ -272,7 +278,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "uid": {
                     "type": "string",
@@ -345,7 +352,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "uid": {
                     "type": "string",
@@ -418,7 +426,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "uid": {
                     "type": "string",
@@ -436,7 +445,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "useDiscordUsername": {
                     "type": "boolean",
@@ -503,7 +513,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "singleEmail": {
                     "type": "boolean",
@@ -576,7 +587,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "uid": {
                     "type": "string",
@@ -594,7 +606,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 }
             },
             "type": "object",
@@ -628,7 +641,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "settings": {
                     "type": "object",
@@ -640,7 +654,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "topic": {
                     "type": "string",
@@ -685,7 +700,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "autoClose": {
                     "type": "boolean",
@@ -751,7 +767,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "uid": {
                     "type": "string",
@@ -830,7 +847,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "settings": {
                     "type": "object",
@@ -842,7 +860,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "severity": {
                     "type": "string",
@@ -894,7 +913,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "device": {
                     "type": "string",
@@ -978,7 +998,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "sound": {
                     "type": "string",
@@ -1005,7 +1026,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 }
             },
             "type": "object",
@@ -1032,7 +1054,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "check": {
                     "type": "string",
@@ -1098,7 +1121,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "uid": {
                     "type": "string",
@@ -1218,7 +1242,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "text": {
                     "type": "string",
@@ -1245,7 +1270,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "uid": {
                     "type": "string",
@@ -1263,7 +1289,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "username": {
                     "type": "string",
@@ -1323,7 +1350,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "title": {
                     "type": "string",
@@ -1350,7 +1378,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 }
             },
             "type": "object",
@@ -1405,7 +1434,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "token": {
                     "type": "string",
@@ -1414,7 +1444,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "uid": {
                     "type": "string",
@@ -1450,7 +1481,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "disableResolveMessage": {
                     "type": "boolean",
@@ -1489,7 +1521,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "uid": {
                     "type": "string",
@@ -1548,7 +1581,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "uid": {
                     "type": "string",
@@ -1591,7 +1625,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "authorizationScheme": {
                     "type": "string",
@@ -1609,7 +1644,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "basicAuthUser": {
                     "type": "string",
@@ -1657,7 +1693,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "uid": {
                     "type": "string",
@@ -1721,7 +1758,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "title": {
                     "type": "string",
@@ -1748,7 +1786,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 }
             },
             "type": "object",
@@ -2421,7 +2460,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "accessToken": {
                     "type": "string",
@@ -2430,7 +2470,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "authToken": {
                     "type": "string",
@@ -2439,7 +2480,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "basicAuthPassword": {
                     "type": "string",
@@ -2448,7 +2490,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "clientSecret": {
                     "type": "string",
@@ -2457,7 +2500,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "password": {
                     "type": "string",
@@ -2466,7 +2510,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "privateKey": {
                     "type": "string",
@@ -2475,7 +2520,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "secretKey": {
                     "type": "string",
@@ -2484,7 +2530,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "sigv4AccessKey": {
                     "type": "string",
@@ -2493,7 +2540,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "sigv4SecretKey": {
                     "type": "string",
@@ -2502,7 +2550,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "tlsCaCert": {
                     "type": "string",
@@ -2511,7 +2560,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "tlsClientCert": {
                     "type": "string",
@@ -2520,7 +2570,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "tlsClientKey": {
                     "type": "string",
@@ -2529,7 +2580,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 }
             },
             "type": "object"
@@ -4329,7 +4381,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "insecureSkipVerify": {
                     "type": "boolean",
@@ -4492,7 +4545,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "insecureSkipVerify": {
                     "type": "boolean",
@@ -4636,7 +4690,8 @@
         "properties": {
             "auth": {
                 "type": "string",
-                "description": "API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.\n"
+                "description": "API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.\n",
+                "secret": true
             },
             "caCert": {
                 "type": "string",
@@ -4644,7 +4699,8 @@
             },
             "cloudApiKey": {
                 "type": "string",
-                "description": "API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.\n"
+                "description": "API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.\n",
+                "secret": true
             },
             "cloudApiUrl": {
                 "type": "string",
@@ -4655,7 +4711,8 @@
                 "additionalProperties": {
                     "type": "string"
                 },
-                "description": "Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the\n`GRAFANA_HTTP_HEADERS` environment variable in JSON format.\n"
+                "description": "Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the\n`GRAFANA_HTTP_HEADERS` environment variable in JSON format.\n",
+                "secret": true
             },
             "insecureSkipVerify": {
                 "type": "boolean",
@@ -4663,7 +4720,8 @@
             },
             "oncallAccessToken": {
                 "type": "string",
-                "description": "A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.\n"
+                "description": "A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.\n",
+                "secret": true
             },
             "oncallUrl": {
                 "type": "string",
@@ -4679,7 +4737,8 @@
             },
             "smAccessToken": {
                 "type": "string",
-                "description": "A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.\n"
+                "description": "A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.\n",
+                "secret": true
             },
             "smUrl": {
                 "type": "string",
@@ -4710,7 +4769,8 @@
                     "environment": [
                         "GRAFANA_AUTH"
                     ]
-                }
+                },
+                "secret": true
             },
             "caCert": {
                 "type": "string",
@@ -4728,7 +4788,8 @@
                     "environment": [
                         "GRAFANA_CLOUD_API_KEY"
                     ]
-                }
+                },
+                "secret": true
             },
             "cloudApiUrl": {
                 "type": "string",
@@ -4744,7 +4805,8 @@
                 "additionalProperties": {
                     "type": "string"
                 },
-                "description": "Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the\n`GRAFANA_HTTP_HEADERS` environment variable in JSON format.\n"
+                "description": "Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the\n`GRAFANA_HTTP_HEADERS` environment variable in JSON format.\n",
+                "secret": true
             },
             "insecureSkipVerify": {
                 "type": "boolean",
@@ -4762,7 +4824,8 @@
                     "environment": [
                         "GRAFANA_ONCALL_ACCESS_TOKEN"
                     ]
-                }
+                },
+                "secret": true
             },
             "oncallUrl": {
                 "type": "string",
@@ -4798,7 +4861,8 @@
                     "environment": [
                         "GRAFANA_SM_ACCESS_TOKEN"
                     ]
-                }
+                },
+                "secret": true
             },
             "smUrl": {
                 "type": "string",
@@ -4872,7 +4936,8 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).\n"
+                    "description": "Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).\n",
+                    "secret": true
                 },
                 "sendReminder": {
                     "type": "boolean",
@@ -4921,7 +4986,8 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).\n"
+                    "description": "Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).\n",
+                    "secret": true
                 },
                 "sendReminder": {
                     "type": "boolean",
@@ -4970,7 +5036,8 @@
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
                         },
-                        "description": "Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).\n"
+                        "description": "Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).\n",
+                        "secret": true
                     },
                     "sendReminder": {
                         "type": "boolean",
@@ -5112,7 +5179,8 @@
                     "type": "string"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "secret": true
                 },
                 "name": {
                     "type": "string"
@@ -5164,7 +5232,8 @@
                         "type": "string"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "secret": true
                     },
                     "name": {
                         "type": "string",
@@ -5247,7 +5316,8 @@
                 },
                 "key": {
                     "type": "string",
-                    "description": "The generated API key.\n"
+                    "description": "The generated API key.\n",
+                    "secret": true
                 },
                 "name": {
                     "type": "string",
@@ -5295,7 +5365,8 @@
                     },
                     "key": {
                         "type": "string",
-                        "description": "The generated API key.\n"
+                        "description": "The generated API key.\n",
+                        "secret": true
                     },
                     "name": {
                         "type": "string",
@@ -5694,7 +5765,7 @@
             }
         },
         "grafana:index/contactPoint:ContactPoint": {
-            "description": "Manages Grafana Alerting contact points.\n\n* [Official documentation](https://grafana.com/docs/grafana/next/alerting/contact-points)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#contact-points)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst myContactPoint = new grafana.ContactPoint(\"my_contact_point\", {\n    emails: [{\n        addresses: [\n            \"one@company.org\",\n            \"two@company.org\",\n        ],\n        disableResolveMessage: false,\n        message: \"{{ len .Alerts.Firing }} firing.\",\n        singleEmail: true,\n        subject: \"{{ template \\\"default.title\\\" .}}\",\n    }],\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\nmy_contact_point = grafana.ContactPoint(\"myContactPoint\", emails=[grafana.ContactPointEmailArgs(\n    addresses=[\n        \"one@company.org\",\n        \"two@company.org\",\n    ],\n    disable_resolve_message=False,\n    message=\"{{ len .Alerts.Firing }} firing.\",\n    single_email=True,\n    subject=\"{{ template \\\"default.title\\\" .}}\",\n)])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myContactPoint = new Grafana.ContactPoint(\"myContactPoint\", new()\n    {\n        Emails = new[]\n        {\n            new Grafana.Inputs.ContactPointEmailArgs\n            {\n                Addresses = new[]\n                {\n                    \"one@company.org\",\n                    \"two@company.org\",\n                },\n                DisableResolveMessage = false,\n                Message = \"{{ len .Alerts.Firing }} firing.\",\n                SingleEmail = true,\n                Subject = \"{{ template \\\"default.title\\\" .}}\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewContactPoint(ctx, \"myContactPoint\", \u0026grafana.ContactPointArgs{\n\t\t\tEmails: ContactPointEmailArray{\n\t\t\t\t\u0026ContactPointEmailArgs{\n\t\t\t\t\tAddresses: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"one@company.org\"),\n\t\t\t\t\t\tpulumi.String(\"two@company.org\"),\n\t\t\t\t\t},\n\t\t\t\t\tDisableResolveMessage: pulumi.Bool(false),\n\t\t\t\t\tMessage:               pulumi.String(\"{{ len .Alerts.Firing }} firing.\"),\n\t\t\t\t\tSingleEmail:           pulumi.Bool(true),\n\t\t\t\t\tSubject:               pulumi.String(\"{{ template \\\"default.title\\\" .}}\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.ContactPoint;\nimport com.pulumi.grafana.ContactPointArgs;\nimport com.pulumi.grafana.inputs.ContactPointEmailArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myContactPoint = new ContactPoint(\"myContactPoint\", ContactPointArgs.builder()        \n            .emails(ContactPointEmailArgs.builder()\n                .addresses(                \n                    \"one@company.org\",\n                    \"two@company.org\")\n                .disableResolveMessage(false)\n                .message(\"{{ len .Alerts.Firing }} firing.\")\n                .singleEmail(true)\n                .subject(\"{{ template \\\"default.title\\\" .}}\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myContactPoint:\n    type: grafana:ContactPoint\n    properties:\n      emails:\n        - addresses:\n            - one@company.org\n            - two@company.org\n          disableResolveMessage: false\n          message: '{{ len .Alerts.Firing }} firing.'\n          singleEmail: true\n          subject: '{{ template \"default.title\" .}}'\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import grafana:index/contactPoint:ContactPoint contact_point_name {{contact_point_name}}\n```\n\n ",
+            "description": "Manages Grafana Alerting contact points.\n\n* [Official documentation](https://grafana.com/docs/grafana/next/alerting/contact-points)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#contact-points)\n\nThis resource requires Grafana 9.1.0 or later.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst myContactPoint = new grafana.ContactPoint(\"my_contact_point\", {\n    emails: [{\n        addresses: [\n            \"one@company.org\",\n            \"two@company.org\",\n        ],\n        disableResolveMessage: false,\n        message: \"{{ len .Alerts.Firing }} firing.\",\n        singleEmail: true,\n        subject: \"{{ template \\\"default.title\\\" .}}\",\n    }],\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\nmy_contact_point = grafana.ContactPoint(\"myContactPoint\", emails=[grafana.ContactPointEmailArgs(\n    addresses=[\n        \"one@company.org\",\n        \"two@company.org\",\n    ],\n    disable_resolve_message=False,\n    message=\"{{ len .Alerts.Firing }} firing.\",\n    single_email=True,\n    subject=\"{{ template \\\"default.title\\\" .}}\",\n)])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myContactPoint = new Grafana.ContactPoint(\"myContactPoint\", new()\n    {\n        Emails = new[]\n        {\n            new Grafana.Inputs.ContactPointEmailArgs\n            {\n                Addresses = new[]\n                {\n                    \"one@company.org\",\n                    \"two@company.org\",\n                },\n                DisableResolveMessage = false,\n                Message = \"{{ len .Alerts.Firing }} firing.\",\n                SingleEmail = true,\n                Subject = \"{{ template \\\"default.title\\\" .}}\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewContactPoint(ctx, \"myContactPoint\", \u0026grafana.ContactPointArgs{\n\t\t\tEmails: ContactPointEmailArray{\n\t\t\t\t\u0026ContactPointEmailArgs{\n\t\t\t\t\tAddresses: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"one@company.org\"),\n\t\t\t\t\t\tpulumi.String(\"two@company.org\"),\n\t\t\t\t\t},\n\t\t\t\t\tDisableResolveMessage: pulumi.Bool(false),\n\t\t\t\t\tMessage:               pulumi.String(\"{{ len .Alerts.Firing }} firing.\"),\n\t\t\t\t\tSingleEmail:           pulumi.Bool(true),\n\t\t\t\t\tSubject:               pulumi.String(\"{{ template \\\"default.title\\\" .}}\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.ContactPoint;\nimport com.pulumi.grafana.ContactPointArgs;\nimport com.pulumi.grafana.inputs.ContactPointEmailArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myContactPoint = new ContactPoint(\"myContactPoint\", ContactPointArgs.builder()        \n            .emails(ContactPointEmailArgs.builder()\n                .addresses(                \n                    \"one@company.org\",\n                    \"two@company.org\")\n                .disableResolveMessage(false)\n                .message(\"{{ len .Alerts.Firing }} firing.\")\n                .singleEmail(true)\n                .subject(\"{{ template \\\"default.title\\\" .}}\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myContactPoint:\n    type: grafana:ContactPoint\n    properties:\n      emails:\n        - addresses:\n            - one@company.org\n            - two@company.org\n          disableResolveMessage: false\n          message: '{{ len .Alerts.Firing }} firing.'\n          singleEmail: true\n          subject: '{{ template \"default.title\" .}}'\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import grafana:index/contactPoint:ContactPoint contact_point_name {{contact_point_name}}\n```\n\n ",
             "properties": {
                 "alertmanagers": {
                     "type": "array",
@@ -6264,7 +6335,8 @@
                 "basicAuthPassword": {
                     "type": "string",
                     "description": "Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+."
+                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
+                    "secret": true
                 },
                 "basicAuthUsername": {
                     "type": "string",
@@ -6279,7 +6351,8 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Custom HTTP headers\n"
+                    "description": "Custom HTTP headers\n",
+                    "secret": true
                 },
                 "isDefault": {
                     "type": "boolean",
@@ -6304,11 +6377,13 @@
                 "password": {
                     "type": "string",
                     "description": "(Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+."
+                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
+                    "secret": true
                 },
                 "secureJsonDataEncoded": {
                     "type": "string",
-                    "description": "Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n"
+                    "description": "Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n",
+                    "secret": true
                 },
                 "secureJsonDatas": {
                     "type": "array",
@@ -6316,7 +6391,8 @@
                         "$ref": "#/types/grafana:index/DataSourceSecureJsonData:DataSourceSecureJsonData"
                     },
                     "description": "Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes."
+                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.",
+                    "secret": true
                 },
                 "type": {
                     "type": "string",
@@ -6352,7 +6428,8 @@
                 "basicAuthPassword": {
                     "type": "string",
                     "description": "Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+."
+                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
+                    "secret": true
                 },
                 "basicAuthUsername": {
                     "type": "string",
@@ -6367,7 +6444,8 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Custom HTTP headers\n"
+                    "description": "Custom HTTP headers\n",
+                    "secret": true
                 },
                 "isDefault": {
                     "type": "boolean",
@@ -6392,11 +6470,13 @@
                 "password": {
                     "type": "string",
                     "description": "(Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+."
+                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
+                    "secret": true
                 },
                 "secureJsonDataEncoded": {
                     "type": "string",
-                    "description": "Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n"
+                    "description": "Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n",
+                    "secret": true
                 },
                 "secureJsonDatas": {
                     "type": "array",
@@ -6404,7 +6484,8 @@
                         "$ref": "#/types/grafana:index/DataSourceSecureJsonData:DataSourceSecureJsonData"
                     },
                     "description": "Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes."
+                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.",
+                    "secret": true
                 },
                 "type": {
                     "type": "string",
@@ -6440,7 +6521,8 @@
                     "basicAuthPassword": {
                         "type": "string",
                         "description": "Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                        "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+."
+                        "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
+                        "secret": true
                     },
                     "basicAuthUsername": {
                         "type": "string",
@@ -6455,7 +6537,8 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "Custom HTTP headers\n"
+                        "description": "Custom HTTP headers\n",
+                        "secret": true
                     },
                     "isDefault": {
                         "type": "boolean",
@@ -6480,11 +6563,13 @@
                     "password": {
                         "type": "string",
                         "description": "(Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                        "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+."
+                        "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
+                        "secret": true
                     },
                     "secureJsonDataEncoded": {
                         "type": "string",
-                        "description": "Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n"
+                        "description": "Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n",
+                        "secret": true
                     },
                     "secureJsonDatas": {
                         "type": "array",
@@ -6492,7 +6577,8 @@
                             "$ref": "#/types/grafana:index/DataSourceSecureJsonData:DataSourceSecureJsonData"
                         },
                         "description": "Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.\n",
-                        "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes."
+                        "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.",
+                        "secret": true
                     },
                     "type": {
                         "type": "string",
@@ -6997,7 +7083,7 @@
             }
         },
         "grafana:index/messageTemplate:MessageTemplate": {
-            "description": "* [Official documentation](https://grafana.com/docs/grafana/next/alerting/contact-points/message-templating/)\n* [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#templates)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst myTemplate = new grafana.MessageTemplate(\"my_template\", {\n    template: `{{define \"My Reusable Template\" }}\n template content\n{{ end }}`,\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\nmy_template = grafana.MessageTemplate(\"myTemplate\", template=\"\"\"{{define \"My Reusable Template\" }}\n template content\n{{ end }}\n\"\"\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myTemplate = new Grafana.MessageTemplate(\"myTemplate\", new()\n    {\n        Template = @\"{{define \"\"My Reusable Template\"\" }}\n template content\n{{ end }}\n\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewMessageTemplate(ctx, \"myTemplate\", \u0026grafana.MessageTemplateArgs{\n\t\t\tTemplate: pulumi.String(fmt.Sprintf(\"{{define \\\"My Reusable Template\\\" }}\\n template content\\n{{ end }}\\n\")),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.MessageTemplate;\nimport com.pulumi.grafana.MessageTemplateArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myTemplate = new MessageTemplate(\"myTemplate\", MessageTemplateArgs.builder()        \n            .template(\"\"\"\n{{define \"My Reusable Template\" }}\n template content\n{{ end }}\n            \"\"\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myTemplate:\n    type: grafana:MessageTemplate\n    properties:\n      template: |\n        {{define \"My Reusable Template\" }}\n         template content\n        {{ end }}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import grafana:index/messageTemplate:MessageTemplate message_template_name {{message_template_name}}\n```\n\n ",
+            "description": "Manages Grafana Alerting message templates.\n\n* [Official documentation](https://grafana.com/docs/grafana/next/alerting/contact-points/message-templating/)\n* [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#templates)\n\nThis resource requires Grafana 9.1.0 or later.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst myTemplate = new grafana.MessageTemplate(\"my_template\", {\n    template: `{{define \"My Reusable Template\" }}\n template content\n{{ end }}`,\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\nmy_template = grafana.MessageTemplate(\"myTemplate\", template=\"\"\"{{define \"My Reusable Template\" }}\n template content\n{{ end }}\n\"\"\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myTemplate = new Grafana.MessageTemplate(\"myTemplate\", new()\n    {\n        Template = @\"{{define \"\"My Reusable Template\"\" }}\n template content\n{{ end }}\n\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewMessageTemplate(ctx, \"myTemplate\", \u0026grafana.MessageTemplateArgs{\n\t\t\tTemplate: pulumi.String(fmt.Sprintf(\"{{define \\\"My Reusable Template\\\" }}\\n template content\\n{{ end }}\\n\")),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.MessageTemplate;\nimport com.pulumi.grafana.MessageTemplateArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myTemplate = new MessageTemplate(\"myTemplate\", MessageTemplateArgs.builder()        \n            .template(\"\"\"\n{{define \"My Reusable Template\" }}\n template content\n{{ end }}\n            \"\"\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myTemplate:\n    type: grafana:MessageTemplate\n    properties:\n      template: |\n        {{define \"My Reusable Template\" }}\n         template content\n        {{ end }}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import grafana:index/messageTemplate:MessageTemplate message_template_name {{message_template_name}}\n```\n\n ",
             "properties": {
                 "name": {
                     "type": "string",
@@ -7043,7 +7129,7 @@
             }
         },
         "grafana:index/muteTiming:MuteTiming": {
-            "description": "* [Official documentation](https://grafana.com/docs/grafana/next/alerting/notifications/mute-timings/)\n* [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#mute-timings)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst myMuteTiming = new grafana.MuteTiming(\"my_mute_timing\", {\n    intervals: [{\n        daysOfMonths: [\n            \"1:7\",\n            \"-1\",\n        ],\n        months: [\n            \"1:3\",\n            \"december\",\n        ],\n        times: [{\n            end: \"14:17\",\n            start: \"04:56\",\n        }],\n        weekdays: [\n            \"monday\",\n            \"tuesday:thursday\",\n        ],\n        years: [\n            \"2030\",\n            \"2025:2026\",\n        ],\n    }],\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\nmy_mute_timing = grafana.MuteTiming(\"myMuteTiming\", intervals=[grafana.MuteTimingIntervalArgs(\n    days_of_months=[\n        \"1:7\",\n        \"-1\",\n    ],\n    months=[\n        \"1:3\",\n        \"december\",\n    ],\n    times=[grafana.MuteTimingIntervalTimeArgs(\n        end=\"14:17\",\n        start=\"04:56\",\n    )],\n    weekdays=[\n        \"monday\",\n        \"tuesday:thursday\",\n    ],\n    years=[\n        \"2030\",\n        \"2025:2026\",\n    ],\n)])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myMuteTiming = new Grafana.MuteTiming(\"myMuteTiming\", new()\n    {\n        Intervals = new[]\n        {\n            new Grafana.Inputs.MuteTimingIntervalArgs\n            {\n                DaysOfMonths = new[]\n                {\n                    \"1:7\",\n                    \"-1\",\n                },\n                Months = new[]\n                {\n                    \"1:3\",\n                    \"december\",\n                },\n                Times = new[]\n                {\n                    new Grafana.Inputs.MuteTimingIntervalTimeArgs\n                    {\n                        End = \"14:17\",\n                        Start = \"04:56\",\n                    },\n                },\n                Weekdays = new[]\n                {\n                    \"monday\",\n                    \"tuesday:thursday\",\n                },\n                Years = new[]\n                {\n                    \"2030\",\n                    \"2025:2026\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewMuteTiming(ctx, \"myMuteTiming\", \u0026grafana.MuteTimingArgs{\n\t\t\tIntervals: MuteTimingIntervalArray{\n\t\t\t\t\u0026MuteTimingIntervalArgs{\n\t\t\t\t\tDaysOfMonths: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"1:7\"),\n\t\t\t\t\t\tpulumi.String(\"-1\"),\n\t\t\t\t\t},\n\t\t\t\t\tMonths: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"1:3\"),\n\t\t\t\t\t\tpulumi.String(\"december\"),\n\t\t\t\t\t},\n\t\t\t\t\tTimes: MuteTimingIntervalTimeArray{\n\t\t\t\t\t\t\u0026MuteTimingIntervalTimeArgs{\n\t\t\t\t\t\t\tEnd:   pulumi.String(\"14:17\"),\n\t\t\t\t\t\t\tStart: pulumi.String(\"04:56\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tWeekdays: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"monday\"),\n\t\t\t\t\t\tpulumi.String(\"tuesday:thursday\"),\n\t\t\t\t\t},\n\t\t\t\t\tYears: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"2030\"),\n\t\t\t\t\t\tpulumi.String(\"2025:2026\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.MuteTiming;\nimport com.pulumi.grafana.MuteTimingArgs;\nimport com.pulumi.grafana.inputs.MuteTimingIntervalArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myMuteTiming = new MuteTiming(\"myMuteTiming\", MuteTimingArgs.builder()        \n            .intervals(MuteTimingIntervalArgs.builder()\n                .daysOfMonths(                \n                    \"1:7\",\n                    \"-1\")\n                .months(                \n                    \"1:3\",\n                    \"december\")\n                .times(MuteTimingIntervalTimeArgs.builder()\n                    .end(\"14:17\")\n                    .start(\"04:56\")\n                    .build())\n                .weekdays(                \n                    \"monday\",\n                    \"tuesday:thursday\")\n                .years(                \n                    \"2030\",\n                    \"2025:2026\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myMuteTiming:\n    type: grafana:MuteTiming\n    properties:\n      intervals:\n        - daysOfMonths:\n            - 1:7\n            - -1\n          months:\n            - 1:3\n            - december\n          times:\n            - end: 14:17\n              start: 04:56\n          weekdays:\n            - monday\n            - tuesday:thursday\n          years:\n            - 2030\n            - 2025:2026\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import grafana:index/muteTiming:MuteTiming mute_timing_name {{mute_timing_name}}\n```\n\n ",
+            "description": "Manages Grafana Alerting mute timings.\n\n* [Official documentation](https://grafana.com/docs/grafana/next/alerting/notifications/mute-timings/)\n* [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#mute-timings)\n\nThis resource requires Grafana 9.1.0 or later.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst myMuteTiming = new grafana.MuteTiming(\"my_mute_timing\", {\n    intervals: [{\n        daysOfMonths: [\n            \"1:7\",\n            \"-1\",\n        ],\n        months: [\n            \"1:3\",\n            \"december\",\n        ],\n        times: [{\n            end: \"14:17\",\n            start: \"04:56\",\n        }],\n        weekdays: [\n            \"monday\",\n            \"tuesday:thursday\",\n        ],\n        years: [\n            \"2030\",\n            \"2025:2026\",\n        ],\n    }],\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\nmy_mute_timing = grafana.MuteTiming(\"myMuteTiming\", intervals=[grafana.MuteTimingIntervalArgs(\n    days_of_months=[\n        \"1:7\",\n        \"-1\",\n    ],\n    months=[\n        \"1:3\",\n        \"december\",\n    ],\n    times=[grafana.MuteTimingIntervalTimeArgs(\n        end=\"14:17\",\n        start=\"04:56\",\n    )],\n    weekdays=[\n        \"monday\",\n        \"tuesday:thursday\",\n    ],\n    years=[\n        \"2030\",\n        \"2025:2026\",\n    ],\n)])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myMuteTiming = new Grafana.MuteTiming(\"myMuteTiming\", new()\n    {\n        Intervals = new[]\n        {\n            new Grafana.Inputs.MuteTimingIntervalArgs\n            {\n                DaysOfMonths = new[]\n                {\n                    \"1:7\",\n                    \"-1\",\n                },\n                Months = new[]\n                {\n                    \"1:3\",\n                    \"december\",\n                },\n                Times = new[]\n                {\n                    new Grafana.Inputs.MuteTimingIntervalTimeArgs\n                    {\n                        End = \"14:17\",\n                        Start = \"04:56\",\n                    },\n                },\n                Weekdays = new[]\n                {\n                    \"monday\",\n                    \"tuesday:thursday\",\n                },\n                Years = new[]\n                {\n                    \"2030\",\n                    \"2025:2026\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewMuteTiming(ctx, \"myMuteTiming\", \u0026grafana.MuteTimingArgs{\n\t\t\tIntervals: MuteTimingIntervalArray{\n\t\t\t\t\u0026MuteTimingIntervalArgs{\n\t\t\t\t\tDaysOfMonths: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"1:7\"),\n\t\t\t\t\t\tpulumi.String(\"-1\"),\n\t\t\t\t\t},\n\t\t\t\t\tMonths: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"1:3\"),\n\t\t\t\t\t\tpulumi.String(\"december\"),\n\t\t\t\t\t},\n\t\t\t\t\tTimes: MuteTimingIntervalTimeArray{\n\t\t\t\t\t\t\u0026MuteTimingIntervalTimeArgs{\n\t\t\t\t\t\t\tEnd:   pulumi.String(\"14:17\"),\n\t\t\t\t\t\t\tStart: pulumi.String(\"04:56\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tWeekdays: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"monday\"),\n\t\t\t\t\t\tpulumi.String(\"tuesday:thursday\"),\n\t\t\t\t\t},\n\t\t\t\t\tYears: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"2030\"),\n\t\t\t\t\t\tpulumi.String(\"2025:2026\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.MuteTiming;\nimport com.pulumi.grafana.MuteTimingArgs;\nimport com.pulumi.grafana.inputs.MuteTimingIntervalArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myMuteTiming = new MuteTiming(\"myMuteTiming\", MuteTimingArgs.builder()        \n            .intervals(MuteTimingIntervalArgs.builder()\n                .daysOfMonths(                \n                    \"1:7\",\n                    \"-1\")\n                .months(                \n                    \"1:3\",\n                    \"december\")\n                .times(MuteTimingIntervalTimeArgs.builder()\n                    .end(\"14:17\")\n                    .start(\"04:56\")\n                    .build())\n                .weekdays(                \n                    \"monday\",\n                    \"tuesday:thursday\")\n                .years(                \n                    \"2030\",\n                    \"2025:2026\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myMuteTiming:\n    type: grafana:MuteTiming\n    properties:\n      intervals:\n        - daysOfMonths:\n            - 1:7\n            - -1\n          months:\n            - 1:3\n            - december\n          times:\n            - end: 14:17\n              start: 04:56\n          weekdays:\n            - monday\n            - tuesday:thursday\n          years:\n            - 2030\n            - 2025:2026\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import grafana:index/muteTiming:MuteTiming mute_timing_name {{mute_timing_name}}\n```\n\n ",
             "properties": {
                 "intervals": {
                     "type": "array",
@@ -7094,7 +7180,7 @@
             }
         },
         "grafana:index/notificationPolicy:NotificationPolicy": {
-            "description": "Sets the global notification policy for Grafana. Note that this resource manages the entire notification policy tree, and will overwrite any existing policies.\n* [Official documentation](https://grafana.com/docs/grafana/latest/alerting/notifications/)\n* [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#notification-policies)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@lbrlabs/pulumi-grafana\";\n\nconst aContactPoint = new grafana.ContactPoint(\"aContactPoint\", {emails: [{\n    addresses: [\n        \"one@company.org\",\n        \"two@company.org\",\n    ],\n    message: \"{{ len .Alerts.Firing }} firing.\",\n}]});\nconst aMuteTiming = new grafana.MuteTiming(\"aMuteTiming\", {intervals: [{\n    weekdays: [\"monday\"],\n}]});\nconst myNotificationPolicy = new grafana.NotificationPolicy(\"myNotificationPolicy\", {\n    groupBies: [\"...\"],\n    contactPoint: aContactPoint.name,\n    groupWait: \"45s\",\n    groupInterval: \"6m\",\n    repeatInterval: \"3h\",\n    policies: [\n        {\n            matchers: [{\n                label: \"mylabel\",\n                match: \"=\",\n                value: \"myvalue\",\n            }],\n            contactPoint: aContactPoint.name,\n            groupBies: [\"alertname\"],\n            \"continue\": true,\n            muteTimings: [aMuteTiming.name],\n            groupWait: \"45s\",\n            groupInterval: \"6m\",\n            repeatInterval: \"3h\",\n            policies: [{\n                matchers: [{\n                    label: \"sublabel\",\n                    match: \"=\",\n                    value: \"subvalue\",\n                }],\n                contactPoint: aContactPoint.name,\n                groupBies: [\"...\"],\n            }],\n        },\n        {\n            matchers: [{\n                label: \"anotherlabel\",\n                match: \"=~\",\n                value: \"another value.*\",\n            }],\n            contactPoint: aContactPoint.name,\n            groupBies: [\"...\"],\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\na_contact_point = grafana.ContactPoint(\"aContactPoint\", emails=[grafana.ContactPointEmailArgs(\n    addresses=[\n        \"one@company.org\",\n        \"two@company.org\",\n    ],\n    message=\"{{ len .Alerts.Firing }} firing.\",\n)])\na_mute_timing = grafana.MuteTiming(\"aMuteTiming\", intervals=[grafana.MuteTimingIntervalArgs(\n    weekdays=[\"monday\"],\n)])\nmy_notification_policy = grafana.NotificationPolicy(\"myNotificationPolicy\",\n    group_bies=[\"...\"],\n    contact_point=a_contact_point.name,\n    group_wait=\"45s\",\n    group_interval=\"6m\",\n    repeat_interval=\"3h\",\n    policies=[\n        grafana.NotificationPolicyPolicyArgs(\n            matchers=[grafana.NotificationPolicyPolicyMatcherArgs(\n                label=\"mylabel\",\n                match=\"=\",\n                value=\"myvalue\",\n            )],\n            contact_point=a_contact_point.name,\n            group_bies=[\"alertname\"],\n            continue_=True,\n            mute_timings=[a_mute_timing.name],\n            group_wait=\"45s\",\n            group_interval=\"6m\",\n            repeat_interval=\"3h\",\n            policies=[grafana.NotificationPolicyPolicyPolicyArgs(\n                matchers=[grafana.NotificationPolicyPolicyPolicyMatcherArgs(\n                    label=\"sublabel\",\n                    match=\"=\",\n                    value=\"subvalue\",\n                )],\n                contact_point=a_contact_point.name,\n                group_bies=[\"...\"],\n            )],\n        ),\n        grafana.NotificationPolicyPolicyArgs(\n            matchers=[grafana.NotificationPolicyPolicyMatcherArgs(\n                label=\"anotherlabel\",\n                match=\"=~\",\n                value=\"another value.*\",\n            )],\n            contact_point=a_contact_point.name,\n            group_bies=[\"...\"],\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var aContactPoint = new Grafana.ContactPoint(\"aContactPoint\", new()\n    {\n        Emails = new[]\n        {\n            new Grafana.Inputs.ContactPointEmailArgs\n            {\n                Addresses = new[]\n                {\n                    \"one@company.org\",\n                    \"two@company.org\",\n                },\n                Message = \"{{ len .Alerts.Firing }} firing.\",\n            },\n        },\n    });\n\n    var aMuteTiming = new Grafana.MuteTiming(\"aMuteTiming\", new()\n    {\n        Intervals = new[]\n        {\n            new Grafana.Inputs.MuteTimingIntervalArgs\n            {\n                Weekdays = new[]\n                {\n                    \"monday\",\n                },\n            },\n        },\n    });\n\n    var myNotificationPolicy = new Grafana.NotificationPolicy(\"myNotificationPolicy\", new()\n    {\n        GroupBies = new[]\n        {\n            \"...\",\n        },\n        ContactPoint = aContactPoint.Name,\n        GroupWait = \"45s\",\n        GroupInterval = \"6m\",\n        RepeatInterval = \"3h\",\n        Policies = new[]\n        {\n            new Grafana.Inputs.NotificationPolicyPolicyArgs\n            {\n                Matchers = new[]\n                {\n                    new Grafana.Inputs.NotificationPolicyPolicyMatcherArgs\n                    {\n                        Label = \"mylabel\",\n                        Match = \"=\",\n                        Value = \"myvalue\",\n                    },\n                },\n                ContactPoint = aContactPoint.Name,\n                GroupBies = new[]\n                {\n                    \"alertname\",\n                },\n                Continue = true,\n                MuteTimings = new[]\n                {\n                    aMuteTiming.Name,\n                },\n                GroupWait = \"45s\",\n                GroupInterval = \"6m\",\n                RepeatInterval = \"3h\",\n                Policies = new[]\n                {\n                    new Grafana.Inputs.NotificationPolicyPolicyPolicyArgs\n                    {\n                        Matchers = new[]\n                        {\n                            new Grafana.Inputs.NotificationPolicyPolicyPolicyMatcherArgs\n                            {\n                                Label = \"sublabel\",\n                                Match = \"=\",\n                                Value = \"subvalue\",\n                            },\n                        },\n                        ContactPoint = aContactPoint.Name,\n                        GroupBies = new[]\n                        {\n                            \"...\",\n                        },\n                    },\n                },\n            },\n            new Grafana.Inputs.NotificationPolicyPolicyArgs\n            {\n                Matchers = new[]\n                {\n                    new Grafana.Inputs.NotificationPolicyPolicyMatcherArgs\n                    {\n                        Label = \"anotherlabel\",\n                        Match = \"=~\",\n                        Value = \"another value.*\",\n                    },\n                },\n                ContactPoint = aContactPoint.Name,\n                GroupBies = new[]\n                {\n                    \"...\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\taContactPoint, err := grafana.NewContactPoint(ctx, \"aContactPoint\", \u0026grafana.ContactPointArgs{\n\t\t\tEmails: ContactPointEmailArray{\n\t\t\t\t\u0026ContactPointEmailArgs{\n\t\t\t\t\tAddresses: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"one@company.org\"),\n\t\t\t\t\t\tpulumi.String(\"two@company.org\"),\n\t\t\t\t\t},\n\t\t\t\t\tMessage: pulumi.String(\"{{ len .Alerts.Firing }} firing.\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\taMuteTiming, err := grafana.NewMuteTiming(ctx, \"aMuteTiming\", \u0026grafana.MuteTimingArgs{\n\t\t\tIntervals: MuteTimingIntervalArray{\n\t\t\t\t\u0026MuteTimingIntervalArgs{\n\t\t\t\t\tWeekdays: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"monday\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewNotificationPolicy(ctx, \"myNotificationPolicy\", \u0026grafana.NotificationPolicyArgs{\n\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"...\"),\n\t\t\t},\n\t\t\tContactPoint:   aContactPoint.Name,\n\t\t\tGroupWait:      pulumi.String(\"45s\"),\n\t\t\tGroupInterval:  pulumi.String(\"6m\"),\n\t\t\tRepeatInterval: pulumi.String(\"3h\"),\n\t\t\tPolicies: NotificationPolicyPolicyArray{\n\t\t\t\t\u0026NotificationPolicyPolicyArgs{\n\t\t\t\t\tMatchers: NotificationPolicyPolicyMatcherArray{\n\t\t\t\t\t\t\u0026NotificationPolicyPolicyMatcherArgs{\n\t\t\t\t\t\t\tLabel: pulumi.String(\"mylabel\"),\n\t\t\t\t\t\t\tMatch: pulumi.String(\"=\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"myvalue\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tContactPoint: aContactPoint.Name,\n\t\t\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"alertname\"),\n\t\t\t\t\t},\n\t\t\t\t\tContinue: pulumi.Bool(true),\n\t\t\t\t\tMuteTimings: pulumi.StringArray{\n\t\t\t\t\t\taMuteTiming.Name,\n\t\t\t\t\t},\n\t\t\t\t\tGroupWait:      pulumi.String(\"45s\"),\n\t\t\t\t\tGroupInterval:  pulumi.String(\"6m\"),\n\t\t\t\t\tRepeatInterval: pulumi.String(\"3h\"),\n\t\t\t\t\tPolicies: NotificationPolicyPolicyPolicyArray{\n\t\t\t\t\t\t\u0026NotificationPolicyPolicyPolicyArgs{\n\t\t\t\t\t\t\tMatchers: NotificationPolicyPolicyPolicyMatcherArray{\n\t\t\t\t\t\t\t\t\u0026NotificationPolicyPolicyPolicyMatcherArgs{\n\t\t\t\t\t\t\t\t\tLabel: pulumi.String(\"sublabel\"),\n\t\t\t\t\t\t\t\t\tMatch: pulumi.String(\"=\"),\n\t\t\t\t\t\t\t\t\tValue: pulumi.String(\"subvalue\"),\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\tContactPoint: aContactPoint.Name,\n\t\t\t\t\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\t\t\t\t\tpulumi.String(\"...\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026NotificationPolicyPolicyArgs{\n\t\t\t\t\tMatchers: NotificationPolicyPolicyMatcherArray{\n\t\t\t\t\t\t\u0026NotificationPolicyPolicyMatcherArgs{\n\t\t\t\t\t\t\tLabel: pulumi.String(\"anotherlabel\"),\n\t\t\t\t\t\t\tMatch: pulumi.String(\"=~\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"another value.*\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tContactPoint: aContactPoint.Name,\n\t\t\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"...\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.ContactPoint;\nimport com.pulumi.grafana.ContactPointArgs;\nimport com.pulumi.grafana.inputs.ContactPointEmailArgs;\nimport com.pulumi.grafana.MuteTiming;\nimport com.pulumi.grafana.MuteTimingArgs;\nimport com.pulumi.grafana.inputs.MuteTimingIntervalArgs;\nimport com.pulumi.grafana.NotificationPolicy;\nimport com.pulumi.grafana.NotificationPolicyArgs;\nimport com.pulumi.grafana.inputs.NotificationPolicyPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var aContactPoint = new ContactPoint(\"aContactPoint\", ContactPointArgs.builder()        \n            .emails(ContactPointEmailArgs.builder()\n                .addresses(                \n                    \"one@company.org\",\n                    \"two@company.org\")\n                .message(\"{{ len .Alerts.Firing }} firing.\")\n                .build())\n            .build());\n\n        var aMuteTiming = new MuteTiming(\"aMuteTiming\", MuteTimingArgs.builder()        \n            .intervals(MuteTimingIntervalArgs.builder()\n                .weekdays(\"monday\")\n                .build())\n            .build());\n\n        var myNotificationPolicy = new NotificationPolicy(\"myNotificationPolicy\", NotificationPolicyArgs.builder()        \n            .groupBies(\"...\")\n            .contactPoint(aContactPoint.name())\n            .groupWait(\"45s\")\n            .groupInterval(\"6m\")\n            .repeatInterval(\"3h\")\n            .policies(            \n                NotificationPolicyPolicyArgs.builder()\n                    .matchers(NotificationPolicyPolicyMatcherArgs.builder()\n                        .label(\"mylabel\")\n                        .match(\"=\")\n                        .value(\"myvalue\")\n                        .build())\n                    .contactPoint(aContactPoint.name())\n                    .groupBies(\"alertname\")\n                    .continue_(true)\n                    .muteTimings(aMuteTiming.name())\n                    .groupWait(\"45s\")\n                    .groupInterval(\"6m\")\n                    .repeatInterval(\"3h\")\n                    .policies(NotificationPolicyPolicyPolicyArgs.builder()\n                        .matchers(NotificationPolicyPolicyPolicyMatcherArgs.builder()\n                            .label(\"sublabel\")\n                            .match(\"=\")\n                            .value(\"subvalue\")\n                            .build())\n                        .contactPoint(aContactPoint.name())\n                        .groupBies(\"...\")\n                        .build())\n                    .build(),\n                NotificationPolicyPolicyArgs.builder()\n                    .matchers(NotificationPolicyPolicyMatcherArgs.builder()\n                        .label(\"anotherlabel\")\n                        .match(\"=~\")\n                        .value(\"another value.*\")\n                        .build())\n                    .contactPoint(aContactPoint.name())\n                    .groupBies(\"...\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  aContactPoint:\n    type: grafana:ContactPoint\n    properties:\n      emails:\n        - addresses:\n            - one@company.org\n            - two@company.org\n          message: '{{ len .Alerts.Firing }} firing.'\n  aMuteTiming:\n    type: grafana:MuteTiming\n    properties:\n      intervals:\n        - weekdays:\n            - monday\n  myNotificationPolicy:\n    type: grafana:NotificationPolicy\n    properties:\n      groupBies:\n        - '...'\n      contactPoint: ${aContactPoint.name}\n      groupWait: 45s\n      groupInterval: 6m\n      repeatInterval: 3h\n      policies:\n        - matchers:\n            - label: mylabel\n              match: =\n              value: myvalue\n          contactPoint: ${aContactPoint.name}\n          groupBies:\n            - alertname\n          continue: true\n          muteTimings:\n            - ${aMuteTiming.name}\n          groupWait: 45s\n          groupInterval: 6m\n          repeatInterval: 3h\n          policies:\n            - matchers:\n                - label: sublabel\n                  match: =\n                  value: subvalue\n              contactPoint: ${aContactPoint.name}\n              groupBies:\n                - '...'\n        - matchers:\n            - label: anotherlabel\n              match: =~\n              value: another value.*\n          contactPoint: ${aContactPoint.name}\n          groupBies:\n            - '...'\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The policy is a singleton, so the ID is a constant \"policy\" value.\n\n```sh\n $ pulumi import grafana:index/notificationPolicy:NotificationPolicy notification_policy_name \"policy\"\n```\n\n ",
+            "description": "Sets the global notification policy for Grafana. Note that this resource manages the entire notification policy tree, and will overwrite any existing policies.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/alerting/notifications/)\n* [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#notification-policies)\n\nThis resource requires Grafana 9.1.0 or later.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@lbrlabs/pulumi-grafana\";\n\nconst aContactPoint = new grafana.ContactPoint(\"aContactPoint\", {emails: [{\n    addresses: [\n        \"one@company.org\",\n        \"two@company.org\",\n    ],\n    message: \"{{ len .Alerts.Firing }} firing.\",\n}]});\nconst aMuteTiming = new grafana.MuteTiming(\"aMuteTiming\", {intervals: [{\n    weekdays: [\"monday\"],\n}]});\nconst myNotificationPolicy = new grafana.NotificationPolicy(\"myNotificationPolicy\", {\n    groupBies: [\"...\"],\n    contactPoint: aContactPoint.name,\n    groupWait: \"45s\",\n    groupInterval: \"6m\",\n    repeatInterval: \"3h\",\n    policies: [\n        {\n            matchers: [{\n                label: \"mylabel\",\n                match: \"=\",\n                value: \"myvalue\",\n            }],\n            contactPoint: aContactPoint.name,\n            groupBies: [\"alertname\"],\n            \"continue\": true,\n            muteTimings: [aMuteTiming.name],\n            groupWait: \"45s\",\n            groupInterval: \"6m\",\n            repeatInterval: \"3h\",\n            policies: [{\n                matchers: [{\n                    label: \"sublabel\",\n                    match: \"=\",\n                    value: \"subvalue\",\n                }],\n                contactPoint: aContactPoint.name,\n                groupBies: [\"...\"],\n            }],\n        },\n        {\n            matchers: [{\n                label: \"anotherlabel\",\n                match: \"=~\",\n                value: \"another value.*\",\n            }],\n            contactPoint: aContactPoint.name,\n            groupBies: [\"...\"],\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\na_contact_point = grafana.ContactPoint(\"aContactPoint\", emails=[grafana.ContactPointEmailArgs(\n    addresses=[\n        \"one@company.org\",\n        \"two@company.org\",\n    ],\n    message=\"{{ len .Alerts.Firing }} firing.\",\n)])\na_mute_timing = grafana.MuteTiming(\"aMuteTiming\", intervals=[grafana.MuteTimingIntervalArgs(\n    weekdays=[\"monday\"],\n)])\nmy_notification_policy = grafana.NotificationPolicy(\"myNotificationPolicy\",\n    group_bies=[\"...\"],\n    contact_point=a_contact_point.name,\n    group_wait=\"45s\",\n    group_interval=\"6m\",\n    repeat_interval=\"3h\",\n    policies=[\n        grafana.NotificationPolicyPolicyArgs(\n            matchers=[grafana.NotificationPolicyPolicyMatcherArgs(\n                label=\"mylabel\",\n                match=\"=\",\n                value=\"myvalue\",\n            )],\n            contact_point=a_contact_point.name,\n            group_bies=[\"alertname\"],\n            continue_=True,\n            mute_timings=[a_mute_timing.name],\n            group_wait=\"45s\",\n            group_interval=\"6m\",\n            repeat_interval=\"3h\",\n            policies=[grafana.NotificationPolicyPolicyPolicyArgs(\n                matchers=[grafana.NotificationPolicyPolicyPolicyMatcherArgs(\n                    label=\"sublabel\",\n                    match=\"=\",\n                    value=\"subvalue\",\n                )],\n                contact_point=a_contact_point.name,\n                group_bies=[\"...\"],\n            )],\n        ),\n        grafana.NotificationPolicyPolicyArgs(\n            matchers=[grafana.NotificationPolicyPolicyMatcherArgs(\n                label=\"anotherlabel\",\n                match=\"=~\",\n                value=\"another value.*\",\n            )],\n            contact_point=a_contact_point.name,\n            group_bies=[\"...\"],\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var aContactPoint = new Grafana.ContactPoint(\"aContactPoint\", new()\n    {\n        Emails = new[]\n        {\n            new Grafana.Inputs.ContactPointEmailArgs\n            {\n                Addresses = new[]\n                {\n                    \"one@company.org\",\n                    \"two@company.org\",\n                },\n                Message = \"{{ len .Alerts.Firing }} firing.\",\n            },\n        },\n    });\n\n    var aMuteTiming = new Grafana.MuteTiming(\"aMuteTiming\", new()\n    {\n        Intervals = new[]\n        {\n            new Grafana.Inputs.MuteTimingIntervalArgs\n            {\n                Weekdays = new[]\n                {\n                    \"monday\",\n                },\n            },\n        },\n    });\n\n    var myNotificationPolicy = new Grafana.NotificationPolicy(\"myNotificationPolicy\", new()\n    {\n        GroupBies = new[]\n        {\n            \"...\",\n        },\n        ContactPoint = aContactPoint.Name,\n        GroupWait = \"45s\",\n        GroupInterval = \"6m\",\n        RepeatInterval = \"3h\",\n        Policies = new[]\n        {\n            new Grafana.Inputs.NotificationPolicyPolicyArgs\n            {\n                Matchers = new[]\n                {\n                    new Grafana.Inputs.NotificationPolicyPolicyMatcherArgs\n                    {\n                        Label = \"mylabel\",\n                        Match = \"=\",\n                        Value = \"myvalue\",\n                    },\n                },\n                ContactPoint = aContactPoint.Name,\n                GroupBies = new[]\n                {\n                    \"alertname\",\n                },\n                Continue = true,\n                MuteTimings = new[]\n                {\n                    aMuteTiming.Name,\n                },\n                GroupWait = \"45s\",\n                GroupInterval = \"6m\",\n                RepeatInterval = \"3h\",\n                Policies = new[]\n                {\n                    new Grafana.Inputs.NotificationPolicyPolicyPolicyArgs\n                    {\n                        Matchers = new[]\n                        {\n                            new Grafana.Inputs.NotificationPolicyPolicyPolicyMatcherArgs\n                            {\n                                Label = \"sublabel\",\n                                Match = \"=\",\n                                Value = \"subvalue\",\n                            },\n                        },\n                        ContactPoint = aContactPoint.Name,\n                        GroupBies = new[]\n                        {\n                            \"...\",\n                        },\n                    },\n                },\n            },\n            new Grafana.Inputs.NotificationPolicyPolicyArgs\n            {\n                Matchers = new[]\n                {\n                    new Grafana.Inputs.NotificationPolicyPolicyMatcherArgs\n                    {\n                        Label = \"anotherlabel\",\n                        Match = \"=~\",\n                        Value = \"another value.*\",\n                    },\n                },\n                ContactPoint = aContactPoint.Name,\n                GroupBies = new[]\n                {\n                    \"...\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\taContactPoint, err := grafana.NewContactPoint(ctx, \"aContactPoint\", \u0026grafana.ContactPointArgs{\n\t\t\tEmails: ContactPointEmailArray{\n\t\t\t\t\u0026ContactPointEmailArgs{\n\t\t\t\t\tAddresses: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"one@company.org\"),\n\t\t\t\t\t\tpulumi.String(\"two@company.org\"),\n\t\t\t\t\t},\n\t\t\t\t\tMessage: pulumi.String(\"{{ len .Alerts.Firing }} firing.\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\taMuteTiming, err := grafana.NewMuteTiming(ctx, \"aMuteTiming\", \u0026grafana.MuteTimingArgs{\n\t\t\tIntervals: MuteTimingIntervalArray{\n\t\t\t\t\u0026MuteTimingIntervalArgs{\n\t\t\t\t\tWeekdays: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"monday\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewNotificationPolicy(ctx, \"myNotificationPolicy\", \u0026grafana.NotificationPolicyArgs{\n\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"...\"),\n\t\t\t},\n\t\t\tContactPoint:   aContactPoint.Name,\n\t\t\tGroupWait:      pulumi.String(\"45s\"),\n\t\t\tGroupInterval:  pulumi.String(\"6m\"),\n\t\t\tRepeatInterval: pulumi.String(\"3h\"),\n\t\t\tPolicies: NotificationPolicyPolicyArray{\n\t\t\t\t\u0026NotificationPolicyPolicyArgs{\n\t\t\t\t\tMatchers: NotificationPolicyPolicyMatcherArray{\n\t\t\t\t\t\t\u0026NotificationPolicyPolicyMatcherArgs{\n\t\t\t\t\t\t\tLabel: pulumi.String(\"mylabel\"),\n\t\t\t\t\t\t\tMatch: pulumi.String(\"=\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"myvalue\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tContactPoint: aContactPoint.Name,\n\t\t\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"alertname\"),\n\t\t\t\t\t},\n\t\t\t\t\tContinue: pulumi.Bool(true),\n\t\t\t\t\tMuteTimings: pulumi.StringArray{\n\t\t\t\t\t\taMuteTiming.Name,\n\t\t\t\t\t},\n\t\t\t\t\tGroupWait:      pulumi.String(\"45s\"),\n\t\t\t\t\tGroupInterval:  pulumi.String(\"6m\"),\n\t\t\t\t\tRepeatInterval: pulumi.String(\"3h\"),\n\t\t\t\t\tPolicies: NotificationPolicyPolicyPolicyArray{\n\t\t\t\t\t\t\u0026NotificationPolicyPolicyPolicyArgs{\n\t\t\t\t\t\t\tMatchers: NotificationPolicyPolicyPolicyMatcherArray{\n\t\t\t\t\t\t\t\t\u0026NotificationPolicyPolicyPolicyMatcherArgs{\n\t\t\t\t\t\t\t\t\tLabel: pulumi.String(\"sublabel\"),\n\t\t\t\t\t\t\t\t\tMatch: pulumi.String(\"=\"),\n\t\t\t\t\t\t\t\t\tValue: pulumi.String(\"subvalue\"),\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\tContactPoint: aContactPoint.Name,\n\t\t\t\t\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\t\t\t\t\tpulumi.String(\"...\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026NotificationPolicyPolicyArgs{\n\t\t\t\t\tMatchers: NotificationPolicyPolicyMatcherArray{\n\t\t\t\t\t\t\u0026NotificationPolicyPolicyMatcherArgs{\n\t\t\t\t\t\t\tLabel: pulumi.String(\"anotherlabel\"),\n\t\t\t\t\t\t\tMatch: pulumi.String(\"=~\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"another value.*\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tContactPoint: aContactPoint.Name,\n\t\t\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"...\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.ContactPoint;\nimport com.pulumi.grafana.ContactPointArgs;\nimport com.pulumi.grafana.inputs.ContactPointEmailArgs;\nimport com.pulumi.grafana.MuteTiming;\nimport com.pulumi.grafana.MuteTimingArgs;\nimport com.pulumi.grafana.inputs.MuteTimingIntervalArgs;\nimport com.pulumi.grafana.NotificationPolicy;\nimport com.pulumi.grafana.NotificationPolicyArgs;\nimport com.pulumi.grafana.inputs.NotificationPolicyPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var aContactPoint = new ContactPoint(\"aContactPoint\", ContactPointArgs.builder()        \n            .emails(ContactPointEmailArgs.builder()\n                .addresses(                \n                    \"one@company.org\",\n                    \"two@company.org\")\n                .message(\"{{ len .Alerts.Firing }} firing.\")\n                .build())\n            .build());\n\n        var aMuteTiming = new MuteTiming(\"aMuteTiming\", MuteTimingArgs.builder()        \n            .intervals(MuteTimingIntervalArgs.builder()\n                .weekdays(\"monday\")\n                .build())\n            .build());\n\n        var myNotificationPolicy = new NotificationPolicy(\"myNotificationPolicy\", NotificationPolicyArgs.builder()        \n            .groupBies(\"...\")\n            .contactPoint(aContactPoint.name())\n            .groupWait(\"45s\")\n            .groupInterval(\"6m\")\n            .repeatInterval(\"3h\")\n            .policies(            \n                NotificationPolicyPolicyArgs.builder()\n                    .matchers(NotificationPolicyPolicyMatcherArgs.builder()\n                        .label(\"mylabel\")\n                        .match(\"=\")\n                        .value(\"myvalue\")\n                        .build())\n                    .contactPoint(aContactPoint.name())\n                    .groupBies(\"alertname\")\n                    .continue_(true)\n                    .muteTimings(aMuteTiming.name())\n                    .groupWait(\"45s\")\n                    .groupInterval(\"6m\")\n                    .repeatInterval(\"3h\")\n                    .policies(NotificationPolicyPolicyPolicyArgs.builder()\n                        .matchers(NotificationPolicyPolicyPolicyMatcherArgs.builder()\n                            .label(\"sublabel\")\n                            .match(\"=\")\n                            .value(\"subvalue\")\n                            .build())\n                        .contactPoint(aContactPoint.name())\n                        .groupBies(\"...\")\n                        .build())\n                    .build(),\n                NotificationPolicyPolicyArgs.builder()\n                    .matchers(NotificationPolicyPolicyMatcherArgs.builder()\n                        .label(\"anotherlabel\")\n                        .match(\"=~\")\n                        .value(\"another value.*\")\n                        .build())\n                    .contactPoint(aContactPoint.name())\n                    .groupBies(\"...\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  aContactPoint:\n    type: grafana:ContactPoint\n    properties:\n      emails:\n        - addresses:\n            - one@company.org\n            - two@company.org\n          message: '{{ len .Alerts.Firing }} firing.'\n  aMuteTiming:\n    type: grafana:MuteTiming\n    properties:\n      intervals:\n        - weekdays:\n            - monday\n  myNotificationPolicy:\n    type: grafana:NotificationPolicy\n    properties:\n      groupBies:\n        - '...'\n      contactPoint: ${aContactPoint.name}\n      groupWait: 45s\n      groupInterval: 6m\n      repeatInterval: 3h\n      policies:\n        - matchers:\n            - label: mylabel\n              match: =\n              value: myvalue\n          contactPoint: ${aContactPoint.name}\n          groupBies:\n            - alertname\n          continue: true\n          muteTimings:\n            - ${aMuteTiming.name}\n          groupWait: 45s\n          groupInterval: 6m\n          repeatInterval: 3h\n          policies:\n            - matchers:\n                - label: sublabel\n                  match: =\n                  value: subvalue\n              contactPoint: ${aContactPoint.name}\n              groupBies:\n                - '...'\n        - matchers:\n            - label: anotherlabel\n              match: =~\n              value: another value.*\n          contactPoint: ${aContactPoint.name}\n          groupBies:\n            - '...'\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nThe policy is a singleton, so the ID is a constant \"policy\" value.\n\n```sh\n $ pulumi import grafana:index/notificationPolicy:NotificationPolicy notification_policy_name \"policy\"\n```\n\n ",
             "properties": {
                 "contactPoint": {
                     "type": "string",
@@ -8647,12 +8733,108 @@
                 "type": "object"
             }
         },
+        "grafana:index/roleAssignment:RoleAssignment": {
+            "description": "**Note:** This resource is available only with Grafana Enterprise 9.2+.\n* [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)\n",
+            "properties": {
+                "roleUid": {
+                    "type": "string",
+                    "description": "Grafana RBAC role UID.\n"
+                },
+                "serviceAccounts": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "IDs of service accounts that the role should be assigned to.\n"
+                },
+                "teams": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "IDs of teams that the role should be assigned to.\n"
+                },
+                "users": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "IDs of users that the role should be assigned to.\n"
+                }
+            },
+            "required": [
+                "roleUid"
+            ],
+            "inputProperties": {
+                "roleUid": {
+                    "type": "string",
+                    "description": "Grafana RBAC role UID.\n",
+                    "willReplaceOnChanges": true
+                },
+                "serviceAccounts": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "IDs of service accounts that the role should be assigned to.\n"
+                },
+                "teams": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "IDs of teams that the role should be assigned to.\n"
+                },
+                "users": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "IDs of users that the role should be assigned to.\n"
+                }
+            },
+            "requiredInputs": [
+                "roleUid"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RoleAssignment resources.\n",
+                "properties": {
+                    "roleUid": {
+                        "type": "string",
+                        "description": "Grafana RBAC role UID.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "serviceAccounts": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "description": "IDs of service accounts that the role should be assigned to.\n"
+                    },
+                    "teams": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "description": "IDs of teams that the role should be assigned to.\n"
+                    },
+                    "users": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "description": "IDs of users that the role should be assigned to.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:index/ruleGroup:RuleGroup": {
-            "description": "Manages Grafana Alerting rule groups.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@lbrlabs/pulumi-grafana\";\n\nconst ruleFolder = new grafana.Folder(\"ruleFolder\", {title: \"My Alert Rule Folder\"});\nconst myAlertRule = new grafana.RuleGroup(\"myAlertRule\", {\n    folderUid: ruleFolder.uid,\n    intervalSeconds: 240,\n    orgId: 1,\n    rules: [{\n        name: \"My Alert Rule 1\",\n        \"for\": \"2m\",\n        condition: \"B\",\n        noDataState: \"NoData\",\n        execErrState: \"Alerting\",\n        annotations: {\n            a: \"b\",\n            c: \"d\",\n        },\n        labels: {\n            e: \"f\",\n            g: \"h\",\n        },\n        datas: [\n            {\n                refId: \"A\",\n                queryType: \"\",\n                relativeTimeRange: {\n                    from: 600,\n                    to: 0,\n                },\n                datasourceUid: \"PD8C576611E62080A\",\n                model: JSON.stringify({\n                    hide: false,\n                    intervalMs: 1000,\n                    maxDataPoints: 43200,\n                    refId: \"A\",\n                }),\n            },\n            {\n                refId: \"B\",\n                queryType: \"\",\n                relativeTimeRange: {\n                    from: 0,\n                    to: 0,\n                },\n                datasourceUid: \"-100\",\n                model: `{\n    \"conditions\": [\n        {\n        \"evaluator\": {\n            \"params\": [\n            3\n            ],\n            \"type\": \"gt\"\n        },\n        \"operator\": {\n            \"type\": \"and\"\n        },\n        \"query\": {\n            \"params\": [\n            \"A\"\n            ]\n        },\n        \"reducer\": {\n            \"params\": [],\n            \"type\": \"last\"\n        },\n        \"type\": \"query\"\n        }\n    ],\n    \"datasource\": {\n        \"type\": \"__expr__\",\n        \"uid\": \"-100\"\n    },\n    \"hide\": false,\n    \"intervalMs\": 1000,\n    \"maxDataPoints\": 43200,\n    \"refId\": \"B\",\n    \"type\": \"classic_conditions\"\n}\n`,\n            },\n        ],\n    }],\n});\n```\n```python\nimport pulumi\nimport json\nimport lbrlabs_pulumi_grafana as grafana\n\nrule_folder = grafana.Folder(\"ruleFolder\", title=\"My Alert Rule Folder\")\nmy_alert_rule = grafana.RuleGroup(\"myAlertRule\",\n    folder_uid=rule_folder.uid,\n    interval_seconds=240,\n    org_id=1,\n    rules=[grafana.RuleGroupRuleArgs(\n        name=\"My Alert Rule 1\",\n        for_=\"2m\",\n        condition=\"B\",\n        no_data_state=\"NoData\",\n        exec_err_state=\"Alerting\",\n        annotations={\n            \"a\": \"b\",\n            \"c\": \"d\",\n        },\n        labels={\n            \"e\": \"f\",\n            \"g\": \"h\",\n        },\n        datas=[\n            grafana.RuleGroupRuleDataArgs(\n                ref_id=\"A\",\n                query_type=\"\",\n                relative_time_range=grafana.RuleGroupRuleDataRelativeTimeRangeArgs(\n                    from_=600,\n                    to=0,\n                ),\n                datasource_uid=\"PD8C576611E62080A\",\n                model=json.dumps({\n                    \"hide\": False,\n                    \"intervalMs\": 1000,\n                    \"maxDataPoints\": 43200,\n                    \"refId\": \"A\",\n                }),\n            ),\n            grafana.RuleGroupRuleDataArgs(\n                ref_id=\"B\",\n                query_type=\"\",\n                relative_time_range=grafana.RuleGroupRuleDataRelativeTimeRangeArgs(\n                    from_=0,\n                    to=0,\n                ),\n                datasource_uid=\"-100\",\n                model=\"\"\"{\n    \"conditions\": [\n        {\n        \"evaluator\": {\n            \"params\": [\n            3\n            ],\n            \"type\": \"gt\"\n        },\n        \"operator\": {\n            \"type\": \"and\"\n        },\n        \"query\": {\n            \"params\": [\n            \"A\"\n            ]\n        },\n        \"reducer\": {\n            \"params\": [],\n            \"type\": \"last\"\n        },\n        \"type\": \"query\"\n        }\n    ],\n    \"datasource\": {\n        \"type\": \"__expr__\",\n        \"uid\": \"-100\"\n    },\n    \"hide\": false,\n    \"intervalMs\": 1000,\n    \"maxDataPoints\": 43200,\n    \"refId\": \"B\",\n    \"type\": \"classic_conditions\"\n}\n\"\"\",\n            ),\n        ],\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ruleFolder = new Grafana.Folder(\"ruleFolder\", new()\n    {\n        Title = \"My Alert Rule Folder\",\n    });\n\n    var myAlertRule = new Grafana.RuleGroup(\"myAlertRule\", new()\n    {\n        FolderUid = ruleFolder.Uid,\n        IntervalSeconds = 240,\n        OrgId = 1,\n        Rules = new[]\n        {\n            new Grafana.Inputs.RuleGroupRuleArgs\n            {\n                Name = \"My Alert Rule 1\",\n                For = \"2m\",\n                Condition = \"B\",\n                NoDataState = \"NoData\",\n                ExecErrState = \"Alerting\",\n                Annotations = \n                {\n                    { \"a\", \"b\" },\n                    { \"c\", \"d\" },\n                },\n                Labels = \n                {\n                    { \"e\", \"f\" },\n                    { \"g\", \"h\" },\n                },\n                Datas = new[]\n                {\n                    new Grafana.Inputs.RuleGroupRuleDataArgs\n                    {\n                        RefId = \"A\",\n                        QueryType = \"\",\n                        RelativeTimeRange = new Grafana.Inputs.RuleGroupRuleDataRelativeTimeRangeArgs\n                        {\n                            From = 600,\n                            To = 0,\n                        },\n                        DatasourceUid = \"PD8C576611E62080A\",\n                        Model = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"hide\"] = false,\n                            [\"intervalMs\"] = 1000,\n                            [\"maxDataPoints\"] = 43200,\n                            [\"refId\"] = \"A\",\n                        }),\n                    },\n                    new Grafana.Inputs.RuleGroupRuleDataArgs\n                    {\n                        RefId = \"B\",\n                        QueryType = \"\",\n                        RelativeTimeRange = new Grafana.Inputs.RuleGroupRuleDataRelativeTimeRangeArgs\n                        {\n                            From = 0,\n                            To = 0,\n                        },\n                        DatasourceUid = \"-100\",\n                        Model = @\"{\n    \"\"conditions\"\": [\n        {\n        \"\"evaluator\"\": {\n            \"\"params\"\": [\n            3\n            ],\n            \"\"type\"\": \"\"gt\"\"\n        },\n        \"\"operator\"\": {\n            \"\"type\"\": \"\"and\"\"\n        },\n        \"\"query\"\": {\n            \"\"params\"\": [\n            \"\"A\"\"\n            ]\n        },\n        \"\"reducer\"\": {\n            \"\"params\"\": [],\n            \"\"type\"\": \"\"last\"\"\n        },\n        \"\"type\"\": \"\"query\"\"\n        }\n    ],\n    \"\"datasource\"\": {\n        \"\"type\"\": \"\"__expr__\"\",\n        \"\"uid\"\": \"\"-100\"\"\n    },\n    \"\"hide\"\": false,\n    \"\"intervalMs\"\": 1000,\n    \"\"maxDataPoints\"\": 43200,\n    \"\"refId\"\": \"\"B\"\",\n    \"\"type\"\": \"\"classic_conditions\"\"\n}\n\",\n                    },\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\truleFolder, err := grafana.NewFolder(ctx, \"ruleFolder\", \u0026grafana.FolderArgs{\n\t\t\tTitle: pulumi.String(\"My Alert Rule Folder\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"hide\":          false,\n\t\t\t\"intervalMs\":    1000,\n\t\t\t\"maxDataPoints\": 43200,\n\t\t\t\"refId\":         \"A\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = grafana.NewRuleGroup(ctx, \"myAlertRule\", \u0026grafana.RuleGroupArgs{\n\t\t\tFolderUid:       ruleFolder.Uid,\n\t\t\tIntervalSeconds: pulumi.Int(240),\n\t\t\tOrgId:           pulumi.Int(1),\n\t\t\tRules: RuleGroupRuleArray{\n\t\t\t\t\u0026RuleGroupRuleArgs{\n\t\t\t\t\tName:         pulumi.String(\"My Alert Rule 1\"),\n\t\t\t\t\tFor:          pulumi.String(\"2m\"),\n\t\t\t\t\tCondition:    pulumi.String(\"B\"),\n\t\t\t\t\tNoDataState:  pulumi.String(\"NoData\"),\n\t\t\t\t\tExecErrState: pulumi.String(\"Alerting\"),\n\t\t\t\t\tAnnotations: pulumi.StringMap{\n\t\t\t\t\t\t\"a\": pulumi.String(\"b\"),\n\t\t\t\t\t\t\"c\": pulumi.String(\"d\"),\n\t\t\t\t\t},\n\t\t\t\t\tLabels: pulumi.StringMap{\n\t\t\t\t\t\t\"e\": pulumi.String(\"f\"),\n\t\t\t\t\t\t\"g\": pulumi.String(\"h\"),\n\t\t\t\t\t},\n\t\t\t\t\tDatas: RuleGroupRuleDataArray{\n\t\t\t\t\t\t\u0026RuleGroupRuleDataArgs{\n\t\t\t\t\t\t\tRefId:     pulumi.String(\"A\"),\n\t\t\t\t\t\t\tQueryType: pulumi.String(\"\"),\n\t\t\t\t\t\t\tRelativeTimeRange: \u0026RuleGroupRuleDataRelativeTimeRangeArgs{\n\t\t\t\t\t\t\t\tFrom: pulumi.Int(600),\n\t\t\t\t\t\t\t\tTo:   pulumi.Int(0),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\tDatasourceUid: pulumi.String(\"PD8C576611E62080A\"),\n\t\t\t\t\t\t\tModel:         pulumi.String(json0),\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\u0026RuleGroupRuleDataArgs{\n\t\t\t\t\t\t\tRefId:     pulumi.String(\"B\"),\n\t\t\t\t\t\t\tQueryType: pulumi.String(\"\"),\n\t\t\t\t\t\t\tRelativeTimeRange: \u0026RuleGroupRuleDataRelativeTimeRangeArgs{\n\t\t\t\t\t\t\t\tFrom: pulumi.Int(0),\n\t\t\t\t\t\t\t\tTo:   pulumi.Int(0),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\tDatasourceUid: pulumi.String(\"-100\"),\n\t\t\t\t\t\t\tModel: pulumi.String(fmt.Sprintf(`{\n    \"conditions\": [\n        {\n        \"evaluator\": {\n            \"params\": [\n            3\n            ],\n            \"type\": \"gt\"\n        },\n        \"operator\": {\n            \"type\": \"and\"\n        },\n        \"query\": {\n            \"params\": [\n            \"A\"\n            ]\n        },\n        \"reducer\": {\n            \"params\": [],\n            \"type\": \"last\"\n        },\n        \"type\": \"query\"\n        }\n    ],\n    \"datasource\": {\n        \"type\": \"__expr__\",\n        \"uid\": \"-100\"\n    },\n    \"hide\": false,\n    \"intervalMs\": 1000,\n    \"maxDataPoints\": 43200,\n    \"refId\": \"B\",\n    \"type\": \"classic_conditions\"\n}\n`)),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.Folder;\nimport com.pulumi.grafana.FolderArgs;\nimport com.pulumi.grafana.RuleGroup;\nimport com.pulumi.grafana.RuleGroupArgs;\nimport com.pulumi.grafana.inputs.RuleGroupRuleArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ruleFolder = new Folder(\"ruleFolder\", FolderArgs.builder()        \n            .title(\"My Alert Rule Folder\")\n            .build());\n\n        var myAlertRule = new RuleGroup(\"myAlertRule\", RuleGroupArgs.builder()        \n            .folderUid(ruleFolder.uid())\n            .intervalSeconds(240)\n            .orgId(1)\n            .rules(RuleGroupRuleArgs.builder()\n                .name(\"My Alert Rule 1\")\n                .for_(\"2m\")\n                .condition(\"B\")\n                .noDataState(\"NoData\")\n                .execErrState(\"Alerting\")\n                .annotations(Map.ofEntries(\n                    Map.entry(\"a\", \"b\"),\n                    Map.entry(\"c\", \"d\")\n                ))\n                .labels(Map.ofEntries(\n                    Map.entry(\"e\", \"f\"),\n                    Map.entry(\"g\", \"h\")\n                ))\n                .datas(                \n                    RuleGroupRuleDataArgs.builder()\n                        .refId(\"A\")\n                        .queryType(\"\")\n                        .relativeTimeRange(RuleGroupRuleDataRelativeTimeRangeArgs.builder()\n                            .from(600)\n                            .to(0)\n                            .build())\n                        .datasourceUid(\"PD8C576611E62080A\")\n                        .model(serializeJson(\n                            jsonObject(\n                                jsonProperty(\"hide\", false),\n                                jsonProperty(\"intervalMs\", 1000),\n                                jsonProperty(\"maxDataPoints\", 43200),\n                                jsonProperty(\"refId\", \"A\")\n                            )))\n                        .build(),\n                    RuleGroupRuleDataArgs.builder()\n                        .refId(\"B\")\n                        .queryType(\"\")\n                        .relativeTimeRange(RuleGroupRuleDataRelativeTimeRangeArgs.builder()\n                            .from(0)\n                            .to(0)\n                            .build())\n                        .datasourceUid(\"-100\")\n                        .model(\"\"\"\n{\n    \"conditions\": [\n        {\n        \"evaluator\": {\n            \"params\": [\n            3\n            ],\n            \"type\": \"gt\"\n        },\n        \"operator\": {\n            \"type\": \"and\"\n        },\n        \"query\": {\n            \"params\": [\n            \"A\"\n            ]\n        },\n        \"reducer\": {\n            \"params\": [],\n            \"type\": \"last\"\n        },\n        \"type\": \"query\"\n        }\n    ],\n    \"datasource\": {\n        \"type\": \"__expr__\",\n        \"uid\": \"-100\"\n    },\n    \"hide\": false,\n    \"intervalMs\": 1000,\n    \"maxDataPoints\": 43200,\n    \"refId\": \"B\",\n    \"type\": \"classic_conditions\"\n}\n                        \"\"\")\n                        .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ruleFolder:\n    type: grafana:Folder\n    properties:\n      title: My Alert Rule Folder\n  myAlertRule:\n    type: grafana:RuleGroup\n    properties:\n      folderUid: ${ruleFolder.uid}\n      intervalSeconds: 240\n      orgId: 1\n      rules:\n        - name: My Alert Rule 1\n          for: 2m\n          condition: B\n          noDataState: NoData\n          execErrState: Alerting\n          annotations:\n            a: b\n            c: d\n          labels:\n            e: f\n            g: h\n          datas:\n            - refId: A\n              queryType:\n              relativeTimeRange:\n                from: 600\n                to: 0\n              datasourceUid: PD8C576611E62080A\n              model:\n                Fn::ToJSON:\n                  hide: false\n                  intervalMs: 1000\n                  maxDataPoints: 43200\n                  refId: A\n            - refId: B\n              queryType:\n              relativeTimeRange:\n                from: 0\n                to: 0\n              datasourceUid: -100\n              model: |\n                {\n                    \"conditions\": [\n                        {\n                        \"evaluator\": {\n                            \"params\": [\n                            3\n                            ],\n                            \"type\": \"gt\"\n                        },\n                        \"operator\": {\n                            \"type\": \"and\"\n                        },\n                        \"query\": {\n                            \"params\": [\n                            \"A\"\n                            ]\n                        },\n                        \"reducer\": {\n                            \"params\": [],\n                            \"type\": \"last\"\n                        },\n                        \"type\": \"query\"\n                        }\n                    ],\n                    \"datasource\": {\n                        \"type\": \"__expr__\",\n                        \"uid\": \"-100\"\n                    },\n                    \"hide\": false,\n                    \"intervalMs\": 1000,\n                    \"maxDataPoints\": 43200,\n                    \"refId\": \"B\",\n                    \"type\": \"classic_conditions\"\n                }\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import grafana:index/ruleGroup:RuleGroup rule_group_name {{folder_uid}};{{rule_group_name}}\n```\n\n ",
+            "description": "Manages Grafana Alerting rule groups.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)\n\nThis resource requires Grafana 9.1.0 or later.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@lbrlabs/pulumi-grafana\";\n\nconst ruleFolder = new grafana.Folder(\"ruleFolder\", {title: \"My Alert Rule Folder\"});\nconst myAlertRule = new grafana.RuleGroup(\"myAlertRule\", {\n    folderUid: ruleFolder.uid,\n    intervalSeconds: 240,\n    orgId: 1,\n    rules: [{\n        name: \"My Alert Rule 1\",\n        \"for\": \"2m\",\n        condition: \"B\",\n        noDataState: \"NoData\",\n        execErrState: \"Alerting\",\n        annotations: {\n            a: \"b\",\n            c: \"d\",\n        },\n        labels: {\n            e: \"f\",\n            g: \"h\",\n        },\n        datas: [\n            {\n                refId: \"A\",\n                queryType: \"\",\n                relativeTimeRange: {\n                    from: 600,\n                    to: 0,\n                },\n                datasourceUid: \"PD8C576611E62080A\",\n                model: JSON.stringify({\n                    hide: false,\n                    intervalMs: 1000,\n                    maxDataPoints: 43200,\n                    refId: \"A\",\n                }),\n            },\n            {\n                refId: \"B\",\n                queryType: \"\",\n                relativeTimeRange: {\n                    from: 0,\n                    to: 0,\n                },\n                datasourceUid: \"-100\",\n                model: `{\n    \"conditions\": [\n        {\n        \"evaluator\": {\n            \"params\": [\n            3\n            ],\n            \"type\": \"gt\"\n        },\n        \"operator\": {\n            \"type\": \"and\"\n        },\n        \"query\": {\n            \"params\": [\n            \"A\"\n            ]\n        },\n        \"reducer\": {\n            \"params\": [],\n            \"type\": \"last\"\n        },\n        \"type\": \"query\"\n        }\n    ],\n    \"datasource\": {\n        \"type\": \"__expr__\",\n        \"uid\": \"-100\"\n    },\n    \"hide\": false,\n    \"intervalMs\": 1000,\n    \"maxDataPoints\": 43200,\n    \"refId\": \"B\",\n    \"type\": \"classic_conditions\"\n}\n`,\n            },\n        ],\n    }],\n});\n```\n```python\nimport pulumi\nimport json\nimport lbrlabs_pulumi_grafana as grafana\n\nrule_folder = grafana.Folder(\"ruleFolder\", title=\"My Alert Rule Folder\")\nmy_alert_rule = grafana.RuleGroup(\"myAlertRule\",\n    folder_uid=rule_folder.uid,\n    interval_seconds=240,\n    org_id=1,\n    rules=[grafana.RuleGroupRuleArgs(\n        name=\"My Alert Rule 1\",\n        for_=\"2m\",\n        condition=\"B\",\n        no_data_state=\"NoData\",\n        exec_err_state=\"Alerting\",\n        annotations={\n            \"a\": \"b\",\n            \"c\": \"d\",\n        },\n        labels={\n            \"e\": \"f\",\n            \"g\": \"h\",\n        },\n        datas=[\n            grafana.RuleGroupRuleDataArgs(\n                ref_id=\"A\",\n                query_type=\"\",\n                relative_time_range=grafana.RuleGroupRuleDataRelativeTimeRangeArgs(\n                    from_=600,\n                    to=0,\n                ),\n                datasource_uid=\"PD8C576611E62080A\",\n                model=json.dumps({\n                    \"hide\": False,\n                    \"intervalMs\": 1000,\n                    \"maxDataPoints\": 43200,\n                    \"refId\": \"A\",\n                }),\n            ),\n            grafana.RuleGroupRuleDataArgs(\n                ref_id=\"B\",\n                query_type=\"\",\n                relative_time_range=grafana.RuleGroupRuleDataRelativeTimeRangeArgs(\n                    from_=0,\n                    to=0,\n                ),\n                datasource_uid=\"-100\",\n                model=\"\"\"{\n    \"conditions\": [\n        {\n        \"evaluator\": {\n            \"params\": [\n            3\n            ],\n            \"type\": \"gt\"\n        },\n        \"operator\": {\n            \"type\": \"and\"\n        },\n        \"query\": {\n            \"params\": [\n            \"A\"\n            ]\n        },\n        \"reducer\": {\n            \"params\": [],\n            \"type\": \"last\"\n        },\n        \"type\": \"query\"\n        }\n    ],\n    \"datasource\": {\n        \"type\": \"__expr__\",\n        \"uid\": \"-100\"\n    },\n    \"hide\": false,\n    \"intervalMs\": 1000,\n    \"maxDataPoints\": 43200,\n    \"refId\": \"B\",\n    \"type\": \"classic_conditions\"\n}\n\"\"\",\n            ),\n        ],\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ruleFolder = new Grafana.Folder(\"ruleFolder\", new()\n    {\n        Title = \"My Alert Rule Folder\",\n    });\n\n    var myAlertRule = new Grafana.RuleGroup(\"myAlertRule\", new()\n    {\n        FolderUid = ruleFolder.Uid,\n        IntervalSeconds = 240,\n        OrgId = 1,\n        Rules = new[]\n        {\n            new Grafana.Inputs.RuleGroupRuleArgs\n            {\n                Name = \"My Alert Rule 1\",\n                For = \"2m\",\n                Condition = \"B\",\n                NoDataState = \"NoData\",\n                ExecErrState = \"Alerting\",\n                Annotations = \n                {\n                    { \"a\", \"b\" },\n                    { \"c\", \"d\" },\n                },\n                Labels = \n                {\n                    { \"e\", \"f\" },\n                    { \"g\", \"h\" },\n                },\n                Datas = new[]\n                {\n                    new Grafana.Inputs.RuleGroupRuleDataArgs\n                    {\n                        RefId = \"A\",\n                        QueryType = \"\",\n                        RelativeTimeRange = new Grafana.Inputs.RuleGroupRuleDataRelativeTimeRangeArgs\n                        {\n                            From = 600,\n                            To = 0,\n                        },\n                        DatasourceUid = \"PD8C576611E62080A\",\n                        Model = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"hide\"] = false,\n                            [\"intervalMs\"] = 1000,\n                            [\"maxDataPoints\"] = 43200,\n                            [\"refId\"] = \"A\",\n                        }),\n                    },\n                    new Grafana.Inputs.RuleGroupRuleDataArgs\n                    {\n                        RefId = \"B\",\n                        QueryType = \"\",\n                        RelativeTimeRange = new Grafana.Inputs.RuleGroupRuleDataRelativeTimeRangeArgs\n                        {\n                            From = 0,\n                            To = 0,\n                        },\n                        DatasourceUid = \"-100\",\n                        Model = @\"{\n    \"\"conditions\"\": [\n        {\n        \"\"evaluator\"\": {\n            \"\"params\"\": [\n            3\n            ],\n            \"\"type\"\": \"\"gt\"\"\n        },\n        \"\"operator\"\": {\n            \"\"type\"\": \"\"and\"\"\n        },\n        \"\"query\"\": {\n            \"\"params\"\": [\n            \"\"A\"\"\n            ]\n        },\n        \"\"reducer\"\": {\n            \"\"params\"\": [],\n            \"\"type\"\": \"\"last\"\"\n        },\n        \"\"type\"\": \"\"query\"\"\n        }\n    ],\n    \"\"datasource\"\": {\n        \"\"type\"\": \"\"__expr__\"\",\n        \"\"uid\"\": \"\"-100\"\"\n    },\n    \"\"hide\"\": false,\n    \"\"intervalMs\"\": 1000,\n    \"\"maxDataPoints\"\": 43200,\n    \"\"refId\"\": \"\"B\"\",\n    \"\"type\"\": \"\"classic_conditions\"\"\n}\n\",\n                    },\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\truleFolder, err := grafana.NewFolder(ctx, \"ruleFolder\", \u0026grafana.FolderArgs{\n\t\t\tTitle: pulumi.String(\"My Alert Rule Folder\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"hide\":          false,\n\t\t\t\"intervalMs\":    1000,\n\t\t\t\"maxDataPoints\": 43200,\n\t\t\t\"refId\":         \"A\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = grafana.NewRuleGroup(ctx, \"myAlertRule\", \u0026grafana.RuleGroupArgs{\n\t\t\tFolderUid:       ruleFolder.Uid,\n\t\t\tIntervalSeconds: pulumi.Int(240),\n\t\t\tOrgId:           pulumi.Int(1),\n\t\t\tRules: RuleGroupRuleArray{\n\t\t\t\t\u0026RuleGroupRuleArgs{\n\t\t\t\t\tName:         pulumi.String(\"My Alert Rule 1\"),\n\t\t\t\t\tFor:          pulumi.String(\"2m\"),\n\t\t\t\t\tCondition:    pulumi.String(\"B\"),\n\t\t\t\t\tNoDataState:  pulumi.String(\"NoData\"),\n\t\t\t\t\tExecErrState: pulumi.String(\"Alerting\"),\n\t\t\t\t\tAnnotations: pulumi.StringMap{\n\t\t\t\t\t\t\"a\": pulumi.String(\"b\"),\n\t\t\t\t\t\t\"c\": pulumi.String(\"d\"),\n\t\t\t\t\t},\n\t\t\t\t\tLabels: pulumi.StringMap{\n\t\t\t\t\t\t\"e\": pulumi.String(\"f\"),\n\t\t\t\t\t\t\"g\": pulumi.String(\"h\"),\n\t\t\t\t\t},\n\t\t\t\t\tDatas: RuleGroupRuleDataArray{\n\t\t\t\t\t\t\u0026RuleGroupRuleDataArgs{\n\t\t\t\t\t\t\tRefId:     pulumi.String(\"A\"),\n\t\t\t\t\t\t\tQueryType: pulumi.String(\"\"),\n\t\t\t\t\t\t\tRelativeTimeRange: \u0026RuleGroupRuleDataRelativeTimeRangeArgs{\n\t\t\t\t\t\t\t\tFrom: pulumi.Int(600),\n\t\t\t\t\t\t\t\tTo:   pulumi.Int(0),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\tDatasourceUid: pulumi.String(\"PD8C576611E62080A\"),\n\t\t\t\t\t\t\tModel:         pulumi.String(json0),\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\u0026RuleGroupRuleDataArgs{\n\t\t\t\t\t\t\tRefId:     pulumi.String(\"B\"),\n\t\t\t\t\t\t\tQueryType: pulumi.String(\"\"),\n\t\t\t\t\t\t\tRelativeTimeRange: \u0026RuleGroupRuleDataRelativeTimeRangeArgs{\n\t\t\t\t\t\t\t\tFrom: pulumi.Int(0),\n\t\t\t\t\t\t\t\tTo:   pulumi.Int(0),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\tDatasourceUid: pulumi.String(\"-100\"),\n\t\t\t\t\t\t\tModel: pulumi.String(fmt.Sprintf(`{\n    \"conditions\": [\n        {\n        \"evaluator\": {\n            \"params\": [\n            3\n            ],\n            \"type\": \"gt\"\n        },\n        \"operator\": {\n            \"type\": \"and\"\n        },\n        \"query\": {\n            \"params\": [\n            \"A\"\n            ]\n        },\n        \"reducer\": {\n            \"params\": [],\n            \"type\": \"last\"\n        },\n        \"type\": \"query\"\n        }\n    ],\n    \"datasource\": {\n        \"type\": \"__expr__\",\n        \"uid\": \"-100\"\n    },\n    \"hide\": false,\n    \"intervalMs\": 1000,\n    \"maxDataPoints\": 43200,\n    \"refId\": \"B\",\n    \"type\": \"classic_conditions\"\n}\n`)),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.Folder;\nimport com.pulumi.grafana.FolderArgs;\nimport com.pulumi.grafana.RuleGroup;\nimport com.pulumi.grafana.RuleGroupArgs;\nimport com.pulumi.grafana.inputs.RuleGroupRuleArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ruleFolder = new Folder(\"ruleFolder\", FolderArgs.builder()        \n            .title(\"My Alert Rule Folder\")\n            .build());\n\n        var myAlertRule = new RuleGroup(\"myAlertRule\", RuleGroupArgs.builder()        \n            .folderUid(ruleFolder.uid())\n            .intervalSeconds(240)\n            .orgId(1)\n            .rules(RuleGroupRuleArgs.builder()\n                .name(\"My Alert Rule 1\")\n                .for_(\"2m\")\n                .condition(\"B\")\n                .noDataState(\"NoData\")\n                .execErrState(\"Alerting\")\n                .annotations(Map.ofEntries(\n                    Map.entry(\"a\", \"b\"),\n                    Map.entry(\"c\", \"d\")\n                ))\n                .labels(Map.ofEntries(\n                    Map.entry(\"e\", \"f\"),\n                    Map.entry(\"g\", \"h\")\n                ))\n                .datas(                \n                    RuleGroupRuleDataArgs.builder()\n                        .refId(\"A\")\n                        .queryType(\"\")\n                        .relativeTimeRange(RuleGroupRuleDataRelativeTimeRangeArgs.builder()\n                            .from(600)\n                            .to(0)\n                            .build())\n                        .datasourceUid(\"PD8C576611E62080A\")\n                        .model(serializeJson(\n                            jsonObject(\n                                jsonProperty(\"hide\", false),\n                                jsonProperty(\"intervalMs\", 1000),\n                                jsonProperty(\"maxDataPoints\", 43200),\n                                jsonProperty(\"refId\", \"A\")\n                            )))\n                        .build(),\n                    RuleGroupRuleDataArgs.builder()\n                        .refId(\"B\")\n                        .queryType(\"\")\n                        .relativeTimeRange(RuleGroupRuleDataRelativeTimeRangeArgs.builder()\n                            .from(0)\n                            .to(0)\n                            .build())\n                        .datasourceUid(\"-100\")\n                        .model(\"\"\"\n{\n    \"conditions\": [\n        {\n        \"evaluator\": {\n            \"params\": [\n            3\n            ],\n            \"type\": \"gt\"\n        },\n        \"operator\": {\n            \"type\": \"and\"\n        },\n        \"query\": {\n            \"params\": [\n            \"A\"\n            ]\n        },\n        \"reducer\": {\n            \"params\": [],\n            \"type\": \"last\"\n        },\n        \"type\": \"query\"\n        }\n    ],\n    \"datasource\": {\n        \"type\": \"__expr__\",\n        \"uid\": \"-100\"\n    },\n    \"hide\": false,\n    \"intervalMs\": 1000,\n    \"maxDataPoints\": 43200,\n    \"refId\": \"B\",\n    \"type\": \"classic_conditions\"\n}\n                        \"\"\")\n                        .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ruleFolder:\n    type: grafana:Folder\n    properties:\n      title: My Alert Rule Folder\n  myAlertRule:\n    type: grafana:RuleGroup\n    properties:\n      folderUid: ${ruleFolder.uid}\n      intervalSeconds: 240\n      orgId: 1\n      rules:\n        - name: My Alert Rule 1\n          for: 2m\n          condition: B\n          noDataState: NoData\n          execErrState: Alerting\n          annotations:\n            a: b\n            c: d\n          labels:\n            e: f\n            g: h\n          datas:\n            - refId: A\n              queryType:\n              relativeTimeRange:\n                from: 600\n                to: 0\n              datasourceUid: PD8C576611E62080A\n              model:\n                Fn::ToJSON:\n                  hide: false\n                  intervalMs: 1000\n                  maxDataPoints: 43200\n                  refId: A\n            - refId: B\n              queryType:\n              relativeTimeRange:\n                from: 0\n                to: 0\n              datasourceUid: -100\n              model: |\n                {\n                    \"conditions\": [\n                        {\n                        \"evaluator\": {\n                            \"params\": [\n                            3\n                            ],\n                            \"type\": \"gt\"\n                        },\n                        \"operator\": {\n                            \"type\": \"and\"\n                        },\n                        \"query\": {\n                            \"params\": [\n                            \"A\"\n                            ]\n                        },\n                        \"reducer\": {\n                            \"params\": [],\n                            \"type\": \"last\"\n                        },\n                        \"type\": \"query\"\n                        }\n                    ],\n                    \"datasource\": {\n                        \"type\": \"__expr__\",\n                        \"uid\": \"-100\"\n                    },\n                    \"hide\": false,\n                    \"intervalMs\": 1000,\n                    \"maxDataPoints\": 43200,\n                    \"refId\": \"B\",\n                    \"type\": \"classic_conditions\"\n                }\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import grafana:index/ruleGroup:RuleGroup rule_group_name {{folder_uid}};{{rule_group_name}}\n```\n\n ",
             "properties": {
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the group that the folder belongs to.\n"
+                    "description": "The UID of the folder that the group belongs to.\n"
                 },
                 "intervalSeconds": {
                     "type": "integer",
@@ -8684,7 +8866,7 @@
             "inputProperties": {
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the group that the folder belongs to.\n",
+                    "description": "The UID of the folder that the group belongs to.\n",
                     "willReplaceOnChanges": true
                 },
                 "intervalSeconds": {
@@ -8720,7 +8902,7 @@
                 "properties": {
                     "folderUid": {
                         "type": "string",
-                        "description": "The UID of the group that the folder belongs to.\n",
+                        "description": "The UID of the folder that the group belongs to.\n",
                         "willReplaceOnChanges": true
                     },
                     "intervalSeconds": {
@@ -8812,7 +8994,8 @@
                     "type": "boolean"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "secret": true
                 },
                 "name": {
                     "type": "string"
@@ -8858,7 +9041,8 @@
                         "type": "boolean"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "secret": true
                     },
                     "name": {
                         "type": "string",
@@ -9061,7 +9245,8 @@
                 },
                 "metricsPublisherKey": {
                     "type": "string",
-                    "description": "The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API\n"
+                    "description": "The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API\n",
+                    "secret": true
                 },
                 "smAccessToken": {
                     "type": "string",
@@ -9093,6 +9278,7 @@
                 "metricsPublisherKey": {
                     "type": "string",
                     "description": "The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API\n",
+                    "secret": true,
                     "willReplaceOnChanges": true
                 },
                 "stackId": {
@@ -9123,6 +9309,7 @@
                     "metricsPublisherKey": {
                         "type": "string",
                         "description": "The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API\n",
+                        "secret": true,
                         "willReplaceOnChanges": true
                     },
                     "smAccessToken": {
@@ -9143,7 +9330,8 @@
             "properties": {
                 "authToken": {
                     "type": "string",
-                    "description": "The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.\n"
+                    "description": "The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.\n",
+                    "secret": true
                 },
                 "labels": {
                     "type": "object",
@@ -9224,7 +9412,8 @@
                 "properties": {
                     "authToken": {
                         "type": "string",
-                        "description": "The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.\n"
+                        "description": "The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.\n",
+                        "secret": true
                     },
                     "labels": {
                         "type": "object",
@@ -9477,7 +9666,8 @@
                 },
                 "password": {
                     "type": "string",
-                    "description": "The password for the Grafana user.\n"
+                    "description": "The password for the Grafana user.\n",
+                    "secret": true
                 },
                 "userId": {
                     "type": "integer",
@@ -9509,7 +9699,8 @@
                 },
                 "password": {
                     "type": "string",
-                    "description": "The password for the Grafana user.\n"
+                    "description": "The password for the Grafana user.\n",
+                    "secret": true
                 }
             },
             "requiredInputs": [
@@ -9537,7 +9728,8 @@
                     },
                     "password": {
                         "type": "string",
-                        "description": "The password for the Grafana user.\n"
+                        "description": "The password for the Grafana user.\n",
+                        "secret": true
                     },
                     "userId": {
                         "type": "integer",

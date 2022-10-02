@@ -34,7 +34,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetCloudIpsResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCloudIpsResult>("grafana:index/getCloudIps:getCloudIps", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudIpsResult>("grafana:index/getCloudIps:getCloudIps", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

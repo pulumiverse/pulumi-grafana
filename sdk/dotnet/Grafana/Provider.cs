@@ -113,6 +113,13 @@ namespace Lbrlabs.PulumiPackage.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/lbrlabs",
+                AdditionalSecretOutputs =
+                {
+                    "auth",
+                    "cloudApiKey",
+                    "oncallAccessToken",
+                    "smAccessToken",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -123,11 +130,21 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
+        [Input("auth")]
+        private Input<string>? _auth;
+
         /// <summary>
         /// API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
         /// </summary>
-        [Input("auth")]
-        public Input<string>? Auth { get; set; }
+        public Input<string>? Auth
+        {
+            get => _auth;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _auth = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
@@ -136,11 +153,21 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("caCert")]
         public Input<string>? CaCert { get; set; }
 
+        [Input("cloudApiKey")]
+        private Input<string>? _cloudApiKey;
+
         /// <summary>
         /// API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
         /// </summary>
-        [Input("cloudApiKey")]
-        public Input<string>? CloudApiKey { get; set; }
+        public Input<string>? CloudApiKey
+        {
+            get => _cloudApiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _cloudApiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
@@ -158,7 +185,11 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public InputMap<string> HttpHeaders
         {
             get => _httpHeaders ?? (_httpHeaders = new InputMap<string>());
-            set => _httpHeaders = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _httpHeaders = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         /// <summary>
@@ -167,11 +198,21 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("insecureSkipVerify", json: true)]
         public Input<bool>? InsecureSkipVerify { get; set; }
 
+        [Input("oncallAccessToken")]
+        private Input<string>? _oncallAccessToken;
+
         /// <summary>
         /// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         /// </summary>
-        [Input("oncallAccessToken")]
-        public Input<string>? OncallAccessToken { get; set; }
+        public Input<string>? OncallAccessToken
+        {
+            get => _oncallAccessToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _oncallAccessToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
@@ -193,11 +234,21 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("retries", json: true)]
         public Input<int>? Retries { get; set; }
 
+        [Input("smAccessToken")]
+        private Input<string>? _smAccessToken;
+
         /// <summary>
         /// A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
         /// </summary>
-        [Input("smAccessToken")]
-        public Input<string>? SmAccessToken { get; set; }
+        public Input<string>? SmAccessToken
+        {
+            get => _smAccessToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _smAccessToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The

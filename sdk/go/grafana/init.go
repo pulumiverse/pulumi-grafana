@@ -80,6 +80,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Report{}
 	case "grafana:index/role:Role":
 		r = &Role{}
+	case "grafana:index/roleAssignment:RoleAssignment":
+		r = &RoleAssignment{}
 	case "grafana:index/ruleGroup:RuleGroup":
 		r = &RuleGroup{}
 	case "grafana:index/serviceAccount:ServiceAccount":
@@ -276,6 +278,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"index/role",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/roleAssignment",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

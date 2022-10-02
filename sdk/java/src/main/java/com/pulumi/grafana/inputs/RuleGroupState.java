@@ -19,14 +19,14 @@ public final class RuleGroupState extends com.pulumi.resources.ResourceArgs {
     public static final RuleGroupState Empty = new RuleGroupState();
 
     /**
-     * The UID of the group that the folder belongs to.
+     * The UID of the folder that the group belongs to.
      * 
      */
     @Import(name="folderUid")
     private @Nullable Output<String> folderUid;
 
     /**
-     * @return The UID of the group that the folder belongs to.
+     * @return The UID of the folder that the group belongs to.
      * 
      */
     public Optional<Output<String>> folderUid() {
@@ -122,7 +122,7 @@ public final class RuleGroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param folderUid The UID of the group that the folder belongs to.
+         * @param folderUid The UID of the folder that the group belongs to.
          * 
          * @return builder
          * 
@@ -133,7 +133,7 @@ public final class RuleGroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param folderUid The UID of the group that the folder belongs to.
+         * @param folderUid The UID of the folder that the group belongs to.
          * 
          * @return builder
          * 

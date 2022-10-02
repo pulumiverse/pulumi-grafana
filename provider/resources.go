@@ -182,6 +182,7 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_playlist":                          {Tok: grafanaResource(grafanaMod, "Playlist")},
 			"grafana_report":                            {Tok: grafanaResource(grafanaMod, "Report")},
 			"grafana_role":                              {Tok: grafanaResource(grafanaMod, "Role")},
+			"grafana_role_assignment":                   {Tok: grafanaResource(grafanaMod, "RoleAssignment")},
 			"grafana_rule_group":                        {Tok: grafanaResource(grafanaMod, "RuleGroup")},
 			"grafana_service_account":                   {Tok: grafanaResource(grafanaMod, "ServiceAccount")},
 			"grafana_service_account_token":             {Tok: grafanaResource(grafanaMod, "ServiceAccountToken")},

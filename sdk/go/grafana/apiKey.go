@@ -71,6 +71,10 @@ func NewApiKey(ctx *pulumi.Context,
 	if args.Role == nil {
 		return nil, errors.New("invalid value for required argument 'Role'")
 	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"key",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource ApiKey
 	err := ctx.RegisterResource("grafana:index/apiKey:ApiKey", name, args, &resource, opts...)
