@@ -5,7 +5,7 @@ before:
   hooks:
   - make tfgen
 builds:
-- binary: pulumi-resource-scaleway
+- binary: pulumi-resource-grafana
   dir: provider
   env:
   - CGO_ENABLED=0
