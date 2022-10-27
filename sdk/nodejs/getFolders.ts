@@ -9,24 +9,6 @@ import * as utilities from "./utilities";
 /**
  * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@lbrlabs/pulumi-grafana";
- * import * as grafana from "@pulumi/grafana";
- *
- * const testA = new grafana.Folder("testA", {
- *     title: "test-folder-a",
- *     uid: "test-ds-folder-uid-a",
- * });
- * const testB = new grafana.Folder("testB", {
- *     title: "test-folder-b",
- *     uid: "test-ds-folder-uid-b",
- * });
- * const test = grafana.getFolders({});
- * ```
  */
 export function getFolders(opts?: pulumi.InvokeOptions): Promise<GetFoldersResult> {
     if (!opts) {

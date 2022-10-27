@@ -45,6 +45,11 @@ import (
 //			_ = grafana.LookupUserOutput(ctx, GetUserOutputArgs{
 //				Email: test.Email,
 //			}, nil)
+//			_ = test.Login.ApplyT(func(login string) (GetUserResult, error) {
+//				return grafana.LookupUserOutput(ctx, GetUserOutputArgs{
+//					Login: login,
+//				}, nil), nil
+//			}).(pulumi.GetUserResultOutput)
 //			return nil
 //		})
 //	}

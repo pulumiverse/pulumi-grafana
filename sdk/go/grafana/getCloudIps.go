@@ -8,30 +8,6 @@ import (
 )
 
 // Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.GetCloudIps(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetCloudIps(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetCloudIpsResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetCloudIpsResult

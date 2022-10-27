@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.GetOncallUser(ctx, &GetOncallUserArgs{
+//			_, err = grafana.GetOncallUser(ctx, &GetOncallUserArgs{
 //				Username: "alex",
 //			}, nil)
 //			if err != nil {

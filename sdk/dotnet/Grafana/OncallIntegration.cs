@@ -26,7 +26,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///     var test_acc_integration = new Grafana.OncallIntegration("test-acc-integration", new()
     ///     {
     ///         Type = "grafana",
-    ///         DefaultRoute = ,
+    ///         DefaultRoute = null,
     ///     }, new CustomResourceOptions
     ///     {
     ///         Provider = grafana.Oncall,

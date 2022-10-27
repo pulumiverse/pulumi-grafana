@@ -47,7 +47,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///         },
     ///         Settings = new Grafana.Inputs.SyntheticMonitoringCheckSettingsArgs
     ///         {
-    ///             Dns = ,
+    ///             Dns = null,
     ///         },
     ///     });
     /// 
@@ -162,7 +162,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///         },
     ///         Settings = new Grafana.Inputs.SyntheticMonitoringCheckSettingsArgs
     ///         {
-    ///             Http = ,
+    ///             Http = null,
     ///         },
     ///     });
     /// 
@@ -307,7 +307,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///         },
     ///         Settings = new Grafana.Inputs.SyntheticMonitoringCheckSettingsArgs
     ///         {
-    ///             Ping = ,
+    ///             Ping = null,
     ///         },
     ///     });
     /// 
@@ -379,7 +379,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///         },
     ///         Settings = new Grafana.Inputs.SyntheticMonitoringCheckSettingsArgs
     ///         {
-    ///             Tcp = ,
+    ///             Tcp = null,
     ///         },
     ///     });
     /// 
@@ -498,7 +498,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///         },
     ///         Settings = new Grafana.Inputs.SyntheticMonitoringCheckSettingsArgs
     ///         {
-    ///             Traceroute = ,
+    ///             Traceroute = null,
     ///         },
     ///     });
     /// 

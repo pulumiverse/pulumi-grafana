@@ -72,31 +72,6 @@ public final class GrafanaFunctions {
      * Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.grafana.GrafanaFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = GrafanaFunctions.getCloudIps();
-     * 
-     *     }
-     * }
-     * ```
      * 
      */
     public static Output<GetCloudIpsResult> getCloudIps() {
@@ -106,31 +81,6 @@ public final class GrafanaFunctions {
      * Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.grafana.GrafanaFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = GrafanaFunctions.getCloudIps();
-     * 
-     *     }
-     * }
-     * ```
      * 
      */
     public static CompletableFuture<GetCloudIpsResult> getCloudIpsPlain() {
@@ -140,31 +90,6 @@ public final class GrafanaFunctions {
      * Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.grafana.GrafanaFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = GrafanaFunctions.getCloudIps();
-     * 
-     *     }
-     * }
-     * ```
      * 
      */
     public static Output<GetCloudIpsResult> getCloudIps(InvokeArgs args) {
@@ -174,31 +99,6 @@ public final class GrafanaFunctions {
      * Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.grafana.GrafanaFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = GrafanaFunctions.getCloudIps();
-     * 
-     *     }
-     * }
-     * ```
      * 
      */
     public static CompletableFuture<GetCloudIpsResult> getCloudIpsPlain(InvokeArgs args) {
@@ -208,31 +108,6 @@ public final class GrafanaFunctions {
      * Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.grafana.GrafanaFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = GrafanaFunctions.getCloudIps();
-     * 
-     *     }
-     * }
-     * ```
      * 
      */
     public static Output<GetCloudIpsResult> getCloudIps(InvokeArgs args, InvokeOptions options) {
@@ -242,31 +117,6 @@ public final class GrafanaFunctions {
      * Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.grafana.GrafanaFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = GrafanaFunctions.getCloudIps();
-     * 
-     *     }
-     * }
-     * ```
      * 
      */
     public static CompletableFuture<GetCloudIpsResult> getCloudIpsPlain(InvokeArgs args, InvokeOptions options) {
@@ -910,45 +760,6 @@ public final class GrafanaFunctions {
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
      * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.grafana.Folder;
-     * import com.pulumi.grafana.FolderArgs;
-     * import com.pulumi.grafana.GrafanaFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testA = new Folder(&#34;testA&#34;, FolderArgs.builder()        
-     *             .title(&#34;test-folder-a&#34;)
-     *             .uid(&#34;test-ds-folder-uid-a&#34;)
-     *             .build());
-     * 
-     *         var testB = new Folder(&#34;testB&#34;, FolderArgs.builder()        
-     *             .title(&#34;test-folder-b&#34;)
-     *             .uid(&#34;test-ds-folder-uid-b&#34;)
-     *             .build());
-     * 
-     *         final var test = GrafanaFunctions.getFolders();
-     * 
-     *     }
-     * }
-     * ```
-     * 
      */
     public static Output<GetFoldersResult> getFolders() {
         return getFolders(InvokeArgs.Empty, InvokeOptions.Empty);
@@ -956,45 +767,6 @@ public final class GrafanaFunctions {
     /**
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.grafana.Folder;
-     * import com.pulumi.grafana.FolderArgs;
-     * import com.pulumi.grafana.GrafanaFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testA = new Folder(&#34;testA&#34;, FolderArgs.builder()        
-     *             .title(&#34;test-folder-a&#34;)
-     *             .uid(&#34;test-ds-folder-uid-a&#34;)
-     *             .build());
-     * 
-     *         var testB = new Folder(&#34;testB&#34;, FolderArgs.builder()        
-     *             .title(&#34;test-folder-b&#34;)
-     *             .uid(&#34;test-ds-folder-uid-b&#34;)
-     *             .build());
-     * 
-     *         final var test = GrafanaFunctions.getFolders();
-     * 
-     *     }
-     * }
-     * ```
      * 
      */
     public static CompletableFuture<GetFoldersResult> getFoldersPlain() {
@@ -1004,45 +776,6 @@ public final class GrafanaFunctions {
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
      * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.grafana.Folder;
-     * import com.pulumi.grafana.FolderArgs;
-     * import com.pulumi.grafana.GrafanaFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testA = new Folder(&#34;testA&#34;, FolderArgs.builder()        
-     *             .title(&#34;test-folder-a&#34;)
-     *             .uid(&#34;test-ds-folder-uid-a&#34;)
-     *             .build());
-     * 
-     *         var testB = new Folder(&#34;testB&#34;, FolderArgs.builder()        
-     *             .title(&#34;test-folder-b&#34;)
-     *             .uid(&#34;test-ds-folder-uid-b&#34;)
-     *             .build());
-     * 
-     *         final var test = GrafanaFunctions.getFolders();
-     * 
-     *     }
-     * }
-     * ```
-     * 
      */
     public static Output<GetFoldersResult> getFolders(InvokeArgs args) {
         return getFolders(args, InvokeOptions.Empty);
@@ -1050,45 +783,6 @@ public final class GrafanaFunctions {
     /**
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.grafana.Folder;
-     * import com.pulumi.grafana.FolderArgs;
-     * import com.pulumi.grafana.GrafanaFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testA = new Folder(&#34;testA&#34;, FolderArgs.builder()        
-     *             .title(&#34;test-folder-a&#34;)
-     *             .uid(&#34;test-ds-folder-uid-a&#34;)
-     *             .build());
-     * 
-     *         var testB = new Folder(&#34;testB&#34;, FolderArgs.builder()        
-     *             .title(&#34;test-folder-b&#34;)
-     *             .uid(&#34;test-ds-folder-uid-b&#34;)
-     *             .build());
-     * 
-     *         final var test = GrafanaFunctions.getFolders();
-     * 
-     *     }
-     * }
-     * ```
      * 
      */
     public static CompletableFuture<GetFoldersResult> getFoldersPlain(InvokeArgs args) {
@@ -1098,45 +792,6 @@ public final class GrafanaFunctions {
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
      * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.grafana.Folder;
-     * import com.pulumi.grafana.FolderArgs;
-     * import com.pulumi.grafana.GrafanaFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testA = new Folder(&#34;testA&#34;, FolderArgs.builder()        
-     *             .title(&#34;test-folder-a&#34;)
-     *             .uid(&#34;test-ds-folder-uid-a&#34;)
-     *             .build());
-     * 
-     *         var testB = new Folder(&#34;testB&#34;, FolderArgs.builder()        
-     *             .title(&#34;test-folder-b&#34;)
-     *             .uid(&#34;test-ds-folder-uid-b&#34;)
-     *             .build());
-     * 
-     *         final var test = GrafanaFunctions.getFolders();
-     * 
-     *     }
-     * }
-     * ```
-     * 
      */
     public static Output<GetFoldersResult> getFolders(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("grafana:index/getFolders:getFolders", TypeShape.of(GetFoldersResult.class), args, Utilities.withVersion(options));
@@ -1144,45 +799,6 @@ public final class GrafanaFunctions {
     /**
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.grafana.Folder;
-     * import com.pulumi.grafana.FolderArgs;
-     * import com.pulumi.grafana.GrafanaFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testA = new Folder(&#34;testA&#34;, FolderArgs.builder()        
-     *             .title(&#34;test-folder-a&#34;)
-     *             .uid(&#34;test-ds-folder-uid-a&#34;)
-     *             .build());
-     * 
-     *         var testB = new Folder(&#34;testB&#34;, FolderArgs.builder()        
-     *             .title(&#34;test-folder-b&#34;)
-     *             .uid(&#34;test-ds-folder-uid-b&#34;)
-     *             .build());
-     * 
-     *         final var test = GrafanaFunctions.getFolders();
-     * 
-     *     }
-     * }
-     * ```
      * 
      */
     public static CompletableFuture<GetFoldersResult> getFoldersPlain(InvokeArgs args, InvokeOptions options) {
