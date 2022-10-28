@@ -16,6 +16,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DataSourceJsonData {
     /**
+     * @return (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
+     * 
+     */
+    private @Nullable String alertmanagerUid;
+    /**
      * @return (CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.
      * 
      */
@@ -307,6 +312,13 @@ public final class DataSourceJsonData {
     private @Nullable Boolean xpackEnabled;
 
     private DataSourceJsonData() {}
+    /**
+     * @return (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
+     * 
+     */
+    public Optional<String> alertmanagerUid() {
+        return Optional.ofNullable(this.alertmanagerUid);
+    }
     /**
      * @return (CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.
      * 
@@ -723,6 +735,7 @@ public final class DataSourceJsonData {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String alertmanagerUid;
         private @Nullable String assumeRoleArn;
         private @Nullable String authType;
         private @Nullable String authenticationType;
@@ -784,6 +797,7 @@ public final class DataSourceJsonData {
         public Builder() {}
         public Builder(DataSourceJsonData defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.alertmanagerUid = defaults.alertmanagerUid;
     	      this.assumeRoleArn = defaults.assumeRoleArn;
     	      this.authType = defaults.authType;
     	      this.authenticationType = defaults.authenticationType;
@@ -844,6 +858,11 @@ public final class DataSourceJsonData {
     	      this.xpackEnabled = defaults.xpackEnabled;
         }
 
+        @CustomType.Setter
+        public Builder alertmanagerUid(@Nullable String alertmanagerUid) {
+            this.alertmanagerUid = alertmanagerUid;
+            return this;
+        }
         @CustomType.Setter
         public Builder assumeRoleArn(@Nullable String assumeRoleArn) {
             this.assumeRoleArn = assumeRoleArn;
@@ -1139,6 +1158,7 @@ public final class DataSourceJsonData {
         }
         public DataSourceJsonData build() {
             final var o = new DataSourceJsonData();
+            o.alertmanagerUid = alertmanagerUid;
             o.assumeRoleArn = assumeRoleArn;
             o.authType = authType;
             o.authenticationType = authenticationType;

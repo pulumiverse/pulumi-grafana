@@ -118,14 +118,14 @@ public class Report extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.includeTableCsv);
     }
     /**
-     * Layout of the report. `simple` or `grid` Defaults to `grid`.
+     * Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
      * 
      */
     @Export(name="layout", type=String.class, parameters={})
     private Output</* @Nullable */ String> layout;
 
     /**
-     * @return Layout of the report. `simple` or `grid` Defaults to `grid`.
+     * @return Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
      * 
      */
     public Output<Optional<String>> layout() {
@@ -160,14 +160,14 @@ public class Report extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+     * Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
      * 
      */
     @Export(name="orientation", type=String.class, parameters={})
     private Output</* @Nullable */ String> orientation;
 
     /**
-     * @return Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+     * @return Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
      * 
      */
     public Output<Optional<String>> orientation() {

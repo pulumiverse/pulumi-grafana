@@ -73,7 +73,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<bool?> IncludeTableCsv { get; private set; } = null!;
 
         /// <summary>
-        /// Layout of the report. `simple` or `grid` Defaults to `grid`.
+        /// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         /// </summary>
         [Output("layout")]
         public Output<string?> Layout { get; private set; } = null!;
@@ -91,7 +91,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+        /// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         /// </summary>
         [Output("orientation")]
         public Output<string?> Orientation { get; private set; } = null!;
@@ -186,7 +186,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<bool>? IncludeTableCsv { get; set; }
 
         /// <summary>
-        /// Layout of the report. `simple` or `grid` Defaults to `grid`.
+        /// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         /// </summary>
         [Input("layout")]
         public Input<string>? Layout { get; set; }
@@ -204,7 +204,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+        /// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         /// </summary>
         [Input("orientation")]
         public Input<string>? Orientation { get; set; }
@@ -266,7 +266,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<bool>? IncludeTableCsv { get; set; }
 
         /// <summary>
-        /// Layout of the report. `simple` or `grid` Defaults to `grid`.
+        /// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         /// </summary>
         [Input("layout")]
         public Input<string>? Layout { get; set; }
@@ -284,7 +284,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+        /// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         /// </summary>
         [Input("orientation")]
         public Input<string>? Orientation { get; set; }

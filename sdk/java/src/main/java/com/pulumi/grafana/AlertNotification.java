@@ -19,9 +19,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/notifications/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/)
- * 
  * ## Example Usage
  * ```java
  * package generated_program;

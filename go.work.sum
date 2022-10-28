@@ -9,6 +9,7 @@ github.com/alcortesm/tgz v0.0.0-20161220082320-9c5fe88206d7/go.mod h1:6zEj6s6u/g
 github.com/apparentlymart/go-textseg v1.0.0 h1:rRmlIsPEEhUTIKQb7T++Nz/A5Q6C9IuX2wFoYVvnCs0=
 github.com/cenkalti/backoff v2.2.1+incompatible h1:tNowT99t7UNflLxfYYSlKYsBpXdEet03Pg2g16Swow4=
 github.com/cheggaaa/pb v1.0.18/go.mod h1:pQciLPpbU0oxA0h+VJYYLxO+XeDQb5pZijXscXHm81s=
+github.com/coreos/go-systemd/v22 v22.3.3-0.20220203105225-a9a7ef127534/go.mod h1:Y58oyj3AT4RCenI/lSvhwexgC+NSVTIJ3seZv2GcEnc=
 github.com/cpuguy83/go-md2man/v2 v2.0.1/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/creack/pty v1.1.17/go.mod h1:MOBLtS5ELjhRRrroQr9kyvTxUAFNvYEK993ew/Vr4O4=
 github.com/djherbis/times v1.2.0/go.mod h1:CGMZlo255K5r4Yw0b9RRfFQpM2y7uOmxg4jm9HsaVf8=
@@ -16,6 +17,12 @@ github.com/fogleman/gg v1.2.1-0.20190220221249-0403632d5b90/go.mod h1:R/bRT+9gY/
 github.com/frankban/quicktest v1.14.3/go.mod h1:mgiwOwqx65TmIk1wJ6Q7wvnVMocbUorkibMOrVTHZps=
 github.com/go-ole/go-ole v1.2.6/go.mod h1:pprOEPIfldk/42T2oK7lQ4v4JSDwmV0As9GaiUsvbm0=
 github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0/go.mod h1:E/TSTwGwJL78qG/PmXZO1EjYhfJinVAhrmmHX6Z8B9k=
+github.com/grafana/grafana-api-golang-client v0.12.1 h1:GLkNXslTWf/ZBxjRHK6VYW6FSqFnhaiA47pTZe9GUBw=
+github.com/grafana/grafana-api-golang-client v0.12.1/go.mod h1:24W29gPe9yl0/3A9X624TPkAOR8DpHno490cPwnkv8E=
+github.com/grafana/synthetic-monitoring-api-go-client v0.6.3 h1:3jb4v5W8cEEr5zp5kVAzyV0UGF7mm06iY3nBpN4ZCDU=
+github.com/grafana/synthetic-monitoring-api-go-client v0.6.3/go.mod h1:H+c0BclEqDco91LyC6pqntfI9CSdAWj2mzeNkSaeXsY=
+github.com/grafana/terraform-provider-grafana v1.30.0 h1:huZebFjp8p0Eb96gudc+fkZrMHtmn6PdEBWg9acZyvw=
+github.com/grafana/terraform-provider-grafana v1.30.0/go.mod h1:MxpsO9Rqi/mN/zh7EPqiDb2IIEY/MJb7tJQN5hoRdag=
 github.com/hashicorp/go-version v1.4.0/go.mod h1:fltr4n8CU8Ke44wwGCBoEymUuxUHl09ZGVZPK5anwXA=
 github.com/hashicorp/terraform-plugin-go v0.12.0 h1:6wW9mT1dSs0Xq4LR6HXj1heQ5ovr5GxXNJwkErZzpJw=
 github.com/hashicorp/terraform-plugin-log v0.6.0 h1:/Vq78uSIdUSZ3iqDc9PESKtwt8YqNKN6u+khD+lLjuw=
@@ -54,6 +61,8 @@ github.com/pulumi/pulumi/sdk/v3 v3.43.0 h1:4L/5xZPXr+2qKAxz4WqqjU3Q7votVyqLeop4h
 github.com/pulumi/pulumi/sdk/v3 v3.43.0/go.mod h1:N5jL+cw5KiOeMn9bwvRuPQEAhbE3KPq2wSb/Kw+6HuY=
 github.com/rjeczalik/notify v0.9.2/go.mod h1:aErll2f0sUX9PXZnVNyeiObbmTlk5jnMoCa4QEjJeqM=
 github.com/rogpeppe/go-internal v1.6.2/go.mod h1:xXDCJY+GAPziupqXw64V24skbSoqbTEfhy4qGm1nDQc=
+github.com/rs/xid v1.4.0/go.mod h1:trrq9SKmegXys3aeAKXMUTdJsYXVwGY3RLcfgqegfbg=
+github.com/rs/zerolog v1.28.0/go.mod h1:NILgTygv/Uej1ra5XxGf82ZFSLk58MFGAUS2o6usyD0=
 github.com/russross/blackfriday v1.6.0 h1:KqfZb0pUVN2lYqZUYRddxF4OR8ZMURnJIG5Y3VRLtww=
 github.com/sabhiram/go-gitignore v0.0.0-20180611051255-d3107576ba94/go.mod h1:b18R55ulyQ/h3RaWyloPyER7fWQVZvimKKhnI5OfrJQ=
 github.com/shirou/gopsutil/v3 v3.22.3/go.mod h1:D01hZJ4pVHPpCTZ3m3T2+wDF2YAGfd+H4ifUguaQzHM=
@@ -70,8 +79,10 @@ github.com/tklauser/go-sysconf v0.3.10/go.mod h1:C8XykCvCb+Gn0oNCWPIlcb0RuglQTYa
 github.com/tklauser/numcpus v0.4.0/go.mod h1:1+UI3pD8NW14VMwdgJNJ1ESk2UnwhAnz5hMwiKKqXCQ=
 github.com/uber/jaeger-client-go v2.22.1+incompatible/go.mod h1:WVhlPFC8FDjOFMMWRy2pZqQJSXxYSwNYOkTr/Z6d3Kk=
 github.com/uber/jaeger-lib v2.2.0+incompatible/go.mod h1:ComeNDZlWwrWnDv8aPp0Ba6+uUTzImX/AauajbLI56U=
+github.com/urfave/cli/v2 v2.16.3/go.mod h1:1CNUng3PtjQMtRzJO4FMXBQvkGtuYRxxiR9xMa7jMwI=
 github.com/xanzy/ssh-agent v0.2.1/go.mod h1:mLlQY/MoOhWBj+gOGMQkOeiEvkx+8pJSI+0Bx9h2kr4=
 github.com/xanzy/ssh-agent v0.3.1/go.mod h1:QIE4lCeL7nkC25x+yA3LBIYfwCc1TFziCtG7cBAac6w=
+github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673/go.mod h1:N3UwUGtsrSj3ccvlPHLoLsHnpR27oXr4ZE984MbSER8=
 github.com/yuin/goldmark v1.4.0/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
 github.com/yusufpapurcu/wmi v1.2.2/go.mod h1:SBZ9tNy3G9/m5Oi98Zks0QjeHVDvuK0qfxQmPyzfmi0=
 golang.org/x/exp v0.0.0-20180321215751-8460e604b9de/go.mod h1:CJ0aWSM057203Lf6IL+f9T1iT9GByDxfZKAQTCR3kQA=

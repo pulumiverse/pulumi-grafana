@@ -2934,6 +2934,8 @@ func (o DashboardPermissionPermissionArrayOutput) Index(i pulumi.IntInput) Dashb
 }
 
 type DataSourceJsonData struct {
+	// (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
+	AlertmanagerUid *string `pulumi:"alertmanagerUid"`
 	// (CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.
 	AssumeRoleArn *string `pulumi:"assumeRoleArn"`
 	// (CloudWatch, Athena) The authentication type used to access the data source.
@@ -3064,6 +3066,8 @@ type DataSourceJsonDataInput interface {
 }
 
 type DataSourceJsonDataArgs struct {
+	// (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
+	AlertmanagerUid pulumi.StringPtrInput `pulumi:"alertmanagerUid"`
 	// (CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.
 	AssumeRoleArn pulumi.StringPtrInput `pulumi:"assumeRoleArn"`
 	// (CloudWatch, Athena) The authentication type used to access the data source.
@@ -3231,6 +3235,11 @@ func (o DataSourceJsonDataOutput) ToDataSourceJsonDataOutput() DataSourceJsonDat
 
 func (o DataSourceJsonDataOutput) ToDataSourceJsonDataOutputWithContext(ctx context.Context) DataSourceJsonDataOutput {
 	return o
+}
+
+// (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
+func (o DataSourceJsonDataOutput) AlertmanagerUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataSourceJsonData) *string { return v.AlertmanagerUid }).(pulumi.StringPtrOutput)
 }
 
 // (CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.
@@ -7189,8 +7198,10 @@ type ReportSchedule struct {
 	CustomInterval *string `pulumi:"customInterval"`
 	// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
 	EndTime *string `pulumi:"endTime"`
-	// Frequency of the report. One of `never`, `once`, `hourly`, `daily`, `weekly`, `monthly` or `custom`.
+	// Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
 	Frequency string `pulumi:"frequency"`
+	// Send the report on the last day of the month Defaults to `false`.
+	LastDayOfMonth *bool `pulumi:"lastDayOfMonth"`
 	// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
 	StartTime *string `pulumi:"startTime"`
 	// Whether to send the report only on work days. Defaults to `false`.
@@ -7214,8 +7225,10 @@ type ReportScheduleArgs struct {
 	CustomInterval pulumi.StringPtrInput `pulumi:"customInterval"`
 	// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
 	EndTime pulumi.StringPtrInput `pulumi:"endTime"`
-	// Frequency of the report. One of `never`, `once`, `hourly`, `daily`, `weekly`, `monthly` or `custom`.
+	// Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
 	Frequency pulumi.StringInput `pulumi:"frequency"`
+	// Send the report on the last day of the month Defaults to `false`.
+	LastDayOfMonth pulumi.BoolPtrInput `pulumi:"lastDayOfMonth"`
 	// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
 	StartTime pulumi.StringPtrInput `pulumi:"startTime"`
 	// Whether to send the report only on work days. Defaults to `false`.
@@ -7310,9 +7323,14 @@ func (o ReportScheduleOutput) EndTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *string { return v.EndTime }).(pulumi.StringPtrOutput)
 }
 
-// Frequency of the report. One of `never`, `once`, `hourly`, `daily`, `weekly`, `monthly` or `custom`.
+// Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
 func (o ReportScheduleOutput) Frequency() pulumi.StringOutput {
 	return o.ApplyT(func(v ReportSchedule) string { return v.Frequency }).(pulumi.StringOutput)
+}
+
+// Send the report on the last day of the month Defaults to `false`.
+func (o ReportScheduleOutput) LastDayOfMonth() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ReportSchedule) *bool { return v.LastDayOfMonth }).(pulumi.BoolPtrOutput)
 }
 
 // Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
@@ -7370,7 +7388,7 @@ func (o ReportSchedulePtrOutput) EndTime() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Frequency of the report. One of `never`, `once`, `hourly`, `daily`, `weekly`, `monthly` or `custom`.
+// Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
 func (o ReportSchedulePtrOutput) Frequency() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ReportSchedule) *string {
 		if v == nil {
@@ -7378,6 +7396,16 @@ func (o ReportSchedulePtrOutput) Frequency() pulumi.StringPtrOutput {
 		}
 		return &v.Frequency
 	}).(pulumi.StringPtrOutput)
+}
+
+// Send the report on the last day of the month Defaults to `false`.
+func (o ReportSchedulePtrOutput) LastDayOfMonth() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ReportSchedule) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.LastDayOfMonth
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.

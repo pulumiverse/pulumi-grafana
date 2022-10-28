@@ -2260,7 +2260,9 @@ class DataSourceJsonData(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "assumeRoleArn":
+        if key == "alertmanagerUid":
+            suggest = "alertmanager_uid"
+        elif key == "assumeRoleArn":
             suggest = "assume_role_arn"
         elif key == "authType":
             suggest = "auth_type"
@@ -2369,6 +2371,7 @@ class DataSourceJsonData(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 alertmanager_uid: Optional[str] = None,
                  assume_role_arn: Optional[str] = None,
                  auth_type: Optional[str] = None,
                  authentication_type: Optional[str] = None,
@@ -2428,6 +2431,7 @@ class DataSourceJsonData(dict):
                  workgroup: Optional[str] = None,
                  xpack_enabled: Optional[bool] = None):
         """
+        :param str alertmanager_uid: (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
         :param str assume_role_arn: (CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.
         :param str auth_type: (CloudWatch, Athena) The authentication type used to access the data source.
         :param str authentication_type: (Stackdriver) The authentication type: `jwt` or `gce`.
@@ -2487,6 +2491,8 @@ class DataSourceJsonData(dict):
         :param str workgroup: (Athena) Workgroup to use.
         :param bool xpack_enabled: (Elasticsearch) Enable X-Pack support.
         """
+        if alertmanager_uid is not None:
+            pulumi.set(__self__, "alertmanager_uid", alertmanager_uid)
         if assume_role_arn is not None:
             pulumi.set(__self__, "assume_role_arn", assume_role_arn)
         if auth_type is not None:
@@ -2603,6 +2609,14 @@ class DataSourceJsonData(dict):
             pulumi.set(__self__, "workgroup", workgroup)
         if xpack_enabled is not None:
             pulumi.set(__self__, "xpack_enabled", xpack_enabled)
+
+    @property
+    @pulumi.getter(name="alertmanagerUid")
+    def alertmanager_uid(self) -> Optional[str]:
+        """
+        (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
+        """
+        return pulumi.get(self, "alertmanager_uid")
 
     @property
     @pulumi.getter(name="assumeRoleArn")
@@ -4736,6 +4750,8 @@ class ReportSchedule(dict):
             suggest = "custom_interval"
         elif key == "endTime":
             suggest = "end_time"
+        elif key == "lastDayOfMonth":
+            suggest = "last_day_of_month"
         elif key == "startTime":
             suggest = "start_time"
         elif key == "workdaysOnly":
@@ -4756,13 +4772,15 @@ class ReportSchedule(dict):
                  frequency: str,
                  custom_interval: Optional[str] = None,
                  end_time: Optional[str] = None,
+                 last_day_of_month: Optional[bool] = None,
                  start_time: Optional[str] = None,
                  workdays_only: Optional[bool] = None):
         """
-        :param str frequency: Frequency of the report. One of `never`, `once`, `hourly`, `daily`, `weekly`, `monthly` or `custom`.
+        :param str frequency: Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
         :param str custom_interval: Custom interval of the report.
                **Note:** This field is only available when frequency is set to `custom`.
         :param str end_time: End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
+        :param bool last_day_of_month: Send the report on the last day of the month Defaults to `false`.
         :param str start_time: Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
         :param bool workdays_only: Whether to send the report only on work days. Defaults to `false`.
         """
@@ -4771,6 +4789,8 @@ class ReportSchedule(dict):
             pulumi.set(__self__, "custom_interval", custom_interval)
         if end_time is not None:
             pulumi.set(__self__, "end_time", end_time)
+        if last_day_of_month is not None:
+            pulumi.set(__self__, "last_day_of_month", last_day_of_month)
         if start_time is not None:
             pulumi.set(__self__, "start_time", start_time)
         if workdays_only is not None:
@@ -4780,7 +4800,7 @@ class ReportSchedule(dict):
     @pulumi.getter
     def frequency(self) -> str:
         """
-        Frequency of the report. One of `never`, `once`, `hourly`, `daily`, `weekly`, `monthly` or `custom`.
+        Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
         """
         return pulumi.get(self, "frequency")
 
@@ -4800,6 +4820,14 @@ class ReportSchedule(dict):
         End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
         """
         return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter(name="lastDayOfMonth")
+    def last_day_of_month(self) -> Optional[bool]:
+        """
+        Send the report on the last day of the month Defaults to `false`.
+        """
+        return pulumi.get(self, "last_day_of_month")
 
     @property
     @pulumi.getter(name="startTime")

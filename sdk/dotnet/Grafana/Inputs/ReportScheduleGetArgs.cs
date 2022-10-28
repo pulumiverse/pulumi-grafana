@@ -27,10 +27,16 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public Input<string>? EndTime { get; set; }
 
         /// <summary>
-        /// Frequency of the report. One of `never`, `once`, `hourly`, `daily`, `weekly`, `monthly` or `custom`.
+        /// Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
         /// </summary>
         [Input("frequency", required: true)]
         public Input<string> Frequency { get; set; } = null!;
+
+        /// <summary>
+        /// Send the report on the last day of the month Defaults to `false`.
+        /// </summary>
+        [Input("lastDayOfMonth")]
+        public Input<bool>? LastDayOfMonth { get; set; }
 
         /// <summary>
         /// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.

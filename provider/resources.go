@@ -179,6 +179,7 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_oncall_route":                      {Tok: grafanaResource(grafanaMod, "OncallRoute")},
 			"grafana_oncall_schedule":                   {Tok: grafanaResource(grafanaMod, "OncallSchedule")},
 			"grafana_organization":                      {Tok: grafanaResource(grafanaMod, "Organization")},
+			"grafana_organization_preferences":          {Tok: grafanaResource(grafanaMod, "OrganizationPreference")},
 			"grafana_playlist":                          {Tok: grafanaResource(grafanaMod, "Playlist")},
 			"grafana_report":                            {Tok: grafanaResource(grafanaMod, "Report")},
 			"grafana_role":                              {Tok: grafanaResource(grafanaMod, "Role")},

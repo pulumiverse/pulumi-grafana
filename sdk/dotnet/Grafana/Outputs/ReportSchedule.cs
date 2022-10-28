@@ -24,9 +24,13 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// </summary>
         public readonly string? EndTime;
         /// <summary>
-        /// Frequency of the report. One of `never`, `once`, `hourly`, `daily`, `weekly`, `monthly` or `custom`.
+        /// Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
         /// </summary>
         public readonly string Frequency;
+        /// <summary>
+        /// Send the report on the last day of the month Defaults to `false`.
+        /// </summary>
+        public readonly bool? LastDayOfMonth;
         /// <summary>
         /// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
         /// </summary>
@@ -44,6 +48,8 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
             string frequency,
 
+            bool? lastDayOfMonth,
+
             string? startTime,
 
             bool? workdaysOnly)
@@ -51,6 +57,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
             CustomInterval = customInterval;
             EndTime = endTime;
             Frequency = frequency;
+            LastDayOfMonth = lastDayOfMonth;
             StartTime = startTime;
             WorkdaysOnly = workdaysOnly;
         }

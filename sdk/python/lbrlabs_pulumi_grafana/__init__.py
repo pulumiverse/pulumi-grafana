@@ -52,6 +52,7 @@ from .oncall_outgoing_webhook import *
 from .oncall_route import *
 from .oncall_schedule import *
 from .organization import *
+from .organization_preference import *
 from .playlist import *
 from .provider import *
 from .report import *
@@ -294,6 +295,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_grafana",
   "classes": {
    "grafana:index/organization:Organization": "Organization"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/organizationPreference",
+  "fqn": "lbrlabs_pulumi_grafana",
+  "classes": {
+   "grafana:index/organizationPreference:OrganizationPreference": "OrganizationPreference"
   }
  },
  {

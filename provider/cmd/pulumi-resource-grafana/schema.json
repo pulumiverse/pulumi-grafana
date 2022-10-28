@@ -1849,6 +1849,15 @@
         },
         "grafana:index/DataSourceJsonData:DataSourceJsonData": {
             "properties": {
+                "alertmanagerUid": {
+                    "type": "string",
+                    "description": "(Prometheus) The name of the Alertmanager datasource to manage alerts via UI\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "assumeRoleArn": {
                     "type": "string",
                     "description": "(CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.\n",
@@ -3608,7 +3617,16 @@
                 },
                 "frequency": {
                     "type": "string",
-                    "description": "Frequency of the report. One of `never`, `once`, `hourly`, `daily`, `weekly`, `monthly` or `custom`.\n",
+                    "description": "Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "lastDayOfMonth": {
+                    "type": "boolean",
+                    "description": "Send the report on the last day of the month Defaults to `false`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4913,7 +4931,7 @@
     },
     "resources": {
         "grafana:index/alertNotification:AlertNotification": {
-            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/alerting/notifications/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst emailSometeam = new grafana.AlertNotification(\"email_someteam\", {\n    frequency: \"24h\",\n    isDefault: false,\n    sendReminder: true,\n    settings: {\n        addresses: \"foo@example.net;bar@example.net\",\n        uploadImage: \"false\",\n    },\n    type: \"email\",\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\nemail_someteam = grafana.AlertNotification(\"emailSometeam\",\n    frequency=\"24h\",\n    is_default=False,\n    send_reminder=True,\n    settings={\n        \"addresses\": \"foo@example.net;bar@example.net\",\n        \"uploadImage\": \"false\",\n    },\n    type=\"email\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var emailSometeam = new Grafana.AlertNotification(\"emailSometeam\", new()\n    {\n        Frequency = \"24h\",\n        IsDefault = false,\n        SendReminder = true,\n        Settings = \n        {\n            { \"addresses\", \"foo@example.net;bar@example.net\" },\n            { \"uploadImage\", \"false\" },\n        },\n        Type = \"email\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewAlertNotification(ctx, \"emailSometeam\", \u0026grafana.AlertNotificationArgs{\n\t\t\tFrequency:    pulumi.String(\"24h\"),\n\t\t\tIsDefault:    pulumi.Bool(false),\n\t\t\tSendReminder: pulumi.Bool(true),\n\t\t\tSettings: pulumi.AnyMap{\n\t\t\t\t\"addresses\":   pulumi.Any(\"foo@example.net;bar@example.net\"),\n\t\t\t\t\"uploadImage\": pulumi.Any(\"false\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"email\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.AlertNotification;\nimport com.pulumi.grafana.AlertNotificationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var emailSometeam = new AlertNotification(\"emailSometeam\", AlertNotificationArgs.builder()        \n            .frequency(\"24h\")\n            .isDefault(false)\n            .sendReminder(true)\n            .settings(Map.ofEntries(\n                Map.entry(\"addresses\", \"foo@example.net;bar@example.net\"),\n                Map.entry(\"uploadImage\", \"false\")\n            ))\n            .type(\"email\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  emailSometeam:\n    type: grafana:AlertNotification\n    properties:\n      frequency: 24h\n      isDefault: false\n      sendReminder: true\n      settings:\n        addresses: foo@example.net;bar@example.net\n        uploadImage: 'false'\n      type: email\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import grafana:index/alertNotification:AlertNotification alert_notification_name {{alert_notification_id}}\n```\n\n ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst emailSometeam = new grafana.AlertNotification(\"email_someteam\", {\n    frequency: \"24h\",\n    isDefault: false,\n    sendReminder: true,\n    settings: {\n        addresses: \"foo@example.net;bar@example.net\",\n        uploadImage: \"false\",\n    },\n    type: \"email\",\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\nemail_someteam = grafana.AlertNotification(\"emailSometeam\",\n    frequency=\"24h\",\n    is_default=False,\n    send_reminder=True,\n    settings={\n        \"addresses\": \"foo@example.net;bar@example.net\",\n        \"uploadImage\": \"false\",\n    },\n    type=\"email\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var emailSometeam = new Grafana.AlertNotification(\"emailSometeam\", new()\n    {\n        Frequency = \"24h\",\n        IsDefault = false,\n        SendReminder = true,\n        Settings = \n        {\n            { \"addresses\", \"foo@example.net;bar@example.net\" },\n            { \"uploadImage\", \"false\" },\n        },\n        Type = \"email\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewAlertNotification(ctx, \"emailSometeam\", \u0026grafana.AlertNotificationArgs{\n\t\t\tFrequency:    pulumi.String(\"24h\"),\n\t\t\tIsDefault:    pulumi.Bool(false),\n\t\t\tSendReminder: pulumi.Bool(true),\n\t\t\tSettings: pulumi.AnyMap{\n\t\t\t\t\"addresses\":   pulumi.Any(\"foo@example.net;bar@example.net\"),\n\t\t\t\t\"uploadImage\": pulumi.Any(\"false\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"email\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.AlertNotification;\nimport com.pulumi.grafana.AlertNotificationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var emailSometeam = new AlertNotification(\"emailSometeam\", AlertNotificationArgs.builder()        \n            .frequency(\"24h\")\n            .isDefault(false)\n            .sendReminder(true)\n            .settings(Map.ofEntries(\n                Map.entry(\"addresses\", \"foo@example.net;bar@example.net\"),\n                Map.entry(\"uploadImage\", \"false\")\n            ))\n            .type(\"email\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  emailSometeam:\n    type: grafana:AlertNotification\n    properties:\n      frequency: 24h\n      isDefault: false\n      sendReminder: true\n      settings:\n        addresses: foo@example.net;bar@example.net\n        uploadImage: 'false'\n      type: email\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import grafana:index/alertNotification:AlertNotification alert_notification_name {{alert_notification_id}}\n```\n\n ",
             "properties": {
                 "disableResolveMessage": {
                     "type": "boolean",
@@ -8356,6 +8374,79 @@
                 "type": "object"
             }
         },
+        "grafana:index/organizationPreference:OrganizationPreference": {
+            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst test = new grafana.OrganizationPreference(\"test\", {\n    theme: \"light\",\n    timezone: \"utc\",\n    weekStart: \"Tuesday\",\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\ntest = grafana.OrganizationPreference(\"test\",\n    theme=\"light\",\n    timezone=\"utc\",\n    week_start=\"Tuesday\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.OrganizationPreference(\"test\", new()\n    {\n        Theme = \"light\",\n        Timezone = \"utc\",\n        WeekStart = \"Tuesday\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewOrganizationPreference(ctx, \"test\", \u0026grafana.OrganizationPreferenceArgs{\n\t\t\tTheme:     pulumi.String(\"light\"),\n\t\t\tTimezone:  pulumi.String(\"utc\"),\n\t\t\tWeekStart: pulumi.String(\"Tuesday\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.OrganizationPreference;\nimport com.pulumi.grafana.OrganizationPreferenceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new OrganizationPreference(\"test\", OrganizationPreferenceArgs.builder()        \n            .theme(\"light\")\n            .timezone(\"utc\")\n            .weekStart(\"Tuesday\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:OrganizationPreference\n    properties:\n      theme: light\n      timezone: utc\n      weekStart: Tuesday\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "homeDashboardId": {
+                    "type": "integer",
+                    "description": "The Organization home dashboard ID.\n"
+                },
+                "homeDashboardUid": {
+                    "type": "string",
+                    "description": "The Organization home dashboard UID.\n"
+                },
+                "theme": {
+                    "type": "string",
+                    "description": "The Organization theme. Available values are `light`, `dark`, or an empty string for the default.\n"
+                },
+                "timezone": {
+                    "type": "string",
+                    "description": "The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.\n"
+                },
+                "weekStart": {
+                    "type": "string",
+                    "description": "The Organization week start.\n"
+                }
+            },
+            "inputProperties": {
+                "homeDashboardId": {
+                    "type": "integer",
+                    "description": "The Organization home dashboard ID.\n"
+                },
+                "homeDashboardUid": {
+                    "type": "string",
+                    "description": "The Organization home dashboard UID.\n"
+                },
+                "theme": {
+                    "type": "string",
+                    "description": "The Organization theme. Available values are `light`, `dark`, or an empty string for the default.\n"
+                },
+                "timezone": {
+                    "type": "string",
+                    "description": "The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.\n"
+                },
+                "weekStart": {
+                    "type": "string",
+                    "description": "The Organization week start.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering OrganizationPreference resources.\n",
+                "properties": {
+                    "homeDashboardId": {
+                        "type": "integer",
+                        "description": "The Organization home dashboard ID.\n"
+                    },
+                    "homeDashboardUid": {
+                        "type": "string",
+                        "description": "The Organization home dashboard UID.\n"
+                    },
+                    "theme": {
+                        "type": "string",
+                        "description": "The Organization theme. Available values are `light`, `dark`, or an empty string for the default.\n"
+                    },
+                    "timezone": {
+                        "type": "string",
+                        "description": "The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.\n"
+                    },
+                    "weekStart": {
+                        "type": "string",
+                        "description": "The Organization week start.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:index/playlist:Playlist": {
             "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/playlist/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/http_api/playlist/)\n",
             "properties": {
@@ -8443,7 +8534,7 @@
                 },
                 "layout": {
                     "type": "string",
-                    "description": "Layout of the report. `simple` or `grid` Defaults to `grid`.\n"
+                    "description": "Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.\n"
                 },
                 "message": {
                     "type": "string",
@@ -8455,7 +8546,7 @@
                 },
                 "orientation": {
                     "type": "string",
-                    "description": "Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.\n"
+                    "description": "Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.\n"
                 },
                 "recipients": {
                     "type": "array",
@@ -8498,7 +8589,7 @@
                 },
                 "layout": {
                     "type": "string",
-                    "description": "Layout of the report. `simple` or `grid` Defaults to `grid`.\n"
+                    "description": "Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.\n"
                 },
                 "message": {
                     "type": "string",
@@ -8510,7 +8601,7 @@
                 },
                 "orientation": {
                     "type": "string",
-                    "description": "Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.\n"
+                    "description": "Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.\n"
                 },
                 "recipients": {
                     "type": "array",
@@ -8554,7 +8645,7 @@
                     },
                     "layout": {
                         "type": "string",
-                        "description": "Layout of the report. `simple` or `grid` Defaults to `grid`.\n"
+                        "description": "Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.\n"
                     },
                     "message": {
                         "type": "string",
@@ -8566,7 +8657,7 @@
                     },
                     "orientation": {
                         "type": "string",
-                        "description": "Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.\n"
+                        "description": "Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.\n"
                     },
                     "recipients": {
                         "type": "array",
@@ -8592,7 +8683,7 @@
             }
         },
         "grafana:index/role:Role": {
-            "description": "**Note:** This resource is available only with Grafana Enterprise 8.+.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/enterprise/access-control/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/http_api/access_control/)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst superUser = new grafana.Role(\"super_user\", {\n    description: \"My Super User description\",\n    global: true,\n    permissions: [\n        {\n            action: \"users:create\",\n        },\n        {\n            action: \"users:read\",\n            scope: \"global:users:*\",\n        },\n    ],\n    uid: \"superuseruid\",\n    version: 1,\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\nsuper_user = grafana.Role(\"superUser\",\n    description=\"My Super User description\",\n    global_=True,\n    permissions=[\n        grafana.RolePermissionArgs(\n            action=\"users:create\",\n        ),\n        grafana.RolePermissionArgs(\n            action=\"users:read\",\n            scope=\"global:users:*\",\n        ),\n    ],\n    uid=\"superuseruid\",\n    version=1)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var superUser = new Grafana.Role(\"superUser\", new()\n    {\n        Description = \"My Super User description\",\n        Global = true,\n        Permissions = new[]\n        {\n            new Grafana.Inputs.RolePermissionArgs\n            {\n                Action = \"users:create\",\n            },\n            new Grafana.Inputs.RolePermissionArgs\n            {\n                Action = \"users:read\",\n                Scope = \"global:users:*\",\n            },\n        },\n        Uid = \"superuseruid\",\n        Version = 1,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewRole(ctx, \"superUser\", \u0026grafana.RoleArgs{\n\t\t\tDescription: pulumi.String(\"My Super User description\"),\n\t\t\tGlobal:      pulumi.Bool(true),\n\t\t\tPermissions: RolePermissionArray{\n\t\t\t\t\u0026RolePermissionArgs{\n\t\t\t\t\tAction: pulumi.String(\"users:create\"),\n\t\t\t\t},\n\t\t\t\t\u0026RolePermissionArgs{\n\t\t\t\t\tAction: pulumi.String(\"users:read\"),\n\t\t\t\t\tScope:  pulumi.String(\"global:users:*\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tUid:     pulumi.String(\"superuseruid\"),\n\t\t\tVersion: pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.Role;\nimport com.pulumi.grafana.RoleArgs;\nimport com.pulumi.grafana.inputs.RolePermissionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var superUser = new Role(\"superUser\", RoleArgs.builder()        \n            .description(\"My Super User description\")\n            .global(true)\n            .permissions(            \n                RolePermissionArgs.builder()\n                    .action(\"users:create\")\n                    .build(),\n                RolePermissionArgs.builder()\n                    .action(\"users:read\")\n                    .scope(\"global:users:*\")\n                    .build())\n            .uid(\"superuseruid\")\n            .version(1)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  superUser:\n    type: grafana:Role\n    properties:\n      description: My Super User description\n      global: true\n      permissions:\n        - action: users:create\n        - action: users:read\n          scope: global:users:*\n      uid: superuseruid\n      version: 1\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import grafana:index/role:Role role_name {{uid}}\n```\n\n ",
+            "description": "**Note:** This resource is available only with Grafana Enterprise 8.+.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst superUser = new grafana.Role(\"super_user\", {\n    description: \"My Super User description\",\n    global: true,\n    permissions: [\n        {\n            action: \"users:create\",\n        },\n        {\n            action: \"users:read\",\n            scope: \"global:users:*\",\n        },\n    ],\n    uid: \"superuseruid\",\n    version: 1,\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\nsuper_user = grafana.Role(\"superUser\",\n    description=\"My Super User description\",\n    global_=True,\n    permissions=[\n        grafana.RolePermissionArgs(\n            action=\"users:create\",\n        ),\n        grafana.RolePermissionArgs(\n            action=\"users:read\",\n            scope=\"global:users:*\",\n        ),\n    ],\n    uid=\"superuseruid\",\n    version=1)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var superUser = new Grafana.Role(\"superUser\", new()\n    {\n        Description = \"My Super User description\",\n        Global = true,\n        Permissions = new[]\n        {\n            new Grafana.Inputs.RolePermissionArgs\n            {\n                Action = \"users:create\",\n            },\n            new Grafana.Inputs.RolePermissionArgs\n            {\n                Action = \"users:read\",\n                Scope = \"global:users:*\",\n            },\n        },\n        Uid = \"superuseruid\",\n        Version = 1,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewRole(ctx, \"superUser\", \u0026grafana.RoleArgs{\n\t\t\tDescription: pulumi.String(\"My Super User description\"),\n\t\t\tGlobal:      pulumi.Bool(true),\n\t\t\tPermissions: RolePermissionArray{\n\t\t\t\t\u0026RolePermissionArgs{\n\t\t\t\t\tAction: pulumi.String(\"users:create\"),\n\t\t\t\t},\n\t\t\t\t\u0026RolePermissionArgs{\n\t\t\t\t\tAction: pulumi.String(\"users:read\"),\n\t\t\t\t\tScope:  pulumi.String(\"global:users:*\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tUid:     pulumi.String(\"superuseruid\"),\n\t\t\tVersion: pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.Role;\nimport com.pulumi.grafana.RoleArgs;\nimport com.pulumi.grafana.inputs.RolePermissionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var superUser = new Role(\"superUser\", RoleArgs.builder()        \n            .description(\"My Super User description\")\n            .global(true)\n            .permissions(            \n                RolePermissionArgs.builder()\n                    .action(\"users:create\")\n                    .build(),\n                RolePermissionArgs.builder()\n                    .action(\"users:read\")\n                    .scope(\"global:users:*\")\n                    .build())\n            .uid(\"superuseruid\")\n            .version(1)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  superUser:\n    type: grafana:Role\n    properties:\n      description: My Super User description\n      global: true\n      permissions:\n        - action: users:create\n        - action: users:read\n          scope: global:users:*\n      uid: superuseruid\n      version: 1\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import grafana:index/role:Role role_name {{uid}}\n```\n\n ",
             "properties": {
                 "description": {
                     "type": "string",

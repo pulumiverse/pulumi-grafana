@@ -65,13 +65,13 @@ type Report struct {
 	IncludeDashboardLink pulumi.BoolPtrOutput `pulumi:"includeDashboardLink"`
 	// Whether to include a CSV file of table panel data. Defaults to `false`.
 	IncludeTableCsv pulumi.BoolPtrOutput `pulumi:"includeTableCsv"`
-	// Layout of the report. `simple` or `grid` Defaults to `grid`.
+	// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
 	Layout pulumi.StringPtrOutput `pulumi:"layout"`
 	// Message to be sent in the report.
 	Message pulumi.StringPtrOutput `pulumi:"message"`
 	// Name of the report.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 	Orientation pulumi.StringPtrOutput `pulumi:"orientation"`
 	// List of recipients of the report.
 	Recipients pulumi.StringArrayOutput `pulumi:"recipients"`
@@ -128,13 +128,13 @@ type reportState struct {
 	IncludeDashboardLink *bool `pulumi:"includeDashboardLink"`
 	// Whether to include a CSV file of table panel data. Defaults to `false`.
 	IncludeTableCsv *bool `pulumi:"includeTableCsv"`
-	// Layout of the report. `simple` or `grid` Defaults to `grid`.
+	// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
 	Layout *string `pulumi:"layout"`
 	// Message to be sent in the report.
 	Message *string `pulumi:"message"`
 	// Name of the report.
 	Name *string `pulumi:"name"`
-	// Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 	Orientation *string `pulumi:"orientation"`
 	// List of recipients of the report.
 	Recipients []string `pulumi:"recipients"`
@@ -153,13 +153,13 @@ type ReportState struct {
 	IncludeDashboardLink pulumi.BoolPtrInput
 	// Whether to include a CSV file of table panel data. Defaults to `false`.
 	IncludeTableCsv pulumi.BoolPtrInput
-	// Layout of the report. `simple` or `grid` Defaults to `grid`.
+	// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
 	Layout pulumi.StringPtrInput
 	// Message to be sent in the report.
 	Message pulumi.StringPtrInput
 	// Name of the report.
 	Name pulumi.StringPtrInput
-	// Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 	Orientation pulumi.StringPtrInput
 	// List of recipients of the report.
 	Recipients pulumi.StringArrayInput
@@ -182,13 +182,13 @@ type reportArgs struct {
 	IncludeDashboardLink *bool `pulumi:"includeDashboardLink"`
 	// Whether to include a CSV file of table panel data. Defaults to `false`.
 	IncludeTableCsv *bool `pulumi:"includeTableCsv"`
-	// Layout of the report. `simple` or `grid` Defaults to `grid`.
+	// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
 	Layout *string `pulumi:"layout"`
 	// Message to be sent in the report.
 	Message *string `pulumi:"message"`
 	// Name of the report.
 	Name *string `pulumi:"name"`
-	// Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 	Orientation *string `pulumi:"orientation"`
 	// List of recipients of the report.
 	Recipients []string `pulumi:"recipients"`
@@ -208,13 +208,13 @@ type ReportArgs struct {
 	IncludeDashboardLink pulumi.BoolPtrInput
 	// Whether to include a CSV file of table panel data. Defaults to `false`.
 	IncludeTableCsv pulumi.BoolPtrInput
-	// Layout of the report. `simple` or `grid` Defaults to `grid`.
+	// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
 	Layout pulumi.StringPtrInput
 	// Message to be sent in the report.
 	Message pulumi.StringPtrInput
 	// Name of the report.
 	Name pulumi.StringPtrInput
-	// Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 	Orientation pulumi.StringPtrInput
 	// List of recipients of the report.
 	Recipients pulumi.StringArrayInput
@@ -328,7 +328,7 @@ func (o ReportOutput) IncludeTableCsv() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Report) pulumi.BoolPtrOutput { return v.IncludeTableCsv }).(pulumi.BoolPtrOutput)
 }
 
-// Layout of the report. `simple` or `grid` Defaults to `grid`.
+// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
 func (o ReportOutput) Layout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Report) pulumi.StringPtrOutput { return v.Layout }).(pulumi.StringPtrOutput)
 }
@@ -343,7 +343,7 @@ func (o ReportOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Report) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 func (o ReportOutput) Orientation() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Report) pulumi.StringPtrOutput { return v.Orientation }).(pulumi.StringPtrOutput)
 }

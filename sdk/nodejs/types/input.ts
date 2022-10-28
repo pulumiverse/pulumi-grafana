@@ -620,6 +620,10 @@ export interface DashboardPermissionPermission {
 
 export interface DataSourceJsonData {
     /**
+     * (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
+     */
+    alertmanagerUid?: pulumi.Input<string>;
+    /**
      * (CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.
      */
     assumeRoleArn?: pulumi.Input<string>;
@@ -1290,9 +1294,13 @@ export interface ReportSchedule {
      */
     endTime?: pulumi.Input<string>;
     /**
-     * Frequency of the report. One of `never`, `once`, `hourly`, `daily`, `weekly`, `monthly` or `custom`.
+     * Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
      */
     frequency: pulumi.Input<string>;
+    /**
+     * Send the report on the last day of the month Defaults to `false`.
+     */
+    lastDayOfMonth?: pulumi.Input<boolean>;
     /**
      * Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
      */

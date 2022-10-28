@@ -15,6 +15,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     public sealed class DataSourceJsonData
     {
         /// <summary>
+        /// (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
+        /// </summary>
+        public readonly string? AlertmanagerUid;
+        /// <summary>
         /// (CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.
         /// </summary>
         public readonly string? AssumeRoleArn;
@@ -249,6 +253,8 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
         [OutputConstructor]
         private DataSourceJsonData(
+            string? alertmanagerUid,
+
             string? assumeRoleArn,
 
             string? authType,
@@ -365,6 +371,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
             bool? xpackEnabled)
         {
+            AlertmanagerUid = alertmanagerUid;
             AssumeRoleArn = assumeRoleArn;
             AuthType = authType;
             AuthenticationType = authenticationType;

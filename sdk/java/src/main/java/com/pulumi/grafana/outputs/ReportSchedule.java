@@ -24,10 +24,15 @@ public final class ReportSchedule {
      */
     private @Nullable String endTime;
     /**
-     * @return Frequency of the report. One of `never`, `once`, `hourly`, `daily`, `weekly`, `monthly` or `custom`.
+     * @return Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
      * 
      */
     private String frequency;
+    /**
+     * @return Send the report on the last day of the month Defaults to `false`.
+     * 
+     */
+    private @Nullable Boolean lastDayOfMonth;
     /**
      * @return Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
      * 
@@ -56,11 +61,18 @@ public final class ReportSchedule {
         return Optional.ofNullable(this.endTime);
     }
     /**
-     * @return Frequency of the report. One of `never`, `once`, `hourly`, `daily`, `weekly`, `monthly` or `custom`.
+     * @return Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
      * 
      */
     public String frequency() {
         return this.frequency;
+    }
+    /**
+     * @return Send the report on the last day of the month Defaults to `false`.
+     * 
+     */
+    public Optional<Boolean> lastDayOfMonth() {
+        return Optional.ofNullable(this.lastDayOfMonth);
     }
     /**
      * @return Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
@@ -89,6 +101,7 @@ public final class ReportSchedule {
         private @Nullable String customInterval;
         private @Nullable String endTime;
         private String frequency;
+        private @Nullable Boolean lastDayOfMonth;
         private @Nullable String startTime;
         private @Nullable Boolean workdaysOnly;
         public Builder() {}
@@ -97,6 +110,7 @@ public final class ReportSchedule {
     	      this.customInterval = defaults.customInterval;
     	      this.endTime = defaults.endTime;
     	      this.frequency = defaults.frequency;
+    	      this.lastDayOfMonth = defaults.lastDayOfMonth;
     	      this.startTime = defaults.startTime;
     	      this.workdaysOnly = defaults.workdaysOnly;
         }
@@ -117,6 +131,11 @@ public final class ReportSchedule {
             return this;
         }
         @CustomType.Setter
+        public Builder lastDayOfMonth(@Nullable Boolean lastDayOfMonth) {
+            this.lastDayOfMonth = lastDayOfMonth;
+            return this;
+        }
+        @CustomType.Setter
         public Builder startTime(@Nullable String startTime) {
             this.startTime = startTime;
             return this;
@@ -131,6 +150,7 @@ public final class ReportSchedule {
             o.customInterval = customInterval;
             o.endTime = endTime;
             o.frequency = frequency;
+            o.lastDayOfMonth = lastDayOfMonth;
             o.startTime = startTime;
             o.workdaysOnly = workdaysOnly;
             return o;

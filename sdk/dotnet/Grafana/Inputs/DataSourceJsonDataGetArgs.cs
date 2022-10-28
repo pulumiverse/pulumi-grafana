@@ -14,6 +14,12 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
     public sealed class DataSourceJsonDataGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
+        /// </summary>
+        [Input("alertmanagerUid")]
+        public Input<string>? AlertmanagerUid { get; set; }
+
+        /// <summary>
         /// (CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.
         /// </summary>
         [Input("assumeRoleArn")]

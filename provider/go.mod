@@ -5,7 +5,7 @@ go 1.19
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220824175045-450992f2f5b9
 
 require (
-	github.com/grafana/terraform-provider-grafana v1.29.0
+	github.com/grafana/terraform-provider-grafana v1.30.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.32.1-0.20221027183524-4af2a70850bd
 	github.com/pulumi/pulumi/sdk/v3 v3.44.2
 )
@@ -99,10 +99,10 @@ require (
 	github.com/googleapis/gax-go/v2 v2.4.0 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/grafana/amixr-api-go-client v0.0.5 // indirect
-	github.com/grafana/grafana-api-golang-client v0.12.0 // indirect
+	github.com/grafana/grafana-api-golang-client v0.12.1 // indirect
 	github.com/grafana/machine-learning-go-client v0.1.1 // indirect
 	github.com/grafana/synthetic-monitoring-agent v0.9.4 // indirect
-	github.com/grafana/synthetic-monitoring-api-go-client v0.6.1 // indirect
+	github.com/grafana/synthetic-monitoring-api-go-client v0.6.3 // indirect
 	github.com/grpc-ecosystem/grpc-opentracing v0.0.0-20180507213350-8e809c8a8645 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-checkpoint v0.5.0 // indirect

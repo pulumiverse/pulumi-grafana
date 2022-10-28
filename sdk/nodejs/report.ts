@@ -76,7 +76,7 @@ export class Report extends pulumi.CustomResource {
      */
     public readonly includeTableCsv!: pulumi.Output<boolean | undefined>;
     /**
-     * Layout of the report. `simple` or `grid` Defaults to `grid`.
+     * Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
      */
     public readonly layout!: pulumi.Output<string | undefined>;
     /**
@@ -88,7 +88,7 @@ export class Report extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+     * Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
      */
     public readonly orientation!: pulumi.Output<string | undefined>;
     /**
@@ -177,7 +177,7 @@ export interface ReportState {
      */
     includeTableCsv?: pulumi.Input<boolean>;
     /**
-     * Layout of the report. `simple` or `grid` Defaults to `grid`.
+     * Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
      */
     layout?: pulumi.Input<string>;
     /**
@@ -189,7 +189,7 @@ export interface ReportState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+     * Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
      */
     orientation?: pulumi.Input<string>;
     /**
@@ -227,7 +227,7 @@ export interface ReportArgs {
      */
     includeTableCsv?: pulumi.Input<boolean>;
     /**
-     * Layout of the report. `simple` or `grid` Defaults to `grid`.
+     * Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
      */
     layout?: pulumi.Input<string>;
     /**
@@ -239,7 +239,7 @@ export interface ReportArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+     * Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
      */
     orientation?: pulumi.Input<string>;
     /**

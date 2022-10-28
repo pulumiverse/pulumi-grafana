@@ -330,9 +330,6 @@ class AlertNotification(pulumi.CustomResource):
                  uid: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/notifications/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/)
-
         ## Example Usage
 
         ```python
@@ -375,9 +372,6 @@ class AlertNotification(pulumi.CustomResource):
                  args: AlertNotificationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/notifications/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/)
-
         ## Example Usage
 
         ```python

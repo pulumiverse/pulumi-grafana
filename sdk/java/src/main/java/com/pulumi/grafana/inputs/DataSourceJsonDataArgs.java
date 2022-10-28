@@ -20,6 +20,21 @@ public final class DataSourceJsonDataArgs extends com.pulumi.resources.ResourceA
     public static final DataSourceJsonDataArgs Empty = new DataSourceJsonDataArgs();
 
     /**
+     * (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
+     * 
+     */
+    @Import(name="alertmanagerUid")
+    private @Nullable Output<String> alertmanagerUid;
+
+    /**
+     * @return (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
+     * 
+     */
+    public Optional<Output<String>> alertmanagerUid() {
+        return Optional.ofNullable(this.alertmanagerUid);
+    }
+
+    /**
      * (CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.
      * 
      */
@@ -892,6 +907,7 @@ public final class DataSourceJsonDataArgs extends com.pulumi.resources.ResourceA
     private DataSourceJsonDataArgs() {}
 
     private DataSourceJsonDataArgs(DataSourceJsonDataArgs $) {
+        this.alertmanagerUid = $.alertmanagerUid;
         this.assumeRoleArn = $.assumeRoleArn;
         this.authType = $.authType;
         this.authenticationType = $.authenticationType;
@@ -968,6 +984,27 @@ public final class DataSourceJsonDataArgs extends com.pulumi.resources.ResourceA
 
         public Builder(DataSourceJsonDataArgs defaults) {
             $ = new DataSourceJsonDataArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param alertmanagerUid (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
+         * 
+         * @return builder
+         * 
+         */
+        public Builder alertmanagerUid(@Nullable Output<String> alertmanagerUid) {
+            $.alertmanagerUid = alertmanagerUid;
+            return this;
+        }
+
+        /**
+         * @param alertmanagerUid (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
+         * 
+         * @return builder
+         * 
+         */
+        public Builder alertmanagerUid(String alertmanagerUid) {
+            return alertmanagerUid(Output.of(alertmanagerUid));
         }
 
         /**

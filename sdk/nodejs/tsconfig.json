@@ -63,6 +63,7 @@
         "oncallRoute.ts",
         "oncallSchedule.ts",
         "organization.ts",
+        "organizationPreference.ts",
         "playlist.ts",
         "provider.ts",
         "report.ts",

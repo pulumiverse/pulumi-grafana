@@ -5,9 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/notifications/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/)
- *
  * ## Example Usage
  *
  * ```typescript

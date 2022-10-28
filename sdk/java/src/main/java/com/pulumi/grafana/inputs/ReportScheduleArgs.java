@@ -49,18 +49,33 @@ public final class ReportScheduleArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Frequency of the report. One of `never`, `once`, `hourly`, `daily`, `weekly`, `monthly` or `custom`.
+     * Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
      * 
      */
     @Import(name="frequency", required=true)
     private Output<String> frequency;
 
     /**
-     * @return Frequency of the report. One of `never`, `once`, `hourly`, `daily`, `weekly`, `monthly` or `custom`.
+     * @return Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
      * 
      */
     public Output<String> frequency() {
         return this.frequency;
+    }
+
+    /**
+     * Send the report on the last day of the month Defaults to `false`.
+     * 
+     */
+    @Import(name="lastDayOfMonth")
+    private @Nullable Output<Boolean> lastDayOfMonth;
+
+    /**
+     * @return Send the report on the last day of the month Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> lastDayOfMonth() {
+        return Optional.ofNullable(this.lastDayOfMonth);
     }
 
     /**
@@ -99,6 +114,7 @@ public final class ReportScheduleArgs extends com.pulumi.resources.ResourceArgs 
         this.customInterval = $.customInterval;
         this.endTime = $.endTime;
         this.frequency = $.frequency;
+        this.lastDayOfMonth = $.lastDayOfMonth;
         this.startTime = $.startTime;
         this.workdaysOnly = $.workdaysOnly;
     }
@@ -166,7 +182,7 @@ public final class ReportScheduleArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param frequency Frequency of the report. One of `never`, `once`, `hourly`, `daily`, `weekly`, `monthly` or `custom`.
+         * @param frequency Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
          * 
          * @return builder
          * 
@@ -177,13 +193,34 @@ public final class ReportScheduleArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param frequency Frequency of the report. One of `never`, `once`, `hourly`, `daily`, `weekly`, `monthly` or `custom`.
+         * @param frequency Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
          * 
          * @return builder
          * 
          */
         public Builder frequency(String frequency) {
             return frequency(Output.of(frequency));
+        }
+
+        /**
+         * @param lastDayOfMonth Send the report on the last day of the month Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder lastDayOfMonth(@Nullable Output<Boolean> lastDayOfMonth) {
+            $.lastDayOfMonth = lastDayOfMonth;
+            return this;
+        }
+
+        /**
+         * @param lastDayOfMonth Send the report on the last day of the month Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder lastDayOfMonth(Boolean lastDayOfMonth) {
+            return lastDayOfMonth(Output.of(lastDayOfMonth));
         }
 
         /**

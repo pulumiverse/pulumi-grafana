@@ -66,14 +66,14 @@ public final class ReportArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Layout of the report. `simple` or `grid` Defaults to `grid`.
+     * Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
      * 
      */
     @Import(name="layout")
     private @Nullable Output<String> layout;
 
     /**
-     * @return Layout of the report. `simple` or `grid` Defaults to `grid`.
+     * @return Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
      * 
      */
     public Optional<Output<String>> layout() {
@@ -111,14 +111,14 @@ public final class ReportArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+     * Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
      * 
      */
     @Import(name="orientation")
     private @Nullable Output<String> orientation;
 
     /**
-     * @return Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+     * @return Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
      * 
      */
     public Optional<Output<String>> orientation() {
@@ -283,7 +283,7 @@ public final class ReportArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param layout Layout of the report. `simple` or `grid` Defaults to `grid`.
+         * @param layout Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
          * 
          * @return builder
          * 
@@ -294,7 +294,7 @@ public final class ReportArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param layout Layout of the report. `simple` or `grid` Defaults to `grid`.
+         * @param layout Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
          * 
          * @return builder
          * 
@@ -346,7 +346,7 @@ public final class ReportArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param orientation Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+         * @param orientation Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
          * 
          * @return builder
          * 
@@ -357,7 +357,7 @@ public final class ReportArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param orientation Orientation of the report. `landscape` or `portrait` Defaults to `landscape`.
+         * @param orientation Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
          * 
          * @return builder
          * 
