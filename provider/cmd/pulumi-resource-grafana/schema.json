@@ -4724,14 +4724,6 @@
                 "type": "string",
                 "description": "Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.\n"
             },
-            "httpHeaders": {
-                "type": "object",
-                "additionalProperties": {
-                    "type": "string"
-                },
-                "description": "Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the\n`GRAFANA_HTTP_HEADERS` environment variable in JSON format.\n",
-                "secret": true
-            },
             "insecureSkipVerify": {
                 "type": "boolean",
                 "description": "Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.\n"
@@ -4817,14 +4809,6 @@
                         "GRAFANA_CLOUD_API_URL"
                     ]
                 }
-            },
-            "httpHeaders": {
-                "type": "object",
-                "additionalProperties": {
-                    "type": "string"
-                },
-                "description": "Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the\n`GRAFANA_HTTP_HEADERS` environment variable in JSON format.\n",
-                "secret": true
             },
             "insecureSkipVerify": {
                 "type": "boolean",
@@ -10723,6 +10707,47 @@
                     "editors",
                     "name",
                     "viewers",
+                    "id"
+                ]
+            }
+        },
+        "grafana:index/getOrganizationPreferences:getOrganizationPreferences": {
+            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst test = pulumi.output(grafana.getOrganizationPreferences());\n```\n{{% /example %}}\n{{% /examples %}}",
+            "outputs": {
+                "description": "A collection of values returned by getOrganizationPreferences.\n",
+                "properties": {
+                    "homeDashboardId": {
+                        "type": "integer",
+                        "description": "The Organization home dashboard ID.\n"
+                    },
+                    "homeDashboardUid": {
+                        "type": "string",
+                        "description": "The Organization home dashboard UID.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "theme": {
+                        "type": "string",
+                        "description": "The Organization theme. Available values are `light`, `dark`, or an empty string for the default.\n"
+                    },
+                    "timezone": {
+                        "type": "string",
+                        "description": "The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.\n"
+                    },
+                    "weekStart": {
+                        "type": "string",
+                        "description": "The Organization week start.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "homeDashboardId",
+                    "homeDashboardUid",
+                    "theme",
+                    "timezone",
+                    "weekStart",
                     "id"
                 ]
             }

@@ -45,6 +45,7 @@
         "getOncallUser.ts",
         "getOncallUserGroup.ts",
         "getOrganization.ts",
+        "getOrganizationPreferences.ts",
         "getSyntheticMonitoringProbe.ts",
         "getSyntheticMonitoringProbes.ts",
         "getTeam.ts",

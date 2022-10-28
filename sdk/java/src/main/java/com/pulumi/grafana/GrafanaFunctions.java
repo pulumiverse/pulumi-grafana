@@ -59,6 +59,7 @@ import com.pulumi.grafana.outputs.GetOncallScheduleResult;
 import com.pulumi.grafana.outputs.GetOncallTeamResult;
 import com.pulumi.grafana.outputs.GetOncallUserGroupResult;
 import com.pulumi.grafana.outputs.GetOncallUserResult;
+import com.pulumi.grafana.outputs.GetOrganizationPreferencesResult;
 import com.pulumi.grafana.outputs.GetOrganizationResult;
 import com.pulumi.grafana.outputs.GetSyntheticMonitoringProbeResult;
 import com.pulumi.grafana.outputs.GetSyntheticMonitoringProbesResult;
@@ -2101,6 +2102,66 @@ public final class GrafanaFunctions {
      */
     public static CompletableFuture<GetOrganizationResult> getOrganizationPlain(GetOrganizationPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("grafana:index/getOrganization:getOrganization", TypeShape.of(GetOrganizationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetOrganizationPreferencesResult> getOrganizationPreferences() {
+        return getOrganizationPreferences(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetOrganizationPreferencesResult> getOrganizationPreferencesPlain() {
+        return getOrganizationPreferencesPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetOrganizationPreferencesResult> getOrganizationPreferences(InvokeArgs args) {
+        return getOrganizationPreferences(args, InvokeOptions.Empty);
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetOrganizationPreferencesResult> getOrganizationPreferencesPlain(InvokeArgs args) {
+        return getOrganizationPreferencesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetOrganizationPreferencesResult> getOrganizationPreferences(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("grafana:index/getOrganizationPreferences:getOrganizationPreferences", TypeShape.of(GetOrganizationPreferencesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetOrganizationPreferencesResult> getOrganizationPreferencesPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("grafana:index/getOrganizationPreferences:getOrganizationPreferences", TypeShape.of(GetOrganizationPreferencesResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Data source for retrieving a single probe by name.

@@ -108,9 +108,6 @@ func NewProvider(ctx *pulumi.Context,
 	if args.CloudApiKey != nil {
 		args.CloudApiKey = pulumi.ToSecret(args.CloudApiKey).(pulumi.StringPtrOutput)
 	}
-	if args.HttpHeaders != nil {
-		args.HttpHeaders = pulumi.ToSecret(args.HttpHeaders).(pulumi.StringMapOutput)
-	}
 	if args.OncallAccessToken != nil {
 		args.OncallAccessToken = pulumi.ToSecret(args.OncallAccessToken).(pulumi.StringPtrOutput)
 	}
@@ -143,9 +140,6 @@ type providerArgs struct {
 	CloudApiKey *string `pulumi:"cloudApiKey"`
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl *string `pulumi:"cloudApiUrl"`
-	// Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the
-	// `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
-	HttpHeaders map[string]string `pulumi:"httpHeaders"`
 	// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 	InsecureSkipVerify *bool `pulumi:"insecureSkipVerify"`
 	// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
@@ -191,9 +185,6 @@ type ProviderArgs struct {
 	CloudApiKey pulumi.StringPtrInput
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl pulumi.StringPtrInput
-	// Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the
-	// `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
-	HttpHeaders pulumi.StringMapInput
 	// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 	InsecureSkipVerify pulumi.BoolPtrInput
 	// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.

@@ -153,6 +153,10 @@ export const getOrganization: typeof import("./getOrganization").getOrganization
 export const getOrganizationOutput: typeof import("./getOrganization").getOrganizationOutput = null as any;
 utilities.lazyLoad(exports, ["getOrganization","getOrganizationOutput"], () => require("./getOrganization"));
 
+export { GetOrganizationPreferencesResult } from "./getOrganizationPreferences";
+export const getOrganizationPreferences: typeof import("./getOrganizationPreferences").getOrganizationPreferences = null as any;
+utilities.lazyLoad(exports, ["getOrganizationPreferences"], () => require("./getOrganizationPreferences"));
+
 export { GetSyntheticMonitoringProbeArgs, GetSyntheticMonitoringProbeResult, GetSyntheticMonitoringProbeOutputArgs } from "./getSyntheticMonitoringProbe";
 export const getSyntheticMonitoringProbe: typeof import("./getSyntheticMonitoringProbe").getSyntheticMonitoringProbe = null as any;
 export const getSyntheticMonitoringProbeOutput: typeof import("./getSyntheticMonitoringProbe").getSyntheticMonitoringProbeOutput = null as any;

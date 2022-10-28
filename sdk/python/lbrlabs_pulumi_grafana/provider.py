@@ -18,7 +18,6 @@ class ProviderArgs:
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  cloud_api_key: Optional[pulumi.Input[str]] = None,
                  cloud_api_url: Optional[pulumi.Input[str]] = None,
-                 http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  oncall_access_token: Optional[pulumi.Input[str]] = None,
                  oncall_url: Optional[pulumi.Input[str]] = None,
@@ -37,8 +36,6 @@ class ProviderArgs:
                `GRAFANA_CA_CERT` environment variable.
         :param pulumi.Input[str] cloud_api_key: API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
         :param pulumi.Input[str] cloud_api_url: Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] http_headers: Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the
-               `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
@@ -77,8 +74,6 @@ class ProviderArgs:
             cloud_api_url = _utilities.get_env('GRAFANA_CLOUD_API_URL')
         if cloud_api_url is not None:
             pulumi.set(__self__, "cloud_api_url", cloud_api_url)
-        if http_headers is not None:
-            pulumi.set(__self__, "http_headers", http_headers)
         if insecure_skip_verify is None:
             insecure_skip_verify = _utilities.get_env_bool('GRAFANA_INSECURE_SKIP_VERIFY')
         if insecure_skip_verify is not None:
@@ -172,19 +167,6 @@ class ProviderArgs:
     @cloud_api_url.setter
     def cloud_api_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cloud_api_url", value)
-
-    @property
-    @pulumi.getter(name="httpHeaders")
-    def http_headers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the
-        `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
-        """
-        return pulumi.get(self, "http_headers")
-
-    @http_headers.setter
-    def http_headers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "http_headers", value)
 
     @property
     @pulumi.getter(name="insecureSkipVerify")
@@ -338,7 +320,6 @@ class Provider(pulumi.ProviderResource):
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  cloud_api_key: Optional[pulumi.Input[str]] = None,
                  cloud_api_url: Optional[pulumi.Input[str]] = None,
-                 http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  oncall_access_token: Optional[pulumi.Input[str]] = None,
                  oncall_url: Optional[pulumi.Input[str]] = None,
@@ -364,8 +345,6 @@ class Provider(pulumi.ProviderResource):
                `GRAFANA_CA_CERT` environment variable.
         :param pulumi.Input[str] cloud_api_key: API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
         :param pulumi.Input[str] cloud_api_url: Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] http_headers: Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the
-               `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
@@ -419,7 +398,6 @@ class Provider(pulumi.ProviderResource):
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  cloud_api_key: Optional[pulumi.Input[str]] = None,
                  cloud_api_url: Optional[pulumi.Input[str]] = None,
-                 http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  oncall_access_token: Optional[pulumi.Input[str]] = None,
                  oncall_url: Optional[pulumi.Input[str]] = None,
@@ -452,7 +430,6 @@ class Provider(pulumi.ProviderResource):
             if cloud_api_url is None:
                 cloud_api_url = _utilities.get_env('GRAFANA_CLOUD_API_URL')
             __props__.__dict__["cloud_api_url"] = cloud_api_url
-            __props__.__dict__["http_headers"] = None if pulumi.Output.from_input(http_headers).apply(pulumi.runtime.to_json) if http_headers is not None else None is None else pulumi.Output.secret(pulumi.Output.from_input(http_headers).apply(pulumi.runtime.to_json) if http_headers is not None else None)
             if insecure_skip_verify is None:
                 insecure_skip_verify = _utilities.get_env_bool('GRAFANA_INSECURE_SKIP_VERIFY')
             __props__.__dict__["insecure_skip_verify"] = pulumi.Output.from_input(insecure_skip_verify).apply(pulumi.runtime.to_json) if insecure_skip_verify is not None else None

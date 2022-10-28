@@ -53,6 +53,10 @@ func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) erro
 	return nil
 }
 
+func boolRef(b bool) *bool {
+	return &b
+}
+
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
@@ -83,7 +87,10 @@ func Provider() tfbridge.ProviderInfo {
 					EnvVars: []string{"GRAFANA_AUTH"},
 				},
 			},
-			"http_headers": {},
+			"http_headers": {
+				SuppressEmptyMapElements: boolRef(true),
+				Omit:                     true,
+			},
 			"retries": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"GRAFANA_RETRIES"},
@@ -243,6 +250,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"grafana_organization": {
 				Tok: grafanaDataSource(grafanaMod, "getOrganization"),
+			},
+			"grafana_organization_preferences": {
+				Tok: grafanaDataSource(grafanaMod, "getOrganizationPreferences"),
 			},
 			"grafana_synthetic_monitoring_probe": {
 				Tok: grafanaDataSource(grafanaMod, "getSyntheticMonitoringProbe"),

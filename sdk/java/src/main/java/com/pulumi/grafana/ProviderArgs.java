@@ -9,7 +9,6 @@ import com.pulumi.core.internal.Codegen;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -79,23 +78,6 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> cloudApiUrl() {
         return Optional.ofNullable(this.cloudApiUrl);
-    }
-
-    /**
-     * Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the
-     * `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
-     * 
-     */
-    @Import(name="httpHeaders", json=true)
-    private @Nullable Output<Map<String,String>> httpHeaders;
-
-    /**
-     * @return Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the
-     * `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
-     * 
-     */
-    public Optional<Output<Map<String,String>>> httpHeaders() {
-        return Optional.ofNullable(this.httpHeaders);
     }
 
     /**
@@ -290,7 +272,6 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.caCert = $.caCert;
         this.cloudApiKey = $.cloudApiKey;
         this.cloudApiUrl = $.cloudApiUrl;
-        this.httpHeaders = $.httpHeaders;
         this.insecureSkipVerify = $.insecureSkipVerify;
         this.oncallAccessToken = $.oncallAccessToken;
         this.oncallUrl = $.oncallUrl;
@@ -406,29 +387,6 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder cloudApiUrl(String cloudApiUrl) {
             return cloudApiUrl(Output.of(cloudApiUrl));
-        }
-
-        /**
-         * @param httpHeaders Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the
-         * `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder httpHeaders(@Nullable Output<Map<String,String>> httpHeaders) {
-            $.httpHeaders = httpHeaders;
-            return this;
-        }
-
-        /**
-         * @param httpHeaders Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the
-         * `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder httpHeaders(Map<String,String> httpHeaders) {
-            return httpHeaders(Output.of(httpHeaders));
         }
 
         /**

@@ -94,7 +94,6 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["caCert"] = (args ? args.caCert : undefined) ?? utilities.getEnv("GRAFANA_CA_CERT");
             resourceInputs["cloudApiKey"] = (args?.cloudApiKey ? pulumi.secret(args.cloudApiKey) : undefined) ?? utilities.getEnv("GRAFANA_CLOUD_API_KEY");
             resourceInputs["cloudApiUrl"] = (args ? args.cloudApiUrl : undefined) ?? utilities.getEnv("GRAFANA_CLOUD_API_URL");
-            resourceInputs["httpHeaders"] = pulumi.output(args?.httpHeaders ? pulumi.secret(args.httpHeaders) : undefined).apply(JSON.stringify);
             resourceInputs["insecureSkipVerify"] = pulumi.output((args ? args.insecureSkipVerify : undefined) ?? utilities.getEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY")).apply(JSON.stringify);
             resourceInputs["oncallAccessToken"] = (args?.oncallAccessToken ? pulumi.secret(args.oncallAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_ACCESS_TOKEN");
             resourceInputs["oncallUrl"] = (args ? args.oncallUrl : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_URL");
@@ -135,11 +134,6 @@ export interface ProviderArgs {
      * Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
      */
     cloudApiUrl?: pulumi.Input<string>;
-    /**
-     * Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the
-     * `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
-     */
-    httpHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
      */
