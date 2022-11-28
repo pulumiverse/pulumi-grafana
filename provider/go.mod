@@ -6,7 +6,7 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 
 require (
 	github.com/grafana/terraform-provider-grafana v1.31.1
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.32.1-0.20221027183524-4af2a70850bd
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.33.0
 	github.com/pulumi/pulumi/sdk/v3 v3.44.3
 )
 
