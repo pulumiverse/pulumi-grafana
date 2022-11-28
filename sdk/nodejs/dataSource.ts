@@ -37,45 +37,38 @@ import * as utilities from "./utilities";
  * const influxdb = new grafana.DataSource("influxdb", {
  *     type: "influxdb",
  *     url: "http://influxdb.example.net:8086/",
- *     username: "myapp",
- *     password: "foobarbaz",
+ *     basicAuthEnabled: true,
+ *     basicAuthUsername: "username",
  *     databaseName: influxdb_database.metrics.name,
+ *     jsonDataEncoded: JSON.stringify({
+ *         authType: "default",
+ *         basicAuthPassword: "mypassword",
+ *     }),
  * });
  * const cloudwatch = new grafana.DataSource("cloudwatch", {
  *     type: "cloudwatch",
- *     jsonDatas: [{
+ *     jsonDataEncoded: JSON.stringify({
  *         defaultRegion: "us-east-1",
  *         authType: "keys",
- *     }],
- *     secureJsonDatas: [{
+ *     }),
+ *     secureJsonDataEncoded: JSON.stringify({
  *         accessKey: "123",
  *         secretKey: "456",
- *     }],
+ *     }),
  * });
  * const prometheus = new grafana.DataSource("prometheus", {
  *     type: "prometheus",
- *     url: "https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-1234567890/",
- *     jsonDatas: [{
+ *     url: "https://my-instances.com",
+ *     basicAuthEnabled: true,
+ *     basicAuthUsername: "username",
+ *     jsonDataEncoded: JSON.stringify({
  *         httpMethod: "POST",
- *         sigv4Auth: true,
- *         sigv4AuthType: "default",
- *         sigv4Region: "eu-west-1",
- *     }],
- * });
- * const stackdriver = new grafana.DataSource("stackdriver", {
- *     type: "stackdriver",
- *     jsonDatas: [{
- *         tokenUri: "https://oauth2.googleapis.com/token",
- *         authenticationType: "jwt",
- *         defaultProject: "default-project",
- *         clientEmail: "client-email@default-project.iam.gserviceaccount.com",
- *     }],
- *     secureJsonDatas: [{
- *         privateKey: `-----BEGIN PRIVATE KEY-----
- * private-key
- * -----END PRIVATE KEY-----
- * `,
- *     }],
+ *         prometheusType: "Mimir",
+ *         prometheusVersion: "2.4.0",
+ *     }),
+ *     secureJsonDataEncoded: JSON.stringify({
+ *         basicAuthPassword: "password",
+ *     }),
  * });
  * ```
  *

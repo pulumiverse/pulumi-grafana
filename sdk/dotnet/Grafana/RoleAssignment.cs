@@ -14,6 +14,64 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// **Note:** This resource is available only with Grafana Enterprise 9.2+.
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
     /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testRole = new Grafana.Role("testRole", new()
+    ///     {
+    ///         Uid = "testrole",
+    ///         Version = 1,
+    ///         Global = true,
+    ///         Permissions = new[]
+    ///         {
+    ///             new Grafana.Inputs.RolePermissionArgs
+    ///             {
+    ///                 Action = "org.users:add",
+    ///                 Scope = "users:*",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var testTeam = new Grafana.Team("testTeam");
+    /// 
+    ///     var testUser = new Grafana.User("testUser", new()
+    ///     {
+    ///         Email = "terraform_user@test.com",
+    ///         Login = "terraform_user@test.com",
+    ///         Password = "password",
+    ///     });
+    /// 
+    ///     var testSa = new Grafana.ServiceAccount("testSa", new()
+    ///     {
+    ///         Role = "Viewer",
+    ///     });
+    /// 
+    ///     var test = new Grafana.RoleAssignment("test", new()
+    ///     {
+    ///         RoleUid = testRole.Uid,
+    ///         Users = new[]
+    ///         {
+    ///             testUser.Id,
+    ///         },
+    ///         Teams = new[]
+    ///         {
+    ///             testTeam.Id,
+    ///         },
+    ///         ServiceAccounts = new[]
+    ///         {
+    ///             testSa.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/roleAssignment:RoleAssignment")]
     public partial class RoleAssignment : global::Pulumi.CustomResource

@@ -58,64 +58,72 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			tmpJSON2, err := json.Marshal(map[string]interface{}{
+//				"authType":          "default",
+//				"basicAuthPassword": "mypassword",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json2 := string(tmpJSON2)
 //			_, err = grafana.NewDataSource(ctx, "influxdb", &grafana.DataSourceArgs{
-//				Type:         pulumi.String("influxdb"),
-//				Url:          pulumi.String("http://influxdb.example.net:8086/"),
-//				Username:     pulumi.String("myapp"),
-//				Password:     pulumi.String("foobarbaz"),
-//				DatabaseName: pulumi.Any(influxdb_database.Metrics.Name),
+//				Type:              pulumi.String("influxdb"),
+//				Url:               pulumi.String("http://influxdb.example.net:8086/"),
+//				BasicAuthEnabled:  pulumi.Bool(true),
+//				BasicAuthUsername: pulumi.String("username"),
+//				DatabaseName:      pulumi.Any(influxdb_database.Metrics.Name),
+//				JsonDataEncoded:   pulumi.String(json2),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			tmpJSON3, err := json.Marshal(map[string]interface{}{
+//				"defaultRegion": "us-east-1",
+//				"authType":      "keys",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json3 := string(tmpJSON3)
+//			tmpJSON4, err := json.Marshal(map[string]interface{}{
+//				"accessKey": "123",
+//				"secretKey": "456",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json4 := string(tmpJSON4)
 //			_, err = grafana.NewDataSource(ctx, "cloudwatch", &grafana.DataSourceArgs{
-//				Type: pulumi.String("cloudwatch"),
-//				JsonDatas: DataSourceJsonDataArray{
-//					&DataSourceJsonDataArgs{
-//						DefaultRegion: pulumi.String("us-east-1"),
-//						AuthType:      pulumi.String("keys"),
-//					},
-//				},
-//				SecureJsonDatas: DataSourceSecureJsonDataArray{
-//					&DataSourceSecureJsonDataArgs{
-//						AccessKey: pulumi.String("123"),
-//						SecretKey: pulumi.String("456"),
-//					},
-//				},
+//				Type:                  pulumi.String("cloudwatch"),
+//				JsonDataEncoded:       pulumi.String(json3),
+//				SecureJsonDataEncoded: pulumi.String(json4),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			tmpJSON5, err := json.Marshal(map[string]interface{}{
+//				"httpMethod":        "POST",
+//				"prometheusType":    "Mimir",
+//				"prometheusVersion": "2.4.0",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json5 := string(tmpJSON5)
+//			tmpJSON6, err := json.Marshal(map[string]interface{}{
+//				"basicAuthPassword": "password",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json6 := string(tmpJSON6)
 //			_, err = grafana.NewDataSource(ctx, "prometheus", &grafana.DataSourceArgs{
-//				Type: pulumi.String("prometheus"),
-//				Url:  pulumi.String("https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-1234567890/"),
-//				JsonDatas: DataSourceJsonDataArray{
-//					&DataSourceJsonDataArgs{
-//						HttpMethod:    pulumi.String("POST"),
-//						Sigv4Auth:     pulumi.Bool(true),
-//						Sigv4AuthType: pulumi.String("default"),
-//						Sigv4Region:   pulumi.String("eu-west-1"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewDataSource(ctx, "stackdriver", &grafana.DataSourceArgs{
-//				Type: pulumi.String("stackdriver"),
-//				JsonDatas: DataSourceJsonDataArray{
-//					&DataSourceJsonDataArgs{
-//						TokenUri:           pulumi.String("https://oauth2.googleapis.com/token"),
-//						AuthenticationType: pulumi.String("jwt"),
-//						DefaultProject:     pulumi.String("default-project"),
-//						ClientEmail:        pulumi.String("client-email@default-project.iam.gserviceaccount.com"),
-//					},
-//				},
-//				SecureJsonDatas: DataSourceSecureJsonDataArray{
-//					&DataSourceSecureJsonDataArgs{
-//						PrivateKey: pulumi.String("-----BEGIN PRIVATE KEY-----\nprivate-key\n-----END PRIVATE KEY-----\n"),
-//					},
-//				},
+//				Type:                  pulumi.String("prometheus"),
+//				Url:                   pulumi.String("https://my-instances.com"),
+//				BasicAuthEnabled:      pulumi.Bool(true),
+//				BasicAuthUsername:     pulumi.String("username"),
+//				JsonDataEncoded:       pulumi.String(json5),
+//				SecureJsonDataEncoded: pulumi.String(json6),
 //			})
 //			if err != nil {
 //				return err

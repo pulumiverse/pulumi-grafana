@@ -58,7 +58,11 @@ import (
 //					},
 //					&DataSourcePermissionPermissionArgs{
 //						UserId:     pulumi.Int(3),
-//						Permission: pulumi.String("Query"),
+//						Permission: pulumi.String("Edit"),
+//					},
+//					&DataSourcePermissionPermissionArgs{
+//						BuiltInRole: pulumi.String("Viewer"),
+//						Permission:  pulumi.String("Query"),
 //					},
 //				},
 //			})

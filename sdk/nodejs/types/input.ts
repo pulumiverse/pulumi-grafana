@@ -872,7 +872,11 @@ export interface DataSourceJsonDataDerivedField {
 
 export interface DataSourcePermissionPermission {
     /**
-     * Permission to associate with item. Must be `Query`.
+     * Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
+     */
+    builtInRole?: pulumi.Input<string>;
+    /**
+     * Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
      */
     permission: pulumi.Input<string>;
     /**
@@ -1383,6 +1387,21 @@ export interface RuleGroupRuleData {
 export interface RuleGroupRuleDataRelativeTimeRange {
     from: pulumi.Input<number>;
     to: pulumi.Input<number>;
+}
+
+export interface ServiceAccountPermissionPermission {
+    /**
+     * Permission to associate with item. Must be `Edit` or `Admin`.
+     */
+    permission: pulumi.Input<string>;
+    /**
+     * ID of the team to manage permissions for. Specify either this or `userId`. Defaults to `0`.
+     */
+    teamId?: pulumi.Input<number>;
+    /**
+     * ID of the user to manage permissions for. Specify either this or `teamId`. Defaults to `0`.
+     */
+    userId?: pulumi.Input<number>;
 }
 
 export interface SyntheticMonitoringCheckSettings {

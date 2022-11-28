@@ -35,11 +35,16 @@ import (
 //				Global:      pulumi.Bool(true),
 //				Permissions: RolePermissionArray{
 //					&RolePermissionArgs{
-//						Action: pulumi.String("users:create"),
+//						Action: pulumi.String("org.users:add"),
+//						Scope:  pulumi.String("users:*"),
 //					},
 //					&RolePermissionArgs{
-//						Action: pulumi.String("users:read"),
-//						Scope:  pulumi.String("global:users:*"),
+//						Action: pulumi.String("org.users:write"),
+//						Scope:  pulumi.String("users:*"),
+//					},
+//					&RolePermissionArgs{
+//						Action: pulumi.String("org.users:read"),
+//						Scope:  pulumi.String("users:*"),
 //					},
 //				},
 //				Uid:     pulumi.String("superuseruid"),

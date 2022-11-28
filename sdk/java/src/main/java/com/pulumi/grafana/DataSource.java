@@ -35,8 +35,6 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.grafana.DataSource;
  * import com.pulumi.grafana.DataSourceArgs;
- * import com.pulumi.grafana.inputs.DataSourceJsonDataArgs;
- * import com.pulumi.grafana.inputs.DataSourceSecureJsonDataArgs;
  * import static com.pulumi.codegen.internal.Serialization.*;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -73,49 +71,45 @@ import javax.annotation.Nullable;
  *         var influxdb = new DataSource(&#34;influxdb&#34;, DataSourceArgs.builder()        
  *             .type(&#34;influxdb&#34;)
  *             .url(&#34;http://influxdb.example.net:8086/&#34;)
- *             .username(&#34;myapp&#34;)
- *             .password(&#34;foobarbaz&#34;)
+ *             .basicAuthEnabled(true)
+ *             .basicAuthUsername(&#34;username&#34;)
  *             .databaseName(influxdb_database.metrics().name())
+ *             .jsonDataEncoded(serializeJson(
+ *                 jsonObject(
+ *                     jsonProperty(&#34;authType&#34;, &#34;default&#34;),
+ *                     jsonProperty(&#34;basicAuthPassword&#34;, &#34;mypassword&#34;)
+ *                 )))
  *             .build());
  * 
  *         var cloudwatch = new DataSource(&#34;cloudwatch&#34;, DataSourceArgs.builder()        
  *             .type(&#34;cloudwatch&#34;)
- *             .jsonDatas(DataSourceJsonDataArgs.builder()
- *                 .defaultRegion(&#34;us-east-1&#34;)
- *                 .authType(&#34;keys&#34;)
- *                 .build())
- *             .secureJsonDatas(DataSourceSecureJsonDataArgs.builder()
- *                 .accessKey(&#34;123&#34;)
- *                 .secretKey(&#34;456&#34;)
- *                 .build())
+ *             .jsonDataEncoded(serializeJson(
+ *                 jsonObject(
+ *                     jsonProperty(&#34;defaultRegion&#34;, &#34;us-east-1&#34;),
+ *                     jsonProperty(&#34;authType&#34;, &#34;keys&#34;)
+ *                 )))
+ *             .secureJsonDataEncoded(serializeJson(
+ *                 jsonObject(
+ *                     jsonProperty(&#34;accessKey&#34;, &#34;123&#34;),
+ *                     jsonProperty(&#34;secretKey&#34;, &#34;456&#34;)
+ *                 )))
  *             .build());
  * 
  *         var prometheus = new DataSource(&#34;prometheus&#34;, DataSourceArgs.builder()        
  *             .type(&#34;prometheus&#34;)
- *             .url(&#34;https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-1234567890/&#34;)
- *             .jsonDatas(DataSourceJsonDataArgs.builder()
- *                 .httpMethod(&#34;POST&#34;)
- *                 .sigv4Auth(true)
- *                 .sigv4AuthType(&#34;default&#34;)
- *                 .sigv4Region(&#34;eu-west-1&#34;)
- *                 .build())
- *             .build());
- * 
- *         var stackdriver = new DataSource(&#34;stackdriver&#34;, DataSourceArgs.builder()        
- *             .type(&#34;stackdriver&#34;)
- *             .jsonDatas(DataSourceJsonDataArgs.builder()
- *                 .tokenUri(&#34;https://oauth2.googleapis.com/token&#34;)
- *                 .authenticationType(&#34;jwt&#34;)
- *                 .defaultProject(&#34;default-project&#34;)
- *                 .clientEmail(&#34;client-email@default-project.iam.gserviceaccount.com&#34;)
- *                 .build())
- *             .secureJsonDatas(DataSourceSecureJsonDataArgs.builder()
- *                 .privateKey(&#34;&#34;&#34;
- * -----BEGIN PRIVATE KEY-----
- * private-key
- * -----END PRIVATE KEY-----
- *                 &#34;&#34;&#34;)
- *                 .build())
+ *             .url(&#34;https://my-instances.com&#34;)
+ *             .basicAuthEnabled(true)
+ *             .basicAuthUsername(&#34;username&#34;)
+ *             .jsonDataEncoded(serializeJson(
+ *                 jsonObject(
+ *                     jsonProperty(&#34;httpMethod&#34;, &#34;POST&#34;),
+ *                     jsonProperty(&#34;prometheusType&#34;, &#34;Mimir&#34;),
+ *                     jsonProperty(&#34;prometheusVersion&#34;, &#34;2.4.0&#34;)
+ *                 )))
+ *             .secureJsonDataEncoded(serializeJson(
+ *                 jsonObject(
+ *                     jsonProperty(&#34;basicAuthPassword&#34;, &#34;password&#34;)
+ *                 )))
  *             .build());
  * 
  *     }

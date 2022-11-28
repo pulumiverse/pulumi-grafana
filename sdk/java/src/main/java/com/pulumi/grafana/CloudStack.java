@@ -320,7 +320,8 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
     }
     /**
      * Region slug to assign to this stack.
-     * Changing region will destroy the existing stack and create a new one in the desired region
+     * Changing region will destroy the existing stack and create a new one in the desired region.
+     * Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
      * 
      */
     @Export(name="regionSlug", type=String.class, parameters={})
@@ -328,7 +329,8 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Region slug to assign to this stack.
-     * Changing region will destroy the existing stack and create a new one in the desired region
+     * Changing region will destroy the existing stack and create a new one in the desired region.
+     * Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
      * 
      */
     public Output<Optional<String>> regionSlug() {

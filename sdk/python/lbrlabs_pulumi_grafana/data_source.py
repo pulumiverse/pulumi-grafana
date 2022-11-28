@@ -650,42 +650,36 @@ class DataSource(pulumi.CustomResource):
         influxdb = grafana.DataSource("influxdb",
             type="influxdb",
             url="http://influxdb.example.net:8086/",
-            username="myapp",
-            password="foobarbaz",
-            database_name=influxdb_database["metrics"]["name"])
+            basic_auth_enabled=True,
+            basic_auth_username="username",
+            database_name=influxdb_database["metrics"]["name"],
+            json_data_encoded=json.dumps({
+                "authType": "default",
+                "basicAuthPassword": "mypassword",
+            }))
         cloudwatch = grafana.DataSource("cloudwatch",
             type="cloudwatch",
-            json_datas=[grafana.DataSourceJsonDataArgs(
-                default_region="us-east-1",
-                auth_type="keys",
-            )],
-            secure_json_datas=[grafana.DataSourceSecureJsonDataArgs(
-                access_key="123",
-                secret_key="456",
-            )])
+            json_data_encoded=json.dumps({
+                "defaultRegion": "us-east-1",
+                "authType": "keys",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "accessKey": "123",
+                "secretKey": "456",
+            }))
         prometheus = grafana.DataSource("prometheus",
             type="prometheus",
-            url="https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-1234567890/",
-            json_datas=[grafana.DataSourceJsonDataArgs(
-                http_method="POST",
-                sigv4_auth=True,
-                sigv4_auth_type="default",
-                sigv4_region="eu-west-1",
-            )])
-        stackdriver = grafana.DataSource("stackdriver",
-            type="stackdriver",
-            json_datas=[grafana.DataSourceJsonDataArgs(
-                token_uri="https://oauth2.googleapis.com/token",
-                authentication_type="jwt",
-                default_project="default-project",
-                client_email="client-email@default-project.iam.gserviceaccount.com",
-            )],
-            secure_json_datas=[grafana.DataSourceSecureJsonDataArgs(
-                private_key=\"\"\"-----BEGIN PRIVATE KEY-----
-        private-key
-        -----END PRIVATE KEY-----
-        \"\"\",
-            )])
+            url="https://my-instances.com",
+            basic_auth_enabled=True,
+            basic_auth_username="username",
+            json_data_encoded=json.dumps({
+                "httpMethod": "POST",
+                "prometheusType": "Mimir",
+                "prometheusVersion": "2.4.0",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "basicAuthPassword": "password",
+            }))
         ```
 
         ## Import
@@ -755,42 +749,36 @@ class DataSource(pulumi.CustomResource):
         influxdb = grafana.DataSource("influxdb",
             type="influxdb",
             url="http://influxdb.example.net:8086/",
-            username="myapp",
-            password="foobarbaz",
-            database_name=influxdb_database["metrics"]["name"])
+            basic_auth_enabled=True,
+            basic_auth_username="username",
+            database_name=influxdb_database["metrics"]["name"],
+            json_data_encoded=json.dumps({
+                "authType": "default",
+                "basicAuthPassword": "mypassword",
+            }))
         cloudwatch = grafana.DataSource("cloudwatch",
             type="cloudwatch",
-            json_datas=[grafana.DataSourceJsonDataArgs(
-                default_region="us-east-1",
-                auth_type="keys",
-            )],
-            secure_json_datas=[grafana.DataSourceSecureJsonDataArgs(
-                access_key="123",
-                secret_key="456",
-            )])
+            json_data_encoded=json.dumps({
+                "defaultRegion": "us-east-1",
+                "authType": "keys",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "accessKey": "123",
+                "secretKey": "456",
+            }))
         prometheus = grafana.DataSource("prometheus",
             type="prometheus",
-            url="https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-1234567890/",
-            json_datas=[grafana.DataSourceJsonDataArgs(
-                http_method="POST",
-                sigv4_auth=True,
-                sigv4_auth_type="default",
-                sigv4_region="eu-west-1",
-            )])
-        stackdriver = grafana.DataSource("stackdriver",
-            type="stackdriver",
-            json_datas=[grafana.DataSourceJsonDataArgs(
-                token_uri="https://oauth2.googleapis.com/token",
-                authentication_type="jwt",
-                default_project="default-project",
-                client_email="client-email@default-project.iam.gserviceaccount.com",
-            )],
-            secure_json_datas=[grafana.DataSourceSecureJsonDataArgs(
-                private_key=\"\"\"-----BEGIN PRIVATE KEY-----
-        private-key
-        -----END PRIVATE KEY-----
-        \"\"\",
-            )])
+            url="https://my-instances.com",
+            basic_auth_enabled=True,
+            basic_auth_username="username",
+            json_data_encoded=json.dumps({
+                "httpMethod": "POST",
+                "prometheusType": "Mimir",
+                "prometheusVersion": "2.4.0",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "basicAuthPassword": "password",
+            }))
         ```
 
         ## Import

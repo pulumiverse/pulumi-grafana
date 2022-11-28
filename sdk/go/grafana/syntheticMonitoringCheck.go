@@ -264,6 +264,8 @@ import (
 //							pulumi.Int(201),
 //						},
 //						ValidHttpVersions: pulumi.StringArray{
+//							pulumi.String("HTTP/1.0"),
+//							pulumi.String("HTTP/1.1"),
 //							pulumi.String("HTTP/2"),
 //						},
 //						FailIfBodyMatchesRegexps: pulumi.StringArray{

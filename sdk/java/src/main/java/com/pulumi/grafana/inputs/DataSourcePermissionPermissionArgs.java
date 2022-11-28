@@ -17,14 +17,29 @@ public final class DataSourcePermissionPermissionArgs extends com.pulumi.resourc
     public static final DataSourcePermissionPermissionArgs Empty = new DataSourcePermissionPermissionArgs();
 
     /**
-     * Permission to associate with item. Must be `Query`.
+     * Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
+     * 
+     */
+    @Import(name="builtInRole")
+    private @Nullable Output<String> builtInRole;
+
+    /**
+     * @return Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
+     * 
+     */
+    public Optional<Output<String>> builtInRole() {
+        return Optional.ofNullable(this.builtInRole);
+    }
+
+    /**
+     * Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
      * 
      */
     @Import(name="permission", required=true)
     private Output<String> permission;
 
     /**
-     * @return Permission to associate with item. Must be `Query`.
+     * @return Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
      * 
      */
     public Output<String> permission() {
@@ -64,6 +79,7 @@ public final class DataSourcePermissionPermissionArgs extends com.pulumi.resourc
     private DataSourcePermissionPermissionArgs() {}
 
     private DataSourcePermissionPermissionArgs(DataSourcePermissionPermissionArgs $) {
+        this.builtInRole = $.builtInRole;
         this.permission = $.permission;
         this.teamId = $.teamId;
         this.userId = $.userId;
@@ -88,7 +104,28 @@ public final class DataSourcePermissionPermissionArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param permission Permission to associate with item. Must be `Query`.
+         * @param builtInRole Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder builtInRole(@Nullable Output<String> builtInRole) {
+            $.builtInRole = builtInRole;
+            return this;
+        }
+
+        /**
+         * @param builtInRole Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder builtInRole(String builtInRole) {
+            return builtInRole(Output.of(builtInRole));
+        }
+
+        /**
+         * @param permission Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
          * 
          * @return builder
          * 
@@ -99,7 +136,7 @@ public final class DataSourcePermissionPermissionArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param permission Permission to associate with item. Must be `Query`.
+         * @param permission Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
          * 
          * @return builder
          * 

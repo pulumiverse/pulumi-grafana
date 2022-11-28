@@ -58,6 +58,11 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///             new Grafana.Inputs.DataSourcePermissionPermissionArgs
     ///             {
     ///                 UserId = 3,
+    ///                 Permission = "Edit",
+    ///             },
+    ///             new Grafana.Inputs.DataSourcePermissionPermissionArgs
+    ///             {
+    ///                 BuiltInRole = "Viewer",
     ///                 Permission = "Query",
     ///             },
     ///         },

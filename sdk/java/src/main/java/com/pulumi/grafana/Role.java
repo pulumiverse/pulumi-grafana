@@ -52,11 +52,16 @@ import javax.annotation.Nullable;
  *             .global(true)
  *             .permissions(            
  *                 RolePermissionArgs.builder()
- *                     .action(&#34;users:create&#34;)
+ *                     .action(&#34;org.users:add&#34;)
+ *                     .scope(&#34;users:*&#34;)
  *                     .build(),
  *                 RolePermissionArgs.builder()
- *                     .action(&#34;users:read&#34;)
- *                     .scope(&#34;global:users:*&#34;)
+ *                     .action(&#34;org.users:write&#34;)
+ *                     .scope(&#34;users:*&#34;)
+ *                     .build(),
+ *                 RolePermissionArgs.builder()
+ *                     .action(&#34;org.users:read&#34;)
+ *                     .scope(&#34;users:*&#34;)
  *                     .build())
  *             .uid(&#34;superuseruid&#34;)
  *             .version(1)

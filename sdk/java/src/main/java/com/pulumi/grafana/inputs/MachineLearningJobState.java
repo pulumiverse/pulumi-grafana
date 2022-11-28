@@ -49,6 +49,21 @@ public final class MachineLearningJobState extends com.pulumi.resources.Resource
     }
 
     /**
+     * The uid of the datasource to query.
+     * 
+     */
+    @Import(name="datasourceUid")
+    private @Nullable Output<String> datasourceUid;
+
+    /**
+     * @return The uid of the datasource to query.
+     * 
+     */
+    public Optional<Output<String>> datasourceUid() {
+        return Optional.ofNullable(this.datasourceUid);
+    }
+
+    /**
      * A description of the job.
      * 
      */
@@ -158,6 +173,7 @@ public final class MachineLearningJobState extends com.pulumi.resources.Resource
     private MachineLearningJobState(MachineLearningJobState $) {
         this.datasourceId = $.datasourceId;
         this.datasourceType = $.datasourceType;
+        this.datasourceUid = $.datasourceUid;
         this.description = $.description;
         this.hyperParams = $.hyperParams;
         this.interval = $.interval;
@@ -225,6 +241,27 @@ public final class MachineLearningJobState extends com.pulumi.resources.Resource
          */
         public Builder datasourceType(String datasourceType) {
             return datasourceType(Output.of(datasourceType));
+        }
+
+        /**
+         * @param datasourceUid The uid of the datasource to query.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder datasourceUid(@Nullable Output<String> datasourceUid) {
+            $.datasourceUid = datasourceUid;
+            return this;
+        }
+
+        /**
+         * @param datasourceUid The uid of the datasource to query.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder datasourceUid(String datasourceUid) {
+            return datasourceUid(Output.of(datasourceUid));
         }
 
         /**

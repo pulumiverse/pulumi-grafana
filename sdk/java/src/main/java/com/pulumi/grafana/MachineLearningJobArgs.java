@@ -22,15 +22,15 @@ public final class MachineLearningJobArgs extends com.pulumi.resources.ResourceA
      * The id of the datasource to query.
      * 
      */
-    @Import(name="datasourceId", required=true)
-    private Output<Integer> datasourceId;
+    @Import(name="datasourceId")
+    private @Nullable Output<Integer> datasourceId;
 
     /**
      * @return The id of the datasource to query.
      * 
      */
-    public Output<Integer> datasourceId() {
-        return this.datasourceId;
+    public Optional<Output<Integer>> datasourceId() {
+        return Optional.ofNullable(this.datasourceId);
     }
 
     /**
@@ -46,6 +46,21 @@ public final class MachineLearningJobArgs extends com.pulumi.resources.ResourceA
      */
     public Output<String> datasourceType() {
         return this.datasourceType;
+    }
+
+    /**
+     * The uid of the datasource to query.
+     * 
+     */
+    @Import(name="datasourceUid")
+    private @Nullable Output<String> datasourceUid;
+
+    /**
+     * @return The uid of the datasource to query.
+     * 
+     */
+    public Optional<Output<String>> datasourceUid() {
+        return Optional.ofNullable(this.datasourceUid);
     }
 
     /**
@@ -158,6 +173,7 @@ public final class MachineLearningJobArgs extends com.pulumi.resources.ResourceA
     private MachineLearningJobArgs(MachineLearningJobArgs $) {
         this.datasourceId = $.datasourceId;
         this.datasourceType = $.datasourceType;
+        this.datasourceUid = $.datasourceUid;
         this.description = $.description;
         this.hyperParams = $.hyperParams;
         this.interval = $.interval;
@@ -191,7 +207,7 @@ public final class MachineLearningJobArgs extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          */
-        public Builder datasourceId(Output<Integer> datasourceId) {
+        public Builder datasourceId(@Nullable Output<Integer> datasourceId) {
             $.datasourceId = datasourceId;
             return this;
         }
@@ -225,6 +241,27 @@ public final class MachineLearningJobArgs extends com.pulumi.resources.ResourceA
          */
         public Builder datasourceType(String datasourceType) {
             return datasourceType(Output.of(datasourceType));
+        }
+
+        /**
+         * @param datasourceUid The uid of the datasource to query.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder datasourceUid(@Nullable Output<String> datasourceUid) {
+            $.datasourceUid = datasourceUid;
+            return this;
+        }
+
+        /**
+         * @param datasourceUid The uid of the datasource to query.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder datasourceUid(String datasourceUid) {
+            return datasourceUid(Output.of(datasourceUid));
         }
 
         /**
@@ -375,7 +412,6 @@ public final class MachineLearningJobArgs extends com.pulumi.resources.ResourceA
         }
 
         public MachineLearningJobArgs build() {
-            $.datasourceId = Objects.requireNonNull($.datasourceId, "expected parameter 'datasourceId' to be non-null");
             $.datasourceType = Objects.requireNonNull($.datasourceType, "expected parameter 'datasourceType' to be non-null");
             $.metric = Objects.requireNonNull($.metric, "expected parameter 'metric' to be non-null");
             $.queryParams = Objects.requireNonNull($.queryParams, "expected parameter 'queryParams' to be non-null");

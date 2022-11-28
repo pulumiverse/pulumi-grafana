@@ -15,7 +15,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     public sealed class DataSourcePermissionPermission
     {
         /// <summary>
-        /// Permission to associate with item. Must be `Query`.
+        /// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
+        /// </summary>
+        public readonly string? BuiltInRole;
+        /// <summary>
+        /// Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
         /// </summary>
         public readonly string Permission;
         /// <summary>
@@ -29,12 +33,15 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
         [OutputConstructor]
         private DataSourcePermissionPermission(
+            string? builtInRole,
+
             string permission,
 
             int? teamId,
 
             int? userId)
         {
+            BuiltInRole = builtInRole;
             Permission = permission;
             TeamId = teamId;
             UserId = userId;

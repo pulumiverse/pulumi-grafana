@@ -38,11 +38,15 @@ export class MachineLearningJob extends pulumi.CustomResource {
     /**
      * The id of the datasource to query.
      */
-    public readonly datasourceId!: pulumi.Output<number>;
+    public readonly datasourceId!: pulumi.Output<number | undefined>;
     /**
      * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
      */
     public readonly datasourceType!: pulumi.Output<string>;
+    /**
+     * The uid of the datasource to query.
+     */
+    public readonly datasourceUid!: pulumi.Output<string | undefined>;
     /**
      * A description of the job.
      */
@@ -87,6 +91,7 @@ export class MachineLearningJob extends pulumi.CustomResource {
             const state = argsOrState as MachineLearningJobState | undefined;
             resourceInputs["datasourceId"] = state ? state.datasourceId : undefined;
             resourceInputs["datasourceType"] = state ? state.datasourceType : undefined;
+            resourceInputs["datasourceUid"] = state ? state.datasourceUid : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["hyperParams"] = state ? state.hyperParams : undefined;
             resourceInputs["interval"] = state ? state.interval : undefined;
@@ -96,9 +101,6 @@ export class MachineLearningJob extends pulumi.CustomResource {
             resourceInputs["trainingWindow"] = state ? state.trainingWindow : undefined;
         } else {
             const args = argsOrState as MachineLearningJobArgs | undefined;
-            if ((!args || args.datasourceId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'datasourceId'");
-            }
             if ((!args || args.datasourceType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'datasourceType'");
             }
@@ -110,6 +112,7 @@ export class MachineLearningJob extends pulumi.CustomResource {
             }
             resourceInputs["datasourceId"] = args ? args.datasourceId : undefined;
             resourceInputs["datasourceType"] = args ? args.datasourceType : undefined;
+            resourceInputs["datasourceUid"] = args ? args.datasourceUid : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["hyperParams"] = args ? args.hyperParams : undefined;
             resourceInputs["interval"] = args ? args.interval : undefined;
@@ -135,6 +138,10 @@ export interface MachineLearningJobState {
      * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
      */
     datasourceType?: pulumi.Input<string>;
+    /**
+     * The uid of the datasource to query.
+     */
+    datasourceUid?: pulumi.Input<string>;
     /**
      * A description of the job.
      */
@@ -172,11 +179,15 @@ export interface MachineLearningJobArgs {
     /**
      * The id of the datasource to query.
      */
-    datasourceId: pulumi.Input<number>;
+    datasourceId?: pulumi.Input<number>;
     /**
      * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
      */
     datasourceType: pulumi.Input<string>;
+    /**
+     * The uid of the datasource to query.
+     */
+    datasourceUid?: pulumi.Input<string>;
     /**
      * A description of the job.
      */

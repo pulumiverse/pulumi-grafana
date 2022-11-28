@@ -20,13 +20,19 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// The id of the datasource to query.
         /// </summary>
         [Output("datasourceId")]
-        public Output<int> DatasourceId { get; private set; } = null!;
+        public Output<int?> DatasourceId { get; private set; } = null!;
 
         /// <summary>
         /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         /// </summary>
         [Output("datasourceType")]
         public Output<string> DatasourceType { get; private set; } = null!;
+
+        /// <summary>
+        /// The uid of the datasource to query.
+        /// </summary>
+        [Output("datasourceUid")]
+        public Output<string?> DatasourceUid { get; private set; } = null!;
 
         /// <summary>
         /// A description of the job.
@@ -120,14 +126,20 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// <summary>
         /// The id of the datasource to query.
         /// </summary>
-        [Input("datasourceId", required: true)]
-        public Input<int> DatasourceId { get; set; } = null!;
+        [Input("datasourceId")]
+        public Input<int>? DatasourceId { get; set; }
 
         /// <summary>
         /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         /// </summary>
         [Input("datasourceType", required: true)]
         public Input<string> DatasourceType { get; set; } = null!;
+
+        /// <summary>
+        /// The uid of the datasource to query.
+        /// </summary>
+        [Input("datasourceUid")]
+        public Input<string>? DatasourceUid { get; set; }
 
         /// <summary>
         /// A description of the job.
@@ -202,6 +214,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Input("datasourceType")]
         public Input<string>? DatasourceType { get; set; }
+
+        /// <summary>
+        /// The uid of the datasource to query.
+        /// </summary>
+        [Input("datasourceUid")]
+        public Input<string>? DatasourceUid { get; set; }
 
         /// <summary>
         /// A description of the job.

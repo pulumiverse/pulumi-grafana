@@ -282,6 +282,11 @@ export type ServiceAccount = import("./serviceAccount").ServiceAccount;
 export const ServiceAccount: typeof import("./serviceAccount").ServiceAccount = null as any;
 utilities.lazyLoad(exports, ["ServiceAccount"], () => require("./serviceAccount"));
 
+export { ServiceAccountPermissionArgs, ServiceAccountPermissionState } from "./serviceAccountPermission";
+export type ServiceAccountPermission = import("./serviceAccountPermission").ServiceAccountPermission;
+export const ServiceAccountPermission: typeof import("./serviceAccountPermission").ServiceAccountPermission = null as any;
+utilities.lazyLoad(exports, ["ServiceAccountPermission"], () => require("./serviceAccountPermission"));
+
 export { ServiceAccountTokenArgs, ServiceAccountTokenState } from "./serviceAccountToken";
 export type ServiceAccountToken = import("./serviceAccountToken").ServiceAccountToken;
 export const ServiceAccountToken: typeof import("./serviceAccountToken").ServiceAccountToken = null as any;
@@ -404,6 +409,8 @@ const _module = {
                 return new RuleGroup(name, <any>undefined, { urn })
             case "grafana:index/serviceAccount:ServiceAccount":
                 return new ServiceAccount(name, <any>undefined, { urn })
+            case "grafana:index/serviceAccountPermission:ServiceAccountPermission":
+                return new ServiceAccountPermission(name, <any>undefined, { urn })
             case "grafana:index/serviceAccountToken:ServiceAccountToken":
                 return new ServiceAccountToken(name, <any>undefined, { urn })
             case "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck":
@@ -459,6 +466,7 @@ pulumi.runtime.registerResourceModule("grafana", "index/role", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/roleAssignment", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/ruleGroup", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/serviceAccount", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/serviceAccountPermission", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/serviceAccountToken", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/syntheticMonitoringCheck", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/syntheticMonitoringInstallation", _module)

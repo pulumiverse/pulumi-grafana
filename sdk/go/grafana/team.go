@@ -46,6 +46,11 @@ type Team struct {
 
 	// An email address for the team.
 	Email pulumi.StringPtrOutput `pulumi:"email"`
+	// Ignores team members that have been added to team by [Team
+	// Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
+	// [grafana_team_external_group
+	// resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+	IgnoreExternallySyncedMembers pulumi.BoolPtrOutput `pulumi:"ignoreExternallySyncedMembers"`
 	// A set of email addresses corresponding to users who should be given membership
 	// to the team. Note: users specified here must already exist in Grafana.
 	Members pulumi.StringArrayOutput `pulumi:"members"`
@@ -87,6 +92,11 @@ func GetTeam(ctx *pulumi.Context,
 type teamState struct {
 	// An email address for the team.
 	Email *string `pulumi:"email"`
+	// Ignores team members that have been added to team by [Team
+	// Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
+	// [grafana_team_external_group
+	// resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+	IgnoreExternallySyncedMembers *bool `pulumi:"ignoreExternallySyncedMembers"`
 	// A set of email addresses corresponding to users who should be given membership
 	// to the team. Note: users specified here must already exist in Grafana.
 	Members []string `pulumi:"members"`
@@ -99,6 +109,11 @@ type teamState struct {
 type TeamState struct {
 	// An email address for the team.
 	Email pulumi.StringPtrInput
+	// Ignores team members that have been added to team by [Team
+	// Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
+	// [grafana_team_external_group
+	// resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+	IgnoreExternallySyncedMembers pulumi.BoolPtrInput
 	// A set of email addresses corresponding to users who should be given membership
 	// to the team. Note: users specified here must already exist in Grafana.
 	Members pulumi.StringArrayInput
@@ -115,6 +130,11 @@ func (TeamState) ElementType() reflect.Type {
 type teamArgs struct {
 	// An email address for the team.
 	Email *string `pulumi:"email"`
+	// Ignores team members that have been added to team by [Team
+	// Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
+	// [grafana_team_external_group
+	// resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+	IgnoreExternallySyncedMembers *bool `pulumi:"ignoreExternallySyncedMembers"`
 	// A set of email addresses corresponding to users who should be given membership
 	// to the team. Note: users specified here must already exist in Grafana.
 	Members []string `pulumi:"members"`
@@ -126,6 +146,11 @@ type teamArgs struct {
 type TeamArgs struct {
 	// An email address for the team.
 	Email pulumi.StringPtrInput
+	// Ignores team members that have been added to team by [Team
+	// Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
+	// [grafana_team_external_group
+	// resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+	IgnoreExternallySyncedMembers pulumi.BoolPtrInput
 	// A set of email addresses corresponding to users who should be given membership
 	// to the team. Note: users specified here must already exist in Grafana.
 	Members pulumi.StringArrayInput
@@ -223,6 +248,14 @@ func (o TeamOutput) ToTeamOutputWithContext(ctx context.Context) TeamOutput {
 // An email address for the team.
 func (o TeamOutput) Email() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Team) pulumi.StringPtrOutput { return v.Email }).(pulumi.StringPtrOutput)
+}
+
+// Ignores team members that have been added to team by [Team
+// Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
+// [grafana_team_external_group
+// resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+func (o TeamOutput) IgnoreExternallySyncedMembers() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Team) pulumi.BoolPtrOutput { return v.IgnoreExternallySyncedMembers }).(pulumi.BoolPtrOutput)
 }
 
 // A set of email addresses corresponding to users who should be given membership

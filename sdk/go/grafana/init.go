@@ -88,6 +88,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RuleGroup{}
 	case "grafana:index/serviceAccount:ServiceAccount":
 		r = &ServiceAccount{}
+	case "grafana:index/serviceAccountPermission:ServiceAccountPermission":
+		r = &ServiceAccountPermission{}
 	case "grafana:index/serviceAccountToken:ServiceAccountToken":
 		r = &ServiceAccountToken{}
 	case "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck":
@@ -300,6 +302,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"index/serviceAccount",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/serviceAccountPermission",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

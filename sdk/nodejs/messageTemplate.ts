@@ -7,7 +7,7 @@ import * as utilities from "./utilities";
 /**
  * Manages Grafana Alerting message templates.
  *
- * * [Official documentation](https://grafana.com/docs/grafana/next/alerting/contact-points/message-templating/)
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/contact-points/message-templating/)
  * * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#templates)
  *
  * This resource requires Grafana 9.1.0 or later.

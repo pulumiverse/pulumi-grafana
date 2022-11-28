@@ -15,6 +15,24 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
     /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var admin = new Grafana.ServiceAccount("admin", new()
+    ///     {
+    ///         IsDisabled = false,
+    ///         Role = "Admin",
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/serviceAccount:ServiceAccount")]
     public partial class ServiceAccount : global::Pulumi.CustomResource

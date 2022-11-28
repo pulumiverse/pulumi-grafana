@@ -14,6 +14,33 @@ import (
 //
 // * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := grafana.NewServiceAccount(ctx, "admin", &grafana.ServiceAccountArgs{
+//				IsDisabled: pulumi.Bool(false),
+//				Role:       pulumi.String("Admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type ServiceAccount struct {
 	pulumi.CustomResourceState
 

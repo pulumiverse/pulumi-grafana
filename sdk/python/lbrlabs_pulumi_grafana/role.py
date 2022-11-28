@@ -348,11 +348,16 @@ class Role(pulumi.CustomResource):
             global_=True,
             permissions=[
                 grafana.RolePermissionArgs(
-                    action="users:create",
+                    action="org.users:add",
+                    scope="users:*",
                 ),
                 grafana.RolePermissionArgs(
-                    action="users:read",
-                    scope="global:users:*",
+                    action="org.users:write",
+                    scope="users:*",
+                ),
+                grafana.RolePermissionArgs(
+                    action="org.users:read",
+                    scope="users:*",
                 ),
             ],
             uid="superuseruid",
@@ -400,11 +405,16 @@ class Role(pulumi.CustomResource):
             global_=True,
             permissions=[
                 grafana.RolePermissionArgs(
-                    action="users:create",
+                    action="org.users:add",
+                    scope="users:*",
                 ),
                 grafana.RolePermissionArgs(
-                    action="users:read",
-                    scope="global:users:*",
+                    action="org.users:write",
+                    scope="users:*",
+                ),
+                grafana.RolePermissionArgs(
+                    action="org.users:read",
+                    scope="users:*",
                 ),
             ],
             uid="superuseruid",

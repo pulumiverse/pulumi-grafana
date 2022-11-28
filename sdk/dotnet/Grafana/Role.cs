@@ -33,12 +33,18 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///         {
     ///             new Grafana.Inputs.RolePermissionArgs
     ///             {
-    ///                 Action = "users:create",
+    ///                 Action = "org.users:add",
+    ///                 Scope = "users:*",
     ///             },
     ///             new Grafana.Inputs.RolePermissionArgs
     ///             {
-    ///                 Action = "users:read",
-    ///                 Scope = "global:users:*",
+    ///                 Action = "org.users:write",
+    ///                 Scope = "users:*",
+    ///             },
+    ///             new Grafana.Inputs.RolePermissionArgs
+    ///             {
+    ///                 Action = "org.users:read",
+    ///                 Scope = "users:*",
     ///             },
     ///         },
     ///         Uid = "superuseruid",

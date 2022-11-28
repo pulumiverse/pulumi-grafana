@@ -50,71 +50,47 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///     {
     ///         Type = "influxdb",
     ///         Url = "http://influxdb.example.net:8086/",
-    ///         Username = "myapp",
-    ///         Password = "foobarbaz",
+    ///         BasicAuthEnabled = true,
+    ///         BasicAuthUsername = "username",
     ///         DatabaseName = influxdb_database.Metrics.Name,
+    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["authType"] = "default",
+    ///             ["basicAuthPassword"] = "mypassword",
+    ///         }),
     ///     });
     /// 
     ///     var cloudwatch = new Grafana.DataSource("cloudwatch", new()
     ///     {
     ///         Type = "cloudwatch",
-    ///         JsonDatas = new[]
+    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             new Grafana.Inputs.DataSourceJsonDataArgs
-    ///             {
-    ///                 DefaultRegion = "us-east-1",
-    ///                 AuthType = "keys",
-    ///             },
-    ///         },
-    ///         SecureJsonDatas = new[]
+    ///             ["defaultRegion"] = "us-east-1",
+    ///             ["authType"] = "keys",
+    ///         }),
+    ///         SecureJsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             new Grafana.Inputs.DataSourceSecureJsonDataArgs
-    ///             {
-    ///                 AccessKey = "123",
-    ///                 SecretKey = "456",
-    ///             },
-    ///         },
+    ///             ["accessKey"] = "123",
+    ///             ["secretKey"] = "456",
+    ///         }),
     ///     });
     /// 
     ///     var prometheus = new Grafana.DataSource("prometheus", new()
     ///     {
     ///         Type = "prometheus",
-    ///         Url = "https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-1234567890/",
-    ///         JsonDatas = new[]
+    ///         Url = "https://my-instances.com",
+    ///         BasicAuthEnabled = true,
+    ///         BasicAuthUsername = "username",
+    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             new Grafana.Inputs.DataSourceJsonDataArgs
-    ///             {
-    ///                 HttpMethod = "POST",
-    ///                 Sigv4Auth = true,
-    ///                 Sigv4AuthType = "default",
-    ///                 Sigv4Region = "eu-west-1",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    ///     var stackdriver = new Grafana.DataSource("stackdriver", new()
-    ///     {
-    ///         Type = "stackdriver",
-    ///         JsonDatas = new[]
+    ///             ["httpMethod"] = "POST",
+    ///             ["prometheusType"] = "Mimir",
+    ///             ["prometheusVersion"] = "2.4.0",
+    ///         }),
+    ///         SecureJsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             new Grafana.Inputs.DataSourceJsonDataArgs
-    ///             {
-    ///                 TokenUri = "https://oauth2.googleapis.com/token",
-    ///                 AuthenticationType = "jwt",
-    ///                 DefaultProject = "default-project",
-    ///                 ClientEmail = "client-email@default-project.iam.gserviceaccount.com",
-    ///             },
-    ///         },
-    ///         SecureJsonDatas = new[]
-    ///         {
-    ///             new Grafana.Inputs.DataSourceSecureJsonDataArgs
-    ///             {
-    ///                 PrivateKey = @"-----BEGIN PRIVATE KEY-----
-    /// private-key
-    /// -----END PRIVATE KEY-----
-    /// ",
-    ///             },
-    ///         },
+    ///             ["basicAuthPassword"] = "password",
+    ///         }),
     ///     });
     /// 
     /// });

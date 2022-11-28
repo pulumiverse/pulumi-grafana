@@ -174,7 +174,11 @@ import * as utilities from "./utilities";
  *                 200,
  *                 201,
  *             ],
- *             validHttpVersions: ["HTTP/2"],
+ *             validHttpVersions: [
+ *                 "HTTP/1.0",
+ *                 "HTTP/1.1",
+ *                 "HTTP/2",
+ *             ],
  *             failIfBodyMatchesRegexps: ["*bad stuff*"],
  *             failIfBodyNotMatchesRegexps: ["*good stuff*"],
  *             failIfHeaderMatchesRegexps: [{
