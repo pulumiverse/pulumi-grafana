@@ -102,8 +102,6 @@ export class CloudApiKey extends pulumi.CustomResource {
             resourceInputs["key"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["key"] };
-        opts = pulumi.mergeOptions(opts, secretOpts);
         super(CloudApiKey.__pulumiType, name, resourceInputs, opts);
     }
 }

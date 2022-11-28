@@ -432,15 +432,13 @@ class AlertNotification(pulumi.CustomResource):
             __props__.__dict__["frequency"] = frequency
             __props__.__dict__["is_default"] = is_default
             __props__.__dict__["name"] = name
-            __props__.__dict__["secure_settings"] = None if secure_settings is None else pulumi.Output.secret(secure_settings)
+            __props__.__dict__["secure_settings"] = secure_settings
             __props__.__dict__["send_reminder"] = send_reminder
             __props__.__dict__["settings"] = settings
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
             __props__.__dict__["uid"] = uid
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secureSettings"])
-        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AlertNotification, __self__).__init__(
             'grafana:index/alertNotification:AlertNotification',
             resource_name,

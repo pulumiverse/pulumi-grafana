@@ -280,13 +280,11 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
             __props__.__dict__["metrics_instance_id"] = metrics_instance_id
             if metrics_publisher_key is None and not opts.urn:
                 raise TypeError("Missing required property 'metrics_publisher_key'")
-            __props__.__dict__["metrics_publisher_key"] = None if metrics_publisher_key is None else pulumi.Output.secret(metrics_publisher_key)
+            __props__.__dict__["metrics_publisher_key"] = metrics_publisher_key
             if stack_id is None and not opts.urn:
                 raise TypeError("Missing required property 'stack_id'")
             __props__.__dict__["stack_id"] = stack_id
             __props__.__dict__["sm_access_token"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["metricsPublisherKey"])
-        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SyntheticMonitoringInstallation, __self__).__init__(
             'grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation',
             resource_name,

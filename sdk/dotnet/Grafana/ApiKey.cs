@@ -91,10 +91,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/lbrlabs",
-                AdditionalSecretOutputs =
-                {
-                    "key",
-                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -151,16 +147,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? Expiration { get; set; }
 
         [Input("key")]
-        private Input<string>? _key;
-        public Input<string>? Key
-        {
-            get => _key;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _key = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        public Input<string>? Key { get; set; }
 
         [Input("name")]
         public Input<string>? Name { get; set; }

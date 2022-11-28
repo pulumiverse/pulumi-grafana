@@ -13,21 +13,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class ContactPointAlertmanagerGetArgs : global::Pulumi.ResourceArgs
     {
-        [Input("basicAuthPassword")]
-        private Input<string>? _basicAuthPassword;
-
         /// <summary>
         /// The password component of the basic auth credentials to use.
         /// </summary>
-        public Input<string>? BasicAuthPassword
-        {
-            get => _basicAuthPassword;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _basicAuthPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("basicAuthPassword")]
+        public Input<string>? BasicAuthPassword { get; set; }
 
         /// <summary>
         /// The username component of the basic auth credentials to use.
@@ -50,11 +40,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public InputMap<string> Settings
         {
             get => _settings ?? (_settings = new InputMap<string>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
-                _settings = Output.All(value, emptySecret).Apply(v => v[0]);
-            }
+            set => _settings = value;
         }
 
         /// <summary>

@@ -64,8 +64,7 @@
                     "environment": [
                         "GRAFANA_AUTH"
                     ]
-                },
-                "secret": true
+                }
             },
             "caCert": {
                 "type": "string",
@@ -83,8 +82,7 @@
                     "environment": [
                         "GRAFANA_CLOUD_API_KEY"
                     ]
-                },
-                "secret": true
+                }
             },
             "cloudApiUrl": {
                 "type": "string",
@@ -100,8 +98,7 @@
                 "additionalProperties": {
                     "type": "string"
                 },
-                "description": "Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the\n`GRAFANA_HTTP_HEADERS` environment variable in JSON format.\n",
-                "secret": true
+                "description": "Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the\n`GRAFANA_HTTP_HEADERS` environment variable in JSON format.\n"
             },
             "insecureSkipVerify": {
                 "type": "boolean",
@@ -119,8 +116,7 @@
                     "environment": [
                         "GRAFANA_ONCALL_ACCESS_TOKEN"
                     ]
-                },
-                "secret": true
+                }
             },
             "oncallUrl": {
                 "type": "string",
@@ -156,8 +152,7 @@
                     "environment": [
                         "GRAFANA_SM_ACCESS_TOKEN"
                     ]
-                },
-                "secret": true
+                }
             },
             "smUrl": {
                 "type": "string",
@@ -247,8 +242,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "basicAuthUser": {
                     "type": "string",
@@ -278,8 +272,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "uid": {
                     "type": "string",
@@ -352,8 +345,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "uid": {
                     "type": "string",
@@ -426,8 +418,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "uid": {
                     "type": "string",
@@ -445,8 +436,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "useDiscordUsername": {
                     "type": "boolean",
@@ -513,8 +503,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "singleEmail": {
                     "type": "boolean",
@@ -587,8 +576,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "uid": {
                     "type": "string",
@@ -606,8 +594,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 }
             },
             "type": "object",
@@ -641,8 +628,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "settings": {
                     "type": "object",
@@ -654,8 +640,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "topic": {
                     "type": "string",
@@ -700,8 +685,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "autoClose": {
                     "type": "boolean",
@@ -767,8 +751,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "uid": {
                     "type": "string",
@@ -847,8 +830,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "settings": {
                     "type": "object",
@@ -860,8 +842,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "severity": {
                     "type": "string",
@@ -913,8 +894,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "device": {
                     "type": "string",
@@ -998,8 +978,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "sound": {
                     "type": "string",
@@ -1026,8 +1005,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 }
             },
             "type": "object",
@@ -1054,8 +1032,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "check": {
                     "type": "string",
@@ -1121,8 +1098,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "uid": {
                     "type": "string",
@@ -1242,8 +1218,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "text": {
                     "type": "string",
@@ -1270,8 +1245,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "uid": {
                     "type": "string",
@@ -1289,8 +1263,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "username": {
                     "type": "string",
@@ -1350,8 +1323,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "title": {
                     "type": "string",
@@ -1378,8 +1350,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 }
             },
             "type": "object",
@@ -1434,8 +1405,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "token": {
                     "type": "string",
@@ -1444,8 +1414,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "uid": {
                     "type": "string",
@@ -1481,8 +1450,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "disableResolveMessage": {
                     "type": "boolean",
@@ -1521,8 +1489,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "uid": {
                     "type": "string",
@@ -1581,8 +1548,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "uid": {
                     "type": "string",
@@ -1625,8 +1591,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "authorizationScheme": {
                     "type": "string",
@@ -1644,8 +1609,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "basicAuthUser": {
                     "type": "string",
@@ -1693,8 +1657,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "uid": {
                     "type": "string",
@@ -1758,8 +1721,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "title": {
                     "type": "string",
@@ -1786,8 +1748,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 }
             },
             "type": "object",
@@ -2478,8 +2439,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "accessToken": {
                     "type": "string",
@@ -2488,8 +2448,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "authToken": {
                     "type": "string",
@@ -2498,8 +2457,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "basicAuthPassword": {
                     "type": "string",
@@ -2508,8 +2466,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "clientSecret": {
                     "type": "string",
@@ -2518,8 +2475,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "password": {
                     "type": "string",
@@ -2528,8 +2484,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "privateKey": {
                     "type": "string",
@@ -2538,8 +2493,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "secretKey": {
                     "type": "string",
@@ -2548,8 +2502,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "sigv4AccessKey": {
                     "type": "string",
@@ -2558,8 +2511,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "sigv4SecretKey": {
                     "type": "string",
@@ -2568,8 +2520,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "tlsCaCert": {
                     "type": "string",
@@ -2578,8 +2529,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "tlsClientCert": {
                     "type": "string",
@@ -2588,8 +2538,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "tlsClientKey": {
                     "type": "string",
@@ -2598,8 +2547,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 }
             },
             "type": "object"
@@ -4443,8 +4391,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "insecureSkipVerify": {
                     "type": "boolean",
@@ -4607,8 +4554,7 @@
                         "python": {
                             "mapCase": false
                         }
-                    },
-                    "secret": true
+                    }
                 },
                 "insecureSkipVerify": {
                     "type": "boolean",
@@ -4752,8 +4698,7 @@
         "properties": {
             "auth": {
                 "type": "string",
-                "description": "API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.\n",
-                "secret": true
+                "description": "API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.\n"
             },
             "caCert": {
                 "type": "string",
@@ -4761,8 +4706,7 @@
             },
             "cloudApiKey": {
                 "type": "string",
-                "description": "API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.\n",
-                "secret": true
+                "description": "API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.\n"
             },
             "cloudApiUrl": {
                 "type": "string",
@@ -4774,8 +4718,7 @@
             },
             "oncallAccessToken": {
                 "type": "string",
-                "description": "A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.\n",
-                "secret": true
+                "description": "A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.\n"
             },
             "oncallUrl": {
                 "type": "string",
@@ -4791,8 +4734,7 @@
             },
             "smAccessToken": {
                 "type": "string",
-                "description": "A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.\n",
-                "secret": true
+                "description": "A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.\n"
             },
             "smUrl": {
                 "type": "string",
@@ -4823,8 +4765,7 @@
                     "environment": [
                         "GRAFANA_AUTH"
                     ]
-                },
-                "secret": true
+                }
             },
             "caCert": {
                 "type": "string",
@@ -4842,8 +4783,7 @@
                     "environment": [
                         "GRAFANA_CLOUD_API_KEY"
                     ]
-                },
-                "secret": true
+                }
             },
             "cloudApiUrl": {
                 "type": "string",
@@ -4870,8 +4810,7 @@
                     "environment": [
                         "GRAFANA_ONCALL_ACCESS_TOKEN"
                     ]
-                },
-                "secret": true
+                }
             },
             "oncallUrl": {
                 "type": "string",
@@ -4907,8 +4846,7 @@
                     "environment": [
                         "GRAFANA_SM_ACCESS_TOKEN"
                     ]
-                },
-                "secret": true
+                }
             },
             "smUrl": {
                 "type": "string",
@@ -4982,8 +4920,7 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).\n",
-                    "secret": true
+                    "description": "Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).\n"
                 },
                 "sendReminder": {
                     "type": "boolean",
@@ -5032,8 +4969,7 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).\n",
-                    "secret": true
+                    "description": "Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).\n"
                 },
                 "sendReminder": {
                     "type": "boolean",
@@ -5082,8 +5018,7 @@
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
                         },
-                        "description": "Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).\n",
-                        "secret": true
+                        "description": "Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).\n"
                     },
                     "sendReminder": {
                         "type": "boolean",
@@ -5225,8 +5160,7 @@
                     "type": "string"
                 },
                 "key": {
-                    "type": "string",
-                    "secret": true
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"
@@ -5278,8 +5212,7 @@
                         "type": "string"
                     },
                     "key": {
-                        "type": "string",
-                        "secret": true
+                        "type": "string"
                     },
                     "name": {
                         "type": "string",
@@ -5362,8 +5295,7 @@
                 },
                 "key": {
                     "type": "string",
-                    "description": "The generated API key.\n",
-                    "secret": true
+                    "description": "The generated API key.\n"
                 },
                 "name": {
                     "type": "string",
@@ -5411,8 +5343,7 @@
                     },
                     "key": {
                         "type": "string",
-                        "description": "The generated API key.\n",
-                        "secret": true
+                        "description": "The generated API key.\n"
                     },
                     "name": {
                         "type": "string",
@@ -6381,8 +6312,7 @@
                 "basicAuthPassword": {
                     "type": "string",
                     "description": "Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
-                    "secret": true
+                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+."
                 },
                 "basicAuthUsername": {
                     "type": "string",
@@ -6397,8 +6327,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Custom HTTP headers\n",
-                    "secret": true
+                    "description": "Custom HTTP headers\n"
                 },
                 "isDefault": {
                     "type": "boolean",
@@ -6423,13 +6352,11 @@
                 "password": {
                     "type": "string",
                     "description": "(Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
-                    "secret": true
+                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+."
                 },
                 "secureJsonDataEncoded": {
                     "type": "string",
-                    "description": "Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n",
-                    "secret": true
+                    "description": "Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n"
                 },
                 "secureJsonDatas": {
                     "type": "array",
@@ -6437,8 +6364,7 @@
                         "$ref": "#/types/grafana:index/DataSourceSecureJsonData:DataSourceSecureJsonData"
                     },
                     "description": "Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.",
-                    "secret": true
+                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes."
                 },
                 "type": {
                     "type": "string",
@@ -6474,8 +6400,7 @@
                 "basicAuthPassword": {
                     "type": "string",
                     "description": "Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
-                    "secret": true
+                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+."
                 },
                 "basicAuthUsername": {
                     "type": "string",
@@ -6490,8 +6415,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Custom HTTP headers\n",
-                    "secret": true
+                    "description": "Custom HTTP headers\n"
                 },
                 "isDefault": {
                     "type": "boolean",
@@ -6516,13 +6440,11 @@
                 "password": {
                     "type": "string",
                     "description": "(Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
-                    "secret": true
+                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+."
                 },
                 "secureJsonDataEncoded": {
                     "type": "string",
-                    "description": "Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n",
-                    "secret": true
+                    "description": "Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n"
                 },
                 "secureJsonDatas": {
                     "type": "array",
@@ -6530,8 +6452,7 @@
                         "$ref": "#/types/grafana:index/DataSourceSecureJsonData:DataSourceSecureJsonData"
                     },
                     "description": "Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.",
-                    "secret": true
+                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes."
                 },
                 "type": {
                     "type": "string",
@@ -6567,8 +6488,7 @@
                     "basicAuthPassword": {
                         "type": "string",
                         "description": "Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                        "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
-                        "secret": true
+                        "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+."
                     },
                     "basicAuthUsername": {
                         "type": "string",
@@ -6583,8 +6503,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "Custom HTTP headers\n",
-                        "secret": true
+                        "description": "Custom HTTP headers\n"
                     },
                     "isDefault": {
                         "type": "boolean",
@@ -6609,13 +6528,11 @@
                     "password": {
                         "type": "string",
                         "description": "(Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                        "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
-                        "secret": true
+                        "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+."
                     },
                     "secureJsonDataEncoded": {
                         "type": "string",
-                        "description": "Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n",
-                        "secret": true
+                        "description": "Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n"
                     },
                     "secureJsonDatas": {
                         "type": "array",
@@ -6623,8 +6540,7 @@
                             "$ref": "#/types/grafana:index/DataSourceSecureJsonData:DataSourceSecureJsonData"
                         },
                         "description": "Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.\n",
-                        "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.",
-                        "secret": true
+                        "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes."
                     },
                     "type": {
                         "type": "string",
@@ -7236,7 +7152,7 @@
             }
         },
         "grafana:index/notificationPolicy:NotificationPolicy": {
-            "description": "Sets the global notification policy for Grafana. Note that this resource manages the entire notification policy tree, and will overwrite any existing policies.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/alerting/notifications/)\n* [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#notification-policies)\n\nThis resource requires Grafana 9.1.0 or later.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@lbrlabs/pulumi-grafana\";\n\nconst aContactPoint = new grafana.ContactPoint(\"aContactPoint\", {emails: [{\n    addresses: [\n        \"one@company.org\",\n        \"two@company.org\",\n    ],\n    message: \"{{ len .Alerts.Firing }} firing.\",\n}]});\nconst aMuteTiming = new grafana.MuteTiming(\"aMuteTiming\", {intervals: [{\n    weekdays: [\"monday\"],\n}]});\nconst myNotificationPolicy = new grafana.NotificationPolicy(\"myNotificationPolicy\", {\n    groupBies: [\"...\"],\n    contactPoint: aContactPoint.name,\n    groupWait: \"45s\",\n    groupInterval: \"6m\",\n    repeatInterval: \"3h\",\n    policies: [\n        {\n            matchers: [{\n                label: \"mylabel\",\n                match: \"=\",\n                value: \"myvalue\",\n            }],\n            contactPoint: aContactPoint.name,\n            groupBies: [\"alertname\"],\n            \"continue\": true,\n            muteTimings: [aMuteTiming.name],\n            groupWait: \"45s\",\n            groupInterval: \"6m\",\n            repeatInterval: \"3h\",\n            policies: [{\n                matchers: [{\n                    label: \"sublabel\",\n                    match: \"=\",\n                    value: \"subvalue\",\n                }],\n                contactPoint: aContactPoint.name,\n                groupBies: [\"...\"],\n            }],\n        },\n        {\n            matchers: [{\n                label: \"anotherlabel\",\n                match: \"=~\",\n                value: \"another value.*\",\n            }],\n            contactPoint: aContactPoint.name,\n            groupBies: [\"...\"],\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\na_contact_point = grafana.ContactPoint(\"aContactPoint\", emails=[grafana.ContactPointEmailArgs(\n    addresses=[\n        \"one@company.org\",\n        \"two@company.org\",\n    ],\n    message=\"{{ len .Alerts.Firing }} firing.\",\n)])\na_mute_timing = grafana.MuteTiming(\"aMuteTiming\", intervals=[grafana.MuteTimingIntervalArgs(\n    weekdays=[\"monday\"],\n)])\nmy_notification_policy = grafana.NotificationPolicy(\"myNotificationPolicy\",\n    group_bies=[\"...\"],\n    contact_point=a_contact_point.name,\n    group_wait=\"45s\",\n    group_interval=\"6m\",\n    repeat_interval=\"3h\",\n    policies=[\n        grafana.NotificationPolicyPolicyArgs(\n            matchers=[grafana.NotificationPolicyPolicyMatcherArgs(\n                label=\"mylabel\",\n                match=\"=\",\n                value=\"myvalue\",\n            )],\n            contact_point=a_contact_point.name,\n            group_bies=[\"alertname\"],\n            continue_=True,\n            mute_timings=[a_mute_timing.name],\n            group_wait=\"45s\",\n            group_interval=\"6m\",\n            repeat_interval=\"3h\",\n            policies=[grafana.NotificationPolicyPolicyPolicyArgs(\n                matchers=[grafana.NotificationPolicyPolicyPolicyMatcherArgs(\n                    label=\"sublabel\",\n                    match=\"=\",\n                    value=\"subvalue\",\n                )],\n                contact_point=a_contact_point.name,\n                group_bies=[\"...\"],\n            )],\n        ),\n        grafana.NotificationPolicyPolicyArgs(\n            matchers=[grafana.NotificationPolicyPolicyMatcherArgs(\n                label=\"anotherlabel\",\n                match=\"=~\",\n                value=\"another value.*\",\n            )],\n            contact_point=a_contact_point.name,\n            group_bies=[\"...\"],\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var aContactPoint = new Grafana.ContactPoint(\"aContactPoint\", new()\n    {\n        Emails = new[]\n        {\n            new Grafana.Inputs.ContactPointEmailArgs\n            {\n                Addresses = new[]\n                {\n                    \"one@company.org\",\n                    \"two@company.org\",\n                },\n                Message = \"{{ len .Alerts.Firing }} firing.\",\n            },\n        },\n    });\n\n    var aMuteTiming = new Grafana.MuteTiming(\"aMuteTiming\", new()\n    {\n        Intervals = new[]\n        {\n            new Grafana.Inputs.MuteTimingIntervalArgs\n            {\n                Weekdays = new[]\n                {\n                    \"monday\",\n                },\n            },\n        },\n    });\n\n    var myNotificationPolicy = new Grafana.NotificationPolicy(\"myNotificationPolicy\", new()\n    {\n        GroupBies = new[]\n        {\n            \"...\",\n        },\n        ContactPoint = aContactPoint.Name,\n        GroupWait = \"45s\",\n        GroupInterval = \"6m\",\n        RepeatInterval = \"3h\",\n        Policies = new[]\n        {\n            new Grafana.Inputs.NotificationPolicyPolicyArgs\n            {\n                Matchers = new[]\n                {\n                    new Grafana.Inputs.NotificationPolicyPolicyMatcherArgs\n                    {\n                        Label = \"mylabel\",\n                        Match = \"=\",\n                        Value = \"myvalue\",\n                    },\n                },\n                ContactPoint = aContactPoint.Name,\n                GroupBies = new[]\n                {\n                    \"alertname\",\n                },\n                Continue = true,\n                MuteTimings = new[]\n                {\n                    aMuteTiming.Name,\n                },\n                GroupWait = \"45s\",\n                GroupInterval = \"6m\",\n                RepeatInterval = \"3h\",\n                Policies = new[]\n                {\n                    new Grafana.Inputs.NotificationPolicyPolicyPolicyArgs\n                    {\n                        Matchers = new[]\n                        {\n                            new Grafana.Inputs.NotificationPolicyPolicyPolicyMatcherArgs\n                            {\n                                Label = \"sublabel\",\n                                Match = \"=\",\n                                Value = \"subvalue\",\n                            },\n                        },\n                        ContactPoint = aContactPoint.Name,\n                        GroupBies = new[]\n                        {\n                            \"...\",\n                        },\n                    },\n                },\n            },\n            new Grafana.Inputs.NotificationPolicyPolicyArgs\n            {\n                Matchers = new[]\n                {\n                    new Grafana.Inputs.NotificationPolicyPolicyMatcherArgs\n                    {\n                        Label = \"anotherlabel\",\n                        Match = \"=~\",\n                        Value = \"another value.*\",\n                    },\n                },\n                ContactPoint = aContactPoint.Name,\n                GroupBies = new[]\n                {\n                    \"...\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\taContactPoint, err := grafana.NewContactPoint(ctx, \"aContactPoint\", \u0026grafana.ContactPointArgs{\n\t\t\tEmails: ContactPointEmailArray{\n\t\t\t\t\u0026ContactPointEmailArgs{\n\t\t\t\t\tAddresses: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"one@company.org\"),\n\t\t\t\t\t\tpulumi.String(\"two@company.org\"),\n\t\t\t\t\t},\n\t\t\t\t\tMessage: pulumi.String(\"{{ len .Alerts.Firing }} firing.\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\taMuteTiming, err := grafana.NewMuteTiming(ctx, \"aMuteTiming\", \u0026grafana.MuteTimingArgs{\n\t\t\tIntervals: MuteTimingIntervalArray{\n\t\t\t\t\u0026MuteTimingIntervalArgs{\n\t\t\t\t\tWeekdays: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"monday\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewNotificationPolicy(ctx, \"myNotificationPolicy\", \u0026grafana.NotificationPolicyArgs{\n\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"...\"),\n\t\t\t},\n\t\t\tContactPoint:   aContactPoint.Name,\n\t\t\tGroupWait:      pulumi.String(\"45s\"),\n\t\t\tGroupInterval:  pulumi.String(\"6m\"),\n\t\t\tRepeatInterval: pulumi.String(\"3h\"),\n\t\t\tPolicies: NotificationPolicyPolicyArray{\n\t\t\t\t\u0026NotificationPolicyPolicyArgs{\n\t\t\t\t\tMatchers: NotificationPolicyPolicyMatcherArray{\n\t\t\t\t\t\t\u0026NotificationPolicyPolicyMatcherArgs{\n\t\t\t\t\t\t\tLabel: pulumi.String(\"mylabel\"),\n\t\t\t\t\t\t\tMatch: pulumi.String(\"=\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"myvalue\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tContactPoint: aContactPoint.Name,\n\t\t\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"alertname\"),\n\t\t\t\t\t},\n\t\t\t\t\tContinue: pulumi.Bool(true),\n\t\t\t\t\tMuteTimings: pulumi.StringArray{\n\t\t\t\t\t\taMuteTiming.Name,\n\t\t\t\t\t},\n\t\t\t\t\tGroupWait:      pulumi.String(\"45s\"),\n\t\t\t\t\tGroupInterval:  pulumi.String(\"6m\"),\n\t\t\t\t\tRepeatInterval: pulumi.String(\"3h\"),\n\t\t\t\t\tPolicies: NotificationPolicyPolicyPolicyArray{\n\t\t\t\t\t\t\u0026NotificationPolicyPolicyPolicyArgs{\n\t\t\t\t\t\t\tMatchers: NotificationPolicyPolicyPolicyMatcherArray{\n\t\t\t\t\t\t\t\t\u0026NotificationPolicyPolicyPolicyMatcherArgs{\n\t\t\t\t\t\t\t\t\tLabel: pulumi.String(\"sublabel\"),\n\t\t\t\t\t\t\t\t\tMatch: pulumi.String(\"=\"),\n\t\t\t\t\t\t\t\t\tValue: pulumi.String(\"subvalue\"),\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\tContactPoint: aContactPoint.Name,\n\t\t\t\t\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\t\t\t\t\tpulumi.String(\"...\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026NotificationPolicyPolicyArgs{\n\t\t\t\t\tMatchers: NotificationPolicyPolicyMatcherArray{\n\t\t\t\t\t\t\u0026NotificationPolicyPolicyMatcherArgs{\n\t\t\t\t\t\t\tLabel: pulumi.String(\"anotherlabel\"),\n\t\t\t\t\t\t\tMatch: pulumi.String(\"=~\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"another value.*\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tContactPoint: aContactPoint.Name,\n\t\t\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"...\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.ContactPoint;\nimport com.pulumi.grafana.ContactPointArgs;\nimport com.pulumi.grafana.inputs.ContactPointEmailArgs;\nimport com.pulumi.grafana.MuteTiming;\nimport com.pulumi.grafana.MuteTimingArgs;\nimport com.pulumi.grafana.inputs.MuteTimingIntervalArgs;\nimport com.pulumi.grafana.NotificationPolicy;\nimport com.pulumi.grafana.NotificationPolicyArgs;\nimport com.pulumi.grafana.inputs.NotificationPolicyPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var aContactPoint = new ContactPoint(\"aContactPoint\", ContactPointArgs.builder()        \n            .emails(ContactPointEmailArgs.builder()\n                .addresses(                \n                    \"one@company.org\",\n                    \"two@company.org\")\n                .message(\"{{ len .Alerts.Firing }} firing.\")\n                .build())\n            .build());\n\n        var aMuteTiming = new MuteTiming(\"aMuteTiming\", MuteTimingArgs.builder()        \n            .intervals(MuteTimingIntervalArgs.builder()\n                .weekdays(\"monday\")\n                .build())\n            .build());\n\n        var myNotificationPolicy = new NotificationPolicy(\"myNotificationPolicy\", NotificationPolicyArgs.builder()        \n            .groupBies(\"...\")\n            .contactPoint(aContactPoint.name())\n            .groupWait(\"45s\")\n            .groupInterval(\"6m\")\n            .repeatInterval(\"3h\")\n            .policies(            \n                NotificationPolicyPolicyArgs.builder()\n                    .matchers(NotificationPolicyPolicyMatcherArgs.builder()\n                        .label(\"mylabel\")\n                        .match(\"=\")\n                        .value(\"myvalue\")\n                        .build())\n                    .contactPoint(aContactPoint.name())\n                    .groupBies(\"alertname\")\n                    .continue_(true)\n                    .muteTimings(aMuteTiming.name())\n                    .groupWait(\"45s\")\n                    .groupInterval(\"6m\")\n                    .repeatInterval(\"3h\")\n                    .policies(NotificationPolicyPolicyPolicyArgs.builder()\n                        .matchers(NotificationPolicyPolicyPolicyMatcherArgs.builder()\n                            .label(\"sublabel\")\n                            .match(\"=\")\n                            .value(\"subvalue\")\n                            .build())\n                        .contactPoint(aContactPoint.name())\n                        .groupBies(\"...\")\n                        .build())\n                    .build(),\n                NotificationPolicyPolicyArgs.builder()\n                    .matchers(NotificationPolicyPolicyMatcherArgs.builder()\n                        .label(\"anotherlabel\")\n                        .match(\"=~\")\n                        .value(\"another value.*\")\n                        .build())\n                    .contactPoint(aContactPoint.name())\n                    .groupBies(\"...\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  aContactPoint:\n    type: grafana:ContactPoint\n    properties:\n      emails:\n        - addresses:\n            - one@company.org\n            - two@company.org\n          message: '{{ len .Alerts.Firing }} firing.'\n  aMuteTiming:\n    type: grafana:MuteTiming\n    properties:\n      intervals:\n        - weekdays:\n            - monday\n  myNotificationPolicy:\n    type: grafana:NotificationPolicy\n    properties:\n      groupBies:\n        - '...'\n      contactPoint: ${aContactPoint.name}\n      groupWait: 45s\n      groupInterval: 6m\n      repeatInterval: 3h\n      policies:\n        - matchers:\n            - label: mylabel\n              match: =\n              value: myvalue\n          contactPoint: ${aContactPoint.name}\n          groupBies:\n            - alertname\n          continue: true\n          muteTimings:\n            - ${aMuteTiming.name}\n          groupWait: 45s\n          groupInterval: 6m\n          repeatInterval: 3h\n          policies:\n            - matchers:\n                - label: sublabel\n                  match: =\n                  value: subvalue\n              contactPoint: ${aContactPoint.name}\n              groupBies:\n                - '...'\n        - matchers:\n            - label: anotherlabel\n              match: =~\n              value: another value.*\n          contactPoint: ${aContactPoint.name}\n          groupBies:\n            - '...'\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nThe policy is a singleton, so the ID is a constant \"policy\" value.\n\n```sh\n $ pulumi import grafana:index/notificationPolicy:NotificationPolicy notification_policy_name \"policy\"\n```\n\n ",
+            "description": "Sets the global notification policy for Grafana. Note that this resource manages the entire notification policy tree, and will overwrite any existing policies.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/alerting/notifications/)\n* [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#notification-policies)\n\nThis resource requires Grafana 9.1.0 or later.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@lbrlabs/pulumi-grafana\";\n\nconst aContactPoint = new grafana.ContactPoint(\"aContactPoint\", {emails: [{\n    addresses: [\n        \"one@company.org\",\n        \"two@company.org\",\n    ],\n    message: \"{{ len .Alerts.Firing }} firing.\",\n}]});\nconst aMuteTiming = new grafana.MuteTiming(\"aMuteTiming\", {intervals: [{\n    weekdays: [\"monday\"],\n}]});\nconst myNotificationPolicy = new grafana.NotificationPolicy(\"myNotificationPolicy\", {\n    groupBies: [\"...\"],\n    contactPoint: aContactPoint.name,\n    groupWait: \"45s\",\n    groupInterval: \"6m\",\n    repeatInterval: \"3h\",\n    policies: [\n        {\n            matchers: [{\n                label: \"mylabel\",\n                match: \"=\",\n                value: \"myvalue\",\n            }],\n            contactPoint: aContactPoint.name,\n            groupBies: [\"alertname\"],\n            \"continue\": true,\n            muteTimings: [aMuteTiming.name],\n            groupWait: \"45s\",\n            groupInterval: \"6m\",\n            repeatInterval: \"3h\",\n            policies: [{\n                matchers: [{\n                    label: \"sublabel\",\n                    match: \"=\",\n                    value: \"subvalue\",\n                }],\n                contactPoint: aContactPoint.name,\n                groupBies: [\"...\"],\n            }],\n        },\n        {\n            matchers: [{\n                label: \"anotherlabel\",\n                match: \"=~\",\n                value: \"another value.*\",\n            }],\n            contactPoint: aContactPoint.name,\n            groupBies: [\"...\"],\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\na_contact_point = grafana.ContactPoint(\"aContactPoint\", emails=[grafana.ContactPointEmailArgs(\n    addresses=[\n        \"one@company.org\",\n        \"two@company.org\",\n    ],\n    message=\"{{ len .Alerts.Firing }} firing.\",\n)])\na_mute_timing = grafana.MuteTiming(\"aMuteTiming\", intervals=[grafana.MuteTimingIntervalArgs(\n    weekdays=[\"monday\"],\n)])\nmy_notification_policy = grafana.NotificationPolicy(\"myNotificationPolicy\",\n    group_bies=[\"...\"],\n    contact_point=a_contact_point.name,\n    group_wait=\"45s\",\n    group_interval=\"6m\",\n    repeat_interval=\"3h\",\n    policies=[\n        grafana.NotificationPolicyPolicyArgs(\n            matchers=[grafana.NotificationPolicyPolicyMatcherArgs(\n                label=\"mylabel\",\n                match=\"=\",\n                value=\"myvalue\",\n            )],\n            contact_point=a_contact_point.name,\n            group_bies=[\"alertname\"],\n            continue_=True,\n            mute_timings=[a_mute_timing.name],\n            group_wait=\"45s\",\n            group_interval=\"6m\",\n            repeat_interval=\"3h\",\n            policies=[grafana.NotificationPolicyPolicyPolicyArgs(\n                matchers=[grafana.NotificationPolicyPolicyPolicyMatcherArgs(\n                    label=\"sublabel\",\n                    match=\"=\",\n                    value=\"subvalue\",\n                )],\n                contact_point=a_contact_point.name,\n                group_bies=[\"...\"],\n            )],\n        ),\n        grafana.NotificationPolicyPolicyArgs(\n            matchers=[grafana.NotificationPolicyPolicyMatcherArgs(\n                label=\"anotherlabel\",\n                match=\"=~\",\n                value=\"another value.*\",\n            )],\n            contact_point=a_contact_point.name,\n            group_bies=[\"...\"],\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var aContactPoint = new Grafana.ContactPoint(\"aContactPoint\", new()\n    {\n        Emails = new[]\n        {\n            new Grafana.Inputs.ContactPointEmailArgs\n            {\n                Addresses = new[]\n                {\n                    \"one@company.org\",\n                    \"two@company.org\",\n                },\n                Message = \"{{ len .Alerts.Firing }} firing.\",\n            },\n        },\n    });\n\n    var aMuteTiming = new Grafana.MuteTiming(\"aMuteTiming\", new()\n    {\n        Intervals = new[]\n        {\n            new Grafana.Inputs.MuteTimingIntervalArgs\n            {\n                Weekdays = new[]\n                {\n                    \"monday\",\n                },\n            },\n        },\n    });\n\n    var myNotificationPolicy = new Grafana.NotificationPolicy(\"myNotificationPolicy\", new()\n    {\n        GroupBies = new[]\n        {\n            \"...\",\n        },\n        ContactPoint = aContactPoint.Name,\n        GroupWait = \"45s\",\n        GroupInterval = \"6m\",\n        RepeatInterval = \"3h\",\n        Policies = new[]\n        {\n            new Grafana.Inputs.NotificationPolicyPolicyArgs\n            {\n                Matchers = new[]\n                {\n                    new Grafana.Inputs.NotificationPolicyPolicyMatcherArgs\n                    {\n                        Label = \"mylabel\",\n                        Match = \"=\",\n                        Value = \"myvalue\",\n                    },\n                },\n                ContactPoint = aContactPoint.Name,\n                GroupBies = new[]\n                {\n                    \"alertname\",\n                },\n                Continue = true,\n                MuteTimings = new[]\n                {\n                    aMuteTiming.Name,\n                },\n                GroupWait = \"45s\",\n                GroupInterval = \"6m\",\n                RepeatInterval = \"3h\",\n                Policies = new[]\n                {\n                    new Grafana.Inputs.NotificationPolicyPolicyPolicyArgs\n                    {\n                        Matchers = new[]\n                        {\n                            new Grafana.Inputs.NotificationPolicyPolicyPolicyMatcherArgs\n                            {\n                                Label = \"sublabel\",\n                                Match = \"=\",\n                                Value = \"subvalue\",\n                            },\n                        },\n                        ContactPoint = aContactPoint.Name,\n                        GroupBies = new[]\n                        {\n                            \"...\",\n                        },\n                    },\n                },\n            },\n            new Grafana.Inputs.NotificationPolicyPolicyArgs\n            {\n                Matchers = new[]\n                {\n                    new Grafana.Inputs.NotificationPolicyPolicyMatcherArgs\n                    {\n                        Label = \"anotherlabel\",\n                        Match = \"=~\",\n                        Value = \"another value.*\",\n                    },\n                },\n                ContactPoint = aContactPoint.Name,\n                GroupBies = new[]\n                {\n                    \"...\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\taContactPoint, err := grafana.NewContactPoint(ctx, \"aContactPoint\", \u0026grafana.ContactPointArgs{\n\t\t\tEmails: ContactPointEmailArray{\n\t\t\t\t\u0026ContactPointEmailArgs{\n\t\t\t\t\tAddresses: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"one@company.org\"),\n\t\t\t\t\t\tpulumi.String(\"two@company.org\"),\n\t\t\t\t\t},\n\t\t\t\t\tMessage: pulumi.String(\"{{ len .Alerts.Firing }} firing.\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\taMuteTiming, err := grafana.NewMuteTiming(ctx, \"aMuteTiming\", \u0026grafana.MuteTimingArgs{\n\t\t\tIntervals: MuteTimingIntervalArray{\n\t\t\t\t\u0026MuteTimingIntervalArgs{\n\t\t\t\t\tWeekdays: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"monday\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewNotificationPolicy(ctx, \"myNotificationPolicy\", \u0026grafana.NotificationPolicyArgs{\n\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"...\"),\n\t\t\t},\n\t\t\tContactPoint:   aContactPoint.Name,\n\t\t\tGroupWait:      pulumi.String(\"45s\"),\n\t\t\tGroupInterval:  pulumi.String(\"6m\"),\n\t\t\tRepeatInterval: pulumi.String(\"3h\"),\n\t\t\tPolicies: NotificationPolicyPolicyArray{\n\t\t\t\t\u0026NotificationPolicyPolicyArgs{\n\t\t\t\t\tMatchers: NotificationPolicyPolicyMatcherArray{\n\t\t\t\t\t\t\u0026NotificationPolicyPolicyMatcherArgs{\n\t\t\t\t\t\t\tLabel: pulumi.String(\"mylabel\"),\n\t\t\t\t\t\t\tMatch: pulumi.String(\"=\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"myvalue\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tContactPoint: aContactPoint.Name,\n\t\t\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"alertname\"),\n\t\t\t\t\t},\n\t\t\t\t\tContinue: pulumi.Bool(true),\n\t\t\t\t\tMuteTimings: pulumi.StringArray{\n\t\t\t\t\t\taMuteTiming.Name,\n\t\t\t\t\t},\n\t\t\t\t\tGroupWait:      pulumi.String(\"45s\"),\n\t\t\t\t\tGroupInterval:  pulumi.String(\"6m\"),\n\t\t\t\t\tRepeatInterval: pulumi.String(\"3h\"),\n\t\t\t\t\tPolicies: NotificationPolicyPolicyPolicyArray{\n\t\t\t\t\t\t\u0026NotificationPolicyPolicyPolicyArgs{\n\t\t\t\t\t\t\tMatchers: NotificationPolicyPolicyPolicyMatcherArray{\n\t\t\t\t\t\t\t\t\u0026NotificationPolicyPolicyPolicyMatcherArgs{\n\t\t\t\t\t\t\t\t\tLabel: pulumi.String(\"sublabel\"),\n\t\t\t\t\t\t\t\t\tMatch: pulumi.String(\"=\"),\n\t\t\t\t\t\t\t\t\tValue: pulumi.String(\"subvalue\"),\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\tContactPoint: aContactPoint.Name,\n\t\t\t\t\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\t\t\t\t\tpulumi.String(\"...\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026NotificationPolicyPolicyArgs{\n\t\t\t\t\tMatchers: NotificationPolicyPolicyMatcherArray{\n\t\t\t\t\t\t\u0026NotificationPolicyPolicyMatcherArgs{\n\t\t\t\t\t\t\tLabel: pulumi.String(\"anotherlabel\"),\n\t\t\t\t\t\t\tMatch: pulumi.String(\"=~\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"another value.*\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tContactPoint: aContactPoint.Name,\n\t\t\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"...\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.ContactPoint;\nimport com.pulumi.grafana.ContactPointArgs;\nimport com.pulumi.grafana.inputs.ContactPointEmailArgs;\nimport com.pulumi.grafana.MuteTiming;\nimport com.pulumi.grafana.MuteTimingArgs;\nimport com.pulumi.grafana.inputs.MuteTimingIntervalArgs;\nimport com.pulumi.grafana.NotificationPolicy;\nimport com.pulumi.grafana.NotificationPolicyArgs;\nimport com.pulumi.grafana.inputs.NotificationPolicyPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var aContactPoint = new ContactPoint(\"aContactPoint\", ContactPointArgs.builder()        \n            .emails(ContactPointEmailArgs.builder()\n                .addresses(                \n                    \"one@company.org\",\n                    \"two@company.org\")\n                .message(\"{{ len .Alerts.Firing }} firing.\")\n                .build())\n            .build());\n\n        var aMuteTiming = new MuteTiming(\"aMuteTiming\", MuteTimingArgs.builder()        \n            .intervals(MuteTimingIntervalArgs.builder()\n                .weekdays(\"monday\")\n                .build())\n            .build());\n\n        var myNotificationPolicy = new NotificationPolicy(\"myNotificationPolicy\", NotificationPolicyArgs.builder()        \n            .groupBies(\"...\")\n            .contactPoint(aContactPoint.name())\n            .groupWait(\"45s\")\n            .groupInterval(\"6m\")\n            .repeatInterval(\"3h\")\n            .policies(            \n                NotificationPolicyPolicyArgs.builder()\n                    .matchers(NotificationPolicyPolicyMatcherArgs.builder()\n                        .label(\"mylabel\")\n                        .match(\"=\")\n                        .value(\"myvalue\")\n                        .build())\n                    .contactPoint(aContactPoint.name())\n                    .groupBies(\"alertname\")\n                    .continue_(true)\n                    .muteTimings(aMuteTiming.name())\n                    .groupWait(\"45s\")\n                    .groupInterval(\"6m\")\n                    .repeatInterval(\"3h\")\n                    .policies(NotificationPolicyPolicyPolicyArgs.builder()\n                        .matchers(NotificationPolicyPolicyPolicyMatcherArgs.builder()\n                            .label(\"sublabel\")\n                            .match(\"=\")\n                            .value(\"subvalue\")\n                            .build())\n                        .contactPoint(aContactPoint.name())\n                        .groupBies(\"...\")\n                        .build())\n                    .build(),\n                NotificationPolicyPolicyArgs.builder()\n                    .matchers(NotificationPolicyPolicyMatcherArgs.builder()\n                        .label(\"anotherlabel\")\n                        .match(\"=~\")\n                        .value(\"another value.*\")\n                        .build())\n                    .contactPoint(aContactPoint.name())\n                    .groupBies(\"...\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  aContactPoint:\n    type: grafana:ContactPoint\n    properties:\n      emails:\n        - addresses:\n            - one@company.org\n            - two@company.org\n          message: '{{ len .Alerts.Firing }} firing.'\n  aMuteTiming:\n    type: grafana:MuteTiming\n    properties:\n      intervals:\n        - weekdays:\n            - monday\n  myNotificationPolicy:\n    type: grafana:NotificationPolicy\n    properties:\n      groupBies:\n        - '...'\n      contactPoint: ${aContactPoint.name}\n      groupWait: 45s\n      groupInterval: 6m\n      repeatInterval: 3h\n      policies:\n        - matchers:\n            - label: mylabel\n              match: =\n              value: myvalue\n          contactPoint: ${aContactPoint.name}\n          groupBies:\n            - alertname\n          continue: true\n          muteTimings:\n            - ${aMuteTiming.name}\n          groupWait: 45s\n          groupInterval: 6m\n          repeatInterval: 3h\n          policies:\n            - matchers:\n                - label: sublabel\n                  match: =\n                  value: subvalue\n              contactPoint: ${aContactPoint.name}\n              groupBies:\n                - '...'\n        - matchers:\n            - label: anotherlabel\n              match: =~\n              value: another value.*\n          contactPoint: ${aContactPoint.name}\n          groupBies:\n            - '...'\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The policy is a singleton, so the ID is a constant \"policy\" value.\n\n```sh\n $ pulumi import grafana:index/notificationPolicy:NotificationPolicy notification_policy_name \"policy\"\n```\n\n ",
             "properties": {
                 "contactPoint": {
                     "type": "string",
@@ -9179,8 +9095,7 @@
                     "type": "boolean"
                 },
                 "key": {
-                    "type": "string",
-                    "secret": true
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"
@@ -9226,8 +9141,7 @@
                         "type": "boolean"
                     },
                     "key": {
-                        "type": "string",
-                        "secret": true
+                        "type": "string"
                     },
                     "name": {
                         "type": "string",
@@ -9430,8 +9344,7 @@
                 },
                 "metricsPublisherKey": {
                     "type": "string",
-                    "description": "The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API\n",
-                    "secret": true
+                    "description": "The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API\n"
                 },
                 "smAccessToken": {
                     "type": "string",
@@ -9463,7 +9376,6 @@
                 "metricsPublisherKey": {
                     "type": "string",
                     "description": "The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API\n",
-                    "secret": true,
                     "willReplaceOnChanges": true
                 },
                 "stackId": {
@@ -9494,7 +9406,6 @@
                     "metricsPublisherKey": {
                         "type": "string",
                         "description": "The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API\n",
-                        "secret": true,
                         "willReplaceOnChanges": true
                     },
                     "smAccessToken": {
@@ -9515,8 +9426,7 @@
             "properties": {
                 "authToken": {
                     "type": "string",
-                    "description": "The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.\n",
-                    "secret": true
+                    "description": "The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.\n"
                 },
                 "labels": {
                     "type": "object",
@@ -9597,8 +9507,7 @@
                 "properties": {
                     "authToken": {
                         "type": "string",
-                        "description": "The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.\n",
-                        "secret": true
+                        "description": "The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.\n"
                     },
                     "labels": {
                         "type": "object",
@@ -9863,8 +9772,7 @@
                 },
                 "password": {
                     "type": "string",
-                    "description": "The password for the Grafana user.\n",
-                    "secret": true
+                    "description": "The password for the Grafana user.\n"
                 },
                 "userId": {
                     "type": "integer",
@@ -9896,8 +9804,7 @@
                 },
                 "password": {
                     "type": "string",
-                    "description": "The password for the Grafana user.\n",
-                    "secret": true
+                    "description": "The password for the Grafana user.\n"
                 }
             },
             "requiredInputs": [
@@ -9925,8 +9832,7 @@
                     },
                     "password": {
                         "type": "string",
-                        "description": "The password for the Grafana user.\n",
-                        "secret": true
+                        "description": "The password for the Grafana user.\n"
                     },
                     "userId": {
                         "type": "integer",

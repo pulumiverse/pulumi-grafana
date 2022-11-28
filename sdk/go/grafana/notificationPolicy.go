@@ -128,7 +128,7 @@ import (
 //
 // ## Import
 //
-// The policy is a singleton, so the ID is a constant "policy" value.
+// # The policy is a singleton, so the ID is a constant "policy" value.
 //
 // ```sh
 //

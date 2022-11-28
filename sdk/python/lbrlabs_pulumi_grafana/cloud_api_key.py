@@ -235,8 +235,6 @@ class CloudApiKey(pulumi.CustomResource):
                 raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
             __props__.__dict__["key"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["key"])
-        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(CloudApiKey, __self__).__init__(
             'grafana:index/cloudApiKey:CloudApiKey',
             resource_name,

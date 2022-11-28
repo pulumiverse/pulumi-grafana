@@ -420,13 +420,13 @@ class Provider(pulumi.ProviderResource):
 
             if auth is None:
                 auth = _utilities.get_env('GRAFANA_AUTH')
-            __props__.__dict__["auth"] = None if auth is None else pulumi.Output.secret(auth)
+            __props__.__dict__["auth"] = auth
             if ca_cert is None:
                 ca_cert = _utilities.get_env('GRAFANA_CA_CERT')
             __props__.__dict__["ca_cert"] = ca_cert
             if cloud_api_key is None:
                 cloud_api_key = _utilities.get_env('GRAFANA_CLOUD_API_KEY')
-            __props__.__dict__["cloud_api_key"] = None if cloud_api_key is None else pulumi.Output.secret(cloud_api_key)
+            __props__.__dict__["cloud_api_key"] = cloud_api_key
             if cloud_api_url is None:
                 cloud_api_url = _utilities.get_env('GRAFANA_CLOUD_API_URL')
             __props__.__dict__["cloud_api_url"] = cloud_api_url
@@ -435,7 +435,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["insecure_skip_verify"] = pulumi.Output.from_input(insecure_skip_verify).apply(pulumi.runtime.to_json) if insecure_skip_verify is not None else None
             if oncall_access_token is None:
                 oncall_access_token = _utilities.get_env('GRAFANA_ONCALL_ACCESS_TOKEN')
-            __props__.__dict__["oncall_access_token"] = None if oncall_access_token is None else pulumi.Output.secret(oncall_access_token)
+            __props__.__dict__["oncall_access_token"] = oncall_access_token
             if oncall_url is None:
                 oncall_url = _utilities.get_env('GRAFANA_ONCALL_URL')
             __props__.__dict__["oncall_url"] = oncall_url
@@ -447,7 +447,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["retries"] = pulumi.Output.from_input(retries).apply(pulumi.runtime.to_json) if retries is not None else None
             if sm_access_token is None:
                 sm_access_token = _utilities.get_env('GRAFANA_SM_ACCESS_TOKEN')
-            __props__.__dict__["sm_access_token"] = None if sm_access_token is None else pulumi.Output.secret(sm_access_token)
+            __props__.__dict__["sm_access_token"] = sm_access_token
             if sm_url is None:
                 sm_url = _utilities.get_env('GRAFANA_SM_URL')
             __props__.__dict__["sm_url"] = sm_url
@@ -463,8 +463,6 @@ class Provider(pulumi.ProviderResource):
             if url is None:
                 url = _utilities.get_env('GRAFANA_URL')
             __props__.__dict__["url"] = url
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["auth", "cloudApiKey", "oncallAccessToken", "smAccessToken"])
-        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'grafana',
             resource_name,

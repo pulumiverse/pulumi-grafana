@@ -75,7 +75,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * The policy is a singleton, so the ID is a constant "policy" value.
+ * # The policy is a singleton, so the ID is a constant "policy" value.
  *
  * ```sh
  *  $ pulumi import grafana:index/notificationPolicy:NotificationPolicy notification_policy_name "policy"

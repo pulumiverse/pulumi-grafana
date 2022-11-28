@@ -107,10 +107,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/lbrlabs",
-                AdditionalSecretOutputs =
-                {
-                    "metricsPublisherKey",
-                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -146,21 +142,11 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("metricsInstanceId", required: true)]
         public Input<int> MetricsInstanceId { get; set; } = null!;
 
-        [Input("metricsPublisherKey", required: true)]
-        private Input<string>? _metricsPublisherKey;
-
         /// <summary>
         /// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
         /// </summary>
-        public Input<string>? MetricsPublisherKey
-        {
-            get => _metricsPublisherKey;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _metricsPublisherKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("metricsPublisherKey", required: true)]
+        public Input<string> MetricsPublisherKey { get; set; } = null!;
 
         /// <summary>
         /// The ID of the stack to install SM on.
@@ -188,21 +174,11 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("metricsInstanceId")]
         public Input<int>? MetricsInstanceId { get; set; }
 
-        [Input("metricsPublisherKey")]
-        private Input<string>? _metricsPublisherKey;
-
         /// <summary>
         /// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
         /// </summary>
-        public Input<string>? MetricsPublisherKey
-        {
-            get => _metricsPublisherKey;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _metricsPublisherKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("metricsPublisherKey")]
+        public Input<string>? MetricsPublisherKey { get; set; }
 
         /// <summary>
         /// Generated token to access the SM API.

@@ -126,10 +126,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/lbrlabs",
-                AdditionalSecretOutputs =
-                {
-                    "authToken",
-                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -203,21 +199,11 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class SyntheticMonitoringProbeState : global::Pulumi.ResourceArgs
     {
-        [Input("authToken")]
-        private Input<string>? _authToken;
-
         /// <summary>
         /// The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
         /// </summary>
-        public Input<string>? AuthToken
-        {
-            get => _authToken;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _authToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("authToken")]
+        public Input<string>? AuthToken { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;

@@ -315,10 +315,8 @@ class User(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             if password is None and not opts.urn:
                 raise TypeError("Missing required property 'password'")
-            __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["password"] = password
             __props__.__dict__["user_id"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
-        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(User, __self__).__init__(
             'grafana:index/user:User',
             resource_name,
