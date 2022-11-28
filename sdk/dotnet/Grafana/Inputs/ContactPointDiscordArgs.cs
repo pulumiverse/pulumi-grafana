@@ -40,11 +40,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public InputMap<string> Settings
         {
             get => _settings ?? (_settings = new InputMap<string>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
-                _settings = Output.All(value, emptySecret).Apply(v => v[0]);
-            }
+            set => _settings = value;
         }
 
         /// <summary>
@@ -53,21 +49,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         [Input("uid")]
         public Input<string>? Uid { get; set; }
 
-        [Input("url", required: true)]
-        private Input<string>? _url;
-
         /// <summary>
         /// The discord webhook URL.
         /// </summary>
-        public Input<string>? Url
-        {
-            get => _url;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _url = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("url", required: true)]
+        public Input<string> Url { get; set; } = null!;
 
         /// <summary>
         /// Whether to use the bot account's plain username instead of "Grafana." Defaults to `false`.

@@ -36,6 +36,10 @@ import * as utilities from "./utilities";
  *         },
  *         {
  *             userId: 3,
+ *             permission: "Edit",
+ *         },
+ *         {
+ *             builtInRole: "Viewer",
  *             permission: "Query",
  *         },
  *     ],

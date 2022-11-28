@@ -16,9 +16,11 @@ type MachineLearningJob struct {
 	pulumi.CustomResourceState
 
 	// The id of the datasource to query.
-	DatasourceId pulumi.IntOutput `pulumi:"datasourceId"`
+	DatasourceId pulumi.IntPtrOutput `pulumi:"datasourceId"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType pulumi.StringOutput `pulumi:"datasourceType"`
+	// The uid of the datasource to query.
+	DatasourceUid pulumi.StringPtrOutput `pulumi:"datasourceUid"`
 	// A description of the job.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
@@ -42,9 +44,6 @@ func NewMachineLearningJob(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.DatasourceId == nil {
-		return nil, errors.New("invalid value for required argument 'DatasourceId'")
-	}
 	if args.DatasourceType == nil {
 		return nil, errors.New("invalid value for required argument 'DatasourceType'")
 	}
@@ -81,6 +80,8 @@ type machineLearningJobState struct {
 	DatasourceId *int `pulumi:"datasourceId"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType *string `pulumi:"datasourceType"`
+	// The uid of the datasource to query.
+	DatasourceUid *string `pulumi:"datasourceUid"`
 	// A description of the job.
 	Description *string `pulumi:"description"`
 	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
@@ -102,6 +103,8 @@ type MachineLearningJobState struct {
 	DatasourceId pulumi.IntPtrInput
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType pulumi.StringPtrInput
+	// The uid of the datasource to query.
+	DatasourceUid pulumi.StringPtrInput
 	// A description of the job.
 	Description pulumi.StringPtrInput
 	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
@@ -124,9 +127,11 @@ func (MachineLearningJobState) ElementType() reflect.Type {
 
 type machineLearningJobArgs struct {
 	// The id of the datasource to query.
-	DatasourceId int `pulumi:"datasourceId"`
+	DatasourceId *int `pulumi:"datasourceId"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType string `pulumi:"datasourceType"`
+	// The uid of the datasource to query.
+	DatasourceUid *string `pulumi:"datasourceUid"`
 	// A description of the job.
 	Description *string `pulumi:"description"`
 	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
@@ -146,9 +151,11 @@ type machineLearningJobArgs struct {
 // The set of arguments for constructing a MachineLearningJob resource.
 type MachineLearningJobArgs struct {
 	// The id of the datasource to query.
-	DatasourceId pulumi.IntInput
+	DatasourceId pulumi.IntPtrInput
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType pulumi.StringInput
+	// The uid of the datasource to query.
+	DatasourceUid pulumi.StringPtrInput
 	// A description of the job.
 	Description pulumi.StringPtrInput
 	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
@@ -253,13 +260,18 @@ func (o MachineLearningJobOutput) ToMachineLearningJobOutputWithContext(ctx cont
 }
 
 // The id of the datasource to query.
-func (o MachineLearningJobOutput) DatasourceId() pulumi.IntOutput {
-	return o.ApplyT(func(v *MachineLearningJob) pulumi.IntOutput { return v.DatasourceId }).(pulumi.IntOutput)
+func (o MachineLearningJobOutput) DatasourceId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MachineLearningJob) pulumi.IntPtrOutput { return v.DatasourceId }).(pulumi.IntPtrOutput)
 }
 
 // The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 func (o MachineLearningJobOutput) DatasourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *MachineLearningJob) pulumi.StringOutput { return v.DatasourceType }).(pulumi.StringOutput)
+}
+
+// The uid of the datasource to query.
+func (o MachineLearningJobOutput) DatasourceUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MachineLearningJob) pulumi.StringPtrOutput { return v.DatasourceUid }).(pulumi.StringPtrOutput)
 }
 
 // A description of the job.

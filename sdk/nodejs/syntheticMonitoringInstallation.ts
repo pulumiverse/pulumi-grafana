@@ -117,13 +117,11 @@ export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
             }
             resourceInputs["logsInstanceId"] = args ? args.logsInstanceId : undefined;
             resourceInputs["metricsInstanceId"] = args ? args.metricsInstanceId : undefined;
-            resourceInputs["metricsPublisherKey"] = args?.metricsPublisherKey ? pulumi.secret(args.metricsPublisherKey) : undefined;
+            resourceInputs["metricsPublisherKey"] = args ? args.metricsPublisherKey : undefined;
             resourceInputs["stackId"] = args ? args.stackId : undefined;
             resourceInputs["smAccessToken"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["metricsPublisherKey"] };
-        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SyntheticMonitoringInstallation.__pulumiType, name, resourceInputs, opts);
     }
 }

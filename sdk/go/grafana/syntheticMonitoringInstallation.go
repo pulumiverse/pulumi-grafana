@@ -94,13 +94,6 @@ func NewSyntheticMonitoringInstallation(ctx *pulumi.Context,
 	if args.StackId == nil {
 		return nil, errors.New("invalid value for required argument 'StackId'")
 	}
-	if args.MetricsPublisherKey != nil {
-		args.MetricsPublisherKey = pulumi.ToSecret(args.MetricsPublisherKey).(pulumi.StringOutput)
-	}
-	secrets := pulumi.AdditionalSecretOutputs([]string{
-		"metricsPublisherKey",
-	})
-	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource SyntheticMonitoringInstallation
 	err := ctx.RegisterResource("grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation", name, args, &resource, opts...)

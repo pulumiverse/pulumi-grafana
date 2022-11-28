@@ -124,7 +124,8 @@ export class CloudStack extends pulumi.CustomResource {
     public /*out*/ readonly prometheusUserId!: pulumi.Output<number>;
     /**
      * Region slug to assign to this stack.
-     * Changing region will destroy the existing stack and create a new one in the desired region
+     * Changing region will destroy the existing stack and create a new one in the desired region.
+     * Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
      */
     public readonly regionSlug!: pulumi.Output<string | undefined>;
     /**
@@ -317,7 +318,8 @@ export interface CloudStackState {
     prometheusUserId?: pulumi.Input<number>;
     /**
      * Region slug to assign to this stack.
-     * Changing region will destroy the existing stack and create a new one in the desired region
+     * Changing region will destroy the existing stack and create a new one in the desired region.
+     * Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
      */
     regionSlug?: pulumi.Input<string>;
     /**
@@ -361,7 +363,8 @@ export interface CloudStackArgs {
     name?: pulumi.Input<string>;
     /**
      * Region slug to assign to this stack.
-     * Changing region will destroy the existing stack and create a new one in the desired region
+     * Changing region will destroy the existing stack and create a new one in the desired region.
+     * Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
      */
     regionSlug?: pulumi.Input<string>;
     /**

@@ -650,42 +650,36 @@ class DataSource(pulumi.CustomResource):
         influxdb = grafana.DataSource("influxdb",
             type="influxdb",
             url="http://influxdb.example.net:8086/",
-            username="myapp",
-            password="foobarbaz",
-            database_name=influxdb_database["metrics"]["name"])
+            basic_auth_enabled=True,
+            basic_auth_username="username",
+            database_name=influxdb_database["metrics"]["name"],
+            json_data_encoded=json.dumps({
+                "authType": "default",
+                "basicAuthPassword": "mypassword",
+            }))
         cloudwatch = grafana.DataSource("cloudwatch",
             type="cloudwatch",
-            json_datas=[grafana.DataSourceJsonDataArgs(
-                default_region="us-east-1",
-                auth_type="keys",
-            )],
-            secure_json_datas=[grafana.DataSourceSecureJsonDataArgs(
-                access_key="123",
-                secret_key="456",
-            )])
+            json_data_encoded=json.dumps({
+                "defaultRegion": "us-east-1",
+                "authType": "keys",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "accessKey": "123",
+                "secretKey": "456",
+            }))
         prometheus = grafana.DataSource("prometheus",
             type="prometheus",
-            url="https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-1234567890/",
-            json_datas=[grafana.DataSourceJsonDataArgs(
-                http_method="POST",
-                sigv4_auth=True,
-                sigv4_auth_type="default",
-                sigv4_region="eu-west-1",
-            )])
-        stackdriver = grafana.DataSource("stackdriver",
-            type="stackdriver",
-            json_datas=[grafana.DataSourceJsonDataArgs(
-                token_uri="https://oauth2.googleapis.com/token",
-                authentication_type="jwt",
-                default_project="default-project",
-                client_email="client-email@default-project.iam.gserviceaccount.com",
-            )],
-            secure_json_datas=[grafana.DataSourceSecureJsonDataArgs(
-                private_key=\"\"\"-----BEGIN PRIVATE KEY-----
-        private-key
-        -----END PRIVATE KEY-----
-        \"\"\",
-            )])
+            url="https://my-instances.com",
+            basic_auth_enabled=True,
+            basic_auth_username="username",
+            json_data_encoded=json.dumps({
+                "httpMethod": "POST",
+                "prometheusType": "Mimir",
+                "prometheusVersion": "2.4.0",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "basicAuthPassword": "password",
+            }))
         ```
 
         ## Import
@@ -755,42 +749,36 @@ class DataSource(pulumi.CustomResource):
         influxdb = grafana.DataSource("influxdb",
             type="influxdb",
             url="http://influxdb.example.net:8086/",
-            username="myapp",
-            password="foobarbaz",
-            database_name=influxdb_database["metrics"]["name"])
+            basic_auth_enabled=True,
+            basic_auth_username="username",
+            database_name=influxdb_database["metrics"]["name"],
+            json_data_encoded=json.dumps({
+                "authType": "default",
+                "basicAuthPassword": "mypassword",
+            }))
         cloudwatch = grafana.DataSource("cloudwatch",
             type="cloudwatch",
-            json_datas=[grafana.DataSourceJsonDataArgs(
-                default_region="us-east-1",
-                auth_type="keys",
-            )],
-            secure_json_datas=[grafana.DataSourceSecureJsonDataArgs(
-                access_key="123",
-                secret_key="456",
-            )])
+            json_data_encoded=json.dumps({
+                "defaultRegion": "us-east-1",
+                "authType": "keys",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "accessKey": "123",
+                "secretKey": "456",
+            }))
         prometheus = grafana.DataSource("prometheus",
             type="prometheus",
-            url="https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-1234567890/",
-            json_datas=[grafana.DataSourceJsonDataArgs(
-                http_method="POST",
-                sigv4_auth=True,
-                sigv4_auth_type="default",
-                sigv4_region="eu-west-1",
-            )])
-        stackdriver = grafana.DataSource("stackdriver",
-            type="stackdriver",
-            json_datas=[grafana.DataSourceJsonDataArgs(
-                token_uri="https://oauth2.googleapis.com/token",
-                authentication_type="jwt",
-                default_project="default-project",
-                client_email="client-email@default-project.iam.gserviceaccount.com",
-            )],
-            secure_json_datas=[grafana.DataSourceSecureJsonDataArgs(
-                private_key=\"\"\"-----BEGIN PRIVATE KEY-----
-        private-key
-        -----END PRIVATE KEY-----
-        \"\"\",
-            )])
+            url="https://my-instances.com",
+            basic_auth_enabled=True,
+            basic_auth_username="username",
+            json_data_encoded=json.dumps({
+                "httpMethod": "POST",
+                "prometheusType": "Mimir",
+                "prometheusVersion": "2.4.0",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "basicAuthPassword": "password",
+            }))
         ```
 
         ## Import
@@ -849,10 +837,10 @@ class DataSource(pulumi.CustomResource):
             if basic_auth_password is not None and not opts.urn:
                 warnings.warn("""Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.""", DeprecationWarning)
                 pulumi.log.warn("""basic_auth_password is deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.""")
-            __props__.__dict__["basic_auth_password"] = None if basic_auth_password is None else pulumi.Output.secret(basic_auth_password)
+            __props__.__dict__["basic_auth_password"] = basic_auth_password
             __props__.__dict__["basic_auth_username"] = basic_auth_username
             __props__.__dict__["database_name"] = database_name
-            __props__.__dict__["http_headers"] = None if http_headers is None else pulumi.Output.secret(http_headers)
+            __props__.__dict__["http_headers"] = http_headers
             __props__.__dict__["is_default"] = is_default
             __props__.__dict__["json_data_encoded"] = json_data_encoded
             if json_datas is not None and not opts.urn:
@@ -863,20 +851,18 @@ class DataSource(pulumi.CustomResource):
             if password is not None and not opts.urn:
                 warnings.warn("""Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.""", DeprecationWarning)
                 pulumi.log.warn("""password is deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.""")
-            __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
-            __props__.__dict__["secure_json_data_encoded"] = None if secure_json_data_encoded is None else pulumi.Output.secret(secure_json_data_encoded)
+            __props__.__dict__["password"] = password
+            __props__.__dict__["secure_json_data_encoded"] = secure_json_data_encoded
             if secure_json_datas is not None and not opts.urn:
                 warnings.warn("""Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.""", DeprecationWarning)
                 pulumi.log.warn("""secure_json_datas is deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.""")
-            __props__.__dict__["secure_json_datas"] = None if secure_json_datas is None else pulumi.Output.secret(secure_json_datas)
+            __props__.__dict__["secure_json_datas"] = secure_json_datas
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
             __props__.__dict__["uid"] = uid
             __props__.__dict__["url"] = url
             __props__.__dict__["username"] = username
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["basicAuthPassword", "httpHeaders", "password", "secureJsonDataEncoded", "secureJsonDatas"])
-        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(DataSource, __self__).__init__(
             'grafana:index/dataSource:DataSource',
             resource_name,

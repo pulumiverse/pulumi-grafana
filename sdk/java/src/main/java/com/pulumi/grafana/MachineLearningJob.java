@@ -28,14 +28,14 @@ public class MachineLearningJob extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="datasourceId", type=Integer.class, parameters={})
-    private Output<Integer> datasourceId;
+    private Output</* @Nullable */ Integer> datasourceId;
 
     /**
      * @return The id of the datasource to query.
      * 
      */
-    public Output<Integer> datasourceId() {
-        return this.datasourceId;
+    public Output<Optional<Integer>> datasourceId() {
+        return Codegen.optional(this.datasourceId);
     }
     /**
      * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
@@ -50,6 +50,20 @@ public class MachineLearningJob extends com.pulumi.resources.CustomResource {
      */
     public Output<String> datasourceType() {
         return this.datasourceType;
+    }
+    /**
+     * The uid of the datasource to query.
+     * 
+     */
+    @Export(name="datasourceUid", type=String.class, parameters={})
+    private Output</* @Nullable */ String> datasourceUid;
+
+    /**
+     * @return The uid of the datasource to query.
+     * 
+     */
+    public Output<Optional<String>> datasourceUid() {
+        return Codegen.optional(this.datasourceUid);
     }
     /**
      * A description of the job.

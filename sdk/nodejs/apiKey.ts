@@ -94,8 +94,6 @@ export class ApiKey extends pulumi.CustomResource {
             resourceInputs["key"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["key"] };
-        opts = pulumi.mergeOptions(opts, secretOpts);
         super(ApiKey.__pulumiType, name, resourceInputs, opts);
     }
 }

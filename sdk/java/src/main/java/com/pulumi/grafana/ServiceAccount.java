@@ -21,6 +21,37 @@ import javax.annotation.Nullable;
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
  * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.grafana.ServiceAccount;
+ * import com.pulumi.grafana.ServiceAccountArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var admin = new ServiceAccount(&#34;admin&#34;, ServiceAccountArgs.builder()        
+ *             .isDisabled(false)
+ *             .role(&#34;Admin&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  */
 @ResourceType(type="grafana:index/serviceAccount:ServiceAccount")
 public class ServiceAccount extends com.pulumi.resources.CustomResource {

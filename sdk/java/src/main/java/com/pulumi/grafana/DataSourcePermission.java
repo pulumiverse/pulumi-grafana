@@ -69,6 +69,10 @@ import javax.annotation.Nullable;
  *                     .build(),
  *                 DataSourcePermissionPermissionArgs.builder()
  *                     .userId(3)
+ *                     .permission(&#34;Edit&#34;)
+ *                     .build(),
+ *                 DataSourcePermissionPermissionArgs.builder()
+ *                     .builtInRole(&#34;Viewer&#34;)
  *                     .permission(&#34;Query&#34;)
  *                     .build())
  *             .build());

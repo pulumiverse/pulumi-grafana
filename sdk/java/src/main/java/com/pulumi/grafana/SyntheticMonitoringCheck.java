@@ -269,7 +269,10 @@ import javax.annotation.Nullable;
  *                     .validStatusCodes(                    
  *                         200,
  *                         201)
- *                     .validHttpVersions(&#34;HTTP/2&#34;)
+ *                     .validHttpVersions(                    
+ *                         &#34;HTTP/1.0&#34;,
+ *                         &#34;HTTP/1.1&#34;,
+ *                         &#34;HTTP/2&#34;)
  *                     .failIfBodyMatchesRegexps(&#34;*bad stuff*&#34;)
  *                     .failIfBodyNotMatchesRegexps(&#34;*good stuff*&#34;)
  *                     .failIfHeaderMatchesRegexps(SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs.builder()

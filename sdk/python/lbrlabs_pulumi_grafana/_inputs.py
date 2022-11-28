@@ -61,6 +61,7 @@ __all__ = [
     'RuleGroupRuleArgs',
     'RuleGroupRuleDataArgs',
     'RuleGroupRuleDataRelativeTimeRangeArgs',
+    'ServiceAccountPermissionPermissionArgs',
     'SyntheticMonitoringCheckSettingsArgs',
     'SyntheticMonitoringCheckSettingsDnsArgs',
     'SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs',
@@ -3429,14 +3430,18 @@ class DataSourceJsonDataDerivedFieldArgs:
 class DataSourcePermissionPermissionArgs:
     def __init__(__self__, *,
                  permission: pulumi.Input[str],
+                 built_in_role: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[int]] = None,
                  user_id: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] permission: Permission to associate with item. Must be `Query`.
+        :param pulumi.Input[str] permission: Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
+        :param pulumi.Input[str] built_in_role: Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
         :param pulumi.Input[int] team_id: ID of the team to manage permissions for. Defaults to `0`.
         :param pulumi.Input[int] user_id: ID of the user to manage permissions for. Defaults to `0`.
         """
         pulumi.set(__self__, "permission", permission)
+        if built_in_role is not None:
+            pulumi.set(__self__, "built_in_role", built_in_role)
         if team_id is not None:
             pulumi.set(__self__, "team_id", team_id)
         if user_id is not None:
@@ -3446,13 +3451,25 @@ class DataSourcePermissionPermissionArgs:
     @pulumi.getter
     def permission(self) -> pulumi.Input[str]:
         """
-        Permission to associate with item. Must be `Query`.
+        Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
         """
         return pulumi.get(self, "permission")
 
     @permission.setter
     def permission(self, value: pulumi.Input[str]):
         pulumi.set(self, "permission", value)
+
+    @property
+    @pulumi.getter(name="builtInRole")
+    def built_in_role(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
+        """
+        return pulumi.get(self, "built_in_role")
+
+    @built_in_role.setter
+    def built_in_role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "built_in_role", value)
 
     @property
     @pulumi.getter(name="teamId")
@@ -5532,6 +5549,60 @@ class RuleGroupRuleDataRelativeTimeRangeArgs:
     @to.setter
     def to(self, value: pulumi.Input[int]):
         pulumi.set(self, "to", value)
+
+
+@pulumi.input_type
+class ServiceAccountPermissionPermissionArgs:
+    def __init__(__self__, *,
+                 permission: pulumi.Input[str],
+                 team_id: Optional[pulumi.Input[int]] = None,
+                 user_id: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] permission: Permission to associate with item. Must be `Edit` or `Admin`.
+        :param pulumi.Input[int] team_id: ID of the team to manage permissions for. Specify either this or `user_id`. Defaults to `0`.
+        :param pulumi.Input[int] user_id: ID of the user to manage permissions for. Specify either this or `team_id`. Defaults to `0`.
+        """
+        pulumi.set(__self__, "permission", permission)
+        if team_id is not None:
+            pulumi.set(__self__, "team_id", team_id)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+
+    @property
+    @pulumi.getter
+    def permission(self) -> pulumi.Input[str]:
+        """
+        Permission to associate with item. Must be `Edit` or `Admin`.
+        """
+        return pulumi.get(self, "permission")
+
+    @permission.setter
+    def permission(self, value: pulumi.Input[str]):
+        pulumi.set(self, "permission", value)
+
+    @property
+    @pulumi.getter(name="teamId")
+    def team_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        ID of the team to manage permissions for. Specify either this or `user_id`. Defaults to `0`.
+        """
+        return pulumi.get(self, "team_id")
+
+    @team_id.setter
+    def team_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "team_id", value)
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        ID of the user to manage permissions for. Specify either this or `team_id`. Defaults to `0`.
+        """
+        return pulumi.get(self, "user_id")
+
+    @user_id.setter
+    def user_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "user_id", value)
 
 
 @pulumi.input_type

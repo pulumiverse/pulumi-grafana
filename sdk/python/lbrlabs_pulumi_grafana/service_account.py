@@ -138,6 +138,17 @@ class ServiceAccount(pulumi.CustomResource):
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_grafana as grafana
+
+        admin = grafana.ServiceAccount("admin",
+            is_disabled=False,
+            role="Admin")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] is_disabled: The disabled status for the service account. Defaults to `false`.
@@ -155,6 +166,17 @@ class ServiceAccount(pulumi.CustomResource):
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_grafana as grafana
+
+        admin = grafana.ServiceAccount("admin",
+            is_disabled=False,
+            role="Admin")
+        ```
 
         :param str resource_name: The name of the resource.
         :param ServiceAccountArgs args: The arguments to use to populate this resource's properties.

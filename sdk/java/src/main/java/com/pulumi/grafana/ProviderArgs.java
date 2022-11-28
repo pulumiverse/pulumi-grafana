@@ -641,16 +641,16 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ProviderArgs build() {
-            $.auth = Codegen.stringProp("auth").secret().arg($.auth).env("GRAFANA_AUTH").getNullable();
+            $.auth = Codegen.stringProp("auth").output().arg($.auth).env("GRAFANA_AUTH").getNullable();
             $.caCert = Codegen.stringProp("caCert").output().arg($.caCert).env("GRAFANA_CA_CERT").getNullable();
-            $.cloudApiKey = Codegen.stringProp("cloudApiKey").secret().arg($.cloudApiKey).env("GRAFANA_CLOUD_API_KEY").getNullable();
+            $.cloudApiKey = Codegen.stringProp("cloudApiKey").output().arg($.cloudApiKey).env("GRAFANA_CLOUD_API_KEY").getNullable();
             $.cloudApiUrl = Codegen.stringProp("cloudApiUrl").output().arg($.cloudApiUrl).env("GRAFANA_CLOUD_API_URL").getNullable();
             $.insecureSkipVerify = Codegen.booleanProp("insecureSkipVerify").output().arg($.insecureSkipVerify).env("GRAFANA_INSECURE_SKIP_VERIFY").getNullable();
-            $.oncallAccessToken = Codegen.stringProp("oncallAccessToken").secret().arg($.oncallAccessToken).env("GRAFANA_ONCALL_ACCESS_TOKEN").getNullable();
+            $.oncallAccessToken = Codegen.stringProp("oncallAccessToken").output().arg($.oncallAccessToken).env("GRAFANA_ONCALL_ACCESS_TOKEN").getNullable();
             $.oncallUrl = Codegen.stringProp("oncallUrl").output().arg($.oncallUrl).env("GRAFANA_ONCALL_URL").getNullable();
             $.orgId = Codegen.integerProp("orgId").output().arg($.orgId).env("GRAFANA_ORG_ID").getNullable();
             $.retries = Codegen.integerProp("retries").output().arg($.retries).env("GRAFANA_RETRIES").getNullable();
-            $.smAccessToken = Codegen.stringProp("smAccessToken").secret().arg($.smAccessToken).env("GRAFANA_SM_ACCESS_TOKEN").getNullable();
+            $.smAccessToken = Codegen.stringProp("smAccessToken").output().arg($.smAccessToken).env("GRAFANA_SM_ACCESS_TOKEN").getNullable();
             $.smUrl = Codegen.stringProp("smUrl").output().arg($.smUrl).env("GRAFANA_SM_URL").getNullable();
             $.storeDashboardSha256 = Codegen.booleanProp("storeDashboardSha256").output().arg($.storeDashboardSha256).env("GRAFANA_STORE_DASHBOARD_SHA256").getNullable();
             $.tlsCert = Codegen.stringProp("tlsCert").output().arg($.tlsCert).env("GRAFANA_TLS_CERT").getNullable();

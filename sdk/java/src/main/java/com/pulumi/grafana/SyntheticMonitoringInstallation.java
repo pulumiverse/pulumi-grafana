@@ -12,7 +12,6 @@ import com.pulumi.grafana.Utilities;
 import com.pulumi.grafana.inputs.SyntheticMonitoringInstallationState;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.List;
 import javax.annotation.Nullable;
 
 /**
@@ -176,9 +175,6 @@ public class SyntheticMonitoringInstallation extends com.pulumi.resources.Custom
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .additionalSecretOutputs(List.of(
-                "metricsPublisherKey"
-            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

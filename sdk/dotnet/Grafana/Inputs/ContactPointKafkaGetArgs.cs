@@ -19,21 +19,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         [Input("disableResolveMessage")]
         public Input<bool>? DisableResolveMessage { get; set; }
 
-        [Input("restProxyUrl", required: true)]
-        private Input<string>? _restProxyUrl;
-
         /// <summary>
         /// The URL of the Kafka REST proxy to send requests to.
         /// </summary>
-        public Input<string>? RestProxyUrl
-        {
-            get => _restProxyUrl;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _restProxyUrl = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("restProxyUrl", required: true)]
+        public Input<string> RestProxyUrl { get; set; } = null!;
 
         [Input("settings")]
         private InputMap<string>? _settings;
@@ -44,11 +34,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public InputMap<string> Settings
         {
             get => _settings ?? (_settings = new InputMap<string>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
-                _settings = Output.All(value, emptySecret).Apply(v => v[0]);
-            }
+            set => _settings = value;
         }
 
         /// <summary>

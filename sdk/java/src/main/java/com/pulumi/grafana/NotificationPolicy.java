@@ -115,7 +115,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * The policy is a singleton, so the ID is a constant &#34;policy&#34; value.
+ * # The policy is a singleton, so the ID is a constant &#34;policy&#34; value.
  * 
  * ```sh
  *  $ pulumi import grafana:index/notificationPolicy:NotificationPolicy notification_policy_name &#34;policy&#34;

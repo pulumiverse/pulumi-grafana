@@ -23,11 +23,16 @@ import * as utilities from "./utilities";
  *     global: true,
  *     permissions: [
  *         {
- *             action: "users:create",
+ *             action: "org.users:add",
+ *             scope: "users:*",
  *         },
  *         {
- *             action: "users:read",
- *             scope: "global:users:*",
+ *             action: "org.users:write",
+ *             scope: "users:*",
+ *         },
+ *         {
+ *             action: "org.users:read",
+ *             scope: "users:*",
  *         },
  *     ],
  *     uid: "superuseruid",

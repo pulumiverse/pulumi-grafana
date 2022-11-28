@@ -3671,7 +3671,9 @@ func (o DataSourceJsonDataDerivedFieldArrayOutput) Index(i pulumi.IntInput) Data
 }
 
 type DataSourcePermissionPermission struct {
-	// Permission to associate with item. Must be `Query`.
+	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
+	BuiltInRole *string `pulumi:"builtInRole"`
+	// Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
 	Permission string `pulumi:"permission"`
 	// ID of the team to manage permissions for. Defaults to `0`.
 	TeamId *int `pulumi:"teamId"`
@@ -3691,7 +3693,9 @@ type DataSourcePermissionPermissionInput interface {
 }
 
 type DataSourcePermissionPermissionArgs struct {
-	// Permission to associate with item. Must be `Query`.
+	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
+	BuiltInRole pulumi.StringPtrInput `pulumi:"builtInRole"`
+	// Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
 	Permission pulumi.StringInput `pulumi:"permission"`
 	// ID of the team to manage permissions for. Defaults to `0`.
 	TeamId pulumi.IntPtrInput `pulumi:"teamId"`
@@ -3750,7 +3754,12 @@ func (o DataSourcePermissionPermissionOutput) ToDataSourcePermissionPermissionOu
 	return o
 }
 
-// Permission to associate with item. Must be `Query`.
+// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to “.
+func (o DataSourcePermissionPermissionOutput) BuiltInRole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataSourcePermissionPermission) *string { return v.BuiltInRole }).(pulumi.StringPtrOutput)
+}
+
+// Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
 func (o DataSourcePermissionPermissionOutput) Permission() pulumi.StringOutput {
 	return o.ApplyT(func(v DataSourcePermissionPermission) string { return v.Permission }).(pulumi.StringOutput)
 }
@@ -8032,6 +8041,121 @@ func (o RuleGroupRuleDataRelativeTimeRangeOutput) To() pulumi.IntOutput {
 	return o.ApplyT(func(v RuleGroupRuleDataRelativeTimeRange) int { return v.To }).(pulumi.IntOutput)
 }
 
+type ServiceAccountPermissionPermission struct {
+	// Permission to associate with item. Must be `Edit` or `Admin`.
+	Permission string `pulumi:"permission"`
+	// ID of the team to manage permissions for. Specify either this or `userId`. Defaults to `0`.
+	TeamId *int `pulumi:"teamId"`
+	// ID of the user to manage permissions for. Specify either this or `teamId`. Defaults to `0`.
+	UserId *int `pulumi:"userId"`
+}
+
+// ServiceAccountPermissionPermissionInput is an input type that accepts ServiceAccountPermissionPermissionArgs and ServiceAccountPermissionPermissionOutput values.
+// You can construct a concrete instance of `ServiceAccountPermissionPermissionInput` via:
+//
+//	ServiceAccountPermissionPermissionArgs{...}
+type ServiceAccountPermissionPermissionInput interface {
+	pulumi.Input
+
+	ToServiceAccountPermissionPermissionOutput() ServiceAccountPermissionPermissionOutput
+	ToServiceAccountPermissionPermissionOutputWithContext(context.Context) ServiceAccountPermissionPermissionOutput
+}
+
+type ServiceAccountPermissionPermissionArgs struct {
+	// Permission to associate with item. Must be `Edit` or `Admin`.
+	Permission pulumi.StringInput `pulumi:"permission"`
+	// ID of the team to manage permissions for. Specify either this or `userId`. Defaults to `0`.
+	TeamId pulumi.IntPtrInput `pulumi:"teamId"`
+	// ID of the user to manage permissions for. Specify either this or `teamId`. Defaults to `0`.
+	UserId pulumi.IntPtrInput `pulumi:"userId"`
+}
+
+func (ServiceAccountPermissionPermissionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceAccountPermissionPermission)(nil)).Elem()
+}
+
+func (i ServiceAccountPermissionPermissionArgs) ToServiceAccountPermissionPermissionOutput() ServiceAccountPermissionPermissionOutput {
+	return i.ToServiceAccountPermissionPermissionOutputWithContext(context.Background())
+}
+
+func (i ServiceAccountPermissionPermissionArgs) ToServiceAccountPermissionPermissionOutputWithContext(ctx context.Context) ServiceAccountPermissionPermissionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountPermissionPermissionOutput)
+}
+
+// ServiceAccountPermissionPermissionArrayInput is an input type that accepts ServiceAccountPermissionPermissionArray and ServiceAccountPermissionPermissionArrayOutput values.
+// You can construct a concrete instance of `ServiceAccountPermissionPermissionArrayInput` via:
+//
+//	ServiceAccountPermissionPermissionArray{ ServiceAccountPermissionPermissionArgs{...} }
+type ServiceAccountPermissionPermissionArrayInput interface {
+	pulumi.Input
+
+	ToServiceAccountPermissionPermissionArrayOutput() ServiceAccountPermissionPermissionArrayOutput
+	ToServiceAccountPermissionPermissionArrayOutputWithContext(context.Context) ServiceAccountPermissionPermissionArrayOutput
+}
+
+type ServiceAccountPermissionPermissionArray []ServiceAccountPermissionPermissionInput
+
+func (ServiceAccountPermissionPermissionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceAccountPermissionPermission)(nil)).Elem()
+}
+
+func (i ServiceAccountPermissionPermissionArray) ToServiceAccountPermissionPermissionArrayOutput() ServiceAccountPermissionPermissionArrayOutput {
+	return i.ToServiceAccountPermissionPermissionArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceAccountPermissionPermissionArray) ToServiceAccountPermissionPermissionArrayOutputWithContext(ctx context.Context) ServiceAccountPermissionPermissionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountPermissionPermissionArrayOutput)
+}
+
+type ServiceAccountPermissionPermissionOutput struct{ *pulumi.OutputState }
+
+func (ServiceAccountPermissionPermissionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceAccountPermissionPermission)(nil)).Elem()
+}
+
+func (o ServiceAccountPermissionPermissionOutput) ToServiceAccountPermissionPermissionOutput() ServiceAccountPermissionPermissionOutput {
+	return o
+}
+
+func (o ServiceAccountPermissionPermissionOutput) ToServiceAccountPermissionPermissionOutputWithContext(ctx context.Context) ServiceAccountPermissionPermissionOutput {
+	return o
+}
+
+// Permission to associate with item. Must be `Edit` or `Admin`.
+func (o ServiceAccountPermissionPermissionOutput) Permission() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceAccountPermissionPermission) string { return v.Permission }).(pulumi.StringOutput)
+}
+
+// ID of the team to manage permissions for. Specify either this or `userId`. Defaults to `0`.
+func (o ServiceAccountPermissionPermissionOutput) TeamId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceAccountPermissionPermission) *int { return v.TeamId }).(pulumi.IntPtrOutput)
+}
+
+// ID of the user to manage permissions for. Specify either this or `teamId`. Defaults to `0`.
+func (o ServiceAccountPermissionPermissionOutput) UserId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceAccountPermissionPermission) *int { return v.UserId }).(pulumi.IntPtrOutput)
+}
+
+type ServiceAccountPermissionPermissionArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceAccountPermissionPermissionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceAccountPermissionPermission)(nil)).Elem()
+}
+
+func (o ServiceAccountPermissionPermissionArrayOutput) ToServiceAccountPermissionPermissionArrayOutput() ServiceAccountPermissionPermissionArrayOutput {
+	return o
+}
+
+func (o ServiceAccountPermissionPermissionArrayOutput) ToServiceAccountPermissionPermissionArrayOutputWithContext(ctx context.Context) ServiceAccountPermissionPermissionArrayOutput {
+	return o
+}
+
+func (o ServiceAccountPermissionPermissionArrayOutput) Index(i pulumi.IntInput) ServiceAccountPermissionPermissionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceAccountPermissionPermission {
+		return vs[0].([]ServiceAccountPermissionPermission)[vs[1].(int)]
+	}).(ServiceAccountPermissionPermissionOutput)
+}
+
 type SyntheticMonitoringCheckSettings struct {
 	// Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
 	Dns *SyntheticMonitoringCheckSettingsDns `pulumi:"dns"`
@@ -11036,6 +11160,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleDataInput)(nil)).Elem(), RuleGroupRuleDataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleDataArrayInput)(nil)).Elem(), RuleGroupRuleDataArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleDataRelativeTimeRangeInput)(nil)).Elem(), RuleGroupRuleDataRelativeTimeRangeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountPermissionPermissionInput)(nil)).Elem(), ServiceAccountPermissionPermissionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountPermissionPermissionArrayInput)(nil)).Elem(), ServiceAccountPermissionPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsPtrInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsDnsInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsDnsArgs{})
@@ -11171,6 +11297,8 @@ func init() {
 	pulumi.RegisterOutputType(RuleGroupRuleDataOutput{})
 	pulumi.RegisterOutputType(RuleGroupRuleDataArrayOutput{})
 	pulumi.RegisterOutputType(RuleGroupRuleDataRelativeTimeRangeOutput{})
+	pulumi.RegisterOutputType(ServiceAccountPermissionPermissionOutput{})
+	pulumi.RegisterOutputType(ServiceAccountPermissionPermissionArrayOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsPtrOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsDnsOutput{})

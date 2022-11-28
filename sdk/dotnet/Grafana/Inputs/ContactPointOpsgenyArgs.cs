@@ -13,21 +13,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class ContactPointOpsgenyArgs : global::Pulumi.ResourceArgs
     {
-        [Input("apiKey", required: true)]
-        private Input<string>? _apiKey;
-
         /// <summary>
         /// The OpsGenie API key to use.
         /// </summary>
-        public Input<string>? ApiKey
-        {
-            get => _apiKey;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _apiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("apiKey", required: true)]
+        public Input<string> ApiKey { get; set; } = null!;
 
         /// <summary>
         /// Whether to auto-close alerts in OpsGenie when they resolve in the Alertmanager.
@@ -74,11 +64,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public InputMap<string> Settings
         {
             get => _settings ?? (_settings = new InputMap<string>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
-                _settings = Output.All(value, emptySecret).Apply(v => v[0]);
-            }
+            set => _settings = value;
         }
 
         /// <summary>

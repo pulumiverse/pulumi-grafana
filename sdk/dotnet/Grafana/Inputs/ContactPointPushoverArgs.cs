@@ -13,21 +13,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class ContactPointPushoverArgs : global::Pulumi.ResourceArgs
     {
-        [Input("apiToken", required: true)]
-        private Input<string>? _apiToken;
-
         /// <summary>
         /// The Pushover API token.
         /// </summary>
-        public Input<string>? ApiToken
-        {
-            get => _apiToken;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _apiToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("apiToken", required: true)]
+        public Input<string> ApiToken { get; set; } = null!;
 
         /// <summary>
         /// Comma-separated list of devices to which the event is associated.
@@ -86,11 +76,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public InputMap<string> Settings
         {
             get => _settings ?? (_settings = new InputMap<string>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
-                _settings = Output.All(value, emptySecret).Apply(v => v[0]);
-            }
+            set => _settings = value;
         }
 
         /// <summary>
@@ -105,21 +91,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         [Input("uid")]
         public Input<string>? Uid { get; set; }
 
-        [Input("userKey", required: true)]
-        private Input<string>? _userKey;
-
         /// <summary>
         /// The Pushover user key.
         /// </summary>
-        public Input<string>? UserKey
-        {
-            get => _userKey;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _userKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("userKey", required: true)]
+        public Input<string> UserKey { get; set; } = null!;
 
         public ContactPointPushoverArgs()
         {

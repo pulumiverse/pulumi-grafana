@@ -61,6 +61,7 @@ from .role import *
 from .role_assignment import *
 from .rule_group import *
 from .service_account import *
+from .service_account_permission import *
 from .service_account_token import *
 from .synthetic_monitoring_check import *
 from .synthetic_monitoring_installation import *
@@ -352,6 +353,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_grafana",
   "classes": {
    "grafana:index/serviceAccount:ServiceAccount": "ServiceAccount"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/serviceAccountPermission",
+  "fqn": "lbrlabs_pulumi_grafana",
+  "classes": {
+   "grafana:index/serviceAccountPermission:ServiceAccountPermission": "ServiceAccountPermission"
   }
  },
  {

@@ -70,11 +70,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public InputMap<string> Settings
         {
             get => _settings ?? (_settings = new InputMap<string>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
-                _settings = Output.All(value, emptySecret).Apply(v => v[0]);
-            }
+            set => _settings = value;
         }
 
         /// <summary>
@@ -89,21 +85,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         [Input("title")]
         public Input<string>? Title { get; set; }
 
-        [Input("token")]
-        private Input<string>? _token;
-
         /// <summary>
         /// A Slack API token,for sending messages directly without the webhook method.
         /// </summary>
-        public Input<string>? Token
-        {
-            get => _token;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("token")]
+        public Input<string>? Token { get; set; }
 
         /// <summary>
         /// The UID of the contact point.
@@ -111,21 +97,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         [Input("uid")]
         public Input<string>? Uid { get; set; }
 
-        [Input("url")]
-        private Input<string>? _url;
-
         /// <summary>
         /// A Slack webhook URL,for sending messages via the webhook method.
         /// </summary>
-        public Input<string>? Url
-        {
-            get => _url;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _url = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("url")]
+        public Input<string>? Url { get; set; }
 
         /// <summary>
         /// Username for the bot to use.

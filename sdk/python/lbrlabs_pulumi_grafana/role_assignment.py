@@ -169,6 +169,33 @@ class RoleAssignment(pulumi.CustomResource):
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_grafana as grafana
+
+        test_role = grafana.Role("testRole",
+            uid="testrole",
+            version=1,
+            global_=True,
+            permissions=[grafana.RolePermissionArgs(
+                action="org.users:add",
+                scope="users:*",
+            )])
+        test_team = grafana.Team("testTeam")
+        test_user = grafana.User("testUser",
+            email="terraform_user@test.com",
+            login="terraform_user@test.com",
+            password="password")
+        test_sa = grafana.ServiceAccount("testSa", role="Viewer")
+        test = grafana.RoleAssignment("test",
+            role_uid=test_role.uid,
+            users=[test_user.id],
+            teams=[test_team.id],
+            service_accounts=[test_sa.id])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] role_uid: Grafana RBAC role UID.
@@ -186,6 +213,33 @@ class RoleAssignment(pulumi.CustomResource):
         **Note:** This resource is available only with Grafana Enterprise 9.2+.
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_grafana as grafana
+
+        test_role = grafana.Role("testRole",
+            uid="testrole",
+            version=1,
+            global_=True,
+            permissions=[grafana.RolePermissionArgs(
+                action="org.users:add",
+                scope="users:*",
+            )])
+        test_team = grafana.Team("testTeam")
+        test_user = grafana.User("testUser",
+            email="terraform_user@test.com",
+            login="terraform_user@test.com",
+            password="password")
+        test_sa = grafana.ServiceAccount("testSa", role="Viewer")
+        test = grafana.RoleAssignment("test",
+            role_uid=test_role.uid,
+            users=[test_user.id],
+            teams=[test_team.id],
+            service_accounts=[test_sa.id])
+        ```
 
         :param str resource_name: The name of the resource.
         :param RoleAssignmentArgs args: The arguments to use to populate this resource's properties.

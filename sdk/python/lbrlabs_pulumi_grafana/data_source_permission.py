@@ -128,6 +128,10 @@ class DataSourcePermission(pulumi.CustomResource):
                 ),
                 grafana.DataSourcePermissionPermissionArgs(
                     user_id=3,
+                    permission="Edit",
+                ),
+                grafana.DataSourcePermissionPermissionArgs(
+                    built_in_role="Viewer",
                     permission="Query",
                 ),
             ])
@@ -173,6 +177,10 @@ class DataSourcePermission(pulumi.CustomResource):
                 ),
                 grafana.DataSourcePermissionPermissionArgs(
                     user_id=3,
+                    permission="Edit",
+                ),
+                grafana.DataSourcePermissionPermissionArgs(
+                    built_in_role="Viewer",
                     permission="Query",
                 ),
             ])

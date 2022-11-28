@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.grafana.TeamArgs;
 import com.pulumi.grafana.Utilities;
 import com.pulumi.grafana.inputs.TeamState;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -67,6 +68,26 @@ public class Team extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> email() {
         return Codegen.optional(this.email);
+    }
+    /**
+     * Ignores team members that have been added to team by [Team
+     * Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
+     * [grafana_team_external_group
+     * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+     * 
+     */
+    @Export(name="ignoreExternallySyncedMembers", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> ignoreExternallySyncedMembers;
+
+    /**
+     * @return Ignores team members that have been added to team by [Team
+     * Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
+     * [grafana_team_external_group
+     * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+     * 
+     */
+    public Output<Optional<Boolean>> ignoreExternallySyncedMembers() {
+        return Codegen.optional(this.ignoreExternallySyncedMembers);
     }
     /**
      * A set of email addresses corresponding to users who should be given membership

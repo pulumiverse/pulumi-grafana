@@ -45,6 +45,15 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string?> Email { get; private set; } = null!;
 
         /// <summary>
+        /// Ignores team members that have been added to team by [Team
+        /// Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
+        /// [grafana_team_external_group
+        /// resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+        /// </summary>
+        [Output("ignoreExternallySyncedMembers")]
+        public Output<bool?> IgnoreExternallySyncedMembers { get; private set; } = null!;
+
+        /// <summary>
         /// A set of email addresses corresponding to users who should be given membership
         /// to the team. Note: users specified here must already exist in Grafana.
         /// </summary>
@@ -116,6 +125,15 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("email")]
         public Input<string>? Email { get; set; }
 
+        /// <summary>
+        /// Ignores team members that have been added to team by [Team
+        /// Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
+        /// [grafana_team_external_group
+        /// resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+        /// </summary>
+        [Input("ignoreExternallySyncedMembers")]
+        public Input<bool>? IgnoreExternallySyncedMembers { get; set; }
+
         [Input("members")]
         private InputList<string>? _members;
 
@@ -148,6 +166,15 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
+
+        /// <summary>
+        /// Ignores team members that have been added to team by [Team
+        /// Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
+        /// [grafana_team_external_group
+        /// resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+        /// </summary>
+        [Input("ignoreExternallySyncedMembers")]
+        public Input<bool>? IgnoreExternallySyncedMembers { get; set; }
 
         [Input("members")]
         private InputList<string>? _members;

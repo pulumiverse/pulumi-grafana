@@ -13,7 +13,12 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DataSourcePermissionPermission {
     /**
-     * @return Permission to associate with item. Must be `Query`.
+     * @return Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
+     * 
+     */
+    private @Nullable String builtInRole;
+    /**
+     * @return Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
      * 
      */
     private String permission;
@@ -30,7 +35,14 @@ public final class DataSourcePermissionPermission {
 
     private DataSourcePermissionPermission() {}
     /**
-     * @return Permission to associate with item. Must be `Query`.
+     * @return Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
+     * 
+     */
+    public Optional<String> builtInRole() {
+        return Optional.ofNullable(this.builtInRole);
+    }
+    /**
+     * @return Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
      * 
      */
     public String permission() {
@@ -60,17 +72,24 @@ public final class DataSourcePermissionPermission {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String builtInRole;
         private String permission;
         private @Nullable Integer teamId;
         private @Nullable Integer userId;
         public Builder() {}
         public Builder(DataSourcePermissionPermission defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.builtInRole = defaults.builtInRole;
     	      this.permission = defaults.permission;
     	      this.teamId = defaults.teamId;
     	      this.userId = defaults.userId;
         }
 
+        @CustomType.Setter
+        public Builder builtInRole(@Nullable String builtInRole) {
+            this.builtInRole = builtInRole;
+            return this;
+        }
         @CustomType.Setter
         public Builder permission(String permission) {
             this.permission = Objects.requireNonNull(permission);
@@ -88,6 +107,7 @@ public final class DataSourcePermissionPermission {
         }
         public DataSourcePermissionPermission build() {
             final var o = new DataSourcePermissionPermission();
+            o.builtInRole = builtInRole;
             o.permission = permission;
             o.teamId = teamId;
             o.userId = userId;

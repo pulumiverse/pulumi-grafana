@@ -106,10 +106,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/lbrlabs",
-                AdditionalSecretOutputs =
-                {
-                    "password",
-                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -157,21 +153,11 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        [Input("password", required: true)]
-        private Input<string>? _password;
-
         /// <summary>
         /// The password for the Grafana user.
         /// </summary>
-        public Input<string>? Password
-        {
-            get => _password;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("password", required: true)]
+        public Input<string> Password { get; set; } = null!;
 
         public UserArgs()
         {
@@ -205,21 +191,11 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        [Input("password")]
-        private Input<string>? _password;
-
         /// <summary>
         /// The password for the Grafana user.
         /// </summary>
-        public Input<string>? Password
-        {
-            get => _password;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("password")]
+        public Input<string>? Password { get; set; }
 
         /// <summary>
         /// The numerical ID of the Grafana user.

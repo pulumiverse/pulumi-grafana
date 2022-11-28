@@ -13,21 +13,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class ContactPointWebhookGetArgs : global::Pulumi.ResourceArgs
     {
-        [Input("authorizationCredentials")]
-        private Input<string>? _authorizationCredentials;
-
         /// <summary>
         /// Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.
         /// </summary>
-        public Input<string>? AuthorizationCredentials
-        {
-            get => _authorizationCredentials;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _authorizationCredentials = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("authorizationCredentials")]
+        public Input<string>? AuthorizationCredentials { get; set; }
 
         /// <summary>
         /// Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.
@@ -35,21 +25,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         [Input("authorizationScheme")]
         public Input<string>? AuthorizationScheme { get; set; }
 
-        [Input("basicAuthPassword")]
-        private Input<string>? _basicAuthPassword;
-
         /// <summary>
         /// The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
         /// </summary>
-        public Input<string>? BasicAuthPassword
-        {
-            get => _basicAuthPassword;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _basicAuthPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("basicAuthPassword")]
+        public Input<string>? BasicAuthPassword { get; set; }
 
         /// <summary>
         /// The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
@@ -84,11 +64,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public InputMap<string> Settings
         {
             get => _settings ?? (_settings = new InputMap<string>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
-                _settings = Output.All(value, emptySecret).Apply(v => v[0]);
-            }
+            set => _settings = value;
         }
 
         /// <summary>

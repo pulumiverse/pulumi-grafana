@@ -21,6 +21,69 @@ import javax.annotation.Nullable;
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
  * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.grafana.Role;
+ * import com.pulumi.grafana.RoleArgs;
+ * import com.pulumi.grafana.inputs.RolePermissionArgs;
+ * import com.pulumi.grafana.Team;
+ * import com.pulumi.grafana.User;
+ * import com.pulumi.grafana.UserArgs;
+ * import com.pulumi.grafana.ServiceAccount;
+ * import com.pulumi.grafana.ServiceAccountArgs;
+ * import com.pulumi.grafana.RoleAssignment;
+ * import com.pulumi.grafana.RoleAssignmentArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var testRole = new Role(&#34;testRole&#34;, RoleArgs.builder()        
+ *             .uid(&#34;testrole&#34;)
+ *             .version(1)
+ *             .global(true)
+ *             .permissions(RolePermissionArgs.builder()
+ *                 .action(&#34;org.users:add&#34;)
+ *                 .scope(&#34;users:*&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *         var testTeam = new Team(&#34;testTeam&#34;);
+ * 
+ *         var testUser = new User(&#34;testUser&#34;, UserArgs.builder()        
+ *             .email(&#34;terraform_user@test.com&#34;)
+ *             .login(&#34;terraform_user@test.com&#34;)
+ *             .password(&#34;password&#34;)
+ *             .build());
+ * 
+ *         var testSa = new ServiceAccount(&#34;testSa&#34;, ServiceAccountArgs.builder()        
+ *             .role(&#34;Viewer&#34;)
+ *             .build());
+ * 
+ *         var test = new RoleAssignment(&#34;test&#34;, RoleAssignmentArgs.builder()        
+ *             .roleUid(testRole.uid())
+ *             .users(testUser.id())
+ *             .teams(testTeam.id())
+ *             .serviceAccounts(testSa.id())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  */
 @ResourceType(type="grafana:index/roleAssignment:RoleAssignment")
 public class RoleAssignment extends com.pulumi.resources.CustomResource {

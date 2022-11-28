@@ -193,6 +193,7 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_role_assignment":                   {Tok: grafanaResource(grafanaMod, "RoleAssignment")},
 			"grafana_rule_group":                        {Tok: grafanaResource(grafanaMod, "RuleGroup")},
 			"grafana_service_account":                   {Tok: grafanaResource(grafanaMod, "ServiceAccount")},
+			"grafana_service_account_permission":        {Tok: grafanaResource(grafanaMod, "ServiceAccountPermission")},
 			"grafana_service_account_token":             {Tok: grafanaResource(grafanaMod, "ServiceAccountToken")},
 			"grafana_synthetic_monitoring_check":        {Tok: grafanaResource(grafanaMod, "SyntheticMonitoringCheck")},
 			"grafana_synthetic_monitoring_installation": {Tok: grafanaResource(grafanaMod, "SyntheticMonitoringInstallation")},
