@@ -32,8 +32,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := grafana.NewContactPoint(ctx, "myContactPoint", &grafana.ContactPointArgs{
-//				Emails: ContactPointEmailArray{
-//					&ContactPointEmailArgs{
+//				Emails: grafana.ContactPointEmailArray{
+//					&grafana.ContactPointEmailArgs{
 //						Addresses: pulumi.StringArray{
 //							pulumi.String("one@company.org"),
 //							pulumi.String("two@company.org"),

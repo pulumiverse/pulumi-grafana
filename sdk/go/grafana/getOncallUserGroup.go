@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = grafana.GetOncallUserGroup(ctx, &GetOncallUserGroupArgs{
+//			_, err = grafana.GetOncallUserGroup(ctx, &grafana.GetOncallUserGroupArgs{
 //				SlackHandle: "example_slack_handle",
 //			}, nil)
 //			if err != nil {

@@ -123,6 +123,10 @@ namespace Lbrlabs.PulumiPackage.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/lbrlabs",
+                AdditionalSecretOutputs =
+                {
+                    "secureSettings",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -179,7 +183,11 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public InputMap<object> SecureSettings
         {
             get => _secureSettings ?? (_secureSettings = new InputMap<object>());
-            set => _secureSettings = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, object>());
+                _secureSettings = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         /// <summary>
@@ -253,7 +261,11 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public InputMap<object> SecureSettings
         {
             get => _secureSettings ?? (_secureSettings = new InputMap<object>());
-            set => _secureSettings = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, object>());
+                _secureSettings = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         /// <summary>

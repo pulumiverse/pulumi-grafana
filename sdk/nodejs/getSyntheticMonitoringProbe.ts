@@ -13,17 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
- * const atlanta = pulumi.output(grafana.getSyntheticMonitoringProbe({
+ * const atlanta = grafana.getSyntheticMonitoringProbe({
  *     name: "Atlanta",
- * }));
+ * });
  * ```
  */
 export function getSyntheticMonitoringProbe(args: GetSyntheticMonitoringProbeArgs, opts?: pulumi.InvokeOptions): Promise<GetSyntheticMonitoringProbeResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe", {
         "name": args.name,
     }, opts);

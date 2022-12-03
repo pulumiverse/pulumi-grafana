@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
  *
  * const test = new grafana.CloudApiKey("test", {
  *     cloudOrgSlug: "myorg",
@@ -102,6 +102,8 @@ export class CloudApiKey extends pulumi.CustomResource {
             resourceInputs["key"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["key"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(CloudApiKey.__pulumiType, name, resourceInputs, opts);
     }
 }

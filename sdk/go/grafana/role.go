@@ -33,16 +33,16 @@ import (
 //			_, err := grafana.NewRole(ctx, "superUser", &grafana.RoleArgs{
 //				Description: pulumi.String("My Super User description"),
 //				Global:      pulumi.Bool(true),
-//				Permissions: RolePermissionArray{
-//					&RolePermissionArgs{
+//				Permissions: grafana.RolePermissionArray{
+//					&grafana.RolePermissionArgs{
 //						Action: pulumi.String("org.users:add"),
 //						Scope:  pulumi.String("users:*"),
 //					},
-//					&RolePermissionArgs{
+//					&grafana.RolePermissionArgs{
 //						Action: pulumi.String("org.users:write"),
 //						Scope:  pulumi.String("users:*"),
 //					},
-//					&RolePermissionArgs{
+//					&grafana.RolePermissionArgs{
 //						Action: pulumi.String("org.users:read"),
 //						Scope:  pulumi.String("users:*"),
 //					},

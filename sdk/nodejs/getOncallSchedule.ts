@@ -14,17 +14,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
- * const schedule = pulumi.output(grafana.getOncallSchedule({
+ * const schedule = grafana.getOncallSchedule({
  *     name: "example_schedule",
- * }));
+ * });
  * ```
  */
 export function getOncallSchedule(args: GetOncallScheduleArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallScheduleResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOncallSchedule:getOncallSchedule", {
         "name": args.name,
     }, opts);

@@ -18,20 +18,18 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
  *
- * const myContactPoint = new grafana.ContactPoint("my_contact_point", {
- *     emails: [{
- *         addresses: [
- *             "one@company.org",
- *             "two@company.org",
- *         ],
- *         disableResolveMessage: false,
- *         message: "{{ len .Alerts.Firing }} firing.",
- *         singleEmail: true,
- *         subject: "{{ template \"default.title\" .}}",
- *     }],
- * });
+ * const myContactPoint = new grafana.ContactPoint("myContactPoint", {emails: [{
+ *     addresses: [
+ *         "one@company.org",
+ *         "two@company.org",
+ *     ],
+ *     disableResolveMessage: false,
+ *     message: "{{ len .Alerts.Firing }} firing.",
+ *     singleEmail: true,
+ *     subject: "{{ template \"default.title\" .}}",
+ * }]});
  * ```
  *
  * ## Import

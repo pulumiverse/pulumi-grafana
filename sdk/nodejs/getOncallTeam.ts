@@ -11,17 +11,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
- * const exampleTeam = pulumi.output(grafana.getOncallTeam({
+ * const exampleTeam = grafana.getOncallTeam({
  *     name: "example_team",
- * }));
+ * });
  * ```
  */
 export function getOncallTeam(args: GetOncallTeamArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallTeamResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOncallTeam:getOncallTeam", {
         "name": args.name,
     }, opts);

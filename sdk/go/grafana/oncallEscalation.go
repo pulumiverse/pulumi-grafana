@@ -32,7 +32,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			alex, err := grafana.GetOncallUser(ctx, &GetOncallUserArgs{
+//			alex, err := grafana.GetOncallUser(ctx, &grafana.GetOncallUserArgs{
 //				Username: "alex",
 //			}, nil)
 //			if err != nil {

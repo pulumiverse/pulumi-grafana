@@ -102,6 +102,25 @@ func NewProvider(ctx *pulumi.Context,
 	if isZero(args.Url) {
 		args.Url = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_URL").(string))
 	}
+	if args.Auth != nil {
+		args.Auth = pulumi.ToSecret(args.Auth).(pulumi.StringPtrOutput)
+	}
+	if args.CloudApiKey != nil {
+		args.CloudApiKey = pulumi.ToSecret(args.CloudApiKey).(pulumi.StringPtrOutput)
+	}
+	if args.OncallAccessToken != nil {
+		args.OncallAccessToken = pulumi.ToSecret(args.OncallAccessToken).(pulumi.StringPtrOutput)
+	}
+	if args.SmAccessToken != nil {
+		args.SmAccessToken = pulumi.ToSecret(args.SmAccessToken).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"auth",
+		"cloudApiKey",
+		"oncallAccessToken",
+		"smAccessToken",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:grafana", name, args, &resource, opts...)

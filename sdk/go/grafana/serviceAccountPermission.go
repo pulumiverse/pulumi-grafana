@@ -50,12 +50,12 @@ import (
 //			}
 //			_, err = grafana.NewServiceAccountPermission(ctx, "testPermissions", &grafana.ServiceAccountPermissionArgs{
 //				ServiceAccountId: test.ID(),
-//				Permissions: ServiceAccountPermissionPermissionArray{
-//					&ServiceAccountPermissionPermissionArgs{
+//				Permissions: grafana.ServiceAccountPermissionPermissionArray{
+//					&grafana.ServiceAccountPermissionPermissionArgs{
 //						UserId:     testUser.ID(),
 //						Permission: pulumi.String("Edit"),
 //					},
-//					&ServiceAccountPermissionPermissionArgs{
+//					&grafana.ServiceAccountPermissionPermissionArgs{
 //						TeamId:     testTeam.ID(),
 //						Permission: pulumi.String("Admin"),
 //					},

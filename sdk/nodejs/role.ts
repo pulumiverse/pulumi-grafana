@@ -16,9 +16,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
  *
- * const superUser = new grafana.Role("super_user", {
+ * const superUser = new grafana.Role("superUser", {
  *     description: "My Super User description",
  *     global: true,
  *     permissions: [

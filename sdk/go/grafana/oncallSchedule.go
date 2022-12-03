@@ -27,13 +27,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleSlackChannel, err := grafana.GetOnCallSlackChannel(ctx, &GetOnCallSlackChannelArgs{
+//			exampleSlackChannel, err := grafana.GetOnCallSlackChannel(ctx, &grafana.GetOnCallSlackChannelArgs{
 //				Name: "example_slack_channel",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			exampleUserGroup, err := grafana.GetOncallUserGroup(ctx, &GetOncallUserGroupArgs{
+//			exampleUserGroup, err := grafana.GetOncallUserGroup(ctx, &grafana.GetOncallUserGroupArgs{
 //				SlackHandle: "example_slack_handle",
 //			}, nil)
 //			if err != nil {
@@ -43,7 +43,7 @@ import (
 //				Type:             pulumi.String("ical"),
 //				IcalUrlPrimary:   pulumi.String("https://example.com/example_ical.ics"),
 //				IcalUrlOverrides: pulumi.String("https://example.com/example_overrides_ical.ics"),
-//				Slack: &OncallScheduleSlackArgs{
+//				Slack: &grafana.OncallScheduleSlackArgs{
 //					ChannelId:   pulumi.String(exampleSlackChannel.SlackId),
 //					UserGroupId: pulumi.String(exampleUserGroup.SlackId),
 //				},

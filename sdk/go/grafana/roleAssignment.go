@@ -33,8 +33,8 @@ import (
 //				Uid:     pulumi.String("testrole"),
 //				Version: pulumi.Int(1),
 //				Global:  pulumi.Bool(true),
-//				Permissions: RolePermissionArray{
-//					&RolePermissionArgs{
+//				Permissions: grafana.RolePermissionArray{
+//					&grafana.RolePermissionArgs{
 //						Action: pulumi.String("org.users:add"),
 //						Scope:  pulumi.String("users:*"),
 //					},

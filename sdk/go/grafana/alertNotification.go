@@ -84,6 +84,13 @@ func NewAlertNotification(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	if args.SecureSettings != nil {
+		args.SecureSettings = pulumi.ToSecret(args.SecureSettings).(pulumi.MapOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"secureSettings",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource AlertNotification
 	err := ctx.RegisterResource("grafana:index/alertNotification:AlertNotification", name, args, &resource, opts...)

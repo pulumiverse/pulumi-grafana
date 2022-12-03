@@ -46,16 +46,16 @@ import (
 //			}
 //			_, err = grafana.NewFolderPermission(ctx, "collectionPermission", &grafana.FolderPermissionArgs{
 //				FolderUid: collection.Uid,
-//				Permissions: FolderPermissionPermissionArray{
-//					&FolderPermissionPermissionArgs{
+//				Permissions: grafana.FolderPermissionPermissionArray{
+//					&grafana.FolderPermissionPermissionArgs{
 //						Role:       pulumi.String("Editor"),
 //						Permission: pulumi.String("Edit"),
 //					},
-//					&FolderPermissionPermissionArgs{
+//					&grafana.FolderPermissionPermissionArgs{
 //						TeamId:     team.ID(),
 //						Permission: pulumi.String("View"),
 //					},
-//					&FolderPermissionPermissionArgs{
+//					&grafana.FolderPermissionPermissionArgs{
 //						UserId:     user.ID(),
 //						Permission: pulumi.String("Admin"),
 //					},

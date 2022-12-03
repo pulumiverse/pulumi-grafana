@@ -37,11 +37,21 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         [Input("group")]
         public Input<string>? Group { get; set; }
 
+        [Input("integrationKey", required: true)]
+        private Input<string>? _integrationKey;
+
         /// <summary>
         /// The PagerDuty API key.
         /// </summary>
-        [Input("integrationKey", required: true)]
-        public Input<string> IntegrationKey { get; set; } = null!;
+        public Input<string>? IntegrationKey
+        {
+            get => _integrationKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _integrationKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("settings")]
         private InputMap<string>? _settings;
@@ -52,7 +62,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public InputMap<string> Settings
         {
             get => _settings ?? (_settings = new InputMap<string>());
-            set => _settings = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _settings = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         /// <summary>

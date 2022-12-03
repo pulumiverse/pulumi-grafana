@@ -13,17 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
- * const defaultOncallEscalationChain = pulumi.output(grafana.getOncallEscalationChain({
+ * const default = grafana.getOncallEscalationChain({
  *     name: "default",
- * }));
+ * });
  * ```
  */
 export function getOncallEscalationChain(args: GetOncallEscalationChainArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallEscalationChainResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOncallEscalationChain:getOncallEscalationChain", {
         "name": args.name,
     }, opts);

@@ -12,11 +12,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
  *
- * const test = new grafana.Annotation("test", {
- *     text: "basic text",
- * });
+ * const test = new grafana.Annotation("test", {text: "basic text"});
  * ```
  */
 export class Annotation extends pulumi.CustomResource {

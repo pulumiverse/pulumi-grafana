@@ -13,17 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
- * const alex = pulumi.output(grafana.getOncallUser({
+ * const alex = grafana.getOncallUser({
  *     username: "alex",
- * }));
+ * });
  * ```
  */
 export function getOncallUser(args: GetOncallUserArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallUserResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOncallUser:getOncallUser", {
         "username": args.username,
     }, opts);

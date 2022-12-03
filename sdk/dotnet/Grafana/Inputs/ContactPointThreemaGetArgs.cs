@@ -13,11 +13,21 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class ContactPointThreemaGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("apiSecret", required: true)]
+        private Input<string>? _apiSecret;
+
         /// <summary>
         /// The Threema API key.
         /// </summary>
-        [Input("apiSecret", required: true)]
-        public Input<string> ApiSecret { get; set; } = null!;
+        public Input<string>? ApiSecret
+        {
+            get => _apiSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
@@ -46,7 +56,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public InputMap<string> Settings
         {
             get => _settings ?? (_settings = new InputMap<string>());
-            set => _settings = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _settings = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         /// <summary>

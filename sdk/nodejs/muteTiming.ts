@@ -18,32 +18,30 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
  *
- * const myMuteTiming = new grafana.MuteTiming("my_mute_timing", {
- *     intervals: [{
- *         daysOfMonths: [
- *             "1:7",
- *             "-1",
- *         ],
- *         months: [
- *             "1:3",
- *             "december",
- *         ],
- *         times: [{
- *             end: "14:17",
- *             start: "04:56",
- *         }],
- *         weekdays: [
- *             "monday",
- *             "tuesday:thursday",
- *         ],
- *         years: [
- *             "2030",
- *             "2025:2026",
- *         ],
+ * const myMuteTiming = new grafana.MuteTiming("myMuteTiming", {intervals: [{
+ *     daysOfMonths: [
+ *         "1:7",
+ *         "-1",
+ *     ],
+ *     months: [
+ *         "1:3",
+ *         "december",
+ *     ],
+ *     times: [{
+ *         end: "14:17",
+ *         start: "04:56",
  *     }],
- * });
+ *     weekdays: [
+ *         "monday",
+ *         "tuesday:thursday",
+ *     ],
+ *     years: [
+ *         "2030",
+ *         "2025:2026",
+ *     ],
+ * }]});
  * ```
  *
  * ## Import

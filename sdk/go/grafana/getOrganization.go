@@ -38,7 +38,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = grafana.LookupOrganizationOutput(ctx, GetOrganizationOutputArgs{
+//			_ = grafana.LookupOrganizationOutput(ctx, grafana.GetOrganizationOutputArgs{
 //				Name: test.Name,
 //			}, nil)
 //			return nil

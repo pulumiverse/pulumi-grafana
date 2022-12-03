@@ -39,17 +39,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = grafana.LookupUserOutput(ctx, GetUserOutputArgs{
+//			_ = grafana.LookupUserOutput(ctx, grafana.GetUserOutputArgs{
 //				UserId: test.UserId,
 //			}, nil)
-//			_ = grafana.LookupUserOutput(ctx, GetUserOutputArgs{
+//			_ = grafana.LookupUserOutput(ctx, grafana.GetUserOutputArgs{
 //				Email: test.Email,
 //			}, nil)
-//			_ = test.Login.ApplyT(func(login string) (GetUserResult, error) {
-//				return grafana.LookupUserOutput(ctx, GetUserOutputArgs{
+//			_ = test.Login.ApplyT(func(login string) (grafana.GetUserResult, error) {
+//				return grafana.LookupUserOutput(ctx, grafana.GetUserOutputArgs{
 //					Login: login,
 //				}, nil), nil
-//			}).(pulumi.GetUserResultOutput)
+//			}).(grafana.GetUserResultOutput)
 //			return nil
 //		})
 //	}

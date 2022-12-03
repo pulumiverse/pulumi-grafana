@@ -52,10 +52,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = grafana.LookupDashboardOutput(ctx, GetDashboardOutputArgs{
+//			_ = grafana.LookupDashboardOutput(ctx, grafana.GetDashboardOutputArgs{
 //				DashboardId: test.DashboardId,
 //			}, nil)
-//			_, err = grafana.LookupDashboard(ctx, &GetDashboardArgs{
+//			_, err = grafana.LookupDashboard(ctx, &grafana.LookupDashboardArgs{
 //				Uid: pulumi.StringRef("test-ds-dashboard-uid"),
 //			}, nil)
 //			if err != nil {

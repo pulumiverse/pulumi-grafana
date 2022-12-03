@@ -44,7 +44,7 @@ import (
 //				Recipients: pulumi.StringArray{
 //					pulumi.String("some@email.com"),
 //				},
-//				Schedule: &ReportScheduleArgs{
+//				Schedule: &grafana.ReportScheduleArgs{
 //					Frequency: pulumi.String("hourly"),
 //				},
 //			})

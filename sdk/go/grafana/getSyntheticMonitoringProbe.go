@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = grafana.LookupSyntheticMonitoringProbe(ctx, &GetSyntheticMonitoringProbeArgs{
+//			_, err = grafana.LookupSyntheticMonitoringProbe(ctx, &grafana.LookupSyntheticMonitoringProbeArgs{
 //				Name: "Atlanta",
 //			}, nil)
 //			if err != nil {

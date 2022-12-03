@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleSlackChannel, err := grafana.GetOnCallSlackChannel(ctx, &GetOnCallSlackChannelArgs{
+//			exampleSlackChannel, err := grafana.GetOnCallSlackChannel(ctx, &grafana.GetOnCallSlackChannelArgs{
 //				Name: "example_slack_channel",
 //			}, nil)
 //			if err != nil {
@@ -48,15 +48,15 @@ import (
 //				EscalationChainId: _default.ID(),
 //				RoutingRegex:      pulumi.String("us-(east|west)"),
 //				Position:          pulumi.Int(0),
-//				Slack: &OncallRouteSlackArgs{
+//				Slack: &grafana.OncallRouteSlackArgs{
 //					ChannelId: pulumi.String(exampleSlackChannel.SlackId),
 //					Enabled:   pulumi.Bool(true),
 //				},
-//				Telegram: &OncallRouteTelegramArgs{
+//				Telegram: &grafana.OncallRouteTelegramArgs{
 //					Id:      pulumi.String("ONCALLTELEGRAMID"),
 //					Enabled: pulumi.Bool(true),
 //				},
-//				Msteams: &OncallRouteMsteamsArgs{
+//				Msteams: &grafana.OncallRouteMsteamsArgs{
 //					Id:      pulumi.String("ONCALLMSTEAMSID"),
 //					Enabled: pulumi.Bool(false),
 //				},

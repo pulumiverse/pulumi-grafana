@@ -13,17 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
- * const exampleUserGroup = pulumi.output(grafana.getOncallUserGroup({
+ * const exampleUserGroup = grafana.getOncallUserGroup({
  *     slackHandle: "example_slack_handle",
- * }));
+ * });
  * ```
  */
 export function getOncallUserGroup(args: GetOncallUserGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallUserGroupResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOncallUserGroup:getOncallUserGroup", {
         "slackHandle": args.slackHandle,
     }, opts);

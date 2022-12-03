@@ -107,6 +107,15 @@ def get_organization_preferences(opts: Optional[pulumi.InvokeOptions] = None) ->
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
     * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    test = grafana.get_organization_preferences()
+    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

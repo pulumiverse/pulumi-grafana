@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
  *
  * const main = new grafana.SyntheticMonitoringProbe("main", {
  *     labels: {
@@ -141,6 +141,8 @@ export class SyntheticMonitoringProbe extends pulumi.CustomResource {
             resourceInputs["tenantId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["authToken"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SyntheticMonitoringProbe.__pulumiType, name, resourceInputs, opts);
     }
 }

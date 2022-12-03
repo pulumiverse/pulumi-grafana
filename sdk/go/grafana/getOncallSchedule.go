@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = grafana.LookupOncallSchedule(ctx, &GetOncallScheduleArgs{
+//			_, err = grafana.LookupOncallSchedule(ctx, &grafana.LookupOncallScheduleArgs{
 //				Name: "example_schedule",
 //			}, nil)
 //			if err != nil {

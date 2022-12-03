@@ -106,6 +106,15 @@ class AwaitableGetCloudIpsResult(GetCloudIpsResult):
 def get_cloud_ips(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudIpsResult:
     """
     Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    test = grafana.get_cloud_ips()
+    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

@@ -13,16 +13,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
- * const main = pulumi.output(grafana.getSyntheticMonitoringProbes());
+ * const main = grafana.getSyntheticMonitoringProbes({});
  * ```
  */
 export function getSyntheticMonitoringProbes(args?: GetSyntheticMonitoringProbesArgs, opts?: pulumi.InvokeOptions): Promise<GetSyntheticMonitoringProbesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes", {
         "filterDeprecated": args.filterDeprecated,
     }, opts);

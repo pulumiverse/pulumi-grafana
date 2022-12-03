@@ -16,13 +16,12 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
  *
- * const myTemplate = new grafana.MessageTemplate("my_template", {
- *     template: `{{define "My Reusable Template" }}
+ * const myTemplate = new grafana.MessageTemplate("myTemplate", {template: `{{define "My Reusable Template" }}
  *  template content
- * {{ end }}`,
- * });
+ * {{ end }}
+ * `});
  * ```
  *
  * ## Import

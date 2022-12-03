@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = grafana.LookupOncallOutgoingWebhook(ctx, &GetOncallOutgoingWebhookArgs{
+//			_, err = grafana.LookupOncallOutgoingWebhook(ctx, &grafana.LookupOncallOutgoingWebhookArgs{
 //				Name: "example_outgoing_webhook",
 //			}, nil)
 //			if err != nil {

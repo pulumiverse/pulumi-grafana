@@ -27,12 +27,12 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := grafana.NewBuiltinRoleAssignment(ctx, "viewer", &grafana.BuiltinRoleAssignmentArgs{
 //				BuiltinRole: pulumi.String("Viewer"),
-//				Roles: BuiltinRoleAssignmentRoleArray{
-//					&BuiltinRoleAssignmentRoleArgs{
+//				Roles: grafana.BuiltinRoleAssignmentRoleArray{
+//					&grafana.BuiltinRoleAssignmentRoleArgs{
 //						Global: pulumi.Bool(false),
 //						Uid:    pulumi.String("firstuid"),
 //					},
-//					&BuiltinRoleAssignmentRoleArgs{
+//					&grafana.BuiltinRoleAssignmentRoleArgs{
 //						Global: pulumi.Bool(true),
 //						Uid:    pulumi.String("seconduid"),
 //					},

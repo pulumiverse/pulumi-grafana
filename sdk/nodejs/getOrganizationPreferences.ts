@@ -14,15 +14,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
- * const test = pulumi.output(grafana.getOrganizationPreferences());
+ * const test = grafana.getOrganizationPreferences({});
  * ```
  */
 export function getOrganizationPreferences(opts?: pulumi.InvokeOptions): Promise<GetOrganizationPreferencesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOrganizationPreferences:getOrganizationPreferences", {
     }, opts);
 }

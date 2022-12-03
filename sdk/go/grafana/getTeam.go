@@ -33,7 +33,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = grafana.LookupTeamOutput(ctx, GetTeamOutputArgs{
+//			_ = grafana.LookupTeamOutput(ctx, grafana.GetTeamOutputArgs{
 //				Name: test.Name,
 //			}, nil)
 //			return nil

@@ -13,17 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
- * const exampleOutgoingWebhook = pulumi.output(grafana.getOncallOutgoingWebhook({
+ * const exampleOutgoingWebhook = grafana.getOncallOutgoingWebhook({
  *     name: "example_outgoing_webhook",
- * }));
+ * });
  * ```
  */
 export function getOncallOutgoingWebhook(args: GetOncallOutgoingWebhookArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallOutgoingWebhookResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook", {
         "name": args.name,
     }, opts);

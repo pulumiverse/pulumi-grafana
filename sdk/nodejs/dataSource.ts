@@ -224,23 +224,25 @@ export class DataSource extends pulumi.CustomResource {
             }
             resourceInputs["accessMode"] = args ? args.accessMode : undefined;
             resourceInputs["basicAuthEnabled"] = args ? args.basicAuthEnabled : undefined;
-            resourceInputs["basicAuthPassword"] = args ? args.basicAuthPassword : undefined;
+            resourceInputs["basicAuthPassword"] = args?.basicAuthPassword ? pulumi.secret(args.basicAuthPassword) : undefined;
             resourceInputs["basicAuthUsername"] = args ? args.basicAuthUsername : undefined;
             resourceInputs["databaseName"] = args ? args.databaseName : undefined;
-            resourceInputs["httpHeaders"] = args ? args.httpHeaders : undefined;
+            resourceInputs["httpHeaders"] = args?.httpHeaders ? pulumi.secret(args.httpHeaders) : undefined;
             resourceInputs["isDefault"] = args ? args.isDefault : undefined;
             resourceInputs["jsonDataEncoded"] = args ? args.jsonDataEncoded : undefined;
             resourceInputs["jsonDatas"] = args ? args.jsonDatas : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
-            resourceInputs["secureJsonDataEncoded"] = args ? args.secureJsonDataEncoded : undefined;
-            resourceInputs["secureJsonDatas"] = args ? args.secureJsonDatas : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["secureJsonDataEncoded"] = args?.secureJsonDataEncoded ? pulumi.secret(args.secureJsonDataEncoded) : undefined;
+            resourceInputs["secureJsonDatas"] = args?.secureJsonDatas ? pulumi.secret(args.secureJsonDatas) : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["uid"] = args ? args.uid : undefined;
             resourceInputs["url"] = args ? args.url : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["basicAuthPassword", "httpHeaders", "password", "secureJsonDataEncoded", "secureJsonDatas"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(DataSource.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -48,7 +48,7 @@ import (
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
 //				},
-//				Settings: &SyntheticMonitoringCheckSettingsArgs{
+//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
 //					Dns: nil,
 //				},
 //			})
@@ -89,8 +89,8 @@ import (
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("baz"),
 //				},
-//				Settings: &SyntheticMonitoringCheckSettingsArgs{
-//					Dns: &SyntheticMonitoringCheckSettingsDnsArgs{
+//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
+//					Dns: &grafana.SyntheticMonitoringCheckSettingsDnsArgs{
 //						IpVersion:  pulumi.String("Any"),
 //						Server:     pulumi.String("8.8.4.4"),
 //						Port:       pulumi.Int(8600),
@@ -100,7 +100,7 @@ import (
 //							pulumi.String("NOERROR"),
 //							pulumi.String("NOTAUTH"),
 //						},
-//						ValidateAnswerRrs: &SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs{
+//						ValidateAnswerRrs: &grafana.SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs{
 //							FailIfMatchesRegexps: pulumi.StringArray{
 //								pulumi.String(".+-bad-stuff*"),
 //							},
@@ -108,7 +108,7 @@ import (
 //								pulumi.String(".+-good-stuff*"),
 //							},
 //						},
-//						ValidateAuthorityRrs: &SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgs{
+//						ValidateAuthorityRrs: &grafana.SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgs{
 //							FailIfMatchesRegexps: pulumi.StringArray{
 //								pulumi.String(".+-bad-stuff*"),
 //							},
@@ -116,8 +116,8 @@ import (
 //								pulumi.String(".+-good-stuff*"),
 //							},
 //						},
-//						ValidateAdditionalRrs: SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArray{
-//							&SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs{
+//						ValidateAdditionalRrs: grafana.SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArray{
+//							&grafana.SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs{
 //								FailIfMatchesRegexps: pulumi.StringArray{
 //									pulumi.String(".+-bad-stuff*"),
 //								},
@@ -165,7 +165,7 @@ import (
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
 //				},
-//				Settings: &SyntheticMonitoringCheckSettingsArgs{
+//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
 //					Http: nil,
 //				},
 //			})
@@ -208,8 +208,8 @@ import (
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
 //				},
-//				Settings: &SyntheticMonitoringCheckSettingsArgs{
-//					Http: &SyntheticMonitoringCheckSettingsHttpArgs{
+//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
+//					Http: &grafana.SyntheticMonitoringCheckSettingsHttpArgs{
 //						IpVersion:                  pulumi.String("V6"),
 //						Method:                     pulumi.String("TRACE"),
 //						Body:                       pulumi.String("and spirit"),
@@ -219,7 +219,7 @@ import (
 //						FailIfSsl:                  pulumi.Bool(true),
 //						FailIfNotSsl:               pulumi.Bool(true),
 //						CacheBustingQueryParamName: pulumi.String("pineapple"),
-//						TlsConfig: &SyntheticMonitoringCheckSettingsHttpTlsConfigArgs{
+//						TlsConfig: &grafana.SyntheticMonitoringCheckSettingsHttpTlsConfigArgs{
 //							ServerName: pulumi.String("grafana.org"),
 //							ClientCert: pulumi.String(fmt.Sprintf(`-----BEGIN CERTIFICATE-----
 //
@@ -255,7 +255,7 @@ import (
 //						Headers: pulumi.StringArray{
 //							pulumi.String("Content-Type: multipart/form-data; boundary=something"),
 //						},
-//						BasicAuth: &SyntheticMonitoringCheckSettingsHttpBasicAuthArgs{
+//						BasicAuth: &grafana.SyntheticMonitoringCheckSettingsHttpBasicAuthArgs{
 //							Username: pulumi.String("open"),
 //							Password: pulumi.String("sesame"),
 //						},
@@ -274,8 +274,8 @@ import (
 //						FailIfBodyNotMatchesRegexps: pulumi.StringArray{
 //							pulumi.String("*good stuff*"),
 //						},
-//						FailIfHeaderMatchesRegexps: SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArray{
-//							&SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs{
+//						FailIfHeaderMatchesRegexps: grafana.SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArray{
+//							&grafana.SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs{
 //								Header:       pulumi.String("Content-Type"),
 //								Regexp:       pulumi.String("application/soap*"),
 //								AllowMissing: pulumi.Bool(true),
@@ -320,7 +320,7 @@ import (
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
 //				},
-//				Settings: &SyntheticMonitoringCheckSettingsArgs{
+//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
 //					Ping: nil,
 //				},
 //			})
@@ -361,8 +361,8 @@ import (
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("baz"),
 //				},
-//				Settings: &SyntheticMonitoringCheckSettingsArgs{
-//					Ping: &SyntheticMonitoringCheckSettingsPingArgs{
+//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
+//					Ping: &grafana.SyntheticMonitoringCheckSettingsPingArgs{
 //						IpVersion:    pulumi.String("Any"),
 //						PayloadSize:  pulumi.Int(20),
 //						DontFragment: pulumi.Bool(true),
@@ -405,7 +405,7 @@ import (
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
 //				},
-//				Settings: &SyntheticMonitoringCheckSettingsArgs{
+//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
 //					Tcp: nil,
 //				},
 //			})
@@ -448,22 +448,22 @@ import (
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("baz"),
 //				},
-//				Settings: &SyntheticMonitoringCheckSettingsArgs{
-//					Tcp: &SyntheticMonitoringCheckSettingsTcpArgs{
+//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
+//					Tcp: &grafana.SyntheticMonitoringCheckSettingsTcpArgs{
 //						IpVersion: pulumi.String("V6"),
 //						Tls:       pulumi.Bool(true),
-//						QueryResponses: SyntheticMonitoringCheckSettingsTcpQueryResponseArray{
-//							&SyntheticMonitoringCheckSettingsTcpQueryResponseArgs{
+//						QueryResponses: grafana.SyntheticMonitoringCheckSettingsTcpQueryResponseArray{
+//							&grafana.SyntheticMonitoringCheckSettingsTcpQueryResponseArgs{
 //								Send:   pulumi.String("howdy"),
 //								Expect: pulumi.String("hi"),
 //							},
-//							&SyntheticMonitoringCheckSettingsTcpQueryResponseArgs{
+//							&grafana.SyntheticMonitoringCheckSettingsTcpQueryResponseArgs{
 //								Send:     pulumi.String("like this"),
 //								Expect:   pulumi.String("like that"),
 //								StartTls: pulumi.Bool(true),
 //							},
 //						},
-//						TlsConfig: &SyntheticMonitoringCheckSettingsTcpTlsConfigArgs{
+//						TlsConfig: &grafana.SyntheticMonitoringCheckSettingsTcpTlsConfigArgs{
 //							ServerName: pulumi.String("grafana.com"),
 //							CaCert: pulumi.String(fmt.Sprintf(`-----BEGIN CERTIFICATE-----
 //
@@ -537,7 +537,7 @@ import (
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
 //				},
-//				Settings: &SyntheticMonitoringCheckSettingsArgs{
+//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
 //					Traceroute: nil,
 //				},
 //			})
@@ -580,8 +580,8 @@ import (
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("baz"),
 //				},
-//				Settings: &SyntheticMonitoringCheckSettingsArgs{
-//					Traceroute: &SyntheticMonitoringCheckSettingsTracerouteArgs{
+//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
+//					Traceroute: &grafana.SyntheticMonitoringCheckSettingsTracerouteArgs{
 //						MaxHops:        pulumi.Int(25),
 //						MaxUnknownHops: pulumi.Int(10),
 //						PtrLookup:      pulumi.Bool(false),

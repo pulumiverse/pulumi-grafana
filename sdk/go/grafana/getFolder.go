@@ -34,7 +34,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = grafana.LookupFolderOutput(ctx, GetFolderOutputArgs{
+//			_ = grafana.LookupFolderOutput(ctx, grafana.GetFolderOutputArgs{
 //				Title: test.Title,
 //			}, nil)
 //			return nil

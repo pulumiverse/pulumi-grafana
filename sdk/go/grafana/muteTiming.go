@@ -32,8 +32,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := grafana.NewMuteTiming(ctx, "myMuteTiming", &grafana.MuteTimingArgs{
-//				Intervals: MuteTimingIntervalArray{
-//					&MuteTimingIntervalArgs{
+//				Intervals: grafana.MuteTimingIntervalArray{
+//					&grafana.MuteTimingIntervalArgs{
 //						DaysOfMonths: pulumi.StringArray{
 //							pulumi.String("1:7"),
 //							pulumi.String("-1"),
@@ -42,8 +42,8 @@ import (
 //							pulumi.String("1:3"),
 //							pulumi.String("december"),
 //						},
-//						Times: MuteTimingIntervalTimeArray{
-//							&MuteTimingIntervalTimeArgs{
+//						Times: grafana.MuteTimingIntervalTimeArray{
+//							&grafana.MuteTimingIntervalTimeArgs{
 //								End:   pulumi.String("14:17"),
 //								Start: pulumi.String("04:56"),
 //							},

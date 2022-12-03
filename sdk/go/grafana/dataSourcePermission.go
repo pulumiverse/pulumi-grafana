@@ -33,14 +33,14 @@ import (
 //			}
 //			foo, err := grafana.NewDataSource(ctx, "foo", &grafana.DataSourceArgs{
 //				Type: pulumi.String("cloudwatch"),
-//				JsonDatas: DataSourceJsonDataArray{
-//					&DataSourceJsonDataArgs{
+//				JsonDatas: grafana.DataSourceJsonDataArray{
+//					&grafana.DataSourceJsonDataArgs{
 //						DefaultRegion: pulumi.String("us-east-1"),
 //						AuthType:      pulumi.String("keys"),
 //					},
 //				},
-//				SecureJsonDatas: DataSourceSecureJsonDataArray{
-//					&DataSourceSecureJsonDataArgs{
+//				SecureJsonDatas: grafana.DataSourceSecureJsonDataArray{
+//					&grafana.DataSourceSecureJsonDataArgs{
 //						AccessKey: pulumi.String("123"),
 //						SecretKey: pulumi.String("456"),
 //					},
@@ -51,16 +51,16 @@ import (
 //			}
 //			_, err = grafana.NewDataSourcePermission(ctx, "fooPermissions", &grafana.DataSourcePermissionArgs{
 //				DatasourceId: foo.ID(),
-//				Permissions: DataSourcePermissionPermissionArray{
-//					&DataSourcePermissionPermissionArgs{
+//				Permissions: grafana.DataSourcePermissionPermissionArray{
+//					&grafana.DataSourcePermissionPermissionArgs{
 //						TeamId:     team.ID(),
 //						Permission: pulumi.String("Query"),
 //					},
-//					&DataSourcePermissionPermissionArgs{
+//					&grafana.DataSourcePermissionPermissionArgs{
 //						UserId:     pulumi.Int(3),
 //						Permission: pulumi.String("Edit"),
 //					},
-//					&DataSourcePermissionPermissionArgs{
+//					&grafana.DataSourcePermissionPermissionArgs{
 //						BuiltInRole: pulumi.String("Viewer"),
 //						Permission:  pulumi.String("Query"),
 //					},

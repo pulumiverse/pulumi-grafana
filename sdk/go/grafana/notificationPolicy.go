@@ -33,8 +33,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			aContactPoint, err := grafana.NewContactPoint(ctx, "aContactPoint", &grafana.ContactPointArgs{
-//				Emails: ContactPointEmailArray{
-//					&ContactPointEmailArgs{
+//				Emails: grafana.ContactPointEmailArray{
+//					&grafana.ContactPointEmailArgs{
 //						Addresses: pulumi.StringArray{
 //							pulumi.String("one@company.org"),
 //							pulumi.String("two@company.org"),
@@ -47,8 +47,8 @@ import (
 //				return err
 //			}
 //			aMuteTiming, err := grafana.NewMuteTiming(ctx, "aMuteTiming", &grafana.MuteTimingArgs{
-//				Intervals: MuteTimingIntervalArray{
-//					&MuteTimingIntervalArgs{
+//				Intervals: grafana.MuteTimingIntervalArray{
+//					&grafana.MuteTimingIntervalArgs{
 //						Weekdays: pulumi.StringArray{
 //							pulumi.String("monday"),
 //						},
@@ -66,10 +66,10 @@ import (
 //				GroupWait:      pulumi.String("45s"),
 //				GroupInterval:  pulumi.String("6m"),
 //				RepeatInterval: pulumi.String("3h"),
-//				Policies: NotificationPolicyPolicyArray{
-//					&NotificationPolicyPolicyArgs{
-//						Matchers: NotificationPolicyPolicyMatcherArray{
-//							&NotificationPolicyPolicyMatcherArgs{
+//				Policies: grafana.NotificationPolicyPolicyArray{
+//					&grafana.NotificationPolicyPolicyArgs{
+//						Matchers: grafana.NotificationPolicyPolicyMatcherArray{
+//							&grafana.NotificationPolicyPolicyMatcherArgs{
 //								Label: pulumi.String("mylabel"),
 //								Match: pulumi.String("="),
 //								Value: pulumi.String("myvalue"),
@@ -86,10 +86,10 @@ import (
 //						GroupWait:      pulumi.String("45s"),
 //						GroupInterval:  pulumi.String("6m"),
 //						RepeatInterval: pulumi.String("3h"),
-//						Policies: NotificationPolicyPolicyPolicyArray{
-//							&NotificationPolicyPolicyPolicyArgs{
-//								Matchers: NotificationPolicyPolicyPolicyMatcherArray{
-//									&NotificationPolicyPolicyPolicyMatcherArgs{
+//						Policies: grafana.NotificationPolicyPolicyPolicyArray{
+//							&grafana.NotificationPolicyPolicyPolicyArgs{
+//								Matchers: grafana.NotificationPolicyPolicyPolicyMatcherArray{
+//									&grafana.NotificationPolicyPolicyPolicyMatcherArgs{
 //										Label: pulumi.String("sublabel"),
 //										Match: pulumi.String("="),
 //										Value: pulumi.String("subvalue"),
@@ -102,9 +102,9 @@ import (
 //							},
 //						},
 //					},
-//					&NotificationPolicyPolicyArgs{
-//						Matchers: NotificationPolicyPolicyMatcherArray{
-//							&NotificationPolicyPolicyMatcherArgs{
+//					&grafana.NotificationPolicyPolicyArgs{
+//						Matchers: grafana.NotificationPolicyPolicyMatcherArray{
+//							&grafana.NotificationPolicyPolicyMatcherArgs{
 //								Label: pulumi.String("anotherlabel"),
 //								Match: pulumi.String("=~"),
 //								Value: pulumi.String("another value.*"),
@@ -128,7 +128,7 @@ import (
 //
 // ## Import
 //
-// # The policy is a singleton, so the ID is a constant "policy" value.
+// The policy is a singleton, so the ID is a constant "policy" value.
 //
 // ```sh
 //

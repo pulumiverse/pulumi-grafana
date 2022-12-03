@@ -56,16 +56,16 @@ import (
 //			}
 //			_, err = grafana.NewDashboardPermission(ctx, "collectionPermission", &grafana.DashboardPermissionArgs{
 //				DashboardId: metrics.DashboardId,
-//				Permissions: DashboardPermissionPermissionArray{
-//					&DashboardPermissionPermissionArgs{
+//				Permissions: grafana.DashboardPermissionPermissionArray{
+//					&grafana.DashboardPermissionPermissionArgs{
 //						Role:       pulumi.String("Editor"),
 //						Permission: pulumi.String("Edit"),
 //					},
-//					&DashboardPermissionPermissionArgs{
+//					&grafana.DashboardPermissionPermissionArgs{
 //						TeamId:     team.ID(),
 //						Permission: pulumi.String("View"),
 //					},
-//					&DashboardPermissionPermissionArgs{
+//					&grafana.DashboardPermissionPermissionArgs{
 //						UserId:     user.ID(),
 //						Permission: pulumi.String("Admin"),
 //					},

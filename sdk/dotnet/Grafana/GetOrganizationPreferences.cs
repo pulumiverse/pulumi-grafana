@@ -15,6 +15,24 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// <summary>
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
         /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Grafana.GetOrganizationPreferences.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetOrganizationPreferencesResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationPreferencesResult>("grafana:index/getOrganizationPreferences:getOrganizationPreferences", InvokeArgs.Empty, options.WithDefaults());

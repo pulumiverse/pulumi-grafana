@@ -13,17 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
- * const exampleSlackChannel = pulumi.output(grafana.getOnCallSlackChannel({
+ * const exampleSlackChannel = grafana.getOnCallSlackChannel({
  *     name: "example_slack_channel",
- * }));
+ * });
  * ```
  */
 export function getOnCallSlackChannel(args: GetOnCallSlackChannelArgs, opts?: pulumi.InvokeOptions): Promise<GetOnCallSlackChannelResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOnCallSlackChannel:getOnCallSlackChannel", {
         "name": args.name,
     }, opts);

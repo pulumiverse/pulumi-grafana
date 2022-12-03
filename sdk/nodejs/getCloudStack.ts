@@ -8,11 +8,8 @@ import * as utilities from "./utilities";
  * Data source for Grafana Stack
  */
 export function getCloudStack(args: GetCloudStackArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudStackResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getCloudStack:getCloudStack", {
         "slug": args.slug,
     }, opts);

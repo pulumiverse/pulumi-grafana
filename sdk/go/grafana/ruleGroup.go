@@ -55,8 +55,8 @@ import (
 //				FolderUid:       ruleFolder.Uid,
 //				IntervalSeconds: pulumi.Int(240),
 //				OrgId:           pulumi.Int(1),
-//				Rules: RuleGroupRuleArray{
-//					&RuleGroupRuleArgs{
+//				Rules: grafana.RuleGroupRuleArray{
+//					&grafana.RuleGroupRuleArgs{
 //						Name:         pulumi.String("My Alert Rule 1"),
 //						For:          pulumi.String("2m"),
 //						Condition:    pulumi.String("B"),
@@ -70,21 +70,21 @@ import (
 //							"e": pulumi.String("f"),
 //							"g": pulumi.String("h"),
 //						},
-//						Datas: RuleGroupRuleDataArray{
-//							&RuleGroupRuleDataArgs{
+//						Datas: grafana.RuleGroupRuleDataArray{
+//							&grafana.RuleGroupRuleDataArgs{
 //								RefId:     pulumi.String("A"),
 //								QueryType: pulumi.String(""),
-//								RelativeTimeRange: &RuleGroupRuleDataRelativeTimeRangeArgs{
+//								RelativeTimeRange: &grafana.RuleGroupRuleDataRelativeTimeRangeArgs{
 //									From: pulumi.Int(600),
 //									To:   pulumi.Int(0),
 //								},
 //								DatasourceUid: pulumi.String("PD8C576611E62080A"),
 //								Model:         pulumi.String(json0),
 //							},
-//							&RuleGroupRuleDataArgs{
+//							&grafana.RuleGroupRuleDataArgs{
 //								RefId:     pulumi.String("B"),
 //								QueryType: pulumi.String(""),
-//								RelativeTimeRange: &RuleGroupRuleDataRelativeTimeRangeArgs{
+//								RelativeTimeRange: &grafana.RuleGroupRuleDataRelativeTimeRangeArgs{
 //									From: pulumi.Int(0),
 //									To:   pulumi.Int(0),
 //								},
