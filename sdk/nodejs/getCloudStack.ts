@@ -124,9 +124,11 @@ export interface GetCloudStackResult {
      */
     readonly url: string;
 }
-
+/**
+ * Data source for Grafana Stack
+ */
 export function getCloudStackOutput(args: GetCloudStackOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudStackResult> {
-    return pulumi.output(args).apply(a => getCloudStack(a, opts))
+    return pulumi.output(args).apply((a: any) => getCloudStack(a, opts))
 }
 
 /**

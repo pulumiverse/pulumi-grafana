@@ -71,9 +71,32 @@ export interface GetOrganizationResult {
      */
     readonly viewers: string[];
 }
-
+/**
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const test = new grafana.Organization("test", {
+ *     adminUser: "admin",
+ *     createUsers: true,
+ *     viewers: [
+ *         "viewer-01@example.com",
+ *         "viewer-02@example.com",
+ *     ],
+ * });
+ * const fromName = grafana.getOrganizationOutput({
+ *     name: test.name,
+ * });
+ * ```
+ */
 export function getOrganizationOutput(args: GetOrganizationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationResult> {
-    return pulumi.output(args).apply(a => getOrganization(a, opts))
+    return pulumi.output(args).apply((a: any) => getOrganization(a, opts))
 }
 
 /**

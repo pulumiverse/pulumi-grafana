@@ -96,9 +96,11 @@ export interface GetLibraryPanelResult {
      */
     readonly version: number;
 }
-
+/**
+ * Data source for retrieving a single library panel by name or uid.
+ */
 export function getLibraryPanelOutput(args?: GetLibraryPanelOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLibraryPanelResult> {
-    return pulumi.output(args).apply(a => getLibraryPanel(a, opts))
+    return pulumi.output(args).apply((a: any) => getLibraryPanel(a, opts))
 }
 
 /**

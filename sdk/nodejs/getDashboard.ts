@@ -103,9 +103,38 @@ export interface GetDashboardResult {
      */
     readonly version: number;
 }
-
+/**
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
+ * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
+ * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const test = new grafana.Dashboard("test", {configJson: JSON.stringify({
+ *     id: 12345,
+ *     uid: "test-ds-dashboard-uid",
+ *     title: "Production Overview",
+ *     tags: ["templated"],
+ *     timezone: "browser",
+ *     schemaVersion: 16,
+ *     version: 0,
+ *     refresh: "25s",
+ * })});
+ * const fromId = grafana.getDashboardOutput({
+ *     dashboardId: test.dashboardId,
+ * });
+ * const fromUid = grafana.getDashboard({
+ *     uid: "test-ds-dashboard-uid",
+ * });
+ * ```
+ */
 export function getDashboardOutput(args?: GetDashboardOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDashboardResult> {
-    return pulumi.output(args).apply(a => getDashboard(a, opts))
+    return pulumi.output(args).apply((a: any) => getDashboard(a, opts))
 }
 
 /**

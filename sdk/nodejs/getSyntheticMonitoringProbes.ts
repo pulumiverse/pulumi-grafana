@@ -52,9 +52,20 @@ export interface GetSyntheticMonitoringProbesResult {
      */
     readonly probes: {[key: string]: number};
 }
-
+/**
+ * Data source for retrieving all probes.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const main = grafana.getSyntheticMonitoringProbes({});
+ * ```
+ */
 export function getSyntheticMonitoringProbesOutput(args?: GetSyntheticMonitoringProbesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSyntheticMonitoringProbesResult> {
-    return pulumi.output(args).apply(a => getSyntheticMonitoringProbes(a, opts))
+    return pulumi.output(args).apply((a: any) => getSyntheticMonitoringProbes(a, opts))
 }
 
 /**

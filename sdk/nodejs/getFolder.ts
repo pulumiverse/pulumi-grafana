@@ -63,9 +63,28 @@ export interface GetFolderResult {
      */
     readonly url: string;
 }
-
+/**
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const test = new grafana.Folder("test", {
+ *     title: "test-folder",
+ *     uid: "test-ds-folder-uid",
+ * });
+ * const fromTitle = grafana.getFolderOutput({
+ *     title: test.title,
+ * });
+ * ```
+ */
 export function getFolderOutput(args: GetFolderOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFolderResult> {
-    return pulumi.output(args).apply(a => getFolder(a, opts))
+    return pulumi.output(args).apply((a: any) => getFolder(a, opts))
 }
 
 /**

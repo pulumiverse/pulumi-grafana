@@ -53,9 +53,22 @@ export interface GetOnCallSlackChannelResult {
      */
     readonly slackId: string;
 }
-
+/**
+ * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/slack_channels/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const exampleSlackChannel = grafana.getOnCallSlackChannel({
+ *     name: "example_slack_channel",
+ * });
+ * ```
+ */
 export function getOnCallSlackChannelOutput(args: GetOnCallSlackChannelOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOnCallSlackChannelResult> {
-    return pulumi.output(args).apply(a => getOnCallSlackChannel(a, opts))
+    return pulumi.output(args).apply((a: any) => getOnCallSlackChannel(a, opts))
 }
 
 /**
