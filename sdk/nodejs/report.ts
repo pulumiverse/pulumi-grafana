@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  *     message: "inital commit.",
  * });
  * const testReport = new grafana.Report("testReport", {
- *     dashboardId: testDashboard.dashboardId,
+ *     dashboardUid: testDashboard.uid,
  *     recipients: ["some@email.com"],
  *     schedule: {
  *         frequency: "hourly",
@@ -64,9 +64,15 @@ export class Report extends pulumi.CustomResource {
     }
 
     /**
-     * Dashboard to be sent in the report.
+     * Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
+     *
+     * @deprecated Use dashboard_uid instead
      */
     public readonly dashboardId!: pulumi.Output<number>;
+    /**
+     * Dashboard to be sent in the report.
+     */
+    public readonly dashboardUid!: pulumi.Output<string>;
     /**
      * Whether to include a link to the dashboard in the report. Defaults to `true`.
      */
@@ -122,6 +128,7 @@ export class Report extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ReportState | undefined;
             resourceInputs["dashboardId"] = state ? state.dashboardId : undefined;
+            resourceInputs["dashboardUid"] = state ? state.dashboardUid : undefined;
             resourceInputs["includeDashboardLink"] = state ? state.includeDashboardLink : undefined;
             resourceInputs["includeTableCsv"] = state ? state.includeTableCsv : undefined;
             resourceInputs["layout"] = state ? state.layout : undefined;
@@ -134,9 +141,6 @@ export class Report extends pulumi.CustomResource {
             resourceInputs["timeRange"] = state ? state.timeRange : undefined;
         } else {
             const args = argsOrState as ReportArgs | undefined;
-            if ((!args || args.dashboardId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'dashboardId'");
-            }
             if ((!args || args.recipients === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'recipients'");
             }
@@ -144,6 +148,7 @@ export class Report extends pulumi.CustomResource {
                 throw new Error("Missing required property 'schedule'");
             }
             resourceInputs["dashboardId"] = args ? args.dashboardId : undefined;
+            resourceInputs["dashboardUid"] = args ? args.dashboardUid : undefined;
             resourceInputs["includeDashboardLink"] = args ? args.includeDashboardLink : undefined;
             resourceInputs["includeTableCsv"] = args ? args.includeTableCsv : undefined;
             resourceInputs["layout"] = args ? args.layout : undefined;
@@ -165,9 +170,15 @@ export class Report extends pulumi.CustomResource {
  */
 export interface ReportState {
     /**
-     * Dashboard to be sent in the report.
+     * Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
+     *
+     * @deprecated Use dashboard_uid instead
      */
     dashboardId?: pulumi.Input<number>;
+    /**
+     * Dashboard to be sent in the report.
+     */
+    dashboardUid?: pulumi.Input<string>;
     /**
      * Whether to include a link to the dashboard in the report. Defaults to `true`.
      */
@@ -215,9 +226,15 @@ export interface ReportState {
  */
 export interface ReportArgs {
     /**
+     * Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
+     *
+     * @deprecated Use dashboard_uid instead
+     */
+    dashboardId?: pulumi.Input<number>;
+    /**
      * Dashboard to be sent in the report.
      */
-    dashboardId: pulumi.Input<number>;
+    dashboardUid?: pulumi.Input<string>;
     /**
      * Whether to include a link to the dashboard in the report. Defaults to `true`.
      */

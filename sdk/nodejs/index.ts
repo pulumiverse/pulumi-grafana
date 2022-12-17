@@ -177,6 +177,10 @@ export const getUser: typeof import("./getUser").getUser = null as any;
 export const getUserOutput: typeof import("./getUser").getUserOutput = null as any;
 utilities.lazyLoad(exports, ["getUser","getUserOutput"], () => require("./getUser"));
 
+export { GetUsersResult } from "./getUsers";
+export const getUsers: typeof import("./getUsers").getUsers = null as any;
+utilities.lazyLoad(exports, ["getUsers"], () => require("./getUsers"));
+
 export { LibraryPanelArgs, LibraryPanelState } from "./libraryPanel";
 export type LibraryPanel = import("./libraryPanel").LibraryPanel;
 export const LibraryPanel: typeof import("./libraryPanel").LibraryPanel = null as any;

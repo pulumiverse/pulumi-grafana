@@ -52,9 +52,25 @@ export interface GetTeamResult {
      */
     readonly name: string;
 }
-
+/**
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-teams/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/team/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const test = new grafana.Team("test", {email: "test-team-email@test.com"});
+ * const fromName = grafana.getTeamOutput({
+ *     name: test.name,
+ * });
+ * ```
+ */
 export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamResult> {
-    return pulumi.output(args).apply(a => getTeam(a, opts))
+    return pulumi.output(args).apply((a: any) => getTeam(a, opts))
 }
 
 /**

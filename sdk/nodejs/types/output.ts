@@ -4,7 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
-import * as utilities from "../utilities";
 
 export interface BuiltinRoleAssignmentRole {
     /**
@@ -978,6 +977,17 @@ export interface GetFoldersFolder {
     title: string;
     uid: string;
     url: string;
+}
+
+export interface GetUsersUser {
+    email: string;
+    /**
+     * The ID of this resource.
+     */
+    id: number;
+    isAdmin: boolean;
+    login: string;
+    name: string;
 }
 
 export interface MuteTimingInterval {

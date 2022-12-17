@@ -21,18 +21,41 @@ public final class ReportArgs extends com.pulumi.resources.ResourceArgs {
     public static final ReportArgs Empty = new ReportArgs();
 
     /**
+     * Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+     * 
+     * @deprecated
+     * Use dashboard_uid instead
+     * 
+     */
+    @Deprecated /* Use dashboard_uid instead */
+    @Import(name="dashboardId")
+    private @Nullable Output<Integer> dashboardId;
+
+    /**
+     * @return Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+     * 
+     * @deprecated
+     * Use dashboard_uid instead
+     * 
+     */
+    @Deprecated /* Use dashboard_uid instead */
+    public Optional<Output<Integer>> dashboardId() {
+        return Optional.ofNullable(this.dashboardId);
+    }
+
+    /**
      * Dashboard to be sent in the report.
      * 
      */
-    @Import(name="dashboardId", required=true)
-    private Output<Integer> dashboardId;
+    @Import(name="dashboardUid")
+    private @Nullable Output<String> dashboardUid;
 
     /**
      * @return Dashboard to be sent in the report.
      * 
      */
-    public Output<Integer> dashboardId() {
-        return this.dashboardId;
+    public Optional<Output<String>> dashboardUid() {
+        return Optional.ofNullable(this.dashboardUid);
     }
 
     /**
@@ -189,6 +212,7 @@ public final class ReportArgs extends com.pulumi.resources.ResourceArgs {
 
     private ReportArgs(ReportArgs $) {
         this.dashboardId = $.dashboardId;
+        this.dashboardUid = $.dashboardUid;
         this.includeDashboardLink = $.includeDashboardLink;
         this.includeTableCsv = $.includeTableCsv;
         this.layout = $.layout;
@@ -220,24 +244,53 @@ public final class ReportArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dashboardId Dashboard to be sent in the report.
+         * @param dashboardId Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Use dashboard_uid instead
+         * 
          */
-        public Builder dashboardId(Output<Integer> dashboardId) {
+        @Deprecated /* Use dashboard_uid instead */
+        public Builder dashboardId(@Nullable Output<Integer> dashboardId) {
             $.dashboardId = dashboardId;
             return this;
         }
 
         /**
-         * @param dashboardId Dashboard to be sent in the report.
+         * @param dashboardId Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * Use dashboard_uid instead
+         * 
+         */
+        @Deprecated /* Use dashboard_uid instead */
+        public Builder dashboardId(Integer dashboardId) {
+            return dashboardId(Output.of(dashboardId));
+        }
+
+        /**
+         * @param dashboardUid Dashboard to be sent in the report.
          * 
          * @return builder
          * 
          */
-        public Builder dashboardId(Integer dashboardId) {
-            return dashboardId(Output.of(dashboardId));
+        public Builder dashboardUid(@Nullable Output<String> dashboardUid) {
+            $.dashboardUid = dashboardUid;
+            return this;
+        }
+
+        /**
+         * @param dashboardUid Dashboard to be sent in the report.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dashboardUid(String dashboardUid) {
+            return dashboardUid(Output.of(dashboardUid));
         }
 
         /**
@@ -461,7 +514,6 @@ public final class ReportArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ReportArgs build() {
-            $.dashboardId = Objects.requireNonNull($.dashboardId, "expected parameter 'dashboardId' to be non-null");
             $.recipients = Objects.requireNonNull($.recipients, "expected parameter 'recipients' to be non-null");
             $.schedule = Objects.requireNonNull($.schedule, "expected parameter 'schedule' to be non-null");
             return $;

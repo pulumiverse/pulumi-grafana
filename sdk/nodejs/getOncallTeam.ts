@@ -49,9 +49,20 @@ export interface GetOncallTeamResult {
      */
     readonly name: string;
 }
-
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const exampleTeam = grafana.getOncallTeam({
+ *     name: "example_team",
+ * });
+ * ```
+ */
 export function getOncallTeamOutput(args: GetOncallTeamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallTeamResult> {
-    return pulumi.output(args).apply(a => getOncallTeam(a, opts))
+    return pulumi.output(args).apply((a: any) => getOncallTeam(a, opts))
 }
 
 /**

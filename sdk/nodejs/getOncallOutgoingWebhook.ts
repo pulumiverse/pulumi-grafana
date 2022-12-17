@@ -49,9 +49,22 @@ export interface GetOncallOutgoingWebhookResult {
      */
     readonly name: string;
 }
-
+/**
+ * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/outgoing_webhooks/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const exampleOutgoingWebhook = grafana.getOncallOutgoingWebhook({
+ *     name: "example_outgoing_webhook",
+ * });
+ * ```
+ */
 export function getOncallOutgoingWebhookOutput(args: GetOncallOutgoingWebhookOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallOutgoingWebhookResult> {
-    return pulumi.output(args).apply(a => getOncallOutgoingWebhook(a, opts))
+    return pulumi.output(args).apply((a: any) => getOncallOutgoingWebhook(a, opts))
 }
 
 /**

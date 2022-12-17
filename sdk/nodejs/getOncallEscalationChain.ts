@@ -49,9 +49,22 @@ export interface GetOncallEscalationChainResult {
      */
     readonly name: string;
 }
-
+/**
+ * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/escalation_chains/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const default = grafana.getOncallEscalationChain({
+ *     name: "default",
+ * });
+ * ```
+ */
 export function getOncallEscalationChainOutput(args: GetOncallEscalationChainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallEscalationChainResult> {
-    return pulumi.output(args).apply(a => getOncallEscalationChain(a, opts))
+    return pulumi.output(args).apply((a: any) => getOncallEscalationChain(a, opts))
 }
 
 /**

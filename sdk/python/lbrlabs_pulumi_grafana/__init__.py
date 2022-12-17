@@ -40,6 +40,7 @@ from .get_synthetic_monitoring_probe import *
 from .get_synthetic_monitoring_probes import *
 from .get_team import *
 from .get_user import *
+from .get_users import *
 from .library_panel import *
 from .machine_learning_job import *
 from .message_template import *

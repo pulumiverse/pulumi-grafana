@@ -54,9 +54,23 @@ export interface GetOncallScheduleResult {
      */
     readonly type: string;
 }
-
+/**
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/oncall/calendar-schedules/)
+ * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/schedules/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const schedule = grafana.getOncallSchedule({
+ *     name: "example_schedule",
+ * });
+ * ```
+ */
 export function getOncallScheduleOutput(args: GetOncallScheduleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallScheduleResult> {
-    return pulumi.output(args).apply(a => getOncallSchedule(a, opts))
+    return pulumi.output(args).apply((a: any) => getOncallSchedule(a, opts))
 }
 
 /**

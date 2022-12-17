@@ -2,7 +2,7 @@ module github.com/lbrlabs/pulumi-grafana/examples
 
 go 1.19
 
-require github.com/pulumi/pulumi/pkg/v3 v3.48.0
+require github.com/pulumi/pulumi/pkg/v3 v3.49.0
 
 require (
 	cloud.google.com/go v0.103.0 // indirect

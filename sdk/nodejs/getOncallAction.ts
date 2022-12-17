@@ -39,9 +39,12 @@ export interface GetOncallActionResult {
      */
     readonly name: string;
 }
-
+/**
+ * **Note:** This data source is going to be deprecated, please use outgoing webhook data source instead.
+ * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/outgoing_webhooks/)
+ */
 export function getOncallActionOutput(args: GetOncallActionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallActionResult> {
-    return pulumi.output(args).apply(a => getOncallAction(a, opts))
+    return pulumi.output(args).apply((a: any) => getOncallAction(a, opts))
 }
 
 /**

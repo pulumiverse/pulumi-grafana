@@ -80,6 +80,7 @@ __all__ = [
     'SyntheticMonitoringCheckSettingsTraceroute',
     'GetDashboardsDashboardResult',
     'GetFoldersFolderResult',
+    'GetUsersUserResult',
 ]
 
 @pulumi.output_type
@@ -6260,5 +6261,51 @@ class GetFoldersFolderResult(dict):
     @pulumi.getter
     def url(self) -> str:
         return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class GetUsersUserResult(dict):
+    def __init__(__self__, *,
+                 email: str,
+                 id: int,
+                 is_admin: bool,
+                 login: str,
+                 name: str):
+        """
+        :param int id: The ID of this resource.
+        """
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_admin", is_admin)
+        pulumi.set(__self__, "login", login)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def email(self) -> str:
+        return pulumi.get(self, "email")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        The ID of this resource.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isAdmin")
+    def is_admin(self) -> bool:
+        return pulumi.get(self, "is_admin")
+
+    @property
+    @pulumi.getter
+    def login(self) -> str:
+        return pulumi.get(self, "login")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
 
 

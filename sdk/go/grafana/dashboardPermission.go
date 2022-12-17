@@ -55,7 +55,7 @@ import (
 //				return err
 //			}
 //			_, err = grafana.NewDashboardPermission(ctx, "collectionPermission", &grafana.DashboardPermissionArgs{
-//				DashboardId: metrics.DashboardId,
+//				DashboardUid: metrics.Uid,
 //				Permissions: grafana.DashboardPermissionPermissionArray{
 //					&grafana.DashboardPermissionPermissionArgs{
 //						Role:       pulumi.String("Editor"),
@@ -79,11 +79,23 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// ```sh
+//
+//	$ pulumi import grafana:index/dashboardPermission:DashboardPermission dashboard_name {{dashboard_uid}}
+//
+// ```
 type DashboardPermission struct {
 	pulumi.CustomResourceState
 
-	// ID of the dashboard to apply permissions to.
+	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
+	//
+	// Deprecated: use `dashboard_uid` instead
 	DashboardId pulumi.IntOutput `pulumi:"dashboardId"`
+	// UID of the dashboard to apply permissions to.
+	DashboardUid pulumi.StringOutput `pulumi:"dashboardUid"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions DashboardPermissionPermissionArrayOutput `pulumi:"permissions"`
 }
@@ -95,9 +107,6 @@ func NewDashboardPermission(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.DashboardId == nil {
-		return nil, errors.New("invalid value for required argument 'DashboardId'")
-	}
 	if args.Permissions == nil {
 		return nil, errors.New("invalid value for required argument 'Permissions'")
 	}
@@ -124,15 +133,23 @@ func GetDashboardPermission(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DashboardPermission resources.
 type dashboardPermissionState struct {
-	// ID of the dashboard to apply permissions to.
+	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
+	//
+	// Deprecated: use `dashboard_uid` instead
 	DashboardId *int `pulumi:"dashboardId"`
+	// UID of the dashboard to apply permissions to.
+	DashboardUid *string `pulumi:"dashboardUid"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions []DashboardPermissionPermission `pulumi:"permissions"`
 }
 
 type DashboardPermissionState struct {
-	// ID of the dashboard to apply permissions to.
+	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
+	//
+	// Deprecated: use `dashboard_uid` instead
 	DashboardId pulumi.IntPtrInput
+	// UID of the dashboard to apply permissions to.
+	DashboardUid pulumi.StringPtrInput
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions DashboardPermissionPermissionArrayInput
 }
@@ -142,16 +159,24 @@ func (DashboardPermissionState) ElementType() reflect.Type {
 }
 
 type dashboardPermissionArgs struct {
-	// ID of the dashboard to apply permissions to.
-	DashboardId int `pulumi:"dashboardId"`
+	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
+	//
+	// Deprecated: use `dashboard_uid` instead
+	DashboardId *int `pulumi:"dashboardId"`
+	// UID of the dashboard to apply permissions to.
+	DashboardUid *string `pulumi:"dashboardUid"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions []DashboardPermissionPermission `pulumi:"permissions"`
 }
 
 // The set of arguments for constructing a DashboardPermission resource.
 type DashboardPermissionArgs struct {
-	// ID of the dashboard to apply permissions to.
-	DashboardId pulumi.IntInput
+	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
+	//
+	// Deprecated: use `dashboard_uid` instead
+	DashboardId pulumi.IntPtrInput
+	// UID of the dashboard to apply permissions to.
+	DashboardUid pulumi.StringPtrInput
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions DashboardPermissionPermissionArrayInput
 }
@@ -243,9 +268,16 @@ func (o DashboardPermissionOutput) ToDashboardPermissionOutputWithContext(ctx co
 	return o
 }
 
-// ID of the dashboard to apply permissions to.
+// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
+//
+// Deprecated: use `dashboard_uid` instead
 func (o DashboardPermissionOutput) DashboardId() pulumi.IntOutput {
 	return o.ApplyT(func(v *DashboardPermission) pulumi.IntOutput { return v.DashboardId }).(pulumi.IntOutput)
+}
+
+// UID of the dashboard to apply permissions to.
+func (o DashboardPermissionOutput) DashboardUid() pulumi.StringOutput {
+	return o.ApplyT(func(v *DashboardPermission) pulumi.StringOutput { return v.DashboardUid }).(pulumi.StringOutput)
 }
 
 // The permission items to add/update. Items that are omitted from the list will be removed.

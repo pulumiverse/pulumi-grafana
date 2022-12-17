@@ -73,9 +73,22 @@ export interface GetSyntheticMonitoringProbeResult {
      */
     readonly tenantId: number;
 }
-
+/**
+ * Data source for retrieving a single probe by name.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const atlanta = grafana.getSyntheticMonitoringProbe({
+ *     name: "Atlanta",
+ * });
+ * ```
+ */
 export function getSyntheticMonitoringProbeOutput(args: GetSyntheticMonitoringProbeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSyntheticMonitoringProbeResult> {
-    return pulumi.output(args).apply(a => getSyntheticMonitoringProbe(a, opts))
+    return pulumi.output(args).apply((a: any) => getSyntheticMonitoringProbe(a, opts))
 }
 
 /**

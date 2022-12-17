@@ -44,9 +44,22 @@ export interface GetOncallUserGroupResult {
     readonly slackHandle: string;
     readonly slackId: string;
 }
-
+/**
+ * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/user_groups/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const exampleUserGroup = grafana.getOncallUserGroup({
+ *     slackHandle: "example_slack_handle",
+ * });
+ * ```
+ */
 export function getOncallUserGroupOutput(args: GetOncallUserGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallUserGroupResult> {
-    return pulumi.output(args).apply(a => getOncallUserGroup(a, opts))
+    return pulumi.output(args).apply((a: any) => getOncallUserGroup(a, opts))
 }
 
 /**

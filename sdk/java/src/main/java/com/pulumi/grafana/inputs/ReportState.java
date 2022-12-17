@@ -21,18 +21,41 @@ public final class ReportState extends com.pulumi.resources.ResourceArgs {
     public static final ReportState Empty = new ReportState();
 
     /**
+     * Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+     * 
+     * @deprecated
+     * Use dashboard_uid instead
+     * 
+     */
+    @Deprecated /* Use dashboard_uid instead */
+    @Import(name="dashboardId")
+    private @Nullable Output<Integer> dashboardId;
+
+    /**
+     * @return Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+     * 
+     * @deprecated
+     * Use dashboard_uid instead
+     * 
+     */
+    @Deprecated /* Use dashboard_uid instead */
+    public Optional<Output<Integer>> dashboardId() {
+        return Optional.ofNullable(this.dashboardId);
+    }
+
+    /**
      * Dashboard to be sent in the report.
      * 
      */
-    @Import(name="dashboardId")
-    private @Nullable Output<Integer> dashboardId;
+    @Import(name="dashboardUid")
+    private @Nullable Output<String> dashboardUid;
 
     /**
      * @return Dashboard to be sent in the report.
      * 
      */
-    public Optional<Output<Integer>> dashboardId() {
-        return Optional.ofNullable(this.dashboardId);
+    public Optional<Output<String>> dashboardUid() {
+        return Optional.ofNullable(this.dashboardUid);
     }
 
     /**
@@ -189,6 +212,7 @@ public final class ReportState extends com.pulumi.resources.ResourceArgs {
 
     private ReportState(ReportState $) {
         this.dashboardId = $.dashboardId;
+        this.dashboardUid = $.dashboardUid;
         this.includeDashboardLink = $.includeDashboardLink;
         this.includeTableCsv = $.includeTableCsv;
         this.layout = $.layout;
@@ -220,24 +244,53 @@ public final class ReportState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dashboardId Dashboard to be sent in the report.
+         * @param dashboardId Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Use dashboard_uid instead
+         * 
          */
+        @Deprecated /* Use dashboard_uid instead */
         public Builder dashboardId(@Nullable Output<Integer> dashboardId) {
             $.dashboardId = dashboardId;
             return this;
         }
 
         /**
-         * @param dashboardId Dashboard to be sent in the report.
+         * @param dashboardId Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * Use dashboard_uid instead
+         * 
+         */
+        @Deprecated /* Use dashboard_uid instead */
+        public Builder dashboardId(Integer dashboardId) {
+            return dashboardId(Output.of(dashboardId));
+        }
+
+        /**
+         * @param dashboardUid Dashboard to be sent in the report.
          * 
          * @return builder
          * 
          */
-        public Builder dashboardId(Integer dashboardId) {
-            return dashboardId(Output.of(dashboardId));
+        public Builder dashboardUid(@Nullable Output<String> dashboardUid) {
+            $.dashboardUid = dashboardUid;
+            return this;
+        }
+
+        /**
+         * @param dashboardUid Dashboard to be sent in the report.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dashboardUid(String dashboardUid) {
+            return dashboardUid(Output.of(dashboardUid));
         }
 
         /**

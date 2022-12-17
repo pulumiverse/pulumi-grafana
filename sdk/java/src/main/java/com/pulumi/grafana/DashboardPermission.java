@@ -12,6 +12,7 @@ import com.pulumi.grafana.Utilities;
 import com.pulumi.grafana.inputs.DashboardPermissionState;
 import com.pulumi.grafana.outputs.DashboardPermissionPermission;
 import java.lang.Integer;
+import java.lang.String;
 import java.util.List;
 import javax.annotation.Nullable;
 
@@ -58,7 +59,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var collectionPermission = new DashboardPermission(&#34;collectionPermission&#34;, DashboardPermissionArgs.builder()        
- *             .dashboardId(metrics.dashboardId())
+ *             .dashboardUid(metrics.uid())
  *             .permissions(            
  *                 DashboardPermissionPermissionArgs.builder()
  *                     .role(&#34;Editor&#34;)
@@ -78,22 +79,46 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ## Import
+ * 
+ * ```sh
+ *  $ pulumi import grafana:index/dashboardPermission:DashboardPermission dashboard_name {{dashboard_uid}}
+ * ```
+ * 
  */
 @ResourceType(type="grafana:index/dashboardPermission:DashboardPermission")
 public class DashboardPermission extends com.pulumi.resources.CustomResource {
     /**
-     * ID of the dashboard to apply permissions to.
+     * ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
+     * 
+     * @deprecated
+     * use `dashboard_uid` instead
      * 
      */
+    @Deprecated /* use `dashboard_uid` instead */
     @Export(name="dashboardId", type=Integer.class, parameters={})
     private Output<Integer> dashboardId;
 
     /**
-     * @return ID of the dashboard to apply permissions to.
+     * @return ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
      * 
      */
     public Output<Integer> dashboardId() {
         return this.dashboardId;
+    }
+    /**
+     * UID of the dashboard to apply permissions to.
+     * 
+     */
+    @Export(name="dashboardUid", type=String.class, parameters={})
+    private Output<String> dashboardUid;
+
+    /**
+     * @return UID of the dashboard to apply permissions to.
+     * 
+     */
+    public Output<String> dashboardUid() {
+        return this.dashboardUid;
     }
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.

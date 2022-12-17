@@ -21,7 +21,7 @@ import * as utilities from "./utilities";
  * const user = new grafana.User("user", {email: "user.name@example.com"});
  * const metrics = new grafana.Dashboard("metrics", {configJson: fs.readFileSync("grafana-dashboard.json")});
  * const collectionPermission = new grafana.DashboardPermission("collectionPermission", {
- *     dashboardId: metrics.dashboardId,
+ *     dashboardUid: metrics.uid,
  *     permissions: [
  *         {
  *             role: "Editor",
@@ -37,6 +37,12 @@ import * as utilities from "./utilities";
  *         },
  *     ],
  * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ *  $ pulumi import grafana:index/dashboardPermission:DashboardPermission dashboard_name {{dashboard_uid}}
  * ```
  */
 export class DashboardPermission extends pulumi.CustomResource {
@@ -68,9 +74,15 @@ export class DashboardPermission extends pulumi.CustomResource {
     }
 
     /**
-     * ID of the dashboard to apply permissions to.
+     * ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
+     *
+     * @deprecated use `dashboard_uid` instead
      */
     public readonly dashboardId!: pulumi.Output<number>;
+    /**
+     * UID of the dashboard to apply permissions to.
+     */
+    public readonly dashboardUid!: pulumi.Output<string>;
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
@@ -90,16 +102,15 @@ export class DashboardPermission extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as DashboardPermissionState | undefined;
             resourceInputs["dashboardId"] = state ? state.dashboardId : undefined;
+            resourceInputs["dashboardUid"] = state ? state.dashboardUid : undefined;
             resourceInputs["permissions"] = state ? state.permissions : undefined;
         } else {
             const args = argsOrState as DashboardPermissionArgs | undefined;
-            if ((!args || args.dashboardId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'dashboardId'");
-            }
             if ((!args || args.permissions === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'permissions'");
             }
             resourceInputs["dashboardId"] = args ? args.dashboardId : undefined;
+            resourceInputs["dashboardUid"] = args ? args.dashboardUid : undefined;
             resourceInputs["permissions"] = args ? args.permissions : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -112,9 +123,15 @@ export class DashboardPermission extends pulumi.CustomResource {
  */
 export interface DashboardPermissionState {
     /**
-     * ID of the dashboard to apply permissions to.
+     * ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
+     *
+     * @deprecated use `dashboard_uid` instead
      */
     dashboardId?: pulumi.Input<number>;
+    /**
+     * UID of the dashboard to apply permissions to.
+     */
+    dashboardUid?: pulumi.Input<string>;
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
@@ -126,9 +143,15 @@ export interface DashboardPermissionState {
  */
 export interface DashboardPermissionArgs {
     /**
-     * ID of the dashboard to apply permissions to.
+     * ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
+     *
+     * @deprecated use `dashboard_uid` instead
      */
-    dashboardId: pulumi.Input<number>;
+    dashboardId?: pulumi.Input<number>;
+    /**
+     * UID of the dashboard to apply permissions to.
+     */
+    dashboardUid?: pulumi.Input<string>;
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */

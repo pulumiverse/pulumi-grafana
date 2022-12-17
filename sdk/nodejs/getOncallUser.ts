@@ -57,9 +57,22 @@ export interface GetOncallUserResult {
      */
     readonly username: string;
 }
-
+/**
+ * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/users/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const alex = grafana.getOncallUser({
+ *     username: "alex",
+ * });
+ * ```
+ */
 export function getOncallUserOutput(args: GetOncallUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallUserResult> {
-    return pulumi.output(args).apply(a => getOncallUser(a, opts))
+    return pulumi.output(args).apply((a: any) => getOncallUser(a, opts))
 }
 
 /**

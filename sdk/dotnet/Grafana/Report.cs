@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// 
     ///     var testReport = new Grafana.Report("testReport", new()
     ///     {
-    ///         DashboardId = testDashboard.DashboardId,
+    ///         DashboardUid = testDashboard.Uid,
     ///         Recipients = new[]
     ///         {
     ///             "some@email.com",
@@ -55,10 +55,16 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public partial class Report : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Dashboard to be sent in the report.
+        /// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         /// </summary>
         [Output("dashboardId")]
         public Output<int> DashboardId { get; private set; } = null!;
+
+        /// <summary>
+        /// Dashboard to be sent in the report.
+        /// </summary>
+        [Output("dashboardUid")]
+        public Output<string> DashboardUid { get; private set; } = null!;
 
         /// <summary>
         /// Whether to include a link to the dashboard in the report. Defaults to `true`.
@@ -168,10 +174,16 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class ReportArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+        /// </summary>
+        [Input("dashboardId")]
+        public Input<int>? DashboardId { get; set; }
+
+        /// <summary>
         /// Dashboard to be sent in the report.
         /// </summary>
-        [Input("dashboardId", required: true)]
-        public Input<int> DashboardId { get; set; } = null!;
+        [Input("dashboardUid")]
+        public Input<string>? DashboardUid { get; set; }
 
         /// <summary>
         /// Whether to include a link to the dashboard in the report. Defaults to `true`.
@@ -248,10 +260,16 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class ReportState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Dashboard to be sent in the report.
+        /// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         /// </summary>
         [Input("dashboardId")]
         public Input<int>? DashboardId { get; set; }
+
+        /// <summary>
+        /// Dashboard to be sent in the report.
+        /// </summary>
+        [Input("dashboardUid")]
+        public Input<string>? DashboardUid { get; set; }
 
         /// <summary>
         /// Whether to include a link to the dashboard in the report. Defaults to `true`.
