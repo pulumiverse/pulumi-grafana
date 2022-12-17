@@ -50,7 +50,7 @@ jobs:
       with:
         dotnet-version: ${{matrix.dotnetversion}}
     - name: Setup Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{matrix.pythonversion}}
     - name: Setup Java
@@ -242,7 +242,7 @@ jobs:
       with:
         dotnet-version: ${{matrix.dotnetversion}}
     - name: Setup Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{matrix.pythonversion}}
     - name: Setup Java
@@ -325,7 +325,7 @@ jobs:
       with:
         dotnet-version: ${{matrix.dotnetversion}}
     - name: Setup Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{matrix.pythonversion}}
     - name: Setup Java
