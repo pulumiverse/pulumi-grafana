@@ -54,6 +54,7 @@
         "getSyntheticMonitoringProbes.ts",
         "getTeam.ts",
         "getUser.ts",
+        "getUsers.ts",
         "index.ts",
         "libraryPanel.ts",
         "machineLearningJob.ts",

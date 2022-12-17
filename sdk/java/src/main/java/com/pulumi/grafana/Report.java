@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var testReport = new Report(&#34;testReport&#34;, ReportArgs.builder()        
- *             .dashboardId(testDashboard.dashboardId())
+ *             .dashboardUid(testDashboard.uid())
  *             .recipients(&#34;some@email.com&#34;)
  *             .schedule(ReportScheduleArgs.builder()
  *                 .frequency(&#34;hourly&#34;)
@@ -76,18 +76,36 @@ import javax.annotation.Nullable;
 @ResourceType(type="grafana:index/report:Report")
 public class Report extends com.pulumi.resources.CustomResource {
     /**
+     * Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+     * 
+     * @deprecated
+     * Use dashboard_uid instead
+     * 
+     */
+    @Deprecated /* Use dashboard_uid instead */
+    @Export(name="dashboardId", type=Integer.class, parameters={})
+    private Output<Integer> dashboardId;
+
+    /**
+     * @return Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+     * 
+     */
+    public Output<Integer> dashboardId() {
+        return this.dashboardId;
+    }
+    /**
      * Dashboard to be sent in the report.
      * 
      */
-    @Export(name="dashboardId", type=Integer.class, parameters={})
-    private Output<Integer> dashboardId;
+    @Export(name="dashboardUid", type=String.class, parameters={})
+    private Output<String> dashboardUid;
 
     /**
      * @return Dashboard to be sent in the report.
      * 
      */
-    public Output<Integer> dashboardId() {
-        return this.dashboardId;
+    public Output<String> dashboardUid() {
+        return this.dashboardUid;
     }
     /**
      * Whether to include a link to the dashboard in the report. Defaults to `true`.

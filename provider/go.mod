@@ -5,7 +5,7 @@ go 1.19
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220824175045-450992f2f5b9
 
 require (
-	github.com/grafana/terraform-provider-grafana v1.31.1
+	github.com/grafana/terraform-provider-grafana v1.32.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.33.0
 	github.com/pulumi/pulumi/sdk/v3 v3.48.0
 )

@@ -65,6 +65,7 @@ import com.pulumi.grafana.outputs.GetSyntheticMonitoringProbeResult;
 import com.pulumi.grafana.outputs.GetSyntheticMonitoringProbesResult;
 import com.pulumi.grafana.outputs.GetTeamResult;
 import com.pulumi.grafana.outputs.GetUserResult;
+import com.pulumi.grafana.outputs.GetUsersResult;
 import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
 
@@ -3578,5 +3579,281 @@ public final class GrafanaFunctions {
      */
     public static CompletableFuture<GetUserResult> getUserPlain(GetUserPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("grafana:index/getUser:getUser", TypeShape.of(GetUserResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * 
+     * This data source uses Grafana&#39;s admin APIs for reading users which
+     * does not currently work with API Tokens. You must use basic auth.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.User;
+     * import com.pulumi.grafana.UserArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAllUsers = new User(&#34;testAllUsers&#34;, UserArgs.builder()        
+     *             .email(&#34;all_users@example.com&#34;)
+     *             .login(&#34;test-grafana-users&#34;)
+     *             .password(&#34;my-password&#34;)
+     *             .build());
+     * 
+     *         final var allUsers = GrafanaFunctions.getUsers();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetUsersResult> getUsers() {
+        return getUsers(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * 
+     * This data source uses Grafana&#39;s admin APIs for reading users which
+     * does not currently work with API Tokens. You must use basic auth.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.User;
+     * import com.pulumi.grafana.UserArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAllUsers = new User(&#34;testAllUsers&#34;, UserArgs.builder()        
+     *             .email(&#34;all_users@example.com&#34;)
+     *             .login(&#34;test-grafana-users&#34;)
+     *             .password(&#34;my-password&#34;)
+     *             .build());
+     * 
+     *         final var allUsers = GrafanaFunctions.getUsers();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetUsersResult> getUsersPlain() {
+        return getUsersPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * 
+     * This data source uses Grafana&#39;s admin APIs for reading users which
+     * does not currently work with API Tokens. You must use basic auth.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.User;
+     * import com.pulumi.grafana.UserArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAllUsers = new User(&#34;testAllUsers&#34;, UserArgs.builder()        
+     *             .email(&#34;all_users@example.com&#34;)
+     *             .login(&#34;test-grafana-users&#34;)
+     *             .password(&#34;my-password&#34;)
+     *             .build());
+     * 
+     *         final var allUsers = GrafanaFunctions.getUsers();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetUsersResult> getUsers(InvokeArgs args) {
+        return getUsers(args, InvokeOptions.Empty);
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * 
+     * This data source uses Grafana&#39;s admin APIs for reading users which
+     * does not currently work with API Tokens. You must use basic auth.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.User;
+     * import com.pulumi.grafana.UserArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAllUsers = new User(&#34;testAllUsers&#34;, UserArgs.builder()        
+     *             .email(&#34;all_users@example.com&#34;)
+     *             .login(&#34;test-grafana-users&#34;)
+     *             .password(&#34;my-password&#34;)
+     *             .build());
+     * 
+     *         final var allUsers = GrafanaFunctions.getUsers();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetUsersResult> getUsersPlain(InvokeArgs args) {
+        return getUsersPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * 
+     * This data source uses Grafana&#39;s admin APIs for reading users which
+     * does not currently work with API Tokens. You must use basic auth.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.User;
+     * import com.pulumi.grafana.UserArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAllUsers = new User(&#34;testAllUsers&#34;, UserArgs.builder()        
+     *             .email(&#34;all_users@example.com&#34;)
+     *             .login(&#34;test-grafana-users&#34;)
+     *             .password(&#34;my-password&#34;)
+     *             .build());
+     * 
+     *         final var allUsers = GrafanaFunctions.getUsers();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetUsersResult> getUsers(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("grafana:index/getUsers:getUsers", TypeShape.of(GetUsersResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * 
+     * This data source uses Grafana&#39;s admin APIs for reading users which
+     * does not currently work with API Tokens. You must use basic auth.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.User;
+     * import com.pulumi.grafana.UserArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAllUsers = new User(&#34;testAllUsers&#34;, UserArgs.builder()        
+     *             .email(&#34;all_users@example.com&#34;)
+     *             .login(&#34;test-grafana-users&#34;)
+     *             .password(&#34;my-password&#34;)
+     *             .build());
+     * 
+     *         final var allUsers = GrafanaFunctions.getUsers();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetUsersResult> getUsersPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("grafana:index/getUsers:getUsers", TypeShape.of(GetUsersResult.class), args, Utilities.withVersion(options));
     }
 }

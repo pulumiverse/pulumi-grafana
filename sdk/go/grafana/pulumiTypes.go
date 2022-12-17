@@ -11058,6 +11058,127 @@ func (o GetFoldersFolderArrayOutput) Index(i pulumi.IntInput) GetFoldersFolderOu
 	}).(GetFoldersFolderOutput)
 }
 
+type GetUsersUser struct {
+	Email string `pulumi:"email"`
+	// The ID of this resource.
+	Id      int    `pulumi:"id"`
+	IsAdmin bool   `pulumi:"isAdmin"`
+	Login   string `pulumi:"login"`
+	Name    string `pulumi:"name"`
+}
+
+// GetUsersUserInput is an input type that accepts GetUsersUserArgs and GetUsersUserOutput values.
+// You can construct a concrete instance of `GetUsersUserInput` via:
+//
+//	GetUsersUserArgs{...}
+type GetUsersUserInput interface {
+	pulumi.Input
+
+	ToGetUsersUserOutput() GetUsersUserOutput
+	ToGetUsersUserOutputWithContext(context.Context) GetUsersUserOutput
+}
+
+type GetUsersUserArgs struct {
+	Email pulumi.StringInput `pulumi:"email"`
+	// The ID of this resource.
+	Id      pulumi.IntInput    `pulumi:"id"`
+	IsAdmin pulumi.BoolInput   `pulumi:"isAdmin"`
+	Login   pulumi.StringInput `pulumi:"login"`
+	Name    pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetUsersUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUser)(nil)).Elem()
+}
+
+func (i GetUsersUserArgs) ToGetUsersUserOutput() GetUsersUserOutput {
+	return i.ToGetUsersUserOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserArgs) ToGetUsersUserOutputWithContext(ctx context.Context) GetUsersUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserOutput)
+}
+
+// GetUsersUserArrayInput is an input type that accepts GetUsersUserArray and GetUsersUserArrayOutput values.
+// You can construct a concrete instance of `GetUsersUserArrayInput` via:
+//
+//	GetUsersUserArray{ GetUsersUserArgs{...} }
+type GetUsersUserArrayInput interface {
+	pulumi.Input
+
+	ToGetUsersUserArrayOutput() GetUsersUserArrayOutput
+	ToGetUsersUserArrayOutputWithContext(context.Context) GetUsersUserArrayOutput
+}
+
+type GetUsersUserArray []GetUsersUserInput
+
+func (GetUsersUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUser)(nil)).Elem()
+}
+
+func (i GetUsersUserArray) ToGetUsersUserArrayOutput() GetUsersUserArrayOutput {
+	return i.ToGetUsersUserArrayOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserArray) ToGetUsersUserArrayOutputWithContext(ctx context.Context) GetUsersUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserArrayOutput)
+}
+
+type GetUsersUserOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUser)(nil)).Elem()
+}
+
+func (o GetUsersUserOutput) ToGetUsersUserOutput() GetUsersUserOutput {
+	return o
+}
+
+func (o GetUsersUserOutput) ToGetUsersUserOutputWithContext(ctx context.Context) GetUsersUserOutput {
+	return o
+}
+
+func (o GetUsersUserOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Email }).(pulumi.StringOutput)
+}
+
+// The ID of this resource.
+func (o GetUsersUserOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetUsersUser) int { return v.Id }).(pulumi.IntOutput)
+}
+
+func (o GetUsersUserOutput) IsAdmin() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetUsersUser) bool { return v.IsAdmin }).(pulumi.BoolOutput)
+}
+
+func (o GetUsersUserOutput) Login() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Login }).(pulumi.StringOutput)
+}
+
+func (o GetUsersUserOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetUsersUserArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUser)(nil)).Elem()
+}
+
+func (o GetUsersUserArrayOutput) ToGetUsersUserArrayOutput() GetUsersUserArrayOutput {
+	return o
+}
+
+func (o GetUsersUserArrayOutput) ToGetUsersUserArrayOutputWithContext(ctx context.Context) GetUsersUserArrayOutput {
+	return o
+}
+
+func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUsersUser {
+		return vs[0].([]GetUsersUser)[vs[1].(int)]
+	}).(GetUsersUserOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BuiltinRoleAssignmentRoleInput)(nil)).Elem(), BuiltinRoleAssignmentRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BuiltinRoleAssignmentRoleArrayInput)(nil)).Elem(), BuiltinRoleAssignmentRoleArray{})
@@ -11196,6 +11317,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDashboardsDashboardArrayInput)(nil)).Elem(), GetDashboardsDashboardArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFoldersFolderInput)(nil)).Elem(), GetFoldersFolderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFoldersFolderArrayInput)(nil)).Elem(), GetFoldersFolderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
 	pulumi.RegisterOutputType(BuiltinRoleAssignmentRoleOutput{})
 	pulumi.RegisterOutputType(BuiltinRoleAssignmentRoleArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointAlertmanagerOutput{})
@@ -11333,4 +11456,6 @@ func init() {
 	pulumi.RegisterOutputType(GetDashboardsDashboardArrayOutput{})
 	pulumi.RegisterOutputType(GetFoldersFolderOutput{})
 	pulumi.RegisterOutputType(GetFoldersFolderArrayOutput{})
+	pulumi.RegisterOutputType(GetUsersUserOutput{})
+	pulumi.RegisterOutputType(GetUsersUserArrayOutput{})
 }

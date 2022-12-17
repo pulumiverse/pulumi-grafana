@@ -267,6 +267,9 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_user": {
 				Tok: grafanaDataSource(grafanaMod, "getUser"),
 			},
+			"grafana_users": {
+				Tok: grafanaDataSource(grafanaMod, "getUsers"),
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			PackageName: "@lbrlabs/pulumi-grafana",

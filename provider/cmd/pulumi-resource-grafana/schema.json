@@ -4745,6 +4745,64 @@
                     "requiredInputs": []
                 }
             }
+        },
+        "grafana:index/getUsersUser:getUsersUser": {
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "integer",
+                    "description": "The ID of this resource.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "isAdmin": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "login": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "email",
+                "id",
+                "isAdmin",
+                "login",
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         }
     },
     "provider": {
@@ -6312,11 +6370,16 @@
             }
         },
         "grafana:index/dashboardPermission:DashboardPermission": {
-            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/permissions/dashboard_folder_permissions/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard_permissions/)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as grafana from \"@lbrlabs/pulumi-grafana\";\n\nconst team = new grafana.Team(\"team\", {});\nconst user = new grafana.User(\"user\", {email: \"user.name@example.com\"});\nconst metrics = new grafana.Dashboard(\"metrics\", {configJson: fs.readFileSync(\"grafana-dashboard.json\")});\nconst collectionPermission = new grafana.DashboardPermission(\"collectionPermission\", {\n    dashboardId: metrics.dashboardId,\n    permissions: [\n        {\n            role: \"Editor\",\n            permission: \"Edit\",\n        },\n        {\n            teamId: team.id,\n            permission: \"View\",\n        },\n        {\n            userId: user.id,\n            permission: \"Admin\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\nteam = grafana.Team(\"team\")\nuser = grafana.User(\"user\", email=\"user.name@example.com\")\nmetrics = grafana.Dashboard(\"metrics\", config_json=(lambda path: open(path).read())(\"grafana-dashboard.json\"))\ncollection_permission = grafana.DashboardPermission(\"collectionPermission\",\n    dashboard_id=metrics.dashboard_id,\n    permissions=[\n        grafana.DashboardPermissionPermissionArgs(\n            role=\"Editor\",\n            permission=\"Edit\",\n        ),\n        grafana.DashboardPermissionPermissionArgs(\n            team_id=team.id,\n            permission=\"View\",\n        ),\n        grafana.DashboardPermissionPermissionArgs(\n            user_id=user.id,\n            permission=\"Admin\",\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var team = new Grafana.Team(\"team\");\n\n    var user = new Grafana.User(\"user\", new()\n    {\n        Email = \"user.name@example.com\",\n    });\n\n    var metrics = new Grafana.Dashboard(\"metrics\", new()\n    {\n        ConfigJson = File.ReadAllText(\"grafana-dashboard.json\"),\n    });\n\n    var collectionPermission = new Grafana.DashboardPermission(\"collectionPermission\", new()\n    {\n        DashboardId = metrics.DashboardId,\n        Permissions = new[]\n        {\n            new Grafana.Inputs.DashboardPermissionPermissionArgs\n            {\n                Role = \"Editor\",\n                Permission = \"Edit\",\n            },\n            new Grafana.Inputs.DashboardPermissionPermissionArgs\n            {\n                TeamId = team.Id,\n                Permission = \"View\",\n            },\n            new Grafana.Inputs.DashboardPermissionPermissionArgs\n            {\n                UserId = user.Id,\n                Permission = \"Admin\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"io/ioutil\"\n\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tteam, err := grafana.NewTeam(ctx, \"team\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tuser, err := grafana.NewUser(ctx, \"user\", \u0026grafana.UserArgs{\n\t\t\tEmail: pulumi.String(\"user.name@example.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmetrics, err := grafana.NewDashboard(ctx, \"metrics\", \u0026grafana.DashboardArgs{\n\t\t\tConfigJson: readFileOrPanic(\"grafana-dashboard.json\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewDashboardPermission(ctx, \"collectionPermission\", \u0026grafana.DashboardPermissionArgs{\n\t\t\tDashboardId: metrics.DashboardId,\n\t\t\tPermissions: grafana.DashboardPermissionPermissionArray{\n\t\t\t\t\u0026grafana.DashboardPermissionPermissionArgs{\n\t\t\t\t\tRole:       pulumi.String(\"Editor\"),\n\t\t\t\t\tPermission: pulumi.String(\"Edit\"),\n\t\t\t\t},\n\t\t\t\t\u0026grafana.DashboardPermissionPermissionArgs{\n\t\t\t\t\tTeamId:     team.ID(),\n\t\t\t\t\tPermission: pulumi.String(\"View\"),\n\t\t\t\t},\n\t\t\t\t\u0026grafana.DashboardPermissionPermissionArgs{\n\t\t\t\t\tUserId:     user.ID(),\n\t\t\t\t\tPermission: pulumi.String(\"Admin\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.Team;\nimport com.pulumi.grafana.User;\nimport com.pulumi.grafana.UserArgs;\nimport com.pulumi.grafana.Dashboard;\nimport com.pulumi.grafana.DashboardArgs;\nimport com.pulumi.grafana.DashboardPermission;\nimport com.pulumi.grafana.DashboardPermissionArgs;\nimport com.pulumi.grafana.inputs.DashboardPermissionPermissionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var team = new Team(\"team\");\n\n        var user = new User(\"user\", UserArgs.builder()        \n            .email(\"user.name@example.com\")\n            .build());\n\n        var metrics = new Dashboard(\"metrics\", DashboardArgs.builder()        \n            .configJson(Files.readString(Paths.get(\"grafana-dashboard.json\")))\n            .build());\n\n        var collectionPermission = new DashboardPermission(\"collectionPermission\", DashboardPermissionArgs.builder()        \n            .dashboardId(metrics.dashboardId())\n            .permissions(            \n                DashboardPermissionPermissionArgs.builder()\n                    .role(\"Editor\")\n                    .permission(\"Edit\")\n                    .build(),\n                DashboardPermissionPermissionArgs.builder()\n                    .teamId(team.id())\n                    .permission(\"View\")\n                    .build(),\n                DashboardPermissionPermissionArgs.builder()\n                    .userId(user.id())\n                    .permission(\"Admin\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  team:\n    type: grafana:Team\n  user:\n    type: grafana:User\n    properties:\n      email: user.name@example.com\n  metrics:\n    type: grafana:Dashboard\n    properties:\n      configJson:\n        fn::readFile: grafana-dashboard.json\n  collectionPermission:\n    type: grafana:DashboardPermission\n    properties:\n      dashboardId: ${metrics.dashboardId}\n      permissions:\n        - role: Editor\n          permission: Edit\n        - teamId: ${team.id}\n          permission: View\n        - userId: ${user.id}\n          permission: Admin\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/permissions/dashboard_folder_permissions/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard_permissions/)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as grafana from \"@lbrlabs/pulumi-grafana\";\n\nconst team = new grafana.Team(\"team\", {});\nconst user = new grafana.User(\"user\", {email: \"user.name@example.com\"});\nconst metrics = new grafana.Dashboard(\"metrics\", {configJson: fs.readFileSync(\"grafana-dashboard.json\")});\nconst collectionPermission = new grafana.DashboardPermission(\"collectionPermission\", {\n    dashboardUid: metrics.uid,\n    permissions: [\n        {\n            role: \"Editor\",\n            permission: \"Edit\",\n        },\n        {\n            teamId: team.id,\n            permission: \"View\",\n        },\n        {\n            userId: user.id,\n            permission: \"Admin\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\nteam = grafana.Team(\"team\")\nuser = grafana.User(\"user\", email=\"user.name@example.com\")\nmetrics = grafana.Dashboard(\"metrics\", config_json=(lambda path: open(path).read())(\"grafana-dashboard.json\"))\ncollection_permission = grafana.DashboardPermission(\"collectionPermission\",\n    dashboard_uid=metrics.uid,\n    permissions=[\n        grafana.DashboardPermissionPermissionArgs(\n            role=\"Editor\",\n            permission=\"Edit\",\n        ),\n        grafana.DashboardPermissionPermissionArgs(\n            team_id=team.id,\n            permission=\"View\",\n        ),\n        grafana.DashboardPermissionPermissionArgs(\n            user_id=user.id,\n            permission=\"Admin\",\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var team = new Grafana.Team(\"team\");\n\n    var user = new Grafana.User(\"user\", new()\n    {\n        Email = \"user.name@example.com\",\n    });\n\n    var metrics = new Grafana.Dashboard(\"metrics\", new()\n    {\n        ConfigJson = File.ReadAllText(\"grafana-dashboard.json\"),\n    });\n\n    var collectionPermission = new Grafana.DashboardPermission(\"collectionPermission\", new()\n    {\n        DashboardUid = metrics.Uid,\n        Permissions = new[]\n        {\n            new Grafana.Inputs.DashboardPermissionPermissionArgs\n            {\n                Role = \"Editor\",\n                Permission = \"Edit\",\n            },\n            new Grafana.Inputs.DashboardPermissionPermissionArgs\n            {\n                TeamId = team.Id,\n                Permission = \"View\",\n            },\n            new Grafana.Inputs.DashboardPermissionPermissionArgs\n            {\n                UserId = user.Id,\n                Permission = \"Admin\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"io/ioutil\"\n\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tteam, err := grafana.NewTeam(ctx, \"team\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tuser, err := grafana.NewUser(ctx, \"user\", \u0026grafana.UserArgs{\n\t\t\tEmail: pulumi.String(\"user.name@example.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmetrics, err := grafana.NewDashboard(ctx, \"metrics\", \u0026grafana.DashboardArgs{\n\t\t\tConfigJson: readFileOrPanic(\"grafana-dashboard.json\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewDashboardPermission(ctx, \"collectionPermission\", \u0026grafana.DashboardPermissionArgs{\n\t\t\tDashboardUid: metrics.Uid,\n\t\t\tPermissions: grafana.DashboardPermissionPermissionArray{\n\t\t\t\t\u0026grafana.DashboardPermissionPermissionArgs{\n\t\t\t\t\tRole:       pulumi.String(\"Editor\"),\n\t\t\t\t\tPermission: pulumi.String(\"Edit\"),\n\t\t\t\t},\n\t\t\t\t\u0026grafana.DashboardPermissionPermissionArgs{\n\t\t\t\t\tTeamId:     team.ID(),\n\t\t\t\t\tPermission: pulumi.String(\"View\"),\n\t\t\t\t},\n\t\t\t\t\u0026grafana.DashboardPermissionPermissionArgs{\n\t\t\t\t\tUserId:     user.ID(),\n\t\t\t\t\tPermission: pulumi.String(\"Admin\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.Team;\nimport com.pulumi.grafana.User;\nimport com.pulumi.grafana.UserArgs;\nimport com.pulumi.grafana.Dashboard;\nimport com.pulumi.grafana.DashboardArgs;\nimport com.pulumi.grafana.DashboardPermission;\nimport com.pulumi.grafana.DashboardPermissionArgs;\nimport com.pulumi.grafana.inputs.DashboardPermissionPermissionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var team = new Team(\"team\");\n\n        var user = new User(\"user\", UserArgs.builder()        \n            .email(\"user.name@example.com\")\n            .build());\n\n        var metrics = new Dashboard(\"metrics\", DashboardArgs.builder()        \n            .configJson(Files.readString(Paths.get(\"grafana-dashboard.json\")))\n            .build());\n\n        var collectionPermission = new DashboardPermission(\"collectionPermission\", DashboardPermissionArgs.builder()        \n            .dashboardUid(metrics.uid())\n            .permissions(            \n                DashboardPermissionPermissionArgs.builder()\n                    .role(\"Editor\")\n                    .permission(\"Edit\")\n                    .build(),\n                DashboardPermissionPermissionArgs.builder()\n                    .teamId(team.id())\n                    .permission(\"View\")\n                    .build(),\n                DashboardPermissionPermissionArgs.builder()\n                    .userId(user.id())\n                    .permission(\"Admin\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  team:\n    type: grafana:Team\n  user:\n    type: grafana:User\n    properties:\n      email: user.name@example.com\n  metrics:\n    type: grafana:Dashboard\n    properties:\n      configJson:\n        fn::readFile: grafana-dashboard.json\n  collectionPermission:\n    type: grafana:DashboardPermission\n    properties:\n      dashboardUid: ${metrics.uid}\n      permissions:\n        - role: Editor\n          permission: Edit\n        - teamId: ${team.id}\n          permission: View\n        - userId: ${user.id}\n          permission: Admin\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import grafana:index/dashboardPermission:DashboardPermission dashboard_name {{dashboard_uid}}\n```\n\n ",
             "properties": {
                 "dashboardId": {
                     "type": "integer",
-                    "description": "ID of the dashboard to apply permissions to.\n"
+                    "description": "ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.\n",
+                    "deprecationMessage": "use `dashboard_uid` instead"
+                },
+                "dashboardUid": {
+                    "type": "string",
+                    "description": "UID of the dashboard to apply permissions to.\n"
                 },
                 "permissions": {
                     "type": "array",
@@ -6328,12 +6391,19 @@
             },
             "required": [
                 "dashboardId",
+                "dashboardUid",
                 "permissions"
             ],
             "inputProperties": {
                 "dashboardId": {
                     "type": "integer",
-                    "description": "ID of the dashboard to apply permissions to.\n",
+                    "description": "ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.\n",
+                    "deprecationMessage": "use `dashboard_uid` instead",
+                    "willReplaceOnChanges": true
+                },
+                "dashboardUid": {
+                    "type": "string",
+                    "description": "UID of the dashboard to apply permissions to.\n",
                     "willReplaceOnChanges": true
                 },
                 "permissions": {
@@ -6345,7 +6415,6 @@
                 }
             },
             "requiredInputs": [
-                "dashboardId",
                 "permissions"
             ],
             "stateInputs": {
@@ -6353,7 +6422,13 @@
                 "properties": {
                     "dashboardId": {
                         "type": "integer",
-                        "description": "ID of the dashboard to apply permissions to.\n",
+                        "description": "ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.\n",
+                        "deprecationMessage": "use `dashboard_uid` instead",
+                        "willReplaceOnChanges": true
+                    },
+                    "dashboardUid": {
+                        "type": "string",
+                        "description": "UID of the dashboard to apply permissions to.\n",
                         "willReplaceOnChanges": true
                     },
                     "permissions": {
@@ -8556,10 +8631,15 @@
             }
         },
         "grafana:index/report:Report": {
-            "description": "**Note:** This resource is available only with Grafana Enterprise 7.+.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/enterprise/reporting/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/http_api/reporting/)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@lbrlabs/pulumi-grafana\";\n\nconst testDashboard = new grafana.Dashboard(\"testDashboard\", {\n    configJson: `{\n  \"title\": \"Dashboard for report\",\n  \"uid\": \"report\"\n}\n`,\n    message: \"inital commit.\",\n});\nconst testReport = new grafana.Report(\"testReport\", {\n    dashboardId: testDashboard.dashboardId,\n    recipients: [\"some@email.com\"],\n    schedule: {\n        frequency: \"hourly\",\n    },\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\ntest_dashboard = grafana.Dashboard(\"testDashboard\",\n    config_json=\"\"\"{\n  \"title\": \"Dashboard for report\",\n  \"uid\": \"report\"\n}\n\"\"\",\n    message=\"inital commit.\")\ntest_report = grafana.Report(\"testReport\",\n    dashboard_id=test_dashboard.dashboard_id,\n    recipients=[\"some@email.com\"],\n    schedule=grafana.ReportScheduleArgs(\n        frequency=\"hourly\",\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testDashboard = new Grafana.Dashboard(\"testDashboard\", new()\n    {\n        ConfigJson = @\"{\n  \"\"title\"\": \"\"Dashboard for report\"\",\n  \"\"uid\"\": \"\"report\"\"\n}\n\",\n        Message = \"inital commit.\",\n    });\n\n    var testReport = new Grafana.Report(\"testReport\", new()\n    {\n        DashboardId = testDashboard.DashboardId,\n        Recipients = new[]\n        {\n            \"some@email.com\",\n        },\n        Schedule = new Grafana.Inputs.ReportScheduleArgs\n        {\n            Frequency = \"hourly\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestDashboard, err := grafana.NewDashboard(ctx, \"testDashboard\", \u0026grafana.DashboardArgs{\n\t\t\tConfigJson: pulumi.String(fmt.Sprintf(\"{\\n  \\\"title\\\": \\\"Dashboard for report\\\",\\n  \\\"uid\\\": \\\"report\\\"\\n}\\n\")),\n\t\t\tMessage:    pulumi.String(\"inital commit.\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewReport(ctx, \"testReport\", \u0026grafana.ReportArgs{\n\t\t\tDashboardId: testDashboard.DashboardId,\n\t\t\tRecipients: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"some@email.com\"),\n\t\t\t},\n\t\t\tSchedule: \u0026grafana.ReportScheduleArgs{\n\t\t\t\tFrequency: pulumi.String(\"hourly\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.Dashboard;\nimport com.pulumi.grafana.DashboardArgs;\nimport com.pulumi.grafana.Report;\nimport com.pulumi.grafana.ReportArgs;\nimport com.pulumi.grafana.inputs.ReportScheduleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testDashboard = new Dashboard(\"testDashboard\", DashboardArgs.builder()        \n            .configJson(\"\"\"\n{\n  \"title\": \"Dashboard for report\",\n  \"uid\": \"report\"\n}\n            \"\"\")\n            .message(\"inital commit.\")\n            .build());\n\n        var testReport = new Report(\"testReport\", ReportArgs.builder()        \n            .dashboardId(testDashboard.dashboardId())\n            .recipients(\"some@email.com\")\n            .schedule(ReportScheduleArgs.builder()\n                .frequency(\"hourly\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testDashboard:\n    type: grafana:Dashboard\n    properties:\n      configJson: |\n        {\n          \"title\": \"Dashboard for report\",\n          \"uid\": \"report\"\n        }\n      message: inital commit.\n  testReport:\n    type: grafana:Report\n    properties:\n      dashboardId: ${testDashboard.dashboardId}\n      recipients:\n        - some@email.com\n      schedule:\n        frequency: hourly\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "**Note:** This resource is available only with Grafana Enterprise 7.+.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/enterprise/reporting/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/http_api/reporting/)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@lbrlabs/pulumi-grafana\";\n\nconst testDashboard = new grafana.Dashboard(\"testDashboard\", {\n    configJson: `{\n  \"title\": \"Dashboard for report\",\n  \"uid\": \"report\"\n}\n`,\n    message: \"inital commit.\",\n});\nconst testReport = new grafana.Report(\"testReport\", {\n    dashboardUid: testDashboard.uid,\n    recipients: [\"some@email.com\"],\n    schedule: {\n        frequency: \"hourly\",\n    },\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\ntest_dashboard = grafana.Dashboard(\"testDashboard\",\n    config_json=\"\"\"{\n  \"title\": \"Dashboard for report\",\n  \"uid\": \"report\"\n}\n\"\"\",\n    message=\"inital commit.\")\ntest_report = grafana.Report(\"testReport\",\n    dashboard_uid=test_dashboard.uid,\n    recipients=[\"some@email.com\"],\n    schedule=grafana.ReportScheduleArgs(\n        frequency=\"hourly\",\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testDashboard = new Grafana.Dashboard(\"testDashboard\", new()\n    {\n        ConfigJson = @\"{\n  \"\"title\"\": \"\"Dashboard for report\"\",\n  \"\"uid\"\": \"\"report\"\"\n}\n\",\n        Message = \"inital commit.\",\n    });\n\n    var testReport = new Grafana.Report(\"testReport\", new()\n    {\n        DashboardUid = testDashboard.Uid,\n        Recipients = new[]\n        {\n            \"some@email.com\",\n        },\n        Schedule = new Grafana.Inputs.ReportScheduleArgs\n        {\n            Frequency = \"hourly\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestDashboard, err := grafana.NewDashboard(ctx, \"testDashboard\", \u0026grafana.DashboardArgs{\n\t\t\tConfigJson: pulumi.String(fmt.Sprintf(\"{\\n  \\\"title\\\": \\\"Dashboard for report\\\",\\n  \\\"uid\\\": \\\"report\\\"\\n}\\n\")),\n\t\t\tMessage:    pulumi.String(\"inital commit.\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewReport(ctx, \"testReport\", \u0026grafana.ReportArgs{\n\t\t\tDashboardUid: testDashboard.Uid,\n\t\t\tRecipients: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"some@email.com\"),\n\t\t\t},\n\t\t\tSchedule: \u0026grafana.ReportScheduleArgs{\n\t\t\t\tFrequency: pulumi.String(\"hourly\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.Dashboard;\nimport com.pulumi.grafana.DashboardArgs;\nimport com.pulumi.grafana.Report;\nimport com.pulumi.grafana.ReportArgs;\nimport com.pulumi.grafana.inputs.ReportScheduleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testDashboard = new Dashboard(\"testDashboard\", DashboardArgs.builder()        \n            .configJson(\"\"\"\n{\n  \"title\": \"Dashboard for report\",\n  \"uid\": \"report\"\n}\n            \"\"\")\n            .message(\"inital commit.\")\n            .build());\n\n        var testReport = new Report(\"testReport\", ReportArgs.builder()        \n            .dashboardUid(testDashboard.uid())\n            .recipients(\"some@email.com\")\n            .schedule(ReportScheduleArgs.builder()\n                .frequency(\"hourly\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testDashboard:\n    type: grafana:Dashboard\n    properties:\n      configJson: |\n        {\n          \"title\": \"Dashboard for report\",\n          \"uid\": \"report\"\n        }\n      message: inital commit.\n  testReport:\n    type: grafana:Report\n    properties:\n      dashboardUid: ${testDashboard.uid}\n      recipients:\n        - some@email.com\n      schedule:\n        frequency: hourly\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "dashboardId": {
                     "type": "integer",
+                    "description": "Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.\n",
+                    "deprecationMessage": "Use dashboard_uid instead"
+                },
+                "dashboardUid": {
+                    "type": "string",
                     "description": "Dashboard to be sent in the report.\n"
                 },
                 "includeDashboardLink": {
@@ -8608,6 +8688,7 @@
             },
             "required": [
                 "dashboardId",
+                "dashboardUid",
                 "name",
                 "recipients",
                 "schedule"
@@ -8615,6 +8696,11 @@
             "inputProperties": {
                 "dashboardId": {
                     "type": "integer",
+                    "description": "Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.\n",
+                    "deprecationMessage": "Use dashboard_uid instead"
+                },
+                "dashboardUid": {
+                    "type": "string",
                     "description": "Dashboard to be sent in the report.\n"
                 },
                 "includeDashboardLink": {
@@ -8662,7 +8748,6 @@
                 }
             },
             "requiredInputs": [
-                "dashboardId",
                 "recipients",
                 "schedule"
             ],
@@ -8671,6 +8756,11 @@
                 "properties": {
                     "dashboardId": {
                         "type": "integer",
+                        "description": "Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.\n",
+                        "deprecationMessage": "Use dashboard_uid instead"
+                    },
+                    "dashboardUid": {
+                        "type": "string",
                         "description": "Dashboard to be sent in the report.\n"
                     },
                     "includeDashboardLink": {
@@ -11065,6 +11155,30 @@
                 "required": [
                     "isAdmin",
                     "name",
+                    "id"
+                ]
+            }
+        },
+        "grafana:index/getUsers:getUsers": {
+            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)\n\t\t\nThis data source uses Grafana's admin APIs for reading users which\ndoes not currently work with API Tokens. You must use basic auth.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@lbrlabs/pulumi-grafana\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst testAllUsers = new grafana.User(\"testAllUsers\", {\n    email: \"all_users@example.com\",\n    login: \"test-grafana-users\",\n    password: \"my-password\",\n});\nconst allUsers = grafana.getUsers({});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\nimport pulumi_grafana as grafana\n\ntest_all_users = grafana.User(\"testAllUsers\",\n    email=\"all_users@example.com\",\n    login=\"test-grafana-users\",\n    password=\"my-password\")\nall_users = grafana.get_users()\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\nusing Grafana = Pulumi.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testAllUsers = new Grafana.User(\"testAllUsers\", new()\n    {\n        Email = \"all_users@example.com\",\n        Login = \"test-grafana-users\",\n        Password = \"my-password\",\n    });\n\n    var allUsers = Grafana.GetUsers.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewUser(ctx, \"testAllUsers\", \u0026grafana.UserArgs{\n\t\t\tEmail:    pulumi.String(\"all_users@example.com\"),\n\t\t\tLogin:    pulumi.String(\"test-grafana-users\"),\n\t\t\tPassword: pulumi.String(\"my-password\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.GetUsers(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.User;\nimport com.pulumi.grafana.UserArgs;\nimport com.pulumi.grafana.GrafanaFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testAllUsers = new User(\"testAllUsers\", UserArgs.builder()        \n            .email(\"all_users@example.com\")\n            .login(\"test-grafana-users\")\n            .password(\"my-password\")\n            .build());\n\n        final var allUsers = GrafanaFunctions.getUsers();\n\n    }\n}\n```\n```yaml\nresources:\n  testAllUsers:\n    type: grafana:User\n    properties:\n      email: all_users@example.com\n      login: test-grafana-users\n      password: my-password\nvariables:\n  allUsers:\n    fn::invoke:\n      Function: grafana:getUsers\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "outputs": {
+                "description": "A collection of values returned by getUsers.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "users": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/grafana:index/getUsersUser:getUsersUser"
+                        },
+                        "description": "The Grafana instance's users.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "users",
                     "id"
                 ]
             }

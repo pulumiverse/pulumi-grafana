@@ -980,6 +980,17 @@ export interface GetFoldersFolder {
     url: string;
 }
 
+export interface GetUsersUser {
+    email: string;
+    /**
+     * The ID of this resource.
+     */
+    id: number;
+    isAdmin: boolean;
+    login: string;
+    name: string;
+}
+
 export interface MuteTimingInterval {
     /**
      * An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".

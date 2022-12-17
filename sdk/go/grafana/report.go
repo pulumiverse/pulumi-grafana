@@ -40,7 +40,7 @@ import (
 //				return err
 //			}
 //			_, err = grafana.NewReport(ctx, "testReport", &grafana.ReportArgs{
-//				DashboardId: testDashboard.DashboardId,
+//				DashboardUid: testDashboard.Uid,
 //				Recipients: pulumi.StringArray{
 //					pulumi.String("some@email.com"),
 //				},
@@ -59,8 +59,12 @@ import (
 type Report struct {
 	pulumi.CustomResourceState
 
-	// Dashboard to be sent in the report.
+	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
+	//
+	// Deprecated: Use dashboard_uid instead
 	DashboardId pulumi.IntOutput `pulumi:"dashboardId"`
+	// Dashboard to be sent in the report.
+	DashboardUid pulumi.StringOutput `pulumi:"dashboardUid"`
 	// Whether to include a link to the dashboard in the report. Defaults to `true`.
 	IncludeDashboardLink pulumi.BoolPtrOutput `pulumi:"includeDashboardLink"`
 	// Whether to include a CSV file of table panel data. Defaults to `false`.
@@ -90,9 +94,6 @@ func NewReport(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.DashboardId == nil {
-		return nil, errors.New("invalid value for required argument 'DashboardId'")
-	}
 	if args.Recipients == nil {
 		return nil, errors.New("invalid value for required argument 'Recipients'")
 	}
@@ -122,8 +123,12 @@ func GetReport(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Report resources.
 type reportState struct {
-	// Dashboard to be sent in the report.
+	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
+	//
+	// Deprecated: Use dashboard_uid instead
 	DashboardId *int `pulumi:"dashboardId"`
+	// Dashboard to be sent in the report.
+	DashboardUid *string `pulumi:"dashboardUid"`
 	// Whether to include a link to the dashboard in the report. Defaults to `true`.
 	IncludeDashboardLink *bool `pulumi:"includeDashboardLink"`
 	// Whether to include a CSV file of table panel data. Defaults to `false`.
@@ -147,8 +152,12 @@ type reportState struct {
 }
 
 type ReportState struct {
-	// Dashboard to be sent in the report.
+	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
+	//
+	// Deprecated: Use dashboard_uid instead
 	DashboardId pulumi.IntPtrInput
+	// Dashboard to be sent in the report.
+	DashboardUid pulumi.StringPtrInput
 	// Whether to include a link to the dashboard in the report. Defaults to `true`.
 	IncludeDashboardLink pulumi.BoolPtrInput
 	// Whether to include a CSV file of table panel data. Defaults to `false`.
@@ -176,8 +185,12 @@ func (ReportState) ElementType() reflect.Type {
 }
 
 type reportArgs struct {
+	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
+	//
+	// Deprecated: Use dashboard_uid instead
+	DashboardId *int `pulumi:"dashboardId"`
 	// Dashboard to be sent in the report.
-	DashboardId int `pulumi:"dashboardId"`
+	DashboardUid *string `pulumi:"dashboardUid"`
 	// Whether to include a link to the dashboard in the report. Defaults to `true`.
 	IncludeDashboardLink *bool `pulumi:"includeDashboardLink"`
 	// Whether to include a CSV file of table panel data. Defaults to `false`.
@@ -202,8 +215,12 @@ type reportArgs struct {
 
 // The set of arguments for constructing a Report resource.
 type ReportArgs struct {
+	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
+	//
+	// Deprecated: Use dashboard_uid instead
+	DashboardId pulumi.IntPtrInput
 	// Dashboard to be sent in the report.
-	DashboardId pulumi.IntInput
+	DashboardUid pulumi.StringPtrInput
 	// Whether to include a link to the dashboard in the report. Defaults to `true`.
 	IncludeDashboardLink pulumi.BoolPtrInput
 	// Whether to include a CSV file of table panel data. Defaults to `false`.
@@ -313,9 +330,16 @@ func (o ReportOutput) ToReportOutputWithContext(ctx context.Context) ReportOutpu
 	return o
 }
 
-// Dashboard to be sent in the report.
+// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
+//
+// Deprecated: Use dashboard_uid instead
 func (o ReportOutput) DashboardId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Report) pulumi.IntOutput { return v.DashboardId }).(pulumi.IntOutput)
+}
+
+// Dashboard to be sent in the report.
+func (o ReportOutput) DashboardUid() pulumi.StringOutput {
+	return o.ApplyT(func(v *Report) pulumi.StringOutput { return v.DashboardUid }).(pulumi.StringOutput)
 }
 
 // Whether to include a link to the dashboard in the report. Defaults to `true`.

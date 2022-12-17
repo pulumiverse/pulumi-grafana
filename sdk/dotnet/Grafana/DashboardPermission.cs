@@ -38,7 +38,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// 
     ///     var collectionPermission = new Grafana.DashboardPermission("collectionPermission", new()
     ///     {
-    ///         DashboardId = metrics.DashboardId,
+    ///         DashboardUid = metrics.Uid,
     ///         Permissions = new[]
     ///         {
     ///             new Grafana.Inputs.DashboardPermissionPermissionArgs
@@ -61,15 +61,27 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    ///  $ pulumi import grafana:index/dashboardPermission:DashboardPermission dashboard_name {{dashboard_uid}}
+    /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/dashboardPermission:DashboardPermission")]
     public partial class DashboardPermission : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// ID of the dashboard to apply permissions to.
+        /// ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
         /// </summary>
         [Output("dashboardId")]
         public Output<int> DashboardId { get; private set; } = null!;
+
+        /// <summary>
+        /// UID of the dashboard to apply permissions to.
+        /// </summary>
+        [Output("dashboardUid")]
+        public Output<string> DashboardUid { get; private set; } = null!;
 
         /// <summary>
         /// The permission items to add/update. Items that are omitted from the list will be removed.
@@ -125,10 +137,16 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class DashboardPermissionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the dashboard to apply permissions to.
+        /// ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
         /// </summary>
-        [Input("dashboardId", required: true)]
-        public Input<int> DashboardId { get; set; } = null!;
+        [Input("dashboardId")]
+        public Input<int>? DashboardId { get; set; }
+
+        /// <summary>
+        /// UID of the dashboard to apply permissions to.
+        /// </summary>
+        [Input("dashboardUid")]
+        public Input<string>? DashboardUid { get; set; }
 
         [Input("permissions", required: true)]
         private InputList<Inputs.DashboardPermissionPermissionArgs>? _permissions;
@@ -151,10 +169,16 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class DashboardPermissionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the dashboard to apply permissions to.
+        /// ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
         /// </summary>
         [Input("dashboardId")]
         public Input<int>? DashboardId { get; set; }
+
+        /// <summary>
+        /// UID of the dashboard to apply permissions to.
+        /// </summary>
+        [Input("dashboardUid")]
+        public Input<string>? DashboardUid { get; set; }
 
         [Input("permissions")]
         private InputList<Inputs.DashboardPermissionPermissionGetArgs>? _permissions;
