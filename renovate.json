@@ -1,5 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "ignorePaths": [
+      "sdk/**"
+  ],
   "extends": [
     "config:base"
   ]
