@@ -42,7 +42,7 @@ import (
 //				EscalationChainId: _default.ID(),
 //				Type:              pulumi.String("notify_persons"),
 //				PersonsToNotifies: pulumi.StringArray{
-//					pulumi.String(alex.Id),
+//					*pulumi.String(alex.Id),
 //				},
 //				Position: pulumi.Int(0),
 //			})
@@ -63,7 +63,7 @@ import (
 //				Type:              pulumi.String("notify_persons"),
 //				Important:         pulumi.Bool(true),
 //				PersonsToNotifies: pulumi.StringArray{
-//					pulumi.String(alex.Id),
+//					*pulumi.String(alex.Id),
 //				},
 //				Position: pulumi.Int(0),
 //			})

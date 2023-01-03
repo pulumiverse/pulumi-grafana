@@ -95,7 +95,7 @@ func NewSyntheticMonitoringInstallation(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'StackId'")
 	}
 	if args.MetricsPublisherKey != nil {
-		args.MetricsPublisherKey = pulumi.ToSecret(args.MetricsPublisherKey).(pulumi.StringOutput)
+		args.MetricsPublisherKey = pulumi.ToSecret(args.MetricsPublisherKey).(pulumi.StringInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"metricsPublisherKey",

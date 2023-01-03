@@ -205,19 +205,19 @@ func NewDataSource(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
 	if args.BasicAuthPassword != nil {
-		args.BasicAuthPassword = pulumi.ToSecret(args.BasicAuthPassword).(pulumi.StringPtrOutput)
+		args.BasicAuthPassword = pulumi.ToSecret(args.BasicAuthPassword).(pulumi.StringPtrInput)
 	}
 	if args.HttpHeaders != nil {
-		args.HttpHeaders = pulumi.ToSecret(args.HttpHeaders).(pulumi.StringMapOutput)
+		args.HttpHeaders = pulumi.ToSecret(args.HttpHeaders).(pulumi.StringMapInput)
 	}
 	if args.Password != nil {
-		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrOutput)
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
 	if args.SecureJsonDataEncoded != nil {
-		args.SecureJsonDataEncoded = pulumi.ToSecret(args.SecureJsonDataEncoded).(pulumi.StringPtrOutput)
+		args.SecureJsonDataEncoded = pulumi.ToSecret(args.SecureJsonDataEncoded).(pulumi.StringPtrInput)
 	}
 	if args.SecureJsonDatas != nil {
-		args.SecureJsonDatas = pulumi.ToSecret(args.SecureJsonDatas).(DataSourceSecureJsonDataArrayOutput)
+		args.SecureJsonDatas = pulumi.ToSecret(args.SecureJsonDatas).(DataSourceSecureJsonDataArrayInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"basicAuthPassword",

@@ -44,8 +44,8 @@ import (
 //				IcalUrlPrimary:   pulumi.String("https://example.com/example_ical.ics"),
 //				IcalUrlOverrides: pulumi.String("https://example.com/example_overrides_ical.ics"),
 //				Slack: &grafana.OncallScheduleSlackArgs{
-//					ChannelId:   pulumi.String(exampleSlackChannel.SlackId),
-//					UserGroupId: pulumi.String(exampleUserGroup.SlackId),
+//					ChannelId:   *pulumi.String(exampleSlackChannel.SlackId),
+//					UserGroupId: *pulumi.String(exampleUserGroup.SlackId),
 //				},
 //			})
 //			if err != nil {

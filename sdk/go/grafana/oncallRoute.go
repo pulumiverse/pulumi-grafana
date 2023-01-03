@@ -49,7 +49,7 @@ import (
 //				RoutingRegex:      pulumi.String("us-(east|west)"),
 //				Position:          pulumi.Int(0),
 //				Slack: &grafana.OncallRouteSlackArgs{
-//					ChannelId: pulumi.String(exampleSlackChannel.SlackId),
+//					ChannelId: *pulumi.String(exampleSlackChannel.SlackId),
 //					Enabled:   pulumi.Bool(true),
 //				},
 //				Telegram: &grafana.OncallRouteTelegramArgs{

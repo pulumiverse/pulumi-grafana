@@ -45,7 +45,7 @@ import (
 //			_ = grafana.LookupUserOutput(ctx, grafana.GetUserOutputArgs{
 //				Email: test.Email,
 //			}, nil)
-//			_ = test.Login.ApplyT(func(login string) (grafana.GetUserResult, error) {
+//			_ = test.Login.ApplyT(func(login *string) (grafana.GetUserResult, error) {
 //				return grafana.LookupUserOutput(ctx, grafana.GetUserOutputArgs{
 //					Login: login,
 //				}, nil), nil
