@@ -41,6 +41,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// A list of holiday IDs or names to take into account when training the model.
+        /// </summary>
+        [Output("holidays")]
+        public Output<ImmutableArray<string>> Holidays { get; private set; } = null!;
+
+        /// <summary>
         /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
         /// </summary>
         [Output("hyperParams")]
@@ -147,6 +153,18 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        [Input("holidays")]
+        private InputList<string>? _holidays;
+
+        /// <summary>
+        /// A list of holiday IDs or names to take into account when training the model.
+        /// </summary>
+        public InputList<string> Holidays
+        {
+            get => _holidays ?? (_holidays = new InputList<string>());
+            set => _holidays = value;
+        }
+
         [Input("hyperParams")]
         private InputMap<object>? _hyperParams;
 
@@ -226,6 +244,18 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        [Input("holidays")]
+        private InputList<string>? _holidays;
+
+        /// <summary>
+        /// A list of holiday IDs or names to take into account when training the model.
+        /// </summary>
+        public InputList<string> Holidays
+        {
+            get => _holidays ?? (_holidays = new InputList<string>());
+            set => _holidays = value;
+        }
 
         [Input("hyperParams")]
         private InputMap<object>? _hyperParams;

@@ -122,7 +122,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<bool?> BasicAuthEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+        /// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
         /// </summary>
         [Output("basicAuthPassword")]
         public Output<string?> BasicAuthPassword { get; private set; } = null!;
@@ -152,13 +152,13 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<bool?> IsDefault { get; private set; } = null!;
 
         /// <summary>
-        /// Serialized JSON string containing the json data. Replaces the json_data attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+        /// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         [Output("jsonDataEncoded")]
         public Output<string?> JsonDataEncoded { get; private set; } = null!;
 
         /// <summary>
-        /// (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+        /// Use json*data*encoded instead.
         /// </summary>
         [Output("jsonDatas")]
         public Output<ImmutableArray<Outputs.DataSourceJsonData>> JsonDatas { get; private set; } = null!;
@@ -170,19 +170,19 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// (Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+        /// Use secure*json*data_encoded.password instead. Defaults to ``.
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
-        /// Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+        /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         [Output("secureJsonDataEncoded")]
         public Output<string?> SecureJsonDataEncoded { get; private set; } = null!;
 
         /// <summary>
-        /// Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+        /// Use secure*json*data*encoded instead.
         /// </summary>
         [Output("secureJsonDatas")]
         public Output<ImmutableArray<Outputs.DataSourceSecureJsonData>> SecureJsonDatas { get; private set; } = null!;
@@ -282,9 +282,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private Input<string>? _basicAuthPassword;
 
         /// <summary>
-        /// Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+        /// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
         /// </summary>
-        [Obsolete(@"Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.")]
+        [Obsolete(@"Use secure_json_data_encoded.basicAuthPassword instead.")]
         public Input<string>? BasicAuthPassword
         {
             get => _basicAuthPassword;
@@ -330,7 +330,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<bool>? IsDefault { get; set; }
 
         /// <summary>
-        /// Serialized JSON string containing the json data. Replaces the json_data attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+        /// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         [Input("jsonDataEncoded")]
         public Input<string>? JsonDataEncoded { get; set; }
@@ -339,9 +339,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private InputList<Inputs.DataSourceJsonDataArgs>? _jsonDatas;
 
         /// <summary>
-        /// (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+        /// Use json*data*encoded instead.
         /// </summary>
-        [Obsolete(@"Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.")]
+        [Obsolete(@"Use json_data_encoded instead.")]
         public InputList<Inputs.DataSourceJsonDataArgs> JsonDatas
         {
             get => _jsonDatas ?? (_jsonDatas = new InputList<Inputs.DataSourceJsonDataArgs>());
@@ -358,9 +358,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private Input<string>? _password;
 
         /// <summary>
-        /// (Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+        /// Use secure*json*data_encoded.password instead. Defaults to ``.
         /// </summary>
-        [Obsolete(@"Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.")]
+        [Obsolete(@"Use secure_json_data_encoded.password instead.")]
         public Input<string>? Password
         {
             get => _password;
@@ -375,7 +375,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private Input<string>? _secureJsonDataEncoded;
 
         /// <summary>
-        /// Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+        /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         public Input<string>? SecureJsonDataEncoded
         {
@@ -391,9 +391,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private InputList<Inputs.DataSourceSecureJsonDataArgs>? _secureJsonDatas;
 
         /// <summary>
-        /// Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+        /// Use secure*json*data*encoded instead.
         /// </summary>
-        [Obsolete(@"Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.")]
+        [Obsolete(@"Use secure_json_data_encoded instead.")]
         public InputList<Inputs.DataSourceSecureJsonDataArgs> SecureJsonDatas
         {
             get => _secureJsonDatas ?? (_secureJsonDatas = new InputList<Inputs.DataSourceSecureJsonDataArgs>());
@@ -452,9 +452,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private Input<string>? _basicAuthPassword;
 
         /// <summary>
-        /// Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+        /// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
         /// </summary>
-        [Obsolete(@"Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.")]
+        [Obsolete(@"Use secure_json_data_encoded.basicAuthPassword instead.")]
         public Input<string>? BasicAuthPassword
         {
             get => _basicAuthPassword;
@@ -500,7 +500,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<bool>? IsDefault { get; set; }
 
         /// <summary>
-        /// Serialized JSON string containing the json data. Replaces the json_data attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+        /// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         [Input("jsonDataEncoded")]
         public Input<string>? JsonDataEncoded { get; set; }
@@ -509,9 +509,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private InputList<Inputs.DataSourceJsonDataGetArgs>? _jsonDatas;
 
         /// <summary>
-        /// (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+        /// Use json*data*encoded instead.
         /// </summary>
-        [Obsolete(@"Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.")]
+        [Obsolete(@"Use json_data_encoded instead.")]
         public InputList<Inputs.DataSourceJsonDataGetArgs> JsonDatas
         {
             get => _jsonDatas ?? (_jsonDatas = new InputList<Inputs.DataSourceJsonDataGetArgs>());
@@ -528,9 +528,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private Input<string>? _password;
 
         /// <summary>
-        /// (Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+        /// Use secure*json*data_encoded.password instead. Defaults to ``.
         /// </summary>
-        [Obsolete(@"Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.")]
+        [Obsolete(@"Use secure_json_data_encoded.password instead.")]
         public Input<string>? Password
         {
             get => _password;
@@ -545,7 +545,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private Input<string>? _secureJsonDataEncoded;
 
         /// <summary>
-        /// Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+        /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         public Input<string>? SecureJsonDataEncoded
         {
@@ -561,9 +561,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private InputList<Inputs.DataSourceSecureJsonDataGetArgs>? _secureJsonDatas;
 
         /// <summary>
-        /// Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+        /// Use secure*json*data*encoded instead.
         /// </summary>
-        [Obsolete(@"Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.")]
+        [Obsolete(@"Use secure_json_data_encoded instead.")]
         public InputList<Inputs.DataSourceSecureJsonDataGetArgs> SecureJsonDatas
         {
             get => _secureJsonDatas ?? (_secureJsonDatas = new InputList<Inputs.DataSourceSecureJsonDataGetArgs>());

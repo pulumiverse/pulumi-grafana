@@ -31,14 +31,14 @@ public final class RolePermissionArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+     * Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
      * 
      */
     @Import(name="scope")
     private @Nullable Output<String> scope;
 
     /**
-     * @return Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+     * @return Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
      * 
      */
     public Optional<Output<String>> scope() {
@@ -92,7 +92,7 @@ public final class RolePermissionArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param scope Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+         * @param scope Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
          * 
          * @return builder
          * 
@@ -103,7 +103,7 @@ public final class RolePermissionArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param scope Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+         * @param scope Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
          * 
          * @return builder
          * 

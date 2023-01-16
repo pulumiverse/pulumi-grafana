@@ -238,6 +238,60 @@
                 "uid"
             ]
         },
+        "grafana:index/CloudAccessPolicyRealm:CloudAccessPolicyRealm": {
+            "properties": {
+                "identifier": {
+                    "type": "string",
+                    "description": "The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "labelPolicies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:index/CloudAccessPolicyRealmLabelPolicy:CloudAccessPolicyRealmLabelPolicy"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "identifier",
+                "type"
+            ]
+        },
+        "grafana:index/CloudAccessPolicyRealmLabelPolicy:CloudAccessPolicyRealmLabelPolicy": {
+            "properties": {
+                "selector": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "selector"
+            ]
+        },
         "grafana:index/ContactPointAlertmanager:ContactPointAlertmanager": {
             "properties": {
                 "basicAuthPassword": {
@@ -2648,6 +2702,40 @@
                 "permission"
             ]
         },
+        "grafana:index/MachineLearningHolidayCustomPeriod:MachineLearningHolidayCustomPeriod": {
+            "properties": {
+                "endTime": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the custom period.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "startTime": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "endTime",
+                "startTime"
+            ]
+        },
         "grafana:index/MuteTimingInterval:MuteTimingInterval": {
             "properties": {
                 "daysOfMonths": {
@@ -3702,7 +3790,7 @@
                 },
                 "scope": {
                     "type": "string",
-                    "description": "Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)\n",
+                    "description": "Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5411,6 +5499,253 @@
                 "type": "object"
             }
         },
+        "grafana:index/cloudAccessPolicy:CloudAccessPolicy": {
+            "description": "* [Official documentation](https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/reference/cloud-api/#create-an-access-policy)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@lbrlabs/pulumi-grafana\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst current = grafana.getCloudOrganization({\n    slug: \"\u003cyour org slug\u003e\",\n});\nconst testCloudAccessPolicy = new grafana.CloudAccessPolicy(\"testCloudAccessPolicy\", {\n    region: \"us\",\n    displayName: \"My Policy\",\n    scopes: [\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms: [{\n        type: \"org\",\n        identifier: current.then(current =\u003e current.id),\n        labelPolicies: [{\n            selector: \"{namespace=\\\"default\\\"}\",\n        }],\n    }],\n});\nconst testCloudAccessPolicyToken = new grafana.CloudAccessPolicyToken(\"testCloudAccessPolicyToken\", {\n    region: \"us\",\n    accessPolicyId: testCloudAccessPolicy.policyId,\n    displayName: \"My Policy Token\",\n    expiresAt: \"2023-01-01T00:00:00Z\",\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\nimport pulumi_grafana as grafana\n\ncurrent = grafana.get_cloud_organization(slug=\"\u003cyour org slug\u003e\")\ntest_cloud_access_policy = grafana.CloudAccessPolicy(\"testCloudAccessPolicy\",\n    region=\"us\",\n    display_name=\"My Policy\",\n    scopes=[\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms=[grafana.CloudAccessPolicyRealmArgs(\n        type=\"org\",\n        identifier=current.id,\n        label_policies=[grafana.CloudAccessPolicyRealmLabelPolicyArgs(\n            selector=\"{namespace=\\\"default\\\"}\",\n        )],\n    )])\ntest_cloud_access_policy_token = grafana.CloudAccessPolicyToken(\"testCloudAccessPolicyToken\",\n    region=\"us\",\n    access_policy_id=test_cloud_access_policy.policy_id,\n    display_name=\"My Policy Token\",\n    expires_at=\"2023-01-01T00:00:00Z\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\nusing Grafana = Pulumi.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Grafana.GetCloudOrganization.Invoke(new()\n    {\n        Slug = \"\u003cyour org slug\u003e\",\n    });\n\n    var testCloudAccessPolicy = new Grafana.CloudAccessPolicy(\"testCloudAccessPolicy\", new()\n    {\n        Region = \"us\",\n        DisplayName = \"My Policy\",\n        Scopes = new[]\n        {\n            \"metrics:read\",\n            \"logs:read\",\n        },\n        Realms = new[]\n        {\n            new Grafana.Inputs.CloudAccessPolicyRealmArgs\n            {\n                Type = \"org\",\n                Identifier = current.Apply(getCloudOrganizationResult =\u003e getCloudOrganizationResult.Id),\n                LabelPolicies = new[]\n                {\n                    new Grafana.Inputs.CloudAccessPolicyRealmLabelPolicyArgs\n                    {\n                        Selector = \"{namespace=\\\"default\\\"}\",\n                    },\n                },\n            },\n        },\n    });\n\n    var testCloudAccessPolicyToken = new Grafana.CloudAccessPolicyToken(\"testCloudAccessPolicyToken\", new()\n    {\n        Region = \"us\",\n        AccessPolicyId = testCloudAccessPolicy.PolicyId,\n        DisplayName = \"My Policy Token\",\n        ExpiresAt = \"2023-01-01T00:00:00Z\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcurrent, err := grafana.GetCloudOrganization(ctx, \u0026grafana.GetCloudOrganizationArgs{\n\t\t\tSlug: pulumi.StringRef(\"\u003cyour org slug\u003e\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestCloudAccessPolicy, err := grafana.NewCloudAccessPolicy(ctx, \"testCloudAccessPolicy\", \u0026grafana.CloudAccessPolicyArgs{\n\t\t\tRegion:      pulumi.String(\"us\"),\n\t\t\tDisplayName: pulumi.String(\"My Policy\"),\n\t\t\tScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"metrics:read\"),\n\t\t\t\tpulumi.String(\"logs:read\"),\n\t\t\t},\n\t\t\tRealms: grafana.CloudAccessPolicyRealmArray{\n\t\t\t\t\u0026grafana.CloudAccessPolicyRealmArgs{\n\t\t\t\t\tType:       pulumi.String(\"org\"),\n\t\t\t\t\tIdentifier: *pulumi.String(current.Id),\n\t\t\t\t\tLabelPolicies: grafana.CloudAccessPolicyRealmLabelPolicyArray{\n\t\t\t\t\t\t\u0026grafana.CloudAccessPolicyRealmLabelPolicyArgs{\n\t\t\t\t\t\t\tSelector: pulumi.String(\"{namespace=\\\"default\\\"}\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewCloudAccessPolicyToken(ctx, \"testCloudAccessPolicyToken\", \u0026grafana.CloudAccessPolicyTokenArgs{\n\t\t\tRegion:         pulumi.String(\"us\"),\n\t\t\tAccessPolicyId: testCloudAccessPolicy.PolicyId,\n\t\t\tDisplayName:    pulumi.String(\"My Policy Token\"),\n\t\t\tExpiresAt:      pulumi.String(\"2023-01-01T00:00:00Z\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.GrafanaFunctions;\nimport com.pulumi.grafana.inputs.GetCloudOrganizationArgs;\nimport com.pulumi.grafana.CloudAccessPolicy;\nimport com.pulumi.grafana.CloudAccessPolicyArgs;\nimport com.pulumi.grafana.inputs.CloudAccessPolicyRealmArgs;\nimport com.pulumi.grafana.CloudAccessPolicyToken;\nimport com.pulumi.grafana.CloudAccessPolicyTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = GrafanaFunctions.getCloudOrganization(GetCloudOrganizationArgs.builder()\n            .slug(\"\u003cyour org slug\u003e\")\n            .build());\n\n        var testCloudAccessPolicy = new CloudAccessPolicy(\"testCloudAccessPolicy\", CloudAccessPolicyArgs.builder()        \n            .region(\"us\")\n            .displayName(\"My Policy\")\n            .scopes(            \n                \"metrics:read\",\n                \"logs:read\")\n            .realms(CloudAccessPolicyRealmArgs.builder()\n                .type(\"org\")\n                .identifier(current.applyValue(getCloudOrganizationResult -\u003e getCloudOrganizationResult.id()))\n                .labelPolicies(CloudAccessPolicyRealmLabelPolicyArgs.builder()\n                    .selector(\"{namespace=\\\"default\\\"}\")\n                    .build())\n                .build())\n            .build());\n\n        var testCloudAccessPolicyToken = new CloudAccessPolicyToken(\"testCloudAccessPolicyToken\", CloudAccessPolicyTokenArgs.builder()        \n            .region(\"us\")\n            .accessPolicyId(testCloudAccessPolicy.policyId())\n            .displayName(\"My Policy Token\")\n            .expiresAt(\"2023-01-01T00:00:00Z\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testCloudAccessPolicy:\n    type: grafana:CloudAccessPolicy\n    properties:\n      region: us\n      displayName: My Policy\n      scopes:\n        - metrics:read\n        - logs:read\n      realms:\n        - type: org\n          identifier: ${current.id}\n          labelPolicies:\n            - selector: '{namespace=\"default\"}'\n  testCloudAccessPolicyToken:\n    type: grafana:CloudAccessPolicyToken\n    properties:\n      region: us\n      accessPolicyId: ${testCloudAccessPolicy.policyId}\n      displayName: My Policy Token\n      expiresAt: 2023-01-01T00:00:00Z\nvariables:\n  current:\n    fn::invoke:\n      Function: grafana:getCloudOrganization\n      Arguments:\n        slug: \u003cyour org slug\u003e\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Creation date of the access policy.\n"
+                },
+                "displayName": {
+                    "type": "string",
+                    "description": "Display name of the access policy. Defaults to the name.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the access policy.\n"
+                },
+                "policyId": {
+                    "type": "string",
+                    "description": "ID of the access policy.\n"
+                },
+                "realms": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:index/CloudAccessPolicyRealm:CloudAccessPolicyRealm"
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Region where the API is deployed. Region where the API is deployed. Generally where the stack is deployed. Valid values are 'us', 'eu', and 'au'.\n"
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/#scopes for possible values.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Last update date of the access policy.\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "name",
+                "policyId",
+                "realms",
+                "region",
+                "scopes",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "displayName": {
+                    "type": "string",
+                    "description": "Display name of the access policy. Defaults to the name.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the access policy.\n",
+                    "willReplaceOnChanges": true
+                },
+                "realms": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:index/CloudAccessPolicyRealm:CloudAccessPolicyRealm"
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Region where the API is deployed. Region where the API is deployed. Generally where the stack is deployed. Valid values are 'us', 'eu', and 'au'.\n",
+                    "willReplaceOnChanges": true
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/#scopes for possible values.\n"
+                }
+            },
+            "requiredInputs": [
+                "realms",
+                "region",
+                "scopes"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering CloudAccessPolicy resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Creation date of the access policy.\n"
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "description": "Display name of the access policy. Defaults to the name.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the access policy.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "policyId": {
+                        "type": "string",
+                        "description": "ID of the access policy.\n"
+                    },
+                    "realms": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/grafana:index/CloudAccessPolicyRealm:CloudAccessPolicyRealm"
+                        }
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "Region where the API is deployed. Region where the API is deployed. Generally where the stack is deployed. Valid values are 'us', 'eu', and 'au'.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "scopes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/#scopes for possible values.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Last update date of the access policy.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken": {
+            "description": "* [Official documentation](https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/reference/cloud-api/#create-a-token)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@lbrlabs/pulumi-grafana\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst current = grafana.getCloudOrganization({\n    slug: \"\u003cyour org slug\u003e\",\n});\nconst testCloudAccessPolicy = new grafana.CloudAccessPolicy(\"testCloudAccessPolicy\", {\n    region: \"us\",\n    displayName: \"My Policy\",\n    scopes: [\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms: [{\n        type: \"org\",\n        identifier: current.then(current =\u003e current.id),\n        labelPolicies: [{\n            selector: \"{namespace=\\\"default\\\"}\",\n        }],\n    }],\n});\nconst testCloudAccessPolicyToken = new grafana.CloudAccessPolicyToken(\"testCloudAccessPolicyToken\", {\n    region: \"us\",\n    accessPolicyId: testCloudAccessPolicy.policyId,\n    displayName: \"My Policy Token\",\n    expiresAt: \"2023-01-01T00:00:00Z\",\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\nimport pulumi_grafana as grafana\n\ncurrent = grafana.get_cloud_organization(slug=\"\u003cyour org slug\u003e\")\ntest_cloud_access_policy = grafana.CloudAccessPolicy(\"testCloudAccessPolicy\",\n    region=\"us\",\n    display_name=\"My Policy\",\n    scopes=[\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms=[grafana.CloudAccessPolicyRealmArgs(\n        type=\"org\",\n        identifier=current.id,\n        label_policies=[grafana.CloudAccessPolicyRealmLabelPolicyArgs(\n            selector=\"{namespace=\\\"default\\\"}\",\n        )],\n    )])\ntest_cloud_access_policy_token = grafana.CloudAccessPolicyToken(\"testCloudAccessPolicyToken\",\n    region=\"us\",\n    access_policy_id=test_cloud_access_policy.policy_id,\n    display_name=\"My Policy Token\",\n    expires_at=\"2023-01-01T00:00:00Z\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\nusing Grafana = Pulumi.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Grafana.GetCloudOrganization.Invoke(new()\n    {\n        Slug = \"\u003cyour org slug\u003e\",\n    });\n\n    var testCloudAccessPolicy = new Grafana.CloudAccessPolicy(\"testCloudAccessPolicy\", new()\n    {\n        Region = \"us\",\n        DisplayName = \"My Policy\",\n        Scopes = new[]\n        {\n            \"metrics:read\",\n            \"logs:read\",\n        },\n        Realms = new[]\n        {\n            new Grafana.Inputs.CloudAccessPolicyRealmArgs\n            {\n                Type = \"org\",\n                Identifier = current.Apply(getCloudOrganizationResult =\u003e getCloudOrganizationResult.Id),\n                LabelPolicies = new[]\n                {\n                    new Grafana.Inputs.CloudAccessPolicyRealmLabelPolicyArgs\n                    {\n                        Selector = \"{namespace=\\\"default\\\"}\",\n                    },\n                },\n            },\n        },\n    });\n\n    var testCloudAccessPolicyToken = new Grafana.CloudAccessPolicyToken(\"testCloudAccessPolicyToken\", new()\n    {\n        Region = \"us\",\n        AccessPolicyId = testCloudAccessPolicy.PolicyId,\n        DisplayName = \"My Policy Token\",\n        ExpiresAt = \"2023-01-01T00:00:00Z\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcurrent, err := grafana.GetCloudOrganization(ctx, \u0026grafana.GetCloudOrganizationArgs{\n\t\t\tSlug: pulumi.StringRef(\"\u003cyour org slug\u003e\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestCloudAccessPolicy, err := grafana.NewCloudAccessPolicy(ctx, \"testCloudAccessPolicy\", \u0026grafana.CloudAccessPolicyArgs{\n\t\t\tRegion:      pulumi.String(\"us\"),\n\t\t\tDisplayName: pulumi.String(\"My Policy\"),\n\t\t\tScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"metrics:read\"),\n\t\t\t\tpulumi.String(\"logs:read\"),\n\t\t\t},\n\t\t\tRealms: grafana.CloudAccessPolicyRealmArray{\n\t\t\t\t\u0026grafana.CloudAccessPolicyRealmArgs{\n\t\t\t\t\tType:       pulumi.String(\"org\"),\n\t\t\t\t\tIdentifier: *pulumi.String(current.Id),\n\t\t\t\t\tLabelPolicies: grafana.CloudAccessPolicyRealmLabelPolicyArray{\n\t\t\t\t\t\t\u0026grafana.CloudAccessPolicyRealmLabelPolicyArgs{\n\t\t\t\t\t\t\tSelector: pulumi.String(\"{namespace=\\\"default\\\"}\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewCloudAccessPolicyToken(ctx, \"testCloudAccessPolicyToken\", \u0026grafana.CloudAccessPolicyTokenArgs{\n\t\t\tRegion:         pulumi.String(\"us\"),\n\t\t\tAccessPolicyId: testCloudAccessPolicy.PolicyId,\n\t\t\tDisplayName:    pulumi.String(\"My Policy Token\"),\n\t\t\tExpiresAt:      pulumi.String(\"2023-01-01T00:00:00Z\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.GrafanaFunctions;\nimport com.pulumi.grafana.inputs.GetCloudOrganizationArgs;\nimport com.pulumi.grafana.CloudAccessPolicy;\nimport com.pulumi.grafana.CloudAccessPolicyArgs;\nimport com.pulumi.grafana.inputs.CloudAccessPolicyRealmArgs;\nimport com.pulumi.grafana.CloudAccessPolicyToken;\nimport com.pulumi.grafana.CloudAccessPolicyTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = GrafanaFunctions.getCloudOrganization(GetCloudOrganizationArgs.builder()\n            .slug(\"\u003cyour org slug\u003e\")\n            .build());\n\n        var testCloudAccessPolicy = new CloudAccessPolicy(\"testCloudAccessPolicy\", CloudAccessPolicyArgs.builder()        \n            .region(\"us\")\n            .displayName(\"My Policy\")\n            .scopes(            \n                \"metrics:read\",\n                \"logs:read\")\n            .realms(CloudAccessPolicyRealmArgs.builder()\n                .type(\"org\")\n                .identifier(current.applyValue(getCloudOrganizationResult -\u003e getCloudOrganizationResult.id()))\n                .labelPolicies(CloudAccessPolicyRealmLabelPolicyArgs.builder()\n                    .selector(\"{namespace=\\\"default\\\"}\")\n                    .build())\n                .build())\n            .build());\n\n        var testCloudAccessPolicyToken = new CloudAccessPolicyToken(\"testCloudAccessPolicyToken\", CloudAccessPolicyTokenArgs.builder()        \n            .region(\"us\")\n            .accessPolicyId(testCloudAccessPolicy.policyId())\n            .displayName(\"My Policy Token\")\n            .expiresAt(\"2023-01-01T00:00:00Z\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testCloudAccessPolicy:\n    type: grafana:CloudAccessPolicy\n    properties:\n      region: us\n      displayName: My Policy\n      scopes:\n        - metrics:read\n        - logs:read\n      realms:\n        - type: org\n          identifier: ${current.id}\n          labelPolicies:\n            - selector: '{namespace=\"default\"}'\n  testCloudAccessPolicyToken:\n    type: grafana:CloudAccessPolicyToken\n    properties:\n      region: us\n      accessPolicyId: ${testCloudAccessPolicy.policyId}\n      displayName: My Policy Token\n      expiresAt: 2023-01-01T00:00:00Z\nvariables:\n  current:\n    fn::invoke:\n      Function: grafana:getCloudOrganization\n      Arguments:\n        slug: \u003cyour org slug\u003e\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "accessPolicyId": {
+                    "type": "string",
+                    "description": "ID of the access policy for which to create a token.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "Creation date of the access policy token.\n"
+                },
+                "displayName": {
+                    "type": "string",
+                    "description": "Display name of the access policy token. Defaults to the name.\n"
+                },
+                "expiresAt": {
+                    "type": "string",
+                    "description": "Expiration date of the access policy token. Does not expire by default.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the access policy token.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Region of the access policy. Should be set to the same region as the access policy.\n"
+                },
+                "token": {
+                    "type": "string",
+                    "secret": true
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Last update date of the access policy token.\n"
+                }
+            },
+            "required": [
+                "accessPolicyId",
+                "createdAt",
+                "name",
+                "region",
+                "token",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "accessPolicyId": {
+                    "type": "string",
+                    "description": "ID of the access policy for which to create a token.\n",
+                    "willReplaceOnChanges": true
+                },
+                "displayName": {
+                    "type": "string",
+                    "description": "Display name of the access policy token. Defaults to the name.\n"
+                },
+                "expiresAt": {
+                    "type": "string",
+                    "description": "Expiration date of the access policy token. Does not expire by default.\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the access policy token.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Region of the access policy. Should be set to the same region as the access policy.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "accessPolicyId",
+                "region"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering CloudAccessPolicyToken resources.\n",
+                "properties": {
+                    "accessPolicyId": {
+                        "type": "string",
+                        "description": "ID of the access policy for which to create a token.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Creation date of the access policy token.\n"
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "description": "Display name of the access policy token. Defaults to the name.\n"
+                    },
+                    "expiresAt": {
+                        "type": "string",
+                        "description": "Expiration date of the access policy token. Does not expire by default.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the access policy token.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "Region of the access policy. Should be set to the same region as the access policy.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "token": {
+                        "type": "string",
+                        "secret": true
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Last update date of the access policy token.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:index/cloudApiKey:CloudApiKey": {
             "description": "Manages a single API key on the Grafana Cloud portal (on the organization level)\n* [API documentation](https://grafana.com/docs/grafana-cloud/reference/cloud-api/#api-keys)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@lbrlabs/pulumi-grafana\";\n\nconst test = new grafana.CloudApiKey(\"test\", {\n    cloudOrgSlug: \"myorg\",\n    role: \"Admin\",\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_grafana as grafana\n\ntest = grafana.CloudApiKey(\"test\",\n    cloud_org_slug=\"myorg\",\n    role=\"Admin\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.CloudApiKey(\"test\", new()\n    {\n        CloudOrgSlug = \"myorg\",\n        Role = \"Admin\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewCloudApiKey(ctx, \"test\", \u0026grafana.CloudApiKeyArgs{\n\t\t\tCloudOrgSlug: pulumi.String(\"myorg\"),\n\t\t\tRole:         pulumi.String(\"Admin\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.CloudApiKey;\nimport com.pulumi.grafana.CloudApiKeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new CloudApiKey(\"test\", CloudApiKeyArgs.builder()        \n            .cloudOrgSlug(\"myorg\")\n            .role(\"Admin\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:CloudApiKey\n    properties:\n      cloudOrgSlug: myorg\n      role: Admin\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import grafana:index/cloudApiKey:CloudApiKey resource_name \"{{org-name}}-{{api_key_name}}\"\n```\n\n ",
             "properties": {
@@ -6455,8 +6790,8 @@
                 },
                 "basicAuthPassword": {
                     "type": "string",
-                    "description": "Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
+                    "description": "Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.\n",
+                    "deprecationMessage": "Use secure_json_data_encoded.basicAuthPassword instead.",
                     "secret": true
                 },
                 "basicAuthUsername": {
@@ -6481,15 +6816,15 @@
                 },
                 "jsonDataEncoded": {
                     "type": "string",
-                    "description": "Serialized JSON string containing the json data. Replaces the json_data attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n"
+                    "description": "Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.\n"
                 },
                 "jsonDatas": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:index/DataSourceJsonData:DataSourceJsonData"
                     },
-                    "description": "(Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.\n",
-                    "deprecationMessage": "Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes."
+                    "description": "Use json*data*encoded instead.\n",
+                    "deprecationMessage": "Use json_data_encoded instead."
                 },
                 "name": {
                     "type": "string",
@@ -6497,13 +6832,13 @@
                 },
                 "password": {
                     "type": "string",
-                    "description": "(Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
+                    "description": "Use secure*json*data_encoded.password instead. Defaults to ``.\n",
+                    "deprecationMessage": "Use secure_json_data_encoded.password instead.",
                     "secret": true
                 },
                 "secureJsonDataEncoded": {
                     "type": "string",
-                    "description": "Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n",
+                    "description": "Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.\n",
                     "secret": true
                 },
                 "secureJsonDatas": {
@@ -6511,8 +6846,8 @@
                     "items": {
                         "$ref": "#/types/grafana:index/DataSourceSecureJsonData:DataSourceSecureJsonData"
                     },
-                    "description": "Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.",
+                    "description": "Use secure*json*data*encoded instead.\n",
+                    "deprecationMessage": "Use secure_json_data_encoded instead.",
                     "secret": true
                 },
                 "type": {
@@ -6548,8 +6883,8 @@
                 },
                 "basicAuthPassword": {
                     "type": "string",
-                    "description": "Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
+                    "description": "Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.\n",
+                    "deprecationMessage": "Use secure_json_data_encoded.basicAuthPassword instead.",
                     "secret": true
                 },
                 "basicAuthUsername": {
@@ -6574,15 +6909,15 @@
                 },
                 "jsonDataEncoded": {
                     "type": "string",
-                    "description": "Serialized JSON string containing the json data. Replaces the json_data attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n"
+                    "description": "Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.\n"
                 },
                 "jsonDatas": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:index/DataSourceJsonData:DataSourceJsonData"
                     },
-                    "description": "(Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.\n",
-                    "deprecationMessage": "Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes."
+                    "description": "Use json*data*encoded instead.\n",
+                    "deprecationMessage": "Use json_data_encoded instead."
                 },
                 "name": {
                     "type": "string",
@@ -6590,13 +6925,13 @@
                 },
                 "password": {
                     "type": "string",
-                    "description": "(Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
+                    "description": "Use secure*json*data_encoded.password instead. Defaults to ``.\n",
+                    "deprecationMessage": "Use secure_json_data_encoded.password instead.",
                     "secret": true
                 },
                 "secureJsonDataEncoded": {
                     "type": "string",
-                    "description": "Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n",
+                    "description": "Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.\n",
                     "secret": true
                 },
                 "secureJsonDatas": {
@@ -6604,8 +6939,8 @@
                     "items": {
                         "$ref": "#/types/grafana:index/DataSourceSecureJsonData:DataSourceSecureJsonData"
                     },
-                    "description": "Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.\n",
-                    "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.",
+                    "description": "Use secure*json*data*encoded instead.\n",
+                    "deprecationMessage": "Use secure_json_data_encoded instead.",
                     "secret": true
                 },
                 "type": {
@@ -6614,7 +6949,8 @@
                 },
                 "uid": {
                     "type": "string",
-                    "description": "Unique identifier. If unset, this will be automatically generated.\n"
+                    "description": "Unique identifier. If unset, this will be automatically generated.\n",
+                    "willReplaceOnChanges": true
                 },
                 "url": {
                     "type": "string",
@@ -6641,8 +6977,8 @@
                     },
                     "basicAuthPassword": {
                         "type": "string",
-                        "description": "Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                        "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
+                        "description": "Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.\n",
+                        "deprecationMessage": "Use secure_json_data_encoded.basicAuthPassword instead.",
                         "secret": true
                     },
                     "basicAuthUsername": {
@@ -6667,15 +7003,15 @@
                     },
                     "jsonDataEncoded": {
                         "type": "string",
-                        "description": "Serialized JSON string containing the json data. Replaces the json_data attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n"
+                        "description": "Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.\n"
                     },
                     "jsonDatas": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/grafana:index/DataSourceJsonData:DataSourceJsonData"
                         },
-                        "description": "(Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.\n",
-                        "deprecationMessage": "Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes."
+                        "description": "Use json*data*encoded instead.\n",
+                        "deprecationMessage": "Use json_data_encoded instead."
                     },
                     "name": {
                         "type": "string",
@@ -6683,13 +7019,13 @@
                     },
                     "password": {
                         "type": "string",
-                        "description": "(Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.\n",
-                        "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.",
+                        "description": "Use secure*json*data_encoded.password instead. Defaults to ``.\n",
+                        "deprecationMessage": "Use secure_json_data_encoded.password instead.",
                         "secret": true
                     },
                     "secureJsonDataEncoded": {
                         "type": "string",
-                        "description": "Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.\n",
+                        "description": "Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.\n",
                         "secret": true
                     },
                     "secureJsonDatas": {
@@ -6697,8 +7033,8 @@
                         "items": {
                             "$ref": "#/types/grafana:index/DataSourceSecureJsonData:DataSourceSecureJsonData"
                         },
-                        "description": "Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.\n",
-                        "deprecationMessage": "Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.",
+                        "description": "Use secure*json*data*encoded instead.\n",
+                        "deprecationMessage": "Use secure_json_data_encoded instead.",
                         "secret": true
                     },
                     "type": {
@@ -6707,7 +7043,8 @@
                     },
                     "uid": {
                         "type": "string",
-                        "description": "Unique identifier. If unset, this will be automatically generated.\n"
+                        "description": "Unique identifier. If unset, this will be automatically generated.\n",
+                        "willReplaceOnChanges": true
                     },
                     "url": {
                         "type": "string",
@@ -7051,6 +7388,91 @@
                 "type": "object"
             }
         },
+        "grafana:index/machineLearningHoliday:MachineLearningHoliday": {
+            "description": "A holiday describes time periods where a time series is expected to behave differently to normal.\n\nTo use a holiday in a job, use its id in the `holidays` attribute of a `grafana.MachineLearningJob`:\n\n",
+            "properties": {
+                "customPeriods": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:index/MachineLearningHolidayCustomPeriod:MachineLearningHolidayCustomPeriod"
+                    },
+                    "description": "A list of custom periods for the holiday.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the holiday.\n"
+                },
+                "icalTimezone": {
+                    "type": "string",
+                    "description": "The timezone to use for events in the iCal file pointed to by ical_url.\n"
+                },
+                "icalUrl": {
+                    "type": "string",
+                    "description": "A URL to an iCal file containing all occurrences of the holiday.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the holiday.\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "customPeriods": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:index/MachineLearningHolidayCustomPeriod:MachineLearningHolidayCustomPeriod"
+                    },
+                    "description": "A list of custom periods for the holiday.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the holiday.\n"
+                },
+                "icalTimezone": {
+                    "type": "string",
+                    "description": "The timezone to use for events in the iCal file pointed to by ical_url.\n"
+                },
+                "icalUrl": {
+                    "type": "string",
+                    "description": "A URL to an iCal file containing all occurrences of the holiday.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the holiday.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering MachineLearningHoliday resources.\n",
+                "properties": {
+                    "customPeriods": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/grafana:index/MachineLearningHolidayCustomPeriod:MachineLearningHolidayCustomPeriod"
+                        },
+                        "description": "A list of custom periods for the holiday.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "A description of the holiday.\n"
+                    },
+                    "icalTimezone": {
+                        "type": "string",
+                        "description": "The timezone to use for events in the iCal file pointed to by ical_url.\n"
+                    },
+                    "icalUrl": {
+                        "type": "string",
+                        "description": "A URL to an iCal file containing all occurrences of the holiday.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the holiday.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:index/machineLearningJob:MachineLearningJob": {
             "description": "A job defines the queries and model parameters for a machine learning task.\n",
             "properties": {
@@ -7069,6 +7491,13 @@
                 "description": {
                     "type": "string",
                     "description": "A description of the job.\n"
+                },
+                "holidays": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of holiday IDs or names to take into account when training the model.\n"
                 },
                 "hyperParams": {
                     "type": "object",
@@ -7124,6 +7553,13 @@
                     "type": "string",
                     "description": "A description of the job.\n"
                 },
+                "holidays": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of holiday IDs or names to take into account when training the model.\n"
+                },
                 "hyperParams": {
                     "type": "object",
                     "additionalProperties": {
@@ -7178,6 +7614,13 @@
                     "description": {
                         "type": "string",
                         "description": "A description of the job.\n"
+                    },
+                    "holidays": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A list of holiday IDs or names to take into account when training the model.\n"
                     },
                     "hyperParams": {
                         "type": "object",
@@ -10084,6 +10527,55 @@
                 ]
             }
         },
+        "grafana:index/getCloudOrganization:getCloudOrganization": {
+            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.GrafanaFunctions;\nimport com.pulumi.grafana.inputs.GetCloudOrganizationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var test = GrafanaFunctions.getCloudOrganization(GetCloudOrganizationArgs.builder()\n            .name(\"my-org\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  test:\n    fn::invoke:\n      Function: grafana:getCloudOrganization\n      Arguments:\n        name: my-org\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getCloudOrganization.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of this resource.\n"
+                    },
+                    "slug": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getCloudOrganization.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of this resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "id",
+                    "name",
+                    "slug",
+                    "updatedAt",
+                    "url"
+                ]
+            }
+        },
         "grafana:index/getCloudStack:getCloudStack": {
             "description": "Data source for Grafana Stack\n",
             "inputs": {
@@ -10391,6 +10883,91 @@
                 "required": [
                     "dashboards",
                     "id"
+                ]
+            }
+        },
+        "grafana:index/getDataSource:getDataSource": {
+            "description": "Get details about a Grafana Datasource querying by either name, uid or ID\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@lbrlabs/pulumi-grafana\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst prometheus = new grafana.DataSource(\"prometheus\", {\n    type: \"prometheus\",\n    uid: \"prometheus-ds-test-uid\",\n    url: \"https://my-instance.com\",\n    basicAuthEnabled: true,\n    basicAuthUsername: \"username\",\n    jsonDataEncoded: JSON.stringify({\n        httpMethod: \"POST\",\n        prometheusType: \"Mimir\",\n        prometheusVersion: \"2.4.0\",\n    }),\n    secureJsonDataEncoded: JSON.stringify({\n        basicAuthPassword: \"password\",\n    }),\n});\nconst fromName = grafana.getDataSourceOutput({\n    name: prometheus.name,\n});\nconst fromId = grafana.getDataSourceOutput({\n    id: prometheus.id,\n});\nconst fromUid = grafana.getDataSourceOutput({\n    uid: prometheus.uid,\n});\n```\n```python\nimport pulumi\nimport json\nimport lbrlabs_pulumi_grafana as grafana\nimport pulumi_grafana as grafana\n\nprometheus = grafana.DataSource(\"prometheus\",\n    type=\"prometheus\",\n    uid=\"prometheus-ds-test-uid\",\n    url=\"https://my-instance.com\",\n    basic_auth_enabled=True,\n    basic_auth_username=\"username\",\n    json_data_encoded=json.dumps({\n        \"httpMethod\": \"POST\",\n        \"prometheusType\": \"Mimir\",\n        \"prometheusVersion\": \"2.4.0\",\n    }),\n    secure_json_data_encoded=json.dumps({\n        \"basicAuthPassword\": \"password\",\n    }))\nfrom_name = grafana.get_data_source_output(name=prometheus.name)\nfrom_id = grafana.get_data_source_output(id=prometheus.id)\nfrom_uid = grafana.get_data_source_output(uid=prometheus.uid)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Lbrlabs.PulumiPackage.Grafana;\nusing Grafana = Pulumi.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var prometheus = new Grafana.DataSource(\"prometheus\", new()\n    {\n        Type = \"prometheus\",\n        Uid = \"prometheus-ds-test-uid\",\n        Url = \"https://my-instance.com\",\n        BasicAuthEnabled = true,\n        BasicAuthUsername = \"username\",\n        JsonDataEncoded = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"httpMethod\"] = \"POST\",\n            [\"prometheusType\"] = \"Mimir\",\n            [\"prometheusVersion\"] = \"2.4.0\",\n        }),\n        SecureJsonDataEncoded = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"basicAuthPassword\"] = \"password\",\n        }),\n    });\n\n    var fromName = Grafana.GetDataSource.Invoke(new()\n    {\n        Name = prometheus.Name,\n    });\n\n    var fromId = Grafana.GetDataSource.Invoke(new()\n    {\n        Id = prometheus.Id,\n    });\n\n    var fromUid = Grafana.GetDataSource.Invoke(new()\n    {\n        Uid = prometheus.Uid,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"httpMethod\":        \"POST\",\n\t\t\t\"prometheusType\":    \"Mimir\",\n\t\t\t\"prometheusVersion\": \"2.4.0\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\ttmpJSON1, err := json.Marshal(map[string]interface{}{\n\t\t\t\"basicAuthPassword\": \"password\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson1 := string(tmpJSON1)\n\t\tprometheus, err := grafana.NewDataSource(ctx, \"prometheus\", \u0026grafana.DataSourceArgs{\n\t\t\tType:                  pulumi.String(\"prometheus\"),\n\t\t\tUid:                   pulumi.String(\"prometheus-ds-test-uid\"),\n\t\t\tUrl:                   pulumi.String(\"https://my-instance.com\"),\n\t\t\tBasicAuthEnabled:      pulumi.Bool(true),\n\t\t\tBasicAuthUsername:     pulumi.String(\"username\"),\n\t\t\tJsonDataEncoded:       pulumi.String(json0),\n\t\t\tSecureJsonDataEncoded: pulumi.String(json1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = grafana.LookupDataSourceOutput(ctx, grafana.GetDataSourceOutputArgs{\n\t\t\tName: prometheus.Name,\n\t\t}, nil)\n\t\t_ = grafana.LookupDataSourceOutput(ctx, grafana.GetDataSourceOutputArgs{\n\t\t\tId: prometheus.ID(),\n\t\t}, nil)\n\t\t_ = grafana.LookupDataSourceOutput(ctx, grafana.GetDataSourceOutputArgs{\n\t\t\tUid: prometheus.Uid,\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.DataSource;\nimport com.pulumi.grafana.DataSourceArgs;\nimport com.pulumi.grafana.GrafanaFunctions;\nimport com.pulumi.grafana.inputs.GetDataSourceArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var prometheus = new DataSource(\"prometheus\", DataSourceArgs.builder()        \n            .type(\"prometheus\")\n            .uid(\"prometheus-ds-test-uid\")\n            .url(\"https://my-instance.com\")\n            .basicAuthEnabled(true)\n            .basicAuthUsername(\"username\")\n            .jsonDataEncoded(serializeJson(\n                jsonObject(\n                    jsonProperty(\"httpMethod\", \"POST\"),\n                    jsonProperty(\"prometheusType\", \"Mimir\"),\n                    jsonProperty(\"prometheusVersion\", \"2.4.0\")\n                )))\n            .secureJsonDataEncoded(serializeJson(\n                jsonObject(\n                    jsonProperty(\"basicAuthPassword\", \"password\")\n                )))\n            .build());\n\n        final var fromName = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()\n            .name(prometheus.name())\n            .build());\n\n        final var fromId = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()\n            .id(prometheus.id())\n            .build());\n\n        final var fromUid = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()\n            .uid(prometheus.uid())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  prometheus:\n    type: grafana:DataSource\n    properties:\n      type: prometheus\n      uid: prometheus-ds-test-uid\n      url: https://my-instance.com\n      basicAuthEnabled: true\n      basicAuthUsername: username\n      jsonDataEncoded:\n        fn::toJSON:\n          httpMethod: POST\n          prometheusType: Mimir\n          prometheusVersion: 2.4.0\n      secureJsonDataEncoded:\n        fn::toJSON:\n          basicAuthPassword: password\nvariables:\n  fromName:\n    fn::invoke:\n      Function: grafana:getDataSource\n      Arguments:\n        name: ${prometheus.name}\n  fromId:\n    fn::invoke:\n      Function: grafana:getDataSource\n      Arguments:\n        id: ${prometheus.id}\n  fromUid:\n    fn::invoke:\n      Function: grafana:getDataSource\n      Arguments:\n        uid: ${prometheus.uid}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getDataSource.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of this resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "uid": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDataSource.\n",
+                "properties": {
+                    "accessMode": {
+                        "type": "string",
+                        "description": "The method by which Grafana will access the data source: `proxy` or `direct`.\n"
+                    },
+                    "basicAuthEnabled": {
+                        "type": "boolean",
+                        "description": "Whether to enable basic auth for the data source.\n"
+                    },
+                    "basicAuthUsername": {
+                        "type": "string",
+                        "description": "Basic auth username.\n"
+                    },
+                    "databaseName": {
+                        "type": "string",
+                        "description": "(Required by some data source types) The name of the database to use on the selected data source server.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of this resource.\n"
+                    },
+                    "isDefault": {
+                        "type": "boolean",
+                        "description": "Whether to set the data source as default. This should only be `true` to a single data source.\n"
+                    },
+                    "jsonDataEncoded": {
+                        "type": "string",
+                        "description": "Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The data source type. Must be one of the supported data source keywords.\n"
+                    },
+                    "uid": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string",
+                        "description": "The URL for the data source. The type of URL required varies depending on the chosen data source type.\n"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "(Required by some data source types) The username to use to authenticate to the data source.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "accessMode",
+                    "basicAuthEnabled",
+                    "basicAuthUsername",
+                    "databaseName",
+                    "id",
+                    "isDefault",
+                    "jsonDataEncoded",
+                    "name",
+                    "type",
+                    "uid",
+                    "url",
+                    "username"
                 ]
             }
         },

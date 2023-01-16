@@ -8,12 +8,16 @@ import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
 import com.pulumi.grafana.Utilities;
+import com.pulumi.grafana.inputs.GetCloudOrganizationArgs;
+import com.pulumi.grafana.inputs.GetCloudOrganizationPlainArgs;
 import com.pulumi.grafana.inputs.GetCloudStackArgs;
 import com.pulumi.grafana.inputs.GetCloudStackPlainArgs;
 import com.pulumi.grafana.inputs.GetDashboardArgs;
 import com.pulumi.grafana.inputs.GetDashboardPlainArgs;
 import com.pulumi.grafana.inputs.GetDashboardsArgs;
 import com.pulumi.grafana.inputs.GetDashboardsPlainArgs;
+import com.pulumi.grafana.inputs.GetDataSourceArgs;
+import com.pulumi.grafana.inputs.GetDataSourcePlainArgs;
 import com.pulumi.grafana.inputs.GetFolderArgs;
 import com.pulumi.grafana.inputs.GetFolderPlainArgs;
 import com.pulumi.grafana.inputs.GetLibraryPanelArgs;
@@ -45,9 +49,11 @@ import com.pulumi.grafana.inputs.GetTeamPlainArgs;
 import com.pulumi.grafana.inputs.GetUserArgs;
 import com.pulumi.grafana.inputs.GetUserPlainArgs;
 import com.pulumi.grafana.outputs.GetCloudIpsResult;
+import com.pulumi.grafana.outputs.GetCloudOrganizationResult;
 import com.pulumi.grafana.outputs.GetCloudStackResult;
 import com.pulumi.grafana.outputs.GetDashboardResult;
 import com.pulumi.grafana.outputs.GetDashboardsResult;
+import com.pulumi.grafana.outputs.GetDataSourceResult;
 import com.pulumi.grafana.outputs.GetFolderResult;
 import com.pulumi.grafana.outputs.GetFoldersResult;
 import com.pulumi.grafana.outputs.GetLibraryPanelResult;
@@ -273,6 +279,240 @@ public final class GrafanaFunctions {
      */
     public static CompletableFuture<GetCloudIpsResult> getCloudIpsPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("grafana:index/getCloudIps:getCloudIps", TypeShape.of(GetCloudIpsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
+     * 
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import com.pulumi.grafana.inputs.GetCloudOrganizationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = GrafanaFunctions.getCloudOrganization(GetCloudOrganizationArgs.builder()
+     *             .name(&#34;my-org&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetCloudOrganizationResult> getCloudOrganization() {
+        return getCloudOrganization(GetCloudOrganizationArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
+     * 
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import com.pulumi.grafana.inputs.GetCloudOrganizationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = GrafanaFunctions.getCloudOrganization(GetCloudOrganizationArgs.builder()
+     *             .name(&#34;my-org&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetCloudOrganizationResult> getCloudOrganizationPlain() {
+        return getCloudOrganizationPlain(GetCloudOrganizationPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
+     * 
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import com.pulumi.grafana.inputs.GetCloudOrganizationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = GrafanaFunctions.getCloudOrganization(GetCloudOrganizationArgs.builder()
+     *             .name(&#34;my-org&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetCloudOrganizationResult> getCloudOrganization(GetCloudOrganizationArgs args) {
+        return getCloudOrganization(args, InvokeOptions.Empty);
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
+     * 
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import com.pulumi.grafana.inputs.GetCloudOrganizationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = GrafanaFunctions.getCloudOrganization(GetCloudOrganizationArgs.builder()
+     *             .name(&#34;my-org&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetCloudOrganizationResult> getCloudOrganizationPlain(GetCloudOrganizationPlainArgs args) {
+        return getCloudOrganizationPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
+     * 
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import com.pulumi.grafana.inputs.GetCloudOrganizationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = GrafanaFunctions.getCloudOrganization(GetCloudOrganizationArgs.builder()
+     *             .name(&#34;my-org&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetCloudOrganizationResult> getCloudOrganization(GetCloudOrganizationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("grafana:index/getCloudOrganization:getCloudOrganization", TypeShape.of(GetCloudOrganizationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
+     * 
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import com.pulumi.grafana.inputs.GetCloudOrganizationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = GrafanaFunctions.getCloudOrganization(GetCloudOrganizationArgs.builder()
+     *             .name(&#34;my-org&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetCloudOrganizationResult> getCloudOrganizationPlain(GetCloudOrganizationPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("grafana:index/getCloudOrganization:getCloudOrganization", TypeShape.of(GetCloudOrganizationResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Data source for Grafana Stack
@@ -727,6 +967,402 @@ public final class GrafanaFunctions {
      */
     public static CompletableFuture<GetDashboardsResult> getDashboardsPlain(GetDashboardsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("grafana:index/getDashboards:getDashboards", TypeShape.of(GetDashboardsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get details about a Grafana Datasource querying by either name, uid or ID
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.DataSource;
+     * import com.pulumi.grafana.DataSourceArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import com.pulumi.grafana.inputs.GetDataSourceArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var prometheus = new DataSource(&#34;prometheus&#34;, DataSourceArgs.builder()        
+     *             .type(&#34;prometheus&#34;)
+     *             .uid(&#34;prometheus-ds-test-uid&#34;)
+     *             .url(&#34;https://my-instance.com&#34;)
+     *             .basicAuthEnabled(true)
+     *             .basicAuthUsername(&#34;username&#34;)
+     *             .jsonDataEncoded(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty(&#34;httpMethod&#34;, &#34;POST&#34;),
+     *                     jsonProperty(&#34;prometheusType&#34;, &#34;Mimir&#34;),
+     *                     jsonProperty(&#34;prometheusVersion&#34;, &#34;2.4.0&#34;)
+     *                 )))
+     *             .secureJsonDataEncoded(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty(&#34;basicAuthPassword&#34;, &#34;password&#34;)
+     *                 )))
+     *             .build());
+     * 
+     *         final var fromName = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .name(prometheus.name())
+     *             .build());
+     * 
+     *         final var fromId = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .id(prometheus.id())
+     *             .build());
+     * 
+     *         final var fromUid = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .uid(prometheus.uid())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetDataSourceResult> getDataSource() {
+        return getDataSource(GetDataSourceArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Get details about a Grafana Datasource querying by either name, uid or ID
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.DataSource;
+     * import com.pulumi.grafana.DataSourceArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import com.pulumi.grafana.inputs.GetDataSourceArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var prometheus = new DataSource(&#34;prometheus&#34;, DataSourceArgs.builder()        
+     *             .type(&#34;prometheus&#34;)
+     *             .uid(&#34;prometheus-ds-test-uid&#34;)
+     *             .url(&#34;https://my-instance.com&#34;)
+     *             .basicAuthEnabled(true)
+     *             .basicAuthUsername(&#34;username&#34;)
+     *             .jsonDataEncoded(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty(&#34;httpMethod&#34;, &#34;POST&#34;),
+     *                     jsonProperty(&#34;prometheusType&#34;, &#34;Mimir&#34;),
+     *                     jsonProperty(&#34;prometheusVersion&#34;, &#34;2.4.0&#34;)
+     *                 )))
+     *             .secureJsonDataEncoded(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty(&#34;basicAuthPassword&#34;, &#34;password&#34;)
+     *                 )))
+     *             .build());
+     * 
+     *         final var fromName = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .name(prometheus.name())
+     *             .build());
+     * 
+     *         final var fromId = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .id(prometheus.id())
+     *             .build());
+     * 
+     *         final var fromUid = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .uid(prometheus.uid())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetDataSourceResult> getDataSourcePlain() {
+        return getDataSourcePlain(GetDataSourcePlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Get details about a Grafana Datasource querying by either name, uid or ID
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.DataSource;
+     * import com.pulumi.grafana.DataSourceArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import com.pulumi.grafana.inputs.GetDataSourceArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var prometheus = new DataSource(&#34;prometheus&#34;, DataSourceArgs.builder()        
+     *             .type(&#34;prometheus&#34;)
+     *             .uid(&#34;prometheus-ds-test-uid&#34;)
+     *             .url(&#34;https://my-instance.com&#34;)
+     *             .basicAuthEnabled(true)
+     *             .basicAuthUsername(&#34;username&#34;)
+     *             .jsonDataEncoded(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty(&#34;httpMethod&#34;, &#34;POST&#34;),
+     *                     jsonProperty(&#34;prometheusType&#34;, &#34;Mimir&#34;),
+     *                     jsonProperty(&#34;prometheusVersion&#34;, &#34;2.4.0&#34;)
+     *                 )))
+     *             .secureJsonDataEncoded(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty(&#34;basicAuthPassword&#34;, &#34;password&#34;)
+     *                 )))
+     *             .build());
+     * 
+     *         final var fromName = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .name(prometheus.name())
+     *             .build());
+     * 
+     *         final var fromId = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .id(prometheus.id())
+     *             .build());
+     * 
+     *         final var fromUid = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .uid(prometheus.uid())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetDataSourceResult> getDataSource(GetDataSourceArgs args) {
+        return getDataSource(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get details about a Grafana Datasource querying by either name, uid or ID
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.DataSource;
+     * import com.pulumi.grafana.DataSourceArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import com.pulumi.grafana.inputs.GetDataSourceArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var prometheus = new DataSource(&#34;prometheus&#34;, DataSourceArgs.builder()        
+     *             .type(&#34;prometheus&#34;)
+     *             .uid(&#34;prometheus-ds-test-uid&#34;)
+     *             .url(&#34;https://my-instance.com&#34;)
+     *             .basicAuthEnabled(true)
+     *             .basicAuthUsername(&#34;username&#34;)
+     *             .jsonDataEncoded(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty(&#34;httpMethod&#34;, &#34;POST&#34;),
+     *                     jsonProperty(&#34;prometheusType&#34;, &#34;Mimir&#34;),
+     *                     jsonProperty(&#34;prometheusVersion&#34;, &#34;2.4.0&#34;)
+     *                 )))
+     *             .secureJsonDataEncoded(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty(&#34;basicAuthPassword&#34;, &#34;password&#34;)
+     *                 )))
+     *             .build());
+     * 
+     *         final var fromName = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .name(prometheus.name())
+     *             .build());
+     * 
+     *         final var fromId = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .id(prometheus.id())
+     *             .build());
+     * 
+     *         final var fromUid = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .uid(prometheus.uid())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetDataSourceResult> getDataSourcePlain(GetDataSourcePlainArgs args) {
+        return getDataSourcePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get details about a Grafana Datasource querying by either name, uid or ID
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.DataSource;
+     * import com.pulumi.grafana.DataSourceArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import com.pulumi.grafana.inputs.GetDataSourceArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var prometheus = new DataSource(&#34;prometheus&#34;, DataSourceArgs.builder()        
+     *             .type(&#34;prometheus&#34;)
+     *             .uid(&#34;prometheus-ds-test-uid&#34;)
+     *             .url(&#34;https://my-instance.com&#34;)
+     *             .basicAuthEnabled(true)
+     *             .basicAuthUsername(&#34;username&#34;)
+     *             .jsonDataEncoded(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty(&#34;httpMethod&#34;, &#34;POST&#34;),
+     *                     jsonProperty(&#34;prometheusType&#34;, &#34;Mimir&#34;),
+     *                     jsonProperty(&#34;prometheusVersion&#34;, &#34;2.4.0&#34;)
+     *                 )))
+     *             .secureJsonDataEncoded(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty(&#34;basicAuthPassword&#34;, &#34;password&#34;)
+     *                 )))
+     *             .build());
+     * 
+     *         final var fromName = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .name(prometheus.name())
+     *             .build());
+     * 
+     *         final var fromId = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .id(prometheus.id())
+     *             .build());
+     * 
+     *         final var fromUid = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .uid(prometheus.uid())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetDataSourceResult> getDataSource(GetDataSourceArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("grafana:index/getDataSource:getDataSource", TypeShape.of(GetDataSourceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get details about a Grafana Datasource querying by either name, uid or ID
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.DataSource;
+     * import com.pulumi.grafana.DataSourceArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import com.pulumi.grafana.inputs.GetDataSourceArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var prometheus = new DataSource(&#34;prometheus&#34;, DataSourceArgs.builder()        
+     *             .type(&#34;prometheus&#34;)
+     *             .uid(&#34;prometheus-ds-test-uid&#34;)
+     *             .url(&#34;https://my-instance.com&#34;)
+     *             .basicAuthEnabled(true)
+     *             .basicAuthUsername(&#34;username&#34;)
+     *             .jsonDataEncoded(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty(&#34;httpMethod&#34;, &#34;POST&#34;),
+     *                     jsonProperty(&#34;prometheusType&#34;, &#34;Mimir&#34;),
+     *                     jsonProperty(&#34;prometheusVersion&#34;, &#34;2.4.0&#34;)
+     *                 )))
+     *             .secureJsonDataEncoded(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty(&#34;basicAuthPassword&#34;, &#34;password&#34;)
+     *                 )))
+     *             .build());
+     * 
+     *         final var fromName = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .name(prometheus.name())
+     *             .build());
+     * 
+     *         final var fromId = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .id(prometheus.id())
+     *             .build());
+     * 
+     *         final var fromUid = GrafanaFunctions.getDataSource(GetDataSourceArgs.builder()
+     *             .uid(prometheus.uid())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetDataSourceResult> getDataSourcePlain(GetDataSourcePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("grafana:index/getDataSource:getDataSource", TypeShape.of(GetDataSourceResult.class), args, Utilities.withVersion(options));
     }
     /**
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)

@@ -164,6 +164,8 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_api_key":                           {Tok: grafanaResource(grafanaMod, "ApiKey")},
 			"grafana_builtin_role_assignment":           {Tok: grafanaResource(grafanaMod, "BuiltinRoleAssignment")},
 			"grafana_cloud_api_key":                     {Tok: grafanaResource(grafanaMod, "CloudApiKey")},
+			"grafana_cloud_access_policy":               {Tok: grafanaResource(grafanaMod, "CloudAccessPolicy")},
+			"grafana_cloud_access_policy_token":         {Tok: grafanaResource(grafanaMod, "CloudAccessPolicyToken")},
 			"grafana_cloud_plugin_installation":         {Tok: grafanaResource(grafanaMod, "CloudPluginInstallation")},
 			"grafana_cloud_stack":                       {Tok: grafanaResource(grafanaMod, "CloudStack")},
 			"grafana_contact_point":                     {Tok: grafanaResource(grafanaMod, "ContactPoint")},
@@ -175,6 +177,7 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_folder_permission":                 {Tok: grafanaResource(grafanaMod, "FolderPermission")},
 			"grafana_library_panel":                     {Tok: grafanaResource(grafanaMod, "LibraryPanel")},
 			"grafana_machine_learning_job":              {Tok: grafanaResource(grafanaMod, "MachineLearningJob")},
+			"grafana_machine_learning_holiday":          {Tok: grafanaResource(grafanaMod, "MachineLearningHoliday")},
 			"grafana_message_template":                  {Tok: grafanaResource(grafanaMod, "MessageTemplate")},
 			"grafana_mute_timing":                       {Tok: grafanaResource(grafanaMod, "MuteTiming")},
 			"grafana_notification_policy":               {Tok: grafanaResource(grafanaMod, "NotificationPolicy")},
@@ -209,6 +212,12 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"grafana_cloud_stack": {
 				Tok: grafanaDataSource(grafanaMod, "getCloudStack"),
+			},
+			"grafana_cloud_organization": {
+				Tok: grafanaDataSource(grafanaMod, "getCloudOrganization"),
+			},
+			"grafana_data_source": {
+				Tok: grafanaDataSource(grafanaMod, "getDataSource"),
 			},
 			"grafana_dashboard": {
 				Tok: grafanaDataSource(grafanaMod, "getDashboard"),

@@ -16,6 +16,22 @@ export interface BuiltinRoleAssignmentRole {
     uid: pulumi.Input<string>;
 }
 
+export interface CloudAccessPolicyRealm {
+    /**
+     * The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
+     */
+    identifier: pulumi.Input<string>;
+    labelPolicies?: pulumi.Input<pulumi.Input<inputs.CloudAccessPolicyRealmLabelPolicy>[]>;
+    /**
+     * Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface CloudAccessPolicyRealmLabelPolicy {
+    selector: pulumi.Input<string>;
+}
+
 export interface ContactPointAlertmanager {
     /**
      * The password component of the basic auth credentials to use.
@@ -963,6 +979,15 @@ export interface FolderPermissionPermission {
     userId?: pulumi.Input<number>;
 }
 
+export interface MachineLearningHolidayCustomPeriod {
+    endTime: pulumi.Input<string>;
+    /**
+     * The name of the custom period.
+     */
+    name?: pulumi.Input<string>;
+    startTime: pulumi.Input<string>;
+}
+
 export interface MuteTimingInterval {
     /**
      * An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
@@ -1332,7 +1357,7 @@ export interface RolePermission {
      */
     action: pulumi.Input<string>;
     /**
-     * Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+     * Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
      */
     scope?: pulumi.Input<string>;
 }

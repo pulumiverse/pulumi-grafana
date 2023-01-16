@@ -51,24 +51,24 @@ public final class DataSourceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+     * Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
      * 
      * @deprecated
-     * Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+     * Use secure_json_data_encoded.basicAuthPassword instead.
      * 
      */
-    @Deprecated /* Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. */
+    @Deprecated /* Use secure_json_data_encoded.basicAuthPassword instead. */
     @Import(name="basicAuthPassword")
     private @Nullable Output<String> basicAuthPassword;
 
     /**
-     * @return Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+     * @return Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
      * 
      * @deprecated
-     * Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+     * Use secure_json_data_encoded.basicAuthPassword instead.
      * 
      */
-    @Deprecated /* Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. */
+    @Deprecated /* Use secure_json_data_encoded.basicAuthPassword instead. */
     public Optional<Output<String>> basicAuthPassword() {
         return Optional.ofNullable(this.basicAuthPassword);
     }
@@ -134,14 +134,14 @@ public final class DataSourceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Serialized JSON string containing the json data. Replaces the json_data attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+     * Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      * 
      */
     @Import(name="jsonDataEncoded")
     private @Nullable Output<String> jsonDataEncoded;
 
     /**
-     * @return Serialized JSON string containing the json data. Replaces the json_data attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+     * @return Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      * 
      */
     public Optional<Output<String>> jsonDataEncoded() {
@@ -149,24 +149,24 @@ public final class DataSourceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * Use json*data*encoded instead.
      * 
      * @deprecated
-     * Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * Use json_data_encoded instead.
      * 
      */
-    @Deprecated /* Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. */
+    @Deprecated /* Use json_data_encoded instead. */
     @Import(name="jsonDatas")
     private @Nullable Output<List<DataSourceJsonDataArgs>> jsonDatas;
 
     /**
-     * @return (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * @return Use json*data*encoded instead.
      * 
      * @deprecated
-     * Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * Use json_data_encoded instead.
      * 
      */
-    @Deprecated /* Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. */
+    @Deprecated /* Use json_data_encoded instead. */
     public Optional<Output<List<DataSourceJsonDataArgs>>> jsonDatas() {
         return Optional.ofNullable(this.jsonDatas);
     }
@@ -187,37 +187,37 @@ public final class DataSourceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * (Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+     * Use secure*json*data_encoded.password instead. Defaults to ``.
      * 
      * @deprecated
-     * Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+     * Use secure_json_data_encoded.password instead.
      * 
      */
-    @Deprecated /* Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. */
+    @Deprecated /* Use secure_json_data_encoded.password instead. */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return (Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+     * @return Use secure*json*data_encoded.password instead. Defaults to ``.
      * 
      * @deprecated
-     * Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+     * Use secure_json_data_encoded.password instead.
      * 
      */
-    @Deprecated /* Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. */
+    @Deprecated /* Use secure_json_data_encoded.password instead. */
     public Optional<Output<String>> password() {
         return Optional.ofNullable(this.password);
     }
 
     /**
-     * Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+     * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      * 
      */
     @Import(name="secureJsonDataEncoded")
     private @Nullable Output<String> secureJsonDataEncoded;
 
     /**
-     * @return Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+     * @return Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      * 
      */
     public Optional<Output<String>> secureJsonDataEncoded() {
@@ -225,24 +225,24 @@ public final class DataSourceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * Use secure*json*data*encoded instead.
      * 
      * @deprecated
-     * Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * Use secure_json_data_encoded instead.
      * 
      */
-    @Deprecated /* Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. */
+    @Deprecated /* Use secure_json_data_encoded instead. */
     @Import(name="secureJsonDatas")
     private @Nullable Output<List<DataSourceSecureJsonDataArgs>> secureJsonDatas;
 
     /**
-     * @return Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * @return Use secure*json*data*encoded instead.
      * 
      * @deprecated
-     * Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * Use secure_json_data_encoded instead.
      * 
      */
-    @Deprecated /* Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. */
+    @Deprecated /* Use secure_json_data_encoded instead. */
     public Optional<Output<List<DataSourceSecureJsonDataArgs>>> secureJsonDatas() {
         return Optional.ofNullable(this.secureJsonDatas);
     }
@@ -390,30 +390,30 @@ public final class DataSourceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param basicAuthPassword Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+         * @param basicAuthPassword Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
          * 
          * @return builder
          * 
          * @deprecated
-         * Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+         * Use secure_json_data_encoded.basicAuthPassword instead.
          * 
          */
-        @Deprecated /* Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. */
+        @Deprecated /* Use secure_json_data_encoded.basicAuthPassword instead. */
         public Builder basicAuthPassword(@Nullable Output<String> basicAuthPassword) {
             $.basicAuthPassword = basicAuthPassword;
             return this;
         }
 
         /**
-         * @param basicAuthPassword Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+         * @param basicAuthPassword Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
          * 
          * @return builder
          * 
          * @deprecated
-         * Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+         * Use secure_json_data_encoded.basicAuthPassword instead.
          * 
          */
-        @Deprecated /* Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. */
+        @Deprecated /* Use secure_json_data_encoded.basicAuthPassword instead. */
         public Builder basicAuthPassword(String basicAuthPassword) {
             return basicAuthPassword(Output.of(basicAuthPassword));
         }
@@ -503,7 +503,7 @@ public final class DataSourceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jsonDataEncoded Serialized JSON string containing the json data. Replaces the json_data attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+         * @param jsonDataEncoded Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
          * 
          * @return builder
          * 
@@ -514,7 +514,7 @@ public final class DataSourceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jsonDataEncoded Serialized JSON string containing the json data. Replaces the json_data attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+         * @param jsonDataEncoded Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
          * 
          * @return builder
          * 
@@ -524,44 +524,44 @@ public final class DataSourceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jsonDatas (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+         * @param jsonDatas Use json*data*encoded instead.
          * 
          * @return builder
          * 
          * @deprecated
-         * Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+         * Use json_data_encoded instead.
          * 
          */
-        @Deprecated /* Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. */
+        @Deprecated /* Use json_data_encoded instead. */
         public Builder jsonDatas(@Nullable Output<List<DataSourceJsonDataArgs>> jsonDatas) {
             $.jsonDatas = jsonDatas;
             return this;
         }
 
         /**
-         * @param jsonDatas (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+         * @param jsonDatas Use json*data*encoded instead.
          * 
          * @return builder
          * 
          * @deprecated
-         * Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+         * Use json_data_encoded instead.
          * 
          */
-        @Deprecated /* Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. */
+        @Deprecated /* Use json_data_encoded instead. */
         public Builder jsonDatas(List<DataSourceJsonDataArgs> jsonDatas) {
             return jsonDatas(Output.of(jsonDatas));
         }
 
         /**
-         * @param jsonDatas (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+         * @param jsonDatas Use json*data*encoded instead.
          * 
          * @return builder
          * 
          * @deprecated
-         * Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+         * Use json_data_encoded instead.
          * 
          */
-        @Deprecated /* Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. */
+        @Deprecated /* Use json_data_encoded instead. */
         public Builder jsonDatas(DataSourceJsonDataArgs... jsonDatas) {
             return jsonDatas(List.of(jsonDatas));
         }
@@ -588,36 +588,36 @@ public final class DataSourceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param password (Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+         * @param password Use secure*json*data_encoded.password instead. Defaults to ``.
          * 
          * @return builder
          * 
          * @deprecated
-         * Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+         * Use secure_json_data_encoded.password instead.
          * 
          */
-        @Deprecated /* Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. */
+        @Deprecated /* Use secure_json_data_encoded.password instead. */
         public Builder password(@Nullable Output<String> password) {
             $.password = password;
             return this;
         }
 
         /**
-         * @param password (Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+         * @param password Use secure*json*data_encoded.password instead. Defaults to ``.
          * 
          * @return builder
          * 
          * @deprecated
-         * Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+         * Use secure_json_data_encoded.password instead.
          * 
          */
-        @Deprecated /* Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. */
+        @Deprecated /* Use secure_json_data_encoded.password instead. */
         public Builder password(String password) {
             return password(Output.of(password));
         }
 
         /**
-         * @param secureJsonDataEncoded Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+         * @param secureJsonDataEncoded Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
          * 
          * @return builder
          * 
@@ -628,7 +628,7 @@ public final class DataSourceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param secureJsonDataEncoded Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+         * @param secureJsonDataEncoded Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
          * 
          * @return builder
          * 
@@ -638,44 +638,44 @@ public final class DataSourceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param secureJsonDatas Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+         * @param secureJsonDatas Use secure*json*data*encoded instead.
          * 
          * @return builder
          * 
          * @deprecated
-         * Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+         * Use secure_json_data_encoded instead.
          * 
          */
-        @Deprecated /* Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. */
+        @Deprecated /* Use secure_json_data_encoded instead. */
         public Builder secureJsonDatas(@Nullable Output<List<DataSourceSecureJsonDataArgs>> secureJsonDatas) {
             $.secureJsonDatas = secureJsonDatas;
             return this;
         }
 
         /**
-         * @param secureJsonDatas Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+         * @param secureJsonDatas Use secure*json*data*encoded instead.
          * 
          * @return builder
          * 
          * @deprecated
-         * Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+         * Use secure_json_data_encoded instead.
          * 
          */
-        @Deprecated /* Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. */
+        @Deprecated /* Use secure_json_data_encoded instead. */
         public Builder secureJsonDatas(List<DataSourceSecureJsonDataArgs> secureJsonDatas) {
             return secureJsonDatas(Output.of(secureJsonDatas));
         }
 
         /**
-         * @param secureJsonDatas Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+         * @param secureJsonDatas Use secure*json*data*encoded instead.
          * 
          * @return builder
          * 
          * @deprecated
-         * Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+         * Use secure_json_data_encoded instead.
          * 
          */
-        @Deprecated /* Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. */
+        @Deprecated /* Use secure_json_data_encoded instead. */
         public Builder secureJsonDatas(DataSourceSecureJsonDataArgs... secureJsonDatas) {
             return secureJsonDatas(List.of(secureJsonDatas));
         }

@@ -25,6 +25,16 @@ export type BuiltinRoleAssignment = import("./builtinRoleAssignment").BuiltinRol
 export const BuiltinRoleAssignment: typeof import("./builtinRoleAssignment").BuiltinRoleAssignment = null as any;
 utilities.lazyLoad(exports, ["BuiltinRoleAssignment"], () => require("./builtinRoleAssignment"));
 
+export { CloudAccessPolicyArgs, CloudAccessPolicyState } from "./cloudAccessPolicy";
+export type CloudAccessPolicy = import("./cloudAccessPolicy").CloudAccessPolicy;
+export const CloudAccessPolicy: typeof import("./cloudAccessPolicy").CloudAccessPolicy = null as any;
+utilities.lazyLoad(exports, ["CloudAccessPolicy"], () => require("./cloudAccessPolicy"));
+
+export { CloudAccessPolicyTokenArgs, CloudAccessPolicyTokenState } from "./cloudAccessPolicyToken";
+export type CloudAccessPolicyToken = import("./cloudAccessPolicyToken").CloudAccessPolicyToken;
+export const CloudAccessPolicyToken: typeof import("./cloudAccessPolicyToken").CloudAccessPolicyToken = null as any;
+utilities.lazyLoad(exports, ["CloudAccessPolicyToken"], () => require("./cloudAccessPolicyToken"));
+
 export { CloudApiKeyArgs, CloudApiKeyState } from "./cloudApiKey";
 export type CloudApiKey = import("./cloudApiKey").CloudApiKey;
 export const CloudApiKey: typeof import("./cloudApiKey").CloudApiKey = null as any;
@@ -79,6 +89,11 @@ export { GetCloudIpsResult } from "./getCloudIps";
 export const getCloudIps: typeof import("./getCloudIps").getCloudIps = null as any;
 utilities.lazyLoad(exports, ["getCloudIps"], () => require("./getCloudIps"));
 
+export { GetCloudOrganizationArgs, GetCloudOrganizationResult, GetCloudOrganizationOutputArgs } from "./getCloudOrganization";
+export const getCloudOrganization: typeof import("./getCloudOrganization").getCloudOrganization = null as any;
+export const getCloudOrganizationOutput: typeof import("./getCloudOrganization").getCloudOrganizationOutput = null as any;
+utilities.lazyLoad(exports, ["getCloudOrganization","getCloudOrganizationOutput"], () => require("./getCloudOrganization"));
+
 export { GetCloudStackArgs, GetCloudStackResult, GetCloudStackOutputArgs } from "./getCloudStack";
 export const getCloudStack: typeof import("./getCloudStack").getCloudStack = null as any;
 export const getCloudStackOutput: typeof import("./getCloudStack").getCloudStackOutput = null as any;
@@ -93,6 +108,11 @@ export { GetDashboardsArgs, GetDashboardsResult, GetDashboardsOutputArgs } from 
 export const getDashboards: typeof import("./getDashboards").getDashboards = null as any;
 export const getDashboardsOutput: typeof import("./getDashboards").getDashboardsOutput = null as any;
 utilities.lazyLoad(exports, ["getDashboards","getDashboardsOutput"], () => require("./getDashboards"));
+
+export { GetDataSourceArgs, GetDataSourceResult, GetDataSourceOutputArgs } from "./getDataSource";
+export const getDataSource: typeof import("./getDataSource").getDataSource = null as any;
+export const getDataSourceOutput: typeof import("./getDataSource").getDataSourceOutput = null as any;
+utilities.lazyLoad(exports, ["getDataSource","getDataSourceOutput"], () => require("./getDataSource"));
 
 export { GetFolderArgs, GetFolderResult, GetFolderOutputArgs } from "./getFolder";
 export const getFolder: typeof import("./getFolder").getFolder = null as any;
@@ -185,6 +205,11 @@ export { LibraryPanelArgs, LibraryPanelState } from "./libraryPanel";
 export type LibraryPanel = import("./libraryPanel").LibraryPanel;
 export const LibraryPanel: typeof import("./libraryPanel").LibraryPanel = null as any;
 utilities.lazyLoad(exports, ["LibraryPanel"], () => require("./libraryPanel"));
+
+export { MachineLearningHolidayArgs, MachineLearningHolidayState } from "./machineLearningHoliday";
+export type MachineLearningHoliday = import("./machineLearningHoliday").MachineLearningHoliday;
+export const MachineLearningHoliday: typeof import("./machineLearningHoliday").MachineLearningHoliday = null as any;
+utilities.lazyLoad(exports, ["MachineLearningHoliday"], () => require("./machineLearningHoliday"));
 
 export { MachineLearningJobArgs, MachineLearningJobState } from "./machineLearningJob";
 export type MachineLearningJob = import("./machineLearningJob").MachineLearningJob;
@@ -353,6 +378,10 @@ const _module = {
                 return new ApiKey(name, <any>undefined, { urn })
             case "grafana:index/builtinRoleAssignment:BuiltinRoleAssignment":
                 return new BuiltinRoleAssignment(name, <any>undefined, { urn })
+            case "grafana:index/cloudAccessPolicy:CloudAccessPolicy":
+                return new CloudAccessPolicy(name, <any>undefined, { urn })
+            case "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken":
+                return new CloudAccessPolicyToken(name, <any>undefined, { urn })
             case "grafana:index/cloudApiKey:CloudApiKey":
                 return new CloudApiKey(name, <any>undefined, { urn })
             case "grafana:index/cloudPluginInstallation:CloudPluginInstallation":
@@ -375,6 +404,8 @@ const _module = {
                 return new FolderPermission(name, <any>undefined, { urn })
             case "grafana:index/libraryPanel:LibraryPanel":
                 return new LibraryPanel(name, <any>undefined, { urn })
+            case "grafana:index/machineLearningHoliday:MachineLearningHoliday":
+                return new MachineLearningHoliday(name, <any>undefined, { urn })
             case "grafana:index/machineLearningJob:MachineLearningJob":
                 return new MachineLearningJob(name, <any>undefined, { urn })
             case "grafana:index/messageTemplate:MessageTemplate":
@@ -440,6 +471,8 @@ pulumi.runtime.registerResourceModule("grafana", "index/alertNotification", _mod
 pulumi.runtime.registerResourceModule("grafana", "index/annotation", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/apiKey", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/builtinRoleAssignment", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/cloudAccessPolicy", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/cloudAccessPolicyToken", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/cloudApiKey", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/cloudPluginInstallation", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/cloudStack", _module)
@@ -451,6 +484,7 @@ pulumi.runtime.registerResourceModule("grafana", "index/dataSourcePermission", _
 pulumi.runtime.registerResourceModule("grafana", "index/folder", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/folderPermission", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/libraryPanel", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/machineLearningHoliday", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/machineLearningJob", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/messageTemplate", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/muteTiming", _module)

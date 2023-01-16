@@ -11,6 +11,8 @@ from . import _utilities
 
 __all__ = [
     'BuiltinRoleAssignmentRoleArgs',
+    'CloudAccessPolicyRealmArgs',
+    'CloudAccessPolicyRealmLabelPolicyArgs',
     'ContactPointAlertmanagerArgs',
     'ContactPointDingdingArgs',
     'ContactPointDiscordArgs',
@@ -34,6 +36,7 @@ __all__ = [
     'DataSourcePermissionPermissionArgs',
     'DataSourceSecureJsonDataArgs',
     'FolderPermissionPermissionArgs',
+    'MachineLearningHolidayCustomPeriodArgs',
     'MuteTimingIntervalArgs',
     'MuteTimingIntervalTimeArgs',
     'NotificationPolicyPolicyArgs',
@@ -115,6 +118,71 @@ class BuiltinRoleAssignmentRoleArgs:
     @global_.setter
     def global_(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "global_", value)
+
+
+@pulumi.input_type
+class CloudAccessPolicyRealmArgs:
+    def __init__(__self__, *,
+                 identifier: pulumi.Input[str],
+                 type: pulumi.Input[str],
+                 label_policies: Optional[pulumi.Input[Sequence[pulumi.Input['CloudAccessPolicyRealmLabelPolicyArgs']]]] = None):
+        """
+        :param pulumi.Input[str] identifier: The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
+        :param pulumi.Input[str] type: Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.
+        """
+        pulumi.set(__self__, "identifier", identifier)
+        pulumi.set(__self__, "type", type)
+        if label_policies is not None:
+            pulumi.set(__self__, "label_policies", label_policies)
+
+    @property
+    @pulumi.getter
+    def identifier(self) -> pulumi.Input[str]:
+        """
+        The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
+        """
+        return pulumi.get(self, "identifier")
+
+    @identifier.setter
+    def identifier(self, value: pulumi.Input[str]):
+        pulumi.set(self, "identifier", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="labelPolicies")
+    def label_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudAccessPolicyRealmLabelPolicyArgs']]]]:
+        return pulumi.get(self, "label_policies")
+
+    @label_policies.setter
+    def label_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudAccessPolicyRealmLabelPolicyArgs']]]]):
+        pulumi.set(self, "label_policies", value)
+
+
+@pulumi.input_type
+class CloudAccessPolicyRealmLabelPolicyArgs:
+    def __init__(__self__, *,
+                 selector: pulumi.Input[str]):
+        pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "selector")
+
+    @selector.setter
+    def selector(self, value: pulumi.Input[str]):
+        pulumi.set(self, "selector", value)
 
 
 @pulumi.input_type
@@ -3782,6 +3850,51 @@ class FolderPermissionPermissionArgs:
 
 
 @pulumi.input_type
+class MachineLearningHolidayCustomPeriodArgs:
+    def __init__(__self__, *,
+                 end_time: pulumi.Input[str],
+                 start_time: pulumi.Input[str],
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: The name of the custom period.
+        """
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "start_time", start_time)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "end_time")
+
+    @end_time.setter
+    def end_time(self, value: pulumi.Input[str]):
+        pulumi.set(self, "end_time", value)
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "start_time")
+
+    @start_time.setter
+    def start_time(self, value: pulumi.Input[str]):
+        pulumi.set(self, "start_time", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the custom period.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
 class MuteTimingIntervalArgs:
     def __init__(__self__, *,
                  days_of_months: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -5284,7 +5397,7 @@ class RolePermissionArgs:
                  scope: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] action: Specific action users granted with the role will be allowed to perform (for example: `users:read`)
-        :param pulumi.Input[str] scope: Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+        :param pulumi.Input[str] scope: Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
         """
         pulumi.set(__self__, "action", action)
         if scope is not None:
@@ -5306,7 +5419,7 @@ class RolePermissionArgs:
     @pulumi.getter
     def scope(self) -> Optional[pulumi.Input[str]]:
         """
-        Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+        Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
         """
         return pulumi.get(self, "scope")
 
