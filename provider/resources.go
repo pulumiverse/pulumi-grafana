@@ -68,7 +68,7 @@ func Provider() tfbridge.ProviderInfo {
 		Name:              "grafana",
 		DisplayName:       "Grafana",
 		Publisher:         "lbrlabs",
-		LogoURL:           "https://raw.githubusercontent.com/lbrlabs/pulumi-grafana/master/assets/121px-Grafana_logo.svg.png", // nolint[:lll]
+		LogoURL:           "https://raw.githubusercontent.com/lbrlabs/pulumi-grafana/main/assets/grafana.png", // nolint[:lll]
 		PluginDownloadURL: "github://api.github.com/lbrlabs",
 		Description:       "A Pulumi package for creating and managing grafana.",
 		Keywords:          []string{"pulumi", "grafana", "lbrlabs"},
