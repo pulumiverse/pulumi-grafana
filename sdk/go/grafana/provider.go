@@ -103,16 +103,16 @@ func NewProvider(ctx *pulumi.Context,
 		args.Url = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_URL").(string))
 	}
 	if args.Auth != nil {
-		args.Auth = pulumi.ToSecret(args.Auth).(pulumi.StringPtrOutput)
+		args.Auth = pulumi.ToSecret(args.Auth).(pulumi.StringPtrInput)
 	}
 	if args.CloudApiKey != nil {
-		args.CloudApiKey = pulumi.ToSecret(args.CloudApiKey).(pulumi.StringPtrOutput)
+		args.CloudApiKey = pulumi.ToSecret(args.CloudApiKey).(pulumi.StringPtrInput)
 	}
 	if args.OncallAccessToken != nil {
-		args.OncallAccessToken = pulumi.ToSecret(args.OncallAccessToken).(pulumi.StringPtrOutput)
+		args.OncallAccessToken = pulumi.ToSecret(args.OncallAccessToken).(pulumi.StringPtrInput)
 	}
 	if args.SmAccessToken != nil {
-		args.SmAccessToken = pulumi.ToSecret(args.SmAccessToken).(pulumi.StringPtrOutput)
+		args.SmAccessToken = pulumi.ToSecret(args.SmAccessToken).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"auth",

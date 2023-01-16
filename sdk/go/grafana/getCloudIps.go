@@ -23,7 +23,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = grafana.GetCloudIps(ctx, nil, nil)
+//			_, err := grafana.GetCloudIps(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}

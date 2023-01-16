@@ -24,7 +24,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = grafana.GetOncallTeam(ctx, &grafana.GetOncallTeamArgs{
+//			_, err := grafana.GetOncallTeam(ctx, &grafana.GetOncallTeamArgs{
 //				Name: "example_team",
 //			}, nil)
 //			if err != nil {

@@ -85,7 +85,7 @@ func NewAlertNotification(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
 	if args.SecureSettings != nil {
-		args.SecureSettings = pulumi.ToSecret(args.SecureSettings).(pulumi.MapOutput)
+		args.SecureSettings = pulumi.ToSecret(args.SecureSettings).(pulumi.MapInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"secureSettings",
