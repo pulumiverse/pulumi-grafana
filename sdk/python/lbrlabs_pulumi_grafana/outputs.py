@@ -12,6 +12,8 @@ from . import outputs
 
 __all__ = [
     'BuiltinRoleAssignmentRole',
+    'CloudAccessPolicyRealm',
+    'CloudAccessPolicyRealmLabelPolicy',
     'ContactPointAlertmanager',
     'ContactPointDingding',
     'ContactPointDiscord',
@@ -35,6 +37,7 @@ __all__ = [
     'DataSourcePermissionPermission',
     'DataSourceSecureJsonData',
     'FolderPermissionPermission',
+    'MachineLearningHolidayCustomPeriod',
     'MuteTimingInterval',
     'MuteTimingIntervalTime',
     'NotificationPolicyPolicy',
@@ -128,6 +131,72 @@ class BuiltinRoleAssignmentRole(dict):
         States whether the assignment is available across all organizations or not. Defaults to `false`.
         """
         return pulumi.get(self, "global_")
+
+
+@pulumi.output_type
+class CloudAccessPolicyRealm(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "labelPolicies":
+            suggest = "label_policies"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudAccessPolicyRealm. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudAccessPolicyRealm.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudAccessPolicyRealm.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 identifier: str,
+                 type: str,
+                 label_policies: Optional[Sequence['outputs.CloudAccessPolicyRealmLabelPolicy']] = None):
+        """
+        :param str identifier: The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
+        :param str type: Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.
+        """
+        pulumi.set(__self__, "identifier", identifier)
+        pulumi.set(__self__, "type", type)
+        if label_policies is not None:
+            pulumi.set(__self__, "label_policies", label_policies)
+
+    @property
+    @pulumi.getter
+    def identifier(self) -> str:
+        """
+        The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
+        """
+        return pulumi.get(self, "identifier")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="labelPolicies")
+    def label_policies(self) -> Optional[Sequence['outputs.CloudAccessPolicyRealmLabelPolicy']]:
+        return pulumi.get(self, "label_policies")
+
+
+@pulumi.output_type
+class CloudAccessPolicyRealmLabelPolicy(dict):
+    def __init__(__self__, *,
+                 selector: str):
+        pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> str:
+        return pulumi.get(self, "selector")
 
 
 @pulumi.output_type
@@ -3502,6 +3571,58 @@ class FolderPermissionPermission(dict):
 
 
 @pulumi.output_type
+class MachineLearningHolidayCustomPeriod(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "endTime":
+            suggest = "end_time"
+        elif key == "startTime":
+            suggest = "start_time"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MachineLearningHolidayCustomPeriod. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MachineLearningHolidayCustomPeriod.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MachineLearningHolidayCustomPeriod.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 end_time: str,
+                 start_time: str,
+                 name: Optional[str] = None):
+        """
+        :param str name: The name of the custom period.
+        """
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "start_time", start_time)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> str:
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the custom period.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class MuteTimingInterval(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -4917,7 +5038,7 @@ class RolePermission(dict):
                  scope: Optional[str] = None):
         """
         :param str action: Specific action users granted with the role will be allowed to perform (for example: `users:read`)
-        :param str scope: Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+        :param str scope: Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
         """
         pulumi.set(__self__, "action", action)
         if scope is not None:
@@ -4935,7 +5056,7 @@ class RolePermission(dict):
     @pulumi.getter
     def scope(self) -> Optional[str]:
         """
-        Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+        Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
         """
         return pulumi.get(self, "scope")
 

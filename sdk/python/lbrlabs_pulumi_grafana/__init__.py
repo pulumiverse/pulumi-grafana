@@ -9,6 +9,8 @@ from .alert_notification import *
 from .annotation import *
 from .api_key import *
 from .builtin_role_assignment import *
+from .cloud_access_policy import *
+from .cloud_access_policy_token import *
 from .cloud_api_key import *
 from .cloud_plugin_installation import *
 from .cloud_stack import *
@@ -20,9 +22,11 @@ from .data_source_permission import *
 from .folder import *
 from .folder_permission import *
 from .get_cloud_ips import *
+from .get_cloud_organization import *
 from .get_cloud_stack import *
 from .get_dashboard import *
 from .get_dashboards import *
+from .get_data_source import *
 from .get_folder import *
 from .get_folders import *
 from .get_library_panel import *
@@ -42,6 +46,7 @@ from .get_team import *
 from .get_user import *
 from .get_users import *
 from .library_panel import *
+from .machine_learning_holiday import *
 from .machine_learning_job import *
 from .message_template import *
 from .mute_timing import *
@@ -114,6 +119,22 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_grafana",
   "classes": {
    "grafana:index/builtinRoleAssignment:BuiltinRoleAssignment": "BuiltinRoleAssignment"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/cloudAccessPolicy",
+  "fqn": "lbrlabs_pulumi_grafana",
+  "classes": {
+   "grafana:index/cloudAccessPolicy:CloudAccessPolicy": "CloudAccessPolicy"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/cloudAccessPolicyToken",
+  "fqn": "lbrlabs_pulumi_grafana",
+  "classes": {
+   "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken": "CloudAccessPolicyToken"
   }
  },
  {
@@ -202,6 +223,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_grafana",
   "classes": {
    "grafana:index/libraryPanel:LibraryPanel": "LibraryPanel"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/machineLearningHoliday",
+  "fqn": "lbrlabs_pulumi_grafana",
+  "classes": {
+   "grafana:index/machineLearningHoliday:MachineLearningHoliday": "MachineLearningHoliday"
   }
  },
  {

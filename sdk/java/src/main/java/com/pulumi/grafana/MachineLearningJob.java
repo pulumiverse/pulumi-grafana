@@ -13,6 +13,7 @@ import com.pulumi.grafana.inputs.MachineLearningJobState;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -78,6 +79,20 @@ public class MachineLearningJob extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
+    }
+    /**
+     * A list of holiday IDs or names to take into account when training the model.
+     * 
+     */
+    @Export(name="holidays", type=List.class, parameters={String.class})
+    private Output</* @Nullable */ List<String>> holidays;
+
+    /**
+     * @return A list of holiday IDs or names to take into account when training the model.
+     * 
+     */
+    public Output<Optional<List<String>>> holidays() {
+        return Codegen.optional(this.holidays);
     }
     /**
      * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.

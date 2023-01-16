@@ -28,6 +28,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ApiKey{}
 	case "grafana:index/builtinRoleAssignment:BuiltinRoleAssignment":
 		r = &BuiltinRoleAssignment{}
+	case "grafana:index/cloudAccessPolicy:CloudAccessPolicy":
+		r = &CloudAccessPolicy{}
+	case "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken":
+		r = &CloudAccessPolicyToken{}
 	case "grafana:index/cloudApiKey:CloudApiKey":
 		r = &CloudApiKey{}
 	case "grafana:index/cloudPluginInstallation:CloudPluginInstallation":
@@ -50,6 +54,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FolderPermission{}
 	case "grafana:index/libraryPanel:LibraryPanel":
 		r = &LibraryPanel{}
+	case "grafana:index/machineLearningHoliday:MachineLearningHoliday":
+		r = &MachineLearningHoliday{}
 	case "grafana:index/machineLearningJob:MachineLearningJob":
 		r = &MachineLearningJob{}
 	case "grafana:index/messageTemplate:MessageTemplate":
@@ -156,6 +162,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"grafana",
+		"index/cloudAccessPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/cloudAccessPolicyToken",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
 		"index/cloudApiKey",
 		&module{version},
 	)
@@ -207,6 +223,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"index/libraryPanel",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/machineLearningHoliday",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

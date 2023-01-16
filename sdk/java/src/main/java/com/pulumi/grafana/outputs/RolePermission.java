@@ -17,7 +17,7 @@ public final class RolePermission {
      */
     private String action;
     /**
-     * @return Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+     * @return Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
      * 
      */
     private @Nullable String scope;
@@ -31,7 +31,7 @@ public final class RolePermission {
         return this.action;
     }
     /**
-     * @return Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+     * @return Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
      * 
      */
     public Optional<String> scope() {

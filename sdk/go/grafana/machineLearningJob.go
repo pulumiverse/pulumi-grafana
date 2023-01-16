@@ -23,6 +23,8 @@ type MachineLearningJob struct {
 	DatasourceUid pulumi.StringPtrOutput `pulumi:"datasourceUid"`
 	// A description of the job.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// A list of holiday IDs or names to take into account when training the model.
+	Holidays pulumi.StringArrayOutput `pulumi:"holidays"`
 	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
 	HyperParams pulumi.MapOutput `pulumi:"hyperParams"`
 	// The data interval in seconds to train the data on. Defaults to `300`.
@@ -84,6 +86,8 @@ type machineLearningJobState struct {
 	DatasourceUid *string `pulumi:"datasourceUid"`
 	// A description of the job.
 	Description *string `pulumi:"description"`
+	// A list of holiday IDs or names to take into account when training the model.
+	Holidays []string `pulumi:"holidays"`
 	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
 	HyperParams map[string]interface{} `pulumi:"hyperParams"`
 	// The data interval in seconds to train the data on. Defaults to `300`.
@@ -107,6 +111,8 @@ type MachineLearningJobState struct {
 	DatasourceUid pulumi.StringPtrInput
 	// A description of the job.
 	Description pulumi.StringPtrInput
+	// A list of holiday IDs or names to take into account when training the model.
+	Holidays pulumi.StringArrayInput
 	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
 	HyperParams pulumi.MapInput
 	// The data interval in seconds to train the data on. Defaults to `300`.
@@ -134,6 +140,8 @@ type machineLearningJobArgs struct {
 	DatasourceUid *string `pulumi:"datasourceUid"`
 	// A description of the job.
 	Description *string `pulumi:"description"`
+	// A list of holiday IDs or names to take into account when training the model.
+	Holidays []string `pulumi:"holidays"`
 	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
 	HyperParams map[string]interface{} `pulumi:"hyperParams"`
 	// The data interval in seconds to train the data on. Defaults to `300`.
@@ -158,6 +166,8 @@ type MachineLearningJobArgs struct {
 	DatasourceUid pulumi.StringPtrInput
 	// A description of the job.
 	Description pulumi.StringPtrInput
+	// A list of holiday IDs or names to take into account when training the model.
+	Holidays pulumi.StringArrayInput
 	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
 	HyperParams pulumi.MapInput
 	// The data interval in seconds to train the data on. Defaults to `300`.
@@ -277,6 +287,11 @@ func (o MachineLearningJobOutput) DatasourceUid() pulumi.StringPtrOutput {
 // A description of the job.
 func (o MachineLearningJobOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MachineLearningJob) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// A list of holiday IDs or names to take into account when training the model.
+func (o MachineLearningJobOutput) Holidays() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *MachineLearningJob) pulumi.StringArrayOutput { return v.Holidays }).(pulumi.StringArrayOutput)
 }
 
 // The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.

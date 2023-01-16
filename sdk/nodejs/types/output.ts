@@ -16,6 +16,22 @@ export interface BuiltinRoleAssignmentRole {
     uid: string;
 }
 
+export interface CloudAccessPolicyRealm {
+    /**
+     * The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
+     */
+    identifier: string;
+    labelPolicies?: outputs.CloudAccessPolicyRealmLabelPolicy[];
+    /**
+     * Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.
+     */
+    type: string;
+}
+
+export interface CloudAccessPolicyRealmLabelPolicy {
+    selector: string;
+}
+
 export interface ContactPointAlertmanager {
     /**
      * The password component of the basic auth credentials to use.
@@ -990,6 +1006,15 @@ export interface GetUsersUser {
     name: string;
 }
 
+export interface MachineLearningHolidayCustomPeriod {
+    endTime: string;
+    /**
+     * The name of the custom period.
+     */
+    name?: string;
+    startTime: string;
+}
+
 export interface MuteTimingInterval {
     /**
      * An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
@@ -1359,7 +1384,7 @@ export interface RolePermission {
      */
     action: string;
     /**
-     * Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+     * Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
      */
     scope?: string;
 }

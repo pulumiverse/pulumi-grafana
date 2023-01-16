@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -76,6 +77,21 @@ public final class MachineLearningJobArgs extends com.pulumi.resources.ResourceA
      */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
+    }
+
+    /**
+     * A list of holiday IDs or names to take into account when training the model.
+     * 
+     */
+    @Import(name="holidays")
+    private @Nullable Output<List<String>> holidays;
+
+    /**
+     * @return A list of holiday IDs or names to take into account when training the model.
+     * 
+     */
+    public Optional<Output<List<String>>> holidays() {
+        return Optional.ofNullable(this.holidays);
     }
 
     /**
@@ -175,6 +191,7 @@ public final class MachineLearningJobArgs extends com.pulumi.resources.ResourceA
         this.datasourceType = $.datasourceType;
         this.datasourceUid = $.datasourceUid;
         this.description = $.description;
+        this.holidays = $.holidays;
         this.hyperParams = $.hyperParams;
         this.interval = $.interval;
         this.metric = $.metric;
@@ -283,6 +300,37 @@ public final class MachineLearningJobArgs extends com.pulumi.resources.ResourceA
          */
         public Builder description(String description) {
             return description(Output.of(description));
+        }
+
+        /**
+         * @param holidays A list of holiday IDs or names to take into account when training the model.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder holidays(@Nullable Output<List<String>> holidays) {
+            $.holidays = holidays;
+            return this;
+        }
+
+        /**
+         * @param holidays A list of holiday IDs or names to take into account when training the model.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder holidays(List<String> holidays) {
+            return holidays(Output.of(holidays));
+        }
+
+        /**
+         * @param holidays A list of holiday IDs or names to take into account when training the model.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder holidays(String... holidays) {
+            return holidays(List.of(holidays));
         }
 
         /**

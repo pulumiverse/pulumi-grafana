@@ -52,6 +52,10 @@ export class MachineLearningJob extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * A list of holiday IDs or names to take into account when training the model.
+     */
+    public readonly holidays!: pulumi.Output<string[] | undefined>;
+    /**
      * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
      */
     public readonly hyperParams!: pulumi.Output<{[key: string]: any} | undefined>;
@@ -93,6 +97,7 @@ export class MachineLearningJob extends pulumi.CustomResource {
             resourceInputs["datasourceType"] = state ? state.datasourceType : undefined;
             resourceInputs["datasourceUid"] = state ? state.datasourceUid : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["holidays"] = state ? state.holidays : undefined;
             resourceInputs["hyperParams"] = state ? state.hyperParams : undefined;
             resourceInputs["interval"] = state ? state.interval : undefined;
             resourceInputs["metric"] = state ? state.metric : undefined;
@@ -114,6 +119,7 @@ export class MachineLearningJob extends pulumi.CustomResource {
             resourceInputs["datasourceType"] = args ? args.datasourceType : undefined;
             resourceInputs["datasourceUid"] = args ? args.datasourceUid : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["holidays"] = args ? args.holidays : undefined;
             resourceInputs["hyperParams"] = args ? args.hyperParams : undefined;
             resourceInputs["interval"] = args ? args.interval : undefined;
             resourceInputs["metric"] = args ? args.metric : undefined;
@@ -146,6 +152,10 @@ export interface MachineLearningJobState {
      * A description of the job.
      */
     description?: pulumi.Input<string>;
+    /**
+     * A list of holiday IDs or names to take into account when training the model.
+     */
+    holidays?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
      */
@@ -192,6 +202,10 @@ export interface MachineLearningJobArgs {
      * A description of the job.
      */
     description?: pulumi.Input<string>;
+    /**
+     * A list of holiday IDs or names to take into account when training the model.
+     */
+    holidays?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
      */

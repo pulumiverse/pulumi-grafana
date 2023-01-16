@@ -116,6 +116,212 @@ func (o BuiltinRoleAssignmentRoleArrayOutput) Index(i pulumi.IntInput) BuiltinRo
 	}).(BuiltinRoleAssignmentRoleOutput)
 }
 
+type CloudAccessPolicyRealm struct {
+	// The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
+	Identifier    string                              `pulumi:"identifier"`
+	LabelPolicies []CloudAccessPolicyRealmLabelPolicy `pulumi:"labelPolicies"`
+	// Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.
+	Type string `pulumi:"type"`
+}
+
+// CloudAccessPolicyRealmInput is an input type that accepts CloudAccessPolicyRealmArgs and CloudAccessPolicyRealmOutput values.
+// You can construct a concrete instance of `CloudAccessPolicyRealmInput` via:
+//
+//	CloudAccessPolicyRealmArgs{...}
+type CloudAccessPolicyRealmInput interface {
+	pulumi.Input
+
+	ToCloudAccessPolicyRealmOutput() CloudAccessPolicyRealmOutput
+	ToCloudAccessPolicyRealmOutputWithContext(context.Context) CloudAccessPolicyRealmOutput
+}
+
+type CloudAccessPolicyRealmArgs struct {
+	// The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
+	Identifier    pulumi.StringInput                          `pulumi:"identifier"`
+	LabelPolicies CloudAccessPolicyRealmLabelPolicyArrayInput `pulumi:"labelPolicies"`
+	// Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (CloudAccessPolicyRealmArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudAccessPolicyRealm)(nil)).Elem()
+}
+
+func (i CloudAccessPolicyRealmArgs) ToCloudAccessPolicyRealmOutput() CloudAccessPolicyRealmOutput {
+	return i.ToCloudAccessPolicyRealmOutputWithContext(context.Background())
+}
+
+func (i CloudAccessPolicyRealmArgs) ToCloudAccessPolicyRealmOutputWithContext(ctx context.Context) CloudAccessPolicyRealmOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudAccessPolicyRealmOutput)
+}
+
+// CloudAccessPolicyRealmArrayInput is an input type that accepts CloudAccessPolicyRealmArray and CloudAccessPolicyRealmArrayOutput values.
+// You can construct a concrete instance of `CloudAccessPolicyRealmArrayInput` via:
+//
+//	CloudAccessPolicyRealmArray{ CloudAccessPolicyRealmArgs{...} }
+type CloudAccessPolicyRealmArrayInput interface {
+	pulumi.Input
+
+	ToCloudAccessPolicyRealmArrayOutput() CloudAccessPolicyRealmArrayOutput
+	ToCloudAccessPolicyRealmArrayOutputWithContext(context.Context) CloudAccessPolicyRealmArrayOutput
+}
+
+type CloudAccessPolicyRealmArray []CloudAccessPolicyRealmInput
+
+func (CloudAccessPolicyRealmArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudAccessPolicyRealm)(nil)).Elem()
+}
+
+func (i CloudAccessPolicyRealmArray) ToCloudAccessPolicyRealmArrayOutput() CloudAccessPolicyRealmArrayOutput {
+	return i.ToCloudAccessPolicyRealmArrayOutputWithContext(context.Background())
+}
+
+func (i CloudAccessPolicyRealmArray) ToCloudAccessPolicyRealmArrayOutputWithContext(ctx context.Context) CloudAccessPolicyRealmArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudAccessPolicyRealmArrayOutput)
+}
+
+type CloudAccessPolicyRealmOutput struct{ *pulumi.OutputState }
+
+func (CloudAccessPolicyRealmOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudAccessPolicyRealm)(nil)).Elem()
+}
+
+func (o CloudAccessPolicyRealmOutput) ToCloudAccessPolicyRealmOutput() CloudAccessPolicyRealmOutput {
+	return o
+}
+
+func (o CloudAccessPolicyRealmOutput) ToCloudAccessPolicyRealmOutputWithContext(ctx context.Context) CloudAccessPolicyRealmOutput {
+	return o
+}
+
+// The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
+func (o CloudAccessPolicyRealmOutput) Identifier() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudAccessPolicyRealm) string { return v.Identifier }).(pulumi.StringOutput)
+}
+
+func (o CloudAccessPolicyRealmOutput) LabelPolicies() CloudAccessPolicyRealmLabelPolicyArrayOutput {
+	return o.ApplyT(func(v CloudAccessPolicyRealm) []CloudAccessPolicyRealmLabelPolicy { return v.LabelPolicies }).(CloudAccessPolicyRealmLabelPolicyArrayOutput)
+}
+
+// Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.
+func (o CloudAccessPolicyRealmOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudAccessPolicyRealm) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type CloudAccessPolicyRealmArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudAccessPolicyRealmArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudAccessPolicyRealm)(nil)).Elem()
+}
+
+func (o CloudAccessPolicyRealmArrayOutput) ToCloudAccessPolicyRealmArrayOutput() CloudAccessPolicyRealmArrayOutput {
+	return o
+}
+
+func (o CloudAccessPolicyRealmArrayOutput) ToCloudAccessPolicyRealmArrayOutputWithContext(ctx context.Context) CloudAccessPolicyRealmArrayOutput {
+	return o
+}
+
+func (o CloudAccessPolicyRealmArrayOutput) Index(i pulumi.IntInput) CloudAccessPolicyRealmOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudAccessPolicyRealm {
+		return vs[0].([]CloudAccessPolicyRealm)[vs[1].(int)]
+	}).(CloudAccessPolicyRealmOutput)
+}
+
+type CloudAccessPolicyRealmLabelPolicy struct {
+	Selector string `pulumi:"selector"`
+}
+
+// CloudAccessPolicyRealmLabelPolicyInput is an input type that accepts CloudAccessPolicyRealmLabelPolicyArgs and CloudAccessPolicyRealmLabelPolicyOutput values.
+// You can construct a concrete instance of `CloudAccessPolicyRealmLabelPolicyInput` via:
+//
+//	CloudAccessPolicyRealmLabelPolicyArgs{...}
+type CloudAccessPolicyRealmLabelPolicyInput interface {
+	pulumi.Input
+
+	ToCloudAccessPolicyRealmLabelPolicyOutput() CloudAccessPolicyRealmLabelPolicyOutput
+	ToCloudAccessPolicyRealmLabelPolicyOutputWithContext(context.Context) CloudAccessPolicyRealmLabelPolicyOutput
+}
+
+type CloudAccessPolicyRealmLabelPolicyArgs struct {
+	Selector pulumi.StringInput `pulumi:"selector"`
+}
+
+func (CloudAccessPolicyRealmLabelPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudAccessPolicyRealmLabelPolicy)(nil)).Elem()
+}
+
+func (i CloudAccessPolicyRealmLabelPolicyArgs) ToCloudAccessPolicyRealmLabelPolicyOutput() CloudAccessPolicyRealmLabelPolicyOutput {
+	return i.ToCloudAccessPolicyRealmLabelPolicyOutputWithContext(context.Background())
+}
+
+func (i CloudAccessPolicyRealmLabelPolicyArgs) ToCloudAccessPolicyRealmLabelPolicyOutputWithContext(ctx context.Context) CloudAccessPolicyRealmLabelPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudAccessPolicyRealmLabelPolicyOutput)
+}
+
+// CloudAccessPolicyRealmLabelPolicyArrayInput is an input type that accepts CloudAccessPolicyRealmLabelPolicyArray and CloudAccessPolicyRealmLabelPolicyArrayOutput values.
+// You can construct a concrete instance of `CloudAccessPolicyRealmLabelPolicyArrayInput` via:
+//
+//	CloudAccessPolicyRealmLabelPolicyArray{ CloudAccessPolicyRealmLabelPolicyArgs{...} }
+type CloudAccessPolicyRealmLabelPolicyArrayInput interface {
+	pulumi.Input
+
+	ToCloudAccessPolicyRealmLabelPolicyArrayOutput() CloudAccessPolicyRealmLabelPolicyArrayOutput
+	ToCloudAccessPolicyRealmLabelPolicyArrayOutputWithContext(context.Context) CloudAccessPolicyRealmLabelPolicyArrayOutput
+}
+
+type CloudAccessPolicyRealmLabelPolicyArray []CloudAccessPolicyRealmLabelPolicyInput
+
+func (CloudAccessPolicyRealmLabelPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudAccessPolicyRealmLabelPolicy)(nil)).Elem()
+}
+
+func (i CloudAccessPolicyRealmLabelPolicyArray) ToCloudAccessPolicyRealmLabelPolicyArrayOutput() CloudAccessPolicyRealmLabelPolicyArrayOutput {
+	return i.ToCloudAccessPolicyRealmLabelPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i CloudAccessPolicyRealmLabelPolicyArray) ToCloudAccessPolicyRealmLabelPolicyArrayOutputWithContext(ctx context.Context) CloudAccessPolicyRealmLabelPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudAccessPolicyRealmLabelPolicyArrayOutput)
+}
+
+type CloudAccessPolicyRealmLabelPolicyOutput struct{ *pulumi.OutputState }
+
+func (CloudAccessPolicyRealmLabelPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudAccessPolicyRealmLabelPolicy)(nil)).Elem()
+}
+
+func (o CloudAccessPolicyRealmLabelPolicyOutput) ToCloudAccessPolicyRealmLabelPolicyOutput() CloudAccessPolicyRealmLabelPolicyOutput {
+	return o
+}
+
+func (o CloudAccessPolicyRealmLabelPolicyOutput) ToCloudAccessPolicyRealmLabelPolicyOutputWithContext(ctx context.Context) CloudAccessPolicyRealmLabelPolicyOutput {
+	return o
+}
+
+func (o CloudAccessPolicyRealmLabelPolicyOutput) Selector() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudAccessPolicyRealmLabelPolicy) string { return v.Selector }).(pulumi.StringOutput)
+}
+
+type CloudAccessPolicyRealmLabelPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudAccessPolicyRealmLabelPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudAccessPolicyRealmLabelPolicy)(nil)).Elem()
+}
+
+func (o CloudAccessPolicyRealmLabelPolicyArrayOutput) ToCloudAccessPolicyRealmLabelPolicyArrayOutput() CloudAccessPolicyRealmLabelPolicyArrayOutput {
+	return o
+}
+
+func (o CloudAccessPolicyRealmLabelPolicyArrayOutput) ToCloudAccessPolicyRealmLabelPolicyArrayOutputWithContext(ctx context.Context) CloudAccessPolicyRealmLabelPolicyArrayOutput {
+	return o
+}
+
+func (o CloudAccessPolicyRealmLabelPolicyArrayOutput) Index(i pulumi.IntInput) CloudAccessPolicyRealmLabelPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudAccessPolicyRealmLabelPolicy {
+		return vs[0].([]CloudAccessPolicyRealmLabelPolicy)[vs[1].(int)]
+	}).(CloudAccessPolicyRealmLabelPolicyOutput)
+}
+
 type ContactPointAlertmanager struct {
 	// The password component of the basic auth credentials to use.
 	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
@@ -4123,6 +4329,115 @@ func (o FolderPermissionPermissionArrayOutput) Index(i pulumi.IntInput) FolderPe
 	}).(FolderPermissionPermissionOutput)
 }
 
+type MachineLearningHolidayCustomPeriod struct {
+	EndTime string `pulumi:"endTime"`
+	// The name of the custom period.
+	Name      *string `pulumi:"name"`
+	StartTime string  `pulumi:"startTime"`
+}
+
+// MachineLearningHolidayCustomPeriodInput is an input type that accepts MachineLearningHolidayCustomPeriodArgs and MachineLearningHolidayCustomPeriodOutput values.
+// You can construct a concrete instance of `MachineLearningHolidayCustomPeriodInput` via:
+//
+//	MachineLearningHolidayCustomPeriodArgs{...}
+type MachineLearningHolidayCustomPeriodInput interface {
+	pulumi.Input
+
+	ToMachineLearningHolidayCustomPeriodOutput() MachineLearningHolidayCustomPeriodOutput
+	ToMachineLearningHolidayCustomPeriodOutputWithContext(context.Context) MachineLearningHolidayCustomPeriodOutput
+}
+
+type MachineLearningHolidayCustomPeriodArgs struct {
+	EndTime pulumi.StringInput `pulumi:"endTime"`
+	// The name of the custom period.
+	Name      pulumi.StringPtrInput `pulumi:"name"`
+	StartTime pulumi.StringInput    `pulumi:"startTime"`
+}
+
+func (MachineLearningHolidayCustomPeriodArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineLearningHolidayCustomPeriod)(nil)).Elem()
+}
+
+func (i MachineLearningHolidayCustomPeriodArgs) ToMachineLearningHolidayCustomPeriodOutput() MachineLearningHolidayCustomPeriodOutput {
+	return i.ToMachineLearningHolidayCustomPeriodOutputWithContext(context.Background())
+}
+
+func (i MachineLearningHolidayCustomPeriodArgs) ToMachineLearningHolidayCustomPeriodOutputWithContext(ctx context.Context) MachineLearningHolidayCustomPeriodOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningHolidayCustomPeriodOutput)
+}
+
+// MachineLearningHolidayCustomPeriodArrayInput is an input type that accepts MachineLearningHolidayCustomPeriodArray and MachineLearningHolidayCustomPeriodArrayOutput values.
+// You can construct a concrete instance of `MachineLearningHolidayCustomPeriodArrayInput` via:
+//
+//	MachineLearningHolidayCustomPeriodArray{ MachineLearningHolidayCustomPeriodArgs{...} }
+type MachineLearningHolidayCustomPeriodArrayInput interface {
+	pulumi.Input
+
+	ToMachineLearningHolidayCustomPeriodArrayOutput() MachineLearningHolidayCustomPeriodArrayOutput
+	ToMachineLearningHolidayCustomPeriodArrayOutputWithContext(context.Context) MachineLearningHolidayCustomPeriodArrayOutput
+}
+
+type MachineLearningHolidayCustomPeriodArray []MachineLearningHolidayCustomPeriodInput
+
+func (MachineLearningHolidayCustomPeriodArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MachineLearningHolidayCustomPeriod)(nil)).Elem()
+}
+
+func (i MachineLearningHolidayCustomPeriodArray) ToMachineLearningHolidayCustomPeriodArrayOutput() MachineLearningHolidayCustomPeriodArrayOutput {
+	return i.ToMachineLearningHolidayCustomPeriodArrayOutputWithContext(context.Background())
+}
+
+func (i MachineLearningHolidayCustomPeriodArray) ToMachineLearningHolidayCustomPeriodArrayOutputWithContext(ctx context.Context) MachineLearningHolidayCustomPeriodArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningHolidayCustomPeriodArrayOutput)
+}
+
+type MachineLearningHolidayCustomPeriodOutput struct{ *pulumi.OutputState }
+
+func (MachineLearningHolidayCustomPeriodOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineLearningHolidayCustomPeriod)(nil)).Elem()
+}
+
+func (o MachineLearningHolidayCustomPeriodOutput) ToMachineLearningHolidayCustomPeriodOutput() MachineLearningHolidayCustomPeriodOutput {
+	return o
+}
+
+func (o MachineLearningHolidayCustomPeriodOutput) ToMachineLearningHolidayCustomPeriodOutputWithContext(ctx context.Context) MachineLearningHolidayCustomPeriodOutput {
+	return o
+}
+
+func (o MachineLearningHolidayCustomPeriodOutput) EndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v MachineLearningHolidayCustomPeriod) string { return v.EndTime }).(pulumi.StringOutput)
+}
+
+// The name of the custom period.
+func (o MachineLearningHolidayCustomPeriodOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MachineLearningHolidayCustomPeriod) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o MachineLearningHolidayCustomPeriodOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v MachineLearningHolidayCustomPeriod) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+type MachineLearningHolidayCustomPeriodArrayOutput struct{ *pulumi.OutputState }
+
+func (MachineLearningHolidayCustomPeriodArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MachineLearningHolidayCustomPeriod)(nil)).Elem()
+}
+
+func (o MachineLearningHolidayCustomPeriodArrayOutput) ToMachineLearningHolidayCustomPeriodArrayOutput() MachineLearningHolidayCustomPeriodArrayOutput {
+	return o
+}
+
+func (o MachineLearningHolidayCustomPeriodArrayOutput) ToMachineLearningHolidayCustomPeriodArrayOutputWithContext(ctx context.Context) MachineLearningHolidayCustomPeriodArrayOutput {
+	return o
+}
+
+func (o MachineLearningHolidayCustomPeriodArrayOutput) Index(i pulumi.IntInput) MachineLearningHolidayCustomPeriodOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MachineLearningHolidayCustomPeriod {
+		return vs[0].([]MachineLearningHolidayCustomPeriod)[vs[1].(int)]
+	}).(MachineLearningHolidayCustomPeriodOutput)
+}
+
 type MuteTimingInterval struct {
 	// An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
 	DaysOfMonths []string `pulumi:"daysOfMonths"`
@@ -7596,7 +7911,7 @@ func (o ReportTimeRangePtrOutput) To() pulumi.StringPtrOutput {
 type RolePermission struct {
 	// Specific action users granted with the role will be allowed to perform (for example: `users:read`)
 	Action string `pulumi:"action"`
-	// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+	// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
 	Scope *string `pulumi:"scope"`
 }
 
@@ -7614,7 +7929,7 @@ type RolePermissionInput interface {
 type RolePermissionArgs struct {
 	// Specific action users granted with the role will be allowed to perform (for example: `users:read`)
 	Action pulumi.StringInput `pulumi:"action"`
-	// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+	// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
 	Scope pulumi.StringPtrInput `pulumi:"scope"`
 }
 
@@ -7674,7 +7989,7 @@ func (o RolePermissionOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v RolePermission) string { return v.Action }).(pulumi.StringOutput)
 }
 
-// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to “.
 func (o RolePermissionOutput) Scope() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RolePermission) *string { return v.Scope }).(pulumi.StringPtrOutput)
 }
@@ -11182,6 +11497,10 @@ func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BuiltinRoleAssignmentRoleInput)(nil)).Elem(), BuiltinRoleAssignmentRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BuiltinRoleAssignmentRoleArrayInput)(nil)).Elem(), BuiltinRoleAssignmentRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudAccessPolicyRealmInput)(nil)).Elem(), CloudAccessPolicyRealmArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudAccessPolicyRealmArrayInput)(nil)).Elem(), CloudAccessPolicyRealmArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudAccessPolicyRealmLabelPolicyInput)(nil)).Elem(), CloudAccessPolicyRealmLabelPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudAccessPolicyRealmLabelPolicyArrayInput)(nil)).Elem(), CloudAccessPolicyRealmLabelPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointAlertmanagerInput)(nil)).Elem(), ContactPointAlertmanagerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointAlertmanagerArrayInput)(nil)).Elem(), ContactPointAlertmanagerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointDingdingInput)(nil)).Elem(), ContactPointDingdingArgs{})
@@ -11228,6 +11547,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DataSourceSecureJsonDataArrayInput)(nil)).Elem(), DataSourceSecureJsonDataArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FolderPermissionPermissionInput)(nil)).Elem(), FolderPermissionPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FolderPermissionPermissionArrayInput)(nil)).Elem(), FolderPermissionPermissionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MachineLearningHolidayCustomPeriodInput)(nil)).Elem(), MachineLearningHolidayCustomPeriodArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MachineLearningHolidayCustomPeriodArrayInput)(nil)).Elem(), MachineLearningHolidayCustomPeriodArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MuteTimingIntervalInput)(nil)).Elem(), MuteTimingIntervalArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MuteTimingIntervalArrayInput)(nil)).Elem(), MuteTimingIntervalArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MuteTimingIntervalTimeInput)(nil)).Elem(), MuteTimingIntervalTimeArgs{})
@@ -11321,6 +11642,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
 	pulumi.RegisterOutputType(BuiltinRoleAssignmentRoleOutput{})
 	pulumi.RegisterOutputType(BuiltinRoleAssignmentRoleArrayOutput{})
+	pulumi.RegisterOutputType(CloudAccessPolicyRealmOutput{})
+	pulumi.RegisterOutputType(CloudAccessPolicyRealmArrayOutput{})
+	pulumi.RegisterOutputType(CloudAccessPolicyRealmLabelPolicyOutput{})
+	pulumi.RegisterOutputType(CloudAccessPolicyRealmLabelPolicyArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointAlertmanagerOutput{})
 	pulumi.RegisterOutputType(ContactPointAlertmanagerArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointDingdingOutput{})
@@ -11367,6 +11692,8 @@ func init() {
 	pulumi.RegisterOutputType(DataSourceSecureJsonDataArrayOutput{})
 	pulumi.RegisterOutputType(FolderPermissionPermissionOutput{})
 	pulumi.RegisterOutputType(FolderPermissionPermissionArrayOutput{})
+	pulumi.RegisterOutputType(MachineLearningHolidayCustomPeriodOutput{})
+	pulumi.RegisterOutputType(MachineLearningHolidayCustomPeriodArrayOutput{})
 	pulumi.RegisterOutputType(MuteTimingIntervalOutput{})
 	pulumi.RegisterOutputType(MuteTimingIntervalArrayOutput{})
 	pulumi.RegisterOutputType(MuteTimingIntervalTimeOutput{})

@@ -154,9 +154,9 @@ type DataSource struct {
 	AccessMode pulumi.StringPtrOutput `pulumi:"accessMode"`
 	// Whether to enable basic auth for the data source. Defaults to `false`.
 	BasicAuthEnabled pulumi.BoolPtrOutput `pulumi:"basicAuthEnabled"`
-	// Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+	// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
 	//
-	// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+	// Deprecated: Use secure_json_data_encoded.basicAuthPassword instead.
 	BasicAuthPassword pulumi.StringPtrOutput `pulumi:"basicAuthPassword"`
 	// Basic auth username. Defaults to ``.
 	BasicAuthUsername pulumi.StringPtrOutput `pulumi:"basicAuthUsername"`
@@ -166,23 +166,23 @@ type DataSource struct {
 	HttpHeaders pulumi.StringMapOutput `pulumi:"httpHeaders"`
 	// Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
 	IsDefault pulumi.BoolPtrOutput `pulumi:"isDefault"`
-	// Serialized JSON string containing the json data. Replaces the jsonData attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	JsonDataEncoded pulumi.StringPtrOutput `pulumi:"jsonDataEncoded"`
-	// (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Use json*data*encoded instead.
 	//
-	// Deprecated: Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Deprecated: Use json_data_encoded instead.
 	JsonDatas DataSourceJsonDataArrayOutput `pulumi:"jsonDatas"`
 	// A unique name for the data source.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// (Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+	// Use secure*json*data_encoded.password instead. Defaults to ``.
 	//
-	// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+	// Deprecated: Use secure_json_data_encoded.password instead.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded pulumi.StringPtrOutput `pulumi:"secureJsonDataEncoded"`
-	// Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Use secure*json*data*encoded instead.
 	//
-	// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Deprecated: Use secure_json_data_encoded instead.
 	SecureJsonDatas DataSourceSecureJsonDataArrayOutput `pulumi:"secureJsonDatas"`
 	// The data source type. Must be one of the supported data source keywords.
 	Type pulumi.StringOutput `pulumi:"type"`
@@ -254,9 +254,9 @@ type dataSourceState struct {
 	AccessMode *string `pulumi:"accessMode"`
 	// Whether to enable basic auth for the data source. Defaults to `false`.
 	BasicAuthEnabled *bool `pulumi:"basicAuthEnabled"`
-	// Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+	// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
 	//
-	// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+	// Deprecated: Use secure_json_data_encoded.basicAuthPassword instead.
 	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
 	// Basic auth username. Defaults to ``.
 	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
@@ -266,23 +266,23 @@ type dataSourceState struct {
 	HttpHeaders map[string]string `pulumi:"httpHeaders"`
 	// Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
 	IsDefault *bool `pulumi:"isDefault"`
-	// Serialized JSON string containing the json data. Replaces the jsonData attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	JsonDataEncoded *string `pulumi:"jsonDataEncoded"`
-	// (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Use json*data*encoded instead.
 	//
-	// Deprecated: Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Deprecated: Use json_data_encoded instead.
 	JsonDatas []DataSourceJsonData `pulumi:"jsonDatas"`
 	// A unique name for the data source.
 	Name *string `pulumi:"name"`
-	// (Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+	// Use secure*json*data_encoded.password instead. Defaults to ``.
 	//
-	// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+	// Deprecated: Use secure_json_data_encoded.password instead.
 	Password *string `pulumi:"password"`
-	// Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded *string `pulumi:"secureJsonDataEncoded"`
-	// Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Use secure*json*data*encoded instead.
 	//
-	// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Deprecated: Use secure_json_data_encoded instead.
 	SecureJsonDatas []DataSourceSecureJsonData `pulumi:"secureJsonDatas"`
 	// The data source type. Must be one of the supported data source keywords.
 	Type *string `pulumi:"type"`
@@ -299,9 +299,9 @@ type DataSourceState struct {
 	AccessMode pulumi.StringPtrInput
 	// Whether to enable basic auth for the data source. Defaults to `false`.
 	BasicAuthEnabled pulumi.BoolPtrInput
-	// Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+	// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
 	//
-	// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+	// Deprecated: Use secure_json_data_encoded.basicAuthPassword instead.
 	BasicAuthPassword pulumi.StringPtrInput
 	// Basic auth username. Defaults to ``.
 	BasicAuthUsername pulumi.StringPtrInput
@@ -311,23 +311,23 @@ type DataSourceState struct {
 	HttpHeaders pulumi.StringMapInput
 	// Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
 	IsDefault pulumi.BoolPtrInput
-	// Serialized JSON string containing the json data. Replaces the jsonData attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	JsonDataEncoded pulumi.StringPtrInput
-	// (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Use json*data*encoded instead.
 	//
-	// Deprecated: Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Deprecated: Use json_data_encoded instead.
 	JsonDatas DataSourceJsonDataArrayInput
 	// A unique name for the data source.
 	Name pulumi.StringPtrInput
-	// (Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+	// Use secure*json*data_encoded.password instead. Defaults to ``.
 	//
-	// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+	// Deprecated: Use secure_json_data_encoded.password instead.
 	Password pulumi.StringPtrInput
-	// Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded pulumi.StringPtrInput
-	// Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Use secure*json*data*encoded instead.
 	//
-	// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Deprecated: Use secure_json_data_encoded instead.
 	SecureJsonDatas DataSourceSecureJsonDataArrayInput
 	// The data source type. Must be one of the supported data source keywords.
 	Type pulumi.StringPtrInput
@@ -348,9 +348,9 @@ type dataSourceArgs struct {
 	AccessMode *string `pulumi:"accessMode"`
 	// Whether to enable basic auth for the data source. Defaults to `false`.
 	BasicAuthEnabled *bool `pulumi:"basicAuthEnabled"`
-	// Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+	// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
 	//
-	// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+	// Deprecated: Use secure_json_data_encoded.basicAuthPassword instead.
 	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
 	// Basic auth username. Defaults to ``.
 	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
@@ -360,23 +360,23 @@ type dataSourceArgs struct {
 	HttpHeaders map[string]string `pulumi:"httpHeaders"`
 	// Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
 	IsDefault *bool `pulumi:"isDefault"`
-	// Serialized JSON string containing the json data. Replaces the jsonData attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	JsonDataEncoded *string `pulumi:"jsonDataEncoded"`
-	// (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Use json*data*encoded instead.
 	//
-	// Deprecated: Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Deprecated: Use json_data_encoded instead.
 	JsonDatas []DataSourceJsonData `pulumi:"jsonDatas"`
 	// A unique name for the data source.
 	Name *string `pulumi:"name"`
-	// (Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+	// Use secure*json*data_encoded.password instead. Defaults to ``.
 	//
-	// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+	// Deprecated: Use secure_json_data_encoded.password instead.
 	Password *string `pulumi:"password"`
-	// Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded *string `pulumi:"secureJsonDataEncoded"`
-	// Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Use secure*json*data*encoded instead.
 	//
-	// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Deprecated: Use secure_json_data_encoded instead.
 	SecureJsonDatas []DataSourceSecureJsonData `pulumi:"secureJsonDatas"`
 	// The data source type. Must be one of the supported data source keywords.
 	Type string `pulumi:"type"`
@@ -394,9 +394,9 @@ type DataSourceArgs struct {
 	AccessMode pulumi.StringPtrInput
 	// Whether to enable basic auth for the data source. Defaults to `false`.
 	BasicAuthEnabled pulumi.BoolPtrInput
-	// Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+	// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
 	//
-	// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+	// Deprecated: Use secure_json_data_encoded.basicAuthPassword instead.
 	BasicAuthPassword pulumi.StringPtrInput
 	// Basic auth username. Defaults to ``.
 	BasicAuthUsername pulumi.StringPtrInput
@@ -406,23 +406,23 @@ type DataSourceArgs struct {
 	HttpHeaders pulumi.StringMapInput
 	// Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
 	IsDefault pulumi.BoolPtrInput
-	// Serialized JSON string containing the json data. Replaces the jsonData attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	JsonDataEncoded pulumi.StringPtrInput
-	// (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Use json*data*encoded instead.
 	//
-	// Deprecated: Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Deprecated: Use json_data_encoded instead.
 	JsonDatas DataSourceJsonDataArrayInput
 	// A unique name for the data source.
 	Name pulumi.StringPtrInput
-	// (Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+	// Use secure*json*data_encoded.password instead. Defaults to ``.
 	//
-	// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+	// Deprecated: Use secure_json_data_encoded.password instead.
 	Password pulumi.StringPtrInput
-	// Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded pulumi.StringPtrInput
-	// Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Use secure*json*data*encoded instead.
 	//
-	// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+	// Deprecated: Use secure_json_data_encoded instead.
 	SecureJsonDatas DataSourceSecureJsonDataArrayInput
 	// The data source type. Must be one of the supported data source keywords.
 	Type pulumi.StringInput
@@ -531,9 +531,9 @@ func (o DataSourceOutput) BasicAuthEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DataSource) pulumi.BoolPtrOutput { return v.BasicAuthEnabled }).(pulumi.BoolPtrOutput)
 }
 
-// Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to “.
+// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to “.
 //
-// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+// Deprecated: Use secure_json_data_encoded.basicAuthPassword instead.
 func (o DataSourceOutput) BasicAuthPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DataSource) pulumi.StringPtrOutput { return v.BasicAuthPassword }).(pulumi.StringPtrOutput)
 }
@@ -558,14 +558,14 @@ func (o DataSourceOutput) IsDefault() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DataSource) pulumi.BoolPtrOutput { return v.IsDefault }).(pulumi.BoolPtrOutput)
 }
 
-// Serialized JSON string containing the json data. Replaces the jsonData attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 func (o DataSourceOutput) JsonDataEncoded() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DataSource) pulumi.StringPtrOutput { return v.JsonDataEncoded }).(pulumi.StringPtrOutput)
 }
 
-// (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+// Use json*data*encoded instead.
 //
-// Deprecated: Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+// Deprecated: Use json_data_encoded instead.
 func (o DataSourceOutput) JsonDatas() DataSourceJsonDataArrayOutput {
 	return o.ApplyT(func(v *DataSource) DataSourceJsonDataArrayOutput { return v.JsonDatas }).(DataSourceJsonDataArrayOutput)
 }
@@ -575,21 +575,21 @@ func (o DataSourceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DataSource) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// (Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to “.
+// Use secure*json*data_encoded.password instead. Defaults to “.
 //
-// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+// Deprecated: Use secure_json_data_encoded.password instead.
 func (o DataSourceOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DataSource) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 func (o DataSourceOutput) SecureJsonDataEncoded() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DataSource) pulumi.StringPtrOutput { return v.SecureJsonDataEncoded }).(pulumi.StringPtrOutput)
 }
 
-// Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+// Use secure*json*data*encoded instead.
 //
-// Deprecated: Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+// Deprecated: Use secure_json_data_encoded instead.
 func (o DataSourceOutput) SecureJsonDatas() DataSourceSecureJsonDataArrayOutput {
 	return o.ApplyT(func(v *DataSource) DataSourceSecureJsonDataArrayOutput { return v.SecureJsonDatas }).(DataSourceSecureJsonDataArrayOutput)
 }

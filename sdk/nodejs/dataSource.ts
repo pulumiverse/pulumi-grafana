@@ -119,9 +119,9 @@ export class DataSource extends pulumi.CustomResource {
      */
     public readonly basicAuthEnabled!: pulumi.Output<boolean | undefined>;
     /**
-     * Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+     * Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
      *
-     * @deprecated Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+     * @deprecated Use secure_json_data_encoded.basicAuthPassword instead.
      */
     public readonly basicAuthPassword!: pulumi.Output<string | undefined>;
     /**
@@ -141,13 +141,13 @@ export class DataSource extends pulumi.CustomResource {
      */
     public readonly isDefault!: pulumi.Output<boolean | undefined>;
     /**
-     * Serialized JSON string containing the json data. Replaces the jsonData attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+     * Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
     public readonly jsonDataEncoded!: pulumi.Output<string | undefined>;
     /**
-     * (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * Use json*data*encoded instead.
      *
-     * @deprecated Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * @deprecated Use json_data_encoded instead.
      */
     public readonly jsonDatas!: pulumi.Output<outputs.DataSourceJsonData[] | undefined>;
     /**
@@ -155,19 +155,19 @@ export class DataSource extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * (Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+     * Use secure*json*data_encoded.password instead. Defaults to ``.
      *
-     * @deprecated Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+     * @deprecated Use secure_json_data_encoded.password instead.
      */
     public readonly password!: pulumi.Output<string | undefined>;
     /**
-     * Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+     * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
     public readonly secureJsonDataEncoded!: pulumi.Output<string | undefined>;
     /**
-     * Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * Use secure*json*data*encoded instead.
      *
-     * @deprecated Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * @deprecated Use secure_json_data_encoded instead.
      */
     public readonly secureJsonDatas!: pulumi.Output<outputs.DataSourceSecureJsonData[] | undefined>;
     /**
@@ -260,9 +260,9 @@ export interface DataSourceState {
      */
     basicAuthEnabled?: pulumi.Input<boolean>;
     /**
-     * Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+     * Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
      *
-     * @deprecated Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+     * @deprecated Use secure_json_data_encoded.basicAuthPassword instead.
      */
     basicAuthPassword?: pulumi.Input<string>;
     /**
@@ -282,13 +282,13 @@ export interface DataSourceState {
      */
     isDefault?: pulumi.Input<boolean>;
     /**
-     * Serialized JSON string containing the json data. Replaces the jsonData attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+     * Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
     jsonDataEncoded?: pulumi.Input<string>;
     /**
-     * (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * Use json*data*encoded instead.
      *
-     * @deprecated Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * @deprecated Use json_data_encoded instead.
      */
     jsonDatas?: pulumi.Input<pulumi.Input<inputs.DataSourceJsonData>[]>;
     /**
@@ -296,19 +296,19 @@ export interface DataSourceState {
      */
     name?: pulumi.Input<string>;
     /**
-     * (Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+     * Use secure*json*data_encoded.password instead. Defaults to ``.
      *
-     * @deprecated Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+     * @deprecated Use secure_json_data_encoded.password instead.
      */
     password?: pulumi.Input<string>;
     /**
-     * Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+     * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
     secureJsonDataEncoded?: pulumi.Input<string>;
     /**
-     * Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * Use secure*json*data*encoded instead.
      *
-     * @deprecated Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * @deprecated Use secure_json_data_encoded instead.
      */
     secureJsonDatas?: pulumi.Input<pulumi.Input<inputs.DataSourceSecureJsonData>[]>;
     /**
@@ -342,9 +342,9 @@ export interface DataSourceArgs {
      */
     basicAuthEnabled?: pulumi.Input<boolean>;
     /**
-     * Basic auth password. Deprecated:Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+     * Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
      *
-     * @deprecated Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+     * @deprecated Use secure_json_data_encoded.basicAuthPassword instead.
      */
     basicAuthPassword?: pulumi.Input<string>;
     /**
@@ -364,13 +364,13 @@ export interface DataSourceArgs {
      */
     isDefault?: pulumi.Input<boolean>;
     /**
-     * Serialized JSON string containing the json data. Replaces the jsonData attribute, this attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+     * Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
     jsonDataEncoded?: pulumi.Input<string>;
     /**
-     * (Required by some data source types). Deprecated: Use json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * Use json*data*encoded instead.
      *
-     * @deprecated Use json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * @deprecated Use json_data_encoded instead.
      */
     jsonDatas?: pulumi.Input<pulumi.Input<inputs.DataSourceJsonData>[]>;
     /**
@@ -378,19 +378,19 @@ export interface DataSourceArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * (Required by some data source types) The password to use to authenticate to the data source. Deprecated: Use secure*json*data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+. Defaults to ``.
+     * Use secure*json*data_encoded.password instead. Defaults to ``.
      *
-     * @deprecated Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes. This attribute is removed in Grafana 9.0+.
+     * @deprecated Use secure_json_data_encoded.password instead.
      */
     password?: pulumi.Input<string>;
     /**
-     * Serialized JSON string containing the secure json data. Replaces the secure*json*data attribute, this attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI.
+     * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
     secureJsonDataEncoded?: pulumi.Input<string>;
     /**
-     * Deprecated: Use secure*json*data*encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * Use secure*json*data*encoded instead.
      *
-     * @deprecated Use secure_json_data_encoded instead. It supports arbitrary JSON data, and therefore all attributes.
+     * @deprecated Use secure_json_data_encoded instead.
      */
     secureJsonDatas?: pulumi.Input<pulumi.Input<inputs.DataSourceSecureJsonData>[]>;
     /**

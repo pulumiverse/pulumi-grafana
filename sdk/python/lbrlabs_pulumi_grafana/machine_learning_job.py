@@ -20,6 +20,7 @@ class MachineLearningJobArgs:
                  datasource_id: Optional[pulumi.Input[int]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 holidays: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  hyper_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -32,6 +33,7 @@ class MachineLearningJobArgs:
         :param pulumi.Input[int] datasource_id: The id of the datasource to query.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
         :param pulumi.Input[Mapping[str, Any]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
         :param pulumi.Input[int] interval: The data interval in seconds to train the data on. Defaults to `300`.
         :param pulumi.Input[str] name: The name of the job.
@@ -46,6 +48,8 @@ class MachineLearningJobArgs:
             pulumi.set(__self__, "datasource_uid", datasource_uid)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if holidays is not None:
+            pulumi.set(__self__, "holidays", holidays)
         if hyper_params is not None:
             pulumi.set(__self__, "hyper_params", hyper_params)
         if interval is not None:
@@ -128,6 +132,18 @@ class MachineLearningJobArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter
+    def holidays(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of holiday IDs or names to take into account when training the model.
+        """
+        return pulumi.get(self, "holidays")
+
+    @holidays.setter
+    def holidays(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "holidays", value)
+
+    @property
     @pulumi.getter(name="hyperParams")
     def hyper_params(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
@@ -183,6 +199,7 @@ class _MachineLearningJobState:
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 holidays: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  hyper_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  metric: Optional[pulumi.Input[str]] = None,
@@ -195,6 +212,7 @@ class _MachineLearningJobState:
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
         :param pulumi.Input[Mapping[str, Any]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
         :param pulumi.Input[int] interval: The data interval in seconds to train the data on. Defaults to `300`.
         :param pulumi.Input[str] metric: The metric used to query the job results.
@@ -210,6 +228,8 @@ class _MachineLearningJobState:
             pulumi.set(__self__, "datasource_uid", datasource_uid)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if holidays is not None:
+            pulumi.set(__self__, "holidays", holidays)
         if hyper_params is not None:
             pulumi.set(__self__, "hyper_params", hyper_params)
         if interval is not None:
@@ -270,6 +290,18 @@ class _MachineLearningJobState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def holidays(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of holiday IDs or names to take into account when training the model.
+        """
+        return pulumi.get(self, "holidays")
+
+    @holidays.setter
+    def holidays(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "holidays", value)
 
     @property
     @pulumi.getter(name="hyperParams")
@@ -353,6 +385,7 @@ class MachineLearningJob(pulumi.CustomResource):
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 holidays: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  hyper_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  metric: Optional[pulumi.Input[str]] = None,
@@ -369,6 +402,7 @@ class MachineLearningJob(pulumi.CustomResource):
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
         :param pulumi.Input[Mapping[str, Any]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
         :param pulumi.Input[int] interval: The data interval in seconds to train the data on. Defaults to `300`.
         :param pulumi.Input[str] metric: The metric used to query the job results.
@@ -404,6 +438,7 @@ class MachineLearningJob(pulumi.CustomResource):
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 holidays: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  hyper_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  metric: Optional[pulumi.Input[str]] = None,
@@ -425,6 +460,7 @@ class MachineLearningJob(pulumi.CustomResource):
             __props__.__dict__["datasource_type"] = datasource_type
             __props__.__dict__["datasource_uid"] = datasource_uid
             __props__.__dict__["description"] = description
+            __props__.__dict__["holidays"] = holidays
             __props__.__dict__["hyper_params"] = hyper_params
             __props__.__dict__["interval"] = interval
             if metric is None and not opts.urn:
@@ -449,6 +485,7 @@ class MachineLearningJob(pulumi.CustomResource):
             datasource_type: Optional[pulumi.Input[str]] = None,
             datasource_uid: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            holidays: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             hyper_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             interval: Optional[pulumi.Input[int]] = None,
             metric: Optional[pulumi.Input[str]] = None,
@@ -466,6 +503,7 @@ class MachineLearningJob(pulumi.CustomResource):
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
         :param pulumi.Input[Mapping[str, Any]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
         :param pulumi.Input[int] interval: The data interval in seconds to train the data on. Defaults to `300`.
         :param pulumi.Input[str] metric: The metric used to query the job results.
@@ -481,6 +519,7 @@ class MachineLearningJob(pulumi.CustomResource):
         __props__.__dict__["datasource_type"] = datasource_type
         __props__.__dict__["datasource_uid"] = datasource_uid
         __props__.__dict__["description"] = description
+        __props__.__dict__["holidays"] = holidays
         __props__.__dict__["hyper_params"] = hyper_params
         __props__.__dict__["interval"] = interval
         __props__.__dict__["metric"] = metric
@@ -520,6 +559,14 @@ class MachineLearningJob(pulumi.CustomResource):
         A description of the job.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def holidays(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A list of holiday IDs or names to take into account when training the model.
+        """
+        return pulumi.get(self, "holidays")
 
     @property
     @pulumi.getter(name="hyperParams")
