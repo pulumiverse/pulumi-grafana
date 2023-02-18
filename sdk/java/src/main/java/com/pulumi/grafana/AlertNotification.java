@@ -150,14 +150,14 @@ public class AlertNotification extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.sendReminder);
     }
     /**
-     * Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+     * Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
      * 
      */
     @Export(name="settings", type=Map.class, parameters={String.class, Object.class})
     private Output</* @Nullable */ Map<String,Object>> settings;
 
     /**
-     * @return Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+     * @return Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
      * 
      */
     public Output<Optional<Map<String,Object>>> settings() {

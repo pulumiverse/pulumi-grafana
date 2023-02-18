@@ -27,9 +27,7 @@ class CloudStackArgs:
                available at “https://\\n\\n.grafana.net".
         :param pulumi.Input[str] description: Description of stack.
         :param pulumi.Input[str] name: Name of stack. Conventionally matches the url of the instance (e.g. “\\n\\n.grafana.net”).
-        :param pulumi.Input[str] region_slug: Region slug to assign to this stack.
-               Changing region will destroy the existing stack and create a new one in the desired region.
-               Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
+        :param pulumi.Input[str] region_slug: Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
         :param pulumi.Input[str] url: Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
         :param pulumi.Input[bool] wait_for_readiness: Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
         :param pulumi.Input[str] wait_for_readiness_timeout: How long to wait for readiness (if enabled). Defaults to `5m0s`.
@@ -89,9 +87,7 @@ class CloudStackArgs:
     @pulumi.getter(name="regionSlug")
     def region_slug(self) -> Optional[pulumi.Input[str]]:
         """
-        Region slug to assign to this stack.
-        Changing region will destroy the existing stack and create a new one in the desired region.
-        Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
+        Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
         """
         return pulumi.get(self, "region_slug")
 
@@ -189,9 +185,7 @@ class _CloudStackState:
         :param pulumi.Input[str] prometheus_status: Prometheus status for this instance.
         :param pulumi.Input[str] prometheus_url: Prometheus url for this instance.
         :param pulumi.Input[int] prometheus_user_id: Prometheus user ID. Used for e.g. remote_write.
-        :param pulumi.Input[str] region_slug: Region slug to assign to this stack.
-               Changing region will destroy the existing stack and create a new one in the desired region.
-               Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
+        :param pulumi.Input[str] region_slug: Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
         :param pulumi.Input[str] slug: Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
                available at “https://\\n\\n.grafana.net".
         :param pulumi.Input[str] status: Status of the stack.
@@ -522,9 +516,7 @@ class _CloudStackState:
     @pulumi.getter(name="regionSlug")
     def region_slug(self) -> Optional[pulumi.Input[str]]:
         """
-        Region slug to assign to this stack.
-        Changing region will destroy the existing stack and create a new one in the desired region.
-        Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
+        Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
         """
         return pulumi.get(self, "region_slug")
 
@@ -668,9 +660,7 @@ class CloudStack(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description of stack.
         :param pulumi.Input[str] name: Name of stack. Conventionally matches the url of the instance (e.g. “\\n\\n.grafana.net”).
-        :param pulumi.Input[str] region_slug: Region slug to assign to this stack.
-               Changing region will destroy the existing stack and create a new one in the desired region.
-               Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
+        :param pulumi.Input[str] region_slug: Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
         :param pulumi.Input[str] slug: Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
                available at “https://\\n\\n.grafana.net".
         :param pulumi.Input[str] url: Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
@@ -835,9 +825,7 @@ class CloudStack(pulumi.CustomResource):
         :param pulumi.Input[str] prometheus_status: Prometheus status for this instance.
         :param pulumi.Input[str] prometheus_url: Prometheus url for this instance.
         :param pulumi.Input[int] prometheus_user_id: Prometheus user ID. Used for e.g. remote_write.
-        :param pulumi.Input[str] region_slug: Region slug to assign to this stack.
-               Changing region will destroy the existing stack and create a new one in the desired region.
-               Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
+        :param pulumi.Input[str] region_slug: Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
         :param pulumi.Input[str] slug: Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
                available at “https://\\n\\n.grafana.net".
         :param pulumi.Input[str] status: Status of the stack.
@@ -1048,9 +1036,7 @@ class CloudStack(pulumi.CustomResource):
     @pulumi.getter(name="regionSlug")
     def region_slug(self) -> pulumi.Output[Optional[str]]:
         """
-        Region slug to assign to this stack.
-        Changing region will destroy the existing stack and create a new one in the desired region.
-        Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
+        Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
         """
         return pulumi.get(self, "region_slug")
 

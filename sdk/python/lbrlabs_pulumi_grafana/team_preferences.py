@@ -165,8 +165,8 @@ class TeamPreferences(pulumi.CustomResource):
                  timezone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/preferences/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/team/)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-preferences/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
 
         ## Example Usage
 
@@ -197,8 +197,8 @@ class TeamPreferences(pulumi.CustomResource):
                  args: TeamPreferencesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/preferences/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/team/)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-preferences/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
 
         ## Example Usage
 

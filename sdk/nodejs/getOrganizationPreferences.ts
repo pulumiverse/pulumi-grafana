@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
  *
  * ## Example Usage
@@ -33,13 +33,17 @@ export interface GetOrganizationPreferencesResult {
      */
     readonly homeDashboardId: number;
     /**
-     * The Organization home dashboard UID.
+     * The Organization home dashboard UID. This is only available in Grafana 9.0+.
      */
     readonly homeDashboardUid: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    readonly orgId: string;
     /**
      * The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
      */

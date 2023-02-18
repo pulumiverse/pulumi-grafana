@@ -53,8 +53,8 @@ Object.defineProperty(exports, "cloudApiUrl", {
 });
 
 /**
- * Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the
- * `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+ * Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
+ * be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
  */
 export declare const httpHeaders: {[key: string]: string} | undefined;
 Object.defineProperty(exports, "httpHeaders", {
@@ -98,8 +98,8 @@ Object.defineProperty(exports, "oncallUrl", {
 });
 
 /**
- * The organization id to operate on within grafana. May alternatively be set via the `GRAFANA_ORG_ID` environment
- * variable.
+ * The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
+ * resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
  */
 export declare const orgId: number | undefined;
 Object.defineProperty(exports, "orgId", {
@@ -110,8 +110,8 @@ Object.defineProperty(exports, "orgId", {
 });
 
 /**
- * The amount of retries to use for Grafana API calls. May alternatively be set via the `GRAFANA_RETRIES` environment
- * variable.
+ * The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
+ * `GRAFANA_RETRIES` environment variable.
  */
 export declare const retries: number | undefined;
 Object.defineProperty(exports, "retries", {

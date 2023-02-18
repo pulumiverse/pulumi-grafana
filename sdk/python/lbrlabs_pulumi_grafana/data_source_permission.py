@@ -100,7 +100,7 @@ class DataSourcePermission(pulumi.CustomResource):
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourcePermissionPermissionArgs']]]]] = None,
                  __props__=None):
         """
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/datasource_permissions/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
 
         ## Example Usage
 
@@ -149,7 +149,7 @@ class DataSourcePermission(pulumi.CustomResource):
                  args: DataSourcePermissionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/datasource_permissions/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
 
         ## Example Usage
 

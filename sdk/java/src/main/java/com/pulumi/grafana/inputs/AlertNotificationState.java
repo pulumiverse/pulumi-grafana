@@ -109,14 +109,14 @@ public final class AlertNotificationState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+     * Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
      * 
      */
     @Import(name="settings")
     private @Nullable Output<Map<String,Object>> settings;
 
     /**
-     * @return Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+     * @return Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
      * 
      */
     public Optional<Output<Map<String,Object>>> settings() {
@@ -312,7 +312,7 @@ public final class AlertNotificationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param settings Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+         * @param settings Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
          * 
          * @return builder
          * 
@@ -323,7 +323,7 @@ public final class AlertNotificationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param settings Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+         * @param settings Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
          * 
          * @return builder
          * 

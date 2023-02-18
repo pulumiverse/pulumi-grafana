@@ -146,11 +146,11 @@ type providerArgs struct {
 	OncallAccessToken *string `pulumi:"oncallAccessToken"`
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
 	OncallUrl *string `pulumi:"oncallUrl"`
-	// The organization id to operate on within grafana. May alternatively be set via the `GRAFANA_ORG_ID` environment
-	// variable.
+	// The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
+	// resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
 	OrgId *int `pulumi:"orgId"`
-	// The amount of retries to use for Grafana API calls. May alternatively be set via the `GRAFANA_RETRIES` environment
-	// variable.
+	// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
+	// `GRAFANA_RETRIES` environment variable.
 	Retries *int `pulumi:"retries"`
 	// A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
 	SmAccessToken *string `pulumi:"smAccessToken"`
@@ -191,11 +191,11 @@ type ProviderArgs struct {
 	OncallAccessToken pulumi.StringPtrInput
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
 	OncallUrl pulumi.StringPtrInput
-	// The organization id to operate on within grafana. May alternatively be set via the `GRAFANA_ORG_ID` environment
-	// variable.
+	// The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
+	// resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
 	OrgId pulumi.IntPtrInput
-	// The amount of retries to use for Grafana API calls. May alternatively be set via the `GRAFANA_RETRIES` environment
-	// variable.
+	// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
+	// `GRAFANA_RETRIES` environment variable.
 	Retries pulumi.IntPtrInput
 	// A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
 	SmAccessToken pulumi.StringPtrInput

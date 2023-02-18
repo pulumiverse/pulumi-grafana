@@ -13,6 +13,7 @@ export function getLibraryPanel(args?: GetLibraryPanelArgs, opts?: pulumi.Invoke
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getLibraryPanel:getLibraryPanel", {
         "name": args.name,
+        "orgId": args.orgId,
         "uid": args.uid,
     }, opts);
 }
@@ -25,6 +26,10 @@ export interface GetLibraryPanelArgs {
      * Name of the library panel.
      */
     name?: string;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: string;
     /**
      * The unique identifier (UID) of the library panel.
      */
@@ -72,9 +77,9 @@ export interface GetLibraryPanelResult {
      */
     readonly name?: string;
     /**
-     * The numeric ID of the library panel computed by Grafana.
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    readonly orgId: number;
+    readonly orgId?: string;
     /**
      * The numeric ID of the library panel computed by Grafana.
      */
@@ -111,6 +116,10 @@ export interface GetLibraryPanelOutputArgs {
      * Name of the library panel.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * The unique identifier (UID) of the library panel.
      */

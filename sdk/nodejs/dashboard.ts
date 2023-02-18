@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
  * Manages Grafana dashboards.
  *
  * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
  *
  * ## Example Usage
  *
@@ -23,7 +23,11 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{dashboard_uid}}
+ *  $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{dashboard_uid}} # To use the default provider org
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{org_id}}:{{dashboard_uid}} # When "org_id" is set on the resource
  * ```
  */
 export class Dashboard extends pulumi.CustomResource {
@@ -71,6 +75,10 @@ export class Dashboard extends pulumi.CustomResource {
      */
     public readonly message!: pulumi.Output<string | undefined>;
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
+    /**
      * Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
      */
     public readonly overwrite!: pulumi.Output<boolean | undefined>;
@@ -110,6 +118,7 @@ export class Dashboard extends pulumi.CustomResource {
             resourceInputs["dashboardId"] = state ? state.dashboardId : undefined;
             resourceInputs["folder"] = state ? state.folder : undefined;
             resourceInputs["message"] = state ? state.message : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["overwrite"] = state ? state.overwrite : undefined;
             resourceInputs["slug"] = state ? state.slug : undefined;
             resourceInputs["uid"] = state ? state.uid : undefined;
@@ -123,6 +132,7 @@ export class Dashboard extends pulumi.CustomResource {
             resourceInputs["configJson"] = args ? args.configJson : undefined;
             resourceInputs["folder"] = args ? args.folder : undefined;
             resourceInputs["message"] = args ? args.message : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["overwrite"] = args ? args.overwrite : undefined;
             resourceInputs["dashboardId"] = undefined /*out*/;
             resourceInputs["slug"] = undefined /*out*/;
@@ -155,6 +165,10 @@ export interface DashboardState {
      * Set a commit message for the version history.
      */
     message?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
      */
@@ -195,6 +209,10 @@ export interface DashboardArgs {
      * Set a commit message for the version history.
      */
     message?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
      */

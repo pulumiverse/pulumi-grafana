@@ -66,7 +66,7 @@ type AlertNotification struct {
 	SecureSettings pulumi.MapOutput `pulumi:"secureSettings"`
 	// Whether to send reminders for triggered alerts. Defaults to `false`.
 	SendReminder pulumi.BoolPtrOutput `pulumi:"sendReminder"`
-	// Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+	// Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
 	Settings pulumi.MapOutput `pulumi:"settings"`
 	// The type of the alert notification channel.
 	Type pulumi.StringOutput `pulumi:"type"`
@@ -126,7 +126,7 @@ type alertNotificationState struct {
 	SecureSettings map[string]interface{} `pulumi:"secureSettings"`
 	// Whether to send reminders for triggered alerts. Defaults to `false`.
 	SendReminder *bool `pulumi:"sendReminder"`
-	// Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+	// Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
 	Settings map[string]interface{} `pulumi:"settings"`
 	// The type of the alert notification channel.
 	Type *string `pulumi:"type"`
@@ -147,7 +147,7 @@ type AlertNotificationState struct {
 	SecureSettings pulumi.MapInput
 	// Whether to send reminders for triggered alerts. Defaults to `false`.
 	SendReminder pulumi.BoolPtrInput
-	// Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+	// Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
 	Settings pulumi.MapInput
 	// The type of the alert notification channel.
 	Type pulumi.StringPtrInput
@@ -172,7 +172,7 @@ type alertNotificationArgs struct {
 	SecureSettings map[string]interface{} `pulumi:"secureSettings"`
 	// Whether to send reminders for triggered alerts. Defaults to `false`.
 	SendReminder *bool `pulumi:"sendReminder"`
-	// Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+	// Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
 	Settings map[string]interface{} `pulumi:"settings"`
 	// The type of the alert notification channel.
 	Type string `pulumi:"type"`
@@ -194,7 +194,7 @@ type AlertNotificationArgs struct {
 	SecureSettings pulumi.MapInput
 	// Whether to send reminders for triggered alerts. Defaults to `false`.
 	SendReminder pulumi.BoolPtrInput
-	// Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+	// Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
 	Settings pulumi.MapInput
 	// The type of the alert notification channel.
 	Type pulumi.StringInput
@@ -319,7 +319,7 @@ func (o AlertNotificationOutput) SendReminder() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AlertNotification) pulumi.BoolPtrOutput { return v.SendReminder }).(pulumi.BoolPtrOutput)
 }
 
-// Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+// Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
 func (o AlertNotificationOutput) Settings() pulumi.MapOutput {
 	return o.ApplyT(func(v *AlertNotification) pulumi.MapOutput { return v.Settings }).(pulumi.MapOutput)
 }

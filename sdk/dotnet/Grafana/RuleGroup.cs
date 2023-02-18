@@ -13,7 +13,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// <summary>
     /// Manages Grafana Alerting rule groups.
     /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules)
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/)
     /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
     /// 
     /// This resource requires Grafana 9.1.0 or later.
@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///     {
     ///         FolderUid = ruleFolder.Uid,
     ///         IntervalSeconds = 240,
-    ///         OrgId = 1,
+    ///         OrgId = "1",
     ///         Rules = new[]
     ///         {
     ///             new Grafana.Inputs.RuleGroupRuleArgs
@@ -57,6 +57,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///                     { "e", "f" },
     ///                     { "g", "h" },
     ///                 },
+    ///                 IsPaused = false,
     ///                 Datas = new[]
     ///                 {
     ///                     new Grafana.Inputs.RuleGroupRuleDataArgs
@@ -162,7 +163,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// The ID of the org to which the group belongs.
         /// </summary>
         [Output("orgId")]
-        public Output<int> OrgId { get; private set; } = null!;
+        public Output<string> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// The rules within the group.
@@ -239,7 +240,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// The ID of the org to which the group belongs.
         /// </summary>
         [Input("orgId", required: true)]
-        public Input<int> OrgId { get; set; } = null!;
+        public Input<string> OrgId { get; set; } = null!;
 
         [Input("rules", required: true)]
         private InputList<Inputs.RuleGroupRuleArgs>? _rules;
@@ -283,7 +284,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// The ID of the org to which the group belongs.
         /// </summary>
         [Input("orgId")]
-        public Input<int>? OrgId { get; set; }
+        public Input<string>? OrgId { get; set; }
 
         [Input("rules")]
         private InputList<Inputs.RuleGroupRuleGetArgs>? _rules;

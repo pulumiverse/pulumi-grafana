@@ -30,7 +30,7 @@ class OncallOutgoingWebhookArgs:
         :param pulumi.Input[bool] forward_whole_payload: Forwards whole payload of the alert to the webhook's url as POST data.
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
-        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the _get_oncall_team_ datasource.
         :param pulumi.Input[str] user: The auth data of the webhook. Used for Basic authentication.
         """
         pulumi.set(__self__, "url", url)
@@ -125,7 +125,7 @@ class OncallOutgoingWebhookArgs:
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the _get_oncall_team_ datasource.
         """
         return pulumi.get(self, "team_id")
 
@@ -164,7 +164,7 @@ class _OncallOutgoingWebhookState:
         :param pulumi.Input[bool] forward_whole_payload: Forwards whole payload of the alert to the webhook's url as POST data.
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
-        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the _get_oncall_team_ datasource.
         :param pulumi.Input[str] url: The webhook URL.
         :param pulumi.Input[str] user: The auth data of the webhook. Used for Basic authentication.
         """
@@ -249,7 +249,7 @@ class _OncallOutgoingWebhookState:
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the _get_oncall_team_ datasource.
         """
         return pulumi.get(self, "team_id")
 
@@ -322,7 +322,7 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
         :param pulumi.Input[bool] forward_whole_payload: Forwards whole payload of the alert to the webhook's url as POST data.
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
-        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the _get_oncall_team_ datasource.
         :param pulumi.Input[str] url: The webhook URL.
         :param pulumi.Input[str] user: The auth data of the webhook. Used for Basic authentication.
         """
@@ -423,7 +423,7 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
         :param pulumi.Input[bool] forward_whole_payload: Forwards whole payload of the alert to the webhook's url as POST data.
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
-        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the _get_oncall_team_ datasource.
         :param pulumi.Input[str] url: The webhook URL.
         :param pulumi.Input[str] user: The auth data of the webhook. Used for Basic authentication.
         """
@@ -485,7 +485,7 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
     @pulumi.getter(name="teamId")
     def team_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the _get_oncall_team_ datasource.
         """
         return pulumi.get(self, "team_id")
 

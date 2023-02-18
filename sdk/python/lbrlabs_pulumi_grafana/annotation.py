@@ -231,8 +231,8 @@ class Annotation(pulumi.CustomResource):
                  time_end: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/annotations/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/annotations/)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
 
         ## Example Usage
 
@@ -259,8 +259,8 @@ class Annotation(pulumi.CustomResource):
                  args: AnnotationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/annotations/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/annotations/)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
 
         ## Example Usage
 

@@ -5,6 +5,7 @@ package com.pulumi.grafana.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.grafana.outputs.RuleGroupRuleData;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,11 @@ public final class RuleGroupRule {
      * 
      */
     private @Nullable String for_;
+    /**
+     * @return Sets whether the alert should be paused or not. Defaults to `false`.
+     * 
+     */
+    private @Nullable Boolean isPaused;
     /**
      * @return Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
      * 
@@ -97,6 +103,13 @@ public final class RuleGroupRule {
         return Optional.ofNullable(this.for_);
     }
     /**
+     * @return Sets whether the alert should be paused or not. Defaults to `false`.
+     * 
+     */
+    public Optional<Boolean> isPaused() {
+        return Optional.ofNullable(this.isPaused);
+    }
+    /**
      * @return Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
      * 
      */
@@ -139,6 +152,7 @@ public final class RuleGroupRule {
         private List<RuleGroupRuleData> datas;
         private @Nullable String execErrState;
         private @Nullable String for_;
+        private @Nullable Boolean isPaused;
         private @Nullable Map<String,String> labels;
         private String name;
         private @Nullable String noDataState;
@@ -151,6 +165,7 @@ public final class RuleGroupRule {
     	      this.datas = defaults.datas;
     	      this.execErrState = defaults.execErrState;
     	      this.for_ = defaults.for_;
+    	      this.isPaused = defaults.isPaused;
     	      this.labels = defaults.labels;
     	      this.name = defaults.name;
     	      this.noDataState = defaults.noDataState;
@@ -186,6 +201,11 @@ public final class RuleGroupRule {
             return this;
         }
         @CustomType.Setter
+        public Builder isPaused(@Nullable Boolean isPaused) {
+            this.isPaused = isPaused;
+            return this;
+        }
+        @CustomType.Setter
         public Builder labels(@Nullable Map<String,String> labels) {
             this.labels = labels;
             return this;
@@ -212,6 +232,7 @@ public final class RuleGroupRule {
             o.datas = datas;
             o.execErrState = execErrState;
             o.for_ = for_;
+            o.isPaused = isPaused;
             o.labels = labels;
             o.name = name;
             o.noDataState = noDataState;

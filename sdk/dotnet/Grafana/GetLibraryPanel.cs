@@ -35,6 +35,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public string? Name { get; set; }
 
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public string? OrgId { get; set; }
+
+        /// <summary>
         /// The unique identifier (UID) of the library panel.
         /// </summary>
         [Input("uid")]
@@ -53,6 +59,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         /// <summary>
         /// The unique identifier (UID) of the library panel.
@@ -107,9 +119,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// The numeric ID of the library panel computed by Grafana.
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
         /// </summary>
-        public readonly int OrgId;
+        public readonly string? OrgId;
         /// <summary>
         /// The numeric ID of the library panel computed by Grafana.
         /// </summary>
@@ -151,7 +163,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
             string? name,
 
-            int orgId,
+            string? orgId,
 
             int panelId,
 

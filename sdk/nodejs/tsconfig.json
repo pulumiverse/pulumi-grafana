@@ -59,6 +59,7 @@
         "libraryPanel.ts",
         "machineLearningHoliday.ts",
         "machineLearningJob.ts",
+        "machineLearningOutlierDetector.ts",
         "messageTemplate.ts",
         "muteTiming.ts",
         "notificationPolicy.ts",

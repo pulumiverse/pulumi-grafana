@@ -85,14 +85,14 @@ public final class CloudAccessPolicyState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Region where the API is deployed. Region where the API is deployed. Generally where the stack is deployed. Valid values are &#39;us&#39;, &#39;eu&#39;, and &#39;au&#39;.
+     * Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return Region where the API is deployed. Region where the API is deployed. Generally where the stack is deployed. Valid values are &#39;us&#39;, &#39;eu&#39;, and &#39;au&#39;.
+     * @return Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      * 
      */
     public Optional<Output<String>> region() {
@@ -258,7 +258,7 @@ public final class CloudAccessPolicyState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param region Region where the API is deployed. Region where the API is deployed. Generally where the stack is deployed. Valid values are &#39;us&#39;, &#39;eu&#39;, and &#39;au&#39;.
+         * @param region Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
          * 
          * @return builder
          * 
@@ -269,7 +269,7 @@ public final class CloudAccessPolicyState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param region Region where the API is deployed. Region where the API is deployed. Generally where the stack is deployed. Valid values are &#39;us&#39;, &#39;eu&#39;, and &#39;au&#39;.
+         * @param region Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
          * 
          * @return builder
          * 

@@ -34,8 +34,8 @@ public final class TeamArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Ignores team members that have been added to team by [Team
-     * Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
-     * [grafana_team_external_group
+     * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+     * provisioned using [grafana_team_external_group
      * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
      * 
      */
@@ -44,8 +44,8 @@ public final class TeamArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Ignores team members that have been added to team by [Team
-     * Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
-     * [grafana_team_external_group
+     * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+     * provisioned using [grafana_team_external_group
      * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
      * 
      */
@@ -135,8 +135,8 @@ public final class TeamArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param ignoreExternallySyncedMembers Ignores team members that have been added to team by [Team
-         * Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
-         * [grafana_team_external_group
+         * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+         * provisioned using [grafana_team_external_group
          * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
          * 
          * @return builder
@@ -149,8 +149,8 @@ public final class TeamArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param ignoreExternallySyncedMembers Ignores team members that have been added to team by [Team
-         * Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
-         * [grafana_team_external_group
+         * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+         * provisioned using [grafana_team_external_group
          * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
          * 
          * @return builder

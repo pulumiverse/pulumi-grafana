@@ -55,6 +55,12 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         [Input("for")]
         public Input<string>? For { get; set; }
 
+        /// <summary>
+        /// Sets whether the alert should be paused or not. Defaults to `false`.
+        /// </summary>
+        [Input("isPaused")]
+        public Input<bool>? IsPaused { get; set; }
+
         [Input("labels")]
         private InputMap<string>? _labels;
 

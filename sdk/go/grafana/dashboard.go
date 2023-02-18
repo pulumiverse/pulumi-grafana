@@ -14,7 +14,7 @@ import (
 // Manages Grafana dashboards.
 //
 // * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
 //
 // ## Example Usage
 //
@@ -56,7 +56,13 @@ import (
 //
 // ```sh
 //
-//	$ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{dashboard_uid}}
+//	$ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{dashboard_uid}} # To use the default provider org
+//
+// ```
+//
+// ```sh
+//
+//	$ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{org_id}}:{{dashboard_uid}} # When "org_id" is set on the resource
 //
 // ```
 type Dashboard struct {
@@ -70,6 +76,8 @@ type Dashboard struct {
 	Folder pulumi.StringPtrOutput `pulumi:"folder"`
 	// Set a commit message for the version history.
 	Message pulumi.StringPtrOutput `pulumi:"message"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
 	Overwrite pulumi.BoolPtrOutput `pulumi:"overwrite"`
 	// URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
@@ -125,6 +133,8 @@ type dashboardState struct {
 	Folder *string `pulumi:"folder"`
 	// Set a commit message for the version history.
 	Message *string `pulumi:"message"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
 	Overwrite *bool `pulumi:"overwrite"`
 	// URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
@@ -148,6 +158,8 @@ type DashboardState struct {
 	Folder pulumi.StringPtrInput
 	// Set a commit message for the version history.
 	Message pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
 	Overwrite pulumi.BoolPtrInput
 	// URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
@@ -173,6 +185,8 @@ type dashboardArgs struct {
 	Folder *string `pulumi:"folder"`
 	// Set a commit message for the version history.
 	Message *string `pulumi:"message"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
 	Overwrite *bool `pulumi:"overwrite"`
 }
@@ -185,6 +199,8 @@ type DashboardArgs struct {
 	Folder pulumi.StringPtrInput
 	// Set a commit message for the version history.
 	Message pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
 	Overwrite pulumi.BoolPtrInput
 }
@@ -294,6 +310,11 @@ func (o DashboardOutput) Folder() pulumi.StringPtrOutput {
 // Set a commit message for the version history.
 func (o DashboardOutput) Message() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Dashboard) pulumi.StringPtrOutput { return v.Message }).(pulumi.StringPtrOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o DashboardOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Dashboard) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.

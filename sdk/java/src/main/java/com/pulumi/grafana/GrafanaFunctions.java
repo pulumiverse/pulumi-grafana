@@ -281,9 +281,6 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invokeAsync("grafana:index/getCloudIps:getCloudIps", TypeShape.of(GetCloudIpsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
-     * 
      * ## Example Usage
      * 
      * ```java
@@ -320,9 +317,6 @@ public final class GrafanaFunctions {
         return getCloudOrganization(GetCloudOrganizationArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
-     * 
      * ## Example Usage
      * 
      * ```java
@@ -359,9 +353,6 @@ public final class GrafanaFunctions {
         return getCloudOrganizationPlain(GetCloudOrganizationPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
-     * 
      * ## Example Usage
      * 
      * ```java
@@ -398,9 +389,6 @@ public final class GrafanaFunctions {
         return getCloudOrganization(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
-     * 
      * ## Example Usage
      * 
      * ```java
@@ -437,9 +425,6 @@ public final class GrafanaFunctions {
         return getCloudOrganizationPlain(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
-     * 
      * ## Example Usage
      * 
      * ```java
@@ -476,9 +461,6 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invoke("grafana:index/getCloudOrganization:getCloudOrganization", TypeShape.of(GetCloudOrganizationResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
-     * 
      * ## Example Usage
      * 
      * ```java
@@ -544,8 +526,8 @@ public final class GrafanaFunctions {
     }
     /**
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
      * 
      * ## Example Usage
      * ```java
@@ -604,8 +586,8 @@ public final class GrafanaFunctions {
     }
     /**
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
      * 
      * ## Example Usage
      * ```java
@@ -664,8 +646,8 @@ public final class GrafanaFunctions {
     }
     /**
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
      * 
      * ## Example Usage
      * ```java
@@ -724,8 +706,8 @@ public final class GrafanaFunctions {
     }
     /**
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
      * 
      * ## Example Usage
      * ```java
@@ -784,8 +766,8 @@ public final class GrafanaFunctions {
     }
     /**
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
      * 
      * ## Example Usage
      * ```java
@@ -844,8 +826,8 @@ public final class GrafanaFunctions {
     }
     /**
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
      * 
      * ## Example Usage
      * ```java
@@ -906,8 +888,8 @@ public final class GrafanaFunctions {
      * Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
      * 
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
      * 
      */
     public static Output<GetDashboardsResult> getDashboards() {
@@ -917,8 +899,8 @@ public final class GrafanaFunctions {
      * Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
      * 
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
      * 
      */
     public static CompletableFuture<GetDashboardsResult> getDashboardsPlain() {
@@ -928,8 +910,8 @@ public final class GrafanaFunctions {
      * Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
      * 
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
      * 
      */
     public static Output<GetDashboardsResult> getDashboards(GetDashboardsArgs args) {
@@ -939,8 +921,8 @@ public final class GrafanaFunctions {
      * Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
      * 
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
      * 
      */
     public static CompletableFuture<GetDashboardsResult> getDashboardsPlain(GetDashboardsPlainArgs args) {
@@ -950,8 +932,8 @@ public final class GrafanaFunctions {
      * Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
      * 
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
      * 
      */
     public static Output<GetDashboardsResult> getDashboards(GetDashboardsArgs args, InvokeOptions options) {
@@ -961,8 +943,8 @@ public final class GrafanaFunctions {
      * Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
      * 
      * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+     * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+     * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
      * 
      */
     public static CompletableFuture<GetDashboardsResult> getDashboardsPlain(GetDashboardsPlainArgs args, InvokeOptions options) {
@@ -1365,8 +1347,8 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invokeAsync("grafana:index/getDataSource:getDataSource", TypeShape.of(GetDataSourceResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
      * 
      * ## Example Usage
      * ```java
@@ -1410,8 +1392,8 @@ public final class GrafanaFunctions {
         return getFolder(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
      * 
      * ## Example Usage
      * ```java
@@ -1455,8 +1437,8 @@ public final class GrafanaFunctions {
         return getFolderPlain(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
      * 
      * ## Example Usage
      * ```java
@@ -1500,8 +1482,8 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invoke("grafana:index/getFolder:getFolder", TypeShape.of(GetFolderResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
      * 
      * ## Example Usage
      * ```java
@@ -1545,7 +1527,7 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invokeAsync("grafana:index/getFolder:getFolder", TypeShape.of(GetFolderResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
      * 
      * ## Example Usage
@@ -1592,7 +1574,7 @@ public final class GrafanaFunctions {
         return getFolders(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
      * 
      * ## Example Usage
@@ -1639,7 +1621,7 @@ public final class GrafanaFunctions {
         return getFoldersPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
      * 
      * ## Example Usage
@@ -1686,7 +1668,7 @@ public final class GrafanaFunctions {
         return getFolders(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
      * 
      * ## Example Usage
@@ -1733,7 +1715,7 @@ public final class GrafanaFunctions {
         return getFoldersPlain(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
      * 
      * ## Example Usage
@@ -1780,7 +1762,7 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invoke("grafana:index/getFolders:getFolders", TypeShape.of(GetFoldersResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
      * 
      * ## Example Usage
@@ -2933,8 +2915,8 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invokeAsync("grafana:index/getOncallUserGroup:getOncallUserGroup", TypeShape.of(GetOncallUserGroupResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
      * 
      * ## Example Usage
      * ```java
@@ -2981,8 +2963,8 @@ public final class GrafanaFunctions {
         return getOrganization(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
      * 
      * ## Example Usage
      * ```java
@@ -3029,8 +3011,8 @@ public final class GrafanaFunctions {
         return getOrganizationPlain(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
      * 
      * ## Example Usage
      * ```java
@@ -3077,8 +3059,8 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invoke("grafana:index/getOrganization:getOrganization", TypeShape.of(GetOrganizationResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
      * 
      * ## Example Usage
      * ```java
@@ -3125,7 +3107,7 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invokeAsync("grafana:index/getOrganization:getOrganization", TypeShape.of(GetOrganizationResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
      * 
      * ## Example Usage
@@ -3160,7 +3142,7 @@ public final class GrafanaFunctions {
         return getOrganizationPreferences(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
      * 
      * ## Example Usage
@@ -3195,7 +3177,7 @@ public final class GrafanaFunctions {
         return getOrganizationPreferencesPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
      * 
      * ## Example Usage
@@ -3230,7 +3212,7 @@ public final class GrafanaFunctions {
         return getOrganizationPreferences(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
      * 
      * ## Example Usage
@@ -3265,7 +3247,7 @@ public final class GrafanaFunctions {
         return getOrganizationPreferencesPlain(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
      * 
      * ## Example Usage
@@ -3300,7 +3282,7 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invoke("grafana:index/getOrganizationPreferences:getOrganizationPreferences", TypeShape.of(GetOrganizationPreferencesResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
      * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
      * 
      * ## Example Usage
@@ -3693,8 +3675,8 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invokeAsync("grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes", TypeShape.of(GetSyntheticMonitoringProbesResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-teams/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/team/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
      * 
      * ## Example Usage
      * ```java
@@ -3737,8 +3719,8 @@ public final class GrafanaFunctions {
         return getTeam(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-teams/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/team/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
      * 
      * ## Example Usage
      * ```java
@@ -3781,8 +3763,8 @@ public final class GrafanaFunctions {
         return getTeamPlain(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-teams/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/team/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
      * 
      * ## Example Usage
      * ```java
@@ -3825,8 +3807,8 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invoke("grafana:index/getTeam:getTeam", TypeShape.of(GetTeamResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-teams/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/team/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
      * 
      * ## Example Usage
      * ```java
@@ -3869,8 +3851,8 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invokeAsync("grafana:index/getTeam:getTeam", TypeShape.of(GetTeamResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
      * 
      * This data source uses Grafana&#39;s admin APIs for reading users which
      * does not currently work with API Tokens. You must use basic auth.
@@ -3927,8 +3909,8 @@ public final class GrafanaFunctions {
         return getUser(GetUserArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
      * 
      * This data source uses Grafana&#39;s admin APIs for reading users which
      * does not currently work with API Tokens. You must use basic auth.
@@ -3985,8 +3967,8 @@ public final class GrafanaFunctions {
         return getUserPlain(GetUserPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
      * 
      * This data source uses Grafana&#39;s admin APIs for reading users which
      * does not currently work with API Tokens. You must use basic auth.
@@ -4043,8 +4025,8 @@ public final class GrafanaFunctions {
         return getUser(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
      * 
      * This data source uses Grafana&#39;s admin APIs for reading users which
      * does not currently work with API Tokens. You must use basic auth.
@@ -4101,8 +4083,8 @@ public final class GrafanaFunctions {
         return getUserPlain(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
      * 
      * This data source uses Grafana&#39;s admin APIs for reading users which
      * does not currently work with API Tokens. You must use basic auth.
@@ -4159,8 +4141,8 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invoke("grafana:index/getUser:getUser", TypeShape.of(GetUserResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
      * 
      * This data source uses Grafana&#39;s admin APIs for reading users which
      * does not currently work with API Tokens. You must use basic auth.
@@ -4217,8 +4199,8 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invokeAsync("grafana:index/getUser:getUser", TypeShape.of(GetUserResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
      * 
      * This data source uses Grafana&#39;s admin APIs for reading users which
      * does not currently work with API Tokens. You must use basic auth.
@@ -4263,8 +4245,8 @@ public final class GrafanaFunctions {
         return getUsers(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
      * 
      * This data source uses Grafana&#39;s admin APIs for reading users which
      * does not currently work with API Tokens. You must use basic auth.
@@ -4309,8 +4291,8 @@ public final class GrafanaFunctions {
         return getUsersPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
      * 
      * This data source uses Grafana&#39;s admin APIs for reading users which
      * does not currently work with API Tokens. You must use basic auth.
@@ -4355,8 +4337,8 @@ public final class GrafanaFunctions {
         return getUsers(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
      * 
      * This data source uses Grafana&#39;s admin APIs for reading users which
      * does not currently work with API Tokens. You must use basic auth.
@@ -4401,8 +4383,8 @@ public final class GrafanaFunctions {
         return getUsersPlain(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
      * 
      * This data source uses Grafana&#39;s admin APIs for reading users which
      * does not currently work with API Tokens. You must use basic auth.
@@ -4447,8 +4429,8 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invoke("grafana:index/getUsers:getUsers", TypeShape.of(GetUsersResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
-     * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
      * 
      * This data source uses Grafana&#39;s admin APIs for reading users which
      * does not currently work with API Tokens. You must use basic auth.

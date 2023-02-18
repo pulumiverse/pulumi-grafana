@@ -11,8 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/playlist/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/playlist/)
+// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
 type Playlist struct {
 	pulumi.CustomResourceState
 

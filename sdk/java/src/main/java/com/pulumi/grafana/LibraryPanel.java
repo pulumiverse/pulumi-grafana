@@ -19,8 +19,8 @@ import javax.annotation.Nullable;
 /**
  * Manages Grafana library panels.
  * 
- * * [Official documentation](https://grafana.com/docs/grafana/latest/panels/panel-library/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/library_element/)
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/library_element/)
  * 
  * ## Example Usage
  * ```java
@@ -180,18 +180,18 @@ public class LibraryPanel extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * The numeric ID of the library panel computed by Grafana.
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      * 
      */
-    @Export(name="orgId", type=Integer.class, parameters={})
-    private Output<Integer> orgId;
+    @Export(name="orgId", type=String.class, parameters={})
+    private Output</* @Nullable */ String> orgId;
 
     /**
-     * @return The numeric ID of the library panel computed by Grafana.
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
      * 
      */
-    public Output<Integer> orgId() {
-        return this.orgId;
+    public Output<Optional<String>> orgId() {
+        return Codegen.optional(this.orgId);
     }
     /**
      * The numeric ID of the library panel computed by Grafana.

@@ -83,8 +83,8 @@ class AwaitableGetFolderResult(GetFolderResult):
 def get_folder(title: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFolderResult:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder/)
+    * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
 
     ## Example Usage
 
@@ -118,8 +118,8 @@ def get_folder(title: Optional[str] = None,
 def get_folder_output(title: Optional[pulumi.Input[str]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFolderResult]:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder/)
+    * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
 
     ## Example Usage
 

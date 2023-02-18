@@ -7,8 +7,8 @@ import * as utilities from "./utilities";
 /**
  * Manages Grafana library panels.
  *
- * * [Official documentation](https://grafana.com/docs/grafana/latest/panels/panel-library/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/library_element/)
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/library_element/)
  *
  * ## Example Usage
  *
@@ -90,9 +90,9 @@ export class LibraryPanel extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The numeric ID of the library panel computed by Grafana.
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public /*out*/ readonly orgId!: pulumi.Output<number>;
+    public readonly orgId!: pulumi.Output<string | undefined>;
     /**
      * The numeric ID of the library panel computed by Grafana.
      */
@@ -149,13 +149,13 @@ export class LibraryPanel extends pulumi.CustomResource {
             resourceInputs["folderId"] = args ? args.folderId : undefined;
             resourceInputs["modelJson"] = args ? args.modelJson : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["uid"] = args ? args.uid : undefined;
             resourceInputs["created"] = undefined /*out*/;
             resourceInputs["dashboardIds"] = undefined /*out*/;
             resourceInputs["description"] = undefined /*out*/;
             resourceInputs["folderName"] = undefined /*out*/;
             resourceInputs["folderUid"] = undefined /*out*/;
-            resourceInputs["orgId"] = undefined /*out*/;
             resourceInputs["panelId"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
             resourceInputs["updated"] = undefined /*out*/;
@@ -203,9 +203,9 @@ export interface LibraryPanelState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The numeric ID of the library panel computed by Grafana.
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    orgId?: pulumi.Input<number>;
+    orgId?: pulumi.Input<string>;
     /**
      * The numeric ID of the library panel computed by Grafana.
      */
@@ -244,6 +244,10 @@ export interface LibraryPanelArgs {
      * Name of the library panel.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
      */

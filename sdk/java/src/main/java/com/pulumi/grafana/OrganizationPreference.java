@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
  * 
  * ## Example Usage
@@ -69,18 +69,32 @@ public class OrganizationPreference extends com.pulumi.resources.CustomResource 
         return Codegen.optional(this.homeDashboardId);
     }
     /**
-     * The Organization home dashboard UID.
+     * The Organization home dashboard UID. This is only available in Grafana 9.0+.
      * 
      */
     @Export(name="homeDashboardUid", type=String.class, parameters={})
     private Output</* @Nullable */ String> homeDashboardUid;
 
     /**
-     * @return The Organization home dashboard UID.
+     * @return The Organization home dashboard UID. This is only available in Grafana 9.0+.
      * 
      */
     public Output<Optional<String>> homeDashboardUid() {
         return Codegen.optional(this.homeDashboardUid);
+    }
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Export(name="orgId", type=String.class, parameters={})
+    private Output</* @Nullable */ String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Output<Optional<String>> orgId() {
+        return Codegen.optional(this.orgId);
     }
     /**
      * The Organization theme. Available values are `light`, `dark`, or an empty string for the default.

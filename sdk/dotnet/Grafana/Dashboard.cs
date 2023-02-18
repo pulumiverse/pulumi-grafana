@@ -14,7 +14,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// Manages Grafana dashboards.
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
     /// 
     /// ## Example Usage
     /// 
@@ -37,7 +37,11 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{dashboard_uid}}
+    ///  $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{dashboard_uid}} # To use the default provider org
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{org_id}}:{{dashboard_uid}} # When "org_id" is set on the resource
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/dashboard:Dashboard")]
@@ -66,6 +70,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Output("message")]
         public Output<string?> Message { get; private set; } = null!;
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
@@ -163,6 +173,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? Message { get; set; }
 
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
+        /// <summary>
         /// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
         /// </summary>
         [Input("overwrite")]
@@ -199,6 +215,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Input("message")]
         public Input<string>? Message { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         /// <summary>
         /// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.

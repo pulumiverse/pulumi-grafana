@@ -22,8 +22,8 @@ class TeamArgs:
         The set of arguments for constructing a Team resource.
         :param pulumi.Input[str] email: An email address for the team.
         :param pulumi.Input[bool] ignore_externally_synced_members: Ignores team members that have been added to team by [Team
-               Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
-               [grafana_team_external_group
+               Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+               provisioned using [grafana_team_external_group
                resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] members: A set of email addresses corresponding to users who should be given membership
                to the team. Note: users specified here must already exist in Grafana.
@@ -55,8 +55,8 @@ class TeamArgs:
     def ignore_externally_synced_members(self) -> Optional[pulumi.Input[bool]]:
         """
         Ignores team members that have been added to team by [Team
-        Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
-        [grafana_team_external_group
+        Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+        provisioned using [grafana_team_external_group
         resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
         """
         return pulumi.get(self, "ignore_externally_synced_members")
@@ -103,8 +103,8 @@ class _TeamState:
         Input properties used for looking up and filtering Team resources.
         :param pulumi.Input[str] email: An email address for the team.
         :param pulumi.Input[bool] ignore_externally_synced_members: Ignores team members that have been added to team by [Team
-               Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
-               [grafana_team_external_group
+               Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+               provisioned using [grafana_team_external_group
                resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] members: A set of email addresses corresponding to users who should be given membership
                to the team. Note: users specified here must already exist in Grafana.
@@ -139,8 +139,8 @@ class _TeamState:
     def ignore_externally_synced_members(self) -> Optional[pulumi.Input[bool]]:
         """
         Ignores team members that have been added to team by [Team
-        Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
-        [grafana_team_external_group
+        Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+        provisioned using [grafana_team_external_group
         resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
         """
         return pulumi.get(self, "ignore_externally_synced_members")
@@ -198,8 +198,8 @@ class Team(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-teams/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/team/)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
 
         ## Example Usage
 
@@ -216,8 +216,8 @@ class Team(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] email: An email address for the team.
         :param pulumi.Input[bool] ignore_externally_synced_members: Ignores team members that have been added to team by [Team
-               Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
-               [grafana_team_external_group
+               Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+               provisioned using [grafana_team_external_group
                resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] members: A set of email addresses corresponding to users who should be given membership
                to the team. Note: users specified here must already exist in Grafana.
@@ -230,8 +230,8 @@ class Team(pulumi.CustomResource):
                  args: Optional[TeamArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-teams/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/team/)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
 
         ## Example Usage
 
@@ -301,8 +301,8 @@ class Team(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] email: An email address for the team.
         :param pulumi.Input[bool] ignore_externally_synced_members: Ignores team members that have been added to team by [Team
-               Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
-               [grafana_team_external_group
+               Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+               provisioned using [grafana_team_external_group
                resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] members: A set of email addresses corresponding to users who should be given membership
                to the team. Note: users specified here must already exist in Grafana.
@@ -333,8 +333,8 @@ class Team(pulumi.CustomResource):
     def ignore_externally_synced_members(self) -> pulumi.Output[Optional[bool]]:
         """
         Ignores team members that have been added to team by [Team
-        Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
-        [grafana_team_external_group
+        Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+        provisioned using [grafana_team_external_group
         resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
         """
         return pulumi.get(self, "ignore_externally_synced_members")

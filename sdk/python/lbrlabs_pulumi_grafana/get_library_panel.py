@@ -49,8 +49,8 @@ class GetLibraryPanelResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
-        if org_id and not isinstance(org_id, int):
-            raise TypeError("Expected argument 'org_id' to be a int")
+        if org_id and not isinstance(org_id, str):
+            raise TypeError("Expected argument 'org_id' to be a str")
         pulumi.set(__self__, "org_id", org_id)
         if panel_id and not isinstance(panel_id, int):
             raise TypeError("Expected argument 'panel_id' to be a int")
@@ -142,9 +142,9 @@ class GetLibraryPanelResult:
 
     @property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> int:
+    def org_id(self) -> Optional[str]:
         """
-        The numeric ID of the library panel computed by Grafana.
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         return pulumi.get(self, "org_id")
 
@@ -213,6 +213,7 @@ class AwaitableGetLibraryPanelResult(GetLibraryPanelResult):
 
 
 def get_library_panel(name: Optional[str] = None,
+                      org_id: Optional[str] = None,
                       uid: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLibraryPanelResult:
     """
@@ -220,10 +221,12 @@ def get_library_panel(name: Optional[str] = None,
 
 
     :param str name: Name of the library panel.
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     :param str uid: The unique identifier (UID) of the library panel.
     """
     __args__ = dict()
     __args__['name'] = name
+    __args__['orgId'] = org_id
     __args__['uid'] = uid
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('grafana:index/getLibraryPanel:getLibraryPanel', __args__, opts=opts, typ=GetLibraryPanelResult).value
@@ -248,6 +251,7 @@ def get_library_panel(name: Optional[str] = None,
 
 @_utilities.lift_output_func(get_library_panel)
 def get_library_panel_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                             org_id: Optional[pulumi.Input[Optional[str]]] = None,
                              uid: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLibraryPanelResult]:
     """
@@ -255,6 +259,7 @@ def get_library_panel_output(name: Optional[pulumi.Input[Optional[str]]] = None,
 
 
     :param str name: Name of the library panel.
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     :param str uid: The unique identifier (UID) of the library panel.
     """
     ...

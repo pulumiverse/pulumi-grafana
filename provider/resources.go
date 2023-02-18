@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"unicode"
 
-	"github.com/grafana/terraform-provider-grafana/grafana"
+	grafanaShim "github.com/grafana/terraform-provider-grafana/shim"
 	"github.com/lbrlabs/pulumi-grafana/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
@@ -60,7 +60,7 @@ func boolRef(b bool) *bool {
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv2.NewProvider(grafana.Provider(version.Version)())
+	p := shimv2.NewProvider(grafanaShim.NewProvider())
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
@@ -178,6 +178,7 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_library_panel":                     {Tok: grafanaResource(grafanaMod, "LibraryPanel")},
 			"grafana_machine_learning_job":              {Tok: grafanaResource(grafanaMod, "MachineLearningJob")},
 			"grafana_machine_learning_holiday":          {Tok: grafanaResource(grafanaMod, "MachineLearningHoliday")},
+			"grafana_machine_learning_outlier_detector": {Tok: grafanaResource(grafanaMod, "MachineLearningOutlierDetector")},
 			"grafana_message_template":                  {Tok: grafanaResource(grafanaMod, "MessageTemplate")},
 			"grafana_mute_timing":                       {Tok: grafanaResource(grafanaMod, "MuteTiming")},
 			"grafana_notification_policy":               {Tok: grafanaResource(grafanaMod, "NotificationPolicy")},

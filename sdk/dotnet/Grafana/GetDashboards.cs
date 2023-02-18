@@ -16,8 +16,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
         /// 
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-        /// * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-        /// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+        /// * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+        /// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
         /// </summary>
         public static Task<GetDashboardsResult> InvokeAsync(GetDashboardsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDashboardsResult>("grafana:index/getDashboards:getDashboards", args ?? new GetDashboardsArgs(), options.WithDefaults());
@@ -26,8 +26,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
         /// 
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-        /// * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-        /// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+        /// * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+        /// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
         /// </summary>
         public static Output<GetDashboardsResult> Invoke(GetDashboardsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDashboardsResult>("grafana:index/getDashboards:getDashboards", args ?? new GetDashboardsInvokeArgs(), options.WithDefaults());

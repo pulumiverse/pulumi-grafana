@@ -123,9 +123,7 @@ export class CloudStack extends pulumi.CustomResource {
      */
     public /*out*/ readonly prometheusUserId!: pulumi.Output<number>;
     /**
-     * Region slug to assign to this stack.
-     * Changing region will destroy the existing stack and create a new one in the desired region.
-     * Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
+     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      */
     public readonly regionSlug!: pulumi.Output<string | undefined>;
     /**
@@ -317,9 +315,7 @@ export interface CloudStackState {
      */
     prometheusUserId?: pulumi.Input<number>;
     /**
-     * Region slug to assign to this stack.
-     * Changing region will destroy the existing stack and create a new one in the desired region.
-     * Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
+     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      */
     regionSlug?: pulumi.Input<string>;
     /**
@@ -362,9 +358,7 @@ export interface CloudStackArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Region slug to assign to this stack.
-     * Changing region will destroy the existing stack and create a new one in the desired region.
-     * Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
+     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      */
     regionSlug?: pulumi.Input<string>;
     /**

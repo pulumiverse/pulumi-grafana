@@ -62,6 +62,21 @@ public final class LibraryPanelArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Import(name="orgId")
+    private @Nullable Output<String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<Output<String>> orgId() {
+        return Optional.ofNullable(this.orgId);
+    }
+
+    /**
      * The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
      * 
      */
@@ -82,6 +97,7 @@ public final class LibraryPanelArgs extends com.pulumi.resources.ResourceArgs {
         this.folderId = $.folderId;
         this.modelJson = $.modelJson;
         this.name = $.name;
+        this.orgId = $.orgId;
         this.uid = $.uid;
     }
 
@@ -164,6 +180,27 @@ public final class LibraryPanelArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(@Nullable Output<String> orgId) {
+            $.orgId = orgId;
+            return this;
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(String orgId) {
+            return orgId(Output.of(orgId));
         }
 
         /**

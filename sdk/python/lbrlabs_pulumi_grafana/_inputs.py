@@ -37,6 +37,8 @@ __all__ = [
     'DataSourceSecureJsonDataArgs',
     'FolderPermissionPermissionArgs',
     'MachineLearningHolidayCustomPeriodArgs',
+    'MachineLearningOutlierDetectorAlgorithmArgs',
+    'MachineLearningOutlierDetectorAlgorithmConfigArgs',
     'MuteTimingIntervalArgs',
     'MuteTimingIntervalTimeArgs',
     'NotificationPolicyPolicyArgs',
@@ -3895,6 +3897,75 @@ class MachineLearningHolidayCustomPeriodArgs:
 
 
 @pulumi.input_type
+class MachineLearningOutlierDetectorAlgorithmArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 sensitivity: pulumi.Input[float],
+                 config: Optional[pulumi.Input['MachineLearningOutlierDetectorAlgorithmConfigArgs']] = None):
+        """
+        :param pulumi.Input[str] name: The name of the algorithm to use ('mad' or 'dbscan').
+        :param pulumi.Input[float] sensitivity: Specify the sensitivity of the detector (in range [0,1]).
+        :param pulumi.Input['MachineLearningOutlierDetectorAlgorithmConfigArgs'] config: For DBSCAN only, specify the configuration map
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "sensitivity", sensitivity)
+        if config is not None:
+            pulumi.set(__self__, "config", config)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        The name of the algorithm to use ('mad' or 'dbscan').
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def sensitivity(self) -> pulumi.Input[float]:
+        """
+        Specify the sensitivity of the detector (in range [0,1]).
+        """
+        return pulumi.get(self, "sensitivity")
+
+    @sensitivity.setter
+    def sensitivity(self, value: pulumi.Input[float]):
+        pulumi.set(self, "sensitivity", value)
+
+    @property
+    @pulumi.getter
+    def config(self) -> Optional[pulumi.Input['MachineLearningOutlierDetectorAlgorithmConfigArgs']]:
+        """
+        For DBSCAN only, specify the configuration map
+        """
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: Optional[pulumi.Input['MachineLearningOutlierDetectorAlgorithmConfigArgs']]):
+        pulumi.set(self, "config", value)
+
+
+@pulumi.input_type
+class MachineLearningOutlierDetectorAlgorithmConfigArgs:
+    def __init__(__self__, *,
+                 epsilon: pulumi.Input[float]):
+        pulumi.set(__self__, "epsilon", epsilon)
+
+    @property
+    @pulumi.getter
+    def epsilon(self) -> pulumi.Input[float]:
+        return pulumi.get(self, "epsilon")
+
+    @epsilon.setter
+    def epsilon(self, value: pulumi.Input[float]):
+        pulumi.set(self, "epsilon", value)
+
+
+@pulumi.input_type
 class MuteTimingIntervalArgs:
     def __init__(__self__, *,
                  days_of_months: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -5437,6 +5508,7 @@ class RuleGroupRuleArgs:
                  annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  exec_err_state: Optional[pulumi.Input[str]] = None,
                  for_: Optional[pulumi.Input[str]] = None,
+                 is_paused: Optional[pulumi.Input[bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  no_data_state: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None):
@@ -5447,6 +5519,7 @@ class RuleGroupRuleArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
         :param pulumi.Input[str] exec_err_state: Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, and Alerting. Defaults to `Alerting`.
         :param pulumi.Input[str] for_: The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
+        :param pulumi.Input[bool] is_paused: Sets whether the alert should be paused or not. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
         :param pulumi.Input[str] no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting. Defaults to `NoData`.
         :param pulumi.Input[str] uid: The unique identifier of the alert rule.
@@ -5460,6 +5533,8 @@ class RuleGroupRuleArgs:
             pulumi.set(__self__, "exec_err_state", exec_err_state)
         if for_ is not None:
             pulumi.set(__self__, "for_", for_)
+        if is_paused is not None:
+            pulumi.set(__self__, "is_paused", is_paused)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if no_data_state is not None:
@@ -5538,6 +5613,18 @@ class RuleGroupRuleArgs:
     @for_.setter
     def for_(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "for_", value)
+
+    @property
+    @pulumi.getter(name="isPaused")
+    def is_paused(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Sets whether the alert should be paused or not. Defaults to `false`.
+        """
+        return pulumi.get(self, "is_paused")
+
+    @is_paused.setter
+    def is_paused(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_paused", value)
 
     @property
     @pulumi.getter

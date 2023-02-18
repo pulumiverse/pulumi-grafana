@@ -18,14 +18,14 @@ class RuleGroupArgs:
     def __init__(__self__, *,
                  folder_uid: pulumi.Input[str],
                  interval_seconds: pulumi.Input[int],
-                 org_id: pulumi.Input[int],
+                 org_id: pulumi.Input[str],
                  rules: pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleArgs']]],
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RuleGroup resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
-        :param pulumi.Input[int] org_id: The ID of the org to which the group belongs.
+        :param pulumi.Input[str] org_id: The ID of the org to which the group belongs.
         :param pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleArgs']]] rules: The rules within the group.
         :param pulumi.Input[str] name: The name of the rule group.
         """
@@ -62,14 +62,14 @@ class RuleGroupArgs:
 
     @property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> pulumi.Input[int]:
+    def org_id(self) -> pulumi.Input[str]:
         """
         The ID of the org to which the group belongs.
         """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
-    def org_id(self, value: pulumi.Input[int]):
+    def org_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "org_id", value)
 
     @property
@@ -103,14 +103,14 @@ class _RuleGroupState:
                  folder_uid: Optional[pulumi.Input[str]] = None,
                  interval_seconds: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 org_id: Optional[pulumi.Input[int]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering RuleGroup resources.
         :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[str] name: The name of the rule group.
-        :param pulumi.Input[int] org_id: The ID of the org to which the group belongs.
+        :param pulumi.Input[str] org_id: The ID of the org to which the group belongs.
         :param pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleArgs']]] rules: The rules within the group.
         """
         if folder_uid is not None:
@@ -162,14 +162,14 @@ class _RuleGroupState:
 
     @property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> Optional[pulumi.Input[int]]:
+    def org_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the org to which the group belongs.
         """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
-    def org_id(self, value: Optional[pulumi.Input[int]]):
+    def org_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "org_id", value)
 
     @property
@@ -193,13 +193,13 @@ class RuleGroup(pulumi.CustomResource):
                  folder_uid: Optional[pulumi.Input[str]] = None,
                  interval_seconds: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 org_id: Optional[pulumi.Input[int]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]]] = None,
                  __props__=None):
         """
         Manages Grafana Alerting rule groups.
 
-        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
 
         This resource requires Grafana 9.1.0 or later.
@@ -215,7 +215,7 @@ class RuleGroup(pulumi.CustomResource):
         my_alert_rule = grafana.RuleGroup("myAlertRule",
             folder_uid=rule_folder.uid,
             interval_seconds=240,
-            org_id=1,
+            org_id="1",
             rules=[grafana.RuleGroupRuleArgs(
                 name="My Alert Rule 1",
                 for_="2m",
@@ -230,6 +230,7 @@ class RuleGroup(pulumi.CustomResource):
                     "e": "f",
                     "g": "h",
                 },
+                is_paused=False,
                 datas=[
                     grafana.RuleGroupRuleDataArgs(
                         ref_id="A",
@@ -305,7 +306,7 @@ class RuleGroup(pulumi.CustomResource):
         :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[str] name: The name of the rule group.
-        :param pulumi.Input[int] org_id: The ID of the org to which the group belongs.
+        :param pulumi.Input[str] org_id: The ID of the org to which the group belongs.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]] rules: The rules within the group.
         """
         ...
@@ -317,7 +318,7 @@ class RuleGroup(pulumi.CustomResource):
         """
         Manages Grafana Alerting rule groups.
 
-        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
 
         This resource requires Grafana 9.1.0 or later.
@@ -333,7 +334,7 @@ class RuleGroup(pulumi.CustomResource):
         my_alert_rule = grafana.RuleGroup("myAlertRule",
             folder_uid=rule_folder.uid,
             interval_seconds=240,
-            org_id=1,
+            org_id="1",
             rules=[grafana.RuleGroupRuleArgs(
                 name="My Alert Rule 1",
                 for_="2m",
@@ -348,6 +349,7 @@ class RuleGroup(pulumi.CustomResource):
                     "e": "f",
                     "g": "h",
                 },
+                is_paused=False,
                 datas=[
                     grafana.RuleGroupRuleDataArgs(
                         ref_id="A",
@@ -436,7 +438,7 @@ class RuleGroup(pulumi.CustomResource):
                  folder_uid: Optional[pulumi.Input[str]] = None,
                  interval_seconds: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 org_id: Optional[pulumi.Input[int]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -473,7 +475,7 @@ class RuleGroup(pulumi.CustomResource):
             folder_uid: Optional[pulumi.Input[str]] = None,
             interval_seconds: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            org_id: Optional[pulumi.Input[int]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
             rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]]] = None) -> 'RuleGroup':
         """
         Get an existing RuleGroup resource's state with the given name, id, and optional extra
@@ -485,7 +487,7 @@ class RuleGroup(pulumi.CustomResource):
         :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[str] name: The name of the rule group.
-        :param pulumi.Input[int] org_id: The ID of the org to which the group belongs.
+        :param pulumi.Input[str] org_id: The ID of the org to which the group belongs.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]] rules: The rules within the group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -525,7 +527,7 @@ class RuleGroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> pulumi.Output[int]:
+    def org_id(self) -> pulumi.Output[str]:
         """
         The ID of the org to which the group belongs.
         """

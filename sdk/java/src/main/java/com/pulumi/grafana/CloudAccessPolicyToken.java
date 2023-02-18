@@ -150,14 +150,14 @@ public class CloudAccessPolicyToken extends com.pulumi.resources.CustomResource 
         return this.name;
     }
     /**
-     * Region of the access policy. Should be set to the same region as the access policy.
+     * Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      * 
      */
     @Export(name="region", type=String.class, parameters={})
     private Output<String> region;
 
     /**
-     * @return Region of the access policy. Should be set to the same region as the access policy.
+     * @return Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      * 
      */
     public Output<String> region() {

@@ -16,7 +16,7 @@ public final class GetOrganizationPreferencesResult {
      */
     private Integer homeDashboardId;
     /**
-     * @return The Organization home dashboard UID.
+     * @return The Organization home dashboard UID. This is only available in Grafana 9.0+.
      * 
      */
     private String homeDashboardUid;
@@ -25,6 +25,11 @@ public final class GetOrganizationPreferencesResult {
      * 
      */
     private String id;
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    private String orgId;
     /**
      * @return The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
      * 
@@ -50,7 +55,7 @@ public final class GetOrganizationPreferencesResult {
         return this.homeDashboardId;
     }
     /**
-     * @return The Organization home dashboard UID.
+     * @return The Organization home dashboard UID. This is only available in Grafana 9.0+.
      * 
      */
     public String homeDashboardUid() {
@@ -62,6 +67,13 @@ public final class GetOrganizationPreferencesResult {
      */
     public String id() {
         return this.id;
+    }
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public String orgId() {
+        return this.orgId;
     }
     /**
      * @return The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
@@ -97,6 +109,7 @@ public final class GetOrganizationPreferencesResult {
         private Integer homeDashboardId;
         private String homeDashboardUid;
         private String id;
+        private String orgId;
         private String theme;
         private String timezone;
         private String weekStart;
@@ -106,6 +119,7 @@ public final class GetOrganizationPreferencesResult {
     	      this.homeDashboardId = defaults.homeDashboardId;
     	      this.homeDashboardUid = defaults.homeDashboardUid;
     	      this.id = defaults.id;
+    	      this.orgId = defaults.orgId;
     	      this.theme = defaults.theme;
     	      this.timezone = defaults.timezone;
     	      this.weekStart = defaults.weekStart;
@@ -124,6 +138,11 @@ public final class GetOrganizationPreferencesResult {
         @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder orgId(String orgId) {
+            this.orgId = Objects.requireNonNull(orgId);
             return this;
         }
         @CustomType.Setter
@@ -146,6 +165,7 @@ public final class GetOrganizationPreferencesResult {
             o.homeDashboardId = homeDashboardId;
             o.homeDashboardUid = homeDashboardUid;
             o.id = id;
+            o.orgId = orgId;
             o.theme = theme;
             o.timezone = timezone;
             o.weekStart = weekStart;

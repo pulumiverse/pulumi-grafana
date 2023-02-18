@@ -18,8 +18,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
  * 
  * ## Example Usage
  * ```java

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Grafana
 {
     /// <summary>
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
     /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
     /// 
     /// ## Example Usage
@@ -43,10 +43,16 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<int?> HomeDashboardId { get; private set; } = null!;
 
         /// <summary>
-        /// The Organization home dashboard UID.
+        /// The Organization home dashboard UID. This is only available in Grafana 9.0+.
         /// </summary>
         [Output("homeDashboardUid")]
         public Output<string?> HomeDashboardUid { get; private set; } = null!;
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
@@ -120,10 +126,16 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<int>? HomeDashboardId { get; set; }
 
         /// <summary>
-        /// The Organization home dashboard UID.
+        /// The Organization home dashboard UID. This is only available in Grafana 9.0+.
         /// </summary>
         [Input("homeDashboardUid")]
         public Input<string>? HomeDashboardUid { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         /// <summary>
         /// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
@@ -158,10 +170,16 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<int>? HomeDashboardId { get; set; }
 
         /// <summary>
-        /// The Organization home dashboard UID.
+        /// The Organization home dashboard UID. This is only available in Grafana 9.0+.
         /// </summary>
         [Input("homeDashboardUid")]
         public Input<string>? HomeDashboardUid { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         /// <summary>
         /// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.

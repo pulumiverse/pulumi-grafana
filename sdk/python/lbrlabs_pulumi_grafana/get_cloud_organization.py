@@ -93,9 +93,7 @@ def get_cloud_organization(id: Optional[str] = None,
                            slug: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudOrganizationResult:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
-
+    Use this data source to access information about an existing resource.
 
     :param str id: The ID of this resource.
     """
@@ -119,9 +117,7 @@ def get_cloud_organization_output(id: Optional[pulumi.Input[Optional[str]]] = No
                                   slug: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudOrganizationResult]:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
-
+    Use this data source to access information about an existing resource.
 
     :param str id: The ID of this resource.
     """

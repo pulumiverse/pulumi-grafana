@@ -30,6 +30,21 @@ public final class GetLibraryPanelPlainArgs extends com.pulumi.resources.InvokeA
     }
 
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Import(name="orgId")
+    private @Nullable String orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<String> orgId() {
+        return Optional.ofNullable(this.orgId);
+    }
+
+    /**
      * The unique identifier (UID) of the library panel.
      * 
      */
@@ -48,6 +63,7 @@ public final class GetLibraryPanelPlainArgs extends com.pulumi.resources.InvokeA
 
     private GetLibraryPanelPlainArgs(GetLibraryPanelPlainArgs $) {
         this.name = $.name;
+        this.orgId = $.orgId;
         this.uid = $.uid;
     }
 
@@ -77,6 +93,17 @@ public final class GetLibraryPanelPlainArgs extends com.pulumi.resources.InvokeA
          */
         public Builder name(@Nullable String name) {
             $.name = name;
+            return this;
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(@Nullable String orgId) {
+            $.orgId = orgId;
             return this;
         }
 

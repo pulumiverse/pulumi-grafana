@@ -18,8 +18,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-teams/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/team/)
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
  * 
  * ## Example Usage
  * ```java
@@ -71,8 +71,8 @@ public class Team extends com.pulumi.resources.CustomResource {
     }
     /**
      * Ignores team members that have been added to team by [Team
-     * Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
-     * [grafana_team_external_group
+     * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+     * provisioned using [grafana_team_external_group
      * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
      * 
      */
@@ -81,8 +81,8 @@ public class Team extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Ignores team members that have been added to team by [Team
-     * Sync](https://grafana.com/docs/grafana/latest/enterprise/team-sync/). Team Sync can be provisioned using
-     * [grafana_team_external_group
+     * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+     * provisioned using [grafana_team_external_group
      * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
      * 
      */

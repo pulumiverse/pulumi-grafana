@@ -17,12 +17,14 @@ class DashboardArgs:
                  config_json: pulumi.Input[str],
                  folder: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  overwrite: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Dashboard resource.
         :param pulumi.Input[str] config_json: The complete dashboard model JSON.
         :param pulumi.Input[str] folder: The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
         :param pulumi.Input[str] message: Set a commit message for the version history.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
         """
         pulumi.set(__self__, "config_json", config_json)
@@ -30,6 +32,8 @@ class DashboardArgs:
             pulumi.set(__self__, "folder", folder)
         if message is not None:
             pulumi.set(__self__, "message", message)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if overwrite is not None:
             pulumi.set(__self__, "overwrite", overwrite)
 
@@ -70,6 +74,18 @@ class DashboardArgs:
         pulumi.set(self, "message", value)
 
     @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
+
+    @property
     @pulumi.getter
     def overwrite(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -89,6 +105,7 @@ class _DashboardState:
                  dashboard_id: Optional[pulumi.Input[int]] = None,
                  folder: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  overwrite: Optional[pulumi.Input[bool]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
@@ -100,6 +117,7 @@ class _DashboardState:
         :param pulumi.Input[int] dashboard_id: The numeric ID of the dashboard computed by Grafana.
         :param pulumi.Input[str] folder: The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
         :param pulumi.Input[str] message: Set a commit message for the version history.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
         :param pulumi.Input[str] slug: URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
         :param pulumi.Input[str] uid: The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
@@ -114,6 +132,8 @@ class _DashboardState:
             pulumi.set(__self__, "folder", folder)
         if message is not None:
             pulumi.set(__self__, "message", message)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if overwrite is not None:
             pulumi.set(__self__, "overwrite", overwrite)
         if slug is not None:
@@ -175,6 +195,18 @@ class _DashboardState:
     @message.setter
     def message(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter
@@ -245,13 +277,14 @@ class Dashboard(pulumi.CustomResource):
                  config_json: Optional[pulumi.Input[str]] = None,
                  folder: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  overwrite: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         Manages Grafana dashboards.
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
 
         ## Example Usage
 
@@ -265,7 +298,11 @@ class Dashboard(pulumi.CustomResource):
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{dashboard_uid}}
+         $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{dashboard_uid}} # To use the default provider org
+        ```
+
+        ```sh
+         $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{org_id}}:{{dashboard_uid}} # When "org_id" is set on the resource
         ```
 
         :param str resource_name: The name of the resource.
@@ -273,6 +310,7 @@ class Dashboard(pulumi.CustomResource):
         :param pulumi.Input[str] config_json: The complete dashboard model JSON.
         :param pulumi.Input[str] folder: The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
         :param pulumi.Input[str] message: Set a commit message for the version history.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
         """
         ...
@@ -285,7 +323,7 @@ class Dashboard(pulumi.CustomResource):
         Manages Grafana dashboards.
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
 
         ## Example Usage
 
@@ -299,7 +337,11 @@ class Dashboard(pulumi.CustomResource):
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{dashboard_uid}}
+         $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{dashboard_uid}} # To use the default provider org
+        ```
+
+        ```sh
+         $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{org_id}}:{{dashboard_uid}} # When "org_id" is set on the resource
         ```
 
         :param str resource_name: The name of the resource.
@@ -320,6 +362,7 @@ class Dashboard(pulumi.CustomResource):
                  config_json: Optional[pulumi.Input[str]] = None,
                  folder: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  overwrite: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -335,6 +378,7 @@ class Dashboard(pulumi.CustomResource):
             __props__.__dict__["config_json"] = config_json
             __props__.__dict__["folder"] = folder
             __props__.__dict__["message"] = message
+            __props__.__dict__["org_id"] = org_id
             __props__.__dict__["overwrite"] = overwrite
             __props__.__dict__["dashboard_id"] = None
             __props__.__dict__["slug"] = None
@@ -355,6 +399,7 @@ class Dashboard(pulumi.CustomResource):
             dashboard_id: Optional[pulumi.Input[int]] = None,
             folder: Optional[pulumi.Input[str]] = None,
             message: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
             overwrite: Optional[pulumi.Input[bool]] = None,
             slug: Optional[pulumi.Input[str]] = None,
             uid: Optional[pulumi.Input[str]] = None,
@@ -371,6 +416,7 @@ class Dashboard(pulumi.CustomResource):
         :param pulumi.Input[int] dashboard_id: The numeric ID of the dashboard computed by Grafana.
         :param pulumi.Input[str] folder: The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
         :param pulumi.Input[str] message: Set a commit message for the version history.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
         :param pulumi.Input[str] slug: URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
         :param pulumi.Input[str] uid: The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
@@ -385,6 +431,7 @@ class Dashboard(pulumi.CustomResource):
         __props__.__dict__["dashboard_id"] = dashboard_id
         __props__.__dict__["folder"] = folder
         __props__.__dict__["message"] = message
+        __props__.__dict__["org_id"] = org_id
         __props__.__dict__["overwrite"] = overwrite
         __props__.__dict__["slug"] = slug
         __props__.__dict__["uid"] = uid
@@ -423,6 +470,14 @@ class Dashboard(pulumi.CustomResource):
         Set a commit message for the version history.
         """
         return pulumi.get(self, "message")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter

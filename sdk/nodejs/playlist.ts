@@ -7,8 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/playlist/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/playlist/)
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
  */
 export class Playlist extends pulumi.CustomResource {
     /**

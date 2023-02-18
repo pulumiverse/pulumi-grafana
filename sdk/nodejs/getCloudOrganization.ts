@@ -4,10 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
- */
 export function getCloudOrganization(args?: GetCloudOrganizationArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudOrganizationResult> {
     args = args || {};
 
@@ -43,10 +39,6 @@ export interface GetCloudOrganizationResult {
     readonly updatedAt: string;
     readonly url: string;
 }
-/**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
- */
 export function getCloudOrganizationOutput(args?: GetCloudOrganizationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudOrganizationResult> {
     return pulumi.output(args).apply((a: any) => getCloudOrganization(a, opts))
 }

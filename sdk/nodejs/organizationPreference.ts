@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
  *
  * ## Example Usage
@@ -54,9 +54,13 @@ export class OrganizationPreference extends pulumi.CustomResource {
      */
     public readonly homeDashboardId!: pulumi.Output<number | undefined>;
     /**
-     * The Organization home dashboard UID.
+     * The Organization home dashboard UID. This is only available in Grafana 9.0+.
      */
     public readonly homeDashboardUid!: pulumi.Output<string | undefined>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
     /**
      * The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
      */
@@ -85,6 +89,7 @@ export class OrganizationPreference extends pulumi.CustomResource {
             const state = argsOrState as OrganizationPreferenceState | undefined;
             resourceInputs["homeDashboardId"] = state ? state.homeDashboardId : undefined;
             resourceInputs["homeDashboardUid"] = state ? state.homeDashboardUid : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["theme"] = state ? state.theme : undefined;
             resourceInputs["timezone"] = state ? state.timezone : undefined;
             resourceInputs["weekStart"] = state ? state.weekStart : undefined;
@@ -92,6 +97,7 @@ export class OrganizationPreference extends pulumi.CustomResource {
             const args = argsOrState as OrganizationPreferenceArgs | undefined;
             resourceInputs["homeDashboardId"] = args ? args.homeDashboardId : undefined;
             resourceInputs["homeDashboardUid"] = args ? args.homeDashboardUid : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["theme"] = args ? args.theme : undefined;
             resourceInputs["timezone"] = args ? args.timezone : undefined;
             resourceInputs["weekStart"] = args ? args.weekStart : undefined;
@@ -110,9 +116,13 @@ export interface OrganizationPreferenceState {
      */
     homeDashboardId?: pulumi.Input<number>;
     /**
-     * The Organization home dashboard UID.
+     * The Organization home dashboard UID. This is only available in Grafana 9.0+.
      */
     homeDashboardUid?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
      */
@@ -136,9 +146,13 @@ export interface OrganizationPreferenceArgs {
      */
     homeDashboardId?: pulumi.Input<number>;
     /**
-     * The Organization home dashboard UID.
+     * The Organization home dashboard UID. This is only available in Grafana 9.0+.
      */
     homeDashboardUid?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
      */

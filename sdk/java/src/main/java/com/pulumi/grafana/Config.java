@@ -44,8 +44,8 @@ public final class Config {
         return Codegen.stringProp("cloudApiUrl").config(config).env("GRAFANA_CLOUD_API_URL").get();
     }
 /**
- * Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the
- * `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+ * Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
+ * be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
  * 
  */
     public Optional<Map<String,String>> httpHeaders() {
@@ -73,16 +73,16 @@ public final class Config {
         return Codegen.stringProp("oncallUrl").config(config).env("GRAFANA_ONCALL_URL").get();
     }
 /**
- * The organization id to operate on within grafana. May alternatively be set via the `GRAFANA_ORG_ID` environment
- * variable.
+ * The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
+ * resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
  * 
  */
-    public Integer orgId() {
-        return Codegen.integerProp("orgId").config(config).env("GRAFANA_ORG_ID").require();
+    public Optional<Integer> orgId() {
+        return Codegen.integerProp("orgId").config(config).env("GRAFANA_ORG_ID").get();
     }
 /**
- * The amount of retries to use for Grafana API calls. May alternatively be set via the `GRAFANA_RETRIES` environment
- * variable.
+ * The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
+ * `GRAFANA_RETRIES` environment variable.
  * 
  */
     public Optional<Integer> retries() {

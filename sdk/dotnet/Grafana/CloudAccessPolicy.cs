@@ -97,7 +97,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<ImmutableArray<Outputs.CloudAccessPolicyRealm>> Realms { get; private set; } = null!;
 
         /// <summary>
-        /// Region where the API is deployed. Region where the API is deployed. Generally where the stack is deployed. Valid values are 'us', 'eu', and 'au'.
+        /// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -182,7 +182,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         }
 
         /// <summary>
-        /// Region where the API is deployed. Region where the API is deployed. Generally where the stack is deployed. Valid values are 'us', 'eu', and 'au'.
+        /// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
@@ -240,7 +240,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         }
 
         /// <summary>
-        /// Region where the API is deployed. Region where the API is deployed. Generally where the stack is deployed. Valid values are 'us', 'eu', and 'au'.
+        /// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

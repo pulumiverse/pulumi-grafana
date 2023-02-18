@@ -12,17 +12,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
 {
     public static class GetCloudOrganization
     {
-        /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
-        /// </summary>
         public static Task<GetCloudOrganizationResult> InvokeAsync(GetCloudOrganizationArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudOrganizationResult>("grafana:index/getCloudOrganization:getCloudOrganization", args ?? new GetCloudOrganizationArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
-        /// </summary>
         public static Output<GetCloudOrganizationResult> Invoke(GetCloudOrganizationInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudOrganizationResult>("grafana:index/getCloudOrganization:getCloudOrganization", args ?? new GetCloudOrganizationInvokeArgs(), options.WithDefaults());
     }

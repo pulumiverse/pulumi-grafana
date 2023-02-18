@@ -59,10 +59,10 @@ public final class GetLibraryPanelResult {
      */
     private @Nullable String name;
     /**
-     * @return The numeric ID of the library panel computed by Grafana.
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
      * 
      */
-    private Integer orgId;
+    private @Nullable String orgId;
     /**
      * @return The numeric ID of the library panel computed by Grafana.
      * 
@@ -154,11 +154,11 @@ public final class GetLibraryPanelResult {
         return Optional.ofNullable(this.name);
     }
     /**
-     * @return The numeric ID of the library panel computed by Grafana.
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
      * 
      */
-    public Integer orgId() {
-        return this.orgId;
+    public Optional<String> orgId() {
+        return Optional.ofNullable(this.orgId);
     }
     /**
      * @return The numeric ID of the library panel computed by Grafana.
@@ -214,7 +214,7 @@ public final class GetLibraryPanelResult {
         private String id;
         private String modelJson;
         private @Nullable String name;
-        private Integer orgId;
+        private @Nullable String orgId;
         private Integer panelId;
         private String type;
         private @Nullable String uid;
@@ -289,8 +289,8 @@ public final class GetLibraryPanelResult {
             return this;
         }
         @CustomType.Setter
-        public Builder orgId(Integer orgId) {
-            this.orgId = Objects.requireNonNull(orgId);
+        public Builder orgId(@Nullable String orgId) {
+            this.orgId = orgId;
             return this;
         }
         @CustomType.Setter

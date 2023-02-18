@@ -7,7 +7,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
+// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
 //
 // ## Example Usage

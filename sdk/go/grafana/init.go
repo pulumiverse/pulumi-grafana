@@ -58,6 +58,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &MachineLearningHoliday{}
 	case "grafana:index/machineLearningJob:MachineLearningJob":
 		r = &MachineLearningJob{}
+	case "grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector":
+		r = &MachineLearningOutlierDetector{}
 	case "grafana:index/messageTemplate:MessageTemplate":
 		r = &MessageTemplate{}
 	case "grafana:index/muteTiming:MuteTiming":
@@ -233,6 +235,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"index/machineLearningJob",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/machineLearningOutlierDetector",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

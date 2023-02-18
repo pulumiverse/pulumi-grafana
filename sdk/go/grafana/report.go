@@ -13,8 +13,8 @@ import (
 
 // **Note:** This resource is available only with Grafana Enterprise 7.+.
 //
-// * [Official documentation](https://grafana.com/docs/grafana/latest/enterprise/reporting/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/reporting/)
+// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-reports/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/reporting/)
 //
 // ## Example Usage
 //

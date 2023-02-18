@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
 /**
  * Manages Grafana Alerting rule groups.
  *
- * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules)
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
  *
  * This resource requires Grafana 9.1.0 or later.
@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  * const myAlertRule = new grafana.RuleGroup("myAlertRule", {
  *     folderUid: ruleFolder.uid,
  *     intervalSeconds: 240,
- *     orgId: 1,
+ *     orgId: "1",
  *     rules: [{
  *         name: "My Alert Rule 1",
  *         "for": "2m",
@@ -39,6 +39,7 @@ import * as utilities from "./utilities";
  *             e: "f",
  *             g: "h",
  *         },
+ *         isPaused: false,
  *         datas: [
  *             {
  *                 refId: "A",
@@ -153,7 +154,7 @@ export class RuleGroup extends pulumi.CustomResource {
     /**
      * The ID of the org to which the group belongs.
      */
-    public readonly orgId!: pulumi.Output<number>;
+    public readonly orgId!: pulumi.Output<string>;
     /**
      * The rules within the group.
      */
@@ -221,7 +222,7 @@ export interface RuleGroupState {
     /**
      * The ID of the org to which the group belongs.
      */
-    orgId?: pulumi.Input<number>;
+    orgId?: pulumi.Input<string>;
     /**
      * The rules within the group.
      */
@@ -247,7 +248,7 @@ export interface RuleGroupArgs {
     /**
      * The ID of the org to which the group belongs.
      */
-    orgId: pulumi.Input<number>;
+    orgId: pulumi.Input<string>;
     /**
      * The rules within the group.
      */

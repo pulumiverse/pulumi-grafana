@@ -68,13 +68,13 @@ public final class RuleGroupState extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="orgId")
-    private @Nullable Output<Integer> orgId;
+    private @Nullable Output<String> orgId;
 
     /**
      * @return The ID of the org to which the group belongs.
      * 
      */
-    public Optional<Output<Integer>> orgId() {
+    public Optional<Output<String>> orgId() {
         return Optional.ofNullable(this.orgId);
     }
 
@@ -190,7 +190,7 @@ public final class RuleGroupState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder orgId(@Nullable Output<Integer> orgId) {
+        public Builder orgId(@Nullable Output<String> orgId) {
             $.orgId = orgId;
             return this;
         }
@@ -201,7 +201,7 @@ public final class RuleGroupState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder orgId(Integer orgId) {
+        public Builder orgId(String orgId) {
             return orgId(Output.of(orgId));
         }
 
