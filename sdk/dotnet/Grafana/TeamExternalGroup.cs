@@ -11,8 +11,8 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Grafana
 {
     /// <summary>
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/enterprise/team-sync/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/external_group_sync/)
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
     /// 
     /// ## Example Usage
     /// 

@@ -167,7 +167,7 @@ class ApiKey(pulumi.CustomResource):
         """
         Manages Grafana API Keys.
 
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/auth/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/auth/)
 
         ## Example Usage
 
@@ -196,7 +196,7 @@ class ApiKey(pulumi.CustomResource):
         """
         Manages Grafana API Keys.
 
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/auth/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/auth/)
 
         ## Example Usage
 

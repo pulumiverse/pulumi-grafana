@@ -13,8 +13,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public static class GetUser
     {
         /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
         /// 
         /// This data source uses Grafana's admin APIs for reading users which
         /// does not currently work with API Tokens. You must use basic auth.
@@ -63,8 +63,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetUserResult>("grafana:index/getUser:getUser", args ?? new GetUserArgs(), options.WithDefaults());
 
         /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-server-users/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/user/)
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
         /// 
         /// This data source uses Grafana's admin APIs for reading users which
         /// does not currently work with API Tokens. You must use basic auth.

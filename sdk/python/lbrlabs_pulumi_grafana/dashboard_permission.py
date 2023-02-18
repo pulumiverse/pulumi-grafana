@@ -140,8 +140,8 @@ class DashboardPermission(pulumi.CustomResource):
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DashboardPermissionPermissionArgs']]]]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/permissions/dashboard_folder_permissions/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard_permissions/)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard_permissions/)
 
         ## Example Usage
 
@@ -189,8 +189,8 @@ class DashboardPermission(pulumi.CustomResource):
                  args: DashboardPermissionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/permissions/dashboard_folder_permissions/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard_permissions/)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard_permissions/)
 
         ## Example Usage
 

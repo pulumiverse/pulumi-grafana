@@ -39,10 +39,10 @@ class ProviderArgs:
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
-        :param pulumi.Input[int] org_id: The organization id to operate on within grafana. May alternatively be set via the `GRAFANA_ORG_ID` environment
-               variable.
-        :param pulumi.Input[int] retries: The amount of retries to use for Grafana API calls. May alternatively be set via the `GRAFANA_RETRIES` environment
-               variable.
+        :param pulumi.Input[int] org_id: The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
+               resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+        :param pulumi.Input[int] retries: The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
+               `GRAFANA_RETRIES` environment variable.
         :param pulumi.Input[str] sm_access_token: A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] sm_url: Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
                correct value for each service region is cited in the [Synthetic Monitoring
@@ -208,8 +208,8 @@ class ProviderArgs:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[int]]:
         """
-        The organization id to operate on within grafana. May alternatively be set via the `GRAFANA_ORG_ID` environment
-        variable.
+        The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
+        resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
         """
         return pulumi.get(self, "org_id")
 
@@ -221,8 +221,8 @@ class ProviderArgs:
     @pulumi.getter
     def retries(self) -> Optional[pulumi.Input[int]]:
         """
-        The amount of retries to use for Grafana API calls. May alternatively be set via the `GRAFANA_RETRIES` environment
-        variable.
+        The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
+        `GRAFANA_RETRIES` environment variable.
         """
         return pulumi.get(self, "retries")
 
@@ -348,10 +348,10 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
-        :param pulumi.Input[int] org_id: The organization id to operate on within grafana. May alternatively be set via the `GRAFANA_ORG_ID` environment
-               variable.
-        :param pulumi.Input[int] retries: The amount of retries to use for Grafana API calls. May alternatively be set via the `GRAFANA_RETRIES` environment
-               variable.
+        :param pulumi.Input[int] org_id: The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
+               resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+        :param pulumi.Input[int] retries: The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
+               `GRAFANA_RETRIES` environment variable.
         :param pulumi.Input[str] sm_access_token: A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] sm_url: Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
                correct value for each service region is cited in the [Synthetic Monitoring

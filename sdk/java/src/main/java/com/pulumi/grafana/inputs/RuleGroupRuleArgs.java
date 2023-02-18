@@ -6,6 +6,7 @@ package com.pulumi.grafana.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.grafana.inputs.RuleGroupRuleDataArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -94,6 +95,21 @@ public final class RuleGroupRuleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Sets whether the alert should be paused or not. Defaults to `false`.
+     * 
+     */
+    @Import(name="isPaused")
+    private @Nullable Output<Boolean> isPaused;
+
+    /**
+     * @return Sets whether the alert should be paused or not. Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> isPaused() {
+        return Optional.ofNullable(this.isPaused);
+    }
+
+    /**
      * Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
      * 
      */
@@ -161,6 +177,7 @@ public final class RuleGroupRuleArgs extends com.pulumi.resources.ResourceArgs {
         this.datas = $.datas;
         this.execErrState = $.execErrState;
         this.for_ = $.for_;
+        this.isPaused = $.isPaused;
         this.labels = $.labels;
         this.name = $.name;
         this.noDataState = $.noDataState;
@@ -298,6 +315,27 @@ public final class RuleGroupRuleArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder for_(String for_) {
             return for_(Output.of(for_));
+        }
+
+        /**
+         * @param isPaused Sets whether the alert should be paused or not. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isPaused(@Nullable Output<Boolean> isPaused) {
+            $.isPaused = isPaused;
+            return this;
+        }
+
+        /**
+         * @param isPaused Sets whether the alert should be paused or not. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isPaused(Boolean isPaused) {
+            return isPaused(Output.of(isPaused));
         }
 
         /**

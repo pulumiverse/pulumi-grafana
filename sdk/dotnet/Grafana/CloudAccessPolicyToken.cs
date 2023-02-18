@@ -100,7 +100,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Region of the access policy. Should be set to the same region as the access policy.
+        /// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -190,7 +190,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Region of the access policy. Should be set to the same region as the access policy.
+        /// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
@@ -234,7 +234,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Region of the access policy. Should be set to the same region as the access policy.
+        /// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

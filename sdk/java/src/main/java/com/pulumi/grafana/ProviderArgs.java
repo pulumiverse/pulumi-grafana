@@ -126,16 +126,16 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The organization id to operate on within grafana. May alternatively be set via the `GRAFANA_ORG_ID` environment
-     * variable.
+     * The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
+     * resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
      * 
      */
     @Import(name="orgId", json=true)
     private @Nullable Output<Integer> orgId;
 
     /**
-     * @return The organization id to operate on within grafana. May alternatively be set via the `GRAFANA_ORG_ID` environment
-     * variable.
+     * @return The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
+     * resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
      * 
      */
     public Optional<Output<Integer>> orgId() {
@@ -143,16 +143,16 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The amount of retries to use for Grafana API calls. May alternatively be set via the `GRAFANA_RETRIES` environment
-     * variable.
+     * The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
+     * `GRAFANA_RETRIES` environment variable.
      * 
      */
     @Import(name="retries", json=true)
     private @Nullable Output<Integer> retries;
 
     /**
-     * @return The amount of retries to use for Grafana API calls. May alternatively be set via the `GRAFANA_RETRIES` environment
-     * variable.
+     * @return The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
+     * `GRAFANA_RETRIES` environment variable.
      * 
      */
     public Optional<Output<Integer>> retries() {
@@ -453,8 +453,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param orgId The organization id to operate on within grafana. May alternatively be set via the `GRAFANA_ORG_ID` environment
-         * variable.
+         * @param orgId The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
+         * resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
          * 
          * @return builder
          * 
@@ -465,8 +465,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param orgId The organization id to operate on within grafana. May alternatively be set via the `GRAFANA_ORG_ID` environment
-         * variable.
+         * @param orgId The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
+         * resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
          * 
          * @return builder
          * 
@@ -476,8 +476,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param retries The amount of retries to use for Grafana API calls. May alternatively be set via the `GRAFANA_RETRIES` environment
-         * variable.
+         * @param retries The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
+         * `GRAFANA_RETRIES` environment variable.
          * 
          * @return builder
          * 
@@ -488,8 +488,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param retries The amount of retries to use for Grafana API calls. May alternatively be set via the `GRAFANA_RETRIES` environment
-         * variable.
+         * @param retries The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
+         * `GRAFANA_RETRIES` environment variable.
          * 
          * @return builder
          * 

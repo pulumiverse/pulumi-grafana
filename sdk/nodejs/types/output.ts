@@ -1015,6 +1015,25 @@ export interface MachineLearningHolidayCustomPeriod {
     startTime: string;
 }
 
+export interface MachineLearningOutlierDetectorAlgorithm {
+    /**
+     * For DBSCAN only, specify the configuration map
+     */
+    config?: outputs.MachineLearningOutlierDetectorAlgorithmConfig;
+    /**
+     * The name of the algorithm to use ('mad' or 'dbscan').
+     */
+    name: string;
+    /**
+     * Specify the sensitivity of the detector (in range [0,1]).
+     */
+    sensitivity: number;
+}
+
+export interface MachineLearningOutlierDetectorAlgorithmConfig {
+    epsilon: number;
+}
+
 export interface MuteTimingInterval {
     /**
      * An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
@@ -1410,6 +1429,10 @@ export interface RuleGroupRule {
      * The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
      */
     for?: string;
+    /**
+     * Sets whether the alert should be paused or not. Defaults to `false`.
+     */
+    isPaused?: boolean;
     /**
      * Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
      */

@@ -204,15 +204,15 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? OncallUrl { get; set; }
 
         /// <summary>
-        /// The organization id to operate on within grafana. May alternatively be set via the `GRAFANA_ORG_ID` environment
-        /// variable.
+        /// The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
+        /// resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
         /// </summary>
         [Input("orgId", json: true)]
         public Input<int>? OrgId { get; set; }
 
         /// <summary>
-        /// The amount of retries to use for Grafana API calls. May alternatively be set via the `GRAFANA_RETRIES` environment
-        /// variable.
+        /// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
+        /// `GRAFANA_RETRIES` environment variable.
         /// </summary>
         [Input("retries", json: true)]
         public Input<int>? Retries { get; set; }

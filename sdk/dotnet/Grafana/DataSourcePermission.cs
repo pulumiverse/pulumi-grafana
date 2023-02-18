@@ -11,7 +11,7 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Grafana
 {
     /// <summary>
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/datasource_permissions/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
     /// 
     /// ## Example Usage
     /// 

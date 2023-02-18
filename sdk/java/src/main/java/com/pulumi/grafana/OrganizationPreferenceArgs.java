@@ -32,18 +32,33 @@ public final class OrganizationPreferenceArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * The Organization home dashboard UID.
+     * The Organization home dashboard UID. This is only available in Grafana 9.0+.
      * 
      */
     @Import(name="homeDashboardUid")
     private @Nullable Output<String> homeDashboardUid;
 
     /**
-     * @return The Organization home dashboard UID.
+     * @return The Organization home dashboard UID. This is only available in Grafana 9.0+.
      * 
      */
     public Optional<Output<String>> homeDashboardUid() {
         return Optional.ofNullable(this.homeDashboardUid);
+    }
+
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Import(name="orgId")
+    private @Nullable Output<String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<Output<String>> orgId() {
+        return Optional.ofNullable(this.orgId);
     }
 
     /**
@@ -96,6 +111,7 @@ public final class OrganizationPreferenceArgs extends com.pulumi.resources.Resou
     private OrganizationPreferenceArgs(OrganizationPreferenceArgs $) {
         this.homeDashboardId = $.homeDashboardId;
         this.homeDashboardUid = $.homeDashboardUid;
+        this.orgId = $.orgId;
         this.theme = $.theme;
         this.timezone = $.timezone;
         this.weekStart = $.weekStart;
@@ -141,7 +157,7 @@ public final class OrganizationPreferenceArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param homeDashboardUid The Organization home dashboard UID.
+         * @param homeDashboardUid The Organization home dashboard UID. This is only available in Grafana 9.0+.
          * 
          * @return builder
          * 
@@ -152,13 +168,34 @@ public final class OrganizationPreferenceArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param homeDashboardUid The Organization home dashboard UID.
+         * @param homeDashboardUid The Organization home dashboard UID. This is only available in Grafana 9.0+.
          * 
          * @return builder
          * 
          */
         public Builder homeDashboardUid(String homeDashboardUid) {
             return homeDashboardUid(Output.of(homeDashboardUid));
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(@Nullable Output<String> orgId) {
+            $.orgId = orgId;
+            return this;
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(String orgId) {
+            return orgId(Output.of(orgId));
         }
 
         /**

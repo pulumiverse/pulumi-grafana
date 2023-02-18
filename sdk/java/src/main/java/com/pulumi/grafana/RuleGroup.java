@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 /**
  * Manages Grafana Alerting rule groups.
  * 
- * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules)
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
  * 
  * This resource requires Grafana 9.1.0 or later.
@@ -72,6 +72,7 @@ import javax.annotation.Nullable;
  *                     Map.entry(&#34;e&#34;, &#34;f&#34;),
  *                     Map.entry(&#34;g&#34;, &#34;h&#34;)
  *                 ))
+ *                 .isPaused(false)
  *                 .datas(                
  *                     RuleGroupRuleDataArgs.builder()
  *                         .refId(&#34;A&#34;)
@@ -196,14 +197,14 @@ public class RuleGroup extends com.pulumi.resources.CustomResource {
      * The ID of the org to which the group belongs.
      * 
      */
-    @Export(name="orgId", type=Integer.class, parameters={})
-    private Output<Integer> orgId;
+    @Export(name="orgId", type=String.class, parameters={})
+    private Output<String> orgId;
 
     /**
      * @return The ID of the org to which the group belongs.
      * 
      */
-    public Output<Integer> orgId() {
+    public Output<String> orgId() {
         return this.orgId;
     }
     /**

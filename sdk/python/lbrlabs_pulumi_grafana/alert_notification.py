@@ -32,7 +32,7 @@ class AlertNotificationArgs:
         :param pulumi.Input[str] name: The name of the alert notification channel.
         :param pulumi.Input[Mapping[str, Any]] secure_settings: Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).
         :param pulumi.Input[bool] send_reminder: Whether to send reminders for triggered alerts. Defaults to `false`.
-        :param pulumi.Input[Mapping[str, Any]] settings: Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+        :param pulumi.Input[Mapping[str, Any]] settings: Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
         :param pulumi.Input[str] uid: Unique identifier. If unset, this will be automatically generated.
         """
         pulumi.set(__self__, "type", type)
@@ -141,7 +141,7 @@ class AlertNotificationArgs:
     @pulumi.getter
     def settings(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+        Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
         """
         return pulumi.get(self, "settings")
 
@@ -182,7 +182,7 @@ class _AlertNotificationState:
         :param pulumi.Input[str] name: The name of the alert notification channel.
         :param pulumi.Input[Mapping[str, Any]] secure_settings: Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).
         :param pulumi.Input[bool] send_reminder: Whether to send reminders for triggered alerts. Defaults to `false`.
-        :param pulumi.Input[Mapping[str, Any]] settings: Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+        :param pulumi.Input[Mapping[str, Any]] settings: Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
         :param pulumi.Input[str] type: The type of the alert notification channel.
         :param pulumi.Input[str] uid: Unique identifier. If unset, this will be automatically generated.
         """
@@ -281,7 +281,7 @@ class _AlertNotificationState:
     @pulumi.getter
     def settings(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+        Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
         """
         return pulumi.get(self, "settings")
 
@@ -361,7 +361,7 @@ class AlertNotification(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the alert notification channel.
         :param pulumi.Input[Mapping[str, Any]] secure_settings: Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).
         :param pulumi.Input[bool] send_reminder: Whether to send reminders for triggered alerts. Defaults to `false`.
-        :param pulumi.Input[Mapping[str, Any]] settings: Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+        :param pulumi.Input[Mapping[str, Any]] settings: Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
         :param pulumi.Input[str] type: The type of the alert notification channel.
         :param pulumi.Input[str] uid: Unique identifier. If unset, this will be automatically generated.
         """
@@ -473,7 +473,7 @@ class AlertNotification(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the alert notification channel.
         :param pulumi.Input[Mapping[str, Any]] secure_settings: Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).
         :param pulumi.Input[bool] send_reminder: Whether to send reminders for triggered alerts. Defaults to `false`.
-        :param pulumi.Input[Mapping[str, Any]] settings: Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+        :param pulumi.Input[Mapping[str, Any]] settings: Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
         :param pulumi.Input[str] type: The type of the alert notification channel.
         :param pulumi.Input[str] uid: Unique identifier. If unset, this will be automatically generated.
         """
@@ -544,7 +544,7 @@ class AlertNotification(pulumi.CustomResource):
     @pulumi.getter
     def settings(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
-        Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+        Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
         """
         return pulumi.get(self, "settings")
 

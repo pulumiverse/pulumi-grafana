@@ -25,6 +25,8 @@ func LookupLibraryPanel(ctx *pulumi.Context, args *LookupLibraryPanelArgs, opts 
 type LookupLibraryPanelArgs struct {
 	// Name of the library panel.
 	Name *string `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The unique identifier (UID) of the library panel.
 	Uid *string `pulumi:"uid"`
 }
@@ -49,8 +51,8 @@ type LookupLibraryPanelResult struct {
 	ModelJson string `pulumi:"modelJson"`
 	// Name of the library panel.
 	Name *string `pulumi:"name"`
-	// The numeric ID of the library panel computed by Grafana.
-	OrgId int `pulumi:"orgId"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The numeric ID of the library panel computed by Grafana.
 	PanelId int `pulumi:"panelId"`
 	// Type of the library panel (eg. text).
@@ -80,6 +82,8 @@ func LookupLibraryPanelOutput(ctx *pulumi.Context, args LookupLibraryPanelOutput
 type LookupLibraryPanelOutputArgs struct {
 	// Name of the library panel.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
 	// The unique identifier (UID) of the library panel.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
 }
@@ -148,9 +152,9 @@ func (o LookupLibraryPanelResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupLibraryPanelResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The numeric ID of the library panel computed by Grafana.
-func (o LookupLibraryPanelResultOutput) OrgId() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupLibraryPanelResult) int { return v.OrgId }).(pulumi.IntOutput)
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o LookupLibraryPanelResultOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupLibraryPanelResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // The numeric ID of the library panel computed by Grafana.

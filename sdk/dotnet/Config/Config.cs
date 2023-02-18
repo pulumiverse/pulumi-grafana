@@ -75,8 +75,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
         private static readonly __Value<ImmutableDictionary<string, string>?> _httpHeaders = new __Value<ImmutableDictionary<string, string>?>(() => __config.GetObject<ImmutableDictionary<string, string>>("httpHeaders"));
         /// <summary>
-        /// Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the
-        /// `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+        /// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
+        /// be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
         /// </summary>
         public static ImmutableDictionary<string, string>? HttpHeaders
         {
@@ -116,8 +116,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
         private static readonly __Value<int?> _orgId = new __Value<int?>(() => __config.GetInt32("orgId") ?? Utilities.GetEnvInt32("GRAFANA_ORG_ID"));
         /// <summary>
-        /// The organization id to operate on within grafana. May alternatively be set via the `GRAFANA_ORG_ID` environment
-        /// variable.
+        /// The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
+        /// resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
         /// </summary>
         public static int? OrgId
         {
@@ -127,8 +127,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
         private static readonly __Value<int?> _retries = new __Value<int?>(() => __config.GetInt32("retries") ?? Utilities.GetEnvInt32("GRAFANA_RETRIES"));
         /// <summary>
-        /// The amount of retries to use for Grafana API calls. May alternatively be set via the `GRAFANA_RETRIES` environment
-        /// variable.
+        /// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
+        /// `GRAFANA_RETRIES` environment variable.
         /// </summary>
         public static int? Retries
         {

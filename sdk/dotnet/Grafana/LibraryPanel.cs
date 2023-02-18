@@ -13,8 +13,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// <summary>
     /// Manages Grafana library panels.
     /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/panels/panel-library/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/library_element/)
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/library_element/)
     /// 
     /// ## Example Usage
     /// 
@@ -97,10 +97,10 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The numeric ID of the library panel computed by Grafana.
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
         /// </summary>
         [Output("orgId")]
-        public Output<int> OrgId { get; private set; } = null!;
+        public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// The numeric ID of the library panel computed by Grafana.
@@ -198,6 +198,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
+        /// <summary>
         /// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
         /// </summary>
         [Input("uid")]
@@ -266,10 +272,10 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The numeric ID of the library panel computed by Grafana.
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
         /// </summary>
         [Input("orgId")]
-        public Input<int>? OrgId { get; set; }
+        public Input<string>? OrgId { get; set; }
 
         /// <summary>
         /// The numeric ID of the library panel computed by Grafana.

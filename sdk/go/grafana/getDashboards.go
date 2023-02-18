@@ -13,8 +13,8 @@ import (
 // Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
 //
 // * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-// * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+// * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
 func GetDashboards(ctx *pulumi.Context, args *GetDashboardsArgs, opts ...pulumi.InvokeOption) (*GetDashboardsResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetDashboardsResult

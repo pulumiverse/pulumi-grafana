@@ -13,8 +13,8 @@ import (
 
 // Manages Grafana library panels.
 //
-// * [Official documentation](https://grafana.com/docs/grafana/latest/panels/panel-library/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/library_element/)
+// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/library_element/)
 //
 // ## Example Usage
 //
@@ -79,8 +79,8 @@ type LibraryPanel struct {
 	ModelJson pulumi.StringOutput `pulumi:"modelJson"`
 	// Name of the library panel.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The numeric ID of the library panel computed by Grafana.
-	OrgId pulumi.IntOutput `pulumi:"orgId"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// The numeric ID of the library panel computed by Grafana.
 	PanelId pulumi.IntOutput `pulumi:"panelId"`
 	// Type of the library panel (eg. text).
@@ -142,8 +142,8 @@ type libraryPanelState struct {
 	ModelJson *string `pulumi:"modelJson"`
 	// Name of the library panel.
 	Name *string `pulumi:"name"`
-	// The numeric ID of the library panel computed by Grafana.
-	OrgId *int `pulumi:"orgId"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The numeric ID of the library panel computed by Grafana.
 	PanelId *int `pulumi:"panelId"`
 	// Type of the library panel (eg. text).
@@ -173,8 +173,8 @@ type LibraryPanelState struct {
 	ModelJson pulumi.StringPtrInput
 	// Name of the library panel.
 	Name pulumi.StringPtrInput
-	// The numeric ID of the library panel computed by Grafana.
-	OrgId pulumi.IntPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The numeric ID of the library panel computed by Grafana.
 	PanelId pulumi.IntPtrInput
 	// Type of the library panel (eg. text).
@@ -198,6 +198,8 @@ type libraryPanelArgs struct {
 	ModelJson string `pulumi:"modelJson"`
 	// Name of the library panel.
 	Name *string `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
 	Uid *string `pulumi:"uid"`
 }
@@ -210,6 +212,8 @@ type LibraryPanelArgs struct {
 	ModelJson pulumi.StringInput
 	// Name of the library panel.
 	Name pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
 	Uid pulumi.StringPtrInput
 }
@@ -341,9 +345,9 @@ func (o LibraryPanelOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LibraryPanel) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The numeric ID of the library panel computed by Grafana.
-func (o LibraryPanelOutput) OrgId() pulumi.IntOutput {
-	return o.ApplyT(func(v *LibraryPanel) pulumi.IntOutput { return v.OrgId }).(pulumi.IntOutput)
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o LibraryPanelOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LibraryPanel) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // The numeric ID of the library panel computed by Grafana.

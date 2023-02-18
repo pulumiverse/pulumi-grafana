@@ -13,8 +13,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public static class GetOrganization
     {
         /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -53,8 +53,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationResult>("grafana:index/getOrganization:getOrganization", args ?? new GetOrganizationArgs(), options.WithDefaults());
 
         /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/org/)
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
         /// 
         /// {{% examples %}}
         /// ## Example Usage

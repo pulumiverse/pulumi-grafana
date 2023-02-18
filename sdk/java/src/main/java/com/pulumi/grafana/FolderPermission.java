@@ -16,8 +16,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/permissions/dashboard_folder_permissions/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_permissions/)
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
  * 
  * ## Example Usage
  * ```java

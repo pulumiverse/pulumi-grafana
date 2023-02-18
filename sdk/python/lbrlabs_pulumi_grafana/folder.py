@@ -115,8 +115,8 @@ class Folder(pulumi.CustomResource):
                  uid: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder/)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
 
         ## Example Usage
 
@@ -159,8 +159,8 @@ class Folder(pulumi.CustomResource):
                  args: FolderArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder/)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
 
         ## Example Usage
 

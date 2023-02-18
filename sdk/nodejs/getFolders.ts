@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
  *
  * ## Example Usage

@@ -20,7 +20,7 @@ class GetOrganizationPreferencesResult:
     """
     A collection of values returned by getOrganizationPreferences.
     """
-    def __init__(__self__, home_dashboard_id=None, home_dashboard_uid=None, id=None, theme=None, timezone=None, week_start=None):
+    def __init__(__self__, home_dashboard_id=None, home_dashboard_uid=None, id=None, org_id=None, theme=None, timezone=None, week_start=None):
         if home_dashboard_id and not isinstance(home_dashboard_id, int):
             raise TypeError("Expected argument 'home_dashboard_id' to be a int")
         pulumi.set(__self__, "home_dashboard_id", home_dashboard_id)
@@ -30,6 +30,9 @@ class GetOrganizationPreferencesResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if org_id and not isinstance(org_id, str):
+            raise TypeError("Expected argument 'org_id' to be a str")
+        pulumi.set(__self__, "org_id", org_id)
         if theme and not isinstance(theme, str):
             raise TypeError("Expected argument 'theme' to be a str")
         pulumi.set(__self__, "theme", theme)
@@ -52,7 +55,7 @@ class GetOrganizationPreferencesResult:
     @pulumi.getter(name="homeDashboardUid")
     def home_dashboard_uid(self) -> str:
         """
-        The Organization home dashboard UID.
+        The Organization home dashboard UID. This is only available in Grafana 9.0+.
         """
         return pulumi.get(self, "home_dashboard_uid")
 
@@ -63,6 +66,14 @@ class GetOrganizationPreferencesResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> str:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter
@@ -98,6 +109,7 @@ class AwaitableGetOrganizationPreferencesResult(GetOrganizationPreferencesResult
             home_dashboard_id=self.home_dashboard_id,
             home_dashboard_uid=self.home_dashboard_uid,
             id=self.id,
+            org_id=self.org_id,
             theme=self.theme,
             timezone=self.timezone,
             week_start=self.week_start)
@@ -105,7 +117,7 @@ class AwaitableGetOrganizationPreferencesResult(GetOrganizationPreferencesResult
 
 def get_organization_preferences(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationPreferencesResult:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
     * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
 
     ## Example Usage
@@ -125,6 +137,7 @@ def get_organization_preferences(opts: Optional[pulumi.InvokeOptions] = None) ->
         home_dashboard_id=__ret__.home_dashboard_id,
         home_dashboard_uid=__ret__.home_dashboard_uid,
         id=__ret__.id,
+        org_id=__ret__.org_id,
         theme=__ret__.theme,
         timezone=__ret__.timezone,
         week_start=__ret__.week_start)

@@ -48,6 +48,7 @@ from .get_users import *
 from .library_panel import *
 from .machine_learning_holiday import *
 from .machine_learning_job import *
+from .machine_learning_outlier_detector import *
 from .message_template import *
 from .mute_timing import *
 from .notification_policy import *
@@ -239,6 +240,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_grafana",
   "classes": {
    "grafana:index/machineLearningJob:MachineLearningJob": "MachineLearningJob"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/machineLearningOutlierDetector",
+  "fqn": "lbrlabs_pulumi_grafana",
+  "classes": {
+   "grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector": "MachineLearningOutlierDetector"
   }
  },
  {

@@ -89,7 +89,7 @@ export class CloudAccessPolicy extends pulumi.CustomResource {
     public /*out*/ readonly policyId!: pulumi.Output<string>;
     public readonly realms!: pulumi.Output<outputs.CloudAccessPolicyRealm[]>;
     /**
-     * Region where the API is deployed. Region where the API is deployed. Generally where the stack is deployed. Valid values are 'us', 'eu', and 'au'.
+     * Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -169,7 +169,7 @@ export interface CloudAccessPolicyState {
     policyId?: pulumi.Input<string>;
     realms?: pulumi.Input<pulumi.Input<inputs.CloudAccessPolicyRealm>[]>;
     /**
-     * Region where the API is deployed. Region where the API is deployed. Generally where the stack is deployed. Valid values are 'us', 'eu', and 'au'.
+     * Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      */
     region?: pulumi.Input<string>;
     /**
@@ -196,7 +196,7 @@ export interface CloudAccessPolicyArgs {
     name?: pulumi.Input<string>;
     realms: pulumi.Input<pulumi.Input<inputs.CloudAccessPolicyRealm>[]>;
     /**
-     * Region where the API is deployed. Region where the API is deployed. Generally where the stack is deployed. Valid values are 'us', 'eu', and 'au'.
+     * Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      */
     region: pulumi.Input<string>;
     /**

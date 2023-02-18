@@ -62,6 +62,21 @@ public final class DashboardArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Import(name="orgId")
+    private @Nullable Output<String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<Output<String>> orgId() {
+        return Optional.ofNullable(this.orgId);
+    }
+
+    /**
      * Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
      * 
      */
@@ -82,6 +97,7 @@ public final class DashboardArgs extends com.pulumi.resources.ResourceArgs {
         this.configJson = $.configJson;
         this.folder = $.folder;
         this.message = $.message;
+        this.orgId = $.orgId;
         this.overwrite = $.overwrite;
     }
 
@@ -164,6 +180,27 @@ public final class DashboardArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder message(String message) {
             return message(Output.of(message));
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(@Nullable Output<String> orgId) {
+            $.orgId = orgId;
+            return this;
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(String orgId) {
+            return orgId(Output.of(orgId));
         }
 
         /**

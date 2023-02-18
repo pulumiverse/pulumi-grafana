@@ -13,7 +13,7 @@ import (
 
 // Manages Grafana Alerting rule groups.
 //
-// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules)
+// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/)
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
 //
 // This resource requires Grafana 9.1.0 or later.
@@ -54,7 +54,7 @@ import (
 //			_, err = grafana.NewRuleGroup(ctx, "myAlertRule", &grafana.RuleGroupArgs{
 //				FolderUid:       ruleFolder.Uid,
 //				IntervalSeconds: pulumi.Int(240),
-//				OrgId:           pulumi.Int(1),
+//				OrgId:           pulumi.String("1"),
 //				Rules: grafana.RuleGroupRuleArray{
 //					&grafana.RuleGroupRuleArgs{
 //						Name:         pulumi.String("My Alert Rule 1"),
@@ -70,6 +70,7 @@ import (
 //							"e": pulumi.String("f"),
 //							"g": pulumi.String("h"),
 //						},
+//						IsPaused: pulumi.Bool(false),
 //						Datas: grafana.RuleGroupRuleDataArray{
 //							&grafana.RuleGroupRuleDataArgs{
 //								RefId:     pulumi.String("A"),
@@ -157,7 +158,7 @@ type RuleGroup struct {
 	// The name of the rule group.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the org to which the group belongs.
-	OrgId pulumi.IntOutput `pulumi:"orgId"`
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// The rules within the group.
 	Rules RuleGroupRuleArrayOutput `pulumi:"rules"`
 }
@@ -211,7 +212,7 @@ type ruleGroupState struct {
 	// The name of the rule group.
 	Name *string `pulumi:"name"`
 	// The ID of the org to which the group belongs.
-	OrgId *int `pulumi:"orgId"`
+	OrgId *string `pulumi:"orgId"`
 	// The rules within the group.
 	Rules []RuleGroupRule `pulumi:"rules"`
 }
@@ -224,7 +225,7 @@ type RuleGroupState struct {
 	// The name of the rule group.
 	Name pulumi.StringPtrInput
 	// The ID of the org to which the group belongs.
-	OrgId pulumi.IntPtrInput
+	OrgId pulumi.StringPtrInput
 	// The rules within the group.
 	Rules RuleGroupRuleArrayInput
 }
@@ -241,7 +242,7 @@ type ruleGroupArgs struct {
 	// The name of the rule group.
 	Name *string `pulumi:"name"`
 	// The ID of the org to which the group belongs.
-	OrgId int `pulumi:"orgId"`
+	OrgId string `pulumi:"orgId"`
 	// The rules within the group.
 	Rules []RuleGroupRule `pulumi:"rules"`
 }
@@ -255,7 +256,7 @@ type RuleGroupArgs struct {
 	// The name of the rule group.
 	Name pulumi.StringPtrInput
 	// The ID of the org to which the group belongs.
-	OrgId pulumi.IntInput
+	OrgId pulumi.StringInput
 	// The rules within the group.
 	Rules RuleGroupRuleArrayInput
 }
@@ -363,8 +364,8 @@ func (o RuleGroupOutput) Name() pulumi.StringOutput {
 }
 
 // The ID of the org to which the group belongs.
-func (o RuleGroupOutput) OrgId() pulumi.IntOutput {
-	return o.ApplyT(func(v *RuleGroup) pulumi.IntOutput { return v.OrgId }).(pulumi.IntOutput)
+func (o RuleGroupOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RuleGroup) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
 // The rules within the group.

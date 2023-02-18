@@ -13,7 +13,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// <summary>
     /// Manages Grafana Alerting message templates.
     /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/contact-points/message-templating/)
+    /// * [Official documentation](https://grafana.com/docs/grafana/next/alerting/manage-notifications/create-message-template/)
     /// * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#templates)
     /// 
     /// This resource requires Grafana 9.1.0 or later.

@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
 //
 // ## Example Usage
@@ -45,8 +45,10 @@ type OrganizationPreference struct {
 
 	// The Organization home dashboard ID.
 	HomeDashboardId pulumi.IntPtrOutput `pulumi:"homeDashboardId"`
-	// The Organization home dashboard UID.
+	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid pulumi.StringPtrOutput `pulumi:"homeDashboardUid"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
 	Theme pulumi.StringPtrOutput `pulumi:"theme"`
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
@@ -87,8 +89,10 @@ func GetOrganizationPreference(ctx *pulumi.Context,
 type organizationPreferenceState struct {
 	// The Organization home dashboard ID.
 	HomeDashboardId *int `pulumi:"homeDashboardId"`
-	// The Organization home dashboard UID.
+	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid *string `pulumi:"homeDashboardUid"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
 	Theme *string `pulumi:"theme"`
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
@@ -100,8 +104,10 @@ type organizationPreferenceState struct {
 type OrganizationPreferenceState struct {
 	// The Organization home dashboard ID.
 	HomeDashboardId pulumi.IntPtrInput
-	// The Organization home dashboard UID.
+	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
 	Theme pulumi.StringPtrInput
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
@@ -117,8 +123,10 @@ func (OrganizationPreferenceState) ElementType() reflect.Type {
 type organizationPreferenceArgs struct {
 	// The Organization home dashboard ID.
 	HomeDashboardId *int `pulumi:"homeDashboardId"`
-	// The Organization home dashboard UID.
+	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid *string `pulumi:"homeDashboardUid"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
 	Theme *string `pulumi:"theme"`
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
@@ -131,8 +139,10 @@ type organizationPreferenceArgs struct {
 type OrganizationPreferenceArgs struct {
 	// The Organization home dashboard ID.
 	HomeDashboardId pulumi.IntPtrInput
-	// The Organization home dashboard UID.
+	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
 	Theme pulumi.StringPtrInput
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
@@ -233,9 +243,14 @@ func (o OrganizationPreferenceOutput) HomeDashboardId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *OrganizationPreference) pulumi.IntPtrOutput { return v.HomeDashboardId }).(pulumi.IntPtrOutput)
 }
 
-// The Organization home dashboard UID.
+// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 func (o OrganizationPreferenceOutput) HomeDashboardUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OrganizationPreference) pulumi.StringPtrOutput { return v.HomeDashboardUid }).(pulumi.StringPtrOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o OrganizationPreferenceOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OrganizationPreference) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // The Organization theme. Available values are `light`, `dark`, or an empty string for the default.

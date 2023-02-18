@@ -11,8 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/annotations/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/annotations/)
+// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
 //
 // ## Example Usage
 //

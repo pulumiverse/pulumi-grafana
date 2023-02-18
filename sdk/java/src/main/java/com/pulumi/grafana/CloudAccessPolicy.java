@@ -143,14 +143,14 @@ public class CloudAccessPolicy extends com.pulumi.resources.CustomResource {
         return this.realms;
     }
     /**
-     * Region where the API is deployed. Region where the API is deployed. Generally where the stack is deployed. Valid values are &#39;us&#39;, &#39;eu&#39;, and &#39;au&#39;.
+     * Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      * 
      */
     @Export(name="region", type=String.class, parameters={})
     private Output<String> region;
 
     /**
-     * @return Region where the API is deployed. Region where the API is deployed. Generally where the stack is deployed. Valid values are &#39;us&#39;, &#39;eu&#39;, and &#39;au&#39;.
+     * @return Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      * 
      */
     public Output<String> region() {

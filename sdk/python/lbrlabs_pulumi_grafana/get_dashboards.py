@@ -98,8 +98,8 @@ def get_dashboards(folder_ids: Optional[Sequence[int]] = None,
     Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
 
     * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-    * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-    * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+    * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+    * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
 
 
     :param Sequence[int] folder_ids: Numerical IDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `[0]` for General folder), or leave blank to get all dashboards in all folders.
@@ -130,8 +130,8 @@ def get_dashboards_output(folder_ids: Optional[pulumi.Input[Optional[Sequence[in
     Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
 
     * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-    * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-    * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+    * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+    * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
 
 
     :param Sequence[int] folder_ids: Numerical IDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `[0]` for General folder), or leave blank to get all dashboards in all folders.

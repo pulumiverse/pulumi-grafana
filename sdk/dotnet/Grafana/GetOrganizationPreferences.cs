@@ -13,7 +13,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public static class GetOrganizationPreferences
     {
         /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
         /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
         /// 
         /// {{% examples %}}
@@ -47,13 +47,17 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         public readonly int HomeDashboardId;
         /// <summary>
-        /// The Organization home dashboard UID.
+        /// The Organization home dashboard UID. This is only available in Grafana 9.0+.
         /// </summary>
         public readonly string HomeDashboardUid;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        public readonly string OrgId;
         /// <summary>
         /// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
         /// </summary>
@@ -75,6 +79,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
             string id,
 
+            string orgId,
+
             string theme,
 
             string timezone,
@@ -84,6 +90,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
             HomeDashboardId = homeDashboardId;
             HomeDashboardUid = homeDashboardUid;
             Id = id;
+            OrgId = orgId;
             Theme = theme;
             Timezone = timezone;
             WeekStart = weekStart;

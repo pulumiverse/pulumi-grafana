@@ -216,6 +216,11 @@ export type MachineLearningJob = import("./machineLearningJob").MachineLearningJ
 export const MachineLearningJob: typeof import("./machineLearningJob").MachineLearningJob = null as any;
 utilities.lazyLoad(exports, ["MachineLearningJob"], () => require("./machineLearningJob"));
 
+export { MachineLearningOutlierDetectorArgs, MachineLearningOutlierDetectorState } from "./machineLearningOutlierDetector";
+export type MachineLearningOutlierDetector = import("./machineLearningOutlierDetector").MachineLearningOutlierDetector;
+export const MachineLearningOutlierDetector: typeof import("./machineLearningOutlierDetector").MachineLearningOutlierDetector = null as any;
+utilities.lazyLoad(exports, ["MachineLearningOutlierDetector"], () => require("./machineLearningOutlierDetector"));
+
 export { MessageTemplateArgs, MessageTemplateState } from "./messageTemplate";
 export type MessageTemplate = import("./messageTemplate").MessageTemplate;
 export const MessageTemplate: typeof import("./messageTemplate").MessageTemplate = null as any;
@@ -408,6 +413,8 @@ const _module = {
                 return new MachineLearningHoliday(name, <any>undefined, { urn })
             case "grafana:index/machineLearningJob:MachineLearningJob":
                 return new MachineLearningJob(name, <any>undefined, { urn })
+            case "grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector":
+                return new MachineLearningOutlierDetector(name, <any>undefined, { urn })
             case "grafana:index/messageTemplate:MessageTemplate":
                 return new MessageTemplate(name, <any>undefined, { urn })
             case "grafana:index/muteTiming:MuteTiming":
@@ -486,6 +493,7 @@ pulumi.runtime.registerResourceModule("grafana", "index/folderPermission", _modu
 pulumi.runtime.registerResourceModule("grafana", "index/libraryPanel", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/machineLearningHoliday", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/machineLearningJob", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/machineLearningOutlierDetector", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/messageTemplate", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/muteTiming", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/notificationPolicy", _module)

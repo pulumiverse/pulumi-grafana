@@ -35,6 +35,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// </summary>
         public readonly string? For;
         /// <summary>
+        /// Sets whether the alert should be paused or not. Defaults to `false`.
+        /// </summary>
+        public readonly bool? IsPaused;
+        /// <summary>
         /// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
@@ -63,6 +67,8 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
             string? @for,
 
+            bool? isPaused,
+
             ImmutableDictionary<string, string>? labels,
 
             string name,
@@ -76,6 +82,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
             Datas = datas;
             ExecErrState = execErrState;
             For = @for;
+            IsPaused = isPaused;
             Labels = labels;
             Name = name;
             NoDataState = noDataState;

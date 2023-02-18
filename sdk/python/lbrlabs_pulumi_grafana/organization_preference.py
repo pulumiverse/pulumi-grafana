@@ -16,13 +16,15 @@ class OrganizationPreferenceArgs:
     def __init__(__self__, *,
                  home_dashboard_id: Optional[pulumi.Input[int]] = None,
                  home_dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  theme: Optional[pulumi.Input[str]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
                  week_start: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a OrganizationPreference resource.
         :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID.
-        :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID.
+        :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
         :param pulumi.Input[str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
         :param pulumi.Input[str] week_start: The Organization week start.
@@ -31,6 +33,8 @@ class OrganizationPreferenceArgs:
             pulumi.set(__self__, "home_dashboard_id", home_dashboard_id)
         if home_dashboard_uid is not None:
             pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if theme is not None:
             pulumi.set(__self__, "theme", theme)
         if timezone is not None:
@@ -54,13 +58,25 @@ class OrganizationPreferenceArgs:
     @pulumi.getter(name="homeDashboardUid")
     def home_dashboard_uid(self) -> Optional[pulumi.Input[str]]:
         """
-        The Organization home dashboard UID.
+        The Organization home dashboard UID. This is only available in Grafana 9.0+.
         """
         return pulumi.get(self, "home_dashboard_uid")
 
     @home_dashboard_uid.setter
     def home_dashboard_uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "home_dashboard_uid", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter
@@ -104,13 +120,15 @@ class _OrganizationPreferenceState:
     def __init__(__self__, *,
                  home_dashboard_id: Optional[pulumi.Input[int]] = None,
                  home_dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  theme: Optional[pulumi.Input[str]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
                  week_start: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering OrganizationPreference resources.
         :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID.
-        :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID.
+        :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
         :param pulumi.Input[str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
         :param pulumi.Input[str] week_start: The Organization week start.
@@ -119,6 +137,8 @@ class _OrganizationPreferenceState:
             pulumi.set(__self__, "home_dashboard_id", home_dashboard_id)
         if home_dashboard_uid is not None:
             pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if theme is not None:
             pulumi.set(__self__, "theme", theme)
         if timezone is not None:
@@ -142,13 +162,25 @@ class _OrganizationPreferenceState:
     @pulumi.getter(name="homeDashboardUid")
     def home_dashboard_uid(self) -> Optional[pulumi.Input[str]]:
         """
-        The Organization home dashboard UID.
+        The Organization home dashboard UID. This is only available in Grafana 9.0+.
         """
         return pulumi.get(self, "home_dashboard_uid")
 
     @home_dashboard_uid.setter
     def home_dashboard_uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "home_dashboard_uid", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter
@@ -194,12 +226,13 @@ class OrganizationPreference(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  home_dashboard_id: Optional[pulumi.Input[int]] = None,
                  home_dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  theme: Optional[pulumi.Input[str]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
                  week_start: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
 
         ## Example Usage
@@ -217,7 +250,8 @@ class OrganizationPreference(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID.
-        :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID.
+        :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
         :param pulumi.Input[str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
         :param pulumi.Input[str] week_start: The Organization week start.
@@ -229,7 +263,7 @@ class OrganizationPreference(pulumi.CustomResource):
                  args: Optional[OrganizationPreferenceArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-organizations/)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
 
         ## Example Usage
@@ -261,6 +295,7 @@ class OrganizationPreference(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  home_dashboard_id: Optional[pulumi.Input[int]] = None,
                  home_dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  theme: Optional[pulumi.Input[str]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
                  week_start: Optional[pulumi.Input[str]] = None,
@@ -275,6 +310,7 @@ class OrganizationPreference(pulumi.CustomResource):
 
             __props__.__dict__["home_dashboard_id"] = home_dashboard_id
             __props__.__dict__["home_dashboard_uid"] = home_dashboard_uid
+            __props__.__dict__["org_id"] = org_id
             __props__.__dict__["theme"] = theme
             __props__.__dict__["timezone"] = timezone
             __props__.__dict__["week_start"] = week_start
@@ -290,6 +326,7 @@ class OrganizationPreference(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             home_dashboard_id: Optional[pulumi.Input[int]] = None,
             home_dashboard_uid: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
             theme: Optional[pulumi.Input[str]] = None,
             timezone: Optional[pulumi.Input[str]] = None,
             week_start: Optional[pulumi.Input[str]] = None) -> 'OrganizationPreference':
@@ -301,7 +338,8 @@ class OrganizationPreference(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID.
-        :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID.
+        :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
         :param pulumi.Input[str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
         :param pulumi.Input[str] week_start: The Organization week start.
@@ -312,6 +350,7 @@ class OrganizationPreference(pulumi.CustomResource):
 
         __props__.__dict__["home_dashboard_id"] = home_dashboard_id
         __props__.__dict__["home_dashboard_uid"] = home_dashboard_uid
+        __props__.__dict__["org_id"] = org_id
         __props__.__dict__["theme"] = theme
         __props__.__dict__["timezone"] = timezone
         __props__.__dict__["week_start"] = week_start
@@ -329,9 +368,17 @@ class OrganizationPreference(pulumi.CustomResource):
     @pulumi.getter(name="homeDashboardUid")
     def home_dashboard_uid(self) -> pulumi.Output[Optional[str]]:
         """
-        The Organization home dashboard UID.
+        The Organization home dashboard UID. This is only available in Grafana 9.0+.
         """
         return pulumi.get(self, "home_dashboard_uid")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter

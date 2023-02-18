@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
  * Manages Grafana dashboards.
  * 
  * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
  * 
  * ## Example Usage
  * ```java
@@ -55,7 +55,11 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * ```sh
- *  $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{dashboard_uid}}
+ *  $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{dashboard_uid}} # To use the default provider org
+ * ```
+ * 
+ * ```sh
+ *  $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{org_id}}:{{dashboard_uid}} # When &#34;org_id&#34; is set on the resource
  * ```
  * 
  */
@@ -116,6 +120,20 @@ public class Dashboard extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> message() {
         return Codegen.optional(this.message);
+    }
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Export(name="orgId", type=String.class, parameters={})
+    private Output</* @Nullable */ String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Output<Optional<String>> orgId() {
+        return Codegen.optional(this.orgId);
     }
     /**
      * Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.

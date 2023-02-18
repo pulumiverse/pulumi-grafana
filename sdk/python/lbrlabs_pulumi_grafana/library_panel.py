@@ -17,12 +17,14 @@ class LibraryPanelArgs:
                  model_json: pulumi.Input[str],
                  folder_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LibraryPanel resource.
         :param pulumi.Input[str] model_json: The JSON model for the library panel.
         :param pulumi.Input[int] folder_id: ID of the folder where the library panel is stored.
         :param pulumi.Input[str] name: Name of the library panel.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] uid: The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
         """
         pulumi.set(__self__, "model_json", model_json)
@@ -30,6 +32,8 @@ class LibraryPanelArgs:
             pulumi.set(__self__, "folder_id", folder_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
 
@@ -70,6 +74,18 @@ class LibraryPanelArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
+
+    @property
     @pulumi.getter
     def uid(self) -> Optional[pulumi.Input[str]]:
         """
@@ -93,7 +109,7 @@ class _LibraryPanelState:
                  folder_uid: Optional[pulumi.Input[str]] = None,
                  model_json: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 org_id: Optional[pulumi.Input[int]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  panel_id: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
@@ -109,7 +125,7 @@ class _LibraryPanelState:
         :param pulumi.Input[str] folder_uid: Unique ID (UID) of the folder containing the library panel.
         :param pulumi.Input[str] model_json: The JSON model for the library panel.
         :param pulumi.Input[str] name: Name of the library panel.
-        :param pulumi.Input[int] org_id: The numeric ID of the library panel computed by Grafana.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[int] panel_id: The numeric ID of the library panel computed by Grafana.
         :param pulumi.Input[str] type: Type of the library panel (eg. text).
         :param pulumi.Input[str] uid: The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
@@ -243,14 +259,14 @@ class _LibraryPanelState:
 
     @property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> Optional[pulumi.Input[int]]:
+    def org_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The numeric ID of the library panel computed by Grafana.
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
-    def org_id(self, value: Optional[pulumi.Input[int]]):
+    def org_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "org_id", value)
 
     @property
@@ -322,13 +338,14 @@ class LibraryPanel(pulumi.CustomResource):
                  folder_id: Optional[pulumi.Input[int]] = None,
                  model_json: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Manages Grafana library panels.
 
-        * [Official documentation](https://grafana.com/docs/grafana/latest/panels/panel-library/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/library_element/)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/library_element/)
 
         ## Example Usage
 
@@ -355,6 +372,7 @@ class LibraryPanel(pulumi.CustomResource):
         :param pulumi.Input[int] folder_id: ID of the folder where the library panel is stored.
         :param pulumi.Input[str] model_json: The JSON model for the library panel.
         :param pulumi.Input[str] name: Name of the library panel.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] uid: The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
         """
         ...
@@ -366,8 +384,8 @@ class LibraryPanel(pulumi.CustomResource):
         """
         Manages Grafana library panels.
 
-        * [Official documentation](https://grafana.com/docs/grafana/latest/panels/panel-library/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/library_element/)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/library_element/)
 
         ## Example Usage
 
@@ -407,6 +425,7 @@ class LibraryPanel(pulumi.CustomResource):
                  folder_id: Optional[pulumi.Input[int]] = None,
                  model_json: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -422,13 +441,13 @@ class LibraryPanel(pulumi.CustomResource):
                 raise TypeError("Missing required property 'model_json'")
             __props__.__dict__["model_json"] = model_json
             __props__.__dict__["name"] = name
+            __props__.__dict__["org_id"] = org_id
             __props__.__dict__["uid"] = uid
             __props__.__dict__["created"] = None
             __props__.__dict__["dashboard_ids"] = None
             __props__.__dict__["description"] = None
             __props__.__dict__["folder_name"] = None
             __props__.__dict__["folder_uid"] = None
-            __props__.__dict__["org_id"] = None
             __props__.__dict__["panel_id"] = None
             __props__.__dict__["type"] = None
             __props__.__dict__["updated"] = None
@@ -451,7 +470,7 @@ class LibraryPanel(pulumi.CustomResource):
             folder_uid: Optional[pulumi.Input[str]] = None,
             model_json: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            org_id: Optional[pulumi.Input[int]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
             panel_id: Optional[pulumi.Input[int]] = None,
             type: Optional[pulumi.Input[str]] = None,
             uid: Optional[pulumi.Input[str]] = None,
@@ -472,7 +491,7 @@ class LibraryPanel(pulumi.CustomResource):
         :param pulumi.Input[str] folder_uid: Unique ID (UID) of the folder containing the library panel.
         :param pulumi.Input[str] model_json: The JSON model for the library panel.
         :param pulumi.Input[str] name: Name of the library panel.
-        :param pulumi.Input[int] org_id: The numeric ID of the library panel computed by Grafana.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[int] panel_id: The numeric ID of the library panel computed by Grafana.
         :param pulumi.Input[str] type: Type of the library panel (eg. text).
         :param pulumi.Input[str] uid: The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
@@ -565,9 +584,9 @@ class LibraryPanel(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> pulumi.Output[int]:
+    def org_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The numeric ID of the library panel computed by Grafana.
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         return pulumi.get(self, "org_id")
 

@@ -16,8 +16,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/preferences/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/team/)
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-preferences/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
  * 
  * ## Example Usage
  * ```java

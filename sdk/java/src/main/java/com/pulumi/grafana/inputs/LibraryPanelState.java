@@ -138,17 +138,17 @@ public final class LibraryPanelState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The numeric ID of the library panel computed by Grafana.
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      * 
      */
     @Import(name="orgId")
-    private @Nullable Output<Integer> orgId;
+    private @Nullable Output<String> orgId;
 
     /**
-     * @return The numeric ID of the library panel computed by Grafana.
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
      * 
      */
-    public Optional<Output<Integer>> orgId() {
+    public Optional<Output<String>> orgId() {
         return Optional.ofNullable(this.orgId);
     }
 
@@ -443,23 +443,23 @@ public final class LibraryPanelState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param orgId The numeric ID of the library panel computed by Grafana.
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
          * 
          * @return builder
          * 
          */
-        public Builder orgId(@Nullable Output<Integer> orgId) {
+        public Builder orgId(@Nullable Output<String> orgId) {
             $.orgId = orgId;
             return this;
         }
 
         /**
-         * @param orgId The numeric ID of the library panel computed by Grafana.
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
          * 
          * @return builder
          * 
          */
-        public Builder orgId(Integer orgId) {
+        public Builder orgId(String orgId) {
             return orgId(Output.of(orgId));
         }
 

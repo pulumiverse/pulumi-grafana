@@ -13,8 +13,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public static class GetFolder
     {
         /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder/)
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -48,8 +48,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFolderResult>("grafana:index/getFolder:getFolder", args ?? new GetFolderArgs(), options.WithDefaults());
 
         /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-folders/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder/)
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
         /// 
         /// {{% examples %}}
         /// ## Example Usage

@@ -12,7 +12,7 @@ import (
 
 // Manages Grafana Alerting contact points.
 //
-// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/contact-points)
+// * [Official documentation](https://grafana.com/docs/grafana/next/alerting/fundamentals/contact-points/)
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#contact-points)
 //
 // This resource requires Grafana 9.1.0 or later.

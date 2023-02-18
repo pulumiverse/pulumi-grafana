@@ -13,8 +13,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public static class GetTeam
     {
         /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-teams/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/team/)
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -47,8 +47,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTeamResult>("grafana:index/getTeam:getTeam", args ?? new GetTeamArgs(), options.WithDefaults());
 
         /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/manage-users-and-permissions/manage-teams/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/http_api/team/)
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
         /// 
         /// {{% examples %}}
         /// ## Example Usage

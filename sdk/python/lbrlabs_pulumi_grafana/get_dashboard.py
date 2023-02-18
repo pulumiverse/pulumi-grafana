@@ -157,8 +157,8 @@ def get_dashboard(dashboard_id: Optional[int] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDashboardResult:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-    * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-    * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+    * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+    * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
 
     ## Example Usage
 
@@ -211,8 +211,8 @@ def get_dashboard_output(dashboard_id: Optional[pulumi.Input[Optional[int]]] = N
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDashboardResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-    * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/http_api/folder_dashboard_search/)
-    * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
+    * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+    * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
 
     ## Example Usage
 

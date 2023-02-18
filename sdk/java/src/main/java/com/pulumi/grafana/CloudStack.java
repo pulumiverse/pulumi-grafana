@@ -319,18 +319,14 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
         return this.prometheusUserId;
     }
     /**
-     * Region slug to assign to this stack.
-     * Changing region will destroy the existing stack and create a new one in the desired region.
-     * Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
+     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      * 
      */
     @Export(name="regionSlug", type=String.class, parameters={})
     private Output</* @Nullable */ String> regionSlug;
 
     /**
-     * @return Region slug to assign to this stack.
-     * Changing region will destroy the existing stack and create a new one in the desired region.
-     * Available input au (GCP Australia), eu (GCP Belgium), us (GCP US Central), prod-ap-southeast-0 (GCP Singapore), prod-gb-south-0 (GCP UK), prod-ap-south-0 (GCP India), prod-sa-east-0 (GCP Brazil)
+     * @return Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      * 
      */
     public Output<Optional<String>> regionSlug() {

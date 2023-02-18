@@ -82,7 +82,7 @@ export class AlertNotification extends pulumi.CustomResource {
      */
     public readonly sendReminder!: pulumi.Output<boolean | undefined>;
     /**
-     * Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+     * Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
      */
     public readonly settings!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -167,7 +167,7 @@ export interface AlertNotificationState {
      */
     sendReminder?: pulumi.Input<boolean>;
     /**
-     * Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+     * Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
      */
     settings?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -209,7 +209,7 @@ export interface AlertNotificationArgs {
      */
     sendReminder?: pulumi.Input<boolean>;
     /**
-     * Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/).
+     * Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
      */
     settings?: pulumi.Input<{[key: string]: any}>;
     /**

@@ -4438,6 +4438,316 @@ func (o MachineLearningHolidayCustomPeriodArrayOutput) Index(i pulumi.IntInput) 
 	}).(MachineLearningHolidayCustomPeriodOutput)
 }
 
+type MachineLearningOutlierDetectorAlgorithm struct {
+	// For DBSCAN only, specify the configuration map
+	Config *MachineLearningOutlierDetectorAlgorithmConfig `pulumi:"config"`
+	// The name of the algorithm to use ('mad' or 'dbscan').
+	Name string `pulumi:"name"`
+	// Specify the sensitivity of the detector (in range [0,1]).
+	Sensitivity float64 `pulumi:"sensitivity"`
+}
+
+// MachineLearningOutlierDetectorAlgorithmInput is an input type that accepts MachineLearningOutlierDetectorAlgorithmArgs and MachineLearningOutlierDetectorAlgorithmOutput values.
+// You can construct a concrete instance of `MachineLearningOutlierDetectorAlgorithmInput` via:
+//
+//	MachineLearningOutlierDetectorAlgorithmArgs{...}
+type MachineLearningOutlierDetectorAlgorithmInput interface {
+	pulumi.Input
+
+	ToMachineLearningOutlierDetectorAlgorithmOutput() MachineLearningOutlierDetectorAlgorithmOutput
+	ToMachineLearningOutlierDetectorAlgorithmOutputWithContext(context.Context) MachineLearningOutlierDetectorAlgorithmOutput
+}
+
+type MachineLearningOutlierDetectorAlgorithmArgs struct {
+	// For DBSCAN only, specify the configuration map
+	Config MachineLearningOutlierDetectorAlgorithmConfigPtrInput `pulumi:"config"`
+	// The name of the algorithm to use ('mad' or 'dbscan').
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specify the sensitivity of the detector (in range [0,1]).
+	Sensitivity pulumi.Float64Input `pulumi:"sensitivity"`
+}
+
+func (MachineLearningOutlierDetectorAlgorithmArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineLearningOutlierDetectorAlgorithm)(nil)).Elem()
+}
+
+func (i MachineLearningOutlierDetectorAlgorithmArgs) ToMachineLearningOutlierDetectorAlgorithmOutput() MachineLearningOutlierDetectorAlgorithmOutput {
+	return i.ToMachineLearningOutlierDetectorAlgorithmOutputWithContext(context.Background())
+}
+
+func (i MachineLearningOutlierDetectorAlgorithmArgs) ToMachineLearningOutlierDetectorAlgorithmOutputWithContext(ctx context.Context) MachineLearningOutlierDetectorAlgorithmOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningOutlierDetectorAlgorithmOutput)
+}
+
+func (i MachineLearningOutlierDetectorAlgorithmArgs) ToMachineLearningOutlierDetectorAlgorithmPtrOutput() MachineLearningOutlierDetectorAlgorithmPtrOutput {
+	return i.ToMachineLearningOutlierDetectorAlgorithmPtrOutputWithContext(context.Background())
+}
+
+func (i MachineLearningOutlierDetectorAlgorithmArgs) ToMachineLearningOutlierDetectorAlgorithmPtrOutputWithContext(ctx context.Context) MachineLearningOutlierDetectorAlgorithmPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningOutlierDetectorAlgorithmOutput).ToMachineLearningOutlierDetectorAlgorithmPtrOutputWithContext(ctx)
+}
+
+// MachineLearningOutlierDetectorAlgorithmPtrInput is an input type that accepts MachineLearningOutlierDetectorAlgorithmArgs, MachineLearningOutlierDetectorAlgorithmPtr and MachineLearningOutlierDetectorAlgorithmPtrOutput values.
+// You can construct a concrete instance of `MachineLearningOutlierDetectorAlgorithmPtrInput` via:
+//
+//	        MachineLearningOutlierDetectorAlgorithmArgs{...}
+//
+//	or:
+//
+//	        nil
+type MachineLearningOutlierDetectorAlgorithmPtrInput interface {
+	pulumi.Input
+
+	ToMachineLearningOutlierDetectorAlgorithmPtrOutput() MachineLearningOutlierDetectorAlgorithmPtrOutput
+	ToMachineLearningOutlierDetectorAlgorithmPtrOutputWithContext(context.Context) MachineLearningOutlierDetectorAlgorithmPtrOutput
+}
+
+type machineLearningOutlierDetectorAlgorithmPtrType MachineLearningOutlierDetectorAlgorithmArgs
+
+func MachineLearningOutlierDetectorAlgorithmPtr(v *MachineLearningOutlierDetectorAlgorithmArgs) MachineLearningOutlierDetectorAlgorithmPtrInput {
+	return (*machineLearningOutlierDetectorAlgorithmPtrType)(v)
+}
+
+func (*machineLearningOutlierDetectorAlgorithmPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MachineLearningOutlierDetectorAlgorithm)(nil)).Elem()
+}
+
+func (i *machineLearningOutlierDetectorAlgorithmPtrType) ToMachineLearningOutlierDetectorAlgorithmPtrOutput() MachineLearningOutlierDetectorAlgorithmPtrOutput {
+	return i.ToMachineLearningOutlierDetectorAlgorithmPtrOutputWithContext(context.Background())
+}
+
+func (i *machineLearningOutlierDetectorAlgorithmPtrType) ToMachineLearningOutlierDetectorAlgorithmPtrOutputWithContext(ctx context.Context) MachineLearningOutlierDetectorAlgorithmPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningOutlierDetectorAlgorithmPtrOutput)
+}
+
+type MachineLearningOutlierDetectorAlgorithmOutput struct{ *pulumi.OutputState }
+
+func (MachineLearningOutlierDetectorAlgorithmOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineLearningOutlierDetectorAlgorithm)(nil)).Elem()
+}
+
+func (o MachineLearningOutlierDetectorAlgorithmOutput) ToMachineLearningOutlierDetectorAlgorithmOutput() MachineLearningOutlierDetectorAlgorithmOutput {
+	return o
+}
+
+func (o MachineLearningOutlierDetectorAlgorithmOutput) ToMachineLearningOutlierDetectorAlgorithmOutputWithContext(ctx context.Context) MachineLearningOutlierDetectorAlgorithmOutput {
+	return o
+}
+
+func (o MachineLearningOutlierDetectorAlgorithmOutput) ToMachineLearningOutlierDetectorAlgorithmPtrOutput() MachineLearningOutlierDetectorAlgorithmPtrOutput {
+	return o.ToMachineLearningOutlierDetectorAlgorithmPtrOutputWithContext(context.Background())
+}
+
+func (o MachineLearningOutlierDetectorAlgorithmOutput) ToMachineLearningOutlierDetectorAlgorithmPtrOutputWithContext(ctx context.Context) MachineLearningOutlierDetectorAlgorithmPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MachineLearningOutlierDetectorAlgorithm) *MachineLearningOutlierDetectorAlgorithm {
+		return &v
+	}).(MachineLearningOutlierDetectorAlgorithmPtrOutput)
+}
+
+// For DBSCAN only, specify the configuration map
+func (o MachineLearningOutlierDetectorAlgorithmOutput) Config() MachineLearningOutlierDetectorAlgorithmConfigPtrOutput {
+	return o.ApplyT(func(v MachineLearningOutlierDetectorAlgorithm) *MachineLearningOutlierDetectorAlgorithmConfig {
+		return v.Config
+	}).(MachineLearningOutlierDetectorAlgorithmConfigPtrOutput)
+}
+
+// The name of the algorithm to use ('mad' or 'dbscan').
+func (o MachineLearningOutlierDetectorAlgorithmOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v MachineLearningOutlierDetectorAlgorithm) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Specify the sensitivity of the detector (in range [0,1]).
+func (o MachineLearningOutlierDetectorAlgorithmOutput) Sensitivity() pulumi.Float64Output {
+	return o.ApplyT(func(v MachineLearningOutlierDetectorAlgorithm) float64 { return v.Sensitivity }).(pulumi.Float64Output)
+}
+
+type MachineLearningOutlierDetectorAlgorithmPtrOutput struct{ *pulumi.OutputState }
+
+func (MachineLearningOutlierDetectorAlgorithmPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MachineLearningOutlierDetectorAlgorithm)(nil)).Elem()
+}
+
+func (o MachineLearningOutlierDetectorAlgorithmPtrOutput) ToMachineLearningOutlierDetectorAlgorithmPtrOutput() MachineLearningOutlierDetectorAlgorithmPtrOutput {
+	return o
+}
+
+func (o MachineLearningOutlierDetectorAlgorithmPtrOutput) ToMachineLearningOutlierDetectorAlgorithmPtrOutputWithContext(ctx context.Context) MachineLearningOutlierDetectorAlgorithmPtrOutput {
+	return o
+}
+
+func (o MachineLearningOutlierDetectorAlgorithmPtrOutput) Elem() MachineLearningOutlierDetectorAlgorithmOutput {
+	return o.ApplyT(func(v *MachineLearningOutlierDetectorAlgorithm) MachineLearningOutlierDetectorAlgorithm {
+		if v != nil {
+			return *v
+		}
+		var ret MachineLearningOutlierDetectorAlgorithm
+		return ret
+	}).(MachineLearningOutlierDetectorAlgorithmOutput)
+}
+
+// For DBSCAN only, specify the configuration map
+func (o MachineLearningOutlierDetectorAlgorithmPtrOutput) Config() MachineLearningOutlierDetectorAlgorithmConfigPtrOutput {
+	return o.ApplyT(func(v *MachineLearningOutlierDetectorAlgorithm) *MachineLearningOutlierDetectorAlgorithmConfig {
+		if v == nil {
+			return nil
+		}
+		return v.Config
+	}).(MachineLearningOutlierDetectorAlgorithmConfigPtrOutput)
+}
+
+// The name of the algorithm to use ('mad' or 'dbscan').
+func (o MachineLearningOutlierDetectorAlgorithmPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MachineLearningOutlierDetectorAlgorithm) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// Specify the sensitivity of the detector (in range [0,1]).
+func (o MachineLearningOutlierDetectorAlgorithmPtrOutput) Sensitivity() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *MachineLearningOutlierDetectorAlgorithm) *float64 {
+		if v == nil {
+			return nil
+		}
+		return &v.Sensitivity
+	}).(pulumi.Float64PtrOutput)
+}
+
+type MachineLearningOutlierDetectorAlgorithmConfig struct {
+	Epsilon float64 `pulumi:"epsilon"`
+}
+
+// MachineLearningOutlierDetectorAlgorithmConfigInput is an input type that accepts MachineLearningOutlierDetectorAlgorithmConfigArgs and MachineLearningOutlierDetectorAlgorithmConfigOutput values.
+// You can construct a concrete instance of `MachineLearningOutlierDetectorAlgorithmConfigInput` via:
+//
+//	MachineLearningOutlierDetectorAlgorithmConfigArgs{...}
+type MachineLearningOutlierDetectorAlgorithmConfigInput interface {
+	pulumi.Input
+
+	ToMachineLearningOutlierDetectorAlgorithmConfigOutput() MachineLearningOutlierDetectorAlgorithmConfigOutput
+	ToMachineLearningOutlierDetectorAlgorithmConfigOutputWithContext(context.Context) MachineLearningOutlierDetectorAlgorithmConfigOutput
+}
+
+type MachineLearningOutlierDetectorAlgorithmConfigArgs struct {
+	Epsilon pulumi.Float64Input `pulumi:"epsilon"`
+}
+
+func (MachineLearningOutlierDetectorAlgorithmConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineLearningOutlierDetectorAlgorithmConfig)(nil)).Elem()
+}
+
+func (i MachineLearningOutlierDetectorAlgorithmConfigArgs) ToMachineLearningOutlierDetectorAlgorithmConfigOutput() MachineLearningOutlierDetectorAlgorithmConfigOutput {
+	return i.ToMachineLearningOutlierDetectorAlgorithmConfigOutputWithContext(context.Background())
+}
+
+func (i MachineLearningOutlierDetectorAlgorithmConfigArgs) ToMachineLearningOutlierDetectorAlgorithmConfigOutputWithContext(ctx context.Context) MachineLearningOutlierDetectorAlgorithmConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningOutlierDetectorAlgorithmConfigOutput)
+}
+
+func (i MachineLearningOutlierDetectorAlgorithmConfigArgs) ToMachineLearningOutlierDetectorAlgorithmConfigPtrOutput() MachineLearningOutlierDetectorAlgorithmConfigPtrOutput {
+	return i.ToMachineLearningOutlierDetectorAlgorithmConfigPtrOutputWithContext(context.Background())
+}
+
+func (i MachineLearningOutlierDetectorAlgorithmConfigArgs) ToMachineLearningOutlierDetectorAlgorithmConfigPtrOutputWithContext(ctx context.Context) MachineLearningOutlierDetectorAlgorithmConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningOutlierDetectorAlgorithmConfigOutput).ToMachineLearningOutlierDetectorAlgorithmConfigPtrOutputWithContext(ctx)
+}
+
+// MachineLearningOutlierDetectorAlgorithmConfigPtrInput is an input type that accepts MachineLearningOutlierDetectorAlgorithmConfigArgs, MachineLearningOutlierDetectorAlgorithmConfigPtr and MachineLearningOutlierDetectorAlgorithmConfigPtrOutput values.
+// You can construct a concrete instance of `MachineLearningOutlierDetectorAlgorithmConfigPtrInput` via:
+//
+//	        MachineLearningOutlierDetectorAlgorithmConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type MachineLearningOutlierDetectorAlgorithmConfigPtrInput interface {
+	pulumi.Input
+
+	ToMachineLearningOutlierDetectorAlgorithmConfigPtrOutput() MachineLearningOutlierDetectorAlgorithmConfigPtrOutput
+	ToMachineLearningOutlierDetectorAlgorithmConfigPtrOutputWithContext(context.Context) MachineLearningOutlierDetectorAlgorithmConfigPtrOutput
+}
+
+type machineLearningOutlierDetectorAlgorithmConfigPtrType MachineLearningOutlierDetectorAlgorithmConfigArgs
+
+func MachineLearningOutlierDetectorAlgorithmConfigPtr(v *MachineLearningOutlierDetectorAlgorithmConfigArgs) MachineLearningOutlierDetectorAlgorithmConfigPtrInput {
+	return (*machineLearningOutlierDetectorAlgorithmConfigPtrType)(v)
+}
+
+func (*machineLearningOutlierDetectorAlgorithmConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MachineLearningOutlierDetectorAlgorithmConfig)(nil)).Elem()
+}
+
+func (i *machineLearningOutlierDetectorAlgorithmConfigPtrType) ToMachineLearningOutlierDetectorAlgorithmConfigPtrOutput() MachineLearningOutlierDetectorAlgorithmConfigPtrOutput {
+	return i.ToMachineLearningOutlierDetectorAlgorithmConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *machineLearningOutlierDetectorAlgorithmConfigPtrType) ToMachineLearningOutlierDetectorAlgorithmConfigPtrOutputWithContext(ctx context.Context) MachineLearningOutlierDetectorAlgorithmConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningOutlierDetectorAlgorithmConfigPtrOutput)
+}
+
+type MachineLearningOutlierDetectorAlgorithmConfigOutput struct{ *pulumi.OutputState }
+
+func (MachineLearningOutlierDetectorAlgorithmConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineLearningOutlierDetectorAlgorithmConfig)(nil)).Elem()
+}
+
+func (o MachineLearningOutlierDetectorAlgorithmConfigOutput) ToMachineLearningOutlierDetectorAlgorithmConfigOutput() MachineLearningOutlierDetectorAlgorithmConfigOutput {
+	return o
+}
+
+func (o MachineLearningOutlierDetectorAlgorithmConfigOutput) ToMachineLearningOutlierDetectorAlgorithmConfigOutputWithContext(ctx context.Context) MachineLearningOutlierDetectorAlgorithmConfigOutput {
+	return o
+}
+
+func (o MachineLearningOutlierDetectorAlgorithmConfigOutput) ToMachineLearningOutlierDetectorAlgorithmConfigPtrOutput() MachineLearningOutlierDetectorAlgorithmConfigPtrOutput {
+	return o.ToMachineLearningOutlierDetectorAlgorithmConfigPtrOutputWithContext(context.Background())
+}
+
+func (o MachineLearningOutlierDetectorAlgorithmConfigOutput) ToMachineLearningOutlierDetectorAlgorithmConfigPtrOutputWithContext(ctx context.Context) MachineLearningOutlierDetectorAlgorithmConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MachineLearningOutlierDetectorAlgorithmConfig) *MachineLearningOutlierDetectorAlgorithmConfig {
+		return &v
+	}).(MachineLearningOutlierDetectorAlgorithmConfigPtrOutput)
+}
+
+func (o MachineLearningOutlierDetectorAlgorithmConfigOutput) Epsilon() pulumi.Float64Output {
+	return o.ApplyT(func(v MachineLearningOutlierDetectorAlgorithmConfig) float64 { return v.Epsilon }).(pulumi.Float64Output)
+}
+
+type MachineLearningOutlierDetectorAlgorithmConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (MachineLearningOutlierDetectorAlgorithmConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MachineLearningOutlierDetectorAlgorithmConfig)(nil)).Elem()
+}
+
+func (o MachineLearningOutlierDetectorAlgorithmConfigPtrOutput) ToMachineLearningOutlierDetectorAlgorithmConfigPtrOutput() MachineLearningOutlierDetectorAlgorithmConfigPtrOutput {
+	return o
+}
+
+func (o MachineLearningOutlierDetectorAlgorithmConfigPtrOutput) ToMachineLearningOutlierDetectorAlgorithmConfigPtrOutputWithContext(ctx context.Context) MachineLearningOutlierDetectorAlgorithmConfigPtrOutput {
+	return o
+}
+
+func (o MachineLearningOutlierDetectorAlgorithmConfigPtrOutput) Elem() MachineLearningOutlierDetectorAlgorithmConfigOutput {
+	return o.ApplyT(func(v *MachineLearningOutlierDetectorAlgorithmConfig) MachineLearningOutlierDetectorAlgorithmConfig {
+		if v != nil {
+			return *v
+		}
+		var ret MachineLearningOutlierDetectorAlgorithmConfig
+		return ret
+	}).(MachineLearningOutlierDetectorAlgorithmConfigOutput)
+}
+
+func (o MachineLearningOutlierDetectorAlgorithmConfigPtrOutput) Epsilon() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *MachineLearningOutlierDetectorAlgorithmConfig) *float64 {
+		if v == nil {
+			return nil
+		}
+		return &v.Epsilon
+	}).(pulumi.Float64PtrOutput)
+}
+
 type MuteTimingInterval struct {
 	// An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
 	DaysOfMonths []string `pulumi:"daysOfMonths"`
@@ -8025,6 +8335,8 @@ type RuleGroupRule struct {
 	ExecErrState *string `pulumi:"execErrState"`
 	// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
 	For *string `pulumi:"for"`
+	// Sets whether the alert should be paused or not. Defaults to `false`.
+	IsPaused *bool `pulumi:"isPaused"`
 	// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
 	Labels map[string]string `pulumi:"labels"`
 	// The name of the alert rule.
@@ -8057,6 +8369,8 @@ type RuleGroupRuleArgs struct {
 	ExecErrState pulumi.StringPtrInput `pulumi:"execErrState"`
 	// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
 	For pulumi.StringPtrInput `pulumi:"for"`
+	// Sets whether the alert should be paused or not. Defaults to `false`.
+	IsPaused pulumi.BoolPtrInput `pulumi:"isPaused"`
 	// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
 	Labels pulumi.StringMapInput `pulumi:"labels"`
 	// The name of the alert rule.
@@ -8141,6 +8455,11 @@ func (o RuleGroupRuleOutput) ExecErrState() pulumi.StringPtrOutput {
 // The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
 func (o RuleGroupRuleOutput) For() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RuleGroupRule) *string { return v.For }).(pulumi.StringPtrOutput)
+}
+
+// Sets whether the alert should be paused or not. Defaults to `false`.
+func (o RuleGroupRuleOutput) IsPaused() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RuleGroupRule) *bool { return v.IsPaused }).(pulumi.BoolPtrOutput)
 }
 
 // Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
@@ -11549,6 +11868,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FolderPermissionPermissionArrayInput)(nil)).Elem(), FolderPermissionPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MachineLearningHolidayCustomPeriodInput)(nil)).Elem(), MachineLearningHolidayCustomPeriodArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MachineLearningHolidayCustomPeriodArrayInput)(nil)).Elem(), MachineLearningHolidayCustomPeriodArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MachineLearningOutlierDetectorAlgorithmInput)(nil)).Elem(), MachineLearningOutlierDetectorAlgorithmArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MachineLearningOutlierDetectorAlgorithmPtrInput)(nil)).Elem(), MachineLearningOutlierDetectorAlgorithmArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MachineLearningOutlierDetectorAlgorithmConfigInput)(nil)).Elem(), MachineLearningOutlierDetectorAlgorithmConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MachineLearningOutlierDetectorAlgorithmConfigPtrInput)(nil)).Elem(), MachineLearningOutlierDetectorAlgorithmConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MuteTimingIntervalInput)(nil)).Elem(), MuteTimingIntervalArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MuteTimingIntervalArrayInput)(nil)).Elem(), MuteTimingIntervalArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MuteTimingIntervalTimeInput)(nil)).Elem(), MuteTimingIntervalTimeArgs{})
@@ -11694,6 +12017,10 @@ func init() {
 	pulumi.RegisterOutputType(FolderPermissionPermissionArrayOutput{})
 	pulumi.RegisterOutputType(MachineLearningHolidayCustomPeriodOutput{})
 	pulumi.RegisterOutputType(MachineLearningHolidayCustomPeriodArrayOutput{})
+	pulumi.RegisterOutputType(MachineLearningOutlierDetectorAlgorithmOutput{})
+	pulumi.RegisterOutputType(MachineLearningOutlierDetectorAlgorithmPtrOutput{})
+	pulumi.RegisterOutputType(MachineLearningOutlierDetectorAlgorithmConfigOutput{})
+	pulumi.RegisterOutputType(MachineLearningOutlierDetectorAlgorithmConfigPtrOutput{})
 	pulumi.RegisterOutputType(MuteTimingIntervalOutput{})
 	pulumi.RegisterOutputType(MuteTimingIntervalArrayOutput{})
 	pulumi.RegisterOutputType(MuteTimingIntervalTimeOutput{})
