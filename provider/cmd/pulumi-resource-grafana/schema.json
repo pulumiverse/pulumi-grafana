@@ -193,7 +193,8 @@
                     "environment": [
                         "GRAFANA_TLS_KEY"
                     ]
-                }
+                },
+                "secret": true
             },
             "url": {
                 "type": "string",
@@ -5012,7 +5013,8 @@
             },
             "tlsKey": {
                 "type": "string",
-                "description": "Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`\nenvironment variable.\n"
+                "description": "Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`\nenvironment variable.\n",
+                "secret": true
             },
             "url": {
                 "type": "string",
@@ -5148,7 +5150,8 @@
                     "environment": [
                         "GRAFANA_TLS_KEY"
                     ]
-                }
+                },
+                "secret": true
             },
             "url": {
                 "type": "string",

@@ -78,11 +78,14 @@ func Provider() tfbridge.ProviderInfo {
 		GitHubOrg:         "grafana",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"url": {
+				Type: "string",
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"GRAFANA_URL"},
 				},
 			},
 			"auth": {
+				Type:   "string",
+				Secret: boolRef(true),
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"GRAFANA_AUTH"},
 				},
@@ -102,6 +105,7 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 			"tls_key": {
+				Secret: boolRef(true),
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"GRAFANA_TLS_KEY"},
 				},
@@ -122,6 +126,7 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 			"cloud_api_key": {
+				Secret: boolRef(true),
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"GRAFANA_CLOUD_API_KEY"},
 				},
@@ -132,6 +137,7 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 			"sm_access_token": {
+				Secret: boolRef(true),
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"GRAFANA_SM_ACCESS_TOKEN"},
 				},
@@ -147,6 +153,7 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 			"oncall_access_token": {
+				Secret: boolRef(true),
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"GRAFANA_ONCALL_ACCESS_TOKEN"},
 				},

@@ -41,7 +41,7 @@ func getBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	auth := getAuth(t)
 	return integration.ProgramTestOptions{
 		Config: map[string]string{
-			"url": url,
+			"url":  url,
 			"auth": auth,
 		},
 	}
