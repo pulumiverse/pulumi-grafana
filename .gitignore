@@ -22,3 +22,6 @@ provider/**/schema-embed.json
 **/version.txt
 **/nuget
 **/dist
+
+**/__pycache__
+**/venv
