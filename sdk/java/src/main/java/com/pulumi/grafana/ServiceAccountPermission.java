@@ -11,7 +11,7 @@ import com.pulumi.grafana.ServiceAccountPermissionArgs;
 import com.pulumi.grafana.Utilities;
 import com.pulumi.grafana.inputs.ServiceAccountPermissionState;
 import com.pulumi.grafana.outputs.ServiceAccountPermissionPermission;
-import java.lang.Integer;
+import java.lang.String;
 import java.util.List;
 import javax.annotation.Nullable;
 
@@ -85,7 +85,7 @@ public class ServiceAccountPermission extends com.pulumi.resources.CustomResourc
      * The permission items to add/update. Items that are omitted from the list will be removed.
      * 
      */
-    @Export(name="permissions", type=List.class, parameters={ServiceAccountPermissionPermission.class})
+    @Export(name="permissions", refs={List.class,ServiceAccountPermissionPermission.class}, tree="[0,1]")
     private Output<List<ServiceAccountPermissionPermission>> permissions;
 
     /**
@@ -99,14 +99,14 @@ public class ServiceAccountPermission extends com.pulumi.resources.CustomResourc
      * The id of the service account.
      * 
      */
-    @Export(name="serviceAccountId", type=Integer.class, parameters={})
-    private Output<Integer> serviceAccountId;
+    @Export(name="serviceAccountId", refs={String.class}, tree="[0]")
+    private Output<String> serviceAccountId;
 
     /**
      * @return The id of the service account.
      * 
      */
-    public Output<Integer> serviceAccountId() {
+    public Output<String> serviceAccountId() {
         return this.serviceAccountId;
     }
 

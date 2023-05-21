@@ -17,16 +17,24 @@ public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
     public static final ApiKeyArgs Empty = new ApiKeyArgs();
 
     /**
-     * If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+     * Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
+     * 
+     * @deprecated
+     * Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
      * 
      */
+    @Deprecated /* Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead */
     @Import(name="cloudStackSlug")
     private @Nullable Output<String> cloudStackSlug;
 
     /**
-     * @return If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+     * @return Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
+     * 
+     * @deprecated
+     * Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
      * 
      */
+    @Deprecated /* Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead */
     public Optional<Output<String>> cloudStackSlug() {
         return Optional.ofNullable(this.cloudStackSlug);
     }
@@ -36,6 +44,21 @@ public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
 
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
+    }
+
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Import(name="orgId")
+    private @Nullable Output<String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<Output<String>> orgId() {
+        return Optional.ofNullable(this.orgId);
     }
 
     @Import(name="role", required=true)
@@ -57,6 +80,7 @@ public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
     private ApiKeyArgs(ApiKeyArgs $) {
         this.cloudStackSlug = $.cloudStackSlug;
         this.name = $.name;
+        this.orgId = $.orgId;
         this.role = $.role;
         this.secondsToLive = $.secondsToLive;
     }
@@ -80,22 +104,30 @@ public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param cloudStackSlug If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+         * @param cloudStackSlug Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
          * 
          * @return builder
          * 
+         * @deprecated
+         * Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
+         * 
          */
+        @Deprecated /* Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead */
         public Builder cloudStackSlug(@Nullable Output<String> cloudStackSlug) {
             $.cloudStackSlug = cloudStackSlug;
             return this;
         }
 
         /**
-         * @param cloudStackSlug If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+         * @param cloudStackSlug Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
          * 
          * @return builder
          * 
+         * @deprecated
+         * Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
+         * 
          */
+        @Deprecated /* Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead */
         public Builder cloudStackSlug(String cloudStackSlug) {
             return cloudStackSlug(Output.of(cloudStackSlug));
         }
@@ -107,6 +139,27 @@ public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(@Nullable Output<String> orgId) {
+            $.orgId = orgId;
+            return this;
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(String orgId) {
+            return orgId(Output.of(orgId));
         }
 
         public Builder role(Output<String> role) {

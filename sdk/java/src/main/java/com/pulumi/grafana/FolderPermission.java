@@ -85,7 +85,7 @@ public class FolderPermission extends com.pulumi.resources.CustomResource {
      * The UID of the folder.
      * 
      */
-    @Export(name="folderUid", type=String.class, parameters={})
+    @Export(name="folderUid", refs={String.class}, tree="[0]")
     private Output<String> folderUid;
 
     /**
@@ -99,7 +99,7 @@ public class FolderPermission extends com.pulumi.resources.CustomResource {
      * The permission items to add/update. Items that are omitted from the list will be removed.
      * 
      */
-    @Export(name="permissions", type=List.class, parameters={FolderPermissionPermission.class})
+    @Export(name="permissions", refs={List.class,FolderPermissionPermission.class}, tree="[0,1]")
     private Output<List<FolderPermissionPermission>> permissions;
 
     /**

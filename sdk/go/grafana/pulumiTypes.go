@@ -14240,1405 +14240,1401 @@ func (o GetFoldersFolderArrayOutput) Index(i pulumi.IntInput) GetFoldersFolderOu
 	}).(GetFoldersFolderOutput)
 }
 
-type GetGrafanSlosSlo struct {
-	Alertings    []GetGrafanSlosSloAlerting  `pulumi:"alertings"`
-	DashboardUid string                      `pulumi:"dashboardUid"`
-	Description  string                      `pulumi:"description"`
-	Labels       []GetGrafanSlosSloLabel     `pulumi:"labels"`
-	Name         string                      `pulumi:"name"`
-	Objectives   []GetGrafanSlosSloObjective `pulumi:"objectives"`
-	Queries      []GetGrafanSlosSloQuery     `pulumi:"queries"`
-	Uuid         string                      `pulumi:"uuid"`
+type GetSlosSlo struct {
+	Alertings    []GetSlosSloAlerting  `pulumi:"alertings"`
+	DashboardUid string                `pulumi:"dashboardUid"`
+	Description  string                `pulumi:"description"`
+	Labels       []GetSlosSloLabel     `pulumi:"labels"`
+	Name         string                `pulumi:"name"`
+	Objectives   []GetSlosSloObjective `pulumi:"objectives"`
+	Queries      []GetSlosSloQuery     `pulumi:"queries"`
+	Uuid         string                `pulumi:"uuid"`
 }
 
-// GetGrafanSlosSloInput is an input type that accepts GetGrafanSlosSloArgs and GetGrafanSlosSloOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloInput` via:
+// GetSlosSloInput is an input type that accepts GetSlosSloArgs and GetSlosSloOutput values.
+// You can construct a concrete instance of `GetSlosSloInput` via:
 //
-//	GetGrafanSlosSloArgs{...}
-type GetGrafanSlosSloInput interface {
+//	GetSlosSloArgs{...}
+type GetSlosSloInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloOutput() GetGrafanSlosSloOutput
-	ToGetGrafanSlosSloOutputWithContext(context.Context) GetGrafanSlosSloOutput
+	ToGetSlosSloOutput() GetSlosSloOutput
+	ToGetSlosSloOutputWithContext(context.Context) GetSlosSloOutput
 }
 
-type GetGrafanSlosSloArgs struct {
-	Alertings    GetGrafanSlosSloAlertingArrayInput  `pulumi:"alertings"`
-	DashboardUid pulumi.StringInput                  `pulumi:"dashboardUid"`
-	Description  pulumi.StringInput                  `pulumi:"description"`
-	Labels       GetGrafanSlosSloLabelArrayInput     `pulumi:"labels"`
-	Name         pulumi.StringInput                  `pulumi:"name"`
-	Objectives   GetGrafanSlosSloObjectiveArrayInput `pulumi:"objectives"`
-	Queries      GetGrafanSlosSloQueryArrayInput     `pulumi:"queries"`
-	Uuid         pulumi.StringInput                  `pulumi:"uuid"`
+type GetSlosSloArgs struct {
+	Alertings    GetSlosSloAlertingArrayInput  `pulumi:"alertings"`
+	DashboardUid pulumi.StringInput            `pulumi:"dashboardUid"`
+	Description  pulumi.StringInput            `pulumi:"description"`
+	Labels       GetSlosSloLabelArrayInput     `pulumi:"labels"`
+	Name         pulumi.StringInput            `pulumi:"name"`
+	Objectives   GetSlosSloObjectiveArrayInput `pulumi:"objectives"`
+	Queries      GetSlosSloQueryArrayInput     `pulumi:"queries"`
+	Uuid         pulumi.StringInput            `pulumi:"uuid"`
 }
 
-func (GetGrafanSlosSloArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSlo)(nil)).Elem()
+func (GetSlosSloArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSlo)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloArgs) ToGetGrafanSlosSloOutput() GetGrafanSlosSloOutput {
-	return i.ToGetGrafanSlosSloOutputWithContext(context.Background())
+func (i GetSlosSloArgs) ToGetSlosSloOutput() GetSlosSloOutput {
+	return i.ToGetSlosSloOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloArgs) ToGetGrafanSlosSloOutputWithContext(ctx context.Context) GetGrafanSlosSloOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloOutput)
+func (i GetSlosSloArgs) ToGetSlosSloOutputWithContext(ctx context.Context) GetSlosSloOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloOutput)
 }
 
-// GetGrafanSlosSloArrayInput is an input type that accepts GetGrafanSlosSloArray and GetGrafanSlosSloArrayOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloArrayInput` via:
+// GetSlosSloArrayInput is an input type that accepts GetSlosSloArray and GetSlosSloArrayOutput values.
+// You can construct a concrete instance of `GetSlosSloArrayInput` via:
 //
-//	GetGrafanSlosSloArray{ GetGrafanSlosSloArgs{...} }
-type GetGrafanSlosSloArrayInput interface {
+//	GetSlosSloArray{ GetSlosSloArgs{...} }
+type GetSlosSloArrayInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloArrayOutput() GetGrafanSlosSloArrayOutput
-	ToGetGrafanSlosSloArrayOutputWithContext(context.Context) GetGrafanSlosSloArrayOutput
+	ToGetSlosSloArrayOutput() GetSlosSloArrayOutput
+	ToGetSlosSloArrayOutputWithContext(context.Context) GetSlosSloArrayOutput
 }
 
-type GetGrafanSlosSloArray []GetGrafanSlosSloInput
+type GetSlosSloArray []GetSlosSloInput
 
-func (GetGrafanSlosSloArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSlo)(nil)).Elem()
+func (GetSlosSloArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSlo)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloArray) ToGetGrafanSlosSloArrayOutput() GetGrafanSlosSloArrayOutput {
-	return i.ToGetGrafanSlosSloArrayOutputWithContext(context.Background())
+func (i GetSlosSloArray) ToGetSlosSloArrayOutput() GetSlosSloArrayOutput {
+	return i.ToGetSlosSloArrayOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloArray) ToGetGrafanSlosSloArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloArrayOutput)
+func (i GetSlosSloArray) ToGetSlosSloArrayOutputWithContext(ctx context.Context) GetSlosSloArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloArrayOutput)
 }
 
-type GetGrafanSlosSloOutput struct{ *pulumi.OutputState }
+type GetSlosSloOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSlo)(nil)).Elem()
+func (GetSlosSloOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSlo)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloOutput) ToGetGrafanSlosSloOutput() GetGrafanSlosSloOutput {
+func (o GetSlosSloOutput) ToGetSlosSloOutput() GetSlosSloOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloOutput) ToGetGrafanSlosSloOutputWithContext(ctx context.Context) GetGrafanSlosSloOutput {
+func (o GetSlosSloOutput) ToGetSlosSloOutputWithContext(ctx context.Context) GetSlosSloOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloOutput) Alertings() GetGrafanSlosSloAlertingArrayOutput {
-	return o.ApplyT(func(v GetGrafanSlosSlo) []GetGrafanSlosSloAlerting { return v.Alertings }).(GetGrafanSlosSloAlertingArrayOutput)
+func (o GetSlosSloOutput) Alertings() GetSlosSloAlertingArrayOutput {
+	return o.ApplyT(func(v GetSlosSlo) []GetSlosSloAlerting { return v.Alertings }).(GetSlosSloAlertingArrayOutput)
 }
 
-func (o GetGrafanSlosSloOutput) DashboardUid() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSlo) string { return v.DashboardUid }).(pulumi.StringOutput)
+func (o GetSlosSloOutput) DashboardUid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSlo) string { return v.DashboardUid }).(pulumi.StringOutput)
 }
 
-func (o GetGrafanSlosSloOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSlo) string { return v.Description }).(pulumi.StringOutput)
+func (o GetSlosSloOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSlo) string { return v.Description }).(pulumi.StringOutput)
 }
 
-func (o GetGrafanSlosSloOutput) Labels() GetGrafanSlosSloLabelArrayOutput {
-	return o.ApplyT(func(v GetGrafanSlosSlo) []GetGrafanSlosSloLabel { return v.Labels }).(GetGrafanSlosSloLabelArrayOutput)
+func (o GetSlosSloOutput) Labels() GetSlosSloLabelArrayOutput {
+	return o.ApplyT(func(v GetSlosSlo) []GetSlosSloLabel { return v.Labels }).(GetSlosSloLabelArrayOutput)
 }
 
-func (o GetGrafanSlosSloOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSlo) string { return v.Name }).(pulumi.StringOutput)
+func (o GetSlosSloOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSlo) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetGrafanSlosSloOutput) Objectives() GetGrafanSlosSloObjectiveArrayOutput {
-	return o.ApplyT(func(v GetGrafanSlosSlo) []GetGrafanSlosSloObjective { return v.Objectives }).(GetGrafanSlosSloObjectiveArrayOutput)
+func (o GetSlosSloOutput) Objectives() GetSlosSloObjectiveArrayOutput {
+	return o.ApplyT(func(v GetSlosSlo) []GetSlosSloObjective { return v.Objectives }).(GetSlosSloObjectiveArrayOutput)
 }
 
-func (o GetGrafanSlosSloOutput) Queries() GetGrafanSlosSloQueryArrayOutput {
-	return o.ApplyT(func(v GetGrafanSlosSlo) []GetGrafanSlosSloQuery { return v.Queries }).(GetGrafanSlosSloQueryArrayOutput)
+func (o GetSlosSloOutput) Queries() GetSlosSloQueryArrayOutput {
+	return o.ApplyT(func(v GetSlosSlo) []GetSlosSloQuery { return v.Queries }).(GetSlosSloQueryArrayOutput)
 }
 
-func (o GetGrafanSlosSloOutput) Uuid() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSlo) string { return v.Uuid }).(pulumi.StringOutput)
+func (o GetSlosSloOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSlo) string { return v.Uuid }).(pulumi.StringOutput)
 }
 
-type GetGrafanSlosSloArrayOutput struct{ *pulumi.OutputState }
+type GetSlosSloArrayOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSlo)(nil)).Elem()
+func (GetSlosSloArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSlo)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloArrayOutput) ToGetGrafanSlosSloArrayOutput() GetGrafanSlosSloArrayOutput {
+func (o GetSlosSloArrayOutput) ToGetSlosSloArrayOutput() GetSlosSloArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloArrayOutput) ToGetGrafanSlosSloArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloArrayOutput {
+func (o GetSlosSloArrayOutput) ToGetSlosSloArrayOutputWithContext(ctx context.Context) GetSlosSloArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloArrayOutput) Index(i pulumi.IntInput) GetGrafanSlosSloOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGrafanSlosSlo {
-		return vs[0].([]GetGrafanSlosSlo)[vs[1].(int)]
-	}).(GetGrafanSlosSloOutput)
+func (o GetSlosSloArrayOutput) Index(i pulumi.IntInput) GetSlosSloOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSlo {
+		return vs[0].([]GetSlosSlo)[vs[1].(int)]
+	}).(GetSlosSloOutput)
 }
 
-type GetGrafanSlosSloAlerting struct {
-	Annotations []GetGrafanSlosSloAlertingAnnotation `pulumi:"annotations"`
-	Fastburns   []GetGrafanSlosSloAlertingFastburn   `pulumi:"fastburns"`
-	Labels      []GetGrafanSlosSloAlertingLabel      `pulumi:"labels"`
-	Slowburns   []GetGrafanSlosSloAlertingSlowburn   `pulumi:"slowburns"`
+type GetSlosSloAlerting struct {
+	Annotations []GetSlosSloAlertingAnnotation `pulumi:"annotations"`
+	Fastburns   []GetSlosSloAlertingFastburn   `pulumi:"fastburns"`
+	Labels      []GetSlosSloAlertingLabel      `pulumi:"labels"`
+	Slowburns   []GetSlosSloAlertingSlowburn   `pulumi:"slowburns"`
 }
 
-// GetGrafanSlosSloAlertingInput is an input type that accepts GetGrafanSlosSloAlertingArgs and GetGrafanSlosSloAlertingOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingInput` via:
+// GetSlosSloAlertingInput is an input type that accepts GetSlosSloAlertingArgs and GetSlosSloAlertingOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingInput` via:
 //
-//	GetGrafanSlosSloAlertingArgs{...}
-type GetGrafanSlosSloAlertingInput interface {
+//	GetSlosSloAlertingArgs{...}
+type GetSlosSloAlertingInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingOutput() GetGrafanSlosSloAlertingOutput
-	ToGetGrafanSlosSloAlertingOutputWithContext(context.Context) GetGrafanSlosSloAlertingOutput
+	ToGetSlosSloAlertingOutput() GetSlosSloAlertingOutput
+	ToGetSlosSloAlertingOutputWithContext(context.Context) GetSlosSloAlertingOutput
 }
 
-type GetGrafanSlosSloAlertingArgs struct {
-	Annotations GetGrafanSlosSloAlertingAnnotationArrayInput `pulumi:"annotations"`
-	Fastburns   GetGrafanSlosSloAlertingFastburnArrayInput   `pulumi:"fastburns"`
-	Labels      GetGrafanSlosSloAlertingLabelArrayInput      `pulumi:"labels"`
-	Slowburns   GetGrafanSlosSloAlertingSlowburnArrayInput   `pulumi:"slowburns"`
+type GetSlosSloAlertingArgs struct {
+	Annotations GetSlosSloAlertingAnnotationArrayInput `pulumi:"annotations"`
+	Fastburns   GetSlosSloAlertingFastburnArrayInput   `pulumi:"fastburns"`
+	Labels      GetSlosSloAlertingLabelArrayInput      `pulumi:"labels"`
+	Slowburns   GetSlosSloAlertingSlowburnArrayInput   `pulumi:"slowburns"`
 }
 
-func (GetGrafanSlosSloAlertingArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlerting)(nil)).Elem()
+func (GetSlosSloAlertingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlerting)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingArgs) ToGetGrafanSlosSloAlertingOutput() GetGrafanSlosSloAlertingOutput {
-	return i.ToGetGrafanSlosSloAlertingOutputWithContext(context.Background())
+func (i GetSlosSloAlertingArgs) ToGetSlosSloAlertingOutput() GetSlosSloAlertingOutput {
+	return i.ToGetSlosSloAlertingOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingArgs) ToGetGrafanSlosSloAlertingOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingOutput)
+func (i GetSlosSloAlertingArgs) ToGetSlosSloAlertingOutputWithContext(ctx context.Context) GetSlosSloAlertingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingOutput)
 }
 
-// GetGrafanSlosSloAlertingArrayInput is an input type that accepts GetGrafanSlosSloAlertingArray and GetGrafanSlosSloAlertingArrayOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingArrayInput` via:
+// GetSlosSloAlertingArrayInput is an input type that accepts GetSlosSloAlertingArray and GetSlosSloAlertingArrayOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingArrayInput` via:
 //
-//	GetGrafanSlosSloAlertingArray{ GetGrafanSlosSloAlertingArgs{...} }
-type GetGrafanSlosSloAlertingArrayInput interface {
+//	GetSlosSloAlertingArray{ GetSlosSloAlertingArgs{...} }
+type GetSlosSloAlertingArrayInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingArrayOutput() GetGrafanSlosSloAlertingArrayOutput
-	ToGetGrafanSlosSloAlertingArrayOutputWithContext(context.Context) GetGrafanSlosSloAlertingArrayOutput
+	ToGetSlosSloAlertingArrayOutput() GetSlosSloAlertingArrayOutput
+	ToGetSlosSloAlertingArrayOutputWithContext(context.Context) GetSlosSloAlertingArrayOutput
 }
 
-type GetGrafanSlosSloAlertingArray []GetGrafanSlosSloAlertingInput
+type GetSlosSloAlertingArray []GetSlosSloAlertingInput
 
-func (GetGrafanSlosSloAlertingArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlerting)(nil)).Elem()
+func (GetSlosSloAlertingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlerting)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingArray) ToGetGrafanSlosSloAlertingArrayOutput() GetGrafanSlosSloAlertingArrayOutput {
-	return i.ToGetGrafanSlosSloAlertingArrayOutputWithContext(context.Background())
+func (i GetSlosSloAlertingArray) ToGetSlosSloAlertingArrayOutput() GetSlosSloAlertingArrayOutput {
+	return i.ToGetSlosSloAlertingArrayOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingArray) ToGetGrafanSlosSloAlertingArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingArrayOutput)
+func (i GetSlosSloAlertingArray) ToGetSlosSloAlertingArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingArrayOutput)
 }
 
-type GetGrafanSlosSloAlertingOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlerting)(nil)).Elem()
+func (GetSlosSloAlertingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlerting)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingOutput) ToGetGrafanSlosSloAlertingOutput() GetGrafanSlosSloAlertingOutput {
+func (o GetSlosSloAlertingOutput) ToGetSlosSloAlertingOutput() GetSlosSloAlertingOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingOutput) ToGetGrafanSlosSloAlertingOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingOutput {
+func (o GetSlosSloAlertingOutput) ToGetSlosSloAlertingOutputWithContext(ctx context.Context) GetSlosSloAlertingOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingOutput) Annotations() GetGrafanSlosSloAlertingAnnotationArrayOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlerting) []GetGrafanSlosSloAlertingAnnotation { return v.Annotations }).(GetGrafanSlosSloAlertingAnnotationArrayOutput)
+func (o GetSlosSloAlertingOutput) Annotations() GetSlosSloAlertingAnnotationArrayOutput {
+	return o.ApplyT(func(v GetSlosSloAlerting) []GetSlosSloAlertingAnnotation { return v.Annotations }).(GetSlosSloAlertingAnnotationArrayOutput)
 }
 
-func (o GetGrafanSlosSloAlertingOutput) Fastburns() GetGrafanSlosSloAlertingFastburnArrayOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlerting) []GetGrafanSlosSloAlertingFastburn { return v.Fastburns }).(GetGrafanSlosSloAlertingFastburnArrayOutput)
+func (o GetSlosSloAlertingOutput) Fastburns() GetSlosSloAlertingFastburnArrayOutput {
+	return o.ApplyT(func(v GetSlosSloAlerting) []GetSlosSloAlertingFastburn { return v.Fastburns }).(GetSlosSloAlertingFastburnArrayOutput)
 }
 
-func (o GetGrafanSlosSloAlertingOutput) Labels() GetGrafanSlosSloAlertingLabelArrayOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlerting) []GetGrafanSlosSloAlertingLabel { return v.Labels }).(GetGrafanSlosSloAlertingLabelArrayOutput)
+func (o GetSlosSloAlertingOutput) Labels() GetSlosSloAlertingLabelArrayOutput {
+	return o.ApplyT(func(v GetSlosSloAlerting) []GetSlosSloAlertingLabel { return v.Labels }).(GetSlosSloAlertingLabelArrayOutput)
 }
 
-func (o GetGrafanSlosSloAlertingOutput) Slowburns() GetGrafanSlosSloAlertingSlowburnArrayOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlerting) []GetGrafanSlosSloAlertingSlowburn { return v.Slowburns }).(GetGrafanSlosSloAlertingSlowburnArrayOutput)
+func (o GetSlosSloAlertingOutput) Slowburns() GetSlosSloAlertingSlowburnArrayOutput {
+	return o.ApplyT(func(v GetSlosSloAlerting) []GetSlosSloAlertingSlowburn { return v.Slowburns }).(GetSlosSloAlertingSlowburnArrayOutput)
 }
 
-type GetGrafanSlosSloAlertingArrayOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingArrayOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlerting)(nil)).Elem()
+func (GetSlosSloAlertingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlerting)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingArrayOutput) ToGetGrafanSlosSloAlertingArrayOutput() GetGrafanSlosSloAlertingArrayOutput {
+func (o GetSlosSloAlertingArrayOutput) ToGetSlosSloAlertingArrayOutput() GetSlosSloAlertingArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingArrayOutput) ToGetGrafanSlosSloAlertingArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingArrayOutput {
+func (o GetSlosSloAlertingArrayOutput) ToGetSlosSloAlertingArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingArrayOutput) Index(i pulumi.IntInput) GetGrafanSlosSloAlertingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGrafanSlosSloAlerting {
-		return vs[0].([]GetGrafanSlosSloAlerting)[vs[1].(int)]
-	}).(GetGrafanSlosSloAlertingOutput)
+func (o GetSlosSloAlertingArrayOutput) Index(i pulumi.IntInput) GetSlosSloAlertingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloAlerting {
+		return vs[0].([]GetSlosSloAlerting)[vs[1].(int)]
+	}).(GetSlosSloAlertingOutput)
 }
 
-type GetGrafanSlosSloAlertingAnnotation struct {
+type GetSlosSloAlertingAnnotation struct {
 	Key   string `pulumi:"key"`
 	Value string `pulumi:"value"`
 }
 
-// GetGrafanSlosSloAlertingAnnotationInput is an input type that accepts GetGrafanSlosSloAlertingAnnotationArgs and GetGrafanSlosSloAlertingAnnotationOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingAnnotationInput` via:
+// GetSlosSloAlertingAnnotationInput is an input type that accepts GetSlosSloAlertingAnnotationArgs and GetSlosSloAlertingAnnotationOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingAnnotationInput` via:
 //
-//	GetGrafanSlosSloAlertingAnnotationArgs{...}
-type GetGrafanSlosSloAlertingAnnotationInput interface {
+//	GetSlosSloAlertingAnnotationArgs{...}
+type GetSlosSloAlertingAnnotationInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingAnnotationOutput() GetGrafanSlosSloAlertingAnnotationOutput
-	ToGetGrafanSlosSloAlertingAnnotationOutputWithContext(context.Context) GetGrafanSlosSloAlertingAnnotationOutput
+	ToGetSlosSloAlertingAnnotationOutput() GetSlosSloAlertingAnnotationOutput
+	ToGetSlosSloAlertingAnnotationOutputWithContext(context.Context) GetSlosSloAlertingAnnotationOutput
 }
 
-type GetGrafanSlosSloAlertingAnnotationArgs struct {
+type GetSlosSloAlertingAnnotationArgs struct {
 	Key   pulumi.StringInput `pulumi:"key"`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
-func (GetGrafanSlosSloAlertingAnnotationArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlertingAnnotation)(nil)).Elem()
+func (GetSlosSloAlertingAnnotationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingAnnotation)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingAnnotationArgs) ToGetGrafanSlosSloAlertingAnnotationOutput() GetGrafanSlosSloAlertingAnnotationOutput {
-	return i.ToGetGrafanSlosSloAlertingAnnotationOutputWithContext(context.Background())
+func (i GetSlosSloAlertingAnnotationArgs) ToGetSlosSloAlertingAnnotationOutput() GetSlosSloAlertingAnnotationOutput {
+	return i.ToGetSlosSloAlertingAnnotationOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingAnnotationArgs) ToGetGrafanSlosSloAlertingAnnotationOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingAnnotationOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingAnnotationOutput)
+func (i GetSlosSloAlertingAnnotationArgs) ToGetSlosSloAlertingAnnotationOutputWithContext(ctx context.Context) GetSlosSloAlertingAnnotationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingAnnotationOutput)
 }
 
-// GetGrafanSlosSloAlertingAnnotationArrayInput is an input type that accepts GetGrafanSlosSloAlertingAnnotationArray and GetGrafanSlosSloAlertingAnnotationArrayOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingAnnotationArrayInput` via:
+// GetSlosSloAlertingAnnotationArrayInput is an input type that accepts GetSlosSloAlertingAnnotationArray and GetSlosSloAlertingAnnotationArrayOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingAnnotationArrayInput` via:
 //
-//	GetGrafanSlosSloAlertingAnnotationArray{ GetGrafanSlosSloAlertingAnnotationArgs{...} }
-type GetGrafanSlosSloAlertingAnnotationArrayInput interface {
+//	GetSlosSloAlertingAnnotationArray{ GetSlosSloAlertingAnnotationArgs{...} }
+type GetSlosSloAlertingAnnotationArrayInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingAnnotationArrayOutput() GetGrafanSlosSloAlertingAnnotationArrayOutput
-	ToGetGrafanSlosSloAlertingAnnotationArrayOutputWithContext(context.Context) GetGrafanSlosSloAlertingAnnotationArrayOutput
+	ToGetSlosSloAlertingAnnotationArrayOutput() GetSlosSloAlertingAnnotationArrayOutput
+	ToGetSlosSloAlertingAnnotationArrayOutputWithContext(context.Context) GetSlosSloAlertingAnnotationArrayOutput
 }
 
-type GetGrafanSlosSloAlertingAnnotationArray []GetGrafanSlosSloAlertingAnnotationInput
+type GetSlosSloAlertingAnnotationArray []GetSlosSloAlertingAnnotationInput
 
-func (GetGrafanSlosSloAlertingAnnotationArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlertingAnnotation)(nil)).Elem()
+func (GetSlosSloAlertingAnnotationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingAnnotation)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingAnnotationArray) ToGetGrafanSlosSloAlertingAnnotationArrayOutput() GetGrafanSlosSloAlertingAnnotationArrayOutput {
-	return i.ToGetGrafanSlosSloAlertingAnnotationArrayOutputWithContext(context.Background())
+func (i GetSlosSloAlertingAnnotationArray) ToGetSlosSloAlertingAnnotationArrayOutput() GetSlosSloAlertingAnnotationArrayOutput {
+	return i.ToGetSlosSloAlertingAnnotationArrayOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingAnnotationArray) ToGetGrafanSlosSloAlertingAnnotationArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingAnnotationArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingAnnotationArrayOutput)
+func (i GetSlosSloAlertingAnnotationArray) ToGetSlosSloAlertingAnnotationArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingAnnotationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingAnnotationArrayOutput)
 }
 
-type GetGrafanSlosSloAlertingAnnotationOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingAnnotationOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingAnnotationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlertingAnnotation)(nil)).Elem()
+func (GetSlosSloAlertingAnnotationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingAnnotation)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingAnnotationOutput) ToGetGrafanSlosSloAlertingAnnotationOutput() GetGrafanSlosSloAlertingAnnotationOutput {
+func (o GetSlosSloAlertingAnnotationOutput) ToGetSlosSloAlertingAnnotationOutput() GetSlosSloAlertingAnnotationOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingAnnotationOutput) ToGetGrafanSlosSloAlertingAnnotationOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingAnnotationOutput {
+func (o GetSlosSloAlertingAnnotationOutput) ToGetSlosSloAlertingAnnotationOutputWithContext(ctx context.Context) GetSlosSloAlertingAnnotationOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingAnnotationOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlertingAnnotation) string { return v.Key }).(pulumi.StringOutput)
+func (o GetSlosSloAlertingAnnotationOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
-func (o GetGrafanSlosSloAlertingAnnotationOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlertingAnnotation) string { return v.Value }).(pulumi.StringOutput)
+func (o GetSlosSloAlertingAnnotationOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
 
-type GetGrafanSlosSloAlertingAnnotationArrayOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingAnnotationArrayOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingAnnotationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlertingAnnotation)(nil)).Elem()
+func (GetSlosSloAlertingAnnotationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingAnnotation)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingAnnotationArrayOutput) ToGetGrafanSlosSloAlertingAnnotationArrayOutput() GetGrafanSlosSloAlertingAnnotationArrayOutput {
+func (o GetSlosSloAlertingAnnotationArrayOutput) ToGetSlosSloAlertingAnnotationArrayOutput() GetSlosSloAlertingAnnotationArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingAnnotationArrayOutput) ToGetGrafanSlosSloAlertingAnnotationArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingAnnotationArrayOutput {
+func (o GetSlosSloAlertingAnnotationArrayOutput) ToGetSlosSloAlertingAnnotationArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingAnnotationArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingAnnotationArrayOutput) Index(i pulumi.IntInput) GetGrafanSlosSloAlertingAnnotationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGrafanSlosSloAlertingAnnotation {
-		return vs[0].([]GetGrafanSlosSloAlertingAnnotation)[vs[1].(int)]
-	}).(GetGrafanSlosSloAlertingAnnotationOutput)
+func (o GetSlosSloAlertingAnnotationArrayOutput) Index(i pulumi.IntInput) GetSlosSloAlertingAnnotationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloAlertingAnnotation {
+		return vs[0].([]GetSlosSloAlertingAnnotation)[vs[1].(int)]
+	}).(GetSlosSloAlertingAnnotationOutput)
 }
 
-type GetGrafanSlosSloAlertingFastburn struct {
-	Annotations []GetGrafanSlosSloAlertingFastburnAnnotation `pulumi:"annotations"`
-	Labels      []GetGrafanSlosSloAlertingFastburnLabel      `pulumi:"labels"`
+type GetSlosSloAlertingFastburn struct {
+	Annotations []GetSlosSloAlertingFastburnAnnotation `pulumi:"annotations"`
+	Labels      []GetSlosSloAlertingFastburnLabel      `pulumi:"labels"`
 }
 
-// GetGrafanSlosSloAlertingFastburnInput is an input type that accepts GetGrafanSlosSloAlertingFastburnArgs and GetGrafanSlosSloAlertingFastburnOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingFastburnInput` via:
+// GetSlosSloAlertingFastburnInput is an input type that accepts GetSlosSloAlertingFastburnArgs and GetSlosSloAlertingFastburnOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingFastburnInput` via:
 //
-//	GetGrafanSlosSloAlertingFastburnArgs{...}
-type GetGrafanSlosSloAlertingFastburnInput interface {
+//	GetSlosSloAlertingFastburnArgs{...}
+type GetSlosSloAlertingFastburnInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingFastburnOutput() GetGrafanSlosSloAlertingFastburnOutput
-	ToGetGrafanSlosSloAlertingFastburnOutputWithContext(context.Context) GetGrafanSlosSloAlertingFastburnOutput
+	ToGetSlosSloAlertingFastburnOutput() GetSlosSloAlertingFastburnOutput
+	ToGetSlosSloAlertingFastburnOutputWithContext(context.Context) GetSlosSloAlertingFastburnOutput
 }
 
-type GetGrafanSlosSloAlertingFastburnArgs struct {
-	Annotations GetGrafanSlosSloAlertingFastburnAnnotationArrayInput `pulumi:"annotations"`
-	Labels      GetGrafanSlosSloAlertingFastburnLabelArrayInput      `pulumi:"labels"`
+type GetSlosSloAlertingFastburnArgs struct {
+	Annotations GetSlosSloAlertingFastburnAnnotationArrayInput `pulumi:"annotations"`
+	Labels      GetSlosSloAlertingFastburnLabelArrayInput      `pulumi:"labels"`
 }
 
-func (GetGrafanSlosSloAlertingFastburnArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlertingFastburn)(nil)).Elem()
+func (GetSlosSloAlertingFastburnArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingFastburn)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingFastburnArgs) ToGetGrafanSlosSloAlertingFastburnOutput() GetGrafanSlosSloAlertingFastburnOutput {
-	return i.ToGetGrafanSlosSloAlertingFastburnOutputWithContext(context.Background())
+func (i GetSlosSloAlertingFastburnArgs) ToGetSlosSloAlertingFastburnOutput() GetSlosSloAlertingFastburnOutput {
+	return i.ToGetSlosSloAlertingFastburnOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingFastburnArgs) ToGetGrafanSlosSloAlertingFastburnOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingFastburnOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingFastburnOutput)
+func (i GetSlosSloAlertingFastburnArgs) ToGetSlosSloAlertingFastburnOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingFastburnOutput)
 }
 
-// GetGrafanSlosSloAlertingFastburnArrayInput is an input type that accepts GetGrafanSlosSloAlertingFastburnArray and GetGrafanSlosSloAlertingFastburnArrayOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingFastburnArrayInput` via:
+// GetSlosSloAlertingFastburnArrayInput is an input type that accepts GetSlosSloAlertingFastburnArray and GetSlosSloAlertingFastburnArrayOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingFastburnArrayInput` via:
 //
-//	GetGrafanSlosSloAlertingFastburnArray{ GetGrafanSlosSloAlertingFastburnArgs{...} }
-type GetGrafanSlosSloAlertingFastburnArrayInput interface {
+//	GetSlosSloAlertingFastburnArray{ GetSlosSloAlertingFastburnArgs{...} }
+type GetSlosSloAlertingFastburnArrayInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingFastburnArrayOutput() GetGrafanSlosSloAlertingFastburnArrayOutput
-	ToGetGrafanSlosSloAlertingFastburnArrayOutputWithContext(context.Context) GetGrafanSlosSloAlertingFastburnArrayOutput
+	ToGetSlosSloAlertingFastburnArrayOutput() GetSlosSloAlertingFastburnArrayOutput
+	ToGetSlosSloAlertingFastburnArrayOutputWithContext(context.Context) GetSlosSloAlertingFastburnArrayOutput
 }
 
-type GetGrafanSlosSloAlertingFastburnArray []GetGrafanSlosSloAlertingFastburnInput
+type GetSlosSloAlertingFastburnArray []GetSlosSloAlertingFastburnInput
 
-func (GetGrafanSlosSloAlertingFastburnArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlertingFastburn)(nil)).Elem()
+func (GetSlosSloAlertingFastburnArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingFastburn)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingFastburnArray) ToGetGrafanSlosSloAlertingFastburnArrayOutput() GetGrafanSlosSloAlertingFastburnArrayOutput {
-	return i.ToGetGrafanSlosSloAlertingFastburnArrayOutputWithContext(context.Background())
+func (i GetSlosSloAlertingFastburnArray) ToGetSlosSloAlertingFastburnArrayOutput() GetSlosSloAlertingFastburnArrayOutput {
+	return i.ToGetSlosSloAlertingFastburnArrayOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingFastburnArray) ToGetGrafanSlosSloAlertingFastburnArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingFastburnArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingFastburnArrayOutput)
+func (i GetSlosSloAlertingFastburnArray) ToGetSlosSloAlertingFastburnArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingFastburnArrayOutput)
 }
 
-type GetGrafanSlosSloAlertingFastburnOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingFastburnOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingFastburnOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlertingFastburn)(nil)).Elem()
+func (GetSlosSloAlertingFastburnOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingFastburn)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingFastburnOutput) ToGetGrafanSlosSloAlertingFastburnOutput() GetGrafanSlosSloAlertingFastburnOutput {
+func (o GetSlosSloAlertingFastburnOutput) ToGetSlosSloAlertingFastburnOutput() GetSlosSloAlertingFastburnOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingFastburnOutput) ToGetGrafanSlosSloAlertingFastburnOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingFastburnOutput {
+func (o GetSlosSloAlertingFastburnOutput) ToGetSlosSloAlertingFastburnOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingFastburnOutput) Annotations() GetGrafanSlosSloAlertingFastburnAnnotationArrayOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlertingFastburn) []GetGrafanSlosSloAlertingFastburnAnnotation {
-		return v.Annotations
-	}).(GetGrafanSlosSloAlertingFastburnAnnotationArrayOutput)
+func (o GetSlosSloAlertingFastburnOutput) Annotations() GetSlosSloAlertingFastburnAnnotationArrayOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingFastburn) []GetSlosSloAlertingFastburnAnnotation { return v.Annotations }).(GetSlosSloAlertingFastburnAnnotationArrayOutput)
 }
 
-func (o GetGrafanSlosSloAlertingFastburnOutput) Labels() GetGrafanSlosSloAlertingFastburnLabelArrayOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlertingFastburn) []GetGrafanSlosSloAlertingFastburnLabel { return v.Labels }).(GetGrafanSlosSloAlertingFastburnLabelArrayOutput)
+func (o GetSlosSloAlertingFastburnOutput) Labels() GetSlosSloAlertingFastburnLabelArrayOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingFastburn) []GetSlosSloAlertingFastburnLabel { return v.Labels }).(GetSlosSloAlertingFastburnLabelArrayOutput)
 }
 
-type GetGrafanSlosSloAlertingFastburnArrayOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingFastburnArrayOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingFastburnArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlertingFastburn)(nil)).Elem()
+func (GetSlosSloAlertingFastburnArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingFastburn)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingFastburnArrayOutput) ToGetGrafanSlosSloAlertingFastburnArrayOutput() GetGrafanSlosSloAlertingFastburnArrayOutput {
+func (o GetSlosSloAlertingFastburnArrayOutput) ToGetSlosSloAlertingFastburnArrayOutput() GetSlosSloAlertingFastburnArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingFastburnArrayOutput) ToGetGrafanSlosSloAlertingFastburnArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingFastburnArrayOutput {
+func (o GetSlosSloAlertingFastburnArrayOutput) ToGetSlosSloAlertingFastburnArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingFastburnArrayOutput) Index(i pulumi.IntInput) GetGrafanSlosSloAlertingFastburnOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGrafanSlosSloAlertingFastburn {
-		return vs[0].([]GetGrafanSlosSloAlertingFastburn)[vs[1].(int)]
-	}).(GetGrafanSlosSloAlertingFastburnOutput)
+func (o GetSlosSloAlertingFastburnArrayOutput) Index(i pulumi.IntInput) GetSlosSloAlertingFastburnOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloAlertingFastburn {
+		return vs[0].([]GetSlosSloAlertingFastburn)[vs[1].(int)]
+	}).(GetSlosSloAlertingFastburnOutput)
 }
 
-type GetGrafanSlosSloAlertingFastburnAnnotation struct {
+type GetSlosSloAlertingFastburnAnnotation struct {
 	Key   string `pulumi:"key"`
 	Value string `pulumi:"value"`
 }
 
-// GetGrafanSlosSloAlertingFastburnAnnotationInput is an input type that accepts GetGrafanSlosSloAlertingFastburnAnnotationArgs and GetGrafanSlosSloAlertingFastburnAnnotationOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingFastburnAnnotationInput` via:
+// GetSlosSloAlertingFastburnAnnotationInput is an input type that accepts GetSlosSloAlertingFastburnAnnotationArgs and GetSlosSloAlertingFastburnAnnotationOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingFastburnAnnotationInput` via:
 //
-//	GetGrafanSlosSloAlertingFastburnAnnotationArgs{...}
-type GetGrafanSlosSloAlertingFastburnAnnotationInput interface {
+//	GetSlosSloAlertingFastburnAnnotationArgs{...}
+type GetSlosSloAlertingFastburnAnnotationInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingFastburnAnnotationOutput() GetGrafanSlosSloAlertingFastburnAnnotationOutput
-	ToGetGrafanSlosSloAlertingFastburnAnnotationOutputWithContext(context.Context) GetGrafanSlosSloAlertingFastburnAnnotationOutput
+	ToGetSlosSloAlertingFastburnAnnotationOutput() GetSlosSloAlertingFastburnAnnotationOutput
+	ToGetSlosSloAlertingFastburnAnnotationOutputWithContext(context.Context) GetSlosSloAlertingFastburnAnnotationOutput
 }
 
-type GetGrafanSlosSloAlertingFastburnAnnotationArgs struct {
+type GetSlosSloAlertingFastburnAnnotationArgs struct {
 	Key   pulumi.StringInput `pulumi:"key"`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
-func (GetGrafanSlosSloAlertingFastburnAnnotationArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlertingFastburnAnnotation)(nil)).Elem()
+func (GetSlosSloAlertingFastburnAnnotationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingFastburnAnnotation)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingFastburnAnnotationArgs) ToGetGrafanSlosSloAlertingFastburnAnnotationOutput() GetGrafanSlosSloAlertingFastburnAnnotationOutput {
-	return i.ToGetGrafanSlosSloAlertingFastburnAnnotationOutputWithContext(context.Background())
+func (i GetSlosSloAlertingFastburnAnnotationArgs) ToGetSlosSloAlertingFastburnAnnotationOutput() GetSlosSloAlertingFastburnAnnotationOutput {
+	return i.ToGetSlosSloAlertingFastburnAnnotationOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingFastburnAnnotationArgs) ToGetGrafanSlosSloAlertingFastburnAnnotationOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingFastburnAnnotationOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingFastburnAnnotationOutput)
+func (i GetSlosSloAlertingFastburnAnnotationArgs) ToGetSlosSloAlertingFastburnAnnotationOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnAnnotationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingFastburnAnnotationOutput)
 }
 
-// GetGrafanSlosSloAlertingFastburnAnnotationArrayInput is an input type that accepts GetGrafanSlosSloAlertingFastburnAnnotationArray and GetGrafanSlosSloAlertingFastburnAnnotationArrayOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingFastburnAnnotationArrayInput` via:
+// GetSlosSloAlertingFastburnAnnotationArrayInput is an input type that accepts GetSlosSloAlertingFastburnAnnotationArray and GetSlosSloAlertingFastburnAnnotationArrayOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingFastburnAnnotationArrayInput` via:
 //
-//	GetGrafanSlosSloAlertingFastburnAnnotationArray{ GetGrafanSlosSloAlertingFastburnAnnotationArgs{...} }
-type GetGrafanSlosSloAlertingFastburnAnnotationArrayInput interface {
+//	GetSlosSloAlertingFastburnAnnotationArray{ GetSlosSloAlertingFastburnAnnotationArgs{...} }
+type GetSlosSloAlertingFastburnAnnotationArrayInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingFastburnAnnotationArrayOutput() GetGrafanSlosSloAlertingFastburnAnnotationArrayOutput
-	ToGetGrafanSlosSloAlertingFastburnAnnotationArrayOutputWithContext(context.Context) GetGrafanSlosSloAlertingFastburnAnnotationArrayOutput
+	ToGetSlosSloAlertingFastburnAnnotationArrayOutput() GetSlosSloAlertingFastburnAnnotationArrayOutput
+	ToGetSlosSloAlertingFastburnAnnotationArrayOutputWithContext(context.Context) GetSlosSloAlertingFastburnAnnotationArrayOutput
 }
 
-type GetGrafanSlosSloAlertingFastburnAnnotationArray []GetGrafanSlosSloAlertingFastburnAnnotationInput
+type GetSlosSloAlertingFastburnAnnotationArray []GetSlosSloAlertingFastburnAnnotationInput
 
-func (GetGrafanSlosSloAlertingFastburnAnnotationArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlertingFastburnAnnotation)(nil)).Elem()
+func (GetSlosSloAlertingFastburnAnnotationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingFastburnAnnotation)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingFastburnAnnotationArray) ToGetGrafanSlosSloAlertingFastburnAnnotationArrayOutput() GetGrafanSlosSloAlertingFastburnAnnotationArrayOutput {
-	return i.ToGetGrafanSlosSloAlertingFastburnAnnotationArrayOutputWithContext(context.Background())
+func (i GetSlosSloAlertingFastburnAnnotationArray) ToGetSlosSloAlertingFastburnAnnotationArrayOutput() GetSlosSloAlertingFastburnAnnotationArrayOutput {
+	return i.ToGetSlosSloAlertingFastburnAnnotationArrayOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingFastburnAnnotationArray) ToGetGrafanSlosSloAlertingFastburnAnnotationArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingFastburnAnnotationArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingFastburnAnnotationArrayOutput)
+func (i GetSlosSloAlertingFastburnAnnotationArray) ToGetSlosSloAlertingFastburnAnnotationArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnAnnotationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingFastburnAnnotationArrayOutput)
 }
 
-type GetGrafanSlosSloAlertingFastburnAnnotationOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingFastburnAnnotationOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingFastburnAnnotationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlertingFastburnAnnotation)(nil)).Elem()
+func (GetSlosSloAlertingFastburnAnnotationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingFastburnAnnotation)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingFastburnAnnotationOutput) ToGetGrafanSlosSloAlertingFastburnAnnotationOutput() GetGrafanSlosSloAlertingFastburnAnnotationOutput {
+func (o GetSlosSloAlertingFastburnAnnotationOutput) ToGetSlosSloAlertingFastburnAnnotationOutput() GetSlosSloAlertingFastburnAnnotationOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingFastburnAnnotationOutput) ToGetGrafanSlosSloAlertingFastburnAnnotationOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingFastburnAnnotationOutput {
+func (o GetSlosSloAlertingFastburnAnnotationOutput) ToGetSlosSloAlertingFastburnAnnotationOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnAnnotationOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingFastburnAnnotationOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlertingFastburnAnnotation) string { return v.Key }).(pulumi.StringOutput)
+func (o GetSlosSloAlertingFastburnAnnotationOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingFastburnAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
-func (o GetGrafanSlosSloAlertingFastburnAnnotationOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlertingFastburnAnnotation) string { return v.Value }).(pulumi.StringOutput)
+func (o GetSlosSloAlertingFastburnAnnotationOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingFastburnAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
 
-type GetGrafanSlosSloAlertingFastburnAnnotationArrayOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingFastburnAnnotationArrayOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingFastburnAnnotationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlertingFastburnAnnotation)(nil)).Elem()
+func (GetSlosSloAlertingFastburnAnnotationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingFastburnAnnotation)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingFastburnAnnotationArrayOutput) ToGetGrafanSlosSloAlertingFastburnAnnotationArrayOutput() GetGrafanSlosSloAlertingFastburnAnnotationArrayOutput {
+func (o GetSlosSloAlertingFastburnAnnotationArrayOutput) ToGetSlosSloAlertingFastburnAnnotationArrayOutput() GetSlosSloAlertingFastburnAnnotationArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingFastburnAnnotationArrayOutput) ToGetGrafanSlosSloAlertingFastburnAnnotationArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingFastburnAnnotationArrayOutput {
+func (o GetSlosSloAlertingFastburnAnnotationArrayOutput) ToGetSlosSloAlertingFastburnAnnotationArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnAnnotationArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingFastburnAnnotationArrayOutput) Index(i pulumi.IntInput) GetGrafanSlosSloAlertingFastburnAnnotationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGrafanSlosSloAlertingFastburnAnnotation {
-		return vs[0].([]GetGrafanSlosSloAlertingFastburnAnnotation)[vs[1].(int)]
-	}).(GetGrafanSlosSloAlertingFastburnAnnotationOutput)
+func (o GetSlosSloAlertingFastburnAnnotationArrayOutput) Index(i pulumi.IntInput) GetSlosSloAlertingFastburnAnnotationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloAlertingFastburnAnnotation {
+		return vs[0].([]GetSlosSloAlertingFastburnAnnotation)[vs[1].(int)]
+	}).(GetSlosSloAlertingFastburnAnnotationOutput)
 }
 
-type GetGrafanSlosSloAlertingFastburnLabel struct {
+type GetSlosSloAlertingFastburnLabel struct {
 	Key   string `pulumi:"key"`
 	Value string `pulumi:"value"`
 }
 
-// GetGrafanSlosSloAlertingFastburnLabelInput is an input type that accepts GetGrafanSlosSloAlertingFastburnLabelArgs and GetGrafanSlosSloAlertingFastburnLabelOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingFastburnLabelInput` via:
+// GetSlosSloAlertingFastburnLabelInput is an input type that accepts GetSlosSloAlertingFastburnLabelArgs and GetSlosSloAlertingFastburnLabelOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingFastburnLabelInput` via:
 //
-//	GetGrafanSlosSloAlertingFastburnLabelArgs{...}
-type GetGrafanSlosSloAlertingFastburnLabelInput interface {
+//	GetSlosSloAlertingFastburnLabelArgs{...}
+type GetSlosSloAlertingFastburnLabelInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingFastburnLabelOutput() GetGrafanSlosSloAlertingFastburnLabelOutput
-	ToGetGrafanSlosSloAlertingFastburnLabelOutputWithContext(context.Context) GetGrafanSlosSloAlertingFastburnLabelOutput
+	ToGetSlosSloAlertingFastburnLabelOutput() GetSlosSloAlertingFastburnLabelOutput
+	ToGetSlosSloAlertingFastburnLabelOutputWithContext(context.Context) GetSlosSloAlertingFastburnLabelOutput
 }
 
-type GetGrafanSlosSloAlertingFastburnLabelArgs struct {
+type GetSlosSloAlertingFastburnLabelArgs struct {
 	Key   pulumi.StringInput `pulumi:"key"`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
-func (GetGrafanSlosSloAlertingFastburnLabelArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlertingFastburnLabel)(nil)).Elem()
+func (GetSlosSloAlertingFastburnLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingFastburnLabel)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingFastburnLabelArgs) ToGetGrafanSlosSloAlertingFastburnLabelOutput() GetGrafanSlosSloAlertingFastburnLabelOutput {
-	return i.ToGetGrafanSlosSloAlertingFastburnLabelOutputWithContext(context.Background())
+func (i GetSlosSloAlertingFastburnLabelArgs) ToGetSlosSloAlertingFastburnLabelOutput() GetSlosSloAlertingFastburnLabelOutput {
+	return i.ToGetSlosSloAlertingFastburnLabelOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingFastburnLabelArgs) ToGetGrafanSlosSloAlertingFastburnLabelOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingFastburnLabelOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingFastburnLabelOutput)
+func (i GetSlosSloAlertingFastburnLabelArgs) ToGetSlosSloAlertingFastburnLabelOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingFastburnLabelOutput)
 }
 
-// GetGrafanSlosSloAlertingFastburnLabelArrayInput is an input type that accepts GetGrafanSlosSloAlertingFastburnLabelArray and GetGrafanSlosSloAlertingFastburnLabelArrayOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingFastburnLabelArrayInput` via:
+// GetSlosSloAlertingFastburnLabelArrayInput is an input type that accepts GetSlosSloAlertingFastburnLabelArray and GetSlosSloAlertingFastburnLabelArrayOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingFastburnLabelArrayInput` via:
 //
-//	GetGrafanSlosSloAlertingFastburnLabelArray{ GetGrafanSlosSloAlertingFastburnLabelArgs{...} }
-type GetGrafanSlosSloAlertingFastburnLabelArrayInput interface {
+//	GetSlosSloAlertingFastburnLabelArray{ GetSlosSloAlertingFastburnLabelArgs{...} }
+type GetSlosSloAlertingFastburnLabelArrayInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingFastburnLabelArrayOutput() GetGrafanSlosSloAlertingFastburnLabelArrayOutput
-	ToGetGrafanSlosSloAlertingFastburnLabelArrayOutputWithContext(context.Context) GetGrafanSlosSloAlertingFastburnLabelArrayOutput
+	ToGetSlosSloAlertingFastburnLabelArrayOutput() GetSlosSloAlertingFastburnLabelArrayOutput
+	ToGetSlosSloAlertingFastburnLabelArrayOutputWithContext(context.Context) GetSlosSloAlertingFastburnLabelArrayOutput
 }
 
-type GetGrafanSlosSloAlertingFastburnLabelArray []GetGrafanSlosSloAlertingFastburnLabelInput
+type GetSlosSloAlertingFastburnLabelArray []GetSlosSloAlertingFastburnLabelInput
 
-func (GetGrafanSlosSloAlertingFastburnLabelArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlertingFastburnLabel)(nil)).Elem()
+func (GetSlosSloAlertingFastburnLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingFastburnLabel)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingFastburnLabelArray) ToGetGrafanSlosSloAlertingFastburnLabelArrayOutput() GetGrafanSlosSloAlertingFastburnLabelArrayOutput {
-	return i.ToGetGrafanSlosSloAlertingFastburnLabelArrayOutputWithContext(context.Background())
+func (i GetSlosSloAlertingFastburnLabelArray) ToGetSlosSloAlertingFastburnLabelArrayOutput() GetSlosSloAlertingFastburnLabelArrayOutput {
+	return i.ToGetSlosSloAlertingFastburnLabelArrayOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingFastburnLabelArray) ToGetGrafanSlosSloAlertingFastburnLabelArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingFastburnLabelArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingFastburnLabelArrayOutput)
+func (i GetSlosSloAlertingFastburnLabelArray) ToGetSlosSloAlertingFastburnLabelArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingFastburnLabelArrayOutput)
 }
 
-type GetGrafanSlosSloAlertingFastburnLabelOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingFastburnLabelOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingFastburnLabelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlertingFastburnLabel)(nil)).Elem()
+func (GetSlosSloAlertingFastburnLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingFastburnLabel)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingFastburnLabelOutput) ToGetGrafanSlosSloAlertingFastburnLabelOutput() GetGrafanSlosSloAlertingFastburnLabelOutput {
+func (o GetSlosSloAlertingFastburnLabelOutput) ToGetSlosSloAlertingFastburnLabelOutput() GetSlosSloAlertingFastburnLabelOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingFastburnLabelOutput) ToGetGrafanSlosSloAlertingFastburnLabelOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingFastburnLabelOutput {
+func (o GetSlosSloAlertingFastburnLabelOutput) ToGetSlosSloAlertingFastburnLabelOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnLabelOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingFastburnLabelOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlertingFastburnLabel) string { return v.Key }).(pulumi.StringOutput)
+func (o GetSlosSloAlertingFastburnLabelOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingFastburnLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
-func (o GetGrafanSlosSloAlertingFastburnLabelOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlertingFastburnLabel) string { return v.Value }).(pulumi.StringOutput)
+func (o GetSlosSloAlertingFastburnLabelOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingFastburnLabel) string { return v.Value }).(pulumi.StringOutput)
 }
 
-type GetGrafanSlosSloAlertingFastburnLabelArrayOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingFastburnLabelArrayOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingFastburnLabelArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlertingFastburnLabel)(nil)).Elem()
+func (GetSlosSloAlertingFastburnLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingFastburnLabel)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingFastburnLabelArrayOutput) ToGetGrafanSlosSloAlertingFastburnLabelArrayOutput() GetGrafanSlosSloAlertingFastburnLabelArrayOutput {
+func (o GetSlosSloAlertingFastburnLabelArrayOutput) ToGetSlosSloAlertingFastburnLabelArrayOutput() GetSlosSloAlertingFastburnLabelArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingFastburnLabelArrayOutput) ToGetGrafanSlosSloAlertingFastburnLabelArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingFastburnLabelArrayOutput {
+func (o GetSlosSloAlertingFastburnLabelArrayOutput) ToGetSlosSloAlertingFastburnLabelArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnLabelArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingFastburnLabelArrayOutput) Index(i pulumi.IntInput) GetGrafanSlosSloAlertingFastburnLabelOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGrafanSlosSloAlertingFastburnLabel {
-		return vs[0].([]GetGrafanSlosSloAlertingFastburnLabel)[vs[1].(int)]
-	}).(GetGrafanSlosSloAlertingFastburnLabelOutput)
+func (o GetSlosSloAlertingFastburnLabelArrayOutput) Index(i pulumi.IntInput) GetSlosSloAlertingFastburnLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloAlertingFastburnLabel {
+		return vs[0].([]GetSlosSloAlertingFastburnLabel)[vs[1].(int)]
+	}).(GetSlosSloAlertingFastburnLabelOutput)
 }
 
-type GetGrafanSlosSloAlertingLabel struct {
+type GetSlosSloAlertingLabel struct {
 	Key   string `pulumi:"key"`
 	Value string `pulumi:"value"`
 }
 
-// GetGrafanSlosSloAlertingLabelInput is an input type that accepts GetGrafanSlosSloAlertingLabelArgs and GetGrafanSlosSloAlertingLabelOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingLabelInput` via:
+// GetSlosSloAlertingLabelInput is an input type that accepts GetSlosSloAlertingLabelArgs and GetSlosSloAlertingLabelOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingLabelInput` via:
 //
-//	GetGrafanSlosSloAlertingLabelArgs{...}
-type GetGrafanSlosSloAlertingLabelInput interface {
+//	GetSlosSloAlertingLabelArgs{...}
+type GetSlosSloAlertingLabelInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingLabelOutput() GetGrafanSlosSloAlertingLabelOutput
-	ToGetGrafanSlosSloAlertingLabelOutputWithContext(context.Context) GetGrafanSlosSloAlertingLabelOutput
+	ToGetSlosSloAlertingLabelOutput() GetSlosSloAlertingLabelOutput
+	ToGetSlosSloAlertingLabelOutputWithContext(context.Context) GetSlosSloAlertingLabelOutput
 }
 
-type GetGrafanSlosSloAlertingLabelArgs struct {
+type GetSlosSloAlertingLabelArgs struct {
 	Key   pulumi.StringInput `pulumi:"key"`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
-func (GetGrafanSlosSloAlertingLabelArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlertingLabel)(nil)).Elem()
+func (GetSlosSloAlertingLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingLabel)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingLabelArgs) ToGetGrafanSlosSloAlertingLabelOutput() GetGrafanSlosSloAlertingLabelOutput {
-	return i.ToGetGrafanSlosSloAlertingLabelOutputWithContext(context.Background())
+func (i GetSlosSloAlertingLabelArgs) ToGetSlosSloAlertingLabelOutput() GetSlosSloAlertingLabelOutput {
+	return i.ToGetSlosSloAlertingLabelOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingLabelArgs) ToGetGrafanSlosSloAlertingLabelOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingLabelOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingLabelOutput)
+func (i GetSlosSloAlertingLabelArgs) ToGetSlosSloAlertingLabelOutputWithContext(ctx context.Context) GetSlosSloAlertingLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingLabelOutput)
 }
 
-// GetGrafanSlosSloAlertingLabelArrayInput is an input type that accepts GetGrafanSlosSloAlertingLabelArray and GetGrafanSlosSloAlertingLabelArrayOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingLabelArrayInput` via:
+// GetSlosSloAlertingLabelArrayInput is an input type that accepts GetSlosSloAlertingLabelArray and GetSlosSloAlertingLabelArrayOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingLabelArrayInput` via:
 //
-//	GetGrafanSlosSloAlertingLabelArray{ GetGrafanSlosSloAlertingLabelArgs{...} }
-type GetGrafanSlosSloAlertingLabelArrayInput interface {
+//	GetSlosSloAlertingLabelArray{ GetSlosSloAlertingLabelArgs{...} }
+type GetSlosSloAlertingLabelArrayInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingLabelArrayOutput() GetGrafanSlosSloAlertingLabelArrayOutput
-	ToGetGrafanSlosSloAlertingLabelArrayOutputWithContext(context.Context) GetGrafanSlosSloAlertingLabelArrayOutput
+	ToGetSlosSloAlertingLabelArrayOutput() GetSlosSloAlertingLabelArrayOutput
+	ToGetSlosSloAlertingLabelArrayOutputWithContext(context.Context) GetSlosSloAlertingLabelArrayOutput
 }
 
-type GetGrafanSlosSloAlertingLabelArray []GetGrafanSlosSloAlertingLabelInput
+type GetSlosSloAlertingLabelArray []GetSlosSloAlertingLabelInput
 
-func (GetGrafanSlosSloAlertingLabelArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlertingLabel)(nil)).Elem()
+func (GetSlosSloAlertingLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingLabel)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingLabelArray) ToGetGrafanSlosSloAlertingLabelArrayOutput() GetGrafanSlosSloAlertingLabelArrayOutput {
-	return i.ToGetGrafanSlosSloAlertingLabelArrayOutputWithContext(context.Background())
+func (i GetSlosSloAlertingLabelArray) ToGetSlosSloAlertingLabelArrayOutput() GetSlosSloAlertingLabelArrayOutput {
+	return i.ToGetSlosSloAlertingLabelArrayOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingLabelArray) ToGetGrafanSlosSloAlertingLabelArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingLabelArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingLabelArrayOutput)
+func (i GetSlosSloAlertingLabelArray) ToGetSlosSloAlertingLabelArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingLabelArrayOutput)
 }
 
-type GetGrafanSlosSloAlertingLabelOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingLabelOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingLabelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlertingLabel)(nil)).Elem()
+func (GetSlosSloAlertingLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingLabel)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingLabelOutput) ToGetGrafanSlosSloAlertingLabelOutput() GetGrafanSlosSloAlertingLabelOutput {
+func (o GetSlosSloAlertingLabelOutput) ToGetSlosSloAlertingLabelOutput() GetSlosSloAlertingLabelOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingLabelOutput) ToGetGrafanSlosSloAlertingLabelOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingLabelOutput {
+func (o GetSlosSloAlertingLabelOutput) ToGetSlosSloAlertingLabelOutputWithContext(ctx context.Context) GetSlosSloAlertingLabelOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingLabelOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlertingLabel) string { return v.Key }).(pulumi.StringOutput)
+func (o GetSlosSloAlertingLabelOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
-func (o GetGrafanSlosSloAlertingLabelOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlertingLabel) string { return v.Value }).(pulumi.StringOutput)
+func (o GetSlosSloAlertingLabelOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingLabel) string { return v.Value }).(pulumi.StringOutput)
 }
 
-type GetGrafanSlosSloAlertingLabelArrayOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingLabelArrayOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingLabelArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlertingLabel)(nil)).Elem()
+func (GetSlosSloAlertingLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingLabel)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingLabelArrayOutput) ToGetGrafanSlosSloAlertingLabelArrayOutput() GetGrafanSlosSloAlertingLabelArrayOutput {
+func (o GetSlosSloAlertingLabelArrayOutput) ToGetSlosSloAlertingLabelArrayOutput() GetSlosSloAlertingLabelArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingLabelArrayOutput) ToGetGrafanSlosSloAlertingLabelArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingLabelArrayOutput {
+func (o GetSlosSloAlertingLabelArrayOutput) ToGetSlosSloAlertingLabelArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingLabelArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingLabelArrayOutput) Index(i pulumi.IntInput) GetGrafanSlosSloAlertingLabelOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGrafanSlosSloAlertingLabel {
-		return vs[0].([]GetGrafanSlosSloAlertingLabel)[vs[1].(int)]
-	}).(GetGrafanSlosSloAlertingLabelOutput)
+func (o GetSlosSloAlertingLabelArrayOutput) Index(i pulumi.IntInput) GetSlosSloAlertingLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloAlertingLabel {
+		return vs[0].([]GetSlosSloAlertingLabel)[vs[1].(int)]
+	}).(GetSlosSloAlertingLabelOutput)
 }
 
-type GetGrafanSlosSloAlertingSlowburn struct {
-	Annotations []GetGrafanSlosSloAlertingSlowburnAnnotation `pulumi:"annotations"`
-	Labels      []GetGrafanSlosSloAlertingSlowburnLabel      `pulumi:"labels"`
+type GetSlosSloAlertingSlowburn struct {
+	Annotations []GetSlosSloAlertingSlowburnAnnotation `pulumi:"annotations"`
+	Labels      []GetSlosSloAlertingSlowburnLabel      `pulumi:"labels"`
 }
 
-// GetGrafanSlosSloAlertingSlowburnInput is an input type that accepts GetGrafanSlosSloAlertingSlowburnArgs and GetGrafanSlosSloAlertingSlowburnOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingSlowburnInput` via:
+// GetSlosSloAlertingSlowburnInput is an input type that accepts GetSlosSloAlertingSlowburnArgs and GetSlosSloAlertingSlowburnOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingSlowburnInput` via:
 //
-//	GetGrafanSlosSloAlertingSlowburnArgs{...}
-type GetGrafanSlosSloAlertingSlowburnInput interface {
+//	GetSlosSloAlertingSlowburnArgs{...}
+type GetSlosSloAlertingSlowburnInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingSlowburnOutput() GetGrafanSlosSloAlertingSlowburnOutput
-	ToGetGrafanSlosSloAlertingSlowburnOutputWithContext(context.Context) GetGrafanSlosSloAlertingSlowburnOutput
+	ToGetSlosSloAlertingSlowburnOutput() GetSlosSloAlertingSlowburnOutput
+	ToGetSlosSloAlertingSlowburnOutputWithContext(context.Context) GetSlosSloAlertingSlowburnOutput
 }
 
-type GetGrafanSlosSloAlertingSlowburnArgs struct {
-	Annotations GetGrafanSlosSloAlertingSlowburnAnnotationArrayInput `pulumi:"annotations"`
-	Labels      GetGrafanSlosSloAlertingSlowburnLabelArrayInput      `pulumi:"labels"`
+type GetSlosSloAlertingSlowburnArgs struct {
+	Annotations GetSlosSloAlertingSlowburnAnnotationArrayInput `pulumi:"annotations"`
+	Labels      GetSlosSloAlertingSlowburnLabelArrayInput      `pulumi:"labels"`
 }
 
-func (GetGrafanSlosSloAlertingSlowburnArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlertingSlowburn)(nil)).Elem()
+func (GetSlosSloAlertingSlowburnArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingSlowburn)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingSlowburnArgs) ToGetGrafanSlosSloAlertingSlowburnOutput() GetGrafanSlosSloAlertingSlowburnOutput {
-	return i.ToGetGrafanSlosSloAlertingSlowburnOutputWithContext(context.Background())
+func (i GetSlosSloAlertingSlowburnArgs) ToGetSlosSloAlertingSlowburnOutput() GetSlosSloAlertingSlowburnOutput {
+	return i.ToGetSlosSloAlertingSlowburnOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingSlowburnArgs) ToGetGrafanSlosSloAlertingSlowburnOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingSlowburnOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingSlowburnOutput)
+func (i GetSlosSloAlertingSlowburnArgs) ToGetSlosSloAlertingSlowburnOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingSlowburnOutput)
 }
 
-// GetGrafanSlosSloAlertingSlowburnArrayInput is an input type that accepts GetGrafanSlosSloAlertingSlowburnArray and GetGrafanSlosSloAlertingSlowburnArrayOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingSlowburnArrayInput` via:
+// GetSlosSloAlertingSlowburnArrayInput is an input type that accepts GetSlosSloAlertingSlowburnArray and GetSlosSloAlertingSlowburnArrayOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingSlowburnArrayInput` via:
 //
-//	GetGrafanSlosSloAlertingSlowburnArray{ GetGrafanSlosSloAlertingSlowburnArgs{...} }
-type GetGrafanSlosSloAlertingSlowburnArrayInput interface {
+//	GetSlosSloAlertingSlowburnArray{ GetSlosSloAlertingSlowburnArgs{...} }
+type GetSlosSloAlertingSlowburnArrayInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingSlowburnArrayOutput() GetGrafanSlosSloAlertingSlowburnArrayOutput
-	ToGetGrafanSlosSloAlertingSlowburnArrayOutputWithContext(context.Context) GetGrafanSlosSloAlertingSlowburnArrayOutput
+	ToGetSlosSloAlertingSlowburnArrayOutput() GetSlosSloAlertingSlowburnArrayOutput
+	ToGetSlosSloAlertingSlowburnArrayOutputWithContext(context.Context) GetSlosSloAlertingSlowburnArrayOutput
 }
 
-type GetGrafanSlosSloAlertingSlowburnArray []GetGrafanSlosSloAlertingSlowburnInput
+type GetSlosSloAlertingSlowburnArray []GetSlosSloAlertingSlowburnInput
 
-func (GetGrafanSlosSloAlertingSlowburnArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlertingSlowburn)(nil)).Elem()
+func (GetSlosSloAlertingSlowburnArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingSlowburn)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingSlowburnArray) ToGetGrafanSlosSloAlertingSlowburnArrayOutput() GetGrafanSlosSloAlertingSlowburnArrayOutput {
-	return i.ToGetGrafanSlosSloAlertingSlowburnArrayOutputWithContext(context.Background())
+func (i GetSlosSloAlertingSlowburnArray) ToGetSlosSloAlertingSlowburnArrayOutput() GetSlosSloAlertingSlowburnArrayOutput {
+	return i.ToGetSlosSloAlertingSlowburnArrayOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingSlowburnArray) ToGetGrafanSlosSloAlertingSlowburnArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingSlowburnArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingSlowburnArrayOutput)
+func (i GetSlosSloAlertingSlowburnArray) ToGetSlosSloAlertingSlowburnArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingSlowburnArrayOutput)
 }
 
-type GetGrafanSlosSloAlertingSlowburnOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingSlowburnOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingSlowburnOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlertingSlowburn)(nil)).Elem()
+func (GetSlosSloAlertingSlowburnOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingSlowburn)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnOutput) ToGetGrafanSlosSloAlertingSlowburnOutput() GetGrafanSlosSloAlertingSlowburnOutput {
+func (o GetSlosSloAlertingSlowburnOutput) ToGetSlosSloAlertingSlowburnOutput() GetSlosSloAlertingSlowburnOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnOutput) ToGetGrafanSlosSloAlertingSlowburnOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingSlowburnOutput {
+func (o GetSlosSloAlertingSlowburnOutput) ToGetSlosSloAlertingSlowburnOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnOutput) Annotations() GetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlertingSlowburn) []GetGrafanSlosSloAlertingSlowburnAnnotation {
-		return v.Annotations
-	}).(GetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput)
+func (o GetSlosSloAlertingSlowburnOutput) Annotations() GetSlosSloAlertingSlowburnAnnotationArrayOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingSlowburn) []GetSlosSloAlertingSlowburnAnnotation { return v.Annotations }).(GetSlosSloAlertingSlowburnAnnotationArrayOutput)
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnOutput) Labels() GetGrafanSlosSloAlertingSlowburnLabelArrayOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlertingSlowburn) []GetGrafanSlosSloAlertingSlowburnLabel { return v.Labels }).(GetGrafanSlosSloAlertingSlowburnLabelArrayOutput)
+func (o GetSlosSloAlertingSlowburnOutput) Labels() GetSlosSloAlertingSlowburnLabelArrayOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingSlowburn) []GetSlosSloAlertingSlowburnLabel { return v.Labels }).(GetSlosSloAlertingSlowburnLabelArrayOutput)
 }
 
-type GetGrafanSlosSloAlertingSlowburnArrayOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingSlowburnArrayOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingSlowburnArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlertingSlowburn)(nil)).Elem()
+func (GetSlosSloAlertingSlowburnArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingSlowburn)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnArrayOutput) ToGetGrafanSlosSloAlertingSlowburnArrayOutput() GetGrafanSlosSloAlertingSlowburnArrayOutput {
+func (o GetSlosSloAlertingSlowburnArrayOutput) ToGetSlosSloAlertingSlowburnArrayOutput() GetSlosSloAlertingSlowburnArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnArrayOutput) ToGetGrafanSlosSloAlertingSlowburnArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingSlowburnArrayOutput {
+func (o GetSlosSloAlertingSlowburnArrayOutput) ToGetSlosSloAlertingSlowburnArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnArrayOutput) Index(i pulumi.IntInput) GetGrafanSlosSloAlertingSlowburnOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGrafanSlosSloAlertingSlowburn {
-		return vs[0].([]GetGrafanSlosSloAlertingSlowburn)[vs[1].(int)]
-	}).(GetGrafanSlosSloAlertingSlowburnOutput)
+func (o GetSlosSloAlertingSlowburnArrayOutput) Index(i pulumi.IntInput) GetSlosSloAlertingSlowburnOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloAlertingSlowburn {
+		return vs[0].([]GetSlosSloAlertingSlowburn)[vs[1].(int)]
+	}).(GetSlosSloAlertingSlowburnOutput)
 }
 
-type GetGrafanSlosSloAlertingSlowburnAnnotation struct {
+type GetSlosSloAlertingSlowburnAnnotation struct {
 	Key   string `pulumi:"key"`
 	Value string `pulumi:"value"`
 }
 
-// GetGrafanSlosSloAlertingSlowburnAnnotationInput is an input type that accepts GetGrafanSlosSloAlertingSlowburnAnnotationArgs and GetGrafanSlosSloAlertingSlowburnAnnotationOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingSlowburnAnnotationInput` via:
+// GetSlosSloAlertingSlowburnAnnotationInput is an input type that accepts GetSlosSloAlertingSlowburnAnnotationArgs and GetSlosSloAlertingSlowburnAnnotationOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingSlowburnAnnotationInput` via:
 //
-//	GetGrafanSlosSloAlertingSlowburnAnnotationArgs{...}
-type GetGrafanSlosSloAlertingSlowburnAnnotationInput interface {
+//	GetSlosSloAlertingSlowburnAnnotationArgs{...}
+type GetSlosSloAlertingSlowburnAnnotationInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingSlowburnAnnotationOutput() GetGrafanSlosSloAlertingSlowburnAnnotationOutput
-	ToGetGrafanSlosSloAlertingSlowburnAnnotationOutputWithContext(context.Context) GetGrafanSlosSloAlertingSlowburnAnnotationOutput
+	ToGetSlosSloAlertingSlowburnAnnotationOutput() GetSlosSloAlertingSlowburnAnnotationOutput
+	ToGetSlosSloAlertingSlowburnAnnotationOutputWithContext(context.Context) GetSlosSloAlertingSlowburnAnnotationOutput
 }
 
-type GetGrafanSlosSloAlertingSlowburnAnnotationArgs struct {
+type GetSlosSloAlertingSlowburnAnnotationArgs struct {
 	Key   pulumi.StringInput `pulumi:"key"`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
-func (GetGrafanSlosSloAlertingSlowburnAnnotationArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlertingSlowburnAnnotation)(nil)).Elem()
+func (GetSlosSloAlertingSlowburnAnnotationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingSlowburnAnnotation)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingSlowburnAnnotationArgs) ToGetGrafanSlosSloAlertingSlowburnAnnotationOutput() GetGrafanSlosSloAlertingSlowburnAnnotationOutput {
-	return i.ToGetGrafanSlosSloAlertingSlowburnAnnotationOutputWithContext(context.Background())
+func (i GetSlosSloAlertingSlowburnAnnotationArgs) ToGetSlosSloAlertingSlowburnAnnotationOutput() GetSlosSloAlertingSlowburnAnnotationOutput {
+	return i.ToGetSlosSloAlertingSlowburnAnnotationOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingSlowburnAnnotationArgs) ToGetGrafanSlosSloAlertingSlowburnAnnotationOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingSlowburnAnnotationOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingSlowburnAnnotationOutput)
+func (i GetSlosSloAlertingSlowburnAnnotationArgs) ToGetSlosSloAlertingSlowburnAnnotationOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnAnnotationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingSlowburnAnnotationOutput)
 }
 
-// GetGrafanSlosSloAlertingSlowburnAnnotationArrayInput is an input type that accepts GetGrafanSlosSloAlertingSlowburnAnnotationArray and GetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingSlowburnAnnotationArrayInput` via:
+// GetSlosSloAlertingSlowburnAnnotationArrayInput is an input type that accepts GetSlosSloAlertingSlowburnAnnotationArray and GetSlosSloAlertingSlowburnAnnotationArrayOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingSlowburnAnnotationArrayInput` via:
 //
-//	GetGrafanSlosSloAlertingSlowburnAnnotationArray{ GetGrafanSlosSloAlertingSlowburnAnnotationArgs{...} }
-type GetGrafanSlosSloAlertingSlowburnAnnotationArrayInput interface {
+//	GetSlosSloAlertingSlowburnAnnotationArray{ GetSlosSloAlertingSlowburnAnnotationArgs{...} }
+type GetSlosSloAlertingSlowburnAnnotationArrayInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput() GetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput
-	ToGetGrafanSlosSloAlertingSlowburnAnnotationArrayOutputWithContext(context.Context) GetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput
+	ToGetSlosSloAlertingSlowburnAnnotationArrayOutput() GetSlosSloAlertingSlowburnAnnotationArrayOutput
+	ToGetSlosSloAlertingSlowburnAnnotationArrayOutputWithContext(context.Context) GetSlosSloAlertingSlowburnAnnotationArrayOutput
 }
 
-type GetGrafanSlosSloAlertingSlowburnAnnotationArray []GetGrafanSlosSloAlertingSlowburnAnnotationInput
+type GetSlosSloAlertingSlowburnAnnotationArray []GetSlosSloAlertingSlowburnAnnotationInput
 
-func (GetGrafanSlosSloAlertingSlowburnAnnotationArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlertingSlowburnAnnotation)(nil)).Elem()
+func (GetSlosSloAlertingSlowburnAnnotationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingSlowburnAnnotation)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingSlowburnAnnotationArray) ToGetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput() GetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput {
-	return i.ToGetGrafanSlosSloAlertingSlowburnAnnotationArrayOutputWithContext(context.Background())
+func (i GetSlosSloAlertingSlowburnAnnotationArray) ToGetSlosSloAlertingSlowburnAnnotationArrayOutput() GetSlosSloAlertingSlowburnAnnotationArrayOutput {
+	return i.ToGetSlosSloAlertingSlowburnAnnotationArrayOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingSlowburnAnnotationArray) ToGetGrafanSlosSloAlertingSlowburnAnnotationArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput)
+func (i GetSlosSloAlertingSlowburnAnnotationArray) ToGetSlosSloAlertingSlowburnAnnotationArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnAnnotationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingSlowburnAnnotationArrayOutput)
 }
 
-type GetGrafanSlosSloAlertingSlowburnAnnotationOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingSlowburnAnnotationOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingSlowburnAnnotationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlertingSlowburnAnnotation)(nil)).Elem()
+func (GetSlosSloAlertingSlowburnAnnotationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingSlowburnAnnotation)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnAnnotationOutput) ToGetGrafanSlosSloAlertingSlowburnAnnotationOutput() GetGrafanSlosSloAlertingSlowburnAnnotationOutput {
+func (o GetSlosSloAlertingSlowburnAnnotationOutput) ToGetSlosSloAlertingSlowburnAnnotationOutput() GetSlosSloAlertingSlowburnAnnotationOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnAnnotationOutput) ToGetGrafanSlosSloAlertingSlowburnAnnotationOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingSlowburnAnnotationOutput {
+func (o GetSlosSloAlertingSlowburnAnnotationOutput) ToGetSlosSloAlertingSlowburnAnnotationOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnAnnotationOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnAnnotationOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlertingSlowburnAnnotation) string { return v.Key }).(pulumi.StringOutput)
+func (o GetSlosSloAlertingSlowburnAnnotationOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingSlowburnAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnAnnotationOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlertingSlowburnAnnotation) string { return v.Value }).(pulumi.StringOutput)
+func (o GetSlosSloAlertingSlowburnAnnotationOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingSlowburnAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
 
-type GetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingSlowburnAnnotationArrayOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlertingSlowburnAnnotation)(nil)).Elem()
+func (GetSlosSloAlertingSlowburnAnnotationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingSlowburnAnnotation)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput) ToGetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput() GetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput {
+func (o GetSlosSloAlertingSlowburnAnnotationArrayOutput) ToGetSlosSloAlertingSlowburnAnnotationArrayOutput() GetSlosSloAlertingSlowburnAnnotationArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput) ToGetGrafanSlosSloAlertingSlowburnAnnotationArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput {
+func (o GetSlosSloAlertingSlowburnAnnotationArrayOutput) ToGetSlosSloAlertingSlowburnAnnotationArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnAnnotationArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput) Index(i pulumi.IntInput) GetGrafanSlosSloAlertingSlowburnAnnotationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGrafanSlosSloAlertingSlowburnAnnotation {
-		return vs[0].([]GetGrafanSlosSloAlertingSlowburnAnnotation)[vs[1].(int)]
-	}).(GetGrafanSlosSloAlertingSlowburnAnnotationOutput)
+func (o GetSlosSloAlertingSlowburnAnnotationArrayOutput) Index(i pulumi.IntInput) GetSlosSloAlertingSlowburnAnnotationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloAlertingSlowburnAnnotation {
+		return vs[0].([]GetSlosSloAlertingSlowburnAnnotation)[vs[1].(int)]
+	}).(GetSlosSloAlertingSlowburnAnnotationOutput)
 }
 
-type GetGrafanSlosSloAlertingSlowburnLabel struct {
+type GetSlosSloAlertingSlowburnLabel struct {
 	Key   string `pulumi:"key"`
 	Value string `pulumi:"value"`
 }
 
-// GetGrafanSlosSloAlertingSlowburnLabelInput is an input type that accepts GetGrafanSlosSloAlertingSlowburnLabelArgs and GetGrafanSlosSloAlertingSlowburnLabelOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingSlowburnLabelInput` via:
+// GetSlosSloAlertingSlowburnLabelInput is an input type that accepts GetSlosSloAlertingSlowburnLabelArgs and GetSlosSloAlertingSlowburnLabelOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingSlowburnLabelInput` via:
 //
-//	GetGrafanSlosSloAlertingSlowburnLabelArgs{...}
-type GetGrafanSlosSloAlertingSlowburnLabelInput interface {
+//	GetSlosSloAlertingSlowburnLabelArgs{...}
+type GetSlosSloAlertingSlowburnLabelInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingSlowburnLabelOutput() GetGrafanSlosSloAlertingSlowburnLabelOutput
-	ToGetGrafanSlosSloAlertingSlowburnLabelOutputWithContext(context.Context) GetGrafanSlosSloAlertingSlowburnLabelOutput
+	ToGetSlosSloAlertingSlowburnLabelOutput() GetSlosSloAlertingSlowburnLabelOutput
+	ToGetSlosSloAlertingSlowburnLabelOutputWithContext(context.Context) GetSlosSloAlertingSlowburnLabelOutput
 }
 
-type GetGrafanSlosSloAlertingSlowburnLabelArgs struct {
+type GetSlosSloAlertingSlowburnLabelArgs struct {
 	Key   pulumi.StringInput `pulumi:"key"`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
-func (GetGrafanSlosSloAlertingSlowburnLabelArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlertingSlowburnLabel)(nil)).Elem()
+func (GetSlosSloAlertingSlowburnLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingSlowburnLabel)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingSlowburnLabelArgs) ToGetGrafanSlosSloAlertingSlowburnLabelOutput() GetGrafanSlosSloAlertingSlowburnLabelOutput {
-	return i.ToGetGrafanSlosSloAlertingSlowburnLabelOutputWithContext(context.Background())
+func (i GetSlosSloAlertingSlowburnLabelArgs) ToGetSlosSloAlertingSlowburnLabelOutput() GetSlosSloAlertingSlowburnLabelOutput {
+	return i.ToGetSlosSloAlertingSlowburnLabelOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingSlowburnLabelArgs) ToGetGrafanSlosSloAlertingSlowburnLabelOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingSlowburnLabelOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingSlowburnLabelOutput)
+func (i GetSlosSloAlertingSlowburnLabelArgs) ToGetSlosSloAlertingSlowburnLabelOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingSlowburnLabelOutput)
 }
 
-// GetGrafanSlosSloAlertingSlowburnLabelArrayInput is an input type that accepts GetGrafanSlosSloAlertingSlowburnLabelArray and GetGrafanSlosSloAlertingSlowburnLabelArrayOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloAlertingSlowburnLabelArrayInput` via:
+// GetSlosSloAlertingSlowburnLabelArrayInput is an input type that accepts GetSlosSloAlertingSlowburnLabelArray and GetSlosSloAlertingSlowburnLabelArrayOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingSlowburnLabelArrayInput` via:
 //
-//	GetGrafanSlosSloAlertingSlowburnLabelArray{ GetGrafanSlosSloAlertingSlowburnLabelArgs{...} }
-type GetGrafanSlosSloAlertingSlowburnLabelArrayInput interface {
+//	GetSlosSloAlertingSlowburnLabelArray{ GetSlosSloAlertingSlowburnLabelArgs{...} }
+type GetSlosSloAlertingSlowburnLabelArrayInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloAlertingSlowburnLabelArrayOutput() GetGrafanSlosSloAlertingSlowburnLabelArrayOutput
-	ToGetGrafanSlosSloAlertingSlowburnLabelArrayOutputWithContext(context.Context) GetGrafanSlosSloAlertingSlowburnLabelArrayOutput
+	ToGetSlosSloAlertingSlowburnLabelArrayOutput() GetSlosSloAlertingSlowburnLabelArrayOutput
+	ToGetSlosSloAlertingSlowburnLabelArrayOutputWithContext(context.Context) GetSlosSloAlertingSlowburnLabelArrayOutput
 }
 
-type GetGrafanSlosSloAlertingSlowburnLabelArray []GetGrafanSlosSloAlertingSlowburnLabelInput
+type GetSlosSloAlertingSlowburnLabelArray []GetSlosSloAlertingSlowburnLabelInput
 
-func (GetGrafanSlosSloAlertingSlowburnLabelArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlertingSlowburnLabel)(nil)).Elem()
+func (GetSlosSloAlertingSlowburnLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingSlowburnLabel)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloAlertingSlowburnLabelArray) ToGetGrafanSlosSloAlertingSlowburnLabelArrayOutput() GetGrafanSlosSloAlertingSlowburnLabelArrayOutput {
-	return i.ToGetGrafanSlosSloAlertingSlowburnLabelArrayOutputWithContext(context.Background())
+func (i GetSlosSloAlertingSlowburnLabelArray) ToGetSlosSloAlertingSlowburnLabelArrayOutput() GetSlosSloAlertingSlowburnLabelArrayOutput {
+	return i.ToGetSlosSloAlertingSlowburnLabelArrayOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloAlertingSlowburnLabelArray) ToGetGrafanSlosSloAlertingSlowburnLabelArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingSlowburnLabelArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloAlertingSlowburnLabelArrayOutput)
+func (i GetSlosSloAlertingSlowburnLabelArray) ToGetSlosSloAlertingSlowburnLabelArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingSlowburnLabelArrayOutput)
 }
 
-type GetGrafanSlosSloAlertingSlowburnLabelOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingSlowburnLabelOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingSlowburnLabelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloAlertingSlowburnLabel)(nil)).Elem()
+func (GetSlosSloAlertingSlowburnLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingSlowburnLabel)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnLabelOutput) ToGetGrafanSlosSloAlertingSlowburnLabelOutput() GetGrafanSlosSloAlertingSlowburnLabelOutput {
+func (o GetSlosSloAlertingSlowburnLabelOutput) ToGetSlosSloAlertingSlowburnLabelOutput() GetSlosSloAlertingSlowburnLabelOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnLabelOutput) ToGetGrafanSlosSloAlertingSlowburnLabelOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingSlowburnLabelOutput {
+func (o GetSlosSloAlertingSlowburnLabelOutput) ToGetSlosSloAlertingSlowburnLabelOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnLabelOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnLabelOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlertingSlowburnLabel) string { return v.Key }).(pulumi.StringOutput)
+func (o GetSlosSloAlertingSlowburnLabelOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingSlowburnLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnLabelOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloAlertingSlowburnLabel) string { return v.Value }).(pulumi.StringOutput)
+func (o GetSlosSloAlertingSlowburnLabelOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingSlowburnLabel) string { return v.Value }).(pulumi.StringOutput)
 }
 
-type GetGrafanSlosSloAlertingSlowburnLabelArrayOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingSlowburnLabelArrayOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloAlertingSlowburnLabelArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloAlertingSlowburnLabel)(nil)).Elem()
+func (GetSlosSloAlertingSlowburnLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingSlowburnLabel)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnLabelArrayOutput) ToGetGrafanSlosSloAlertingSlowburnLabelArrayOutput() GetGrafanSlosSloAlertingSlowburnLabelArrayOutput {
+func (o GetSlosSloAlertingSlowburnLabelArrayOutput) ToGetSlosSloAlertingSlowburnLabelArrayOutput() GetSlosSloAlertingSlowburnLabelArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnLabelArrayOutput) ToGetGrafanSlosSloAlertingSlowburnLabelArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloAlertingSlowburnLabelArrayOutput {
+func (o GetSlosSloAlertingSlowburnLabelArrayOutput) ToGetSlosSloAlertingSlowburnLabelArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnLabelArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloAlertingSlowburnLabelArrayOutput) Index(i pulumi.IntInput) GetGrafanSlosSloAlertingSlowburnLabelOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGrafanSlosSloAlertingSlowburnLabel {
-		return vs[0].([]GetGrafanSlosSloAlertingSlowburnLabel)[vs[1].(int)]
-	}).(GetGrafanSlosSloAlertingSlowburnLabelOutput)
+func (o GetSlosSloAlertingSlowburnLabelArrayOutput) Index(i pulumi.IntInput) GetSlosSloAlertingSlowburnLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloAlertingSlowburnLabel {
+		return vs[0].([]GetSlosSloAlertingSlowburnLabel)[vs[1].(int)]
+	}).(GetSlosSloAlertingSlowburnLabelOutput)
 }
 
-type GetGrafanSlosSloLabel struct {
+type GetSlosSloLabel struct {
 	Key   string `pulumi:"key"`
 	Value string `pulumi:"value"`
 }
 
-// GetGrafanSlosSloLabelInput is an input type that accepts GetGrafanSlosSloLabelArgs and GetGrafanSlosSloLabelOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloLabelInput` via:
+// GetSlosSloLabelInput is an input type that accepts GetSlosSloLabelArgs and GetSlosSloLabelOutput values.
+// You can construct a concrete instance of `GetSlosSloLabelInput` via:
 //
-//	GetGrafanSlosSloLabelArgs{...}
-type GetGrafanSlosSloLabelInput interface {
+//	GetSlosSloLabelArgs{...}
+type GetSlosSloLabelInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloLabelOutput() GetGrafanSlosSloLabelOutput
-	ToGetGrafanSlosSloLabelOutputWithContext(context.Context) GetGrafanSlosSloLabelOutput
+	ToGetSlosSloLabelOutput() GetSlosSloLabelOutput
+	ToGetSlosSloLabelOutputWithContext(context.Context) GetSlosSloLabelOutput
 }
 
-type GetGrafanSlosSloLabelArgs struct {
+type GetSlosSloLabelArgs struct {
 	Key   pulumi.StringInput `pulumi:"key"`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
-func (GetGrafanSlosSloLabelArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloLabel)(nil)).Elem()
+func (GetSlosSloLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloLabel)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloLabelArgs) ToGetGrafanSlosSloLabelOutput() GetGrafanSlosSloLabelOutput {
-	return i.ToGetGrafanSlosSloLabelOutputWithContext(context.Background())
+func (i GetSlosSloLabelArgs) ToGetSlosSloLabelOutput() GetSlosSloLabelOutput {
+	return i.ToGetSlosSloLabelOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloLabelArgs) ToGetGrafanSlosSloLabelOutputWithContext(ctx context.Context) GetGrafanSlosSloLabelOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloLabelOutput)
+func (i GetSlosSloLabelArgs) ToGetSlosSloLabelOutputWithContext(ctx context.Context) GetSlosSloLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloLabelOutput)
 }
 
-// GetGrafanSlosSloLabelArrayInput is an input type that accepts GetGrafanSlosSloLabelArray and GetGrafanSlosSloLabelArrayOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloLabelArrayInput` via:
+// GetSlosSloLabelArrayInput is an input type that accepts GetSlosSloLabelArray and GetSlosSloLabelArrayOutput values.
+// You can construct a concrete instance of `GetSlosSloLabelArrayInput` via:
 //
-//	GetGrafanSlosSloLabelArray{ GetGrafanSlosSloLabelArgs{...} }
-type GetGrafanSlosSloLabelArrayInput interface {
+//	GetSlosSloLabelArray{ GetSlosSloLabelArgs{...} }
+type GetSlosSloLabelArrayInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloLabelArrayOutput() GetGrafanSlosSloLabelArrayOutput
-	ToGetGrafanSlosSloLabelArrayOutputWithContext(context.Context) GetGrafanSlosSloLabelArrayOutput
+	ToGetSlosSloLabelArrayOutput() GetSlosSloLabelArrayOutput
+	ToGetSlosSloLabelArrayOutputWithContext(context.Context) GetSlosSloLabelArrayOutput
 }
 
-type GetGrafanSlosSloLabelArray []GetGrafanSlosSloLabelInput
+type GetSlosSloLabelArray []GetSlosSloLabelInput
 
-func (GetGrafanSlosSloLabelArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloLabel)(nil)).Elem()
+func (GetSlosSloLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloLabel)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloLabelArray) ToGetGrafanSlosSloLabelArrayOutput() GetGrafanSlosSloLabelArrayOutput {
-	return i.ToGetGrafanSlosSloLabelArrayOutputWithContext(context.Background())
+func (i GetSlosSloLabelArray) ToGetSlosSloLabelArrayOutput() GetSlosSloLabelArrayOutput {
+	return i.ToGetSlosSloLabelArrayOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloLabelArray) ToGetGrafanSlosSloLabelArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloLabelArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloLabelArrayOutput)
+func (i GetSlosSloLabelArray) ToGetSlosSloLabelArrayOutputWithContext(ctx context.Context) GetSlosSloLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloLabelArrayOutput)
 }
 
-type GetGrafanSlosSloLabelOutput struct{ *pulumi.OutputState }
+type GetSlosSloLabelOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloLabelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloLabel)(nil)).Elem()
+func (GetSlosSloLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloLabel)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloLabelOutput) ToGetGrafanSlosSloLabelOutput() GetGrafanSlosSloLabelOutput {
+func (o GetSlosSloLabelOutput) ToGetSlosSloLabelOutput() GetSlosSloLabelOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloLabelOutput) ToGetGrafanSlosSloLabelOutputWithContext(ctx context.Context) GetGrafanSlosSloLabelOutput {
+func (o GetSlosSloLabelOutput) ToGetSlosSloLabelOutputWithContext(ctx context.Context) GetSlosSloLabelOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloLabelOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloLabel) string { return v.Key }).(pulumi.StringOutput)
+func (o GetSlosSloLabelOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
-func (o GetGrafanSlosSloLabelOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloLabel) string { return v.Value }).(pulumi.StringOutput)
+func (o GetSlosSloLabelOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloLabel) string { return v.Value }).(pulumi.StringOutput)
 }
 
-type GetGrafanSlosSloLabelArrayOutput struct{ *pulumi.OutputState }
+type GetSlosSloLabelArrayOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloLabelArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloLabel)(nil)).Elem()
+func (GetSlosSloLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloLabel)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloLabelArrayOutput) ToGetGrafanSlosSloLabelArrayOutput() GetGrafanSlosSloLabelArrayOutput {
+func (o GetSlosSloLabelArrayOutput) ToGetSlosSloLabelArrayOutput() GetSlosSloLabelArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloLabelArrayOutput) ToGetGrafanSlosSloLabelArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloLabelArrayOutput {
+func (o GetSlosSloLabelArrayOutput) ToGetSlosSloLabelArrayOutputWithContext(ctx context.Context) GetSlosSloLabelArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloLabelArrayOutput) Index(i pulumi.IntInput) GetGrafanSlosSloLabelOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGrafanSlosSloLabel {
-		return vs[0].([]GetGrafanSlosSloLabel)[vs[1].(int)]
-	}).(GetGrafanSlosSloLabelOutput)
+func (o GetSlosSloLabelArrayOutput) Index(i pulumi.IntInput) GetSlosSloLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloLabel {
+		return vs[0].([]GetSlosSloLabel)[vs[1].(int)]
+	}).(GetSlosSloLabelOutput)
 }
 
-type GetGrafanSlosSloObjective struct {
+type GetSlosSloObjective struct {
 	Value  float64 `pulumi:"value"`
 	Window string  `pulumi:"window"`
 }
 
-// GetGrafanSlosSloObjectiveInput is an input type that accepts GetGrafanSlosSloObjectiveArgs and GetGrafanSlosSloObjectiveOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloObjectiveInput` via:
+// GetSlosSloObjectiveInput is an input type that accepts GetSlosSloObjectiveArgs and GetSlosSloObjectiveOutput values.
+// You can construct a concrete instance of `GetSlosSloObjectiveInput` via:
 //
-//	GetGrafanSlosSloObjectiveArgs{...}
-type GetGrafanSlosSloObjectiveInput interface {
+//	GetSlosSloObjectiveArgs{...}
+type GetSlosSloObjectiveInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloObjectiveOutput() GetGrafanSlosSloObjectiveOutput
-	ToGetGrafanSlosSloObjectiveOutputWithContext(context.Context) GetGrafanSlosSloObjectiveOutput
+	ToGetSlosSloObjectiveOutput() GetSlosSloObjectiveOutput
+	ToGetSlosSloObjectiveOutputWithContext(context.Context) GetSlosSloObjectiveOutput
 }
 
-type GetGrafanSlosSloObjectiveArgs struct {
+type GetSlosSloObjectiveArgs struct {
 	Value  pulumi.Float64Input `pulumi:"value"`
 	Window pulumi.StringInput  `pulumi:"window"`
 }
 
-func (GetGrafanSlosSloObjectiveArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloObjective)(nil)).Elem()
+func (GetSlosSloObjectiveArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloObjective)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloObjectiveArgs) ToGetGrafanSlosSloObjectiveOutput() GetGrafanSlosSloObjectiveOutput {
-	return i.ToGetGrafanSlosSloObjectiveOutputWithContext(context.Background())
+func (i GetSlosSloObjectiveArgs) ToGetSlosSloObjectiveOutput() GetSlosSloObjectiveOutput {
+	return i.ToGetSlosSloObjectiveOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloObjectiveArgs) ToGetGrafanSlosSloObjectiveOutputWithContext(ctx context.Context) GetGrafanSlosSloObjectiveOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloObjectiveOutput)
+func (i GetSlosSloObjectiveArgs) ToGetSlosSloObjectiveOutputWithContext(ctx context.Context) GetSlosSloObjectiveOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloObjectiveOutput)
 }
 
-// GetGrafanSlosSloObjectiveArrayInput is an input type that accepts GetGrafanSlosSloObjectiveArray and GetGrafanSlosSloObjectiveArrayOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloObjectiveArrayInput` via:
+// GetSlosSloObjectiveArrayInput is an input type that accepts GetSlosSloObjectiveArray and GetSlosSloObjectiveArrayOutput values.
+// You can construct a concrete instance of `GetSlosSloObjectiveArrayInput` via:
 //
-//	GetGrafanSlosSloObjectiveArray{ GetGrafanSlosSloObjectiveArgs{...} }
-type GetGrafanSlosSloObjectiveArrayInput interface {
+//	GetSlosSloObjectiveArray{ GetSlosSloObjectiveArgs{...} }
+type GetSlosSloObjectiveArrayInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloObjectiveArrayOutput() GetGrafanSlosSloObjectiveArrayOutput
-	ToGetGrafanSlosSloObjectiveArrayOutputWithContext(context.Context) GetGrafanSlosSloObjectiveArrayOutput
+	ToGetSlosSloObjectiveArrayOutput() GetSlosSloObjectiveArrayOutput
+	ToGetSlosSloObjectiveArrayOutputWithContext(context.Context) GetSlosSloObjectiveArrayOutput
 }
 
-type GetGrafanSlosSloObjectiveArray []GetGrafanSlosSloObjectiveInput
+type GetSlosSloObjectiveArray []GetSlosSloObjectiveInput
 
-func (GetGrafanSlosSloObjectiveArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloObjective)(nil)).Elem()
+func (GetSlosSloObjectiveArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloObjective)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloObjectiveArray) ToGetGrafanSlosSloObjectiveArrayOutput() GetGrafanSlosSloObjectiveArrayOutput {
-	return i.ToGetGrafanSlosSloObjectiveArrayOutputWithContext(context.Background())
+func (i GetSlosSloObjectiveArray) ToGetSlosSloObjectiveArrayOutput() GetSlosSloObjectiveArrayOutput {
+	return i.ToGetSlosSloObjectiveArrayOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloObjectiveArray) ToGetGrafanSlosSloObjectiveArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloObjectiveArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloObjectiveArrayOutput)
+func (i GetSlosSloObjectiveArray) ToGetSlosSloObjectiveArrayOutputWithContext(ctx context.Context) GetSlosSloObjectiveArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloObjectiveArrayOutput)
 }
 
-type GetGrafanSlosSloObjectiveOutput struct{ *pulumi.OutputState }
+type GetSlosSloObjectiveOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloObjectiveOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloObjective)(nil)).Elem()
+func (GetSlosSloObjectiveOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloObjective)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloObjectiveOutput) ToGetGrafanSlosSloObjectiveOutput() GetGrafanSlosSloObjectiveOutput {
+func (o GetSlosSloObjectiveOutput) ToGetSlosSloObjectiveOutput() GetSlosSloObjectiveOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloObjectiveOutput) ToGetGrafanSlosSloObjectiveOutputWithContext(ctx context.Context) GetGrafanSlosSloObjectiveOutput {
+func (o GetSlosSloObjectiveOutput) ToGetSlosSloObjectiveOutputWithContext(ctx context.Context) GetSlosSloObjectiveOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloObjectiveOutput) Value() pulumi.Float64Output {
-	return o.ApplyT(func(v GetGrafanSlosSloObjective) float64 { return v.Value }).(pulumi.Float64Output)
+func (o GetSlosSloObjectiveOutput) Value() pulumi.Float64Output {
+	return o.ApplyT(func(v GetSlosSloObjective) float64 { return v.Value }).(pulumi.Float64Output)
 }
 
-func (o GetGrafanSlosSloObjectiveOutput) Window() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloObjective) string { return v.Window }).(pulumi.StringOutput)
+func (o GetSlosSloObjectiveOutput) Window() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloObjective) string { return v.Window }).(pulumi.StringOutput)
 }
 
-type GetGrafanSlosSloObjectiveArrayOutput struct{ *pulumi.OutputState }
+type GetSlosSloObjectiveArrayOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloObjectiveArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloObjective)(nil)).Elem()
+func (GetSlosSloObjectiveArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloObjective)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloObjectiveArrayOutput) ToGetGrafanSlosSloObjectiveArrayOutput() GetGrafanSlosSloObjectiveArrayOutput {
+func (o GetSlosSloObjectiveArrayOutput) ToGetSlosSloObjectiveArrayOutput() GetSlosSloObjectiveArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloObjectiveArrayOutput) ToGetGrafanSlosSloObjectiveArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloObjectiveArrayOutput {
+func (o GetSlosSloObjectiveArrayOutput) ToGetSlosSloObjectiveArrayOutputWithContext(ctx context.Context) GetSlosSloObjectiveArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloObjectiveArrayOutput) Index(i pulumi.IntInput) GetGrafanSlosSloObjectiveOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGrafanSlosSloObjective {
-		return vs[0].([]GetGrafanSlosSloObjective)[vs[1].(int)]
-	}).(GetGrafanSlosSloObjectiveOutput)
+func (o GetSlosSloObjectiveArrayOutput) Index(i pulumi.IntInput) GetSlosSloObjectiveOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloObjective {
+		return vs[0].([]GetSlosSloObjective)[vs[1].(int)]
+	}).(GetSlosSloObjectiveOutput)
 }
 
-type GetGrafanSlosSloQuery struct {
-	Freeform GetGrafanSlosSloQueryFreeform `pulumi:"freeform"`
-	Type     string                        `pulumi:"type"`
+type GetSlosSloQuery struct {
+	Freeform GetSlosSloQueryFreeform `pulumi:"freeform"`
+	Type     string                  `pulumi:"type"`
 }
 
-// GetGrafanSlosSloQueryInput is an input type that accepts GetGrafanSlosSloQueryArgs and GetGrafanSlosSloQueryOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloQueryInput` via:
+// GetSlosSloQueryInput is an input type that accepts GetSlosSloQueryArgs and GetSlosSloQueryOutput values.
+// You can construct a concrete instance of `GetSlosSloQueryInput` via:
 //
-//	GetGrafanSlosSloQueryArgs{...}
-type GetGrafanSlosSloQueryInput interface {
+//	GetSlosSloQueryArgs{...}
+type GetSlosSloQueryInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloQueryOutput() GetGrafanSlosSloQueryOutput
-	ToGetGrafanSlosSloQueryOutputWithContext(context.Context) GetGrafanSlosSloQueryOutput
+	ToGetSlosSloQueryOutput() GetSlosSloQueryOutput
+	ToGetSlosSloQueryOutputWithContext(context.Context) GetSlosSloQueryOutput
 }
 
-type GetGrafanSlosSloQueryArgs struct {
-	Freeform GetGrafanSlosSloQueryFreeformInput `pulumi:"freeform"`
-	Type     pulumi.StringInput                 `pulumi:"type"`
+type GetSlosSloQueryArgs struct {
+	Freeform GetSlosSloQueryFreeformInput `pulumi:"freeform"`
+	Type     pulumi.StringInput           `pulumi:"type"`
 }
 
-func (GetGrafanSlosSloQueryArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloQuery)(nil)).Elem()
+func (GetSlosSloQueryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloQuery)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloQueryArgs) ToGetGrafanSlosSloQueryOutput() GetGrafanSlosSloQueryOutput {
-	return i.ToGetGrafanSlosSloQueryOutputWithContext(context.Background())
+func (i GetSlosSloQueryArgs) ToGetSlosSloQueryOutput() GetSlosSloQueryOutput {
+	return i.ToGetSlosSloQueryOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloQueryArgs) ToGetGrafanSlosSloQueryOutputWithContext(ctx context.Context) GetGrafanSlosSloQueryOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloQueryOutput)
+func (i GetSlosSloQueryArgs) ToGetSlosSloQueryOutputWithContext(ctx context.Context) GetSlosSloQueryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloQueryOutput)
 }
 
-// GetGrafanSlosSloQueryArrayInput is an input type that accepts GetGrafanSlosSloQueryArray and GetGrafanSlosSloQueryArrayOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloQueryArrayInput` via:
+// GetSlosSloQueryArrayInput is an input type that accepts GetSlosSloQueryArray and GetSlosSloQueryArrayOutput values.
+// You can construct a concrete instance of `GetSlosSloQueryArrayInput` via:
 //
-//	GetGrafanSlosSloQueryArray{ GetGrafanSlosSloQueryArgs{...} }
-type GetGrafanSlosSloQueryArrayInput interface {
+//	GetSlosSloQueryArray{ GetSlosSloQueryArgs{...} }
+type GetSlosSloQueryArrayInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloQueryArrayOutput() GetGrafanSlosSloQueryArrayOutput
-	ToGetGrafanSlosSloQueryArrayOutputWithContext(context.Context) GetGrafanSlosSloQueryArrayOutput
+	ToGetSlosSloQueryArrayOutput() GetSlosSloQueryArrayOutput
+	ToGetSlosSloQueryArrayOutputWithContext(context.Context) GetSlosSloQueryArrayOutput
 }
 
-type GetGrafanSlosSloQueryArray []GetGrafanSlosSloQueryInput
+type GetSlosSloQueryArray []GetSlosSloQueryInput
 
-func (GetGrafanSlosSloQueryArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloQuery)(nil)).Elem()
+func (GetSlosSloQueryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloQuery)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloQueryArray) ToGetGrafanSlosSloQueryArrayOutput() GetGrafanSlosSloQueryArrayOutput {
-	return i.ToGetGrafanSlosSloQueryArrayOutputWithContext(context.Background())
+func (i GetSlosSloQueryArray) ToGetSlosSloQueryArrayOutput() GetSlosSloQueryArrayOutput {
+	return i.ToGetSlosSloQueryArrayOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloQueryArray) ToGetGrafanSlosSloQueryArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloQueryArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloQueryArrayOutput)
+func (i GetSlosSloQueryArray) ToGetSlosSloQueryArrayOutputWithContext(ctx context.Context) GetSlosSloQueryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloQueryArrayOutput)
 }
 
-type GetGrafanSlosSloQueryOutput struct{ *pulumi.OutputState }
+type GetSlosSloQueryOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloQueryOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloQuery)(nil)).Elem()
+func (GetSlosSloQueryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloQuery)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloQueryOutput) ToGetGrafanSlosSloQueryOutput() GetGrafanSlosSloQueryOutput {
+func (o GetSlosSloQueryOutput) ToGetSlosSloQueryOutput() GetSlosSloQueryOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloQueryOutput) ToGetGrafanSlosSloQueryOutputWithContext(ctx context.Context) GetGrafanSlosSloQueryOutput {
+func (o GetSlosSloQueryOutput) ToGetSlosSloQueryOutputWithContext(ctx context.Context) GetSlosSloQueryOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloQueryOutput) Freeform() GetGrafanSlosSloQueryFreeformOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloQuery) GetGrafanSlosSloQueryFreeform { return v.Freeform }).(GetGrafanSlosSloQueryFreeformOutput)
+func (o GetSlosSloQueryOutput) Freeform() GetSlosSloQueryFreeformOutput {
+	return o.ApplyT(func(v GetSlosSloQuery) GetSlosSloQueryFreeform { return v.Freeform }).(GetSlosSloQueryFreeformOutput)
 }
 
-func (o GetGrafanSlosSloQueryOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloQuery) string { return v.Type }).(pulumi.StringOutput)
+func (o GetSlosSloQueryOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloQuery) string { return v.Type }).(pulumi.StringOutput)
 }
 
-type GetGrafanSlosSloQueryArrayOutput struct{ *pulumi.OutputState }
+type GetSlosSloQueryArrayOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloQueryArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGrafanSlosSloQuery)(nil)).Elem()
+func (GetSlosSloQueryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloQuery)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloQueryArrayOutput) ToGetGrafanSlosSloQueryArrayOutput() GetGrafanSlosSloQueryArrayOutput {
+func (o GetSlosSloQueryArrayOutput) ToGetSlosSloQueryArrayOutput() GetSlosSloQueryArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloQueryArrayOutput) ToGetGrafanSlosSloQueryArrayOutputWithContext(ctx context.Context) GetGrafanSlosSloQueryArrayOutput {
+func (o GetSlosSloQueryArrayOutput) ToGetSlosSloQueryArrayOutputWithContext(ctx context.Context) GetSlosSloQueryArrayOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloQueryArrayOutput) Index(i pulumi.IntInput) GetGrafanSlosSloQueryOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGrafanSlosSloQuery {
-		return vs[0].([]GetGrafanSlosSloQuery)[vs[1].(int)]
-	}).(GetGrafanSlosSloQueryOutput)
+func (o GetSlosSloQueryArrayOutput) Index(i pulumi.IntInput) GetSlosSloQueryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloQuery {
+		return vs[0].([]GetSlosSloQuery)[vs[1].(int)]
+	}).(GetSlosSloQueryOutput)
 }
 
-type GetGrafanSlosSloQueryFreeform struct {
+type GetSlosSloQueryFreeform struct {
 	Query *string `pulumi:"query"`
 }
 
-// GetGrafanSlosSloQueryFreeformInput is an input type that accepts GetGrafanSlosSloQueryFreeformArgs and GetGrafanSlosSloQueryFreeformOutput values.
-// You can construct a concrete instance of `GetGrafanSlosSloQueryFreeformInput` via:
+// GetSlosSloQueryFreeformInput is an input type that accepts GetSlosSloQueryFreeformArgs and GetSlosSloQueryFreeformOutput values.
+// You can construct a concrete instance of `GetSlosSloQueryFreeformInput` via:
 //
-//	GetGrafanSlosSloQueryFreeformArgs{...}
-type GetGrafanSlosSloQueryFreeformInput interface {
+//	GetSlosSloQueryFreeformArgs{...}
+type GetSlosSloQueryFreeformInput interface {
 	pulumi.Input
 
-	ToGetGrafanSlosSloQueryFreeformOutput() GetGrafanSlosSloQueryFreeformOutput
-	ToGetGrafanSlosSloQueryFreeformOutputWithContext(context.Context) GetGrafanSlosSloQueryFreeformOutput
+	ToGetSlosSloQueryFreeformOutput() GetSlosSloQueryFreeformOutput
+	ToGetSlosSloQueryFreeformOutputWithContext(context.Context) GetSlosSloQueryFreeformOutput
 }
 
-type GetGrafanSlosSloQueryFreeformArgs struct {
+type GetSlosSloQueryFreeformArgs struct {
 	Query pulumi.StringPtrInput `pulumi:"query"`
 }
 
-func (GetGrafanSlosSloQueryFreeformArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloQueryFreeform)(nil)).Elem()
+func (GetSlosSloQueryFreeformArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloQueryFreeform)(nil)).Elem()
 }
 
-func (i GetGrafanSlosSloQueryFreeformArgs) ToGetGrafanSlosSloQueryFreeformOutput() GetGrafanSlosSloQueryFreeformOutput {
-	return i.ToGetGrafanSlosSloQueryFreeformOutputWithContext(context.Background())
+func (i GetSlosSloQueryFreeformArgs) ToGetSlosSloQueryFreeformOutput() GetSlosSloQueryFreeformOutput {
+	return i.ToGetSlosSloQueryFreeformOutputWithContext(context.Background())
 }
 
-func (i GetGrafanSlosSloQueryFreeformArgs) ToGetGrafanSlosSloQueryFreeformOutputWithContext(ctx context.Context) GetGrafanSlosSloQueryFreeformOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanSlosSloQueryFreeformOutput)
+func (i GetSlosSloQueryFreeformArgs) ToGetSlosSloQueryFreeformOutputWithContext(ctx context.Context) GetSlosSloQueryFreeformOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloQueryFreeformOutput)
 }
 
-type GetGrafanSlosSloQueryFreeformOutput struct{ *pulumi.OutputState }
+type GetSlosSloQueryFreeformOutput struct{ *pulumi.OutputState }
 
-func (GetGrafanSlosSloQueryFreeformOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGrafanSlosSloQueryFreeform)(nil)).Elem()
+func (GetSlosSloQueryFreeformOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloQueryFreeform)(nil)).Elem()
 }
 
-func (o GetGrafanSlosSloQueryFreeformOutput) ToGetGrafanSlosSloQueryFreeformOutput() GetGrafanSlosSloQueryFreeformOutput {
+func (o GetSlosSloQueryFreeformOutput) ToGetSlosSloQueryFreeformOutput() GetSlosSloQueryFreeformOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloQueryFreeformOutput) ToGetGrafanSlosSloQueryFreeformOutputWithContext(ctx context.Context) GetGrafanSlosSloQueryFreeformOutput {
+func (o GetSlosSloQueryFreeformOutput) ToGetSlosSloQueryFreeformOutputWithContext(ctx context.Context) GetSlosSloQueryFreeformOutput {
 	return o
 }
 
-func (o GetGrafanSlosSloQueryFreeformOutput) Query() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetGrafanSlosSloQueryFreeform) *string { return v.Query }).(pulumi.StringPtrOutput)
+func (o GetSlosSloQueryFreeformOutput) Query() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSlosSloQueryFreeform) *string { return v.Query }).(pulumi.StringPtrOutput)
 }
 
 type GetUsersUser struct {
@@ -15949,33 +15945,33 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDashboardsDashboardArrayInput)(nil)).Elem(), GetDashboardsDashboardArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFoldersFolderInput)(nil)).Elem(), GetFoldersFolderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFoldersFolderArrayInput)(nil)).Elem(), GetFoldersFolderArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloInput)(nil)).Elem(), GetGrafanSlosSloArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloArrayInput)(nil)).Elem(), GetGrafanSlosSloArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingInput)(nil)).Elem(), GetGrafanSlosSloAlertingArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingArrayInput)(nil)).Elem(), GetGrafanSlosSloAlertingArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingAnnotationInput)(nil)).Elem(), GetGrafanSlosSloAlertingAnnotationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingAnnotationArrayInput)(nil)).Elem(), GetGrafanSlosSloAlertingAnnotationArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingFastburnInput)(nil)).Elem(), GetGrafanSlosSloAlertingFastburnArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingFastburnArrayInput)(nil)).Elem(), GetGrafanSlosSloAlertingFastburnArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingFastburnAnnotationInput)(nil)).Elem(), GetGrafanSlosSloAlertingFastburnAnnotationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingFastburnAnnotationArrayInput)(nil)).Elem(), GetGrafanSlosSloAlertingFastburnAnnotationArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingFastburnLabelInput)(nil)).Elem(), GetGrafanSlosSloAlertingFastburnLabelArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingFastburnLabelArrayInput)(nil)).Elem(), GetGrafanSlosSloAlertingFastburnLabelArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingLabelInput)(nil)).Elem(), GetGrafanSlosSloAlertingLabelArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingLabelArrayInput)(nil)).Elem(), GetGrafanSlosSloAlertingLabelArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingSlowburnInput)(nil)).Elem(), GetGrafanSlosSloAlertingSlowburnArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingSlowburnArrayInput)(nil)).Elem(), GetGrafanSlosSloAlertingSlowburnArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingSlowburnAnnotationInput)(nil)).Elem(), GetGrafanSlosSloAlertingSlowburnAnnotationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingSlowburnAnnotationArrayInput)(nil)).Elem(), GetGrafanSlosSloAlertingSlowburnAnnotationArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingSlowburnLabelInput)(nil)).Elem(), GetGrafanSlosSloAlertingSlowburnLabelArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloAlertingSlowburnLabelArrayInput)(nil)).Elem(), GetGrafanSlosSloAlertingSlowburnLabelArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloLabelInput)(nil)).Elem(), GetGrafanSlosSloLabelArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloLabelArrayInput)(nil)).Elem(), GetGrafanSlosSloLabelArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloObjectiveInput)(nil)).Elem(), GetGrafanSlosSloObjectiveArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloObjectiveArrayInput)(nil)).Elem(), GetGrafanSlosSloObjectiveArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloQueryInput)(nil)).Elem(), GetGrafanSlosSloQueryArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloQueryArrayInput)(nil)).Elem(), GetGrafanSlosSloQueryArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanSlosSloQueryFreeformInput)(nil)).Elem(), GetGrafanSlosSloQueryFreeformArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloInput)(nil)).Elem(), GetSlosSloArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloArrayInput)(nil)).Elem(), GetSlosSloArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingInput)(nil)).Elem(), GetSlosSloAlertingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingArrayInput)(nil)).Elem(), GetSlosSloAlertingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingAnnotationInput)(nil)).Elem(), GetSlosSloAlertingAnnotationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingAnnotationArrayInput)(nil)).Elem(), GetSlosSloAlertingAnnotationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnInput)(nil)).Elem(), GetSlosSloAlertingFastburnArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnArrayInput)(nil)).Elem(), GetSlosSloAlertingFastburnArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnAnnotationInput)(nil)).Elem(), GetSlosSloAlertingFastburnAnnotationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnAnnotationArrayInput)(nil)).Elem(), GetSlosSloAlertingFastburnAnnotationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnLabelInput)(nil)).Elem(), GetSlosSloAlertingFastburnLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnLabelArrayInput)(nil)).Elem(), GetSlosSloAlertingFastburnLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingLabelInput)(nil)).Elem(), GetSlosSloAlertingLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingLabelArrayInput)(nil)).Elem(), GetSlosSloAlertingLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnInput)(nil)).Elem(), GetSlosSloAlertingSlowburnArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnArrayInput)(nil)).Elem(), GetSlosSloAlertingSlowburnArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnAnnotationInput)(nil)).Elem(), GetSlosSloAlertingSlowburnAnnotationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnAnnotationArrayInput)(nil)).Elem(), GetSlosSloAlertingSlowburnAnnotationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnLabelInput)(nil)).Elem(), GetSlosSloAlertingSlowburnLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnLabelArrayInput)(nil)).Elem(), GetSlosSloAlertingSlowburnLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloLabelInput)(nil)).Elem(), GetSlosSloLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloLabelArrayInput)(nil)).Elem(), GetSlosSloLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloObjectiveInput)(nil)).Elem(), GetSlosSloObjectiveArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloObjectiveArrayInput)(nil)).Elem(), GetSlosSloObjectiveArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloQueryInput)(nil)).Elem(), GetSlosSloQueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloQueryArrayInput)(nil)).Elem(), GetSlosSloQueryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloQueryFreeformInput)(nil)).Elem(), GetSlosSloQueryFreeformArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
 	pulumi.RegisterOutputType(BuiltinRoleAssignmentRoleOutput{})
@@ -16164,33 +16160,33 @@ func init() {
 	pulumi.RegisterOutputType(GetDashboardsDashboardArrayOutput{})
 	pulumi.RegisterOutputType(GetFoldersFolderOutput{})
 	pulumi.RegisterOutputType(GetFoldersFolderArrayOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloArrayOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingArrayOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingAnnotationOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingAnnotationArrayOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingFastburnOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingFastburnArrayOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingFastburnAnnotationOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingFastburnAnnotationArrayOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingFastburnLabelOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingFastburnLabelArrayOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingLabelOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingLabelArrayOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingSlowburnOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingSlowburnArrayOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingSlowburnAnnotationOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingSlowburnAnnotationArrayOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingSlowburnLabelOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloAlertingSlowburnLabelArrayOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloLabelOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloLabelArrayOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloObjectiveOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloObjectiveArrayOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloQueryOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloQueryArrayOutput{})
-	pulumi.RegisterOutputType(GetGrafanSlosSloQueryFreeformOutput{})
+	pulumi.RegisterOutputType(GetSlosSloOutput{})
+	pulumi.RegisterOutputType(GetSlosSloArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingAnnotationOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingAnnotationArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnAnnotationOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnAnnotationArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnLabelOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnLabelArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingLabelOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingLabelArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnAnnotationOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnAnnotationArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnLabelOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnLabelArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloLabelOutput{})
+	pulumi.RegisterOutputType(GetSlosSloLabelArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloObjectiveOutput{})
+	pulumi.RegisterOutputType(GetSlosSloObjectiveArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloQueryOutput{})
+	pulumi.RegisterOutputType(GetSlosSloQueryArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloQueryFreeformOutput{})
 	pulumi.RegisterOutputType(GetUsersUserOutput{})
 	pulumi.RegisterOutputType(GetUsersUserArrayOutput{})
 }

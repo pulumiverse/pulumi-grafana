@@ -83,7 +83,7 @@ public class CloudAccessPolicyToken extends com.pulumi.resources.CustomResource 
      * ID of the access policy for which to create a token.
      * 
      */
-    @Export(name="accessPolicyId", type=String.class, parameters={})
+    @Export(name="accessPolicyId", refs={String.class}, tree="[0]")
     private Output<String> accessPolicyId;
 
     /**
@@ -97,7 +97,7 @@ public class CloudAccessPolicyToken extends com.pulumi.resources.CustomResource 
      * Creation date of the access policy token.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -111,7 +111,7 @@ public class CloudAccessPolicyToken extends com.pulumi.resources.CustomResource 
      * Display name of the access policy token. Defaults to the name.
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayName;
 
     /**
@@ -125,7 +125,7 @@ public class CloudAccessPolicyToken extends com.pulumi.resources.CustomResource 
      * Expiration date of the access policy token. Does not expire by default.
      * 
      */
-    @Export(name="expiresAt", type=String.class, parameters={})
+    @Export(name="expiresAt", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> expiresAt;
 
     /**
@@ -139,7 +139,7 @@ public class CloudAccessPolicyToken extends com.pulumi.resources.CustomResource 
      * Name of the access policy token.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -153,7 +153,7 @@ public class CloudAccessPolicyToken extends com.pulumi.resources.CustomResource 
      * Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -163,7 +163,7 @@ public class CloudAccessPolicyToken extends com.pulumi.resources.CustomResource 
     public Output<String> region() {
         return this.region;
     }
-    @Export(name="token", type=String.class, parameters={})
+    @Export(name="token", refs={String.class}, tree="[0]")
     private Output<String> token;
 
     public Output<String> token() {
@@ -173,7 +173,7 @@ public class CloudAccessPolicyToken extends com.pulumi.resources.CustomResource 
      * Last update date of the access policy token.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**

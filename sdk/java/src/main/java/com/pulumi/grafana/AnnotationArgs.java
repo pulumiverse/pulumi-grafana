@@ -18,18 +18,56 @@ public final class AnnotationArgs extends com.pulumi.resources.ResourceArgs {
     public static final AnnotationArgs Empty = new AnnotationArgs();
 
     /**
+     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+     * 
+     * @deprecated
+     * Use dashboard_uid instead.
+     * 
+     */
+    @Deprecated /* Use dashboard_uid instead. */
+    @Import(name="dashboardId")
+    private @Nullable Output<Integer> dashboardId;
+
+    /**
+     * @return The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+     * 
+     * @deprecated
+     * Use dashboard_uid instead.
+     * 
+     */
+    @Deprecated /* Use dashboard_uid instead. */
+    public Optional<Output<Integer>> dashboardId() {
+        return Optional.ofNullable(this.dashboardId);
+    }
+
+    /**
      * The ID of the dashboard on which to create the annotation.
      * 
      */
-    @Import(name="dashboardId")
-    private @Nullable Output<Integer> dashboardId;
+    @Import(name="dashboardUid")
+    private @Nullable Output<String> dashboardUid;
 
     /**
      * @return The ID of the dashboard on which to create the annotation.
      * 
      */
-    public Optional<Output<Integer>> dashboardId() {
-        return Optional.ofNullable(this.dashboardId);
+    public Optional<Output<String>> dashboardUid() {
+        return Optional.ofNullable(this.dashboardUid);
+    }
+
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Import(name="orgId")
+    private @Nullable Output<String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<Output<String>> orgId() {
+        return Optional.ofNullable(this.orgId);
     }
 
     /**
@@ -111,6 +149,8 @@ public final class AnnotationArgs extends com.pulumi.resources.ResourceArgs {
 
     private AnnotationArgs(AnnotationArgs $) {
         this.dashboardId = $.dashboardId;
+        this.dashboardUid = $.dashboardUid;
+        this.orgId = $.orgId;
         this.panelId = $.panelId;
         this.tags = $.tags;
         this.text = $.text;
@@ -137,24 +177,74 @@ public final class AnnotationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dashboardId The ID of the dashboard on which to create the annotation.
+         * @param dashboardId The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Use dashboard_uid instead.
+         * 
          */
+        @Deprecated /* Use dashboard_uid instead. */
         public Builder dashboardId(@Nullable Output<Integer> dashboardId) {
             $.dashboardId = dashboardId;
             return this;
         }
 
         /**
-         * @param dashboardId The ID of the dashboard on which to create the annotation.
+         * @param dashboardId The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * Use dashboard_uid instead.
+         * 
+         */
+        @Deprecated /* Use dashboard_uid instead. */
+        public Builder dashboardId(Integer dashboardId) {
+            return dashboardId(Output.of(dashboardId));
+        }
+
+        /**
+         * @param dashboardUid The ID of the dashboard on which to create the annotation.
          * 
          * @return builder
          * 
          */
-        public Builder dashboardId(Integer dashboardId) {
-            return dashboardId(Output.of(dashboardId));
+        public Builder dashboardUid(@Nullable Output<String> dashboardUid) {
+            $.dashboardUid = dashboardUid;
+            return this;
+        }
+
+        /**
+         * @param dashboardUid The ID of the dashboard on which to create the annotation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dashboardUid(String dashboardUid) {
+            return dashboardUid(Output.of(dashboardUid));
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(@Nullable Output<String> orgId) {
+            $.orgId = orgId;
+            return this;
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(String orgId) {
+            return orgId(Output.of(orgId));
         }
 
         /**

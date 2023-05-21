@@ -5,6 +5,7 @@ package com.pulumi.grafana.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,6 +15,21 @@ import javax.annotation.Nullable;
 public final class FolderState extends com.pulumi.resources.ResourceArgs {
 
     public static final FolderState Empty = new FolderState();
+
+    /**
+     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+     * 
+     */
+    @Import(name="preventDestroyIfNotEmpty")
+    private @Nullable Output<Boolean> preventDestroyIfNotEmpty;
+
+    /**
+     * @return Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> preventDestroyIfNotEmpty() {
+        return Optional.ofNullable(this.preventDestroyIfNotEmpty);
+    }
 
     /**
      * The title of the folder.
@@ -63,6 +79,7 @@ public final class FolderState extends com.pulumi.resources.ResourceArgs {
     private FolderState() {}
 
     private FolderState(FolderState $) {
+        this.preventDestroyIfNotEmpty = $.preventDestroyIfNotEmpty;
         this.title = $.title;
         this.uid = $.uid;
         this.url = $.url;
@@ -84,6 +101,27 @@ public final class FolderState extends com.pulumi.resources.ResourceArgs {
 
         public Builder(FolderState defaults) {
             $ = new FolderState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param preventDestroyIfNotEmpty Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder preventDestroyIfNotEmpty(@Nullable Output<Boolean> preventDestroyIfNotEmpty) {
+            $.preventDestroyIfNotEmpty = preventDestroyIfNotEmpty;
+            return this;
+        }
+
+        /**
+         * @param preventDestroyIfNotEmpty Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder preventDestroyIfNotEmpty(Boolean preventDestroyIfNotEmpty) {
+            return preventDestroyIfNotEmpty(Output.of(preventDestroyIfNotEmpty));
         }
 
         /**

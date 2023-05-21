@@ -10,7 +10,9 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.grafana.FolderArgs;
 import com.pulumi.grafana.Utilities;
 import com.pulumi.grafana.inputs.FolderState;
+import java.lang.Boolean;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -78,10 +80,24 @@ import javax.annotation.Nullable;
 @ResourceType(type="grafana:index/folder:Folder")
 public class Folder extends com.pulumi.resources.CustomResource {
     /**
+     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+     * 
+     */
+    @Export(name="preventDestroyIfNotEmpty", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> preventDestroyIfNotEmpty;
+
+    /**
+     * @return Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+     * 
+     */
+    public Output<Optional<Boolean>> preventDestroyIfNotEmpty() {
+        return Codegen.optional(this.preventDestroyIfNotEmpty);
+    }
+    /**
      * The title of the folder.
      * 
      */
-    @Export(name="title", type=String.class, parameters={})
+    @Export(name="title", refs={String.class}, tree="[0]")
     private Output<String> title;
 
     /**
@@ -95,7 +111,7 @@ public class Folder extends com.pulumi.resources.CustomResource {
      * Unique identifier.
      * 
      */
-    @Export(name="uid", type=String.class, parameters={})
+    @Export(name="uid", refs={String.class}, tree="[0]")
     private Output<String> uid;
 
     /**
@@ -109,7 +125,7 @@ public class Folder extends com.pulumi.resources.CustomResource {
      * The full URL of the folder.
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
     /**

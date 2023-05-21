@@ -83,7 +83,7 @@ public class Report extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* Use dashboard_uid instead */
-    @Export(name="dashboardId", type=Integer.class, parameters={})
+    @Export(name="dashboardId", refs={Integer.class}, tree="[0]")
     private Output<Integer> dashboardId;
 
     /**
@@ -97,7 +97,7 @@ public class Report extends com.pulumi.resources.CustomResource {
      * Dashboard to be sent in the report.
      * 
      */
-    @Export(name="dashboardUid", type=String.class, parameters={})
+    @Export(name="dashboardUid", refs={String.class}, tree="[0]")
     private Output<String> dashboardUid;
 
     /**
@@ -111,7 +111,7 @@ public class Report extends com.pulumi.resources.CustomResource {
      * Whether to include a link to the dashboard in the report. Defaults to `true`.
      * 
      */
-    @Export(name="includeDashboardLink", type=Boolean.class, parameters={})
+    @Export(name="includeDashboardLink", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> includeDashboardLink;
 
     /**
@@ -125,7 +125,7 @@ public class Report extends com.pulumi.resources.CustomResource {
      * Whether to include a CSV file of table panel data. Defaults to `false`.
      * 
      */
-    @Export(name="includeTableCsv", type=Boolean.class, parameters={})
+    @Export(name="includeTableCsv", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> includeTableCsv;
 
     /**
@@ -139,7 +139,7 @@ public class Report extends com.pulumi.resources.CustomResource {
      * Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
      * 
      */
-    @Export(name="layout", type=String.class, parameters={})
+    @Export(name="layout", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> layout;
 
     /**
@@ -153,7 +153,7 @@ public class Report extends com.pulumi.resources.CustomResource {
      * Message to be sent in the report.
      * 
      */
-    @Export(name="message", type=String.class, parameters={})
+    @Export(name="message", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> message;
 
     /**
@@ -167,7 +167,7 @@ public class Report extends com.pulumi.resources.CustomResource {
      * Name of the report.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -181,7 +181,7 @@ public class Report extends com.pulumi.resources.CustomResource {
      * Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
      * 
      */
-    @Export(name="orientation", type=String.class, parameters={})
+    @Export(name="orientation", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> orientation;
 
     /**
@@ -195,7 +195,7 @@ public class Report extends com.pulumi.resources.CustomResource {
      * List of recipients of the report.
      * 
      */
-    @Export(name="recipients", type=List.class, parameters={String.class})
+    @Export(name="recipients", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> recipients;
 
     /**
@@ -209,7 +209,7 @@ public class Report extends com.pulumi.resources.CustomResource {
      * Reply-to email address of the report.
      * 
      */
-    @Export(name="replyTo", type=String.class, parameters={})
+    @Export(name="replyTo", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> replyTo;
 
     /**
@@ -223,7 +223,7 @@ public class Report extends com.pulumi.resources.CustomResource {
      * Schedule of the report.
      * 
      */
-    @Export(name="schedule", type=ReportSchedule.class, parameters={})
+    @Export(name="schedule", refs={ReportSchedule.class}, tree="[0]")
     private Output<ReportSchedule> schedule;
 
     /**
@@ -237,7 +237,7 @@ public class Report extends com.pulumi.resources.CustomResource {
      * Time range of the report.
      * 
      */
-    @Export(name="timeRange", type=ReportTimeRange.class, parameters={})
+    @Export(name="timeRange", refs={ReportTimeRange.class}, tree="[0]")
     private Output</* @Nullable */ ReportTimeRange> timeRange;
 
     /**

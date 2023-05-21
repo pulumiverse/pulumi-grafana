@@ -617,7 +617,7 @@ public class SyntheticMonitoringCheck extends com.pulumi.resources.CustomResourc
      * Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
      * 
      */
-    @Export(name="alertSensitivity", type=String.class, parameters={})
+    @Export(name="alertSensitivity", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> alertSensitivity;
 
     /**
@@ -631,7 +631,7 @@ public class SyntheticMonitoringCheck extends com.pulumi.resources.CustomResourc
      * Metrics are reduced by default. Set this to `false` if you&#39;d like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
      * 
      */
-    @Export(name="basicMetricsOnly", type=Boolean.class, parameters={})
+    @Export(name="basicMetricsOnly", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> basicMetricsOnly;
 
     /**
@@ -645,7 +645,7 @@ public class SyntheticMonitoringCheck extends com.pulumi.resources.CustomResourc
      * Whether to enable the check. Defaults to `true`.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -659,7 +659,7 @@ public class SyntheticMonitoringCheck extends com.pulumi.resources.CustomResourc
      * How often the check runs in milliseconds (the value is not truly a &#34;frequency&#34; but a &#34;period&#34;). The minimum acceptable value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms). Defaults to `60000`.
      * 
      */
-    @Export(name="frequency", type=Integer.class, parameters={})
+    @Export(name="frequency", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> frequency;
 
     /**
@@ -673,7 +673,7 @@ public class SyntheticMonitoringCheck extends com.pulumi.resources.CustomResourc
      * Name used for job label.
      * 
      */
-    @Export(name="job", type=String.class, parameters={})
+    @Export(name="job", refs={String.class}, tree="[0]")
     private Output<String> job;
 
     /**
@@ -687,7 +687,7 @@ public class SyntheticMonitoringCheck extends com.pulumi.resources.CustomResourc
      * Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of the labels cannot be empty, and the maximum length is 32 bytes.
      * 
      */
-    @Export(name="labels", type=Map.class, parameters={String.class, String.class})
+    @Export(name="labels", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> labels;
 
     /**
@@ -701,7 +701,7 @@ public class SyntheticMonitoringCheck extends com.pulumi.resources.CustomResourc
      * List of probe location IDs where this target will be checked from.
      * 
      */
-    @Export(name="probes", type=List.class, parameters={Integer.class})
+    @Export(name="probes", refs={List.class,Integer.class}, tree="[0,1]")
     private Output<List<Integer>> probes;
 
     /**
@@ -715,7 +715,7 @@ public class SyntheticMonitoringCheck extends com.pulumi.resources.CustomResourc
      * Check settings. Should contain exactly one nested block.
      * 
      */
-    @Export(name="settings", type=SyntheticMonitoringCheckSettings.class, parameters={})
+    @Export(name="settings", refs={SyntheticMonitoringCheckSettings.class}, tree="[0]")
     private Output<SyntheticMonitoringCheckSettings> settings;
 
     /**
@@ -729,7 +729,7 @@ public class SyntheticMonitoringCheck extends com.pulumi.resources.CustomResourc
      * Hostname to ping.
      * 
      */
-    @Export(name="target", type=String.class, parameters={})
+    @Export(name="target", refs={String.class}, tree="[0]")
     private Output<String> target;
 
     /**
@@ -743,7 +743,7 @@ public class SyntheticMonitoringCheck extends com.pulumi.resources.CustomResourc
      * The tenant ID of the check.
      * 
      */
-    @Export(name="tenantId", type=Integer.class, parameters={})
+    @Export(name="tenantId", refs={Integer.class}, tree="[0]")
     private Output<Integer> tenantId;
 
     /**
@@ -757,7 +757,7 @@ public class SyntheticMonitoringCheck extends com.pulumi.resources.CustomResourc
      * Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
      * 
      */
-    @Export(name="timeout", type=Integer.class, parameters={})
+    @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeout;
 
     /**

@@ -21,8 +21,9 @@ import javax.annotation.Nullable;
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
  * 
- * This resource uses Grafana&#39;s admin APIs for creating and updating users which
- * does not currently work with API Tokens. You must use basic auth.
+ * This resource represents an instance-scoped resource and uses Grafana&#39;s admin APIs.
+ * It does not work with API tokens or service accounts which are org-scoped.
+ * You must use basic auth.
  * 
  * ## Example Usage
  * ```java
@@ -70,7 +71,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * The email address of the Grafana user.
      * 
      */
-    @Export(name="email", type=String.class, parameters={})
+    @Export(name="email", refs={String.class}, tree="[0]")
     private Output<String> email;
 
     /**
@@ -84,7 +85,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * Whether to make user an admin. Defaults to `false`.
      * 
      */
-    @Export(name="isAdmin", type=Boolean.class, parameters={})
+    @Export(name="isAdmin", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> isAdmin;
 
     /**
@@ -98,7 +99,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * The username for the Grafana user.
      * 
      */
-    @Export(name="login", type=String.class, parameters={})
+    @Export(name="login", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> login;
 
     /**
@@ -112,7 +113,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * The display name for the Grafana user.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -126,7 +127,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * The password for the Grafana user.
      * 
      */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output<String> password;
 
     /**
@@ -140,7 +141,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * The numerical ID of the Grafana user.
      * 
      */
-    @Export(name="userId", type=Integer.class, parameters={})
+    @Export(name="userId", refs={Integer.class}, tree="[0]")
     private Output<Integer> userId;
 
     /**

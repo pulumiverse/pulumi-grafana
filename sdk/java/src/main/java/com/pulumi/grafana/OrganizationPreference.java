@@ -58,7 +58,7 @@ public class OrganizationPreference extends com.pulumi.resources.CustomResource 
      * The Organization home dashboard ID.
      * 
      */
-    @Export(name="homeDashboardId", type=Integer.class, parameters={})
+    @Export(name="homeDashboardId", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> homeDashboardId;
 
     /**
@@ -72,7 +72,7 @@ public class OrganizationPreference extends com.pulumi.resources.CustomResource 
      * The Organization home dashboard UID. This is only available in Grafana 9.0+.
      * 
      */
-    @Export(name="homeDashboardUid", type=String.class, parameters={})
+    @Export(name="homeDashboardUid", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> homeDashboardUid;
 
     /**
@@ -86,7 +86,7 @@ public class OrganizationPreference extends com.pulumi.resources.CustomResource 
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      * 
      */
-    @Export(name="orgId", type=String.class, parameters={})
+    @Export(name="orgId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> orgId;
 
     /**
@@ -100,7 +100,7 @@ public class OrganizationPreference extends com.pulumi.resources.CustomResource 
      * The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
      * 
      */
-    @Export(name="theme", type=String.class, parameters={})
+    @Export(name="theme", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> theme;
 
     /**
@@ -114,7 +114,7 @@ public class OrganizationPreference extends com.pulumi.resources.CustomResource 
      * The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
      * 
      */
-    @Export(name="timezone", type=String.class, parameters={})
+    @Export(name="timezone", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> timezone;
 
     /**
@@ -128,7 +128,7 @@ public class OrganizationPreference extends com.pulumi.resources.CustomResource 
      * The Organization week start.
      * 
      */
-    @Export(name="weekStart", type=String.class, parameters={})
+    @Export(name="weekStart", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> weekStart;
 
     /**

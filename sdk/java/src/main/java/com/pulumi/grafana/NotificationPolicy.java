@@ -17,7 +17,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Sets the global notification policy for Grafana. Note that this resource manages the entire notification policy tree, and will overwrite any existing policies.
+ * Sets the global notification policy for Grafana.
+ * 
+ * !&gt; This resource manages the entire notification policy tree, and will overwrite any existing policies.
  * 
  * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/manage-notifications/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/)
@@ -128,7 +130,7 @@ public class NotificationPolicy extends com.pulumi.resources.CustomResource {
      * The default contact point to route all unmatched notifications to.
      * 
      */
-    @Export(name="contactPoint", type=String.class, parameters={})
+    @Export(name="contactPoint", refs={String.class}, tree="[0]")
     private Output<String> contactPoint;
 
     /**
@@ -142,7 +144,7 @@ public class NotificationPolicy extends com.pulumi.resources.CustomResource {
      * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
      * 
      */
-    @Export(name="groupBies", type=List.class, parameters={String.class})
+    @Export(name="groupBies", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> groupBies;
 
     /**
@@ -156,7 +158,7 @@ public class NotificationPolicy extends com.pulumi.resources.CustomResource {
      * Minimum time interval between two notifications for the same group. Default is 5 minutes.
      * 
      */
-    @Export(name="groupInterval", type=String.class, parameters={})
+    @Export(name="groupInterval", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> groupInterval;
 
     /**
@@ -170,7 +172,7 @@ public class NotificationPolicy extends com.pulumi.resources.CustomResource {
      * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
      * 
      */
-    @Export(name="groupWait", type=String.class, parameters={})
+    @Export(name="groupWait", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> groupWait;
 
     /**
@@ -184,7 +186,7 @@ public class NotificationPolicy extends com.pulumi.resources.CustomResource {
      * Routing rules for specific label sets.
      * 
      */
-    @Export(name="policies", type=List.class, parameters={NotificationPolicyPolicy.class})
+    @Export(name="policies", refs={List.class,NotificationPolicyPolicy.class}, tree="[0,1]")
     private Output</* @Nullable */ List<NotificationPolicyPolicy>> policies;
 
     /**
@@ -198,7 +200,7 @@ public class NotificationPolicy extends com.pulumi.resources.CustomResource {
      * Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
      * 
      */
-    @Export(name="repeatInterval", type=String.class, parameters={})
+    @Export(name="repeatInterval", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> repeatInterval;
 
     /**

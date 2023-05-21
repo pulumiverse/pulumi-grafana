@@ -24,6 +24,11 @@ public final class ContactPointPagerduty {
      */
     private @Nullable String component;
     /**
+     * @return A set of arbitrary key/value pairs that provide further detail about the incident.
+     * 
+     */
+    private @Nullable Map<String,String> details;
+    /**
      * @return Whether to disable sending resolve messages. Defaults to `false`.
      * 
      */
@@ -73,6 +78,13 @@ public final class ContactPointPagerduty {
      */
     public Optional<String> component() {
         return Optional.ofNullable(this.component);
+    }
+    /**
+     * @return A set of arbitrary key/value pairs that provide further detail about the incident.
+     * 
+     */
+    public Map<String,String> details() {
+        return this.details == null ? Map.of() : this.details;
     }
     /**
      * @return Whether to disable sending resolve messages. Defaults to `false`.
@@ -135,6 +147,7 @@ public final class ContactPointPagerduty {
     public static final class Builder {
         private @Nullable String class_;
         private @Nullable String component;
+        private @Nullable Map<String,String> details;
         private @Nullable Boolean disableResolveMessage;
         private @Nullable String group;
         private String integrationKey;
@@ -147,6 +160,7 @@ public final class ContactPointPagerduty {
     	      Objects.requireNonNull(defaults);
     	      this.class_ = defaults.class_;
     	      this.component = defaults.component;
+    	      this.details = defaults.details;
     	      this.disableResolveMessage = defaults.disableResolveMessage;
     	      this.group = defaults.group;
     	      this.integrationKey = defaults.integrationKey;
@@ -164,6 +178,11 @@ public final class ContactPointPagerduty {
         @CustomType.Setter
         public Builder component(@Nullable String component) {
             this.component = component;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder details(@Nullable Map<String,String> details) {
+            this.details = details;
             return this;
         }
         @CustomType.Setter
@@ -205,6 +224,7 @@ public final class ContactPointPagerduty {
             final var o = new ContactPointPagerduty();
             o.class_ = class_;
             o.component = component;
+            o.details = details;
             o.disableResolveMessage = disableResolveMessage;
             o.group = group;
             o.integrationKey = integrationKey;

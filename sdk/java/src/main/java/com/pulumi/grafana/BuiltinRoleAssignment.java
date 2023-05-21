@@ -16,6 +16,12 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
+ * **Note:** This resource is going to be deprecated with Grafana 9.+, please use grafana.Role instead.
+ * **Note:** This resource is available only with Grafana Enterprise 8.+.
+ * 
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+ * 
  * ## Example Usage
  * ```java
  * package generated_program;
@@ -69,7 +75,7 @@ public class BuiltinRoleAssignment extends com.pulumi.resources.CustomResource {
      * Organization roles (`Viewer`, `Editor`, `Admin`) or `Grafana Admin` to assign the roles to.
      * 
      */
-    @Export(name="builtinRole", type=String.class, parameters={})
+    @Export(name="builtinRole", refs={String.class}, tree="[0]")
     private Output<String> builtinRole;
 
     /**
@@ -83,7 +89,7 @@ public class BuiltinRoleAssignment extends com.pulumi.resources.CustomResource {
      * Fixed or custom roles which provide granular access for specific resources within Grafana.
      * 
      */
-    @Export(name="roles", type=List.class, parameters={BuiltinRoleAssignmentRole.class})
+    @Export(name="roles", refs={List.class,BuiltinRoleAssignmentRole.class}, tree="[0,1]")
     private Output<List<BuiltinRoleAssignmentRole>> roles;
 
     /**

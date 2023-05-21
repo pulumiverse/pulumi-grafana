@@ -69,7 +69,7 @@ public class AlertNotification extends com.pulumi.resources.CustomResource {
      * Whether to disable sending resolve messages. Defaults to `false`.
      * 
      */
-    @Export(name="disableResolveMessage", type=Boolean.class, parameters={})
+    @Export(name="disableResolveMessage", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableResolveMessage;
 
     /**
@@ -83,7 +83,7 @@ public class AlertNotification extends com.pulumi.resources.CustomResource {
      * Frequency of alert reminders. Frequency must be set if reminders are enabled. Defaults to ``.
      * 
      */
-    @Export(name="frequency", type=String.class, parameters={})
+    @Export(name="frequency", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> frequency;
 
     /**
@@ -97,7 +97,7 @@ public class AlertNotification extends com.pulumi.resources.CustomResource {
      * Is this the default channel for all your alerts. Defaults to `false`.
      * 
      */
-    @Export(name="isDefault", type=Boolean.class, parameters={})
+    @Export(name="isDefault", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> isDefault;
 
     /**
@@ -111,7 +111,7 @@ public class AlertNotification extends com.pulumi.resources.CustomResource {
      * The name of the alert notification channel.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -125,7 +125,7 @@ public class AlertNotification extends com.pulumi.resources.CustomResource {
      * Additional secure settings, for full reference lookup [Grafana Supported Settings documentation](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings).
      * 
      */
-    @Export(name="secureSettings", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="secureSettings", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> secureSettings;
 
     /**
@@ -139,7 +139,7 @@ public class AlertNotification extends com.pulumi.resources.CustomResource {
      * Whether to send reminders for triggered alerts. Defaults to `false`.
      * 
      */
-    @Export(name="sendReminder", type=Boolean.class, parameters={})
+    @Export(name="sendReminder", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> sendReminder;
 
     /**
@@ -153,7 +153,7 @@ public class AlertNotification extends com.pulumi.resources.CustomResource {
      * Additional settings, for full reference see [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_notification_channels/).
      * 
      */
-    @Export(name="settings", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="settings", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> settings;
 
     /**
@@ -167,7 +167,7 @@ public class AlertNotification extends com.pulumi.resources.CustomResource {
      * The type of the alert notification channel.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -181,7 +181,7 @@ public class AlertNotification extends com.pulumi.resources.CustomResource {
      * Unique identifier. If unset, this will be automatically generated.
      * 
      */
-    @Export(name="uid", type=String.class, parameters={})
+    @Export(name="uid", refs={String.class}, tree="[0]")
     private Output<String> uid;
 
     /**

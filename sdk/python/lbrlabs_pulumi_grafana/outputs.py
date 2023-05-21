@@ -105,20 +105,20 @@ __all__ = [
     'TeamPreferences',
     'GetDashboardsDashboardResult',
     'GetFoldersFolderResult',
-    'GetGrafanSlosSloResult',
-    'GetGrafanSlosSloAlertingResult',
-    'GetGrafanSlosSloAlertingAnnotationResult',
-    'GetGrafanSlosSloAlertingFastburnResult',
-    'GetGrafanSlosSloAlertingFastburnAnnotationResult',
-    'GetGrafanSlosSloAlertingFastburnLabelResult',
-    'GetGrafanSlosSloAlertingLabelResult',
-    'GetGrafanSlosSloAlertingSlowburnResult',
-    'GetGrafanSlosSloAlertingSlowburnAnnotationResult',
-    'GetGrafanSlosSloAlertingSlowburnLabelResult',
-    'GetGrafanSlosSloLabelResult',
-    'GetGrafanSlosSloObjectiveResult',
-    'GetGrafanSlosSloQueryResult',
-    'GetGrafanSlosSloQueryFreeformResult',
+    'GetSlosSloResult',
+    'GetSlosSloAlertingResult',
+    'GetSlosSloAlertingAnnotationResult',
+    'GetSlosSloAlertingFastburnResult',
+    'GetSlosSloAlertingFastburnAnnotationResult',
+    'GetSlosSloAlertingFastburnLabelResult',
+    'GetSlosSloAlertingLabelResult',
+    'GetSlosSloAlertingSlowburnResult',
+    'GetSlosSloAlertingSlowburnAnnotationResult',
+    'GetSlosSloAlertingSlowburnLabelResult',
+    'GetSlosSloLabelResult',
+    'GetSlosSloObjectiveResult',
+    'GetSlosSloQueryResult',
+    'GetSlosSloQueryFreeformResult',
     'GetUsersUserResult',
 ]
 
@@ -7188,15 +7188,15 @@ class GetFoldersFolderResult(dict):
 
 
 @pulumi.output_type
-class GetGrafanSlosSloResult(dict):
+class GetSlosSloResult(dict):
     def __init__(__self__, *,
-                 alertings: Sequence['outputs.GetGrafanSlosSloAlertingResult'],
+                 alertings: Sequence['outputs.GetSlosSloAlertingResult'],
                  dashboard_uid: str,
                  description: str,
-                 labels: Sequence['outputs.GetGrafanSlosSloLabelResult'],
+                 labels: Sequence['outputs.GetSlosSloLabelResult'],
                  name: str,
-                 objectives: Sequence['outputs.GetGrafanSlosSloObjectiveResult'],
-                 queries: Sequence['outputs.GetGrafanSlosSloQueryResult'],
+                 objectives: Sequence['outputs.GetSlosSloObjectiveResult'],
+                 queries: Sequence['outputs.GetSlosSloQueryResult'],
                  uuid: str):
         pulumi.set(__self__, "alertings", alertings)
         pulumi.set(__self__, "dashboard_uid", dashboard_uid)
@@ -7209,7 +7209,7 @@ class GetGrafanSlosSloResult(dict):
 
     @property
     @pulumi.getter
-    def alertings(self) -> Sequence['outputs.GetGrafanSlosSloAlertingResult']:
+    def alertings(self) -> Sequence['outputs.GetSlosSloAlertingResult']:
         return pulumi.get(self, "alertings")
 
     @property
@@ -7224,7 +7224,7 @@ class GetGrafanSlosSloResult(dict):
 
     @property
     @pulumi.getter
-    def labels(self) -> Sequence['outputs.GetGrafanSlosSloLabelResult']:
+    def labels(self) -> Sequence['outputs.GetSlosSloLabelResult']:
         return pulumi.get(self, "labels")
 
     @property
@@ -7234,12 +7234,12 @@ class GetGrafanSlosSloResult(dict):
 
     @property
     @pulumi.getter
-    def objectives(self) -> Sequence['outputs.GetGrafanSlosSloObjectiveResult']:
+    def objectives(self) -> Sequence['outputs.GetSlosSloObjectiveResult']:
         return pulumi.get(self, "objectives")
 
     @property
     @pulumi.getter
-    def queries(self) -> Sequence['outputs.GetGrafanSlosSloQueryResult']:
+    def queries(self) -> Sequence['outputs.GetSlosSloQueryResult']:
         return pulumi.get(self, "queries")
 
     @property
@@ -7249,12 +7249,12 @@ class GetGrafanSlosSloResult(dict):
 
 
 @pulumi.output_type
-class GetGrafanSlosSloAlertingResult(dict):
+class GetSlosSloAlertingResult(dict):
     def __init__(__self__, *,
-                 annotations: Optional[Sequence['outputs.GetGrafanSlosSloAlertingAnnotationResult']] = None,
-                 fastburns: Optional[Sequence['outputs.GetGrafanSlosSloAlertingFastburnResult']] = None,
-                 labels: Optional[Sequence['outputs.GetGrafanSlosSloAlertingLabelResult']] = None,
-                 slowburns: Optional[Sequence['outputs.GetGrafanSlosSloAlertingSlowburnResult']] = None):
+                 annotations: Optional[Sequence['outputs.GetSlosSloAlertingAnnotationResult']] = None,
+                 fastburns: Optional[Sequence['outputs.GetSlosSloAlertingFastburnResult']] = None,
+                 labels: Optional[Sequence['outputs.GetSlosSloAlertingLabelResult']] = None,
+                 slowburns: Optional[Sequence['outputs.GetSlosSloAlertingSlowburnResult']] = None):
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
         if fastburns is not None:
@@ -7266,27 +7266,27 @@ class GetGrafanSlosSloAlertingResult(dict):
 
     @property
     @pulumi.getter
-    def annotations(self) -> Optional[Sequence['outputs.GetGrafanSlosSloAlertingAnnotationResult']]:
+    def annotations(self) -> Optional[Sequence['outputs.GetSlosSloAlertingAnnotationResult']]:
         return pulumi.get(self, "annotations")
 
     @property
     @pulumi.getter
-    def fastburns(self) -> Optional[Sequence['outputs.GetGrafanSlosSloAlertingFastburnResult']]:
+    def fastburns(self) -> Optional[Sequence['outputs.GetSlosSloAlertingFastburnResult']]:
         return pulumi.get(self, "fastburns")
 
     @property
     @pulumi.getter
-    def labels(self) -> Optional[Sequence['outputs.GetGrafanSlosSloAlertingLabelResult']]:
+    def labels(self) -> Optional[Sequence['outputs.GetSlosSloAlertingLabelResult']]:
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
-    def slowburns(self) -> Optional[Sequence['outputs.GetGrafanSlosSloAlertingSlowburnResult']]:
+    def slowburns(self) -> Optional[Sequence['outputs.GetSlosSloAlertingSlowburnResult']]:
         return pulumi.get(self, "slowburns")
 
 
 @pulumi.output_type
-class GetGrafanSlosSloAlertingAnnotationResult(dict):
+class GetSlosSloAlertingAnnotationResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
@@ -7305,10 +7305,10 @@ class GetGrafanSlosSloAlertingAnnotationResult(dict):
 
 
 @pulumi.output_type
-class GetGrafanSlosSloAlertingFastburnResult(dict):
+class GetSlosSloAlertingFastburnResult(dict):
     def __init__(__self__, *,
-                 annotations: Optional[Sequence['outputs.GetGrafanSlosSloAlertingFastburnAnnotationResult']] = None,
-                 labels: Optional[Sequence['outputs.GetGrafanSlosSloAlertingFastburnLabelResult']] = None):
+                 annotations: Optional[Sequence['outputs.GetSlosSloAlertingFastburnAnnotationResult']] = None,
+                 labels: Optional[Sequence['outputs.GetSlosSloAlertingFastburnLabelResult']] = None):
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
         if labels is not None:
@@ -7316,17 +7316,17 @@ class GetGrafanSlosSloAlertingFastburnResult(dict):
 
     @property
     @pulumi.getter
-    def annotations(self) -> Optional[Sequence['outputs.GetGrafanSlosSloAlertingFastburnAnnotationResult']]:
+    def annotations(self) -> Optional[Sequence['outputs.GetSlosSloAlertingFastburnAnnotationResult']]:
         return pulumi.get(self, "annotations")
 
     @property
     @pulumi.getter
-    def labels(self) -> Optional[Sequence['outputs.GetGrafanSlosSloAlertingFastburnLabelResult']]:
+    def labels(self) -> Optional[Sequence['outputs.GetSlosSloAlertingFastburnLabelResult']]:
         return pulumi.get(self, "labels")
 
 
 @pulumi.output_type
-class GetGrafanSlosSloAlertingFastburnAnnotationResult(dict):
+class GetSlosSloAlertingFastburnAnnotationResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
@@ -7345,7 +7345,7 @@ class GetGrafanSlosSloAlertingFastburnAnnotationResult(dict):
 
 
 @pulumi.output_type
-class GetGrafanSlosSloAlertingFastburnLabelResult(dict):
+class GetSlosSloAlertingFastburnLabelResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
@@ -7364,7 +7364,7 @@ class GetGrafanSlosSloAlertingFastburnLabelResult(dict):
 
 
 @pulumi.output_type
-class GetGrafanSlosSloAlertingLabelResult(dict):
+class GetSlosSloAlertingLabelResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
@@ -7383,10 +7383,10 @@ class GetGrafanSlosSloAlertingLabelResult(dict):
 
 
 @pulumi.output_type
-class GetGrafanSlosSloAlertingSlowburnResult(dict):
+class GetSlosSloAlertingSlowburnResult(dict):
     def __init__(__self__, *,
-                 annotations: Optional[Sequence['outputs.GetGrafanSlosSloAlertingSlowburnAnnotationResult']] = None,
-                 labels: Optional[Sequence['outputs.GetGrafanSlosSloAlertingSlowburnLabelResult']] = None):
+                 annotations: Optional[Sequence['outputs.GetSlosSloAlertingSlowburnAnnotationResult']] = None,
+                 labels: Optional[Sequence['outputs.GetSlosSloAlertingSlowburnLabelResult']] = None):
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
         if labels is not None:
@@ -7394,17 +7394,17 @@ class GetGrafanSlosSloAlertingSlowburnResult(dict):
 
     @property
     @pulumi.getter
-    def annotations(self) -> Optional[Sequence['outputs.GetGrafanSlosSloAlertingSlowburnAnnotationResult']]:
+    def annotations(self) -> Optional[Sequence['outputs.GetSlosSloAlertingSlowburnAnnotationResult']]:
         return pulumi.get(self, "annotations")
 
     @property
     @pulumi.getter
-    def labels(self) -> Optional[Sequence['outputs.GetGrafanSlosSloAlertingSlowburnLabelResult']]:
+    def labels(self) -> Optional[Sequence['outputs.GetSlosSloAlertingSlowburnLabelResult']]:
         return pulumi.get(self, "labels")
 
 
 @pulumi.output_type
-class GetGrafanSlosSloAlertingSlowburnAnnotationResult(dict):
+class GetSlosSloAlertingSlowburnAnnotationResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
@@ -7423,7 +7423,7 @@ class GetGrafanSlosSloAlertingSlowburnAnnotationResult(dict):
 
 
 @pulumi.output_type
-class GetGrafanSlosSloAlertingSlowburnLabelResult(dict):
+class GetSlosSloAlertingSlowburnLabelResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
@@ -7442,7 +7442,7 @@ class GetGrafanSlosSloAlertingSlowburnLabelResult(dict):
 
 
 @pulumi.output_type
-class GetGrafanSlosSloLabelResult(dict):
+class GetSlosSloLabelResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
@@ -7461,7 +7461,7 @@ class GetGrafanSlosSloLabelResult(dict):
 
 
 @pulumi.output_type
-class GetGrafanSlosSloObjectiveResult(dict):
+class GetSlosSloObjectiveResult(dict):
     def __init__(__self__, *,
                  value: float,
                  window: str):
@@ -7480,16 +7480,16 @@ class GetGrafanSlosSloObjectiveResult(dict):
 
 
 @pulumi.output_type
-class GetGrafanSlosSloQueryResult(dict):
+class GetSlosSloQueryResult(dict):
     def __init__(__self__, *,
-                 freeform: 'outputs.GetGrafanSlosSloQueryFreeformResult',
+                 freeform: 'outputs.GetSlosSloQueryFreeformResult',
                  type: str):
         pulumi.set(__self__, "freeform", freeform)
         pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
-    def freeform(self) -> 'outputs.GetGrafanSlosSloQueryFreeformResult':
+    def freeform(self) -> 'outputs.GetSlosSloQueryFreeformResult':
         return pulumi.get(self, "freeform")
 
     @property
@@ -7499,7 +7499,7 @@ class GetGrafanSlosSloQueryResult(dict):
 
 
 @pulumi.output_type
-class GetGrafanSlosSloQueryFreeformResult(dict):
+class GetSlosSloQueryFreeformResult(dict):
     def __init__(__self__, *,
                  query: Optional[str] = None):
         if query is not None:

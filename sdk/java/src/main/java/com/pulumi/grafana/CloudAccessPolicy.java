@@ -84,7 +84,7 @@ public class CloudAccessPolicy extends com.pulumi.resources.CustomResource {
      * Creation date of the access policy.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -98,7 +98,7 @@ public class CloudAccessPolicy extends com.pulumi.resources.CustomResource {
      * Display name of the access policy. Defaults to the name.
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayName;
 
     /**
@@ -112,7 +112,7 @@ public class CloudAccessPolicy extends com.pulumi.resources.CustomResource {
      * Name of the access policy.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -126,7 +126,7 @@ public class CloudAccessPolicy extends com.pulumi.resources.CustomResource {
      * ID of the access policy.
      * 
      */
-    @Export(name="policyId", type=String.class, parameters={})
+    @Export(name="policyId", refs={String.class}, tree="[0]")
     private Output<String> policyId;
 
     /**
@@ -136,7 +136,7 @@ public class CloudAccessPolicy extends com.pulumi.resources.CustomResource {
     public Output<String> policyId() {
         return this.policyId;
     }
-    @Export(name="realms", type=List.class, parameters={CloudAccessPolicyRealm.class})
+    @Export(name="realms", refs={List.class,CloudAccessPolicyRealm.class}, tree="[0,1]")
     private Output<List<CloudAccessPolicyRealm>> realms;
 
     public Output<List<CloudAccessPolicyRealm>> realms() {
@@ -146,7 +146,7 @@ public class CloudAccessPolicy extends com.pulumi.resources.CustomResource {
      * Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -160,7 +160,7 @@ public class CloudAccessPolicy extends com.pulumi.resources.CustomResource {
      * Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/#scopes for possible values.
      * 
      */
-    @Export(name="scopes", type=List.class, parameters={String.class})
+    @Export(name="scopes", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> scopes;
 
     /**
@@ -174,7 +174,7 @@ public class CloudAccessPolicy extends com.pulumi.resources.CustomResource {
      * Last update date of the access policy.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**

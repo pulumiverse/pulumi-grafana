@@ -32,7 +32,7 @@ public class MachineLearningOutlierDetector extends com.pulumi.resources.CustomR
      * The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      * 
      */
-    @Export(name="algorithm", type=MachineLearningOutlierDetectorAlgorithm.class, parameters={})
+    @Export(name="algorithm", refs={MachineLearningOutlierDetectorAlgorithm.class}, tree="[0]")
     private Output<MachineLearningOutlierDetectorAlgorithm> algorithm;
 
     /**
@@ -46,7 +46,7 @@ public class MachineLearningOutlierDetector extends com.pulumi.resources.CustomR
      * The id of the datasource to query.
      * 
      */
-    @Export(name="datasourceId", type=Integer.class, parameters={})
+    @Export(name="datasourceId", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> datasourceId;
 
     /**
@@ -60,7 +60,7 @@ public class MachineLearningOutlierDetector extends com.pulumi.resources.CustomR
      * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
      * 
      */
-    @Export(name="datasourceType", type=String.class, parameters={})
+    @Export(name="datasourceType", refs={String.class}, tree="[0]")
     private Output<String> datasourceType;
 
     /**
@@ -74,7 +74,7 @@ public class MachineLearningOutlierDetector extends com.pulumi.resources.CustomR
      * The uid of the datasource to query.
      * 
      */
-    @Export(name="datasourceUid", type=String.class, parameters={})
+    @Export(name="datasourceUid", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> datasourceUid;
 
     /**
@@ -88,7 +88,7 @@ public class MachineLearningOutlierDetector extends com.pulumi.resources.CustomR
      * A description of the outlier detector.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -102,7 +102,7 @@ public class MachineLearningOutlierDetector extends com.pulumi.resources.CustomR
      * The data interval in seconds to monitor. Defaults to `300`.
      * 
      */
-    @Export(name="interval", type=Integer.class, parameters={})
+    @Export(name="interval", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> interval;
 
     /**
@@ -116,7 +116,7 @@ public class MachineLearningOutlierDetector extends com.pulumi.resources.CustomR
      * The metric used to query the outlier detector results.
      * 
      */
-    @Export(name="metric", type=String.class, parameters={})
+    @Export(name="metric", refs={String.class}, tree="[0]")
     private Output<String> metric;
 
     /**
@@ -130,7 +130,7 @@ public class MachineLearningOutlierDetector extends com.pulumi.resources.CustomR
      * The name of the outlier detector.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -144,7 +144,7 @@ public class MachineLearningOutlierDetector extends com.pulumi.resources.CustomR
      * An object representing the query params to query Grafana with.
      * 
      */
-    @Export(name="queryParams", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="queryParams", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output<Map<String,Object>> queryParams;
 
     /**

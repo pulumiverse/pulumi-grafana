@@ -138,10 +138,6 @@ export { GetFoldersResult } from "./getFolders";
 export const getFolders: typeof import("./getFolders").getFolders = null as any;
 utilities.lazyLoad(exports, ["getFolders"], () => require("./getFolders"));
 
-export { GetGrafanSlosResult } from "./getGrafanSlos";
-export const getGrafanSlos: typeof import("./getGrafanSlos").getGrafanSlos = null as any;
-utilities.lazyLoad(exports, ["getGrafanSlos"], () => require("./getGrafanSlos"));
-
 export { GetLibraryPanelArgs, GetLibraryPanelResult, GetLibraryPanelOutputArgs } from "./getLibraryPanel";
 export const getLibraryPanel: typeof import("./getLibraryPanel").getLibraryPanel = null as any;
 export const getLibraryPanelOutput: typeof import("./getLibraryPanel").getLibraryPanelOutput = null as any;
@@ -195,6 +191,10 @@ utilities.lazyLoad(exports, ["getOrganization","getOrganizationOutput"], () => r
 export { GetOrganizationPreferencesResult } from "./getOrganizationPreferences";
 export const getOrganizationPreferences: typeof import("./getOrganizationPreferences").getOrganizationPreferences = null as any;
 utilities.lazyLoad(exports, ["getOrganizationPreferences"], () => require("./getOrganizationPreferences"));
+
+export { GetSlosResult } from "./getSlos";
+export const getSlos: typeof import("./getSlos").getSlos = null as any;
+utilities.lazyLoad(exports, ["getSlos"], () => require("./getSlos"));
 
 export { GetSyntheticMonitoringProbeArgs, GetSyntheticMonitoringProbeResult, GetSyntheticMonitoringProbeOutputArgs } from "./getSyntheticMonitoringProbe";
 export const getSyntheticMonitoringProbe: typeof import("./getSyntheticMonitoringProbe").getSyntheticMonitoringProbe = null as any;

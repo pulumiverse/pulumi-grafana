@@ -6,7 +6,7 @@ package com.pulumi.grafana.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.grafana.inputs.ServiceAccountPermissionPermissionArgs;
-import java.lang.Integer;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -37,13 +37,13 @@ public final class ServiceAccountPermissionState extends com.pulumi.resources.Re
      * 
      */
     @Import(name="serviceAccountId")
-    private @Nullable Output<Integer> serviceAccountId;
+    private @Nullable Output<String> serviceAccountId;
 
     /**
      * @return The id of the service account.
      * 
      */
-    public Optional<Output<Integer>> serviceAccountId() {
+    public Optional<Output<String>> serviceAccountId() {
         return Optional.ofNullable(this.serviceAccountId);
     }
 
@@ -109,7 +109,7 @@ public final class ServiceAccountPermissionState extends com.pulumi.resources.Re
          * @return builder
          * 
          */
-        public Builder serviceAccountId(@Nullable Output<Integer> serviceAccountId) {
+        public Builder serviceAccountId(@Nullable Output<String> serviceAccountId) {
             $.serviceAccountId = serviceAccountId;
             return this;
         }
@@ -120,7 +120,7 @@ public final class ServiceAccountPermissionState extends com.pulumi.resources.Re
          * @return builder
          * 
          */
-        public Builder serviceAccountId(Integer serviceAccountId) {
+        public Builder serviceAccountId(String serviceAccountId) {
             return serviceAccountId(Output.of(serviceAccountId));
         }
 

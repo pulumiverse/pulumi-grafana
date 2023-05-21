@@ -48,14 +48,14 @@ public final class DashboardState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder&#39;s id.
+     * The id or UID of the folder to save the dashboard in.
      * 
      */
     @Import(name="folder")
     private @Nullable Output<String> folder;
 
     /**
-     * @return The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder&#39;s id.
+     * @return The id or UID of the folder to save the dashboard in.
      * 
      */
     public Optional<Output<String>> folder() {
@@ -251,7 +251,7 @@ public final class DashboardState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param folder The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder&#39;s id.
+         * @param folder The id or UID of the folder to save the dashboard in.
          * 
          * @return builder
          * 
@@ -262,7 +262,7 @@ public final class DashboardState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param folder The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder&#39;s id.
+         * @param folder The id or UID of the folder to save the dashboard in.
          * 
          * @return builder
          * 

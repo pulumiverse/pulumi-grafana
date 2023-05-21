@@ -32,7 +32,6 @@ from .get_dashboards import *
 from .get_data_source import *
 from .get_folder import *
 from .get_folders import *
-from .get_grafan_slos import *
 from .get_library_panel import *
 from .get_on_call_slack_channel import *
 from .get_oncall_action import *
@@ -44,6 +43,7 @@ from .get_oncall_user import *
 from .get_oncall_user_group import *
 from .get_organization import *
 from .get_organization_preferences import *
+from .get_slos import *
 from .get_synthetic_monitoring_probe import *
 from .get_synthetic_monitoring_probes import *
 from .get_team import *

@@ -63,7 +63,7 @@ public class CloudPluginInstallation extends com.pulumi.resources.CustomResource
      * Slug of the plugin to be installed.
      * 
      */
-    @Export(name="slug", type=String.class, parameters={})
+    @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
     /**
@@ -77,7 +77,7 @@ public class CloudPluginInstallation extends com.pulumi.resources.CustomResource
      * The stack id to which the plugin should be installed.
      * 
      */
-    @Export(name="stackSlug", type=String.class, parameters={})
+    @Export(name="stackSlug", refs={String.class}, tree="[0]")
     private Output<String> stackSlug;
 
     /**
@@ -91,7 +91,7 @@ public class CloudPluginInstallation extends com.pulumi.resources.CustomResource
      * Version of the plugin to be installed.
      * 
      */
-    @Export(name="version", type=String.class, parameters={})
+    @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**

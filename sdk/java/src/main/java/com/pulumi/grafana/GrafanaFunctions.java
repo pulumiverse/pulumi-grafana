@@ -67,6 +67,7 @@ import com.pulumi.grafana.outputs.GetOncallUserGroupResult;
 import com.pulumi.grafana.outputs.GetOncallUserResult;
 import com.pulumi.grafana.outputs.GetOrganizationPreferencesResult;
 import com.pulumi.grafana.outputs.GetOrganizationResult;
+import com.pulumi.grafana.outputs.GetSlosResult;
 import com.pulumi.grafana.outputs.GetSyntheticMonitoringProbeResult;
 import com.pulumi.grafana.outputs.GetSyntheticMonitoringProbesResult;
 import com.pulumi.grafana.outputs.GetTeamResult;
@@ -1851,7 +1852,7 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invokeAsync("grafana:index/getLibraryPanel:getLibraryPanel", TypeShape.of(GetLibraryPanelResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/slack_channels/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
      * 
      * ## Example Usage
      * ```java
@@ -1888,7 +1889,7 @@ public final class GrafanaFunctions {
         return getOnCallSlackChannel(args, InvokeOptions.Empty);
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/slack_channels/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
      * 
      * ## Example Usage
      * ```java
@@ -1925,7 +1926,7 @@ public final class GrafanaFunctions {
         return getOnCallSlackChannelPlain(args, InvokeOptions.Empty);
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/slack_channels/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
      * 
      * ## Example Usage
      * ```java
@@ -1962,7 +1963,7 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invoke("grafana:index/getOnCallSlackChannel:getOnCallSlackChannel", TypeShape.of(GetOnCallSlackChannelResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/slack_channels/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
      * 
      * ## Example Usage
      * ```java
@@ -2000,7 +2001,9 @@ public final class GrafanaFunctions {
     }
     /**
      * **Note:** This data source is going to be deprecated, please use outgoing webhook data source instead.
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/outgoing_webhooks/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
+     * 
+     * !&gt; Deprecated: Use the `grafana.OncallOutgoingWebhook` data source instead.
      * 
      */
     public static Output<GetOncallActionResult> getOncallAction(GetOncallActionArgs args) {
@@ -2008,7 +2011,9 @@ public final class GrafanaFunctions {
     }
     /**
      * **Note:** This data source is going to be deprecated, please use outgoing webhook data source instead.
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/outgoing_webhooks/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
+     * 
+     * !&gt; Deprecated: Use the `grafana.OncallOutgoingWebhook` data source instead.
      * 
      */
     public static CompletableFuture<GetOncallActionResult> getOncallActionPlain(GetOncallActionPlainArgs args) {
@@ -2016,7 +2021,9 @@ public final class GrafanaFunctions {
     }
     /**
      * **Note:** This data source is going to be deprecated, please use outgoing webhook data source instead.
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/outgoing_webhooks/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
+     * 
+     * !&gt; Deprecated: Use the `grafana.OncallOutgoingWebhook` data source instead.
      * 
      */
     public static Output<GetOncallActionResult> getOncallAction(GetOncallActionArgs args, InvokeOptions options) {
@@ -2024,14 +2031,16 @@ public final class GrafanaFunctions {
     }
     /**
      * **Note:** This data source is going to be deprecated, please use outgoing webhook data source instead.
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/outgoing_webhooks/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
+     * 
+     * !&gt; Deprecated: Use the `grafana.OncallOutgoingWebhook` data source instead.
      * 
      */
     public static CompletableFuture<GetOncallActionResult> getOncallActionPlain(GetOncallActionPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("grafana:index/getOncallAction:getOncallAction", TypeShape.of(GetOncallActionResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/escalation_chains/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
      * 
      * ## Example Usage
      * ```java
@@ -2068,7 +2077,7 @@ public final class GrafanaFunctions {
         return getOncallEscalationChain(args, InvokeOptions.Empty);
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/escalation_chains/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
      * 
      * ## Example Usage
      * ```java
@@ -2105,7 +2114,7 @@ public final class GrafanaFunctions {
         return getOncallEscalationChainPlain(args, InvokeOptions.Empty);
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/escalation_chains/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
      * 
      * ## Example Usage
      * ```java
@@ -2142,7 +2151,7 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invoke("grafana:index/getOncallEscalationChain:getOncallEscalationChain", TypeShape.of(GetOncallEscalationChainResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/escalation_chains/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
      * 
      * ## Example Usage
      * ```java
@@ -2179,7 +2188,7 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invokeAsync("grafana:index/getOncallEscalationChain:getOncallEscalationChain", TypeShape.of(GetOncallEscalationChainResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/outgoing_webhooks/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
      * 
      * ## Example Usage
      * ```java
@@ -2216,7 +2225,7 @@ public final class GrafanaFunctions {
         return getOncallOutgoingWebhook(args, InvokeOptions.Empty);
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/outgoing_webhooks/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
      * 
      * ## Example Usage
      * ```java
@@ -2253,7 +2262,7 @@ public final class GrafanaFunctions {
         return getOncallOutgoingWebhookPlain(args, InvokeOptions.Empty);
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/outgoing_webhooks/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
      * 
      * ## Example Usage
      * ```java
@@ -2290,7 +2299,7 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invoke("grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook", TypeShape.of(GetOncallOutgoingWebhookResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/outgoing_webhooks/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
      * 
      * ## Example Usage
      * ```java
@@ -2327,8 +2336,8 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invokeAsync("grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook", TypeShape.of(GetOncallOutgoingWebhookResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana-cloud/oncall/calendar-schedules/)
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/schedules/)
+     * * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
      * 
      * ## Example Usage
      * ```java
@@ -2365,8 +2374,8 @@ public final class GrafanaFunctions {
         return getOncallSchedule(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana-cloud/oncall/calendar-schedules/)
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/schedules/)
+     * * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
      * 
      * ## Example Usage
      * ```java
@@ -2403,8 +2412,8 @@ public final class GrafanaFunctions {
         return getOncallSchedulePlain(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana-cloud/oncall/calendar-schedules/)
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/schedules/)
+     * * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
      * 
      * ## Example Usage
      * ```java
@@ -2441,8 +2450,8 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invoke("grafana:index/getOncallSchedule:getOncallSchedule", TypeShape.of(GetOncallScheduleResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/grafana-cloud/oncall/calendar-schedules/)
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/schedules/)
+     * * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
      * 
      * ## Example Usage
      * ```java
@@ -2619,7 +2628,7 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invokeAsync("grafana:index/getOncallTeam:getOncallTeam", TypeShape.of(GetOncallTeamResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/users/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
      * 
      * ## Example Usage
      * ```java
@@ -2656,7 +2665,7 @@ public final class GrafanaFunctions {
         return getOncallUser(args, InvokeOptions.Empty);
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/users/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
      * 
      * ## Example Usage
      * ```java
@@ -2693,7 +2702,7 @@ public final class GrafanaFunctions {
         return getOncallUserPlain(args, InvokeOptions.Empty);
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/users/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
      * 
      * ## Example Usage
      * ```java
@@ -2730,7 +2739,7 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invoke("grafana:index/getOncallUser:getOncallUser", TypeShape.of(GetOncallUserResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/users/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
      * 
      * ## Example Usage
      * ```java
@@ -2767,7 +2776,7 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invokeAsync("grafana:index/getOncallUser:getOncallUser", TypeShape.of(GetOncallUserResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/user_groups/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
      * 
      * ## Example Usage
      * ```java
@@ -2804,7 +2813,7 @@ public final class GrafanaFunctions {
         return getOncallUserGroup(args, InvokeOptions.Empty);
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/user_groups/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
      * 
      * ## Example Usage
      * ```java
@@ -2841,7 +2850,7 @@ public final class GrafanaFunctions {
         return getOncallUserGroupPlain(args, InvokeOptions.Empty);
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/user_groups/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
      * 
      * ## Example Usage
      * ```java
@@ -2878,7 +2887,7 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invoke("grafana:index/getOncallUserGroup:getOncallUserGroup", TypeShape.of(GetOncallUserGroupResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/user_groups/)
+     * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
      * 
      * ## Example Usage
      * ```java
@@ -3315,6 +3324,444 @@ public final class GrafanaFunctions {
      */
     public static CompletableFuture<GetOrganizationPreferencesResult> getOrganizationPreferencesPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("grafana:index/getOrganizationPreferences:getOrganizationPreferences", TypeShape.of(GetOrganizationPreferencesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Datasource for retrieving all SLOs.
+     * 
+     * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
+     * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+     * 
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.SLO;
+     * import com.pulumi.grafana.SLOArgs;
+     * import com.pulumi.grafana.inputs.SLOAlertingArgs;
+     * import com.pulumi.grafana.inputs.SLOLabelArgs;
+     * import com.pulumi.grafana.inputs.SLOObjectiveArgs;
+     * import com.pulumi.grafana.inputs.SLOQueryArgs;
+     * import com.pulumi.grafana.inputs.SLOQueryFreeformArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var test = new SLO(&#34;test&#34;, SLOArgs.builder()        
+     *             .alertings(SLOAlertingArgs.builder()
+     *                 .fastburns(SLOAlertingFastburnArgs.builder()
+     *                     .annotation(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .label(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .build())
+     *                 .slowburns(SLOAlertingSlowburnArgs.builder()
+     *                     .annotation(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .label(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .build())
+     *                 .build())
+     *             .description(&#34;Terraform Description&#34;)
+     *             .labels(SLOLabelArgs.builder()
+     *                 .key(&#34;custom&#34;)
+     *                 .value(&#34;value&#34;)
+     *                 .build())
+     *             .objectives(SLOObjectiveArgs.builder()
+     *                 .value(0.995)
+     *                 .window(&#34;30d&#34;)
+     *                 .build())
+     *             .queries(SLOQueryArgs.builder()
+     *                 .freeform(SLOQueryFreeformArgs.builder()
+     *                     .query(&#34;sum(rate(apiserver_request_total{code!=\&#34;500\&#34;}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))&#34;)
+     *                     .build())
+     *                 .type(&#34;freeform&#34;)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var slos = GrafanaFunctions.getSlos();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetSlosResult> getSlos() {
+        return getSlos(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Datasource for retrieving all SLOs.
+     * 
+     * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
+     * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+     * 
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.SLO;
+     * import com.pulumi.grafana.SLOArgs;
+     * import com.pulumi.grafana.inputs.SLOAlertingArgs;
+     * import com.pulumi.grafana.inputs.SLOLabelArgs;
+     * import com.pulumi.grafana.inputs.SLOObjectiveArgs;
+     * import com.pulumi.grafana.inputs.SLOQueryArgs;
+     * import com.pulumi.grafana.inputs.SLOQueryFreeformArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var test = new SLO(&#34;test&#34;, SLOArgs.builder()        
+     *             .alertings(SLOAlertingArgs.builder()
+     *                 .fastburns(SLOAlertingFastburnArgs.builder()
+     *                     .annotation(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .label(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .build())
+     *                 .slowburns(SLOAlertingSlowburnArgs.builder()
+     *                     .annotation(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .label(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .build())
+     *                 .build())
+     *             .description(&#34;Terraform Description&#34;)
+     *             .labels(SLOLabelArgs.builder()
+     *                 .key(&#34;custom&#34;)
+     *                 .value(&#34;value&#34;)
+     *                 .build())
+     *             .objectives(SLOObjectiveArgs.builder()
+     *                 .value(0.995)
+     *                 .window(&#34;30d&#34;)
+     *                 .build())
+     *             .queries(SLOQueryArgs.builder()
+     *                 .freeform(SLOQueryFreeformArgs.builder()
+     *                     .query(&#34;sum(rate(apiserver_request_total{code!=\&#34;500\&#34;}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))&#34;)
+     *                     .build())
+     *                 .type(&#34;freeform&#34;)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var slos = GrafanaFunctions.getSlos();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetSlosResult> getSlosPlain() {
+        return getSlosPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Datasource for retrieving all SLOs.
+     * 
+     * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
+     * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+     * 
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.SLO;
+     * import com.pulumi.grafana.SLOArgs;
+     * import com.pulumi.grafana.inputs.SLOAlertingArgs;
+     * import com.pulumi.grafana.inputs.SLOLabelArgs;
+     * import com.pulumi.grafana.inputs.SLOObjectiveArgs;
+     * import com.pulumi.grafana.inputs.SLOQueryArgs;
+     * import com.pulumi.grafana.inputs.SLOQueryFreeformArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var test = new SLO(&#34;test&#34;, SLOArgs.builder()        
+     *             .alertings(SLOAlertingArgs.builder()
+     *                 .fastburns(SLOAlertingFastburnArgs.builder()
+     *                     .annotation(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .label(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .build())
+     *                 .slowburns(SLOAlertingSlowburnArgs.builder()
+     *                     .annotation(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .label(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .build())
+     *                 .build())
+     *             .description(&#34;Terraform Description&#34;)
+     *             .labels(SLOLabelArgs.builder()
+     *                 .key(&#34;custom&#34;)
+     *                 .value(&#34;value&#34;)
+     *                 .build())
+     *             .objectives(SLOObjectiveArgs.builder()
+     *                 .value(0.995)
+     *                 .window(&#34;30d&#34;)
+     *                 .build())
+     *             .queries(SLOQueryArgs.builder()
+     *                 .freeform(SLOQueryFreeformArgs.builder()
+     *                     .query(&#34;sum(rate(apiserver_request_total{code!=\&#34;500\&#34;}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))&#34;)
+     *                     .build())
+     *                 .type(&#34;freeform&#34;)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var slos = GrafanaFunctions.getSlos();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetSlosResult> getSlos(InvokeArgs args) {
+        return getSlos(args, InvokeOptions.Empty);
+    }
+    /**
+     * Datasource for retrieving all SLOs.
+     * 
+     * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
+     * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+     * 
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.SLO;
+     * import com.pulumi.grafana.SLOArgs;
+     * import com.pulumi.grafana.inputs.SLOAlertingArgs;
+     * import com.pulumi.grafana.inputs.SLOLabelArgs;
+     * import com.pulumi.grafana.inputs.SLOObjectiveArgs;
+     * import com.pulumi.grafana.inputs.SLOQueryArgs;
+     * import com.pulumi.grafana.inputs.SLOQueryFreeformArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var test = new SLO(&#34;test&#34;, SLOArgs.builder()        
+     *             .alertings(SLOAlertingArgs.builder()
+     *                 .fastburns(SLOAlertingFastburnArgs.builder()
+     *                     .annotation(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .label(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .build())
+     *                 .slowburns(SLOAlertingSlowburnArgs.builder()
+     *                     .annotation(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .label(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .build())
+     *                 .build())
+     *             .description(&#34;Terraform Description&#34;)
+     *             .labels(SLOLabelArgs.builder()
+     *                 .key(&#34;custom&#34;)
+     *                 .value(&#34;value&#34;)
+     *                 .build())
+     *             .objectives(SLOObjectiveArgs.builder()
+     *                 .value(0.995)
+     *                 .window(&#34;30d&#34;)
+     *                 .build())
+     *             .queries(SLOQueryArgs.builder()
+     *                 .freeform(SLOQueryFreeformArgs.builder()
+     *                     .query(&#34;sum(rate(apiserver_request_total{code!=\&#34;500\&#34;}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))&#34;)
+     *                     .build())
+     *                 .type(&#34;freeform&#34;)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var slos = GrafanaFunctions.getSlos();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetSlosResult> getSlosPlain(InvokeArgs args) {
+        return getSlosPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Datasource for retrieving all SLOs.
+     * 
+     * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
+     * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+     * 
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.SLO;
+     * import com.pulumi.grafana.SLOArgs;
+     * import com.pulumi.grafana.inputs.SLOAlertingArgs;
+     * import com.pulumi.grafana.inputs.SLOLabelArgs;
+     * import com.pulumi.grafana.inputs.SLOObjectiveArgs;
+     * import com.pulumi.grafana.inputs.SLOQueryArgs;
+     * import com.pulumi.grafana.inputs.SLOQueryFreeformArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var test = new SLO(&#34;test&#34;, SLOArgs.builder()        
+     *             .alertings(SLOAlertingArgs.builder()
+     *                 .fastburns(SLOAlertingFastburnArgs.builder()
+     *                     .annotation(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .label(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .build())
+     *                 .slowburns(SLOAlertingSlowburnArgs.builder()
+     *                     .annotation(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .label(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .build())
+     *                 .build())
+     *             .description(&#34;Terraform Description&#34;)
+     *             .labels(SLOLabelArgs.builder()
+     *                 .key(&#34;custom&#34;)
+     *                 .value(&#34;value&#34;)
+     *                 .build())
+     *             .objectives(SLOObjectiveArgs.builder()
+     *                 .value(0.995)
+     *                 .window(&#34;30d&#34;)
+     *                 .build())
+     *             .queries(SLOQueryArgs.builder()
+     *                 .freeform(SLOQueryFreeformArgs.builder()
+     *                     .query(&#34;sum(rate(apiserver_request_total{code!=\&#34;500\&#34;}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))&#34;)
+     *                     .build())
+     *                 .type(&#34;freeform&#34;)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var slos = GrafanaFunctions.getSlos();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetSlosResult> getSlos(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("grafana:index/getSlos:getSlos", TypeShape.of(GetSlosResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Datasource for retrieving all SLOs.
+     * 
+     * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
+     * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+     * 
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.SLO;
+     * import com.pulumi.grafana.SLOArgs;
+     * import com.pulumi.grafana.inputs.SLOAlertingArgs;
+     * import com.pulumi.grafana.inputs.SLOLabelArgs;
+     * import com.pulumi.grafana.inputs.SLOObjectiveArgs;
+     * import com.pulumi.grafana.inputs.SLOQueryArgs;
+     * import com.pulumi.grafana.inputs.SLOQueryFreeformArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var test = new SLO(&#34;test&#34;, SLOArgs.builder()        
+     *             .alertings(SLOAlertingArgs.builder()
+     *                 .fastburns(SLOAlertingFastburnArgs.builder()
+     *                     .annotation(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .label(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .build())
+     *                 .slowburns(SLOAlertingSlowburnArgs.builder()
+     *                     .annotation(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .label(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *                     .build())
+     *                 .build())
+     *             .description(&#34;Terraform Description&#34;)
+     *             .labels(SLOLabelArgs.builder()
+     *                 .key(&#34;custom&#34;)
+     *                 .value(&#34;value&#34;)
+     *                 .build())
+     *             .objectives(SLOObjectiveArgs.builder()
+     *                 .value(0.995)
+     *                 .window(&#34;30d&#34;)
+     *                 .build())
+     *             .queries(SLOQueryArgs.builder()
+     *                 .freeform(SLOQueryFreeformArgs.builder()
+     *                     .query(&#34;sum(rate(apiserver_request_total{code!=\&#34;500\&#34;}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))&#34;)
+     *                     .build())
+     *                 .type(&#34;freeform&#34;)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var slos = GrafanaFunctions.getSlos();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetSlosResult> getSlosPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("grafana:index/getSlos:getSlos", TypeShape.of(GetSlosResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Data source for retrieving a single probe by name.

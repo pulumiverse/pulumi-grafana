@@ -48,6 +48,21 @@ public final class ContactPointPagerdutyArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * A set of arbitrary key/value pairs that provide further detail about the incident.
+     * 
+     */
+    @Import(name="details")
+    private @Nullable Output<Map<String,String>> details;
+
+    /**
+     * @return A set of arbitrary key/value pairs that provide further detail about the incident.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> details() {
+        return Optional.ofNullable(this.details);
+    }
+
+    /**
      * Whether to disable sending resolve messages. Defaults to `false`.
      * 
      */
@@ -157,6 +172,7 @@ public final class ContactPointPagerdutyArgs extends com.pulumi.resources.Resour
     private ContactPointPagerdutyArgs(ContactPointPagerdutyArgs $) {
         this.class_ = $.class_;
         this.component = $.component;
+        this.details = $.details;
         this.disableResolveMessage = $.disableResolveMessage;
         this.group = $.group;
         this.integrationKey = $.integrationKey;
@@ -224,6 +240,27 @@ public final class ContactPointPagerdutyArgs extends com.pulumi.resources.Resour
          */
         public Builder component(String component) {
             return component(Output.of(component));
+        }
+
+        /**
+         * @param details A set of arbitrary key/value pairs that provide further detail about the incident.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder details(@Nullable Output<Map<String,String>> details) {
+            $.details = details;
+            return this;
+        }
+
+        /**
+         * @param details A set of arbitrary key/value pairs that provide further detail about the incident.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder details(Map<String,String> details) {
+            return details(Output.of(details));
         }
 
         /**

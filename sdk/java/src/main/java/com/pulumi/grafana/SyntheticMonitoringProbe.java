@@ -77,7 +77,7 @@ public class SyntheticMonitoringProbe extends com.pulumi.resources.CustomResourc
      * The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
      * 
      */
-    @Export(name="authToken", type=String.class, parameters={})
+    @Export(name="authToken", refs={String.class}, tree="[0]")
     private Output<String> authToken;
 
     /**
@@ -91,7 +91,7 @@ public class SyntheticMonitoringProbe extends com.pulumi.resources.CustomResourc
      * Custom labels to be included with collected metrics and logs.
      * 
      */
-    @Export(name="labels", type=Map.class, parameters={String.class, String.class})
+    @Export(name="labels", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> labels;
 
     /**
@@ -105,7 +105,7 @@ public class SyntheticMonitoringProbe extends com.pulumi.resources.CustomResourc
      * Latitude coordinates.
      * 
      */
-    @Export(name="latitude", type=Double.class, parameters={})
+    @Export(name="latitude", refs={Double.class}, tree="[0]")
     private Output<Double> latitude;
 
     /**
@@ -119,7 +119,7 @@ public class SyntheticMonitoringProbe extends com.pulumi.resources.CustomResourc
      * Longitude coordinates.
      * 
      */
-    @Export(name="longitude", type=Double.class, parameters={})
+    @Export(name="longitude", refs={Double.class}, tree="[0]")
     private Output<Double> longitude;
 
     /**
@@ -133,7 +133,7 @@ public class SyntheticMonitoringProbe extends com.pulumi.resources.CustomResourc
      * Name of the probe.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -147,7 +147,7 @@ public class SyntheticMonitoringProbe extends com.pulumi.resources.CustomResourc
      * Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
      * 
      */
-    @Export(name="public", type=Boolean.class, parameters={})
+    @Export(name="public", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> public_;
 
     /**
@@ -161,7 +161,7 @@ public class SyntheticMonitoringProbe extends com.pulumi.resources.CustomResourc
      * Region of the probe.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -175,7 +175,7 @@ public class SyntheticMonitoringProbe extends com.pulumi.resources.CustomResourc
      * The tenant ID of the probe.
      * 
      */
-    @Export(name="tenantId", type=Integer.class, parameters={})
+    @Export(name="tenantId", refs={Integer.class}, tree="[0]")
     private Output<Integer> tenantId;
 
     /**

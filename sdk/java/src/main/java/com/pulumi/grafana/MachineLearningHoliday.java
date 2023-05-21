@@ -28,7 +28,7 @@ public class MachineLearningHoliday extends com.pulumi.resources.CustomResource 
      * A list of custom periods for the holiday.
      * 
      */
-    @Export(name="customPeriods", type=List.class, parameters={MachineLearningHolidayCustomPeriod.class})
+    @Export(name="customPeriods", refs={List.class,MachineLearningHolidayCustomPeriod.class}, tree="[0,1]")
     private Output</* @Nullable */ List<MachineLearningHolidayCustomPeriod>> customPeriods;
 
     /**
@@ -42,7 +42,7 @@ public class MachineLearningHoliday extends com.pulumi.resources.CustomResource 
      * A description of the holiday.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -56,7 +56,7 @@ public class MachineLearningHoliday extends com.pulumi.resources.CustomResource 
      * The timezone to use for events in the iCal file pointed to by ical_url.
      * 
      */
-    @Export(name="icalTimezone", type=String.class, parameters={})
+    @Export(name="icalTimezone", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> icalTimezone;
 
     /**
@@ -70,7 +70,7 @@ public class MachineLearningHoliday extends com.pulumi.resources.CustomResource 
      * A URL to an iCal file containing all occurrences of the holiday.
      * 
      */
-    @Export(name="icalUrl", type=String.class, parameters={})
+    @Export(name="icalUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> icalUrl;
 
     /**
@@ -84,7 +84,7 @@ public class MachineLearningHoliday extends com.pulumi.resources.CustomResource 
      * The name of the holiday.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**

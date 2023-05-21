@@ -91,7 +91,7 @@ public class RoleAssignment extends com.pulumi.resources.CustomResource {
      * Grafana RBAC role UID.
      * 
      */
-    @Export(name="roleUid", type=String.class, parameters={})
+    @Export(name="roleUid", refs={String.class}, tree="[0]")
     private Output<String> roleUid;
 
     /**
@@ -105,7 +105,7 @@ public class RoleAssignment extends com.pulumi.resources.CustomResource {
      * IDs of service accounts that the role should be assigned to.
      * 
      */
-    @Export(name="serviceAccounts", type=List.class, parameters={Integer.class})
+    @Export(name="serviceAccounts", refs={List.class,Integer.class}, tree="[0,1]")
     private Output</* @Nullable */ List<Integer>> serviceAccounts;
 
     /**
@@ -119,7 +119,7 @@ public class RoleAssignment extends com.pulumi.resources.CustomResource {
      * IDs of teams that the role should be assigned to.
      * 
      */
-    @Export(name="teams", type=List.class, parameters={Integer.class})
+    @Export(name="teams", refs={List.class,Integer.class}, tree="[0,1]")
     private Output</* @Nullable */ List<Integer>> teams;
 
     /**
@@ -133,7 +133,7 @@ public class RoleAssignment extends com.pulumi.resources.CustomResource {
      * IDs of users that the role should be assigned to.
      * 
      */
-    @Export(name="users", type=List.class, parameters={Integer.class})
+    @Export(name="users", refs={List.class,Integer.class}, tree="[0,1]")
     private Output</* @Nullable */ List<Integer>> users;
 
     /**

@@ -53,9 +53,9 @@ public final class ServiceAccountTokenState extends com.pulumi.resources.Resourc
     }
 
     @Import(name="serviceAccountId")
-    private @Nullable Output<Integer> serviceAccountId;
+    private @Nullable Output<String> serviceAccountId;
 
-    public Optional<Output<Integer>> serviceAccountId() {
+    public Optional<Output<String>> serviceAccountId() {
         return Optional.ofNullable(this.serviceAccountId);
     }
 
@@ -133,12 +133,12 @@ public final class ServiceAccountTokenState extends com.pulumi.resources.Resourc
             return secondsToLive(Output.of(secondsToLive));
         }
 
-        public Builder serviceAccountId(@Nullable Output<Integer> serviceAccountId) {
+        public Builder serviceAccountId(@Nullable Output<String> serviceAccountId) {
             $.serviceAccountId = serviceAccountId;
             return this;
         }
 
-        public Builder serviceAccountId(Integer serviceAccountId) {
+        public Builder serviceAccountId(String serviceAccountId) {
             return serviceAccountId(Output.of(serviceAccountId));
         }
 

@@ -124,6 +124,21 @@ public final class ContactPointWebhookArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * Custom message. You can use template variables.
+     * 
+     */
+    @Import(name="message")
+    private @Nullable Output<String> message;
+
+    /**
+     * @return Custom message. You can use template variables.
+     * 
+     */
+    public Optional<Output<String>> message() {
+        return Optional.ofNullable(this.message);
+    }
+
+    /**
      * Additional custom properties to attach to the notifier. Defaults to `map[]`.
      * 
      */
@@ -136,6 +151,21 @@ public final class ContactPointWebhookArgs extends com.pulumi.resources.Resource
      */
     public Optional<Output<Map<String,String>>> settings() {
         return Optional.ofNullable(this.settings);
+    }
+
+    /**
+     * Templated title of the message.
+     * 
+     */
+    @Import(name="title")
+    private @Nullable Output<String> title;
+
+    /**
+     * @return Templated title of the message.
+     * 
+     */
+    public Optional<Output<String>> title() {
+        return Optional.ofNullable(this.title);
     }
 
     /**
@@ -178,7 +208,9 @@ public final class ContactPointWebhookArgs extends com.pulumi.resources.Resource
         this.disableResolveMessage = $.disableResolveMessage;
         this.httpMethod = $.httpMethod;
         this.maxAlerts = $.maxAlerts;
+        this.message = $.message;
         this.settings = $.settings;
+        this.title = $.title;
         this.uid = $.uid;
         this.url = $.url;
     }
@@ -349,6 +381,27 @@ public final class ContactPointWebhookArgs extends com.pulumi.resources.Resource
         }
 
         /**
+         * @param message Custom message. You can use template variables.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder message(@Nullable Output<String> message) {
+            $.message = message;
+            return this;
+        }
+
+        /**
+         * @param message Custom message. You can use template variables.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder message(String message) {
+            return message(Output.of(message));
+        }
+
+        /**
          * @param settings Additional custom properties to attach to the notifier. Defaults to `map[]`.
          * 
          * @return builder
@@ -367,6 +420,27 @@ public final class ContactPointWebhookArgs extends com.pulumi.resources.Resource
          */
         public Builder settings(Map<String,String> settings) {
             return settings(Output.of(settings));
+        }
+
+        /**
+         * @param title Templated title of the message.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder title(@Nullable Output<String> title) {
+            $.title = title;
+            return this;
+        }
+
+        /**
+         * @param title Templated title of the message.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder title(String title) {
+            return title(Output.of(title));
         }
 
         /**

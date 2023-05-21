@@ -1007,80 +1007,80 @@ export interface GetFoldersFolder {
     url: string;
 }
 
-export interface GetGrafanSlosSlo {
-    alertings: outputs.GetGrafanSlosSloAlerting[];
+export interface GetSlosSlo {
+    alertings: outputs.GetSlosSloAlerting[];
     dashboardUid: string;
     description: string;
-    labels: outputs.GetGrafanSlosSloLabel[];
+    labels: outputs.GetSlosSloLabel[];
     name: string;
-    objectives: outputs.GetGrafanSlosSloObjective[];
-    queries: outputs.GetGrafanSlosSloQuery[];
+    objectives: outputs.GetSlosSloObjective[];
+    queries: outputs.GetSlosSloQuery[];
     uuid: string;
 }
 
-export interface GetGrafanSlosSloAlerting {
-    annotations?: outputs.GetGrafanSlosSloAlertingAnnotation[];
-    fastburns?: outputs.GetGrafanSlosSloAlertingFastburn[];
-    labels?: outputs.GetGrafanSlosSloAlertingLabel[];
-    slowburns?: outputs.GetGrafanSlosSloAlertingSlowburn[];
+export interface GetSlosSloAlerting {
+    annotations?: outputs.GetSlosSloAlertingAnnotation[];
+    fastburns?: outputs.GetSlosSloAlertingFastburn[];
+    labels?: outputs.GetSlosSloAlertingLabel[];
+    slowburns?: outputs.GetSlosSloAlertingSlowburn[];
 }
 
-export interface GetGrafanSlosSloAlertingAnnotation {
+export interface GetSlosSloAlertingAnnotation {
     key: string;
     value: string;
 }
 
-export interface GetGrafanSlosSloAlertingFastburn {
-    annotations?: outputs.GetGrafanSlosSloAlertingFastburnAnnotation[];
-    labels?: outputs.GetGrafanSlosSloAlertingFastburnLabel[];
+export interface GetSlosSloAlertingFastburn {
+    annotations?: outputs.GetSlosSloAlertingFastburnAnnotation[];
+    labels?: outputs.GetSlosSloAlertingFastburnLabel[];
 }
 
-export interface GetGrafanSlosSloAlertingFastburnAnnotation {
+export interface GetSlosSloAlertingFastburnAnnotation {
     key: string;
     value: string;
 }
 
-export interface GetGrafanSlosSloAlertingFastburnLabel {
+export interface GetSlosSloAlertingFastburnLabel {
     key: string;
     value: string;
 }
 
-export interface GetGrafanSlosSloAlertingLabel {
+export interface GetSlosSloAlertingLabel {
     key: string;
     value: string;
 }
 
-export interface GetGrafanSlosSloAlertingSlowburn {
-    annotations?: outputs.GetGrafanSlosSloAlertingSlowburnAnnotation[];
-    labels?: outputs.GetGrafanSlosSloAlertingSlowburnLabel[];
+export interface GetSlosSloAlertingSlowburn {
+    annotations?: outputs.GetSlosSloAlertingSlowburnAnnotation[];
+    labels?: outputs.GetSlosSloAlertingSlowburnLabel[];
 }
 
-export interface GetGrafanSlosSloAlertingSlowburnAnnotation {
+export interface GetSlosSloAlertingSlowburnAnnotation {
     key: string;
     value: string;
 }
 
-export interface GetGrafanSlosSloAlertingSlowburnLabel {
+export interface GetSlosSloAlertingSlowburnLabel {
     key: string;
     value: string;
 }
 
-export interface GetGrafanSlosSloLabel {
+export interface GetSlosSloLabel {
     key: string;
     value: string;
 }
 
-export interface GetGrafanSlosSloObjective {
+export interface GetSlosSloObjective {
     value: number;
     window: string;
 }
 
-export interface GetGrafanSlosSloQuery {
-    freeform: outputs.GetGrafanSlosSloQueryFreeform;
+export interface GetSlosSloQuery {
+    freeform: outputs.GetSlosSloQueryFreeform;
     type: string;
 }
 
-export interface GetGrafanSlosSloQueryFreeform {
+export interface GetSlosSloQueryFreeform {
     query?: string;
 }
 

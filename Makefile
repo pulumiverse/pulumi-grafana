@@ -6,7 +6,7 @@ TF_NAME          := ${PACK}
 PROVIDER_PATH    := provider
 VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
 JAVA_GEN         := pulumi-java-gen
-JAVA_GEN_VERSION := v0.5.4
+JAVA_GEN_VERSION := v0.9.3
 PLUGIN_PATH      := ${HOME}/.pulumi/plugins/
 
 TFGEN           := pulumi-tfgen-${PACK}

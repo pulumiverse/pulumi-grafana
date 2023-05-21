@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/outgoing_webhooks/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
  * 
  * ## Example Usage
  * ```java
@@ -64,7 +64,7 @@ public class OncallOutgoingWebhook extends com.pulumi.resources.CustomResource {
      * The auth data of the webhook. Used in Authorization header instead of user/password auth.
      * 
      */
-    @Export(name="authorizationHeader", type=String.class, parameters={})
+    @Export(name="authorizationHeader", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> authorizationHeader;
 
     /**
@@ -78,7 +78,7 @@ public class OncallOutgoingWebhook extends com.pulumi.resources.CustomResource {
      * The data of the webhook.
      * 
      */
-    @Export(name="data", type=String.class, parameters={})
+    @Export(name="data", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> data;
 
     /**
@@ -92,7 +92,7 @@ public class OncallOutgoingWebhook extends com.pulumi.resources.CustomResource {
      * Forwards whole payload of the alert to the webhook&#39;s url as POST data.
      * 
      */
-    @Export(name="forwardWholePayload", type=Boolean.class, parameters={})
+    @Export(name="forwardWholePayload", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forwardWholePayload;
 
     /**
@@ -106,7 +106,7 @@ public class OncallOutgoingWebhook extends com.pulumi.resources.CustomResource {
      * The name of the outgoing webhook.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -120,7 +120,7 @@ public class OncallOutgoingWebhook extends com.pulumi.resources.CustomResource {
      * The auth data of the webhook. Used for Basic authentication
      * 
      */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
 
     /**
@@ -134,7 +134,7 @@ public class OncallOutgoingWebhook extends com.pulumi.resources.CustomResource {
      * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      * 
      */
-    @Export(name="teamId", type=String.class, parameters={})
+    @Export(name="teamId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> teamId;
 
     /**
@@ -148,7 +148,7 @@ public class OncallOutgoingWebhook extends com.pulumi.resources.CustomResource {
      * The webhook URL.
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
     /**
@@ -162,7 +162,7 @@ public class OncallOutgoingWebhook extends com.pulumi.resources.CustomResource {
      * The auth data of the webhook. Used for Basic authentication.
      * 
      */
-    @Export(name="user", type=String.class, parameters={})
+    @Export(name="user", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> user;
 
     /**

@@ -13,12 +13,15 @@ import com.pulumi.grafana.inputs.SyntheticMonitoringInstallationState;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
  * Sets up Synthetic Monitoring on a Grafana cloud stack and generates a token.
  * Once a Grafana Cloud stack is created, a user can either use this resource or go into the UI to install synthetic monitoring.
  * This resource cannot be imported but it can be used on an existing Synthetic Monitoring installation without issues.
+ * 
+ * **Note that this resource must be used on a provider configured with Grafana Cloud credentials.**
  * 
  * * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/installation/)
  * * [API documentation](https://github.com/grafana/synthetic-monitoring-api-go-client/blob/main/docs/API.md#apiv1registerinstall)
@@ -36,6 +39,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.grafana.CloudApiKeyArgs;
  * import com.pulumi.grafana.SyntheticMonitoringInstallation;
  * import com.pulumi.grafana.SyntheticMonitoringInstallationArgs;
+ * import com.pulumi.grafana.Provider;
+ * import com.pulumi.grafana.ProviderArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -61,9 +66,11 @@ import javax.annotation.Nullable;
  * 
  *         var smStackSyntheticMonitoringInstallation = new SyntheticMonitoringInstallation(&#34;smStackSyntheticMonitoringInstallation&#34;, SyntheticMonitoringInstallationArgs.builder()        
  *             .stackId(smStackCloudStack.id())
- *             .metricsInstanceId(smStackCloudStack.prometheusUserId())
- *             .logsInstanceId(smStackCloudStack.logsUserId())
- *             .metricsPublisherKey(metricsPublish.key())
+ *             .build());
+ * 
+ *         var sm = new Provider(&#34;sm&#34;, ProviderArgs.builder()        
+ *             .smAccessToken(smStackSyntheticMonitoringInstallation.smAccessToken())
+ *             .smUrl(smStackSyntheticMonitoringInstallation.stackSmApiUrl())
  *             .build());
  * 
  *     }
@@ -74,38 +81,46 @@ import javax.annotation.Nullable;
 @ResourceType(type="grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation")
 public class SyntheticMonitoringInstallation extends com.pulumi.resources.CustomResource {
     /**
-     * The ID of the logs instance to install SM on (stack&#39;s `logs_user_id` attribute).
+     * Deprecated: Not used anymore.
+     * 
+     * @deprecated
+     * Not used anymore.
      * 
      */
-    @Export(name="logsInstanceId", type=Integer.class, parameters={})
-    private Output<Integer> logsInstanceId;
+    @Deprecated /* Not used anymore. */
+    @Export(name="logsInstanceId", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> logsInstanceId;
 
     /**
-     * @return The ID of the logs instance to install SM on (stack&#39;s `logs_user_id` attribute).
+     * @return Deprecated: Not used anymore.
      * 
      */
-    public Output<Integer> logsInstanceId() {
-        return this.logsInstanceId;
+    public Output<Optional<Integer>> logsInstanceId() {
+        return Codegen.optional(this.logsInstanceId);
     }
     /**
-     * The ID of the metrics instance to install SM on (stack&#39;s `prometheus_user_id` attribute).
+     * Deprecated: Not used anymore.
+     * 
+     * @deprecated
+     * Not used anymore.
      * 
      */
-    @Export(name="metricsInstanceId", type=Integer.class, parameters={})
-    private Output<Integer> metricsInstanceId;
+    @Deprecated /* Not used anymore. */
+    @Export(name="metricsInstanceId", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> metricsInstanceId;
 
     /**
-     * @return The ID of the metrics instance to install SM on (stack&#39;s `prometheus_user_id` attribute).
+     * @return Deprecated: Not used anymore.
      * 
      */
-    public Output<Integer> metricsInstanceId() {
-        return this.metricsInstanceId;
+    public Output<Optional<Integer>> metricsInstanceId() {
+        return Codegen.optional(this.metricsInstanceId);
     }
     /**
      * The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
      * 
      */
-    @Export(name="metricsPublisherKey", type=String.class, parameters={})
+    @Export(name="metricsPublisherKey", refs={String.class}, tree="[0]")
     private Output<String> metricsPublisherKey;
 
     /**
@@ -119,7 +134,7 @@ public class SyntheticMonitoringInstallation extends com.pulumi.resources.Custom
      * Generated token to access the SM API.
      * 
      */
-    @Export(name="smAccessToken", type=String.class, parameters={})
+    @Export(name="smAccessToken", refs={String.class}, tree="[0]")
     private Output<String> smAccessToken;
 
     /**
@@ -130,18 +145,32 @@ public class SyntheticMonitoringInstallation extends com.pulumi.resources.Custom
         return this.smAccessToken;
     }
     /**
-     * The ID of the stack to install SM on.
+     * The ID or slug of the stack to install SM on.
      * 
      */
-    @Export(name="stackId", type=Integer.class, parameters={})
-    private Output<Integer> stackId;
+    @Export(name="stackId", refs={String.class}, tree="[0]")
+    private Output<String> stackId;
 
     /**
-     * @return The ID of the stack to install SM on.
+     * @return The ID or slug of the stack to install SM on.
      * 
      */
-    public Output<Integer> stackId() {
+    public Output<String> stackId() {
         return this.stackId;
+    }
+    /**
+     * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack&#39;s region, this field is computed automatically and readable.
+     * 
+     */
+    @Export(name="stackSmApiUrl", refs={String.class}, tree="[0]")
+    private Output<String> stackSmApiUrl;
+
+    /**
+     * @return The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack&#39;s region, this field is computed automatically and readable.
+     * 
+     */
+    public Output<String> stackSmApiUrl() {
+        return this.stackSmApiUrl;
     }
 
     /**

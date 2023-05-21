@@ -65,7 +65,7 @@ public class TeamExternalGroup extends com.pulumi.resources.CustomResource {
      * The team external groups list
      * 
      */
-    @Export(name="groups", type=List.class, parameters={String.class})
+    @Export(name="groups", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> groups;
 
     /**
@@ -79,7 +79,7 @@ public class TeamExternalGroup extends com.pulumi.resources.CustomResource {
      * The Team ID
      * 
      */
-    @Export(name="teamId", type=Integer.class, parameters={})
+    @Export(name="teamId", refs={Integer.class}, tree="[0]")
     private Output<Integer> teamId;
 
     /**

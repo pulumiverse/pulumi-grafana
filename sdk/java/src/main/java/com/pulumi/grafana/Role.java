@@ -84,7 +84,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * Description of the role.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -98,7 +98,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * Display name of the role. Available with Grafana 8.5+.
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayName;
 
     /**
@@ -112,7 +112,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
      * 
      */
-    @Export(name="global", type=Boolean.class, parameters={})
+    @Export(name="global", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> global;
 
     /**
@@ -126,7 +126,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * Group of the role. Available with Grafana 8.5+.
      * 
      */
-    @Export(name="group", type=String.class, parameters={})
+    @Export(name="group", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> group;
 
     /**
@@ -140,7 +140,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
      * 
      */
-    @Export(name="hidden", type=Boolean.class, parameters={})
+    @Export(name="hidden", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> hidden;
 
     /**
@@ -154,7 +154,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * Name of the role
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -168,7 +168,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * Specific set of actions granted by the role.
      * 
      */
-    @Export(name="permissions", type=List.class, parameters={RolePermission.class})
+    @Export(name="permissions", refs={List.class,RolePermission.class}, tree="[0,1]")
     private Output</* @Nullable */ List<RolePermission>> permissions;
 
     /**
@@ -182,7 +182,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * Unique identifier of the role. Used for assignments.
      * 
      */
-    @Export(name="uid", type=String.class, parameters={})
+    @Export(name="uid", refs={String.class}, tree="[0]")
     private Output<String> uid;
 
     /**
@@ -196,7 +196,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * Version of the role. A role is updated only on version increase.
      * 
      */
-    @Export(name="version", type=Integer.class, parameters={})
+    @Export(name="version", refs={Integer.class}, tree="[0]")
     private Output<Integer> version;
 
     /**

@@ -17,43 +17,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/oncall/integrations/)
- * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/)
- * 
- * ## Example Usage
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.grafana.OncallIntegration;
- * import com.pulumi.grafana.OncallIntegrationArgs;
- * import com.pulumi.grafana.inputs.OncallIntegrationDefaultRouteArgs;
- * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test_acc_integration = new OncallIntegration(&#34;test-acc-integration&#34;, OncallIntegrationArgs.builder()        
- *             .type(&#34;grafana&#34;)
- *             .defaultRoute()
- *             .build(), CustomResourceOptions.builder()
- *                 .provider(grafana.oncall())
- *                 .build());
- * 
- *     }
- * }
- * ```
+ * * [Official documentation](https://grafana.com/docs/oncall/latest/integrations/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
  * 
  * ## Import
  * 
@@ -68,7 +33,7 @@ public class OncallIntegration extends com.pulumi.resources.CustomResource {
      * The Default route for all alerts from the given integration
      * 
      */
-    @Export(name="defaultRoute", type=OncallIntegrationDefaultRoute.class, parameters={})
+    @Export(name="defaultRoute", refs={OncallIntegrationDefaultRoute.class}, tree="[0]")
     private Output<OncallIntegrationDefaultRoute> defaultRoute;
 
     /**
@@ -82,7 +47,7 @@ public class OncallIntegration extends com.pulumi.resources.CustomResource {
      * The link for using in an integrated tool.
      * 
      */
-    @Export(name="link", type=String.class, parameters={})
+    @Export(name="link", refs={String.class}, tree="[0]")
     private Output<String> link;
 
     /**
@@ -96,7 +61,7 @@ public class OncallIntegration extends com.pulumi.resources.CustomResource {
      * The name of the service integration.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -110,7 +75,7 @@ public class OncallIntegration extends com.pulumi.resources.CustomResource {
      * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      * 
      */
-    @Export(name="teamId", type=String.class, parameters={})
+    @Export(name="teamId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> teamId;
 
     /**
@@ -124,7 +89,7 @@ public class OncallIntegration extends com.pulumi.resources.CustomResource {
      * Jinja2 templates for Alert payload.
      * 
      */
-    @Export(name="templates", type=OncallIntegrationTemplates.class, parameters={})
+    @Export(name="templates", refs={OncallIntegrationTemplates.class}, tree="[0]")
     private Output</* @Nullable */ OncallIntegrationTemplates> templates;
 
     /**
@@ -138,7 +103,7 @@ public class OncallIntegration extends com.pulumi.resources.CustomResource {
      * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

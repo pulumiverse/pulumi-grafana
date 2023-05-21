@@ -85,7 +85,7 @@ public class MuteTiming extends com.pulumi.resources.CustomResource {
      * The time intervals at which to mute notifications.
      * 
      */
-    @Export(name="intervals", type=List.class, parameters={MuteTimingInterval.class})
+    @Export(name="intervals", refs={List.class,MuteTimingInterval.class}, tree="[0,1]")
     private Output</* @Nullable */ List<MuteTimingInterval>> intervals;
 
     /**
@@ -99,7 +99,7 @@ public class MuteTiming extends com.pulumi.resources.CustomResource {
      * The name of the mute timing.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
