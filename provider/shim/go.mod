@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/grafana/terraform-provider-grafana v1.40.1
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.26.1
-	github.com/lbrlabs/pulumi-grafana/provider v0.0.0-20230219184525-f14c3be7cdad
+	github.com/lbrlabs/pulumi-grafana/provider v0.0.0-20230521192524-f36534c468ee
 )
 
 require (
