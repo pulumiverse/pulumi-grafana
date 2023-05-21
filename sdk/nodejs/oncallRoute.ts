@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/routes/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/routes/)
  *
  * ## Example Usage
  *

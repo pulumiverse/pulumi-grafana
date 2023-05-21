@@ -9,10 +9,10 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['TeamPreferencesArgs', 'TeamPreferences']
+__all__ = ['TeamPreferencesInitArgs', 'TeamPreferences']
 
 @pulumi.input_type
-class TeamPreferencesArgs:
+class TeamPreferencesInitArgs:
     def __init__(__self__, *,
                  team_id: pulumi.Input[int],
                  home_dashboard_id: Optional[pulumi.Input[int]] = None,
@@ -168,6 +168,8 @@ class TeamPreferences(pulumi.CustomResource):
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-preferences/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
 
+        !> Deprecated: Use the `preferences` attribute of the `Team` resource instead.
+
         ## Example Usage
 
         ```python
@@ -194,11 +196,13 @@ class TeamPreferences(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: TeamPreferencesArgs,
+                 args: TeamPreferencesInitArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-preferences/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
+
+        !> Deprecated: Use the `preferences` attribute of the `Team` resource instead.
 
         ## Example Usage
 
@@ -216,12 +220,12 @@ class TeamPreferences(pulumi.CustomResource):
         ```
 
         :param str resource_name: The name of the resource.
-        :param TeamPreferencesArgs args: The arguments to use to populate this resource's properties.
+        :param TeamPreferencesInitArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(TeamPreferencesArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(TeamPreferencesInitArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -241,7 +245,7 @@ class TeamPreferences(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = TeamPreferencesArgs.__new__(TeamPreferencesArgs)
+            __props__ = TeamPreferencesInitArgs.__new__(TeamPreferencesInitArgs)
 
             __props__.__dict__["home_dashboard_id"] = home_dashboard_id
             if team_id is None and not opts.urn:

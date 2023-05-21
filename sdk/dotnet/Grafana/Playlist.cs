@@ -29,8 +29,11 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
         [Output("orgId")]
-        public Output<string> OrgId { get; private set; } = null!;
+        public Output<string?> OrgId { get; private set; } = null!;
 
 
         /// <summary>
@@ -96,6 +99,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
         public PlaylistArgs()
         {
         }
@@ -121,6 +130,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
 

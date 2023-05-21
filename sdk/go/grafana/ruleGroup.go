@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -26,7 +26,6 @@ import (
 // import (
 //
 //	"encoding/json"
-//	"fmt"
 //
 //	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -90,43 +89,7 @@ import (
 //									To:   pulumi.Int(0),
 //								},
 //								DatasourceUid: pulumi.String("-100"),
-//								Model: pulumi.String(fmt.Sprintf(`{
-//	    "conditions": [
-//	        {
-//	        "evaluator": {
-//	            "params": [
-//	            3
-//	            ],
-//	            "type": "gt"
-//	        },
-//	        "operator": {
-//	            "type": "and"
-//	        },
-//	        "query": {
-//	            "params": [
-//	            "A"
-//	            ]
-//	        },
-//	        "reducer": {
-//	            "params": [],
-//	            "type": "last"
-//	        },
-//	        "type": "query"
-//	        }
-//	    ],
-//	    "datasource": {
-//	        "type": "__expr__",
-//	        "uid": "-100"
-//	    },
-//	    "hide": false,
-//	    "intervalMs": 1000,
-//	    "maxDataPoints": 43200,
-//	    "refId": "B",
-//	    "type": "classic_conditions"
-//	}
-//
-// `)),
-//
+//								Model:         pulumi.String("{\n    \"conditions\": [\n        {\n        \"evaluator\": {\n            \"params\": [\n            3\n            ],\n            \"type\": \"gt\"\n        },\n        \"operator\": {\n            \"type\": \"and\"\n        },\n        \"query\": {\n            \"params\": [\n            \"A\"\n            ]\n        },\n        \"reducer\": {\n            \"params\": [],\n            \"type\": \"last\"\n        },\n        \"type\": \"query\"\n        }\n    ],\n    \"datasource\": {\n        \"type\": \"__expr__\",\n        \"uid\": \"-100\"\n    },\n    \"hide\": false,\n    \"intervalMs\": 1000,\n    \"maxDataPoints\": 43200,\n    \"refId\": \"B\",\n    \"type\": \"classic_conditions\"\n}\n"),
 //							},
 //						},
 //					},

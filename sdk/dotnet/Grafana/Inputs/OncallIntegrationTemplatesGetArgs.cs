@@ -14,10 +14,34 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
     public sealed class OncallIntegrationTemplatesGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Template for sending a signal to acknowledge the Incident.
+        /// </summary>
+        [Input("acknowledgeSignal")]
+        public Input<string>? AcknowledgeSignal { get; set; }
+
+        /// <summary>
+        /// Templates for Email.
+        /// </summary>
+        [Input("email")]
+        public Input<Inputs.OncallIntegrationTemplatesEmailGetArgs>? Email { get; set; }
+
+        /// <summary>
         /// Template for the key by which alerts are grouped.
         /// </summary>
         [Input("groupingKey")]
         public Input<string>? GroupingKey { get; set; }
+
+        /// <summary>
+        /// Templates for Microsoft Teams.
+        /// </summary>
+        [Input("microsoftTeams")]
+        public Input<Inputs.OncallIntegrationTemplatesMicrosoftTeamsGetArgs>? MicrosoftTeams { get; set; }
+
+        /// <summary>
+        /// Templates for Phone Call.
+        /// </summary>
+        [Input("phoneCall")]
+        public Input<Inputs.OncallIntegrationTemplatesPhoneCallGetArgs>? PhoneCall { get; set; }
 
         /// <summary>
         /// Template for sending a signal to resolve the Incident.
@@ -30,6 +54,30 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         /// </summary>
         [Input("slack")]
         public Input<Inputs.OncallIntegrationTemplatesSlackGetArgs>? Slack { get; set; }
+
+        /// <summary>
+        /// Templates for SMS.
+        /// </summary>
+        [Input("sms")]
+        public Input<Inputs.OncallIntegrationTemplatesSmsGetArgs>? Sms { get; set; }
+
+        /// <summary>
+        /// Template for a source link.
+        /// </summary>
+        [Input("sourceLink")]
+        public Input<string>? SourceLink { get; set; }
+
+        /// <summary>
+        /// Templates for Telegram.
+        /// </summary>
+        [Input("telegram")]
+        public Input<Inputs.OncallIntegrationTemplatesTelegramGetArgs>? Telegram { get; set; }
+
+        /// <summary>
+        /// Templates for Web.
+        /// </summary>
+        [Input("web")]
+        public Input<Inputs.OncallIntegrationTemplatesWebGetArgs>? Web { get; set; }
 
         public OncallIntegrationTemplatesGetArgs()
         {

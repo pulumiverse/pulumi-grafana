@@ -6,7 +6,9 @@ import * as utilities from "./utilities";
 
 /**
  * **Note:** This data source is going to be deprecated, please use outgoing webhook data source instead.
- * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/outgoing_webhooks/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
+ *
+ * !> Deprecated: Use the `grafana.OncallOutgoingWebhook` data source instead.
  */
 export function getOncallAction(args: GetOncallActionArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallActionResult> {
 
@@ -41,7 +43,9 @@ export interface GetOncallActionResult {
 }
 /**
  * **Note:** This data source is going to be deprecated, please use outgoing webhook data source instead.
- * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/outgoing_webhooks/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
+ *
+ * !> Deprecated: Use the `grafana.OncallOutgoingWebhook` data source instead.
  */
 export function getOncallActionOutput(args: GetOncallActionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallActionResult> {
     return pulumi.output(args).apply((a: any) => getOncallAction(a, opts))

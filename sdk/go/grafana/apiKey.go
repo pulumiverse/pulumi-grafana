@@ -7,14 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages Grafana API Keys.
-//
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/auth/)
-//
 // ## Example Usage
 //
 // ```go
@@ -52,13 +48,17 @@ import (
 type ApiKey struct {
 	pulumi.CustomResourceState
 
-	// If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+	// Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
+	//
+	// Deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
 	CloudStackSlug pulumi.StringPtrOutput `pulumi:"cloudStackSlug"`
 	Expiration     pulumi.StringOutput    `pulumi:"expiration"`
 	Key            pulumi.StringOutput    `pulumi:"key"`
 	Name           pulumi.StringOutput    `pulumi:"name"`
-	Role           pulumi.StringOutput    `pulumi:"role"`
-	SecondsToLive  pulumi.IntPtrOutput    `pulumi:"secondsToLive"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId         pulumi.StringPtrOutput `pulumi:"orgId"`
+	Role          pulumi.StringOutput    `pulumi:"role"`
+	SecondsToLive pulumi.IntPtrOutput    `pulumi:"secondsToLive"`
 }
 
 // NewApiKey registers a new resource with the given unique name, arguments, and options.
@@ -98,23 +98,31 @@ func GetApiKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ApiKey resources.
 type apiKeyState struct {
-	// If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+	// Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
+	//
+	// Deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
 	CloudStackSlug *string `pulumi:"cloudStackSlug"`
 	Expiration     *string `pulumi:"expiration"`
 	Key            *string `pulumi:"key"`
 	Name           *string `pulumi:"name"`
-	Role           *string `pulumi:"role"`
-	SecondsToLive  *int    `pulumi:"secondsToLive"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId         *string `pulumi:"orgId"`
+	Role          *string `pulumi:"role"`
+	SecondsToLive *int    `pulumi:"secondsToLive"`
 }
 
 type ApiKeyState struct {
-	// If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+	// Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
+	//
+	// Deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
 	CloudStackSlug pulumi.StringPtrInput
 	Expiration     pulumi.StringPtrInput
 	Key            pulumi.StringPtrInput
 	Name           pulumi.StringPtrInput
-	Role           pulumi.StringPtrInput
-	SecondsToLive  pulumi.IntPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId         pulumi.StringPtrInput
+	Role          pulumi.StringPtrInput
+	SecondsToLive pulumi.IntPtrInput
 }
 
 func (ApiKeyState) ElementType() reflect.Type {
@@ -122,20 +130,28 @@ func (ApiKeyState) ElementType() reflect.Type {
 }
 
 type apiKeyArgs struct {
-	// If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+	// Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
+	//
+	// Deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
 	CloudStackSlug *string `pulumi:"cloudStackSlug"`
 	Name           *string `pulumi:"name"`
-	Role           string  `pulumi:"role"`
-	SecondsToLive  *int    `pulumi:"secondsToLive"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId         *string `pulumi:"orgId"`
+	Role          string  `pulumi:"role"`
+	SecondsToLive *int    `pulumi:"secondsToLive"`
 }
 
 // The set of arguments for constructing a ApiKey resource.
 type ApiKeyArgs struct {
-	// If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+	// Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
+	//
+	// Deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
 	CloudStackSlug pulumi.StringPtrInput
 	Name           pulumi.StringPtrInput
-	Role           pulumi.StringInput
-	SecondsToLive  pulumi.IntPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId         pulumi.StringPtrInput
+	Role          pulumi.StringInput
+	SecondsToLive pulumi.IntPtrInput
 }
 
 func (ApiKeyArgs) ElementType() reflect.Type {
@@ -225,7 +241,9 @@ func (o ApiKeyOutput) ToApiKeyOutputWithContext(ctx context.Context) ApiKeyOutpu
 	return o
 }
 
-// If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+// Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
+//
+// Deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
 func (o ApiKeyOutput) CloudStackSlug() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ApiKey) pulumi.StringPtrOutput { return v.CloudStackSlug }).(pulumi.StringPtrOutput)
 }
@@ -240,6 +258,11 @@ func (o ApiKeyOutput) Key() pulumi.StringOutput {
 
 func (o ApiKeyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ApiKey) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o ApiKeyOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApiKey) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 func (o ApiKeyOutput) Role() pulumi.StringOutput {

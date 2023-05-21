@@ -5,10 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manages Grafana API Keys.
- *
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/auth/)
- *
  * ## Example Usage
  *
  * ```typescript
@@ -53,12 +49,18 @@ export class ApiKey extends pulumi.CustomResource {
     }
 
     /**
-     * If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+     * Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
+     *
+     * @deprecated Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
      */
     public readonly cloudStackSlug!: pulumi.Output<string | undefined>;
     public /*out*/ readonly expiration!: pulumi.Output<string>;
     public /*out*/ readonly key!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
     public readonly role!: pulumi.Output<string>;
     public readonly secondsToLive!: pulumi.Output<number | undefined>;
 
@@ -79,6 +81,7 @@ export class ApiKey extends pulumi.CustomResource {
             resourceInputs["expiration"] = state ? state.expiration : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
             resourceInputs["secondsToLive"] = state ? state.secondsToLive : undefined;
         } else {
@@ -88,6 +91,7 @@ export class ApiKey extends pulumi.CustomResource {
             }
             resourceInputs["cloudStackSlug"] = args ? args.cloudStackSlug : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
             resourceInputs["secondsToLive"] = args ? args.secondsToLive : undefined;
             resourceInputs["expiration"] = undefined /*out*/;
@@ -105,12 +109,18 @@ export class ApiKey extends pulumi.CustomResource {
  */
 export interface ApiKeyState {
     /**
-     * If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+     * Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
+     *
+     * @deprecated Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
      */
     cloudStackSlug?: pulumi.Input<string>;
     expiration?: pulumi.Input<string>;
     key?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     role?: pulumi.Input<string>;
     secondsToLive?: pulumi.Input<number>;
 }
@@ -120,10 +130,16 @@ export interface ApiKeyState {
  */
 export interface ApiKeyArgs {
     /**
-     * If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+     * Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
+     *
+     * @deprecated Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
      */
     cloudStackSlug?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     role: pulumi.Input<string>;
     secondsToLive?: pulumi.Input<number>;
 }

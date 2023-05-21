@@ -9,6 +9,8 @@ import * as utilities from "./utilities";
  * Once a Grafana Cloud stack is created, a user can either use this resource or go into the UI to install synthetic monitoring.
  * This resource cannot be imported but it can be used on an existing Synthetic Monitoring installation without issues.
  *
+ * **Note that this resource must be used on a provider configured with Grafana Cloud credentials.**
+ *
  * * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/installation/)
  * * [API documentation](https://github.com/grafana/synthetic-monitoring-api-go-client/blob/main/docs/API.md#apiv1registerinstall)
  *
@@ -26,11 +28,11 @@ import * as utilities from "./utilities";
  *     role: "MetricsPublisher",
  *     cloudOrgSlug: "<org-slug>",
  * });
- * const smStackSyntheticMonitoringInstallation = new grafana.SyntheticMonitoringInstallation("smStackSyntheticMonitoringInstallation", {
- *     stackId: smStackCloudStack.id,
- *     metricsInstanceId: smStackCloudStack.prometheusUserId,
- *     logsInstanceId: smStackCloudStack.logsUserId,
- *     metricsPublisherKey: metricsPublish.key,
+ * const smStackSyntheticMonitoringInstallation = new grafana.SyntheticMonitoringInstallation("smStackSyntheticMonitoringInstallation", {stackId: smStackCloudStack.id});
+ * // Create a new provider instance to interact with Synthetic Monitoring
+ * const sm = new grafana.Provider("sm", {
+ *     smAccessToken: smStackSyntheticMonitoringInstallation.smAccessToken,
+ *     smUrl: smStackSyntheticMonitoringInstallation.stackSmApiUrl,
  * });
  * ```
  */
@@ -63,13 +65,17 @@ export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
     }
 
     /**
-     * The ID of the logs instance to install SM on (stack's `logsUserId` attribute).
+     * Deprecated: Not used anymore.
+     *
+     * @deprecated Not used anymore.
      */
-    public readonly logsInstanceId!: pulumi.Output<number>;
+    public readonly logsInstanceId!: pulumi.Output<number | undefined>;
     /**
-     * The ID of the metrics instance to install SM on (stack's `prometheusUserId` attribute).
+     * Deprecated: Not used anymore.
+     *
+     * @deprecated Not used anymore.
      */
-    public readonly metricsInstanceId!: pulumi.Output<number>;
+    public readonly metricsInstanceId!: pulumi.Output<number | undefined>;
     /**
      * The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
      */
@@ -79,9 +85,13 @@ export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
      */
     public /*out*/ readonly smAccessToken!: pulumi.Output<string>;
     /**
-     * The ID of the stack to install SM on.
+     * The ID or slug of the stack to install SM on.
      */
-    public readonly stackId!: pulumi.Output<number>;
+    public readonly stackId!: pulumi.Output<string>;
+    /**
+     * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+     */
+    public readonly stackSmApiUrl!: pulumi.Output<string>;
 
     /**
      * Create a SyntheticMonitoringInstallation resource with the given unique name, arguments, and options.
@@ -101,14 +111,9 @@ export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
             resourceInputs["metricsPublisherKey"] = state ? state.metricsPublisherKey : undefined;
             resourceInputs["smAccessToken"] = state ? state.smAccessToken : undefined;
             resourceInputs["stackId"] = state ? state.stackId : undefined;
+            resourceInputs["stackSmApiUrl"] = state ? state.stackSmApiUrl : undefined;
         } else {
             const args = argsOrState as SyntheticMonitoringInstallationArgs | undefined;
-            if ((!args || args.logsInstanceId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'logsInstanceId'");
-            }
-            if ((!args || args.metricsInstanceId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'metricsInstanceId'");
-            }
             if ((!args || args.metricsPublisherKey === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'metricsPublisherKey'");
             }
@@ -119,6 +124,7 @@ export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
             resourceInputs["metricsInstanceId"] = args ? args.metricsInstanceId : undefined;
             resourceInputs["metricsPublisherKey"] = args?.metricsPublisherKey ? pulumi.secret(args.metricsPublisherKey) : undefined;
             resourceInputs["stackId"] = args ? args.stackId : undefined;
+            resourceInputs["stackSmApiUrl"] = args ? args.stackSmApiUrl : undefined;
             resourceInputs["smAccessToken"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -133,11 +139,15 @@ export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
  */
 export interface SyntheticMonitoringInstallationState {
     /**
-     * The ID of the logs instance to install SM on (stack's `logsUserId` attribute).
+     * Deprecated: Not used anymore.
+     *
+     * @deprecated Not used anymore.
      */
     logsInstanceId?: pulumi.Input<number>;
     /**
-     * The ID of the metrics instance to install SM on (stack's `prometheusUserId` attribute).
+     * Deprecated: Not used anymore.
+     *
+     * @deprecated Not used anymore.
      */
     metricsInstanceId?: pulumi.Input<number>;
     /**
@@ -149,9 +159,13 @@ export interface SyntheticMonitoringInstallationState {
      */
     smAccessToken?: pulumi.Input<string>;
     /**
-     * The ID of the stack to install SM on.
+     * The ID or slug of the stack to install SM on.
      */
-    stackId?: pulumi.Input<number>;
+    stackId?: pulumi.Input<string>;
+    /**
+     * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+     */
+    stackSmApiUrl?: pulumi.Input<string>;
 }
 
 /**
@@ -159,19 +173,27 @@ export interface SyntheticMonitoringInstallationState {
  */
 export interface SyntheticMonitoringInstallationArgs {
     /**
-     * The ID of the logs instance to install SM on (stack's `logsUserId` attribute).
+     * Deprecated: Not used anymore.
+     *
+     * @deprecated Not used anymore.
      */
-    logsInstanceId: pulumi.Input<number>;
+    logsInstanceId?: pulumi.Input<number>;
     /**
-     * The ID of the metrics instance to install SM on (stack's `prometheusUserId` attribute).
+     * Deprecated: Not used anymore.
+     *
+     * @deprecated Not used anymore.
      */
-    metricsInstanceId: pulumi.Input<number>;
+    metricsInstanceId?: pulumi.Input<number>;
     /**
      * The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
      */
     metricsPublisherKey: pulumi.Input<string>;
     /**
-     * The ID of the stack to install SM on.
+     * The ID or slug of the stack to install SM on.
      */
-    stackId: pulumi.Input<number>;
+    stackId: pulumi.Input<string>;
+    /**
+     * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+     */
+    stackSmApiUrl?: pulumi.Input<string>;
 }

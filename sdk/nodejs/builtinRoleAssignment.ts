@@ -7,6 +7,12 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * **Note:** This resource is going to be deprecated with Grafana 9.+, please use grafana.Role instead.
+ * **Note:** This resource is available only with Grafana Enterprise 8.+.
+ *
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+ *
  * ## Example Usage
  *
  * ```typescript

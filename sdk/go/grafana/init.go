@@ -38,6 +38,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CloudPluginInstallation{}
 	case "grafana:index/cloudStack:CloudStack":
 		r = &CloudStack{}
+	case "grafana:index/cloudStackApiKey:CloudStackApiKey":
+		r = &CloudStackApiKey{}
+	case "grafana:index/cloudStackServiceAccount:CloudStackServiceAccount":
+		r = &CloudStackServiceAccount{}
+	case "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken":
+		r = &CloudStackServiceAccountToken{}
 	case "grafana:index/contactPoint:ContactPoint":
 		r = &ContactPoint{}
 	case "grafana:index/dashboard:Dashboard":
@@ -94,6 +100,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RoleAssignment{}
 	case "grafana:index/ruleGroup:RuleGroup":
 		r = &RuleGroup{}
+	case "grafana:index/sLO:SLO":
+		r = &SLO{}
 	case "grafana:index/serviceAccount:ServiceAccount":
 		r = &ServiceAccount{}
 	case "grafana:index/serviceAccountPermission:ServiceAccountPermission":
@@ -185,6 +193,21 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"index/cloudStack",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/cloudStackApiKey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/cloudStackServiceAccount",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/cloudStackServiceAccountToken",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -325,6 +348,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"index/ruleGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/sLO",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

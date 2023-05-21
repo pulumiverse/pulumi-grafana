@@ -23,6 +23,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// </summary>
         public readonly string? Component;
         /// <summary>
+        /// A set of arbitrary key/value pairs that provide further detail about the incident.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string>? Details;
+        /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
         public readonly bool? DisableResolveMessage;
@@ -57,6 +61,8 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
             string? component,
 
+            ImmutableDictionary<string, string>? details,
+
             bool? disableResolveMessage,
 
             string? group,
@@ -73,6 +79,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         {
             Class = @class;
             Component = component;
+            Details = details;
             DisableResolveMessage = disableResolveMessage;
             Group = group;
             IntegrationKey = integrationKey;

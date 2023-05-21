@@ -14,11 +14,14 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-preferences/)
     /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
     /// 
+    /// !&gt; Deprecated: Use the `preferences` attribute of the `grafana.Team` resource instead.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
     /// 

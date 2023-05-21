@@ -26,7 +26,8 @@ export class Provider extends pulumi.ProviderResource {
     }
 
     /**
-     * API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+     * API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+     * the `GRAFANA_AUTH` environment variable.
      */
     public readonly auth!: pulumi.Output<string | undefined>;
     /**
@@ -103,11 +104,11 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["smUrl"] = (args ? args.smUrl : undefined) ?? utilities.getEnv("GRAFANA_SM_URL");
             resourceInputs["storeDashboardSha256"] = pulumi.output((args ? args.storeDashboardSha256 : undefined) ?? utilities.getEnvBoolean("GRAFANA_STORE_DASHBOARD_SHA256")).apply(JSON.stringify);
             resourceInputs["tlsCert"] = (args ? args.tlsCert : undefined) ?? utilities.getEnv("GRAFANA_TLS_CERT");
-            resourceInputs["tlsKey"] = (args ? args.tlsKey : undefined) ?? utilities.getEnv("GRAFANA_TLS_KEY");
+            resourceInputs["tlsKey"] = (args?.tlsKey ? pulumi.secret(args.tlsKey) : undefined) ?? utilities.getEnv("GRAFANA_TLS_KEY");
             resourceInputs["url"] = (args ? args.url : undefined) ?? utilities.getEnv("GRAFANA_URL");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["auth", "cloudApiKey", "oncallAccessToken", "smAccessToken"] };
+        const secretOpts = { additionalSecretOutputs: ["auth", "cloudApiKey", "oncallAccessToken", "smAccessToken", "tlsKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
@@ -118,7 +119,8 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     /**
-     * API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+     * API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+     * the `GRAFANA_AUTH` environment variable.
      */
     auth?: pulumi.Input<string>;
     /**

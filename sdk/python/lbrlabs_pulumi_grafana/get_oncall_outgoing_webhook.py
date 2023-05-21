@@ -59,7 +59,7 @@ class AwaitableGetOncallOutgoingWebhookResult(GetOncallOutgoingWebhookResult):
 def get_oncall_outgoing_webhook(name: Optional[str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallOutgoingWebhookResult:
     """
-    * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/outgoing_webhooks/)
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
 
     ## Example Usage
 
@@ -87,7 +87,7 @@ def get_oncall_outgoing_webhook(name: Optional[str] = None,
 def get_oncall_outgoing_webhook_output(name: Optional[pulumi.Input[str]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallOutgoingWebhookResult]:
     """
-    * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/outgoing_webhooks/)
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
 
     ## Example Usage
 

@@ -65,7 +65,7 @@ class AwaitableGetOncallUserGroupResult(GetOncallUserGroupResult):
 def get_oncall_user_group(slack_handle: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallUserGroupResult:
     """
-    * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/user_groups/)
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
 
     ## Example Usage
 
@@ -91,7 +91,7 @@ def get_oncall_user_group(slack_handle: Optional[str] = None,
 def get_oncall_user_group_output(slack_handle: Optional[pulumi.Input[str]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallUserGroupResult]:
     """
-    * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/user_groups/)
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
 
     ## Example Usage
 

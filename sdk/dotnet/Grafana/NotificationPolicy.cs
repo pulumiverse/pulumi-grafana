@@ -11,7 +11,9 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Grafana
 {
     /// <summary>
-    /// Sets the global notification policy for Grafana. Note that this resource manages the entire notification policy tree, and will overwrite any existing policies.
+    /// Sets the global notification policy for Grafana.
+    /// 
+    /// !&gt; This resource manages the entire notification policy tree, and will overwrite any existing policies.
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/manage-notifications/)
     /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/)
@@ -22,6 +24,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
     /// 

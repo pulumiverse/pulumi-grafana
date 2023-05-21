@@ -59,6 +59,10 @@ export class ServiceAccount extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
+    /**
      * The basic role of the service account in the organization.
      */
     public readonly role!: pulumi.Output<string | undefined>;
@@ -78,11 +82,13 @@ export class ServiceAccount extends pulumi.CustomResource {
             const state = argsOrState as ServiceAccountState | undefined;
             resourceInputs["isDisabled"] = state ? state.isDisabled : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
         } else {
             const args = argsOrState as ServiceAccountArgs | undefined;
             resourceInputs["isDisabled"] = args ? args.isDisabled : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -103,6 +109,10 @@ export interface ServiceAccountState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
+    /**
      * The basic role of the service account in the organization.
      */
     role?: pulumi.Input<string>;
@@ -120,6 +130,10 @@ export interface ServiceAccountArgs {
      * The name of the service account.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * The basic role of the service account in the organization.
      */

@@ -21,6 +21,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
     /// 
@@ -60,7 +61,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<int> DashboardId { get; private set; } = null!;
 
         /// <summary>
-        /// The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+        /// The id or UID of the folder to save the dashboard in.
         /// </summary>
         [Output("folder")]
         public Output<string?> Folder { get; private set; } = null!;
@@ -161,7 +162,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string> ConfigJson { get; set; } = null!;
 
         /// <summary>
-        /// The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+        /// The id or UID of the folder to save the dashboard in.
         /// </summary>
         [Input("folder")]
         public Input<string>? Folder { get; set; }
@@ -205,7 +206,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<int>? DashboardId { get; set; }
 
         /// <summary>
-        /// The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+        /// The id or UID of the folder to save the dashboard in.
         /// </summary>
         [Input("folder")]
         public Input<string>? Folder { get; set; }

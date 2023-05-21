@@ -17,6 +17,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
     /// 
@@ -35,7 +36,11 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}}
+    ///  $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}} // import by numerical ID
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_slug}} // or import by slug
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/cloudStack:CloudStack")]

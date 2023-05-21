@@ -31,7 +31,8 @@ class ProviderArgs:
                  url: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
-        :param pulumi.Input[str] auth: API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+        :param pulumi.Input[str] auth: API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+               the `GRAFANA_AUTH` environment variable.
         :param pulumi.Input[str] ca_cert: Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
                `GRAFANA_CA_CERT` environment variable.
         :param pulumi.Input[str] cloud_api_key: API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
@@ -123,7 +124,8 @@ class ProviderArgs:
     @pulumi.getter
     def auth(self) -> Optional[pulumi.Input[str]]:
         """
-        API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+        API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+        the `GRAFANA_AUTH` environment variable.
         """
         return pulumi.get(self, "auth")
 
@@ -340,7 +342,8 @@ class Provider(pulumi.ProviderResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] auth: API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+        :param pulumi.Input[str] auth: API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+               the `GRAFANA_AUTH` environment variable.
         :param pulumi.Input[str] ca_cert: Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
                `GRAFANA_CA_CERT` environment variable.
         :param pulumi.Input[str] cloud_api_key: API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
@@ -459,11 +462,11 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["tls_cert"] = tls_cert
             if tls_key is None:
                 tls_key = _utilities.get_env('GRAFANA_TLS_KEY')
-            __props__.__dict__["tls_key"] = tls_key
+            __props__.__dict__["tls_key"] = None if tls_key is None else pulumi.Output.secret(tls_key)
             if url is None:
                 url = _utilities.get_env('GRAFANA_URL')
             __props__.__dict__["url"] = url
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["auth", "cloudApiKey", "oncallAccessToken", "smAccessToken"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["auth", "cloudApiKey", "oncallAccessToken", "smAccessToken", "tlsKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'grafana',
@@ -475,7 +478,8 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter
     def auth(self) -> pulumi.Output[Optional[str]]:
         """
-        API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+        API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+        the `GRAFANA_AUTH` environment variable.
         """
         return pulumi.get(self, "auth")
 

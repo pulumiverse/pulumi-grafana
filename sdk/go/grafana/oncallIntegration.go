@@ -7,39 +7,12 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// * [Official documentation](https://grafana.com/docs/grafana-cloud/oncall/integrations/)
-// * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/)
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.NewOncallIntegration(ctx, "test-acc-integration", &grafana.OncallIntegrationArgs{
-//				Type:         pulumi.String("grafana"),
-//				DefaultRoute: nil,
-//			}, pulumi.Provider(grafana.Oncall))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
+// * [Official documentation](https://grafana.com/docs/oncall/latest/integrations/)
+// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
 //
 // ## Import
 //

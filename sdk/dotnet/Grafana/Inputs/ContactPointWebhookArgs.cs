@@ -75,6 +75,12 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         [Input("maxAlerts")]
         public Input<int>? MaxAlerts { get; set; }
 
+        /// <summary>
+        /// Custom message. You can use template variables.
+        /// </summary>
+        [Input("message")]
+        public Input<string>? Message { get; set; }
+
         [Input("settings")]
         private InputMap<string>? _settings;
 
@@ -90,6 +96,12 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
                 _settings = Output.All(value, emptySecret).Apply(v => v[0]);
             }
         }
+
+        /// <summary>
+        /// Templated title of the message.
+        /// </summary>
+        [Input("title")]
+        public Input<string>? Title { get; set; }
 
         /// <summary>
         /// The UID of the contact point.

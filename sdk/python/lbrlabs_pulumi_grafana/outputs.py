@@ -55,7 +55,13 @@ __all__ = [
     'OncallIntegrationDefaultRouteSlack',
     'OncallIntegrationDefaultRouteTelegram',
     'OncallIntegrationTemplates',
+    'OncallIntegrationTemplatesEmail',
+    'OncallIntegrationTemplatesMicrosoftTeams',
+    'OncallIntegrationTemplatesPhoneCall',
     'OncallIntegrationTemplatesSlack',
+    'OncallIntegrationTemplatesSms',
+    'OncallIntegrationTemplatesTelegram',
+    'OncallIntegrationTemplatesWeb',
     'OncallRouteMsteams',
     'OncallRouteSlack',
     'OncallRouteTelegram',
@@ -67,6 +73,19 @@ __all__ = [
     'RuleGroupRule',
     'RuleGroupRuleData',
     'RuleGroupRuleDataRelativeTimeRange',
+    'SLOAlerting',
+    'SLOAlertingAnnotation',
+    'SLOAlertingFastburn',
+    'SLOAlertingFastburnAnnotation',
+    'SLOAlertingFastburnLabel',
+    'SLOAlertingLabel',
+    'SLOAlertingSlowburn',
+    'SLOAlertingSlowburnAnnotation',
+    'SLOAlertingSlowburnLabel',
+    'SLOLabel',
+    'SLOObjective',
+    'SLOQuery',
+    'SLOQueryFreeform',
     'ServiceAccountPermissionPermission',
     'SyntheticMonitoringCheckSettings',
     'SyntheticMonitoringCheckSettingsDns',
@@ -83,8 +102,23 @@ __all__ = [
     'SyntheticMonitoringCheckSettingsTcpQueryResponse',
     'SyntheticMonitoringCheckSettingsTcpTlsConfig',
     'SyntheticMonitoringCheckSettingsTraceroute',
+    'TeamPreferences',
     'GetDashboardsDashboardResult',
     'GetFoldersFolderResult',
+    'GetGrafanSlosSloResult',
+    'GetGrafanSlosSloAlertingResult',
+    'GetGrafanSlosSloAlertingAnnotationResult',
+    'GetGrafanSlosSloAlertingFastburnResult',
+    'GetGrafanSlosSloAlertingFastburnAnnotationResult',
+    'GetGrafanSlosSloAlertingFastburnLabelResult',
+    'GetGrafanSlosSloAlertingLabelResult',
+    'GetGrafanSlosSloAlertingSlowburnResult',
+    'GetGrafanSlosSloAlertingSlowburnAnnotationResult',
+    'GetGrafanSlosSloAlertingSlowburnLabelResult',
+    'GetGrafanSlosSloLabelResult',
+    'GetGrafanSlosSloObjectiveResult',
+    'GetGrafanSlosSloQueryResult',
+    'GetGrafanSlosSloQueryFreeformResult',
     'GetUsersUserResult',
 ]
 
@@ -962,6 +996,7 @@ class ContactPointPagerduty(dict):
                  integration_key: str,
                  class_: Optional[str] = None,
                  component: Optional[str] = None,
+                 details: Optional[Mapping[str, str]] = None,
                  disable_resolve_message: Optional[bool] = None,
                  group: Optional[str] = None,
                  settings: Optional[Mapping[str, str]] = None,
@@ -972,6 +1007,7 @@ class ContactPointPagerduty(dict):
         :param str integration_key: The PagerDuty API key.
         :param str class_: The class or type of event, for example `ping failure`.
         :param str component: The component being affected by the event.
+        :param Mapping[str, str] details: A set of arbitrary key/value pairs that provide further detail about the incident.
         :param bool disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param str group: The group to which the provided component belongs to.
         :param Mapping[str, str] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
@@ -984,6 +1020,8 @@ class ContactPointPagerduty(dict):
             pulumi.set(__self__, "class_", class_)
         if component is not None:
             pulumi.set(__self__, "component", component)
+        if details is not None:
+            pulumi.set(__self__, "details", details)
         if disable_resolve_message is not None:
             pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
         if group is not None:
@@ -1020,6 +1058,14 @@ class ContactPointPagerduty(dict):
         The component being affected by the event.
         """
         return pulumi.get(self, "component")
+
+    @property
+    @pulumi.getter
+    def details(self) -> Optional[Mapping[str, str]]:
+        """
+        A set of arbitrary key/value pairs that provide further detail about the incident.
+        """
+        return pulumi.get(self, "details")
 
     @property
     @pulumi.getter(name="disableResolveMessage")
@@ -2045,7 +2091,9 @@ class ContactPointWebhook(dict):
                  disable_resolve_message: Optional[bool] = None,
                  http_method: Optional[str] = None,
                  max_alerts: Optional[int] = None,
+                 message: Optional[str] = None,
                  settings: Optional[Mapping[str, str]] = None,
+                 title: Optional[str] = None,
                  uid: Optional[str] = None):
         """
         :param str url: The URL to send webhook requests to.
@@ -2056,7 +2104,9 @@ class ContactPointWebhook(dict):
         :param bool disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param str http_method: The HTTP method to use in the request. Defaults to `POST`.
         :param int max_alerts: The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
+        :param str message: Custom message. You can use template variables.
         :param Mapping[str, str] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        :param str title: Templated title of the message.
         :param str uid: The UID of the contact point.
         """
         pulumi.set(__self__, "url", url)
@@ -2074,8 +2124,12 @@ class ContactPointWebhook(dict):
             pulumi.set(__self__, "http_method", http_method)
         if max_alerts is not None:
             pulumi.set(__self__, "max_alerts", max_alerts)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
 
@@ -2145,11 +2199,27 @@ class ContactPointWebhook(dict):
 
     @property
     @pulumi.getter
+    def message(self) -> Optional[str]:
+        """
+        Custom message. You can use template variables.
+        """
+        return pulumi.get(self, "message")
+
+    @property
+    @pulumi.getter
     def settings(self) -> Optional[Mapping[str, str]]:
         """
         Additional custom properties to attach to the notifier. Defaults to `map[]`.
         """
         return pulumi.get(self, "settings")
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        """
+        Templated title of the message.
+        """
+        return pulumi.get(self, "title")
 
     @property
     @pulumi.getter
@@ -4621,10 +4691,18 @@ class OncallIntegrationTemplates(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "groupingKey":
+        if key == "acknowledgeSignal":
+            suggest = "acknowledge_signal"
+        elif key == "groupingKey":
             suggest = "grouping_key"
+        elif key == "microsoftTeams":
+            suggest = "microsoft_teams"
+        elif key == "phoneCall":
+            suggest = "phone_call"
         elif key == "resolveSignal":
             suggest = "resolve_signal"
+        elif key == "sourceLink":
+            suggest = "source_link"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in OncallIntegrationTemplates. Access the value via the '{suggest}' property getter instead.")
@@ -4638,20 +4716,68 @@ class OncallIntegrationTemplates(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 acknowledge_signal: Optional[str] = None,
+                 email: Optional['outputs.OncallIntegrationTemplatesEmail'] = None,
                  grouping_key: Optional[str] = None,
+                 microsoft_teams: Optional['outputs.OncallIntegrationTemplatesMicrosoftTeams'] = None,
+                 phone_call: Optional['outputs.OncallIntegrationTemplatesPhoneCall'] = None,
                  resolve_signal: Optional[str] = None,
-                 slack: Optional['outputs.OncallIntegrationTemplatesSlack'] = None):
+                 slack: Optional['outputs.OncallIntegrationTemplatesSlack'] = None,
+                 sms: Optional['outputs.OncallIntegrationTemplatesSms'] = None,
+                 source_link: Optional[str] = None,
+                 telegram: Optional['outputs.OncallIntegrationTemplatesTelegram'] = None,
+                 web: Optional['outputs.OncallIntegrationTemplatesWeb'] = None):
         """
+        :param str acknowledge_signal: Template for sending a signal to acknowledge the Incident.
+        :param 'OncallIntegrationTemplatesEmailArgs' email: Templates for Email.
         :param str grouping_key: Template for the key by which alerts are grouped.
+        :param 'OncallIntegrationTemplatesMicrosoftTeamsArgs' microsoft_teams: Templates for Microsoft Teams.
+        :param 'OncallIntegrationTemplatesPhoneCallArgs' phone_call: Templates for Phone Call.
         :param str resolve_signal: Template for sending a signal to resolve the Incident.
         :param 'OncallIntegrationTemplatesSlackArgs' slack: Templates for Slack.
+        :param 'OncallIntegrationTemplatesSmsArgs' sms: Templates for SMS.
+        :param str source_link: Template for a source link.
+        :param 'OncallIntegrationTemplatesTelegramArgs' telegram: Templates for Telegram.
+        :param 'OncallIntegrationTemplatesWebArgs' web: Templates for Web.
         """
+        if acknowledge_signal is not None:
+            pulumi.set(__self__, "acknowledge_signal", acknowledge_signal)
+        if email is not None:
+            pulumi.set(__self__, "email", email)
         if grouping_key is not None:
             pulumi.set(__self__, "grouping_key", grouping_key)
+        if microsoft_teams is not None:
+            pulumi.set(__self__, "microsoft_teams", microsoft_teams)
+        if phone_call is not None:
+            pulumi.set(__self__, "phone_call", phone_call)
         if resolve_signal is not None:
             pulumi.set(__self__, "resolve_signal", resolve_signal)
         if slack is not None:
             pulumi.set(__self__, "slack", slack)
+        if sms is not None:
+            pulumi.set(__self__, "sms", sms)
+        if source_link is not None:
+            pulumi.set(__self__, "source_link", source_link)
+        if telegram is not None:
+            pulumi.set(__self__, "telegram", telegram)
+        if web is not None:
+            pulumi.set(__self__, "web", web)
+
+    @property
+    @pulumi.getter(name="acknowledgeSignal")
+    def acknowledge_signal(self) -> Optional[str]:
+        """
+        Template for sending a signal to acknowledge the Incident.
+        """
+        return pulumi.get(self, "acknowledge_signal")
+
+    @property
+    @pulumi.getter
+    def email(self) -> Optional['outputs.OncallIntegrationTemplatesEmail']:
+        """
+        Templates for Email.
+        """
+        return pulumi.get(self, "email")
 
     @property
     @pulumi.getter(name="groupingKey")
@@ -4660,6 +4786,22 @@ class OncallIntegrationTemplates(dict):
         Template for the key by which alerts are grouped.
         """
         return pulumi.get(self, "grouping_key")
+
+    @property
+    @pulumi.getter(name="microsoftTeams")
+    def microsoft_teams(self) -> Optional['outputs.OncallIntegrationTemplatesMicrosoftTeams']:
+        """
+        Templates for Microsoft Teams.
+        """
+        return pulumi.get(self, "microsoft_teams")
+
+    @property
+    @pulumi.getter(name="phoneCall")
+    def phone_call(self) -> Optional['outputs.OncallIntegrationTemplatesPhoneCall']:
+        """
+        Templates for Phone Call.
+        """
+        return pulumi.get(self, "phone_call")
 
     @property
     @pulumi.getter(name="resolveSignal")
@@ -4676,6 +4818,118 @@ class OncallIntegrationTemplates(dict):
         Templates for Slack.
         """
         return pulumi.get(self, "slack")
+
+    @property
+    @pulumi.getter
+    def sms(self) -> Optional['outputs.OncallIntegrationTemplatesSms']:
+        """
+        Templates for SMS.
+        """
+        return pulumi.get(self, "sms")
+
+    @property
+    @pulumi.getter(name="sourceLink")
+    def source_link(self) -> Optional[str]:
+        """
+        Template for a source link.
+        """
+        return pulumi.get(self, "source_link")
+
+    @property
+    @pulumi.getter
+    def telegram(self) -> Optional['outputs.OncallIntegrationTemplatesTelegram']:
+        """
+        Templates for Telegram.
+        """
+        return pulumi.get(self, "telegram")
+
+    @property
+    @pulumi.getter
+    def web(self) -> Optional['outputs.OncallIntegrationTemplatesWeb']:
+        """
+        Templates for Web.
+        """
+        return pulumi.get(self, "web")
+
+
+@pulumi.output_type
+class OncallIntegrationTemplatesEmail(dict):
+    def __init__(__self__, *,
+                 message: Optional[str] = None,
+                 title: Optional[str] = None):
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[str]:
+        return pulumi.get(self, "message")
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class OncallIntegrationTemplatesMicrosoftTeams(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "imageUrl":
+            suggest = "image_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OncallIntegrationTemplatesMicrosoftTeams. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OncallIntegrationTemplatesMicrosoftTeams.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OncallIntegrationTemplatesMicrosoftTeams.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 image_url: Optional[str] = None,
+                 message: Optional[str] = None,
+                 title: Optional[str] = None):
+        if image_url is not None:
+            pulumi.set(__self__, "image_url", image_url)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter(name="imageUrl")
+    def image_url(self) -> Optional[str]:
+        return pulumi.get(self, "image_url")
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[str]:
+        return pulumi.get(self, "message")
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class OncallIntegrationTemplatesPhoneCall(dict):
+    def __init__(__self__, *,
+                 title: Optional[str] = None):
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        return pulumi.get(self, "title")
 
 
 @pulumi.output_type
@@ -4695,6 +4949,111 @@ class OncallIntegrationTemplatesSlack(dict):
 
     def get(self, key: str, default = None) -> Any:
         OncallIntegrationTemplatesSlack.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 image_url: Optional[str] = None,
+                 message: Optional[str] = None,
+                 title: Optional[str] = None):
+        if image_url is not None:
+            pulumi.set(__self__, "image_url", image_url)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter(name="imageUrl")
+    def image_url(self) -> Optional[str]:
+        return pulumi.get(self, "image_url")
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[str]:
+        return pulumi.get(self, "message")
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class OncallIntegrationTemplatesSms(dict):
+    def __init__(__self__, *,
+                 title: Optional[str] = None):
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class OncallIntegrationTemplatesTelegram(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "imageUrl":
+            suggest = "image_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OncallIntegrationTemplatesTelegram. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OncallIntegrationTemplatesTelegram.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OncallIntegrationTemplatesTelegram.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 image_url: Optional[str] = None,
+                 message: Optional[str] = None,
+                 title: Optional[str] = None):
+        if image_url is not None:
+            pulumi.set(__self__, "image_url", image_url)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter(name="imageUrl")
+    def image_url(self) -> Optional[str]:
+        return pulumi.get(self, "image_url")
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[str]:
+        return pulumi.get(self, "message")
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class OncallIntegrationTemplatesWeb(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "imageUrl":
+            suggest = "image_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OncallIntegrationTemplatesWeb. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OncallIntegrationTemplatesWeb.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OncallIntegrationTemplatesWeb.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -5361,6 +5720,321 @@ class RuleGroupRuleDataRelativeTimeRange(dict):
     @pulumi.getter
     def to(self) -> int:
         return pulumi.get(self, "to")
+
+
+@pulumi.output_type
+class SLOAlerting(dict):
+    def __init__(__self__, *,
+                 annotations: Optional[Sequence['outputs.SLOAlertingAnnotation']] = None,
+                 fastburns: Optional[Sequence['outputs.SLOAlertingFastburn']] = None,
+                 labels: Optional[Sequence['outputs.SLOAlertingLabel']] = None,
+                 slowburns: Optional[Sequence['outputs.SLOAlertingSlowburn']] = None):
+        """
+        :param Sequence['SLOAlertingAnnotationArgs'] annotations: Annotations will be attached to all alerts generated by any of these rules.
+        :param Sequence['SLOAlertingFastburnArgs'] fastburns: Alerting Rules generated for Fast Burn alerts
+        :param Sequence['SLOAlertingLabelArgs'] labels: Labels will be attached to all alerts generated by any of these rules.
+        :param Sequence['SLOAlertingSlowburnArgs'] slowburns: Alerting Rules generated for Slow Burn alerts
+        """
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if fastburns is not None:
+            pulumi.set(__self__, "fastburns", fastburns)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if slowburns is not None:
+            pulumi.set(__self__, "slowburns", slowburns)
+
+    @property
+    @pulumi.getter
+    def annotations(self) -> Optional[Sequence['outputs.SLOAlertingAnnotation']]:
+        """
+        Annotations will be attached to all alerts generated by any of these rules.
+        """
+        return pulumi.get(self, "annotations")
+
+    @property
+    @pulumi.getter
+    def fastburns(self) -> Optional[Sequence['outputs.SLOAlertingFastburn']]:
+        """
+        Alerting Rules generated for Fast Burn alerts
+        """
+        return pulumi.get(self, "fastburns")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Sequence['outputs.SLOAlertingLabel']]:
+        """
+        Labels will be attached to all alerts generated by any of these rules.
+        """
+        return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter
+    def slowburns(self) -> Optional[Sequence['outputs.SLOAlertingSlowburn']]:
+        """
+        Alerting Rules generated for Slow Burn alerts
+        """
+        return pulumi.get(self, "slowburns")
+
+
+@pulumi.output_type
+class SLOAlertingAnnotation(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SLOAlertingFastburn(dict):
+    def __init__(__self__, *,
+                 annotations: Optional[Sequence['outputs.SLOAlertingFastburnAnnotation']] = None,
+                 labels: Optional[Sequence['outputs.SLOAlertingFastburnLabel']] = None):
+        """
+        :param Sequence['SLOAlertingFastburnLabelArgs'] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        """
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+
+    @property
+    @pulumi.getter
+    def annotations(self) -> Optional[Sequence['outputs.SLOAlertingFastburnAnnotation']]:
+        return pulumi.get(self, "annotations")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Sequence['outputs.SLOAlertingFastburnLabel']]:
+        """
+        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        """
+        return pulumi.get(self, "labels")
+
+
+@pulumi.output_type
+class SLOAlertingFastburnAnnotation(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SLOAlertingFastburnLabel(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SLOAlertingLabel(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SLOAlertingSlowburn(dict):
+    def __init__(__self__, *,
+                 annotations: Optional[Sequence['outputs.SLOAlertingSlowburnAnnotation']] = None,
+                 labels: Optional[Sequence['outputs.SLOAlertingSlowburnLabel']] = None):
+        """
+        :param Sequence['SLOAlertingSlowburnLabelArgs'] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        """
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+
+    @property
+    @pulumi.getter
+    def annotations(self) -> Optional[Sequence['outputs.SLOAlertingSlowburnAnnotation']]:
+        return pulumi.get(self, "annotations")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Sequence['outputs.SLOAlertingSlowburnLabel']]:
+        """
+        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        """
+        return pulumi.get(self, "labels")
+
+
+@pulumi.output_type
+class SLOAlertingSlowburnAnnotation(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SLOAlertingSlowburnLabel(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SLOLabel(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SLOObjective(dict):
+    def __init__(__self__, *,
+                 value: float,
+                 window: str):
+        """
+        :param float value: Value between 0 and 1. If the value of the query is above the objective, the SLO is met.
+        :param str window: A Prometheus-parsable time duration string like 24h, 60m. This is the time window the objective is measured over.
+        """
+        pulumi.set(__self__, "value", value)
+        pulumi.set(__self__, "window", window)
+
+    @property
+    @pulumi.getter
+    def value(self) -> float:
+        """
+        Value between 0 and 1. If the value of the query is above the objective, the SLO is met.
+        """
+        return pulumi.get(self, "value")
+
+    @property
+    @pulumi.getter
+    def window(self) -> str:
+        """
+        A Prometheus-parsable time duration string like 24h, 60m. This is the time window the objective is measured over.
+        """
+        return pulumi.get(self, "window")
+
+
+@pulumi.output_type
+class SLOQuery(dict):
+    def __init__(__self__, *,
+                 freeform: 'outputs.SLOQueryFreeform',
+                 type: str):
+        """
+        :param str type: Query type must be one of: "freeform", "query", "ratio", or "threshold"
+        """
+        pulumi.set(__self__, "freeform", freeform)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def freeform(self) -> 'outputs.SLOQueryFreeform':
+        return pulumi.get(self, "freeform")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Query type must be one of: "freeform", "query", "ratio", or "threshold"
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class SLOQueryFreeform(dict):
+    def __init__(__self__, *,
+                 query: Optional[str] = None):
+        """
+        :param str query: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        """
+        if query is not None:
+            pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def query(self) -> Optional[str]:
+        """
+        Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        """
+        return pulumi.get(self, "query")
 
 
 @pulumi.output_type
@@ -6389,6 +7063,66 @@ class SyntheticMonitoringCheckSettingsTraceroute(dict):
 
 
 @pulumi.output_type
+class TeamPreferences(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "homeDashboardUid":
+            suggest = "home_dashboard_uid"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TeamPreferences. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TeamPreferences.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TeamPreferences.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 home_dashboard_uid: Optional[str] = None,
+                 theme: Optional[str] = None,
+                 timezone: Optional[str] = None):
+        """
+        :param str home_dashboard_uid: The UID of the dashboard to display when a team member logs in. Defaults to ``.
+        :param str theme: The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
+        :param str timezone: The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
+        """
+        if home_dashboard_uid is not None:
+            pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
+        if theme is not None:
+            pulumi.set(__self__, "theme", theme)
+        if timezone is not None:
+            pulumi.set(__self__, "timezone", timezone)
+
+    @property
+    @pulumi.getter(name="homeDashboardUid")
+    def home_dashboard_uid(self) -> Optional[str]:
+        """
+        The UID of the dashboard to display when a team member logs in. Defaults to ``.
+        """
+        return pulumi.get(self, "home_dashboard_uid")
+
+    @property
+    @pulumi.getter
+    def theme(self) -> Optional[str]:
+        """
+        The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
+        """
+        return pulumi.get(self, "theme")
+
+    @property
+    @pulumi.getter
+    def timezone(self) -> Optional[str]:
+        """
+        The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
+        """
+        return pulumi.get(self, "timezone")
+
+
+@pulumi.output_type
 class GetDashboardsDashboardResult(dict):
     def __init__(__self__, *,
                  folder_title: str,
@@ -6451,6 +7185,330 @@ class GetFoldersFolderResult(dict):
     @pulumi.getter
     def url(self) -> str:
         return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class GetGrafanSlosSloResult(dict):
+    def __init__(__self__, *,
+                 alertings: Sequence['outputs.GetGrafanSlosSloAlertingResult'],
+                 dashboard_uid: str,
+                 description: str,
+                 labels: Sequence['outputs.GetGrafanSlosSloLabelResult'],
+                 name: str,
+                 objectives: Sequence['outputs.GetGrafanSlosSloObjectiveResult'],
+                 queries: Sequence['outputs.GetGrafanSlosSloQueryResult'],
+                 uuid: str):
+        pulumi.set(__self__, "alertings", alertings)
+        pulumi.set(__self__, "dashboard_uid", dashboard_uid)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "labels", labels)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "objectives", objectives)
+        pulumi.set(__self__, "queries", queries)
+        pulumi.set(__self__, "uuid", uuid)
+
+    @property
+    @pulumi.getter
+    def alertings(self) -> Sequence['outputs.GetGrafanSlosSloAlertingResult']:
+        return pulumi.get(self, "alertings")
+
+    @property
+    @pulumi.getter(name="dashboardUid")
+    def dashboard_uid(self) -> str:
+        return pulumi.get(self, "dashboard_uid")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Sequence['outputs.GetGrafanSlosSloLabelResult']:
+        return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def objectives(self) -> Sequence['outputs.GetGrafanSlosSloObjectiveResult']:
+        return pulumi.get(self, "objectives")
+
+    @property
+    @pulumi.getter
+    def queries(self) -> Sequence['outputs.GetGrafanSlosSloQueryResult']:
+        return pulumi.get(self, "queries")
+
+    @property
+    @pulumi.getter
+    def uuid(self) -> str:
+        return pulumi.get(self, "uuid")
+
+
+@pulumi.output_type
+class GetGrafanSlosSloAlertingResult(dict):
+    def __init__(__self__, *,
+                 annotations: Optional[Sequence['outputs.GetGrafanSlosSloAlertingAnnotationResult']] = None,
+                 fastburns: Optional[Sequence['outputs.GetGrafanSlosSloAlertingFastburnResult']] = None,
+                 labels: Optional[Sequence['outputs.GetGrafanSlosSloAlertingLabelResult']] = None,
+                 slowburns: Optional[Sequence['outputs.GetGrafanSlosSloAlertingSlowburnResult']] = None):
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if fastburns is not None:
+            pulumi.set(__self__, "fastburns", fastburns)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if slowburns is not None:
+            pulumi.set(__self__, "slowburns", slowburns)
+
+    @property
+    @pulumi.getter
+    def annotations(self) -> Optional[Sequence['outputs.GetGrafanSlosSloAlertingAnnotationResult']]:
+        return pulumi.get(self, "annotations")
+
+    @property
+    @pulumi.getter
+    def fastburns(self) -> Optional[Sequence['outputs.GetGrafanSlosSloAlertingFastburnResult']]:
+        return pulumi.get(self, "fastburns")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Sequence['outputs.GetGrafanSlosSloAlertingLabelResult']]:
+        return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter
+    def slowburns(self) -> Optional[Sequence['outputs.GetGrafanSlosSloAlertingSlowburnResult']]:
+        return pulumi.get(self, "slowburns")
+
+
+@pulumi.output_type
+class GetGrafanSlosSloAlertingAnnotationResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetGrafanSlosSloAlertingFastburnResult(dict):
+    def __init__(__self__, *,
+                 annotations: Optional[Sequence['outputs.GetGrafanSlosSloAlertingFastburnAnnotationResult']] = None,
+                 labels: Optional[Sequence['outputs.GetGrafanSlosSloAlertingFastburnLabelResult']] = None):
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+
+    @property
+    @pulumi.getter
+    def annotations(self) -> Optional[Sequence['outputs.GetGrafanSlosSloAlertingFastburnAnnotationResult']]:
+        return pulumi.get(self, "annotations")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Sequence['outputs.GetGrafanSlosSloAlertingFastburnLabelResult']]:
+        return pulumi.get(self, "labels")
+
+
+@pulumi.output_type
+class GetGrafanSlosSloAlertingFastburnAnnotationResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetGrafanSlosSloAlertingFastburnLabelResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetGrafanSlosSloAlertingLabelResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetGrafanSlosSloAlertingSlowburnResult(dict):
+    def __init__(__self__, *,
+                 annotations: Optional[Sequence['outputs.GetGrafanSlosSloAlertingSlowburnAnnotationResult']] = None,
+                 labels: Optional[Sequence['outputs.GetGrafanSlosSloAlertingSlowburnLabelResult']] = None):
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+
+    @property
+    @pulumi.getter
+    def annotations(self) -> Optional[Sequence['outputs.GetGrafanSlosSloAlertingSlowburnAnnotationResult']]:
+        return pulumi.get(self, "annotations")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Sequence['outputs.GetGrafanSlosSloAlertingSlowburnLabelResult']]:
+        return pulumi.get(self, "labels")
+
+
+@pulumi.output_type
+class GetGrafanSlosSloAlertingSlowburnAnnotationResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetGrafanSlosSloAlertingSlowburnLabelResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetGrafanSlosSloLabelResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetGrafanSlosSloObjectiveResult(dict):
+    def __init__(__self__, *,
+                 value: float,
+                 window: str):
+        pulumi.set(__self__, "value", value)
+        pulumi.set(__self__, "window", window)
+
+    @property
+    @pulumi.getter
+    def value(self) -> float:
+        return pulumi.get(self, "value")
+
+    @property
+    @pulumi.getter
+    def window(self) -> str:
+        return pulumi.get(self, "window")
+
+
+@pulumi.output_type
+class GetGrafanSlosSloQueryResult(dict):
+    def __init__(__self__, *,
+                 freeform: 'outputs.GetGrafanSlosSloQueryFreeformResult',
+                 type: str):
+        pulumi.set(__self__, "freeform", freeform)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def freeform(self) -> 'outputs.GetGrafanSlosSloQueryFreeformResult':
+        return pulumi.get(self, "freeform")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetGrafanSlosSloQueryFreeformResult(dict):
+    def __init__(__self__, *,
+                 query: Optional[str] = None):
+        if query is not None:
+            pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def query(self) -> Optional[str]:
+        return pulumi.get(self, "query")
 
 
 @pulumi.output_type

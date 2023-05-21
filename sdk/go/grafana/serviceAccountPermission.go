@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -75,7 +75,7 @@ type ServiceAccountPermission struct {
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions ServiceAccountPermissionPermissionArrayOutput `pulumi:"permissions"`
 	// The id of the service account.
-	ServiceAccountId pulumi.IntOutput `pulumi:"serviceAccountId"`
+	ServiceAccountId pulumi.StringOutput `pulumi:"serviceAccountId"`
 }
 
 // NewServiceAccountPermission registers a new resource with the given unique name, arguments, and options.
@@ -117,14 +117,14 @@ type serviceAccountPermissionState struct {
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions []ServiceAccountPermissionPermission `pulumi:"permissions"`
 	// The id of the service account.
-	ServiceAccountId *int `pulumi:"serviceAccountId"`
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
 }
 
 type ServiceAccountPermissionState struct {
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions ServiceAccountPermissionPermissionArrayInput
 	// The id of the service account.
-	ServiceAccountId pulumi.IntPtrInput
+	ServiceAccountId pulumi.StringPtrInput
 }
 
 func (ServiceAccountPermissionState) ElementType() reflect.Type {
@@ -135,7 +135,7 @@ type serviceAccountPermissionArgs struct {
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions []ServiceAccountPermissionPermission `pulumi:"permissions"`
 	// The id of the service account.
-	ServiceAccountId int `pulumi:"serviceAccountId"`
+	ServiceAccountId string `pulumi:"serviceAccountId"`
 }
 
 // The set of arguments for constructing a ServiceAccountPermission resource.
@@ -143,7 +143,7 @@ type ServiceAccountPermissionArgs struct {
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions ServiceAccountPermissionPermissionArrayInput
 	// The id of the service account.
-	ServiceAccountId pulumi.IntInput
+	ServiceAccountId pulumi.StringInput
 }
 
 func (ServiceAccountPermissionArgs) ElementType() reflect.Type {
@@ -239,8 +239,8 @@ func (o ServiceAccountPermissionOutput) Permissions() ServiceAccountPermissionPe
 }
 
 // The id of the service account.
-func (o ServiceAccountPermissionOutput) ServiceAccountId() pulumi.IntOutput {
-	return o.ApplyT(func(v *ServiceAccountPermission) pulumi.IntOutput { return v.ServiceAccountId }).(pulumi.IntOutput)
+func (o ServiceAccountPermissionOutput) ServiceAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceAccountPermission) pulumi.StringOutput { return v.ServiceAccountId }).(pulumi.StringOutput)
 }
 
 type ServiceAccountPermissionArrayOutput struct{ *pulumi.OutputState }

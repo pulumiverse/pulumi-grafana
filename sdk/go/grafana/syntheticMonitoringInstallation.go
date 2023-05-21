@@ -7,13 +7,15 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Sets up Synthetic Monitoring on a Grafana cloud stack and generates a token.
 // Once a Grafana Cloud stack is created, a user can either use this resource or go into the UI to install synthetic monitoring.
 // This resource cannot be imported but it can be used on an existing Synthetic Monitoring installation without issues.
+//
+// **Note that this resource must be used on a provider configured with Grafana Cloud credentials.**
 //
 // * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/installation/)
 // * [API documentation](https://github.com/grafana/synthetic-monitoring-api-go-client/blob/main/docs/API.md#apiv1registerinstall)
@@ -39,18 +41,22 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			metricsPublish, err := grafana.NewCloudApiKey(ctx, "metricsPublish", &grafana.CloudApiKeyArgs{
+//			_, err = grafana.NewCloudApiKey(ctx, "metricsPublish", &grafana.CloudApiKeyArgs{
 //				Role:         pulumi.String("MetricsPublisher"),
 //				CloudOrgSlug: pulumi.String("<org-slug>"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = grafana.NewSyntheticMonitoringInstallation(ctx, "smStackSyntheticMonitoringInstallation", &grafana.SyntheticMonitoringInstallationArgs{
-//				StackId:             smStackCloudStack.ID(),
-//				MetricsInstanceId:   smStackCloudStack.PrometheusUserId,
-//				LogsInstanceId:      smStackCloudStack.LogsUserId,
-//				MetricsPublisherKey: metricsPublish.Key,
+//			smStackSyntheticMonitoringInstallation, err := grafana.NewSyntheticMonitoringInstallation(ctx, "smStackSyntheticMonitoringInstallation", &grafana.SyntheticMonitoringInstallationArgs{
+//				StackId: smStackCloudStack.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = grafana.NewProvider(ctx, "sm", &grafana.ProviderArgs{
+//				SmAccessToken: smStackSyntheticMonitoringInstallation.SmAccessToken,
+//				SmUrl:         smStackSyntheticMonitoringInstallation.StackSmApiUrl,
 //			})
 //			if err != nil {
 //				return err
@@ -63,16 +69,22 @@ import (
 type SyntheticMonitoringInstallation struct {
 	pulumi.CustomResourceState
 
-	// The ID of the logs instance to install SM on (stack's `logsUserId` attribute).
-	LogsInstanceId pulumi.IntOutput `pulumi:"logsInstanceId"`
-	// The ID of the metrics instance to install SM on (stack's `prometheusUserId` attribute).
-	MetricsInstanceId pulumi.IntOutput `pulumi:"metricsInstanceId"`
+	// Deprecated: Not used anymore.
+	//
+	// Deprecated: Not used anymore.
+	LogsInstanceId pulumi.IntPtrOutput `pulumi:"logsInstanceId"`
+	// Deprecated: Not used anymore.
+	//
+	// Deprecated: Not used anymore.
+	MetricsInstanceId pulumi.IntPtrOutput `pulumi:"metricsInstanceId"`
 	// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
 	MetricsPublisherKey pulumi.StringOutput `pulumi:"metricsPublisherKey"`
 	// Generated token to access the SM API.
 	SmAccessToken pulumi.StringOutput `pulumi:"smAccessToken"`
-	// The ID of the stack to install SM on.
-	StackId pulumi.IntOutput `pulumi:"stackId"`
+	// The ID or slug of the stack to install SM on.
+	StackId pulumi.StringOutput `pulumi:"stackId"`
+	// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+	StackSmApiUrl pulumi.StringOutput `pulumi:"stackSmApiUrl"`
 }
 
 // NewSyntheticMonitoringInstallation registers a new resource with the given unique name, arguments, and options.
@@ -82,12 +94,6 @@ func NewSyntheticMonitoringInstallation(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.LogsInstanceId == nil {
-		return nil, errors.New("invalid value for required argument 'LogsInstanceId'")
-	}
-	if args.MetricsInstanceId == nil {
-		return nil, errors.New("invalid value for required argument 'MetricsInstanceId'")
-	}
 	if args.MetricsPublisherKey == nil {
 		return nil, errors.New("invalid value for required argument 'MetricsPublisherKey'")
 	}
@@ -124,29 +130,41 @@ func GetSyntheticMonitoringInstallation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SyntheticMonitoringInstallation resources.
 type syntheticMonitoringInstallationState struct {
-	// The ID of the logs instance to install SM on (stack's `logsUserId` attribute).
+	// Deprecated: Not used anymore.
+	//
+	// Deprecated: Not used anymore.
 	LogsInstanceId *int `pulumi:"logsInstanceId"`
-	// The ID of the metrics instance to install SM on (stack's `prometheusUserId` attribute).
+	// Deprecated: Not used anymore.
+	//
+	// Deprecated: Not used anymore.
 	MetricsInstanceId *int `pulumi:"metricsInstanceId"`
 	// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
 	MetricsPublisherKey *string `pulumi:"metricsPublisherKey"`
 	// Generated token to access the SM API.
 	SmAccessToken *string `pulumi:"smAccessToken"`
-	// The ID of the stack to install SM on.
-	StackId *int `pulumi:"stackId"`
+	// The ID or slug of the stack to install SM on.
+	StackId *string `pulumi:"stackId"`
+	// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+	StackSmApiUrl *string `pulumi:"stackSmApiUrl"`
 }
 
 type SyntheticMonitoringInstallationState struct {
-	// The ID of the logs instance to install SM on (stack's `logsUserId` attribute).
+	// Deprecated: Not used anymore.
+	//
+	// Deprecated: Not used anymore.
 	LogsInstanceId pulumi.IntPtrInput
-	// The ID of the metrics instance to install SM on (stack's `prometheusUserId` attribute).
+	// Deprecated: Not used anymore.
+	//
+	// Deprecated: Not used anymore.
 	MetricsInstanceId pulumi.IntPtrInput
 	// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
 	MetricsPublisherKey pulumi.StringPtrInput
 	// Generated token to access the SM API.
 	SmAccessToken pulumi.StringPtrInput
-	// The ID of the stack to install SM on.
-	StackId pulumi.IntPtrInput
+	// The ID or slug of the stack to install SM on.
+	StackId pulumi.StringPtrInput
+	// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+	StackSmApiUrl pulumi.StringPtrInput
 }
 
 func (SyntheticMonitoringInstallationState) ElementType() reflect.Type {
@@ -154,26 +172,38 @@ func (SyntheticMonitoringInstallationState) ElementType() reflect.Type {
 }
 
 type syntheticMonitoringInstallationArgs struct {
-	// The ID of the logs instance to install SM on (stack's `logsUserId` attribute).
-	LogsInstanceId int `pulumi:"logsInstanceId"`
-	// The ID of the metrics instance to install SM on (stack's `prometheusUserId` attribute).
-	MetricsInstanceId int `pulumi:"metricsInstanceId"`
+	// Deprecated: Not used anymore.
+	//
+	// Deprecated: Not used anymore.
+	LogsInstanceId *int `pulumi:"logsInstanceId"`
+	// Deprecated: Not used anymore.
+	//
+	// Deprecated: Not used anymore.
+	MetricsInstanceId *int `pulumi:"metricsInstanceId"`
 	// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
 	MetricsPublisherKey string `pulumi:"metricsPublisherKey"`
-	// The ID of the stack to install SM on.
-	StackId int `pulumi:"stackId"`
+	// The ID or slug of the stack to install SM on.
+	StackId string `pulumi:"stackId"`
+	// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+	StackSmApiUrl *string `pulumi:"stackSmApiUrl"`
 }
 
 // The set of arguments for constructing a SyntheticMonitoringInstallation resource.
 type SyntheticMonitoringInstallationArgs struct {
-	// The ID of the logs instance to install SM on (stack's `logsUserId` attribute).
-	LogsInstanceId pulumi.IntInput
-	// The ID of the metrics instance to install SM on (stack's `prometheusUserId` attribute).
-	MetricsInstanceId pulumi.IntInput
+	// Deprecated: Not used anymore.
+	//
+	// Deprecated: Not used anymore.
+	LogsInstanceId pulumi.IntPtrInput
+	// Deprecated: Not used anymore.
+	//
+	// Deprecated: Not used anymore.
+	MetricsInstanceId pulumi.IntPtrInput
 	// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
 	MetricsPublisherKey pulumi.StringInput
-	// The ID of the stack to install SM on.
-	StackId pulumi.IntInput
+	// The ID or slug of the stack to install SM on.
+	StackId pulumi.StringInput
+	// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+	StackSmApiUrl pulumi.StringPtrInput
 }
 
 func (SyntheticMonitoringInstallationArgs) ElementType() reflect.Type {
@@ -263,14 +293,18 @@ func (o SyntheticMonitoringInstallationOutput) ToSyntheticMonitoringInstallation
 	return o
 }
 
-// The ID of the logs instance to install SM on (stack's `logsUserId` attribute).
-func (o SyntheticMonitoringInstallationOutput) LogsInstanceId() pulumi.IntOutput {
-	return o.ApplyT(func(v *SyntheticMonitoringInstallation) pulumi.IntOutput { return v.LogsInstanceId }).(pulumi.IntOutput)
+// Deprecated: Not used anymore.
+//
+// Deprecated: Not used anymore.
+func (o SyntheticMonitoringInstallationOutput) LogsInstanceId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringInstallation) pulumi.IntPtrOutput { return v.LogsInstanceId }).(pulumi.IntPtrOutput)
 }
 
-// The ID of the metrics instance to install SM on (stack's `prometheusUserId` attribute).
-func (o SyntheticMonitoringInstallationOutput) MetricsInstanceId() pulumi.IntOutput {
-	return o.ApplyT(func(v *SyntheticMonitoringInstallation) pulumi.IntOutput { return v.MetricsInstanceId }).(pulumi.IntOutput)
+// Deprecated: Not used anymore.
+//
+// Deprecated: Not used anymore.
+func (o SyntheticMonitoringInstallationOutput) MetricsInstanceId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringInstallation) pulumi.IntPtrOutput { return v.MetricsInstanceId }).(pulumi.IntPtrOutput)
 }
 
 // The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
@@ -283,9 +317,14 @@ func (o SyntheticMonitoringInstallationOutput) SmAccessToken() pulumi.StringOutp
 	return o.ApplyT(func(v *SyntheticMonitoringInstallation) pulumi.StringOutput { return v.SmAccessToken }).(pulumi.StringOutput)
 }
 
-// The ID of the stack to install SM on.
-func (o SyntheticMonitoringInstallationOutput) StackId() pulumi.IntOutput {
-	return o.ApplyT(func(v *SyntheticMonitoringInstallation) pulumi.IntOutput { return v.StackId }).(pulumi.IntOutput)
+// The ID or slug of the stack to install SM on.
+func (o SyntheticMonitoringInstallationOutput) StackId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringInstallation) pulumi.StringOutput { return v.StackId }).(pulumi.StringOutput)
+}
+
+// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+func (o SyntheticMonitoringInstallationOutput) StackSmApiUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringInstallation) pulumi.StringOutput { return v.StackSmApiUrl }).(pulumi.StringOutput)
 }
 
 type SyntheticMonitoringInstallationArrayOutput struct{ *pulumi.OutputState }

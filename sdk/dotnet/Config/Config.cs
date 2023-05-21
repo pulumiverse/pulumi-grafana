@@ -34,7 +34,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
         private static readonly __Value<string?> _auth = new __Value<string?>(() => __config.Get("auth") ?? Utilities.GetEnv("GRAFANA_AUTH"));
         /// <summary>
-        /// API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+        /// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+        /// the `GRAFANA_AUTH` environment variable.
         /// </summary>
         public static string? Auth
         {

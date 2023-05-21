@@ -7,12 +7,14 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-preferences/)
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
+//
+// !> Deprecated: Use the `preferences` attribute of the `Team` resource instead.
 //
 // ## Example Usage
 //

@@ -11,13 +11,14 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Grafana
 {
     /// <summary>
-    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/oncall/escalation-policies/)
-    /// * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/escalation_policies/)
+    /// * [Official documentation](https://grafana.com/docs/oncall/latest/escalation-policies/)
+    /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_policies/)
     /// 
     /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
     /// using Grafana = Pulumi.Grafana;

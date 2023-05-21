@@ -14,7 +14,7 @@ __all__ = ['ServiceAccountTokenArgs', 'ServiceAccountToken']
 @pulumi.input_type
 class ServiceAccountTokenArgs:
     def __init__(__self__, *,
-                 service_account_id: pulumi.Input[int],
+                 service_account_id: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
                  seconds_to_live: Optional[pulumi.Input[int]] = None):
         """
@@ -28,11 +28,11 @@ class ServiceAccountTokenArgs:
 
     @property
     @pulumi.getter(name="serviceAccountId")
-    def service_account_id(self) -> pulumi.Input[int]:
+    def service_account_id(self) -> pulumi.Input[str]:
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
-    def service_account_id(self, value: pulumi.Input[int]):
+    def service_account_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "service_account_id", value)
 
     @property
@@ -62,7 +62,7 @@ class _ServiceAccountTokenState:
                  key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  seconds_to_live: Optional[pulumi.Input[int]] = None,
-                 service_account_id: Optional[pulumi.Input[int]] = None):
+                 service_account_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ServiceAccountToken resources.
         """
@@ -126,11 +126,11 @@ class _ServiceAccountTokenState:
 
     @property
     @pulumi.getter(name="serviceAccountId")
-    def service_account_id(self) -> Optional[pulumi.Input[int]]:
+    def service_account_id(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
-    def service_account_id(self, value: Optional[pulumi.Input[int]]):
+    def service_account_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "service_account_id", value)
 
 
@@ -141,7 +141,7 @@ class ServiceAccountToken(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  seconds_to_live: Optional[pulumi.Input[int]] = None,
-                 service_account_id: Optional[pulumi.Input[int]] = None,
+                 service_account_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         **Note:** This resource is available only with Grafana 9.1+.
@@ -155,9 +155,9 @@ class ServiceAccountToken(pulumi.CustomResource):
         import pulumi
         import lbrlabs_pulumi_grafana as grafana
 
-        foo = grafana.ServiceAccountToken("foo", service_account_id=1)
+        foo = grafana.ServiceAccountToken("foo", service_account_id="1")
         bar = grafana.ServiceAccountToken("bar",
-            service_account_id=1,
+            service_account_id="1",
             seconds_to_live=30)
         pulumi.export("serviceAccountTokenFooKeyOnly", foo.key)
         pulumi.export("serviceAccountTokenBar", bar)
@@ -184,9 +184,9 @@ class ServiceAccountToken(pulumi.CustomResource):
         import pulumi
         import lbrlabs_pulumi_grafana as grafana
 
-        foo = grafana.ServiceAccountToken("foo", service_account_id=1)
+        foo = grafana.ServiceAccountToken("foo", service_account_id="1")
         bar = grafana.ServiceAccountToken("bar",
-            service_account_id=1,
+            service_account_id="1",
             seconds_to_live=30)
         pulumi.export("serviceAccountTokenFooKeyOnly", foo.key)
         pulumi.export("serviceAccountTokenBar", bar)
@@ -209,7 +209,7 @@ class ServiceAccountToken(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  seconds_to_live: Optional[pulumi.Input[int]] = None,
-                 service_account_id: Optional[pulumi.Input[int]] = None,
+                 service_account_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -244,7 +244,7 @@ class ServiceAccountToken(pulumi.CustomResource):
             key: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             seconds_to_live: Optional[pulumi.Input[int]] = None,
-            service_account_id: Optional[pulumi.Input[int]] = None) -> 'ServiceAccountToken':
+            service_account_id: Optional[pulumi.Input[str]] = None) -> 'ServiceAccountToken':
         """
         Get an existing ServiceAccountToken resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -292,6 +292,6 @@ class ServiceAccountToken(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceAccountId")
-    def service_account_id(self) -> pulumi.Output[int]:
+    def service_account_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "service_account_id")
 

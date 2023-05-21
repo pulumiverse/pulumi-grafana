@@ -22,7 +22,7 @@ class DashboardArgs:
         """
         The set of arguments for constructing a Dashboard resource.
         :param pulumi.Input[str] config_json: The complete dashboard model JSON.
-        :param pulumi.Input[str] folder: The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+        :param pulumi.Input[str] folder: The id or UID of the folder to save the dashboard in.
         :param pulumi.Input[str] message: Set a commit message for the version history.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
@@ -53,7 +53,7 @@ class DashboardArgs:
     @pulumi.getter
     def folder(self) -> Optional[pulumi.Input[str]]:
         """
-        The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+        The id or UID of the folder to save the dashboard in.
         """
         return pulumi.get(self, "folder")
 
@@ -115,7 +115,7 @@ class _DashboardState:
         Input properties used for looking up and filtering Dashboard resources.
         :param pulumi.Input[str] config_json: The complete dashboard model JSON.
         :param pulumi.Input[int] dashboard_id: The numeric ID of the dashboard computed by Grafana.
-        :param pulumi.Input[str] folder: The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+        :param pulumi.Input[str] folder: The id or UID of the folder to save the dashboard in.
         :param pulumi.Input[str] message: Set a commit message for the version history.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
@@ -176,7 +176,7 @@ class _DashboardState:
     @pulumi.getter
     def folder(self) -> Optional[pulumi.Input[str]]:
         """
-        The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+        The id or UID of the folder to save the dashboard in.
         """
         return pulumi.get(self, "folder")
 
@@ -308,7 +308,7 @@ class Dashboard(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] config_json: The complete dashboard model JSON.
-        :param pulumi.Input[str] folder: The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+        :param pulumi.Input[str] folder: The id or UID of the folder to save the dashboard in.
         :param pulumi.Input[str] message: Set a commit message for the version history.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
@@ -414,7 +414,7 @@ class Dashboard(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] config_json: The complete dashboard model JSON.
         :param pulumi.Input[int] dashboard_id: The numeric ID of the dashboard computed by Grafana.
-        :param pulumi.Input[str] folder: The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+        :param pulumi.Input[str] folder: The id or UID of the folder to save the dashboard in.
         :param pulumi.Input[str] message: Set a commit message for the version history.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
@@ -459,7 +459,7 @@ class Dashboard(pulumi.CustomResource):
     @pulumi.getter
     def folder(self) -> pulumi.Output[Optional[str]]:
         """
-        The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+        The id or UID of the folder to save the dashboard in.
         """
         return pulumi.get(self, "folder")
 

@@ -18,6 +18,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
     /// 
@@ -60,6 +61,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
     [GrafanaResourceType("grafana:index/folder:Folder")]
     public partial class Folder : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+        /// </summary>
+        [Output("preventDestroyIfNotEmpty")]
+        public Output<bool?> PreventDestroyIfNotEmpty { get; private set; } = null!;
+
         /// <summary>
         /// The title of the folder.
         /// </summary>
@@ -126,6 +133,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class FolderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+        /// </summary>
+        [Input("preventDestroyIfNotEmpty")]
+        public Input<bool>? PreventDestroyIfNotEmpty { get; set; }
+
+        /// <summary>
         /// The title of the folder.
         /// </summary>
         [Input("title", required: true)]
@@ -145,6 +158,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class FolderState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+        /// </summary>
+        [Input("preventDestroyIfNotEmpty")]
+        public Input<bool>? PreventDestroyIfNotEmpty { get; set; }
+
         /// <summary>
         /// The title of the folder.
         /// </summary>

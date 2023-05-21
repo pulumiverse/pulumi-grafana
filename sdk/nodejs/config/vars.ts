@@ -8,7 +8,8 @@ declare var exports: any;
 const __config = new pulumi.Config("grafana");
 
 /**
- * API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+ * API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+ * the `GRAFANA_AUTH` environment variable.
  */
 export declare const auth: string | undefined;
 Object.defineProperty(exports, "auth", {

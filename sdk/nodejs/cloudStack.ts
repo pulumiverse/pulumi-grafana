@@ -23,7 +23,11 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}}
+ *  $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}} // import by numerical ID
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_slug}} // or import by slug
  * ```
  */
 export class CloudStack extends pulumi.CustomResource {

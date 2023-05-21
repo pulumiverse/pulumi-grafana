@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -42,8 +42,14 @@ import (
 type Annotation struct {
 	pulumi.CustomResourceState
 
-	// The ID of the dashboard on which to create the annotation.
+	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
+	//
+	// Deprecated: Use dashboard_uid instead.
 	DashboardId pulumi.IntPtrOutput `pulumi:"dashboardId"`
+	// The ID of the dashboard on which to create the annotation.
+	DashboardUid pulumi.StringPtrOutput `pulumi:"dashboardUid"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// The ID of the dashboard panel on which to create the annotation.
 	PanelId pulumi.IntPtrOutput `pulumi:"panelId"`
 	// The tags to associate with the annotation.
@@ -89,8 +95,14 @@ func GetAnnotation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Annotation resources.
 type annotationState struct {
-	// The ID of the dashboard on which to create the annotation.
+	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
+	//
+	// Deprecated: Use dashboard_uid instead.
 	DashboardId *int `pulumi:"dashboardId"`
+	// The ID of the dashboard on which to create the annotation.
+	DashboardUid *string `pulumi:"dashboardUid"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The ID of the dashboard panel on which to create the annotation.
 	PanelId *int `pulumi:"panelId"`
 	// The tags to associate with the annotation.
@@ -104,8 +116,14 @@ type annotationState struct {
 }
 
 type AnnotationState struct {
-	// The ID of the dashboard on which to create the annotation.
+	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
+	//
+	// Deprecated: Use dashboard_uid instead.
 	DashboardId pulumi.IntPtrInput
+	// The ID of the dashboard on which to create the annotation.
+	DashboardUid pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The ID of the dashboard panel on which to create the annotation.
 	PanelId pulumi.IntPtrInput
 	// The tags to associate with the annotation.
@@ -123,8 +141,14 @@ func (AnnotationState) ElementType() reflect.Type {
 }
 
 type annotationArgs struct {
-	// The ID of the dashboard on which to create the annotation.
+	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
+	//
+	// Deprecated: Use dashboard_uid instead.
 	DashboardId *int `pulumi:"dashboardId"`
+	// The ID of the dashboard on which to create the annotation.
+	DashboardUid *string `pulumi:"dashboardUid"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The ID of the dashboard panel on which to create the annotation.
 	PanelId *int `pulumi:"panelId"`
 	// The tags to associate with the annotation.
@@ -139,8 +163,14 @@ type annotationArgs struct {
 
 // The set of arguments for constructing a Annotation resource.
 type AnnotationArgs struct {
-	// The ID of the dashboard on which to create the annotation.
+	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
+	//
+	// Deprecated: Use dashboard_uid instead.
 	DashboardId pulumi.IntPtrInput
+	// The ID of the dashboard on which to create the annotation.
+	DashboardUid pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The ID of the dashboard panel on which to create the annotation.
 	PanelId pulumi.IntPtrInput
 	// The tags to associate with the annotation.
@@ -240,9 +270,21 @@ func (o AnnotationOutput) ToAnnotationOutputWithContext(ctx context.Context) Ann
 	return o
 }
 
-// The ID of the dashboard on which to create the annotation.
+// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
+//
+// Deprecated: Use dashboard_uid instead.
 func (o AnnotationOutput) DashboardId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Annotation) pulumi.IntPtrOutput { return v.DashboardId }).(pulumi.IntPtrOutput)
+}
+
+// The ID of the dashboard on which to create the annotation.
+func (o AnnotationOutput) DashboardUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Annotation) pulumi.StringPtrOutput { return v.DashboardUid }).(pulumi.StringPtrOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o AnnotationOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Annotation) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // The ID of the dashboard panel on which to create the annotation.

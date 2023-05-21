@@ -38,6 +38,7 @@ def readme():
 
 
 setup(name='lbrlabs_pulumi_grafana',
+      python_requires='>=3.7',
       version=VERSION,
       description="A Pulumi package for creating and managing grafana.",
       long_description=readme(),

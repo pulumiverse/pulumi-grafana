@@ -18,7 +18,8 @@ class _ExportableConfig(types.ModuleType):
     @property
     def auth(self) -> Optional[str]:
         """
-        API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+        API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+        the `GRAFANA_AUTH` environment variable.
         """
         return __config__.get('auth') or _utilities.get_env('GRAFANA_AUTH')
 

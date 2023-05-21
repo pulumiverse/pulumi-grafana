@@ -247,6 +247,10 @@ export interface ContactPointPagerduty {
      */
     component?: string;
     /**
+     * A set of arbitrary key/value pairs that provide further detail about the incident.
+     */
+    details?: {[key: string]: string};
+    /**
      * Whether to disable sending resolve messages. Defaults to `false`.
      */
     disableResolveMessage?: boolean;
@@ -575,9 +579,17 @@ export interface ContactPointWebhook {
      */
     maxAlerts?: number;
     /**
+     * Custom message. You can use template variables.
+     */
+    message?: string;
+    /**
      * Additional custom properties to attach to the notifier. Defaults to `map[]`.
      */
     settings?: {[key: string]: string};
+    /**
+     * Templated title of the message.
+     */
+    title?: string;
     /**
      * The UID of the contact point.
      */
@@ -995,6 +1007,83 @@ export interface GetFoldersFolder {
     url: string;
 }
 
+export interface GetGrafanSlosSlo {
+    alertings: outputs.GetGrafanSlosSloAlerting[];
+    dashboardUid: string;
+    description: string;
+    labels: outputs.GetGrafanSlosSloLabel[];
+    name: string;
+    objectives: outputs.GetGrafanSlosSloObjective[];
+    queries: outputs.GetGrafanSlosSloQuery[];
+    uuid: string;
+}
+
+export interface GetGrafanSlosSloAlerting {
+    annotations?: outputs.GetGrafanSlosSloAlertingAnnotation[];
+    fastburns?: outputs.GetGrafanSlosSloAlertingFastburn[];
+    labels?: outputs.GetGrafanSlosSloAlertingLabel[];
+    slowburns?: outputs.GetGrafanSlosSloAlertingSlowburn[];
+}
+
+export interface GetGrafanSlosSloAlertingAnnotation {
+    key: string;
+    value: string;
+}
+
+export interface GetGrafanSlosSloAlertingFastburn {
+    annotations?: outputs.GetGrafanSlosSloAlertingFastburnAnnotation[];
+    labels?: outputs.GetGrafanSlosSloAlertingFastburnLabel[];
+}
+
+export interface GetGrafanSlosSloAlertingFastburnAnnotation {
+    key: string;
+    value: string;
+}
+
+export interface GetGrafanSlosSloAlertingFastburnLabel {
+    key: string;
+    value: string;
+}
+
+export interface GetGrafanSlosSloAlertingLabel {
+    key: string;
+    value: string;
+}
+
+export interface GetGrafanSlosSloAlertingSlowburn {
+    annotations?: outputs.GetGrafanSlosSloAlertingSlowburnAnnotation[];
+    labels?: outputs.GetGrafanSlosSloAlertingSlowburnLabel[];
+}
+
+export interface GetGrafanSlosSloAlertingSlowburnAnnotation {
+    key: string;
+    value: string;
+}
+
+export interface GetGrafanSlosSloAlertingSlowburnLabel {
+    key: string;
+    value: string;
+}
+
+export interface GetGrafanSlosSloLabel {
+    key: string;
+    value: string;
+}
+
+export interface GetGrafanSlosSloObjective {
+    value: number;
+    window: string;
+}
+
+export interface GetGrafanSlosSloQuery {
+    freeform: outputs.GetGrafanSlosSloQueryFreeform;
+    type: string;
+}
+
+export interface GetGrafanSlosSloQueryFreeform {
+    query?: string;
+}
+
 export interface GetUsersUser {
     email: string;
     /**
@@ -1284,9 +1373,25 @@ export interface OncallIntegrationDefaultRouteTelegram {
 
 export interface OncallIntegrationTemplates {
     /**
+     * Template for sending a signal to acknowledge the Incident.
+     */
+    acknowledgeSignal?: string;
+    /**
+     * Templates for Email.
+     */
+    email?: outputs.OncallIntegrationTemplatesEmail;
+    /**
      * Template for the key by which alerts are grouped.
      */
     groupingKey?: string;
+    /**
+     * Templates for Microsoft Teams.
+     */
+    microsoftTeams?: outputs.OncallIntegrationTemplatesMicrosoftTeams;
+    /**
+     * Templates for Phone Call.
+     */
+    phoneCall?: outputs.OncallIntegrationTemplatesPhoneCall;
     /**
      * Template for sending a signal to resolve the Incident.
      */
@@ -1295,9 +1400,56 @@ export interface OncallIntegrationTemplates {
      * Templates for Slack.
      */
     slack?: outputs.OncallIntegrationTemplatesSlack;
+    /**
+     * Templates for SMS.
+     */
+    sms?: outputs.OncallIntegrationTemplatesSms;
+    /**
+     * Template for a source link.
+     */
+    sourceLink?: string;
+    /**
+     * Templates for Telegram.
+     */
+    telegram?: outputs.OncallIntegrationTemplatesTelegram;
+    /**
+     * Templates for Web.
+     */
+    web?: outputs.OncallIntegrationTemplatesWeb;
+}
+
+export interface OncallIntegrationTemplatesEmail {
+    message?: string;
+    title?: string;
+}
+
+export interface OncallIntegrationTemplatesMicrosoftTeams {
+    imageUrl?: string;
+    message?: string;
+    title?: string;
+}
+
+export interface OncallIntegrationTemplatesPhoneCall {
+    title?: string;
 }
 
 export interface OncallIntegrationTemplatesSlack {
+    imageUrl?: string;
+    message?: string;
+    title?: string;
+}
+
+export interface OncallIntegrationTemplatesSms {
+    title?: string;
+}
+
+export interface OncallIntegrationTemplatesTelegram {
+    imageUrl?: string;
+    message?: string;
+    title?: string;
+}
+
+export interface OncallIntegrationTemplatesWeb {
     imageUrl?: string;
     message?: string;
     title?: string;
@@ -1464,6 +1616,102 @@ export interface RuleGroupRuleDataRelativeTimeRange {
     to: number;
 }
 
+export interface SLOAlerting {
+    /**
+     * Annotations will be attached to all alerts generated by any of these rules.
+     */
+    annotations?: outputs.SLOAlertingAnnotation[];
+    /**
+     * Alerting Rules generated for Fast Burn alerts
+     */
+    fastburns?: outputs.SLOAlertingFastburn[];
+    /**
+     * Labels will be attached to all alerts generated by any of these rules.
+     */
+    labels?: outputs.SLOAlertingLabel[];
+    /**
+     * Alerting Rules generated for Slow Burn alerts
+     */
+    slowburns?: outputs.SLOAlertingSlowburn[];
+}
+
+export interface SLOAlertingAnnotation {
+    key: string;
+    value: string;
+}
+
+export interface SLOAlertingFastburn {
+    annotations?: outputs.SLOAlertingFastburnAnnotation[];
+    /**
+     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+     */
+    labels?: outputs.SLOAlertingFastburnLabel[];
+}
+
+export interface SLOAlertingFastburnAnnotation {
+    key: string;
+    value: string;
+}
+
+export interface SLOAlertingFastburnLabel {
+    key: string;
+    value: string;
+}
+
+export interface SLOAlertingLabel {
+    key: string;
+    value: string;
+}
+
+export interface SLOAlertingSlowburn {
+    annotations?: outputs.SLOAlertingSlowburnAnnotation[];
+    /**
+     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+     */
+    labels?: outputs.SLOAlertingSlowburnLabel[];
+}
+
+export interface SLOAlertingSlowburnAnnotation {
+    key: string;
+    value: string;
+}
+
+export interface SLOAlertingSlowburnLabel {
+    key: string;
+    value: string;
+}
+
+export interface SLOLabel {
+    key: string;
+    value: string;
+}
+
+export interface SLOObjective {
+    /**
+     * Value between 0 and 1. If the value of the query is above the objective, the SLO is met.
+     */
+    value: number;
+    /**
+     * A Prometheus-parsable time duration string like 24h, 60m. This is the time window the objective is measured over.
+     */
+    window: string;
+}
+
+export interface SLOQuery {
+    freeform: outputs.SLOQueryFreeform;
+    /**
+     * Query type must be one of: "freeform", "query", "ratio", or "threshold"
+     */
+    type: string;
+}
+
+export interface SLOQueryFreeform {
+    /**
+     * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+     */
+    query?: string;
+}
+
 export interface ServiceAccountPermissionPermission {
     /**
      * Permission to associate with item. Must be `Edit` or `Admin`.
@@ -1609,5 +1857,20 @@ export interface SyntheticMonitoringCheckSettingsTraceroute {
     maxHops?: number;
     maxUnknownHops?: number;
     ptrLookup?: boolean;
+}
+
+export interface TeamPreferences {
+    /**
+     * The UID of the dashboard to display when a team member logs in. Defaults to ``.
+     */
+    homeDashboardUid?: string;
+    /**
+     * The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
+     */
+    theme?: string;
+    /**
+     * The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
+     */
+    timezone?: string;
 }
 

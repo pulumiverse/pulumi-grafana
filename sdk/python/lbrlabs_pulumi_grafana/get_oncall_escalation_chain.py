@@ -59,7 +59,7 @@ class AwaitableGetOncallEscalationChainResult(GetOncallEscalationChainResult):
 def get_oncall_escalation_chain(name: Optional[str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallEscalationChainResult:
     """
-    * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/escalation_chains/)
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
 
     ## Example Usage
 
@@ -87,7 +87,7 @@ def get_oncall_escalation_chain(name: Optional[str] = None,
 def get_oncall_escalation_chain_output(name: Optional[pulumi.Input[str]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallEscalationChainResult]:
     """
-    * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/escalation_chains/)
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
 
     ## Example Usage
 

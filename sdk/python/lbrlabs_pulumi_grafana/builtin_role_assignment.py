@@ -100,6 +100,12 @@ class BuiltinRoleAssignment(pulumi.CustomResource):
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BuiltinRoleAssignmentRoleArgs']]]]] = None,
                  __props__=None):
         """
+        **Note:** This resource is going to be deprecated with Grafana 9.+, please use Role instead.
+        **Note:** This resource is available only with Grafana Enterprise 8.+.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+
         ## Example Usage
 
         ```python
@@ -138,6 +144,12 @@ class BuiltinRoleAssignment(pulumi.CustomResource):
                  args: BuiltinRoleAssignmentArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        **Note:** This resource is going to be deprecated with Grafana 9.+, please use Role instead.
+        **Note:** This resource is available only with Grafana Enterprise 8.+.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+
         ## Example Usage
 
         ```python

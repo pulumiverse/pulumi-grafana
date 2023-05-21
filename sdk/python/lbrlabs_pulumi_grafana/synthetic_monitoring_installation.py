@@ -14,45 +14,33 @@ __all__ = ['SyntheticMonitoringInstallationArgs', 'SyntheticMonitoringInstallati
 @pulumi.input_type
 class SyntheticMonitoringInstallationArgs:
     def __init__(__self__, *,
-                 logs_instance_id: pulumi.Input[int],
-                 metrics_instance_id: pulumi.Input[int],
                  metrics_publisher_key: pulumi.Input[str],
-                 stack_id: pulumi.Input[int]):
+                 stack_id: pulumi.Input[str],
+                 logs_instance_id: Optional[pulumi.Input[int]] = None,
+                 metrics_instance_id: Optional[pulumi.Input[int]] = None,
+                 stack_sm_api_url: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SyntheticMonitoringInstallation resource.
-        :param pulumi.Input[int] logs_instance_id: The ID of the logs instance to install SM on (stack's `logs_user_id` attribute).
-        :param pulumi.Input[int] metrics_instance_id: The ID of the metrics instance to install SM on (stack's `prometheus_user_id` attribute).
         :param pulumi.Input[str] metrics_publisher_key: The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
-        :param pulumi.Input[int] stack_id: The ID of the stack to install SM on.
+        :param pulumi.Input[str] stack_id: The ID or slug of the stack to install SM on.
+        :param pulumi.Input[int] logs_instance_id: Deprecated: Not used anymore.
+        :param pulumi.Input[int] metrics_instance_id: Deprecated: Not used anymore.
+        :param pulumi.Input[str] stack_sm_api_url: The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
         """
-        pulumi.set(__self__, "logs_instance_id", logs_instance_id)
-        pulumi.set(__self__, "metrics_instance_id", metrics_instance_id)
         pulumi.set(__self__, "metrics_publisher_key", metrics_publisher_key)
         pulumi.set(__self__, "stack_id", stack_id)
-
-    @property
-    @pulumi.getter(name="logsInstanceId")
-    def logs_instance_id(self) -> pulumi.Input[int]:
-        """
-        The ID of the logs instance to install SM on (stack's `logs_user_id` attribute).
-        """
-        return pulumi.get(self, "logs_instance_id")
-
-    @logs_instance_id.setter
-    def logs_instance_id(self, value: pulumi.Input[int]):
-        pulumi.set(self, "logs_instance_id", value)
-
-    @property
-    @pulumi.getter(name="metricsInstanceId")
-    def metrics_instance_id(self) -> pulumi.Input[int]:
-        """
-        The ID of the metrics instance to install SM on (stack's `prometheus_user_id` attribute).
-        """
-        return pulumi.get(self, "metrics_instance_id")
-
-    @metrics_instance_id.setter
-    def metrics_instance_id(self, value: pulumi.Input[int]):
-        pulumi.set(self, "metrics_instance_id", value)
+        if logs_instance_id is not None:
+            warnings.warn("""Not used anymore.""", DeprecationWarning)
+            pulumi.log.warn("""logs_instance_id is deprecated: Not used anymore.""")
+        if logs_instance_id is not None:
+            pulumi.set(__self__, "logs_instance_id", logs_instance_id)
+        if metrics_instance_id is not None:
+            warnings.warn("""Not used anymore.""", DeprecationWarning)
+            pulumi.log.warn("""metrics_instance_id is deprecated: Not used anymore.""")
+        if metrics_instance_id is not None:
+            pulumi.set(__self__, "metrics_instance_id", metrics_instance_id)
+        if stack_sm_api_url is not None:
+            pulumi.set(__self__, "stack_sm_api_url", stack_sm_api_url)
 
     @property
     @pulumi.getter(name="metricsPublisherKey")
@@ -68,49 +56,21 @@ class SyntheticMonitoringInstallationArgs:
 
     @property
     @pulumi.getter(name="stackId")
-    def stack_id(self) -> pulumi.Input[int]:
+    def stack_id(self) -> pulumi.Input[str]:
         """
-        The ID of the stack to install SM on.
+        The ID or slug of the stack to install SM on.
         """
         return pulumi.get(self, "stack_id")
 
     @stack_id.setter
-    def stack_id(self, value: pulumi.Input[int]):
+    def stack_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "stack_id", value)
-
-
-@pulumi.input_type
-class _SyntheticMonitoringInstallationState:
-    def __init__(__self__, *,
-                 logs_instance_id: Optional[pulumi.Input[int]] = None,
-                 metrics_instance_id: Optional[pulumi.Input[int]] = None,
-                 metrics_publisher_key: Optional[pulumi.Input[str]] = None,
-                 sm_access_token: Optional[pulumi.Input[str]] = None,
-                 stack_id: Optional[pulumi.Input[int]] = None):
-        """
-        Input properties used for looking up and filtering SyntheticMonitoringInstallation resources.
-        :param pulumi.Input[int] logs_instance_id: The ID of the logs instance to install SM on (stack's `logs_user_id` attribute).
-        :param pulumi.Input[int] metrics_instance_id: The ID of the metrics instance to install SM on (stack's `prometheus_user_id` attribute).
-        :param pulumi.Input[str] metrics_publisher_key: The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
-        :param pulumi.Input[str] sm_access_token: Generated token to access the SM API.
-        :param pulumi.Input[int] stack_id: The ID of the stack to install SM on.
-        """
-        if logs_instance_id is not None:
-            pulumi.set(__self__, "logs_instance_id", logs_instance_id)
-        if metrics_instance_id is not None:
-            pulumi.set(__self__, "metrics_instance_id", metrics_instance_id)
-        if metrics_publisher_key is not None:
-            pulumi.set(__self__, "metrics_publisher_key", metrics_publisher_key)
-        if sm_access_token is not None:
-            pulumi.set(__self__, "sm_access_token", sm_access_token)
-        if stack_id is not None:
-            pulumi.set(__self__, "stack_id", stack_id)
 
     @property
     @pulumi.getter(name="logsInstanceId")
     def logs_instance_id(self) -> Optional[pulumi.Input[int]]:
         """
-        The ID of the logs instance to install SM on (stack's `logs_user_id` attribute).
+        Deprecated: Not used anymore.
         """
         return pulumi.get(self, "logs_instance_id")
 
@@ -122,7 +82,81 @@ class _SyntheticMonitoringInstallationState:
     @pulumi.getter(name="metricsInstanceId")
     def metrics_instance_id(self) -> Optional[pulumi.Input[int]]:
         """
-        The ID of the metrics instance to install SM on (stack's `prometheus_user_id` attribute).
+        Deprecated: Not used anymore.
+        """
+        return pulumi.get(self, "metrics_instance_id")
+
+    @metrics_instance_id.setter
+    def metrics_instance_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "metrics_instance_id", value)
+
+    @property
+    @pulumi.getter(name="stackSmApiUrl")
+    def stack_sm_api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        """
+        return pulumi.get(self, "stack_sm_api_url")
+
+    @stack_sm_api_url.setter
+    def stack_sm_api_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "stack_sm_api_url", value)
+
+
+@pulumi.input_type
+class _SyntheticMonitoringInstallationState:
+    def __init__(__self__, *,
+                 logs_instance_id: Optional[pulumi.Input[int]] = None,
+                 metrics_instance_id: Optional[pulumi.Input[int]] = None,
+                 metrics_publisher_key: Optional[pulumi.Input[str]] = None,
+                 sm_access_token: Optional[pulumi.Input[str]] = None,
+                 stack_id: Optional[pulumi.Input[str]] = None,
+                 stack_sm_api_url: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering SyntheticMonitoringInstallation resources.
+        :param pulumi.Input[int] logs_instance_id: Deprecated: Not used anymore.
+        :param pulumi.Input[int] metrics_instance_id: Deprecated: Not used anymore.
+        :param pulumi.Input[str] metrics_publisher_key: The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
+        :param pulumi.Input[str] sm_access_token: Generated token to access the SM API.
+        :param pulumi.Input[str] stack_id: The ID or slug of the stack to install SM on.
+        :param pulumi.Input[str] stack_sm_api_url: The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        """
+        if logs_instance_id is not None:
+            warnings.warn("""Not used anymore.""", DeprecationWarning)
+            pulumi.log.warn("""logs_instance_id is deprecated: Not used anymore.""")
+        if logs_instance_id is not None:
+            pulumi.set(__self__, "logs_instance_id", logs_instance_id)
+        if metrics_instance_id is not None:
+            warnings.warn("""Not used anymore.""", DeprecationWarning)
+            pulumi.log.warn("""metrics_instance_id is deprecated: Not used anymore.""")
+        if metrics_instance_id is not None:
+            pulumi.set(__self__, "metrics_instance_id", metrics_instance_id)
+        if metrics_publisher_key is not None:
+            pulumi.set(__self__, "metrics_publisher_key", metrics_publisher_key)
+        if sm_access_token is not None:
+            pulumi.set(__self__, "sm_access_token", sm_access_token)
+        if stack_id is not None:
+            pulumi.set(__self__, "stack_id", stack_id)
+        if stack_sm_api_url is not None:
+            pulumi.set(__self__, "stack_sm_api_url", stack_sm_api_url)
+
+    @property
+    @pulumi.getter(name="logsInstanceId")
+    def logs_instance_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Deprecated: Not used anymore.
+        """
+        return pulumi.get(self, "logs_instance_id")
+
+    @logs_instance_id.setter
+    def logs_instance_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "logs_instance_id", value)
+
+    @property
+    @pulumi.getter(name="metricsInstanceId")
+    def metrics_instance_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Deprecated: Not used anymore.
         """
         return pulumi.get(self, "metrics_instance_id")
 
@@ -156,15 +190,27 @@ class _SyntheticMonitoringInstallationState:
 
     @property
     @pulumi.getter(name="stackId")
-    def stack_id(self) -> Optional[pulumi.Input[int]]:
+    def stack_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the stack to install SM on.
+        The ID or slug of the stack to install SM on.
         """
         return pulumi.get(self, "stack_id")
 
     @stack_id.setter
-    def stack_id(self, value: Optional[pulumi.Input[int]]):
+    def stack_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "stack_id", value)
+
+    @property
+    @pulumi.getter(name="stackSmApiUrl")
+    def stack_sm_api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        """
+        return pulumi.get(self, "stack_sm_api_url")
+
+    @stack_sm_api_url.setter
+    def stack_sm_api_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "stack_sm_api_url", value)
 
 
 class SyntheticMonitoringInstallation(pulumi.CustomResource):
@@ -175,12 +221,15 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
                  logs_instance_id: Optional[pulumi.Input[int]] = None,
                  metrics_instance_id: Optional[pulumi.Input[int]] = None,
                  metrics_publisher_key: Optional[pulumi.Input[str]] = None,
-                 stack_id: Optional[pulumi.Input[int]] = None,
+                 stack_id: Optional[pulumi.Input[str]] = None,
+                 stack_sm_api_url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Sets up Synthetic Monitoring on a Grafana cloud stack and generates a token.
         Once a Grafana Cloud stack is created, a user can either use this resource or go into the UI to install synthetic monitoring.
         This resource cannot be imported but it can be used on an existing Synthetic Monitoring installation without issues.
+
+        **Note that this resource must be used on a provider configured with Grafana Cloud credentials.**
 
         * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/installation/)
         * [API documentation](https://github.com/grafana/synthetic-monitoring-api-go-client/blob/main/docs/API.md#apiv1registerinstall)
@@ -197,19 +246,20 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
         metrics_publish = grafana.CloudApiKey("metricsPublish",
             role="MetricsPublisher",
             cloud_org_slug="<org-slug>")
-        sm_stack_synthetic_monitoring_installation = grafana.SyntheticMonitoringInstallation("smStackSyntheticMonitoringInstallation",
-            stack_id=sm_stack_cloud_stack.id,
-            metrics_instance_id=sm_stack_cloud_stack.prometheus_user_id,
-            logs_instance_id=sm_stack_cloud_stack.logs_user_id,
-            metrics_publisher_key=metrics_publish.key)
+        sm_stack_synthetic_monitoring_installation = grafana.SyntheticMonitoringInstallation("smStackSyntheticMonitoringInstallation", stack_id=sm_stack_cloud_stack.id)
+        # Create a new provider instance to interact with Synthetic Monitoring
+        sm = grafana.Provider("sm",
+            sm_access_token=sm_stack_synthetic_monitoring_installation.sm_access_token,
+            sm_url=sm_stack_synthetic_monitoring_installation.stack_sm_api_url)
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] logs_instance_id: The ID of the logs instance to install SM on (stack's `logs_user_id` attribute).
-        :param pulumi.Input[int] metrics_instance_id: The ID of the metrics instance to install SM on (stack's `prometheus_user_id` attribute).
+        :param pulumi.Input[int] logs_instance_id: Deprecated: Not used anymore.
+        :param pulumi.Input[int] metrics_instance_id: Deprecated: Not used anymore.
         :param pulumi.Input[str] metrics_publisher_key: The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
-        :param pulumi.Input[int] stack_id: The ID of the stack to install SM on.
+        :param pulumi.Input[str] stack_id: The ID or slug of the stack to install SM on.
+        :param pulumi.Input[str] stack_sm_api_url: The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
         """
         ...
     @overload
@@ -222,6 +272,8 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
         Once a Grafana Cloud stack is created, a user can either use this resource or go into the UI to install synthetic monitoring.
         This resource cannot be imported but it can be used on an existing Synthetic Monitoring installation without issues.
 
+        **Note that this resource must be used on a provider configured with Grafana Cloud credentials.**
+
         * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/installation/)
         * [API documentation](https://github.com/grafana/synthetic-monitoring-api-go-client/blob/main/docs/API.md#apiv1registerinstall)
 
@@ -237,11 +289,11 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
         metrics_publish = grafana.CloudApiKey("metricsPublish",
             role="MetricsPublisher",
             cloud_org_slug="<org-slug>")
-        sm_stack_synthetic_monitoring_installation = grafana.SyntheticMonitoringInstallation("smStackSyntheticMonitoringInstallation",
-            stack_id=sm_stack_cloud_stack.id,
-            metrics_instance_id=sm_stack_cloud_stack.prometheus_user_id,
-            logs_instance_id=sm_stack_cloud_stack.logs_user_id,
-            metrics_publisher_key=metrics_publish.key)
+        sm_stack_synthetic_monitoring_installation = grafana.SyntheticMonitoringInstallation("smStackSyntheticMonitoringInstallation", stack_id=sm_stack_cloud_stack.id)
+        # Create a new provider instance to interact with Synthetic Monitoring
+        sm = grafana.Provider("sm",
+            sm_access_token=sm_stack_synthetic_monitoring_installation.sm_access_token,
+            sm_url=sm_stack_synthetic_monitoring_installation.stack_sm_api_url)
         ```
 
         :param str resource_name: The name of the resource.
@@ -262,7 +314,8 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
                  logs_instance_id: Optional[pulumi.Input[int]] = None,
                  metrics_instance_id: Optional[pulumi.Input[int]] = None,
                  metrics_publisher_key: Optional[pulumi.Input[str]] = None,
-                 stack_id: Optional[pulumi.Input[int]] = None,
+                 stack_id: Optional[pulumi.Input[str]] = None,
+                 stack_sm_api_url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -272,11 +325,13 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SyntheticMonitoringInstallationArgs.__new__(SyntheticMonitoringInstallationArgs)
 
-            if logs_instance_id is None and not opts.urn:
-                raise TypeError("Missing required property 'logs_instance_id'")
+            if logs_instance_id is not None and not opts.urn:
+                warnings.warn("""Not used anymore.""", DeprecationWarning)
+                pulumi.log.warn("""logs_instance_id is deprecated: Not used anymore.""")
             __props__.__dict__["logs_instance_id"] = logs_instance_id
-            if metrics_instance_id is None and not opts.urn:
-                raise TypeError("Missing required property 'metrics_instance_id'")
+            if metrics_instance_id is not None and not opts.urn:
+                warnings.warn("""Not used anymore.""", DeprecationWarning)
+                pulumi.log.warn("""metrics_instance_id is deprecated: Not used anymore.""")
             __props__.__dict__["metrics_instance_id"] = metrics_instance_id
             if metrics_publisher_key is None and not opts.urn:
                 raise TypeError("Missing required property 'metrics_publisher_key'")
@@ -284,6 +339,7 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
             if stack_id is None and not opts.urn:
                 raise TypeError("Missing required property 'stack_id'")
             __props__.__dict__["stack_id"] = stack_id
+            __props__.__dict__["stack_sm_api_url"] = stack_sm_api_url
             __props__.__dict__["sm_access_token"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["metricsPublisherKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -301,7 +357,8 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
             metrics_instance_id: Optional[pulumi.Input[int]] = None,
             metrics_publisher_key: Optional[pulumi.Input[str]] = None,
             sm_access_token: Optional[pulumi.Input[str]] = None,
-            stack_id: Optional[pulumi.Input[int]] = None) -> 'SyntheticMonitoringInstallation':
+            stack_id: Optional[pulumi.Input[str]] = None,
+            stack_sm_api_url: Optional[pulumi.Input[str]] = None) -> 'SyntheticMonitoringInstallation':
         """
         Get an existing SyntheticMonitoringInstallation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -309,11 +366,12 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] logs_instance_id: The ID of the logs instance to install SM on (stack's `logs_user_id` attribute).
-        :param pulumi.Input[int] metrics_instance_id: The ID of the metrics instance to install SM on (stack's `prometheus_user_id` attribute).
+        :param pulumi.Input[int] logs_instance_id: Deprecated: Not used anymore.
+        :param pulumi.Input[int] metrics_instance_id: Deprecated: Not used anymore.
         :param pulumi.Input[str] metrics_publisher_key: The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
         :param pulumi.Input[str] sm_access_token: Generated token to access the SM API.
-        :param pulumi.Input[int] stack_id: The ID of the stack to install SM on.
+        :param pulumi.Input[str] stack_id: The ID or slug of the stack to install SM on.
+        :param pulumi.Input[str] stack_sm_api_url: The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -324,21 +382,22 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
         __props__.__dict__["metrics_publisher_key"] = metrics_publisher_key
         __props__.__dict__["sm_access_token"] = sm_access_token
         __props__.__dict__["stack_id"] = stack_id
+        __props__.__dict__["stack_sm_api_url"] = stack_sm_api_url
         return SyntheticMonitoringInstallation(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="logsInstanceId")
-    def logs_instance_id(self) -> pulumi.Output[int]:
+    def logs_instance_id(self) -> pulumi.Output[Optional[int]]:
         """
-        The ID of the logs instance to install SM on (stack's `logs_user_id` attribute).
+        Deprecated: Not used anymore.
         """
         return pulumi.get(self, "logs_instance_id")
 
     @property
     @pulumi.getter(name="metricsInstanceId")
-    def metrics_instance_id(self) -> pulumi.Output[int]:
+    def metrics_instance_id(self) -> pulumi.Output[Optional[int]]:
         """
-        The ID of the metrics instance to install SM on (stack's `prometheus_user_id` attribute).
+        Deprecated: Not used anymore.
         """
         return pulumi.get(self, "metrics_instance_id")
 
@@ -360,9 +419,17 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="stackId")
-    def stack_id(self) -> pulumi.Output[int]:
+    def stack_id(self) -> pulumi.Output[str]:
         """
-        The ID of the stack to install SM on.
+        The ID or slug of the stack to install SM on.
         """
         return pulumi.get(self, "stack_id")
+
+    @property
+    @pulumi.getter(name="stackSmApiUrl")
+    def stack_sm_api_url(self) -> pulumi.Output[str]:
+        """
+        The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        """
+        return pulumi.get(self, "stack_sm_api_url")
 

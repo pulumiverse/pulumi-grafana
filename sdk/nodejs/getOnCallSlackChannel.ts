@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/slack_channels/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
  *
  * ## Example Usage
  *
@@ -54,7 +54,7 @@ export interface GetOnCallSlackChannelResult {
     readonly slackId: string;
 }
 /**
- * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/slack_channels/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
  *
  * ## Example Usage
  *
