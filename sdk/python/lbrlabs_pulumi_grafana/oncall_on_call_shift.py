@@ -44,7 +44,7 @@ class OncallOnCallShiftArgs:
         :param pulumi.Input[str] name: The shift's name.
         :param pulumi.Input[Sequence[pulumi.Input[Sequence[pulumi.Input[str]]]]] rolling_users: The list of lists with on-call users (for rolling_users event type)
         :param pulumi.Input[int] start_rotation_from_user_index: The index of the list of users in rolling_users, from which on-call rotation starts.
-        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the _get_oncall_team_ datasource.
+        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         :param pulumi.Input[str] time_zone: The shift's timezone.  Overrides schedule's timezone.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] users: The list of on-call users (for single*event and recurrent*event event type).
         :param pulumi.Input[str] week_start: Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
@@ -227,7 +227,7 @@ class OncallOnCallShiftArgs:
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the _get_oncall_team_ datasource.
+        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         """
         return pulumi.get(self, "team_id")
 
@@ -304,7 +304,7 @@ class _OncallOnCallShiftState:
         :param pulumi.Input[Sequence[pulumi.Input[Sequence[pulumi.Input[str]]]]] rolling_users: The list of lists with on-call users (for rolling_users event type)
         :param pulumi.Input[str] start: The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
         :param pulumi.Input[int] start_rotation_from_user_index: The index of the list of users in rolling_users, from which on-call rotation starts.
-        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the _get_oncall_team_ datasource.
+        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         :param pulumi.Input[str] time_zone: The shift's timezone.  Overrides schedule's timezone.
         :param pulumi.Input[str] type: The shift's type. Can be rolling*users, recurrent*event, single_event
         :param pulumi.Input[Sequence[pulumi.Input[str]]] users: The list of on-call users (for single*event and recurrent*event event type).
@@ -479,7 +479,7 @@ class _OncallOnCallShiftState:
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the _get_oncall_team_ datasource.
+        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         """
         return pulumi.get(self, "team_id")
 
@@ -559,7 +559,7 @@ class OncallOnCallShift(pulumi.CustomResource):
                  week_start: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/on_call_shifts/)
+        * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/on_call_shifts/)
 
         ## Import
 
@@ -580,7 +580,7 @@ class OncallOnCallShift(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Sequence[pulumi.Input[str]]]]] rolling_users: The list of lists with on-call users (for rolling_users event type)
         :param pulumi.Input[str] start: The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
         :param pulumi.Input[int] start_rotation_from_user_index: The index of the list of users in rolling_users, from which on-call rotation starts.
-        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the _get_oncall_team_ datasource.
+        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         :param pulumi.Input[str] time_zone: The shift's timezone.  Overrides schedule's timezone.
         :param pulumi.Input[str] type: The shift's type. Can be rolling*users, recurrent*event, single_event
         :param pulumi.Input[Sequence[pulumi.Input[str]]] users: The list of on-call users (for single*event and recurrent*event event type).
@@ -593,7 +593,7 @@ class OncallOnCallShift(pulumi.CustomResource):
                  args: OncallOnCallShiftArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/on_call_shifts/)
+        * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/on_call_shifts/)
 
         ## Import
 
@@ -707,7 +707,7 @@ class OncallOnCallShift(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Sequence[pulumi.Input[str]]]]] rolling_users: The list of lists with on-call users (for rolling_users event type)
         :param pulumi.Input[str] start: The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
         :param pulumi.Input[int] start_rotation_from_user_index: The index of the list of users in rolling_users, from which on-call rotation starts.
-        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the _get_oncall_team_ datasource.
+        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         :param pulumi.Input[str] time_zone: The shift's timezone.  Overrides schedule's timezone.
         :param pulumi.Input[str] type: The shift's type. Can be rolling*users, recurrent*event, single_event
         :param pulumi.Input[Sequence[pulumi.Input[str]]] users: The list of on-call users (for single*event and recurrent*event event type).
@@ -827,7 +827,7 @@ class OncallOnCallShift(pulumi.CustomResource):
     @pulumi.getter(name="teamId")
     def team_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the _get_oncall_team_ datasource.
+        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         """
         return pulumi.get(self, "team_id")
 

@@ -36,6 +36,10 @@ export class MachineLearningJob extends pulumi.CustomResource {
     }
 
     /**
+     * An object representing the custom labels added on the forecast.
+     */
+    public readonly customLabels!: pulumi.Output<{[key: string]: any} | undefined>;
+    /**
      * The id of the datasource to query.
      */
     public readonly datasourceId!: pulumi.Output<number | undefined>;
@@ -93,6 +97,7 @@ export class MachineLearningJob extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MachineLearningJobState | undefined;
+            resourceInputs["customLabels"] = state ? state.customLabels : undefined;
             resourceInputs["datasourceId"] = state ? state.datasourceId : undefined;
             resourceInputs["datasourceType"] = state ? state.datasourceType : undefined;
             resourceInputs["datasourceUid"] = state ? state.datasourceUid : undefined;
@@ -115,6 +120,7 @@ export class MachineLearningJob extends pulumi.CustomResource {
             if ((!args || args.queryParams === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'queryParams'");
             }
+            resourceInputs["customLabels"] = args ? args.customLabels : undefined;
             resourceInputs["datasourceId"] = args ? args.datasourceId : undefined;
             resourceInputs["datasourceType"] = args ? args.datasourceType : undefined;
             resourceInputs["datasourceUid"] = args ? args.datasourceUid : undefined;
@@ -136,6 +142,10 @@ export class MachineLearningJob extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MachineLearningJob resources.
  */
 export interface MachineLearningJobState {
+    /**
+     * An object representing the custom labels added on the forecast.
+     */
+    customLabels?: pulumi.Input<{[key: string]: any}>;
     /**
      * The id of the datasource to query.
      */
@@ -186,6 +196,10 @@ export interface MachineLearningJobState {
  * The set of arguments for constructing a MachineLearningJob resource.
  */
 export interface MachineLearningJobArgs {
+    /**
+     * An object representing the custom labels added on the forecast.
+     */
+    customLabels?: pulumi.Input<{[key: string]: any}>;
     /**
      * The id of the datasource to query.
      */

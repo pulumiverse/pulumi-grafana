@@ -31,9 +31,9 @@ public final class ServiceAccountTokenArgs extends com.pulumi.resources.Resource
     }
 
     @Import(name="serviceAccountId", required=true)
-    private Output<Integer> serviceAccountId;
+    private Output<String> serviceAccountId;
 
-    public Output<Integer> serviceAccountId() {
+    public Output<String> serviceAccountId() {
         return this.serviceAccountId;
     }
 
@@ -81,12 +81,12 @@ public final class ServiceAccountTokenArgs extends com.pulumi.resources.Resource
             return secondsToLive(Output.of(secondsToLive));
         }
 
-        public Builder serviceAccountId(Output<Integer> serviceAccountId) {
+        public Builder serviceAccountId(Output<String> serviceAccountId) {
             $.serviceAccountId = serviceAccountId;
             return this;
         }
 
-        public Builder serviceAccountId(Integer serviceAccountId) {
+        public Builder serviceAccountId(String serviceAccountId) {
             return serviceAccountId(Output.of(serviceAccountId));
         }
 

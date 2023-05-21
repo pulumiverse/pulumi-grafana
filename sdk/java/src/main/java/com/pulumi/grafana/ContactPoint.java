@@ -92,7 +92,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that sends notifications to other Alertmanager instances.
      * 
      */
-    @Export(name="alertmanagers", type=List.class, parameters={ContactPointAlertmanager.class})
+    @Export(name="alertmanagers", refs={List.class,ContactPointAlertmanager.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointAlertmanager>> alertmanagers;
 
     /**
@@ -106,7 +106,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that sends notifications to DingDing.
      * 
      */
-    @Export(name="dingdings", type=List.class, parameters={ContactPointDingding.class})
+    @Export(name="dingdings", refs={List.class,ContactPointDingding.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointDingding>> dingdings;
 
     /**
@@ -120,7 +120,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that sends notifications as Discord messages
      * 
      */
-    @Export(name="discords", type=List.class, parameters={ContactPointDiscord.class})
+    @Export(name="discords", refs={List.class,ContactPointDiscord.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointDiscord>> discords;
 
     /**
@@ -134,7 +134,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that sends notifications to an email address.
      * 
      */
-    @Export(name="emails", type=List.class, parameters={ContactPointEmail.class})
+    @Export(name="emails", refs={List.class,ContactPointEmail.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointEmail>> emails;
 
     /**
@@ -148,7 +148,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that sends notifications to Google Chat.
      * 
      */
-    @Export(name="googlechats", type=List.class, parameters={ContactPointGooglechat.class})
+    @Export(name="googlechats", refs={List.class,ContactPointGooglechat.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointGooglechat>> googlechats;
 
     /**
@@ -162,7 +162,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that publishes notifications to Apache Kafka topics.
      * 
      */
-    @Export(name="kafkas", type=List.class, parameters={ContactPointKafka.class})
+    @Export(name="kafkas", refs={List.class,ContactPointKafka.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointKafka>> kafkas;
 
     /**
@@ -176,7 +176,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * The name of the contact point.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -190,7 +190,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that sends notifications to OpsGenie.
      * 
      */
-    @Export(name="opsgenies", type=List.class, parameters={ContactPointOpsgeny.class})
+    @Export(name="opsgenies", refs={List.class,ContactPointOpsgeny.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointOpsgeny>> opsgenies;
 
     /**
@@ -204,7 +204,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that sends notifications to PagerDuty.
      * 
      */
-    @Export(name="pagerduties", type=List.class, parameters={ContactPointPagerduty.class})
+    @Export(name="pagerduties", refs={List.class,ContactPointPagerduty.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointPagerduty>> pagerduties;
 
     /**
@@ -218,7 +218,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that sends notifications to Pushover.
      * 
      */
-    @Export(name="pushovers", type=List.class, parameters={ContactPointPushover.class})
+    @Export(name="pushovers", refs={List.class,ContactPointPushover.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointPushover>> pushovers;
 
     /**
@@ -232,7 +232,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that sends notifications to SensuGo.
      * 
      */
-    @Export(name="sensugos", type=List.class, parameters={ContactPointSensugo.class})
+    @Export(name="sensugos", refs={List.class,ContactPointSensugo.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointSensugo>> sensugos;
 
     /**
@@ -246,7 +246,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that sends notifications to Slack.
      * 
      */
-    @Export(name="slacks", type=List.class, parameters={ContactPointSlack.class})
+    @Export(name="slacks", refs={List.class,ContactPointSlack.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointSlack>> slacks;
 
     /**
@@ -260,7 +260,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that sends notifications to Microsoft Teams.
      * 
      */
-    @Export(name="teams", type=List.class, parameters={ContactPointTeam.class})
+    @Export(name="teams", refs={List.class,ContactPointTeam.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointTeam>> teams;
 
     /**
@@ -274,7 +274,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that sends notifications to Telegram.
      * 
      */
-    @Export(name="telegrams", type=List.class, parameters={ContactPointTelegram.class})
+    @Export(name="telegrams", refs={List.class,ContactPointTelegram.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointTelegram>> telegrams;
 
     /**
@@ -288,7 +288,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that sends notifications to Threema.
      * 
      */
-    @Export(name="threemas", type=List.class, parameters={ContactPointThreema.class})
+    @Export(name="threemas", refs={List.class,ContactPointThreema.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointThreema>> threemas;
 
     /**
@@ -302,7 +302,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
      * 
      */
-    @Export(name="victorops", type=List.class, parameters={ContactPointVictorop.class})
+    @Export(name="victorops", refs={List.class,ContactPointVictorop.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointVictorop>> victorops;
 
     /**
@@ -316,7 +316,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
      * 
      */
-    @Export(name="webhooks", type=List.class, parameters={ContactPointWebhook.class})
+    @Export(name="webhooks", refs={List.class,ContactPointWebhook.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointWebhook>> webhooks;
 
     /**
@@ -330,7 +330,7 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      * A contact point that sends notifications to WeCom.
      * 
      */
-    @Export(name="wecoms", type=List.class, parameters={ContactPointWecom.class})
+    @Export(name="wecoms", refs={List.class,ContactPointWecom.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ContactPointWecom>> wecoms;
 
     /**

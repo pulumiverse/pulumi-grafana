@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/escalation_chains/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
  *
  * ## Example Usage
  *
@@ -50,7 +50,7 @@ export interface GetOncallEscalationChainResult {
     readonly name: string;
 }
 /**
- * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/escalation_chains/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
  *
  * ## Example Usage
  *

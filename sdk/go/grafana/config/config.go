@@ -8,7 +8,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
 
-// API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+// the `GRAFANA_AUTH` environment variable.
 func GetAuth(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:auth")
 	if err == nil {

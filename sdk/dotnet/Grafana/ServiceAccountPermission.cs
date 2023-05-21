@@ -19,6 +19,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
     /// 
@@ -73,7 +74,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// The id of the service account.
         /// </summary>
         [Output("serviceAccountId")]
-        public Output<int> ServiceAccountId { get; private set; } = null!;
+        public Output<string> ServiceAccountId { get; private set; } = null!;
 
 
         /// <summary>
@@ -138,7 +139,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// The id of the service account.
         /// </summary>
         [Input("serviceAccountId", required: true)]
-        public Input<int> ServiceAccountId { get; set; } = null!;
+        public Input<string> ServiceAccountId { get; set; } = null!;
 
         public ServiceAccountPermissionArgs()
         {
@@ -164,7 +165,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// The id of the service account.
         /// </summary>
         [Input("serviceAccountId")]
-        public Input<int>? ServiceAccountId { get; set; }
+        public Input<string>? ServiceAccountId { get; set; }
 
         public ServiceAccountPermissionState()
         {

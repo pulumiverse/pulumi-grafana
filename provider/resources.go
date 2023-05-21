@@ -175,6 +175,10 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_cloud_access_policy_token":         {Tok: grafanaResource(grafanaMod, "CloudAccessPolicyToken")},
 			"grafana_cloud_plugin_installation":         {Tok: grafanaResource(grafanaMod, "CloudPluginInstallation")},
 			"grafana_cloud_stack":                       {Tok: grafanaResource(grafanaMod, "CloudStack")},
+			"grafana_cloud_stack_api_key":               {Tok: grafanaResource(grafanaMod, "CloudStackApiKey")},
+			"grafana_cloud_stack_service_account":       {Tok: grafanaResource(grafanaMod, "CloudStackServiceAccount")},
+			"grafana_cloud_stack_service_account_token": {Tok: grafanaResource(grafanaMod, "CloudStackServiceAccountToken")},
+
 			"grafana_contact_point":                     {Tok: grafanaResource(grafanaMod, "ContactPoint")},
 			"grafana_dashboard":                         {Tok: grafanaResource(grafanaMod, "Dashboard")},
 			"grafana_dashboard_permission":              {Tok: grafanaResource(grafanaMod, "DashboardPermission")},
@@ -206,6 +210,7 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_service_account":                   {Tok: grafanaResource(grafanaMod, "ServiceAccount")},
 			"grafana_service_account_permission":        {Tok: grafanaResource(grafanaMod, "ServiceAccountPermission")},
 			"grafana_service_account_token":             {Tok: grafanaResource(grafanaMod, "ServiceAccountToken")},
+			"grafana_slo":                               {Tok: grafanaResource(grafanaMod, "SLO")},
 			"grafana_synthetic_monitoring_check":        {Tok: grafanaResource(grafanaMod, "SyntheticMonitoringCheck")},
 			"grafana_synthetic_monitoring_installation": {Tok: grafanaResource(grafanaMod, "SyntheticMonitoringInstallation")},
 			"grafana_synthetic_monitoring_probe":        {Tok: grafanaResource(grafanaMod, "SyntheticMonitoringProbe")},
@@ -271,6 +276,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"grafana_organization_preferences": {
 				Tok: grafanaDataSource(grafanaMod, "getOrganizationPreferences"),
+			},
+			"grafana_slos": {
+				Tok: grafanaDataSource(grafanaMod, "getSlos"),
 			},
 			"grafana_synthetic_monitoring_probe": {
 				Tok: grafanaDataSource(grafanaMod, "getSyntheticMonitoringProbe"),

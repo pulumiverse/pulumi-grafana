@@ -20,6 +20,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
     /// 
@@ -27,12 +28,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// {
     ///     var foo = new Grafana.ServiceAccountToken("foo", new()
     ///     {
-    ///         ServiceAccountId = 1,
+    ///         ServiceAccountId = "1",
     ///     });
     /// 
     ///     var bar = new Grafana.ServiceAccountToken("bar", new()
     ///     {
-    ///         ServiceAccountId = 1,
+    ///         ServiceAccountId = "1",
     ///         SecondsToLive = 30,
     ///     });
     /// 
@@ -63,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<int?> SecondsToLive { get; private set; } = null!;
 
         [Output("serviceAccountId")]
-        public Output<int> ServiceAccountId { get; private set; } = null!;
+        public Output<string> ServiceAccountId { get; private set; } = null!;
 
 
         /// <summary>
@@ -123,7 +124,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<int>? SecondsToLive { get; set; }
 
         [Input("serviceAccountId", required: true)]
-        public Input<int> ServiceAccountId { get; set; } = null!;
+        public Input<string> ServiceAccountId { get; set; } = null!;
 
         public ServiceAccountTokenArgs()
         {
@@ -158,7 +159,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<int>? SecondsToLive { get; set; }
 
         [Input("serviceAccountId")]
-        public Input<int>? ServiceAccountId { get; set; }
+        public Input<string>? ServiceAccountId { get; set; }
 
         public ServiceAccountTokenState()
         {

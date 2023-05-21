@@ -50,10 +50,20 @@ public final class ContactPointWebhook {
      */
     private @Nullable Integer maxAlerts;
     /**
+     * @return Custom message. You can use template variables.
+     * 
+     */
+    private @Nullable String message;
+    /**
      * @return Additional custom properties to attach to the notifier. Defaults to `map[]`.
      * 
      */
     private @Nullable Map<String,String> settings;
+    /**
+     * @return Templated title of the message.
+     * 
+     */
+    private @Nullable String title;
     /**
      * @return The UID of the contact point.
      * 
@@ -116,11 +126,25 @@ public final class ContactPointWebhook {
         return Optional.ofNullable(this.maxAlerts);
     }
     /**
+     * @return Custom message. You can use template variables.
+     * 
+     */
+    public Optional<String> message() {
+        return Optional.ofNullable(this.message);
+    }
+    /**
      * @return Additional custom properties to attach to the notifier. Defaults to `map[]`.
      * 
      */
     public Map<String,String> settings() {
         return this.settings == null ? Map.of() : this.settings;
+    }
+    /**
+     * @return Templated title of the message.
+     * 
+     */
+    public Optional<String> title() {
+        return Optional.ofNullable(this.title);
     }
     /**
      * @return The UID of the contact point.
@@ -153,7 +177,9 @@ public final class ContactPointWebhook {
         private @Nullable Boolean disableResolveMessage;
         private @Nullable String httpMethod;
         private @Nullable Integer maxAlerts;
+        private @Nullable String message;
         private @Nullable Map<String,String> settings;
+        private @Nullable String title;
         private @Nullable String uid;
         private String url;
         public Builder() {}
@@ -166,7 +192,9 @@ public final class ContactPointWebhook {
     	      this.disableResolveMessage = defaults.disableResolveMessage;
     	      this.httpMethod = defaults.httpMethod;
     	      this.maxAlerts = defaults.maxAlerts;
+    	      this.message = defaults.message;
     	      this.settings = defaults.settings;
+    	      this.title = defaults.title;
     	      this.uid = defaults.uid;
     	      this.url = defaults.url;
         }
@@ -207,8 +235,18 @@ public final class ContactPointWebhook {
             return this;
         }
         @CustomType.Setter
+        public Builder message(@Nullable String message) {
+            this.message = message;
+            return this;
+        }
+        @CustomType.Setter
         public Builder settings(@Nullable Map<String,String> settings) {
             this.settings = settings;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder title(@Nullable String title) {
+            this.title = title;
             return this;
         }
         @CustomType.Setter
@@ -230,7 +268,9 @@ public final class ContactPointWebhook {
             o.disableResolveMessage = disableResolveMessage;
             o.httpMethod = httpMethod;
             o.maxAlerts = maxAlerts;
+            o.message = message;
             o.settings = settings;
+            o.title = title;
             o.uid = uid;
             o.url = url;
             return o;

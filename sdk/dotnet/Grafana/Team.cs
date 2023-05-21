@@ -18,6 +18,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
     /// 
@@ -45,10 +46,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string?> Email { get; private set; } = null!;
 
         /// <summary>
-        /// Ignores team members that have been added to team by [Team
-        /// Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-        /// provisioned using [grafana_team_external_group
-        /// resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+        /// Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
+        /// Team Sync can be provisioned using grafana*team*external_group resource.
+        /// Defaults to `true`.
         /// </summary>
         [Output("ignoreExternallySyncedMembers")]
         public Output<bool?> IgnoreExternallySyncedMembers { get; private set; } = null!;
@@ -65,6 +65,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        [Output("preferences")]
+        public Output<Outputs.TeamPreferences?> Preferences { get; private set; } = null!;
 
         /// <summary>
         /// The team id assigned to this team by Grafana.
@@ -126,10 +129,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? Email { get; set; }
 
         /// <summary>
-        /// Ignores team members that have been added to team by [Team
-        /// Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-        /// provisioned using [grafana_team_external_group
-        /// resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+        /// Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
+        /// Team Sync can be provisioned using grafana*team*external_group resource.
+        /// Defaults to `true`.
         /// </summary>
         [Input("ignoreExternallySyncedMembers")]
         public Input<bool>? IgnoreExternallySyncedMembers { get; set; }
@@ -152,6 +154,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("preferences")]
+        public Input<Inputs.TeamPreferencesArgs>? Preferences { get; set; }
 
         public TeamArgs()
         {
@@ -168,10 +173,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? Email { get; set; }
 
         /// <summary>
-        /// Ignores team members that have been added to team by [Team
-        /// Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-        /// provisioned using [grafana_team_external_group
-        /// resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+        /// Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
+        /// Team Sync can be provisioned using grafana*team*external_group resource.
+        /// Defaults to `true`.
         /// </summary>
         [Input("ignoreExternallySyncedMembers")]
         public Input<bool>? IgnoreExternallySyncedMembers { get; set; }
@@ -194,6 +198,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("preferences")]
+        public Input<Inputs.TeamPreferencesGetArgs>? Preferences { get; set; }
 
         /// <summary>
         /// The team id assigned to this team by Grafana.

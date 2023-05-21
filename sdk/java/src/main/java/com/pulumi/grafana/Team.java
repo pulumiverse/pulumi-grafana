@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.grafana.TeamArgs;
 import com.pulumi.grafana.Utilities;
 import com.pulumi.grafana.inputs.TeamState;
+import com.pulumi.grafana.outputs.TeamPreferences;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -59,7 +60,7 @@ public class Team extends com.pulumi.resources.CustomResource {
      * An email address for the team.
      * 
      */
-    @Export(name="email", type=String.class, parameters={})
+    @Export(name="email", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> email;
 
     /**
@@ -70,20 +71,18 @@ public class Team extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.email);
     }
     /**
-     * Ignores team members that have been added to team by [Team
-     * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-     * provisioned using [grafana_team_external_group
-     * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+     * Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
+     * Team Sync can be provisioned using grafana*team*external_group resource.
+     * Defaults to `true`.
      * 
      */
-    @Export(name="ignoreExternallySyncedMembers", type=Boolean.class, parameters={})
+    @Export(name="ignoreExternallySyncedMembers", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> ignoreExternallySyncedMembers;
 
     /**
-     * @return Ignores team members that have been added to team by [Team
-     * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-     * provisioned using [grafana_team_external_group
-     * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+     * @return Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
+     * Team Sync can be provisioned using grafana*team*external_group resource.
+     * Defaults to `true`.
      * 
      */
     public Output<Optional<Boolean>> ignoreExternallySyncedMembers() {
@@ -94,7 +93,7 @@ public class Team extends com.pulumi.resources.CustomResource {
      * to the team. Note: users specified here must already exist in Grafana.
      * 
      */
-    @Export(name="members", type=List.class, parameters={String.class})
+    @Export(name="members", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> members;
 
     /**
@@ -109,7 +108,7 @@ public class Team extends com.pulumi.resources.CustomResource {
      * The display name for the Grafana team created.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -119,11 +118,17 @@ public class Team extends com.pulumi.resources.CustomResource {
     public Output<String> name() {
         return this.name;
     }
+    @Export(name="preferences", refs={TeamPreferences.class}, tree="[0]")
+    private Output</* @Nullable */ TeamPreferences> preferences;
+
+    public Output<Optional<TeamPreferences>> preferences() {
+        return Codegen.optional(this.preferences);
+    }
     /**
      * The team id assigned to this team by Grafana.
      * 
      */
-    @Export(name="teamId", type=Integer.class, parameters={})
+    @Export(name="teamId", refs={Integer.class}, tree="[0]")
     private Output<Integer> teamId;
 
     /**

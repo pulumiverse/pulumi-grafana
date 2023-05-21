@@ -44,7 +44,10 @@ export class Playlist extends pulumi.CustomResource {
      * The name of the playlist.
      */
     public readonly name!: pulumi.Output<string>;
-    public /*out*/ readonly orgId!: pulumi.Output<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Playlist resource with the given unique name, arguments, and options.
@@ -74,7 +77,7 @@ export class Playlist extends pulumi.CustomResource {
             resourceInputs["interval"] = args ? args.interval : undefined;
             resourceInputs["items"] = args ? args.items : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["orgId"] = undefined /*out*/;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Playlist.__pulumiType, name, resourceInputs, opts);
@@ -91,6 +94,9 @@ export interface PlaylistState {
      * The name of the playlist.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
     orgId?: pulumi.Input<string>;
 }
 
@@ -104,4 +110,8 @@ export interface PlaylistArgs {
      * The name of the playlist.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
 }

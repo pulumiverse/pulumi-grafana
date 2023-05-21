@@ -19,14 +19,16 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     public static final ProviderArgs Empty = new ProviderArgs();
 
     /**
-     * API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+     * API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+     * the `GRAFANA_AUTH` environment variable.
      * 
      */
     @Import(name="auth")
     private @Nullable Output<String> auth;
 
     /**
-     * @return API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+     * @return API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+     * the `GRAFANA_AUTH` environment variable.
      * 
      */
     public Optional<Output<String>> auth() {
@@ -304,7 +306,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param auth API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+         * @param auth API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+         * the `GRAFANA_AUTH` environment variable.
          * 
          * @return builder
          * 
@@ -315,7 +318,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param auth API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+         * @param auth API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+         * the `GRAFANA_AUTH` environment variable.
          * 
          * @return builder
          * 
@@ -654,7 +658,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
             $.smUrl = Codegen.stringProp("smUrl").output().arg($.smUrl).env("GRAFANA_SM_URL").getNullable();
             $.storeDashboardSha256 = Codegen.booleanProp("storeDashboardSha256").output().arg($.storeDashboardSha256).env("GRAFANA_STORE_DASHBOARD_SHA256").getNullable();
             $.tlsCert = Codegen.stringProp("tlsCert").output().arg($.tlsCert).env("GRAFANA_TLS_CERT").getNullable();
-            $.tlsKey = Codegen.stringProp("tlsKey").output().arg($.tlsKey).env("GRAFANA_TLS_KEY").getNullable();
+            $.tlsKey = Codegen.stringProp("tlsKey").secret().arg($.tlsKey).env("GRAFANA_TLS_KEY").getNullable();
             $.url = Codegen.stringProp("url").output().arg($.url).env("GRAFANA_URL").getNullable();
             return $;
         }

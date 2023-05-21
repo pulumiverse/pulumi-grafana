@@ -54,7 +54,11 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * ```sh
- *  $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}}
+ *  $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}} // import by numerical ID
+ * ```
+ * 
+ * ```sh
+ *  $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_slug}} // or import by slug
  * ```
  * 
  */
@@ -64,7 +68,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Name of the Alertmanager instance configured for this stack.
      * 
      */
-    @Export(name="alertmanagerName", type=String.class, parameters={})
+    @Export(name="alertmanagerName", refs={String.class}, tree="[0]")
     private Output<String> alertmanagerName;
 
     /**
@@ -78,7 +82,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Status of the Alertmanager instance configured for this stack.
      * 
      */
-    @Export(name="alertmanagerStatus", type=String.class, parameters={})
+    @Export(name="alertmanagerStatus", refs={String.class}, tree="[0]")
     private Output<String> alertmanagerStatus;
 
     /**
@@ -92,7 +96,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Base URL of the Alertmanager instance configured for this stack.
      * 
      */
-    @Export(name="alertmanagerUrl", type=String.class, parameters={})
+    @Export(name="alertmanagerUrl", refs={String.class}, tree="[0]")
     private Output<String> alertmanagerUrl;
 
     /**
@@ -106,7 +110,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * User ID of the Alertmanager instance configured for this stack.
      * 
      */
-    @Export(name="alertmanagerUserId", type=Integer.class, parameters={})
+    @Export(name="alertmanagerUserId", refs={Integer.class}, tree="[0]")
     private Output<Integer> alertmanagerUserId;
 
     /**
@@ -120,7 +124,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Description of stack.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -130,49 +134,49 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
-    @Export(name="graphiteName", type=String.class, parameters={})
+    @Export(name="graphiteName", refs={String.class}, tree="[0]")
     private Output<String> graphiteName;
 
     public Output<String> graphiteName() {
         return this.graphiteName;
     }
-    @Export(name="graphiteStatus", type=String.class, parameters={})
+    @Export(name="graphiteStatus", refs={String.class}, tree="[0]")
     private Output<String> graphiteStatus;
 
     public Output<String> graphiteStatus() {
         return this.graphiteStatus;
     }
-    @Export(name="graphiteUrl", type=String.class, parameters={})
+    @Export(name="graphiteUrl", refs={String.class}, tree="[0]")
     private Output<String> graphiteUrl;
 
     public Output<String> graphiteUrl() {
         return this.graphiteUrl;
     }
-    @Export(name="graphiteUserId", type=Integer.class, parameters={})
+    @Export(name="graphiteUserId", refs={Integer.class}, tree="[0]")
     private Output<Integer> graphiteUserId;
 
     public Output<Integer> graphiteUserId() {
         return this.graphiteUserId;
     }
-    @Export(name="logsName", type=String.class, parameters={})
+    @Export(name="logsName", refs={String.class}, tree="[0]")
     private Output<String> logsName;
 
     public Output<String> logsName() {
         return this.logsName;
     }
-    @Export(name="logsStatus", type=String.class, parameters={})
+    @Export(name="logsStatus", refs={String.class}, tree="[0]")
     private Output<String> logsStatus;
 
     public Output<String> logsStatus() {
         return this.logsStatus;
     }
-    @Export(name="logsUrl", type=String.class, parameters={})
+    @Export(name="logsUrl", refs={String.class}, tree="[0]")
     private Output<String> logsUrl;
 
     public Output<String> logsUrl() {
         return this.logsUrl;
     }
-    @Export(name="logsUserId", type=Integer.class, parameters={})
+    @Export(name="logsUserId", refs={Integer.class}, tree="[0]")
     private Output<Integer> logsUserId;
 
     public Output<Integer> logsUserId() {
@@ -182,7 +186,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -196,7 +200,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Organization id to assign to this stack.
      * 
      */
-    @Export(name="orgId", type=Integer.class, parameters={})
+    @Export(name="orgId", refs={Integer.class}, tree="[0]")
     private Output<Integer> orgId;
 
     /**
@@ -210,7 +214,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Organization name to assign to this stack.
      * 
      */
-    @Export(name="orgName", type=String.class, parameters={})
+    @Export(name="orgName", refs={String.class}, tree="[0]")
     private Output<String> orgName;
 
     /**
@@ -224,7 +228,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Organization slug to assign to this stack.
      * 
      */
-    @Export(name="orgSlug", type=String.class, parameters={})
+    @Export(name="orgSlug", refs={String.class}, tree="[0]")
     private Output<String> orgSlug;
 
     /**
@@ -238,7 +242,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Prometheus name for this instance.
      * 
      */
-    @Export(name="prometheusName", type=String.class, parameters={})
+    @Export(name="prometheusName", refs={String.class}, tree="[0]")
     private Output<String> prometheusName;
 
     /**
@@ -252,7 +256,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
      * 
      */
-    @Export(name="prometheusRemoteEndpoint", type=String.class, parameters={})
+    @Export(name="prometheusRemoteEndpoint", refs={String.class}, tree="[0]")
     private Output<String> prometheusRemoteEndpoint;
 
     /**
@@ -266,7 +270,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Use this URL to send prometheus metrics to Grafana cloud
      * 
      */
-    @Export(name="prometheusRemoteWriteEndpoint", type=String.class, parameters={})
+    @Export(name="prometheusRemoteWriteEndpoint", refs={String.class}, tree="[0]")
     private Output<String> prometheusRemoteWriteEndpoint;
 
     /**
@@ -280,7 +284,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Prometheus status for this instance.
      * 
      */
-    @Export(name="prometheusStatus", type=String.class, parameters={})
+    @Export(name="prometheusStatus", refs={String.class}, tree="[0]")
     private Output<String> prometheusStatus;
 
     /**
@@ -294,7 +298,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Prometheus url for this instance.
      * 
      */
-    @Export(name="prometheusUrl", type=String.class, parameters={})
+    @Export(name="prometheusUrl", refs={String.class}, tree="[0]")
     private Output<String> prometheusUrl;
 
     /**
@@ -308,7 +312,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Prometheus user ID. Used for e.g. remote_write.
      * 
      */
-    @Export(name="prometheusUserId", type=Integer.class, parameters={})
+    @Export(name="prometheusUserId", refs={Integer.class}, tree="[0]")
     private Output<Integer> prometheusUserId;
 
     /**
@@ -322,7 +326,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
      * 
      */
-    @Export(name="regionSlug", type=String.class, parameters={})
+    @Export(name="regionSlug", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> regionSlug;
 
     /**
@@ -337,7 +341,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * available at “https://\n\n.grafana.net&#34;.
      * 
      */
-    @Export(name="slug", type=String.class, parameters={})
+    @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
     /**
@@ -352,7 +356,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Status of the stack.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -362,25 +366,25 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
     public Output<String> status() {
         return this.status;
     }
-    @Export(name="tracesName", type=String.class, parameters={})
+    @Export(name="tracesName", refs={String.class}, tree="[0]")
     private Output<String> tracesName;
 
     public Output<String> tracesName() {
         return this.tracesName;
     }
-    @Export(name="tracesStatus", type=String.class, parameters={})
+    @Export(name="tracesStatus", refs={String.class}, tree="[0]")
     private Output<String> tracesStatus;
 
     public Output<String> tracesStatus() {
         return this.tracesStatus;
     }
-    @Export(name="tracesUrl", type=String.class, parameters={})
+    @Export(name="tracesUrl", refs={String.class}, tree="[0]")
     private Output<String> tracesUrl;
 
     public Output<String> tracesUrl() {
         return this.tracesUrl;
     }
-    @Export(name="tracesUserId", type=Integer.class, parameters={})
+    @Export(name="tracesUserId", refs={Integer.class}, tree="[0]")
     private Output<Integer> tracesUserId;
 
     public Output<Integer> tracesUserId() {
@@ -390,7 +394,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
     /**
@@ -404,7 +408,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
      * 
      */
-    @Export(name="waitForReadiness", type=Boolean.class, parameters={})
+    @Export(name="waitForReadiness", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> waitForReadiness;
 
     /**
@@ -418,7 +422,7 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
      * How long to wait for readiness (if enabled). Defaults to `5m0s`.
      * 
      */
-    @Export(name="waitForReadinessTimeout", type=String.class, parameters={})
+    @Export(name="waitForReadinessTimeout", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> waitForReadinessTimeout;
 
     /**

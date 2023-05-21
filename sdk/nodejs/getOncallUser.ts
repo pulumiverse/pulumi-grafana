@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/users/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
  *
  * ## Example Usage
  *
@@ -58,7 +58,7 @@ export interface GetOncallUserResult {
     readonly username: string;
 }
 /**
- * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/users/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
  *
  * ## Example Usage
  *

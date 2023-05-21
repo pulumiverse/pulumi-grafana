@@ -653,7 +653,11 @@ class CloudStack(pulumi.CustomResource):
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}}
+         $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}} // import by numerical ID
+        ```
+
+        ```sh
+         $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_slug}} // or import by slug
         ```
 
         :param str resource_name: The name of the resource.
@@ -691,7 +695,11 @@ class CloudStack(pulumi.CustomResource):
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}}
+         $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}} // import by numerical ID
+        ```
+
+        ```sh
+         $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_slug}} // or import by slug
         ```
 
         :param str resource_name: The name of the resource.

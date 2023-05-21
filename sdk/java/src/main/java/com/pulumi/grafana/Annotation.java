@@ -54,24 +54,56 @@ import javax.annotation.Nullable;
 @ResourceType(type="grafana:index/annotation:Annotation")
 public class Annotation extends com.pulumi.resources.CustomResource {
     /**
-     * The ID of the dashboard on which to create the annotation.
+     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+     * 
+     * @deprecated
+     * Use dashboard_uid instead.
      * 
      */
-    @Export(name="dashboardId", type=Integer.class, parameters={})
+    @Deprecated /* Use dashboard_uid instead. */
+    @Export(name="dashboardId", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> dashboardId;
 
     /**
-     * @return The ID of the dashboard on which to create the annotation.
+     * @return The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
      * 
      */
     public Output<Optional<Integer>> dashboardId() {
         return Codegen.optional(this.dashboardId);
     }
     /**
+     * The ID of the dashboard on which to create the annotation.
+     * 
+     */
+    @Export(name="dashboardUid", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> dashboardUid;
+
+    /**
+     * @return The ID of the dashboard on which to create the annotation.
+     * 
+     */
+    public Output<Optional<String>> dashboardUid() {
+        return Codegen.optional(this.dashboardUid);
+    }
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Export(name="orgId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Output<Optional<String>> orgId() {
+        return Codegen.optional(this.orgId);
+    }
+    /**
      * The ID of the dashboard panel on which to create the annotation.
      * 
      */
-    @Export(name="panelId", type=Integer.class, parameters={})
+    @Export(name="panelId", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> panelId;
 
     /**
@@ -85,7 +117,7 @@ public class Annotation extends com.pulumi.resources.CustomResource {
      * The tags to associate with the annotation.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -99,7 +131,7 @@ public class Annotation extends com.pulumi.resources.CustomResource {
      * The text to associate with the annotation.
      * 
      */
-    @Export(name="text", type=String.class, parameters={})
+    @Export(name="text", refs={String.class}, tree="[0]")
     private Output<String> text;
 
     /**
@@ -113,7 +145,7 @@ public class Annotation extends com.pulumi.resources.CustomResource {
      * The RFC 3339-formatted time string indicating the annotation&#39;s time.
      * 
      */
-    @Export(name="time", type=String.class, parameters={})
+    @Export(name="time", refs={String.class}, tree="[0]")
     private Output<String> time;
 
     /**
@@ -127,7 +159,7 @@ public class Annotation extends com.pulumi.resources.CustomResource {
      * The RFC 3339-formatted time string indicating the annotation&#39;s end time.
      * 
      */
-    @Export(name="timeEnd", type=String.class, parameters={})
+    @Export(name="timeEnd", refs={String.class}, tree="[0]")
     private Output<String> timeEnd;
 
     /**

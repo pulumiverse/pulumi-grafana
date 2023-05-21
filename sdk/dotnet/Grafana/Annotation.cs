@@ -18,6 +18,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
     /// 
@@ -35,10 +36,22 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public partial class Annotation : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The ID of the dashboard on which to create the annotation.
+        /// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
         /// </summary>
         [Output("dashboardId")]
         public Output<int?> DashboardId { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the dashboard on which to create the annotation.
+        /// </summary>
+        [Output("dashboardUid")]
+        public Output<string?> DashboardUid { get; private set; } = null!;
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// The ID of the dashboard panel on which to create the annotation.
@@ -118,10 +131,22 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class AnnotationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the dashboard on which to create the annotation.
+        /// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
         /// </summary>
         [Input("dashboardId")]
         public Input<int>? DashboardId { get; set; }
+
+        /// <summary>
+        /// The ID of the dashboard on which to create the annotation.
+        /// </summary>
+        [Input("dashboardUid")]
+        public Input<string>? DashboardUid { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         /// <summary>
         /// The ID of the dashboard panel on which to create the annotation.
@@ -168,10 +193,22 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class AnnotationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the dashboard on which to create the annotation.
+        /// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
         /// </summary>
         [Input("dashboardId")]
         public Input<int>? DashboardId { get; set; }
+
+        /// <summary>
+        /// The ID of the dashboard on which to create the annotation.
+        /// </summary>
+        [Input("dashboardUid")]
+        public Input<string>? DashboardUid { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         /// <summary>
         /// The ID of the dashboard panel on which to create the annotation.

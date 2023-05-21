@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -72,7 +72,7 @@ type Dashboard struct {
 	ConfigJson pulumi.StringOutput `pulumi:"configJson"`
 	// The numeric ID of the dashboard computed by Grafana.
 	DashboardId pulumi.IntOutput `pulumi:"dashboardId"`
-	// The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+	// The id or UID of the folder to save the dashboard in.
 	Folder pulumi.StringPtrOutput `pulumi:"folder"`
 	// Set a commit message for the version history.
 	Message pulumi.StringPtrOutput `pulumi:"message"`
@@ -129,7 +129,7 @@ type dashboardState struct {
 	ConfigJson *string `pulumi:"configJson"`
 	// The numeric ID of the dashboard computed by Grafana.
 	DashboardId *int `pulumi:"dashboardId"`
-	// The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+	// The id or UID of the folder to save the dashboard in.
 	Folder *string `pulumi:"folder"`
 	// Set a commit message for the version history.
 	Message *string `pulumi:"message"`
@@ -154,7 +154,7 @@ type DashboardState struct {
 	ConfigJson pulumi.StringPtrInput
 	// The numeric ID of the dashboard computed by Grafana.
 	DashboardId pulumi.IntPtrInput
-	// The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+	// The id or UID of the folder to save the dashboard in.
 	Folder pulumi.StringPtrInput
 	// Set a commit message for the version history.
 	Message pulumi.StringPtrInput
@@ -181,7 +181,7 @@ func (DashboardState) ElementType() reflect.Type {
 type dashboardArgs struct {
 	// The complete dashboard model JSON.
 	ConfigJson string `pulumi:"configJson"`
-	// The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+	// The id or UID of the folder to save the dashboard in.
 	Folder *string `pulumi:"folder"`
 	// Set a commit message for the version history.
 	Message *string `pulumi:"message"`
@@ -195,7 +195,7 @@ type dashboardArgs struct {
 type DashboardArgs struct {
 	// The complete dashboard model JSON.
 	ConfigJson pulumi.StringInput
-	// The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+	// The id or UID of the folder to save the dashboard in.
 	Folder pulumi.StringPtrInput
 	// Set a commit message for the version history.
 	Message pulumi.StringPtrInput
@@ -302,7 +302,7 @@ func (o DashboardOutput) DashboardId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Dashboard) pulumi.IntOutput { return v.DashboardId }).(pulumi.IntOutput)
 }
 
-// The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+// The id or UID of the folder to save the dashboard in.
 func (o DashboardOutput) Folder() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Dashboard) pulumi.StringPtrOutput { return v.Folder }).(pulumi.StringPtrOutput)
 }

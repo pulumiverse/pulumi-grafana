@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +15,8 @@ import (
 type MachineLearningJob struct {
 	pulumi.CustomResourceState
 
+	// An object representing the custom labels added on the forecast.
+	CustomLabels pulumi.MapOutput `pulumi:"customLabels"`
 	// The id of the datasource to query.
 	DatasourceId pulumi.IntPtrOutput `pulumi:"datasourceId"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
@@ -78,6 +80,8 @@ func GetMachineLearningJob(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MachineLearningJob resources.
 type machineLearningJobState struct {
+	// An object representing the custom labels added on the forecast.
+	CustomLabels map[string]interface{} `pulumi:"customLabels"`
 	// The id of the datasource to query.
 	DatasourceId *int `pulumi:"datasourceId"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
@@ -103,6 +107,8 @@ type machineLearningJobState struct {
 }
 
 type MachineLearningJobState struct {
+	// An object representing the custom labels added on the forecast.
+	CustomLabels pulumi.MapInput
 	// The id of the datasource to query.
 	DatasourceId pulumi.IntPtrInput
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
@@ -132,6 +138,8 @@ func (MachineLearningJobState) ElementType() reflect.Type {
 }
 
 type machineLearningJobArgs struct {
+	// An object representing the custom labels added on the forecast.
+	CustomLabels map[string]interface{} `pulumi:"customLabels"`
 	// The id of the datasource to query.
 	DatasourceId *int `pulumi:"datasourceId"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
@@ -158,6 +166,8 @@ type machineLearningJobArgs struct {
 
 // The set of arguments for constructing a MachineLearningJob resource.
 type MachineLearningJobArgs struct {
+	// An object representing the custom labels added on the forecast.
+	CustomLabels pulumi.MapInput
 	// The id of the datasource to query.
 	DatasourceId pulumi.IntPtrInput
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
@@ -267,6 +277,11 @@ func (o MachineLearningJobOutput) ToMachineLearningJobOutput() MachineLearningJo
 
 func (o MachineLearningJobOutput) ToMachineLearningJobOutputWithContext(ctx context.Context) MachineLearningJobOutput {
 	return o
+}
+
+// An object representing the custom labels added on the forecast.
+func (o MachineLearningJobOutput) CustomLabels() pulumi.MapOutput {
+	return o.ApplyT(func(v *MachineLearningJob) pulumi.MapOutput { return v.CustomLabels }).(pulumi.MapOutput)
 }
 
 // The id of the datasource to query.

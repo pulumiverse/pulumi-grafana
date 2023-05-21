@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -20,8 +20,6 @@ import (
 // package main
 //
 // import (
-//
-//	"fmt"
 //
 //	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -38,7 +36,7 @@ import (
 //			}
 //			_, err = grafana.NewDashboard(ctx, "testFolderDashboard", &grafana.DashboardArgs{
 //				Folder:     testFolderFolder.ID(),
-//				ConfigJson: pulumi.String(fmt.Sprintf("{\n  \"title\": \"Dashboard in folder\",\n  \"uid\": \"dashboard-in-folder\"\n}\n")),
+//				ConfigJson: pulumi.String("{\n  \"title\": \"Dashboard in folder\",\n  \"uid\": \"dashboard-in-folder\"\n}\n"),
 //			})
 //			if err != nil {
 //				return err
@@ -72,6 +70,8 @@ import (
 type Folder struct {
 	pulumi.CustomResourceState
 
+	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+	PreventDestroyIfNotEmpty pulumi.BoolPtrOutput `pulumi:"preventDestroyIfNotEmpty"`
 	// The title of the folder.
 	Title pulumi.StringOutput `pulumi:"title"`
 	// Unique identifier.
@@ -113,6 +113,8 @@ func GetFolder(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Folder resources.
 type folderState struct {
+	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+	PreventDestroyIfNotEmpty *bool `pulumi:"preventDestroyIfNotEmpty"`
 	// The title of the folder.
 	Title *string `pulumi:"title"`
 	// Unique identifier.
@@ -122,6 +124,8 @@ type folderState struct {
 }
 
 type FolderState struct {
+	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+	PreventDestroyIfNotEmpty pulumi.BoolPtrInput
 	// The title of the folder.
 	Title pulumi.StringPtrInput
 	// Unique identifier.
@@ -135,6 +139,8 @@ func (FolderState) ElementType() reflect.Type {
 }
 
 type folderArgs struct {
+	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+	PreventDestroyIfNotEmpty *bool `pulumi:"preventDestroyIfNotEmpty"`
 	// The title of the folder.
 	Title string `pulumi:"title"`
 	// Unique identifier.
@@ -143,6 +149,8 @@ type folderArgs struct {
 
 // The set of arguments for constructing a Folder resource.
 type FolderArgs struct {
+	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+	PreventDestroyIfNotEmpty pulumi.BoolPtrInput
 	// The title of the folder.
 	Title pulumi.StringInput
 	// Unique identifier.
@@ -234,6 +242,11 @@ func (o FolderOutput) ToFolderOutput() FolderOutput {
 
 func (o FolderOutput) ToFolderOutputWithContext(ctx context.Context) FolderOutput {
 	return o
+}
+
+// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+func (o FolderOutput) PreventDestroyIfNotEmpty() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Folder) pulumi.BoolPtrOutput { return v.PreventDestroyIfNotEmpty }).(pulumi.BoolPtrOutput)
 }
 
 // The title of the folder.

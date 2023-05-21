@@ -67,7 +67,7 @@ export class Dashboard extends pulumi.CustomResource {
      */
     public /*out*/ readonly dashboardId!: pulumi.Output<number>;
     /**
-     * The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+     * The id or UID of the folder to save the dashboard in.
      */
     public readonly folder!: pulumi.Output<string | undefined>;
     /**
@@ -158,7 +158,7 @@ export interface DashboardState {
      */
     dashboardId?: pulumi.Input<number>;
     /**
-     * The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+     * The id or UID of the folder to save the dashboard in.
      */
     folder?: pulumi.Input<string>;
     /**
@@ -202,7 +202,7 @@ export interface DashboardArgs {
      */
     configJson: pulumi.Input<string>;
     /**
-     * The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder's id.
+     * The id or UID of the folder to save the dashboard in.
      */
     folder?: pulumi.Input<string>;
     /**

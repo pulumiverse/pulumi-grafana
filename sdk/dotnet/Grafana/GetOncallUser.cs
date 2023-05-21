@@ -13,7 +13,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public static class GetOncallUser
     {
         /// <summary>
-        /// * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/users/)
+        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -21,6 +21,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Grafana = Pulumi.Grafana;
         /// 
@@ -40,7 +41,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallUserResult>("grafana:index/getOncallUser:getOncallUser", args ?? new GetOncallUserArgs(), options.WithDefaults());
 
         /// <summary>
-        /// * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/users/)
+        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -48,6 +49,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Grafana = Pulumi.Grafana;
         /// 

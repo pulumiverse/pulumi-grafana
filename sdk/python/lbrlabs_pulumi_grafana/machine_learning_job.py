@@ -17,6 +17,7 @@ class MachineLearningJobArgs:
                  datasource_type: pulumi.Input[str],
                  metric: pulumi.Input[str],
                  query_params: pulumi.Input[Mapping[str, Any]],
+                 custom_labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  datasource_id: Optional[pulumi.Input[int]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -30,6 +31,7 @@ class MachineLearningJobArgs:
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] metric: The metric used to query the job results.
         :param pulumi.Input[Mapping[str, Any]] query_params: An object representing the query params to query Grafana with.
+        :param pulumi.Input[Mapping[str, Any]] custom_labels: An object representing the custom labels added on the forecast.
         :param pulumi.Input[int] datasource_id: The id of the datasource to query.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
@@ -42,6 +44,8 @@ class MachineLearningJobArgs:
         pulumi.set(__self__, "datasource_type", datasource_type)
         pulumi.set(__self__, "metric", metric)
         pulumi.set(__self__, "query_params", query_params)
+        if custom_labels is not None:
+            pulumi.set(__self__, "custom_labels", custom_labels)
         if datasource_id is not None:
             pulumi.set(__self__, "datasource_id", datasource_id)
         if datasource_uid is not None:
@@ -94,6 +98,18 @@ class MachineLearningJobArgs:
     @query_params.setter
     def query_params(self, value: pulumi.Input[Mapping[str, Any]]):
         pulumi.set(self, "query_params", value)
+
+    @property
+    @pulumi.getter(name="customLabels")
+    def custom_labels(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        An object representing the custom labels added on the forecast.
+        """
+        return pulumi.get(self, "custom_labels")
+
+    @custom_labels.setter
+    def custom_labels(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "custom_labels", value)
 
     @property
     @pulumi.getter(name="datasourceId")
@@ -195,6 +211,7 @@ class MachineLearningJobArgs:
 @pulumi.input_type
 class _MachineLearningJobState:
     def __init__(__self__, *,
+                 custom_labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  datasource_id: Optional[pulumi.Input[int]] = None,
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
@@ -208,6 +225,7 @@ class _MachineLearningJobState:
                  training_window: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering MachineLearningJob resources.
+        :param pulumi.Input[Mapping[str, Any]] custom_labels: An object representing the custom labels added on the forecast.
         :param pulumi.Input[int] datasource_id: The id of the datasource to query.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
@@ -220,6 +238,8 @@ class _MachineLearningJobState:
         :param pulumi.Input[Mapping[str, Any]] query_params: An object representing the query params to query Grafana with.
         :param pulumi.Input[int] training_window: The data interval in seconds to train the data on. Defaults to `7776000`.
         """
+        if custom_labels is not None:
+            pulumi.set(__self__, "custom_labels", custom_labels)
         if datasource_id is not None:
             pulumi.set(__self__, "datasource_id", datasource_id)
         if datasource_type is not None:
@@ -242,6 +262,18 @@ class _MachineLearningJobState:
             pulumi.set(__self__, "query_params", query_params)
         if training_window is not None:
             pulumi.set(__self__, "training_window", training_window)
+
+    @property
+    @pulumi.getter(name="customLabels")
+    def custom_labels(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        An object representing the custom labels added on the forecast.
+        """
+        return pulumi.get(self, "custom_labels")
+
+    @custom_labels.setter
+    def custom_labels(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "custom_labels", value)
 
     @property
     @pulumi.getter(name="datasourceId")
@@ -381,6 +413,7 @@ class MachineLearningJob(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 custom_labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  datasource_id: Optional[pulumi.Input[int]] = None,
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
@@ -398,6 +431,7 @@ class MachineLearningJob(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, Any]] custom_labels: An object representing the custom labels added on the forecast.
         :param pulumi.Input[int] datasource_id: The id of the datasource to query.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
@@ -434,6 +468,7 @@ class MachineLearningJob(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 custom_labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  datasource_id: Optional[pulumi.Input[int]] = None,
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
@@ -454,6 +489,7 @@ class MachineLearningJob(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = MachineLearningJobArgs.__new__(MachineLearningJobArgs)
 
+            __props__.__dict__["custom_labels"] = custom_labels
             __props__.__dict__["datasource_id"] = datasource_id
             if datasource_type is None and not opts.urn:
                 raise TypeError("Missing required property 'datasource_type'")
@@ -481,6 +517,7 @@ class MachineLearningJob(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            custom_labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             datasource_id: Optional[pulumi.Input[int]] = None,
             datasource_type: Optional[pulumi.Input[str]] = None,
             datasource_uid: Optional[pulumi.Input[str]] = None,
@@ -499,6 +536,7 @@ class MachineLearningJob(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, Any]] custom_labels: An object representing the custom labels added on the forecast.
         :param pulumi.Input[int] datasource_id: The id of the datasource to query.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
@@ -515,6 +553,7 @@ class MachineLearningJob(pulumi.CustomResource):
 
         __props__ = _MachineLearningJobState.__new__(_MachineLearningJobState)
 
+        __props__.__dict__["custom_labels"] = custom_labels
         __props__.__dict__["datasource_id"] = datasource_id
         __props__.__dict__["datasource_type"] = datasource_type
         __props__.__dict__["datasource_uid"] = datasource_uid
@@ -527,6 +566,14 @@ class MachineLearningJob(pulumi.CustomResource):
         __props__.__dict__["query_params"] = query_params
         __props__.__dict__["training_window"] = training_window
         return MachineLearningJob(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="customLabels")
+    def custom_labels(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+        """
+        An object representing the custom labels added on the forecast.
+        """
+        return pulumi.get(self, "custom_labels")
 
     @property
     @pulumi.getter(name="datasourceId")

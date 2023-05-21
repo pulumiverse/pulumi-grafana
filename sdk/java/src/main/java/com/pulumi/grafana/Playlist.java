@@ -13,6 +13,7 @@ import com.pulumi.grafana.inputs.PlaylistState;
 import com.pulumi.grafana.outputs.PlaylistItem;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -22,13 +23,13 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="grafana:index/playlist:Playlist")
 public class Playlist extends com.pulumi.resources.CustomResource {
-    @Export(name="interval", type=String.class, parameters={})
+    @Export(name="interval", refs={String.class}, tree="[0]")
     private Output<String> interval;
 
     public Output<String> interval() {
         return this.interval;
     }
-    @Export(name="items", type=List.class, parameters={PlaylistItem.class})
+    @Export(name="items", refs={List.class,PlaylistItem.class}, tree="[0,1]")
     private Output<List<PlaylistItem>> items;
 
     public Output<List<PlaylistItem>> items() {
@@ -38,7 +39,7 @@ public class Playlist extends com.pulumi.resources.CustomResource {
      * The name of the playlist.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -48,11 +49,19 @@ public class Playlist extends com.pulumi.resources.CustomResource {
     public Output<String> name() {
         return this.name;
     }
-    @Export(name="orgId", type=String.class, parameters={})
-    private Output<String> orgId;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Export(name="orgId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> orgId;
 
-    public Output<String> orgId() {
-        return this.orgId;
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Output<Optional<String>> orgId() {
+        return Codegen.optional(this.orgId);
     }
 
     /**

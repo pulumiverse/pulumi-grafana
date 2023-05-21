@@ -11,12 +11,13 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Grafana
 {
     /// <summary>
-    /// * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/routes/)
+    /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/routes/)
     /// 
     /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
     /// using Grafana = Pulumi.Grafana;

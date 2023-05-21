@@ -20,6 +20,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
     /// 
@@ -48,6 +49,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// The basic role of the service account in the organization.
@@ -115,6 +122,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
+        /// <summary>
         /// The basic role of the service account in the organization.
         /// </summary>
         [Input("role")]
@@ -139,6 +152,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         /// <summary>
         /// The basic role of the service account in the organization.

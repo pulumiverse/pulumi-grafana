@@ -14,6 +14,9 @@ from .cloud_access_policy_token import *
 from .cloud_api_key import *
 from .cloud_plugin_installation import *
 from .cloud_stack import *
+from .cloud_stack_api_key import *
+from .cloud_stack_service_account import *
+from .cloud_stack_service_account_token import *
 from .contact_point import *
 from .dashboard import *
 from .dashboard_permission import *
@@ -40,6 +43,7 @@ from .get_oncall_user import *
 from .get_oncall_user_group import *
 from .get_organization import *
 from .get_organization_preferences import *
+from .get_slos import *
 from .get_synthetic_monitoring_probe import *
 from .get_synthetic_monitoring_probes import *
 from .get_team import *
@@ -70,6 +74,7 @@ from .rule_group import *
 from .service_account import *
 from .service_account_permission import *
 from .service_account_token import *
+from .slo import *
 from .synthetic_monitoring_check import *
 from .synthetic_monitoring_installation import *
 from .synthetic_monitoring_probe import *
@@ -160,6 +165,30 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_grafana",
   "classes": {
    "grafana:index/cloudStack:CloudStack": "CloudStack"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/cloudStackApiKey",
+  "fqn": "lbrlabs_pulumi_grafana",
+  "classes": {
+   "grafana:index/cloudStackApiKey:CloudStackApiKey": "CloudStackApiKey"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/cloudStackServiceAccount",
+  "fqn": "lbrlabs_pulumi_grafana",
+  "classes": {
+   "grafana:index/cloudStackServiceAccount:CloudStackServiceAccount": "CloudStackServiceAccount"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/cloudStackServiceAccountToken",
+  "fqn": "lbrlabs_pulumi_grafana",
+  "classes": {
+   "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken": "CloudStackServiceAccountToken"
   }
  },
  {
@@ -384,6 +413,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_grafana",
   "classes": {
    "grafana:index/ruleGroup:RuleGroup": "RuleGroup"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/sLO",
+  "fqn": "lbrlabs_pulumi_grafana",
+  "classes": {
+   "grafana:index/sLO:SLO": "SLO"
   }
  },
  {

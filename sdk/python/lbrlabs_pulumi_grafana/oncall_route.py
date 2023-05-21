@@ -263,7 +263,7 @@ class OncallRoute(pulumi.CustomResource):
                  telegram: Optional[pulumi.Input[pulumi.InputType['OncallRouteTelegramArgs']]] = None,
                  __props__=None):
         """
-        * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/routes/)
+        * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/routes/)
 
         ## Example Usage
 
@@ -317,7 +317,7 @@ class OncallRoute(pulumi.CustomResource):
                  args: OncallRouteArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/routes/)
+        * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/routes/)
 
         ## Example Usage
 

@@ -62,7 +62,7 @@ public class CloudApiKey extends com.pulumi.resources.CustomResource {
      * The slug of the organization to create the API key in. This is the same slug as the organization name in the URL.
      * 
      */
-    @Export(name="cloudOrgSlug", type=String.class, parameters={})
+    @Export(name="cloudOrgSlug", refs={String.class}, tree="[0]")
     private Output<String> cloudOrgSlug;
 
     /**
@@ -76,7 +76,7 @@ public class CloudApiKey extends com.pulumi.resources.CustomResource {
      * The generated API key.
      * 
      */
-    @Export(name="key", type=String.class, parameters={})
+    @Export(name="key", refs={String.class}, tree="[0]")
     private Output<String> key;
 
     /**
@@ -90,7 +90,7 @@ public class CloudApiKey extends com.pulumi.resources.CustomResource {
      * Name of the API key.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -104,7 +104,7 @@ public class CloudApiKey extends com.pulumi.resources.CustomResource {
      * Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
      * 
      */
-    @Export(name="role", type=String.class, parameters={})
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     /**

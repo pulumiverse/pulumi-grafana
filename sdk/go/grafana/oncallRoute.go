@@ -7,11 +7,11 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/routes/)
+// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/routes/)
 //
 // ## Example Usage
 //

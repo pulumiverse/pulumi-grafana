@@ -17,10 +17,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages Grafana API Keys.
- * 
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/auth/)
- * 
  * ## Example Usage
  * ```java
  * package generated_program;
@@ -62,44 +58,62 @@ import javax.annotation.Nullable;
 @ResourceType(type="grafana:index/apiKey:ApiKey")
 public class ApiKey extends com.pulumi.resources.CustomResource {
     /**
-     * If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+     * Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
+     * 
+     * @deprecated
+     * Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
      * 
      */
-    @Export(name="cloudStackSlug", type=String.class, parameters={})
+    @Deprecated /* Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead */
+    @Export(name="cloudStackSlug", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> cloudStackSlug;
 
     /**
-     * @return If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+     * @return Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
      * 
      */
     public Output<Optional<String>> cloudStackSlug() {
         return Codegen.optional(this.cloudStackSlug);
     }
-    @Export(name="expiration", type=String.class, parameters={})
+    @Export(name="expiration", refs={String.class}, tree="[0]")
     private Output<String> expiration;
 
     public Output<String> expiration() {
         return this.expiration;
     }
-    @Export(name="key", type=String.class, parameters={})
+    @Export(name="key", refs={String.class}, tree="[0]")
     private Output<String> key;
 
     public Output<String> key() {
         return this.key;
     }
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     public Output<String> name() {
         return this.name;
     }
-    @Export(name="role", type=String.class, parameters={})
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Export(name="orgId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Output<Optional<String>> orgId() {
+        return Codegen.optional(this.orgId);
+    }
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     public Output<String> role() {
         return this.role;
     }
-    @Export(name="secondsToLive", type=Integer.class, parameters={})
+    @Export(name="secondsToLive", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> secondsToLive;
 
     public Output<Optional<Integer>> secondsToLive() {

@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,13 +31,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			foo, err := grafana.NewServiceAccountToken(ctx, "foo", &grafana.ServiceAccountTokenArgs{
-//				ServiceAccountId: pulumi.Int(1),
+//				ServiceAccountId: pulumi.String("1"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			bar, err := grafana.NewServiceAccountToken(ctx, "bar", &grafana.ServiceAccountTokenArgs{
-//				ServiceAccountId: pulumi.Int(1),
+//				ServiceAccountId: pulumi.String("1"),
 //				SecondsToLive:    pulumi.Int(30),
 //			})
 //			if err != nil {
@@ -58,7 +58,7 @@ type ServiceAccountToken struct {
 	Key              pulumi.StringOutput `pulumi:"key"`
 	Name             pulumi.StringOutput `pulumi:"name"`
 	SecondsToLive    pulumi.IntPtrOutput `pulumi:"secondsToLive"`
-	ServiceAccountId pulumi.IntOutput    `pulumi:"serviceAccountId"`
+	ServiceAccountId pulumi.StringOutput `pulumi:"serviceAccountId"`
 }
 
 // NewServiceAccountToken registers a new resource with the given unique name, arguments, and options.
@@ -103,7 +103,7 @@ type serviceAccountTokenState struct {
 	Key              *string `pulumi:"key"`
 	Name             *string `pulumi:"name"`
 	SecondsToLive    *int    `pulumi:"secondsToLive"`
-	ServiceAccountId *int    `pulumi:"serviceAccountId"`
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
 }
 
 type ServiceAccountTokenState struct {
@@ -112,7 +112,7 @@ type ServiceAccountTokenState struct {
 	Key              pulumi.StringPtrInput
 	Name             pulumi.StringPtrInput
 	SecondsToLive    pulumi.IntPtrInput
-	ServiceAccountId pulumi.IntPtrInput
+	ServiceAccountId pulumi.StringPtrInput
 }
 
 func (ServiceAccountTokenState) ElementType() reflect.Type {
@@ -122,14 +122,14 @@ func (ServiceAccountTokenState) ElementType() reflect.Type {
 type serviceAccountTokenArgs struct {
 	Name             *string `pulumi:"name"`
 	SecondsToLive    *int    `pulumi:"secondsToLive"`
-	ServiceAccountId int     `pulumi:"serviceAccountId"`
+	ServiceAccountId string  `pulumi:"serviceAccountId"`
 }
 
 // The set of arguments for constructing a ServiceAccountToken resource.
 type ServiceAccountTokenArgs struct {
 	Name             pulumi.StringPtrInput
 	SecondsToLive    pulumi.IntPtrInput
-	ServiceAccountId pulumi.IntInput
+	ServiceAccountId pulumi.StringInput
 }
 
 func (ServiceAccountTokenArgs) ElementType() reflect.Type {
@@ -239,8 +239,8 @@ func (o ServiceAccountTokenOutput) SecondsToLive() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ServiceAccountToken) pulumi.IntPtrOutput { return v.SecondsToLive }).(pulumi.IntPtrOutput)
 }
 
-func (o ServiceAccountTokenOutput) ServiceAccountId() pulumi.IntOutput {
-	return o.ApplyT(func(v *ServiceAccountToken) pulumi.IntOutput { return v.ServiceAccountId }).(pulumi.IntOutput)
+func (o ServiceAccountTokenOutput) ServiceAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceAccountToken) pulumi.StringOutput { return v.ServiceAccountId }).(pulumi.StringOutput)
 }
 
 type ServiceAccountTokenArrayOutput struct{ *pulumi.OutputState }

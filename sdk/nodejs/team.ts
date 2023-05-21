@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -53,10 +55,9 @@ export class Team extends pulumi.CustomResource {
      */
     public readonly email!: pulumi.Output<string | undefined>;
     /**
-     * Ignores team members that have been added to team by [Team
-     * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-     * provisioned using [grafana_team_external_group
-     * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+     * Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
+     * Team Sync can be provisioned using grafana*team*external_group resource.
+     * Defaults to `true`.
      */
     public readonly ignoreExternallySyncedMembers!: pulumi.Output<boolean | undefined>;
     /**
@@ -68,6 +69,7 @@ export class Team extends pulumi.CustomResource {
      * The display name for the Grafana team created.
      */
     public readonly name!: pulumi.Output<string>;
+    public readonly preferences!: pulumi.Output<outputs.TeamPreferences | undefined>;
     /**
      * The team id assigned to this team by Grafana.
      */
@@ -90,6 +92,7 @@ export class Team extends pulumi.CustomResource {
             resourceInputs["ignoreExternallySyncedMembers"] = state ? state.ignoreExternallySyncedMembers : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["preferences"] = state ? state.preferences : undefined;
             resourceInputs["teamId"] = state ? state.teamId : undefined;
         } else {
             const args = argsOrState as TeamArgs | undefined;
@@ -97,6 +100,7 @@ export class Team extends pulumi.CustomResource {
             resourceInputs["ignoreExternallySyncedMembers"] = args ? args.ignoreExternallySyncedMembers : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["preferences"] = args ? args.preferences : undefined;
             resourceInputs["teamId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -113,10 +117,9 @@ export interface TeamState {
      */
     email?: pulumi.Input<string>;
     /**
-     * Ignores team members that have been added to team by [Team
-     * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-     * provisioned using [grafana_team_external_group
-     * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+     * Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
+     * Team Sync can be provisioned using grafana*team*external_group resource.
+     * Defaults to `true`.
      */
     ignoreExternallySyncedMembers?: pulumi.Input<boolean>;
     /**
@@ -128,6 +131,7 @@ export interface TeamState {
      * The display name for the Grafana team created.
      */
     name?: pulumi.Input<string>;
+    preferences?: pulumi.Input<inputs.TeamPreferences>;
     /**
      * The team id assigned to this team by Grafana.
      */
@@ -143,10 +147,9 @@ export interface TeamArgs {
      */
     email?: pulumi.Input<string>;
     /**
-     * Ignores team members that have been added to team by [Team
-     * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-     * provisioned using [grafana_team_external_group
-     * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+     * Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
+     * Team Sync can be provisioned using grafana*team*external_group resource.
+     * Defaults to `true`.
      */
     ignoreExternallySyncedMembers?: pulumi.Input<boolean>;
     /**
@@ -158,4 +161,5 @@ export interface TeamArgs {
      * The display name for the Grafana team created.
      */
     name?: pulumi.Input<string>;
+    preferences?: pulumi.Input<inputs.TeamPreferences>;
 }

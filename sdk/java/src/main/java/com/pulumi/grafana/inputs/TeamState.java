@@ -5,6 +5,7 @@ package com.pulumi.grafana.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.grafana.inputs.TeamPreferencesArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -34,20 +35,18 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Ignores team members that have been added to team by [Team
-     * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-     * provisioned using [grafana_team_external_group
-     * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+     * Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
+     * Team Sync can be provisioned using grafana*team*external_group resource.
+     * Defaults to `true`.
      * 
      */
     @Import(name="ignoreExternallySyncedMembers")
     private @Nullable Output<Boolean> ignoreExternallySyncedMembers;
 
     /**
-     * @return Ignores team members that have been added to team by [Team
-     * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-     * provisioned using [grafana_team_external_group
-     * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+     * @return Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
+     * Team Sync can be provisioned using grafana*team*external_group resource.
+     * Defaults to `true`.
      * 
      */
     public Optional<Output<Boolean>> ignoreExternallySyncedMembers() {
@@ -86,6 +85,13 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.name);
     }
 
+    @Import(name="preferences")
+    private @Nullable Output<TeamPreferencesArgs> preferences;
+
+    public Optional<Output<TeamPreferencesArgs>> preferences() {
+        return Optional.ofNullable(this.preferences);
+    }
+
     /**
      * The team id assigned to this team by Grafana.
      * 
@@ -108,6 +114,7 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
         this.ignoreExternallySyncedMembers = $.ignoreExternallySyncedMembers;
         this.members = $.members;
         this.name = $.name;
+        this.preferences = $.preferences;
         this.teamId = $.teamId;
     }
 
@@ -151,10 +158,9 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ignoreExternallySyncedMembers Ignores team members that have been added to team by [Team
-         * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-         * provisioned using [grafana_team_external_group
-         * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+         * @param ignoreExternallySyncedMembers Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
+         * Team Sync can be provisioned using grafana*team*external_group resource.
+         * Defaults to `true`.
          * 
          * @return builder
          * 
@@ -165,10 +171,9 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ignoreExternallySyncedMembers Ignores team members that have been added to team by [Team
-         * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-         * provisioned using [grafana_team_external_group
-         * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+         * @param ignoreExternallySyncedMembers Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
+         * Team Sync can be provisioned using grafana*team*external_group resource.
+         * Defaults to `true`.
          * 
          * @return builder
          * 
@@ -230,6 +235,15 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        public Builder preferences(@Nullable Output<TeamPreferencesArgs> preferences) {
+            $.preferences = preferences;
+            return this;
+        }
+
+        public Builder preferences(TeamPreferencesArgs preferences) {
+            return preferences(Output.of(preferences));
         }
 
         /**

@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,8 +19,9 @@ type Playlist struct {
 	Interval pulumi.StringOutput     `pulumi:"interval"`
 	Items    PlaylistItemArrayOutput `pulumi:"items"`
 	// The name of the playlist.
-	Name  pulumi.StringOutput `pulumi:"name"`
-	OrgId pulumi.StringOutput `pulumi:"orgId"`
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 }
 
 // NewPlaylist registers a new resource with the given unique name, arguments, and options.
@@ -62,7 +63,8 @@ type playlistState struct {
 	Interval *string        `pulumi:"interval"`
 	Items    []PlaylistItem `pulumi:"items"`
 	// The name of the playlist.
-	Name  *string `pulumi:"name"`
+	Name *string `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
 }
 
@@ -70,7 +72,8 @@ type PlaylistState struct {
 	Interval pulumi.StringPtrInput
 	Items    PlaylistItemArrayInput
 	// The name of the playlist.
-	Name  pulumi.StringPtrInput
+	Name pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
 }
 
@@ -83,6 +86,8 @@ type playlistArgs struct {
 	Items    []PlaylistItem `pulumi:"items"`
 	// The name of the playlist.
 	Name *string `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 }
 
 // The set of arguments for constructing a Playlist resource.
@@ -91,6 +96,8 @@ type PlaylistArgs struct {
 	Items    PlaylistItemArrayInput
 	// The name of the playlist.
 	Name pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 }
 
 func (PlaylistArgs) ElementType() reflect.Type {
@@ -193,8 +200,9 @@ func (o PlaylistOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Playlist) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o PlaylistOutput) OrgId() pulumi.StringOutput {
-	return o.ApplyT(func(v *Playlist) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o PlaylistOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Playlist) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 type PlaylistArrayOutput struct{ *pulumi.OutputState }

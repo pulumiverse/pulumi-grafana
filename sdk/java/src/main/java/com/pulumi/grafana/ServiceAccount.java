@@ -59,7 +59,7 @@ public class ServiceAccount extends com.pulumi.resources.CustomResource {
      * The disabled status for the service account. Defaults to `false`.
      * 
      */
-    @Export(name="isDisabled", type=Boolean.class, parameters={})
+    @Export(name="isDisabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> isDisabled;
 
     /**
@@ -73,7 +73,7 @@ public class ServiceAccount extends com.pulumi.resources.CustomResource {
      * The name of the service account.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -84,10 +84,24 @@ public class ServiceAccount extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Export(name="orgId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Output<Optional<String>> orgId() {
+        return Codegen.optional(this.orgId);
+    }
+    /**
      * The basic role of the service account in the organization.
      * 
      */
-    @Export(name="role", type=String.class, parameters={})
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> role;
 
     /**

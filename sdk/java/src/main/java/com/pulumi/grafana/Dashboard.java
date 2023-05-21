@@ -69,7 +69,7 @@ public class Dashboard extends com.pulumi.resources.CustomResource {
      * The complete dashboard model JSON.
      * 
      */
-    @Export(name="configJson", type=String.class, parameters={})
+    @Export(name="configJson", refs={String.class}, tree="[0]")
     private Output<String> configJson;
 
     /**
@@ -83,7 +83,7 @@ public class Dashboard extends com.pulumi.resources.CustomResource {
      * The numeric ID of the dashboard computed by Grafana.
      * 
      */
-    @Export(name="dashboardId", type=Integer.class, parameters={})
+    @Export(name="dashboardId", refs={Integer.class}, tree="[0]")
     private Output<Integer> dashboardId;
 
     /**
@@ -94,14 +94,14 @@ public class Dashboard extends com.pulumi.resources.CustomResource {
         return this.dashboardId;
     }
     /**
-     * The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder&#39;s id.
+     * The id or UID of the folder to save the dashboard in.
      * 
      */
-    @Export(name="folder", type=String.class, parameters={})
+    @Export(name="folder", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> folder;
 
     /**
-     * @return The id of the folder to save the dashboard in. This attribute is a string to reflect the type of the folder&#39;s id.
+     * @return The id or UID of the folder to save the dashboard in.
      * 
      */
     public Output<Optional<String>> folder() {
@@ -111,7 +111,7 @@ public class Dashboard extends com.pulumi.resources.CustomResource {
      * Set a commit message for the version history.
      * 
      */
-    @Export(name="message", type=String.class, parameters={})
+    @Export(name="message", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> message;
 
     /**
@@ -125,7 +125,7 @@ public class Dashboard extends com.pulumi.resources.CustomResource {
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      * 
      */
-    @Export(name="orgId", type=String.class, parameters={})
+    @Export(name="orgId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> orgId;
 
     /**
@@ -139,7 +139,7 @@ public class Dashboard extends com.pulumi.resources.CustomResource {
      * Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
      * 
      */
-    @Export(name="overwrite", type=Boolean.class, parameters={})
+    @Export(name="overwrite", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> overwrite;
 
     /**
@@ -157,7 +157,7 @@ public class Dashboard extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* Use `uid` instead. */
-    @Export(name="slug", type=String.class, parameters={})
+    @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
     /**
@@ -171,7 +171,7 @@ public class Dashboard extends com.pulumi.resources.CustomResource {
      * The unique identifier of a dashboard. This is used to construct its URL. It&#39;s automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
      * 
      */
-    @Export(name="uid", type=String.class, parameters={})
+    @Export(name="uid", refs={String.class}, tree="[0]")
     private Output<String> uid;
 
     /**
@@ -185,7 +185,7 @@ public class Dashboard extends com.pulumi.resources.CustomResource {
      * The full URL of the dashboard.
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
     /**
@@ -199,7 +199,7 @@ public class Dashboard extends com.pulumi.resources.CustomResource {
      * Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your dashboard are not lost.
      * 
      */
-    @Export(name="version", type=Integer.class, parameters={})
+    @Export(name="version", refs={Integer.class}, tree="[0]")
     private Output<Integer> version;
 
     /**

@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-preferences/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
  * 
+ * !&gt; Deprecated: Use the `preferences` attribute of the `grafana.Team` resource instead.
+ * 
  * ## Example Usage
  * ```java
  * package generated_program;
@@ -68,7 +70,7 @@ public class TeamPreferences extends com.pulumi.resources.CustomResource {
      * The numeric ID of the dashboard to display when a team member logs in.
      * 
      */
-    @Export(name="homeDashboardId", type=Integer.class, parameters={})
+    @Export(name="homeDashboardId", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> homeDashboardId;
 
     /**
@@ -82,7 +84,7 @@ public class TeamPreferences extends com.pulumi.resources.CustomResource {
      * The numeric team ID.
      * 
      */
-    @Export(name="teamId", type=Integer.class, parameters={})
+    @Export(name="teamId", refs={Integer.class}, tree="[0]")
     private Output<Integer> teamId;
 
     /**
@@ -96,7 +98,7 @@ public class TeamPreferences extends com.pulumi.resources.CustomResource {
      * The theme for the specified team. Available themes are `light`, `dark`, or an empty string for the default theme.
      * 
      */
-    @Export(name="theme", type=String.class, parameters={})
+    @Export(name="theme", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> theme;
 
     /**
@@ -110,7 +112,7 @@ public class TeamPreferences extends com.pulumi.resources.CustomResource {
      * The timezone for the specified team. Available values are `utc`, `browser`, or an empty string for the default.
      * 
      */
-    @Export(name="timezone", type=String.class, parameters={})
+    @Export(name="timezone", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> timezone;
 
     /**

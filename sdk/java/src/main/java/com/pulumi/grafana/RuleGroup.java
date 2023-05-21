@@ -155,7 +155,7 @@ public class RuleGroup extends com.pulumi.resources.CustomResource {
      * The UID of the folder that the group belongs to.
      * 
      */
-    @Export(name="folderUid", type=String.class, parameters={})
+    @Export(name="folderUid", refs={String.class}, tree="[0]")
     private Output<String> folderUid;
 
     /**
@@ -169,7 +169,7 @@ public class RuleGroup extends com.pulumi.resources.CustomResource {
      * The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
      * 
      */
-    @Export(name="intervalSeconds", type=Integer.class, parameters={})
+    @Export(name="intervalSeconds", refs={Integer.class}, tree="[0]")
     private Output<Integer> intervalSeconds;
 
     /**
@@ -183,7 +183,7 @@ public class RuleGroup extends com.pulumi.resources.CustomResource {
      * The name of the rule group.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -197,7 +197,7 @@ public class RuleGroup extends com.pulumi.resources.CustomResource {
      * The ID of the org to which the group belongs.
      * 
      */
-    @Export(name="orgId", type=String.class, parameters={})
+    @Export(name="orgId", refs={String.class}, tree="[0]")
     private Output<String> orgId;
 
     /**
@@ -211,7 +211,7 @@ public class RuleGroup extends com.pulumi.resources.CustomResource {
      * The rules within the group.
      * 
      */
-    @Export(name="rules", type=List.class, parameters={RuleGroupRule.class})
+    @Export(name="rules", refs={List.class,RuleGroupRule.class}, tree="[0,1]")
     private Output<List<RuleGroupRule>> rules;
 
     /**

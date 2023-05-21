@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -45,7 +45,13 @@ import (
 //
 // ```sh
 //
-//	$ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}}
+//	$ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}} // import by numerical ID
+//
+// ```
+//
+// ```sh
+//
+//	$ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_slug}} // or import by slug
 //
 // ```
 type CloudStack struct {

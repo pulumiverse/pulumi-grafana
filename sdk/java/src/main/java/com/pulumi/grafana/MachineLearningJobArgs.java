@@ -20,6 +20,21 @@ public final class MachineLearningJobArgs extends com.pulumi.resources.ResourceA
     public static final MachineLearningJobArgs Empty = new MachineLearningJobArgs();
 
     /**
+     * An object representing the custom labels added on the forecast.
+     * 
+     */
+    @Import(name="customLabels")
+    private @Nullable Output<Map<String,Object>> customLabels;
+
+    /**
+     * @return An object representing the custom labels added on the forecast.
+     * 
+     */
+    public Optional<Output<Map<String,Object>>> customLabels() {
+        return Optional.ofNullable(this.customLabels);
+    }
+
+    /**
      * The id of the datasource to query.
      * 
      */
@@ -187,6 +202,7 @@ public final class MachineLearningJobArgs extends com.pulumi.resources.ResourceA
     private MachineLearningJobArgs() {}
 
     private MachineLearningJobArgs(MachineLearningJobArgs $) {
+        this.customLabels = $.customLabels;
         this.datasourceId = $.datasourceId;
         this.datasourceType = $.datasourceType;
         this.datasourceUid = $.datasourceUid;
@@ -216,6 +232,27 @@ public final class MachineLearningJobArgs extends com.pulumi.resources.ResourceA
 
         public Builder(MachineLearningJobArgs defaults) {
             $ = new MachineLearningJobArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param customLabels An object representing the custom labels added on the forecast.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customLabels(@Nullable Output<Map<String,Object>> customLabels) {
+            $.customLabels = customLabels;
+            return this;
+        }
+
+        /**
+         * @param customLabels An object representing the custom labels added on the forecast.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customLabels(Map<String,Object> customLabels) {
+            return customLabels(Output.of(customLabels));
         }
 
         /**

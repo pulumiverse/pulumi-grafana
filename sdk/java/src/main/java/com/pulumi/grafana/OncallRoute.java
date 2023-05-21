@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/routes/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/routes/)
  * 
  * ## Example Usage
  * ```java
@@ -97,7 +97,7 @@ public class OncallRoute extends com.pulumi.resources.CustomResource {
      * The ID of the escalation chain.
      * 
      */
-    @Export(name="escalationChainId", type=String.class, parameters={})
+    @Export(name="escalationChainId", refs={String.class}, tree="[0]")
     private Output<String> escalationChainId;
 
     /**
@@ -111,7 +111,7 @@ public class OncallRoute extends com.pulumi.resources.CustomResource {
      * The ID of the integration.
      * 
      */
-    @Export(name="integrationId", type=String.class, parameters={})
+    @Export(name="integrationId", refs={String.class}, tree="[0]")
     private Output<String> integrationId;
 
     /**
@@ -125,7 +125,7 @@ public class OncallRoute extends com.pulumi.resources.CustomResource {
      * MS teams-specific settings for a route.
      * 
      */
-    @Export(name="msteams", type=OncallRouteMsteams.class, parameters={})
+    @Export(name="msteams", refs={OncallRouteMsteams.class}, tree="[0]")
     private Output</* @Nullable */ OncallRouteMsteams> msteams;
 
     /**
@@ -139,7 +139,7 @@ public class OncallRoute extends com.pulumi.resources.CustomResource {
      * The position of the route (starts from 0).
      * 
      */
-    @Export(name="position", type=Integer.class, parameters={})
+    @Export(name="position", refs={Integer.class}, tree="[0]")
     private Output<Integer> position;
 
     /**
@@ -153,7 +153,7 @@ public class OncallRoute extends com.pulumi.resources.CustomResource {
      * Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
      * 
      */
-    @Export(name="routingRegex", type=String.class, parameters={})
+    @Export(name="routingRegex", refs={String.class}, tree="[0]")
     private Output<String> routingRegex;
 
     /**
@@ -167,7 +167,7 @@ public class OncallRoute extends com.pulumi.resources.CustomResource {
      * Slack-specific settings for a route.
      * 
      */
-    @Export(name="slack", type=OncallRouteSlack.class, parameters={})
+    @Export(name="slack", refs={OncallRouteSlack.class}, tree="[0]")
     private Output</* @Nullable */ OncallRouteSlack> slack;
 
     /**
@@ -181,7 +181,7 @@ public class OncallRoute extends com.pulumi.resources.CustomResource {
      * Telegram-specific settings for a route.
      * 
      */
-    @Export(name="telegram", type=OncallRouteTelegram.class, parameters={})
+    @Export(name="telegram", refs={OncallRouteTelegram.class}, tree="[0]")
     private Output</* @Nullable */ OncallRouteTelegram> telegram;
 
     /**

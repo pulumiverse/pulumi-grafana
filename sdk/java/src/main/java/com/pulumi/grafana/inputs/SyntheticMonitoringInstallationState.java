@@ -17,31 +17,47 @@ public final class SyntheticMonitoringInstallationState extends com.pulumi.resou
     public static final SyntheticMonitoringInstallationState Empty = new SyntheticMonitoringInstallationState();
 
     /**
-     * The ID of the logs instance to install SM on (stack&#39;s `logs_user_id` attribute).
+     * Deprecated: Not used anymore.
+     * 
+     * @deprecated
+     * Not used anymore.
      * 
      */
+    @Deprecated /* Not used anymore. */
     @Import(name="logsInstanceId")
     private @Nullable Output<Integer> logsInstanceId;
 
     /**
-     * @return The ID of the logs instance to install SM on (stack&#39;s `logs_user_id` attribute).
+     * @return Deprecated: Not used anymore.
+     * 
+     * @deprecated
+     * Not used anymore.
      * 
      */
+    @Deprecated /* Not used anymore. */
     public Optional<Output<Integer>> logsInstanceId() {
         return Optional.ofNullable(this.logsInstanceId);
     }
 
     /**
-     * The ID of the metrics instance to install SM on (stack&#39;s `prometheus_user_id` attribute).
+     * Deprecated: Not used anymore.
+     * 
+     * @deprecated
+     * Not used anymore.
      * 
      */
+    @Deprecated /* Not used anymore. */
     @Import(name="metricsInstanceId")
     private @Nullable Output<Integer> metricsInstanceId;
 
     /**
-     * @return The ID of the metrics instance to install SM on (stack&#39;s `prometheus_user_id` attribute).
+     * @return Deprecated: Not used anymore.
+     * 
+     * @deprecated
+     * Not used anymore.
      * 
      */
+    @Deprecated /* Not used anymore. */
     public Optional<Output<Integer>> metricsInstanceId() {
         return Optional.ofNullable(this.metricsInstanceId);
     }
@@ -77,18 +93,33 @@ public final class SyntheticMonitoringInstallationState extends com.pulumi.resou
     }
 
     /**
-     * The ID of the stack to install SM on.
+     * The ID or slug of the stack to install SM on.
      * 
      */
     @Import(name="stackId")
-    private @Nullable Output<Integer> stackId;
+    private @Nullable Output<String> stackId;
 
     /**
-     * @return The ID of the stack to install SM on.
+     * @return The ID or slug of the stack to install SM on.
      * 
      */
-    public Optional<Output<Integer>> stackId() {
+    public Optional<Output<String>> stackId() {
         return Optional.ofNullable(this.stackId);
+    }
+
+    /**
+     * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack&#39;s region, this field is computed automatically and readable.
+     * 
+     */
+    @Import(name="stackSmApiUrl")
+    private @Nullable Output<String> stackSmApiUrl;
+
+    /**
+     * @return The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack&#39;s region, this field is computed automatically and readable.
+     * 
+     */
+    public Optional<Output<String>> stackSmApiUrl() {
+        return Optional.ofNullable(this.stackSmApiUrl);
     }
 
     private SyntheticMonitoringInstallationState() {}
@@ -99,6 +130,7 @@ public final class SyntheticMonitoringInstallationState extends com.pulumi.resou
         this.metricsPublisherKey = $.metricsPublisherKey;
         this.smAccessToken = $.smAccessToken;
         this.stackId = $.stackId;
+        this.stackSmApiUrl = $.stackSmApiUrl;
     }
 
     public static Builder builder() {
@@ -120,43 +152,59 @@ public final class SyntheticMonitoringInstallationState extends com.pulumi.resou
         }
 
         /**
-         * @param logsInstanceId The ID of the logs instance to install SM on (stack&#39;s `logs_user_id` attribute).
+         * @param logsInstanceId Deprecated: Not used anymore.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Not used anymore.
+         * 
          */
+        @Deprecated /* Not used anymore. */
         public Builder logsInstanceId(@Nullable Output<Integer> logsInstanceId) {
             $.logsInstanceId = logsInstanceId;
             return this;
         }
 
         /**
-         * @param logsInstanceId The ID of the logs instance to install SM on (stack&#39;s `logs_user_id` attribute).
+         * @param logsInstanceId Deprecated: Not used anymore.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Not used anymore.
+         * 
          */
+        @Deprecated /* Not used anymore. */
         public Builder logsInstanceId(Integer logsInstanceId) {
             return logsInstanceId(Output.of(logsInstanceId));
         }
 
         /**
-         * @param metricsInstanceId The ID of the metrics instance to install SM on (stack&#39;s `prometheus_user_id` attribute).
+         * @param metricsInstanceId Deprecated: Not used anymore.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Not used anymore.
+         * 
          */
+        @Deprecated /* Not used anymore. */
         public Builder metricsInstanceId(@Nullable Output<Integer> metricsInstanceId) {
             $.metricsInstanceId = metricsInstanceId;
             return this;
         }
 
         /**
-         * @param metricsInstanceId The ID of the metrics instance to install SM on (stack&#39;s `prometheus_user_id` attribute).
+         * @param metricsInstanceId Deprecated: Not used anymore.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Not used anymore.
+         * 
          */
+        @Deprecated /* Not used anymore. */
         public Builder metricsInstanceId(Integer metricsInstanceId) {
             return metricsInstanceId(Output.of(metricsInstanceId));
         }
@@ -204,24 +252,45 @@ public final class SyntheticMonitoringInstallationState extends com.pulumi.resou
         }
 
         /**
-         * @param stackId The ID of the stack to install SM on.
+         * @param stackId The ID or slug of the stack to install SM on.
          * 
          * @return builder
          * 
          */
-        public Builder stackId(@Nullable Output<Integer> stackId) {
+        public Builder stackId(@Nullable Output<String> stackId) {
             $.stackId = stackId;
             return this;
         }
 
         /**
-         * @param stackId The ID of the stack to install SM on.
+         * @param stackId The ID or slug of the stack to install SM on.
          * 
          * @return builder
          * 
          */
-        public Builder stackId(Integer stackId) {
+        public Builder stackId(String stackId) {
             return stackId(Output.of(stackId));
+        }
+
+        /**
+         * @param stackSmApiUrl The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack&#39;s region, this field is computed automatically and readable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stackSmApiUrl(@Nullable Output<String> stackSmApiUrl) {
+            $.stackSmApiUrl = stackSmApiUrl;
+            return this;
+        }
+
+        /**
+         * @param stackSmApiUrl The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack&#39;s region, this field is computed automatically and readable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stackSmApiUrl(String stackSmApiUrl) {
+            return stackSmApiUrl(Output.of(stackSmApiUrl));
         }
 
         public SyntheticMonitoringInstallationState build() {

@@ -21,6 +21,10 @@ import javax.annotation.Nullable;
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
  * 
+ * This resource represents an instance-scoped resource and uses Grafana&#39;s admin APIs.
+ * It does not work with API tokens or service accounts which are org-scoped.
+ * You must use basic auth.
+ * 
  * ## Example Usage
  * ```java
  * package generated_program;
@@ -74,7 +78,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * this parameter keeps Terraform from removing it from organizations.
      * 
      */
-    @Export(name="adminUser", type=String.class, parameters={})
+    @Export(name="adminUser", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> adminUser;
 
     /**
@@ -92,7 +96,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * Grafana unless &#39;create_users&#39; is set to true.
      * 
      */
-    @Export(name="admins", type=List.class, parameters={String.class})
+    @Export(name="admins", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> admins;
 
     /**
@@ -114,7 +118,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * Defaults to `true`.
      * 
      */
-    @Export(name="createUsers", type=Boolean.class, parameters={})
+    @Export(name="createUsers", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> createUsers;
 
     /**
@@ -136,7 +140,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * Grafana unless &#39;create_users&#39; is set to true.
      * 
      */
-    @Export(name="editors", type=List.class, parameters={String.class})
+    @Export(name="editors", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> editors;
 
     /**
@@ -152,7 +156,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * The display name for the Grafana organization created.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -166,7 +170,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * The organization id assigned to this organization by Grafana.
      * 
      */
-    @Export(name="orgId", type=Integer.class, parameters={})
+    @Export(name="orgId", refs={Integer.class}, tree="[0]")
     private Output<Integer> orgId;
 
     /**
@@ -182,7 +186,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * Grafana unless &#39;create_users&#39; is set to true.
      * 
      */
-    @Export(name="viewers", type=List.class, parameters={String.class})
+    @Export(name="viewers", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> viewers;
 
     /**

@@ -24,14 +24,16 @@ import javax.annotation.Nullable;
 @ResourceType(type="pulumi:providers:grafana")
 public class Provider extends com.pulumi.resources.ProviderResource {
     /**
-     * API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+     * API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+     * the `GRAFANA_AUTH` environment variable.
      * 
      */
-    @Export(name="auth", type=String.class, parameters={})
+    @Export(name="auth", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> auth;
 
     /**
-     * @return API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+     * @return API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+     * the `GRAFANA_AUTH` environment variable.
      * 
      */
     public Output<Optional<String>> auth() {
@@ -42,7 +44,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * `GRAFANA_CA_CERT` environment variable.
      * 
      */
-    @Export(name="caCert", type=String.class, parameters={})
+    @Export(name="caCert", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> caCert;
 
     /**
@@ -57,7 +59,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
      * 
      */
-    @Export(name="cloudApiKey", type=String.class, parameters={})
+    @Export(name="cloudApiKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> cloudApiKey;
 
     /**
@@ -71,7 +73,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Grafana Cloud&#39;s API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
      * 
      */
-    @Export(name="cloudApiUrl", type=String.class, parameters={})
+    @Export(name="cloudApiUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> cloudApiUrl;
 
     /**
@@ -85,7 +87,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
      * 
      */
-    @Export(name="oncallAccessToken", type=String.class, parameters={})
+    @Export(name="oncallAccessToken", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oncallAccessToken;
 
     /**
@@ -99,7 +101,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
      * 
      */
-    @Export(name="oncallUrl", type=String.class, parameters={})
+    @Export(name="oncallUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oncallUrl;
 
     /**
@@ -113,7 +115,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
      * 
      */
-    @Export(name="smAccessToken", type=String.class, parameters={})
+    @Export(name="smAccessToken", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> smAccessToken;
 
     /**
@@ -133,7 +135,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * each provider ensures all providers interact with the same SM API.
      * 
      */
-    @Export(name="smUrl", type=String.class, parameters={})
+    @Export(name="smUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> smUrl;
 
     /**
@@ -154,7 +156,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * `GRAFANA_TLS_CERT` environment variable.
      * 
      */
-    @Export(name="tlsCert", type=String.class, parameters={})
+    @Export(name="tlsCert", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tlsCert;
 
     /**
@@ -170,7 +172,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * environment variable.
      * 
      */
-    @Export(name="tlsKey", type=String.class, parameters={})
+    @Export(name="tlsKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tlsKey;
 
     /**
@@ -185,7 +187,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> url;
 
     /**
@@ -228,7 +230,8 @@ public class Provider extends com.pulumi.resources.ProviderResource {
                 "auth",
                 "cloudApiKey",
                 "oncallAccessToken",
-                "smAccessToken"
+                "smAccessToken",
+                "tlsKey"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

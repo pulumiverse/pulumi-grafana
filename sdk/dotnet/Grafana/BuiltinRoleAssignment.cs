@@ -11,10 +11,17 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Grafana
 {
     /// <summary>
+    /// **Note:** This resource is going to be deprecated with Grafana 9.+, please use grafana.Role instead.
+    /// **Note:** This resource is available only with Grafana Enterprise 8.+.
+    /// 
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
     /// 

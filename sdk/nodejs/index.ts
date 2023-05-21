@@ -50,6 +50,21 @@ export type CloudStack = import("./cloudStack").CloudStack;
 export const CloudStack: typeof import("./cloudStack").CloudStack = null as any;
 utilities.lazyLoad(exports, ["CloudStack"], () => require("./cloudStack"));
 
+export { CloudStackApiKeyArgs, CloudStackApiKeyState } from "./cloudStackApiKey";
+export type CloudStackApiKey = import("./cloudStackApiKey").CloudStackApiKey;
+export const CloudStackApiKey: typeof import("./cloudStackApiKey").CloudStackApiKey = null as any;
+utilities.lazyLoad(exports, ["CloudStackApiKey"], () => require("./cloudStackApiKey"));
+
+export { CloudStackServiceAccountArgs, CloudStackServiceAccountState } from "./cloudStackServiceAccount";
+export type CloudStackServiceAccount = import("./cloudStackServiceAccount").CloudStackServiceAccount;
+export const CloudStackServiceAccount: typeof import("./cloudStackServiceAccount").CloudStackServiceAccount = null as any;
+utilities.lazyLoad(exports, ["CloudStackServiceAccount"], () => require("./cloudStackServiceAccount"));
+
+export { CloudStackServiceAccountTokenArgs, CloudStackServiceAccountTokenState } from "./cloudStackServiceAccountToken";
+export type CloudStackServiceAccountToken = import("./cloudStackServiceAccountToken").CloudStackServiceAccountToken;
+export const CloudStackServiceAccountToken: typeof import("./cloudStackServiceAccountToken").CloudStackServiceAccountToken = null as any;
+utilities.lazyLoad(exports, ["CloudStackServiceAccountToken"], () => require("./cloudStackServiceAccountToken"));
+
 export { ContactPointArgs, ContactPointState } from "./contactPoint";
 export type ContactPoint = import("./contactPoint").ContactPoint;
 export const ContactPoint: typeof import("./contactPoint").ContactPoint = null as any;
@@ -176,6 +191,10 @@ utilities.lazyLoad(exports, ["getOrganization","getOrganizationOutput"], () => r
 export { GetOrganizationPreferencesResult } from "./getOrganizationPreferences";
 export const getOrganizationPreferences: typeof import("./getOrganizationPreferences").getOrganizationPreferences = null as any;
 utilities.lazyLoad(exports, ["getOrganizationPreferences"], () => require("./getOrganizationPreferences"));
+
+export { GetSlosResult } from "./getSlos";
+export const getSlos: typeof import("./getSlos").getSlos = null as any;
+utilities.lazyLoad(exports, ["getSlos"], () => require("./getSlos"));
 
 export { GetSyntheticMonitoringProbeArgs, GetSyntheticMonitoringProbeResult, GetSyntheticMonitoringProbeOutputArgs } from "./getSyntheticMonitoringProbe";
 export const getSyntheticMonitoringProbe: typeof import("./getSyntheticMonitoringProbe").getSyntheticMonitoringProbe = null as any;
@@ -326,6 +345,11 @@ export type ServiceAccountToken = import("./serviceAccountToken").ServiceAccount
 export const ServiceAccountToken: typeof import("./serviceAccountToken").ServiceAccountToken = null as any;
 utilities.lazyLoad(exports, ["ServiceAccountToken"], () => require("./serviceAccountToken"));
 
+export { SLOArgs, SLOState } from "./slo";
+export type SLO = import("./slo").SLO;
+export const SLO: typeof import("./slo").SLO = null as any;
+utilities.lazyLoad(exports, ["SLO"], () => require("./slo"));
+
 export { SyntheticMonitoringCheckArgs, SyntheticMonitoringCheckState } from "./syntheticMonitoringCheck";
 export type SyntheticMonitoringCheck = import("./syntheticMonitoringCheck").SyntheticMonitoringCheck;
 export const SyntheticMonitoringCheck: typeof import("./syntheticMonitoringCheck").SyntheticMonitoringCheck = null as any;
@@ -393,6 +417,12 @@ const _module = {
                 return new CloudPluginInstallation(name, <any>undefined, { urn })
             case "grafana:index/cloudStack:CloudStack":
                 return new CloudStack(name, <any>undefined, { urn })
+            case "grafana:index/cloudStackApiKey:CloudStackApiKey":
+                return new CloudStackApiKey(name, <any>undefined, { urn })
+            case "grafana:index/cloudStackServiceAccount:CloudStackServiceAccount":
+                return new CloudStackServiceAccount(name, <any>undefined, { urn })
+            case "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken":
+                return new CloudStackServiceAccountToken(name, <any>undefined, { urn })
             case "grafana:index/contactPoint:ContactPoint":
                 return new ContactPoint(name, <any>undefined, { urn })
             case "grafana:index/dashboard:Dashboard":
@@ -449,6 +479,8 @@ const _module = {
                 return new RoleAssignment(name, <any>undefined, { urn })
             case "grafana:index/ruleGroup:RuleGroup":
                 return new RuleGroup(name, <any>undefined, { urn })
+            case "grafana:index/sLO:SLO":
+                return new SLO(name, <any>undefined, { urn })
             case "grafana:index/serviceAccount:ServiceAccount":
                 return new ServiceAccount(name, <any>undefined, { urn })
             case "grafana:index/serviceAccountPermission:ServiceAccountPermission":
@@ -483,6 +515,9 @@ pulumi.runtime.registerResourceModule("grafana", "index/cloudAccessPolicyToken",
 pulumi.runtime.registerResourceModule("grafana", "index/cloudApiKey", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/cloudPluginInstallation", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/cloudStack", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/cloudStackApiKey", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/cloudStackServiceAccount", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/cloudStackServiceAccountToken", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/contactPoint", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dashboard", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dashboardPermission", _module)
@@ -511,6 +546,7 @@ pulumi.runtime.registerResourceModule("grafana", "index/report", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/role", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/roleAssignment", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/ruleGroup", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/sLO", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/serviceAccount", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/serviceAccountPermission", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/serviceAccountToken", _module)

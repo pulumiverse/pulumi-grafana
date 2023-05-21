@@ -83,7 +83,7 @@ class AwaitableGetOncallUserResult(GetOncallUserResult):
 def get_oncall_user(username: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallUserResult:
     """
-    * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/users/)
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
 
     ## Example Usage
 
@@ -113,7 +113,7 @@ def get_oncall_user(username: Optional[str] = None,
 def get_oncall_user_output(username: Optional[pulumi.Input[str]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallUserResult]:
     """
-    * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/users/)
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
 
     ## Example Usage
 

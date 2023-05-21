@@ -18,15 +18,19 @@ class PlaylistArgs:
     def __init__(__self__, *,
                  interval: pulumi.Input[str],
                  items: pulumi.Input[Sequence[pulumi.Input['PlaylistItemArgs']]],
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Playlist resource.
         :param pulumi.Input[str] name: The name of the playlist.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         pulumi.set(__self__, "interval", interval)
         pulumi.set(__self__, "items", items)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
 
     @property
     @pulumi.getter
@@ -58,6 +62,18 @@ class PlaylistArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
+
 
 @pulumi.input_type
 class _PlaylistState:
@@ -69,6 +85,7 @@ class _PlaylistState:
         """
         Input properties used for looking up and filtering Playlist resources.
         :param pulumi.Input[str] name: The name of the playlist.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         if interval is not None:
             pulumi.set(__self__, "interval", interval)
@@ -112,6 +129,9 @@ class _PlaylistState:
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
@@ -127,6 +147,7 @@ class Playlist(pulumi.CustomResource):
                  interval: Optional[pulumi.Input[str]] = None,
                  items: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PlaylistItemArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
@@ -135,6 +156,7 @@ class Playlist(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the playlist.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         ...
     @overload
@@ -164,6 +186,7 @@ class Playlist(pulumi.CustomResource):
                  interval: Optional[pulumi.Input[str]] = None,
                  items: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PlaylistItemArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -180,7 +203,7 @@ class Playlist(pulumi.CustomResource):
                 raise TypeError("Missing required property 'items'")
             __props__.__dict__["items"] = items
             __props__.__dict__["name"] = name
-            __props__.__dict__["org_id"] = None
+            __props__.__dict__["org_id"] = org_id
         super(Playlist, __self__).__init__(
             'grafana:index/playlist:Playlist',
             resource_name,
@@ -203,6 +226,7 @@ class Playlist(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the playlist.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -234,6 +258,9 @@ class Playlist(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> pulumi.Output[str]:
+    def org_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
         return pulumi.get(self, "org_id")
 

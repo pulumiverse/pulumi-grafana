@@ -71,7 +71,7 @@ public class LibraryPanel extends com.pulumi.resources.CustomResource {
      * Timestamp when the library panel was created.
      * 
      */
-    @Export(name="created", type=String.class, parameters={})
+    @Export(name="created", refs={String.class}, tree="[0]")
     private Output<String> created;
 
     /**
@@ -85,7 +85,7 @@ public class LibraryPanel extends com.pulumi.resources.CustomResource {
      * Numerical IDs of Grafana dashboards containing the library panel.
      * 
      */
-    @Export(name="dashboardIds", type=List.class, parameters={Integer.class})
+    @Export(name="dashboardIds", refs={List.class,Integer.class}, tree="[0,1]")
     private Output<List<Integer>> dashboardIds;
 
     /**
@@ -99,7 +99,7 @@ public class LibraryPanel extends com.pulumi.resources.CustomResource {
      * Description of the library panel.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
@@ -113,7 +113,7 @@ public class LibraryPanel extends com.pulumi.resources.CustomResource {
      * ID of the folder where the library panel is stored.
      * 
      */
-    @Export(name="folderId", type=Integer.class, parameters={})
+    @Export(name="folderId", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> folderId;
 
     /**
@@ -127,7 +127,7 @@ public class LibraryPanel extends com.pulumi.resources.CustomResource {
      * Name of the folder containing the library panel.
      * 
      */
-    @Export(name="folderName", type=String.class, parameters={})
+    @Export(name="folderName", refs={String.class}, tree="[0]")
     private Output<String> folderName;
 
     /**
@@ -141,7 +141,7 @@ public class LibraryPanel extends com.pulumi.resources.CustomResource {
      * Unique ID (UID) of the folder containing the library panel.
      * 
      */
-    @Export(name="folderUid", type=String.class, parameters={})
+    @Export(name="folderUid", refs={String.class}, tree="[0]")
     private Output<String> folderUid;
 
     /**
@@ -155,7 +155,7 @@ public class LibraryPanel extends com.pulumi.resources.CustomResource {
      * The JSON model for the library panel.
      * 
      */
-    @Export(name="modelJson", type=String.class, parameters={})
+    @Export(name="modelJson", refs={String.class}, tree="[0]")
     private Output<String> modelJson;
 
     /**
@@ -169,7 +169,7 @@ public class LibraryPanel extends com.pulumi.resources.CustomResource {
      * Name of the library panel.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -183,7 +183,7 @@ public class LibraryPanel extends com.pulumi.resources.CustomResource {
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      * 
      */
-    @Export(name="orgId", type=String.class, parameters={})
+    @Export(name="orgId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> orgId;
 
     /**
@@ -197,7 +197,7 @@ public class LibraryPanel extends com.pulumi.resources.CustomResource {
      * The numeric ID of the library panel computed by Grafana.
      * 
      */
-    @Export(name="panelId", type=Integer.class, parameters={})
+    @Export(name="panelId", refs={Integer.class}, tree="[0]")
     private Output<Integer> panelId;
 
     /**
@@ -211,7 +211,7 @@ public class LibraryPanel extends com.pulumi.resources.CustomResource {
      * Type of the library panel (eg. text).
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -225,7 +225,7 @@ public class LibraryPanel extends com.pulumi.resources.CustomResource {
      * The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
      * 
      */
-    @Export(name="uid", type=String.class, parameters={})
+    @Export(name="uid", refs={String.class}, tree="[0]")
     private Output<String> uid;
 
     /**
@@ -239,7 +239,7 @@ public class LibraryPanel extends com.pulumi.resources.CustomResource {
      * Timestamp when the library panel was last modified.
      * 
      */
-    @Export(name="updated", type=String.class, parameters={})
+    @Export(name="updated", refs={String.class}, tree="[0]")
     private Output<String> updated;
 
     /**
@@ -253,7 +253,7 @@ public class LibraryPanel extends com.pulumi.resources.CustomResource {
      * Version of the library panel.
      * 
      */
-    @Export(name="version", type=Integer.class, parameters={})
+    @Export(name="version", refs={Integer.class}, tree="[0]")
     private Output<Integer> version;
 
     /**

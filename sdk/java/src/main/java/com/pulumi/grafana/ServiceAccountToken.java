@@ -63,40 +63,40 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="grafana:index/serviceAccountToken:ServiceAccountToken")
 public class ServiceAccountToken extends com.pulumi.resources.CustomResource {
-    @Export(name="expiration", type=String.class, parameters={})
+    @Export(name="expiration", refs={String.class}, tree="[0]")
     private Output<String> expiration;
 
     public Output<String> expiration() {
         return this.expiration;
     }
-    @Export(name="hasExpired", type=Boolean.class, parameters={})
+    @Export(name="hasExpired", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> hasExpired;
 
     public Output<Boolean> hasExpired() {
         return this.hasExpired;
     }
-    @Export(name="key", type=String.class, parameters={})
+    @Export(name="key", refs={String.class}, tree="[0]")
     private Output<String> key;
 
     public Output<String> key() {
         return this.key;
     }
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     public Output<String> name() {
         return this.name;
     }
-    @Export(name="secondsToLive", type=Integer.class, parameters={})
+    @Export(name="secondsToLive", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> secondsToLive;
 
     public Output<Optional<Integer>> secondsToLive() {
         return Codegen.optional(this.secondsToLive);
     }
-    @Export(name="serviceAccountId", type=Integer.class, parameters={})
-    private Output<Integer> serviceAccountId;
+    @Export(name="serviceAccountId", refs={String.class}, tree="[0]")
+    private Output<String> serviceAccountId;
 
-    public Output<Integer> serviceAccountId() {
+    public Output<String> serviceAccountId() {
         return this.serviceAccountId;
     }
 

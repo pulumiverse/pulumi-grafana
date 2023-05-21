@@ -54,7 +54,13 @@ __all__ = [
     'OncallIntegrationDefaultRouteSlackArgs',
     'OncallIntegrationDefaultRouteTelegramArgs',
     'OncallIntegrationTemplatesArgs',
+    'OncallIntegrationTemplatesEmailArgs',
+    'OncallIntegrationTemplatesMicrosoftTeamsArgs',
+    'OncallIntegrationTemplatesPhoneCallArgs',
     'OncallIntegrationTemplatesSlackArgs',
+    'OncallIntegrationTemplatesSmsArgs',
+    'OncallIntegrationTemplatesTelegramArgs',
+    'OncallIntegrationTemplatesWebArgs',
     'OncallRouteMsteamsArgs',
     'OncallRouteSlackArgs',
     'OncallRouteTelegramArgs',
@@ -66,6 +72,19 @@ __all__ = [
     'RuleGroupRuleArgs',
     'RuleGroupRuleDataArgs',
     'RuleGroupRuleDataRelativeTimeRangeArgs',
+    'SLOAlertingArgs',
+    'SLOAlertingAnnotationArgs',
+    'SLOAlertingFastburnArgs',
+    'SLOAlertingFastburnAnnotationArgs',
+    'SLOAlertingFastburnLabelArgs',
+    'SLOAlertingLabelArgs',
+    'SLOAlertingSlowburnArgs',
+    'SLOAlertingSlowburnAnnotationArgs',
+    'SLOAlertingSlowburnLabelArgs',
+    'SLOLabelArgs',
+    'SLOObjectiveArgs',
+    'SLOQueryArgs',
+    'SLOQueryFreeformArgs',
     'ServiceAccountPermissionPermissionArgs',
     'SyntheticMonitoringCheckSettingsArgs',
     'SyntheticMonitoringCheckSettingsDnsArgs',
@@ -82,6 +101,7 @@ __all__ = [
     'SyntheticMonitoringCheckSettingsTcpQueryResponseArgs',
     'SyntheticMonitoringCheckSettingsTcpTlsConfigArgs',
     'SyntheticMonitoringCheckSettingsTracerouteArgs',
+    'TeamPreferencesArgs',
 ]
 
 @pulumi.input_type
@@ -970,6 +990,7 @@ class ContactPointPagerdutyArgs:
                  integration_key: pulumi.Input[str],
                  class_: Optional[pulumi.Input[str]] = None,
                  component: Optional[pulumi.Input[str]] = None,
+                 details: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  disable_resolve_message: Optional[pulumi.Input[bool]] = None,
                  group: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -980,6 +1001,7 @@ class ContactPointPagerdutyArgs:
         :param pulumi.Input[str] integration_key: The PagerDuty API key.
         :param pulumi.Input[str] class_: The class or type of event, for example `ping failure`.
         :param pulumi.Input[str] component: The component being affected by the event.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] details: A set of arbitrary key/value pairs that provide further detail about the incident.
         :param pulumi.Input[bool] disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param pulumi.Input[str] group: The group to which the provided component belongs to.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
@@ -992,6 +1014,8 @@ class ContactPointPagerdutyArgs:
             pulumi.set(__self__, "class_", class_)
         if component is not None:
             pulumi.set(__self__, "component", component)
+        if details is not None:
+            pulumi.set(__self__, "details", details)
         if disable_resolve_message is not None:
             pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
         if group is not None:
@@ -1040,6 +1064,18 @@ class ContactPointPagerdutyArgs:
     @component.setter
     def component(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "component", value)
+
+    @property
+    @pulumi.getter
+    def details(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of arbitrary key/value pairs that provide further detail about the incident.
+        """
+        return pulumi.get(self, "details")
+
+    @details.setter
+    def details(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "details", value)
 
     @property
     @pulumi.getter(name="disableResolveMessage")
@@ -2155,7 +2191,9 @@ class ContactPointWebhookArgs:
                  disable_resolve_message: Optional[pulumi.Input[bool]] = None,
                  http_method: Optional[pulumi.Input[str]] = None,
                  max_alerts: Optional[pulumi.Input[int]] = None,
+                 message: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] url: The URL to send webhook requests to.
@@ -2166,7 +2204,9 @@ class ContactPointWebhookArgs:
         :param pulumi.Input[bool] disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param pulumi.Input[str] http_method: The HTTP method to use in the request. Defaults to `POST`.
         :param pulumi.Input[int] max_alerts: The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
+        :param pulumi.Input[str] message: Custom message. You can use template variables.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        :param pulumi.Input[str] title: Templated title of the message.
         :param pulumi.Input[str] uid: The UID of the contact point.
         """
         pulumi.set(__self__, "url", url)
@@ -2184,8 +2224,12 @@ class ContactPointWebhookArgs:
             pulumi.set(__self__, "http_method", http_method)
         if max_alerts is not None:
             pulumi.set(__self__, "max_alerts", max_alerts)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
 
@@ -2287,6 +2331,18 @@ class ContactPointWebhookArgs:
 
     @property
     @pulumi.getter
+    def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Custom message. You can use template variables.
+        """
+        return pulumi.get(self, "message")
+
+    @message.setter
+    def message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter
     def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Additional custom properties to attach to the notifier. Defaults to `map[]`.
@@ -2296,6 +2352,18 @@ class ContactPointWebhookArgs:
     @settings.setter
     def settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "settings", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        Templated title of the message.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
 
     @property
     @pulumi.getter
@@ -5000,20 +5068,76 @@ class OncallIntegrationDefaultRouteTelegramArgs:
 @pulumi.input_type
 class OncallIntegrationTemplatesArgs:
     def __init__(__self__, *,
+                 acknowledge_signal: Optional[pulumi.Input[str]] = None,
+                 email: Optional[pulumi.Input['OncallIntegrationTemplatesEmailArgs']] = None,
                  grouping_key: Optional[pulumi.Input[str]] = None,
+                 microsoft_teams: Optional[pulumi.Input['OncallIntegrationTemplatesMicrosoftTeamsArgs']] = None,
+                 phone_call: Optional[pulumi.Input['OncallIntegrationTemplatesPhoneCallArgs']] = None,
                  resolve_signal: Optional[pulumi.Input[str]] = None,
-                 slack: Optional[pulumi.Input['OncallIntegrationTemplatesSlackArgs']] = None):
+                 slack: Optional[pulumi.Input['OncallIntegrationTemplatesSlackArgs']] = None,
+                 sms: Optional[pulumi.Input['OncallIntegrationTemplatesSmsArgs']] = None,
+                 source_link: Optional[pulumi.Input[str]] = None,
+                 telegram: Optional[pulumi.Input['OncallIntegrationTemplatesTelegramArgs']] = None,
+                 web: Optional[pulumi.Input['OncallIntegrationTemplatesWebArgs']] = None):
         """
+        :param pulumi.Input[str] acknowledge_signal: Template for sending a signal to acknowledge the Incident.
+        :param pulumi.Input['OncallIntegrationTemplatesEmailArgs'] email: Templates for Email.
         :param pulumi.Input[str] grouping_key: Template for the key by which alerts are grouped.
+        :param pulumi.Input['OncallIntegrationTemplatesMicrosoftTeamsArgs'] microsoft_teams: Templates for Microsoft Teams.
+        :param pulumi.Input['OncallIntegrationTemplatesPhoneCallArgs'] phone_call: Templates for Phone Call.
         :param pulumi.Input[str] resolve_signal: Template for sending a signal to resolve the Incident.
         :param pulumi.Input['OncallIntegrationTemplatesSlackArgs'] slack: Templates for Slack.
+        :param pulumi.Input['OncallIntegrationTemplatesSmsArgs'] sms: Templates for SMS.
+        :param pulumi.Input[str] source_link: Template for a source link.
+        :param pulumi.Input['OncallIntegrationTemplatesTelegramArgs'] telegram: Templates for Telegram.
+        :param pulumi.Input['OncallIntegrationTemplatesWebArgs'] web: Templates for Web.
         """
+        if acknowledge_signal is not None:
+            pulumi.set(__self__, "acknowledge_signal", acknowledge_signal)
+        if email is not None:
+            pulumi.set(__self__, "email", email)
         if grouping_key is not None:
             pulumi.set(__self__, "grouping_key", grouping_key)
+        if microsoft_teams is not None:
+            pulumi.set(__self__, "microsoft_teams", microsoft_teams)
+        if phone_call is not None:
+            pulumi.set(__self__, "phone_call", phone_call)
         if resolve_signal is not None:
             pulumi.set(__self__, "resolve_signal", resolve_signal)
         if slack is not None:
             pulumi.set(__self__, "slack", slack)
+        if sms is not None:
+            pulumi.set(__self__, "sms", sms)
+        if source_link is not None:
+            pulumi.set(__self__, "source_link", source_link)
+        if telegram is not None:
+            pulumi.set(__self__, "telegram", telegram)
+        if web is not None:
+            pulumi.set(__self__, "web", web)
+
+    @property
+    @pulumi.getter(name="acknowledgeSignal")
+    def acknowledge_signal(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for sending a signal to acknowledge the Incident.
+        """
+        return pulumi.get(self, "acknowledge_signal")
+
+    @acknowledge_signal.setter
+    def acknowledge_signal(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "acknowledge_signal", value)
+
+    @property
+    @pulumi.getter
+    def email(self) -> Optional[pulumi.Input['OncallIntegrationTemplatesEmailArgs']]:
+        """
+        Templates for Email.
+        """
+        return pulumi.get(self, "email")
+
+    @email.setter
+    def email(self, value: Optional[pulumi.Input['OncallIntegrationTemplatesEmailArgs']]):
+        pulumi.set(self, "email", value)
 
     @property
     @pulumi.getter(name="groupingKey")
@@ -5026,6 +5150,30 @@ class OncallIntegrationTemplatesArgs:
     @grouping_key.setter
     def grouping_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "grouping_key", value)
+
+    @property
+    @pulumi.getter(name="microsoftTeams")
+    def microsoft_teams(self) -> Optional[pulumi.Input['OncallIntegrationTemplatesMicrosoftTeamsArgs']]:
+        """
+        Templates for Microsoft Teams.
+        """
+        return pulumi.get(self, "microsoft_teams")
+
+    @microsoft_teams.setter
+    def microsoft_teams(self, value: Optional[pulumi.Input['OncallIntegrationTemplatesMicrosoftTeamsArgs']]):
+        pulumi.set(self, "microsoft_teams", value)
+
+    @property
+    @pulumi.getter(name="phoneCall")
+    def phone_call(self) -> Optional[pulumi.Input['OncallIntegrationTemplatesPhoneCallArgs']]:
+        """
+        Templates for Phone Call.
+        """
+        return pulumi.get(self, "phone_call")
+
+    @phone_call.setter
+    def phone_call(self, value: Optional[pulumi.Input['OncallIntegrationTemplatesPhoneCallArgs']]):
+        pulumi.set(self, "phone_call", value)
 
     @property
     @pulumi.getter(name="resolveSignal")
@@ -5051,9 +5199,243 @@ class OncallIntegrationTemplatesArgs:
     def slack(self, value: Optional[pulumi.Input['OncallIntegrationTemplatesSlackArgs']]):
         pulumi.set(self, "slack", value)
 
+    @property
+    @pulumi.getter
+    def sms(self) -> Optional[pulumi.Input['OncallIntegrationTemplatesSmsArgs']]:
+        """
+        Templates for SMS.
+        """
+        return pulumi.get(self, "sms")
+
+    @sms.setter
+    def sms(self, value: Optional[pulumi.Input['OncallIntegrationTemplatesSmsArgs']]):
+        pulumi.set(self, "sms", value)
+
+    @property
+    @pulumi.getter(name="sourceLink")
+    def source_link(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for a source link.
+        """
+        return pulumi.get(self, "source_link")
+
+    @source_link.setter
+    def source_link(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_link", value)
+
+    @property
+    @pulumi.getter
+    def telegram(self) -> Optional[pulumi.Input['OncallIntegrationTemplatesTelegramArgs']]:
+        """
+        Templates for Telegram.
+        """
+        return pulumi.get(self, "telegram")
+
+    @telegram.setter
+    def telegram(self, value: Optional[pulumi.Input['OncallIntegrationTemplatesTelegramArgs']]):
+        pulumi.set(self, "telegram", value)
+
+    @property
+    @pulumi.getter
+    def web(self) -> Optional[pulumi.Input['OncallIntegrationTemplatesWebArgs']]:
+        """
+        Templates for Web.
+        """
+        return pulumi.get(self, "web")
+
+    @web.setter
+    def web(self, value: Optional[pulumi.Input['OncallIntegrationTemplatesWebArgs']]):
+        pulumi.set(self, "web", value)
+
+
+@pulumi.input_type
+class OncallIntegrationTemplatesEmailArgs:
+    def __init__(__self__, *,
+                 message: Optional[pulumi.Input[str]] = None,
+                 title: Optional[pulumi.Input[str]] = None):
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "message")
+
+    @message.setter
+    def message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
+
+
+@pulumi.input_type
+class OncallIntegrationTemplatesMicrosoftTeamsArgs:
+    def __init__(__self__, *,
+                 image_url: Optional[pulumi.Input[str]] = None,
+                 message: Optional[pulumi.Input[str]] = None,
+                 title: Optional[pulumi.Input[str]] = None):
+        if image_url is not None:
+            pulumi.set(__self__, "image_url", image_url)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter(name="imageUrl")
+    def image_url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "image_url")
+
+    @image_url.setter
+    def image_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "image_url", value)
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "message")
+
+    @message.setter
+    def message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
+
+
+@pulumi.input_type
+class OncallIntegrationTemplatesPhoneCallArgs:
+    def __init__(__self__, *,
+                 title: Optional[pulumi.Input[str]] = None):
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
+
 
 @pulumi.input_type
 class OncallIntegrationTemplatesSlackArgs:
+    def __init__(__self__, *,
+                 image_url: Optional[pulumi.Input[str]] = None,
+                 message: Optional[pulumi.Input[str]] = None,
+                 title: Optional[pulumi.Input[str]] = None):
+        if image_url is not None:
+            pulumi.set(__self__, "image_url", image_url)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter(name="imageUrl")
+    def image_url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "image_url")
+
+    @image_url.setter
+    def image_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "image_url", value)
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "message")
+
+    @message.setter
+    def message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
+
+
+@pulumi.input_type
+class OncallIntegrationTemplatesSmsArgs:
+    def __init__(__self__, *,
+                 title: Optional[pulumi.Input[str]] = None):
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
+
+
+@pulumi.input_type
+class OncallIntegrationTemplatesTelegramArgs:
+    def __init__(__self__, *,
+                 image_url: Optional[pulumi.Input[str]] = None,
+                 message: Optional[pulumi.Input[str]] = None,
+                 title: Optional[pulumi.Input[str]] = None):
+        if image_url is not None:
+            pulumi.set(__self__, "image_url", image_url)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter(name="imageUrl")
+    def image_url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "image_url")
+
+    @image_url.setter
+    def image_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "image_url", value)
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "message")
+
+    @message.setter
+    def message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
+
+
+@pulumi.input_type
+class OncallIntegrationTemplatesWebArgs:
     def __init__(__self__, *,
                  image_url: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
@@ -5749,6 +6131,429 @@ class RuleGroupRuleDataRelativeTimeRangeArgs:
     @to.setter
     def to(self, value: pulumi.Input[int]):
         pulumi.set(self, "to", value)
+
+
+@pulumi.input_type
+class SLOAlertingArgs:
+    def __init__(__self__, *,
+                 annotations: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingAnnotationArgs']]]] = None,
+                 fastburns: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnArgs']]]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingLabelArgs']]]] = None,
+                 slowburns: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingAnnotationArgs']]] annotations: Annotations will be attached to all alerts generated by any of these rules.
+        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnArgs']]] fastburns: Alerting Rules generated for Fast Burn alerts
+        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingLabelArgs']]] labels: Labels will be attached to all alerts generated by any of these rules.
+        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnArgs']]] slowburns: Alerting Rules generated for Slow Burn alerts
+        """
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if fastburns is not None:
+            pulumi.set(__self__, "fastburns", fastburns)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if slowburns is not None:
+            pulumi.set(__self__, "slowburns", slowburns)
+
+    @property
+    @pulumi.getter
+    def annotations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingAnnotationArgs']]]]:
+        """
+        Annotations will be attached to all alerts generated by any of these rules.
+        """
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingAnnotationArgs']]]]):
+        pulumi.set(self, "annotations", value)
+
+    @property
+    @pulumi.getter
+    def fastburns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnArgs']]]]:
+        """
+        Alerting Rules generated for Fast Burn alerts
+        """
+        return pulumi.get(self, "fastburns")
+
+    @fastburns.setter
+    def fastburns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnArgs']]]]):
+        pulumi.set(self, "fastburns", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingLabelArgs']]]]:
+        """
+        Labels will be attached to all alerts generated by any of these rules.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingLabelArgs']]]]):
+        pulumi.set(self, "labels", value)
+
+    @property
+    @pulumi.getter
+    def slowburns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnArgs']]]]:
+        """
+        Alerting Rules generated for Slow Burn alerts
+        """
+        return pulumi.get(self, "slowburns")
+
+    @slowburns.setter
+    def slowburns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnArgs']]]]):
+        pulumi.set(self, "slowburns", value)
+
+
+@pulumi.input_type
+class SLOAlertingAnnotationArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class SLOAlertingFastburnArgs:
+    def __init__(__self__, *,
+                 annotations: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnAnnotationArgs']]]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnLabelArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        """
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+
+    @property
+    @pulumi.getter
+    def annotations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnAnnotationArgs']]]]:
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnAnnotationArgs']]]]):
+        pulumi.set(self, "annotations", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnLabelArgs']]]]:
+        """
+        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnLabelArgs']]]]):
+        pulumi.set(self, "labels", value)
+
+
+@pulumi.input_type
+class SLOAlertingFastburnAnnotationArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class SLOAlertingFastburnLabelArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class SLOAlertingLabelArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class SLOAlertingSlowburnArgs:
+    def __init__(__self__, *,
+                 annotations: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnAnnotationArgs']]]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnLabelArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        """
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+
+    @property
+    @pulumi.getter
+    def annotations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnAnnotationArgs']]]]:
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnAnnotationArgs']]]]):
+        pulumi.set(self, "annotations", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnLabelArgs']]]]:
+        """
+        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnLabelArgs']]]]):
+        pulumi.set(self, "labels", value)
+
+
+@pulumi.input_type
+class SLOAlertingSlowburnAnnotationArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class SLOAlertingSlowburnLabelArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class SLOLabelArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class SLOObjectiveArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[float],
+                 window: pulumi.Input[str]):
+        """
+        :param pulumi.Input[float] value: Value between 0 and 1. If the value of the query is above the objective, the SLO is met.
+        :param pulumi.Input[str] window: A Prometheus-parsable time duration string like 24h, 60m. This is the time window the objective is measured over.
+        """
+        pulumi.set(__self__, "value", value)
+        pulumi.set(__self__, "window", window)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[float]:
+        """
+        Value between 0 and 1. If the value of the query is above the objective, the SLO is met.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[float]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def window(self) -> pulumi.Input[str]:
+        """
+        A Prometheus-parsable time duration string like 24h, 60m. This is the time window the objective is measured over.
+        """
+        return pulumi.get(self, "window")
+
+    @window.setter
+    def window(self, value: pulumi.Input[str]):
+        pulumi.set(self, "window", value)
+
+
+@pulumi.input_type
+class SLOQueryArgs:
+    def __init__(__self__, *,
+                 freeform: pulumi.Input['SLOQueryFreeformArgs'],
+                 type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] type: Query type must be one of: "freeform", "query", "ratio", or "threshold"
+        """
+        pulumi.set(__self__, "freeform", freeform)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def freeform(self) -> pulumi.Input['SLOQueryFreeformArgs']:
+        return pulumi.get(self, "freeform")
+
+    @freeform.setter
+    def freeform(self, value: pulumi.Input['SLOQueryFreeformArgs']):
+        pulumi.set(self, "freeform", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        Query type must be one of: "freeform", "query", "ratio", or "threshold"
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class SLOQueryFreeformArgs:
+    def __init__(__self__, *,
+                 query: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] query: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        """
+        if query is not None:
+            pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def query(self) -> Optional[pulumi.Input[str]]:
+        """
+        Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        """
+        return pulumi.get(self, "query")
+
+    @query.setter
+    def query(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "query", value)
 
 
 @pulumi.input_type
@@ -6756,5 +7561,60 @@ class SyntheticMonitoringCheckSettingsTracerouteArgs:
     @ptr_lookup.setter
     def ptr_lookup(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "ptr_lookup", value)
+
+
+@pulumi.input_type
+class TeamPreferencesArgs:
+    def __init__(__self__, *,
+                 home_dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 theme: Optional[pulumi.Input[str]] = None,
+                 timezone: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] home_dashboard_uid: The UID of the dashboard to display when a team member logs in. Defaults to ``.
+        :param pulumi.Input[str] theme: The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
+        :param pulumi.Input[str] timezone: The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
+        """
+        if home_dashboard_uid is not None:
+            pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
+        if theme is not None:
+            pulumi.set(__self__, "theme", theme)
+        if timezone is not None:
+            pulumi.set(__self__, "timezone", timezone)
+
+    @property
+    @pulumi.getter(name="homeDashboardUid")
+    def home_dashboard_uid(self) -> Optional[pulumi.Input[str]]:
+        """
+        The UID of the dashboard to display when a team member logs in. Defaults to ``.
+        """
+        return pulumi.get(self, "home_dashboard_uid")
+
+    @home_dashboard_uid.setter
+    def home_dashboard_uid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "home_dashboard_uid", value)
+
+    @property
+    @pulumi.getter
+    def theme(self) -> Optional[pulumi.Input[str]]:
+        """
+        The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
+        """
+        return pulumi.get(self, "theme")
+
+    @theme.setter
+    def theme(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "theme", value)
+
+    @property
+    @pulumi.getter
+    def timezone(self) -> Optional[pulumi.Input[str]]:
+        """
+        The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
+        """
+        return pulumi.get(self, "timezone")
+
+    @timezone.setter
+    def timezone(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "timezone", value)
 
 

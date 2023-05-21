@@ -71,7 +71,7 @@ class AwaitableGetOnCallSlackChannelResult(GetOnCallSlackChannelResult):
 def get_on_call_slack_channel(name: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOnCallSlackChannelResult:
     """
-    * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/slack_channels/)
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
 
     ## Example Usage
 
@@ -100,7 +100,7 @@ def get_on_call_slack_channel(name: Optional[str] = None,
 def get_on_call_slack_channel_output(name: Optional[pulumi.Input[str]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOnCallSlackChannelResult]:
     """
-    * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/slack_channels/)
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
 
     ## Example Usage
 

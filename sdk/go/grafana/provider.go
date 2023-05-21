@@ -17,7 +17,8 @@ import (
 type Provider struct {
 	pulumi.ProviderResourceState
 
-	// API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+	// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+	// the `GRAFANA_AUTH` environment variable.
 	Auth pulumi.StringPtrOutput `pulumi:"auth"`
 	// Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
 	// `GRAFANA_CA_CERT` environment variable.
@@ -57,49 +58,49 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
-	if isZero(args.Auth) {
+	if args.Auth == nil {
 		args.Auth = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_AUTH").(string))
 	}
-	if isZero(args.CaCert) {
+	if args.CaCert == nil {
 		args.CaCert = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_CA_CERT").(string))
 	}
-	if isZero(args.CloudApiKey) {
+	if args.CloudApiKey == nil {
 		args.CloudApiKey = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_CLOUD_API_KEY").(string))
 	}
-	if isZero(args.CloudApiUrl) {
+	if args.CloudApiUrl == nil {
 		args.CloudApiUrl = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_CLOUD_API_URL").(string))
 	}
-	if isZero(args.InsecureSkipVerify) {
+	if args.InsecureSkipVerify == nil {
 		args.InsecureSkipVerify = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "GRAFANA_INSECURE_SKIP_VERIFY").(bool))
 	}
-	if isZero(args.OncallAccessToken) {
+	if args.OncallAccessToken == nil {
 		args.OncallAccessToken = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_ONCALL_ACCESS_TOKEN").(string))
 	}
-	if isZero(args.OncallUrl) {
+	if args.OncallUrl == nil {
 		args.OncallUrl = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_ONCALL_URL").(string))
 	}
-	if isZero(args.OrgId) {
+	if args.OrgId == nil {
 		args.OrgId = pulumi.IntPtr(getEnvOrDefault(0, parseEnvInt, "GRAFANA_ORG_ID").(int))
 	}
-	if isZero(args.Retries) {
+	if args.Retries == nil {
 		args.Retries = pulumi.IntPtr(getEnvOrDefault(0, parseEnvInt, "GRAFANA_RETRIES").(int))
 	}
-	if isZero(args.SmAccessToken) {
+	if args.SmAccessToken == nil {
 		args.SmAccessToken = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_SM_ACCESS_TOKEN").(string))
 	}
-	if isZero(args.SmUrl) {
+	if args.SmUrl == nil {
 		args.SmUrl = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_SM_URL").(string))
 	}
-	if isZero(args.StoreDashboardSha256) {
+	if args.StoreDashboardSha256 == nil {
 		args.StoreDashboardSha256 = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "GRAFANA_STORE_DASHBOARD_SHA256").(bool))
 	}
-	if isZero(args.TlsCert) {
+	if args.TlsCert == nil {
 		args.TlsCert = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_TLS_CERT").(string))
 	}
-	if isZero(args.TlsKey) {
+	if args.TlsKey == nil {
 		args.TlsKey = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_TLS_KEY").(string))
 	}
-	if isZero(args.Url) {
+	if args.Url == nil {
 		args.Url = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_URL").(string))
 	}
 	if args.Auth != nil {
@@ -114,11 +115,15 @@ func NewProvider(ctx *pulumi.Context,
 	if args.SmAccessToken != nil {
 		args.SmAccessToken = pulumi.ToSecret(args.SmAccessToken).(pulumi.StringPtrInput)
 	}
+	if args.TlsKey != nil {
+		args.TlsKey = pulumi.ToSecret(args.TlsKey).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"auth",
 		"cloudApiKey",
 		"oncallAccessToken",
 		"smAccessToken",
+		"tlsKey",
 	})
 	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
@@ -131,7 +136,8 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	// API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+	// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+	// the `GRAFANA_AUTH` environment variable.
 	Auth *string `pulumi:"auth"`
 	// Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
 	// `GRAFANA_CA_CERT` environment variable.
@@ -176,7 +182,8 @@ type providerArgs struct {
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	// API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+	// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+	// the `GRAFANA_AUTH` environment variable.
 	Auth pulumi.StringPtrInput
 	// Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
 	// `GRAFANA_CA_CERT` environment variable.
@@ -256,7 +263,8 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
-// API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+// the `GRAFANA_AUTH` environment variable.
 func (o ProviderOutput) Auth() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Auth }).(pulumi.StringPtrOutput)
 }

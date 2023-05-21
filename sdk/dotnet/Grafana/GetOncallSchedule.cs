@@ -13,8 +13,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public static class GetOncallSchedule
     {
         /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana-cloud/oncall/calendar-schedules/)
-        /// * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/schedules/)
+        /// * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -22,6 +22,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Grafana = Pulumi.Grafana;
         /// 
@@ -41,8 +42,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallScheduleResult>("grafana:index/getOncallSchedule:getOncallSchedule", args ?? new GetOncallScheduleArgs(), options.WithDefaults());
 
         /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana-cloud/oncall/calendar-schedules/)
-        /// * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/schedules/)
+        /// * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -50,6 +51,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Grafana = Pulumi.Grafana;
         /// 

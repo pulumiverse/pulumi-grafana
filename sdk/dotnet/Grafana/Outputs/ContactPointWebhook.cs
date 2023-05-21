@@ -43,9 +43,17 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// </summary>
         public readonly int? MaxAlerts;
         /// <summary>
+        /// Custom message. You can use template variables.
+        /// </summary>
+        public readonly string? Message;
+        /// <summary>
         /// Additional custom properties to attach to the notifier. Defaults to `map[]`.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Settings;
+        /// <summary>
+        /// Templated title of the message.
+        /// </summary>
+        public readonly string? Title;
         /// <summary>
         /// The UID of the contact point.
         /// </summary>
@@ -71,7 +79,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
             int? maxAlerts,
 
+            string? message,
+
             ImmutableDictionary<string, string>? settings,
+
+            string? title,
 
             string? uid,
 
@@ -84,7 +96,9 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
             DisableResolveMessage = disableResolveMessage;
             HttpMethod = httpMethod;
             MaxAlerts = maxAlerts;
+            Message = message;
             Settings = settings;
+            Title = title;
             Uid = uid;
             Url = url;
         }

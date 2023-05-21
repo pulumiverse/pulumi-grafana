@@ -10,8 +10,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// * [Official documentation](https://grafana.com/docs/grafana-cloud/oncall/calendar-schedules/)
-// * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/schedules/)
+// * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
 //
 // ## Example Usage
 //

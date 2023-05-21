@@ -7,22 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/oncall/integrations/)
- * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@lbrlabs/pulumi-grafana";
- *
- * const test_acc_integration = new grafana.OncallIntegration("test-acc-integration", {
- *     type: "grafana",
- *     defaultRoute: {},
- * }, {
- *     provider: grafana.oncall,
- * });
- * ```
+ * * [Official documentation](https://grafana.com/docs/oncall/latest/integrations/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
  *
  * ## Import
  *

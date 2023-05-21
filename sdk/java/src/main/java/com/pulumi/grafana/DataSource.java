@@ -133,7 +133,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * The method by which Grafana will access the data source: `proxy` or `direct`. Defaults to `proxy`.
      * 
      */
-    @Export(name="accessMode", type=String.class, parameters={})
+    @Export(name="accessMode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> accessMode;
 
     /**
@@ -147,7 +147,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * Whether to enable basic auth for the data source. Defaults to `false`.
      * 
      */
-    @Export(name="basicAuthEnabled", type=Boolean.class, parameters={})
+    @Export(name="basicAuthEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> basicAuthEnabled;
 
     /**
@@ -165,7 +165,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* Use secure_json_data_encoded.basicAuthPassword instead. */
-    @Export(name="basicAuthPassword", type=String.class, parameters={})
+    @Export(name="basicAuthPassword", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> basicAuthPassword;
 
     /**
@@ -179,7 +179,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * Basic auth username. Defaults to ``.
      * 
      */
-    @Export(name="basicAuthUsername", type=String.class, parameters={})
+    @Export(name="basicAuthUsername", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> basicAuthUsername;
 
     /**
@@ -193,7 +193,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * (Required by some data source types) The name of the database to use on the selected data source server. Defaults to ``.
      * 
      */
-    @Export(name="databaseName", type=String.class, parameters={})
+    @Export(name="databaseName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> databaseName;
 
     /**
@@ -207,7 +207,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * Custom HTTP headers
      * 
      */
-    @Export(name="httpHeaders", type=Map.class, parameters={String.class, String.class})
+    @Export(name="httpHeaders", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> httpHeaders;
 
     /**
@@ -221,7 +221,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
      * 
      */
-    @Export(name="isDefault", type=Boolean.class, parameters={})
+    @Export(name="isDefault", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> isDefault;
 
     /**
@@ -235,7 +235,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      * 
      */
-    @Export(name="jsonDataEncoded", type=String.class, parameters={})
+    @Export(name="jsonDataEncoded", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> jsonDataEncoded;
 
     /**
@@ -253,7 +253,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* Use json_data_encoded instead. */
-    @Export(name="jsonDatas", type=List.class, parameters={DataSourceJsonData.class})
+    @Export(name="jsonDatas", refs={List.class,DataSourceJsonData.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DataSourceJsonData>> jsonDatas;
 
     /**
@@ -267,7 +267,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * A unique name for the data source.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -285,7 +285,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* Use secure_json_data_encoded.password instead. */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
 
     /**
@@ -299,7 +299,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      * 
      */
-    @Export(name="secureJsonDataEncoded", type=String.class, parameters={})
+    @Export(name="secureJsonDataEncoded", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> secureJsonDataEncoded;
 
     /**
@@ -317,7 +317,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* Use secure_json_data_encoded instead. */
-    @Export(name="secureJsonDatas", type=List.class, parameters={DataSourceSecureJsonData.class})
+    @Export(name="secureJsonDatas", refs={List.class,DataSourceSecureJsonData.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DataSourceSecureJsonData>> secureJsonDatas;
 
     /**
@@ -331,7 +331,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * The data source type. Must be one of the supported data source keywords.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -345,7 +345,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * Unique identifier. If unset, this will be automatically generated.
      * 
      */
-    @Export(name="uid", type=String.class, parameters={})
+    @Export(name="uid", refs={String.class}, tree="[0]")
     private Output<String> uid;
 
     /**
@@ -359,7 +359,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * The URL for the data source. The type of URL required varies depending on the chosen data source type.
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> url;
 
     /**
@@ -373,7 +373,7 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      * (Required by some data source types) The username to use to authenticate to the data source. Defaults to ``.
      * 
      */
-    @Export(name="username", type=String.class, parameters={})
+    @Export(name="username", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> username;
 
     /**

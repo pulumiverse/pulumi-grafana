@@ -20,7 +20,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
-        /// API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+        /// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+        /// the `GRAFANA_AUTH` environment variable.
         /// </summary>
         [Output("auth")]
         public Output<string?> Auth { get; private set; } = null!;
@@ -119,6 +120,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
                     "cloudApiKey",
                     "oncallAccessToken",
                     "smAccessToken",
+                    "tlsKey",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -134,7 +136,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private Input<string>? _auth;
 
         /// <summary>
-        /// API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+        /// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+        /// the `GRAFANA_AUTH` environment variable.
         /// </summary>
         public Input<string>? Auth
         {
@@ -258,12 +261,22 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("tlsCert")]
         public Input<string>? TlsCert { get; set; }
 
+        [Input("tlsKey")]
+        private Input<string>? _tlsKey;
+
         /// <summary>
         /// Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
         /// environment variable.
         /// </summary>
-        [Input("tlsKey")]
-        public Input<string>? TlsKey { get; set; }
+        public Input<string>? TlsKey
+        {
+            get => _tlsKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tlsKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.

@@ -18,8 +18,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/oncall/escalation-policies/)
- * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/escalation_policies/)
+ * * [Official documentation](https://grafana.com/docs/oncall/latest/escalation-policies/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_policies/)
  * 
  * ## Example Usage
  * ```java
@@ -95,7 +95,7 @@ public class OncallEscalation extends com.pulumi.resources.CustomResource {
      * The ID of an Action for trigger_action type step.
      * 
      */
-    @Export(name="actionToTrigger", type=String.class, parameters={})
+    @Export(name="actionToTrigger", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> actionToTrigger;
 
     /**
@@ -109,7 +109,7 @@ public class OncallEscalation extends com.pulumi.resources.CustomResource {
      * The duration of delay for wait type step.
      * 
      */
-    @Export(name="duration", type=Integer.class, parameters={})
+    @Export(name="duration", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> duration;
 
     /**
@@ -123,7 +123,7 @@ public class OncallEscalation extends com.pulumi.resources.CustomResource {
      * The ID of the escalation chain.
      * 
      */
-    @Export(name="escalationChainId", type=String.class, parameters={})
+    @Export(name="escalationChainId", refs={String.class}, tree="[0]")
     private Output<String> escalationChainId;
 
     /**
@@ -137,7 +137,7 @@ public class OncallEscalation extends com.pulumi.resources.CustomResource {
      * The ID of a User Group for notify*user*group type step.
      * 
      */
-    @Export(name="groupToNotify", type=String.class, parameters={})
+    @Export(name="groupToNotify", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> groupToNotify;
 
     /**
@@ -151,7 +151,7 @@ public class OncallEscalation extends com.pulumi.resources.CustomResource {
      * Will activate &#34;important&#34; personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user_group
      * 
      */
-    @Export(name="important", type=Boolean.class, parameters={})
+    @Export(name="important", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> important;
 
     /**
@@ -165,7 +165,7 @@ public class OncallEscalation extends com.pulumi.resources.CustomResource {
      * The beginning of the time interval for notify*if*time*from*to type step in UTC (for example 08:00:00Z).
      * 
      */
-    @Export(name="notifyIfTimeFrom", type=String.class, parameters={})
+    @Export(name="notifyIfTimeFrom", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> notifyIfTimeFrom;
 
     /**
@@ -179,7 +179,7 @@ public class OncallEscalation extends com.pulumi.resources.CustomResource {
      * The end of the time interval for notify*if*time*from*to type step in UTC (for example 18:00:00Z).
      * 
      */
-    @Export(name="notifyIfTimeTo", type=String.class, parameters={})
+    @Export(name="notifyIfTimeTo", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> notifyIfTimeTo;
 
     /**
@@ -193,7 +193,7 @@ public class OncallEscalation extends com.pulumi.resources.CustomResource {
      * ID of a Schedule for notify*on*call*from*schedule type step.
      * 
      */
-    @Export(name="notifyOnCallFromSchedule", type=String.class, parameters={})
+    @Export(name="notifyOnCallFromSchedule", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> notifyOnCallFromSchedule;
 
     /**
@@ -207,7 +207,7 @@ public class OncallEscalation extends com.pulumi.resources.CustomResource {
      * The list of ID&#39;s of users for notify_persons type step.
      * 
      */
-    @Export(name="personsToNotifies", type=List.class, parameters={String.class})
+    @Export(name="personsToNotifies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> personsToNotifies;
 
     /**
@@ -221,7 +221,7 @@ public class OncallEscalation extends com.pulumi.resources.CustomResource {
      * The list of ID&#39;s of users for notify*person*next*each*time type step.
      * 
      */
-    @Export(name="personsToNotifyNextEachTimes", type=List.class, parameters={String.class})
+    @Export(name="personsToNotifyNextEachTimes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> personsToNotifyNextEachTimes;
 
     /**
@@ -235,7 +235,7 @@ public class OncallEscalation extends com.pulumi.resources.CustomResource {
      * The position of the escalation step (starts from 0).
      * 
      */
-    @Export(name="position", type=Integer.class, parameters={})
+    @Export(name="position", refs={Integer.class}, tree="[0]")
     private Output<Integer> position;
 
     /**
@@ -249,7 +249,7 @@ public class OncallEscalation extends com.pulumi.resources.CustomResource {
      * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*action, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat_escalation
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> type;
 
     /**

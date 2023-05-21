@@ -11,7 +11,7 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Grafana
 {
     /// <summary>
-    /// * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/on_call_shifts/)
+    /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/on_call_shifts/)
     /// 
     /// ## Import
     /// 

@@ -16,9 +16,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@lbrlabs/pulumi-grafana";
  *
- * const foo = new grafana.ServiceAccountToken("foo", {serviceAccountId: 1});
+ * const foo = new grafana.ServiceAccountToken("foo", {serviceAccountId: "1"});
  * const bar = new grafana.ServiceAccountToken("bar", {
- *     serviceAccountId: 1,
+ *     serviceAccountId: "1",
  *     secondsToLive: 30,
  * });
  * export const serviceAccountTokenFooKeyOnly = foo.key;
@@ -58,7 +58,7 @@ export class ServiceAccountToken extends pulumi.CustomResource {
     public /*out*/ readonly key!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly secondsToLive!: pulumi.Output<number | undefined>;
-    public readonly serviceAccountId!: pulumi.Output<number>;
+    public readonly serviceAccountId!: pulumi.Output<string>;
 
     /**
      * Create a ServiceAccountToken resource with the given unique name, arguments, and options.
@@ -107,7 +107,7 @@ export interface ServiceAccountTokenState {
     key?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     secondsToLive?: pulumi.Input<number>;
-    serviceAccountId?: pulumi.Input<number>;
+    serviceAccountId?: pulumi.Input<string>;
 }
 
 /**
@@ -116,5 +116,5 @@ export interface ServiceAccountTokenState {
 export interface ServiceAccountTokenArgs {
     name?: pulumi.Input<string>;
     secondsToLive?: pulumi.Input<number>;
-    serviceAccountId: pulumi.Input<number>;
+    serviceAccountId: pulumi.Input<string>;
 }

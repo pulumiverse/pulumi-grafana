@@ -16,17 +16,21 @@ class ServiceAccountArgs:
     def __init__(__self__, *,
                  is_disabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ServiceAccount resource.
         :param pulumi.Input[bool] is_disabled: The disabled status for the service account. Defaults to `false`.
         :param pulumi.Input[str] name: The name of the service account.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] role: The basic role of the service account in the organization.
         """
         if is_disabled is not None:
             pulumi.set(__self__, "is_disabled", is_disabled)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if role is not None:
             pulumi.set(__self__, "role", role)
 
@@ -53,6 +57,18 @@ class ServiceAccountArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter
@@ -72,17 +88,21 @@ class _ServiceAccountState:
     def __init__(__self__, *,
                  is_disabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ServiceAccount resources.
         :param pulumi.Input[bool] is_disabled: The disabled status for the service account. Defaults to `false`.
         :param pulumi.Input[str] name: The name of the service account.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] role: The basic role of the service account in the organization.
         """
         if is_disabled is not None:
             pulumi.set(__self__, "is_disabled", is_disabled)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if role is not None:
             pulumi.set(__self__, "role", role)
 
@@ -109,6 +129,18 @@ class _ServiceAccountState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter
@@ -130,6 +162,7 @@ class ServiceAccount(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  is_disabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -153,6 +186,7 @@ class ServiceAccount(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] is_disabled: The disabled status for the service account. Defaults to `false`.
         :param pulumi.Input[str] name: The name of the service account.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] role: The basic role of the service account in the organization.
         """
         ...
@@ -195,6 +229,7 @@ class ServiceAccount(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  is_disabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -207,6 +242,7 @@ class ServiceAccount(pulumi.CustomResource):
 
             __props__.__dict__["is_disabled"] = is_disabled
             __props__.__dict__["name"] = name
+            __props__.__dict__["org_id"] = org_id
             __props__.__dict__["role"] = role
         super(ServiceAccount, __self__).__init__(
             'grafana:index/serviceAccount:ServiceAccount',
@@ -220,6 +256,7 @@ class ServiceAccount(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             is_disabled: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
             role: Optional[pulumi.Input[str]] = None) -> 'ServiceAccount':
         """
         Get an existing ServiceAccount resource's state with the given name, id, and optional extra
@@ -230,6 +267,7 @@ class ServiceAccount(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] is_disabled: The disabled status for the service account. Defaults to `false`.
         :param pulumi.Input[str] name: The name of the service account.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] role: The basic role of the service account in the organization.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -238,6 +276,7 @@ class ServiceAccount(pulumi.CustomResource):
 
         __props__.__dict__["is_disabled"] = is_disabled
         __props__.__dict__["name"] = name
+        __props__.__dict__["org_id"] = org_id
         __props__.__dict__["role"] = role
         return ServiceAccount(resource_name, opts=opts, __props__=__props__)
 
@@ -256,6 +295,14 @@ class ServiceAccount(pulumi.CustomResource):
         The name of the service account.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter

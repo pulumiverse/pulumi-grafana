@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/on_call_shifts/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/on_call_shifts/)
  * 
  * ## Import
  * 
@@ -32,7 +32,7 @@ public class OncallOnCallShift extends com.pulumi.resources.CustomResource {
      * This parameter takes a list of days in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
      * 
      */
-    @Export(name="byDays", type=List.class, parameters={String.class})
+    @Export(name="byDays", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> byDays;
 
     /**
@@ -46,7 +46,7 @@ public class OncallOnCallShift extends com.pulumi.resources.CustomResource {
      * This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
      * 
      */
-    @Export(name="byMonthdays", type=List.class, parameters={Integer.class})
+    @Export(name="byMonthdays", refs={List.class,Integer.class}, tree="[0,1]")
     private Output</* @Nullable */ List<Integer>> byMonthdays;
 
     /**
@@ -60,7 +60,7 @@ public class OncallOnCallShift extends com.pulumi.resources.CustomResource {
      * This parameter takes a list of months. Valid values are 1 to 12
      * 
      */
-    @Export(name="byMonths", type=List.class, parameters={Integer.class})
+    @Export(name="byMonths", refs={List.class,Integer.class}, tree="[0,1]")
     private Output</* @Nullable */ List<Integer>> byMonths;
 
     /**
@@ -74,7 +74,7 @@ public class OncallOnCallShift extends com.pulumi.resources.CustomResource {
      * The duration of the event.
      * 
      */
-    @Export(name="duration", type=Integer.class, parameters={})
+    @Export(name="duration", refs={Integer.class}, tree="[0]")
     private Output<Integer> duration;
 
     /**
@@ -88,7 +88,7 @@ public class OncallOnCallShift extends com.pulumi.resources.CustomResource {
      * The frequency of the event. Can be daily, weekly, monthly
      * 
      */
-    @Export(name="frequency", type=String.class, parameters={})
+    @Export(name="frequency", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> frequency;
 
     /**
@@ -102,7 +102,7 @@ public class OncallOnCallShift extends com.pulumi.resources.CustomResource {
      * The positive integer representing at which intervals the recurrence rule repeats.
      * 
      */
-    @Export(name="interval", type=Integer.class, parameters={})
+    @Export(name="interval", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> interval;
 
     /**
@@ -116,7 +116,7 @@ public class OncallOnCallShift extends com.pulumi.resources.CustomResource {
      * The priority level. The higher the value, the higher the priority.
      * 
      */
-    @Export(name="level", type=Integer.class, parameters={})
+    @Export(name="level", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> level;
 
     /**
@@ -130,7 +130,7 @@ public class OncallOnCallShift extends com.pulumi.resources.CustomResource {
      * The shift&#39;s name.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -144,7 +144,7 @@ public class OncallOnCallShift extends com.pulumi.resources.CustomResource {
      * The list of lists with on-call users (for rolling_users event type)
      * 
      */
-    @Export(name="rollingUsers", type=List.class, parameters={List.class})
+    @Export(name="rollingUsers", refs={List.class,String.class}, tree="[0,[0,1]]")
     private Output</* @Nullable */ List<List<String>>> rollingUsers;
 
     /**
@@ -158,7 +158,7 @@ public class OncallOnCallShift extends com.pulumi.resources.CustomResource {
      * The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd&#39;T&#39;HH:mm:ss (for example &#34;2020-09-05T08:00:00&#34;)
      * 
      */
-    @Export(name="start", type=String.class, parameters={})
+    @Export(name="start", refs={String.class}, tree="[0]")
     private Output<String> start;
 
     /**
@@ -172,7 +172,7 @@ public class OncallOnCallShift extends com.pulumi.resources.CustomResource {
      * The index of the list of users in rolling_users, from which on-call rotation starts.
      * 
      */
-    @Export(name="startRotationFromUserIndex", type=Integer.class, parameters={})
+    @Export(name="startRotationFromUserIndex", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> startRotationFromUserIndex;
 
     /**
@@ -186,7 +186,7 @@ public class OncallOnCallShift extends com.pulumi.resources.CustomResource {
      * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      * 
      */
-    @Export(name="teamId", type=String.class, parameters={})
+    @Export(name="teamId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> teamId;
 
     /**
@@ -200,7 +200,7 @@ public class OncallOnCallShift extends com.pulumi.resources.CustomResource {
      * The shift&#39;s timezone.  Overrides schedule&#39;s timezone.
      * 
      */
-    @Export(name="timeZone", type=String.class, parameters={})
+    @Export(name="timeZone", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> timeZone;
 
     /**
@@ -214,7 +214,7 @@ public class OncallOnCallShift extends com.pulumi.resources.CustomResource {
      * The shift&#39;s type. Can be rolling*users, recurrent*event, single_event
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -228,7 +228,7 @@ public class OncallOnCallShift extends com.pulumi.resources.CustomResource {
      * The list of on-call users (for single*event and recurrent*event event type).
      * 
      */
-    @Export(name="users", type=List.class, parameters={String.class})
+    @Export(name="users", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> users;
 
     /**
@@ -242,7 +242,7 @@ public class OncallOnCallShift extends com.pulumi.resources.CustomResource {
      * Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
      * 
      */
-    @Export(name="weekStart", type=String.class, parameters={})
+    @Export(name="weekStart", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> weekStart;
 
     /**

@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,8 +23,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -33,7 +31,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			testDashboard, err := grafana.NewDashboard(ctx, "testDashboard", &grafana.DashboardArgs{
-//				ConfigJson: pulumi.String(fmt.Sprintf("{\n  \"title\": \"Dashboard for report\",\n  \"uid\": \"report\"\n}\n")),
+//				ConfigJson: pulumi.String("{\n  \"title\": \"Dashboard for report\",\n  \"uid\": \"report\"\n}\n"),
 //				Message:    pulumi.String("inital commit."),
 //			})
 //			if err != nil {

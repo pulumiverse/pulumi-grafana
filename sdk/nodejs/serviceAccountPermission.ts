@@ -77,7 +77,7 @@ export class ServiceAccountPermission extends pulumi.CustomResource {
     /**
      * The id of the service account.
      */
-    public readonly serviceAccountId!: pulumi.Output<number>;
+    public readonly serviceAccountId!: pulumi.Output<string>;
 
     /**
      * Create a ServiceAccountPermission resource with the given unique name, arguments, and options.
@@ -121,7 +121,7 @@ export interface ServiceAccountPermissionState {
     /**
      * The id of the service account.
      */
-    serviceAccountId?: pulumi.Input<number>;
+    serviceAccountId?: pulumi.Input<string>;
 }
 
 /**
@@ -135,5 +135,5 @@ export interface ServiceAccountPermissionArgs {
     /**
      * The id of the service account.
      */
-    serviceAccountId: pulumi.Input<number>;
+    serviceAccountId: pulumi.Input<string>;
 }

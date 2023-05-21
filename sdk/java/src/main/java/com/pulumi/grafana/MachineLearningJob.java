@@ -25,10 +25,24 @@ import javax.annotation.Nullable;
 @ResourceType(type="grafana:index/machineLearningJob:MachineLearningJob")
 public class MachineLearningJob extends com.pulumi.resources.CustomResource {
     /**
+     * An object representing the custom labels added on the forecast.
+     * 
+     */
+    @Export(name="customLabels", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
+    private Output</* @Nullable */ Map<String,Object>> customLabels;
+
+    /**
+     * @return An object representing the custom labels added on the forecast.
+     * 
+     */
+    public Output<Optional<Map<String,Object>>> customLabels() {
+        return Codegen.optional(this.customLabels);
+    }
+    /**
      * The id of the datasource to query.
      * 
      */
-    @Export(name="datasourceId", type=Integer.class, parameters={})
+    @Export(name="datasourceId", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> datasourceId;
 
     /**
@@ -42,7 +56,7 @@ public class MachineLearningJob extends com.pulumi.resources.CustomResource {
      * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
      * 
      */
-    @Export(name="datasourceType", type=String.class, parameters={})
+    @Export(name="datasourceType", refs={String.class}, tree="[0]")
     private Output<String> datasourceType;
 
     /**
@@ -56,7 +70,7 @@ public class MachineLearningJob extends com.pulumi.resources.CustomResource {
      * The uid of the datasource to query.
      * 
      */
-    @Export(name="datasourceUid", type=String.class, parameters={})
+    @Export(name="datasourceUid", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> datasourceUid;
 
     /**
@@ -70,7 +84,7 @@ public class MachineLearningJob extends com.pulumi.resources.CustomResource {
      * A description of the job.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -84,7 +98,7 @@ public class MachineLearningJob extends com.pulumi.resources.CustomResource {
      * A list of holiday IDs or names to take into account when training the model.
      * 
      */
-    @Export(name="holidays", type=List.class, parameters={String.class})
+    @Export(name="holidays", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> holidays;
 
     /**
@@ -98,7 +112,7 @@ public class MachineLearningJob extends com.pulumi.resources.CustomResource {
      * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
      * 
      */
-    @Export(name="hyperParams", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="hyperParams", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> hyperParams;
 
     /**
@@ -112,7 +126,7 @@ public class MachineLearningJob extends com.pulumi.resources.CustomResource {
      * The data interval in seconds to train the data on. Defaults to `300`.
      * 
      */
-    @Export(name="interval", type=Integer.class, parameters={})
+    @Export(name="interval", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> interval;
 
     /**
@@ -126,7 +140,7 @@ public class MachineLearningJob extends com.pulumi.resources.CustomResource {
      * The metric used to query the job results.
      * 
      */
-    @Export(name="metric", type=String.class, parameters={})
+    @Export(name="metric", refs={String.class}, tree="[0]")
     private Output<String> metric;
 
     /**
@@ -140,7 +154,7 @@ public class MachineLearningJob extends com.pulumi.resources.CustomResource {
      * The name of the job.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -154,7 +168,7 @@ public class MachineLearningJob extends com.pulumi.resources.CustomResource {
      * An object representing the query params to query Grafana with.
      * 
      */
-    @Export(name="queryParams", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="queryParams", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output<Map<String,Object>> queryParams;
 
     /**
@@ -168,7 +182,7 @@ public class MachineLearningJob extends com.pulumi.resources.CustomResource {
      * The data interval in seconds to train the data on. Defaults to `7776000`.
      * 
      */
-    @Export(name="trainingWindow", type=Integer.class, parameters={})
+    @Export(name="trainingWindow", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> trainingWindow;
 
     /**

@@ -11,29 +11,8 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Grafana
 {
     /// <summary>
-    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/oncall/integrations/)
-    /// * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/)
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test_acc_integration = new Grafana.OncallIntegration("test-acc-integration", new()
-    ///     {
-    ///         Type = "grafana",
-    ///         DefaultRoute = null,
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         Provider = grafana.Oncall,
-    ///     });
-    /// 
-    /// });
-    /// ```
+    /// * [Official documentation](https://grafana.com/docs/oncall/latest/integrations/)
+    /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
     /// 
     /// ## Import
     /// 

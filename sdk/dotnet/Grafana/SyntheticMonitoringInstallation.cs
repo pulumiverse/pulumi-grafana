@@ -15,6 +15,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// Once a Grafana Cloud stack is created, a user can either use this resource or go into the UI to install synthetic monitoring.
     /// This resource cannot be imported but it can be used on an existing Synthetic Monitoring installation without issues.
     /// 
+    /// **Note that this resource must be used on a provider configured with Grafana Cloud credentials.**
+    /// 
     /// * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/installation/)
     /// * [API documentation](https://github.com/grafana/synthetic-monitoring-api-go-client/blob/main/docs/API.md#apiv1registerinstall)
     /// 
@@ -22,6 +24,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
     /// 
@@ -42,9 +45,13 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///     var smStackSyntheticMonitoringInstallation = new Grafana.SyntheticMonitoringInstallation("smStackSyntheticMonitoringInstallation", new()
     ///     {
     ///         StackId = smStackCloudStack.Id,
-    ///         MetricsInstanceId = smStackCloudStack.PrometheusUserId,
-    ///         LogsInstanceId = smStackCloudStack.LogsUserId,
-    ///         MetricsPublisherKey = metricsPublish.Key,
+    ///     });
+    /// 
+    ///     // Create a new provider instance to interact with Synthetic Monitoring
+    ///     var sm = new Grafana.Provider("sm", new()
+    ///     {
+    ///         SmAccessToken = smStackSyntheticMonitoringInstallation.SmAccessToken,
+    ///         SmUrl = smStackSyntheticMonitoringInstallation.StackSmApiUrl,
     ///     });
     /// 
     /// });
@@ -54,16 +61,16 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public partial class SyntheticMonitoringInstallation : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The ID of the logs instance to install SM on (stack's `logs_user_id` attribute).
+        /// Deprecated: Not used anymore.
         /// </summary>
         [Output("logsInstanceId")]
-        public Output<int> LogsInstanceId { get; private set; } = null!;
+        public Output<int?> LogsInstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the metrics instance to install SM on (stack's `prometheus_user_id` attribute).
+        /// Deprecated: Not used anymore.
         /// </summary>
         [Output("metricsInstanceId")]
-        public Output<int> MetricsInstanceId { get; private set; } = null!;
+        public Output<int?> MetricsInstanceId { get; private set; } = null!;
 
         /// <summary>
         /// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
@@ -78,10 +85,16 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string> SmAccessToken { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the stack to install SM on.
+        /// The ID or slug of the stack to install SM on.
         /// </summary>
         [Output("stackId")]
-        public Output<int> StackId { get; private set; } = null!;
+        public Output<string> StackId { get; private set; } = null!;
+
+        /// <summary>
+        /// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        /// </summary>
+        [Output("stackSmApiUrl")]
+        public Output<string> StackSmApiUrl { get; private set; } = null!;
 
 
         /// <summary>
@@ -135,16 +148,16 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class SyntheticMonitoringInstallationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the logs instance to install SM on (stack's `logs_user_id` attribute).
+        /// Deprecated: Not used anymore.
         /// </summary>
-        [Input("logsInstanceId", required: true)]
-        public Input<int> LogsInstanceId { get; set; } = null!;
+        [Input("logsInstanceId")]
+        public Input<int>? LogsInstanceId { get; set; }
 
         /// <summary>
-        /// The ID of the metrics instance to install SM on (stack's `prometheus_user_id` attribute).
+        /// Deprecated: Not used anymore.
         /// </summary>
-        [Input("metricsInstanceId", required: true)]
-        public Input<int> MetricsInstanceId { get; set; } = null!;
+        [Input("metricsInstanceId")]
+        public Input<int>? MetricsInstanceId { get; set; }
 
         [Input("metricsPublisherKey", required: true)]
         private Input<string>? _metricsPublisherKey;
@@ -163,10 +176,16 @@ namespace Lbrlabs.PulumiPackage.Grafana
         }
 
         /// <summary>
-        /// The ID of the stack to install SM on.
+        /// The ID or slug of the stack to install SM on.
         /// </summary>
         [Input("stackId", required: true)]
-        public Input<int> StackId { get; set; } = null!;
+        public Input<string> StackId { get; set; } = null!;
+
+        /// <summary>
+        /// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        /// </summary>
+        [Input("stackSmApiUrl")]
+        public Input<string>? StackSmApiUrl { get; set; }
 
         public SyntheticMonitoringInstallationArgs()
         {
@@ -177,13 +196,13 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class SyntheticMonitoringInstallationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the logs instance to install SM on (stack's `logs_user_id` attribute).
+        /// Deprecated: Not used anymore.
         /// </summary>
         [Input("logsInstanceId")]
         public Input<int>? LogsInstanceId { get; set; }
 
         /// <summary>
-        /// The ID of the metrics instance to install SM on (stack's `prometheus_user_id` attribute).
+        /// Deprecated: Not used anymore.
         /// </summary>
         [Input("metricsInstanceId")]
         public Input<int>? MetricsInstanceId { get; set; }
@@ -211,10 +230,16 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? SmAccessToken { get; set; }
 
         /// <summary>
-        /// The ID of the stack to install SM on.
+        /// The ID or slug of the stack to install SM on.
         /// </summary>
         [Input("stackId")]
-        public Input<int>? StackId { get; set; }
+        public Input<string>? StackId { get; set; }
+
+        /// <summary>
+        /// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        /// </summary>
+        [Input("stackSmApiUrl")]
+        public Input<string>? StackSmApiUrl { get; set; }
 
         public SyntheticMonitoringInstallationState()
         {

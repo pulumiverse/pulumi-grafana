@@ -17,11 +17,11 @@ __all__ = ['ServiceAccountPermissionArgs', 'ServiceAccountPermission']
 class ServiceAccountPermissionArgs:
     def __init__(__self__, *,
                  permissions: pulumi.Input[Sequence[pulumi.Input['ServiceAccountPermissionPermissionArgs']]],
-                 service_account_id: pulumi.Input[int]):
+                 service_account_id: pulumi.Input[str]):
         """
         The set of arguments for constructing a ServiceAccountPermission resource.
         :param pulumi.Input[Sequence[pulumi.Input['ServiceAccountPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
-        :param pulumi.Input[int] service_account_id: The id of the service account.
+        :param pulumi.Input[str] service_account_id: The id of the service account.
         """
         pulumi.set(__self__, "permissions", permissions)
         pulumi.set(__self__, "service_account_id", service_account_id)
@@ -40,14 +40,14 @@ class ServiceAccountPermissionArgs:
 
     @property
     @pulumi.getter(name="serviceAccountId")
-    def service_account_id(self) -> pulumi.Input[int]:
+    def service_account_id(self) -> pulumi.Input[str]:
         """
         The id of the service account.
         """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
-    def service_account_id(self, value: pulumi.Input[int]):
+    def service_account_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "service_account_id", value)
 
 
@@ -55,11 +55,11 @@ class ServiceAccountPermissionArgs:
 class _ServiceAccountPermissionState:
     def __init__(__self__, *,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceAccountPermissionPermissionArgs']]]] = None,
-                 service_account_id: Optional[pulumi.Input[int]] = None):
+                 service_account_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ServiceAccountPermission resources.
         :param pulumi.Input[Sequence[pulumi.Input['ServiceAccountPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
-        :param pulumi.Input[int] service_account_id: The id of the service account.
+        :param pulumi.Input[str] service_account_id: The id of the service account.
         """
         if permissions is not None:
             pulumi.set(__self__, "permissions", permissions)
@@ -80,14 +80,14 @@ class _ServiceAccountPermissionState:
 
     @property
     @pulumi.getter(name="serviceAccountId")
-    def service_account_id(self) -> Optional[pulumi.Input[int]]:
+    def service_account_id(self) -> Optional[pulumi.Input[str]]:
         """
         The id of the service account.
         """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
-    def service_account_id(self, value: Optional[pulumi.Input[int]]):
+    def service_account_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "service_account_id", value)
 
 
@@ -97,7 +97,7 @@ class ServiceAccountPermission(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceAccountPermissionPermissionArgs']]]]] = None,
-                 service_account_id: Optional[pulumi.Input[int]] = None,
+                 service_account_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         **Note:** This resource is available from Grafana 9.2.4 onwards.
@@ -135,7 +135,7 @@ class ServiceAccountPermission(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceAccountPermissionPermissionArgs']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
-        :param pulumi.Input[int] service_account_id: The id of the service account.
+        :param pulumi.Input[str] service_account_id: The id of the service account.
         """
         ...
     @overload
@@ -192,7 +192,7 @@ class ServiceAccountPermission(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceAccountPermissionPermissionArgs']]]]] = None,
-                 service_account_id: Optional[pulumi.Input[int]] = None,
+                 service_account_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -219,7 +219,7 @@ class ServiceAccountPermission(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceAccountPermissionPermissionArgs']]]]] = None,
-            service_account_id: Optional[pulumi.Input[int]] = None) -> 'ServiceAccountPermission':
+            service_account_id: Optional[pulumi.Input[str]] = None) -> 'ServiceAccountPermission':
         """
         Get an existing ServiceAccountPermission resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -228,7 +228,7 @@ class ServiceAccountPermission(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceAccountPermissionPermissionArgs']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
-        :param pulumi.Input[int] service_account_id: The id of the service account.
+        :param pulumi.Input[str] service_account_id: The id of the service account.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -248,7 +248,7 @@ class ServiceAccountPermission(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceAccountId")
-    def service_account_id(self) -> pulumi.Output[int]:
+    def service_account_id(self) -> pulumi.Output[str]:
         """
         The id of the service account.
         """

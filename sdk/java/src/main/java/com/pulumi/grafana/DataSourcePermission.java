@@ -88,7 +88,7 @@ public class DataSourcePermission extends com.pulumi.resources.CustomResource {
      * ID of the datasource to apply permissions to.
      * 
      */
-    @Export(name="datasourceId", type=Integer.class, parameters={})
+    @Export(name="datasourceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> datasourceId;
 
     /**
@@ -102,7 +102,7 @@ public class DataSourcePermission extends com.pulumi.resources.CustomResource {
      * The permission items to add/update. Items that are omitted from the list will be removed.
      * 
      */
-    @Export(name="permissions", type=List.class, parameters={DataSourcePermissionPermission.class})
+    @Export(name="permissions", refs={List.class,DataSourcePermissionPermission.class}, tree="[0,1]")
     private Output<List<DataSourcePermissionPermission>> permissions;
 
     /**

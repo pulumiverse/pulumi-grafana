@@ -68,6 +68,10 @@ export class Folder extends pulumi.CustomResource {
     }
 
     /**
+     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+     */
+    public readonly preventDestroyIfNotEmpty!: pulumi.Output<boolean | undefined>;
+    /**
      * The title of the folder.
      */
     public readonly title!: pulumi.Output<string>;
@@ -93,6 +97,7 @@ export class Folder extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FolderState | undefined;
+            resourceInputs["preventDestroyIfNotEmpty"] = state ? state.preventDestroyIfNotEmpty : undefined;
             resourceInputs["title"] = state ? state.title : undefined;
             resourceInputs["uid"] = state ? state.uid : undefined;
             resourceInputs["url"] = state ? state.url : undefined;
@@ -101,6 +106,7 @@ export class Folder extends pulumi.CustomResource {
             if ((!args || args.title === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'title'");
             }
+            resourceInputs["preventDestroyIfNotEmpty"] = args ? args.preventDestroyIfNotEmpty : undefined;
             resourceInputs["title"] = args ? args.title : undefined;
             resourceInputs["uid"] = args ? args.uid : undefined;
             resourceInputs["url"] = undefined /*out*/;
@@ -114,6 +120,10 @@ export class Folder extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Folder resources.
  */
 export interface FolderState {
+    /**
+     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+     */
+    preventDestroyIfNotEmpty?: pulumi.Input<boolean>;
     /**
      * The title of the folder.
      */
@@ -132,6 +142,10 @@ export interface FolderState {
  * The set of arguments for constructing a Folder resource.
  */
 export interface FolderArgs {
+    /**
+     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+     */
+    preventDestroyIfNotEmpty?: pulumi.Input<boolean>;
     /**
      * The title of the folder.
      */

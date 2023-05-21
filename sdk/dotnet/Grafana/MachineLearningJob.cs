@@ -17,6 +17,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public partial class MachineLearningJob : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// An object representing the custom labels added on the forecast.
+        /// </summary>
+        [Output("customLabels")]
+        public Output<ImmutableDictionary<string, object>?> CustomLabels { get; private set; } = null!;
+
+        /// <summary>
         /// The id of the datasource to query.
         /// </summary>
         [Output("datasourceId")]
@@ -129,6 +135,18 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class MachineLearningJobArgs : global::Pulumi.ResourceArgs
     {
+        [Input("customLabels")]
+        private InputMap<object>? _customLabels;
+
+        /// <summary>
+        /// An object representing the custom labels added on the forecast.
+        /// </summary>
+        public InputMap<object> CustomLabels
+        {
+            get => _customLabels ?? (_customLabels = new InputMap<object>());
+            set => _customLabels = value;
+        }
+
         /// <summary>
         /// The id of the datasource to query.
         /// </summary>
@@ -221,6 +239,18 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class MachineLearningJobState : global::Pulumi.ResourceArgs
     {
+        [Input("customLabels")]
+        private InputMap<object>? _customLabels;
+
+        /// <summary>
+        /// An object representing the custom labels added on the forecast.
+        /// </summary>
+        public InputMap<object> CustomLabels
+        {
+            get => _customLabels ?? (_customLabels = new InputMap<object>());
+            set => _customLabels = value;
+        }
+
         /// <summary>
         /// The id of the datasource to query.
         /// </summary>

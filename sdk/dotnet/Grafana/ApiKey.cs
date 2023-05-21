@@ -11,14 +11,11 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Grafana
 {
     /// <summary>
-    /// Manages Grafana API Keys.
-    /// 
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/auth/)
-    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
     /// 
@@ -47,7 +44,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public partial class ApiKey : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+        /// Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
         /// </summary>
         [Output("cloudStackSlug")]
         public Output<string?> CloudStackSlug { get; private set; } = null!;
@@ -60,6 +57,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
 
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
@@ -119,13 +122,19 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class ApiKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+        /// Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
         /// </summary>
         [Input("cloudStackSlug")]
         public Input<string>? CloudStackSlug { get; set; }
 
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
@@ -142,7 +151,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class ApiKeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If set, the API key will be created for the given Cloud stack. This can be used to bootstrap a management API key for a new stack. **Note**: This requires a cloud token to be configured.
+        /// Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
         /// </summary>
         [Input("cloudStackSlug")]
         public Input<string>? CloudStackSlug { get; set; }
@@ -164,6 +173,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         [Input("role")]
         public Input<string>? Role { get; set; }

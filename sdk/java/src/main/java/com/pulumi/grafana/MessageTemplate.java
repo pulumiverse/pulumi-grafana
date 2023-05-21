@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 /**
  * Manages Grafana Alerting message templates.
  * 
- * * [Official documentation](https://grafana.com/docs/grafana/next/alerting/manage-notifications/create-message-template/)
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/manage-notifications/template-notifications/create-notification-templates/)
  * * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#templates)
  * 
  * This resource requires Grafana 9.1.0 or later.
@@ -68,7 +68,7 @@ public class MessageTemplate extends com.pulumi.resources.CustomResource {
      * The name of the message template.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -82,7 +82,7 @@ public class MessageTemplate extends com.pulumi.resources.CustomResource {
      * The content of the message template.
      * 
      */
-    @Export(name="template", type=String.class, parameters={})
+    @Export(name="template", refs={String.class}, tree="[0]")
     private Output<String> template;
 
     /**

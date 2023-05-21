@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * * [HTTP API](https://grafana.com/docs/grafana-cloud/oncall/oncall-api-reference/schedules/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
  * 
  * ## Example Usage
  * ```java
@@ -87,7 +87,7 @@ public class OncallSchedule extends com.pulumi.resources.CustomResource {
      * The URL of external iCal calendar which override primary events.
      * 
      */
-    @Export(name="icalUrlOverrides", type=String.class, parameters={})
+    @Export(name="icalUrlOverrides", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> icalUrlOverrides;
 
     /**
@@ -101,7 +101,7 @@ public class OncallSchedule extends com.pulumi.resources.CustomResource {
      * The URL of the external calendar iCal file.
      * 
      */
-    @Export(name="icalUrlPrimary", type=String.class, parameters={})
+    @Export(name="icalUrlPrimary", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> icalUrlPrimary;
 
     /**
@@ -115,7 +115,7 @@ public class OncallSchedule extends com.pulumi.resources.CustomResource {
      * The schedule&#39;s name.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -129,7 +129,7 @@ public class OncallSchedule extends com.pulumi.resources.CustomResource {
      * The list of ID&#39;s of on-call shifts.
      * 
      */
-    @Export(name="shifts", type=List.class, parameters={String.class})
+    @Export(name="shifts", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> shifts;
 
     /**
@@ -143,7 +143,7 @@ public class OncallSchedule extends com.pulumi.resources.CustomResource {
      * The Slack-specific settings for a schedule.
      * 
      */
-    @Export(name="slack", type=OncallScheduleSlack.class, parameters={})
+    @Export(name="slack", refs={OncallScheduleSlack.class}, tree="[0]")
     private Output</* @Nullable */ OncallScheduleSlack> slack;
 
     /**
@@ -157,7 +157,7 @@ public class OncallSchedule extends com.pulumi.resources.CustomResource {
      * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      * 
      */
-    @Export(name="teamId", type=String.class, parameters={})
+    @Export(name="teamId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> teamId;
 
     /**
@@ -171,7 +171,7 @@ public class OncallSchedule extends com.pulumi.resources.CustomResource {
      * The schedule&#39;s time zone.
      * 
      */
-    @Export(name="timeZone", type=String.class, parameters={})
+    @Export(name="timeZone", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> timeZone;
 
     /**
@@ -185,7 +185,7 @@ public class OncallSchedule extends com.pulumi.resources.CustomResource {
      * The schedule&#39;s type.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

@@ -25,6 +25,18 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         [Input("component")]
         public Input<string>? Component { get; set; }
 
+        [Input("details")]
+        private InputMap<string>? _details;
+
+        /// <summary>
+        /// A set of arbitrary key/value pairs that provide further detail about the incident.
+        /// </summary>
+        public InputMap<string> Details
+        {
+            get => _details ?? (_details = new InputMap<string>());
+            set => _details = value;
+        }
+
         /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>

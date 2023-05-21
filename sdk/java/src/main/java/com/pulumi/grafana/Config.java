@@ -15,7 +15,8 @@ public final class Config {
 
     private static final com.pulumi.Config config = com.pulumi.Config.of("grafana");
 /**
- * API token or basic auth `username:password`. May alternatively be set via the `GRAFANA_AUTH` environment variable.
+ * API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
+ * the `GRAFANA_AUTH` environment variable.
  * 
  */
     public Optional<String> auth() {

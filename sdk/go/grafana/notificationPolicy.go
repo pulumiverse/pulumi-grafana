@@ -7,11 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Sets the global notification policy for Grafana. Note that this resource manages the entire notification policy tree, and will overwrite any existing policies.
+// Sets the global notification policy for Grafana.
+//
+// !> This resource manages the entire notification policy tree, and will overwrite any existing policies.
 //
 // * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/manage-notifications/)
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/)
