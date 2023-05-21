@@ -21,6 +21,15 @@ func TestAccServiceAccount(t *testing.T) {
 	integration.ProgramTest(t, &test)
 }
 
+func TestAccExplicitProvider(t *testing.T) {
+	test := getPythonBaseOptions(t).
+		With(integration.ProgramTestOptions{
+			Dir: path.Join(getCwd(t), "python/explicit_provider"),
+		})
+
+	integration.ProgramTest(t, &test)
+}
+
 func getPythonBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
 	basePython := base.With(integration.ProgramTestOptions{
