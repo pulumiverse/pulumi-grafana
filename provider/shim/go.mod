@@ -3,7 +3,7 @@ module github.com/lbrlabs/terraform-provider-grafana/shim
 go 1.19
 
 require (
-	github.com/grafana/terraform-provider-grafana v1.40.1
+	github.com/grafana/terraform-provider-grafana v1.42.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.26.1
 	github.com/lbrlabs/pulumi-grafana/provider v0.0.0-20230521192524-f36534c468ee
 )
@@ -16,10 +16,10 @@ require (
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
-	github.com/grafana/amixr-api-go-client v0.0.7 // indirect
-	github.com/grafana/grafana-api-golang-client v0.21.1 // indirect
+	github.com/grafana/amixr-api-go-client v0.0.9 // indirect
+	github.com/grafana/grafana-api-golang-client v0.23.0 // indirect
 	github.com/grafana/machine-learning-go-client v0.5.0 // indirect
-	github.com/grafana/synthetic-monitoring-agent v0.14.5 // indirect
+	github.com/grafana/synthetic-monitoring-agent v0.16.3 // indirect
 	github.com/grafana/synthetic-monitoring-api-go-client v0.7.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
@@ -35,7 +35,7 @@ require (
 	github.com/hashicorp/terraform-plugin-log v0.8.0 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
-	github.com/mattn/go-isatty v0.0.17 // indirect
+	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/go-testing-interface v1.14.1 // indirect
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
@@ -44,14 +44,14 @@ require (
 	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
 	github.com/vmihailenco/msgpack/v4 v4.3.12 // indirect
 	github.com/vmihailenco/tagparser v0.1.1 // indirect
-	github.com/zclconf/go-cty v1.13.1 // indirect
-	golang.org/x/net v0.9.0 // indirect
-	golang.org/x/sys v0.7.0 // indirect
-	golang.org/x/text v0.9.0 // indirect
+	github.com/zclconf/go-cty v1.13.2 // indirect
+	golang.org/x/net v0.10.0 // indirect
+	golang.org/x/sys v0.8.0 // indirect
+	golang.org/x/text v0.10.0 // indirect
 	golang.org/x/time v0.1.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto v0.0.0-20230306155012-7f2fa6fef1f4 // indirect
-	google.golang.org/grpc v1.54.0 // indirect
-	google.golang.org/protobuf v1.29.1 // indirect
+	google.golang.org/genproto v0.0.0-20230524185152-1884fd1fac28 // indirect
+	google.golang.org/grpc v1.55.0 // indirect
+	google.golang.org/protobuf v1.30.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 )
