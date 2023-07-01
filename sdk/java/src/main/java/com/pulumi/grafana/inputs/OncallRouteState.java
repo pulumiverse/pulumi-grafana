@@ -95,6 +95,21 @@ public final class OncallRouteState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The type of route. Can be jinja2, regex Defaults to `regex`.
+     * 
+     */
+    @Import(name="routingType")
+    private @Nullable Output<String> routingType;
+
+    /**
+     * @return The type of route. Can be jinja2, regex Defaults to `regex`.
+     * 
+     */
+    public Optional<Output<String>> routingType() {
+        return Optional.ofNullable(this.routingType);
+    }
+
+    /**
      * Slack-specific settings for a route.
      * 
      */
@@ -132,6 +147,7 @@ public final class OncallRouteState extends com.pulumi.resources.ResourceArgs {
         this.msteams = $.msteams;
         this.position = $.position;
         this.routingRegex = $.routingRegex;
+        this.routingType = $.routingType;
         this.slack = $.slack;
         this.telegram = $.telegram;
     }
@@ -257,6 +273,27 @@ public final class OncallRouteState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder routingRegex(String routingRegex) {
             return routingRegex(Output.of(routingRegex));
+        }
+
+        /**
+         * @param routingType The type of route. Can be jinja2, regex Defaults to `regex`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder routingType(@Nullable Output<String> routingType) {
+            $.routingType = routingType;
+            return this;
+        }
+
+        /**
+         * @param routingType The type of route. Can be jinja2, regex Defaults to `regex`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder routingType(String routingType) {
+            return routingType(Output.of(routingType));
         }
 
         /**

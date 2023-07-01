@@ -2336,7 +2336,7 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invokeAsync("grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook", TypeShape.of(GetOncallOutgoingWebhookResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+     * * [Official documentation](https://grafana.com/docs/oncall/latest/on-call-schedules/)
      * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
      * 
      * ## Example Usage
@@ -2374,7 +2374,7 @@ public final class GrafanaFunctions {
         return getOncallSchedule(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+     * * [Official documentation](https://grafana.com/docs/oncall/latest/on-call-schedules/)
      * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
      * 
      * ## Example Usage
@@ -2412,7 +2412,7 @@ public final class GrafanaFunctions {
         return getOncallSchedulePlain(args, InvokeOptions.Empty);
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+     * * [Official documentation](https://grafana.com/docs/oncall/latest/on-call-schedules/)
      * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
      * 
      * ## Example Usage
@@ -2450,7 +2450,7 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invoke("grafana:index/getOncallSchedule:getOncallSchedule", TypeShape.of(GetOncallScheduleResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+     * * [Official documentation](https://grafana.com/docs/oncall/latest/on-call-schedules/)
      * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
      * 
      * ## Example Usage

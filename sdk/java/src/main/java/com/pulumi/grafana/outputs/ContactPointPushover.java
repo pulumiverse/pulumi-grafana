@@ -70,6 +70,11 @@ public final class ContactPointPushover {
      */
     private @Nullable String sound;
     /**
+     * @return The templated title of the message.
+     * 
+     */
+    private @Nullable String title;
+    /**
      * @return The UID of the contact point.
      * 
      */
@@ -159,6 +164,13 @@ public final class ContactPointPushover {
         return Optional.ofNullable(this.sound);
     }
     /**
+     * @return The templated title of the message.
+     * 
+     */
+    public Optional<String> title() {
+        return Optional.ofNullable(this.title);
+    }
+    /**
      * @return The UID of the contact point.
      * 
      */
@@ -193,6 +205,7 @@ public final class ContactPointPushover {
         private @Nullable Integer retry;
         private @Nullable Map<String,String> settings;
         private @Nullable String sound;
+        private @Nullable String title;
         private @Nullable String uid;
         private String userKey;
         public Builder() {}
@@ -209,6 +222,7 @@ public final class ContactPointPushover {
     	      this.retry = defaults.retry;
     	      this.settings = defaults.settings;
     	      this.sound = defaults.sound;
+    	      this.title = defaults.title;
     	      this.uid = defaults.uid;
     	      this.userKey = defaults.userKey;
         }
@@ -269,6 +283,11 @@ public final class ContactPointPushover {
             return this;
         }
         @CustomType.Setter
+        public Builder title(@Nullable String title) {
+            this.title = title;
+            return this;
+        }
+        @CustomType.Setter
         public Builder uid(@Nullable String uid) {
             this.uid = uid;
             return this;
@@ -291,6 +310,7 @@ public final class ContactPointPushover {
             o.retry = retry;
             o.settings = settings;
             o.sound = sound;
+            o.title = title;
             o.uid = uid;
             o.userKey = userKey;
             return o;

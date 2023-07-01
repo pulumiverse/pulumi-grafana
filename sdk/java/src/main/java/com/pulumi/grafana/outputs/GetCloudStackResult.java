@@ -116,6 +116,10 @@ public final class GetCloudStackResult {
     private String status;
     private String tracesName;
     private String tracesStatus;
+    /**
+     * @return Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+     * 
+     */
     private String tracesUrl;
     private Integer tracesUserId;
     /**
@@ -289,6 +293,10 @@ public final class GetCloudStackResult {
     public String tracesStatus() {
         return this.tracesStatus;
     }
+    /**
+     * @return Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+     * 
+     */
     public String tracesUrl() {
         return this.tracesUrl;
     }

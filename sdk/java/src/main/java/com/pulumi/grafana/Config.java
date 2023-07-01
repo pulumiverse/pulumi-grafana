@@ -8,6 +8,7 @@ import com.pulumi.core.internal.Codegen;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -23,8 +24,8 @@ public final class Config {
         return Codegen.stringProp("auth").config(config).env("GRAFANA_AUTH").get();
     }
 /**
- * Certificate CA bundle to use to verify the Grafana server&#39;s certificate. May alternatively be set via the
- * `GRAFANA_CA_CERT` environment variable.
+ * Certificate CA bundle (file path or literal value) to use to verify the Grafana server&#39;s certificate. May alternatively
+ * be set via the `GRAFANA_CA_CERT` environment variable.
  * 
  */
     public Optional<String> caCert() {
@@ -90,6 +91,14 @@ public final class Config {
         return Codegen.integerProp("retries").config(config).env("GRAFANA_RETRIES").get();
     }
 /**
+ * The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+ * and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+ * 
+ */
+    public Optional<List<String>> retryStatusCodes() {
+        return Codegen.objectProp("retryStatusCodes", TypeShape.<List<String>>builder(List.class).addParameter(String.class).build()).config(config).get();
+    }
+/**
  * A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
  * 
  */
@@ -117,16 +126,16 @@ public final class Config {
         return Codegen.booleanProp("storeDashboardSha256").config(config).env("GRAFANA_STORE_DASHBOARD_SHA256").get();
     }
 /**
- * Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
- * `GRAFANA_TLS_CERT` environment variable.
+ * Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+ * set via the `GRAFANA_TLS_CERT` environment variable.
  * 
  */
     public Optional<String> tlsCert() {
         return Codegen.stringProp("tlsCert").config(config).env("GRAFANA_TLS_CERT").get();
     }
 /**
- * Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
- * environment variable.
+ * Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+ * the `GRAFANA_TLS_KEY` environment variable.
  * 
  */
     public Optional<String> tlsKey() {

@@ -77,6 +77,12 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ## Import
+ * 
+ * ```sh
+ *  $ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy policyname {{region}}/{{policy_id}}
+ * ```
+ * 
  */
 @ResourceType(type="grafana:index/cloudAccessPolicy:CloudAccessPolicy")
 public class CloudAccessPolicy extends com.pulumi.resources.CustomResource {

@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * * [Official documentation](https://grafana.com/docs/oncall/latest/escalation-policies/)
+ * * [Official documentation](https://grafana.com/docs/oncall/latest/escalation-chains-and-routes/)
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_policies/)
  * 
  * ## Example Usage

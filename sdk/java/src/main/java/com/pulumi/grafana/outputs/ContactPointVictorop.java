@@ -14,6 +14,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ContactPointVictorop {
     /**
+     * @return Templated description of the message.
+     * 
+     */
+    private @Nullable String description;
+    /**
      * @return Whether to disable sending resolve messages. Defaults to `false`.
      * 
      */
@@ -29,6 +34,11 @@ public final class ContactPointVictorop {
      */
     private @Nullable Map<String,String> settings;
     /**
+     * @return Templated title to display.
+     * 
+     */
+    private @Nullable String title;
+    /**
      * @return The UID of the contact point.
      * 
      */
@@ -40,6 +50,13 @@ public final class ContactPointVictorop {
     private String url;
 
     private ContactPointVictorop() {}
+    /**
+     * @return Templated description of the message.
+     * 
+     */
+    public Optional<String> description() {
+        return Optional.ofNullable(this.description);
+    }
     /**
      * @return Whether to disable sending resolve messages. Defaults to `false`.
      * 
@@ -60,6 +77,13 @@ public final class ContactPointVictorop {
      */
     public Map<String,String> settings() {
         return this.settings == null ? Map.of() : this.settings;
+    }
+    /**
+     * @return Templated title to display.
+     * 
+     */
+    public Optional<String> title() {
+        return Optional.ofNullable(this.title);
     }
     /**
      * @return The UID of the contact point.
@@ -85,21 +109,30 @@ public final class ContactPointVictorop {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String description;
         private @Nullable Boolean disableResolveMessage;
         private @Nullable String messageType;
         private @Nullable Map<String,String> settings;
+        private @Nullable String title;
         private @Nullable String uid;
         private String url;
         public Builder() {}
         public Builder(ContactPointVictorop defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.description = defaults.description;
     	      this.disableResolveMessage = defaults.disableResolveMessage;
     	      this.messageType = defaults.messageType;
     	      this.settings = defaults.settings;
+    	      this.title = defaults.title;
     	      this.uid = defaults.uid;
     	      this.url = defaults.url;
         }
 
+        @CustomType.Setter
+        public Builder description(@Nullable String description) {
+            this.description = description;
+            return this;
+        }
         @CustomType.Setter
         public Builder disableResolveMessage(@Nullable Boolean disableResolveMessage) {
             this.disableResolveMessage = disableResolveMessage;
@@ -116,6 +149,11 @@ public final class ContactPointVictorop {
             return this;
         }
         @CustomType.Setter
+        public Builder title(@Nullable String title) {
+            this.title = title;
+            return this;
+        }
+        @CustomType.Setter
         public Builder uid(@Nullable String uid) {
             this.uid = uid;
             return this;
@@ -127,9 +165,11 @@ public final class ContactPointVictorop {
         }
         public ContactPointVictorop build() {
             final var o = new ContactPointVictorop();
+            o.description = description;
             o.disableResolveMessage = disableResolveMessage;
             o.messageType = messageType;
             o.settings = settings;
+            o.title = title;
             o.uid = uid;
             o.url = url;
             return o;

@@ -18,6 +18,21 @@ public final class ContactPointVictoropArgs extends com.pulumi.resources.Resourc
     public static final ContactPointVictoropArgs Empty = new ContactPointVictoropArgs();
 
     /**
+     * Templated description of the message.
+     * 
+     */
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    /**
+     * @return Templated description of the message.
+     * 
+     */
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
+
+    /**
      * Whether to disable sending resolve messages. Defaults to `false`.
      * 
      */
@@ -63,6 +78,21 @@ public final class ContactPointVictoropArgs extends com.pulumi.resources.Resourc
     }
 
     /**
+     * Templated title to display.
+     * 
+     */
+    @Import(name="title")
+    private @Nullable Output<String> title;
+
+    /**
+     * @return Templated title to display.
+     * 
+     */
+    public Optional<Output<String>> title() {
+        return Optional.ofNullable(this.title);
+    }
+
+    /**
      * The UID of the contact point.
      * 
      */
@@ -95,9 +125,11 @@ public final class ContactPointVictoropArgs extends com.pulumi.resources.Resourc
     private ContactPointVictoropArgs() {}
 
     private ContactPointVictoropArgs(ContactPointVictoropArgs $) {
+        this.description = $.description;
         this.disableResolveMessage = $.disableResolveMessage;
         this.messageType = $.messageType;
         this.settings = $.settings;
+        this.title = $.title;
         this.uid = $.uid;
         this.url = $.url;
     }
@@ -118,6 +150,27 @@ public final class ContactPointVictoropArgs extends com.pulumi.resources.Resourc
 
         public Builder(ContactPointVictoropArgs defaults) {
             $ = new ContactPointVictoropArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param description Templated description of the message.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        /**
+         * @param description Templated description of the message.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         /**
@@ -181,6 +234,27 @@ public final class ContactPointVictoropArgs extends com.pulumi.resources.Resourc
          */
         public Builder settings(Map<String,String> settings) {
             return settings(Output.of(settings));
+        }
+
+        /**
+         * @param title Templated title to display.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder title(@Nullable Output<String> title) {
+            $.title = title;
+            return this;
+        }
+
+        /**
+         * @param title Templated title to display.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder title(String title) {
+            return title(Output.of(title));
         }
 
         /**
