@@ -73,8 +73,8 @@ def get_oncall_action(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getOncallAction:getOncallAction', __args__, opts=opts, typ=GetOncallActionResult).value
 
     return AwaitableGetOncallActionResult(
-        id=__ret__.id,
-        name=__ret__.name)
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'))
 
 
 @_utilities.lift_output_func(get_oncall_action)

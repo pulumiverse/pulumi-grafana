@@ -270,6 +270,12 @@ class CloudAccessPolicy(pulumi.CustomResource):
             expires_at="2023-01-01T00:00:00Z")
         ```
 
+        ## Import
+
+        ```sh
+         $ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy policyname {{region}}/{{policy_id}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] display_name: Display name of the access policy. Defaults to the name.
@@ -314,6 +320,12 @@ class CloudAccessPolicy(pulumi.CustomResource):
             access_policy_id=test_cloud_access_policy.policy_id,
             display_name="My Policy Token",
             expires_at="2023-01-01T00:00:00Z")
+        ```
+
+        ## Import
+
+        ```sh
+         $ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy policyname {{region}}/{{policy_id}}
         ```
 
         :param str resource_name: The name of the resource.

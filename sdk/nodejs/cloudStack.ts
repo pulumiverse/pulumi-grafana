@@ -141,6 +141,9 @@ export class CloudStack extends pulumi.CustomResource {
     public /*out*/ readonly status!: pulumi.Output<string>;
     public /*out*/ readonly tracesName!: pulumi.Output<string>;
     public /*out*/ readonly tracesStatus!: pulumi.Output<string>;
+    /**
+     * Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+     */
     public /*out*/ readonly tracesUrl!: pulumi.Output<string>;
     public /*out*/ readonly tracesUserId!: pulumi.Output<number>;
     /**
@@ -333,6 +336,9 @@ export interface CloudStackState {
     status?: pulumi.Input<string>;
     tracesName?: pulumi.Input<string>;
     tracesStatus?: pulumi.Input<string>;
+    /**
+     * Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+     */
     tracesUrl?: pulumi.Input<string>;
     tracesUserId?: pulumi.Input<number>;
     /**

@@ -91,9 +91,9 @@ def get_on_call_slack_channel(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getOnCallSlackChannel:getOnCallSlackChannel', __args__, opts=opts, typ=GetOnCallSlackChannelResult).value
 
     return AwaitableGetOnCallSlackChannelResult(
-        id=__ret__.id,
-        name=__ret__.name,
-        slack_id=__ret__.slack_id)
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        slack_id=pulumi.get(__ret__, 'slack_id'))
 
 
 @_utilities.lift_output_func(get_on_call_slack_channel)

@@ -134,10 +134,10 @@ def get_organization_preferences(opts: Optional[pulumi.InvokeOptions] = None) ->
     __ret__ = pulumi.runtime.invoke('grafana:index/getOrganizationPreferences:getOrganizationPreferences', __args__, opts=opts, typ=GetOrganizationPreferencesResult).value
 
     return AwaitableGetOrganizationPreferencesResult(
-        home_dashboard_id=__ret__.home_dashboard_id,
-        home_dashboard_uid=__ret__.home_dashboard_uid,
-        id=__ret__.id,
-        org_id=__ret__.org_id,
-        theme=__ret__.theme,
-        timezone=__ret__.timezone,
-        week_start=__ret__.week_start)
+        home_dashboard_id=pulumi.get(__ret__, 'home_dashboard_id'),
+        home_dashboard_uid=pulumi.get(__ret__, 'home_dashboard_uid'),
+        id=pulumi.get(__ret__, 'id'),
+        org_id=pulumi.get(__ret__, 'org_id'),
+        theme=pulumi.get(__ret__, 'theme'),
+        timezone=pulumi.get(__ret__, 'timezone'),
+        week_start=pulumi.get(__ret__, 'week_start'))

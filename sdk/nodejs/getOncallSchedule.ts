@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+ * * [Official documentation](https://grafana.com/docs/oncall/latest/on-call-schedules/)
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
  *
  * ## Example Usage
@@ -55,7 +55,7 @@ export interface GetOncallScheduleResult {
     readonly type: string;
 }
 /**
- * * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+ * * [Official documentation](https://grafana.com/docs/oncall/latest/on-call-schedules/)
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
  *
  * ## Example Usage

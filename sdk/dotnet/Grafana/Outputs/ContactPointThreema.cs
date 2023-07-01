@@ -19,6 +19,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// </summary>
         public readonly string ApiSecret;
         /// <summary>
+        /// The templated description of the message.
+        /// </summary>
+        public readonly string Description;
+        /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
         public readonly bool? DisableResolveMessage;
@@ -35,6 +39,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Settings;
         /// <summary>
+        /// The templated title of the message.
+        /// </summary>
+        public readonly string Title;
+        /// <summary>
         /// The UID of the contact point.
         /// </summary>
         public readonly string? Uid;
@@ -42,6 +50,8 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         [OutputConstructor]
         private ContactPointThreema(
             string apiSecret,
+
+            string description,
 
             bool? disableResolveMessage,
 
@@ -51,13 +61,17 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
             ImmutableDictionary<string, string>? settings,
 
+            string title,
+
             string? uid)
         {
             ApiSecret = apiSecret;
+            Description = description;
             DisableResolveMessage = disableResolveMessage;
             GatewayId = gatewayId;
             RecipientId = recipientId;
             Settings = settings;
+            Title = title;
             Uid = uid;
         }
     }

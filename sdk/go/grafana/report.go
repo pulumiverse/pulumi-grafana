@@ -63,6 +63,8 @@ type Report struct {
 	DashboardId pulumi.IntOutput `pulumi:"dashboardId"`
 	// Dashboard to be sent in the report.
 	DashboardUid pulumi.StringOutput `pulumi:"dashboardUid"`
+	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+	Formats pulumi.StringArrayOutput `pulumi:"formats"`
 	// Whether to include a link to the dashboard in the report. Defaults to `true`.
 	IncludeDashboardLink pulumi.BoolPtrOutput `pulumi:"includeDashboardLink"`
 	// Whether to include a CSV file of table panel data. Defaults to `false`.
@@ -73,6 +75,8 @@ type Report struct {
 	Message pulumi.StringPtrOutput `pulumi:"message"`
 	// Name of the report.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 	Orientation pulumi.StringPtrOutput `pulumi:"orientation"`
 	// List of recipients of the report.
@@ -127,6 +131,8 @@ type reportState struct {
 	DashboardId *int `pulumi:"dashboardId"`
 	// Dashboard to be sent in the report.
 	DashboardUid *string `pulumi:"dashboardUid"`
+	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+	Formats []string `pulumi:"formats"`
 	// Whether to include a link to the dashboard in the report. Defaults to `true`.
 	IncludeDashboardLink *bool `pulumi:"includeDashboardLink"`
 	// Whether to include a CSV file of table panel data. Defaults to `false`.
@@ -137,6 +143,8 @@ type reportState struct {
 	Message *string `pulumi:"message"`
 	// Name of the report.
 	Name *string `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 	Orientation *string `pulumi:"orientation"`
 	// List of recipients of the report.
@@ -156,6 +164,8 @@ type ReportState struct {
 	DashboardId pulumi.IntPtrInput
 	// Dashboard to be sent in the report.
 	DashboardUid pulumi.StringPtrInput
+	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+	Formats pulumi.StringArrayInput
 	// Whether to include a link to the dashboard in the report. Defaults to `true`.
 	IncludeDashboardLink pulumi.BoolPtrInput
 	// Whether to include a CSV file of table panel data. Defaults to `false`.
@@ -166,6 +176,8 @@ type ReportState struct {
 	Message pulumi.StringPtrInput
 	// Name of the report.
 	Name pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 	Orientation pulumi.StringPtrInput
 	// List of recipients of the report.
@@ -189,6 +201,8 @@ type reportArgs struct {
 	DashboardId *int `pulumi:"dashboardId"`
 	// Dashboard to be sent in the report.
 	DashboardUid *string `pulumi:"dashboardUid"`
+	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+	Formats []string `pulumi:"formats"`
 	// Whether to include a link to the dashboard in the report. Defaults to `true`.
 	IncludeDashboardLink *bool `pulumi:"includeDashboardLink"`
 	// Whether to include a CSV file of table panel data. Defaults to `false`.
@@ -199,6 +213,8 @@ type reportArgs struct {
 	Message *string `pulumi:"message"`
 	// Name of the report.
 	Name *string `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 	Orientation *string `pulumi:"orientation"`
 	// List of recipients of the report.
@@ -219,6 +235,8 @@ type ReportArgs struct {
 	DashboardId pulumi.IntPtrInput
 	// Dashboard to be sent in the report.
 	DashboardUid pulumi.StringPtrInput
+	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+	Formats pulumi.StringArrayInput
 	// Whether to include a link to the dashboard in the report. Defaults to `true`.
 	IncludeDashboardLink pulumi.BoolPtrInput
 	// Whether to include a CSV file of table panel data. Defaults to `false`.
@@ -229,6 +247,8 @@ type ReportArgs struct {
 	Message pulumi.StringPtrInput
 	// Name of the report.
 	Name pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 	Orientation pulumi.StringPtrInput
 	// List of recipients of the report.
@@ -340,6 +360,11 @@ func (o ReportOutput) DashboardUid() pulumi.StringOutput {
 	return o.ApplyT(func(v *Report) pulumi.StringOutput { return v.DashboardUid }).(pulumi.StringOutput)
 }
 
+// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+func (o ReportOutput) Formats() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Report) pulumi.StringArrayOutput { return v.Formats }).(pulumi.StringArrayOutput)
+}
+
 // Whether to include a link to the dashboard in the report. Defaults to `true`.
 func (o ReportOutput) IncludeDashboardLink() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Report) pulumi.BoolPtrOutput { return v.IncludeDashboardLink }).(pulumi.BoolPtrOutput)
@@ -363,6 +388,11 @@ func (o ReportOutput) Message() pulumi.StringPtrOutput {
 // Name of the report.
 func (o ReportOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Report) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o ReportOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Report) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.

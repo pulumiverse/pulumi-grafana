@@ -74,6 +74,10 @@ export class Report extends pulumi.CustomResource {
      */
     public readonly dashboardUid!: pulumi.Output<string>;
     /**
+     * Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+     */
+    public readonly formats!: pulumi.Output<string[] | undefined>;
+    /**
      * Whether to include a link to the dashboard in the report. Defaults to `true`.
      */
     public readonly includeDashboardLink!: pulumi.Output<boolean | undefined>;
@@ -93,6 +97,10 @@ export class Report extends pulumi.CustomResource {
      * Name of the report.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
     /**
      * Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
      */
@@ -129,11 +137,13 @@ export class Report extends pulumi.CustomResource {
             const state = argsOrState as ReportState | undefined;
             resourceInputs["dashboardId"] = state ? state.dashboardId : undefined;
             resourceInputs["dashboardUid"] = state ? state.dashboardUid : undefined;
+            resourceInputs["formats"] = state ? state.formats : undefined;
             resourceInputs["includeDashboardLink"] = state ? state.includeDashboardLink : undefined;
             resourceInputs["includeTableCsv"] = state ? state.includeTableCsv : undefined;
             resourceInputs["layout"] = state ? state.layout : undefined;
             resourceInputs["message"] = state ? state.message : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["orientation"] = state ? state.orientation : undefined;
             resourceInputs["recipients"] = state ? state.recipients : undefined;
             resourceInputs["replyTo"] = state ? state.replyTo : undefined;
@@ -149,11 +159,13 @@ export class Report extends pulumi.CustomResource {
             }
             resourceInputs["dashboardId"] = args ? args.dashboardId : undefined;
             resourceInputs["dashboardUid"] = args ? args.dashboardUid : undefined;
+            resourceInputs["formats"] = args ? args.formats : undefined;
             resourceInputs["includeDashboardLink"] = args ? args.includeDashboardLink : undefined;
             resourceInputs["includeTableCsv"] = args ? args.includeTableCsv : undefined;
             resourceInputs["layout"] = args ? args.layout : undefined;
             resourceInputs["message"] = args ? args.message : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["orientation"] = args ? args.orientation : undefined;
             resourceInputs["recipients"] = args ? args.recipients : undefined;
             resourceInputs["replyTo"] = args ? args.replyTo : undefined;
@@ -180,6 +192,10 @@ export interface ReportState {
      */
     dashboardUid?: pulumi.Input<string>;
     /**
+     * Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+     */
+    formats?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Whether to include a link to the dashboard in the report. Defaults to `true`.
      */
     includeDashboardLink?: pulumi.Input<boolean>;
@@ -199,6 +215,10 @@ export interface ReportState {
      * Name of the report.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
      */
@@ -236,6 +256,10 @@ export interface ReportArgs {
      */
     dashboardUid?: pulumi.Input<string>;
     /**
+     * Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+     */
+    formats?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Whether to include a link to the dashboard in the report. Defaults to `true`.
      */
     includeDashboardLink?: pulumi.Input<boolean>;
@@ -255,6 +279,10 @@ export interface ReportArgs {
      * Name of the report.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
      */

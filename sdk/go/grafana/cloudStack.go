@@ -104,6 +104,7 @@ type CloudStack struct {
 	Status       pulumi.StringOutput `pulumi:"status"`
 	TracesName   pulumi.StringOutput `pulumi:"tracesName"`
 	TracesStatus pulumi.StringOutput `pulumi:"tracesStatus"`
+	// Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
 	TracesUrl    pulumi.StringOutput `pulumi:"tracesUrl"`
 	TracesUserId pulumi.IntOutput    `pulumi:"tracesUserId"`
 	// Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
@@ -194,6 +195,7 @@ type cloudStackState struct {
 	Status       *string `pulumi:"status"`
 	TracesName   *string `pulumi:"tracesName"`
 	TracesStatus *string `pulumi:"tracesStatus"`
+	// Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
 	TracesUrl    *string `pulumi:"tracesUrl"`
 	TracesUserId *int    `pulumi:"tracesUserId"`
 	// Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
@@ -252,6 +254,7 @@ type CloudStackState struct {
 	Status       pulumi.StringPtrInput
 	TracesName   pulumi.StringPtrInput
 	TracesStatus pulumi.StringPtrInput
+	// Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
 	TracesUrl    pulumi.StringPtrInput
 	TracesUserId pulumi.IntPtrInput
 	// Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
@@ -521,6 +524,7 @@ func (o CloudStackOutput) TracesStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.TracesStatus }).(pulumi.StringOutput)
 }
 
+// Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
 func (o CloudStackOutput) TracesUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.TracesUrl }).(pulumi.StringOutput)
 }

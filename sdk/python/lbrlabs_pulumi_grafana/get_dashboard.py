@@ -193,16 +193,16 @@ def get_dashboard(dashboard_id: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getDashboard:getDashboard', __args__, opts=opts, typ=GetDashboardResult).value
 
     return AwaitableGetDashboardResult(
-        config_json=__ret__.config_json,
-        dashboard_id=__ret__.dashboard_id,
-        folder=__ret__.folder,
-        id=__ret__.id,
-        is_starred=__ret__.is_starred,
-        slug=__ret__.slug,
-        title=__ret__.title,
-        uid=__ret__.uid,
-        url=__ret__.url,
-        version=__ret__.version)
+        config_json=pulumi.get(__ret__, 'config_json'),
+        dashboard_id=pulumi.get(__ret__, 'dashboard_id'),
+        folder=pulumi.get(__ret__, 'folder'),
+        id=pulumi.get(__ret__, 'id'),
+        is_starred=pulumi.get(__ret__, 'is_starred'),
+        slug=pulumi.get(__ret__, 'slug'),
+        title=pulumi.get(__ret__, 'title'),
+        uid=pulumi.get(__ret__, 'uid'),
+        url=pulumi.get(__ret__, 'url'),
+        version=pulumi.get(__ret__, 'version'))
 
 
 @_utilities.lift_output_func(get_dashboard)

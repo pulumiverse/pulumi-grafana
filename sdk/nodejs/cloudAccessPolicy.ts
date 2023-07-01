@@ -42,6 +42,12 @@ import * as utilities from "./utilities";
  *     expiresAt: "2023-01-01T00:00:00Z",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ *  $ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy policyname {{region}}/{{policy_id}}
+ * ```
  */
 export class CloudAccessPolicy extends pulumi.CustomResource {
     /**

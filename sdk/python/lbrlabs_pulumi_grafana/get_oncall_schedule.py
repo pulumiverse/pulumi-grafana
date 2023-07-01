@@ -71,7 +71,7 @@ class AwaitableGetOncallScheduleResult(GetOncallScheduleResult):
 def get_oncall_schedule(name: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallScheduleResult:
     """
-    * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+    * [Official documentation](https://grafana.com/docs/oncall/latest/on-call-schedules/)
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
 
     ## Example Usage
@@ -92,16 +92,16 @@ def get_oncall_schedule(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getOncallSchedule:getOncallSchedule', __args__, opts=opts, typ=GetOncallScheduleResult).value
 
     return AwaitableGetOncallScheduleResult(
-        id=__ret__.id,
-        name=__ret__.name,
-        type=__ret__.type)
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_oncall_schedule)
 def get_oncall_schedule_output(name: Optional[pulumi.Input[str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallScheduleResult]:
     """
-    * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+    * [Official documentation](https://grafana.com/docs/oncall/latest/on-call-schedules/)
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
 
     ## Example Usage

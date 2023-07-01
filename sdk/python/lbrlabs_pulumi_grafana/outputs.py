@@ -361,6 +361,7 @@ class ContactPointDingding(dict):
                  message: Optional[str] = None,
                  message_type: Optional[str] = None,
                  settings: Optional[Mapping[str, str]] = None,
+                 title: Optional[str] = None,
                  uid: Optional[str] = None):
         """
         :param str url: The DingDing webhook URL.
@@ -368,6 +369,7 @@ class ContactPointDingding(dict):
         :param str message: The templated content of the message.
         :param str message_type: The format of message to send - either 'link' or 'actionCard'
         :param Mapping[str, str] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        :param str title: The templated title of the message.
         :param str uid: The UID of the contact point.
         """
         pulumi.set(__self__, "url", url)
@@ -379,6 +381,8 @@ class ContactPointDingding(dict):
             pulumi.set(__self__, "message_type", message_type)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
 
@@ -421,6 +425,14 @@ class ContactPointDingding(dict):
         Additional custom properties to attach to the notifier. Defaults to `map[]`.
         """
         return pulumi.get(self, "settings")
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        """
+        The templated title of the message.
+        """
+        return pulumi.get(self, "title")
 
     @property
     @pulumi.getter
@@ -978,6 +990,8 @@ class ContactPointPagerduty(dict):
             suggest = "integration_key"
         elif key == "class":
             suggest = "class_"
+        elif key == "clientUrl":
+            suggest = "client_url"
         elif key == "disableResolveMessage":
             suggest = "disable_resolve_message"
 
@@ -995,29 +1009,39 @@ class ContactPointPagerduty(dict):
     def __init__(__self__, *,
                  integration_key: str,
                  class_: Optional[str] = None,
+                 client: Optional[str] = None,
+                 client_url: Optional[str] = None,
                  component: Optional[str] = None,
                  details: Optional[Mapping[str, str]] = None,
                  disable_resolve_message: Optional[bool] = None,
                  group: Optional[str] = None,
                  settings: Optional[Mapping[str, str]] = None,
                  severity: Optional[str] = None,
+                 source: Optional[str] = None,
                  summary: Optional[str] = None,
                  uid: Optional[str] = None):
         """
         :param str integration_key: The PagerDuty API key.
         :param str class_: The class or type of event, for example `ping failure`.
+        :param str client: The name of the monitoring client that is triggering this event.
+        :param str client_url: The URL of the monitoring client that is triggering this event.
         :param str component: The component being affected by the event.
         :param Mapping[str, str] details: A set of arbitrary key/value pairs that provide further detail about the incident.
         :param bool disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param str group: The group to which the provided component belongs to.
         :param Mapping[str, str] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
         :param str severity: The PagerDuty event severity level. Default is `critical`.
+        :param str source: The unique location of the affected system.
         :param str summary: The templated summary message of the event.
         :param str uid: The UID of the contact point.
         """
         pulumi.set(__self__, "integration_key", integration_key)
         if class_ is not None:
             pulumi.set(__self__, "class_", class_)
+        if client is not None:
+            pulumi.set(__self__, "client", client)
+        if client_url is not None:
+            pulumi.set(__self__, "client_url", client_url)
         if component is not None:
             pulumi.set(__self__, "component", component)
         if details is not None:
@@ -1030,6 +1054,8 @@ class ContactPointPagerduty(dict):
             pulumi.set(__self__, "settings", settings)
         if severity is not None:
             pulumi.set(__self__, "severity", severity)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
         if summary is not None:
             pulumi.set(__self__, "summary", summary)
         if uid is not None:
@@ -1050,6 +1076,22 @@ class ContactPointPagerduty(dict):
         The class or type of event, for example `ping failure`.
         """
         return pulumi.get(self, "class_")
+
+    @property
+    @pulumi.getter
+    def client(self) -> Optional[str]:
+        """
+        The name of the monitoring client that is triggering this event.
+        """
+        return pulumi.get(self, "client")
+
+    @property
+    @pulumi.getter(name="clientUrl")
+    def client_url(self) -> Optional[str]:
+        """
+        The URL of the monitoring client that is triggering this event.
+        """
+        return pulumi.get(self, "client_url")
 
     @property
     @pulumi.getter
@@ -1098,6 +1140,14 @@ class ContactPointPagerduty(dict):
         The PagerDuty event severity level. Default is `critical`.
         """
         return pulumi.get(self, "severity")
+
+    @property
+    @pulumi.getter
+    def source(self) -> Optional[str]:
+        """
+        The unique location of the affected system.
+        """
+        return pulumi.get(self, "source")
 
     @property
     @pulumi.getter
@@ -1156,6 +1206,7 @@ class ContactPointPushover(dict):
                  retry: Optional[int] = None,
                  settings: Optional[Mapping[str, str]] = None,
                  sound: Optional[str] = None,
+                 title: Optional[str] = None,
                  uid: Optional[str] = None):
         """
         :param str api_token: The Pushover API token.
@@ -1170,6 +1221,7 @@ class ContactPointPushover(dict):
         :param int retry: How often, in seconds, the Pushover servers will send the same notification to the user.
         :param Mapping[str, str] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
         :param str sound: The sound associated with the notification.
+        :param str title: The templated title of the message.
         :param str uid: The UID of the contact point.
         """
         pulumi.set(__self__, "api_token", api_token)
@@ -1194,6 +1246,8 @@ class ContactPointPushover(dict):
             pulumi.set(__self__, "settings", settings)
         if sound is not None:
             pulumi.set(__self__, "sound", sound)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
 
@@ -1292,6 +1346,14 @@ class ContactPointPushover(dict):
         The sound associated with the notification.
         """
         return pulumi.get(self, "sound")
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        """
+        The templated title of the message.
+        """
+        return pulumi.get(self, "title")
 
     @property
     @pulumi.getter
@@ -1894,22 +1956,28 @@ class ContactPointThreema(dict):
 
     def __init__(__self__, *,
                  api_secret: str,
+                 description: str,
                  gateway_id: str,
                  recipient_id: str,
+                 title: str,
                  disable_resolve_message: Optional[bool] = None,
                  settings: Optional[Mapping[str, str]] = None,
                  uid: Optional[str] = None):
         """
         :param str api_secret: The Threema API key.
+        :param str description: The templated description of the message.
         :param str gateway_id: The Threema gateway ID.
         :param str recipient_id: The ID of the recipient of the message.
+        :param str title: The templated title of the message.
         :param bool disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param Mapping[str, str] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
         :param str uid: The UID of the contact point.
         """
         pulumi.set(__self__, "api_secret", api_secret)
+        pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "gateway_id", gateway_id)
         pulumi.set(__self__, "recipient_id", recipient_id)
+        pulumi.set(__self__, "title", title)
         if disable_resolve_message is not None:
             pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
         if settings is not None:
@@ -1926,6 +1994,14 @@ class ContactPointThreema(dict):
         return pulumi.get(self, "api_secret")
 
     @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The templated description of the message.
+        """
+        return pulumi.get(self, "description")
+
+    @property
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> str:
         """
@@ -1940,6 +2016,14 @@ class ContactPointThreema(dict):
         The ID of the recipient of the message.
         """
         return pulumi.get(self, "recipient_id")
+
+    @property
+    @pulumi.getter
+    def title(self) -> str:
+        """
+        The templated title of the message.
+        """
+        return pulumi.get(self, "title")
 
     @property
     @pulumi.getter(name="disableResolveMessage")
@@ -1989,24 +2073,32 @@ class ContactPointVictorop(dict):
 
     def __init__(__self__, *,
                  url: str,
+                 description: Optional[str] = None,
                  disable_resolve_message: Optional[bool] = None,
                  message_type: Optional[str] = None,
                  settings: Optional[Mapping[str, str]] = None,
+                 title: Optional[str] = None,
                  uid: Optional[str] = None):
         """
         :param str url: The VictorOps webhook URL.
+        :param str description: Templated description of the message.
         :param bool disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param str message_type: The VictorOps alert state - typically either `CRITICAL` or `RECOVERY`.
         :param Mapping[str, str] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        :param str title: Templated title to display.
         :param str uid: The UID of the contact point.
         """
         pulumi.set(__self__, "url", url)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if disable_resolve_message is not None:
             pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
         if message_type is not None:
             pulumi.set(__self__, "message_type", message_type)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
 
@@ -2017,6 +2109,14 @@ class ContactPointVictorop(dict):
         The VictorOps webhook URL.
         """
         return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Templated description of the message.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="disableResolveMessage")
@@ -2041,6 +2141,14 @@ class ContactPointVictorop(dict):
         Additional custom properties to attach to the notifier. Defaults to `map[]`.
         """
         return pulumi.get(self, "settings")
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        """
+        Templated title to display.
+        """
+        return pulumi.get(self, "title")
 
     @property
     @pulumi.getter
@@ -7191,7 +7299,6 @@ class GetFoldersFolderResult(dict):
 class GetSlosSloResult(dict):
     def __init__(__self__, *,
                  alertings: Sequence['outputs.GetSlosSloAlertingResult'],
-                 dashboard_uid: str,
                  description: str,
                  labels: Sequence['outputs.GetSlosSloLabelResult'],
                  name: str,
@@ -7199,7 +7306,6 @@ class GetSlosSloResult(dict):
                  queries: Sequence['outputs.GetSlosSloQueryResult'],
                  uuid: str):
         pulumi.set(__self__, "alertings", alertings)
-        pulumi.set(__self__, "dashboard_uid", dashboard_uid)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "labels", labels)
         pulumi.set(__self__, "name", name)
@@ -7211,11 +7317,6 @@ class GetSlosSloResult(dict):
     @pulumi.getter
     def alertings(self) -> Sequence['outputs.GetSlosSloAlertingResult']:
         return pulumi.get(self, "alertings")
-
-    @property
-    @pulumi.getter(name="dashboardUid")
-    def dashboard_uid(self) -> str:
-        return pulumi.get(self, "dashboard_uid")
 
     @property
     @pulumi.getter

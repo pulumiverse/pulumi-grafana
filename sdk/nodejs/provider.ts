@@ -22,7 +22,7 @@ export class Provider extends pulumi.ProviderResource {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Provider.__pulumiType;
+        return obj['__pulumiType'] === "pulumi:providers:" + Provider.__pulumiType;
     }
 
     /**
@@ -31,8 +31,8 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly auth!: pulumi.Output<string | undefined>;
     /**
-     * Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
-     * `GRAFANA_CA_CERT` environment variable.
+     * Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
+     * be set via the `GRAFANA_CA_CERT` environment variable.
      */
     public readonly caCert!: pulumi.Output<string | undefined>;
     /**
@@ -66,13 +66,13 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly smUrl!: pulumi.Output<string | undefined>;
     /**
-     * Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-     * `GRAFANA_TLS_CERT` environment variable.
+     * Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+     * set via the `GRAFANA_TLS_CERT` environment variable.
      */
     public readonly tlsCert!: pulumi.Output<string | undefined>;
     /**
-     * Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-     * environment variable.
+     * Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+     * the `GRAFANA_TLS_KEY` environment variable.
      */
     public readonly tlsKey!: pulumi.Output<string | undefined>;
     /**
@@ -100,6 +100,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["oncallUrl"] = (args ? args.oncallUrl : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_URL");
             resourceInputs["orgId"] = pulumi.output((args ? args.orgId : undefined) ?? utilities.getEnvNumber("GRAFANA_ORG_ID")).apply(JSON.stringify);
             resourceInputs["retries"] = pulumi.output((args ? args.retries : undefined) ?? utilities.getEnvNumber("GRAFANA_RETRIES")).apply(JSON.stringify);
+            resourceInputs["retryStatusCodes"] = pulumi.output(args ? args.retryStatusCodes : undefined).apply(JSON.stringify);
             resourceInputs["smAccessToken"] = (args?.smAccessToken ? pulumi.secret(args.smAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_SM_ACCESS_TOKEN");
             resourceInputs["smUrl"] = (args ? args.smUrl : undefined) ?? utilities.getEnv("GRAFANA_SM_URL");
             resourceInputs["storeDashboardSha256"] = pulumi.output((args ? args.storeDashboardSha256 : undefined) ?? utilities.getEnvBoolean("GRAFANA_STORE_DASHBOARD_SHA256")).apply(JSON.stringify);
@@ -124,8 +125,8 @@ export interface ProviderArgs {
      */
     auth?: pulumi.Input<string>;
     /**
-     * Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
-     * `GRAFANA_CA_CERT` environment variable.
+     * Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
+     * be set via the `GRAFANA_CA_CERT` environment variable.
      */
     caCert?: pulumi.Input<string>;
     /**
@@ -159,6 +160,11 @@ export interface ProviderArgs {
      */
     retries?: pulumi.Input<number>;
     /**
+     * The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+     * and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+     */
+    retryStatusCodes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
      */
     smAccessToken?: pulumi.Input<string>;
@@ -177,13 +183,13 @@ export interface ProviderArgs {
      */
     storeDashboardSha256?: pulumi.Input<boolean>;
     /**
-     * Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-     * `GRAFANA_TLS_CERT` environment variable.
+     * Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+     * set via the `GRAFANA_TLS_CERT` environment variable.
      */
     tlsCert?: pulumi.Input<string>;
     /**
-     * Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-     * environment variable.
+     * Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+     * the `GRAFANA_TLS_KEY` environment variable.
      */
     tlsKey?: pulumi.Input<string>;
     /**

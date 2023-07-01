@@ -79,8 +79,8 @@ def get_oncall_outgoing_webhook(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook', __args__, opts=opts, typ=GetOncallOutgoingWebhookResult).value
 
     return AwaitableGetOncallOutgoingWebhookResult(
-        id=__ret__.id,
-        name=__ret__.name)
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'))
 
 
 @_utilities.lift_output_func(get_oncall_outgoing_webhook)

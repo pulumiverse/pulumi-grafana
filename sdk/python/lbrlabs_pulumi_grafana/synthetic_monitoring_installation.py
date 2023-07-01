@@ -72,6 +72,9 @@ class SyntheticMonitoringInstallationArgs:
         """
         Deprecated: Not used anymore.
         """
+        warnings.warn("""Not used anymore.""", DeprecationWarning)
+        pulumi.log.warn("""logs_instance_id is deprecated: Not used anymore.""")
+
         return pulumi.get(self, "logs_instance_id")
 
     @logs_instance_id.setter
@@ -84,6 +87,9 @@ class SyntheticMonitoringInstallationArgs:
         """
         Deprecated: Not used anymore.
         """
+        warnings.warn("""Not used anymore.""", DeprecationWarning)
+        pulumi.log.warn("""metrics_instance_id is deprecated: Not used anymore.""")
+
         return pulumi.get(self, "metrics_instance_id")
 
     @metrics_instance_id.setter
@@ -146,6 +152,9 @@ class _SyntheticMonitoringInstallationState:
         """
         Deprecated: Not used anymore.
         """
+        warnings.warn("""Not used anymore.""", DeprecationWarning)
+        pulumi.log.warn("""logs_instance_id is deprecated: Not used anymore.""")
+
         return pulumi.get(self, "logs_instance_id")
 
     @logs_instance_id.setter
@@ -158,6 +167,9 @@ class _SyntheticMonitoringInstallationState:
         """
         Deprecated: Not used anymore.
         """
+        warnings.warn("""Not used anymore.""", DeprecationWarning)
+        pulumi.log.warn("""metrics_instance_id is deprecated: Not used anymore.""")
+
         return pulumi.get(self, "metrics_instance_id")
 
     @metrics_instance_id.setter
@@ -391,6 +403,9 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
         """
         Deprecated: Not used anymore.
         """
+        warnings.warn("""Not used anymore.""", DeprecationWarning)
+        pulumi.log.warn("""logs_instance_id is deprecated: Not used anymore.""")
+
         return pulumi.get(self, "logs_instance_id")
 
     @property
@@ -399,6 +414,9 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
         """
         Deprecated: Not used anymore.
         """
+        warnings.warn("""Not used anymore.""", DeprecationWarning)
+        pulumi.log.warn("""metrics_instance_id is deprecated: Not used anymore.""")
+
         return pulumi.get(self, "metrics_instance_id")
 
     @property

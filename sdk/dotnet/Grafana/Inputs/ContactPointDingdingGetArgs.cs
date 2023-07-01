@@ -48,6 +48,12 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         }
 
         /// <summary>
+        /// The templated title of the message.
+        /// </summary>
+        [Input("title")]
+        public Input<string>? Title { get; set; }
+
+        /// <summary>
         /// The UID of the contact point.
         /// </summary>
         [Input("uid")]

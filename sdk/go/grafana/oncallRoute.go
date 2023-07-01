@@ -90,6 +90,8 @@ type OncallRoute struct {
 	Position pulumi.IntOutput `pulumi:"position"`
 	// Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
 	RoutingRegex pulumi.StringOutput `pulumi:"routingRegex"`
+	// The type of route. Can be jinja2, regex Defaults to `regex`.
+	RoutingType pulumi.StringPtrOutput `pulumi:"routingType"`
 	// Slack-specific settings for a route.
 	Slack OncallRouteSlackPtrOutput `pulumi:"slack"`
 	// Telegram-specific settings for a route.
@@ -148,6 +150,8 @@ type oncallRouteState struct {
 	Position *int `pulumi:"position"`
 	// Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
 	RoutingRegex *string `pulumi:"routingRegex"`
+	// The type of route. Can be jinja2, regex Defaults to `regex`.
+	RoutingType *string `pulumi:"routingType"`
 	// Slack-specific settings for a route.
 	Slack *OncallRouteSlack `pulumi:"slack"`
 	// Telegram-specific settings for a route.
@@ -165,6 +169,8 @@ type OncallRouteState struct {
 	Position pulumi.IntPtrInput
 	// Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
 	RoutingRegex pulumi.StringPtrInput
+	// The type of route. Can be jinja2, regex Defaults to `regex`.
+	RoutingType pulumi.StringPtrInput
 	// Slack-specific settings for a route.
 	Slack OncallRouteSlackPtrInput
 	// Telegram-specific settings for a route.
@@ -186,6 +192,8 @@ type oncallRouteArgs struct {
 	Position int `pulumi:"position"`
 	// Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
 	RoutingRegex string `pulumi:"routingRegex"`
+	// The type of route. Can be jinja2, regex Defaults to `regex`.
+	RoutingType *string `pulumi:"routingType"`
 	// Slack-specific settings for a route.
 	Slack *OncallRouteSlack `pulumi:"slack"`
 	// Telegram-specific settings for a route.
@@ -204,6 +212,8 @@ type OncallRouteArgs struct {
 	Position pulumi.IntInput
 	// Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
 	RoutingRegex pulumi.StringInput
+	// The type of route. Can be jinja2, regex Defaults to `regex`.
+	RoutingType pulumi.StringPtrInput
 	// Slack-specific settings for a route.
 	Slack OncallRouteSlackPtrInput
 	// Telegram-specific settings for a route.
@@ -320,6 +330,11 @@ func (o OncallRouteOutput) Position() pulumi.IntOutput {
 // Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
 func (o OncallRouteOutput) RoutingRegex() pulumi.StringOutput {
 	return o.ApplyT(func(v *OncallRoute) pulumi.StringOutput { return v.RoutingRegex }).(pulumi.StringOutput)
+}
+
+// The type of route. Can be jinja2, regex Defaults to `regex`.
+func (o OncallRouteOutput) RoutingType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OncallRoute) pulumi.StringPtrOutput { return v.RoutingType }).(pulumi.StringPtrOutput)
 }
 
 // Slack-specific settings for a route.

@@ -68,6 +68,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string> DashboardUid { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+        /// </summary>
+        [Output("formats")]
+        public Output<ImmutableArray<string>> Formats { get; private set; } = null!;
+
+        /// <summary>
         /// Whether to include a link to the dashboard in the report. Defaults to `true`.
         /// </summary>
         [Output("includeDashboardLink")]
@@ -96,6 +102,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
@@ -186,6 +198,18 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("dashboardUid")]
         public Input<string>? DashboardUid { get; set; }
 
+        [Input("formats")]
+        private InputList<string>? _formats;
+
+        /// <summary>
+        /// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+        /// </summary>
+        public InputList<string> Formats
+        {
+            get => _formats ?? (_formats = new InputList<string>());
+            set => _formats = value;
+        }
+
         /// <summary>
         /// Whether to include a link to the dashboard in the report. Defaults to `true`.
         /// </summary>
@@ -215,6 +239,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         /// <summary>
         /// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
@@ -272,6 +302,18 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("dashboardUid")]
         public Input<string>? DashboardUid { get; set; }
 
+        [Input("formats")]
+        private InputList<string>? _formats;
+
+        /// <summary>
+        /// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+        /// </summary>
+        public InputList<string> Formats
+        {
+            get => _formats ?? (_formats = new InputList<string>());
+            set => _formats = value;
+        }
+
         /// <summary>
         /// Whether to include a link to the dashboard in the report. Defaults to `true`.
         /// </summary>
@@ -301,6 +343,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         /// <summary>
         /// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.

@@ -147,6 +147,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public readonly string Status;
         public readonly string TracesName;
         public readonly string TracesStatus;
+        /// <summary>
+        /// Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+        /// </summary>
         public readonly string TracesUrl;
         public readonly int TracesUserId;
         /// <summary>

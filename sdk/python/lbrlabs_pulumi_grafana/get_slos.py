@@ -68,5 +68,5 @@ def get_slos(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSlosRes
     __ret__ = pulumi.runtime.invoke('grafana:index/getSlos:getSlos', __args__, opts=opts, typ=GetSlosResult).value
 
     return AwaitableGetSlosResult(
-        id=__ret__.id,
-        slos=__ret__.slos)
+        id=pulumi.get(__ret__, 'id'),
+        slos=pulumi.get(__ret__, 'slos'))

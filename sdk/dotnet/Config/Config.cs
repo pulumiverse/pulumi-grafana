@@ -45,8 +45,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
         private static readonly __Value<string?> _caCert = new __Value<string?>(() => __config.Get("caCert") ?? Utilities.GetEnv("GRAFANA_CA_CERT"));
         /// <summary>
-        /// Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
-        /// `GRAFANA_CA_CERT` environment variable.
+        /// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
+        /// be set via the `GRAFANA_CA_CERT` environment variable.
         /// </summary>
         public static string? CaCert
         {
@@ -137,6 +137,17 @@ namespace Lbrlabs.PulumiPackage.Grafana
             set => _retries.Set(value);
         }
 
+        private static readonly __Value<ImmutableArray<string>> _retryStatusCodes = new __Value<ImmutableArray<string>>(() => __config.GetObject<ImmutableArray<string>>("retryStatusCodes"));
+        /// <summary>
+        /// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+        /// and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+        /// </summary>
+        public static ImmutableArray<string> RetryStatusCodes
+        {
+            get => _retryStatusCodes.Get();
+            set => _retryStatusCodes.Set(value);
+        }
+
         private static readonly __Value<string?> _smAccessToken = new __Value<string?>(() => __config.Get("smAccessToken") ?? Utilities.GetEnv("GRAFANA_SM_ACCESS_TOKEN"));
         /// <summary>
         /// A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
@@ -175,8 +186,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
         private static readonly __Value<string?> _tlsCert = new __Value<string?>(() => __config.Get("tlsCert") ?? Utilities.GetEnv("GRAFANA_TLS_CERT"));
         /// <summary>
-        /// Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-        /// `GRAFANA_TLS_CERT` environment variable.
+        /// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+        /// set via the `GRAFANA_TLS_CERT` environment variable.
         /// </summary>
         public static string? TlsCert
         {
@@ -186,8 +197,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
         private static readonly __Value<string?> _tlsKey = new __Value<string?>(() => __config.Get("tlsKey") ?? Utilities.GetEnv("GRAFANA_TLS_KEY"));
         /// <summary>
-        /// Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-        /// environment variable.
+        /// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+        /// the `GRAFANA_TLS_KEY` environment variable.
         /// </summary>
         public static string? TlsKey
         {

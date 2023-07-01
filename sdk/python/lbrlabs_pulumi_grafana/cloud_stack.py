@@ -189,6 +189,7 @@ class _CloudStackState:
         :param pulumi.Input[str] slug: Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
                available at “https://\\n\\n.grafana.net".
         :param pulumi.Input[str] status: Status of the stack.
+        :param pulumi.Input[str] traces_url: Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
         :param pulumi.Input[str] url: Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
         :param pulumi.Input[bool] wait_for_readiness: Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
         :param pulumi.Input[str] wait_for_readiness_timeout: How long to wait for readiness (if enabled). Defaults to `5m0s`.
@@ -570,6 +571,9 @@ class _CloudStackState:
     @property
     @pulumi.getter(name="tracesUrl")
     def traces_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+        """
         return pulumi.get(self, "traces_url")
 
     @traces_url.setter
@@ -837,6 +841,7 @@ class CloudStack(pulumi.CustomResource):
         :param pulumi.Input[str] slug: Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
                available at “https://\\n\\n.grafana.net".
         :param pulumi.Input[str] status: Status of the stack.
+        :param pulumi.Input[str] traces_url: Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
         :param pulumi.Input[str] url: Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
         :param pulumi.Input[bool] wait_for_readiness: Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
         :param pulumi.Input[str] wait_for_readiness_timeout: How long to wait for readiness (if enabled). Defaults to `5m0s`.
@@ -1078,6 +1083,9 @@ class CloudStack(pulumi.CustomResource):
     @property
     @pulumi.getter(name="tracesUrl")
     def traces_url(self) -> pulumi.Output[str]:
+        """
+        Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+        """
         return pulumi.get(self, "traces_url")
 
     @property

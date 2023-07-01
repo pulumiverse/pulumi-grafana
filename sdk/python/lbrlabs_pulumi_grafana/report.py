@@ -20,11 +20,13 @@ class ReportArgs:
                  schedule: pulumi.Input['ReportScheduleArgs'],
                  dashboard_id: Optional[pulumi.Input[int]] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 formats: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  include_dashboard_link: Optional[pulumi.Input[bool]] = None,
                  include_table_csv: Optional[pulumi.Input[bool]] = None,
                  layout: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  orientation: Optional[pulumi.Input[str]] = None,
                  reply_to: Optional[pulumi.Input[str]] = None,
                  time_range: Optional[pulumi.Input['ReportTimeRangeArgs']] = None):
@@ -34,11 +36,13 @@ class ReportArgs:
         :param pulumi.Input['ReportScheduleArgs'] schedule: Schedule of the report.
         :param pulumi.Input[int] dashboard_id: Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         :param pulumi.Input[str] dashboard_uid: Dashboard to be sent in the report.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
         :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
         :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
         :param pulumi.Input[str] layout: Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         :param pulumi.Input[str] message: Message to be sent in the report.
         :param pulumi.Input[str] name: Name of the report.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         :param pulumi.Input[str] reply_to: Reply-to email address of the report.
         :param pulumi.Input['ReportTimeRangeArgs'] time_range: Time range of the report.
@@ -52,6 +56,8 @@ class ReportArgs:
             pulumi.set(__self__, "dashboard_id", dashboard_id)
         if dashboard_uid is not None:
             pulumi.set(__self__, "dashboard_uid", dashboard_uid)
+        if formats is not None:
+            pulumi.set(__self__, "formats", formats)
         if include_dashboard_link is not None:
             pulumi.set(__self__, "include_dashboard_link", include_dashboard_link)
         if include_table_csv is not None:
@@ -62,6 +68,8 @@ class ReportArgs:
             pulumi.set(__self__, "message", message)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if orientation is not None:
             pulumi.set(__self__, "orientation", orientation)
         if reply_to is not None:
@@ -99,6 +107,9 @@ class ReportArgs:
         """
         Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         """
+        warnings.warn("""Use dashboard_uid instead""", DeprecationWarning)
+        pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead""")
+
         return pulumi.get(self, "dashboard_id")
 
     @dashboard_id.setter
@@ -116,6 +127,18 @@ class ReportArgs:
     @dashboard_uid.setter
     def dashboard_uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dashboard_uid", value)
+
+    @property
+    @pulumi.getter
+    def formats(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+        """
+        return pulumi.get(self, "formats")
+
+    @formats.setter
+    def formats(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "formats", value)
 
     @property
     @pulumi.getter(name="includeDashboardLink")
@@ -176,6 +199,18 @@ class ReportArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter
@@ -219,11 +254,13 @@ class _ReportState:
     def __init__(__self__, *,
                  dashboard_id: Optional[pulumi.Input[int]] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 formats: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  include_dashboard_link: Optional[pulumi.Input[bool]] = None,
                  include_table_csv: Optional[pulumi.Input[bool]] = None,
                  layout: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  orientation: Optional[pulumi.Input[str]] = None,
                  recipients: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  reply_to: Optional[pulumi.Input[str]] = None,
@@ -233,11 +270,13 @@ class _ReportState:
         Input properties used for looking up and filtering Report resources.
         :param pulumi.Input[int] dashboard_id: Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         :param pulumi.Input[str] dashboard_uid: Dashboard to be sent in the report.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
         :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
         :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
         :param pulumi.Input[str] layout: Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         :param pulumi.Input[str] message: Message to be sent in the report.
         :param pulumi.Input[str] name: Name of the report.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] recipients: List of recipients of the report.
         :param pulumi.Input[str] reply_to: Reply-to email address of the report.
@@ -251,6 +290,8 @@ class _ReportState:
             pulumi.set(__self__, "dashboard_id", dashboard_id)
         if dashboard_uid is not None:
             pulumi.set(__self__, "dashboard_uid", dashboard_uid)
+        if formats is not None:
+            pulumi.set(__self__, "formats", formats)
         if include_dashboard_link is not None:
             pulumi.set(__self__, "include_dashboard_link", include_dashboard_link)
         if include_table_csv is not None:
@@ -261,6 +302,8 @@ class _ReportState:
             pulumi.set(__self__, "message", message)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if orientation is not None:
             pulumi.set(__self__, "orientation", orientation)
         if recipients is not None:
@@ -278,6 +321,9 @@ class _ReportState:
         """
         Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         """
+        warnings.warn("""Use dashboard_uid instead""", DeprecationWarning)
+        pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead""")
+
         return pulumi.get(self, "dashboard_id")
 
     @dashboard_id.setter
@@ -295,6 +341,18 @@ class _ReportState:
     @dashboard_uid.setter
     def dashboard_uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dashboard_uid", value)
+
+    @property
+    @pulumi.getter
+    def formats(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+        """
+        return pulumi.get(self, "formats")
+
+    @formats.setter
+    def formats(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "formats", value)
 
     @property
     @pulumi.getter(name="includeDashboardLink")
@@ -355,6 +413,18 @@ class _ReportState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter
@@ -424,11 +494,13 @@ class Report(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dashboard_id: Optional[pulumi.Input[int]] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 formats: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  include_dashboard_link: Optional[pulumi.Input[bool]] = None,
                  include_table_csv: Optional[pulumi.Input[bool]] = None,
                  layout: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  orientation: Optional[pulumi.Input[str]] = None,
                  recipients: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  reply_to: Optional[pulumi.Input[str]] = None,
@@ -466,11 +538,13 @@ class Report(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] dashboard_id: Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         :param pulumi.Input[str] dashboard_uid: Dashboard to be sent in the report.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
         :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
         :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
         :param pulumi.Input[str] layout: Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         :param pulumi.Input[str] message: Message to be sent in the report.
         :param pulumi.Input[str] name: Name of the report.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] recipients: List of recipients of the report.
         :param pulumi.Input[str] reply_to: Reply-to email address of the report.
@@ -527,11 +601,13 @@ class Report(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dashboard_id: Optional[pulumi.Input[int]] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 formats: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  include_dashboard_link: Optional[pulumi.Input[bool]] = None,
                  include_table_csv: Optional[pulumi.Input[bool]] = None,
                  layout: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  orientation: Optional[pulumi.Input[str]] = None,
                  recipients: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  reply_to: Optional[pulumi.Input[str]] = None,
@@ -551,11 +627,13 @@ class Report(pulumi.CustomResource):
                 pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead""")
             __props__.__dict__["dashboard_id"] = dashboard_id
             __props__.__dict__["dashboard_uid"] = dashboard_uid
+            __props__.__dict__["formats"] = formats
             __props__.__dict__["include_dashboard_link"] = include_dashboard_link
             __props__.__dict__["include_table_csv"] = include_table_csv
             __props__.__dict__["layout"] = layout
             __props__.__dict__["message"] = message
             __props__.__dict__["name"] = name
+            __props__.__dict__["org_id"] = org_id
             __props__.__dict__["orientation"] = orientation
             if recipients is None and not opts.urn:
                 raise TypeError("Missing required property 'recipients'")
@@ -577,11 +655,13 @@ class Report(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dashboard_id: Optional[pulumi.Input[int]] = None,
             dashboard_uid: Optional[pulumi.Input[str]] = None,
+            formats: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             include_dashboard_link: Optional[pulumi.Input[bool]] = None,
             include_table_csv: Optional[pulumi.Input[bool]] = None,
             layout: Optional[pulumi.Input[str]] = None,
             message: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
             orientation: Optional[pulumi.Input[str]] = None,
             recipients: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             reply_to: Optional[pulumi.Input[str]] = None,
@@ -596,11 +676,13 @@ class Report(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] dashboard_id: Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         :param pulumi.Input[str] dashboard_uid: Dashboard to be sent in the report.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
         :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
         :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
         :param pulumi.Input[str] layout: Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         :param pulumi.Input[str] message: Message to be sent in the report.
         :param pulumi.Input[str] name: Name of the report.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] recipients: List of recipients of the report.
         :param pulumi.Input[str] reply_to: Reply-to email address of the report.
@@ -613,11 +695,13 @@ class Report(pulumi.CustomResource):
 
         __props__.__dict__["dashboard_id"] = dashboard_id
         __props__.__dict__["dashboard_uid"] = dashboard_uid
+        __props__.__dict__["formats"] = formats
         __props__.__dict__["include_dashboard_link"] = include_dashboard_link
         __props__.__dict__["include_table_csv"] = include_table_csv
         __props__.__dict__["layout"] = layout
         __props__.__dict__["message"] = message
         __props__.__dict__["name"] = name
+        __props__.__dict__["org_id"] = org_id
         __props__.__dict__["orientation"] = orientation
         __props__.__dict__["recipients"] = recipients
         __props__.__dict__["reply_to"] = reply_to
@@ -631,6 +715,9 @@ class Report(pulumi.CustomResource):
         """
         Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         """
+        warnings.warn("""Use dashboard_uid instead""", DeprecationWarning)
+        pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead""")
+
         return pulumi.get(self, "dashboard_id")
 
     @property
@@ -640,6 +727,14 @@ class Report(pulumi.CustomResource):
         Dashboard to be sent in the report.
         """
         return pulumi.get(self, "dashboard_uid")
+
+    @property
+    @pulumi.getter
+    def formats(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+        """
+        return pulumi.get(self, "formats")
 
     @property
     @pulumi.getter(name="includeDashboardLink")
@@ -680,6 +775,14 @@ class Report(pulumi.CustomResource):
         Name of the report.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter

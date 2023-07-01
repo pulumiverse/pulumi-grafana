@@ -13,7 +13,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public static class GetOncallSchedule
     {
         /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+        /// * [Official documentation](https://grafana.com/docs/oncall/latest/on-call-schedules/)
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
         /// 
         /// {{% examples %}}
@@ -42,7 +42,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallScheduleResult>("grafana:index/getOncallSchedule:getOncallSchedule", args ?? new GetOncallScheduleArgs(), options.WithDefaults());
 
         /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/oncall/latest/calendar-schedules/)
+        /// * [Official documentation](https://grafana.com/docs/oncall/latest/on-call-schedules/)
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
         /// 
         /// {{% examples %}}

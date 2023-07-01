@@ -108,10 +108,10 @@ def get_folder(title: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getFolder:getFolder', __args__, opts=opts, typ=GetFolderResult).value
 
     return AwaitableGetFolderResult(
-        id=__ret__.id,
-        title=__ret__.title,
-        uid=__ret__.uid,
-        url=__ret__.url)
+        id=pulumi.get(__ret__, 'id'),
+        title=pulumi.get(__ret__, 'title'),
+        uid=pulumi.get(__ret__, 'uid'),
+        url=pulumi.get(__ret__, 'url'))
 
 
 @_utilities.lift_output_func(get_folder)

@@ -114,11 +114,11 @@ def get_dashboards(folder_ids: Optional[Sequence[int]] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getDashboards:getDashboards', __args__, opts=opts, typ=GetDashboardsResult).value
 
     return AwaitableGetDashboardsResult(
-        dashboards=__ret__.dashboards,
-        folder_ids=__ret__.folder_ids,
-        id=__ret__.id,
-        limit=__ret__.limit,
-        tags=__ret__.tags)
+        dashboards=pulumi.get(__ret__, 'dashboards'),
+        folder_ids=pulumi.get(__ret__, 'folder_ids'),
+        id=pulumi.get(__ret__, 'id'),
+        limit=pulumi.get(__ret__, 'limit'),
+        tags=pulumi.get(__ret__, 'tags'))
 
 
 @_utilities.lift_output_func(get_dashboards)

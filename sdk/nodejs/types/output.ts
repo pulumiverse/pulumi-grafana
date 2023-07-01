@@ -77,6 +77,10 @@ export interface ContactPointDingding {
      */
     settings?: {[key: string]: string};
     /**
+     * The templated title of the message.
+     */
+    title?: string;
+    /**
      * The UID of the contact point.
      */
     uid: string;
@@ -243,6 +247,14 @@ export interface ContactPointPagerduty {
      */
     class?: string;
     /**
+     * The name of the monitoring client that is triggering this event.
+     */
+    client?: string;
+    /**
+     * The URL of the monitoring client that is triggering this event.
+     */
+    clientUrl?: string;
+    /**
      * The component being affected by the event.
      */
     component?: string;
@@ -270,6 +282,10 @@ export interface ContactPointPagerduty {
      * The PagerDuty event severity level. Default is `critical`.
      */
     severity?: string;
+    /**
+     * The unique location of the affected system.
+     */
+    source?: string;
     /**
      * The templated summary message of the event.
      */
@@ -325,6 +341,10 @@ export interface ContactPointPushover {
      * The sound associated with the notification.
      */
     sound?: string;
+    /**
+     * The templated title of the message.
+     */
+    title?: string;
     /**
      * The UID of the contact point.
      */
@@ -505,6 +525,10 @@ export interface ContactPointThreema {
      */
     apiSecret: string;
     /**
+     * The templated description of the message.
+     */
+    description: string;
+    /**
      * Whether to disable sending resolve messages. Defaults to `false`.
      */
     disableResolveMessage?: boolean;
@@ -521,12 +545,20 @@ export interface ContactPointThreema {
      */
     settings?: {[key: string]: string};
     /**
+     * The templated title of the message.
+     */
+    title: string;
+    /**
      * The UID of the contact point.
      */
     uid: string;
 }
 
 export interface ContactPointVictorop {
+    /**
+     * Templated description of the message.
+     */
+    description?: string;
     /**
      * Whether to disable sending resolve messages. Defaults to `false`.
      */
@@ -539,6 +571,10 @@ export interface ContactPointVictorop {
      * Additional custom properties to attach to the notifier. Defaults to `map[]`.
      */
     settings?: {[key: string]: string};
+    /**
+     * Templated title to display.
+     */
+    title?: string;
     /**
      * The UID of the contact point.
      */
@@ -1009,7 +1045,6 @@ export interface GetFoldersFolder {
 
 export interface GetSlosSlo {
     alertings: outputs.GetSlosSloAlerting[];
-    dashboardUid: string;
     description: string;
     labels: outputs.GetSlosSloLabel[];
     name: string;
