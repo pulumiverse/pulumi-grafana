@@ -29,6 +29,22 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
             }
         }
 
+        [Input("description", required: true)]
+        private Input<string>? _description;
+
+        /// <summary>
+        /// The templated description of the message.
+        /// </summary>
+        public Input<string>? Description
+        {
+            get => _description;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _description = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
@@ -60,6 +76,22 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
             {
                 var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
                 _settings = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
+        }
+
+        [Input("title", required: true)]
+        private Input<string>? _title;
+
+        /// <summary>
+        /// The templated title of the message.
+        /// </summary>
+        public Input<string>? Title
+        {
+            get => _title;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _title = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
 

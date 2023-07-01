@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/oncall/latest/escalation-policies/)
+ * * [Official documentation](https://grafana.com/docs/oncall/latest/escalation-chains-and-routes/)
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_policies/)
  *
  * ## Example Usage

@@ -33,6 +33,36 @@ public final class ContactPointPagerdutyArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * The name of the monitoring client that is triggering this event.
+     * 
+     */
+    @Import(name="client")
+    private @Nullable Output<String> client;
+
+    /**
+     * @return The name of the monitoring client that is triggering this event.
+     * 
+     */
+    public Optional<Output<String>> client() {
+        return Optional.ofNullable(this.client);
+    }
+
+    /**
+     * The URL of the monitoring client that is triggering this event.
+     * 
+     */
+    @Import(name="clientUrl")
+    private @Nullable Output<String> clientUrl;
+
+    /**
+     * @return The URL of the monitoring client that is triggering this event.
+     * 
+     */
+    public Optional<Output<String>> clientUrl() {
+        return Optional.ofNullable(this.clientUrl);
+    }
+
+    /**
      * The component being affected by the event.
      * 
      */
@@ -138,6 +168,21 @@ public final class ContactPointPagerdutyArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * The unique location of the affected system.
+     * 
+     */
+    @Import(name="source")
+    private @Nullable Output<String> source;
+
+    /**
+     * @return The unique location of the affected system.
+     * 
+     */
+    public Optional<Output<String>> source() {
+        return Optional.ofNullable(this.source);
+    }
+
+    /**
      * The templated summary message of the event.
      * 
      */
@@ -171,6 +216,8 @@ public final class ContactPointPagerdutyArgs extends com.pulumi.resources.Resour
 
     private ContactPointPagerdutyArgs(ContactPointPagerdutyArgs $) {
         this.class_ = $.class_;
+        this.client = $.client;
+        this.clientUrl = $.clientUrl;
         this.component = $.component;
         this.details = $.details;
         this.disableResolveMessage = $.disableResolveMessage;
@@ -178,6 +225,7 @@ public final class ContactPointPagerdutyArgs extends com.pulumi.resources.Resour
         this.integrationKey = $.integrationKey;
         this.settings = $.settings;
         this.severity = $.severity;
+        this.source = $.source;
         this.summary = $.summary;
         this.uid = $.uid;
     }
@@ -219,6 +267,48 @@ public final class ContactPointPagerdutyArgs extends com.pulumi.resources.Resour
          */
         public Builder class_(String class_) {
             return class_(Output.of(class_));
+        }
+
+        /**
+         * @param client The name of the monitoring client that is triggering this event.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder client(@Nullable Output<String> client) {
+            $.client = client;
+            return this;
+        }
+
+        /**
+         * @param client The name of the monitoring client that is triggering this event.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder client(String client) {
+            return client(Output.of(client));
+        }
+
+        /**
+         * @param clientUrl The URL of the monitoring client that is triggering this event.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientUrl(@Nullable Output<String> clientUrl) {
+            $.clientUrl = clientUrl;
+            return this;
+        }
+
+        /**
+         * @param clientUrl The URL of the monitoring client that is triggering this event.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientUrl(String clientUrl) {
+            return clientUrl(Output.of(clientUrl));
         }
 
         /**
@@ -366,6 +456,27 @@ public final class ContactPointPagerdutyArgs extends com.pulumi.resources.Resour
          */
         public Builder severity(String severity) {
             return severity(Output.of(severity));
+        }
+
+        /**
+         * @param source The unique location of the affected system.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder source(@Nullable Output<String> source) {
+            $.source = source;
+            return this;
+        }
+
+        /**
+         * @param source The unique location of the affected system.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder source(String source) {
+            return source(Output.of(source));
         }
 
         /**

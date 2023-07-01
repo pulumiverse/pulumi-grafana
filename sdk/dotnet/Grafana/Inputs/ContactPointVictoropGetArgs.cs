@@ -14,6 +14,12 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
     public sealed class ContactPointVictoropGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Templated description of the message.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
         [Input("disableResolveMessage")]
@@ -40,6 +46,12 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
                 _settings = Output.All(value, emptySecret).Apply(v => v[0]);
             }
         }
+
+        /// <summary>
+        /// Templated title to display.
+        /// </summary>
+        [Input("title")]
+        public Input<string>? Title { get; set; }
 
         /// <summary>
         /// The UID of the contact point.

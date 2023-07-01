@@ -164,6 +164,20 @@ public class OncallRoute extends com.pulumi.resources.CustomResource {
         return this.routingRegex;
     }
     /**
+     * The type of route. Can be jinja2, regex Defaults to `regex`.
+     * 
+     */
+    @Export(name="routingType", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> routingType;
+
+    /**
+     * @return The type of route. Can be jinja2, regex Defaults to `regex`.
+     * 
+     */
+    public Output<Optional<String>> routingType() {
+        return Codegen.optional(this.routingType);
+    }
+    /**
      * Slack-specific settings for a route.
      * 
      */

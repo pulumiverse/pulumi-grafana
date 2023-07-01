@@ -108,6 +108,20 @@ public class Report extends com.pulumi.resources.CustomResource {
         return this.dashboardUid;
     }
     /**
+     * Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+     * 
+     */
+    @Export(name="formats", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> formats;
+
+    /**
+     * @return Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+     * 
+     */
+    public Output<Optional<List<String>>> formats() {
+        return Codegen.optional(this.formats);
+    }
+    /**
      * Whether to include a link to the dashboard in the report. Defaults to `true`.
      * 
      */
@@ -176,6 +190,20 @@ public class Report extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Export(name="orgId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Output<Optional<String>> orgId() {
+        return Codegen.optional(this.orgId);
     }
     /**
      * Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.

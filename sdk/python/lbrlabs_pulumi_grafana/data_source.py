@@ -141,6 +141,9 @@ class DataSourceArgs:
         """
         Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
         """
+        warnings.warn("""Use secure_json_data_encoded.basicAuthPassword instead.""", DeprecationWarning)
+        pulumi.log.warn("""basic_auth_password is deprecated: Use secure_json_data_encoded.basicAuthPassword instead.""")
+
         return pulumi.get(self, "basic_auth_password")
 
     @basic_auth_password.setter
@@ -213,6 +216,9 @@ class DataSourceArgs:
         """
         Use json*data*encoded instead.
         """
+        warnings.warn("""Use json_data_encoded instead.""", DeprecationWarning)
+        pulumi.log.warn("""json_datas is deprecated: Use json_data_encoded instead.""")
+
         return pulumi.get(self, "json_datas")
 
     @json_datas.setter
@@ -237,6 +243,9 @@ class DataSourceArgs:
         """
         Use secure*json*data_encoded.password instead. Defaults to ``.
         """
+        warnings.warn("""Use secure_json_data_encoded.password instead.""", DeprecationWarning)
+        pulumi.log.warn("""password is deprecated: Use secure_json_data_encoded.password instead.""")
+
         return pulumi.get(self, "password")
 
     @password.setter
@@ -261,6 +270,9 @@ class DataSourceArgs:
         """
         Use secure*json*data*encoded instead.
         """
+        warnings.warn("""Use secure_json_data_encoded instead.""", DeprecationWarning)
+        pulumi.log.warn("""secure_json_datas is deprecated: Use secure_json_data_encoded instead.""")
+
         return pulumi.get(self, "secure_json_datas")
 
     @secure_json_datas.setter
@@ -421,6 +433,9 @@ class _DataSourceState:
         """
         Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
         """
+        warnings.warn("""Use secure_json_data_encoded.basicAuthPassword instead.""", DeprecationWarning)
+        pulumi.log.warn("""basic_auth_password is deprecated: Use secure_json_data_encoded.basicAuthPassword instead.""")
+
         return pulumi.get(self, "basic_auth_password")
 
     @basic_auth_password.setter
@@ -493,6 +508,9 @@ class _DataSourceState:
         """
         Use json*data*encoded instead.
         """
+        warnings.warn("""Use json_data_encoded instead.""", DeprecationWarning)
+        pulumi.log.warn("""json_datas is deprecated: Use json_data_encoded instead.""")
+
         return pulumi.get(self, "json_datas")
 
     @json_datas.setter
@@ -517,6 +535,9 @@ class _DataSourceState:
         """
         Use secure*json*data_encoded.password instead. Defaults to ``.
         """
+        warnings.warn("""Use secure_json_data_encoded.password instead.""", DeprecationWarning)
+        pulumi.log.warn("""password is deprecated: Use secure_json_data_encoded.password instead.""")
+
         return pulumi.get(self, "password")
 
     @password.setter
@@ -541,6 +562,9 @@ class _DataSourceState:
         """
         Use secure*json*data*encoded instead.
         """
+        warnings.warn("""Use secure_json_data_encoded instead.""", DeprecationWarning)
+        pulumi.log.warn("""secure_json_datas is deprecated: Use secure_json_data_encoded instead.""")
+
         return pulumi.get(self, "secure_json_datas")
 
     @secure_json_datas.setter
@@ -962,6 +986,9 @@ class DataSource(pulumi.CustomResource):
         """
         Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
         """
+        warnings.warn("""Use secure_json_data_encoded.basicAuthPassword instead.""", DeprecationWarning)
+        pulumi.log.warn("""basic_auth_password is deprecated: Use secure_json_data_encoded.basicAuthPassword instead.""")
+
         return pulumi.get(self, "basic_auth_password")
 
     @property
@@ -1010,6 +1037,9 @@ class DataSource(pulumi.CustomResource):
         """
         Use json*data*encoded instead.
         """
+        warnings.warn("""Use json_data_encoded instead.""", DeprecationWarning)
+        pulumi.log.warn("""json_datas is deprecated: Use json_data_encoded instead.""")
+
         return pulumi.get(self, "json_datas")
 
     @property
@@ -1026,6 +1056,9 @@ class DataSource(pulumi.CustomResource):
         """
         Use secure*json*data_encoded.password instead. Defaults to ``.
         """
+        warnings.warn("""Use secure_json_data_encoded.password instead.""", DeprecationWarning)
+        pulumi.log.warn("""password is deprecated: Use secure_json_data_encoded.password instead.""")
+
         return pulumi.get(self, "password")
 
     @property
@@ -1042,6 +1075,9 @@ class DataSource(pulumi.CustomResource):
         """
         Use secure*json*data*encoded instead.
         """
+        warnings.warn("""Use secure_json_data_encoded instead.""", DeprecationWarning)
+        pulumi.log.warn("""secure_json_datas is deprecated: Use secure_json_data_encoded instead.""")
+
         return pulumi.get(self, "secure_json_datas")
 
     @property

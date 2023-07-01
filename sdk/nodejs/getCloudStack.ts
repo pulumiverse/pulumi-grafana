@@ -117,6 +117,9 @@ export interface GetCloudStackResult {
     readonly status: string;
     readonly tracesName: string;
     readonly tracesStatus: string;
+    /**
+     * Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+     */
     readonly tracesUrl: string;
     readonly tracesUserId: number;
     /**

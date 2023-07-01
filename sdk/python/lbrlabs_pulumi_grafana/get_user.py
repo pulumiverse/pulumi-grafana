@@ -145,12 +145,12 @@ def get_user(email: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getUser:getUser', __args__, opts=opts, typ=GetUserResult).value
 
     return AwaitableGetUserResult(
-        email=__ret__.email,
-        id=__ret__.id,
-        is_admin=__ret__.is_admin,
-        login=__ret__.login,
-        name=__ret__.name,
-        user_id=__ret__.user_id)
+        email=pulumi.get(__ret__, 'email'),
+        id=pulumi.get(__ret__, 'id'),
+        is_admin=pulumi.get(__ret__, 'is_admin'),
+        login=pulumi.get(__ret__, 'login'),
+        name=pulumi.get(__ret__, 'name'),
+        user_id=pulumi.get(__ret__, 'user_id'))
 
 
 @_utilities.lift_output_func(get_user)

@@ -59,6 +59,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// </summary>
         public readonly string? Sound;
         /// <summary>
+        /// The templated title of the message.
+        /// </summary>
+        public readonly string? Title;
+        /// <summary>
         /// The UID of the contact point.
         /// </summary>
         public readonly string? Uid;
@@ -91,6 +95,8 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
             string? sound,
 
+            string? title,
+
             string? uid,
 
             string userKey)
@@ -106,6 +112,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
             Retry = retry;
             Settings = settings;
             Sound = sound;
+            Title = title;
             Uid = uid;
             UserKey = userKey;
         }

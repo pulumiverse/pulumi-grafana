@@ -70,6 +70,14 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// ```sh
+//
+//	$ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy policyname {{region}}/{{policy_id}}
+//
+// ```
 type CloudAccessPolicy struct {
 	pulumi.CustomResourceState
 

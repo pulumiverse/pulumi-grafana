@@ -473,6 +473,8 @@ type ContactPointDingding struct {
 	MessageType *string `pulumi:"messageType"`
 	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
 	Settings map[string]string `pulumi:"settings"`
+	// The templated title of the message.
+	Title *string `pulumi:"title"`
 	// The UID of the contact point.
 	Uid *string `pulumi:"uid"`
 	// The DingDing webhook URL.
@@ -499,6 +501,8 @@ type ContactPointDingdingArgs struct {
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
+	// The templated title of the message.
+	Title pulumi.StringPtrInput `pulumi:"title"`
 	// The UID of the contact point.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
 	// The DingDing webhook URL.
@@ -574,6 +578,11 @@ func (o ContactPointDingdingOutput) MessageType() pulumi.StringPtrOutput {
 // Additional custom properties to attach to the notifier. Defaults to `map[]`.
 func (o ContactPointDingdingOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointDingding) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
+}
+
+// The templated title of the message.
+func (o ContactPointDingdingOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointDingding) *string { return v.Title }).(pulumi.StringPtrOutput)
 }
 
 // The UID of the contact point.
@@ -1355,6 +1364,10 @@ func (o ContactPointOpsgenyArrayOutput) Index(i pulumi.IntInput) ContactPointOps
 type ContactPointPagerduty struct {
 	// The class or type of event, for example `ping failure`.
 	Class *string `pulumi:"class"`
+	// The name of the monitoring client that is triggering this event.
+	Client *string `pulumi:"client"`
+	// The URL of the monitoring client that is triggering this event.
+	ClientUrl *string `pulumi:"clientUrl"`
 	// The component being affected by the event.
 	Component *string `pulumi:"component"`
 	// A set of arbitrary key/value pairs that provide further detail about the incident.
@@ -1369,6 +1382,8 @@ type ContactPointPagerduty struct {
 	Settings map[string]string `pulumi:"settings"`
 	// The PagerDuty event severity level. Default is `critical`.
 	Severity *string `pulumi:"severity"`
+	// The unique location of the affected system.
+	Source *string `pulumi:"source"`
 	// The templated summary message of the event.
 	Summary *string `pulumi:"summary"`
 	// The UID of the contact point.
@@ -1389,6 +1404,10 @@ type ContactPointPagerdutyInput interface {
 type ContactPointPagerdutyArgs struct {
 	// The class or type of event, for example `ping failure`.
 	Class pulumi.StringPtrInput `pulumi:"class"`
+	// The name of the monitoring client that is triggering this event.
+	Client pulumi.StringPtrInput `pulumi:"client"`
+	// The URL of the monitoring client that is triggering this event.
+	ClientUrl pulumi.StringPtrInput `pulumi:"clientUrl"`
 	// The component being affected by the event.
 	Component pulumi.StringPtrInput `pulumi:"component"`
 	// A set of arbitrary key/value pairs that provide further detail about the incident.
@@ -1403,6 +1422,8 @@ type ContactPointPagerdutyArgs struct {
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The PagerDuty event severity level. Default is `critical`.
 	Severity pulumi.StringPtrInput `pulumi:"severity"`
+	// The unique location of the affected system.
+	Source pulumi.StringPtrInput `pulumi:"source"`
 	// The templated summary message of the event.
 	Summary pulumi.StringPtrInput `pulumi:"summary"`
 	// The UID of the contact point.
@@ -1465,6 +1486,16 @@ func (o ContactPointPagerdutyOutput) Class() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointPagerduty) *string { return v.Class }).(pulumi.StringPtrOutput)
 }
 
+// The name of the monitoring client that is triggering this event.
+func (o ContactPointPagerdutyOutput) Client() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointPagerduty) *string { return v.Client }).(pulumi.StringPtrOutput)
+}
+
+// The URL of the monitoring client that is triggering this event.
+func (o ContactPointPagerdutyOutput) ClientUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointPagerduty) *string { return v.ClientUrl }).(pulumi.StringPtrOutput)
+}
+
 // The component being affected by the event.
 func (o ContactPointPagerdutyOutput) Component() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointPagerduty) *string { return v.Component }).(pulumi.StringPtrOutput)
@@ -1498,6 +1529,11 @@ func (o ContactPointPagerdutyOutput) Settings() pulumi.StringMapOutput {
 // The PagerDuty event severity level. Default is `critical`.
 func (o ContactPointPagerdutyOutput) Severity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointPagerduty) *string { return v.Severity }).(pulumi.StringPtrOutput)
+}
+
+// The unique location of the affected system.
+func (o ContactPointPagerdutyOutput) Source() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointPagerduty) *string { return v.Source }).(pulumi.StringPtrOutput)
 }
 
 // The templated summary message of the event.
@@ -1553,6 +1589,8 @@ type ContactPointPushover struct {
 	Settings map[string]string `pulumi:"settings"`
 	// The sound associated with the notification.
 	Sound *string `pulumi:"sound"`
+	// The templated title of the message.
+	Title *string `pulumi:"title"`
 	// The UID of the contact point.
 	Uid *string `pulumi:"uid"`
 	// The Pushover user key.
@@ -1593,6 +1631,8 @@ type ContactPointPushoverArgs struct {
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The sound associated with the notification.
 	Sound pulumi.StringPtrInput `pulumi:"sound"`
+	// The templated title of the message.
+	Title pulumi.StringPtrInput `pulumi:"title"`
 	// The UID of the contact point.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
 	// The Pushover user key.
@@ -1703,6 +1743,11 @@ func (o ContactPointPushoverOutput) Settings() pulumi.StringMapOutput {
 // The sound associated with the notification.
 func (o ContactPointPushoverOutput) Sound() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointPushover) *string { return v.Sound }).(pulumi.StringPtrOutput)
+}
+
+// The templated title of the message.
+func (o ContactPointPushoverOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointPushover) *string { return v.Title }).(pulumi.StringPtrOutput)
 }
 
 // The UID of the contact point.
@@ -2432,6 +2477,8 @@ func (o ContactPointTelegramArrayOutput) Index(i pulumi.IntInput) ContactPointTe
 type ContactPointThreema struct {
 	// The Threema API key.
 	ApiSecret string `pulumi:"apiSecret"`
+	// The templated description of the message.
+	Description string `pulumi:"description"`
 	// Whether to disable sending resolve messages. Defaults to `false`.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// The Threema gateway ID.
@@ -2440,6 +2487,8 @@ type ContactPointThreema struct {
 	RecipientId string `pulumi:"recipientId"`
 	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
 	Settings map[string]string `pulumi:"settings"`
+	// The templated title of the message.
+	Title string `pulumi:"title"`
 	// The UID of the contact point.
 	Uid *string `pulumi:"uid"`
 }
@@ -2458,6 +2507,8 @@ type ContactPointThreemaInput interface {
 type ContactPointThreemaArgs struct {
 	// The Threema API key.
 	ApiSecret pulumi.StringInput `pulumi:"apiSecret"`
+	// The templated description of the message.
+	Description pulumi.StringInput `pulumi:"description"`
 	// Whether to disable sending resolve messages. Defaults to `false`.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// The Threema gateway ID.
@@ -2466,6 +2517,8 @@ type ContactPointThreemaArgs struct {
 	RecipientId pulumi.StringInput `pulumi:"recipientId"`
 	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
+	// The templated title of the message.
+	Title pulumi.StringInput `pulumi:"title"`
 	// The UID of the contact point.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
 }
@@ -2526,6 +2579,11 @@ func (o ContactPointThreemaOutput) ApiSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v ContactPointThreema) string { return v.ApiSecret }).(pulumi.StringOutput)
 }
 
+// The templated description of the message.
+func (o ContactPointThreemaOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactPointThreema) string { return v.Description }).(pulumi.StringOutput)
+}
+
 // Whether to disable sending resolve messages. Defaults to `false`.
 func (o ContactPointThreemaOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointThreema) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
@@ -2544,6 +2602,11 @@ func (o ContactPointThreemaOutput) RecipientId() pulumi.StringOutput {
 // Additional custom properties to attach to the notifier. Defaults to `map[]`.
 func (o ContactPointThreemaOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointThreema) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
+}
+
+// The templated title of the message.
+func (o ContactPointThreemaOutput) Title() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactPointThreema) string { return v.Title }).(pulumi.StringOutput)
 }
 
 // The UID of the contact point.
@@ -2572,12 +2635,16 @@ func (o ContactPointThreemaArrayOutput) Index(i pulumi.IntInput) ContactPointThr
 }
 
 type ContactPointVictorop struct {
+	// Templated description of the message.
+	Description *string `pulumi:"description"`
 	// Whether to disable sending resolve messages. Defaults to `false`.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// The VictorOps alert state - typically either `CRITICAL` or `RECOVERY`.
 	MessageType *string `pulumi:"messageType"`
 	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
 	Settings map[string]string `pulumi:"settings"`
+	// Templated title to display.
+	Title *string `pulumi:"title"`
 	// The UID of the contact point.
 	Uid *string `pulumi:"uid"`
 	// The VictorOps webhook URL.
@@ -2596,12 +2663,16 @@ type ContactPointVictoropInput interface {
 }
 
 type ContactPointVictoropArgs struct {
+	// Templated description of the message.
+	Description pulumi.StringPtrInput `pulumi:"description"`
 	// Whether to disable sending resolve messages. Defaults to `false`.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// The VictorOps alert state - typically either `CRITICAL` or `RECOVERY`.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
+	// Templated title to display.
+	Title pulumi.StringPtrInput `pulumi:"title"`
 	// The UID of the contact point.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
 	// The VictorOps webhook URL.
@@ -2659,6 +2730,11 @@ func (o ContactPointVictoropOutput) ToContactPointVictoropOutputWithContext(ctx 
 	return o
 }
 
+// Templated description of the message.
+func (o ContactPointVictoropOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointVictorop) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
 // Whether to disable sending resolve messages. Defaults to `false`.
 func (o ContactPointVictoropOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointVictorop) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
@@ -2672,6 +2748,11 @@ func (o ContactPointVictoropOutput) MessageType() pulumi.StringPtrOutput {
 // Additional custom properties to attach to the notifier. Defaults to `map[]`.
 func (o ContactPointVictoropOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointVictorop) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
+}
+
+// Templated title to display.
+func (o ContactPointVictoropOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointVictorop) *string { return v.Title }).(pulumi.StringPtrOutput)
 }
 
 // The UID of the contact point.
@@ -14241,14 +14322,13 @@ func (o GetFoldersFolderArrayOutput) Index(i pulumi.IntInput) GetFoldersFolderOu
 }
 
 type GetSlosSlo struct {
-	Alertings    []GetSlosSloAlerting  `pulumi:"alertings"`
-	DashboardUid string                `pulumi:"dashboardUid"`
-	Description  string                `pulumi:"description"`
-	Labels       []GetSlosSloLabel     `pulumi:"labels"`
-	Name         string                `pulumi:"name"`
-	Objectives   []GetSlosSloObjective `pulumi:"objectives"`
-	Queries      []GetSlosSloQuery     `pulumi:"queries"`
-	Uuid         string                `pulumi:"uuid"`
+	Alertings   []GetSlosSloAlerting  `pulumi:"alertings"`
+	Description string                `pulumi:"description"`
+	Labels      []GetSlosSloLabel     `pulumi:"labels"`
+	Name        string                `pulumi:"name"`
+	Objectives  []GetSlosSloObjective `pulumi:"objectives"`
+	Queries     []GetSlosSloQuery     `pulumi:"queries"`
+	Uuid        string                `pulumi:"uuid"`
 }
 
 // GetSlosSloInput is an input type that accepts GetSlosSloArgs and GetSlosSloOutput values.
@@ -14263,14 +14343,13 @@ type GetSlosSloInput interface {
 }
 
 type GetSlosSloArgs struct {
-	Alertings    GetSlosSloAlertingArrayInput  `pulumi:"alertings"`
-	DashboardUid pulumi.StringInput            `pulumi:"dashboardUid"`
-	Description  pulumi.StringInput            `pulumi:"description"`
-	Labels       GetSlosSloLabelArrayInput     `pulumi:"labels"`
-	Name         pulumi.StringInput            `pulumi:"name"`
-	Objectives   GetSlosSloObjectiveArrayInput `pulumi:"objectives"`
-	Queries      GetSlosSloQueryArrayInput     `pulumi:"queries"`
-	Uuid         pulumi.StringInput            `pulumi:"uuid"`
+	Alertings   GetSlosSloAlertingArrayInput  `pulumi:"alertings"`
+	Description pulumi.StringInput            `pulumi:"description"`
+	Labels      GetSlosSloLabelArrayInput     `pulumi:"labels"`
+	Name        pulumi.StringInput            `pulumi:"name"`
+	Objectives  GetSlosSloObjectiveArrayInput `pulumi:"objectives"`
+	Queries     GetSlosSloQueryArrayInput     `pulumi:"queries"`
+	Uuid        pulumi.StringInput            `pulumi:"uuid"`
 }
 
 func (GetSlosSloArgs) ElementType() reflect.Type {
@@ -14326,10 +14405,6 @@ func (o GetSlosSloOutput) ToGetSlosSloOutputWithContext(ctx context.Context) Get
 
 func (o GetSlosSloOutput) Alertings() GetSlosSloAlertingArrayOutput {
 	return o.ApplyT(func(v GetSlosSlo) []GetSlosSloAlerting { return v.Alertings }).(GetSlosSloAlertingArrayOutput)
-}
-
-func (o GetSlosSloOutput) DashboardUid() pulumi.StringOutput {
-	return o.ApplyT(func(v GetSlosSlo) string { return v.DashboardUid }).(pulumi.StringOutput)
 }
 
 func (o GetSlosSloOutput) Description() pulumi.StringOutput {

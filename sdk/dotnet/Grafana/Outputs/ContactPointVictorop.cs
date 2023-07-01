@@ -15,6 +15,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     public sealed class ContactPointVictorop
     {
         /// <summary>
+        /// Templated description of the message.
+        /// </summary>
+        public readonly string? Description;
+        /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
         public readonly bool? DisableResolveMessage;
@@ -27,6 +31,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Settings;
         /// <summary>
+        /// Templated title to display.
+        /// </summary>
+        public readonly string? Title;
+        /// <summary>
         /// The UID of the contact point.
         /// </summary>
         public readonly string? Uid;
@@ -37,19 +45,25 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
         [OutputConstructor]
         private ContactPointVictorop(
+            string? description,
+
             bool? disableResolveMessage,
 
             string? messageType,
 
             ImmutableDictionary<string, string>? settings,
 
+            string? title,
+
             string? uid,
 
             string url)
         {
+            Description = description;
             DisableResolveMessage = disableResolveMessage;
             MessageType = messageType;
             Settings = settings;
+            Title = title;
             Uid = uid;
             Url = url;
         }

@@ -77,6 +77,10 @@ export interface ContactPointDingding {
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * The templated title of the message.
+     */
+    title?: pulumi.Input<string>;
+    /**
      * The UID of the contact point.
      */
     uid?: pulumi.Input<string>;
@@ -243,6 +247,14 @@ export interface ContactPointPagerduty {
      */
     class?: pulumi.Input<string>;
     /**
+     * The name of the monitoring client that is triggering this event.
+     */
+    client?: pulumi.Input<string>;
+    /**
+     * The URL of the monitoring client that is triggering this event.
+     */
+    clientUrl?: pulumi.Input<string>;
+    /**
      * The component being affected by the event.
      */
     component?: pulumi.Input<string>;
@@ -270,6 +282,10 @@ export interface ContactPointPagerduty {
      * The PagerDuty event severity level. Default is `critical`.
      */
     severity?: pulumi.Input<string>;
+    /**
+     * The unique location of the affected system.
+     */
+    source?: pulumi.Input<string>;
     /**
      * The templated summary message of the event.
      */
@@ -325,6 +341,10 @@ export interface ContactPointPushover {
      * The sound associated with the notification.
      */
     sound?: pulumi.Input<string>;
+    /**
+     * The templated title of the message.
+     */
+    title?: pulumi.Input<string>;
     /**
      * The UID of the contact point.
      */
@@ -505,6 +525,10 @@ export interface ContactPointThreema {
      */
     apiSecret: pulumi.Input<string>;
     /**
+     * The templated description of the message.
+     */
+    description: pulumi.Input<string>;
+    /**
      * Whether to disable sending resolve messages. Defaults to `false`.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
@@ -521,12 +545,20 @@ export interface ContactPointThreema {
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * The templated title of the message.
+     */
+    title: pulumi.Input<string>;
+    /**
      * The UID of the contact point.
      */
     uid?: pulumi.Input<string>;
 }
 
 export interface ContactPointVictorop {
+    /**
+     * Templated description of the message.
+     */
+    description?: pulumi.Input<string>;
     /**
      * Whether to disable sending resolve messages. Defaults to `false`.
      */
@@ -539,6 +571,10 @@ export interface ContactPointVictorop {
      * Additional custom properties to attach to the notifier. Defaults to `map[]`.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Templated title to display.
+     */
+    title?: pulumi.Input<string>;
     /**
      * The UID of the contact point.
      */

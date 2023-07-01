@@ -21,6 +21,7 @@ class OncallRouteArgs:
                  position: pulumi.Input[int],
                  routing_regex: pulumi.Input[str],
                  msteams: Optional[pulumi.Input['OncallRouteMsteamsArgs']] = None,
+                 routing_type: Optional[pulumi.Input[str]] = None,
                  slack: Optional[pulumi.Input['OncallRouteSlackArgs']] = None,
                  telegram: Optional[pulumi.Input['OncallRouteTelegramArgs']] = None):
         """
@@ -30,6 +31,7 @@ class OncallRouteArgs:
         :param pulumi.Input[int] position: The position of the route (starts from 0).
         :param pulumi.Input[str] routing_regex: Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
         :param pulumi.Input['OncallRouteMsteamsArgs'] msteams: MS teams-specific settings for a route.
+        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex Defaults to `regex`.
         :param pulumi.Input['OncallRouteSlackArgs'] slack: Slack-specific settings for a route.
         :param pulumi.Input['OncallRouteTelegramArgs'] telegram: Telegram-specific settings for a route.
         """
@@ -39,6 +41,8 @@ class OncallRouteArgs:
         pulumi.set(__self__, "routing_regex", routing_regex)
         if msteams is not None:
             pulumi.set(__self__, "msteams", msteams)
+        if routing_type is not None:
+            pulumi.set(__self__, "routing_type", routing_type)
         if slack is not None:
             pulumi.set(__self__, "slack", slack)
         if telegram is not None:
@@ -105,6 +109,18 @@ class OncallRouteArgs:
         pulumi.set(self, "msteams", value)
 
     @property
+    @pulumi.getter(name="routingType")
+    def routing_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of route. Can be jinja2, regex Defaults to `regex`.
+        """
+        return pulumi.get(self, "routing_type")
+
+    @routing_type.setter
+    def routing_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "routing_type", value)
+
+    @property
     @pulumi.getter
     def slack(self) -> Optional[pulumi.Input['OncallRouteSlackArgs']]:
         """
@@ -137,6 +153,7 @@ class _OncallRouteState:
                  msteams: Optional[pulumi.Input['OncallRouteMsteamsArgs']] = None,
                  position: Optional[pulumi.Input[int]] = None,
                  routing_regex: Optional[pulumi.Input[str]] = None,
+                 routing_type: Optional[pulumi.Input[str]] = None,
                  slack: Optional[pulumi.Input['OncallRouteSlackArgs']] = None,
                  telegram: Optional[pulumi.Input['OncallRouteTelegramArgs']] = None):
         """
@@ -146,6 +163,7 @@ class _OncallRouteState:
         :param pulumi.Input['OncallRouteMsteamsArgs'] msteams: MS teams-specific settings for a route.
         :param pulumi.Input[int] position: The position of the route (starts from 0).
         :param pulumi.Input[str] routing_regex: Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
+        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex Defaults to `regex`.
         :param pulumi.Input['OncallRouteSlackArgs'] slack: Slack-specific settings for a route.
         :param pulumi.Input['OncallRouteTelegramArgs'] telegram: Telegram-specific settings for a route.
         """
@@ -159,6 +177,8 @@ class _OncallRouteState:
             pulumi.set(__self__, "position", position)
         if routing_regex is not None:
             pulumi.set(__self__, "routing_regex", routing_regex)
+        if routing_type is not None:
+            pulumi.set(__self__, "routing_type", routing_type)
         if slack is not None:
             pulumi.set(__self__, "slack", slack)
         if telegram is not None:
@@ -225,6 +245,18 @@ class _OncallRouteState:
         pulumi.set(self, "routing_regex", value)
 
     @property
+    @pulumi.getter(name="routingType")
+    def routing_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of route. Can be jinja2, regex Defaults to `regex`.
+        """
+        return pulumi.get(self, "routing_type")
+
+    @routing_type.setter
+    def routing_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "routing_type", value)
+
+    @property
     @pulumi.getter
     def slack(self) -> Optional[pulumi.Input['OncallRouteSlackArgs']]:
         """
@@ -259,6 +291,7 @@ class OncallRoute(pulumi.CustomResource):
                  msteams: Optional[pulumi.Input[pulumi.InputType['OncallRouteMsteamsArgs']]] = None,
                  position: Optional[pulumi.Input[int]] = None,
                  routing_regex: Optional[pulumi.Input[str]] = None,
+                 routing_type: Optional[pulumi.Input[str]] = None,
                  slack: Optional[pulumi.Input[pulumi.InputType['OncallRouteSlackArgs']]] = None,
                  telegram: Optional[pulumi.Input[pulumi.InputType['OncallRouteTelegramArgs']]] = None,
                  __props__=None):
@@ -307,6 +340,7 @@ class OncallRoute(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['OncallRouteMsteamsArgs']] msteams: MS teams-specific settings for a route.
         :param pulumi.Input[int] position: The position of the route (starts from 0).
         :param pulumi.Input[str] routing_regex: Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
+        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex Defaults to `regex`.
         :param pulumi.Input[pulumi.InputType['OncallRouteSlackArgs']] slack: Slack-specific settings for a route.
         :param pulumi.Input[pulumi.InputType['OncallRouteTelegramArgs']] telegram: Telegram-specific settings for a route.
         """
@@ -374,6 +408,7 @@ class OncallRoute(pulumi.CustomResource):
                  msteams: Optional[pulumi.Input[pulumi.InputType['OncallRouteMsteamsArgs']]] = None,
                  position: Optional[pulumi.Input[int]] = None,
                  routing_regex: Optional[pulumi.Input[str]] = None,
+                 routing_type: Optional[pulumi.Input[str]] = None,
                  slack: Optional[pulumi.Input[pulumi.InputType['OncallRouteSlackArgs']]] = None,
                  telegram: Optional[pulumi.Input[pulumi.InputType['OncallRouteTelegramArgs']]] = None,
                  __props__=None):
@@ -398,6 +433,7 @@ class OncallRoute(pulumi.CustomResource):
             if routing_regex is None and not opts.urn:
                 raise TypeError("Missing required property 'routing_regex'")
             __props__.__dict__["routing_regex"] = routing_regex
+            __props__.__dict__["routing_type"] = routing_type
             __props__.__dict__["slack"] = slack
             __props__.__dict__["telegram"] = telegram
         super(OncallRoute, __self__).__init__(
@@ -415,6 +451,7 @@ class OncallRoute(pulumi.CustomResource):
             msteams: Optional[pulumi.Input[pulumi.InputType['OncallRouteMsteamsArgs']]] = None,
             position: Optional[pulumi.Input[int]] = None,
             routing_regex: Optional[pulumi.Input[str]] = None,
+            routing_type: Optional[pulumi.Input[str]] = None,
             slack: Optional[pulumi.Input[pulumi.InputType['OncallRouteSlackArgs']]] = None,
             telegram: Optional[pulumi.Input[pulumi.InputType['OncallRouteTelegramArgs']]] = None) -> 'OncallRoute':
         """
@@ -429,6 +466,7 @@ class OncallRoute(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['OncallRouteMsteamsArgs']] msteams: MS teams-specific settings for a route.
         :param pulumi.Input[int] position: The position of the route (starts from 0).
         :param pulumi.Input[str] routing_regex: Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
+        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex Defaults to `regex`.
         :param pulumi.Input[pulumi.InputType['OncallRouteSlackArgs']] slack: Slack-specific settings for a route.
         :param pulumi.Input[pulumi.InputType['OncallRouteTelegramArgs']] telegram: Telegram-specific settings for a route.
         """
@@ -441,6 +479,7 @@ class OncallRoute(pulumi.CustomResource):
         __props__.__dict__["msteams"] = msteams
         __props__.__dict__["position"] = position
         __props__.__dict__["routing_regex"] = routing_regex
+        __props__.__dict__["routing_type"] = routing_type
         __props__.__dict__["slack"] = slack
         __props__.__dict__["telegram"] = telegram
         return OncallRoute(resource_name, opts=opts, __props__=__props__)
@@ -484,6 +523,14 @@ class OncallRoute(pulumi.CustomResource):
         Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
         """
         return pulumi.get(self, "routing_regex")
+
+    @property
+    @pulumi.getter(name="routingType")
+    def routing_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The type of route. Can be jinja2, regex Defaults to `regex`.
+        """
+        return pulumi.get(self, "routing_type")
 
     @property
     @pulumi.getter

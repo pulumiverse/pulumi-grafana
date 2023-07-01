@@ -325,6 +325,9 @@ class GetCloudStackResult:
     @property
     @pulumi.getter(name="tracesUrl")
     def traces_url(self) -> str:
+        """
+        Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+        """
         return pulumi.get(self, "traces_url")
 
     @property
@@ -396,38 +399,38 @@ def get_cloud_stack(slug: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getCloudStack:getCloudStack', __args__, opts=opts, typ=GetCloudStackResult).value
 
     return AwaitableGetCloudStackResult(
-        alertmanager_name=__ret__.alertmanager_name,
-        alertmanager_status=__ret__.alertmanager_status,
-        alertmanager_url=__ret__.alertmanager_url,
-        alertmanager_user_id=__ret__.alertmanager_user_id,
-        description=__ret__.description,
-        graphite_name=__ret__.graphite_name,
-        graphite_status=__ret__.graphite_status,
-        graphite_url=__ret__.graphite_url,
-        graphite_user_id=__ret__.graphite_user_id,
-        id=__ret__.id,
-        logs_name=__ret__.logs_name,
-        logs_status=__ret__.logs_status,
-        logs_url=__ret__.logs_url,
-        logs_user_id=__ret__.logs_user_id,
-        name=__ret__.name,
-        org_id=__ret__.org_id,
-        org_name=__ret__.org_name,
-        org_slug=__ret__.org_slug,
-        prometheus_name=__ret__.prometheus_name,
-        prometheus_remote_endpoint=__ret__.prometheus_remote_endpoint,
-        prometheus_remote_write_endpoint=__ret__.prometheus_remote_write_endpoint,
-        prometheus_status=__ret__.prometheus_status,
-        prometheus_url=__ret__.prometheus_url,
-        prometheus_user_id=__ret__.prometheus_user_id,
-        region_slug=__ret__.region_slug,
-        slug=__ret__.slug,
-        status=__ret__.status,
-        traces_name=__ret__.traces_name,
-        traces_status=__ret__.traces_status,
-        traces_url=__ret__.traces_url,
-        traces_user_id=__ret__.traces_user_id,
-        url=__ret__.url)
+        alertmanager_name=pulumi.get(__ret__, 'alertmanager_name'),
+        alertmanager_status=pulumi.get(__ret__, 'alertmanager_status'),
+        alertmanager_url=pulumi.get(__ret__, 'alertmanager_url'),
+        alertmanager_user_id=pulumi.get(__ret__, 'alertmanager_user_id'),
+        description=pulumi.get(__ret__, 'description'),
+        graphite_name=pulumi.get(__ret__, 'graphite_name'),
+        graphite_status=pulumi.get(__ret__, 'graphite_status'),
+        graphite_url=pulumi.get(__ret__, 'graphite_url'),
+        graphite_user_id=pulumi.get(__ret__, 'graphite_user_id'),
+        id=pulumi.get(__ret__, 'id'),
+        logs_name=pulumi.get(__ret__, 'logs_name'),
+        logs_status=pulumi.get(__ret__, 'logs_status'),
+        logs_url=pulumi.get(__ret__, 'logs_url'),
+        logs_user_id=pulumi.get(__ret__, 'logs_user_id'),
+        name=pulumi.get(__ret__, 'name'),
+        org_id=pulumi.get(__ret__, 'org_id'),
+        org_name=pulumi.get(__ret__, 'org_name'),
+        org_slug=pulumi.get(__ret__, 'org_slug'),
+        prometheus_name=pulumi.get(__ret__, 'prometheus_name'),
+        prometheus_remote_endpoint=pulumi.get(__ret__, 'prometheus_remote_endpoint'),
+        prometheus_remote_write_endpoint=pulumi.get(__ret__, 'prometheus_remote_write_endpoint'),
+        prometheus_status=pulumi.get(__ret__, 'prometheus_status'),
+        prometheus_url=pulumi.get(__ret__, 'prometheus_url'),
+        prometheus_user_id=pulumi.get(__ret__, 'prometheus_user_id'),
+        region_slug=pulumi.get(__ret__, 'region_slug'),
+        slug=pulumi.get(__ret__, 'slug'),
+        status=pulumi.get(__ret__, 'status'),
+        traces_name=pulumi.get(__ret__, 'traces_name'),
+        traces_status=pulumi.get(__ret__, 'traces_status'),
+        traces_url=pulumi.get(__ret__, 'traces_url'),
+        traces_user_id=pulumi.get(__ret__, 'traces_user_id'),
+        url=pulumi.get(__ret__, 'url'))
 
 
 @_utilities.lift_output_func(get_cloud_stack)

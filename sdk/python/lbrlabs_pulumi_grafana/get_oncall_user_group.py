@@ -82,9 +82,9 @@ def get_oncall_user_group(slack_handle: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getOncallUserGroup:getOncallUserGroup', __args__, opts=opts, typ=GetOncallUserGroupResult).value
 
     return AwaitableGetOncallUserGroupResult(
-        id=__ret__.id,
-        slack_handle=__ret__.slack_handle,
-        slack_id=__ret__.slack_id)
+        id=pulumi.get(__ret__, 'id'),
+        slack_handle=pulumi.get(__ret__, 'slack_handle'),
+        slack_id=pulumi.get(__ret__, 'slack_id'))
 
 
 @_utilities.lift_output_func(get_oncall_user_group)

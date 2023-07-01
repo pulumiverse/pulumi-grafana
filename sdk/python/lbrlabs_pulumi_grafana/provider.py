@@ -23,6 +23,7 @@ class ProviderArgs:
                  oncall_url: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[int]] = None,
                  retries: Optional[pulumi.Input[int]] = None,
+                 retry_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  sm_access_token: Optional[pulumi.Input[str]] = None,
                  sm_url: Optional[pulumi.Input[str]] = None,
                  store_dashboard_sha256: Optional[pulumi.Input[bool]] = None,
@@ -33,8 +34,8 @@ class ProviderArgs:
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] auth: API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
                the `GRAFANA_AUTH` environment variable.
-        :param pulumi.Input[str] ca_cert: Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
-               `GRAFANA_CA_CERT` environment variable.
+        :param pulumi.Input[str] ca_cert: Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
+               be set via the `GRAFANA_CA_CERT` environment variable.
         :param pulumi.Input[str] cloud_api_key: API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
         :param pulumi.Input[str] cloud_api_url: Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
@@ -44,6 +45,8 @@ class ProviderArgs:
                resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
         :param pulumi.Input[int] retries: The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
                `GRAFANA_RETRIES` environment variable.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_status_codes: The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+               and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
         :param pulumi.Input[str] sm_access_token: A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] sm_url: Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
                correct value for each service region is cited in the [Synthetic Monitoring
@@ -53,10 +56,10 @@ class ProviderArgs:
                managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
                each provider ensures all providers interact with the same SM API.
         :param pulumi.Input[bool] store_dashboard_sha256: Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
-        :param pulumi.Input[str] tls_cert: Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-               `GRAFANA_TLS_CERT` environment variable.
-        :param pulumi.Input[str] tls_key: Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-               environment variable.
+        :param pulumi.Input[str] tls_cert: Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+               set via the `GRAFANA_TLS_CERT` environment variable.
+        :param pulumi.Input[str] tls_key: Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+               the `GRAFANA_TLS_KEY` environment variable.
         :param pulumi.Input[str] url: The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
         """
         if auth is None:
@@ -95,6 +98,8 @@ class ProviderArgs:
             retries = _utilities.get_env_int('GRAFANA_RETRIES')
         if retries is not None:
             pulumi.set(__self__, "retries", retries)
+        if retry_status_codes is not None:
+            pulumi.set(__self__, "retry_status_codes", retry_status_codes)
         if sm_access_token is None:
             sm_access_token = _utilities.get_env('GRAFANA_SM_ACCESS_TOKEN')
         if sm_access_token is not None:
@@ -137,8 +142,8 @@ class ProviderArgs:
     @pulumi.getter(name="caCert")
     def ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
-        `GRAFANA_CA_CERT` environment variable.
+        Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
+        be set via the `GRAFANA_CA_CERT` environment variable.
         """
         return pulumi.get(self, "ca_cert")
 
@@ -233,6 +238,19 @@ class ProviderArgs:
         pulumi.set(self, "retries", value)
 
     @property
+    @pulumi.getter(name="retryStatusCodes")
+    def retry_status_codes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+        and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+        """
+        return pulumi.get(self, "retry_status_codes")
+
+    @retry_status_codes.setter
+    def retry_status_codes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "retry_status_codes", value)
+
+    @property
     @pulumi.getter(name="smAccessToken")
     def sm_access_token(self) -> Optional[pulumi.Input[str]]:
         """
@@ -278,8 +296,8 @@ class ProviderArgs:
     @pulumi.getter(name="tlsCert")
     def tls_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-        `GRAFANA_TLS_CERT` environment variable.
+        Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+        set via the `GRAFANA_TLS_CERT` environment variable.
         """
         return pulumi.get(self, "tls_cert")
 
@@ -291,8 +309,8 @@ class ProviderArgs:
     @pulumi.getter(name="tlsKey")
     def tls_key(self) -> Optional[pulumi.Input[str]]:
         """
-        Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-        environment variable.
+        Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+        the `GRAFANA_TLS_KEY` environment variable.
         """
         return pulumi.get(self, "tls_key")
 
@@ -327,6 +345,7 @@ class Provider(pulumi.ProviderResource):
                  oncall_url: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[int]] = None,
                  retries: Optional[pulumi.Input[int]] = None,
+                 retry_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  sm_access_token: Optional[pulumi.Input[str]] = None,
                  sm_url: Optional[pulumi.Input[str]] = None,
                  store_dashboard_sha256: Optional[pulumi.Input[bool]] = None,
@@ -344,8 +363,8 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auth: API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
                the `GRAFANA_AUTH` environment variable.
-        :param pulumi.Input[str] ca_cert: Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
-               `GRAFANA_CA_CERT` environment variable.
+        :param pulumi.Input[str] ca_cert: Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
+               be set via the `GRAFANA_CA_CERT` environment variable.
         :param pulumi.Input[str] cloud_api_key: API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
         :param pulumi.Input[str] cloud_api_url: Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
@@ -355,6 +374,8 @@ class Provider(pulumi.ProviderResource):
                resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
         :param pulumi.Input[int] retries: The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
                `GRAFANA_RETRIES` environment variable.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_status_codes: The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+               and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
         :param pulumi.Input[str] sm_access_token: A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] sm_url: Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
                correct value for each service region is cited in the [Synthetic Monitoring
@@ -364,10 +385,10 @@ class Provider(pulumi.ProviderResource):
                managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
                each provider ensures all providers interact with the same SM API.
         :param pulumi.Input[bool] store_dashboard_sha256: Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
-        :param pulumi.Input[str] tls_cert: Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-               `GRAFANA_TLS_CERT` environment variable.
-        :param pulumi.Input[str] tls_key: Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-               environment variable.
+        :param pulumi.Input[str] tls_cert: Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+               set via the `GRAFANA_TLS_CERT` environment variable.
+        :param pulumi.Input[str] tls_key: Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+               the `GRAFANA_TLS_KEY` environment variable.
         :param pulumi.Input[str] url: The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
         """
         ...
@@ -406,6 +427,7 @@ class Provider(pulumi.ProviderResource):
                  oncall_url: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[int]] = None,
                  retries: Optional[pulumi.Input[int]] = None,
+                 retry_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  sm_access_token: Optional[pulumi.Input[str]] = None,
                  sm_url: Optional[pulumi.Input[str]] = None,
                  store_dashboard_sha256: Optional[pulumi.Input[bool]] = None,
@@ -448,6 +470,7 @@ class Provider(pulumi.ProviderResource):
             if retries is None:
                 retries = _utilities.get_env_int('GRAFANA_RETRIES')
             __props__.__dict__["retries"] = pulumi.Output.from_input(retries).apply(pulumi.runtime.to_json) if retries is not None else None
+            __props__.__dict__["retry_status_codes"] = pulumi.Output.from_input(retry_status_codes).apply(pulumi.runtime.to_json) if retry_status_codes is not None else None
             if sm_access_token is None:
                 sm_access_token = _utilities.get_env('GRAFANA_SM_ACCESS_TOKEN')
             __props__.__dict__["sm_access_token"] = None if sm_access_token is None else pulumi.Output.secret(sm_access_token)
@@ -487,8 +510,8 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="caCert")
     def ca_cert(self) -> pulumi.Output[Optional[str]]:
         """
-        Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
-        `GRAFANA_CA_CERT` environment variable.
+        Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
+        be set via the `GRAFANA_CA_CERT` environment variable.
         """
         return pulumi.get(self, "ca_cert")
 
@@ -550,8 +573,8 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="tlsCert")
     def tls_cert(self) -> pulumi.Output[Optional[str]]:
         """
-        Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-        `GRAFANA_TLS_CERT` environment variable.
+        Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+        set via the `GRAFANA_TLS_CERT` environment variable.
         """
         return pulumi.get(self, "tls_cert")
 
@@ -559,8 +582,8 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="tlsKey")
     def tls_key(self) -> pulumi.Output[Optional[str]]:
         """
-        Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-        environment variable.
+        Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+        the `GRAFANA_TLS_KEY` environment variable.
         """
         return pulumi.get(self, "tls_key")
 

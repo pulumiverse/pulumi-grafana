@@ -95,10 +95,10 @@ def get_oncall_team(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getOncallTeam:getOncallTeam', __args__, opts=opts, typ=GetOncallTeamResult).value
 
     return AwaitableGetOncallTeamResult(
-        avatar_url=__ret__.avatar_url,
-        email=__ret__.email,
-        id=__ret__.id,
-        name=__ret__.name)
+        avatar_url=pulumi.get(__ret__, 'avatar_url'),
+        email=pulumi.get(__ret__, 'email'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'))
 
 
 @_utilities.lift_output_func(get_oncall_team)

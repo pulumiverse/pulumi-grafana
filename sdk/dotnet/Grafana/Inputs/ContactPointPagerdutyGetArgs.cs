@@ -20,6 +20,18 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public Input<string>? Class { get; set; }
 
         /// <summary>
+        /// The name of the monitoring client that is triggering this event.
+        /// </summary>
+        [Input("client")]
+        public Input<string>? Client { get; set; }
+
+        /// <summary>
+        /// The URL of the monitoring client that is triggering this event.
+        /// </summary>
+        [Input("clientUrl")]
+        public Input<string>? ClientUrl { get; set; }
+
+        /// <summary>
         /// The component being affected by the event.
         /// </summary>
         [Input("component")]
@@ -86,6 +98,12 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         /// </summary>
         [Input("severity")]
         public Input<string>? Severity { get; set; }
+
+        /// <summary>
+        /// The unique location of the affected system.
+        /// </summary>
+        [Input("source")]
+        public Input<string>? Source { get; set; }
 
         /// <summary>
         /// The templated summary message of the event.

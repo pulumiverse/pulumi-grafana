@@ -121,9 +121,9 @@ def get_cloud_ips(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCl
     __ret__ = pulumi.runtime.invoke('grafana:index/getCloudIps:getCloudIps', __args__, opts=opts, typ=GetCloudIpsResult).value
 
     return AwaitableGetCloudIpsResult(
-        hosted_alerts=__ret__.hosted_alerts,
-        hosted_grafanas=__ret__.hosted_grafanas,
-        hosted_logs=__ret__.hosted_logs,
-        hosted_metrics=__ret__.hosted_metrics,
-        hosted_traces=__ret__.hosted_traces,
-        id=__ret__.id)
+        hosted_alerts=pulumi.get(__ret__, 'hosted_alerts'),
+        hosted_grafanas=pulumi.get(__ret__, 'hosted_grafanas'),
+        hosted_logs=pulumi.get(__ret__, 'hosted_logs'),
+        hosted_metrics=pulumi.get(__ret__, 'hosted_metrics'),
+        hosted_traces=pulumi.get(__ret__, 'hosted_traces'),
+        id=pulumi.get(__ret__, 'id'))

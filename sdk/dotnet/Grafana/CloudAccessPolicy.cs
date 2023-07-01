@@ -66,6 +66,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    ///  $ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy policyname {{region}}/{{policy_id}}
+    /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/cloudAccessPolicy:CloudAccessPolicy")]
     public partial class CloudAccessPolicy : global::Pulumi.CustomResource

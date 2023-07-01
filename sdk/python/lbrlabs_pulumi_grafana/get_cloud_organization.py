@@ -104,12 +104,12 @@ def get_cloud_organization(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getCloudOrganization:getCloudOrganization', __args__, opts=opts, typ=GetCloudOrganizationResult).value
 
     return AwaitableGetCloudOrganizationResult(
-        created_at=__ret__.created_at,
-        id=__ret__.id,
-        name=__ret__.name,
-        slug=__ret__.slug,
-        updated_at=__ret__.updated_at,
-        url=__ret__.url)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        slug=pulumi.get(__ret__, 'slug'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        url=pulumi.get(__ret__, 'url'))
 
 
 @_utilities.lift_output_func(get_cloud_organization)

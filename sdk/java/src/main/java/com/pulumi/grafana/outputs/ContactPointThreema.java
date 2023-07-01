@@ -19,6 +19,11 @@ public final class ContactPointThreema {
      */
     private String apiSecret;
     /**
+     * @return The templated description of the message.
+     * 
+     */
+    private String description;
+    /**
      * @return Whether to disable sending resolve messages. Defaults to `false`.
      * 
      */
@@ -39,6 +44,11 @@ public final class ContactPointThreema {
      */
     private @Nullable Map<String,String> settings;
     /**
+     * @return The templated title of the message.
+     * 
+     */
+    private String title;
+    /**
      * @return The UID of the contact point.
      * 
      */
@@ -51,6 +61,13 @@ public final class ContactPointThreema {
      */
     public String apiSecret() {
         return this.apiSecret;
+    }
+    /**
+     * @return The templated description of the message.
+     * 
+     */
+    public String description() {
+        return this.description;
     }
     /**
      * @return Whether to disable sending resolve messages. Defaults to `false`.
@@ -81,6 +98,13 @@ public final class ContactPointThreema {
         return this.settings == null ? Map.of() : this.settings;
     }
     /**
+     * @return The templated title of the message.
+     * 
+     */
+    public String title() {
+        return this.title;
+    }
+    /**
      * @return The UID of the contact point.
      * 
      */
@@ -98,25 +122,34 @@ public final class ContactPointThreema {
     @CustomType.Builder
     public static final class Builder {
         private String apiSecret;
+        private String description;
         private @Nullable Boolean disableResolveMessage;
         private String gatewayId;
         private String recipientId;
         private @Nullable Map<String,String> settings;
+        private String title;
         private @Nullable String uid;
         public Builder() {}
         public Builder(ContactPointThreema defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.apiSecret = defaults.apiSecret;
+    	      this.description = defaults.description;
     	      this.disableResolveMessage = defaults.disableResolveMessage;
     	      this.gatewayId = defaults.gatewayId;
     	      this.recipientId = defaults.recipientId;
     	      this.settings = defaults.settings;
+    	      this.title = defaults.title;
     	      this.uid = defaults.uid;
         }
 
         @CustomType.Setter
         public Builder apiSecret(String apiSecret) {
             this.apiSecret = Objects.requireNonNull(apiSecret);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder description(String description) {
+            this.description = Objects.requireNonNull(description);
             return this;
         }
         @CustomType.Setter
@@ -140,6 +173,11 @@ public final class ContactPointThreema {
             return this;
         }
         @CustomType.Setter
+        public Builder title(String title) {
+            this.title = Objects.requireNonNull(title);
+            return this;
+        }
+        @CustomType.Setter
         public Builder uid(@Nullable String uid) {
             this.uid = uid;
             return this;
@@ -147,10 +185,12 @@ public final class ContactPointThreema {
         public ContactPointThreema build() {
             final var o = new ContactPointThreema();
             o.apiSecret = apiSecret;
+            o.description = description;
             o.disableResolveMessage = disableResolveMessage;
             o.gatewayId = gatewayId;
             o.recipientId = recipientId;
             o.settings = settings;
+            o.title = title;
             o.uid = uid;
             return o;
         }

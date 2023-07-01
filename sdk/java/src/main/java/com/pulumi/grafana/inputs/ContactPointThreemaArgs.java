@@ -33,6 +33,21 @@ public final class ContactPointThreemaArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * The templated description of the message.
+     * 
+     */
+    @Import(name="description", required=true)
+    private Output<String> description;
+
+    /**
+     * @return The templated description of the message.
+     * 
+     */
+    public Output<String> description() {
+        return this.description;
+    }
+
+    /**
      * Whether to disable sending resolve messages. Defaults to `false`.
      * 
      */
@@ -93,6 +108,21 @@ public final class ContactPointThreemaArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * The templated title of the message.
+     * 
+     */
+    @Import(name="title", required=true)
+    private Output<String> title;
+
+    /**
+     * @return The templated title of the message.
+     * 
+     */
+    public Output<String> title() {
+        return this.title;
+    }
+
+    /**
      * The UID of the contact point.
      * 
      */
@@ -111,10 +141,12 @@ public final class ContactPointThreemaArgs extends com.pulumi.resources.Resource
 
     private ContactPointThreemaArgs(ContactPointThreemaArgs $) {
         this.apiSecret = $.apiSecret;
+        this.description = $.description;
         this.disableResolveMessage = $.disableResolveMessage;
         this.gatewayId = $.gatewayId;
         this.recipientId = $.recipientId;
         this.settings = $.settings;
+        this.title = $.title;
         this.uid = $.uid;
     }
 
@@ -155,6 +187,27 @@ public final class ContactPointThreemaArgs extends com.pulumi.resources.Resource
          */
         public Builder apiSecret(String apiSecret) {
             return apiSecret(Output.of(apiSecret));
+        }
+
+        /**
+         * @param description The templated description of the message.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        /**
+         * @param description The templated description of the message.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         /**
@@ -242,6 +295,27 @@ public final class ContactPointThreemaArgs extends com.pulumi.resources.Resource
         }
 
         /**
+         * @param title The templated title of the message.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder title(Output<String> title) {
+            $.title = title;
+            return this;
+        }
+
+        /**
+         * @param title The templated title of the message.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder title(String title) {
+            return title(Output.of(title));
+        }
+
+        /**
          * @param uid The UID of the contact point.
          * 
          * @return builder
@@ -264,8 +338,10 @@ public final class ContactPointThreemaArgs extends com.pulumi.resources.Resource
 
         public ContactPointThreemaArgs build() {
             $.apiSecret = Objects.requireNonNull($.apiSecret, "expected parameter 'apiSecret' to be non-null");
+            $.description = Objects.requireNonNull($.description, "expected parameter 'description' to be non-null");
             $.gatewayId = Objects.requireNonNull($.gatewayId, "expected parameter 'gatewayId' to be non-null");
             $.recipientId = Objects.requireNonNull($.recipientId, "expected parameter 'recipientId' to be non-null");
+            $.title = Objects.requireNonNull($.title, "expected parameter 'title' to be non-null");
             return $;
         }
     }

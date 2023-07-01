@@ -52,6 +52,9 @@ class ApiKeyArgs:
         """
         Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
         """
+        warnings.warn("""Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""", DeprecationWarning)
+        pulumi.log.warn("""cloud_stack_slug is deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""")
+
         return pulumi.get(self, "cloud_stack_slug")
 
     @cloud_stack_slug.setter
@@ -128,6 +131,9 @@ class _ApiKeyState:
         """
         Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
         """
+        warnings.warn("""Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""", DeprecationWarning)
+        pulumi.log.warn("""cloud_stack_slug is deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""")
+
         return pulumi.get(self, "cloud_stack_slug")
 
     @cloud_stack_slug.setter
@@ -333,6 +339,9 @@ class ApiKey(pulumi.CustomResource):
         """
         Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
         """
+        warnings.warn("""Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""", DeprecationWarning)
+        pulumi.log.warn("""cloud_stack_slug is deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""")
+
         return pulumi.get(self, "cloud_stack_slug")
 
     @property

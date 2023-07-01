@@ -9,6 +9,7 @@ import com.pulumi.core.internal.Codegen;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -36,16 +37,16 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Certificate CA bundle to use to verify the Grafana server&#39;s certificate. May alternatively be set via the
-     * `GRAFANA_CA_CERT` environment variable.
+     * Certificate CA bundle (file path or literal value) to use to verify the Grafana server&#39;s certificate. May alternatively
+     * be set via the `GRAFANA_CA_CERT` environment variable.
      * 
      */
     @Import(name="caCert")
     private @Nullable Output<String> caCert;
 
     /**
-     * @return Certificate CA bundle to use to verify the Grafana server&#39;s certificate. May alternatively be set via the
-     * `GRAFANA_CA_CERT` environment variable.
+     * @return Certificate CA bundle (file path or literal value) to use to verify the Grafana server&#39;s certificate. May alternatively
+     * be set via the `GRAFANA_CA_CERT` environment variable.
      * 
      */
     public Optional<Output<String>> caCert() {
@@ -162,6 +163,23 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+     * and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+     * 
+     */
+    @Import(name="retryStatusCodes", json=true)
+    private @Nullable Output<List<String>> retryStatusCodes;
+
+    /**
+     * @return The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+     * and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+     * 
+     */
+    public Optional<Output<List<String>>> retryStatusCodes() {
+        return Optional.ofNullable(this.retryStatusCodes);
+    }
+
+    /**
      * A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
      * 
      */
@@ -219,16 +237,16 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-     * `GRAFANA_TLS_CERT` environment variable.
+     * Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+     * set via the `GRAFANA_TLS_CERT` environment variable.
      * 
      */
     @Import(name="tlsCert")
     private @Nullable Output<String> tlsCert;
 
     /**
-     * @return Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-     * `GRAFANA_TLS_CERT` environment variable.
+     * @return Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+     * set via the `GRAFANA_TLS_CERT` environment variable.
      * 
      */
     public Optional<Output<String>> tlsCert() {
@@ -236,16 +254,16 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-     * environment variable.
+     * Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+     * the `GRAFANA_TLS_KEY` environment variable.
      * 
      */
     @Import(name="tlsKey")
     private @Nullable Output<String> tlsKey;
 
     /**
-     * @return Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-     * environment variable.
+     * @return Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+     * the `GRAFANA_TLS_KEY` environment variable.
      * 
      */
     public Optional<Output<String>> tlsKey() {
@@ -279,6 +297,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.oncallUrl = $.oncallUrl;
         this.orgId = $.orgId;
         this.retries = $.retries;
+        this.retryStatusCodes = $.retryStatusCodes;
         this.smAccessToken = $.smAccessToken;
         this.smUrl = $.smUrl;
         this.storeDashboardSha256 = $.storeDashboardSha256;
@@ -329,8 +348,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param caCert Certificate CA bundle to use to verify the Grafana server&#39;s certificate. May alternatively be set via the
-         * `GRAFANA_CA_CERT` environment variable.
+         * @param caCert Certificate CA bundle (file path or literal value) to use to verify the Grafana server&#39;s certificate. May alternatively
+         * be set via the `GRAFANA_CA_CERT` environment variable.
          * 
          * @return builder
          * 
@@ -341,8 +360,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param caCert Certificate CA bundle to use to verify the Grafana server&#39;s certificate. May alternatively be set via the
-         * `GRAFANA_CA_CERT` environment variable.
+         * @param caCert Certificate CA bundle (file path or literal value) to use to verify the Grafana server&#39;s certificate. May alternatively
+         * be set via the `GRAFANA_CA_CERT` environment variable.
          * 
          * @return builder
          * 
@@ -503,6 +522,40 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param retryStatusCodes The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+         * and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder retryStatusCodes(@Nullable Output<List<String>> retryStatusCodes) {
+            $.retryStatusCodes = retryStatusCodes;
+            return this;
+        }
+
+        /**
+         * @param retryStatusCodes The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+         * and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder retryStatusCodes(List<String> retryStatusCodes) {
+            return retryStatusCodes(Output.of(retryStatusCodes));
+        }
+
+        /**
+         * @param retryStatusCodes The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+         * and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder retryStatusCodes(String... retryStatusCodes) {
+            return retryStatusCodes(List.of(retryStatusCodes));
+        }
+
+        /**
          * @param smAccessToken A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
          * 
          * @return builder
@@ -578,8 +631,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tlsCert Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-         * `GRAFANA_TLS_CERT` environment variable.
+         * @param tlsCert Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+         * set via the `GRAFANA_TLS_CERT` environment variable.
          * 
          * @return builder
          * 
@@ -590,8 +643,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tlsCert Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-         * `GRAFANA_TLS_CERT` environment variable.
+         * @param tlsCert Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+         * set via the `GRAFANA_TLS_CERT` environment variable.
          * 
          * @return builder
          * 
@@ -601,8 +654,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tlsKey Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-         * environment variable.
+         * @param tlsKey Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+         * the `GRAFANA_TLS_KEY` environment variable.
          * 
          * @return builder
          * 
@@ -613,8 +666,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tlsKey Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-         * environment variable.
+         * @param tlsKey Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+         * the `GRAFANA_TLS_KEY` environment variable.
          * 
          * @return builder
          * 

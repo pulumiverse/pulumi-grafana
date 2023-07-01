@@ -103,10 +103,10 @@ def get_oncall_user(username: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getOncallUser:getOncallUser', __args__, opts=opts, typ=GetOncallUserResult).value
 
     return AwaitableGetOncallUserResult(
-        email=__ret__.email,
-        id=__ret__.id,
-        role=__ret__.role,
-        username=__ret__.username)
+        email=pulumi.get(__ret__, 'email'),
+        id=pulumi.get(__ret__, 'id'),
+        role=pulumi.get(__ret__, 'role'),
+        username=pulumi.get(__ret__, 'username'))
 
 
 @_utilities.lift_output_func(get_oncall_user)

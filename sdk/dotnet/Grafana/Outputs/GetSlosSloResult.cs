@@ -15,7 +15,6 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     public sealed class GetSlosSloResult
     {
         public readonly ImmutableArray<Outputs.GetSlosSloAlertingResult> Alertings;
-        public readonly string DashboardUid;
         public readonly string Description;
         public readonly ImmutableArray<Outputs.GetSlosSloLabelResult> Labels;
         public readonly string Name;
@@ -26,8 +25,6 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         [OutputConstructor]
         private GetSlosSloResult(
             ImmutableArray<Outputs.GetSlosSloAlertingResult> alertings,
-
-            string dashboardUid,
 
             string description,
 
@@ -42,7 +39,6 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
             string uuid)
         {
             Alertings = alertings;
-            DashboardUid = dashboardUid;
             Description = description;
             Labels = labels;
             Name = name;

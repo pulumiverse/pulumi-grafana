@@ -378,9 +378,17 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
     public Output<String> tracesStatus() {
         return this.tracesStatus;
     }
+    /**
+     * Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+     * 
+     */
     @Export(name="tracesUrl", refs={String.class}, tree="[0]")
     private Output<String> tracesUrl;
 
+    /**
+     * @return Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+     * 
+     */
     public Output<String> tracesUrl() {
         return this.tracesUrl;
     }

@@ -26,8 +26,8 @@ class _ExportableConfig(types.ModuleType):
     @property
     def ca_cert(self) -> Optional[str]:
         """
-        Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
-        `GRAFANA_CA_CERT` environment variable.
+        Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
+        be set via the `GRAFANA_CA_CERT` environment variable.
         """
         return __config__.get('caCert') or _utilities.get_env('GRAFANA_CA_CERT')
 
@@ -91,6 +91,14 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get_int('retries') or _utilities.get_env_int('GRAFANA_RETRIES')
 
     @property
+    def retry_status_codes(self) -> Optional[str]:
+        """
+        The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+        and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+        """
+        return __config__.get('retryStatusCodes')
+
+    @property
     def sm_access_token(self) -> Optional[str]:
         """
         A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
@@ -120,16 +128,16 @@ class _ExportableConfig(types.ModuleType):
     @property
     def tls_cert(self) -> Optional[str]:
         """
-        Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-        `GRAFANA_TLS_CERT` environment variable.
+        Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+        set via the `GRAFANA_TLS_CERT` environment variable.
         """
         return __config__.get('tlsCert') or _utilities.get_env('GRAFANA_TLS_CERT')
 
     @property
     def tls_key(self) -> Optional[str]:
         """
-        Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-        environment variable.
+        Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+        the `GRAFANA_TLS_KEY` environment variable.
         """
         return __config__.get('tlsKey') or _utilities.get_env('GRAFANA_TLS_KEY')
 

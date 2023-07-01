@@ -15,17 +15,25 @@ func GetAuth(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "GRAFANA_AUTH").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "GRAFANA_AUTH"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
-// Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
-// `GRAFANA_CA_CERT` environment variable.
+// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
+// be set via the `GRAFANA_CA_CERT` environment variable.
 func GetCaCert(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:caCert")
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "GRAFANA_CA_CERT").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "GRAFANA_CA_CERT"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
@@ -34,7 +42,11 @@ func GetCloudApiKey(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "GRAFANA_CLOUD_API_KEY").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "GRAFANA_CLOUD_API_KEY"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
@@ -43,7 +55,11 @@ func GetCloudApiUrl(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "GRAFANA_CLOUD_API_URL").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "GRAFANA_CLOUD_API_URL"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
@@ -58,7 +74,11 @@ func GetInsecureSkipVerify(ctx *pulumi.Context) bool {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault(false, parseEnvBool, "GRAFANA_INSECURE_SKIP_VERIFY").(bool)
+	var value bool
+	if d := getEnvOrDefault(nil, parseEnvBool, "GRAFANA_INSECURE_SKIP_VERIFY"); d != nil {
+		value = d.(bool)
+	}
+	return value
 }
 
 // A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
@@ -67,7 +87,11 @@ func GetOncallAccessToken(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "GRAFANA_ONCALL_ACCESS_TOKEN").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "GRAFANA_ONCALL_ACCESS_TOKEN"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
@@ -76,7 +100,11 @@ func GetOncallUrl(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "GRAFANA_ONCALL_URL").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "GRAFANA_ONCALL_URL"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
@@ -86,7 +114,11 @@ func GetOrgId(ctx *pulumi.Context) int {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault(0, parseEnvInt, "GRAFANA_ORG_ID").(int)
+	var value int
+	if d := getEnvOrDefault(nil, parseEnvInt, "GRAFANA_ORG_ID"); d != nil {
+		value = d.(int)
+	}
+	return value
 }
 
 // The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
@@ -96,7 +128,17 @@ func GetRetries(ctx *pulumi.Context) int {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault(0, parseEnvInt, "GRAFANA_RETRIES").(int)
+	var value int
+	if d := getEnvOrDefault(nil, parseEnvInt, "GRAFANA_RETRIES"); d != nil {
+		value = d.(int)
+	}
+	return value
+}
+
+// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+// and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+func GetRetryStatusCodes(ctx *pulumi.Context) string {
+	return config.Get(ctx, "grafana:retryStatusCodes")
 }
 
 // A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
@@ -105,7 +147,11 @@ func GetSmAccessToken(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "GRAFANA_SM_ACCESS_TOKEN").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "GRAFANA_SM_ACCESS_TOKEN"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
@@ -120,7 +166,11 @@ func GetSmUrl(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "GRAFANA_SM_URL").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "GRAFANA_SM_URL"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
@@ -129,27 +179,39 @@ func GetStoreDashboardSha256(ctx *pulumi.Context) bool {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault(false, parseEnvBool, "GRAFANA_STORE_DASHBOARD_SHA256").(bool)
+	var value bool
+	if d := getEnvOrDefault(nil, parseEnvBool, "GRAFANA_STORE_DASHBOARD_SHA256"); d != nil {
+		value = d.(bool)
+	}
+	return value
 }
 
-// Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-// `GRAFANA_TLS_CERT` environment variable.
+// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+// set via the `GRAFANA_TLS_CERT` environment variable.
 func GetTlsCert(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:tlsCert")
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "GRAFANA_TLS_CERT").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "GRAFANA_TLS_CERT"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
-// Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-// environment variable.
+// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+// the `GRAFANA_TLS_KEY` environment variable.
 func GetTlsKey(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:tlsKey")
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "GRAFANA_TLS_KEY").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "GRAFANA_TLS_KEY"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
@@ -158,5 +220,9 @@ func GetUrl(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "GRAFANA_URL").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "GRAFANA_URL"); d != nil {
+		value = d.(string)
+	}
+	return value
 }

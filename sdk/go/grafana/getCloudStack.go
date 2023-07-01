@@ -79,6 +79,7 @@ type LookupCloudStackResult struct {
 	Status       string `pulumi:"status"`
 	TracesName   string `pulumi:"tracesName"`
 	TracesStatus string `pulumi:"tracesStatus"`
+	// Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
 	TracesUrl    string `pulumi:"tracesUrl"`
 	TracesUserId int    `pulumi:"tracesUserId"`
 	// Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
@@ -260,6 +261,7 @@ func (o LookupCloudStackResultOutput) TracesStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudStackResult) string { return v.TracesStatus }).(pulumi.StringOutput)
 }
 
+// Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
 func (o LookupCloudStackResultOutput) TracesUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudStackResult) string { return v.TracesUrl }).(pulumi.StringOutput)
 }

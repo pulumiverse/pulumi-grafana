@@ -91,9 +91,9 @@ def get_synthetic_monitoring_probes(filter_deprecated: Optional[bool] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes', __args__, opts=opts, typ=GetSyntheticMonitoringProbesResult).value
 
     return AwaitableGetSyntheticMonitoringProbesResult(
-        filter_deprecated=__ret__.filter_deprecated,
-        id=__ret__.id,
-        probes=__ret__.probes)
+        filter_deprecated=pulumi.get(__ret__, 'filter_deprecated'),
+        id=pulumi.get(__ret__, 'id'),
+        probes=pulumi.get(__ret__, 'probes'))
 
 
 @_utilities.lift_output_func(get_synthetic_monitoring_probes)

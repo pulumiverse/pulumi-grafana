@@ -19,6 +19,14 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// </summary>
         public readonly string? Class;
         /// <summary>
+        /// The name of the monitoring client that is triggering this event.
+        /// </summary>
+        public readonly string? Client;
+        /// <summary>
+        /// The URL of the monitoring client that is triggering this event.
+        /// </summary>
+        public readonly string? ClientUrl;
+        /// <summary>
         /// The component being affected by the event.
         /// </summary>
         public readonly string? Component;
@@ -47,6 +55,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// </summary>
         public readonly string? Severity;
         /// <summary>
+        /// The unique location of the affected system.
+        /// </summary>
+        public readonly string? Source;
+        /// <summary>
         /// The templated summary message of the event.
         /// </summary>
         public readonly string? Summary;
@@ -58,6 +70,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         [OutputConstructor]
         private ContactPointPagerduty(
             string? @class,
+
+            string? client,
+
+            string? clientUrl,
 
             string? component,
 
@@ -73,11 +89,15 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
             string? severity,
 
+            string? source,
+
             string? summary,
 
             string? uid)
         {
             Class = @class;
+            Client = client;
+            ClientUrl = clientUrl;
             Component = component;
             Details = details;
             DisableResolveMessage = disableResolveMessage;
@@ -85,6 +105,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
             IntegrationKey = integrationKey;
             Settings = settings;
             Severity = severity;
+            Source = source;
             Summary = summary;
             Uid = uid;
         }

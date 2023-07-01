@@ -124,11 +124,11 @@ def get_organization(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult).value
 
     return AwaitableGetOrganizationResult(
-        admins=__ret__.admins,
-        editors=__ret__.editors,
-        id=__ret__.id,
-        name=__ret__.name,
-        viewers=__ret__.viewers)
+        admins=pulumi.get(__ret__, 'admins'),
+        editors=pulumi.get(__ret__, 'editors'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        viewers=pulumi.get(__ret__, 'viewers'))
 
 
 @_utilities.lift_output_func(get_organization)

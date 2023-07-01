@@ -59,6 +59,21 @@ public final class ReportState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+     * 
+     */
+    @Import(name="formats")
+    private @Nullable Output<List<String>> formats;
+
+    /**
+     * @return Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+     * 
+     */
+    public Optional<Output<List<String>>> formats() {
+        return Optional.ofNullable(this.formats);
+    }
+
+    /**
      * Whether to include a link to the dashboard in the report. Defaults to `true`.
      * 
      */
@@ -131,6 +146,21 @@ public final class ReportState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
+    }
+
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Import(name="orgId")
+    private @Nullable Output<String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<Output<String>> orgId() {
+        return Optional.ofNullable(this.orgId);
     }
 
     /**
@@ -213,11 +243,13 @@ public final class ReportState extends com.pulumi.resources.ResourceArgs {
     private ReportState(ReportState $) {
         this.dashboardId = $.dashboardId;
         this.dashboardUid = $.dashboardUid;
+        this.formats = $.formats;
         this.includeDashboardLink = $.includeDashboardLink;
         this.includeTableCsv = $.includeTableCsv;
         this.layout = $.layout;
         this.message = $.message;
         this.name = $.name;
+        this.orgId = $.orgId;
         this.orientation = $.orientation;
         this.recipients = $.recipients;
         this.replyTo = $.replyTo;
@@ -291,6 +323,37 @@ public final class ReportState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder dashboardUid(String dashboardUid) {
             return dashboardUid(Output.of(dashboardUid));
+        }
+
+        /**
+         * @param formats Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder formats(@Nullable Output<List<String>> formats) {
+            $.formats = formats;
+            return this;
+        }
+
+        /**
+         * @param formats Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder formats(List<String> formats) {
+            return formats(Output.of(formats));
+        }
+
+        /**
+         * @param formats Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder formats(String... formats) {
+            return formats(List.of(formats));
         }
 
         /**
@@ -396,6 +459,27 @@ public final class ReportState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(@Nullable Output<String> orgId) {
+            $.orgId = orgId;
+            return this;
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(String orgId) {
+            return orgId(Output.of(orgId));
         }
 
         /**

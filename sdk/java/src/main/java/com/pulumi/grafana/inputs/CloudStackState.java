@@ -359,9 +359,17 @@ public final class CloudStackState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.tracesStatus);
     }
 
+    /**
+     * Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+     * 
+     */
     @Import(name="tracesUrl")
     private @Nullable Output<String> tracesUrl;
 
+    /**
+     * @return Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+     * 
+     */
     public Optional<Output<String>> tracesUrl() {
         return Optional.ofNullable(this.tracesUrl);
     }
@@ -944,11 +952,23 @@ public final class CloudStackState extends com.pulumi.resources.ResourceArgs {
             return tracesStatus(Output.of(tracesStatus));
         }
 
+        /**
+         * @param tracesUrl Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tracesUrl(@Nullable Output<String> tracesUrl) {
             $.tracesUrl = tracesUrl;
             return this;
         }
 
+        /**
+         * @param tracesUrl Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tracesUrl(String tracesUrl) {
             return tracesUrl(Output.of(tracesUrl));
         }

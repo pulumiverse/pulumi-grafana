@@ -34,6 +34,11 @@ public final class ContactPointDingding {
      */
     private @Nullable Map<String,String> settings;
     /**
+     * @return The templated title of the message.
+     * 
+     */
+    private @Nullable String title;
+    /**
      * @return The UID of the contact point.
      * 
      */
@@ -74,6 +79,13 @@ public final class ContactPointDingding {
         return this.settings == null ? Map.of() : this.settings;
     }
     /**
+     * @return The templated title of the message.
+     * 
+     */
+    public Optional<String> title() {
+        return Optional.ofNullable(this.title);
+    }
+    /**
      * @return The UID of the contact point.
      * 
      */
@@ -101,6 +113,7 @@ public final class ContactPointDingding {
         private @Nullable String message;
         private @Nullable String messageType;
         private @Nullable Map<String,String> settings;
+        private @Nullable String title;
         private @Nullable String uid;
         private String url;
         public Builder() {}
@@ -110,6 +123,7 @@ public final class ContactPointDingding {
     	      this.message = defaults.message;
     	      this.messageType = defaults.messageType;
     	      this.settings = defaults.settings;
+    	      this.title = defaults.title;
     	      this.uid = defaults.uid;
     	      this.url = defaults.url;
         }
@@ -135,6 +149,11 @@ public final class ContactPointDingding {
             return this;
         }
         @CustomType.Setter
+        public Builder title(@Nullable String title) {
+            this.title = title;
+            return this;
+        }
+        @CustomType.Setter
         public Builder uid(@Nullable String uid) {
             this.uid = uid;
             return this;
@@ -150,6 +169,7 @@ public final class ContactPointDingding {
             o.message = message;
             o.messageType = messageType;
             o.settings = settings;
+            o.title = title;
             o.uid = uid;
             o.url = url;
             return o;

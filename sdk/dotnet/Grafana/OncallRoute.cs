@@ -102,6 +102,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string> RoutingRegex { get; private set; } = null!;
 
         /// <summary>
+        /// The type of route. Can be jinja2, regex Defaults to `regex`.
+        /// </summary>
+        [Output("routingType")]
+        public Output<string?> RoutingType { get; private set; } = null!;
+
+        /// <summary>
         /// Slack-specific settings for a route.
         /// </summary>
         [Output("slack")]
@@ -191,6 +197,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string> RoutingRegex { get; set; } = null!;
 
         /// <summary>
+        /// The type of route. Can be jinja2, regex Defaults to `regex`.
+        /// </summary>
+        [Input("routingType")]
+        public Input<string>? RoutingType { get; set; }
+
+        /// <summary>
         /// Slack-specific settings for a route.
         /// </summary>
         [Input("slack")]
@@ -239,6 +251,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Input("routingRegex")]
         public Input<string>? RoutingRegex { get; set; }
+
+        /// <summary>
+        /// The type of route. Can be jinja2, regex Defaults to `regex`.
+        /// </summary>
+        [Input("routingType")]
+        public Input<string>? RoutingType { get; set; }
 
         /// <summary>
         /// Slack-specific settings for a route.

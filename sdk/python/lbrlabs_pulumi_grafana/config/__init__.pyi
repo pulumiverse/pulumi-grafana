@@ -17,8 +17,8 @@ the `GRAFANA_AUTH` environment variable.
 
 caCert: Optional[str]
 """
-Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
-`GRAFANA_CA_CERT` environment variable.
+Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
+be set via the `GRAFANA_CA_CERT` environment variable.
 """
 
 cloudApiKey: Optional[str]
@@ -64,6 +64,12 @@ The amount of retries to use for Grafana API and Grafana Cloud API calls. May al
 `GRAFANA_RETRIES` environment variable.
 """
 
+retryStatusCodes: Optional[str]
+"""
+The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+"""
+
 smAccessToken: Optional[str]
 """
 A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
@@ -87,14 +93,14 @@ Set to true if you want to save only the sha256sum instead of complete dashboard
 
 tlsCert: Optional[str]
 """
-Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-`GRAFANA_TLS_CERT` environment variable.
+Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+set via the `GRAFANA_TLS_CERT` environment variable.
 """
 
 tlsKey: Optional[str]
 """
-Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-environment variable.
+Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+the `GRAFANA_TLS_KEY` environment variable.
 """
 
 url: Optional[str]

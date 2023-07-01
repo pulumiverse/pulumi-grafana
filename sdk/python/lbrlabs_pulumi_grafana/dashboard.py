@@ -226,6 +226,9 @@ class _DashboardState:
         """
         URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
         """
+        warnings.warn("""Use `uid` instead.""", DeprecationWarning)
+        pulumi.log.warn("""slug is deprecated: Use `uid` instead.""")
+
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -493,6 +496,9 @@ class Dashboard(pulumi.CustomResource):
         """
         URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
         """
+        warnings.warn("""Use `uid` instead.""", DeprecationWarning)
+        pulumi.log.warn("""slug is deprecated: Use `uid` instead.""")
+
         return pulumi.get(self, "slug")
 
     @property

@@ -185,6 +185,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Output("tracesStatus")]
         public Output<string> TracesStatus { get; private set; } = null!;
 
+        /// <summary>
+        /// Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+        /// </summary>
         [Output("tracesUrl")]
         public Output<string> TracesUrl { get; private set; } = null!;
 
@@ -446,6 +449,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("tracesStatus")]
         public Input<string>? TracesStatus { get; set; }
 
+        /// <summary>
+        /// Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+        /// </summary>
         [Input("tracesUrl")]
         public Input<string>? TracesUrl { get; set; }
 

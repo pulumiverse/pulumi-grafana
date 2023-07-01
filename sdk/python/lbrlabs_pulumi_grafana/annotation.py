@@ -70,6 +70,9 @@ class AnnotationArgs:
         """
         The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
         """
+        warnings.warn("""Use dashboard_uid instead.""", DeprecationWarning)
+        pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead.""")
+
         return pulumi.get(self, "dashboard_id")
 
     @dashboard_id.setter
@@ -197,6 +200,9 @@ class _AnnotationState:
         """
         The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
         """
+        warnings.warn("""Use dashboard_uid instead.""", DeprecationWarning)
+        pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead.""")
+
         return pulumi.get(self, "dashboard_id")
 
     @dashboard_id.setter
@@ -444,6 +450,9 @@ class Annotation(pulumi.CustomResource):
         """
         The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
         """
+        warnings.warn("""Use dashboard_uid instead.""", DeprecationWarning)
+        pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead.""")
+
         return pulumi.get(self, "dashboard_id")
 
     @property

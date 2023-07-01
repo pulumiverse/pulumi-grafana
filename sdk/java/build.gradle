@@ -8,6 +8,8 @@ plugins {
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
 }
 
+group = "com.pulumi"
+
 def resolvedVersion = System.getenv("PACKAGE_VERSION") ?:
     (project.version == "unspecified"
          ? "0.0.1"
@@ -41,7 +43,7 @@ repositories {
 dependencies {
     implementation("com.google.code.findbugs:jsr305:3.0.2")
     implementation("com.google.code.gson:gson:2.8.9")
-    implementation("com.pulumi:pulumi:0.9.3")
+    implementation("com.pulumi:pulumi:0.9.4")
 }
 
 task sourcesJar(type: Jar) {
@@ -64,7 +66,7 @@ def genPulumiResources = tasks.register('genPulumiResources') {
         new File(outDir, "version.txt").text = resolvedVersion
         def info = new Object()
         info.metaClass.resource = true
-        info.metaClass.name = ""
+        info.metaClass.name = "grafana"
         info.metaClass.version = resolvedVersion
         def infoJson = new groovy.json.JsonBuilder(info).toPrettyString()
         new File(outDir, "plugin.json").text = infoJson
@@ -78,8 +80,8 @@ jar.configure {
 publishing {
     publications {
         mainPublication(MavenPublication) {
-            groupId = ""
-            artifactId = ""
+            groupId = "com.pulumi"
+            artifactId = "grafana"
             version = resolvedVersion
             from components.java
             artifact sourcesJar
@@ -89,7 +91,7 @@ publishing {
                 inceptionYear = ""
                 name = ""
                 packaging = "jar"
-                description = ""
+                description = "A Pulumi package for creating and managing grafana."
 
                 url = "https://github.com/lbrlabs/pulumi-grafana"
 

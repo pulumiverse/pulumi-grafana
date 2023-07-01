@@ -151,14 +151,14 @@ def get_synthetic_monitoring_probe(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe', __args__, opts=opts, typ=GetSyntheticMonitoringProbeResult).value
 
     return AwaitableGetSyntheticMonitoringProbeResult(
-        id=__ret__.id,
-        labels=__ret__.labels,
-        latitude=__ret__.latitude,
-        longitude=__ret__.longitude,
-        name=__ret__.name,
-        public=__ret__.public,
-        region=__ret__.region,
-        tenant_id=__ret__.tenant_id)
+        id=pulumi.get(__ret__, 'id'),
+        labels=pulumi.get(__ret__, 'labels'),
+        latitude=pulumi.get(__ret__, 'latitude'),
+        longitude=pulumi.get(__ret__, 'longitude'),
+        name=pulumi.get(__ret__, 'name'),
+        public=pulumi.get(__ret__, 'public'),
+        region=pulumi.get(__ret__, 'region'),
+        tenant_id=pulumi.get(__ret__, 'tenant_id'))
 
 
 @_utilities.lift_output_func(get_synthetic_monitoring_probe)

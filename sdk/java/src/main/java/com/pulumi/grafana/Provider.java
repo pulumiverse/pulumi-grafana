@@ -40,16 +40,16 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.auth);
     }
     /**
-     * Certificate CA bundle to use to verify the Grafana server&#39;s certificate. May alternatively be set via the
-     * `GRAFANA_CA_CERT` environment variable.
+     * Certificate CA bundle (file path or literal value) to use to verify the Grafana server&#39;s certificate. May alternatively
+     * be set via the `GRAFANA_CA_CERT` environment variable.
      * 
      */
     @Export(name="caCert", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> caCert;
 
     /**
-     * @return Certificate CA bundle to use to verify the Grafana server&#39;s certificate. May alternatively be set via the
-     * `GRAFANA_CA_CERT` environment variable.
+     * @return Certificate CA bundle (file path or literal value) to use to verify the Grafana server&#39;s certificate. May alternatively
+     * be set via the `GRAFANA_CA_CERT` environment variable.
      * 
      */
     public Output<Optional<String>> caCert() {
@@ -152,32 +152,32 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.smUrl);
     }
     /**
-     * Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-     * `GRAFANA_TLS_CERT` environment variable.
+     * Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+     * set via the `GRAFANA_TLS_CERT` environment variable.
      * 
      */
     @Export(name="tlsCert", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tlsCert;
 
     /**
-     * @return Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-     * `GRAFANA_TLS_CERT` environment variable.
+     * @return Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+     * set via the `GRAFANA_TLS_CERT` environment variable.
      * 
      */
     public Output<Optional<String>> tlsCert() {
         return Codegen.optional(this.tlsCert);
     }
     /**
-     * Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-     * environment variable.
+     * Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+     * the `GRAFANA_TLS_KEY` environment variable.
      * 
      */
     @Export(name="tlsKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tlsKey;
 
     /**
-     * @return Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-     * environment variable.
+     * @return Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+     * the `GRAFANA_TLS_KEY` environment variable.
      * 
      */
     public Output<Optional<String>> tlsKey() {

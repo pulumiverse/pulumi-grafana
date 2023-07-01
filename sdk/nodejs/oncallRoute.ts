@@ -96,6 +96,10 @@ export class OncallRoute extends pulumi.CustomResource {
      */
     public readonly routingRegex!: pulumi.Output<string>;
     /**
+     * The type of route. Can be jinja2, regex Defaults to `regex`.
+     */
+    public readonly routingType!: pulumi.Output<string | undefined>;
+    /**
      * Slack-specific settings for a route.
      */
     public readonly slack!: pulumi.Output<outputs.OncallRouteSlack | undefined>;
@@ -122,6 +126,7 @@ export class OncallRoute extends pulumi.CustomResource {
             resourceInputs["msteams"] = state ? state.msteams : undefined;
             resourceInputs["position"] = state ? state.position : undefined;
             resourceInputs["routingRegex"] = state ? state.routingRegex : undefined;
+            resourceInputs["routingType"] = state ? state.routingType : undefined;
             resourceInputs["slack"] = state ? state.slack : undefined;
             resourceInputs["telegram"] = state ? state.telegram : undefined;
         } else {
@@ -143,6 +148,7 @@ export class OncallRoute extends pulumi.CustomResource {
             resourceInputs["msteams"] = args ? args.msteams : undefined;
             resourceInputs["position"] = args ? args.position : undefined;
             resourceInputs["routingRegex"] = args ? args.routingRegex : undefined;
+            resourceInputs["routingType"] = args ? args.routingType : undefined;
             resourceInputs["slack"] = args ? args.slack : undefined;
             resourceInputs["telegram"] = args ? args.telegram : undefined;
         }
@@ -175,6 +181,10 @@ export interface OncallRouteState {
      * Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
      */
     routingRegex?: pulumi.Input<string>;
+    /**
+     * The type of route. Can be jinja2, regex Defaults to `regex`.
+     */
+    routingType?: pulumi.Input<string>;
     /**
      * Slack-specific settings for a route.
      */
@@ -209,6 +219,10 @@ export interface OncallRouteArgs {
      * Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
      */
     routingRegex: pulumi.Input<string>;
+    /**
+     * The type of route. Can be jinja2, regex Defaults to `regex`.
+     */
+    routingType?: pulumi.Input<string>;
     /**
      * Slack-specific settings for a route.
      */

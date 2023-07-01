@@ -15,7 +15,6 @@ import java.util.Objects;
 @CustomType
 public final class GetSlosSlo {
     private List<GetSlosSloAlerting> alertings;
-    private String dashboardUid;
     private String description;
     private List<GetSlosSloLabel> labels;
     private String name;
@@ -26,9 +25,6 @@ public final class GetSlosSlo {
     private GetSlosSlo() {}
     public List<GetSlosSloAlerting> alertings() {
         return this.alertings;
-    }
-    public String dashboardUid() {
-        return this.dashboardUid;
     }
     public String description() {
         return this.description;
@@ -59,7 +55,6 @@ public final class GetSlosSlo {
     @CustomType.Builder
     public static final class Builder {
         private List<GetSlosSloAlerting> alertings;
-        private String dashboardUid;
         private String description;
         private List<GetSlosSloLabel> labels;
         private String name;
@@ -70,7 +65,6 @@ public final class GetSlosSlo {
         public Builder(GetSlosSlo defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.alertings = defaults.alertings;
-    	      this.dashboardUid = defaults.dashboardUid;
     	      this.description = defaults.description;
     	      this.labels = defaults.labels;
     	      this.name = defaults.name;
@@ -86,11 +80,6 @@ public final class GetSlosSlo {
         }
         public Builder alertings(GetSlosSloAlerting... alertings) {
             return alertings(List.of(alertings));
-        }
-        @CustomType.Setter
-        public Builder dashboardUid(String dashboardUid) {
-            this.dashboardUid = Objects.requireNonNull(dashboardUid);
-            return this;
         }
         @CustomType.Setter
         public Builder description(String description) {
@@ -134,7 +123,6 @@ public final class GetSlosSlo {
         public GetSlosSlo build() {
             final var o = new GetSlosSlo();
             o.alertings = alertings;
-            o.dashboardUid = dashboardUid;
             o.description = description;
             o.labels = labels;
             o.name = name;

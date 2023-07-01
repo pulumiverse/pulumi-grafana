@@ -232,21 +232,21 @@ def get_library_panel(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getLibraryPanel:getLibraryPanel', __args__, opts=opts, typ=GetLibraryPanelResult).value
 
     return AwaitableGetLibraryPanelResult(
-        created=__ret__.created,
-        dashboard_ids=__ret__.dashboard_ids,
-        description=__ret__.description,
-        folder_id=__ret__.folder_id,
-        folder_name=__ret__.folder_name,
-        folder_uid=__ret__.folder_uid,
-        id=__ret__.id,
-        model_json=__ret__.model_json,
-        name=__ret__.name,
-        org_id=__ret__.org_id,
-        panel_id=__ret__.panel_id,
-        type=__ret__.type,
-        uid=__ret__.uid,
-        updated=__ret__.updated,
-        version=__ret__.version)
+        created=pulumi.get(__ret__, 'created'),
+        dashboard_ids=pulumi.get(__ret__, 'dashboard_ids'),
+        description=pulumi.get(__ret__, 'description'),
+        folder_id=pulumi.get(__ret__, 'folder_id'),
+        folder_name=pulumi.get(__ret__, 'folder_name'),
+        folder_uid=pulumi.get(__ret__, 'folder_uid'),
+        id=pulumi.get(__ret__, 'id'),
+        model_json=pulumi.get(__ret__, 'model_json'),
+        name=pulumi.get(__ret__, 'name'),
+        org_id=pulumi.get(__ret__, 'org_id'),
+        panel_id=pulumi.get(__ret__, 'panel_id'),
+        type=pulumi.get(__ret__, 'type'),
+        uid=pulumi.get(__ret__, 'uid'),
+        updated=pulumi.get(__ret__, 'updated'),
+        version=pulumi.get(__ret__, 'version'))
 
 
 @_utilities.lift_output_func(get_library_panel)

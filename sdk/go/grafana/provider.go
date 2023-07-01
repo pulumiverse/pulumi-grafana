@@ -20,8 +20,8 @@ type Provider struct {
 	// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
 	// the `GRAFANA_AUTH` environment variable.
 	Auth pulumi.StringPtrOutput `pulumi:"auth"`
-	// Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
-	// `GRAFANA_CA_CERT` environment variable.
+	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
+	// be set via the `GRAFANA_CA_CERT` environment variable.
 	CaCert pulumi.StringPtrOutput `pulumi:"caCert"`
 	// API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
 	CloudApiKey pulumi.StringPtrOutput `pulumi:"cloudApiKey"`
@@ -41,11 +41,11 @@ type Provider struct {
 	// managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
 	// each provider ensures all providers interact with the same SM API.
 	SmUrl pulumi.StringPtrOutput `pulumi:"smUrl"`
-	// Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-	// `GRAFANA_TLS_CERT` environment variable.
+	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+	// set via the `GRAFANA_TLS_CERT` environment variable.
 	TlsCert pulumi.StringPtrOutput `pulumi:"tlsCert"`
-	// Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-	// environment variable.
+	// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+	// the `GRAFANA_TLS_KEY` environment variable.
 	TlsKey pulumi.StringPtrOutput `pulumi:"tlsKey"`
 	// The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
 	Url pulumi.StringPtrOutput `pulumi:"url"`
@@ -59,49 +59,79 @@ func NewProvider(ctx *pulumi.Context,
 	}
 
 	if args.Auth == nil {
-		args.Auth = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_AUTH").(string))
+		if d := getEnvOrDefault(nil, nil, "GRAFANA_AUTH"); d != nil {
+			args.Auth = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.CaCert == nil {
-		args.CaCert = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_CA_CERT").(string))
+		if d := getEnvOrDefault(nil, nil, "GRAFANA_CA_CERT"); d != nil {
+			args.CaCert = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.CloudApiKey == nil {
-		args.CloudApiKey = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_CLOUD_API_KEY").(string))
+		if d := getEnvOrDefault(nil, nil, "GRAFANA_CLOUD_API_KEY"); d != nil {
+			args.CloudApiKey = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.CloudApiUrl == nil {
-		args.CloudApiUrl = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_CLOUD_API_URL").(string))
+		if d := getEnvOrDefault(nil, nil, "GRAFANA_CLOUD_API_URL"); d != nil {
+			args.CloudApiUrl = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.InsecureSkipVerify == nil {
-		args.InsecureSkipVerify = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "GRAFANA_INSECURE_SKIP_VERIFY").(bool))
+		if d := getEnvOrDefault(nil, parseEnvBool, "GRAFANA_INSECURE_SKIP_VERIFY"); d != nil {
+			args.InsecureSkipVerify = pulumi.BoolPtr(d.(bool))
+		}
 	}
 	if args.OncallAccessToken == nil {
-		args.OncallAccessToken = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_ONCALL_ACCESS_TOKEN").(string))
+		if d := getEnvOrDefault(nil, nil, "GRAFANA_ONCALL_ACCESS_TOKEN"); d != nil {
+			args.OncallAccessToken = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.OncallUrl == nil {
-		args.OncallUrl = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_ONCALL_URL").(string))
+		if d := getEnvOrDefault(nil, nil, "GRAFANA_ONCALL_URL"); d != nil {
+			args.OncallUrl = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.OrgId == nil {
-		args.OrgId = pulumi.IntPtr(getEnvOrDefault(0, parseEnvInt, "GRAFANA_ORG_ID").(int))
+		if d := getEnvOrDefault(nil, parseEnvInt, "GRAFANA_ORG_ID"); d != nil {
+			args.OrgId = pulumi.IntPtr(d.(int))
+		}
 	}
 	if args.Retries == nil {
-		args.Retries = pulumi.IntPtr(getEnvOrDefault(0, parseEnvInt, "GRAFANA_RETRIES").(int))
+		if d := getEnvOrDefault(nil, parseEnvInt, "GRAFANA_RETRIES"); d != nil {
+			args.Retries = pulumi.IntPtr(d.(int))
+		}
 	}
 	if args.SmAccessToken == nil {
-		args.SmAccessToken = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_SM_ACCESS_TOKEN").(string))
+		if d := getEnvOrDefault(nil, nil, "GRAFANA_SM_ACCESS_TOKEN"); d != nil {
+			args.SmAccessToken = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.SmUrl == nil {
-		args.SmUrl = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_SM_URL").(string))
+		if d := getEnvOrDefault(nil, nil, "GRAFANA_SM_URL"); d != nil {
+			args.SmUrl = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.StoreDashboardSha256 == nil {
-		args.StoreDashboardSha256 = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "GRAFANA_STORE_DASHBOARD_SHA256").(bool))
+		if d := getEnvOrDefault(nil, parseEnvBool, "GRAFANA_STORE_DASHBOARD_SHA256"); d != nil {
+			args.StoreDashboardSha256 = pulumi.BoolPtr(d.(bool))
+		}
 	}
 	if args.TlsCert == nil {
-		args.TlsCert = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_TLS_CERT").(string))
+		if d := getEnvOrDefault(nil, nil, "GRAFANA_TLS_CERT"); d != nil {
+			args.TlsCert = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.TlsKey == nil {
-		args.TlsKey = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_TLS_KEY").(string))
+		if d := getEnvOrDefault(nil, nil, "GRAFANA_TLS_KEY"); d != nil {
+			args.TlsKey = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.Url == nil {
-		args.Url = pulumi.StringPtr(getEnvOrDefault("", nil, "GRAFANA_URL").(string))
+		if d := getEnvOrDefault(nil, nil, "GRAFANA_URL"); d != nil {
+			args.Url = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.Auth != nil {
 		args.Auth = pulumi.ToSecret(args.Auth).(pulumi.StringPtrInput)
@@ -139,8 +169,8 @@ type providerArgs struct {
 	// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
 	// the `GRAFANA_AUTH` environment variable.
 	Auth *string `pulumi:"auth"`
-	// Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
-	// `GRAFANA_CA_CERT` environment variable.
+	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
+	// be set via the `GRAFANA_CA_CERT` environment variable.
 	CaCert *string `pulumi:"caCert"`
 	// API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
 	CloudApiKey *string `pulumi:"cloudApiKey"`
@@ -158,6 +188,9 @@ type providerArgs struct {
 	// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
 	// `GRAFANA_RETRIES` environment variable.
 	Retries *int `pulumi:"retries"`
+	// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+	// and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+	RetryStatusCodes []string `pulumi:"retryStatusCodes"`
 	// A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
 	SmAccessToken *string `pulumi:"smAccessToken"`
 	// Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
@@ -170,11 +203,11 @@ type providerArgs struct {
 	SmUrl *string `pulumi:"smUrl"`
 	// Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
 	StoreDashboardSha256 *bool `pulumi:"storeDashboardSha256"`
-	// Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-	// `GRAFANA_TLS_CERT` environment variable.
+	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+	// set via the `GRAFANA_TLS_CERT` environment variable.
 	TlsCert *string `pulumi:"tlsCert"`
-	// Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-	// environment variable.
+	// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+	// the `GRAFANA_TLS_KEY` environment variable.
 	TlsKey *string `pulumi:"tlsKey"`
 	// The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
 	Url *string `pulumi:"url"`
@@ -185,8 +218,8 @@ type ProviderArgs struct {
 	// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
 	// the `GRAFANA_AUTH` environment variable.
 	Auth pulumi.StringPtrInput
-	// Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
-	// `GRAFANA_CA_CERT` environment variable.
+	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
+	// be set via the `GRAFANA_CA_CERT` environment variable.
 	CaCert pulumi.StringPtrInput
 	// API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
 	CloudApiKey pulumi.StringPtrInput
@@ -204,6 +237,9 @@ type ProviderArgs struct {
 	// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
 	// `GRAFANA_RETRIES` environment variable.
 	Retries pulumi.IntPtrInput
+	// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+	// and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+	RetryStatusCodes pulumi.StringArrayInput
 	// A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
 	SmAccessToken pulumi.StringPtrInput
 	// Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
@@ -216,11 +252,11 @@ type ProviderArgs struct {
 	SmUrl pulumi.StringPtrInput
 	// Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
 	StoreDashboardSha256 pulumi.BoolPtrInput
-	// Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-	// `GRAFANA_TLS_CERT` environment variable.
+	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+	// set via the `GRAFANA_TLS_CERT` environment variable.
 	TlsCert pulumi.StringPtrInput
-	// Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-	// environment variable.
+	// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+	// the `GRAFANA_TLS_KEY` environment variable.
 	TlsKey pulumi.StringPtrInput
 	// The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
 	Url pulumi.StringPtrInput
@@ -269,8 +305,8 @@ func (o ProviderOutput) Auth() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Auth }).(pulumi.StringPtrOutput)
 }
 
-// Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
-// `GRAFANA_CA_CERT` environment variable.
+// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
+// be set via the `GRAFANA_CA_CERT` environment variable.
 func (o ProviderOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CaCert }).(pulumi.StringPtrOutput)
 }
@@ -311,14 +347,14 @@ func (o ProviderOutput) SmUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.SmUrl }).(pulumi.StringPtrOutput)
 }
 
-// Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
-// `GRAFANA_TLS_CERT` environment variable.
+// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+// set via the `GRAFANA_TLS_CERT` environment variable.
 func (o ProviderOutput) TlsCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.TlsCert }).(pulumi.StringPtrOutput)
 }
 
-// Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
-// environment variable.
+// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+// the `GRAFANA_TLS_KEY` environment variable.
 func (o ProviderOutput) TlsKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.TlsKey }).(pulumi.StringPtrOutput)
 }

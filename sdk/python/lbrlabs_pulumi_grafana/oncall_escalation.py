@@ -428,7 +428,7 @@ class OncallEscalation(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/oncall/latest/escalation-policies/)
+        * [Official documentation](https://grafana.com/docs/oncall/latest/escalation-chains-and-routes/)
         * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_policies/)
 
         ## Example Usage
@@ -489,7 +489,7 @@ class OncallEscalation(pulumi.CustomResource):
                  args: OncallEscalationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/oncall/latest/escalation-policies/)
+        * [Official documentation](https://grafana.com/docs/oncall/latest/escalation-chains-and-routes/)
         * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_policies/)
 
         ## Example Usage

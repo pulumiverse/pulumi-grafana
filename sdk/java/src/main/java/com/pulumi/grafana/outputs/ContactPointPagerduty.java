@@ -19,6 +19,16 @@ public final class ContactPointPagerduty {
      */
     private @Nullable String class_;
     /**
+     * @return The name of the monitoring client that is triggering this event.
+     * 
+     */
+    private @Nullable String client;
+    /**
+     * @return The URL of the monitoring client that is triggering this event.
+     * 
+     */
+    private @Nullable String clientUrl;
+    /**
      * @return The component being affected by the event.
      * 
      */
@@ -54,6 +64,11 @@ public final class ContactPointPagerduty {
      */
     private @Nullable String severity;
     /**
+     * @return The unique location of the affected system.
+     * 
+     */
+    private @Nullable String source;
+    /**
      * @return The templated summary message of the event.
      * 
      */
@@ -71,6 +86,20 @@ public final class ContactPointPagerduty {
      */
     public Optional<String> class_() {
         return Optional.ofNullable(this.class_);
+    }
+    /**
+     * @return The name of the monitoring client that is triggering this event.
+     * 
+     */
+    public Optional<String> client() {
+        return Optional.ofNullable(this.client);
+    }
+    /**
+     * @return The URL of the monitoring client that is triggering this event.
+     * 
+     */
+    public Optional<String> clientUrl() {
+        return Optional.ofNullable(this.clientUrl);
     }
     /**
      * @return The component being affected by the event.
@@ -122,6 +151,13 @@ public final class ContactPointPagerduty {
         return Optional.ofNullable(this.severity);
     }
     /**
+     * @return The unique location of the affected system.
+     * 
+     */
+    public Optional<String> source() {
+        return Optional.ofNullable(this.source);
+    }
+    /**
      * @return The templated summary message of the event.
      * 
      */
@@ -146,6 +182,8 @@ public final class ContactPointPagerduty {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String class_;
+        private @Nullable String client;
+        private @Nullable String clientUrl;
         private @Nullable String component;
         private @Nullable Map<String,String> details;
         private @Nullable Boolean disableResolveMessage;
@@ -153,12 +191,15 @@ public final class ContactPointPagerduty {
         private String integrationKey;
         private @Nullable Map<String,String> settings;
         private @Nullable String severity;
+        private @Nullable String source;
         private @Nullable String summary;
         private @Nullable String uid;
         public Builder() {}
         public Builder(ContactPointPagerduty defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.class_ = defaults.class_;
+    	      this.client = defaults.client;
+    	      this.clientUrl = defaults.clientUrl;
     	      this.component = defaults.component;
     	      this.details = defaults.details;
     	      this.disableResolveMessage = defaults.disableResolveMessage;
@@ -166,6 +207,7 @@ public final class ContactPointPagerduty {
     	      this.integrationKey = defaults.integrationKey;
     	      this.settings = defaults.settings;
     	      this.severity = defaults.severity;
+    	      this.source = defaults.source;
     	      this.summary = defaults.summary;
     	      this.uid = defaults.uid;
         }
@@ -173,6 +215,16 @@ public final class ContactPointPagerduty {
         @CustomType.Setter("class")
         public Builder class_(@Nullable String class_) {
             this.class_ = class_;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder client(@Nullable String client) {
+            this.client = client;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder clientUrl(@Nullable String clientUrl) {
+            this.clientUrl = clientUrl;
             return this;
         }
         @CustomType.Setter
@@ -211,6 +263,11 @@ public final class ContactPointPagerduty {
             return this;
         }
         @CustomType.Setter
+        public Builder source(@Nullable String source) {
+            this.source = source;
+            return this;
+        }
+        @CustomType.Setter
         public Builder summary(@Nullable String summary) {
             this.summary = summary;
             return this;
@@ -223,6 +280,8 @@ public final class ContactPointPagerduty {
         public ContactPointPagerduty build() {
             final var o = new ContactPointPagerduty();
             o.class_ = class_;
+            o.client = client;
+            o.clientUrl = clientUrl;
             o.component = component;
             o.details = details;
             o.disableResolveMessage = disableResolveMessage;
@@ -230,6 +289,7 @@ public final class ContactPointPagerduty {
             o.integrationKey = integrationKey;
             o.settings = settings;
             o.severity = severity;
+            o.source = source;
             o.summary = summary;
             o.uid = uid;
             return o;

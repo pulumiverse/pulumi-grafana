@@ -82,5 +82,5 @@ def get_folders(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFold
     __ret__ = pulumi.runtime.invoke('grafana:index/getFolders:getFolders', __args__, opts=opts, typ=GetFoldersResult).value
 
     return AwaitableGetFoldersResult(
-        folders=__ret__.folders,
-        id=__ret__.id)
+        folders=pulumi.get(__ret__, 'folders'),
+        id=pulumi.get(__ret__, 'id'))

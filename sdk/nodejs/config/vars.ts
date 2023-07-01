@@ -20,8 +20,8 @@ Object.defineProperty(exports, "auth", {
 });
 
 /**
- * Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the
- * `GRAFANA_CA_CERT` environment variable.
+ * Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
+ * be set via the `GRAFANA_CA_CERT` environment variable.
  */
 export declare const caCert: string | undefined;
 Object.defineProperty(exports, "caCert", {
@@ -123,6 +123,18 @@ Object.defineProperty(exports, "retries", {
 });
 
 /**
+ * The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
+ * and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+ */
+export declare const retryStatusCodes: string[] | undefined;
+Object.defineProperty(exports, "retryStatusCodes", {
+    get() {
+        return __config.getObject<string[]>("retryStatusCodes");
+    },
+    enumerable: true,
+});
+
+/**
  * A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
  */
 export declare const smAccessToken: string | undefined;
@@ -162,8 +174,8 @@ Object.defineProperty(exports, "storeDashboardSha256", {
 });
 
 /**
- * Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the
- * `GRAFANA_TLS_CERT` environment variable.
+ * Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
+ * set via the `GRAFANA_TLS_CERT` environment variable.
  */
 export declare const tlsCert: string | undefined;
 Object.defineProperty(exports, "tlsCert", {
@@ -174,8 +186,8 @@ Object.defineProperty(exports, "tlsCert", {
 });
 
 /**
- * Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY`
- * environment variable.
+ * Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
+ * the `GRAFANA_TLS_KEY` environment variable.
  */
 export declare const tlsKey: string | undefined;
 Object.defineProperty(exports, "tlsKey", {

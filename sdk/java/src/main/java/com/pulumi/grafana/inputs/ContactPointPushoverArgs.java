@@ -184,6 +184,21 @@ public final class ContactPointPushoverArgs extends com.pulumi.resources.Resourc
     }
 
     /**
+     * The templated title of the message.
+     * 
+     */
+    @Import(name="title")
+    private @Nullable Output<String> title;
+
+    /**
+     * @return The templated title of the message.
+     * 
+     */
+    public Optional<Output<String>> title() {
+        return Optional.ofNullable(this.title);
+    }
+
+    /**
      * The UID of the contact point.
      * 
      */
@@ -227,6 +242,7 @@ public final class ContactPointPushoverArgs extends com.pulumi.resources.Resourc
         this.retry = $.retry;
         this.settings = $.settings;
         this.sound = $.sound;
+        this.title = $.title;
         this.uid = $.uid;
         this.userKey = $.userKey;
     }
@@ -478,6 +494,27 @@ public final class ContactPointPushoverArgs extends com.pulumi.resources.Resourc
          */
         public Builder sound(String sound) {
             return sound(Output.of(sound));
+        }
+
+        /**
+         * @param title The templated title of the message.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder title(@Nullable Output<String> title) {
+            $.title = title;
+            return this;
+        }
+
+        /**
+         * @param title The templated title of the message.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder title(String title) {
+            return title(Output.of(title));
         }
 
         /**

@@ -215,18 +215,18 @@ def get_data_source(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getDataSource:getDataSource', __args__, opts=opts, typ=GetDataSourceResult).value
 
     return AwaitableGetDataSourceResult(
-        access_mode=__ret__.access_mode,
-        basic_auth_enabled=__ret__.basic_auth_enabled,
-        basic_auth_username=__ret__.basic_auth_username,
-        database_name=__ret__.database_name,
-        id=__ret__.id,
-        is_default=__ret__.is_default,
-        json_data_encoded=__ret__.json_data_encoded,
-        name=__ret__.name,
-        type=__ret__.type,
-        uid=__ret__.uid,
-        url=__ret__.url,
-        username=__ret__.username)
+        access_mode=pulumi.get(__ret__, 'access_mode'),
+        basic_auth_enabled=pulumi.get(__ret__, 'basic_auth_enabled'),
+        basic_auth_username=pulumi.get(__ret__, 'basic_auth_username'),
+        database_name=pulumi.get(__ret__, 'database_name'),
+        id=pulumi.get(__ret__, 'id'),
+        is_default=pulumi.get(__ret__, 'is_default'),
+        json_data_encoded=pulumi.get(__ret__, 'json_data_encoded'),
+        name=pulumi.get(__ret__, 'name'),
+        type=pulumi.get(__ret__, 'type'),
+        uid=pulumi.get(__ret__, 'uid'),
+        url=pulumi.get(__ret__, 'url'),
+        username=pulumi.get(__ret__, 'username'))
 
 
 @_utilities.lift_output_func(get_data_source)

@@ -52,6 +52,9 @@ class DashboardPermissionArgs:
         """
         ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
         """
+        warnings.warn("""use `dashboard_uid` instead""", DeprecationWarning)
+        pulumi.log.warn("""dashboard_id is deprecated: use `dashboard_uid` instead""")
+
         return pulumi.get(self, "dashboard_id")
 
     @dashboard_id.setter
@@ -99,6 +102,9 @@ class _DashboardPermissionState:
         """
         ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
         """
+        warnings.warn("""use `dashboard_uid` instead""", DeprecationWarning)
+        pulumi.log.warn("""dashboard_id is deprecated: use `dashboard_uid` instead""")
+
         return pulumi.get(self, "dashboard_id")
 
     @dashboard_id.setter
@@ -299,6 +305,9 @@ class DashboardPermission(pulumi.CustomResource):
         """
         ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
         """
+        warnings.warn("""use `dashboard_uid` instead""", DeprecationWarning)
+        pulumi.log.warn("""dashboard_id is deprecated: use `dashboard_uid` instead""")
+
         return pulumi.get(self, "dashboard_id")
 
     @property
