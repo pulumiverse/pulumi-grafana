@@ -16,8 +16,8 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         /// <summary>
         /// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         /// </summary>
-        [Input("query")]
-        public Input<string>? Query { get; set; }
+        [Input("query", required: true)]
+        public Input<string> Query { get; set; } = null!;
 
         public SLOQueryFreeformArgs()
         {

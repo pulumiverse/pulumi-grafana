@@ -61,18 +61,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public partial class SyntheticMonitoringInstallation : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Deprecated: Not used anymore.
-        /// </summary>
-        [Output("logsInstanceId")]
-        public Output<int?> LogsInstanceId { get; private set; } = null!;
-
-        /// <summary>
-        /// Deprecated: Not used anymore.
-        /// </summary>
-        [Output("metricsInstanceId")]
-        public Output<int?> MetricsInstanceId { get; private set; } = null!;
-
-        /// <summary>
         /// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
         /// </summary>
         [Output("metricsPublisherKey")]
@@ -147,18 +135,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class SyntheticMonitoringInstallationArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Deprecated: Not used anymore.
-        /// </summary>
-        [Input("logsInstanceId")]
-        public Input<int>? LogsInstanceId { get; set; }
-
-        /// <summary>
-        /// Deprecated: Not used anymore.
-        /// </summary>
-        [Input("metricsInstanceId")]
-        public Input<int>? MetricsInstanceId { get; set; }
-
         [Input("metricsPublisherKey", required: true)]
         private Input<string>? _metricsPublisherKey;
 
@@ -195,18 +171,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class SyntheticMonitoringInstallationState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Deprecated: Not used anymore.
-        /// </summary>
-        [Input("logsInstanceId")]
-        public Input<int>? LogsInstanceId { get; set; }
-
-        /// <summary>
-        /// Deprecated: Not used anymore.
-        /// </summary>
-        [Input("metricsInstanceId")]
-        public Input<int>? MetricsInstanceId { get; set; }
-
         [Input("metricsPublisherKey")]
         private Input<string>? _metricsPublisherKey;
 

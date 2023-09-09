@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [Official documentation](https://grafana.com/docs/oncall/latest/on-call-schedules/)
@@ -39,7 +41,7 @@ import (
 //
 // ```
 func LookupOncallSchedule(ctx *pulumi.Context, args *LookupOncallScheduleArgs, opts ...pulumi.InvokeOption) (*LookupOncallScheduleResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOncallScheduleResult
 	err := ctx.Invoke("grafana:index/getOncallSchedule:getOncallSchedule", args, &rv, opts...)
 	if err != nil {
@@ -100,6 +102,12 @@ func (o LookupOncallScheduleResultOutput) ToLookupOncallScheduleResultOutput() L
 
 func (o LookupOncallScheduleResultOutput) ToLookupOncallScheduleResultOutputWithContext(ctx context.Context) LookupOncallScheduleResultOutput {
 	return o
+}
+
+func (o LookupOncallScheduleResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupOncallScheduleResult] {
+	return pulumix.Output[LookupOncallScheduleResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

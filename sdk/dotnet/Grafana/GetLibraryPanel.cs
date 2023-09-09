@@ -97,7 +97,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// <summary>
         /// ID of the folder where the library panel is stored.
         /// </summary>
-        public readonly int FolderId;
+        public readonly string FolderId;
         /// <summary>
         /// Name of the folder containing the library panel.
         /// </summary>
@@ -151,7 +151,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
             string description,
 
-            int folderId,
+            string folderId,
 
             string folderName,
 

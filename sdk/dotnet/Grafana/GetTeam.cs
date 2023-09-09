@@ -32,6 +32,11 @@ namespace Lbrlabs.PulumiPackage.Grafana
         ///     var test = new Grafana.Team("test", new()
         ///     {
         ///         Email = "test-team-email@test.com",
+        ///         Preferences = new Grafana.Inputs.TeamPreferencesArgs
+        ///         {
+        ///             Theme = "dark",
+        ///             Timezone = "utc",
+        ///         },
         ///     });
         /// 
         ///     var fromName = Grafana.GetTeam.Invoke(new()
@@ -67,6 +72,11 @@ namespace Lbrlabs.PulumiPackage.Grafana
         ///     var test = new Grafana.Team("test", new()
         ///     {
         ///         Email = "test-team-email@test.com",
+        ///         Preferences = new Grafana.Inputs.TeamPreferencesArgs
+        ///         {
+        ///             Theme = "dark",
+        ///             Timezone = "utc",
+        ///         },
         ///     });
         /// 
         ///     var fromName = Grafana.GetTeam.Invoke(new()
@@ -86,11 +96,14 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class GetTeamArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The name of the Grafana team.
-        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
+
+        [Input("orgId")]
+        public string? OrgId { get; set; }
+
+        [Input("readTeamSync")]
+        public bool? ReadTeamSync { get; set; }
 
         public GetTeamArgs()
         {
@@ -100,11 +113,14 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class GetTeamInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The name of the Grafana team.
-        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
+
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
+        [Input("readTeamSync")]
+        public Input<bool>? ReadTeamSync { get; set; }
 
         public GetTeamInvokeArgs()
         {
@@ -116,23 +132,48 @@ namespace Lbrlabs.PulumiPackage.Grafana
     [OutputType]
     public sealed class GetTeamResult
     {
+        public readonly string Email;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// The name of the Grafana team.
-        /// </summary>
+        public readonly ImmutableArray<string> Members;
         public readonly string Name;
+        public readonly string? OrgId;
+        public readonly ImmutableArray<Outputs.GetTeamPreferenceResult> Preferences;
+        public readonly bool? ReadTeamSync;
+        public readonly int TeamId;
+        public readonly ImmutableArray<Outputs.GetTeamTeamSyncResult> TeamSyncs;
 
         [OutputConstructor]
         private GetTeamResult(
+            string email,
+
             string id,
 
-            string name)
+            ImmutableArray<string> members,
+
+            string name,
+
+            string? orgId,
+
+            ImmutableArray<Outputs.GetTeamPreferenceResult> preferences,
+
+            bool? readTeamSync,
+
+            int teamId,
+
+            ImmutableArray<Outputs.GetTeamTeamSyncResult> teamSyncs)
         {
+            Email = email;
             Id = id;
+            Members = members;
             Name = name;
+            OrgId = orgId;
+            Preferences = preferences;
+            ReadTeamSync = readTeamSync;
+            TeamId = teamId;
+            TeamSyncs = teamSyncs;
         }
     }
 }

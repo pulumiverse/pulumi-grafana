@@ -16,13 +16,13 @@ class RoleAssignmentArgs:
     def __init__(__self__, *,
                  role_uid: pulumi.Input[str],
                  service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
-                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None):
         """
         The set of arguments for constructing a RoleAssignment resource.
         :param pulumi.Input[str] role_uid: Grafana RBAC role UID.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] service_accounts: IDs of service accounts that the role should be assigned to.
-        :param pulumi.Input[Sequence[pulumi.Input[int]]] teams: IDs of teams that the role should be assigned to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] teams: IDs of teams that the role should be assigned to.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] users: IDs of users that the role should be assigned to.
         """
         pulumi.set(__self__, "role_uid", role_uid)
@@ -59,14 +59,14 @@ class RoleAssignmentArgs:
 
     @property
     @pulumi.getter
-    def teams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]:
+    def teams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         IDs of teams that the role should be assigned to.
         """
         return pulumi.get(self, "teams")
 
     @teams.setter
-    def teams(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]):
+    def teams(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "teams", value)
 
     @property
@@ -87,13 +87,13 @@ class _RoleAssignmentState:
     def __init__(__self__, *,
                  role_uid: Optional[pulumi.Input[str]] = None,
                  service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
-                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None):
         """
         Input properties used for looking up and filtering RoleAssignment resources.
         :param pulumi.Input[str] role_uid: Grafana RBAC role UID.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] service_accounts: IDs of service accounts that the role should be assigned to.
-        :param pulumi.Input[Sequence[pulumi.Input[int]]] teams: IDs of teams that the role should be assigned to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] teams: IDs of teams that the role should be assigned to.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] users: IDs of users that the role should be assigned to.
         """
         if role_uid is not None:
@@ -131,14 +131,14 @@ class _RoleAssignmentState:
 
     @property
     @pulumi.getter
-    def teams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]:
+    def teams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         IDs of teams that the role should be assigned to.
         """
         return pulumi.get(self, "teams")
 
     @teams.setter
-    def teams(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]):
+    def teams(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "teams", value)
 
     @property
@@ -161,7 +161,7 @@ class RoleAssignment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  role_uid: Optional[pulumi.Input[str]] = None,
                  service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
-                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  __props__=None):
         """
@@ -200,7 +200,7 @@ class RoleAssignment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] role_uid: Grafana RBAC role UID.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] service_accounts: IDs of service accounts that the role should be assigned to.
-        :param pulumi.Input[Sequence[pulumi.Input[int]]] teams: IDs of teams that the role should be assigned to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] teams: IDs of teams that the role should be assigned to.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] users: IDs of users that the role should be assigned to.
         """
         ...
@@ -258,7 +258,7 @@ class RoleAssignment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  role_uid: Optional[pulumi.Input[str]] = None,
                  service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
-                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -287,7 +287,7 @@ class RoleAssignment(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             role_uid: Optional[pulumi.Input[str]] = None,
             service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
-            teams: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+            teams: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             users: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None) -> 'RoleAssignment':
         """
         Get an existing RoleAssignment resource's state with the given name, id, and optional extra
@@ -298,7 +298,7 @@ class RoleAssignment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] role_uid: Grafana RBAC role UID.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] service_accounts: IDs of service accounts that the role should be assigned to.
-        :param pulumi.Input[Sequence[pulumi.Input[int]]] teams: IDs of teams that the role should be assigned to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] teams: IDs of teams that the role should be assigned to.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] users: IDs of users that the role should be assigned to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -329,7 +329,7 @@ class RoleAssignment(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def teams(self) -> pulumi.Output[Optional[Sequence[int]]]:
+    def teams(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         IDs of teams that the role should be assigned to.
         """

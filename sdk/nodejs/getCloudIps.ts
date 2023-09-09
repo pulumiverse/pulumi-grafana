@@ -52,3 +52,18 @@ export interface GetCloudIpsResult {
      */
     readonly id: string;
 }
+/**
+ * Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const test = grafana.getCloudIps({});
+ * ```
+ */
+export function getCloudIpsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudIpsResult> {
+    return pulumi.output(getCloudIps(opts))
+}

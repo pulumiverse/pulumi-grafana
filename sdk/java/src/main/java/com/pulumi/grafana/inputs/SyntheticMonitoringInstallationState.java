@@ -5,7 +5,6 @@ package com.pulumi.grafana.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,52 +14,6 @@ import javax.annotation.Nullable;
 public final class SyntheticMonitoringInstallationState extends com.pulumi.resources.ResourceArgs {
 
     public static final SyntheticMonitoringInstallationState Empty = new SyntheticMonitoringInstallationState();
-
-    /**
-     * Deprecated: Not used anymore.
-     * 
-     * @deprecated
-     * Not used anymore.
-     * 
-     */
-    @Deprecated /* Not used anymore. */
-    @Import(name="logsInstanceId")
-    private @Nullable Output<Integer> logsInstanceId;
-
-    /**
-     * @return Deprecated: Not used anymore.
-     * 
-     * @deprecated
-     * Not used anymore.
-     * 
-     */
-    @Deprecated /* Not used anymore. */
-    public Optional<Output<Integer>> logsInstanceId() {
-        return Optional.ofNullable(this.logsInstanceId);
-    }
-
-    /**
-     * Deprecated: Not used anymore.
-     * 
-     * @deprecated
-     * Not used anymore.
-     * 
-     */
-    @Deprecated /* Not used anymore. */
-    @Import(name="metricsInstanceId")
-    private @Nullable Output<Integer> metricsInstanceId;
-
-    /**
-     * @return Deprecated: Not used anymore.
-     * 
-     * @deprecated
-     * Not used anymore.
-     * 
-     */
-    @Deprecated /* Not used anymore. */
-    public Optional<Output<Integer>> metricsInstanceId() {
-        return Optional.ofNullable(this.metricsInstanceId);
-    }
 
     /**
      * The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
@@ -125,8 +78,6 @@ public final class SyntheticMonitoringInstallationState extends com.pulumi.resou
     private SyntheticMonitoringInstallationState() {}
 
     private SyntheticMonitoringInstallationState(SyntheticMonitoringInstallationState $) {
-        this.logsInstanceId = $.logsInstanceId;
-        this.metricsInstanceId = $.metricsInstanceId;
         this.metricsPublisherKey = $.metricsPublisherKey;
         this.smAccessToken = $.smAccessToken;
         this.stackId = $.stackId;
@@ -149,64 +100,6 @@ public final class SyntheticMonitoringInstallationState extends com.pulumi.resou
 
         public Builder(SyntheticMonitoringInstallationState defaults) {
             $ = new SyntheticMonitoringInstallationState(Objects.requireNonNull(defaults));
-        }
-
-        /**
-         * @param logsInstanceId Deprecated: Not used anymore.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Not used anymore.
-         * 
-         */
-        @Deprecated /* Not used anymore. */
-        public Builder logsInstanceId(@Nullable Output<Integer> logsInstanceId) {
-            $.logsInstanceId = logsInstanceId;
-            return this;
-        }
-
-        /**
-         * @param logsInstanceId Deprecated: Not used anymore.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Not used anymore.
-         * 
-         */
-        @Deprecated /* Not used anymore. */
-        public Builder logsInstanceId(Integer logsInstanceId) {
-            return logsInstanceId(Output.of(logsInstanceId));
-        }
-
-        /**
-         * @param metricsInstanceId Deprecated: Not used anymore.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Not used anymore.
-         * 
-         */
-        @Deprecated /* Not used anymore. */
-        public Builder metricsInstanceId(@Nullable Output<Integer> metricsInstanceId) {
-            $.metricsInstanceId = metricsInstanceId;
-            return this;
-        }
-
-        /**
-         * @param metricsInstanceId Deprecated: Not used anymore.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Not used anymore.
-         * 
-         */
-        @Deprecated /* Not used anymore. */
-        public Builder metricsInstanceId(Integer metricsInstanceId) {
-            return metricsInstanceId(Output.of(metricsInstanceId));
         }
 
         /**

@@ -17,9 +17,20 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// 		
         /// * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
         /// * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+        /// * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
         /// </summary>
         public static Task<GetSlosResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSlosResult>("grafana:index/getSlos:getSlos", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Datasource for retrieving all SLOs.
+        /// 		
+        /// * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
+        /// * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+        /// * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
+        /// </summary>
+        public static Output<GetSlosResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSlosResult>("grafana:index/getSlos:getSlos", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

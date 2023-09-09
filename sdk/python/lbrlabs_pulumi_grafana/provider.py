@@ -36,13 +36,13 @@ class ProviderArgs:
                the `GRAFANA_AUTH` environment variable.
         :param pulumi.Input[str] ca_cert: Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
                be set via the `GRAFANA_CA_CERT` environment variable.
-        :param pulumi.Input[str] cloud_api_key: API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+        :param pulumi.Input[str] cloud_api_key: Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+               variable.
         :param pulumi.Input[str] cloud_api_url: Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
-        :param pulumi.Input[int] org_id: The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
-               resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+        :param pulumi.Input[int] org_id: Deprecated: Use the `org_id` attributes on resources instead.
         :param pulumi.Input[int] retries: The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
                `GRAFANA_RETRIES` environment variable.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_status_codes: The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
@@ -92,6 +92,9 @@ class ProviderArgs:
             pulumi.set(__self__, "oncall_url", oncall_url)
         if org_id is None:
             org_id = _utilities.get_env_int('GRAFANA_ORG_ID')
+        if org_id is not None:
+            warnings.warn("""Use the `org_id` attributes on resources instead.""", DeprecationWarning)
+            pulumi.log.warn("""org_id is deprecated: Use the `org_id` attributes on resources instead.""")
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
         if retries is None:
@@ -155,7 +158,8 @@ class ProviderArgs:
     @pulumi.getter(name="cloudApiKey")
     def cloud_api_key(self) -> Optional[pulumi.Input[str]]:
         """
-        API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+        Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+        variable.
         """
         return pulumi.get(self, "cloud_api_key")
 
@@ -215,9 +219,11 @@ class ProviderArgs:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[int]]:
         """
-        The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
-        resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+        Deprecated: Use the `org_id` attributes on resources instead.
         """
+        warnings.warn("""Use the `org_id` attributes on resources instead.""", DeprecationWarning)
+        pulumi.log.warn("""org_id is deprecated: Use the `org_id` attributes on resources instead.""")
+
         return pulumi.get(self, "org_id")
 
     @org_id.setter
@@ -365,13 +371,13 @@ class Provider(pulumi.ProviderResource):
                the `GRAFANA_AUTH` environment variable.
         :param pulumi.Input[str] ca_cert: Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
                be set via the `GRAFANA_CA_CERT` environment variable.
-        :param pulumi.Input[str] cloud_api_key: API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+        :param pulumi.Input[str] cloud_api_key: Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+               variable.
         :param pulumi.Input[str] cloud_api_url: Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
-        :param pulumi.Input[int] org_id: The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
-               resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+        :param pulumi.Input[int] org_id: Deprecated: Use the `org_id` attributes on resources instead.
         :param pulumi.Input[int] retries: The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
                `GRAFANA_RETRIES` environment variable.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_status_codes: The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
@@ -464,6 +470,9 @@ class Provider(pulumi.ProviderResource):
             if oncall_url is None:
                 oncall_url = _utilities.get_env('GRAFANA_ONCALL_URL')
             __props__.__dict__["oncall_url"] = oncall_url
+            if org_id is not None and not opts.urn:
+                warnings.warn("""Use the `org_id` attributes on resources instead.""", DeprecationWarning)
+                pulumi.log.warn("""org_id is deprecated: Use the `org_id` attributes on resources instead.""")
             if org_id is None:
                 org_id = _utilities.get_env_int('GRAFANA_ORG_ID')
             __props__.__dict__["org_id"] = pulumi.Output.from_input(org_id).apply(pulumi.runtime.to_json) if org_id is not None else None
@@ -519,7 +528,8 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="cloudApiKey")
     def cloud_api_key(self) -> pulumi.Output[Optional[str]]:
         """
-        API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+        Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+        variable.
         """
         return pulumi.get(self, "cloud_api_key")
 

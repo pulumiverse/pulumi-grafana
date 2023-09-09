@@ -5,17 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface BuiltinRoleAssignmentRole {
-    /**
-     * States whether the assignment is available across all organizations or not. Defaults to `false`.
-     */
-    global?: boolean;
-    /**
-     * Unique identifier of the role to assign to `builtinRole`.
-     */
-    uid: string;
-}
-
 export interface CloudAccessPolicyRealm {
     /**
      * The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
@@ -675,263 +664,11 @@ export interface DashboardPermissionPermission {
     /**
      * ID of the team to manage permissions for. Defaults to `0`.
      */
-    teamId?: number;
+    teamId?: string;
     /**
      * ID of the user to manage permissions for. Defaults to `0`.
      */
     userId?: number;
-}
-
-export interface DataSourceJsonData {
-    /**
-     * (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
-     */
-    alertmanagerUid?: string;
-    /**
-     * (CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.
-     */
-    assumeRoleArn?: string;
-    /**
-     * (CloudWatch, Athena) The authentication type used to access the data source.
-     */
-    authType?: string;
-    /**
-     * (Stackdriver) The authentication type: `jwt` or `gce`.
-     */
-    authenticationType?: string;
-    /**
-     * (Athena) Athena catalog.
-     */
-    catalog?: string;
-    /**
-     * (Stackdriver) Service account email address.
-     */
-    clientEmail?: string;
-    /**
-     * (Azure Monitor) The service account client id.
-     */
-    clientId?: string;
-    /**
-     * (Azure Monitor) The cloud name.
-     */
-    cloudName?: string;
-    /**
-     * (MySQL, PostgreSQL, and MSSQL) Maximum amount of time in seconds a connection may be reused (Grafana v5.4+).
-     */
-    connMaxLifetime?: number;
-    /**
-     * (CloudWatch) A comma-separated list of custom namespaces to be queried by the CloudWatch data source.
-     */
-    customMetricsNamespaces?: string;
-    /**
-     * (Athena) Name of the database within the catalog.
-     */
-    database?: string;
-    /**
-     * (InfluxDB) The default bucket for the data source.
-     */
-    defaultBucket?: string;
-    /**
-     * (Stackdriver) The default project for the data source.
-     */
-    defaultProject?: string;
-    /**
-     * (CloudWatch, Athena) The default region for the data source.
-     */
-    defaultRegion?: string;
-    /**
-     * (Loki) See https://grafana.com/docs/grafana/latest/datasources/loki/#derived-fields
-     */
-    derivedFields?: outputs.DataSourceJsonDataDerivedField[];
-    /**
-     * (MSSQL) Connection SSL encryption handling: 'disable', 'false' or 'true'.
-     */
-    encrypt?: string;
-    /**
-     * (Elasticsearch) Elasticsearch semantic version (Grafana v8.0+).
-     */
-    esVersion?: string;
-    /**
-     * (CloudWatch, Athena) If you are assuming a role in another account, that has been created with an external ID, specify the external ID here.
-     */
-    externalId?: string;
-    /**
-     * (Github) Github URL
-     */
-    githubUrl?: string;
-    /**
-     * (Graphite) Graphite version.
-     */
-    graphiteVersion?: string;
-    /**
-     * (Prometheus) HTTP method to use for making requests.
-     */
-    httpMethod?: string;
-    /**
-     * (Alertmanager) Implementation of Alertmanager. Either 'cortex' or 'prometheus'
-     */
-    implementation?: string;
-    /**
-     * (Elasticsearch) Index date time format. nil(No Pattern), 'Hourly', 'Daily', 'Weekly', 'Monthly' or 'Yearly'.
-     */
-    interval?: string;
-    /**
-     * (Elasticsearch) Which field should be used to indicate the priority of the log message.
-     */
-    logLevelField?: string;
-    /**
-     * (Elasticsearch) Which field should be used as the log message.
-     */
-    logMessageField?: string;
-    /**
-     * (Prometheus) Manage alerts.
-     */
-    manageAlerts?: boolean;
-    /**
-     * (Elasticsearch) Maximum number of concurrent shard requests.
-     */
-    maxConcurrentShardRequests?: number;
-    /**
-     * (MySQL, PostgreSQL and MSSQL) Maximum number of connections in the idle connection pool (Grafana v5.4+).
-     */
-    maxIdleConns?: number;
-    /**
-     * (Loki) Upper limit for the number of log lines returned by Loki
-     */
-    maxLines?: number;
-    /**
-     * (MySQL, PostgreSQL and MSSQL) Maximum number of open connections to the database (Grafana v5.4+).
-     */
-    maxOpenConns?: number;
-    /**
-     * (Sentry) Organization slug.
-     */
-    orgSlug?: string;
-    /**
-     * (InfluxDB) An organization is a workspace for a group of users. All dashboards, tasks, buckets, members, etc., belong to an organization.
-     */
-    organization?: string;
-    /**
-     * (Athena) AWS S3 bucket to store execution outputs. If not specified, the default query result location from the Workgroup configuration will be used.
-     */
-    outputLocation?: string;
-    /**
-     * (PostgreSQL) Postgres version as a number (903/904/905/906/1000) meaning v9.3, v9.4, etc.
-     */
-    postgresVersion?: number;
-    /**
-     * (CloudWatch, Athena) The credentials profile name to use when authentication type is set as 'Credentials file'.
-     */
-    profile?: string;
-    /**
-     * (Prometheus) Timeout for queries made to the Prometheus data source in seconds.
-     */
-    queryTimeout?: string;
-    /**
-     * (Elasticsearch and Prometheus) Specifies the ARN of an IAM role to assume.
-     */
-    sigv4AssumeRoleArn?: string;
-    /**
-     * (Elasticsearch and Prometheus) Enable usage of SigV4.
-     */
-    sigv4Auth?: boolean;
-    /**
-     * (Elasticsearch and Prometheus) The Sigv4 authentication provider to use: 'default', 'credentials' or 'keys' (AMG: 'workspace-iam-role').
-     */
-    sigv4AuthType?: string;
-    /**
-     * (Elasticsearch and Prometheus) When assuming a role in another account use this external ID.
-     */
-    sigv4ExternalId?: string;
-    /**
-     * (Elasticsearch and Prometheus) Credentials profile name, leave blank for default.
-     */
-    sigv4Profile?: string;
-    /**
-     * (Elasticsearch and Prometheus) AWS region to use for Sigv4.
-     */
-    sigv4Region?: string;
-    /**
-     * (PostgreSQL) SSLmode. 'disable', 'require', 'verify-ca' or 'verify-full'.
-     */
-    sslMode?: string;
-    /**
-     * (Azure Monitor) The subscription id
-     */
-    subscriptionId?: string;
-    /**
-     * (Azure Monitor) Service account tenant ID.
-     */
-    tenantId?: string;
-    /**
-     * (Elasticsearch) Which field that should be used as timestamp.
-     */
-    timeField?: string;
-    /**
-     * (Prometheus, Elasticsearch, InfluxDB, MySQL, PostgreSQL, and MSSQL) Lowest interval/step value that should be used for this data source. Sometimes called "Scrape Interval" in the Grafana UI.
-     */
-    timeInterval?: string;
-    /**
-     * (PostgreSQL) Enable usage of TimescaleDB extension.
-     */
-    timescaledb?: boolean;
-    /**
-     * (All) Enable TLS authentication using client cert configured in secure json data.
-     */
-    tlsAuth?: boolean;
-    /**
-     * (All) Enable TLS authentication using CA cert.
-     */
-    tlsAuthWithCaCert?: boolean;
-    /**
-     * (All) SSL Certificate configuration, either by ‘file-path’ or ‘file-content’.
-     */
-    tlsConfigurationMethod?: string;
-    /**
-     * (All) Controls whether a client verifies the server’s certificate chain and host name.
-     */
-    tlsSkipVerify?: boolean;
-    /**
-     * (Stackdriver) The token URI used, provided in the service account key.
-     */
-    tokenUri?: string;
-    /**
-     * (Cloudwatch) The X-Ray datasource uid to associate to this Cloudwatch datasource.
-     */
-    tracingDatasourceUid?: string;
-    /**
-     * (OpenTSDB) Resolution.
-     */
-    tsdbResolution?: number;
-    /**
-     * (OpenTSDB) Version.
-     */
-    tsdbVersion?: number;
-    /**
-     * (InfluxDB) InfluxQL or Flux.
-     */
-    version?: string;
-    /**
-     * (Athena) Workgroup to use.
-     */
-    workgroup?: string;
-    /**
-     * (Elasticsearch) Enable X-Pack support.
-     */
-    xpackEnabled?: boolean;
-}
-
-export interface DataSourceJsonDataDerivedField {
-    datasourceUid?: string;
-    matcherRegex?: string;
-    /**
-     * A unique name for the data source.
-     */
-    name?: string;
-    /**
-     * The URL for the data source. The type of URL required varies depending on the chosen data source type.
-     */
-    url?: string;
 }
 
 export interface DataSourcePermissionPermission {
@@ -946,66 +683,11 @@ export interface DataSourcePermissionPermission {
     /**
      * ID of the team to manage permissions for. Defaults to `0`.
      */
-    teamId?: number;
+    teamId?: string;
     /**
      * ID of the user to manage permissions for. Defaults to `0`.
      */
     userId?: number;
-}
-
-export interface DataSourceSecureJsonData {
-    /**
-     * (CloudWatch, Athena) The access key used to access the data source.
-     */
-    accessKey?: string;
-    /**
-     * (Github) The access token used to access the data source.
-     */
-    accessToken?: string;
-    /**
-     * (Sentry) Authorization token.
-     */
-    authToken?: string;
-    /**
-     * (All) Password to use for basic authentication.
-     */
-    basicAuthPassword?: string;
-    /**
-     * (Azure Monitor) Client secret for authentication.
-     */
-    clientSecret?: string;
-    /**
-     * (All) Password to use for authentication.
-     */
-    password?: string;
-    /**
-     * (Stackdriver) The service account key `privateKey` to use to access the data source.
-     */
-    privateKey?: string;
-    /**
-     * (CloudWatch, Athena) The secret key to use to access the data source.
-     */
-    secretKey?: string;
-    /**
-     * (Elasticsearch and Prometheus) SigV4 access key. Required when using 'keys' auth provider.
-     */
-    sigv4AccessKey?: string;
-    /**
-     * (Elasticsearch and Prometheus) SigV4 secret key. Required when using 'keys' auth provider.
-     */
-    sigv4SecretKey?: string;
-    /**
-     * (All) CA cert for out going requests.
-     */
-    tlsCaCert?: string;
-    /**
-     * (All) TLS Client cert for outgoing requests.
-     */
-    tlsClientCert?: string;
-    /**
-     * (All) TLS Client key for outgoing requests.
-     */
-    tlsClientKey?: string;
 }
 
 export interface FolderPermissionPermission {
@@ -1020,7 +702,7 @@ export interface FolderPermissionPermission {
     /**
      * ID of the team to manage permissions for. Defaults to `0`.
      */
-    teamId?: number;
+    teamId?: string;
     /**
      * ID of the user to manage permissions for. Defaults to `0`.
      */
@@ -1041,6 +723,11 @@ export interface GetFoldersFolder {
     title: string;
     uid: string;
     url: string;
+}
+
+export interface GetRolePermission {
+    action: string;
+    scope?: string;
 }
 
 export interface GetSlosSlo {
@@ -1111,12 +798,29 @@ export interface GetSlosSloObjective {
 }
 
 export interface GetSlosSloQuery {
-    freeform: outputs.GetSlosSloQueryFreeform;
+    freeform?: outputs.GetSlosSloQueryFreeform;
+    ratio?: outputs.GetSlosSloQueryRatio;
     type: string;
 }
 
 export interface GetSlosSloQueryFreeform {
-    query?: string;
+    query: string;
+}
+
+export interface GetSlosSloQueryRatio {
+    groupByLabels?: string[];
+    successMetric: string;
+    totalMetric: string;
+}
+
+export interface GetTeamPreference {
+    homeDashboardUid?: string;
+    theme?: string;
+    timezone?: string;
+}
+
+export interface GetTeamTeamSync {
+    groups?: string[];
 }
 
 export interface GetUsersUser {
@@ -1678,7 +1382,7 @@ export interface SLOAlertingAnnotation {
 export interface SLOAlertingFastburn {
     annotations?: outputs.SLOAlertingFastburnAnnotation[];
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
      */
     labels?: outputs.SLOAlertingFastburnLabel[];
 }
@@ -1701,7 +1405,7 @@ export interface SLOAlertingLabel {
 export interface SLOAlertingSlowburn {
     annotations?: outputs.SLOAlertingSlowburnAnnotation[];
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
      */
     labels?: outputs.SLOAlertingSlowburnLabel[];
 }
@@ -1733,7 +1437,8 @@ export interface SLOObjective {
 }
 
 export interface SLOQuery {
-    freeform: outputs.SLOQueryFreeform;
+    freeform?: outputs.SLOQueryFreeform;
+    ratio?: outputs.SLOQueryRatio;
     /**
      * Query type must be one of: "freeform", "query", "ratio", or "threshold"
      */
@@ -1744,7 +1449,13 @@ export interface SLOQueryFreeform {
     /**
      * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
      */
-    query?: string;
+    query: string;
+}
+
+export interface SLOQueryRatio {
+    groupByLabels?: string[];
+    successMetric: string;
+    totalMetric: string;
 }
 
 export interface ServiceAccountPermissionPermission {
@@ -1755,7 +1466,7 @@ export interface ServiceAccountPermissionPermission {
     /**
      * ID of the team to manage permissions for. Specify either this or `userId`. Defaults to `0`.
      */
-    teamId?: number;
+    teamId?: string;
     /**
      * ID of the user to manage permissions for. Specify either this or `teamId`. Defaults to `0`.
      */
@@ -1895,17 +1606,12 @@ export interface SyntheticMonitoringCheckSettingsTraceroute {
 }
 
 export interface TeamPreferences {
-    /**
-     * The UID of the dashboard to display when a team member logs in. Defaults to ``.
-     */
     homeDashboardUid?: string;
-    /**
-     * The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
-     */
     theme?: string;
-    /**
-     * The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
-     */
     timezone?: string;
+}
+
+export interface TeamTeamSync {
+    groups?: string[];
 }
 

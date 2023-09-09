@@ -5,7 +5,6 @@ package com.pulumi.grafana;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -35,13 +34,13 @@ public final class TeamExternalGroupArgs extends com.pulumi.resources.ResourceAr
      * 
      */
     @Import(name="teamId", required=true)
-    private Output<Integer> teamId;
+    private Output<String> teamId;
 
     /**
      * @return The Team ID
      * 
      */
-    public Output<Integer> teamId() {
+    public Output<String> teamId() {
         return this.teamId;
     }
 
@@ -107,7 +106,7 @@ public final class TeamExternalGroupArgs extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          */
-        public Builder teamId(Output<Integer> teamId) {
+        public Builder teamId(Output<String> teamId) {
             $.teamId = teamId;
             return this;
         }
@@ -118,7 +117,7 @@ public final class TeamExternalGroupArgs extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          */
-        public Builder teamId(Integer teamId) {
+        public Builder teamId(String teamId) {
             return teamId(Output.of(teamId));
         }
 

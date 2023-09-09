@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.CustomType;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetDataSourceResult {
@@ -46,6 +48,11 @@ public final class GetDataSourceResult {
      */
     private String jsonDataEncoded;
     private String name;
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    private @Nullable String orgId;
     /**
      * @return The data source type. Must be one of the supported data source keywords.
      * 
@@ -117,6 +124,13 @@ public final class GetDataSourceResult {
         return this.name;
     }
     /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<String> orgId() {
+        return Optional.ofNullable(this.orgId);
+    }
+    /**
      * @return The data source type. Must be one of the supported data source keywords.
      * 
      */
@@ -158,6 +172,7 @@ public final class GetDataSourceResult {
         private Boolean isDefault;
         private String jsonDataEncoded;
         private String name;
+        private @Nullable String orgId;
         private String type;
         private String uid;
         private String url;
@@ -173,6 +188,7 @@ public final class GetDataSourceResult {
     	      this.isDefault = defaults.isDefault;
     	      this.jsonDataEncoded = defaults.jsonDataEncoded;
     	      this.name = defaults.name;
+    	      this.orgId = defaults.orgId;
     	      this.type = defaults.type;
     	      this.uid = defaults.uid;
     	      this.url = defaults.url;
@@ -220,6 +236,11 @@ public final class GetDataSourceResult {
             return this;
         }
         @CustomType.Setter
+        public Builder orgId(@Nullable String orgId) {
+            this.orgId = orgId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
             return this;
@@ -249,6 +270,7 @@ public final class GetDataSourceResult {
             o.isDefault = isDefault;
             o.jsonDataEncoded = jsonDataEncoded;
             o.name = name;
+            o.orgId = orgId;
             o.type = type;
             o.uid = uid;
             o.url = url;

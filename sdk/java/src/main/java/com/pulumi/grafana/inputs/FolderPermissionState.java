@@ -33,6 +33,21 @@ public final class FolderPermissionState extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Import(name="orgId")
+    private @Nullable Output<String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<Output<String>> orgId() {
+        return Optional.ofNullable(this.orgId);
+    }
+
+    /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      * 
      */
@@ -51,6 +66,7 @@ public final class FolderPermissionState extends com.pulumi.resources.ResourceAr
 
     private FolderPermissionState(FolderPermissionState $) {
         this.folderUid = $.folderUid;
+        this.orgId = $.orgId;
         this.permissions = $.permissions;
     }
 
@@ -91,6 +107,27 @@ public final class FolderPermissionState extends com.pulumi.resources.ResourceAr
          */
         public Builder folderUid(String folderUid) {
             return folderUid(Output.of(folderUid));
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(@Nullable Output<String> orgId) {
+            $.orgId = orgId;
+            return this;
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(String orgId) {
+            return orgId(Output.of(orgId));
         }
 
         /**

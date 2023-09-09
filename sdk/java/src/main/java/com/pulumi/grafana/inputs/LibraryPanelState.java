@@ -67,13 +67,13 @@ public final class LibraryPanelState extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="folderId")
-    private @Nullable Output<Integer> folderId;
+    private @Nullable Output<String> folderId;
 
     /**
      * @return ID of the folder where the library panel is stored.
      * 
      */
-    public Optional<Output<Integer>> folderId() {
+    public Optional<Output<String>> folderId() {
         return Optional.ofNullable(this.folderId);
     }
 
@@ -343,7 +343,7 @@ public final class LibraryPanelState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder folderId(@Nullable Output<Integer> folderId) {
+        public Builder folderId(@Nullable Output<String> folderId) {
             $.folderId = folderId;
             return this;
         }
@@ -354,7 +354,7 @@ public final class LibraryPanelState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder folderId(Integer folderId) {
+        public Builder folderId(String folderId) {
             return folderId(Output.of(folderId));
         }
 

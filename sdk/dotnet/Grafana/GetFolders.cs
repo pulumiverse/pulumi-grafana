@@ -50,6 +50,45 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         public static Task<GetFoldersResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFoldersResult>("grafana:index/getFolders:getFolders", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testA = new Grafana.Folder("testA", new()
+        ///     {
+        ///         Title = "test-folder-a",
+        ///         Uid = "test-ds-folder-uid-a",
+        ///     });
+        /// 
+        ///     var testB = new Grafana.Folder("testB", new()
+        ///     {
+        ///         Title = "test-folder-b",
+        ///         Uid = "test-ds-folder-uid-b",
+        ///     });
+        /// 
+        ///     var test = Grafana.GetFolders.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetFoldersResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetFoldersResult>("grafana:index/getFolders:getFolders", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

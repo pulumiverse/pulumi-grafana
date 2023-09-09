@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
@@ -70,6 +72,8 @@ import (
 type Folder struct {
 	pulumi.CustomResourceState
 
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
 	PreventDestroyIfNotEmpty pulumi.BoolPtrOutput `pulumi:"preventDestroyIfNotEmpty"`
 	// The title of the folder.
@@ -90,7 +94,7 @@ func NewFolder(ctx *pulumi.Context,
 	if args.Title == nil {
 		return nil, errors.New("invalid value for required argument 'Title'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Folder
 	err := ctx.RegisterResource("grafana:index/folder:Folder", name, args, &resource, opts...)
 	if err != nil {
@@ -113,6 +117,8 @@ func GetFolder(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Folder resources.
 type folderState struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
 	PreventDestroyIfNotEmpty *bool `pulumi:"preventDestroyIfNotEmpty"`
 	// The title of the folder.
@@ -124,6 +130,8 @@ type folderState struct {
 }
 
 type FolderState struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
 	PreventDestroyIfNotEmpty pulumi.BoolPtrInput
 	// The title of the folder.
@@ -139,6 +147,8 @@ func (FolderState) ElementType() reflect.Type {
 }
 
 type folderArgs struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
 	PreventDestroyIfNotEmpty *bool `pulumi:"preventDestroyIfNotEmpty"`
 	// The title of the folder.
@@ -149,6 +159,8 @@ type folderArgs struct {
 
 // The set of arguments for constructing a Folder resource.
 type FolderArgs struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
 	PreventDestroyIfNotEmpty pulumi.BoolPtrInput
 	// The title of the folder.
@@ -180,6 +192,12 @@ func (i *Folder) ToFolderOutputWithContext(ctx context.Context) FolderOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FolderOutput)
 }
 
+func (i *Folder) ToOutput(ctx context.Context) pulumix.Output[*Folder] {
+	return pulumix.Output[*Folder]{
+		OutputState: i.ToFolderOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FolderArrayInput is an input type that accepts FolderArray and FolderArrayOutput values.
 // You can construct a concrete instance of `FolderArrayInput` via:
 //
@@ -203,6 +221,12 @@ func (i FolderArray) ToFolderArrayOutput() FolderArrayOutput {
 
 func (i FolderArray) ToFolderArrayOutputWithContext(ctx context.Context) FolderArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FolderArrayOutput)
+}
+
+func (i FolderArray) ToOutput(ctx context.Context) pulumix.Output[[]*Folder] {
+	return pulumix.Output[[]*Folder]{
+		OutputState: i.ToFolderArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FolderMapInput is an input type that accepts FolderMap and FolderMapOutput values.
@@ -230,6 +254,12 @@ func (i FolderMap) ToFolderMapOutputWithContext(ctx context.Context) FolderMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(FolderMapOutput)
 }
 
+func (i FolderMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Folder] {
+	return pulumix.Output[map[string]*Folder]{
+		OutputState: i.ToFolderMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FolderOutput struct{ *pulumi.OutputState }
 
 func (FolderOutput) ElementType() reflect.Type {
@@ -242,6 +272,17 @@ func (o FolderOutput) ToFolderOutput() FolderOutput {
 
 func (o FolderOutput) ToFolderOutputWithContext(ctx context.Context) FolderOutput {
 	return o
+}
+
+func (o FolderOutput) ToOutput(ctx context.Context) pulumix.Output[*Folder] {
+	return pulumix.Output[*Folder]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o FolderOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Folder) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
@@ -278,6 +319,12 @@ func (o FolderArrayOutput) ToFolderArrayOutputWithContext(ctx context.Context) F
 	return o
 }
 
+func (o FolderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Folder] {
+	return pulumix.Output[[]*Folder]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FolderArrayOutput) Index(i pulumi.IntInput) FolderOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Folder {
 		return vs[0].([]*Folder)[vs[1].(int)]
@@ -296,6 +343,12 @@ func (o FolderMapOutput) ToFolderMapOutput() FolderMapOutput {
 
 func (o FolderMapOutput) ToFolderMapOutputWithContext(ctx context.Context) FolderMapOutput {
 	return o
+}
+
+func (o FolderMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Folder] {
+	return pulumix.Output[map[string]*Folder]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FolderMapOutput) MapIndex(k pulumi.StringInput) FolderOutput {

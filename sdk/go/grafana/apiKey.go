@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -48,13 +50,9 @@ import (
 type ApiKey struct {
 	pulumi.CustomResourceState
 
-	// Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
-	//
-	// Deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
-	CloudStackSlug pulumi.StringPtrOutput `pulumi:"cloudStackSlug"`
-	Expiration     pulumi.StringOutput    `pulumi:"expiration"`
-	Key            pulumi.StringOutput    `pulumi:"key"`
-	Name           pulumi.StringOutput    `pulumi:"name"`
+	Expiration pulumi.StringOutput `pulumi:"expiration"`
+	Key        pulumi.StringOutput `pulumi:"key"`
+	Name       pulumi.StringOutput `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId         pulumi.StringPtrOutput `pulumi:"orgId"`
 	Role          pulumi.StringOutput    `pulumi:"role"`
@@ -75,7 +73,7 @@ func NewApiKey(ctx *pulumi.Context,
 		"key",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ApiKey
 	err := ctx.RegisterResource("grafana:index/apiKey:ApiKey", name, args, &resource, opts...)
 	if err != nil {
@@ -98,13 +96,9 @@ func GetApiKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ApiKey resources.
 type apiKeyState struct {
-	// Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
-	//
-	// Deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
-	CloudStackSlug *string `pulumi:"cloudStackSlug"`
-	Expiration     *string `pulumi:"expiration"`
-	Key            *string `pulumi:"key"`
-	Name           *string `pulumi:"name"`
+	Expiration *string `pulumi:"expiration"`
+	Key        *string `pulumi:"key"`
+	Name       *string `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId         *string `pulumi:"orgId"`
 	Role          *string `pulumi:"role"`
@@ -112,13 +106,9 @@ type apiKeyState struct {
 }
 
 type ApiKeyState struct {
-	// Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
-	//
-	// Deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
-	CloudStackSlug pulumi.StringPtrInput
-	Expiration     pulumi.StringPtrInput
-	Key            pulumi.StringPtrInput
-	Name           pulumi.StringPtrInput
+	Expiration pulumi.StringPtrInput
+	Key        pulumi.StringPtrInput
+	Name       pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId         pulumi.StringPtrInput
 	Role          pulumi.StringPtrInput
@@ -130,11 +120,7 @@ func (ApiKeyState) ElementType() reflect.Type {
 }
 
 type apiKeyArgs struct {
-	// Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
-	//
-	// Deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
-	CloudStackSlug *string `pulumi:"cloudStackSlug"`
-	Name           *string `pulumi:"name"`
+	Name *string `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId         *string `pulumi:"orgId"`
 	Role          string  `pulumi:"role"`
@@ -143,11 +129,7 @@ type apiKeyArgs struct {
 
 // The set of arguments for constructing a ApiKey resource.
 type ApiKeyArgs struct {
-	// Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
-	//
-	// Deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
-	CloudStackSlug pulumi.StringPtrInput
-	Name           pulumi.StringPtrInput
+	Name pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId         pulumi.StringPtrInput
 	Role          pulumi.StringInput
@@ -177,6 +159,12 @@ func (i *ApiKey) ToApiKeyOutputWithContext(ctx context.Context) ApiKeyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApiKeyOutput)
 }
 
+func (i *ApiKey) ToOutput(ctx context.Context) pulumix.Output[*ApiKey] {
+	return pulumix.Output[*ApiKey]{
+		OutputState: i.ToApiKeyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ApiKeyArrayInput is an input type that accepts ApiKeyArray and ApiKeyArrayOutput values.
 // You can construct a concrete instance of `ApiKeyArrayInput` via:
 //
@@ -200,6 +188,12 @@ func (i ApiKeyArray) ToApiKeyArrayOutput() ApiKeyArrayOutput {
 
 func (i ApiKeyArray) ToApiKeyArrayOutputWithContext(ctx context.Context) ApiKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApiKeyArrayOutput)
+}
+
+func (i ApiKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*ApiKey] {
+	return pulumix.Output[[]*ApiKey]{
+		OutputState: i.ToApiKeyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ApiKeyMapInput is an input type that accepts ApiKeyMap and ApiKeyMapOutput values.
@@ -227,6 +221,12 @@ func (i ApiKeyMap) ToApiKeyMapOutputWithContext(ctx context.Context) ApiKeyMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(ApiKeyMapOutput)
 }
 
+func (i ApiKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ApiKey] {
+	return pulumix.Output[map[string]*ApiKey]{
+		OutputState: i.ToApiKeyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ApiKeyOutput struct{ *pulumi.OutputState }
 
 func (ApiKeyOutput) ElementType() reflect.Type {
@@ -241,11 +241,10 @@ func (o ApiKeyOutput) ToApiKeyOutputWithContext(ctx context.Context) ApiKeyOutpu
 	return o
 }
 
-// Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
-//
-// Deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
-func (o ApiKeyOutput) CloudStackSlug() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ApiKey) pulumi.StringPtrOutput { return v.CloudStackSlug }).(pulumi.StringPtrOutput)
+func (o ApiKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*ApiKey] {
+	return pulumix.Output[*ApiKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ApiKeyOutput) Expiration() pulumi.StringOutput {
@@ -287,6 +286,12 @@ func (o ApiKeyArrayOutput) ToApiKeyArrayOutputWithContext(ctx context.Context) A
 	return o
 }
 
+func (o ApiKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ApiKey] {
+	return pulumix.Output[[]*ApiKey]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ApiKeyArrayOutput) Index(i pulumi.IntInput) ApiKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ApiKey {
 		return vs[0].([]*ApiKey)[vs[1].(int)]
@@ -305,6 +310,12 @@ func (o ApiKeyMapOutput) ToApiKeyMapOutput() ApiKeyMapOutput {
 
 func (o ApiKeyMapOutput) ToApiKeyMapOutputWithContext(ctx context.Context) ApiKeyMapOutput {
 	return o
+}
+
+func (o ApiKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ApiKey] {
+	return pulumix.Output[map[string]*ApiKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ApiKeyMapOutput) MapIndex(k pulumi.StringInput) ApiKeyOutput {

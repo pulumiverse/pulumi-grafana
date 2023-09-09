@@ -17,10 +17,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// <summary>
         /// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         /// </summary>
-        public readonly string? Query;
+        public readonly string Query;
 
         [OutputConstructor]
-        private SLOQueryFreeform(string? query)
+        private SLOQueryFreeform(string query)
         {
             Query = query;
         }

@@ -26,7 +26,7 @@ public final class DataSourcePermissionPermission {
      * @return ID of the team to manage permissions for. Defaults to `0`.
      * 
      */
-    private @Nullable Integer teamId;
+    private @Nullable String teamId;
     /**
      * @return ID of the user to manage permissions for. Defaults to `0`.
      * 
@@ -52,7 +52,7 @@ public final class DataSourcePermissionPermission {
      * @return ID of the team to manage permissions for. Defaults to `0`.
      * 
      */
-    public Optional<Integer> teamId() {
+    public Optional<String> teamId() {
         return Optional.ofNullable(this.teamId);
     }
     /**
@@ -74,7 +74,7 @@ public final class DataSourcePermissionPermission {
     public static final class Builder {
         private @Nullable String builtInRole;
         private String permission;
-        private @Nullable Integer teamId;
+        private @Nullable String teamId;
         private @Nullable Integer userId;
         public Builder() {}
         public Builder(DataSourcePermissionPermission defaults) {
@@ -96,7 +96,7 @@ public final class DataSourcePermissionPermission {
             return this;
         }
         @CustomType.Setter
-        public Builder teamId(@Nullable Integer teamId) {
+        public Builder teamId(@Nullable String teamId) {
             this.teamId = teamId;
             return this;
         }

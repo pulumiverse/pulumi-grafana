@@ -78,7 +78,7 @@ export class RoleAssignment extends pulumi.CustomResource {
     /**
      * IDs of teams that the role should be assigned to.
      */
-    public readonly teams!: pulumi.Output<number[] | undefined>;
+    public readonly teams!: pulumi.Output<string[] | undefined>;
     /**
      * IDs of users that the role should be assigned to.
      */
@@ -131,7 +131,7 @@ export interface RoleAssignmentState {
     /**
      * IDs of teams that the role should be assigned to.
      */
-    teams?: pulumi.Input<pulumi.Input<number>[]>;
+    teams?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * IDs of users that the role should be assigned to.
      */
@@ -153,7 +153,7 @@ export interface RoleAssignmentArgs {
     /**
      * IDs of teams that the role should be assigned to.
      */
-    teams?: pulumi.Input<pulumi.Input<number>[]>;
+    teams?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * IDs of users that the role should be assigned to.
      */

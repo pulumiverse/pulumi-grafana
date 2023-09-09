@@ -119,14 +119,14 @@ public class RoleAssignment extends com.pulumi.resources.CustomResource {
      * IDs of teams that the role should be assigned to.
      * 
      */
-    @Export(name="teams", refs={List.class,Integer.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<Integer>> teams;
+    @Export(name="teams", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> teams;
 
     /**
      * @return IDs of teams that the role should be assigned to.
      * 
      */
-    public Output<Optional<List<Integer>>> teams() {
+    public Output<Optional<List<String>>> teams() {
         return Codegen.optional(this.teams);
     }
     /**

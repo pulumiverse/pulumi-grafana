@@ -71,6 +71,10 @@ export class ServiceAccountPermission extends pulumi.CustomResource {
     }
 
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
+    /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
     public readonly permissions!: pulumi.Output<outputs.ServiceAccountPermissionPermission[]>;
@@ -92,6 +96,7 @@ export class ServiceAccountPermission extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServiceAccountPermissionState | undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["permissions"] = state ? state.permissions : undefined;
             resourceInputs["serviceAccountId"] = state ? state.serviceAccountId : undefined;
         } else {
@@ -102,6 +107,7 @@ export class ServiceAccountPermission extends pulumi.CustomResource {
             if ((!args || args.serviceAccountId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountId'");
             }
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["permissions"] = args ? args.permissions : undefined;
             resourceInputs["serviceAccountId"] = args ? args.serviceAccountId : undefined;
         }
@@ -114,6 +120,10 @@ export class ServiceAccountPermission extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ServiceAccountPermission resources.
  */
 export interface ServiceAccountPermissionState {
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
@@ -128,6 +138,10 @@ export interface ServiceAccountPermissionState {
  * The set of arguments for constructing a ServiceAccountPermission resource.
  */
 export interface ServiceAccountPermissionArgs {
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */

@@ -108,29 +108,6 @@ public final class DashboardState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
-     * 
-     * @deprecated
-     * Use `uid` instead.
-     * 
-     */
-    @Deprecated /* Use `uid` instead. */
-    @Import(name="slug")
-    private @Nullable Output<String> slug;
-
-    /**
-     * @return URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
-     * 
-     * @deprecated
-     * Use `uid` instead.
-     * 
-     */
-    @Deprecated /* Use `uid` instead. */
-    public Optional<Output<String>> slug() {
-        return Optional.ofNullable(this.slug);
-    }
-
-    /**
      * The unique identifier of a dashboard. This is used to construct its URL. It&#39;s automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
      * 
      */
@@ -184,7 +161,6 @@ public final class DashboardState extends com.pulumi.resources.ResourceArgs {
         this.message = $.message;
         this.orgId = $.orgId;
         this.overwrite = $.overwrite;
-        this.slug = $.slug;
         this.uid = $.uid;
         this.url = $.url;
         this.version = $.version;
@@ -332,35 +308,6 @@ public final class DashboardState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder overwrite(Boolean overwrite) {
             return overwrite(Output.of(overwrite));
-        }
-
-        /**
-         * @param slug URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use `uid` instead.
-         * 
-         */
-        @Deprecated /* Use `uid` instead. */
-        public Builder slug(@Nullable Output<String> slug) {
-            $.slug = slug;
-            return this;
-        }
-
-        /**
-         * @param slug URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use `uid` instead.
-         * 
-         */
-        @Deprecated /* Use `uid` instead. */
-        public Builder slug(String slug) {
-            return slug(Output.of(slug));
         }
 
         /**

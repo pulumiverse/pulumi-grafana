@@ -7,8 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class SLOQueryFreeformArgs extends com.pulumi.resources.ResourceArgs {
@@ -19,15 +17,15 @@ public final class SLOQueryFreeformArgs extends com.pulumi.resources.ResourceArg
      * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
      * 
      */
-    @Import(name="query")
-    private @Nullable Output<String> query;
+    @Import(name="query", required=true)
+    private Output<String> query;
 
     /**
      * @return Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
      * 
      */
-    public Optional<Output<String>> query() {
-        return Optional.ofNullable(this.query);
+    public Output<String> query() {
+        return this.query;
     }
 
     private SLOQueryFreeformArgs() {}
@@ -60,7 +58,7 @@ public final class SLOQueryFreeformArgs extends com.pulumi.resources.ResourceArg
          * @return builder
          * 
          */
-        public Builder query(@Nullable Output<String> query) {
+        public Builder query(Output<String> query) {
             $.query = query;
             return this;
         }
@@ -76,6 +74,7 @@ public final class SLOQueryFreeformArgs extends com.pulumi.resources.ResourceArg
         }
 
         public SLOQueryFreeformArgs build() {
+            $.query = Objects.requireNonNull($.query, "expected parameter 'query' to be non-null");
             return $;
         }
     }

@@ -383,16 +383,18 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = OncallOutgoingWebhookArgs.__new__(OncallOutgoingWebhookArgs)
 
-            __props__.__dict__["authorization_header"] = authorization_header
+            __props__.__dict__["authorization_header"] = None if authorization_header is None else pulumi.Output.secret(authorization_header)
             __props__.__dict__["data"] = data
             __props__.__dict__["forward_whole_payload"] = forward_whole_payload
             __props__.__dict__["name"] = name
-            __props__.__dict__["password"] = password
+            __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["team_id"] = team_id
             if url is None and not opts.urn:
                 raise TypeError("Missing required property 'url'")
             __props__.__dict__["url"] = url
             __props__.__dict__["user"] = user
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["authorizationHeader", "password"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(OncallOutgoingWebhook, __self__).__init__(
             'grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook',
             resource_name,

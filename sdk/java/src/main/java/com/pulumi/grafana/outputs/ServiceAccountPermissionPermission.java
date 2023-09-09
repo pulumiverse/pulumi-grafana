@@ -21,7 +21,7 @@ public final class ServiceAccountPermissionPermission {
      * @return ID of the team to manage permissions for. Specify either this or `user_id`. Defaults to `0`.
      * 
      */
-    private @Nullable Integer teamId;
+    private @Nullable String teamId;
     /**
      * @return ID of the user to manage permissions for. Specify either this or `team_id`. Defaults to `0`.
      * 
@@ -40,7 +40,7 @@ public final class ServiceAccountPermissionPermission {
      * @return ID of the team to manage permissions for. Specify either this or `user_id`. Defaults to `0`.
      * 
      */
-    public Optional<Integer> teamId() {
+    public Optional<String> teamId() {
         return Optional.ofNullable(this.teamId);
     }
     /**
@@ -61,7 +61,7 @@ public final class ServiceAccountPermissionPermission {
     @CustomType.Builder
     public static final class Builder {
         private String permission;
-        private @Nullable Integer teamId;
+        private @Nullable String teamId;
         private @Nullable Integer userId;
         public Builder() {}
         public Builder(ServiceAccountPermissionPermission defaults) {
@@ -77,7 +77,7 @@ public final class ServiceAccountPermissionPermission {
             return this;
         }
         @CustomType.Setter
-        public Builder teamId(@Nullable Integer teamId) {
+        public Builder teamId(@Nullable String teamId) {
             this.teamId = teamId;
             return this;
         }

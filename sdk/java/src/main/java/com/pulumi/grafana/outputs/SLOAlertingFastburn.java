@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 public final class SLOAlertingFastburn {
     private @Nullable List<SLOAlertingFastburnAnnotation> annotations;
     /**
-     * @return Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+     * @return Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
      * 
      */
     private @Nullable List<SLOAlertingFastburnLabel> labels;
@@ -24,7 +24,7 @@ public final class SLOAlertingFastburn {
         return this.annotations == null ? List.of() : this.annotations;
     }
     /**
-     * @return Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+     * @return Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
      * 
      */
     public List<SLOAlertingFastburnLabel> labels() {

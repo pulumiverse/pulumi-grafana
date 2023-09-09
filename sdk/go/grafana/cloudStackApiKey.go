@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type CloudStackApiKey struct {
@@ -39,7 +41,7 @@ func NewCloudStackApiKey(ctx *pulumi.Context,
 		"key",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CloudStackApiKey
 	err := ctx.RegisterResource("grafana:index/cloudStackApiKey:CloudStackApiKey", name, args, &resource, opts...)
 	if err != nil {
@@ -121,6 +123,12 @@ func (i *CloudStackApiKey) ToCloudStackApiKeyOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(CloudStackApiKeyOutput)
 }
 
+func (i *CloudStackApiKey) ToOutput(ctx context.Context) pulumix.Output[*CloudStackApiKey] {
+	return pulumix.Output[*CloudStackApiKey]{
+		OutputState: i.ToCloudStackApiKeyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // CloudStackApiKeyArrayInput is an input type that accepts CloudStackApiKeyArray and CloudStackApiKeyArrayOutput values.
 // You can construct a concrete instance of `CloudStackApiKeyArrayInput` via:
 //
@@ -144,6 +152,12 @@ func (i CloudStackApiKeyArray) ToCloudStackApiKeyArrayOutput() CloudStackApiKeyA
 
 func (i CloudStackApiKeyArray) ToCloudStackApiKeyArrayOutputWithContext(ctx context.Context) CloudStackApiKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudStackApiKeyArrayOutput)
+}
+
+func (i CloudStackApiKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*CloudStackApiKey] {
+	return pulumix.Output[[]*CloudStackApiKey]{
+		OutputState: i.ToCloudStackApiKeyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // CloudStackApiKeyMapInput is an input type that accepts CloudStackApiKeyMap and CloudStackApiKeyMapOutput values.
@@ -171,6 +185,12 @@ func (i CloudStackApiKeyMap) ToCloudStackApiKeyMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(CloudStackApiKeyMapOutput)
 }
 
+func (i CloudStackApiKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudStackApiKey] {
+	return pulumix.Output[map[string]*CloudStackApiKey]{
+		OutputState: i.ToCloudStackApiKeyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CloudStackApiKeyOutput struct{ *pulumi.OutputState }
 
 func (CloudStackApiKeyOutput) ElementType() reflect.Type {
@@ -183,6 +203,12 @@ func (o CloudStackApiKeyOutput) ToCloudStackApiKeyOutput() CloudStackApiKeyOutpu
 
 func (o CloudStackApiKeyOutput) ToCloudStackApiKeyOutputWithContext(ctx context.Context) CloudStackApiKeyOutput {
 	return o
+}
+
+func (o CloudStackApiKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*CloudStackApiKey] {
+	return pulumix.Output[*CloudStackApiKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CloudStackApiKeyOutput) Expiration() pulumi.StringOutput {
@@ -223,6 +249,12 @@ func (o CloudStackApiKeyArrayOutput) ToCloudStackApiKeyArrayOutputWithContext(ct
 	return o
 }
 
+func (o CloudStackApiKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CloudStackApiKey] {
+	return pulumix.Output[[]*CloudStackApiKey]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CloudStackApiKeyArrayOutput) Index(i pulumi.IntInput) CloudStackApiKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudStackApiKey {
 		return vs[0].([]*CloudStackApiKey)[vs[1].(int)]
@@ -241,6 +273,12 @@ func (o CloudStackApiKeyMapOutput) ToCloudStackApiKeyMapOutput() CloudStackApiKe
 
 func (o CloudStackApiKeyMapOutput) ToCloudStackApiKeyMapOutputWithContext(ctx context.Context) CloudStackApiKeyMapOutput {
 	return o
+}
+
+func (o CloudStackApiKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudStackApiKey] {
+	return pulumix.Output[map[string]*CloudStackApiKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CloudStackApiKeyMapOutput) MapIndex(k pulumi.StringInput) CloudStackApiKeyOutput {

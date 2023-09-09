@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // An outlier detector monitors the results of a query and reports when its values are outside normal bands.
@@ -58,7 +60,7 @@ func NewMachineLearningOutlierDetector(ctx *pulumi.Context,
 	if args.QueryParams == nil {
 		return nil, errors.New("invalid value for required argument 'QueryParams'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MachineLearningOutlierDetector
 	err := ctx.RegisterResource("grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector", name, args, &resource, opts...)
 	if err != nil {
@@ -192,6 +194,12 @@ func (i *MachineLearningOutlierDetector) ToMachineLearningOutlierDetectorOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningOutlierDetectorOutput)
 }
 
+func (i *MachineLearningOutlierDetector) ToOutput(ctx context.Context) pulumix.Output[*MachineLearningOutlierDetector] {
+	return pulumix.Output[*MachineLearningOutlierDetector]{
+		OutputState: i.ToMachineLearningOutlierDetectorOutputWithContext(ctx).OutputState,
+	}
+}
+
 // MachineLearningOutlierDetectorArrayInput is an input type that accepts MachineLearningOutlierDetectorArray and MachineLearningOutlierDetectorArrayOutput values.
 // You can construct a concrete instance of `MachineLearningOutlierDetectorArrayInput` via:
 //
@@ -215,6 +223,12 @@ func (i MachineLearningOutlierDetectorArray) ToMachineLearningOutlierDetectorArr
 
 func (i MachineLearningOutlierDetectorArray) ToMachineLearningOutlierDetectorArrayOutputWithContext(ctx context.Context) MachineLearningOutlierDetectorArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningOutlierDetectorArrayOutput)
+}
+
+func (i MachineLearningOutlierDetectorArray) ToOutput(ctx context.Context) pulumix.Output[[]*MachineLearningOutlierDetector] {
+	return pulumix.Output[[]*MachineLearningOutlierDetector]{
+		OutputState: i.ToMachineLearningOutlierDetectorArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // MachineLearningOutlierDetectorMapInput is an input type that accepts MachineLearningOutlierDetectorMap and MachineLearningOutlierDetectorMapOutput values.
@@ -242,6 +256,12 @@ func (i MachineLearningOutlierDetectorMap) ToMachineLearningOutlierDetectorMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningOutlierDetectorMapOutput)
 }
 
+func (i MachineLearningOutlierDetectorMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MachineLearningOutlierDetector] {
+	return pulumix.Output[map[string]*MachineLearningOutlierDetector]{
+		OutputState: i.ToMachineLearningOutlierDetectorMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type MachineLearningOutlierDetectorOutput struct{ *pulumi.OutputState }
 
 func (MachineLearningOutlierDetectorOutput) ElementType() reflect.Type {
@@ -254,6 +274,12 @@ func (o MachineLearningOutlierDetectorOutput) ToMachineLearningOutlierDetectorOu
 
 func (o MachineLearningOutlierDetectorOutput) ToMachineLearningOutlierDetectorOutputWithContext(ctx context.Context) MachineLearningOutlierDetectorOutput {
 	return o
+}
+
+func (o MachineLearningOutlierDetectorOutput) ToOutput(ctx context.Context) pulumix.Output[*MachineLearningOutlierDetector] {
+	return pulumix.Output[*MachineLearningOutlierDetector]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
@@ -317,6 +343,12 @@ func (o MachineLearningOutlierDetectorArrayOutput) ToMachineLearningOutlierDetec
 	return o
 }
 
+func (o MachineLearningOutlierDetectorArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MachineLearningOutlierDetector] {
+	return pulumix.Output[[]*MachineLearningOutlierDetector]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o MachineLearningOutlierDetectorArrayOutput) Index(i pulumi.IntInput) MachineLearningOutlierDetectorOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MachineLearningOutlierDetector {
 		return vs[0].([]*MachineLearningOutlierDetector)[vs[1].(int)]
@@ -335,6 +367,12 @@ func (o MachineLearningOutlierDetectorMapOutput) ToMachineLearningOutlierDetecto
 
 func (o MachineLearningOutlierDetectorMapOutput) ToMachineLearningOutlierDetectorMapOutputWithContext(ctx context.Context) MachineLearningOutlierDetectorMapOutput {
 	return o
+}
+
+func (o MachineLearningOutlierDetectorMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MachineLearningOutlierDetector] {
+	return pulumix.Output[map[string]*MachineLearningOutlierDetector]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o MachineLearningOutlierDetectorMapOutput) MapIndex(k pulumi.StringInput) MachineLearningOutlierDetectorOutput {

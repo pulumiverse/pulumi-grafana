@@ -8,13 +8,18 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Resource manages Grafana SLOs.
 //
 // * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
 // * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+// * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
+//
+// ## Example Usage
 type SLO struct {
 	pulumi.CustomResourceState
 
@@ -22,11 +27,11 @@ type SLO struct {
 	// 			time window associated with the SLO. Grafana SLOs can generate
 	// 			alerts when the short-term error budget burn is very high, the
 	// 			long-term error budget burn rate is high, or when the remaining
-	// 			error budget is below a certain threshold.
+	// 			error budget is below a certain threshold. Annotations and Labels support templating.
 	Alertings SLOAlertingArrayOutput `pulumi:"alertings"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringOutput `pulumi:"description"`
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 	Labels SLOLabelArrayOutput `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -52,7 +57,7 @@ func NewSLO(ctx *pulumi.Context,
 	if args.Queries == nil {
 		return nil, errors.New("invalid value for required argument 'Queries'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SLO
 	err := ctx.RegisterResource("grafana:index/sLO:SLO", name, args, &resource, opts...)
 	if err != nil {
@@ -79,11 +84,11 @@ type sloState struct {
 	// 			time window associated with the SLO. Grafana SLOs can generate
 	// 			alerts when the short-term error budget burn is very high, the
 	// 			long-term error budget burn rate is high, or when the remaining
-	// 			error budget is below a certain threshold.
+	// 			error budget is below a certain threshold. Annotations and Labels support templating.
 	Alertings []SLOAlerting `pulumi:"alertings"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description *string `pulumi:"description"`
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 	Labels []SLOLabel `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name *string `pulumi:"name"`
@@ -98,11 +103,11 @@ type SLOState struct {
 	// 			time window associated with the SLO. Grafana SLOs can generate
 	// 			alerts when the short-term error budget burn is very high, the
 	// 			long-term error budget burn rate is high, or when the remaining
-	// 			error budget is below a certain threshold.
+	// 			error budget is below a certain threshold. Annotations and Labels support templating.
 	Alertings SLOAlertingArrayInput
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringPtrInput
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 	Labels SLOLabelArrayInput
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name pulumi.StringPtrInput
@@ -121,11 +126,11 @@ type sloArgs struct {
 	// 			time window associated with the SLO. Grafana SLOs can generate
 	// 			alerts when the short-term error budget burn is very high, the
 	// 			long-term error budget burn rate is high, or when the remaining
-	// 			error budget is below a certain threshold.
+	// 			error budget is below a certain threshold. Annotations and Labels support templating.
 	Alertings []SLOAlerting `pulumi:"alertings"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description string `pulumi:"description"`
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 	Labels []SLOLabel `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name *string `pulumi:"name"`
@@ -141,11 +146,11 @@ type SLOArgs struct {
 	// 			time window associated with the SLO. Grafana SLOs can generate
 	// 			alerts when the short-term error budget burn is very high, the
 	// 			long-term error budget burn rate is high, or when the remaining
-	// 			error budget is below a certain threshold.
+	// 			error budget is below a certain threshold. Annotations and Labels support templating.
 	Alertings SLOAlertingArrayInput
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringInput
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 	Labels SLOLabelArrayInput
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name pulumi.StringPtrInput
@@ -178,6 +183,12 @@ func (i *SLO) ToSLOOutputWithContext(ctx context.Context) SLOOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SLOOutput)
 }
 
+func (i *SLO) ToOutput(ctx context.Context) pulumix.Output[*SLO] {
+	return pulumix.Output[*SLO]{
+		OutputState: i.ToSLOOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SLOArrayInput is an input type that accepts SLOArray and SLOArrayOutput values.
 // You can construct a concrete instance of `SLOArrayInput` via:
 //
@@ -201,6 +212,12 @@ func (i SLOArray) ToSLOArrayOutput() SLOArrayOutput {
 
 func (i SLOArray) ToSLOArrayOutputWithContext(ctx context.Context) SLOArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SLOArrayOutput)
+}
+
+func (i SLOArray) ToOutput(ctx context.Context) pulumix.Output[[]*SLO] {
+	return pulumix.Output[[]*SLO]{
+		OutputState: i.ToSLOArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SLOMapInput is an input type that accepts SLOMap and SLOMapOutput values.
@@ -228,6 +245,12 @@ func (i SLOMap) ToSLOMapOutputWithContext(ctx context.Context) SLOMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SLOMapOutput)
 }
 
+func (i SLOMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SLO] {
+	return pulumix.Output[map[string]*SLO]{
+		OutputState: i.ToSLOMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SLOOutput struct{ *pulumi.OutputState }
 
 func (SLOOutput) ElementType() reflect.Type {
@@ -242,12 +265,18 @@ func (o SLOOutput) ToSLOOutputWithContext(ctx context.Context) SLOOutput {
 	return o
 }
 
+func (o SLOOutput) ToOutput(ctx context.Context) pulumix.Output[*SLO] {
+	return pulumix.Output[*SLO]{
+		OutputState: o.OutputState,
+	}
+}
+
 // Configures the alerting rules that will be generated for each
 //
 //	time window associated with the SLO. Grafana SLOs can generate
 //	alerts when the short-term error budget burn is very high, the
 //	long-term error budget burn rate is high, or when the remaining
-//	error budget is below a certain threshold.
+//	error budget is below a certain threshold. Annotations and Labels support templating.
 func (o SLOOutput) Alertings() SLOAlertingArrayOutput {
 	return o.ApplyT(func(v *SLO) SLOAlertingArrayOutput { return v.Alertings }).(SLOAlertingArrayOutput)
 }
@@ -257,7 +286,7 @@ func (o SLOOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *SLO) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 func (o SLOOutput) Labels() SLOLabelArrayOutput {
 	return o.ApplyT(func(v *SLO) SLOLabelArrayOutput { return v.Labels }).(SLOLabelArrayOutput)
 }
@@ -291,6 +320,12 @@ func (o SLOArrayOutput) ToSLOArrayOutputWithContext(ctx context.Context) SLOArra
 	return o
 }
 
+func (o SLOArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SLO] {
+	return pulumix.Output[[]*SLO]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SLOArrayOutput) Index(i pulumi.IntInput) SLOOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SLO {
 		return vs[0].([]*SLO)[vs[1].(int)]
@@ -309,6 +344,12 @@ func (o SLOMapOutput) ToSLOMapOutput() SLOMapOutput {
 
 func (o SLOMapOutput) ToSLOMapOutputWithContext(ctx context.Context) SLOMapOutput {
 	return o
+}
+
+func (o SLOMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SLO] {
+	return pulumix.Output[map[string]*SLO]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SLOMapOutput) MapIndex(k pulumi.StringInput) SLOOutput {

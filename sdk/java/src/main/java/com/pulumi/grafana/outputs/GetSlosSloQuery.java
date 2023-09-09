@@ -5,17 +5,24 @@ package com.pulumi.grafana.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.grafana.outputs.GetSlosSloQueryFreeform;
+import com.pulumi.grafana.outputs.GetSlosSloQueryRatio;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetSlosSloQuery {
-    private GetSlosSloQueryFreeform freeform;
+    private @Nullable GetSlosSloQueryFreeform freeform;
+    private @Nullable GetSlosSloQueryRatio ratio;
     private String type;
 
     private GetSlosSloQuery() {}
-    public GetSlosSloQueryFreeform freeform() {
-        return this.freeform;
+    public Optional<GetSlosSloQueryFreeform> freeform() {
+        return Optional.ofNullable(this.freeform);
+    }
+    public Optional<GetSlosSloQueryRatio> ratio() {
+        return Optional.ofNullable(this.ratio);
     }
     public String type() {
         return this.type;
@@ -30,18 +37,25 @@ public final class GetSlosSloQuery {
     }
     @CustomType.Builder
     public static final class Builder {
-        private GetSlosSloQueryFreeform freeform;
+        private @Nullable GetSlosSloQueryFreeform freeform;
+        private @Nullable GetSlosSloQueryRatio ratio;
         private String type;
         public Builder() {}
         public Builder(GetSlosSloQuery defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.freeform = defaults.freeform;
+    	      this.ratio = defaults.ratio;
     	      this.type = defaults.type;
         }
 
         @CustomType.Setter
-        public Builder freeform(GetSlosSloQueryFreeform freeform) {
-            this.freeform = Objects.requireNonNull(freeform);
+        public Builder freeform(@Nullable GetSlosSloQueryFreeform freeform) {
+            this.freeform = freeform;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder ratio(@Nullable GetSlosSloQueryRatio ratio) {
+            this.ratio = ratio;
             return this;
         }
         @CustomType.Setter
@@ -52,6 +66,7 @@ public final class GetSlosSloQuery {
         public GetSlosSloQuery build() {
             final var o = new GetSlosSloQuery();
             o.freeform = freeform;
+            o.ratio = ratio;
             o.type = type;
             return o;
         }

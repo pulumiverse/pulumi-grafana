@@ -10,10 +10,8 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.grafana.SyntheticMonitoringInstallationArgs;
 import com.pulumi.grafana.Utilities;
 import com.pulumi.grafana.inputs.SyntheticMonitoringInstallationState;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -80,42 +78,6 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation")
 public class SyntheticMonitoringInstallation extends com.pulumi.resources.CustomResource {
-    /**
-     * Deprecated: Not used anymore.
-     * 
-     * @deprecated
-     * Not used anymore.
-     * 
-     */
-    @Deprecated /* Not used anymore. */
-    @Export(name="logsInstanceId", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> logsInstanceId;
-
-    /**
-     * @return Deprecated: Not used anymore.
-     * 
-     */
-    public Output<Optional<Integer>> logsInstanceId() {
-        return Codegen.optional(this.logsInstanceId);
-    }
-    /**
-     * Deprecated: Not used anymore.
-     * 
-     * @deprecated
-     * Not used anymore.
-     * 
-     */
-    @Deprecated /* Not used anymore. */
-    @Export(name="metricsInstanceId", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> metricsInstanceId;
-
-    /**
-     * @return Deprecated: Not used anymore.
-     * 
-     */
-    public Output<Optional<Integer>> metricsInstanceId() {
-        return Codegen.optional(this.metricsInstanceId);
-    }
     /**
      * The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
      * 

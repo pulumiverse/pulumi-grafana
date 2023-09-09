@@ -32,7 +32,8 @@ public final class Config {
         return Codegen.stringProp("caCert").config(config).env("GRAFANA_CA_CERT").get();
     }
 /**
- * API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+ * Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+ * variable.
  * 
  */
     public Optional<String> cloudApiKey() {
@@ -75,8 +76,7 @@ public final class Config {
         return Codegen.stringProp("oncallUrl").config(config).env("GRAFANA_ONCALL_URL").get();
     }
 /**
- * The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
- * resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+ * Deprecated: Use the `org_id` attributes on resources instead.
  * 
  */
     public Optional<Integer> orgId() {

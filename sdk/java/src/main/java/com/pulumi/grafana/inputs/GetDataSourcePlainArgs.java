@@ -36,6 +36,21 @@ public final class GetDataSourcePlainArgs extends com.pulumi.resources.InvokeArg
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Import(name="orgId")
+    private @Nullable String orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<String> orgId() {
+        return Optional.ofNullable(this.orgId);
+    }
+
     @Import(name="uid")
     private @Nullable String uid;
 
@@ -48,6 +63,7 @@ public final class GetDataSourcePlainArgs extends com.pulumi.resources.InvokeArg
     private GetDataSourcePlainArgs(GetDataSourcePlainArgs $) {
         this.id = $.id;
         this.name = $.name;
+        this.orgId = $.orgId;
         this.uid = $.uid;
     }
 
@@ -82,6 +98,17 @@ public final class GetDataSourcePlainArgs extends com.pulumi.resources.InvokeArg
 
         public Builder name(@Nullable String name) {
             $.name = name;
+            return this;
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(@Nullable String orgId) {
+            $.orgId = orgId;
             return this;
         }
 

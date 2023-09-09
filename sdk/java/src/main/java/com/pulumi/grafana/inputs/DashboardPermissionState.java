@@ -57,6 +57,21 @@ public final class DashboardPermissionState extends com.pulumi.resources.Resourc
     }
 
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Import(name="orgId")
+    private @Nullable Output<String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<Output<String>> orgId() {
+        return Optional.ofNullable(this.orgId);
+    }
+
+    /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      * 
      */
@@ -76,6 +91,7 @@ public final class DashboardPermissionState extends com.pulumi.resources.Resourc
     private DashboardPermissionState(DashboardPermissionState $) {
         this.dashboardId = $.dashboardId;
         this.dashboardUid = $.dashboardUid;
+        this.orgId = $.orgId;
         this.permissions = $.permissions;
     }
 
@@ -145,6 +161,27 @@ public final class DashboardPermissionState extends com.pulumi.resources.Resourc
          */
         public Builder dashboardUid(String dashboardUid) {
             return dashboardUid(Output.of(dashboardUid));
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(@Nullable Output<String> orgId) {
+            $.orgId = orgId;
+            return this;
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(String orgId) {
+            return orgId(Output.of(orgId));
         }
 
         /**

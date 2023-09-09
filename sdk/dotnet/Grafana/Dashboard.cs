@@ -85,12 +85,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<bool?> Overwrite { get; private set; } = null!;
 
         /// <summary>
-        /// URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
-        /// </summary>
-        [Output("slug")]
-        public Output<string> Slug { get; private set; } = null!;
-
-        /// <summary>
         /// The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
         /// </summary>
         [Output("uid")]
@@ -228,12 +222,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Input("overwrite")]
         public Input<bool>? Overwrite { get; set; }
-
-        /// <summary>
-        /// URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
-        /// </summary>
-        [Input("slug")]
-        public Input<string>? Slug { get; set; }
 
         /// <summary>
         /// The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.

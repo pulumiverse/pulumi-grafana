@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // **Note:** This resource is available only with Grafana Enterprise 7.+.
@@ -102,7 +104,7 @@ func NewReport(ctx *pulumi.Context,
 	if args.Schedule == nil {
 		return nil, errors.New("invalid value for required argument 'Schedule'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Report
 	err := ctx.RegisterResource("grafana:index/report:Report", name, args, &resource, opts...)
 	if err != nil {
@@ -284,6 +286,12 @@ func (i *Report) ToReportOutputWithContext(ctx context.Context) ReportOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReportOutput)
 }
 
+func (i *Report) ToOutput(ctx context.Context) pulumix.Output[*Report] {
+	return pulumix.Output[*Report]{
+		OutputState: i.ToReportOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ReportArrayInput is an input type that accepts ReportArray and ReportArrayOutput values.
 // You can construct a concrete instance of `ReportArrayInput` via:
 //
@@ -307,6 +315,12 @@ func (i ReportArray) ToReportArrayOutput() ReportArrayOutput {
 
 func (i ReportArray) ToReportArrayOutputWithContext(ctx context.Context) ReportArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReportArrayOutput)
+}
+
+func (i ReportArray) ToOutput(ctx context.Context) pulumix.Output[[]*Report] {
+	return pulumix.Output[[]*Report]{
+		OutputState: i.ToReportArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ReportMapInput is an input type that accepts ReportMap and ReportMapOutput values.
@@ -334,6 +348,12 @@ func (i ReportMap) ToReportMapOutputWithContext(ctx context.Context) ReportMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(ReportMapOutput)
 }
 
+func (i ReportMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Report] {
+	return pulumix.Output[map[string]*Report]{
+		OutputState: i.ToReportMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ReportOutput struct{ *pulumi.OutputState }
 
 func (ReportOutput) ElementType() reflect.Type {
@@ -346,6 +366,12 @@ func (o ReportOutput) ToReportOutput() ReportOutput {
 
 func (o ReportOutput) ToReportOutputWithContext(ctx context.Context) ReportOutput {
 	return o
+}
+
+func (o ReportOutput) ToOutput(ctx context.Context) pulumix.Output[*Report] {
+	return pulumix.Output[*Report]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
@@ -434,6 +460,12 @@ func (o ReportArrayOutput) ToReportArrayOutputWithContext(ctx context.Context) R
 	return o
 }
 
+func (o ReportArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Report] {
+	return pulumix.Output[[]*Report]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ReportArrayOutput) Index(i pulumi.IntInput) ReportOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Report {
 		return vs[0].([]*Report)[vs[1].(int)]
@@ -452,6 +484,12 @@ func (o ReportMapOutput) ToReportMapOutput() ReportMapOutput {
 
 func (o ReportMapOutput) ToReportMapOutputWithContext(ctx context.Context) ReportMapOutput {
 	return o
+}
+
+func (o ReportMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Report] {
+	return pulumix.Output[map[string]*Report]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ReportMapOutput) MapIndex(k pulumi.StringInput) ReportOutput {

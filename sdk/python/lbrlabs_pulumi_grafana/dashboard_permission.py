@@ -18,12 +18,14 @@ class DashboardPermissionArgs:
     def __init__(__self__, *,
                  permissions: pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]],
                  dashboard_id: Optional[pulumi.Input[int]] = None,
-                 dashboard_uid: Optional[pulumi.Input[str]] = None):
+                 dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DashboardPermission resource.
         :param pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         :param pulumi.Input[int] dashboard_id: ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
         :param pulumi.Input[str] dashboard_uid: UID of the dashboard to apply permissions to.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         pulumi.set(__self__, "permissions", permissions)
         if dashboard_id is not None:
@@ -33,6 +35,8 @@ class DashboardPermissionArgs:
             pulumi.set(__self__, "dashboard_id", dashboard_id)
         if dashboard_uid is not None:
             pulumi.set(__self__, "dashboard_uid", dashboard_uid)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
 
     @property
     @pulumi.getter
@@ -73,17 +77,31 @@ class DashboardPermissionArgs:
     def dashboard_uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dashboard_uid", value)
 
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
+
 
 @pulumi.input_type
 class _DashboardPermissionState:
     def __init__(__self__, *,
                  dashboard_id: Optional[pulumi.Input[int]] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]]] = None):
         """
         Input properties used for looking up and filtering DashboardPermission resources.
         :param pulumi.Input[int] dashboard_id: ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
         :param pulumi.Input[str] dashboard_uid: UID of the dashboard to apply permissions to.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         if dashboard_id is not None:
@@ -93,6 +111,8 @@ class _DashboardPermissionState:
             pulumi.set(__self__, "dashboard_id", dashboard_id)
         if dashboard_uid is not None:
             pulumi.set(__self__, "dashboard_uid", dashboard_uid)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if permissions is not None:
             pulumi.set(__self__, "permissions", permissions)
 
@@ -124,6 +144,18 @@ class _DashboardPermissionState:
         pulumi.set(self, "dashboard_uid", value)
 
     @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
+
+    @property
     @pulumi.getter
     def permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]]]:
         """
@@ -143,6 +175,7 @@ class DashboardPermission(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dashboard_id: Optional[pulumi.Input[int]] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DashboardPermissionPermissionArgs']]]]] = None,
                  __props__=None):
         """
@@ -186,6 +219,7 @@ class DashboardPermission(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] dashboard_id: ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
         :param pulumi.Input[str] dashboard_uid: UID of the dashboard to apply permissions to.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DashboardPermissionPermissionArgs']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         ...
@@ -248,6 +282,7 @@ class DashboardPermission(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dashboard_id: Optional[pulumi.Input[int]] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DashboardPermissionPermissionArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -263,6 +298,7 @@ class DashboardPermission(pulumi.CustomResource):
                 pulumi.log.warn("""dashboard_id is deprecated: use `dashboard_uid` instead""")
             __props__.__dict__["dashboard_id"] = dashboard_id
             __props__.__dict__["dashboard_uid"] = dashboard_uid
+            __props__.__dict__["org_id"] = org_id
             if permissions is None and not opts.urn:
                 raise TypeError("Missing required property 'permissions'")
             __props__.__dict__["permissions"] = permissions
@@ -278,6 +314,7 @@ class DashboardPermission(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dashboard_id: Optional[pulumi.Input[int]] = None,
             dashboard_uid: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
             permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DashboardPermissionPermissionArgs']]]]] = None) -> 'DashboardPermission':
         """
         Get an existing DashboardPermission resource's state with the given name, id, and optional extra
@@ -288,6 +325,7 @@ class DashboardPermission(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] dashboard_id: ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
         :param pulumi.Input[str] dashboard_uid: UID of the dashboard to apply permissions to.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DashboardPermissionPermissionArgs']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -296,6 +334,7 @@ class DashboardPermission(pulumi.CustomResource):
 
         __props__.__dict__["dashboard_id"] = dashboard_id
         __props__.__dict__["dashboard_uid"] = dashboard_uid
+        __props__.__dict__["org_id"] = org_id
         __props__.__dict__["permissions"] = permissions
         return DashboardPermission(resource_name, opts=opts, __props__=__props__)
 
@@ -317,6 +356,14 @@ class DashboardPermission(pulumi.CustomResource):
         UID of the dashboard to apply permissions to.
         """
         return pulumi.get(self, "dashboard_uid")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter

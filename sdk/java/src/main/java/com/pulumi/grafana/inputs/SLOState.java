@@ -25,7 +25,7 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
      * 			time window associated with the SLO. Grafana SLOs can generate
      * 			alerts when the short-term error budget burn is very high, the
      * 			long-term error budget burn rate is high, or when the remaining
-     * 			error budget is below a certain threshold.
+     * 			error budget is below a certain threshold. Annotations and Labels support templating.
      * 
      */
     @Import(name="alertings")
@@ -36,7 +36,7 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
      * 			time window associated with the SLO. Grafana SLOs can generate
      * 			alerts when the short-term error budget burn is very high, the
      * 			long-term error budget burn rate is high, or when the remaining
-     * 			error budget is below a certain threshold.
+     * 			error budget is below a certain threshold. Annotations and Labels support templating.
      * 
      */
     public Optional<Output<List<SLOAlertingArgs>>> alertings() {
@@ -59,14 +59,14 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
      * 
      */
     @Import(name="labels")
     private @Nullable Output<List<SLOLabelArgs>> labels;
 
     /**
-     * @return Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+     * @return Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
      * 
      */
     public Optional<Output<List<SLOLabelArgs>>> labels() {
@@ -152,7 +152,7 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
          * 			time window associated with the SLO. Grafana SLOs can generate
          * 			alerts when the short-term error budget burn is very high, the
          * 			long-term error budget burn rate is high, or when the remaining
-         * 			error budget is below a certain threshold.
+         * 			error budget is below a certain threshold. Annotations and Labels support templating.
          * 
          * @return builder
          * 
@@ -167,7 +167,7 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
          * 			time window associated with the SLO. Grafana SLOs can generate
          * 			alerts when the short-term error budget burn is very high, the
          * 			long-term error budget burn rate is high, or when the remaining
-         * 			error budget is below a certain threshold.
+         * 			error budget is below a certain threshold. Annotations and Labels support templating.
          * 
          * @return builder
          * 
@@ -181,7 +181,7 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
          * 			time window associated with the SLO. Grafana SLOs can generate
          * 			alerts when the short-term error budget burn is very high, the
          * 			long-term error budget burn rate is high, or when the remaining
-         * 			error budget is below a certain threshold.
+         * 			error budget is below a certain threshold. Annotations and Labels support templating.
          * 
          * @return builder
          * 
@@ -212,7 +212,7 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param labels Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+         * @param labels Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
          * 
          * @return builder
          * 
@@ -223,7 +223,7 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param labels Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+         * @param labels Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
          * 
          * @return builder
          * 
@@ -233,7 +233,7 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param labels Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+         * @param labels Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
          * 
          * @return builder
          * 

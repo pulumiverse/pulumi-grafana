@@ -14,16 +14,20 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class GetSlosSloQueryResult
     {
-        public readonly Outputs.GetSlosSloQueryFreeformResult Freeform;
+        public readonly Outputs.GetSlosSloQueryFreeformResult? Freeform;
+        public readonly Outputs.GetSlosSloQueryRatioResult? Ratio;
         public readonly string Type;
 
         [OutputConstructor]
         private GetSlosSloQueryResult(
-            Outputs.GetSlosSloQueryFreeformResult freeform,
+            Outputs.GetSlosSloQueryFreeformResult? freeform,
+
+            Outputs.GetSlosSloQueryRatioResult? ratio,
 
             string type)
         {
             Freeform = freeform;
+            Ratio = ratio;
             Type = type;
         }
     }

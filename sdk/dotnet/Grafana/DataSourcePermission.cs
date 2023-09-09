@@ -18,6 +18,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
+    /// using System.Text.Json;
     /// using Pulumi;
     /// using Grafana = Lbrlabs.PulumiPackage.Grafana;
     /// 
@@ -28,22 +29,16 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///     var foo = new Grafana.DataSource("foo", new()
     ///     {
     ///         Type = "cloudwatch",
-    ///         JsonDatas = new[]
+    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             new Grafana.Inputs.DataSourceJsonDataArgs
-    ///             {
-    ///                 DefaultRegion = "us-east-1",
-    ///                 AuthType = "keys",
-    ///             },
-    ///         },
-    ///         SecureJsonDatas = new[]
+    ///             ["defaultRegion"] = "us-east-1",
+    ///             ["authType"] = "keys",
+    ///         }),
+    ///         SecureJsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             new Grafana.Inputs.DataSourceSecureJsonDataArgs
-    ///             {
-    ///                 AccessKey = "123",
-    ///                 SecretKey = "456",
-    ///             },
-    ///         },
+    ///             ["accessKey"] = "123",
+    ///             ["secretKey"] = "456",
+    ///         }),
     ///     });
     /// 
     ///     var fooPermissions = new Grafana.DataSourcePermission("fooPermissions", new()
@@ -79,7 +74,13 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// ID of the datasource to apply permissions to.
         /// </summary>
         [Output("datasourceId")]
-        public Output<int> DatasourceId { get; private set; } = null!;
+        public Output<string> DatasourceId { get; private set; } = null!;
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// The permission items to add/update. Items that are omitted from the list will be removed.
@@ -138,7 +139,13 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// ID of the datasource to apply permissions to.
         /// </summary>
         [Input("datasourceId", required: true)]
-        public Input<int> DatasourceId { get; set; } = null!;
+        public Input<string> DatasourceId { get; set; } = null!;
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         [Input("permissions", required: true)]
         private InputList<Inputs.DataSourcePermissionPermissionArgs>? _permissions;
@@ -164,7 +171,13 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// ID of the datasource to apply permissions to.
         /// </summary>
         [Input("datasourceId")]
-        public Input<int>? DatasourceId { get; set; }
+        public Input<string>? DatasourceId { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         [Input("permissions")]
         private InputList<Inputs.DataSourcePermissionPermissionGetArgs>? _permissions;

@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
@@ -104,7 +106,7 @@ func NewOncallSchedule(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource OncallSchedule
 	err := ctx.RegisterResource("grafana:index/oncallSchedule:OncallSchedule", name, args, &resource, opts...)
 	if err != nil {
@@ -230,6 +232,12 @@ func (i *OncallSchedule) ToOncallScheduleOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(OncallScheduleOutput)
 }
 
+func (i *OncallSchedule) ToOutput(ctx context.Context) pulumix.Output[*OncallSchedule] {
+	return pulumix.Output[*OncallSchedule]{
+		OutputState: i.ToOncallScheduleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // OncallScheduleArrayInput is an input type that accepts OncallScheduleArray and OncallScheduleArrayOutput values.
 // You can construct a concrete instance of `OncallScheduleArrayInput` via:
 //
@@ -253,6 +261,12 @@ func (i OncallScheduleArray) ToOncallScheduleArrayOutput() OncallScheduleArrayOu
 
 func (i OncallScheduleArray) ToOncallScheduleArrayOutputWithContext(ctx context.Context) OncallScheduleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OncallScheduleArrayOutput)
+}
+
+func (i OncallScheduleArray) ToOutput(ctx context.Context) pulumix.Output[[]*OncallSchedule] {
+	return pulumix.Output[[]*OncallSchedule]{
+		OutputState: i.ToOncallScheduleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // OncallScheduleMapInput is an input type that accepts OncallScheduleMap and OncallScheduleMapOutput values.
@@ -280,6 +294,12 @@ func (i OncallScheduleMap) ToOncallScheduleMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(OncallScheduleMapOutput)
 }
 
+func (i OncallScheduleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OncallSchedule] {
+	return pulumix.Output[map[string]*OncallSchedule]{
+		OutputState: i.ToOncallScheduleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type OncallScheduleOutput struct{ *pulumi.OutputState }
 
 func (OncallScheduleOutput) ElementType() reflect.Type {
@@ -292,6 +312,12 @@ func (o OncallScheduleOutput) ToOncallScheduleOutput() OncallScheduleOutput {
 
 func (o OncallScheduleOutput) ToOncallScheduleOutputWithContext(ctx context.Context) OncallScheduleOutput {
 	return o
+}
+
+func (o OncallScheduleOutput) ToOutput(ctx context.Context) pulumix.Output[*OncallSchedule] {
+	return pulumix.Output[*OncallSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The URL of external iCal calendar which override primary events.
@@ -348,6 +374,12 @@ func (o OncallScheduleArrayOutput) ToOncallScheduleArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o OncallScheduleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OncallSchedule] {
+	return pulumix.Output[[]*OncallSchedule]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o OncallScheduleArrayOutput) Index(i pulumi.IntInput) OncallScheduleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OncallSchedule {
 		return vs[0].([]*OncallSchedule)[vs[1].(int)]
@@ -366,6 +398,12 @@ func (o OncallScheduleMapOutput) ToOncallScheduleMapOutput() OncallScheduleMapOu
 
 func (o OncallScheduleMapOutput) ToOncallScheduleMapOutputWithContext(ctx context.Context) OncallScheduleMapOutput {
 	return o
+}
+
+func (o OncallScheduleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OncallSchedule] {
+	return pulumix.Output[map[string]*OncallSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o OncallScheduleMapOutput) MapIndex(k pulumi.StringInput) OncallScheduleOutput {

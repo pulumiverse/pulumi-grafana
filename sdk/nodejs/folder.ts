@@ -68,6 +68,10 @@ export class Folder extends pulumi.CustomResource {
     }
 
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
+    /**
      * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
      */
     public readonly preventDestroyIfNotEmpty!: pulumi.Output<boolean | undefined>;
@@ -97,6 +101,7 @@ export class Folder extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FolderState | undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["preventDestroyIfNotEmpty"] = state ? state.preventDestroyIfNotEmpty : undefined;
             resourceInputs["title"] = state ? state.title : undefined;
             resourceInputs["uid"] = state ? state.uid : undefined;
@@ -106,6 +111,7 @@ export class Folder extends pulumi.CustomResource {
             if ((!args || args.title === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'title'");
             }
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["preventDestroyIfNotEmpty"] = args ? args.preventDestroyIfNotEmpty : undefined;
             resourceInputs["title"] = args ? args.title : undefined;
             resourceInputs["uid"] = args ? args.uid : undefined;
@@ -120,6 +126,10 @@ export class Folder extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Folder resources.
  */
 export interface FolderState {
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
      */
@@ -142,6 +152,10 @@ export interface FolderState {
  * The set of arguments for constructing a Folder resource.
  */
 export interface FolderArgs {
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
      */

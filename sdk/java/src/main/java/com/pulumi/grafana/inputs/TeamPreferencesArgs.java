@@ -15,47 +15,23 @@ public final class TeamPreferencesArgs extends com.pulumi.resources.ResourceArgs
 
     public static final TeamPreferencesArgs Empty = new TeamPreferencesArgs();
 
-    /**
-     * The UID of the dashboard to display when a team member logs in. Defaults to ``.
-     * 
-     */
     @Import(name="homeDashboardUid")
     private @Nullable Output<String> homeDashboardUid;
 
-    /**
-     * @return The UID of the dashboard to display when a team member logs in. Defaults to ``.
-     * 
-     */
     public Optional<Output<String>> homeDashboardUid() {
         return Optional.ofNullable(this.homeDashboardUid);
     }
 
-    /**
-     * The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
-     * 
-     */
     @Import(name="theme")
     private @Nullable Output<String> theme;
 
-    /**
-     * @return The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
-     * 
-     */
     public Optional<Output<String>> theme() {
         return Optional.ofNullable(this.theme);
     }
 
-    /**
-     * The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
-     * 
-     */
     @Import(name="timezone")
     private @Nullable Output<String> timezone;
 
-    /**
-     * @return The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
-     * 
-     */
     public Optional<Output<String>> timezone() {
         return Optional.ofNullable(this.timezone);
     }
@@ -86,65 +62,29 @@ public final class TeamPreferencesArgs extends com.pulumi.resources.ResourceArgs
             $ = new TeamPreferencesArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param homeDashboardUid The UID of the dashboard to display when a team member logs in. Defaults to ``.
-         * 
-         * @return builder
-         * 
-         */
         public Builder homeDashboardUid(@Nullable Output<String> homeDashboardUid) {
             $.homeDashboardUid = homeDashboardUid;
             return this;
         }
 
-        /**
-         * @param homeDashboardUid The UID of the dashboard to display when a team member logs in. Defaults to ``.
-         * 
-         * @return builder
-         * 
-         */
         public Builder homeDashboardUid(String homeDashboardUid) {
             return homeDashboardUid(Output.of(homeDashboardUid));
         }
 
-        /**
-         * @param theme The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
-         * 
-         * @return builder
-         * 
-         */
         public Builder theme(@Nullable Output<String> theme) {
             $.theme = theme;
             return this;
         }
 
-        /**
-         * @param theme The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
-         * 
-         * @return builder
-         * 
-         */
         public Builder theme(String theme) {
             return theme(Output.of(theme));
         }
 
-        /**
-         * @param timezone The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
-         * 
-         * @return builder
-         * 
-         */
         public Builder timezone(@Nullable Output<String> timezone) {
             $.timezone = timezone;
             return this;
         }
 
-        /**
-         * @param timezone The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
-         * 
-         * @return builder
-         * 
-         */
         public Builder timezone(String timezone) {
             return timezone(Output.of(timezone));
         }

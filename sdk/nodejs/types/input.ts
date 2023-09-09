@@ -5,17 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface BuiltinRoleAssignmentRole {
-    /**
-     * States whether the assignment is available across all organizations or not. Defaults to `false`.
-     */
-    global?: pulumi.Input<boolean>;
-    /**
-     * Unique identifier of the role to assign to `builtinRole`.
-     */
-    uid: pulumi.Input<string>;
-}
-
 export interface CloudAccessPolicyRealm {
     /**
      * The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
@@ -675,263 +664,11 @@ export interface DashboardPermissionPermission {
     /**
      * ID of the team to manage permissions for. Defaults to `0`.
      */
-    teamId?: pulumi.Input<number>;
+    teamId?: pulumi.Input<string>;
     /**
      * ID of the user to manage permissions for. Defaults to `0`.
      */
     userId?: pulumi.Input<number>;
-}
-
-export interface DataSourceJsonData {
-    /**
-     * (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
-     */
-    alertmanagerUid?: pulumi.Input<string>;
-    /**
-     * (CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.
-     */
-    assumeRoleArn?: pulumi.Input<string>;
-    /**
-     * (CloudWatch, Athena) The authentication type used to access the data source.
-     */
-    authType?: pulumi.Input<string>;
-    /**
-     * (Stackdriver) The authentication type: `jwt` or `gce`.
-     */
-    authenticationType?: pulumi.Input<string>;
-    /**
-     * (Athena) Athena catalog.
-     */
-    catalog?: pulumi.Input<string>;
-    /**
-     * (Stackdriver) Service account email address.
-     */
-    clientEmail?: pulumi.Input<string>;
-    /**
-     * (Azure Monitor) The service account client id.
-     */
-    clientId?: pulumi.Input<string>;
-    /**
-     * (Azure Monitor) The cloud name.
-     */
-    cloudName?: pulumi.Input<string>;
-    /**
-     * (MySQL, PostgreSQL, and MSSQL) Maximum amount of time in seconds a connection may be reused (Grafana v5.4+).
-     */
-    connMaxLifetime?: pulumi.Input<number>;
-    /**
-     * (CloudWatch) A comma-separated list of custom namespaces to be queried by the CloudWatch data source.
-     */
-    customMetricsNamespaces?: pulumi.Input<string>;
-    /**
-     * (Athena) Name of the database within the catalog.
-     */
-    database?: pulumi.Input<string>;
-    /**
-     * (InfluxDB) The default bucket for the data source.
-     */
-    defaultBucket?: pulumi.Input<string>;
-    /**
-     * (Stackdriver) The default project for the data source.
-     */
-    defaultProject?: pulumi.Input<string>;
-    /**
-     * (CloudWatch, Athena) The default region for the data source.
-     */
-    defaultRegion?: pulumi.Input<string>;
-    /**
-     * (Loki) See https://grafana.com/docs/grafana/latest/datasources/loki/#derived-fields
-     */
-    derivedFields?: pulumi.Input<pulumi.Input<inputs.DataSourceJsonDataDerivedField>[]>;
-    /**
-     * (MSSQL) Connection SSL encryption handling: 'disable', 'false' or 'true'.
-     */
-    encrypt?: pulumi.Input<string>;
-    /**
-     * (Elasticsearch) Elasticsearch semantic version (Grafana v8.0+).
-     */
-    esVersion?: pulumi.Input<string>;
-    /**
-     * (CloudWatch, Athena) If you are assuming a role in another account, that has been created with an external ID, specify the external ID here.
-     */
-    externalId?: pulumi.Input<string>;
-    /**
-     * (Github) Github URL
-     */
-    githubUrl?: pulumi.Input<string>;
-    /**
-     * (Graphite) Graphite version.
-     */
-    graphiteVersion?: pulumi.Input<string>;
-    /**
-     * (Prometheus) HTTP method to use for making requests.
-     */
-    httpMethod?: pulumi.Input<string>;
-    /**
-     * (Alertmanager) Implementation of Alertmanager. Either 'cortex' or 'prometheus'
-     */
-    implementation?: pulumi.Input<string>;
-    /**
-     * (Elasticsearch) Index date time format. nil(No Pattern), 'Hourly', 'Daily', 'Weekly', 'Monthly' or 'Yearly'.
-     */
-    interval?: pulumi.Input<string>;
-    /**
-     * (Elasticsearch) Which field should be used to indicate the priority of the log message.
-     */
-    logLevelField?: pulumi.Input<string>;
-    /**
-     * (Elasticsearch) Which field should be used as the log message.
-     */
-    logMessageField?: pulumi.Input<string>;
-    /**
-     * (Prometheus) Manage alerts.
-     */
-    manageAlerts?: pulumi.Input<boolean>;
-    /**
-     * (Elasticsearch) Maximum number of concurrent shard requests.
-     */
-    maxConcurrentShardRequests?: pulumi.Input<number>;
-    /**
-     * (MySQL, PostgreSQL and MSSQL) Maximum number of connections in the idle connection pool (Grafana v5.4+).
-     */
-    maxIdleConns?: pulumi.Input<number>;
-    /**
-     * (Loki) Upper limit for the number of log lines returned by Loki
-     */
-    maxLines?: pulumi.Input<number>;
-    /**
-     * (MySQL, PostgreSQL and MSSQL) Maximum number of open connections to the database (Grafana v5.4+).
-     */
-    maxOpenConns?: pulumi.Input<number>;
-    /**
-     * (Sentry) Organization slug.
-     */
-    orgSlug?: pulumi.Input<string>;
-    /**
-     * (InfluxDB) An organization is a workspace for a group of users. All dashboards, tasks, buckets, members, etc., belong to an organization.
-     */
-    organization?: pulumi.Input<string>;
-    /**
-     * (Athena) AWS S3 bucket to store execution outputs. If not specified, the default query result location from the Workgroup configuration will be used.
-     */
-    outputLocation?: pulumi.Input<string>;
-    /**
-     * (PostgreSQL) Postgres version as a number (903/904/905/906/1000) meaning v9.3, v9.4, etc.
-     */
-    postgresVersion?: pulumi.Input<number>;
-    /**
-     * (CloudWatch, Athena) The credentials profile name to use when authentication type is set as 'Credentials file'.
-     */
-    profile?: pulumi.Input<string>;
-    /**
-     * (Prometheus) Timeout for queries made to the Prometheus data source in seconds.
-     */
-    queryTimeout?: pulumi.Input<string>;
-    /**
-     * (Elasticsearch and Prometheus) Specifies the ARN of an IAM role to assume.
-     */
-    sigv4AssumeRoleArn?: pulumi.Input<string>;
-    /**
-     * (Elasticsearch and Prometheus) Enable usage of SigV4.
-     */
-    sigv4Auth?: pulumi.Input<boolean>;
-    /**
-     * (Elasticsearch and Prometheus) The Sigv4 authentication provider to use: 'default', 'credentials' or 'keys' (AMG: 'workspace-iam-role').
-     */
-    sigv4AuthType?: pulumi.Input<string>;
-    /**
-     * (Elasticsearch and Prometheus) When assuming a role in another account use this external ID.
-     */
-    sigv4ExternalId?: pulumi.Input<string>;
-    /**
-     * (Elasticsearch and Prometheus) Credentials profile name, leave blank for default.
-     */
-    sigv4Profile?: pulumi.Input<string>;
-    /**
-     * (Elasticsearch and Prometheus) AWS region to use for Sigv4.
-     */
-    sigv4Region?: pulumi.Input<string>;
-    /**
-     * (PostgreSQL) SSLmode. 'disable', 'require', 'verify-ca' or 'verify-full'.
-     */
-    sslMode?: pulumi.Input<string>;
-    /**
-     * (Azure Monitor) The subscription id
-     */
-    subscriptionId?: pulumi.Input<string>;
-    /**
-     * (Azure Monitor) Service account tenant ID.
-     */
-    tenantId?: pulumi.Input<string>;
-    /**
-     * (Elasticsearch) Which field that should be used as timestamp.
-     */
-    timeField?: pulumi.Input<string>;
-    /**
-     * (Prometheus, Elasticsearch, InfluxDB, MySQL, PostgreSQL, and MSSQL) Lowest interval/step value that should be used for this data source. Sometimes called "Scrape Interval" in the Grafana UI.
-     */
-    timeInterval?: pulumi.Input<string>;
-    /**
-     * (PostgreSQL) Enable usage of TimescaleDB extension.
-     */
-    timescaledb?: pulumi.Input<boolean>;
-    /**
-     * (All) Enable TLS authentication using client cert configured in secure json data.
-     */
-    tlsAuth?: pulumi.Input<boolean>;
-    /**
-     * (All) Enable TLS authentication using CA cert.
-     */
-    tlsAuthWithCaCert?: pulumi.Input<boolean>;
-    /**
-     * (All) SSL Certificate configuration, either by ‘file-path’ or ‘file-content’.
-     */
-    tlsConfigurationMethod?: pulumi.Input<string>;
-    /**
-     * (All) Controls whether a client verifies the server’s certificate chain and host name.
-     */
-    tlsSkipVerify?: pulumi.Input<boolean>;
-    /**
-     * (Stackdriver) The token URI used, provided in the service account key.
-     */
-    tokenUri?: pulumi.Input<string>;
-    /**
-     * (Cloudwatch) The X-Ray datasource uid to associate to this Cloudwatch datasource.
-     */
-    tracingDatasourceUid?: pulumi.Input<string>;
-    /**
-     * (OpenTSDB) Resolution.
-     */
-    tsdbResolution?: pulumi.Input<number>;
-    /**
-     * (OpenTSDB) Version.
-     */
-    tsdbVersion?: pulumi.Input<number>;
-    /**
-     * (InfluxDB) InfluxQL or Flux.
-     */
-    version?: pulumi.Input<string>;
-    /**
-     * (Athena) Workgroup to use.
-     */
-    workgroup?: pulumi.Input<string>;
-    /**
-     * (Elasticsearch) Enable X-Pack support.
-     */
-    xpackEnabled?: pulumi.Input<boolean>;
-}
-
-export interface DataSourceJsonDataDerivedField {
-    datasourceUid?: pulumi.Input<string>;
-    matcherRegex?: pulumi.Input<string>;
-    /**
-     * A unique name for the data source.
-     */
-    name?: pulumi.Input<string>;
-    /**
-     * The URL for the data source. The type of URL required varies depending on the chosen data source type.
-     */
-    url?: pulumi.Input<string>;
 }
 
 export interface DataSourcePermissionPermission {
@@ -946,66 +683,11 @@ export interface DataSourcePermissionPermission {
     /**
      * ID of the team to manage permissions for. Defaults to `0`.
      */
-    teamId?: pulumi.Input<number>;
+    teamId?: pulumi.Input<string>;
     /**
      * ID of the user to manage permissions for. Defaults to `0`.
      */
     userId?: pulumi.Input<number>;
-}
-
-export interface DataSourceSecureJsonData {
-    /**
-     * (CloudWatch, Athena) The access key used to access the data source.
-     */
-    accessKey?: pulumi.Input<string>;
-    /**
-     * (Github) The access token used to access the data source.
-     */
-    accessToken?: pulumi.Input<string>;
-    /**
-     * (Sentry) Authorization token.
-     */
-    authToken?: pulumi.Input<string>;
-    /**
-     * (All) Password to use for basic authentication.
-     */
-    basicAuthPassword?: pulumi.Input<string>;
-    /**
-     * (Azure Monitor) Client secret for authentication.
-     */
-    clientSecret?: pulumi.Input<string>;
-    /**
-     * (All) Password to use for authentication.
-     */
-    password?: pulumi.Input<string>;
-    /**
-     * (Stackdriver) The service account key `privateKey` to use to access the data source.
-     */
-    privateKey?: pulumi.Input<string>;
-    /**
-     * (CloudWatch, Athena) The secret key to use to access the data source.
-     */
-    secretKey?: pulumi.Input<string>;
-    /**
-     * (Elasticsearch and Prometheus) SigV4 access key. Required when using 'keys' auth provider.
-     */
-    sigv4AccessKey?: pulumi.Input<string>;
-    /**
-     * (Elasticsearch and Prometheus) SigV4 secret key. Required when using 'keys' auth provider.
-     */
-    sigv4SecretKey?: pulumi.Input<string>;
-    /**
-     * (All) CA cert for out going requests.
-     */
-    tlsCaCert?: pulumi.Input<string>;
-    /**
-     * (All) TLS Client cert for outgoing requests.
-     */
-    tlsClientCert?: pulumi.Input<string>;
-    /**
-     * (All) TLS Client key for outgoing requests.
-     */
-    tlsClientKey?: pulumi.Input<string>;
 }
 
 export interface FolderPermissionPermission {
@@ -1020,7 +702,7 @@ export interface FolderPermissionPermission {
     /**
      * ID of the team to manage permissions for. Defaults to `0`.
      */
-    teamId?: pulumi.Input<number>;
+    teamId?: pulumi.Input<string>;
     /**
      * ID of the user to manage permissions for. Defaults to `0`.
      */
@@ -1575,7 +1257,7 @@ export interface SLOAlertingAnnotation {
 export interface SLOAlertingFastburn {
     annotations?: pulumi.Input<pulumi.Input<inputs.SLOAlertingFastburnAnnotation>[]>;
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
      */
     labels?: pulumi.Input<pulumi.Input<inputs.SLOAlertingFastburnLabel>[]>;
 }
@@ -1598,7 +1280,7 @@ export interface SLOAlertingLabel {
 export interface SLOAlertingSlowburn {
     annotations?: pulumi.Input<pulumi.Input<inputs.SLOAlertingSlowburnAnnotation>[]>;
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
      */
     labels?: pulumi.Input<pulumi.Input<inputs.SLOAlertingSlowburnLabel>[]>;
 }
@@ -1630,7 +1312,8 @@ export interface SLOObjective {
 }
 
 export interface SLOQuery {
-    freeform: pulumi.Input<inputs.SLOQueryFreeform>;
+    freeform?: pulumi.Input<inputs.SLOQueryFreeform>;
+    ratio?: pulumi.Input<inputs.SLOQueryRatio>;
     /**
      * Query type must be one of: "freeform", "query", "ratio", or "threshold"
      */
@@ -1641,7 +1324,13 @@ export interface SLOQueryFreeform {
     /**
      * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
      */
-    query?: pulumi.Input<string>;
+    query: pulumi.Input<string>;
+}
+
+export interface SLOQueryRatio {
+    groupByLabels?: pulumi.Input<pulumi.Input<string>[]>;
+    successMetric: pulumi.Input<string>;
+    totalMetric: pulumi.Input<string>;
 }
 
 export interface ServiceAccountPermissionPermission {
@@ -1652,7 +1341,7 @@ export interface ServiceAccountPermissionPermission {
     /**
      * ID of the team to manage permissions for. Specify either this or `userId`. Defaults to `0`.
      */
-    teamId?: pulumi.Input<number>;
+    teamId?: pulumi.Input<string>;
     /**
      * ID of the user to manage permissions for. Specify either this or `teamId`. Defaults to `0`.
      */
@@ -1792,16 +1481,11 @@ export interface SyntheticMonitoringCheckSettingsTraceroute {
 }
 
 export interface TeamPreferences {
-    /**
-     * The UID of the dashboard to display when a team member logs in. Defaults to ``.
-     */
     homeDashboardUid?: pulumi.Input<string>;
-    /**
-     * The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
-     */
     theme?: pulumi.Input<string>;
-    /**
-     * The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
-     */
     timezone?: pulumi.Input<string>;
+}
+
+export interface TeamTeamSync {
+    groups?: pulumi.Input<pulumi.Input<string>[]>;
 }

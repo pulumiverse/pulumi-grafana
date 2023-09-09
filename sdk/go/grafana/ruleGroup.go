@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages Grafana Alerting rule groups.
@@ -181,7 +183,7 @@ func NewRuleGroup(ctx *pulumi.Context,
 	if args.Rules == nil {
 		return nil, errors.New("invalid value for required argument 'Rules'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RuleGroup
 	err := ctx.RegisterResource("grafana:index/ruleGroup:RuleGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -283,6 +285,12 @@ func (i *RuleGroup) ToRuleGroupOutputWithContext(ctx context.Context) RuleGroupO
 	return pulumi.ToOutputWithContext(ctx, i).(RuleGroupOutput)
 }
 
+func (i *RuleGroup) ToOutput(ctx context.Context) pulumix.Output[*RuleGroup] {
+	return pulumix.Output[*RuleGroup]{
+		OutputState: i.ToRuleGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RuleGroupArrayInput is an input type that accepts RuleGroupArray and RuleGroupArrayOutput values.
 // You can construct a concrete instance of `RuleGroupArrayInput` via:
 //
@@ -306,6 +314,12 @@ func (i RuleGroupArray) ToRuleGroupArrayOutput() RuleGroupArrayOutput {
 
 func (i RuleGroupArray) ToRuleGroupArrayOutputWithContext(ctx context.Context) RuleGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RuleGroupArrayOutput)
+}
+
+func (i RuleGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*RuleGroup] {
+	return pulumix.Output[[]*RuleGroup]{
+		OutputState: i.ToRuleGroupArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RuleGroupMapInput is an input type that accepts RuleGroupMap and RuleGroupMapOutput values.
@@ -333,6 +347,12 @@ func (i RuleGroupMap) ToRuleGroupMapOutputWithContext(ctx context.Context) RuleG
 	return pulumi.ToOutputWithContext(ctx, i).(RuleGroupMapOutput)
 }
 
+func (i RuleGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RuleGroup] {
+	return pulumix.Output[map[string]*RuleGroup]{
+		OutputState: i.ToRuleGroupMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RuleGroupOutput struct{ *pulumi.OutputState }
 
 func (RuleGroupOutput) ElementType() reflect.Type {
@@ -345,6 +365,12 @@ func (o RuleGroupOutput) ToRuleGroupOutput() RuleGroupOutput {
 
 func (o RuleGroupOutput) ToRuleGroupOutputWithContext(ctx context.Context) RuleGroupOutput {
 	return o
+}
+
+func (o RuleGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*RuleGroup] {
+	return pulumix.Output[*RuleGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The UID of the folder that the group belongs to.
@@ -386,6 +412,12 @@ func (o RuleGroupArrayOutput) ToRuleGroupArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o RuleGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RuleGroup] {
+	return pulumix.Output[[]*RuleGroup]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RuleGroupArrayOutput) Index(i pulumi.IntInput) RuleGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RuleGroup {
 		return vs[0].([]*RuleGroup)[vs[1].(int)]
@@ -404,6 +436,12 @@ func (o RuleGroupMapOutput) ToRuleGroupMapOutput() RuleGroupMapOutput {
 
 func (o RuleGroupMapOutput) ToRuleGroupMapOutputWithContext(ctx context.Context) RuleGroupMapOutput {
 	return o
+}
+
+func (o RuleGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RuleGroup] {
+	return pulumix.Output[map[string]*RuleGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RuleGroupMapOutput) MapIndex(k pulumi.StringInput) RuleGroupOutput {

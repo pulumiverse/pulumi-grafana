@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
@@ -72,7 +74,7 @@ func NewAnnotation(ctx *pulumi.Context,
 	if args.Text == nil {
 		return nil, errors.New("invalid value for required argument 'Text'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Annotation
 	err := ctx.RegisterResource("grafana:index/annotation:Annotation", name, args, &resource, opts...)
 	if err != nil {
@@ -206,6 +208,12 @@ func (i *Annotation) ToAnnotationOutputWithContext(ctx context.Context) Annotati
 	return pulumi.ToOutputWithContext(ctx, i).(AnnotationOutput)
 }
 
+func (i *Annotation) ToOutput(ctx context.Context) pulumix.Output[*Annotation] {
+	return pulumix.Output[*Annotation]{
+		OutputState: i.ToAnnotationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AnnotationArrayInput is an input type that accepts AnnotationArray and AnnotationArrayOutput values.
 // You can construct a concrete instance of `AnnotationArrayInput` via:
 //
@@ -229,6 +237,12 @@ func (i AnnotationArray) ToAnnotationArrayOutput() AnnotationArrayOutput {
 
 func (i AnnotationArray) ToAnnotationArrayOutputWithContext(ctx context.Context) AnnotationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AnnotationArrayOutput)
+}
+
+func (i AnnotationArray) ToOutput(ctx context.Context) pulumix.Output[[]*Annotation] {
+	return pulumix.Output[[]*Annotation]{
+		OutputState: i.ToAnnotationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AnnotationMapInput is an input type that accepts AnnotationMap and AnnotationMapOutput values.
@@ -256,6 +270,12 @@ func (i AnnotationMap) ToAnnotationMapOutputWithContext(ctx context.Context) Ann
 	return pulumi.ToOutputWithContext(ctx, i).(AnnotationMapOutput)
 }
 
+func (i AnnotationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Annotation] {
+	return pulumix.Output[map[string]*Annotation]{
+		OutputState: i.ToAnnotationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AnnotationOutput struct{ *pulumi.OutputState }
 
 func (AnnotationOutput) ElementType() reflect.Type {
@@ -268,6 +288,12 @@ func (o AnnotationOutput) ToAnnotationOutput() AnnotationOutput {
 
 func (o AnnotationOutput) ToAnnotationOutputWithContext(ctx context.Context) AnnotationOutput {
 	return o
+}
+
+func (o AnnotationOutput) ToOutput(ctx context.Context) pulumix.Output[*Annotation] {
+	return pulumix.Output[*Annotation]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
@@ -326,6 +352,12 @@ func (o AnnotationArrayOutput) ToAnnotationArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o AnnotationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Annotation] {
+	return pulumix.Output[[]*Annotation]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AnnotationArrayOutput) Index(i pulumi.IntInput) AnnotationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Annotation {
 		return vs[0].([]*Annotation)[vs[1].(int)]
@@ -344,6 +376,12 @@ func (o AnnotationMapOutput) ToAnnotationMapOutput() AnnotationMapOutput {
 
 func (o AnnotationMapOutput) ToAnnotationMapOutputWithContext(ctx context.Context) AnnotationMapOutput {
 	return o
+}
+
+func (o AnnotationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Annotation] {
+	return pulumix.Output[map[string]*Annotation]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AnnotationMapOutput) MapIndex(k pulumi.StringInput) AnnotationOutput {

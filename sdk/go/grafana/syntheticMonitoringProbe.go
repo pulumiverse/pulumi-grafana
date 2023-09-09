@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Besides the public probes run by Grafana Labs, you can also install your
@@ -103,7 +105,7 @@ func NewSyntheticMonitoringProbe(ctx *pulumi.Context,
 		"authToken",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SyntheticMonitoringProbe
 	err := ctx.RegisterResource("grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe", name, args, &resource, opts...)
 	if err != nil {
@@ -221,6 +223,12 @@ func (i *SyntheticMonitoringProbe) ToSyntheticMonitoringProbeOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringProbeOutput)
 }
 
+func (i *SyntheticMonitoringProbe) ToOutput(ctx context.Context) pulumix.Output[*SyntheticMonitoringProbe] {
+	return pulumix.Output[*SyntheticMonitoringProbe]{
+		OutputState: i.ToSyntheticMonitoringProbeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SyntheticMonitoringProbeArrayInput is an input type that accepts SyntheticMonitoringProbeArray and SyntheticMonitoringProbeArrayOutput values.
 // You can construct a concrete instance of `SyntheticMonitoringProbeArrayInput` via:
 //
@@ -244,6 +252,12 @@ func (i SyntheticMonitoringProbeArray) ToSyntheticMonitoringProbeArrayOutput() S
 
 func (i SyntheticMonitoringProbeArray) ToSyntheticMonitoringProbeArrayOutputWithContext(ctx context.Context) SyntheticMonitoringProbeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringProbeArrayOutput)
+}
+
+func (i SyntheticMonitoringProbeArray) ToOutput(ctx context.Context) pulumix.Output[[]*SyntheticMonitoringProbe] {
+	return pulumix.Output[[]*SyntheticMonitoringProbe]{
+		OutputState: i.ToSyntheticMonitoringProbeArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SyntheticMonitoringProbeMapInput is an input type that accepts SyntheticMonitoringProbeMap and SyntheticMonitoringProbeMapOutput values.
@@ -271,6 +285,12 @@ func (i SyntheticMonitoringProbeMap) ToSyntheticMonitoringProbeMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringProbeMapOutput)
 }
 
+func (i SyntheticMonitoringProbeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SyntheticMonitoringProbe] {
+	return pulumix.Output[map[string]*SyntheticMonitoringProbe]{
+		OutputState: i.ToSyntheticMonitoringProbeMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SyntheticMonitoringProbeOutput struct{ *pulumi.OutputState }
 
 func (SyntheticMonitoringProbeOutput) ElementType() reflect.Type {
@@ -283,6 +303,12 @@ func (o SyntheticMonitoringProbeOutput) ToSyntheticMonitoringProbeOutput() Synth
 
 func (o SyntheticMonitoringProbeOutput) ToSyntheticMonitoringProbeOutputWithContext(ctx context.Context) SyntheticMonitoringProbeOutput {
 	return o
+}
+
+func (o SyntheticMonitoringProbeOutput) ToOutput(ctx context.Context) pulumix.Output[*SyntheticMonitoringProbe] {
+	return pulumix.Output[*SyntheticMonitoringProbe]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
@@ -339,6 +365,12 @@ func (o SyntheticMonitoringProbeArrayOutput) ToSyntheticMonitoringProbeArrayOutp
 	return o
 }
 
+func (o SyntheticMonitoringProbeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SyntheticMonitoringProbe] {
+	return pulumix.Output[[]*SyntheticMonitoringProbe]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SyntheticMonitoringProbeArrayOutput) Index(i pulumi.IntInput) SyntheticMonitoringProbeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SyntheticMonitoringProbe {
 		return vs[0].([]*SyntheticMonitoringProbe)[vs[1].(int)]
@@ -357,6 +389,12 @@ func (o SyntheticMonitoringProbeMapOutput) ToSyntheticMonitoringProbeMapOutput()
 
 func (o SyntheticMonitoringProbeMapOutput) ToSyntheticMonitoringProbeMapOutputWithContext(ctx context.Context) SyntheticMonitoringProbeMapOutput {
 	return o
+}
+
+func (o SyntheticMonitoringProbeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SyntheticMonitoringProbe] {
+	return pulumix.Output[map[string]*SyntheticMonitoringProbe]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SyntheticMonitoringProbeMapOutput) MapIndex(k pulumi.StringInput) SyntheticMonitoringProbeOutput {

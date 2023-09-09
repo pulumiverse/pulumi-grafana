@@ -57,24 +57,6 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="grafana:index/apiKey:ApiKey")
 public class ApiKey extends com.pulumi.resources.CustomResource {
-    /**
-     * Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
-     * 
-     * @deprecated
-     * Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
-     * 
-     */
-    @Deprecated /* Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead */
-    @Export(name="cloudStackSlug", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> cloudStackSlug;
-
-    /**
-     * @return Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
-     * 
-     */
-    public Output<Optional<String>> cloudStackSlug() {
-        return Codegen.optional(this.cloudStackSlug);
-    }
     @Export(name="expiration", refs={String.class}, tree="[0]")
     private Output<String> expiration;
 

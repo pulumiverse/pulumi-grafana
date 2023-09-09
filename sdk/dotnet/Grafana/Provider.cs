@@ -34,7 +34,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string?> CaCert { get; private set; } = null!;
 
         /// <summary>
-        /// API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+        /// Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+        /// variable.
         /// </summary>
         [Output("cloudApiKey")]
         public Output<string?> CloudApiKey { get; private set; } = null!;
@@ -160,7 +161,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private Input<string>? _cloudApiKey;
 
         /// <summary>
-        /// API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+        /// Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+        /// variable.
         /// </summary>
         public Input<string>? CloudApiKey
         {
@@ -207,8 +209,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? OncallUrl { get; set; }
 
         /// <summary>
-        /// The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
-        /// resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+        /// Deprecated: Use the `org_id` attributes on resources instead.
         /// </summary>
         [Input("orgId", json: true)]
         public Input<int>? OrgId { get; set; }

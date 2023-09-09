@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // **Note:** This data source is going to be deprecated, please use outgoing webhook data source instead.
@@ -15,7 +17,7 @@ import (
 //
 // !> Deprecated: Use the `OncallOutgoingWebhook` data source instead.
 func GetOncallAction(ctx *pulumi.Context, args *GetOncallActionArgs, opts ...pulumi.InvokeOption) (*GetOncallActionResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOncallActionResult
 	err := ctx.Invoke("grafana:index/getOncallAction:getOncallAction", args, &rv, opts...)
 	if err != nil {
@@ -74,6 +76,12 @@ func (o GetOncallActionResultOutput) ToGetOncallActionResultOutput() GetOncallAc
 
 func (o GetOncallActionResultOutput) ToGetOncallActionResultOutputWithContext(ctx context.Context) GetOncallActionResultOutput {
 	return o
+}
+
+func (o GetOncallActionResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOncallActionResult] {
+	return pulumix.Output[GetOncallActionResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

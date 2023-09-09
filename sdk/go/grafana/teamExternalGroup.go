@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
-// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+// Use the `teamSync` attribute of the `Team` resource instead.
 //
 // ## Example Usage
 //
@@ -33,7 +34,7 @@ import (
 //					pulumi.String("test-group-1"),
 //					pulumi.String("test-group-2"),
 //				},
-//				TeamId: pulumi.Int(1),
+//				TeamId: pulumi.String("1"),
 //			})
 //			if err != nil {
 //				return err
@@ -57,7 +58,7 @@ type TeamExternalGroup struct {
 	// The team external groups list
 	Groups pulumi.StringArrayOutput `pulumi:"groups"`
 	// The Team ID
-	TeamId pulumi.IntOutput `pulumi:"teamId"`
+	TeamId pulumi.StringOutput `pulumi:"teamId"`
 }
 
 // NewTeamExternalGroup registers a new resource with the given unique name, arguments, and options.
@@ -73,7 +74,7 @@ func NewTeamExternalGroup(ctx *pulumi.Context,
 	if args.TeamId == nil {
 		return nil, errors.New("invalid value for required argument 'TeamId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource TeamExternalGroup
 	err := ctx.RegisterResource("grafana:index/teamExternalGroup:TeamExternalGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -99,14 +100,14 @@ type teamExternalGroupState struct {
 	// The team external groups list
 	Groups []string `pulumi:"groups"`
 	// The Team ID
-	TeamId *int `pulumi:"teamId"`
+	TeamId *string `pulumi:"teamId"`
 }
 
 type TeamExternalGroupState struct {
 	// The team external groups list
 	Groups pulumi.StringArrayInput
 	// The Team ID
-	TeamId pulumi.IntPtrInput
+	TeamId pulumi.StringPtrInput
 }
 
 func (TeamExternalGroupState) ElementType() reflect.Type {
@@ -117,7 +118,7 @@ type teamExternalGroupArgs struct {
 	// The team external groups list
 	Groups []string `pulumi:"groups"`
 	// The Team ID
-	TeamId int `pulumi:"teamId"`
+	TeamId string `pulumi:"teamId"`
 }
 
 // The set of arguments for constructing a TeamExternalGroup resource.
@@ -125,7 +126,7 @@ type TeamExternalGroupArgs struct {
 	// The team external groups list
 	Groups pulumi.StringArrayInput
 	// The Team ID
-	TeamId pulumi.IntInput
+	TeamId pulumi.StringInput
 }
 
 func (TeamExternalGroupArgs) ElementType() reflect.Type {
@@ -149,6 +150,12 @@ func (i *TeamExternalGroup) ToTeamExternalGroupOutput() TeamExternalGroupOutput 
 
 func (i *TeamExternalGroup) ToTeamExternalGroupOutputWithContext(ctx context.Context) TeamExternalGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TeamExternalGroupOutput)
+}
+
+func (i *TeamExternalGroup) ToOutput(ctx context.Context) pulumix.Output[*TeamExternalGroup] {
+	return pulumix.Output[*TeamExternalGroup]{
+		OutputState: i.ToTeamExternalGroupOutputWithContext(ctx).OutputState,
+	}
 }
 
 // TeamExternalGroupArrayInput is an input type that accepts TeamExternalGroupArray and TeamExternalGroupArrayOutput values.
@@ -176,6 +183,12 @@ func (i TeamExternalGroupArray) ToTeamExternalGroupArrayOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(TeamExternalGroupArrayOutput)
 }
 
+func (i TeamExternalGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*TeamExternalGroup] {
+	return pulumix.Output[[]*TeamExternalGroup]{
+		OutputState: i.ToTeamExternalGroupArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // TeamExternalGroupMapInput is an input type that accepts TeamExternalGroupMap and TeamExternalGroupMapOutput values.
 // You can construct a concrete instance of `TeamExternalGroupMapInput` via:
 //
@@ -201,6 +214,12 @@ func (i TeamExternalGroupMap) ToTeamExternalGroupMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(TeamExternalGroupMapOutput)
 }
 
+func (i TeamExternalGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*TeamExternalGroup] {
+	return pulumix.Output[map[string]*TeamExternalGroup]{
+		OutputState: i.ToTeamExternalGroupMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type TeamExternalGroupOutput struct{ *pulumi.OutputState }
 
 func (TeamExternalGroupOutput) ElementType() reflect.Type {
@@ -215,14 +234,20 @@ func (o TeamExternalGroupOutput) ToTeamExternalGroupOutputWithContext(ctx contex
 	return o
 }
 
+func (o TeamExternalGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*TeamExternalGroup] {
+	return pulumix.Output[*TeamExternalGroup]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The team external groups list
 func (o TeamExternalGroupOutput) Groups() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *TeamExternalGroup) pulumi.StringArrayOutput { return v.Groups }).(pulumi.StringArrayOutput)
 }
 
 // The Team ID
-func (o TeamExternalGroupOutput) TeamId() pulumi.IntOutput {
-	return o.ApplyT(func(v *TeamExternalGroup) pulumi.IntOutput { return v.TeamId }).(pulumi.IntOutput)
+func (o TeamExternalGroupOutput) TeamId() pulumi.StringOutput {
+	return o.ApplyT(func(v *TeamExternalGroup) pulumi.StringOutput { return v.TeamId }).(pulumi.StringOutput)
 }
 
 type TeamExternalGroupArrayOutput struct{ *pulumi.OutputState }
@@ -237,6 +262,12 @@ func (o TeamExternalGroupArrayOutput) ToTeamExternalGroupArrayOutput() TeamExter
 
 func (o TeamExternalGroupArrayOutput) ToTeamExternalGroupArrayOutputWithContext(ctx context.Context) TeamExternalGroupArrayOutput {
 	return o
+}
+
+func (o TeamExternalGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*TeamExternalGroup] {
+	return pulumix.Output[[]*TeamExternalGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o TeamExternalGroupArrayOutput) Index(i pulumi.IntInput) TeamExternalGroupOutput {
@@ -257,6 +288,12 @@ func (o TeamExternalGroupMapOutput) ToTeamExternalGroupMapOutput() TeamExternalG
 
 func (o TeamExternalGroupMapOutput) ToTeamExternalGroupMapOutputWithContext(ctx context.Context) TeamExternalGroupMapOutput {
 	return o
+}
+
+func (o TeamExternalGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*TeamExternalGroup] {
+	return pulumix.Output[map[string]*TeamExternalGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o TeamExternalGroupMapOutput) MapIndex(k pulumi.StringInput) TeamExternalGroupOutput {

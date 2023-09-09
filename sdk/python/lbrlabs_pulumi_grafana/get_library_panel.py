@@ -31,8 +31,8 @@ class GetLibraryPanelResult:
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
-        if folder_id and not isinstance(folder_id, int):
-            raise TypeError("Expected argument 'folder_id' to be a int")
+        if folder_id and not isinstance(folder_id, str):
+            raise TypeError("Expected argument 'folder_id' to be a str")
         pulumi.set(__self__, "folder_id", folder_id)
         if folder_name and not isinstance(folder_name, str):
             raise TypeError("Expected argument 'folder_name' to be a str")
@@ -94,7 +94,7 @@ class GetLibraryPanelResult:
 
     @property
     @pulumi.getter(name="folderId")
-    def folder_id(self) -> int:
+    def folder_id(self) -> str:
         """
         ID of the folder where the library panel is stored.
         """

@@ -52,13 +52,13 @@ public final class RoleAssignmentArgs extends com.pulumi.resources.ResourceArgs 
      * 
      */
     @Import(name="teams")
-    private @Nullable Output<List<Integer>> teams;
+    private @Nullable Output<List<String>> teams;
 
     /**
      * @return IDs of teams that the role should be assigned to.
      * 
      */
-    public Optional<Output<List<Integer>>> teams() {
+    public Optional<Output<List<String>>> teams() {
         return Optional.ofNullable(this.teams);
     }
 
@@ -162,7 +162,7 @@ public final class RoleAssignmentArgs extends com.pulumi.resources.ResourceArgs 
          * @return builder
          * 
          */
-        public Builder teams(@Nullable Output<List<Integer>> teams) {
+        public Builder teams(@Nullable Output<List<String>> teams) {
             $.teams = teams;
             return this;
         }
@@ -173,7 +173,7 @@ public final class RoleAssignmentArgs extends com.pulumi.resources.ResourceArgs 
          * @return builder
          * 
          */
-        public Builder teams(List<Integer> teams) {
+        public Builder teams(List<String> teams) {
             return teams(Output.of(teams));
         }
 
@@ -183,7 +183,7 @@ public final class RoleAssignmentArgs extends com.pulumi.resources.ResourceArgs 
          * @return builder
          * 
          */
-        public Builder teams(Integer... teams) {
+        public Builder teams(String... teams) {
             return teams(List.of(teams));
         }
 

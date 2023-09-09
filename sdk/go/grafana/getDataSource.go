@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get details about a Grafana Datasource querying by either name, uid or ID
@@ -71,7 +73,7 @@ import (
 //
 // ```
 func LookupDataSource(ctx *pulumi.Context, args *LookupDataSourceArgs, opts ...pulumi.InvokeOption) (*LookupDataSourceResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDataSourceResult
 	err := ctx.Invoke("grafana:index/getDataSource:getDataSource", args, &rv, opts...)
 	if err != nil {
@@ -85,7 +87,9 @@ type LookupDataSourceArgs struct {
 	// The ID of this resource.
 	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`
-	Uid  *string `pulumi:"uid"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
+	Uid   *string `pulumi:"uid"`
 }
 
 // A collection of values returned by getDataSource.
@@ -105,6 +109,8 @@ type LookupDataSourceResult struct {
 	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	JsonDataEncoded string `pulumi:"jsonDataEncoded"`
 	Name            string `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The data source type. Must be one of the supported data source keywords.
 	Type string `pulumi:"type"`
 	Uid  string `pulumi:"uid"`
@@ -132,7 +138,9 @@ type LookupDataSourceOutputArgs struct {
 	// The ID of this resource.
 	Id   pulumi.StringPtrInput `pulumi:"id"`
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	Uid  pulumi.StringPtrInput `pulumi:"uid"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
+	Uid   pulumi.StringPtrInput `pulumi:"uid"`
 }
 
 func (LookupDataSourceOutputArgs) ElementType() reflect.Type {
@@ -152,6 +160,12 @@ func (o LookupDataSourceResultOutput) ToLookupDataSourceResultOutput() LookupDat
 
 func (o LookupDataSourceResultOutput) ToLookupDataSourceResultOutputWithContext(ctx context.Context) LookupDataSourceResultOutput {
 	return o
+}
+
+func (o LookupDataSourceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDataSourceResult] {
+	return pulumix.Output[LookupDataSourceResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The method by which Grafana will access the data source: `proxy` or `direct`.
@@ -191,6 +205,11 @@ func (o LookupDataSourceResultOutput) JsonDataEncoded() pulumi.StringOutput {
 
 func (o LookupDataSourceResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDataSourceResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o LookupDataSourceResultOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDataSourceResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // The data source type. Must be one of the supported data source keywords.

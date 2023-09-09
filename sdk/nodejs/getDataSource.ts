@@ -47,6 +47,7 @@ export function getDataSource(args?: GetDataSourceArgs, opts?: pulumi.InvokeOpti
     return pulumi.runtime.invoke("grafana:index/getDataSource:getDataSource", {
         "id": args.id,
         "name": args.name,
+        "orgId": args.orgId,
         "uid": args.uid,
     }, opts);
 }
@@ -60,6 +61,10 @@ export interface GetDataSourceArgs {
      */
     id?: string;
     name?: string;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: string;
     uid?: string;
 }
 
@@ -96,6 +101,10 @@ export interface GetDataSourceResult {
      */
     readonly jsonDataEncoded: string;
     readonly name: string;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    readonly orgId?: string;
     /**
      * The data source type. Must be one of the supported data source keywords.
      */
@@ -159,5 +168,9 @@ export interface GetDataSourceOutputArgs {
      */
     id?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     uid?: pulumi.Input<string>;
 }

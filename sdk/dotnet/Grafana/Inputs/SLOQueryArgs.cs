@@ -13,8 +13,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class SLOQueryArgs : global::Pulumi.ResourceArgs
     {
-        [Input("freeform", required: true)]
-        public Input<Inputs.SLOQueryFreeformArgs> Freeform { get; set; } = null!;
+        [Input("freeform")]
+        public Input<Inputs.SLOQueryFreeformArgs>? Freeform { get; set; }
+
+        [Input("ratio")]
+        public Input<Inputs.SLOQueryRatioArgs>? Ratio { get; set; }
 
         /// <summary>
         /// Query type must be one of: "freeform", "query", "ratio", or "threshold"

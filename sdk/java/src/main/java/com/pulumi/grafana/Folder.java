@@ -80,6 +80,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="grafana:index/folder:Folder")
 public class Folder extends com.pulumi.resources.CustomResource {
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Export(name="orgId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Output<Optional<String>> orgId() {
+        return Codegen.optional(this.orgId);
+    }
+    /**
      * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
      * 
      */

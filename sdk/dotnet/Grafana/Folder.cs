@@ -62,6 +62,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public partial class Folder : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
+
+        /// <summary>
         /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
         /// </summary>
         [Output("preventDestroyIfNotEmpty")]
@@ -133,6 +139,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class FolderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
+        /// <summary>
         /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
         /// </summary>
         [Input("preventDestroyIfNotEmpty")]
@@ -158,6 +170,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class FolderState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
         /// <summary>
         /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
         /// </summary>

@@ -16,29 +16,6 @@ public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final ApiKeyArgs Empty = new ApiKeyArgs();
 
-    /**
-     * Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
-     * 
-     * @deprecated
-     * Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
-     * 
-     */
-    @Deprecated /* Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead */
-    @Import(name="cloudStackSlug")
-    private @Nullable Output<String> cloudStackSlug;
-
-    /**
-     * @return Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
-     * 
-     * @deprecated
-     * Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
-     * 
-     */
-    @Deprecated /* Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead */
-    public Optional<Output<String>> cloudStackSlug() {
-        return Optional.ofNullable(this.cloudStackSlug);
-    }
-
     @Import(name="name")
     private @Nullable Output<String> name;
 
@@ -78,7 +55,6 @@ public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
     private ApiKeyArgs() {}
 
     private ApiKeyArgs(ApiKeyArgs $) {
-        this.cloudStackSlug = $.cloudStackSlug;
         this.name = $.name;
         this.orgId = $.orgId;
         this.role = $.role;
@@ -101,35 +77,6 @@ public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(ApiKeyArgs defaults) {
             $ = new ApiKeyArgs(Objects.requireNonNull(defaults));
-        }
-
-        /**
-         * @param cloudStackSlug Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
-         * 
-         */
-        @Deprecated /* Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead */
-        public Builder cloudStackSlug(@Nullable Output<String> cloudStackSlug) {
-            $.cloudStackSlug = cloudStackSlug;
-            return this;
-        }
-
-        /**
-         * @param cloudStackSlug Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
-         * 
-         */
-        @Deprecated /* Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead */
-        public Builder cloudStackSlug(String cloudStackSlug) {
-            return cloudStackSlug(Output.of(cloudStackSlug));
         }
 
         public Builder name(@Nullable Output<String> name) {

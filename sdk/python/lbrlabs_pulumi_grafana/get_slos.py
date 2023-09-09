@@ -62,6 +62,7 @@ def get_slos(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSlosRes
 
     * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
     * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+    * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

@@ -83,12 +83,6 @@ export class Dashboard extends pulumi.CustomResource {
      */
     public readonly overwrite!: pulumi.Output<boolean | undefined>;
     /**
-     * URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
-     *
-     * @deprecated Use `uid` instead.
-     */
-    public /*out*/ readonly slug!: pulumi.Output<string>;
-    /**
      * The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
      */
     public /*out*/ readonly uid!: pulumi.Output<string>;
@@ -120,7 +114,6 @@ export class Dashboard extends pulumi.CustomResource {
             resourceInputs["message"] = state ? state.message : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["overwrite"] = state ? state.overwrite : undefined;
-            resourceInputs["slug"] = state ? state.slug : undefined;
             resourceInputs["uid"] = state ? state.uid : undefined;
             resourceInputs["url"] = state ? state.url : undefined;
             resourceInputs["version"] = state ? state.version : undefined;
@@ -135,7 +128,6 @@ export class Dashboard extends pulumi.CustomResource {
             resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["overwrite"] = args ? args.overwrite : undefined;
             resourceInputs["dashboardId"] = undefined /*out*/;
-            resourceInputs["slug"] = undefined /*out*/;
             resourceInputs["uid"] = undefined /*out*/;
             resourceInputs["url"] = undefined /*out*/;
             resourceInputs["version"] = undefined /*out*/;
@@ -173,12 +165,6 @@ export interface DashboardState {
      * Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
      */
     overwrite?: pulumi.Input<boolean>;
-    /**
-     * URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
-     *
-     * @deprecated Use `uid` instead.
-     */
-    slug?: pulumi.Input<string>;
     /**
      * The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
      */

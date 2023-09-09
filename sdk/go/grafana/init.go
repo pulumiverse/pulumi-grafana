@@ -7,6 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -20,14 +21,10 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "grafana:index/alertNotification:AlertNotification":
-		r = &AlertNotification{}
 	case "grafana:index/annotation:Annotation":
 		r = &Annotation{}
 	case "grafana:index/apiKey:ApiKey":
 		r = &ApiKey{}
-	case "grafana:index/builtinRoleAssignment:BuiltinRoleAssignment":
-		r = &BuiltinRoleAssignment{}
 	case "grafana:index/cloudAccessPolicy:CloudAccessPolicy":
 		r = &CloudAccessPolicy{}
 	case "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken":
@@ -118,8 +115,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Team{}
 	case "grafana:index/teamExternalGroup:TeamExternalGroup":
 		r = &TeamExternalGroup{}
-	case "grafana:index/teamPreferences:TeamPreferences":
-		r = &TeamPreferences{}
 	case "grafana:index/user:User":
 		r = &User{}
 	default:
@@ -149,12 +144,10 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 }
 
 func init() {
-	version, _ := PkgVersion()
-	pulumi.RegisterResourceModule(
-		"grafana",
-		"index/alertNotification",
-		&module{version},
-	)
+	version, err := internal.PkgVersion()
+	if err != nil {
+		version = semver.Version{Major: 1}
+	}
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"index/annotation",
@@ -163,11 +156,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"index/apiKey",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"grafana",
-		"index/builtinRoleAssignment",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -393,11 +381,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"index/teamExternalGroup",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"grafana",
-		"index/teamPreferences",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

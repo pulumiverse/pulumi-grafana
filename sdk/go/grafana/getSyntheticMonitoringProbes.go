@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Data source for retrieving all probes.
@@ -36,7 +38,7 @@ import (
 //
 // ```
 func GetSyntheticMonitoringProbes(ctx *pulumi.Context, args *GetSyntheticMonitoringProbesArgs, opts ...pulumi.InvokeOption) (*GetSyntheticMonitoringProbesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSyntheticMonitoringProbesResult
 	err := ctx.Invoke("grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes", args, &rv, opts...)
 	if err != nil {
@@ -97,6 +99,12 @@ func (o GetSyntheticMonitoringProbesResultOutput) ToGetSyntheticMonitoringProbes
 
 func (o GetSyntheticMonitoringProbesResultOutput) ToGetSyntheticMonitoringProbesResultOutputWithContext(ctx context.Context) GetSyntheticMonitoringProbesResultOutput {
 	return o
+}
+
+func (o GetSyntheticMonitoringProbesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSyntheticMonitoringProbesResult] {
+	return pulumix.Output[GetSyntheticMonitoringProbesResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // If true, only probes that are not deprecated will be returned. Defaults to `true`.

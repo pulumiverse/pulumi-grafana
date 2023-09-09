@@ -11,8 +11,9 @@ import com.pulumi.grafana.DataSourcePermissionArgs;
 import com.pulumi.grafana.Utilities;
 import com.pulumi.grafana.inputs.DataSourcePermissionState;
 import com.pulumi.grafana.outputs.DataSourcePermissionPermission;
-import java.lang.Integer;
+import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -28,11 +29,10 @@ import javax.annotation.Nullable;
  * import com.pulumi.grafana.Team;
  * import com.pulumi.grafana.DataSource;
  * import com.pulumi.grafana.DataSourceArgs;
- * import com.pulumi.grafana.inputs.DataSourceJsonDataArgs;
- * import com.pulumi.grafana.inputs.DataSourceSecureJsonDataArgs;
  * import com.pulumi.grafana.DataSourcePermission;
  * import com.pulumi.grafana.DataSourcePermissionArgs;
  * import com.pulumi.grafana.inputs.DataSourcePermissionPermissionArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -50,14 +50,16 @@ import javax.annotation.Nullable;
  * 
  *         var foo = new DataSource(&#34;foo&#34;, DataSourceArgs.builder()        
  *             .type(&#34;cloudwatch&#34;)
- *             .jsonDatas(DataSourceJsonDataArgs.builder()
- *                 .defaultRegion(&#34;us-east-1&#34;)
- *                 .authType(&#34;keys&#34;)
- *                 .build())
- *             .secureJsonDatas(DataSourceSecureJsonDataArgs.builder()
- *                 .accessKey(&#34;123&#34;)
- *                 .secretKey(&#34;456&#34;)
- *                 .build())
+ *             .jsonDataEncoded(serializeJson(
+ *                 jsonObject(
+ *                     jsonProperty(&#34;defaultRegion&#34;, &#34;us-east-1&#34;),
+ *                     jsonProperty(&#34;authType&#34;, &#34;keys&#34;)
+ *                 )))
+ *             .secureJsonDataEncoded(serializeJson(
+ *                 jsonObject(
+ *                     jsonProperty(&#34;accessKey&#34;, &#34;123&#34;),
+ *                     jsonProperty(&#34;secretKey&#34;, &#34;456&#34;)
+ *                 )))
  *             .build());
  * 
  *         var fooPermissions = new DataSourcePermission(&#34;fooPermissions&#34;, DataSourcePermissionArgs.builder()        
@@ -88,15 +90,29 @@ public class DataSourcePermission extends com.pulumi.resources.CustomResource {
      * ID of the datasource to apply permissions to.
      * 
      */
-    @Export(name="datasourceId", refs={Integer.class}, tree="[0]")
-    private Output<Integer> datasourceId;
+    @Export(name="datasourceId", refs={String.class}, tree="[0]")
+    private Output<String> datasourceId;
 
     /**
      * @return ID of the datasource to apply permissions to.
      * 
      */
-    public Output<Integer> datasourceId() {
+    public Output<String> datasourceId() {
         return this.datasourceId;
+    }
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Export(name="orgId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Output<Optional<String>> orgId() {
+        return Codegen.optional(this.orgId);
     }
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.

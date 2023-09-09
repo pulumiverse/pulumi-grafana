@@ -24,8 +24,10 @@ import javax.annotation.Nullable;
  * 
  * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
  * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+ * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
  * 
  * ## Example Usage
+ * ### Basic
  * 
  * ```java
  * package generated_program;
@@ -56,18 +58,20 @@ import javax.annotation.Nullable;
  *         var test = new SLO(&#34;test&#34;, SLOArgs.builder()        
  *             .alertings(SLOAlertingArgs.builder()
  *                 .fastburns(SLOAlertingFastburnArgs.builder()
- *                     .annotation(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
- *                     .label(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                     .annotation(                    
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *                     .build())
  *                 .slowburns(SLOAlertingSlowburnArgs.builder()
- *                     .annotation(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
- *                     .label(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                     .annotation(                    
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *                     .build())
  *                 .build())
  *             .description(&#34;Terraform Description&#34;)
  *             .labels(SLOLabelArgs.builder()
- *                 .key(&#34;custom&#34;)
- *                 .value(&#34;value&#34;)
+ *                 .key(&#34;slo&#34;)
+ *                 .value(&#34;terraform&#34;)
  *                 .build())
  *             .objectives(SLOObjectiveArgs.builder()
  *                 .value(0.995)
@@ -84,6 +88,73 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * ### Advanced
+ * 
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.grafana.SLO;
+ * import com.pulumi.grafana.SLOArgs;
+ * import com.pulumi.grafana.inputs.SLOAlertingArgs;
+ * import com.pulumi.grafana.inputs.SLOLabelArgs;
+ * import com.pulumi.grafana.inputs.SLOObjectiveArgs;
+ * import com.pulumi.grafana.inputs.SLOQueryArgs;
+ * import com.pulumi.grafana.inputs.SLOQueryRatioArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new SLO(&#34;test&#34;, SLOArgs.builder()        
+ *             .alertings(SLOAlertingArgs.builder()
+ *                 .fastburns(SLOAlertingFastburnArgs.builder()
+ *                     .annotation(                    
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                     .label(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                     .build())
+ *                 .slowburns(SLOAlertingSlowburnArgs.builder()
+ *                     .annotation(                    
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                     .label(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                     .build())
+ *                 .build())
+ *             .description(&#34;Complex Resource - Terraform Ratio Query Description&#34;)
+ *             .labels(SLOLabelArgs.builder()
+ *                 .key(&#34;slo&#34;)
+ *                 .value(&#34;terraform&#34;)
+ *                 .build())
+ *             .objectives(SLOObjectiveArgs.builder()
+ *                 .value(0.995)
+ *                 .window(&#34;30d&#34;)
+ *                 .build())
+ *             .queries(SLOQueryArgs.builder()
+ *                 .ratio(SLOQueryRatioArgs.builder()
+ *                     .groupByLabels(                    
+ *                         &#34;job&#34;,
+ *                         &#34;instance&#34;)
+ *                     .successMetric(&#34;kubelet_http_requests_total{status!~\&#34;5..\&#34;}&#34;)
+ *                     .totalMetric(&#34;kubelet_http_requests_total&#34;)
+ *                     .build())
+ *                 .type(&#34;ratio&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
  * 
  */
 @ResourceType(type="grafana:index/sLO:SLO")
@@ -93,7 +164,7 @@ public class SLO extends com.pulumi.resources.CustomResource {
      * 			time window associated with the SLO. Grafana SLOs can generate
      * 			alerts when the short-term error budget burn is very high, the
      * 			long-term error budget burn rate is high, or when the remaining
-     * 			error budget is below a certain threshold.
+     * 			error budget is below a certain threshold. Annotations and Labels support templating.
      * 
      */
     @Export(name="alertings", refs={List.class,SLOAlerting.class}, tree="[0,1]")
@@ -104,7 +175,7 @@ public class SLO extends com.pulumi.resources.CustomResource {
      * 			time window associated with the SLO. Grafana SLOs can generate
      * 			alerts when the short-term error budget burn is very high, the
      * 			long-term error budget burn rate is high, or when the remaining
-     * 			error budget is below a certain threshold.
+     * 			error budget is below a certain threshold. Annotations and Labels support templating.
      * 
      */
     public Output<Optional<List<SLOAlerting>>> alertings() {
@@ -125,14 +196,14 @@ public class SLO extends com.pulumi.resources.CustomResource {
         return this.description;
     }
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
      * 
      */
     @Export(name="labels", refs={List.class,SLOLabel.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SLOLabel>> labels;
 
     /**
-     * @return Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+     * @return Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
      * 
      */
     public Output<Optional<List<SLOLabel>>> labels() {

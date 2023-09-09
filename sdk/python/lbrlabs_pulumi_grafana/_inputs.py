@@ -10,7 +10,6 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
-    'BuiltinRoleAssignmentRoleArgs',
     'CloudAccessPolicyRealmArgs',
     'CloudAccessPolicyRealmLabelPolicyArgs',
     'ContactPointAlertmanagerArgs',
@@ -31,10 +30,7 @@ __all__ = [
     'ContactPointWebhookArgs',
     'ContactPointWecomArgs',
     'DashboardPermissionPermissionArgs',
-    'DataSourceJsonDataArgs',
-    'DataSourceJsonDataDerivedFieldArgs',
     'DataSourcePermissionPermissionArgs',
-    'DataSourceSecureJsonDataArgs',
     'FolderPermissionPermissionArgs',
     'MachineLearningHolidayCustomPeriodArgs',
     'MachineLearningOutlierDetectorAlgorithmArgs',
@@ -85,6 +81,7 @@ __all__ = [
     'SLOObjectiveArgs',
     'SLOQueryArgs',
     'SLOQueryFreeformArgs',
+    'SLOQueryRatioArgs',
     'ServiceAccountPermissionPermissionArgs',
     'SyntheticMonitoringCheckSettingsArgs',
     'SyntheticMonitoringCheckSettingsDnsArgs',
@@ -102,45 +99,8 @@ __all__ = [
     'SyntheticMonitoringCheckSettingsTcpTlsConfigArgs',
     'SyntheticMonitoringCheckSettingsTracerouteArgs',
     'TeamPreferencesArgs',
+    'TeamTeamSyncArgs',
 ]
-
-@pulumi.input_type
-class BuiltinRoleAssignmentRoleArgs:
-    def __init__(__self__, *,
-                 uid: pulumi.Input[str],
-                 global_: Optional[pulumi.Input[bool]] = None):
-        """
-        :param pulumi.Input[str] uid: Unique identifier of the role to assign to `builtin_role`.
-        :param pulumi.Input[bool] global_: States whether the assignment is available across all organizations or not. Defaults to `false`.
-        """
-        pulumi.set(__self__, "uid", uid)
-        if global_ is not None:
-            pulumi.set(__self__, "global_", global_)
-
-    @property
-    @pulumi.getter
-    def uid(self) -> pulumi.Input[str]:
-        """
-        Unique identifier of the role to assign to `builtin_role`.
-        """
-        return pulumi.get(self, "uid")
-
-    @uid.setter
-    def uid(self, value: pulumi.Input[str]):
-        pulumi.set(self, "uid", value)
-
-    @property
-    @pulumi.getter(name="global")
-    def global_(self) -> Optional[pulumi.Input[bool]]:
-        """
-        States whether the assignment is available across all organizations or not. Defaults to `false`.
-        """
-        return pulumi.get(self, "global_")
-
-    @global_.setter
-    def global_(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "global_", value)
-
 
 @pulumi.input_type
 class CloudAccessPolicyRealmArgs:
@@ -2627,12 +2587,12 @@ class DashboardPermissionPermissionArgs:
     def __init__(__self__, *,
                  permission: pulumi.Input[str],
                  role: Optional[pulumi.Input[str]] = None,
-                 team_id: Optional[pulumi.Input[int]] = None,
+                 team_id: Optional[pulumi.Input[str]] = None,
                  user_id: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] permission: Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
         :param pulumi.Input[str] role: Manage permissions for `Viewer` or `Editor` roles.
-        :param pulumi.Input[int] team_id: ID of the team to manage permissions for. Defaults to `0`.
+        :param pulumi.Input[str] team_id: ID of the team to manage permissions for. Defaults to `0`.
         :param pulumi.Input[int] user_id: ID of the user to manage permissions for. Defaults to `0`.
         """
         pulumi.set(__self__, "permission", permission)
@@ -2669,14 +2629,14 @@ class DashboardPermissionPermissionArgs:
 
     @property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> Optional[pulumi.Input[int]]:
+    def team_id(self) -> Optional[pulumi.Input[str]]:
         """
         ID of the team to manage permissions for. Defaults to `0`.
         """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
-    def team_id(self, value: Optional[pulumi.Input[int]]):
+    def team_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "team_id", value)
 
     @property
@@ -2693,1030 +2653,16 @@ class DashboardPermissionPermissionArgs:
 
 
 @pulumi.input_type
-class DataSourceJsonDataArgs:
-    def __init__(__self__, *,
-                 alertmanager_uid: Optional[pulumi.Input[str]] = None,
-                 assume_role_arn: Optional[pulumi.Input[str]] = None,
-                 auth_type: Optional[pulumi.Input[str]] = None,
-                 authentication_type: Optional[pulumi.Input[str]] = None,
-                 catalog: Optional[pulumi.Input[str]] = None,
-                 client_email: Optional[pulumi.Input[str]] = None,
-                 client_id: Optional[pulumi.Input[str]] = None,
-                 cloud_name: Optional[pulumi.Input[str]] = None,
-                 conn_max_lifetime: Optional[pulumi.Input[int]] = None,
-                 custom_metrics_namespaces: Optional[pulumi.Input[str]] = None,
-                 database: Optional[pulumi.Input[str]] = None,
-                 default_bucket: Optional[pulumi.Input[str]] = None,
-                 default_project: Optional[pulumi.Input[str]] = None,
-                 default_region: Optional[pulumi.Input[str]] = None,
-                 derived_fields: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourceJsonDataDerivedFieldArgs']]]] = None,
-                 encrypt: Optional[pulumi.Input[str]] = None,
-                 es_version: Optional[pulumi.Input[str]] = None,
-                 external_id: Optional[pulumi.Input[str]] = None,
-                 github_url: Optional[pulumi.Input[str]] = None,
-                 graphite_version: Optional[pulumi.Input[str]] = None,
-                 http_method: Optional[pulumi.Input[str]] = None,
-                 implementation: Optional[pulumi.Input[str]] = None,
-                 interval: Optional[pulumi.Input[str]] = None,
-                 log_level_field: Optional[pulumi.Input[str]] = None,
-                 log_message_field: Optional[pulumi.Input[str]] = None,
-                 manage_alerts: Optional[pulumi.Input[bool]] = None,
-                 max_concurrent_shard_requests: Optional[pulumi.Input[int]] = None,
-                 max_idle_conns: Optional[pulumi.Input[int]] = None,
-                 max_lines: Optional[pulumi.Input[int]] = None,
-                 max_open_conns: Optional[pulumi.Input[int]] = None,
-                 org_slug: Optional[pulumi.Input[str]] = None,
-                 organization: Optional[pulumi.Input[str]] = None,
-                 output_location: Optional[pulumi.Input[str]] = None,
-                 postgres_version: Optional[pulumi.Input[int]] = None,
-                 profile: Optional[pulumi.Input[str]] = None,
-                 query_timeout: Optional[pulumi.Input[str]] = None,
-                 sigv4_assume_role_arn: Optional[pulumi.Input[str]] = None,
-                 sigv4_auth: Optional[pulumi.Input[bool]] = None,
-                 sigv4_auth_type: Optional[pulumi.Input[str]] = None,
-                 sigv4_external_id: Optional[pulumi.Input[str]] = None,
-                 sigv4_profile: Optional[pulumi.Input[str]] = None,
-                 sigv4_region: Optional[pulumi.Input[str]] = None,
-                 ssl_mode: Optional[pulumi.Input[str]] = None,
-                 subscription_id: Optional[pulumi.Input[str]] = None,
-                 tenant_id: Optional[pulumi.Input[str]] = None,
-                 time_field: Optional[pulumi.Input[str]] = None,
-                 time_interval: Optional[pulumi.Input[str]] = None,
-                 timescaledb: Optional[pulumi.Input[bool]] = None,
-                 tls_auth: Optional[pulumi.Input[bool]] = None,
-                 tls_auth_with_ca_cert: Optional[pulumi.Input[bool]] = None,
-                 tls_configuration_method: Optional[pulumi.Input[str]] = None,
-                 tls_skip_verify: Optional[pulumi.Input[bool]] = None,
-                 token_uri: Optional[pulumi.Input[str]] = None,
-                 tracing_datasource_uid: Optional[pulumi.Input[str]] = None,
-                 tsdb_resolution: Optional[pulumi.Input[int]] = None,
-                 tsdb_version: Optional[pulumi.Input[int]] = None,
-                 version: Optional[pulumi.Input[str]] = None,
-                 workgroup: Optional[pulumi.Input[str]] = None,
-                 xpack_enabled: Optional[pulumi.Input[bool]] = None):
-        """
-        :param pulumi.Input[str] alertmanager_uid: (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
-        :param pulumi.Input[str] assume_role_arn: (CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.
-        :param pulumi.Input[str] auth_type: (CloudWatch, Athena) The authentication type used to access the data source.
-        :param pulumi.Input[str] authentication_type: (Stackdriver) The authentication type: `jwt` or `gce`.
-        :param pulumi.Input[str] catalog: (Athena) Athena catalog.
-        :param pulumi.Input[str] client_email: (Stackdriver) Service account email address.
-        :param pulumi.Input[str] client_id: (Azure Monitor) The service account client id.
-        :param pulumi.Input[str] cloud_name: (Azure Monitor) The cloud name.
-        :param pulumi.Input[int] conn_max_lifetime: (MySQL, PostgreSQL, and MSSQL) Maximum amount of time in seconds a connection may be reused (Grafana v5.4+).
-        :param pulumi.Input[str] custom_metrics_namespaces: (CloudWatch) A comma-separated list of custom namespaces to be queried by the CloudWatch data source.
-        :param pulumi.Input[str] database: (Athena) Name of the database within the catalog.
-        :param pulumi.Input[str] default_bucket: (InfluxDB) The default bucket for the data source.
-        :param pulumi.Input[str] default_project: (Stackdriver) The default project for the data source.
-        :param pulumi.Input[str] default_region: (CloudWatch, Athena) The default region for the data source.
-        :param pulumi.Input[Sequence[pulumi.Input['DataSourceJsonDataDerivedFieldArgs']]] derived_fields: (Loki) See https://grafana.com/docs/grafana/latest/datasources/loki/#derived-fields
-        :param pulumi.Input[str] encrypt: (MSSQL) Connection SSL encryption handling: 'disable', 'false' or 'true'.
-        :param pulumi.Input[str] es_version: (Elasticsearch) Elasticsearch semantic version (Grafana v8.0+).
-        :param pulumi.Input[str] external_id: (CloudWatch, Athena) If you are assuming a role in another account, that has been created with an external ID, specify the external ID here.
-        :param pulumi.Input[str] github_url: (Github) Github URL
-        :param pulumi.Input[str] graphite_version: (Graphite) Graphite version.
-        :param pulumi.Input[str] http_method: (Prometheus) HTTP method to use for making requests.
-        :param pulumi.Input[str] implementation: (Alertmanager) Implementation of Alertmanager. Either 'cortex' or 'prometheus'
-        :param pulumi.Input[str] interval: (Elasticsearch) Index date time format. nil(No Pattern), 'Hourly', 'Daily', 'Weekly', 'Monthly' or 'Yearly'.
-        :param pulumi.Input[str] log_level_field: (Elasticsearch) Which field should be used to indicate the priority of the log message.
-        :param pulumi.Input[str] log_message_field: (Elasticsearch) Which field should be used as the log message.
-        :param pulumi.Input[bool] manage_alerts: (Prometheus) Manage alerts.
-        :param pulumi.Input[int] max_concurrent_shard_requests: (Elasticsearch) Maximum number of concurrent shard requests.
-        :param pulumi.Input[int] max_idle_conns: (MySQL, PostgreSQL and MSSQL) Maximum number of connections in the idle connection pool (Grafana v5.4+).
-        :param pulumi.Input[int] max_lines: (Loki) Upper limit for the number of log lines returned by Loki
-        :param pulumi.Input[int] max_open_conns: (MySQL, PostgreSQL and MSSQL) Maximum number of open connections to the database (Grafana v5.4+).
-        :param pulumi.Input[str] org_slug: (Sentry) Organization slug.
-        :param pulumi.Input[str] organization: (InfluxDB) An organization is a workspace for a group of users. All dashboards, tasks, buckets, members, etc., belong to an organization.
-        :param pulumi.Input[str] output_location: (Athena) AWS S3 bucket to store execution outputs. If not specified, the default query result location from the Workgroup configuration will be used.
-        :param pulumi.Input[int] postgres_version: (PostgreSQL) Postgres version as a number (903/904/905/906/1000) meaning v9.3, v9.4, etc.
-        :param pulumi.Input[str] profile: (CloudWatch, Athena) The credentials profile name to use when authentication type is set as 'Credentials file'.
-        :param pulumi.Input[str] query_timeout: (Prometheus) Timeout for queries made to the Prometheus data source in seconds.
-        :param pulumi.Input[str] sigv4_assume_role_arn: (Elasticsearch and Prometheus) Specifies the ARN of an IAM role to assume.
-        :param pulumi.Input[bool] sigv4_auth: (Elasticsearch and Prometheus) Enable usage of SigV4.
-        :param pulumi.Input[str] sigv4_auth_type: (Elasticsearch and Prometheus) The Sigv4 authentication provider to use: 'default', 'credentials' or 'keys' (AMG: 'workspace-iam-role').
-        :param pulumi.Input[str] sigv4_external_id: (Elasticsearch and Prometheus) When assuming a role in another account use this external ID.
-        :param pulumi.Input[str] sigv4_profile: (Elasticsearch and Prometheus) Credentials profile name, leave blank for default.
-        :param pulumi.Input[str] sigv4_region: (Elasticsearch and Prometheus) AWS region to use for Sigv4.
-        :param pulumi.Input[str] ssl_mode: (PostgreSQL) SSLmode. 'disable', 'require', 'verify-ca' or 'verify-full'.
-        :param pulumi.Input[str] subscription_id: (Azure Monitor) The subscription id
-        :param pulumi.Input[str] tenant_id: (Azure Monitor) Service account tenant ID.
-        :param pulumi.Input[str] time_field: (Elasticsearch) Which field that should be used as timestamp.
-        :param pulumi.Input[str] time_interval: (Prometheus, Elasticsearch, InfluxDB, MySQL, PostgreSQL, and MSSQL) Lowest interval/step value that should be used for this data source. Sometimes called "Scrape Interval" in the Grafana UI.
-        :param pulumi.Input[bool] timescaledb: (PostgreSQL) Enable usage of TimescaleDB extension.
-        :param pulumi.Input[bool] tls_auth: (All) Enable TLS authentication using client cert configured in secure json data.
-        :param pulumi.Input[bool] tls_auth_with_ca_cert: (All) Enable TLS authentication using CA cert.
-        :param pulumi.Input[str] tls_configuration_method: (All) SSL Certificate configuration, either by ‘file-path’ or ‘file-content’.
-        :param pulumi.Input[bool] tls_skip_verify: (All) Controls whether a client verifies the server’s certificate chain and host name.
-        :param pulumi.Input[str] token_uri: (Stackdriver) The token URI used, provided in the service account key.
-        :param pulumi.Input[str] tracing_datasource_uid: (Cloudwatch) The X-Ray datasource uid to associate to this Cloudwatch datasource.
-        :param pulumi.Input[int] tsdb_resolution: (OpenTSDB) Resolution.
-        :param pulumi.Input[int] tsdb_version: (OpenTSDB) Version.
-        :param pulumi.Input[str] version: (InfluxDB) InfluxQL or Flux.
-        :param pulumi.Input[str] workgroup: (Athena) Workgroup to use.
-        :param pulumi.Input[bool] xpack_enabled: (Elasticsearch) Enable X-Pack support.
-        """
-        if alertmanager_uid is not None:
-            pulumi.set(__self__, "alertmanager_uid", alertmanager_uid)
-        if assume_role_arn is not None:
-            pulumi.set(__self__, "assume_role_arn", assume_role_arn)
-        if auth_type is not None:
-            pulumi.set(__self__, "auth_type", auth_type)
-        if authentication_type is not None:
-            pulumi.set(__self__, "authentication_type", authentication_type)
-        if catalog is not None:
-            pulumi.set(__self__, "catalog", catalog)
-        if client_email is not None:
-            pulumi.set(__self__, "client_email", client_email)
-        if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
-        if cloud_name is not None:
-            pulumi.set(__self__, "cloud_name", cloud_name)
-        if conn_max_lifetime is not None:
-            pulumi.set(__self__, "conn_max_lifetime", conn_max_lifetime)
-        if custom_metrics_namespaces is not None:
-            pulumi.set(__self__, "custom_metrics_namespaces", custom_metrics_namespaces)
-        if database is not None:
-            pulumi.set(__self__, "database", database)
-        if default_bucket is not None:
-            pulumi.set(__self__, "default_bucket", default_bucket)
-        if default_project is not None:
-            pulumi.set(__self__, "default_project", default_project)
-        if default_region is not None:
-            pulumi.set(__self__, "default_region", default_region)
-        if derived_fields is not None:
-            pulumi.set(__self__, "derived_fields", derived_fields)
-        if encrypt is not None:
-            pulumi.set(__self__, "encrypt", encrypt)
-        if es_version is not None:
-            pulumi.set(__self__, "es_version", es_version)
-        if external_id is not None:
-            pulumi.set(__self__, "external_id", external_id)
-        if github_url is not None:
-            pulumi.set(__self__, "github_url", github_url)
-        if graphite_version is not None:
-            pulumi.set(__self__, "graphite_version", graphite_version)
-        if http_method is not None:
-            pulumi.set(__self__, "http_method", http_method)
-        if implementation is not None:
-            pulumi.set(__self__, "implementation", implementation)
-        if interval is not None:
-            pulumi.set(__self__, "interval", interval)
-        if log_level_field is not None:
-            pulumi.set(__self__, "log_level_field", log_level_field)
-        if log_message_field is not None:
-            pulumi.set(__self__, "log_message_field", log_message_field)
-        if manage_alerts is not None:
-            pulumi.set(__self__, "manage_alerts", manage_alerts)
-        if max_concurrent_shard_requests is not None:
-            pulumi.set(__self__, "max_concurrent_shard_requests", max_concurrent_shard_requests)
-        if max_idle_conns is not None:
-            pulumi.set(__self__, "max_idle_conns", max_idle_conns)
-        if max_lines is not None:
-            pulumi.set(__self__, "max_lines", max_lines)
-        if max_open_conns is not None:
-            pulumi.set(__self__, "max_open_conns", max_open_conns)
-        if org_slug is not None:
-            pulumi.set(__self__, "org_slug", org_slug)
-        if organization is not None:
-            pulumi.set(__self__, "organization", organization)
-        if output_location is not None:
-            pulumi.set(__self__, "output_location", output_location)
-        if postgres_version is not None:
-            pulumi.set(__self__, "postgres_version", postgres_version)
-        if profile is not None:
-            pulumi.set(__self__, "profile", profile)
-        if query_timeout is not None:
-            pulumi.set(__self__, "query_timeout", query_timeout)
-        if sigv4_assume_role_arn is not None:
-            pulumi.set(__self__, "sigv4_assume_role_arn", sigv4_assume_role_arn)
-        if sigv4_auth is not None:
-            pulumi.set(__self__, "sigv4_auth", sigv4_auth)
-        if sigv4_auth_type is not None:
-            pulumi.set(__self__, "sigv4_auth_type", sigv4_auth_type)
-        if sigv4_external_id is not None:
-            pulumi.set(__self__, "sigv4_external_id", sigv4_external_id)
-        if sigv4_profile is not None:
-            pulumi.set(__self__, "sigv4_profile", sigv4_profile)
-        if sigv4_region is not None:
-            pulumi.set(__self__, "sigv4_region", sigv4_region)
-        if ssl_mode is not None:
-            pulumi.set(__self__, "ssl_mode", ssl_mode)
-        if subscription_id is not None:
-            pulumi.set(__self__, "subscription_id", subscription_id)
-        if tenant_id is not None:
-            pulumi.set(__self__, "tenant_id", tenant_id)
-        if time_field is not None:
-            pulumi.set(__self__, "time_field", time_field)
-        if time_interval is not None:
-            pulumi.set(__self__, "time_interval", time_interval)
-        if timescaledb is not None:
-            pulumi.set(__self__, "timescaledb", timescaledb)
-        if tls_auth is not None:
-            pulumi.set(__self__, "tls_auth", tls_auth)
-        if tls_auth_with_ca_cert is not None:
-            pulumi.set(__self__, "tls_auth_with_ca_cert", tls_auth_with_ca_cert)
-        if tls_configuration_method is not None:
-            pulumi.set(__self__, "tls_configuration_method", tls_configuration_method)
-        if tls_skip_verify is not None:
-            pulumi.set(__self__, "tls_skip_verify", tls_skip_verify)
-        if token_uri is not None:
-            pulumi.set(__self__, "token_uri", token_uri)
-        if tracing_datasource_uid is not None:
-            pulumi.set(__self__, "tracing_datasource_uid", tracing_datasource_uid)
-        if tsdb_resolution is not None:
-            pulumi.set(__self__, "tsdb_resolution", tsdb_resolution)
-        if tsdb_version is not None:
-            pulumi.set(__self__, "tsdb_version", tsdb_version)
-        if version is not None:
-            pulumi.set(__self__, "version", version)
-        if workgroup is not None:
-            pulumi.set(__self__, "workgroup", workgroup)
-        if xpack_enabled is not None:
-            pulumi.set(__self__, "xpack_enabled", xpack_enabled)
-
-    @property
-    @pulumi.getter(name="alertmanagerUid")
-    def alertmanager_uid(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
-        """
-        return pulumi.get(self, "alertmanager_uid")
-
-    @alertmanager_uid.setter
-    def alertmanager_uid(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "alertmanager_uid", value)
-
-    @property
-    @pulumi.getter(name="assumeRoleArn")
-    def assume_role_arn(self) -> Optional[pulumi.Input[str]]:
-        """
-        (CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.
-        """
-        return pulumi.get(self, "assume_role_arn")
-
-    @assume_role_arn.setter
-    def assume_role_arn(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "assume_role_arn", value)
-
-    @property
-    @pulumi.getter(name="authType")
-    def auth_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        (CloudWatch, Athena) The authentication type used to access the data source.
-        """
-        return pulumi.get(self, "auth_type")
-
-    @auth_type.setter
-    def auth_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "auth_type", value)
-
-    @property
-    @pulumi.getter(name="authenticationType")
-    def authentication_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Stackdriver) The authentication type: `jwt` or `gce`.
-        """
-        return pulumi.get(self, "authentication_type")
-
-    @authentication_type.setter
-    def authentication_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "authentication_type", value)
-
-    @property
-    @pulumi.getter
-    def catalog(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Athena) Athena catalog.
-        """
-        return pulumi.get(self, "catalog")
-
-    @catalog.setter
-    def catalog(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "catalog", value)
-
-    @property
-    @pulumi.getter(name="clientEmail")
-    def client_email(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Stackdriver) Service account email address.
-        """
-        return pulumi.get(self, "client_email")
-
-    @client_email.setter
-    def client_email(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "client_email", value)
-
-    @property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Azure Monitor) The service account client id.
-        """
-        return pulumi.get(self, "client_id")
-
-    @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "client_id", value)
-
-    @property
-    @pulumi.getter(name="cloudName")
-    def cloud_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Azure Monitor) The cloud name.
-        """
-        return pulumi.get(self, "cloud_name")
-
-    @cloud_name.setter
-    def cloud_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "cloud_name", value)
-
-    @property
-    @pulumi.getter(name="connMaxLifetime")
-    def conn_max_lifetime(self) -> Optional[pulumi.Input[int]]:
-        """
-        (MySQL, PostgreSQL, and MSSQL) Maximum amount of time in seconds a connection may be reused (Grafana v5.4+).
-        """
-        return pulumi.get(self, "conn_max_lifetime")
-
-    @conn_max_lifetime.setter
-    def conn_max_lifetime(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "conn_max_lifetime", value)
-
-    @property
-    @pulumi.getter(name="customMetricsNamespaces")
-    def custom_metrics_namespaces(self) -> Optional[pulumi.Input[str]]:
-        """
-        (CloudWatch) A comma-separated list of custom namespaces to be queried by the CloudWatch data source.
-        """
-        return pulumi.get(self, "custom_metrics_namespaces")
-
-    @custom_metrics_namespaces.setter
-    def custom_metrics_namespaces(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "custom_metrics_namespaces", value)
-
-    @property
-    @pulumi.getter
-    def database(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Athena) Name of the database within the catalog.
-        """
-        return pulumi.get(self, "database")
-
-    @database.setter
-    def database(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "database", value)
-
-    @property
-    @pulumi.getter(name="defaultBucket")
-    def default_bucket(self) -> Optional[pulumi.Input[str]]:
-        """
-        (InfluxDB) The default bucket for the data source.
-        """
-        return pulumi.get(self, "default_bucket")
-
-    @default_bucket.setter
-    def default_bucket(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "default_bucket", value)
-
-    @property
-    @pulumi.getter(name="defaultProject")
-    def default_project(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Stackdriver) The default project for the data source.
-        """
-        return pulumi.get(self, "default_project")
-
-    @default_project.setter
-    def default_project(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "default_project", value)
-
-    @property
-    @pulumi.getter(name="defaultRegion")
-    def default_region(self) -> Optional[pulumi.Input[str]]:
-        """
-        (CloudWatch, Athena) The default region for the data source.
-        """
-        return pulumi.get(self, "default_region")
-
-    @default_region.setter
-    def default_region(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "default_region", value)
-
-    @property
-    @pulumi.getter(name="derivedFields")
-    def derived_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DataSourceJsonDataDerivedFieldArgs']]]]:
-        """
-        (Loki) See https://grafana.com/docs/grafana/latest/datasources/loki/#derived-fields
-        """
-        return pulumi.get(self, "derived_fields")
-
-    @derived_fields.setter
-    def derived_fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourceJsonDataDerivedFieldArgs']]]]):
-        pulumi.set(self, "derived_fields", value)
-
-    @property
-    @pulumi.getter
-    def encrypt(self) -> Optional[pulumi.Input[str]]:
-        """
-        (MSSQL) Connection SSL encryption handling: 'disable', 'false' or 'true'.
-        """
-        return pulumi.get(self, "encrypt")
-
-    @encrypt.setter
-    def encrypt(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "encrypt", value)
-
-    @property
-    @pulumi.getter(name="esVersion")
-    def es_version(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Elasticsearch) Elasticsearch semantic version (Grafana v8.0+).
-        """
-        return pulumi.get(self, "es_version")
-
-    @es_version.setter
-    def es_version(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "es_version", value)
-
-    @property
-    @pulumi.getter(name="externalId")
-    def external_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        (CloudWatch, Athena) If you are assuming a role in another account, that has been created with an external ID, specify the external ID here.
-        """
-        return pulumi.get(self, "external_id")
-
-    @external_id.setter
-    def external_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "external_id", value)
-
-    @property
-    @pulumi.getter(name="githubUrl")
-    def github_url(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Github) Github URL
-        """
-        return pulumi.get(self, "github_url")
-
-    @github_url.setter
-    def github_url(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "github_url", value)
-
-    @property
-    @pulumi.getter(name="graphiteVersion")
-    def graphite_version(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Graphite) Graphite version.
-        """
-        return pulumi.get(self, "graphite_version")
-
-    @graphite_version.setter
-    def graphite_version(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "graphite_version", value)
-
-    @property
-    @pulumi.getter(name="httpMethod")
-    def http_method(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Prometheus) HTTP method to use for making requests.
-        """
-        return pulumi.get(self, "http_method")
-
-    @http_method.setter
-    def http_method(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "http_method", value)
-
-    @property
-    @pulumi.getter
-    def implementation(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Alertmanager) Implementation of Alertmanager. Either 'cortex' or 'prometheus'
-        """
-        return pulumi.get(self, "implementation")
-
-    @implementation.setter
-    def implementation(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "implementation", value)
-
-    @property
-    @pulumi.getter
-    def interval(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Elasticsearch) Index date time format. nil(No Pattern), 'Hourly', 'Daily', 'Weekly', 'Monthly' or 'Yearly'.
-        """
-        return pulumi.get(self, "interval")
-
-    @interval.setter
-    def interval(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "interval", value)
-
-    @property
-    @pulumi.getter(name="logLevelField")
-    def log_level_field(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Elasticsearch) Which field should be used to indicate the priority of the log message.
-        """
-        return pulumi.get(self, "log_level_field")
-
-    @log_level_field.setter
-    def log_level_field(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "log_level_field", value)
-
-    @property
-    @pulumi.getter(name="logMessageField")
-    def log_message_field(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Elasticsearch) Which field should be used as the log message.
-        """
-        return pulumi.get(self, "log_message_field")
-
-    @log_message_field.setter
-    def log_message_field(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "log_message_field", value)
-
-    @property
-    @pulumi.getter(name="manageAlerts")
-    def manage_alerts(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (Prometheus) Manage alerts.
-        """
-        return pulumi.get(self, "manage_alerts")
-
-    @manage_alerts.setter
-    def manage_alerts(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "manage_alerts", value)
-
-    @property
-    @pulumi.getter(name="maxConcurrentShardRequests")
-    def max_concurrent_shard_requests(self) -> Optional[pulumi.Input[int]]:
-        """
-        (Elasticsearch) Maximum number of concurrent shard requests.
-        """
-        return pulumi.get(self, "max_concurrent_shard_requests")
-
-    @max_concurrent_shard_requests.setter
-    def max_concurrent_shard_requests(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "max_concurrent_shard_requests", value)
-
-    @property
-    @pulumi.getter(name="maxIdleConns")
-    def max_idle_conns(self) -> Optional[pulumi.Input[int]]:
-        """
-        (MySQL, PostgreSQL and MSSQL) Maximum number of connections in the idle connection pool (Grafana v5.4+).
-        """
-        return pulumi.get(self, "max_idle_conns")
-
-    @max_idle_conns.setter
-    def max_idle_conns(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "max_idle_conns", value)
-
-    @property
-    @pulumi.getter(name="maxLines")
-    def max_lines(self) -> Optional[pulumi.Input[int]]:
-        """
-        (Loki) Upper limit for the number of log lines returned by Loki
-        """
-        return pulumi.get(self, "max_lines")
-
-    @max_lines.setter
-    def max_lines(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "max_lines", value)
-
-    @property
-    @pulumi.getter(name="maxOpenConns")
-    def max_open_conns(self) -> Optional[pulumi.Input[int]]:
-        """
-        (MySQL, PostgreSQL and MSSQL) Maximum number of open connections to the database (Grafana v5.4+).
-        """
-        return pulumi.get(self, "max_open_conns")
-
-    @max_open_conns.setter
-    def max_open_conns(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "max_open_conns", value)
-
-    @property
-    @pulumi.getter(name="orgSlug")
-    def org_slug(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Sentry) Organization slug.
-        """
-        return pulumi.get(self, "org_slug")
-
-    @org_slug.setter
-    def org_slug(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "org_slug", value)
-
-    @property
-    @pulumi.getter
-    def organization(self) -> Optional[pulumi.Input[str]]:
-        """
-        (InfluxDB) An organization is a workspace for a group of users. All dashboards, tasks, buckets, members, etc., belong to an organization.
-        """
-        return pulumi.get(self, "organization")
-
-    @organization.setter
-    def organization(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "organization", value)
-
-    @property
-    @pulumi.getter(name="outputLocation")
-    def output_location(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Athena) AWS S3 bucket to store execution outputs. If not specified, the default query result location from the Workgroup configuration will be used.
-        """
-        return pulumi.get(self, "output_location")
-
-    @output_location.setter
-    def output_location(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "output_location", value)
-
-    @property
-    @pulumi.getter(name="postgresVersion")
-    def postgres_version(self) -> Optional[pulumi.Input[int]]:
-        """
-        (PostgreSQL) Postgres version as a number (903/904/905/906/1000) meaning v9.3, v9.4, etc.
-        """
-        return pulumi.get(self, "postgres_version")
-
-    @postgres_version.setter
-    def postgres_version(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "postgres_version", value)
-
-    @property
-    @pulumi.getter
-    def profile(self) -> Optional[pulumi.Input[str]]:
-        """
-        (CloudWatch, Athena) The credentials profile name to use when authentication type is set as 'Credentials file'.
-        """
-        return pulumi.get(self, "profile")
-
-    @profile.setter
-    def profile(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "profile", value)
-
-    @property
-    @pulumi.getter(name="queryTimeout")
-    def query_timeout(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Prometheus) Timeout for queries made to the Prometheus data source in seconds.
-        """
-        return pulumi.get(self, "query_timeout")
-
-    @query_timeout.setter
-    def query_timeout(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "query_timeout", value)
-
-    @property
-    @pulumi.getter(name="sigv4AssumeRoleArn")
-    def sigv4_assume_role_arn(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Elasticsearch and Prometheus) Specifies the ARN of an IAM role to assume.
-        """
-        return pulumi.get(self, "sigv4_assume_role_arn")
-
-    @sigv4_assume_role_arn.setter
-    def sigv4_assume_role_arn(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "sigv4_assume_role_arn", value)
-
-    @property
-    @pulumi.getter(name="sigv4Auth")
-    def sigv4_auth(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (Elasticsearch and Prometheus) Enable usage of SigV4.
-        """
-        return pulumi.get(self, "sigv4_auth")
-
-    @sigv4_auth.setter
-    def sigv4_auth(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "sigv4_auth", value)
-
-    @property
-    @pulumi.getter(name="sigv4AuthType")
-    def sigv4_auth_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Elasticsearch and Prometheus) The Sigv4 authentication provider to use: 'default', 'credentials' or 'keys' (AMG: 'workspace-iam-role').
-        """
-        return pulumi.get(self, "sigv4_auth_type")
-
-    @sigv4_auth_type.setter
-    def sigv4_auth_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "sigv4_auth_type", value)
-
-    @property
-    @pulumi.getter(name="sigv4ExternalId")
-    def sigv4_external_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Elasticsearch and Prometheus) When assuming a role in another account use this external ID.
-        """
-        return pulumi.get(self, "sigv4_external_id")
-
-    @sigv4_external_id.setter
-    def sigv4_external_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "sigv4_external_id", value)
-
-    @property
-    @pulumi.getter(name="sigv4Profile")
-    def sigv4_profile(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Elasticsearch and Prometheus) Credentials profile name, leave blank for default.
-        """
-        return pulumi.get(self, "sigv4_profile")
-
-    @sigv4_profile.setter
-    def sigv4_profile(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "sigv4_profile", value)
-
-    @property
-    @pulumi.getter(name="sigv4Region")
-    def sigv4_region(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Elasticsearch and Prometheus) AWS region to use for Sigv4.
-        """
-        return pulumi.get(self, "sigv4_region")
-
-    @sigv4_region.setter
-    def sigv4_region(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "sigv4_region", value)
-
-    @property
-    @pulumi.getter(name="sslMode")
-    def ssl_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        (PostgreSQL) SSLmode. 'disable', 'require', 'verify-ca' or 'verify-full'.
-        """
-        return pulumi.get(self, "ssl_mode")
-
-    @ssl_mode.setter
-    def ssl_mode(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "ssl_mode", value)
-
-    @property
-    @pulumi.getter(name="subscriptionId")
-    def subscription_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Azure Monitor) The subscription id
-        """
-        return pulumi.get(self, "subscription_id")
-
-    @subscription_id.setter
-    def subscription_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "subscription_id", value)
-
-    @property
-    @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Azure Monitor) Service account tenant ID.
-        """
-        return pulumi.get(self, "tenant_id")
-
-    @tenant_id.setter
-    def tenant_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "tenant_id", value)
-
-    @property
-    @pulumi.getter(name="timeField")
-    def time_field(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Elasticsearch) Which field that should be used as timestamp.
-        """
-        return pulumi.get(self, "time_field")
-
-    @time_field.setter
-    def time_field(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "time_field", value)
-
-    @property
-    @pulumi.getter(name="timeInterval")
-    def time_interval(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Prometheus, Elasticsearch, InfluxDB, MySQL, PostgreSQL, and MSSQL) Lowest interval/step value that should be used for this data source. Sometimes called "Scrape Interval" in the Grafana UI.
-        """
-        return pulumi.get(self, "time_interval")
-
-    @time_interval.setter
-    def time_interval(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "time_interval", value)
-
-    @property
-    @pulumi.getter
-    def timescaledb(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (PostgreSQL) Enable usage of TimescaleDB extension.
-        """
-        return pulumi.get(self, "timescaledb")
-
-    @timescaledb.setter
-    def timescaledb(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "timescaledb", value)
-
-    @property
-    @pulumi.getter(name="tlsAuth")
-    def tls_auth(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (All) Enable TLS authentication using client cert configured in secure json data.
-        """
-        return pulumi.get(self, "tls_auth")
-
-    @tls_auth.setter
-    def tls_auth(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "tls_auth", value)
-
-    @property
-    @pulumi.getter(name="tlsAuthWithCaCert")
-    def tls_auth_with_ca_cert(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (All) Enable TLS authentication using CA cert.
-        """
-        return pulumi.get(self, "tls_auth_with_ca_cert")
-
-    @tls_auth_with_ca_cert.setter
-    def tls_auth_with_ca_cert(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "tls_auth_with_ca_cert", value)
-
-    @property
-    @pulumi.getter(name="tlsConfigurationMethod")
-    def tls_configuration_method(self) -> Optional[pulumi.Input[str]]:
-        """
-        (All) SSL Certificate configuration, either by ‘file-path’ or ‘file-content’.
-        """
-        return pulumi.get(self, "tls_configuration_method")
-
-    @tls_configuration_method.setter
-    def tls_configuration_method(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "tls_configuration_method", value)
-
-    @property
-    @pulumi.getter(name="tlsSkipVerify")
-    def tls_skip_verify(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (All) Controls whether a client verifies the server’s certificate chain and host name.
-        """
-        return pulumi.get(self, "tls_skip_verify")
-
-    @tls_skip_verify.setter
-    def tls_skip_verify(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "tls_skip_verify", value)
-
-    @property
-    @pulumi.getter(name="tokenUri")
-    def token_uri(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Stackdriver) The token URI used, provided in the service account key.
-        """
-        return pulumi.get(self, "token_uri")
-
-    @token_uri.setter
-    def token_uri(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "token_uri", value)
-
-    @property
-    @pulumi.getter(name="tracingDatasourceUid")
-    def tracing_datasource_uid(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Cloudwatch) The X-Ray datasource uid to associate to this Cloudwatch datasource.
-        """
-        return pulumi.get(self, "tracing_datasource_uid")
-
-    @tracing_datasource_uid.setter
-    def tracing_datasource_uid(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "tracing_datasource_uid", value)
-
-    @property
-    @pulumi.getter(name="tsdbResolution")
-    def tsdb_resolution(self) -> Optional[pulumi.Input[int]]:
-        """
-        (OpenTSDB) Resolution.
-        """
-        return pulumi.get(self, "tsdb_resolution")
-
-    @tsdb_resolution.setter
-    def tsdb_resolution(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "tsdb_resolution", value)
-
-    @property
-    @pulumi.getter(name="tsdbVersion")
-    def tsdb_version(self) -> Optional[pulumi.Input[int]]:
-        """
-        (OpenTSDB) Version.
-        """
-        return pulumi.get(self, "tsdb_version")
-
-    @tsdb_version.setter
-    def tsdb_version(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "tsdb_version", value)
-
-    @property
-    @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[str]]:
-        """
-        (InfluxDB) InfluxQL or Flux.
-        """
-        return pulumi.get(self, "version")
-
-    @version.setter
-    def version(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "version", value)
-
-    @property
-    @pulumi.getter
-    def workgroup(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Athena) Workgroup to use.
-        """
-        return pulumi.get(self, "workgroup")
-
-    @workgroup.setter
-    def workgroup(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "workgroup", value)
-
-    @property
-    @pulumi.getter(name="xpackEnabled")
-    def xpack_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (Elasticsearch) Enable X-Pack support.
-        """
-        return pulumi.get(self, "xpack_enabled")
-
-    @xpack_enabled.setter
-    def xpack_enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "xpack_enabled", value)
-
-
-@pulumi.input_type
-class DataSourceJsonDataDerivedFieldArgs:
-    def __init__(__self__, *,
-                 datasource_uid: Optional[pulumi.Input[str]] = None,
-                 matcher_regex: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 url: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] name: A unique name for the data source.
-        :param pulumi.Input[str] url: The URL for the data source. The type of URL required varies depending on the chosen data source type.
-        """
-        if datasource_uid is not None:
-            pulumi.set(__self__, "datasource_uid", datasource_uid)
-        if matcher_regex is not None:
-            pulumi.set(__self__, "matcher_regex", matcher_regex)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if url is not None:
-            pulumi.set(__self__, "url", url)
-
-    @property
-    @pulumi.getter(name="datasourceUid")
-    def datasource_uid(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "datasource_uid")
-
-    @datasource_uid.setter
-    def datasource_uid(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "datasource_uid", value)
-
-    @property
-    @pulumi.getter(name="matcherRegex")
-    def matcher_regex(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "matcher_regex")
-
-    @matcher_regex.setter
-    def matcher_regex(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "matcher_regex", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        A unique name for the data source.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[str]]:
-        """
-        The URL for the data source. The type of URL required varies depending on the chosen data source type.
-        """
-        return pulumi.get(self, "url")
-
-    @url.setter
-    def url(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "url", value)
-
-
-@pulumi.input_type
 class DataSourcePermissionPermissionArgs:
     def __init__(__self__, *,
                  permission: pulumi.Input[str],
                  built_in_role: Optional[pulumi.Input[str]] = None,
-                 team_id: Optional[pulumi.Input[int]] = None,
+                 team_id: Optional[pulumi.Input[str]] = None,
                  user_id: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] permission: Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
         :param pulumi.Input[str] built_in_role: Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
-        :param pulumi.Input[int] team_id: ID of the team to manage permissions for. Defaults to `0`.
+        :param pulumi.Input[str] team_id: ID of the team to manage permissions for. Defaults to `0`.
         :param pulumi.Input[int] user_id: ID of the user to manage permissions for. Defaults to `0`.
         """
         pulumi.set(__self__, "permission", permission)
@@ -3753,14 +2699,14 @@ class DataSourcePermissionPermissionArgs:
 
     @property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> Optional[pulumi.Input[int]]:
+    def team_id(self) -> Optional[pulumi.Input[str]]:
         """
         ID of the team to manage permissions for. Defaults to `0`.
         """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
-    def team_id(self, value: Optional[pulumi.Input[int]]):
+    def team_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "team_id", value)
 
     @property
@@ -3777,231 +2723,16 @@ class DataSourcePermissionPermissionArgs:
 
 
 @pulumi.input_type
-class DataSourceSecureJsonDataArgs:
-    def __init__(__self__, *,
-                 access_key: Optional[pulumi.Input[str]] = None,
-                 access_token: Optional[pulumi.Input[str]] = None,
-                 auth_token: Optional[pulumi.Input[str]] = None,
-                 basic_auth_password: Optional[pulumi.Input[str]] = None,
-                 client_secret: Optional[pulumi.Input[str]] = None,
-                 password: Optional[pulumi.Input[str]] = None,
-                 private_key: Optional[pulumi.Input[str]] = None,
-                 secret_key: Optional[pulumi.Input[str]] = None,
-                 sigv4_access_key: Optional[pulumi.Input[str]] = None,
-                 sigv4_secret_key: Optional[pulumi.Input[str]] = None,
-                 tls_ca_cert: Optional[pulumi.Input[str]] = None,
-                 tls_client_cert: Optional[pulumi.Input[str]] = None,
-                 tls_client_key: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] access_key: (CloudWatch, Athena) The access key used to access the data source.
-        :param pulumi.Input[str] access_token: (Github) The access token used to access the data source.
-        :param pulumi.Input[str] auth_token: (Sentry) Authorization token.
-        :param pulumi.Input[str] basic_auth_password: (All) Password to use for basic authentication.
-        :param pulumi.Input[str] client_secret: (Azure Monitor) Client secret for authentication.
-        :param pulumi.Input[str] password: (All) Password to use for authentication.
-        :param pulumi.Input[str] private_key: (Stackdriver) The service account key `private_key` to use to access the data source.
-        :param pulumi.Input[str] secret_key: (CloudWatch, Athena) The secret key to use to access the data source.
-        :param pulumi.Input[str] sigv4_access_key: (Elasticsearch and Prometheus) SigV4 access key. Required when using 'keys' auth provider.
-        :param pulumi.Input[str] sigv4_secret_key: (Elasticsearch and Prometheus) SigV4 secret key. Required when using 'keys' auth provider.
-        :param pulumi.Input[str] tls_ca_cert: (All) CA cert for out going requests.
-        :param pulumi.Input[str] tls_client_cert: (All) TLS Client cert for outgoing requests.
-        :param pulumi.Input[str] tls_client_key: (All) TLS Client key for outgoing requests.
-        """
-        if access_key is not None:
-            pulumi.set(__self__, "access_key", access_key)
-        if access_token is not None:
-            pulumi.set(__self__, "access_token", access_token)
-        if auth_token is not None:
-            pulumi.set(__self__, "auth_token", auth_token)
-        if basic_auth_password is not None:
-            pulumi.set(__self__, "basic_auth_password", basic_auth_password)
-        if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
-        if password is not None:
-            pulumi.set(__self__, "password", password)
-        if private_key is not None:
-            pulumi.set(__self__, "private_key", private_key)
-        if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
-        if sigv4_access_key is not None:
-            pulumi.set(__self__, "sigv4_access_key", sigv4_access_key)
-        if sigv4_secret_key is not None:
-            pulumi.set(__self__, "sigv4_secret_key", sigv4_secret_key)
-        if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
-        if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
-        if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
-
-    @property
-    @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        (CloudWatch, Athena) The access key used to access the data source.
-        """
-        return pulumi.get(self, "access_key")
-
-    @access_key.setter
-    def access_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "access_key", value)
-
-    @property
-    @pulumi.getter(name="accessToken")
-    def access_token(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Github) The access token used to access the data source.
-        """
-        return pulumi.get(self, "access_token")
-
-    @access_token.setter
-    def access_token(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "access_token", value)
-
-    @property
-    @pulumi.getter(name="authToken")
-    def auth_token(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Sentry) Authorization token.
-        """
-        return pulumi.get(self, "auth_token")
-
-    @auth_token.setter
-    def auth_token(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "auth_token", value)
-
-    @property
-    @pulumi.getter(name="basicAuthPassword")
-    def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        (All) Password to use for basic authentication.
-        """
-        return pulumi.get(self, "basic_auth_password")
-
-    @basic_auth_password.setter
-    def basic_auth_password(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "basic_auth_password", value)
-
-    @property
-    @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Azure Monitor) Client secret for authentication.
-        """
-        return pulumi.get(self, "client_secret")
-
-    @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "client_secret", value)
-
-    @property
-    @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[str]]:
-        """
-        (All) Password to use for authentication.
-        """
-        return pulumi.get(self, "password")
-
-    @password.setter
-    def password(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "password", value)
-
-    @property
-    @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Stackdriver) The service account key `private_key` to use to access the data source.
-        """
-        return pulumi.get(self, "private_key")
-
-    @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "private_key", value)
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        (CloudWatch, Athena) The secret key to use to access the data source.
-        """
-        return pulumi.get(self, "secret_key")
-
-    @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "secret_key", value)
-
-    @property
-    @pulumi.getter(name="sigv4AccessKey")
-    def sigv4_access_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Elasticsearch and Prometheus) SigV4 access key. Required when using 'keys' auth provider.
-        """
-        return pulumi.get(self, "sigv4_access_key")
-
-    @sigv4_access_key.setter
-    def sigv4_access_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "sigv4_access_key", value)
-
-    @property
-    @pulumi.getter(name="sigv4SecretKey")
-    def sigv4_secret_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Elasticsearch and Prometheus) SigV4 secret key. Required when using 'keys' auth provider.
-        """
-        return pulumi.get(self, "sigv4_secret_key")
-
-    @sigv4_secret_key.setter
-    def sigv4_secret_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "sigv4_secret_key", value)
-
-    @property
-    @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[pulumi.Input[str]]:
-        """
-        (All) CA cert for out going requests.
-        """
-        return pulumi.get(self, "tls_ca_cert")
-
-    @tls_ca_cert.setter
-    def tls_ca_cert(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "tls_ca_cert", value)
-
-    @property
-    @pulumi.getter(name="tlsClientCert")
-    def tls_client_cert(self) -> Optional[pulumi.Input[str]]:
-        """
-        (All) TLS Client cert for outgoing requests.
-        """
-        return pulumi.get(self, "tls_client_cert")
-
-    @tls_client_cert.setter
-    def tls_client_cert(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "tls_client_cert", value)
-
-    @property
-    @pulumi.getter(name="tlsClientKey")
-    def tls_client_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        (All) TLS Client key for outgoing requests.
-        """
-        return pulumi.get(self, "tls_client_key")
-
-    @tls_client_key.setter
-    def tls_client_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "tls_client_key", value)
-
-
-@pulumi.input_type
 class FolderPermissionPermissionArgs:
     def __init__(__self__, *,
                  permission: pulumi.Input[str],
                  role: Optional[pulumi.Input[str]] = None,
-                 team_id: Optional[pulumi.Input[int]] = None,
+                 team_id: Optional[pulumi.Input[str]] = None,
                  user_id: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] permission: Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
         :param pulumi.Input[str] role: Manage permissions for `Viewer` or `Editor` roles.
-        :param pulumi.Input[int] team_id: ID of the team to manage permissions for. Defaults to `0`.
+        :param pulumi.Input[str] team_id: ID of the team to manage permissions for. Defaults to `0`.
         :param pulumi.Input[int] user_id: ID of the user to manage permissions for. Defaults to `0`.
         """
         pulumi.set(__self__, "permission", permission)
@@ -4038,14 +2769,14 @@ class FolderPermissionPermissionArgs:
 
     @property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> Optional[pulumi.Input[int]]:
+    def team_id(self) -> Optional[pulumi.Input[str]]:
         """
         ID of the team to manage permissions for. Defaults to `0`.
         """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
-    def team_id(self, value: Optional[pulumi.Input[int]]):
+    def team_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "team_id", value)
 
     @property
@@ -6379,7 +5110,7 @@ class SLOAlertingFastburnArgs:
                  annotations: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnAnnotationArgs']]]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnLabelArgs']]]] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         """
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
@@ -6399,7 +5130,7 @@ class SLOAlertingFastburnArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnLabelArgs']]]]:
         """
-        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         """
         return pulumi.get(self, "labels")
 
@@ -6495,7 +5226,7 @@ class SLOAlertingSlowburnArgs:
                  annotations: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnAnnotationArgs']]]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnLabelArgs']]]] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         """
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
@@ -6515,7 +5246,7 @@ class SLOAlertingSlowburnArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnLabelArgs']]]]:
         """
-        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         """
         return pulumi.get(self, "labels")
 
@@ -6645,22 +5376,17 @@ class SLOObjectiveArgs:
 @pulumi.input_type
 class SLOQueryArgs:
     def __init__(__self__, *,
-                 freeform: pulumi.Input['SLOQueryFreeformArgs'],
-                 type: pulumi.Input[str]):
+                 type: pulumi.Input[str],
+                 freeform: Optional[pulumi.Input['SLOQueryFreeformArgs']] = None,
+                 ratio: Optional[pulumi.Input['SLOQueryRatioArgs']] = None):
         """
         :param pulumi.Input[str] type: Query type must be one of: "freeform", "query", "ratio", or "threshold"
         """
-        pulumi.set(__self__, "freeform", freeform)
         pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter
-    def freeform(self) -> pulumi.Input['SLOQueryFreeformArgs']:
-        return pulumi.get(self, "freeform")
-
-    @freeform.setter
-    def freeform(self, value: pulumi.Input['SLOQueryFreeformArgs']):
-        pulumi.set(self, "freeform", value)
+        if freeform is not None:
+            pulumi.set(__self__, "freeform", freeform)
+        if ratio is not None:
+            pulumi.set(__self__, "ratio", ratio)
 
     @property
     @pulumi.getter
@@ -6674,39 +5400,95 @@ class SLOQueryArgs:
     def type(self, value: pulumi.Input[str]):
         pulumi.set(self, "type", value)
 
+    @property
+    @pulumi.getter
+    def freeform(self) -> Optional[pulumi.Input['SLOQueryFreeformArgs']]:
+        return pulumi.get(self, "freeform")
+
+    @freeform.setter
+    def freeform(self, value: Optional[pulumi.Input['SLOQueryFreeformArgs']]):
+        pulumi.set(self, "freeform", value)
+
+    @property
+    @pulumi.getter
+    def ratio(self) -> Optional[pulumi.Input['SLOQueryRatioArgs']]:
+        return pulumi.get(self, "ratio")
+
+    @ratio.setter
+    def ratio(self, value: Optional[pulumi.Input['SLOQueryRatioArgs']]):
+        pulumi.set(self, "ratio", value)
+
 
 @pulumi.input_type
 class SLOQueryFreeformArgs:
     def __init__(__self__, *,
-                 query: Optional[pulumi.Input[str]] = None):
+                 query: pulumi.Input[str]):
         """
         :param pulumi.Input[str] query: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
-        if query is not None:
-            pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter
-    def query(self) -> Optional[pulumi.Input[str]]:
+    def query(self) -> pulumi.Input[str]:
         """
         Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
         return pulumi.get(self, "query")
 
     @query.setter
-    def query(self, value: Optional[pulumi.Input[str]]):
+    def query(self, value: pulumi.Input[str]):
         pulumi.set(self, "query", value)
+
+
+@pulumi.input_type
+class SLOQueryRatioArgs:
+    def __init__(__self__, *,
+                 success_metric: pulumi.Input[str],
+                 total_metric: pulumi.Input[str],
+                 group_by_labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        pulumi.set(__self__, "success_metric", success_metric)
+        pulumi.set(__self__, "total_metric", total_metric)
+        if group_by_labels is not None:
+            pulumi.set(__self__, "group_by_labels", group_by_labels)
+
+    @property
+    @pulumi.getter(name="successMetric")
+    def success_metric(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "success_metric")
+
+    @success_metric.setter
+    def success_metric(self, value: pulumi.Input[str]):
+        pulumi.set(self, "success_metric", value)
+
+    @property
+    @pulumi.getter(name="totalMetric")
+    def total_metric(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "total_metric")
+
+    @total_metric.setter
+    def total_metric(self, value: pulumi.Input[str]):
+        pulumi.set(self, "total_metric", value)
+
+    @property
+    @pulumi.getter(name="groupByLabels")
+    def group_by_labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "group_by_labels")
+
+    @group_by_labels.setter
+    def group_by_labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "group_by_labels", value)
 
 
 @pulumi.input_type
 class ServiceAccountPermissionPermissionArgs:
     def __init__(__self__, *,
                  permission: pulumi.Input[str],
-                 team_id: Optional[pulumi.Input[int]] = None,
+                 team_id: Optional[pulumi.Input[str]] = None,
                  user_id: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] permission: Permission to associate with item. Must be `Edit` or `Admin`.
-        :param pulumi.Input[int] team_id: ID of the team to manage permissions for. Specify either this or `user_id`. Defaults to `0`.
+        :param pulumi.Input[str] team_id: ID of the team to manage permissions for. Specify either this or `user_id`. Defaults to `0`.
         :param pulumi.Input[int] user_id: ID of the user to manage permissions for. Specify either this or `team_id`. Defaults to `0`.
         """
         pulumi.set(__self__, "permission", permission)
@@ -6729,14 +5511,14 @@ class ServiceAccountPermissionPermissionArgs:
 
     @property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> Optional[pulumi.Input[int]]:
+    def team_id(self) -> Optional[pulumi.Input[str]]:
         """
         ID of the team to manage permissions for. Specify either this or `user_id`. Defaults to `0`.
         """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
-    def team_id(self, value: Optional[pulumi.Input[int]]):
+    def team_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "team_id", value)
 
     @property
@@ -7711,11 +6493,6 @@ class TeamPreferencesArgs:
                  home_dashboard_uid: Optional[pulumi.Input[str]] = None,
                  theme: Optional[pulumi.Input[str]] = None,
                  timezone: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] home_dashboard_uid: The UID of the dashboard to display when a team member logs in. Defaults to ``.
-        :param pulumi.Input[str] theme: The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
-        :param pulumi.Input[str] timezone: The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
-        """
         if home_dashboard_uid is not None:
             pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
         if theme is not None:
@@ -7726,9 +6503,6 @@ class TeamPreferencesArgs:
     @property
     @pulumi.getter(name="homeDashboardUid")
     def home_dashboard_uid(self) -> Optional[pulumi.Input[str]]:
-        """
-        The UID of the dashboard to display when a team member logs in. Defaults to ``.
-        """
         return pulumi.get(self, "home_dashboard_uid")
 
     @home_dashboard_uid.setter
@@ -7738,9 +6512,6 @@ class TeamPreferencesArgs:
     @property
     @pulumi.getter
     def theme(self) -> Optional[pulumi.Input[str]]:
-        """
-        The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
-        """
         return pulumi.get(self, "theme")
 
     @theme.setter
@@ -7750,13 +6521,27 @@ class TeamPreferencesArgs:
     @property
     @pulumi.getter
     def timezone(self) -> Optional[pulumi.Input[str]]:
-        """
-        The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
-        """
         return pulumi.get(self, "timezone")
 
     @timezone.setter
     def timezone(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "timezone", value)
+
+
+@pulumi.input_type
+class TeamTeamSyncArgs:
+    def __init__(__self__, *,
+                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
+
+    @property
+    @pulumi.getter
+    def groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "groups")
+
+    @groups.setter
+    def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "groups", value)
 
 

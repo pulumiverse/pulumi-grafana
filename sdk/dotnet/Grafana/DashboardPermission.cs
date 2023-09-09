@@ -85,6 +85,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string> DashboardUid { get; private set; } = null!;
 
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
+
+        /// <summary>
         /// The permission items to add/update. Items that are omitted from the list will be removed.
         /// </summary>
         [Output("permissions")]
@@ -149,6 +155,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("dashboardUid")]
         public Input<string>? DashboardUid { get; set; }
 
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
         [Input("permissions", required: true)]
         private InputList<Inputs.DashboardPermissionPermissionArgs>? _permissions;
 
@@ -180,6 +192,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Input("dashboardUid")]
         public Input<string>? DashboardUid { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         [Input("permissions")]
         private InputList<Inputs.DashboardPermissionPermissionGetArgs>? _permissions;

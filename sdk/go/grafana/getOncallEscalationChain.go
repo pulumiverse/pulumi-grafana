@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupOncallEscalationChain(ctx *pulumi.Context, args *LookupOncallEscalationChainArgs, opts ...pulumi.InvokeOption) (*LookupOncallEscalationChainResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOncallEscalationChainResult
 	err := ctx.Invoke("grafana:index/getOncallEscalationChain:getOncallEscalationChain", args, &rv, opts...)
 	if err != nil {
@@ -97,6 +99,12 @@ func (o LookupOncallEscalationChainResultOutput) ToLookupOncallEscalationChainRe
 
 func (o LookupOncallEscalationChainResultOutput) ToLookupOncallEscalationChainResultOutputWithContext(ctx context.Context) LookupOncallEscalationChainResultOutput {
 	return o
+}
+
+func (o LookupOncallEscalationChainResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupOncallEscalationChainResult] {
+	return pulumix.Output[LookupOncallEscalationChainResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

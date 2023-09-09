@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
@@ -29,6 +31,10 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			test, err := grafana.NewTeam(ctx, "test", &grafana.TeamArgs{
 //				Email: pulumi.String("test-team-email@test.com"),
+//				Preferences: &grafana.TeamPreferencesArgs{
+//					Theme:    pulumi.String("dark"),
+//					Timezone: pulumi.String("utc"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -42,7 +48,7 @@ import (
 //
 // ```
 func LookupTeam(ctx *pulumi.Context, args *LookupTeamArgs, opts ...pulumi.InvokeOption) (*LookupTeamResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTeamResult
 	err := ctx.Invoke("grafana:index/getTeam:getTeam", args, &rv, opts...)
 	if err != nil {
@@ -53,16 +59,23 @@ func LookupTeam(ctx *pulumi.Context, args *LookupTeamArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getTeam.
 type LookupTeamArgs struct {
-	// The name of the Grafana team.
-	Name string `pulumi:"name"`
+	Name         string  `pulumi:"name"`
+	OrgId        *string `pulumi:"orgId"`
+	ReadTeamSync *bool   `pulumi:"readTeamSync"`
 }
 
 // A collection of values returned by getTeam.
 type LookupTeamResult struct {
+	Email string `pulumi:"email"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// The name of the Grafana team.
-	Name string `pulumi:"name"`
+	Id           string              `pulumi:"id"`
+	Members      []string            `pulumi:"members"`
+	Name         string              `pulumi:"name"`
+	OrgId        *string             `pulumi:"orgId"`
+	Preferences  []GetTeamPreference `pulumi:"preferences"`
+	ReadTeamSync *bool               `pulumi:"readTeamSync"`
+	TeamId       int                 `pulumi:"teamId"`
+	TeamSyncs    []GetTeamTeamSync   `pulumi:"teamSyncs"`
 }
 
 func LookupTeamOutput(ctx *pulumi.Context, args LookupTeamOutputArgs, opts ...pulumi.InvokeOption) LookupTeamResultOutput {
@@ -80,8 +93,9 @@ func LookupTeamOutput(ctx *pulumi.Context, args LookupTeamOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getTeam.
 type LookupTeamOutputArgs struct {
-	// The name of the Grafana team.
-	Name pulumi.StringInput `pulumi:"name"`
+	Name         pulumi.StringInput    `pulumi:"name"`
+	OrgId        pulumi.StringPtrInput `pulumi:"orgId"`
+	ReadTeamSync pulumi.BoolPtrInput   `pulumi:"readTeamSync"`
 }
 
 func (LookupTeamOutputArgs) ElementType() reflect.Type {
@@ -103,14 +117,47 @@ func (o LookupTeamResultOutput) ToLookupTeamResultOutputWithContext(ctx context.
 	return o
 }
 
+func (o LookupTeamResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupTeamResult] {
+	return pulumix.Output[LookupTeamResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o LookupTeamResultOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTeamResult) string { return v.Email }).(pulumi.StringOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupTeamResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The name of the Grafana team.
+func (o LookupTeamResultOutput) Members() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupTeamResult) []string { return v.Members }).(pulumi.StringArrayOutput)
+}
+
 func (o LookupTeamResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupTeamResultOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupTeamResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupTeamResultOutput) Preferences() GetTeamPreferenceArrayOutput {
+	return o.ApplyT(func(v LookupTeamResult) []GetTeamPreference { return v.Preferences }).(GetTeamPreferenceArrayOutput)
+}
+
+func (o LookupTeamResultOutput) ReadTeamSync() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupTeamResult) *bool { return v.ReadTeamSync }).(pulumi.BoolPtrOutput)
+}
+
+func (o LookupTeamResultOutput) TeamId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupTeamResult) int { return v.TeamId }).(pulumi.IntOutput)
+}
+
+func (o LookupTeamResultOutput) TeamSyncs() GetTeamTeamSyncArrayOutput {
+	return o.ApplyT(func(v LookupTeamResult) []GetTeamTeamSync { return v.TeamSyncs }).(GetTeamTeamSyncArrayOutput)
 }
 
 func init() {

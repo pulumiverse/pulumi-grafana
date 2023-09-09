@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
@@ -43,7 +45,7 @@ import (
 //
 // ```
 func LookupFolder(ctx *pulumi.Context, args *LookupFolderArgs, opts ...pulumi.InvokeOption) (*LookupFolderResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFolderResult
 	err := ctx.Invoke("grafana:index/getFolder:getFolder", args, &rv, opts...)
 	if err != nil {
@@ -106,6 +108,12 @@ func (o LookupFolderResultOutput) ToLookupFolderResultOutput() LookupFolderResul
 
 func (o LookupFolderResultOutput) ToLookupFolderResultOutputWithContext(ctx context.Context) LookupFolderResultOutput {
 	return o
+}
+
+func (o LookupFolderResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFolderResult] {
+	return pulumix.Output[LookupFolderResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The numerical ID of the Grafana folder.

@@ -113,14 +113,14 @@ public class LibraryPanel extends com.pulumi.resources.CustomResource {
      * ID of the folder where the library panel is stored.
      * 
      */
-    @Export(name="folderId", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> folderId;
+    @Export(name="folderId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> folderId;
 
     /**
      * @return ID of the folder where the library panel is stored.
      * 
      */
-    public Output<Optional<Integer>> folderId() {
+    public Output<Optional<String>> folderId() {
         return Codegen.optional(this.folderId);
     }
     /**
