@@ -5,9 +5,13 @@ import (
 	"path/filepath"
 	"unicode"
 
+	// The linter requires unnamed imports to have a doc comment
+	_ "embed"
+
 	grafanaShim "github.com/grafana/terraform-provider-grafana/shim"
 	"github.com/lbrlabs/pulumi-grafana/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
@@ -56,6 +60,9 @@ func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) erro
 func boolRef(b bool) *bool {
 	return &b
 }
+
+//go:embed cmd/pulumi-resource-grafana/bridge-metadata.json
+var metadata []byte
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
@@ -333,9 +340,14 @@ func Provider() tfbridge.ProviderInfo {
 				"Pulumi": "3.*",
 			},
 		},
+		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 	}
 
+	prov.MustComputeTokens(tks.SingleModule("grafana_", grafanaMod, tks.MakeStandard(grafanaPkg)))
+
 	prov.SetAutonaming(255, "-")
+
+	prov.MustApplyAutoAliases()
 
 	return prov
 }
