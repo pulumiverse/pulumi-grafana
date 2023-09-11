@@ -1,4 +1,4 @@
-module github.com/lbrlabs/pulumi-grafana/sdk/v2
+module github.com/lbrlabs/pulumi-grafana/sdk
 
 go 1.19
 
