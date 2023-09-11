@@ -173,10 +173,8 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"grafana_alert_notification":                {Tok: grafanaResource(grafanaMod, "AlertNotification")},
 			"grafana_annotation":                        {Tok: grafanaResource(grafanaMod, "Annotation")},
 			"grafana_api_key":                           {Tok: grafanaResource(grafanaMod, "ApiKey")},
-			"grafana_builtin_role_assignment":           {Tok: grafanaResource(grafanaMod, "BuiltinRoleAssignment")},
 			"grafana_cloud_api_key":                     {Tok: grafanaResource(grafanaMod, "CloudApiKey")},
 			"grafana_cloud_access_policy":               {Tok: grafanaResource(grafanaMod, "CloudAccessPolicy")},
 			"grafana_cloud_access_policy_token":         {Tok: grafanaResource(grafanaMod, "CloudAccessPolicyToken")},
@@ -223,7 +221,6 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_synthetic_monitoring_probe":        {Tok: grafanaResource(grafanaMod, "SyntheticMonitoringProbe")},
 			"grafana_team":                              {Tok: grafanaResource(grafanaMod, "Team")},
 			"grafana_team_external_group":               {Tok: grafanaResource(grafanaMod, "TeamExternalGroup")},
-			"grafana_team_preferences":                  {Tok: grafanaResource(grafanaMod, "TeamPreferences")},
 			"grafana_user":                              {Tok: grafanaResource(grafanaMod, "User")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{

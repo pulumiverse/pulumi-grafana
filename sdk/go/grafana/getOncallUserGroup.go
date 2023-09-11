@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func GetOncallUserGroup(ctx *pulumi.Context, args *GetOncallUserGroupArgs, opts ...pulumi.InvokeOption) (*GetOncallUserGroupResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOncallUserGroupResult
 	err := ctx.Invoke("grafana:index/getOncallUserGroup:getOncallUserGroup", args, &rv, opts...)
 	if err != nil {
@@ -95,6 +97,12 @@ func (o GetOncallUserGroupResultOutput) ToGetOncallUserGroupResultOutput() GetOn
 
 func (o GetOncallUserGroupResultOutput) ToGetOncallUserGroupResultOutputWithContext(ctx context.Context) GetOncallUserGroupResultOutput {
 	return o
+}
+
+func (o GetOncallUserGroupResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOncallUserGroupResult] {
+	return pulumix.Output[GetOncallUserGroupResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

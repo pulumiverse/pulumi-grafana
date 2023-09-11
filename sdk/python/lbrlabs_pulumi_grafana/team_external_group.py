@@ -15,11 +15,11 @@ __all__ = ['TeamExternalGroupArgs', 'TeamExternalGroup']
 class TeamExternalGroupArgs:
     def __init__(__self__, *,
                  groups: pulumi.Input[Sequence[pulumi.Input[str]]],
-                 team_id: pulumi.Input[int]):
+                 team_id: pulumi.Input[str]):
         """
         The set of arguments for constructing a TeamExternalGroup resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The team external groups list
-        :param pulumi.Input[int] team_id: The Team ID
+        :param pulumi.Input[str] team_id: The Team ID
         """
         pulumi.set(__self__, "groups", groups)
         pulumi.set(__self__, "team_id", team_id)
@@ -38,14 +38,14 @@ class TeamExternalGroupArgs:
 
     @property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> pulumi.Input[int]:
+    def team_id(self) -> pulumi.Input[str]:
         """
         The Team ID
         """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
-    def team_id(self, value: pulumi.Input[int]):
+    def team_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "team_id", value)
 
 
@@ -53,11 +53,11 @@ class TeamExternalGroupArgs:
 class _TeamExternalGroupState:
     def __init__(__self__, *,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 team_id: Optional[pulumi.Input[int]] = None):
+                 team_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering TeamExternalGroup resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The team external groups list
-        :param pulumi.Input[int] team_id: The Team ID
+        :param pulumi.Input[str] team_id: The Team ID
         """
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
@@ -78,14 +78,14 @@ class _TeamExternalGroupState:
 
     @property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> Optional[pulumi.Input[int]]:
+    def team_id(self) -> Optional[pulumi.Input[str]]:
         """
         The Team ID
         """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
-    def team_id(self, value: Optional[pulumi.Input[int]]):
+    def team_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "team_id", value)
 
 
@@ -95,11 +95,10 @@ class TeamExternalGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 team_id: Optional[pulumi.Input[int]] = None,
+                 team_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+        Use the `team_sync` attribute of the `Team` resource instead.
 
         ## Example Usage
 
@@ -112,7 +111,7 @@ class TeamExternalGroup(pulumi.CustomResource):
                 "test-group-1",
                 "test-group-2",
             ],
-            team_id=1)
+            team_id="1")
         ```
 
         ## Import
@@ -124,7 +123,7 @@ class TeamExternalGroup(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The team external groups list
-        :param pulumi.Input[int] team_id: The Team ID
+        :param pulumi.Input[str] team_id: The Team ID
         """
         ...
     @overload
@@ -133,8 +132,7 @@ class TeamExternalGroup(pulumi.CustomResource):
                  args: TeamExternalGroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+        Use the `team_sync` attribute of the `Team` resource instead.
 
         ## Example Usage
 
@@ -147,7 +145,7 @@ class TeamExternalGroup(pulumi.CustomResource):
                 "test-group-1",
                 "test-group-2",
             ],
-            team_id=1)
+            team_id="1")
         ```
 
         ## Import
@@ -172,7 +170,7 @@ class TeamExternalGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 team_id: Optional[pulumi.Input[int]] = None,
+                 team_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -199,7 +197,7 @@ class TeamExternalGroup(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            team_id: Optional[pulumi.Input[int]] = None) -> 'TeamExternalGroup':
+            team_id: Optional[pulumi.Input[str]] = None) -> 'TeamExternalGroup':
         """
         Get an existing TeamExternalGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -208,7 +206,7 @@ class TeamExternalGroup(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The team external groups list
-        :param pulumi.Input[int] team_id: The Team ID
+        :param pulumi.Input[str] team_id: The Team ID
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -228,7 +226,7 @@ class TeamExternalGroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> pulumi.Output[int]:
+    def team_id(self) -> pulumi.Output[str]:
         """
         The Team ID
         """

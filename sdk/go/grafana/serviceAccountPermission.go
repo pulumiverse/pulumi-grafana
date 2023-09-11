@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // **Note:** This resource is available from Grafana 9.2.4 onwards.
@@ -72,6 +74,8 @@ import (
 type ServiceAccountPermission struct {
 	pulumi.CustomResourceState
 
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions ServiceAccountPermissionPermissionArrayOutput `pulumi:"permissions"`
 	// The id of the service account.
@@ -91,7 +95,7 @@ func NewServiceAccountPermission(ctx *pulumi.Context,
 	if args.ServiceAccountId == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceAccountId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ServiceAccountPermission
 	err := ctx.RegisterResource("grafana:index/serviceAccountPermission:ServiceAccountPermission", name, args, &resource, opts...)
 	if err != nil {
@@ -114,6 +118,8 @@ func GetServiceAccountPermission(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServiceAccountPermission resources.
 type serviceAccountPermissionState struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions []ServiceAccountPermissionPermission `pulumi:"permissions"`
 	// The id of the service account.
@@ -121,6 +127,8 @@ type serviceAccountPermissionState struct {
 }
 
 type ServiceAccountPermissionState struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions ServiceAccountPermissionPermissionArrayInput
 	// The id of the service account.
@@ -132,6 +140,8 @@ func (ServiceAccountPermissionState) ElementType() reflect.Type {
 }
 
 type serviceAccountPermissionArgs struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions []ServiceAccountPermissionPermission `pulumi:"permissions"`
 	// The id of the service account.
@@ -140,6 +150,8 @@ type serviceAccountPermissionArgs struct {
 
 // The set of arguments for constructing a ServiceAccountPermission resource.
 type ServiceAccountPermissionArgs struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions ServiceAccountPermissionPermissionArrayInput
 	// The id of the service account.
@@ -169,6 +181,12 @@ func (i *ServiceAccountPermission) ToServiceAccountPermissionOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountPermissionOutput)
 }
 
+func (i *ServiceAccountPermission) ToOutput(ctx context.Context) pulumix.Output[*ServiceAccountPermission] {
+	return pulumix.Output[*ServiceAccountPermission]{
+		OutputState: i.ToServiceAccountPermissionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceAccountPermissionArrayInput is an input type that accepts ServiceAccountPermissionArray and ServiceAccountPermissionArrayOutput values.
 // You can construct a concrete instance of `ServiceAccountPermissionArrayInput` via:
 //
@@ -192,6 +210,12 @@ func (i ServiceAccountPermissionArray) ToServiceAccountPermissionArrayOutput() S
 
 func (i ServiceAccountPermissionArray) ToServiceAccountPermissionArrayOutputWithContext(ctx context.Context) ServiceAccountPermissionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountPermissionArrayOutput)
+}
+
+func (i ServiceAccountPermissionArray) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceAccountPermission] {
+	return pulumix.Output[[]*ServiceAccountPermission]{
+		OutputState: i.ToServiceAccountPermissionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ServiceAccountPermissionMapInput is an input type that accepts ServiceAccountPermissionMap and ServiceAccountPermissionMapOutput values.
@@ -219,6 +243,12 @@ func (i ServiceAccountPermissionMap) ToServiceAccountPermissionMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountPermissionMapOutput)
 }
 
+func (i ServiceAccountPermissionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceAccountPermission] {
+	return pulumix.Output[map[string]*ServiceAccountPermission]{
+		OutputState: i.ToServiceAccountPermissionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceAccountPermissionOutput struct{ *pulumi.OutputState }
 
 func (ServiceAccountPermissionOutput) ElementType() reflect.Type {
@@ -231,6 +261,17 @@ func (o ServiceAccountPermissionOutput) ToServiceAccountPermissionOutput() Servi
 
 func (o ServiceAccountPermissionOutput) ToServiceAccountPermissionOutputWithContext(ctx context.Context) ServiceAccountPermissionOutput {
 	return o
+}
+
+func (o ServiceAccountPermissionOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceAccountPermission] {
+	return pulumix.Output[*ServiceAccountPermission]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o ServiceAccountPermissionOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceAccountPermission) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // The permission items to add/update. Items that are omitted from the list will be removed.
@@ -257,6 +298,12 @@ func (o ServiceAccountPermissionArrayOutput) ToServiceAccountPermissionArrayOutp
 	return o
 }
 
+func (o ServiceAccountPermissionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceAccountPermission] {
+	return pulumix.Output[[]*ServiceAccountPermission]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceAccountPermissionArrayOutput) Index(i pulumi.IntInput) ServiceAccountPermissionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ServiceAccountPermission {
 		return vs[0].([]*ServiceAccountPermission)[vs[1].(int)]
@@ -275,6 +322,12 @@ func (o ServiceAccountPermissionMapOutput) ToServiceAccountPermissionMapOutput()
 
 func (o ServiceAccountPermissionMapOutput) ToServiceAccountPermissionMapOutputWithContext(ctx context.Context) ServiceAccountPermissionMapOutput {
 	return o
+}
+
+func (o ServiceAccountPermissionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceAccountPermission] {
+	return pulumix.Output[map[string]*ServiceAccountPermission]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceAccountPermissionMapOutput) MapIndex(k pulumi.StringInput) ServiceAccountPermissionOutput {

@@ -5,8 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+ * Use the `teamSync` attribute of the `grafana.Team` resource instead.
  *
  * ## Example Usage
  *
@@ -19,7 +18,7 @@ import * as utilities from "./utilities";
  *         "test-group-1",
  *         "test-group-2",
  *     ],
- *     teamId: 1,
+ *     teamId: "1",
  * });
  * ```
  *
@@ -64,7 +63,7 @@ export class TeamExternalGroup extends pulumi.CustomResource {
     /**
      * The Team ID
      */
-    public readonly teamId!: pulumi.Output<number>;
+    public readonly teamId!: pulumi.Output<string>;
 
     /**
      * Create a TeamExternalGroup resource with the given unique name, arguments, and options.
@@ -108,7 +107,7 @@ export interface TeamExternalGroupState {
     /**
      * The Team ID
      */
-    teamId?: pulumi.Input<number>;
+    teamId?: pulumi.Input<string>;
 }
 
 /**
@@ -122,5 +121,5 @@ export interface TeamExternalGroupArgs {
     /**
      * The Team ID
      */
-    teamId: pulumi.Input<number>;
+    teamId: pulumi.Input<string>;
 }

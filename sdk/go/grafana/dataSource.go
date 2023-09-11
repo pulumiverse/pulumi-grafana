@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [Official documentation](https://grafana.com/docs/grafana/latest/datasources/)
@@ -154,10 +156,6 @@ type DataSource struct {
 	AccessMode pulumi.StringPtrOutput `pulumi:"accessMode"`
 	// Whether to enable basic auth for the data source. Defaults to `false`.
 	BasicAuthEnabled pulumi.BoolPtrOutput `pulumi:"basicAuthEnabled"`
-	// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-	//
-	// Deprecated: Use secure_json_data_encoded.basicAuthPassword instead.
-	BasicAuthPassword pulumi.StringPtrOutput `pulumi:"basicAuthPassword"`
 	// Basic auth username. Defaults to ``.
 	BasicAuthUsername pulumi.StringPtrOutput `pulumi:"basicAuthUsername"`
 	// (Required by some data source types) The name of the database to use on the selected data source server. Defaults to ``.
@@ -168,22 +166,12 @@ type DataSource struct {
 	IsDefault pulumi.BoolPtrOutput `pulumi:"isDefault"`
 	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	JsonDataEncoded pulumi.StringPtrOutput `pulumi:"jsonDataEncoded"`
-	// Use json*data*encoded instead.
-	//
-	// Deprecated: Use json_data_encoded instead.
-	JsonDatas DataSourceJsonDataArrayOutput `pulumi:"jsonDatas"`
 	// A unique name for the data source.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Use secure*json*data_encoded.password instead. Defaults to ``.
-	//
-	// Deprecated: Use secure_json_data_encoded.password instead.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded pulumi.StringPtrOutput `pulumi:"secureJsonDataEncoded"`
-	// Use secure*json*data*encoded instead.
-	//
-	// Deprecated: Use secure_json_data_encoded instead.
-	SecureJsonDatas DataSourceSecureJsonDataArrayOutput `pulumi:"secureJsonDatas"`
 	// The data source type. Must be one of the supported data source keywords.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Unique identifier. If unset, this will be automatically generated.
@@ -204,30 +192,18 @@ func NewDataSource(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	if args.BasicAuthPassword != nil {
-		args.BasicAuthPassword = pulumi.ToSecret(args.BasicAuthPassword).(pulumi.StringPtrInput)
-	}
 	if args.HttpHeaders != nil {
 		args.HttpHeaders = pulumi.ToSecret(args.HttpHeaders).(pulumi.StringMapInput)
-	}
-	if args.Password != nil {
-		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
 	if args.SecureJsonDataEncoded != nil {
 		args.SecureJsonDataEncoded = pulumi.ToSecret(args.SecureJsonDataEncoded).(pulumi.StringPtrInput)
 	}
-	if args.SecureJsonDatas != nil {
-		args.SecureJsonDatas = pulumi.ToSecret(args.SecureJsonDatas).(DataSourceSecureJsonDataArrayInput)
-	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
-		"basicAuthPassword",
 		"httpHeaders",
-		"password",
 		"secureJsonDataEncoded",
-		"secureJsonDatas",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DataSource
 	err := ctx.RegisterResource("grafana:index/dataSource:DataSource", name, args, &resource, opts...)
 	if err != nil {
@@ -254,10 +230,6 @@ type dataSourceState struct {
 	AccessMode *string `pulumi:"accessMode"`
 	// Whether to enable basic auth for the data source. Defaults to `false`.
 	BasicAuthEnabled *bool `pulumi:"basicAuthEnabled"`
-	// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-	//
-	// Deprecated: Use secure_json_data_encoded.basicAuthPassword instead.
-	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
 	// Basic auth username. Defaults to ``.
 	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
 	// (Required by some data source types) The name of the database to use on the selected data source server. Defaults to ``.
@@ -268,22 +240,12 @@ type dataSourceState struct {
 	IsDefault *bool `pulumi:"isDefault"`
 	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	JsonDataEncoded *string `pulumi:"jsonDataEncoded"`
-	// Use json*data*encoded instead.
-	//
-	// Deprecated: Use json_data_encoded instead.
-	JsonDatas []DataSourceJsonData `pulumi:"jsonDatas"`
 	// A unique name for the data source.
 	Name *string `pulumi:"name"`
-	// Use secure*json*data_encoded.password instead. Defaults to ``.
-	//
-	// Deprecated: Use secure_json_data_encoded.password instead.
-	Password *string `pulumi:"password"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded *string `pulumi:"secureJsonDataEncoded"`
-	// Use secure*json*data*encoded instead.
-	//
-	// Deprecated: Use secure_json_data_encoded instead.
-	SecureJsonDatas []DataSourceSecureJsonData `pulumi:"secureJsonDatas"`
 	// The data source type. Must be one of the supported data source keywords.
 	Type *string `pulumi:"type"`
 	// Unique identifier. If unset, this will be automatically generated.
@@ -299,10 +261,6 @@ type DataSourceState struct {
 	AccessMode pulumi.StringPtrInput
 	// Whether to enable basic auth for the data source. Defaults to `false`.
 	BasicAuthEnabled pulumi.BoolPtrInput
-	// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-	//
-	// Deprecated: Use secure_json_data_encoded.basicAuthPassword instead.
-	BasicAuthPassword pulumi.StringPtrInput
 	// Basic auth username. Defaults to ``.
 	BasicAuthUsername pulumi.StringPtrInput
 	// (Required by some data source types) The name of the database to use on the selected data source server. Defaults to ``.
@@ -313,22 +271,12 @@ type DataSourceState struct {
 	IsDefault pulumi.BoolPtrInput
 	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	JsonDataEncoded pulumi.StringPtrInput
-	// Use json*data*encoded instead.
-	//
-	// Deprecated: Use json_data_encoded instead.
-	JsonDatas DataSourceJsonDataArrayInput
 	// A unique name for the data source.
 	Name pulumi.StringPtrInput
-	// Use secure*json*data_encoded.password instead. Defaults to ``.
-	//
-	// Deprecated: Use secure_json_data_encoded.password instead.
-	Password pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded pulumi.StringPtrInput
-	// Use secure*json*data*encoded instead.
-	//
-	// Deprecated: Use secure_json_data_encoded instead.
-	SecureJsonDatas DataSourceSecureJsonDataArrayInput
 	// The data source type. Must be one of the supported data source keywords.
 	Type pulumi.StringPtrInput
 	// Unique identifier. If unset, this will be automatically generated.
@@ -348,10 +296,6 @@ type dataSourceArgs struct {
 	AccessMode *string `pulumi:"accessMode"`
 	// Whether to enable basic auth for the data source. Defaults to `false`.
 	BasicAuthEnabled *bool `pulumi:"basicAuthEnabled"`
-	// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-	//
-	// Deprecated: Use secure_json_data_encoded.basicAuthPassword instead.
-	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
 	// Basic auth username. Defaults to ``.
 	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
 	// (Required by some data source types) The name of the database to use on the selected data source server. Defaults to ``.
@@ -362,22 +306,12 @@ type dataSourceArgs struct {
 	IsDefault *bool `pulumi:"isDefault"`
 	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	JsonDataEncoded *string `pulumi:"jsonDataEncoded"`
-	// Use json*data*encoded instead.
-	//
-	// Deprecated: Use json_data_encoded instead.
-	JsonDatas []DataSourceJsonData `pulumi:"jsonDatas"`
 	// A unique name for the data source.
 	Name *string `pulumi:"name"`
-	// Use secure*json*data_encoded.password instead. Defaults to ``.
-	//
-	// Deprecated: Use secure_json_data_encoded.password instead.
-	Password *string `pulumi:"password"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded *string `pulumi:"secureJsonDataEncoded"`
-	// Use secure*json*data*encoded instead.
-	//
-	// Deprecated: Use secure_json_data_encoded instead.
-	SecureJsonDatas []DataSourceSecureJsonData `pulumi:"secureJsonDatas"`
 	// The data source type. Must be one of the supported data source keywords.
 	Type string `pulumi:"type"`
 	// Unique identifier. If unset, this will be automatically generated.
@@ -394,10 +328,6 @@ type DataSourceArgs struct {
 	AccessMode pulumi.StringPtrInput
 	// Whether to enable basic auth for the data source. Defaults to `false`.
 	BasicAuthEnabled pulumi.BoolPtrInput
-	// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-	//
-	// Deprecated: Use secure_json_data_encoded.basicAuthPassword instead.
-	BasicAuthPassword pulumi.StringPtrInput
 	// Basic auth username. Defaults to ``.
 	BasicAuthUsername pulumi.StringPtrInput
 	// (Required by some data source types) The name of the database to use on the selected data source server. Defaults to ``.
@@ -408,22 +338,12 @@ type DataSourceArgs struct {
 	IsDefault pulumi.BoolPtrInput
 	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	JsonDataEncoded pulumi.StringPtrInput
-	// Use json*data*encoded instead.
-	//
-	// Deprecated: Use json_data_encoded instead.
-	JsonDatas DataSourceJsonDataArrayInput
 	// A unique name for the data source.
 	Name pulumi.StringPtrInput
-	// Use secure*json*data_encoded.password instead. Defaults to ``.
-	//
-	// Deprecated: Use secure_json_data_encoded.password instead.
-	Password pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded pulumi.StringPtrInput
-	// Use secure*json*data*encoded instead.
-	//
-	// Deprecated: Use secure_json_data_encoded instead.
-	SecureJsonDatas DataSourceSecureJsonDataArrayInput
 	// The data source type. Must be one of the supported data source keywords.
 	Type pulumi.StringInput
 	// Unique identifier. If unset, this will be automatically generated.
@@ -457,6 +377,12 @@ func (i *DataSource) ToDataSourceOutputWithContext(ctx context.Context) DataSour
 	return pulumi.ToOutputWithContext(ctx, i).(DataSourceOutput)
 }
 
+func (i *DataSource) ToOutput(ctx context.Context) pulumix.Output[*DataSource] {
+	return pulumix.Output[*DataSource]{
+		OutputState: i.ToDataSourceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DataSourceArrayInput is an input type that accepts DataSourceArray and DataSourceArrayOutput values.
 // You can construct a concrete instance of `DataSourceArrayInput` via:
 //
@@ -480,6 +406,12 @@ func (i DataSourceArray) ToDataSourceArrayOutput() DataSourceArrayOutput {
 
 func (i DataSourceArray) ToDataSourceArrayOutputWithContext(ctx context.Context) DataSourceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DataSourceArrayOutput)
+}
+
+func (i DataSourceArray) ToOutput(ctx context.Context) pulumix.Output[[]*DataSource] {
+	return pulumix.Output[[]*DataSource]{
+		OutputState: i.ToDataSourceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DataSourceMapInput is an input type that accepts DataSourceMap and DataSourceMapOutput values.
@@ -507,6 +439,12 @@ func (i DataSourceMap) ToDataSourceMapOutputWithContext(ctx context.Context) Dat
 	return pulumi.ToOutputWithContext(ctx, i).(DataSourceMapOutput)
 }
 
+func (i DataSourceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DataSource] {
+	return pulumix.Output[map[string]*DataSource]{
+		OutputState: i.ToDataSourceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DataSourceOutput struct{ *pulumi.OutputState }
 
 func (DataSourceOutput) ElementType() reflect.Type {
@@ -521,6 +459,12 @@ func (o DataSourceOutput) ToDataSourceOutputWithContext(ctx context.Context) Dat
 	return o
 }
 
+func (o DataSourceOutput) ToOutput(ctx context.Context) pulumix.Output[*DataSource] {
+	return pulumix.Output[*DataSource]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The method by which Grafana will access the data source: `proxy` or `direct`. Defaults to `proxy`.
 func (o DataSourceOutput) AccessMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DataSource) pulumi.StringPtrOutput { return v.AccessMode }).(pulumi.StringPtrOutput)
@@ -529,13 +473,6 @@ func (o DataSourceOutput) AccessMode() pulumi.StringPtrOutput {
 // Whether to enable basic auth for the data source. Defaults to `false`.
 func (o DataSourceOutput) BasicAuthEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DataSource) pulumi.BoolPtrOutput { return v.BasicAuthEnabled }).(pulumi.BoolPtrOutput)
-}
-
-// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to “.
-//
-// Deprecated: Use secure_json_data_encoded.basicAuthPassword instead.
-func (o DataSourceOutput) BasicAuthPassword() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DataSource) pulumi.StringPtrOutput { return v.BasicAuthPassword }).(pulumi.StringPtrOutput)
 }
 
 // Basic auth username. Defaults to “.
@@ -563,35 +500,19 @@ func (o DataSourceOutput) JsonDataEncoded() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DataSource) pulumi.StringPtrOutput { return v.JsonDataEncoded }).(pulumi.StringPtrOutput)
 }
 
-// Use json*data*encoded instead.
-//
-// Deprecated: Use json_data_encoded instead.
-func (o DataSourceOutput) JsonDatas() DataSourceJsonDataArrayOutput {
-	return o.ApplyT(func(v *DataSource) DataSourceJsonDataArrayOutput { return v.JsonDatas }).(DataSourceJsonDataArrayOutput)
-}
-
 // A unique name for the data source.
 func (o DataSourceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DataSource) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Use secure*json*data_encoded.password instead. Defaults to “.
-//
-// Deprecated: Use secure_json_data_encoded.password instead.
-func (o DataSourceOutput) Password() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DataSource) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o DataSourceOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DataSource) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 func (o DataSourceOutput) SecureJsonDataEncoded() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DataSource) pulumi.StringPtrOutput { return v.SecureJsonDataEncoded }).(pulumi.StringPtrOutput)
-}
-
-// Use secure*json*data*encoded instead.
-//
-// Deprecated: Use secure_json_data_encoded instead.
-func (o DataSourceOutput) SecureJsonDatas() DataSourceSecureJsonDataArrayOutput {
-	return o.ApplyT(func(v *DataSource) DataSourceSecureJsonDataArrayOutput { return v.SecureJsonDatas }).(DataSourceSecureJsonDataArrayOutput)
 }
 
 // The data source type. Must be one of the supported data source keywords.
@@ -628,6 +549,12 @@ func (o DataSourceArrayOutput) ToDataSourceArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o DataSourceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DataSource] {
+	return pulumix.Output[[]*DataSource]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DataSourceArrayOutput) Index(i pulumi.IntInput) DataSourceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DataSource {
 		return vs[0].([]*DataSource)[vs[1].(int)]
@@ -646,6 +573,12 @@ func (o DataSourceMapOutput) ToDataSourceMapOutput() DataSourceMapOutput {
 
 func (o DataSourceMapOutput) ToDataSourceMapOutputWithContext(ctx context.Context) DataSourceMapOutput {
 	return o
+}
+
+func (o DataSourceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DataSource] {
+	return pulumix.Output[map[string]*DataSource]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DataSourceMapOutput) MapIndex(k pulumi.StringInput) DataSourceOutput {

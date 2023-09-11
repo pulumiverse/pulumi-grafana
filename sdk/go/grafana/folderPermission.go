@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
@@ -74,6 +76,8 @@ type FolderPermission struct {
 
 	// The UID of the folder.
 	FolderUid pulumi.StringOutput `pulumi:"folderUid"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions FolderPermissionPermissionArrayOutput `pulumi:"permissions"`
 }
@@ -91,7 +95,7 @@ func NewFolderPermission(ctx *pulumi.Context,
 	if args.Permissions == nil {
 		return nil, errors.New("invalid value for required argument 'Permissions'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FolderPermission
 	err := ctx.RegisterResource("grafana:index/folderPermission:FolderPermission", name, args, &resource, opts...)
 	if err != nil {
@@ -116,6 +120,8 @@ func GetFolderPermission(ctx *pulumi.Context,
 type folderPermissionState struct {
 	// The UID of the folder.
 	FolderUid *string `pulumi:"folderUid"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions []FolderPermissionPermission `pulumi:"permissions"`
 }
@@ -123,6 +129,8 @@ type folderPermissionState struct {
 type FolderPermissionState struct {
 	// The UID of the folder.
 	FolderUid pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions FolderPermissionPermissionArrayInput
 }
@@ -134,6 +142,8 @@ func (FolderPermissionState) ElementType() reflect.Type {
 type folderPermissionArgs struct {
 	// The UID of the folder.
 	FolderUid string `pulumi:"folderUid"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions []FolderPermissionPermission `pulumi:"permissions"`
 }
@@ -142,6 +152,8 @@ type folderPermissionArgs struct {
 type FolderPermissionArgs struct {
 	// The UID of the folder.
 	FolderUid pulumi.StringInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions FolderPermissionPermissionArrayInput
 }
@@ -169,6 +181,12 @@ func (i *FolderPermission) ToFolderPermissionOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(FolderPermissionOutput)
 }
 
+func (i *FolderPermission) ToOutput(ctx context.Context) pulumix.Output[*FolderPermission] {
+	return pulumix.Output[*FolderPermission]{
+		OutputState: i.ToFolderPermissionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FolderPermissionArrayInput is an input type that accepts FolderPermissionArray and FolderPermissionArrayOutput values.
 // You can construct a concrete instance of `FolderPermissionArrayInput` via:
 //
@@ -192,6 +210,12 @@ func (i FolderPermissionArray) ToFolderPermissionArrayOutput() FolderPermissionA
 
 func (i FolderPermissionArray) ToFolderPermissionArrayOutputWithContext(ctx context.Context) FolderPermissionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FolderPermissionArrayOutput)
+}
+
+func (i FolderPermissionArray) ToOutput(ctx context.Context) pulumix.Output[[]*FolderPermission] {
+	return pulumix.Output[[]*FolderPermission]{
+		OutputState: i.ToFolderPermissionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FolderPermissionMapInput is an input type that accepts FolderPermissionMap and FolderPermissionMapOutput values.
@@ -219,6 +243,12 @@ func (i FolderPermissionMap) ToFolderPermissionMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(FolderPermissionMapOutput)
 }
 
+func (i FolderPermissionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FolderPermission] {
+	return pulumix.Output[map[string]*FolderPermission]{
+		OutputState: i.ToFolderPermissionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FolderPermissionOutput struct{ *pulumi.OutputState }
 
 func (FolderPermissionOutput) ElementType() reflect.Type {
@@ -233,9 +263,20 @@ func (o FolderPermissionOutput) ToFolderPermissionOutputWithContext(ctx context.
 	return o
 }
 
+func (o FolderPermissionOutput) ToOutput(ctx context.Context) pulumix.Output[*FolderPermission] {
+	return pulumix.Output[*FolderPermission]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The UID of the folder.
 func (o FolderPermissionOutput) FolderUid() pulumi.StringOutput {
 	return o.ApplyT(func(v *FolderPermission) pulumi.StringOutput { return v.FolderUid }).(pulumi.StringOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o FolderPermissionOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FolderPermission) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // The permission items to add/update. Items that are omitted from the list will be removed.
@@ -257,6 +298,12 @@ func (o FolderPermissionArrayOutput) ToFolderPermissionArrayOutputWithContext(ct
 	return o
 }
 
+func (o FolderPermissionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FolderPermission] {
+	return pulumix.Output[[]*FolderPermission]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FolderPermissionArrayOutput) Index(i pulumi.IntInput) FolderPermissionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FolderPermission {
 		return vs[0].([]*FolderPermission)[vs[1].(int)]
@@ -275,6 +322,12 @@ func (o FolderPermissionMapOutput) ToFolderPermissionMapOutput() FolderPermissio
 
 func (o FolderPermissionMapOutput) ToFolderPermissionMapOutputWithContext(ctx context.Context) FolderPermissionMapOutput {
 	return o
+}
+
+func (o FolderPermissionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FolderPermission] {
+	return pulumix.Output[map[string]*FolderPermission]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FolderPermissionMapOutput) MapIndex(k pulumi.StringInput) FolderPermissionOutput {

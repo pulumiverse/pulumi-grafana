@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The provider type for the grafana package. By default, resources use package-wide configuration
@@ -23,7 +25,8 @@ type Provider struct {
 	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
 	// be set via the `GRAFANA_CA_CERT` environment variable.
 	CaCert pulumi.StringPtrOutput `pulumi:"caCert"`
-	// API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+	// Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+	// variable.
 	CloudApiKey pulumi.StringPtrOutput `pulumi:"cloudApiKey"`
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl pulumi.StringPtrOutput `pulumi:"cloudApiUrl"`
@@ -59,77 +62,77 @@ func NewProvider(ctx *pulumi.Context,
 	}
 
 	if args.Auth == nil {
-		if d := getEnvOrDefault(nil, nil, "GRAFANA_AUTH"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_AUTH"); d != nil {
 			args.Auth = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.CaCert == nil {
-		if d := getEnvOrDefault(nil, nil, "GRAFANA_CA_CERT"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_CA_CERT"); d != nil {
 			args.CaCert = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.CloudApiKey == nil {
-		if d := getEnvOrDefault(nil, nil, "GRAFANA_CLOUD_API_KEY"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_CLOUD_API_KEY"); d != nil {
 			args.CloudApiKey = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.CloudApiUrl == nil {
-		if d := getEnvOrDefault(nil, nil, "GRAFANA_CLOUD_API_URL"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_CLOUD_API_URL"); d != nil {
 			args.CloudApiUrl = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.InsecureSkipVerify == nil {
-		if d := getEnvOrDefault(nil, parseEnvBool, "GRAFANA_INSECURE_SKIP_VERIFY"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, internal.ParseEnvBool, "GRAFANA_INSECURE_SKIP_VERIFY"); d != nil {
 			args.InsecureSkipVerify = pulumi.BoolPtr(d.(bool))
 		}
 	}
 	if args.OncallAccessToken == nil {
-		if d := getEnvOrDefault(nil, nil, "GRAFANA_ONCALL_ACCESS_TOKEN"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_ONCALL_ACCESS_TOKEN"); d != nil {
 			args.OncallAccessToken = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.OncallUrl == nil {
-		if d := getEnvOrDefault(nil, nil, "GRAFANA_ONCALL_URL"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_ONCALL_URL"); d != nil {
 			args.OncallUrl = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.OrgId == nil {
-		if d := getEnvOrDefault(nil, parseEnvInt, "GRAFANA_ORG_ID"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, internal.ParseEnvInt, "GRAFANA_ORG_ID"); d != nil {
 			args.OrgId = pulumi.IntPtr(d.(int))
 		}
 	}
 	if args.Retries == nil {
-		if d := getEnvOrDefault(nil, parseEnvInt, "GRAFANA_RETRIES"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, internal.ParseEnvInt, "GRAFANA_RETRIES"); d != nil {
 			args.Retries = pulumi.IntPtr(d.(int))
 		}
 	}
 	if args.SmAccessToken == nil {
-		if d := getEnvOrDefault(nil, nil, "GRAFANA_SM_ACCESS_TOKEN"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_SM_ACCESS_TOKEN"); d != nil {
 			args.SmAccessToken = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.SmUrl == nil {
-		if d := getEnvOrDefault(nil, nil, "GRAFANA_SM_URL"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_SM_URL"); d != nil {
 			args.SmUrl = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.StoreDashboardSha256 == nil {
-		if d := getEnvOrDefault(nil, parseEnvBool, "GRAFANA_STORE_DASHBOARD_SHA256"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, internal.ParseEnvBool, "GRAFANA_STORE_DASHBOARD_SHA256"); d != nil {
 			args.StoreDashboardSha256 = pulumi.BoolPtr(d.(bool))
 		}
 	}
 	if args.TlsCert == nil {
-		if d := getEnvOrDefault(nil, nil, "GRAFANA_TLS_CERT"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_TLS_CERT"); d != nil {
 			args.TlsCert = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.TlsKey == nil {
-		if d := getEnvOrDefault(nil, nil, "GRAFANA_TLS_KEY"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_TLS_KEY"); d != nil {
 			args.TlsKey = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.Url == nil {
-		if d := getEnvOrDefault(nil, nil, "GRAFANA_URL"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_URL"); d != nil {
 			args.Url = pulumi.StringPtr(d.(string))
 		}
 	}
@@ -156,7 +159,7 @@ func NewProvider(ctx *pulumi.Context,
 		"tlsKey",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:grafana", name, args, &resource, opts...)
 	if err != nil {
@@ -172,7 +175,8 @@ type providerArgs struct {
 	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
 	// be set via the `GRAFANA_CA_CERT` environment variable.
 	CaCert *string `pulumi:"caCert"`
-	// API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+	// Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+	// variable.
 	CloudApiKey *string `pulumi:"cloudApiKey"`
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl *string `pulumi:"cloudApiUrl"`
@@ -182,8 +186,9 @@ type providerArgs struct {
 	OncallAccessToken *string `pulumi:"oncallAccessToken"`
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
 	OncallUrl *string `pulumi:"oncallUrl"`
-	// The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
-	// resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+	// Deprecated: Use the `org_id` attributes on resources instead.
+	//
+	// Deprecated: Use the `org_id` attributes on resources instead.
 	OrgId *int `pulumi:"orgId"`
 	// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
 	// `GRAFANA_RETRIES` environment variable.
@@ -221,7 +226,8 @@ type ProviderArgs struct {
 	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
 	// be set via the `GRAFANA_CA_CERT` environment variable.
 	CaCert pulumi.StringPtrInput
-	// API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+	// Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+	// variable.
 	CloudApiKey pulumi.StringPtrInput
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl pulumi.StringPtrInput
@@ -231,8 +237,9 @@ type ProviderArgs struct {
 	OncallAccessToken pulumi.StringPtrInput
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
 	OncallUrl pulumi.StringPtrInput
-	// The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
-	// resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+	// Deprecated: Use the `org_id` attributes on resources instead.
+	//
+	// Deprecated: Use the `org_id` attributes on resources instead.
 	OrgId pulumi.IntPtrInput
 	// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
 	// `GRAFANA_RETRIES` environment variable.
@@ -285,6 +292,12 @@ func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
+func (i *Provider) ToOutput(ctx context.Context) pulumix.Output[*Provider] {
+	return pulumix.Output[*Provider]{
+		OutputState: i.ToProviderOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderOutput struct{ *pulumi.OutputState }
 
 func (ProviderOutput) ElementType() reflect.Type {
@@ -299,6 +312,12 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
+func (o ProviderOutput) ToOutput(ctx context.Context) pulumix.Output[*Provider] {
+	return pulumix.Output[*Provider]{
+		OutputState: o.OutputState,
+	}
+}
+
 // API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
 // the `GRAFANA_AUTH` environment variable.
 func (o ProviderOutput) Auth() pulumi.StringPtrOutput {
@@ -311,7 +330,8 @@ func (o ProviderOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CaCert }).(pulumi.StringPtrOutput)
 }
 
-// API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+// Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+// variable.
 func (o ProviderOutput) CloudApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CloudApiKey }).(pulumi.StringPtrOutput)
 }

@@ -56,14 +56,16 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.caCert);
     }
     /**
-     * API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+     * Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+     * variable.
      * 
      */
     @Export(name="cloudApiKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> cloudApiKey;
 
     /**
-     * @return API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+     * @return Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+     * variable.
      * 
      */
     public Output<Optional<String>> cloudApiKey() {

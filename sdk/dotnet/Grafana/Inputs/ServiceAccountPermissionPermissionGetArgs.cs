@@ -23,7 +23,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         /// ID of the team to manage permissions for. Specify either this or `user_id`. Defaults to `0`.
         /// </summary>
         [Input("teamId")]
-        public Input<int>? TeamId { get; set; }
+        public Input<string>? TeamId { get; set; }
 
         /// <summary>
         /// ID of the user to manage permissions for. Specify either this or `team_id`. Defaults to `0`.

@@ -6,16 +6,14 @@ package com.pulumi.grafana.outputs;
 import com.pulumi.core.annotations.CustomType;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetSlosSloQueryFreeform {
-    private @Nullable String query;
+    private String query;
 
     private GetSlosSloQueryFreeform() {}
-    public Optional<String> query() {
-        return Optional.ofNullable(this.query);
+    public String query() {
+        return this.query;
     }
 
     public static Builder builder() {
@@ -27,7 +25,7 @@ public final class GetSlosSloQueryFreeform {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable String query;
+        private String query;
         public Builder() {}
         public Builder(GetSlosSloQueryFreeform defaults) {
     	      Objects.requireNonNull(defaults);
@@ -35,8 +33,8 @@ public final class GetSlosSloQueryFreeform {
         }
 
         @CustomType.Setter
-        public Builder query(@Nullable String query) {
-            this.query = query;
+        public Builder query(String query) {
+            this.query = Objects.requireNonNull(query);
             return this;
         }
         public GetSlosSloQueryFreeform build() {

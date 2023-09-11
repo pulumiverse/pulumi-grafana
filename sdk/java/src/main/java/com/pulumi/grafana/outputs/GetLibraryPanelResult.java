@@ -32,7 +32,7 @@ public final class GetLibraryPanelResult {
      * @return ID of the folder where the library panel is stored.
      * 
      */
-    private Integer folderId;
+    private String folderId;
     /**
      * @return Name of the folder containing the library panel.
      * 
@@ -115,7 +115,7 @@ public final class GetLibraryPanelResult {
      * @return ID of the folder where the library panel is stored.
      * 
      */
-    public Integer folderId() {
+    public String folderId() {
         return this.folderId;
     }
     /**
@@ -208,7 +208,7 @@ public final class GetLibraryPanelResult {
         private String created;
         private List<Integer> dashboardIds;
         private String description;
-        private Integer folderId;
+        private String folderId;
         private String folderName;
         private String folderUid;
         private String id;
@@ -259,7 +259,7 @@ public final class GetLibraryPanelResult {
             return this;
         }
         @CustomType.Setter
-        public Builder folderId(Integer folderId) {
+        public Builder folderId(String folderId) {
             this.folderId = Objects.requireNonNull(folderId);
             return this;
         }

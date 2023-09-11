@@ -14,7 +14,8 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class SLOQuery
     {
-        public readonly Outputs.SLOQueryFreeform Freeform;
+        public readonly Outputs.SLOQueryFreeform? Freeform;
+        public readonly Outputs.SLOQueryRatio? Ratio;
         /// <summary>
         /// Query type must be one of: "freeform", "query", "ratio", or "threshold"
         /// </summary>
@@ -22,11 +23,14 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
         [OutputConstructor]
         private SLOQuery(
-            Outputs.SLOQueryFreeform freeform,
+            Outputs.SLOQueryFreeform? freeform,
+
+            Outputs.SLOQueryRatio? ratio,
 
             string type)
         {
             Freeform = freeform;
+            Ratio = ratio;
             Type = type;
         }
     }

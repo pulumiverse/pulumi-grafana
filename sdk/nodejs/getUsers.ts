@@ -48,3 +48,28 @@ export interface GetUsersResult {
      */
     readonly users: outputs.GetUsersUser[];
 }
+/**
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
+ *
+ * This data source uses Grafana's admin APIs for reading users which
+ * does not currently work with API Tokens. You must use basic auth.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@lbrlabs/pulumi-grafana";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const testAllUsers = new grafana.User("testAllUsers", {
+ *     email: "all_users@example.com",
+ *     login: "test-grafana-users",
+ *     password: "my-password",
+ * });
+ * const allUsers = grafana.getUsers({});
+ * ```
+ */
+export function getUsersOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetUsersResult> {
+    return pulumi.output(getUsers(opts))
+}

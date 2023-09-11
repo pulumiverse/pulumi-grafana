@@ -14,17 +14,8 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class TeamPreferences
     {
-        /// <summary>
-        /// The UID of the dashboard to display when a team member logs in. Defaults to ``.
-        /// </summary>
         public readonly string? HomeDashboardUid;
-        /// <summary>
-        /// The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
-        /// </summary>
         public readonly string? Theme;
-        /// <summary>
-        /// The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
-        /// </summary>
         public readonly string? Timezone;
 
         [OutputConstructor]

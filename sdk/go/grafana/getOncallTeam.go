@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -36,7 +38,7 @@ import (
 //
 // ```
 func GetOncallTeam(ctx *pulumi.Context, args *GetOncallTeamArgs, opts ...pulumi.InvokeOption) (*GetOncallTeamResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOncallTeamResult
 	err := ctx.Invoke("grafana:index/getOncallTeam:getOncallTeam", args, &rv, opts...)
 	if err != nil {
@@ -97,6 +99,12 @@ func (o GetOncallTeamResultOutput) ToGetOncallTeamResultOutput() GetOncallTeamRe
 
 func (o GetOncallTeamResultOutput) ToGetOncallTeamResultOutputWithContext(ctx context.Context) GetOncallTeamResultOutput {
 	return o
+}
+
+func (o GetOncallTeamResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOncallTeamResult] {
+	return pulumix.Output[GetOncallTeamResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetOncallTeamResultOutput) AvatarUrl() pulumi.StringOutput {

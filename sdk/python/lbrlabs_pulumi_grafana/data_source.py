@@ -8,8 +8,6 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
-from . import outputs
-from ._inputs import *
 
 __all__ = ['DataSourceArgs', 'DataSource']
 
@@ -19,17 +17,14 @@ class DataSourceArgs:
                  type: pulumi.Input[str],
                  access_mode: Optional[pulumi.Input[str]] = None,
                  basic_auth_enabled: Optional[pulumi.Input[bool]] = None,
-                 basic_auth_password: Optional[pulumi.Input[str]] = None,
                  basic_auth_username: Optional[pulumi.Input[str]] = None,
                  database_name: Optional[pulumi.Input[str]] = None,
                  http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_default: Optional[pulumi.Input[bool]] = None,
                  json_data_encoded: Optional[pulumi.Input[str]] = None,
-                 json_datas: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourceJsonDataArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 password: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  secure_json_data_encoded: Optional[pulumi.Input[str]] = None,
-                 secure_json_datas: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourceSecureJsonDataArgs']]]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None):
@@ -38,17 +33,14 @@ class DataSourceArgs:
         :param pulumi.Input[str] type: The data source type. Must be one of the supported data source keywords.
         :param pulumi.Input[str] access_mode: The method by which Grafana will access the data source: `proxy` or `direct`. Defaults to `proxy`.
         :param pulumi.Input[bool] basic_auth_enabled: Whether to enable basic auth for the data source. Defaults to `false`.
-        :param pulumi.Input[str] basic_auth_password: Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
         :param pulumi.Input[str] basic_auth_username: Basic auth username. Defaults to ``.
         :param pulumi.Input[str] database_name: (Required by some data source types) The name of the database to use on the selected data source server. Defaults to ``.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] http_headers: Custom HTTP headers
         :param pulumi.Input[bool] is_default: Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
         :param pulumi.Input[str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
-        :param pulumi.Input[Sequence[pulumi.Input['DataSourceJsonDataArgs']]] json_datas: Use json*data*encoded instead.
         :param pulumi.Input[str] name: A unique name for the data source.
-        :param pulumi.Input[str] password: Use secure*json*data_encoded.password instead. Defaults to ``.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
-        :param pulumi.Input[Sequence[pulumi.Input['DataSourceSecureJsonDataArgs']]] secure_json_datas: Use secure*json*data*encoded instead.
         :param pulumi.Input[str] uid: Unique identifier. If unset, this will be automatically generated.
         :param pulumi.Input[str] url: The URL for the data source. The type of URL required varies depending on the chosen data source type.
         :param pulumi.Input[str] username: (Required by some data source types) The username to use to authenticate to the data source. Defaults to ``.
@@ -58,11 +50,6 @@ class DataSourceArgs:
             pulumi.set(__self__, "access_mode", access_mode)
         if basic_auth_enabled is not None:
             pulumi.set(__self__, "basic_auth_enabled", basic_auth_enabled)
-        if basic_auth_password is not None:
-            warnings.warn("""Use secure_json_data_encoded.basicAuthPassword instead.""", DeprecationWarning)
-            pulumi.log.warn("""basic_auth_password is deprecated: Use secure_json_data_encoded.basicAuthPassword instead.""")
-        if basic_auth_password is not None:
-            pulumi.set(__self__, "basic_auth_password", basic_auth_password)
         if basic_auth_username is not None:
             pulumi.set(__self__, "basic_auth_username", basic_auth_username)
         if database_name is not None:
@@ -73,25 +60,12 @@ class DataSourceArgs:
             pulumi.set(__self__, "is_default", is_default)
         if json_data_encoded is not None:
             pulumi.set(__self__, "json_data_encoded", json_data_encoded)
-        if json_datas is not None:
-            warnings.warn("""Use json_data_encoded instead.""", DeprecationWarning)
-            pulumi.log.warn("""json_datas is deprecated: Use json_data_encoded instead.""")
-        if json_datas is not None:
-            pulumi.set(__self__, "json_datas", json_datas)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if password is not None:
-            warnings.warn("""Use secure_json_data_encoded.password instead.""", DeprecationWarning)
-            pulumi.log.warn("""password is deprecated: Use secure_json_data_encoded.password instead.""")
-        if password is not None:
-            pulumi.set(__self__, "password", password)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if secure_json_data_encoded is not None:
             pulumi.set(__self__, "secure_json_data_encoded", secure_json_data_encoded)
-        if secure_json_datas is not None:
-            warnings.warn("""Use secure_json_data_encoded instead.""", DeprecationWarning)
-            pulumi.log.warn("""secure_json_datas is deprecated: Use secure_json_data_encoded instead.""")
-        if secure_json_datas is not None:
-            pulumi.set(__self__, "secure_json_datas", secure_json_datas)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
         if url is not None:
@@ -136,21 +110,6 @@ class DataSourceArgs:
         pulumi.set(self, "basic_auth_enabled", value)
 
     @property
-    @pulumi.getter(name="basicAuthPassword")
-    def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-        """
-        warnings.warn("""Use secure_json_data_encoded.basicAuthPassword instead.""", DeprecationWarning)
-        pulumi.log.warn("""basic_auth_password is deprecated: Use secure_json_data_encoded.basicAuthPassword instead.""")
-
-        return pulumi.get(self, "basic_auth_password")
-
-    @basic_auth_password.setter
-    def basic_auth_password(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "basic_auth_password", value)
-
-    @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> Optional[pulumi.Input[str]]:
         """
@@ -211,21 +170,6 @@ class DataSourceArgs:
         pulumi.set(self, "json_data_encoded", value)
 
     @property
-    @pulumi.getter(name="jsonDatas")
-    def json_datas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DataSourceJsonDataArgs']]]]:
-        """
-        Use json*data*encoded instead.
-        """
-        warnings.warn("""Use json_data_encoded instead.""", DeprecationWarning)
-        pulumi.log.warn("""json_datas is deprecated: Use json_data_encoded instead.""")
-
-        return pulumi.get(self, "json_datas")
-
-    @json_datas.setter
-    def json_datas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourceJsonDataArgs']]]]):
-        pulumi.set(self, "json_datas", value)
-
-    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -238,19 +182,16 @@ class DataSourceArgs:
         pulumi.set(self, "name", value)
 
     @property
-    @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[str]]:
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Use secure*json*data_encoded.password instead. Defaults to ``.
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
-        warnings.warn("""Use secure_json_data_encoded.password instead.""", DeprecationWarning)
-        pulumi.log.warn("""password is deprecated: Use secure_json_data_encoded.password instead.""")
+        return pulumi.get(self, "org_id")
 
-        return pulumi.get(self, "password")
-
-    @password.setter
-    def password(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "password", value)
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter(name="secureJsonDataEncoded")
@@ -263,21 +204,6 @@ class DataSourceArgs:
     @secure_json_data_encoded.setter
     def secure_json_data_encoded(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "secure_json_data_encoded", value)
-
-    @property
-    @pulumi.getter(name="secureJsonDatas")
-    def secure_json_datas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DataSourceSecureJsonDataArgs']]]]:
-        """
-        Use secure*json*data*encoded instead.
-        """
-        warnings.warn("""Use secure_json_data_encoded instead.""", DeprecationWarning)
-        pulumi.log.warn("""secure_json_datas is deprecated: Use secure_json_data_encoded instead.""")
-
-        return pulumi.get(self, "secure_json_datas")
-
-    @secure_json_datas.setter
-    def secure_json_datas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourceSecureJsonDataArgs']]]]):
-        pulumi.set(self, "secure_json_datas", value)
 
     @property
     @pulumi.getter
@@ -321,17 +247,14 @@ class _DataSourceState:
     def __init__(__self__, *,
                  access_mode: Optional[pulumi.Input[str]] = None,
                  basic_auth_enabled: Optional[pulumi.Input[bool]] = None,
-                 basic_auth_password: Optional[pulumi.Input[str]] = None,
                  basic_auth_username: Optional[pulumi.Input[str]] = None,
                  database_name: Optional[pulumi.Input[str]] = None,
                  http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_default: Optional[pulumi.Input[bool]] = None,
                  json_data_encoded: Optional[pulumi.Input[str]] = None,
-                 json_datas: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourceJsonDataArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 password: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  secure_json_data_encoded: Optional[pulumi.Input[str]] = None,
-                 secure_json_datas: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourceSecureJsonDataArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -340,17 +263,14 @@ class _DataSourceState:
         Input properties used for looking up and filtering DataSource resources.
         :param pulumi.Input[str] access_mode: The method by which Grafana will access the data source: `proxy` or `direct`. Defaults to `proxy`.
         :param pulumi.Input[bool] basic_auth_enabled: Whether to enable basic auth for the data source. Defaults to `false`.
-        :param pulumi.Input[str] basic_auth_password: Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
         :param pulumi.Input[str] basic_auth_username: Basic auth username. Defaults to ``.
         :param pulumi.Input[str] database_name: (Required by some data source types) The name of the database to use on the selected data source server. Defaults to ``.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] http_headers: Custom HTTP headers
         :param pulumi.Input[bool] is_default: Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
         :param pulumi.Input[str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
-        :param pulumi.Input[Sequence[pulumi.Input['DataSourceJsonDataArgs']]] json_datas: Use json*data*encoded instead.
         :param pulumi.Input[str] name: A unique name for the data source.
-        :param pulumi.Input[str] password: Use secure*json*data_encoded.password instead. Defaults to ``.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
-        :param pulumi.Input[Sequence[pulumi.Input['DataSourceSecureJsonDataArgs']]] secure_json_datas: Use secure*json*data*encoded instead.
         :param pulumi.Input[str] type: The data source type. Must be one of the supported data source keywords.
         :param pulumi.Input[str] uid: Unique identifier. If unset, this will be automatically generated.
         :param pulumi.Input[str] url: The URL for the data source. The type of URL required varies depending on the chosen data source type.
@@ -360,11 +280,6 @@ class _DataSourceState:
             pulumi.set(__self__, "access_mode", access_mode)
         if basic_auth_enabled is not None:
             pulumi.set(__self__, "basic_auth_enabled", basic_auth_enabled)
-        if basic_auth_password is not None:
-            warnings.warn("""Use secure_json_data_encoded.basicAuthPassword instead.""", DeprecationWarning)
-            pulumi.log.warn("""basic_auth_password is deprecated: Use secure_json_data_encoded.basicAuthPassword instead.""")
-        if basic_auth_password is not None:
-            pulumi.set(__self__, "basic_auth_password", basic_auth_password)
         if basic_auth_username is not None:
             pulumi.set(__self__, "basic_auth_username", basic_auth_username)
         if database_name is not None:
@@ -375,25 +290,12 @@ class _DataSourceState:
             pulumi.set(__self__, "is_default", is_default)
         if json_data_encoded is not None:
             pulumi.set(__self__, "json_data_encoded", json_data_encoded)
-        if json_datas is not None:
-            warnings.warn("""Use json_data_encoded instead.""", DeprecationWarning)
-            pulumi.log.warn("""json_datas is deprecated: Use json_data_encoded instead.""")
-        if json_datas is not None:
-            pulumi.set(__self__, "json_datas", json_datas)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if password is not None:
-            warnings.warn("""Use secure_json_data_encoded.password instead.""", DeprecationWarning)
-            pulumi.log.warn("""password is deprecated: Use secure_json_data_encoded.password instead.""")
-        if password is not None:
-            pulumi.set(__self__, "password", password)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if secure_json_data_encoded is not None:
             pulumi.set(__self__, "secure_json_data_encoded", secure_json_data_encoded)
-        if secure_json_datas is not None:
-            warnings.warn("""Use secure_json_data_encoded instead.""", DeprecationWarning)
-            pulumi.log.warn("""secure_json_datas is deprecated: Use secure_json_data_encoded instead.""")
-        if secure_json_datas is not None:
-            pulumi.set(__self__, "secure_json_datas", secure_json_datas)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if uid is not None:
@@ -426,21 +328,6 @@ class _DataSourceState:
     @basic_auth_enabled.setter
     def basic_auth_enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "basic_auth_enabled", value)
-
-    @property
-    @pulumi.getter(name="basicAuthPassword")
-    def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-        """
-        warnings.warn("""Use secure_json_data_encoded.basicAuthPassword instead.""", DeprecationWarning)
-        pulumi.log.warn("""basic_auth_password is deprecated: Use secure_json_data_encoded.basicAuthPassword instead.""")
-
-        return pulumi.get(self, "basic_auth_password")
-
-    @basic_auth_password.setter
-    def basic_auth_password(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "basic_auth_password", value)
 
     @property
     @pulumi.getter(name="basicAuthUsername")
@@ -503,21 +390,6 @@ class _DataSourceState:
         pulumi.set(self, "json_data_encoded", value)
 
     @property
-    @pulumi.getter(name="jsonDatas")
-    def json_datas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DataSourceJsonDataArgs']]]]:
-        """
-        Use json*data*encoded instead.
-        """
-        warnings.warn("""Use json_data_encoded instead.""", DeprecationWarning)
-        pulumi.log.warn("""json_datas is deprecated: Use json_data_encoded instead.""")
-
-        return pulumi.get(self, "json_datas")
-
-    @json_datas.setter
-    def json_datas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourceJsonDataArgs']]]]):
-        pulumi.set(self, "json_datas", value)
-
-    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -530,19 +402,16 @@ class _DataSourceState:
         pulumi.set(self, "name", value)
 
     @property
-    @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[str]]:
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Use secure*json*data_encoded.password instead. Defaults to ``.
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
-        warnings.warn("""Use secure_json_data_encoded.password instead.""", DeprecationWarning)
-        pulumi.log.warn("""password is deprecated: Use secure_json_data_encoded.password instead.""")
+        return pulumi.get(self, "org_id")
 
-        return pulumi.get(self, "password")
-
-    @password.setter
-    def password(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "password", value)
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter(name="secureJsonDataEncoded")
@@ -555,21 +424,6 @@ class _DataSourceState:
     @secure_json_data_encoded.setter
     def secure_json_data_encoded(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "secure_json_data_encoded", value)
-
-    @property
-    @pulumi.getter(name="secureJsonDatas")
-    def secure_json_datas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DataSourceSecureJsonDataArgs']]]]:
-        """
-        Use secure*json*data*encoded instead.
-        """
-        warnings.warn("""Use secure_json_data_encoded instead.""", DeprecationWarning)
-        pulumi.log.warn("""secure_json_datas is deprecated: Use secure_json_data_encoded instead.""")
-
-        return pulumi.get(self, "secure_json_datas")
-
-    @secure_json_datas.setter
-    def secure_json_datas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourceSecureJsonDataArgs']]]]):
-        pulumi.set(self, "secure_json_datas", value)
 
     @property
     @pulumi.getter
@@ -627,17 +481,14 @@ class DataSource(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_mode: Optional[pulumi.Input[str]] = None,
                  basic_auth_enabled: Optional[pulumi.Input[bool]] = None,
-                 basic_auth_password: Optional[pulumi.Input[str]] = None,
                  basic_auth_username: Optional[pulumi.Input[str]] = None,
                  database_name: Optional[pulumi.Input[str]] = None,
                  http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_default: Optional[pulumi.Input[bool]] = None,
                  json_data_encoded: Optional[pulumi.Input[str]] = None,
-                 json_datas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourceJsonDataArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 password: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  secure_json_data_encoded: Optional[pulumi.Input[str]] = None,
-                 secure_json_datas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourceSecureJsonDataArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -720,17 +571,14 @@ class DataSource(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_mode: The method by which Grafana will access the data source: `proxy` or `direct`. Defaults to `proxy`.
         :param pulumi.Input[bool] basic_auth_enabled: Whether to enable basic auth for the data source. Defaults to `false`.
-        :param pulumi.Input[str] basic_auth_password: Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
         :param pulumi.Input[str] basic_auth_username: Basic auth username. Defaults to ``.
         :param pulumi.Input[str] database_name: (Required by some data source types) The name of the database to use on the selected data source server. Defaults to ``.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] http_headers: Custom HTTP headers
         :param pulumi.Input[bool] is_default: Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
         :param pulumi.Input[str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourceJsonDataArgs']]]] json_datas: Use json*data*encoded instead.
         :param pulumi.Input[str] name: A unique name for the data source.
-        :param pulumi.Input[str] password: Use secure*json*data_encoded.password instead. Defaults to ``.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourceSecureJsonDataArgs']]]] secure_json_datas: Use secure*json*data*encoded instead.
         :param pulumi.Input[str] type: The data source type. Must be one of the supported data source keywords.
         :param pulumi.Input[str] uid: Unique identifier. If unset, this will be automatically generated.
         :param pulumi.Input[str] url: The URL for the data source. The type of URL required varies depending on the chosen data source type.
@@ -832,17 +680,14 @@ class DataSource(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_mode: Optional[pulumi.Input[str]] = None,
                  basic_auth_enabled: Optional[pulumi.Input[bool]] = None,
-                 basic_auth_password: Optional[pulumi.Input[str]] = None,
                  basic_auth_username: Optional[pulumi.Input[str]] = None,
                  database_name: Optional[pulumi.Input[str]] = None,
                  http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_default: Optional[pulumi.Input[bool]] = None,
                  json_data_encoded: Optional[pulumi.Input[str]] = None,
-                 json_datas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourceJsonDataArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 password: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  secure_json_data_encoded: Optional[pulumi.Input[str]] = None,
-                 secure_json_datas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourceSecureJsonDataArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -858,36 +703,21 @@ class DataSource(pulumi.CustomResource):
 
             __props__.__dict__["access_mode"] = access_mode
             __props__.__dict__["basic_auth_enabled"] = basic_auth_enabled
-            if basic_auth_password is not None and not opts.urn:
-                warnings.warn("""Use secure_json_data_encoded.basicAuthPassword instead.""", DeprecationWarning)
-                pulumi.log.warn("""basic_auth_password is deprecated: Use secure_json_data_encoded.basicAuthPassword instead.""")
-            __props__.__dict__["basic_auth_password"] = None if basic_auth_password is None else pulumi.Output.secret(basic_auth_password)
             __props__.__dict__["basic_auth_username"] = basic_auth_username
             __props__.__dict__["database_name"] = database_name
             __props__.__dict__["http_headers"] = None if http_headers is None else pulumi.Output.secret(http_headers)
             __props__.__dict__["is_default"] = is_default
             __props__.__dict__["json_data_encoded"] = json_data_encoded
-            if json_datas is not None and not opts.urn:
-                warnings.warn("""Use json_data_encoded instead.""", DeprecationWarning)
-                pulumi.log.warn("""json_datas is deprecated: Use json_data_encoded instead.""")
-            __props__.__dict__["json_datas"] = json_datas
             __props__.__dict__["name"] = name
-            if password is not None and not opts.urn:
-                warnings.warn("""Use secure_json_data_encoded.password instead.""", DeprecationWarning)
-                pulumi.log.warn("""password is deprecated: Use secure_json_data_encoded.password instead.""")
-            __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["org_id"] = org_id
             __props__.__dict__["secure_json_data_encoded"] = None if secure_json_data_encoded is None else pulumi.Output.secret(secure_json_data_encoded)
-            if secure_json_datas is not None and not opts.urn:
-                warnings.warn("""Use secure_json_data_encoded instead.""", DeprecationWarning)
-                pulumi.log.warn("""secure_json_datas is deprecated: Use secure_json_data_encoded instead.""")
-            __props__.__dict__["secure_json_datas"] = None if secure_json_datas is None else pulumi.Output.secret(secure_json_datas)
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
             __props__.__dict__["uid"] = uid
             __props__.__dict__["url"] = url
             __props__.__dict__["username"] = username
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["basicAuthPassword", "httpHeaders", "password", "secureJsonDataEncoded", "secureJsonDatas"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["httpHeaders", "secureJsonDataEncoded"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(DataSource, __self__).__init__(
             'grafana:index/dataSource:DataSource',
@@ -901,17 +731,14 @@ class DataSource(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             access_mode: Optional[pulumi.Input[str]] = None,
             basic_auth_enabled: Optional[pulumi.Input[bool]] = None,
-            basic_auth_password: Optional[pulumi.Input[str]] = None,
             basic_auth_username: Optional[pulumi.Input[str]] = None,
             database_name: Optional[pulumi.Input[str]] = None,
             http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             is_default: Optional[pulumi.Input[bool]] = None,
             json_data_encoded: Optional[pulumi.Input[str]] = None,
-            json_datas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourceJsonDataArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            password: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
             secure_json_data_encoded: Optional[pulumi.Input[str]] = None,
-            secure_json_datas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourceSecureJsonDataArgs']]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             uid: Optional[pulumi.Input[str]] = None,
             url: Optional[pulumi.Input[str]] = None,
@@ -925,17 +752,14 @@ class DataSource(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_mode: The method by which Grafana will access the data source: `proxy` or `direct`. Defaults to `proxy`.
         :param pulumi.Input[bool] basic_auth_enabled: Whether to enable basic auth for the data source. Defaults to `false`.
-        :param pulumi.Input[str] basic_auth_password: Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
         :param pulumi.Input[str] basic_auth_username: Basic auth username. Defaults to ``.
         :param pulumi.Input[str] database_name: (Required by some data source types) The name of the database to use on the selected data source server. Defaults to ``.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] http_headers: Custom HTTP headers
         :param pulumi.Input[bool] is_default: Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
         :param pulumi.Input[str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourceJsonDataArgs']]]] json_datas: Use json*data*encoded instead.
         :param pulumi.Input[str] name: A unique name for the data source.
-        :param pulumi.Input[str] password: Use secure*json*data_encoded.password instead. Defaults to ``.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourceSecureJsonDataArgs']]]] secure_json_datas: Use secure*json*data*encoded instead.
         :param pulumi.Input[str] type: The data source type. Must be one of the supported data source keywords.
         :param pulumi.Input[str] uid: Unique identifier. If unset, this will be automatically generated.
         :param pulumi.Input[str] url: The URL for the data source. The type of URL required varies depending on the chosen data source type.
@@ -947,17 +771,14 @@ class DataSource(pulumi.CustomResource):
 
         __props__.__dict__["access_mode"] = access_mode
         __props__.__dict__["basic_auth_enabled"] = basic_auth_enabled
-        __props__.__dict__["basic_auth_password"] = basic_auth_password
         __props__.__dict__["basic_auth_username"] = basic_auth_username
         __props__.__dict__["database_name"] = database_name
         __props__.__dict__["http_headers"] = http_headers
         __props__.__dict__["is_default"] = is_default
         __props__.__dict__["json_data_encoded"] = json_data_encoded
-        __props__.__dict__["json_datas"] = json_datas
         __props__.__dict__["name"] = name
-        __props__.__dict__["password"] = password
+        __props__.__dict__["org_id"] = org_id
         __props__.__dict__["secure_json_data_encoded"] = secure_json_data_encoded
-        __props__.__dict__["secure_json_datas"] = secure_json_datas
         __props__.__dict__["type"] = type
         __props__.__dict__["uid"] = uid
         __props__.__dict__["url"] = url
@@ -979,17 +800,6 @@ class DataSource(pulumi.CustomResource):
         Whether to enable basic auth for the data source. Defaults to `false`.
         """
         return pulumi.get(self, "basic_auth_enabled")
-
-    @property
-    @pulumi.getter(name="basicAuthPassword")
-    def basic_auth_password(self) -> pulumi.Output[Optional[str]]:
-        """
-        Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-        """
-        warnings.warn("""Use secure_json_data_encoded.basicAuthPassword instead.""", DeprecationWarning)
-        pulumi.log.warn("""basic_auth_password is deprecated: Use secure_json_data_encoded.basicAuthPassword instead.""")
-
-        return pulumi.get(self, "basic_auth_password")
 
     @property
     @pulumi.getter(name="basicAuthUsername")
@@ -1032,17 +842,6 @@ class DataSource(pulumi.CustomResource):
         return pulumi.get(self, "json_data_encoded")
 
     @property
-    @pulumi.getter(name="jsonDatas")
-    def json_datas(self) -> pulumi.Output[Optional[Sequence['outputs.DataSourceJsonData']]]:
-        """
-        Use json*data*encoded instead.
-        """
-        warnings.warn("""Use json_data_encoded instead.""", DeprecationWarning)
-        pulumi.log.warn("""json_datas is deprecated: Use json_data_encoded instead.""")
-
-        return pulumi.get(self, "json_datas")
-
-    @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
@@ -1051,15 +850,12 @@ class DataSource(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @property
-    @pulumi.getter
-    def password(self) -> pulumi.Output[Optional[str]]:
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> pulumi.Output[Optional[str]]:
         """
-        Use secure*json*data_encoded.password instead. Defaults to ``.
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
-        warnings.warn("""Use secure_json_data_encoded.password instead.""", DeprecationWarning)
-        pulumi.log.warn("""password is deprecated: Use secure_json_data_encoded.password instead.""")
-
-        return pulumi.get(self, "password")
+        return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter(name="secureJsonDataEncoded")
@@ -1068,17 +864,6 @@ class DataSource(pulumi.CustomResource):
         Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         """
         return pulumi.get(self, "secure_json_data_encoded")
-
-    @property
-    @pulumi.getter(name="secureJsonDatas")
-    def secure_json_datas(self) -> pulumi.Output[Optional[Sequence['outputs.DataSourceSecureJsonData']]]:
-        """
-        Use secure*json*data*encoded instead.
-        """
-        warnings.warn("""Use secure_json_data_encoded instead.""", DeprecationWarning)
-        pulumi.log.warn("""secure_json_datas is deprecated: Use secure_json_data_encoded instead.""")
-
-        return pulumi.get(self, "secure_json_datas")
 
     @property
     @pulumi.getter

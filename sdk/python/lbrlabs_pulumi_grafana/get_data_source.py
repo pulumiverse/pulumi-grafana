@@ -21,7 +21,7 @@ class GetDataSourceResult:
     """
     A collection of values returned by getDataSource.
     """
-    def __init__(__self__, access_mode=None, basic_auth_enabled=None, basic_auth_username=None, database_name=None, id=None, is_default=None, json_data_encoded=None, name=None, type=None, uid=None, url=None, username=None):
+    def __init__(__self__, access_mode=None, basic_auth_enabled=None, basic_auth_username=None, database_name=None, id=None, is_default=None, json_data_encoded=None, name=None, org_id=None, type=None, uid=None, url=None, username=None):
         if access_mode and not isinstance(access_mode, str):
             raise TypeError("Expected argument 'access_mode' to be a str")
         pulumi.set(__self__, "access_mode", access_mode)
@@ -46,6 +46,9 @@ class GetDataSourceResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if org_id and not isinstance(org_id, str):
+            raise TypeError("Expected argument 'org_id' to be a str")
+        pulumi.set(__self__, "org_id", org_id)
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
@@ -121,6 +124,14 @@ class GetDataSourceResult:
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[str]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @property
     @pulumi.getter
     def type(self) -> str:
         """
@@ -164,6 +175,7 @@ class AwaitableGetDataSourceResult(GetDataSourceResult):
             is_default=self.is_default,
             json_data_encoded=self.json_data_encoded,
             name=self.name,
+            org_id=self.org_id,
             type=self.type,
             uid=self.uid,
             url=self.url,
@@ -172,6 +184,7 @@ class AwaitableGetDataSourceResult(GetDataSourceResult):
 
 def get_data_source(id: Optional[str] = None,
                     name: Optional[str] = None,
+                    org_id: Optional[str] = None,
                     uid: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDataSourceResult:
     """
@@ -206,10 +219,12 @@ def get_data_source(id: Optional[str] = None,
 
 
     :param str id: The ID of this resource.
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name
+    __args__['orgId'] = org_id
     __args__['uid'] = uid
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('grafana:index/getDataSource:getDataSource', __args__, opts=opts, typ=GetDataSourceResult).value
@@ -223,6 +238,7 @@ def get_data_source(id: Optional[str] = None,
         is_default=pulumi.get(__ret__, 'is_default'),
         json_data_encoded=pulumi.get(__ret__, 'json_data_encoded'),
         name=pulumi.get(__ret__, 'name'),
+        org_id=pulumi.get(__ret__, 'org_id'),
         type=pulumi.get(__ret__, 'type'),
         uid=pulumi.get(__ret__, 'uid'),
         url=pulumi.get(__ret__, 'url'),
@@ -232,6 +248,7 @@ def get_data_source(id: Optional[str] = None,
 @_utilities.lift_output_func(get_data_source)
 def get_data_source_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                            name: Optional[pulumi.Input[Optional[str]]] = None,
+                           org_id: Optional[pulumi.Input[Optional[str]]] = None,
                            uid: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataSourceResult]:
     """
@@ -266,5 +283,6 @@ def get_data_source_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
 
     :param str id: The ID of this resource.
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
     ...

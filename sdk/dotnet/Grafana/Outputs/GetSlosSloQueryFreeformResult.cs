@@ -14,10 +14,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class GetSlosSloQueryFreeformResult
     {
-        public readonly string? Query;
+        public readonly string Query;
 
         [OutputConstructor]
-        private GetSlosSloQueryFreeformResult(string? query)
+        private GetSlosSloQueryFreeformResult(string query)
         {
             Query = query;
         }

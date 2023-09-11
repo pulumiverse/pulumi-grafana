@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Sets up Synthetic Monitoring on a Grafana cloud stack and generates a token.
@@ -69,14 +71,6 @@ import (
 type SyntheticMonitoringInstallation struct {
 	pulumi.CustomResourceState
 
-	// Deprecated: Not used anymore.
-	//
-	// Deprecated: Not used anymore.
-	LogsInstanceId pulumi.IntPtrOutput `pulumi:"logsInstanceId"`
-	// Deprecated: Not used anymore.
-	//
-	// Deprecated: Not used anymore.
-	MetricsInstanceId pulumi.IntPtrOutput `pulumi:"metricsInstanceId"`
 	// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
 	MetricsPublisherKey pulumi.StringOutput `pulumi:"metricsPublisherKey"`
 	// Generated token to access the SM API.
@@ -107,7 +101,7 @@ func NewSyntheticMonitoringInstallation(ctx *pulumi.Context,
 		"metricsPublisherKey",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SyntheticMonitoringInstallation
 	err := ctx.RegisterResource("grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation", name, args, &resource, opts...)
 	if err != nil {
@@ -130,14 +124,6 @@ func GetSyntheticMonitoringInstallation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SyntheticMonitoringInstallation resources.
 type syntheticMonitoringInstallationState struct {
-	// Deprecated: Not used anymore.
-	//
-	// Deprecated: Not used anymore.
-	LogsInstanceId *int `pulumi:"logsInstanceId"`
-	// Deprecated: Not used anymore.
-	//
-	// Deprecated: Not used anymore.
-	MetricsInstanceId *int `pulumi:"metricsInstanceId"`
 	// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
 	MetricsPublisherKey *string `pulumi:"metricsPublisherKey"`
 	// Generated token to access the SM API.
@@ -149,14 +135,6 @@ type syntheticMonitoringInstallationState struct {
 }
 
 type SyntheticMonitoringInstallationState struct {
-	// Deprecated: Not used anymore.
-	//
-	// Deprecated: Not used anymore.
-	LogsInstanceId pulumi.IntPtrInput
-	// Deprecated: Not used anymore.
-	//
-	// Deprecated: Not used anymore.
-	MetricsInstanceId pulumi.IntPtrInput
 	// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
 	MetricsPublisherKey pulumi.StringPtrInput
 	// Generated token to access the SM API.
@@ -172,14 +150,6 @@ func (SyntheticMonitoringInstallationState) ElementType() reflect.Type {
 }
 
 type syntheticMonitoringInstallationArgs struct {
-	// Deprecated: Not used anymore.
-	//
-	// Deprecated: Not used anymore.
-	LogsInstanceId *int `pulumi:"logsInstanceId"`
-	// Deprecated: Not used anymore.
-	//
-	// Deprecated: Not used anymore.
-	MetricsInstanceId *int `pulumi:"metricsInstanceId"`
 	// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
 	MetricsPublisherKey string `pulumi:"metricsPublisherKey"`
 	// The ID or slug of the stack to install SM on.
@@ -190,14 +160,6 @@ type syntheticMonitoringInstallationArgs struct {
 
 // The set of arguments for constructing a SyntheticMonitoringInstallation resource.
 type SyntheticMonitoringInstallationArgs struct {
-	// Deprecated: Not used anymore.
-	//
-	// Deprecated: Not used anymore.
-	LogsInstanceId pulumi.IntPtrInput
-	// Deprecated: Not used anymore.
-	//
-	// Deprecated: Not used anymore.
-	MetricsInstanceId pulumi.IntPtrInput
 	// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
 	MetricsPublisherKey pulumi.StringInput
 	// The ID or slug of the stack to install SM on.
@@ -229,6 +191,12 @@ func (i *SyntheticMonitoringInstallation) ToSyntheticMonitoringInstallationOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringInstallationOutput)
 }
 
+func (i *SyntheticMonitoringInstallation) ToOutput(ctx context.Context) pulumix.Output[*SyntheticMonitoringInstallation] {
+	return pulumix.Output[*SyntheticMonitoringInstallation]{
+		OutputState: i.ToSyntheticMonitoringInstallationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SyntheticMonitoringInstallationArrayInput is an input type that accepts SyntheticMonitoringInstallationArray and SyntheticMonitoringInstallationArrayOutput values.
 // You can construct a concrete instance of `SyntheticMonitoringInstallationArrayInput` via:
 //
@@ -252,6 +220,12 @@ func (i SyntheticMonitoringInstallationArray) ToSyntheticMonitoringInstallationA
 
 func (i SyntheticMonitoringInstallationArray) ToSyntheticMonitoringInstallationArrayOutputWithContext(ctx context.Context) SyntheticMonitoringInstallationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringInstallationArrayOutput)
+}
+
+func (i SyntheticMonitoringInstallationArray) ToOutput(ctx context.Context) pulumix.Output[[]*SyntheticMonitoringInstallation] {
+	return pulumix.Output[[]*SyntheticMonitoringInstallation]{
+		OutputState: i.ToSyntheticMonitoringInstallationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SyntheticMonitoringInstallationMapInput is an input type that accepts SyntheticMonitoringInstallationMap and SyntheticMonitoringInstallationMapOutput values.
@@ -279,6 +253,12 @@ func (i SyntheticMonitoringInstallationMap) ToSyntheticMonitoringInstallationMap
 	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringInstallationMapOutput)
 }
 
+func (i SyntheticMonitoringInstallationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SyntheticMonitoringInstallation] {
+	return pulumix.Output[map[string]*SyntheticMonitoringInstallation]{
+		OutputState: i.ToSyntheticMonitoringInstallationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SyntheticMonitoringInstallationOutput struct{ *pulumi.OutputState }
 
 func (SyntheticMonitoringInstallationOutput) ElementType() reflect.Type {
@@ -293,18 +273,10 @@ func (o SyntheticMonitoringInstallationOutput) ToSyntheticMonitoringInstallation
 	return o
 }
 
-// Deprecated: Not used anymore.
-//
-// Deprecated: Not used anymore.
-func (o SyntheticMonitoringInstallationOutput) LogsInstanceId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *SyntheticMonitoringInstallation) pulumi.IntPtrOutput { return v.LogsInstanceId }).(pulumi.IntPtrOutput)
-}
-
-// Deprecated: Not used anymore.
-//
-// Deprecated: Not used anymore.
-func (o SyntheticMonitoringInstallationOutput) MetricsInstanceId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *SyntheticMonitoringInstallation) pulumi.IntPtrOutput { return v.MetricsInstanceId }).(pulumi.IntPtrOutput)
+func (o SyntheticMonitoringInstallationOutput) ToOutput(ctx context.Context) pulumix.Output[*SyntheticMonitoringInstallation] {
+	return pulumix.Output[*SyntheticMonitoringInstallation]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
@@ -341,6 +313,12 @@ func (o SyntheticMonitoringInstallationArrayOutput) ToSyntheticMonitoringInstall
 	return o
 }
 
+func (o SyntheticMonitoringInstallationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SyntheticMonitoringInstallation] {
+	return pulumix.Output[[]*SyntheticMonitoringInstallation]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SyntheticMonitoringInstallationArrayOutput) Index(i pulumi.IntInput) SyntheticMonitoringInstallationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SyntheticMonitoringInstallation {
 		return vs[0].([]*SyntheticMonitoringInstallation)[vs[1].(int)]
@@ -359,6 +337,12 @@ func (o SyntheticMonitoringInstallationMapOutput) ToSyntheticMonitoringInstallat
 
 func (o SyntheticMonitoringInstallationMapOutput) ToSyntheticMonitoringInstallationMapOutputWithContext(ctx context.Context) SyntheticMonitoringInstallationMapOutput {
 	return o
+}
+
+func (o SyntheticMonitoringInstallationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SyntheticMonitoringInstallation] {
+	return pulumix.Output[map[string]*SyntheticMonitoringInstallation]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SyntheticMonitoringInstallationMapOutput) MapIndex(k pulumi.StringInput) SyntheticMonitoringInstallationOutput {

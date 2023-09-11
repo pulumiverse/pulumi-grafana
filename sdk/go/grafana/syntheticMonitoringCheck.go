@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Synthetic Monitoring checks are tests that run on selected probes at defined
@@ -646,7 +648,7 @@ func NewSyntheticMonitoringCheck(ctx *pulumi.Context,
 	if args.Target == nil {
 		return nil, errors.New("invalid value for required argument 'Target'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SyntheticMonitoringCheck
 	err := ctx.RegisterResource("grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck", name, args, &resource, opts...)
 	if err != nil {
@@ -792,6 +794,12 @@ func (i *SyntheticMonitoringCheck) ToSyntheticMonitoringCheckOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckOutput)
 }
 
+func (i *SyntheticMonitoringCheck) ToOutput(ctx context.Context) pulumix.Output[*SyntheticMonitoringCheck] {
+	return pulumix.Output[*SyntheticMonitoringCheck]{
+		OutputState: i.ToSyntheticMonitoringCheckOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SyntheticMonitoringCheckArrayInput is an input type that accepts SyntheticMonitoringCheckArray and SyntheticMonitoringCheckArrayOutput values.
 // You can construct a concrete instance of `SyntheticMonitoringCheckArrayInput` via:
 //
@@ -815,6 +823,12 @@ func (i SyntheticMonitoringCheckArray) ToSyntheticMonitoringCheckArrayOutput() S
 
 func (i SyntheticMonitoringCheckArray) ToSyntheticMonitoringCheckArrayOutputWithContext(ctx context.Context) SyntheticMonitoringCheckArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckArrayOutput)
+}
+
+func (i SyntheticMonitoringCheckArray) ToOutput(ctx context.Context) pulumix.Output[[]*SyntheticMonitoringCheck] {
+	return pulumix.Output[[]*SyntheticMonitoringCheck]{
+		OutputState: i.ToSyntheticMonitoringCheckArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SyntheticMonitoringCheckMapInput is an input type that accepts SyntheticMonitoringCheckMap and SyntheticMonitoringCheckMapOutput values.
@@ -842,6 +856,12 @@ func (i SyntheticMonitoringCheckMap) ToSyntheticMonitoringCheckMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckMapOutput)
 }
 
+func (i SyntheticMonitoringCheckMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SyntheticMonitoringCheck] {
+	return pulumix.Output[map[string]*SyntheticMonitoringCheck]{
+		OutputState: i.ToSyntheticMonitoringCheckMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SyntheticMonitoringCheckOutput struct{ *pulumi.OutputState }
 
 func (SyntheticMonitoringCheckOutput) ElementType() reflect.Type {
@@ -854,6 +874,12 @@ func (o SyntheticMonitoringCheckOutput) ToSyntheticMonitoringCheckOutput() Synth
 
 func (o SyntheticMonitoringCheckOutput) ToSyntheticMonitoringCheckOutputWithContext(ctx context.Context) SyntheticMonitoringCheckOutput {
 	return o
+}
+
+func (o SyntheticMonitoringCheckOutput) ToOutput(ctx context.Context) pulumix.Output[*SyntheticMonitoringCheck] {
+	return pulumix.Output[*SyntheticMonitoringCheck]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
@@ -925,6 +951,12 @@ func (o SyntheticMonitoringCheckArrayOutput) ToSyntheticMonitoringCheckArrayOutp
 	return o
 }
 
+func (o SyntheticMonitoringCheckArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SyntheticMonitoringCheck] {
+	return pulumix.Output[[]*SyntheticMonitoringCheck]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SyntheticMonitoringCheckArrayOutput) Index(i pulumi.IntInput) SyntheticMonitoringCheckOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SyntheticMonitoringCheck {
 		return vs[0].([]*SyntheticMonitoringCheck)[vs[1].(int)]
@@ -943,6 +975,12 @@ func (o SyntheticMonitoringCheckMapOutput) ToSyntheticMonitoringCheckMapOutput()
 
 func (o SyntheticMonitoringCheckMapOutput) ToSyntheticMonitoringCheckMapOutputWithContext(ctx context.Context) SyntheticMonitoringCheckMapOutput {
 	return o
+}
+
+func (o SyntheticMonitoringCheckMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SyntheticMonitoringCheck] {
+	return pulumix.Output[map[string]*SyntheticMonitoringCheck]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SyntheticMonitoringCheckMapOutput) MapIndex(k pulumi.StringInput) SyntheticMonitoringCheckOutput {

@@ -71,6 +71,10 @@ export class FolderPermission extends pulumi.CustomResource {
      */
     public readonly folderUid!: pulumi.Output<string>;
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
+    /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
     public readonly permissions!: pulumi.Output<outputs.FolderPermissionPermission[]>;
@@ -89,6 +93,7 @@ export class FolderPermission extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as FolderPermissionState | undefined;
             resourceInputs["folderUid"] = state ? state.folderUid : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["permissions"] = state ? state.permissions : undefined;
         } else {
             const args = argsOrState as FolderPermissionArgs | undefined;
@@ -99,6 +104,7 @@ export class FolderPermission extends pulumi.CustomResource {
                 throw new Error("Missing required property 'permissions'");
             }
             resourceInputs["folderUid"] = args ? args.folderUid : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["permissions"] = args ? args.permissions : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -115,6 +121,10 @@ export interface FolderPermissionState {
      */
     folderUid?: pulumi.Input<string>;
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
+    /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
     permissions?: pulumi.Input<pulumi.Input<inputs.FolderPermissionPermission>[]>;
@@ -128,6 +138,10 @@ export interface FolderPermissionArgs {
      * The UID of the folder.
      */
     folderUid: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */

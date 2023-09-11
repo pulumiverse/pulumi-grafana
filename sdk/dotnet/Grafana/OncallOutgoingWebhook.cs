@@ -115,6 +115,11 @@ namespace Lbrlabs.PulumiPackage.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/lbrlabs",
+                AdditionalSecretOutputs =
+                {
+                    "authorizationHeader",
+                    "password",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -138,11 +143,21 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class OncallOutgoingWebhookArgs : global::Pulumi.ResourceArgs
     {
+        [Input("authorizationHeader")]
+        private Input<string>? _authorizationHeader;
+
         /// <summary>
         /// The auth data of the webhook. Used in Authorization header instead of user/password auth.
         /// </summary>
-        [Input("authorizationHeader")]
-        public Input<string>? AuthorizationHeader { get; set; }
+        public Input<string>? AuthorizationHeader
+        {
+            get => _authorizationHeader;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _authorizationHeader = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The data of the webhook.
@@ -162,11 +177,21 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// The auth data of the webhook. Used for Basic authentication
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
@@ -194,11 +219,21 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class OncallOutgoingWebhookState : global::Pulumi.ResourceArgs
     {
+        [Input("authorizationHeader")]
+        private Input<string>? _authorizationHeader;
+
         /// <summary>
         /// The auth data of the webhook. Used in Authorization header instead of user/password auth.
         /// </summary>
-        [Input("authorizationHeader")]
-        public Input<string>? AuthorizationHeader { get; set; }
+        public Input<string>? AuthorizationHeader
+        {
+            get => _authorizationHeader;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _authorizationHeader = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The data of the webhook.
@@ -218,11 +253,21 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// The auth data of the webhook. Used for Basic authentication
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.

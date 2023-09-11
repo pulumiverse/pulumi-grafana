@@ -93,7 +93,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// IDs of teams that the role should be assigned to.
         /// </summary>
         [Output("teams")]
-        public Output<ImmutableArray<int>> Teams { get; private set; } = null!;
+        public Output<ImmutableArray<string>> Teams { get; private set; } = null!;
 
         /// <summary>
         /// IDs of users that the role should be assigned to.
@@ -167,14 +167,14 @@ namespace Lbrlabs.PulumiPackage.Grafana
         }
 
         [Input("teams")]
-        private InputList<int>? _teams;
+        private InputList<string>? _teams;
 
         /// <summary>
         /// IDs of teams that the role should be assigned to.
         /// </summary>
-        public InputList<int> Teams
+        public InputList<string> Teams
         {
-            get => _teams ?? (_teams = new InputList<int>());
+            get => _teams ?? (_teams = new InputList<string>());
             set => _teams = value;
         }
 
@@ -217,14 +217,14 @@ namespace Lbrlabs.PulumiPackage.Grafana
         }
 
         [Input("teams")]
-        private InputList<int>? _teams;
+        private InputList<string>? _teams;
 
         /// <summary>
         /// IDs of teams that the role should be assigned to.
         /// </summary>
-        public InputList<int> Teams
+        public InputList<string> Teams
         {
-            get => _teams ?? (_teams = new InputList<int>());
+            get => _teams ?? (_teams = new InputList<string>());
             set => _teams = value;
         }
 

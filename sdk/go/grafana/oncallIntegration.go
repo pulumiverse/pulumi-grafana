@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [Official documentation](https://grafana.com/docs/oncall/latest/integrations/)
@@ -34,7 +36,7 @@ type OncallIntegration struct {
 	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
 	// Jinja2 templates for Alert payload.
 	Templates OncallIntegrationTemplatesPtrOutput `pulumi:"templates"`
-	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email.
+	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -51,7 +53,7 @@ func NewOncallIntegration(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource OncallIntegration
 	err := ctx.RegisterResource("grafana:index/oncallIntegration:OncallIntegration", name, args, &resource, opts...)
 	if err != nil {
@@ -84,7 +86,7 @@ type oncallIntegrationState struct {
 	TeamId *string `pulumi:"teamId"`
 	// Jinja2 templates for Alert payload.
 	Templates *OncallIntegrationTemplates `pulumi:"templates"`
-	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email.
+	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
 	Type *string `pulumi:"type"`
 }
 
@@ -99,7 +101,7 @@ type OncallIntegrationState struct {
 	TeamId pulumi.StringPtrInput
 	// Jinja2 templates for Alert payload.
 	Templates OncallIntegrationTemplatesPtrInput
-	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email.
+	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
 	Type pulumi.StringPtrInput
 }
 
@@ -116,7 +118,7 @@ type oncallIntegrationArgs struct {
 	TeamId *string `pulumi:"teamId"`
 	// Jinja2 templates for Alert payload.
 	Templates *OncallIntegrationTemplates `pulumi:"templates"`
-	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email.
+	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
 	Type string `pulumi:"type"`
 }
 
@@ -130,7 +132,7 @@ type OncallIntegrationArgs struct {
 	TeamId pulumi.StringPtrInput
 	// Jinja2 templates for Alert payload.
 	Templates OncallIntegrationTemplatesPtrInput
-	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email.
+	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
 	Type pulumi.StringInput
 }
 
@@ -155,6 +157,12 @@ func (i *OncallIntegration) ToOncallIntegrationOutput() OncallIntegrationOutput 
 
 func (i *OncallIntegration) ToOncallIntegrationOutputWithContext(ctx context.Context) OncallIntegrationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OncallIntegrationOutput)
+}
+
+func (i *OncallIntegration) ToOutput(ctx context.Context) pulumix.Output[*OncallIntegration] {
+	return pulumix.Output[*OncallIntegration]{
+		OutputState: i.ToOncallIntegrationOutputWithContext(ctx).OutputState,
+	}
 }
 
 // OncallIntegrationArrayInput is an input type that accepts OncallIntegrationArray and OncallIntegrationArrayOutput values.
@@ -182,6 +190,12 @@ func (i OncallIntegrationArray) ToOncallIntegrationArrayOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(OncallIntegrationArrayOutput)
 }
 
+func (i OncallIntegrationArray) ToOutput(ctx context.Context) pulumix.Output[[]*OncallIntegration] {
+	return pulumix.Output[[]*OncallIntegration]{
+		OutputState: i.ToOncallIntegrationArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // OncallIntegrationMapInput is an input type that accepts OncallIntegrationMap and OncallIntegrationMapOutput values.
 // You can construct a concrete instance of `OncallIntegrationMapInput` via:
 //
@@ -207,6 +221,12 @@ func (i OncallIntegrationMap) ToOncallIntegrationMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(OncallIntegrationMapOutput)
 }
 
+func (i OncallIntegrationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OncallIntegration] {
+	return pulumix.Output[map[string]*OncallIntegration]{
+		OutputState: i.ToOncallIntegrationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type OncallIntegrationOutput struct{ *pulumi.OutputState }
 
 func (OncallIntegrationOutput) ElementType() reflect.Type {
@@ -219,6 +239,12 @@ func (o OncallIntegrationOutput) ToOncallIntegrationOutput() OncallIntegrationOu
 
 func (o OncallIntegrationOutput) ToOncallIntegrationOutputWithContext(ctx context.Context) OncallIntegrationOutput {
 	return o
+}
+
+func (o OncallIntegrationOutput) ToOutput(ctx context.Context) pulumix.Output[*OncallIntegration] {
+	return pulumix.Output[*OncallIntegration]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The Default route for all alerts from the given integration
@@ -246,7 +272,7 @@ func (o OncallIntegrationOutput) Templates() OncallIntegrationTemplatesPtrOutput
 	return o.ApplyT(func(v *OncallIntegration) OncallIntegrationTemplatesPtrOutput { return v.Templates }).(OncallIntegrationTemplatesPtrOutput)
 }
 
-// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email.
+// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
 func (o OncallIntegrationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *OncallIntegration) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
@@ -263,6 +289,12 @@ func (o OncallIntegrationArrayOutput) ToOncallIntegrationArrayOutput() OncallInt
 
 func (o OncallIntegrationArrayOutput) ToOncallIntegrationArrayOutputWithContext(ctx context.Context) OncallIntegrationArrayOutput {
 	return o
+}
+
+func (o OncallIntegrationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OncallIntegration] {
+	return pulumix.Output[[]*OncallIntegration]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o OncallIntegrationArrayOutput) Index(i pulumi.IntInput) OncallIntegrationOutput {
@@ -283,6 +315,12 @@ func (o OncallIntegrationMapOutput) ToOncallIntegrationMapOutput() OncallIntegra
 
 func (o OncallIntegrationMapOutput) ToOncallIntegrationMapOutputWithContext(ctx context.Context) OncallIntegrationMapOutput {
 	return o
+}
+
+func (o OncallIntegrationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OncallIntegration] {
+	return pulumix.Output[map[string]*OncallIntegration]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o OncallIntegrationMapOutput) MapIndex(k pulumi.StringInput) OncallIntegrationOutput {

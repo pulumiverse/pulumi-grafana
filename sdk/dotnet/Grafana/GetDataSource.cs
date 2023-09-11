@@ -143,6 +143,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public string? OrgId { get; set; }
+
         [Input("uid")]
         public string? Uid { get; set; }
 
@@ -162,6 +168,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         [Input("uid")]
         public Input<string>? Uid { get; set; }
@@ -206,6 +218,10 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public readonly string JsonDataEncoded;
         public readonly string Name;
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        public readonly string? OrgId;
+        /// <summary>
         /// The data source type. Must be one of the supported data source keywords.
         /// </summary>
         public readonly string Type;
@@ -237,6 +253,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
             string name,
 
+            string? orgId,
+
             string type,
 
             string uid,
@@ -253,6 +271,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
             IsDefault = isDefault;
             JsonDataEncoded = jsonDataEncoded;
             Name = name;
+            OrgId = orgId;
             Type = type;
             Uid = uid;
             Url = url;

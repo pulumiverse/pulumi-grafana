@@ -65,6 +65,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public partial class ServiceAccountPermission : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
+
+        /// <summary>
         /// The permission items to add/update. Items that are omitted from the list will be removed.
         /// </summary>
         [Output("permissions")]
@@ -123,6 +129,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class ServiceAccountPermissionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
         [Input("permissions", required: true)]
         private InputList<Inputs.ServiceAccountPermissionPermissionArgs>? _permissions;
 
@@ -149,6 +161,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class ServiceAccountPermissionState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
         [Input("permissions")]
         private InputList<Inputs.ServiceAccountPermissionPermissionGetArgs>? _permissions;
 

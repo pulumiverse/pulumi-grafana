@@ -54,14 +54,16 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+     * Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+     * variable.
      * 
      */
     @Import(name="cloudApiKey")
     private @Nullable Output<String> cloudApiKey;
 
     /**
-     * @return API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+     * @return Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+     * variable.
      * 
      */
     public Optional<Output<String>> cloudApiKey() {
@@ -129,18 +131,24 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
-     * resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+     * Deprecated: Use the `org_id` attributes on resources instead.
+     * 
+     * @deprecated
+     * Use the `org_id` attributes on resources instead.
      * 
      */
+    @Deprecated /* Use the `org_id` attributes on resources instead. */
     @Import(name="orgId", json=true)
     private @Nullable Output<Integer> orgId;
 
     /**
-     * @return The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
-     * resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+     * @return Deprecated: Use the `org_id` attributes on resources instead.
+     * 
+     * @deprecated
+     * Use the `org_id` attributes on resources instead.
      * 
      */
+    @Deprecated /* Use the `org_id` attributes on resources instead. */
     public Optional<Output<Integer>> orgId() {
         return Optional.ofNullable(this.orgId);
     }
@@ -371,7 +379,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param cloudApiKey API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+         * @param cloudApiKey Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+         * variable.
          * 
          * @return builder
          * 
@@ -382,7 +391,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param cloudApiKey API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+         * @param cloudApiKey Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+         * variable.
          * 
          * @return builder
          * 
@@ -476,24 +486,30 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param orgId The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
-         * resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+         * @param orgId Deprecated: Use the `org_id` attributes on resources instead.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Use the `org_id` attributes on resources instead.
+         * 
          */
+        @Deprecated /* Use the `org_id` attributes on resources instead. */
         public Builder orgId(@Nullable Output<Integer> orgId) {
             $.orgId = orgId;
             return this;
         }
 
         /**
-         * @param orgId The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
-         * resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+         * @param orgId Deprecated: Use the `org_id` attributes on resources instead.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Use the `org_id` attributes on resources instead.
+         * 
          */
+        @Deprecated /* Use the `org_id` attributes on resources instead. */
         public Builder orgId(Integer orgId) {
             return orgId(Output.of(orgId));
         }

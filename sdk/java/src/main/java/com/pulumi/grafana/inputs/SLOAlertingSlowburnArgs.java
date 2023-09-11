@@ -25,14 +25,14 @@ public final class SLOAlertingSlowburnArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
      * 
      */
     @Import(name="labels")
     private @Nullable Output<List<SLOAlertingSlowburnLabelArgs>> labels;
 
     /**
-     * @return Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+     * @return Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
      * 
      */
     public Optional<Output<List<SLOAlertingSlowburnLabelArgs>>> labels() {
@@ -78,7 +78,7 @@ public final class SLOAlertingSlowburnArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param labels Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+         * @param labels Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
          * 
          * @return builder
          * 
@@ -89,7 +89,7 @@ public final class SLOAlertingSlowburnArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param labels Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+         * @param labels Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
          * 
          * @return builder
          * 
@@ -99,7 +99,7 @@ public final class SLOAlertingSlowburnArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param labels Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+         * @param labels Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
          * 
          * @return builder
          * 

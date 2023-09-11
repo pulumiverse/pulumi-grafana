@@ -17,6 +17,21 @@ public final class FolderArgs extends com.pulumi.resources.ResourceArgs {
     public static final FolderArgs Empty = new FolderArgs();
 
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Import(name="orgId")
+    private @Nullable Output<String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<Output<String>> orgId() {
+        return Optional.ofNullable(this.orgId);
+    }
+
+    /**
      * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
      * 
      */
@@ -64,6 +79,7 @@ public final class FolderArgs extends com.pulumi.resources.ResourceArgs {
     private FolderArgs() {}
 
     private FolderArgs(FolderArgs $) {
+        this.orgId = $.orgId;
         this.preventDestroyIfNotEmpty = $.preventDestroyIfNotEmpty;
         this.title = $.title;
         this.uid = $.uid;
@@ -85,6 +101,27 @@ public final class FolderArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(FolderArgs defaults) {
             $ = new FolderArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(@Nullable Output<String> orgId) {
+            $.orgId = orgId;
+            return this;
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(String orgId) {
+            return orgId(Output.of(orgId));
         }
 
         /**

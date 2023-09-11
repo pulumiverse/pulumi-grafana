@@ -4,33 +4,44 @@
 package com.pulumi.grafana.inputs;
 
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetTeamPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetTeamPlainArgs Empty = new GetTeamPlainArgs();
 
-    /**
-     * The name of the Grafana team.
-     * 
-     */
     @Import(name="name", required=true)
     private String name;
 
-    /**
-     * @return The name of the Grafana team.
-     * 
-     */
     public String name() {
         return this.name;
+    }
+
+    @Import(name="orgId")
+    private @Nullable String orgId;
+
+    public Optional<String> orgId() {
+        return Optional.ofNullable(this.orgId);
+    }
+
+    @Import(name="readTeamSync")
+    private @Nullable Boolean readTeamSync;
+
+    public Optional<Boolean> readTeamSync() {
+        return Optional.ofNullable(this.readTeamSync);
     }
 
     private GetTeamPlainArgs() {}
 
     private GetTeamPlainArgs(GetTeamPlainArgs $) {
         this.name = $.name;
+        this.orgId = $.orgId;
+        this.readTeamSync = $.readTeamSync;
     }
 
     public static Builder builder() {
@@ -51,14 +62,18 @@ public final class GetTeamPlainArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetTeamPlainArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param name The name of the Grafana team.
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(String name) {
             $.name = name;
+            return this;
+        }
+
+        public Builder orgId(@Nullable String orgId) {
+            $.orgId = orgId;
+            return this;
+        }
+
+        public Builder readTeamSync(@Nullable Boolean readTeamSync) {
+            $.readTeamSync = readTeamSync;
             return this;
         }
 

@@ -6,19 +6,29 @@ package com.pulumi.grafana.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.grafana.inputs.SLOQueryFreeformArgs;
+import com.pulumi.grafana.inputs.SLOQueryRatioArgs;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class SLOQueryArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final SLOQueryArgs Empty = new SLOQueryArgs();
 
-    @Import(name="freeform", required=true)
-    private Output<SLOQueryFreeformArgs> freeform;
+    @Import(name="freeform")
+    private @Nullable Output<SLOQueryFreeformArgs> freeform;
 
-    public Output<SLOQueryFreeformArgs> freeform() {
-        return this.freeform;
+    public Optional<Output<SLOQueryFreeformArgs>> freeform() {
+        return Optional.ofNullable(this.freeform);
+    }
+
+    @Import(name="ratio")
+    private @Nullable Output<SLOQueryRatioArgs> ratio;
+
+    public Optional<Output<SLOQueryRatioArgs>> ratio() {
+        return Optional.ofNullable(this.ratio);
     }
 
     /**
@@ -40,6 +50,7 @@ public final class SLOQueryArgs extends com.pulumi.resources.ResourceArgs {
 
     private SLOQueryArgs(SLOQueryArgs $) {
         this.freeform = $.freeform;
+        this.ratio = $.ratio;
         this.type = $.type;
     }
 
@@ -61,13 +72,22 @@ public final class SLOQueryArgs extends com.pulumi.resources.ResourceArgs {
             $ = new SLOQueryArgs(Objects.requireNonNull(defaults));
         }
 
-        public Builder freeform(Output<SLOQueryFreeformArgs> freeform) {
+        public Builder freeform(@Nullable Output<SLOQueryFreeformArgs> freeform) {
             $.freeform = freeform;
             return this;
         }
 
         public Builder freeform(SLOQueryFreeformArgs freeform) {
             return freeform(Output.of(freeform));
+        }
+
+        public Builder ratio(@Nullable Output<SLOQueryRatioArgs> ratio) {
+            $.ratio = ratio;
+            return this;
+        }
+
+        public Builder ratio(SLOQueryRatioArgs ratio) {
+            return ratio(Output.of(ratio));
         }
 
         /**
@@ -92,7 +112,6 @@ public final class SLOQueryArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public SLOQueryArgs build() {
-            $.freeform = Objects.requireNonNull($.freeform, "expected parameter 'freeform' to be non-null");
             $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
             return $;
         }

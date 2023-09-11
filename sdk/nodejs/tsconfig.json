@@ -13,10 +13,8 @@
         "strict": true
     },
     "files": [
-        "alertNotification.ts",
         "annotation.ts",
         "apiKey.ts",
-        "builtinRoleAssignment.ts",
         "cloudAccessPolicy.ts",
         "cloudAccessPolicyToken.ts",
         "cloudApiKey.ts",
@@ -53,6 +51,7 @@
         "getOncallUserGroup.ts",
         "getOrganization.ts",
         "getOrganizationPreferences.ts",
+        "getRole.ts",
         "getSlos.ts",
         "getSyntheticMonitoringProbe.ts",
         "getSyntheticMonitoringProbes.ts",
@@ -91,7 +90,6 @@
         "syntheticMonitoringProbe.ts",
         "team.ts",
         "teamExternalGroup.ts",
-        "teamPreferences.ts",
         "types/index.ts",
         "types/input.ts",
         "types/output.ts",

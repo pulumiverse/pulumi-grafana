@@ -34,7 +34,8 @@ class _ExportableConfig(types.ModuleType):
     @property
     def cloud_api_key(self) -> Optional[str]:
         """
-        API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+        Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+        variable.
         """
         return __config__.get('cloudApiKey') or _utilities.get_env('GRAFANA_CLOUD_API_KEY')
 
@@ -77,8 +78,7 @@ class _ExportableConfig(types.ModuleType):
     @property
     def org_id(self) -> Optional[int]:
         """
-        The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
-        resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+        Deprecated: Use the `org_id` attributes on resources instead.
         """
         return __config__.get_int('orgId') or _utilities.get_env_int('GRAFANA_ORG_ID')
 

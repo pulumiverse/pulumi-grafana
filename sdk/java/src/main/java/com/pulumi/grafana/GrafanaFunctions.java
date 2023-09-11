@@ -40,6 +40,8 @@ import com.pulumi.grafana.inputs.GetOncallUserGroupPlainArgs;
 import com.pulumi.grafana.inputs.GetOncallUserPlainArgs;
 import com.pulumi.grafana.inputs.GetOrganizationArgs;
 import com.pulumi.grafana.inputs.GetOrganizationPlainArgs;
+import com.pulumi.grafana.inputs.GetRoleArgs;
+import com.pulumi.grafana.inputs.GetRolePlainArgs;
 import com.pulumi.grafana.inputs.GetSyntheticMonitoringProbeArgs;
 import com.pulumi.grafana.inputs.GetSyntheticMonitoringProbePlainArgs;
 import com.pulumi.grafana.inputs.GetSyntheticMonitoringProbesArgs;
@@ -67,6 +69,7 @@ import com.pulumi.grafana.outputs.GetOncallUserGroupResult;
 import com.pulumi.grafana.outputs.GetOncallUserResult;
 import com.pulumi.grafana.outputs.GetOrganizationPreferencesResult;
 import com.pulumi.grafana.outputs.GetOrganizationResult;
+import com.pulumi.grafana.outputs.GetRoleResult;
 import com.pulumi.grafana.outputs.GetSlosResult;
 import com.pulumi.grafana.outputs.GetSyntheticMonitoringProbeResult;
 import com.pulumi.grafana.outputs.GetSyntheticMonitoringProbesResult;
@@ -3326,10 +3329,263 @@ public final class GrafanaFunctions {
         return Deployment.getInstance().invokeAsync("grafana:index/getOrganizationPreferences:getOrganizationPreferences", TypeShape.of(GetOrganizationPreferencesResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * **Note:** This resource is available only with Grafana Enterprise 8.+.
+     * 
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.Role;
+     * import com.pulumi.grafana.RoleArgs;
+     * import com.pulumi.grafana.inputs.RolePermissionArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import com.pulumi.grafana.inputs.GetRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var test = new Role(&#34;test&#34;, RoleArgs.builder()        
+     *             .description(&#34;test-role description&#34;)
+     *             .uid(&#34;test-ds-role-uid&#34;)
+     *             .version(1)
+     *             .global(true)
+     *             .permissions(            
+     *                 RolePermissionArgs.builder()
+     *                     .action(&#34;org.users:add&#34;)
+     *                     .scope(&#34;users:*&#34;)
+     *                     .build(),
+     *                 RolePermissionArgs.builder()
+     *                     .action(&#34;org.users:write&#34;)
+     *                     .scope(&#34;users:*&#34;)
+     *                     .build(),
+     *                 RolePermissionArgs.builder()
+     *                     .action(&#34;org.users:read&#34;)
+     *                     .scope(&#34;users:*&#34;)
+     *                     .build())
+     *             .build());
+     * 
+     *         final var fromName = GrafanaFunctions.getRole(GetRoleArgs.builder()
+     *             .name(test.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetRoleResult> getRole(GetRoleArgs args) {
+        return getRole(args, InvokeOptions.Empty);
+    }
+    /**
+     * **Note:** This resource is available only with Grafana Enterprise 8.+.
+     * 
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.Role;
+     * import com.pulumi.grafana.RoleArgs;
+     * import com.pulumi.grafana.inputs.RolePermissionArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import com.pulumi.grafana.inputs.GetRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var test = new Role(&#34;test&#34;, RoleArgs.builder()        
+     *             .description(&#34;test-role description&#34;)
+     *             .uid(&#34;test-ds-role-uid&#34;)
+     *             .version(1)
+     *             .global(true)
+     *             .permissions(            
+     *                 RolePermissionArgs.builder()
+     *                     .action(&#34;org.users:add&#34;)
+     *                     .scope(&#34;users:*&#34;)
+     *                     .build(),
+     *                 RolePermissionArgs.builder()
+     *                     .action(&#34;org.users:write&#34;)
+     *                     .scope(&#34;users:*&#34;)
+     *                     .build(),
+     *                 RolePermissionArgs.builder()
+     *                     .action(&#34;org.users:read&#34;)
+     *                     .scope(&#34;users:*&#34;)
+     *                     .build())
+     *             .build());
+     * 
+     *         final var fromName = GrafanaFunctions.getRole(GetRoleArgs.builder()
+     *             .name(test.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetRoleResult> getRolePlain(GetRolePlainArgs args) {
+        return getRolePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * **Note:** This resource is available only with Grafana Enterprise 8.+.
+     * 
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.Role;
+     * import com.pulumi.grafana.RoleArgs;
+     * import com.pulumi.grafana.inputs.RolePermissionArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import com.pulumi.grafana.inputs.GetRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var test = new Role(&#34;test&#34;, RoleArgs.builder()        
+     *             .description(&#34;test-role description&#34;)
+     *             .uid(&#34;test-ds-role-uid&#34;)
+     *             .version(1)
+     *             .global(true)
+     *             .permissions(            
+     *                 RolePermissionArgs.builder()
+     *                     .action(&#34;org.users:add&#34;)
+     *                     .scope(&#34;users:*&#34;)
+     *                     .build(),
+     *                 RolePermissionArgs.builder()
+     *                     .action(&#34;org.users:write&#34;)
+     *                     .scope(&#34;users:*&#34;)
+     *                     .build(),
+     *                 RolePermissionArgs.builder()
+     *                     .action(&#34;org.users:read&#34;)
+     *                     .scope(&#34;users:*&#34;)
+     *                     .build())
+     *             .build());
+     * 
+     *         final var fromName = GrafanaFunctions.getRole(GetRoleArgs.builder()
+     *             .name(test.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetRoleResult> getRole(GetRoleArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("grafana:index/getRole:getRole", TypeShape.of(GetRoleResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * **Note:** This resource is available only with Grafana Enterprise 8.+.
+     * 
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.grafana.Role;
+     * import com.pulumi.grafana.RoleArgs;
+     * import com.pulumi.grafana.inputs.RolePermissionArgs;
+     * import com.pulumi.grafana.GrafanaFunctions;
+     * import com.pulumi.grafana.inputs.GetRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var test = new Role(&#34;test&#34;, RoleArgs.builder()        
+     *             .description(&#34;test-role description&#34;)
+     *             .uid(&#34;test-ds-role-uid&#34;)
+     *             .version(1)
+     *             .global(true)
+     *             .permissions(            
+     *                 RolePermissionArgs.builder()
+     *                     .action(&#34;org.users:add&#34;)
+     *                     .scope(&#34;users:*&#34;)
+     *                     .build(),
+     *                 RolePermissionArgs.builder()
+     *                     .action(&#34;org.users:write&#34;)
+     *                     .scope(&#34;users:*&#34;)
+     *                     .build(),
+     *                 RolePermissionArgs.builder()
+     *                     .action(&#34;org.users:read&#34;)
+     *                     .scope(&#34;users:*&#34;)
+     *                     .build())
+     *             .build());
+     * 
+     *         final var fromName = GrafanaFunctions.getRole(GetRoleArgs.builder()
+     *             .name(test.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetRoleResult> getRolePlain(GetRolePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("grafana:index/getRole:getRole", TypeShape.of(GetRoleResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Datasource for retrieving all SLOs.
      * 
      * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
      * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+     * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
      * 
      * ## Example Usage
      * 
@@ -3403,6 +3659,7 @@ public final class GrafanaFunctions {
      * 
      * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
      * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+     * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
      * 
      * ## Example Usage
      * 
@@ -3476,6 +3733,7 @@ public final class GrafanaFunctions {
      * 
      * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
      * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+     * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
      * 
      * ## Example Usage
      * 
@@ -3549,6 +3807,7 @@ public final class GrafanaFunctions {
      * 
      * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
      * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+     * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
      * 
      * ## Example Usage
      * 
@@ -3622,6 +3881,7 @@ public final class GrafanaFunctions {
      * 
      * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
      * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+     * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
      * 
      * ## Example Usage
      * 
@@ -3695,6 +3955,7 @@ public final class GrafanaFunctions {
      * 
      * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
      * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+     * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
      * 
      * ## Example Usage
      * 
@@ -4134,6 +4395,7 @@ public final class GrafanaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.grafana.Team;
      * import com.pulumi.grafana.TeamArgs;
+     * import com.pulumi.grafana.inputs.TeamPreferencesArgs;
      * import com.pulumi.grafana.GrafanaFunctions;
      * import com.pulumi.grafana.inputs.GetTeamArgs;
      * import java.util.List;
@@ -4151,6 +4413,10 @@ public final class GrafanaFunctions {
      *     public static void stack(Context ctx) {
      *         var test = new Team(&#34;test&#34;, TeamArgs.builder()        
      *             .email(&#34;test-team-email@test.com&#34;)
+     *             .preferences(TeamPreferencesArgs.builder()
+     *                 .theme(&#34;dark&#34;)
+     *                 .timezone(&#34;utc&#34;)
+     *                 .build())
      *             .build());
      * 
      *         final var fromName = GrafanaFunctions.getTeam(GetTeamArgs.builder()
@@ -4178,6 +4444,7 @@ public final class GrafanaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.grafana.Team;
      * import com.pulumi.grafana.TeamArgs;
+     * import com.pulumi.grafana.inputs.TeamPreferencesArgs;
      * import com.pulumi.grafana.GrafanaFunctions;
      * import com.pulumi.grafana.inputs.GetTeamArgs;
      * import java.util.List;
@@ -4195,6 +4462,10 @@ public final class GrafanaFunctions {
      *     public static void stack(Context ctx) {
      *         var test = new Team(&#34;test&#34;, TeamArgs.builder()        
      *             .email(&#34;test-team-email@test.com&#34;)
+     *             .preferences(TeamPreferencesArgs.builder()
+     *                 .theme(&#34;dark&#34;)
+     *                 .timezone(&#34;utc&#34;)
+     *                 .build())
      *             .build());
      * 
      *         final var fromName = GrafanaFunctions.getTeam(GetTeamArgs.builder()
@@ -4222,6 +4493,7 @@ public final class GrafanaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.grafana.Team;
      * import com.pulumi.grafana.TeamArgs;
+     * import com.pulumi.grafana.inputs.TeamPreferencesArgs;
      * import com.pulumi.grafana.GrafanaFunctions;
      * import com.pulumi.grafana.inputs.GetTeamArgs;
      * import java.util.List;
@@ -4239,6 +4511,10 @@ public final class GrafanaFunctions {
      *     public static void stack(Context ctx) {
      *         var test = new Team(&#34;test&#34;, TeamArgs.builder()        
      *             .email(&#34;test-team-email@test.com&#34;)
+     *             .preferences(TeamPreferencesArgs.builder()
+     *                 .theme(&#34;dark&#34;)
+     *                 .timezone(&#34;utc&#34;)
+     *                 .build())
      *             .build());
      * 
      *         final var fromName = GrafanaFunctions.getTeam(GetTeamArgs.builder()
@@ -4266,6 +4542,7 @@ public final class GrafanaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.grafana.Team;
      * import com.pulumi.grafana.TeamArgs;
+     * import com.pulumi.grafana.inputs.TeamPreferencesArgs;
      * import com.pulumi.grafana.GrafanaFunctions;
      * import com.pulumi.grafana.inputs.GetTeamArgs;
      * import java.util.List;
@@ -4283,6 +4560,10 @@ public final class GrafanaFunctions {
      *     public static void stack(Context ctx) {
      *         var test = new Team(&#34;test&#34;, TeamArgs.builder()        
      *             .email(&#34;test-team-email@test.com&#34;)
+     *             .preferences(TeamPreferencesArgs.builder()
+     *                 .theme(&#34;dark&#34;)
+     *                 .timezone(&#34;utc&#34;)
+     *                 .build())
      *             .build());
      * 
      *         final var fromName = GrafanaFunctions.getTeam(GetTeamArgs.builder()

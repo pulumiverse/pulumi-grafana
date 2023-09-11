@@ -107,7 +107,6 @@ class _DashboardState:
                  message: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  overwrite: Optional[pulumi.Input[bool]] = None,
-                 slug: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[int]] = None):
@@ -119,7 +118,6 @@ class _DashboardState:
         :param pulumi.Input[str] message: Set a commit message for the version history.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
-        :param pulumi.Input[str] slug: URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
         :param pulumi.Input[str] uid: The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
         :param pulumi.Input[str] url: The full URL of the dashboard.
         :param pulumi.Input[int] version: Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your dashboard are not lost.
@@ -136,11 +134,6 @@ class _DashboardState:
             pulumi.set(__self__, "org_id", org_id)
         if overwrite is not None:
             pulumi.set(__self__, "overwrite", overwrite)
-        if slug is not None:
-            warnings.warn("""Use `uid` instead.""", DeprecationWarning)
-            pulumi.log.warn("""slug is deprecated: Use `uid` instead.""")
-        if slug is not None:
-            pulumi.set(__self__, "slug", slug)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
         if url is not None:
@@ -219,21 +212,6 @@ class _DashboardState:
     @overwrite.setter
     def overwrite(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "overwrite", value)
-
-    @property
-    @pulumi.getter
-    def slug(self) -> Optional[pulumi.Input[str]]:
-        """
-        URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
-        """
-        warnings.warn("""Use `uid` instead.""", DeprecationWarning)
-        pulumi.log.warn("""slug is deprecated: Use `uid` instead.""")
-
-        return pulumi.get(self, "slug")
-
-    @slug.setter
-    def slug(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "slug", value)
 
     @property
     @pulumi.getter
@@ -384,7 +362,6 @@ class Dashboard(pulumi.CustomResource):
             __props__.__dict__["org_id"] = org_id
             __props__.__dict__["overwrite"] = overwrite
             __props__.__dict__["dashboard_id"] = None
-            __props__.__dict__["slug"] = None
             __props__.__dict__["uid"] = None
             __props__.__dict__["url"] = None
             __props__.__dict__["version"] = None
@@ -404,7 +381,6 @@ class Dashboard(pulumi.CustomResource):
             message: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
             overwrite: Optional[pulumi.Input[bool]] = None,
-            slug: Optional[pulumi.Input[str]] = None,
             uid: Optional[pulumi.Input[str]] = None,
             url: Optional[pulumi.Input[str]] = None,
             version: Optional[pulumi.Input[int]] = None) -> 'Dashboard':
@@ -421,7 +397,6 @@ class Dashboard(pulumi.CustomResource):
         :param pulumi.Input[str] message: Set a commit message for the version history.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
-        :param pulumi.Input[str] slug: URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
         :param pulumi.Input[str] uid: The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
         :param pulumi.Input[str] url: The full URL of the dashboard.
         :param pulumi.Input[int] version: Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your dashboard are not lost.
@@ -436,7 +411,6 @@ class Dashboard(pulumi.CustomResource):
         __props__.__dict__["message"] = message
         __props__.__dict__["org_id"] = org_id
         __props__.__dict__["overwrite"] = overwrite
-        __props__.__dict__["slug"] = slug
         __props__.__dict__["uid"] = uid
         __props__.__dict__["url"] = url
         __props__.__dict__["version"] = version
@@ -489,17 +463,6 @@ class Dashboard(pulumi.CustomResource):
         Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
         """
         return pulumi.get(self, "overwrite")
-
-    @property
-    @pulumi.getter
-    def slug(self) -> pulumi.Output[str]:
-        """
-        URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
-        """
-        warnings.warn("""Use `uid` instead.""", DeprecationWarning)
-        pulumi.log.warn("""slug is deprecated: Use `uid` instead.""")
-
-        return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter

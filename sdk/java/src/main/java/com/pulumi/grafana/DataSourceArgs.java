@@ -5,11 +5,8 @@ package com.pulumi.grafana;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.grafana.inputs.DataSourceJsonDataArgs;
-import com.pulumi.grafana.inputs.DataSourceSecureJsonDataArgs;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -48,29 +45,6 @@ public final class DataSourceArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> basicAuthEnabled() {
         return Optional.ofNullable(this.basicAuthEnabled);
-    }
-
-    /**
-     * Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-     * 
-     * @deprecated
-     * Use secure_json_data_encoded.basicAuthPassword instead.
-     * 
-     */
-    @Deprecated /* Use secure_json_data_encoded.basicAuthPassword instead. */
-    @Import(name="basicAuthPassword")
-    private @Nullable Output<String> basicAuthPassword;
-
-    /**
-     * @return Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-     * 
-     * @deprecated
-     * Use secure_json_data_encoded.basicAuthPassword instead.
-     * 
-     */
-    @Deprecated /* Use secure_json_data_encoded.basicAuthPassword instead. */
-    public Optional<Output<String>> basicAuthPassword() {
-        return Optional.ofNullable(this.basicAuthPassword);
     }
 
     /**
@@ -149,29 +123,6 @@ public final class DataSourceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Use json*data*encoded instead.
-     * 
-     * @deprecated
-     * Use json_data_encoded instead.
-     * 
-     */
-    @Deprecated /* Use json_data_encoded instead. */
-    @Import(name="jsonDatas")
-    private @Nullable Output<List<DataSourceJsonDataArgs>> jsonDatas;
-
-    /**
-     * @return Use json*data*encoded instead.
-     * 
-     * @deprecated
-     * Use json_data_encoded instead.
-     * 
-     */
-    @Deprecated /* Use json_data_encoded instead. */
-    public Optional<Output<List<DataSourceJsonDataArgs>>> jsonDatas() {
-        return Optional.ofNullable(this.jsonDatas);
-    }
-
-    /**
      * A unique name for the data source.
      * 
      */
@@ -187,26 +138,18 @@ public final class DataSourceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Use secure*json*data_encoded.password instead. Defaults to ``.
-     * 
-     * @deprecated
-     * Use secure_json_data_encoded.password instead.
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      * 
      */
-    @Deprecated /* Use secure_json_data_encoded.password instead. */
-    @Import(name="password")
-    private @Nullable Output<String> password;
+    @Import(name="orgId")
+    private @Nullable Output<String> orgId;
 
     /**
-     * @return Use secure*json*data_encoded.password instead. Defaults to ``.
-     * 
-     * @deprecated
-     * Use secure_json_data_encoded.password instead.
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
      * 
      */
-    @Deprecated /* Use secure_json_data_encoded.password instead. */
-    public Optional<Output<String>> password() {
-        return Optional.ofNullable(this.password);
+    public Optional<Output<String>> orgId() {
+        return Optional.ofNullable(this.orgId);
     }
 
     /**
@@ -222,29 +165,6 @@ public final class DataSourceArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> secureJsonDataEncoded() {
         return Optional.ofNullable(this.secureJsonDataEncoded);
-    }
-
-    /**
-     * Use secure*json*data*encoded instead.
-     * 
-     * @deprecated
-     * Use secure_json_data_encoded instead.
-     * 
-     */
-    @Deprecated /* Use secure_json_data_encoded instead. */
-    @Import(name="secureJsonDatas")
-    private @Nullable Output<List<DataSourceSecureJsonDataArgs>> secureJsonDatas;
-
-    /**
-     * @return Use secure*json*data*encoded instead.
-     * 
-     * @deprecated
-     * Use secure_json_data_encoded instead.
-     * 
-     */
-    @Deprecated /* Use secure_json_data_encoded instead. */
-    public Optional<Output<List<DataSourceSecureJsonDataArgs>>> secureJsonDatas() {
-        return Optional.ofNullable(this.secureJsonDatas);
     }
 
     /**
@@ -312,17 +232,14 @@ public final class DataSourceArgs extends com.pulumi.resources.ResourceArgs {
     private DataSourceArgs(DataSourceArgs $) {
         this.accessMode = $.accessMode;
         this.basicAuthEnabled = $.basicAuthEnabled;
-        this.basicAuthPassword = $.basicAuthPassword;
         this.basicAuthUsername = $.basicAuthUsername;
         this.databaseName = $.databaseName;
         this.httpHeaders = $.httpHeaders;
         this.isDefault = $.isDefault;
         this.jsonDataEncoded = $.jsonDataEncoded;
-        this.jsonDatas = $.jsonDatas;
         this.name = $.name;
-        this.password = $.password;
+        this.orgId = $.orgId;
         this.secureJsonDataEncoded = $.secureJsonDataEncoded;
-        this.secureJsonDatas = $.secureJsonDatas;
         this.type = $.type;
         this.uid = $.uid;
         this.url = $.url;
@@ -387,35 +304,6 @@ public final class DataSourceArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder basicAuthEnabled(Boolean basicAuthEnabled) {
             return basicAuthEnabled(Output.of(basicAuthEnabled));
-        }
-
-        /**
-         * @param basicAuthPassword Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use secure_json_data_encoded.basicAuthPassword instead.
-         * 
-         */
-        @Deprecated /* Use secure_json_data_encoded.basicAuthPassword instead. */
-        public Builder basicAuthPassword(@Nullable Output<String> basicAuthPassword) {
-            $.basicAuthPassword = basicAuthPassword;
-            return this;
-        }
-
-        /**
-         * @param basicAuthPassword Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use secure_json_data_encoded.basicAuthPassword instead.
-         * 
-         */
-        @Deprecated /* Use secure_json_data_encoded.basicAuthPassword instead. */
-        public Builder basicAuthPassword(String basicAuthPassword) {
-            return basicAuthPassword(Output.of(basicAuthPassword));
         }
 
         /**
@@ -524,49 +412,6 @@ public final class DataSourceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jsonDatas Use json*data*encoded instead.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use json_data_encoded instead.
-         * 
-         */
-        @Deprecated /* Use json_data_encoded instead. */
-        public Builder jsonDatas(@Nullable Output<List<DataSourceJsonDataArgs>> jsonDatas) {
-            $.jsonDatas = jsonDatas;
-            return this;
-        }
-
-        /**
-         * @param jsonDatas Use json*data*encoded instead.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use json_data_encoded instead.
-         * 
-         */
-        @Deprecated /* Use json_data_encoded instead. */
-        public Builder jsonDatas(List<DataSourceJsonDataArgs> jsonDatas) {
-            return jsonDatas(Output.of(jsonDatas));
-        }
-
-        /**
-         * @param jsonDatas Use json*data*encoded instead.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use json_data_encoded instead.
-         * 
-         */
-        @Deprecated /* Use json_data_encoded instead. */
-        public Builder jsonDatas(DataSourceJsonDataArgs... jsonDatas) {
-            return jsonDatas(List.of(jsonDatas));
-        }
-
-        /**
          * @param name A unique name for the data source.
          * 
          * @return builder
@@ -588,32 +433,24 @@ public final class DataSourceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param password Use secure*json*data_encoded.password instead. Defaults to ``.
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use secure_json_data_encoded.password instead.
-         * 
          */
-        @Deprecated /* Use secure_json_data_encoded.password instead. */
-        public Builder password(@Nullable Output<String> password) {
-            $.password = password;
+        public Builder orgId(@Nullable Output<String> orgId) {
+            $.orgId = orgId;
             return this;
         }
 
         /**
-         * @param password Use secure*json*data_encoded.password instead. Defaults to ``.
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use secure_json_data_encoded.password instead.
-         * 
          */
-        @Deprecated /* Use secure_json_data_encoded.password instead. */
-        public Builder password(String password) {
-            return password(Output.of(password));
+        public Builder orgId(String orgId) {
+            return orgId(Output.of(orgId));
         }
 
         /**
@@ -635,49 +472,6 @@ public final class DataSourceArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder secureJsonDataEncoded(String secureJsonDataEncoded) {
             return secureJsonDataEncoded(Output.of(secureJsonDataEncoded));
-        }
-
-        /**
-         * @param secureJsonDatas Use secure*json*data*encoded instead.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use secure_json_data_encoded instead.
-         * 
-         */
-        @Deprecated /* Use secure_json_data_encoded instead. */
-        public Builder secureJsonDatas(@Nullable Output<List<DataSourceSecureJsonDataArgs>> secureJsonDatas) {
-            $.secureJsonDatas = secureJsonDatas;
-            return this;
-        }
-
-        /**
-         * @param secureJsonDatas Use secure*json*data*encoded instead.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use secure_json_data_encoded instead.
-         * 
-         */
-        @Deprecated /* Use secure_json_data_encoded instead. */
-        public Builder secureJsonDatas(List<DataSourceSecureJsonDataArgs> secureJsonDatas) {
-            return secureJsonDatas(Output.of(secureJsonDatas));
-        }
-
-        /**
-         * @param secureJsonDatas Use secure*json*data*encoded instead.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use secure_json_data_encoded instead.
-         * 
-         */
-        @Deprecated /* Use secure_json_data_encoded instead. */
-        public Builder secureJsonDatas(DataSourceSecureJsonDataArgs... secureJsonDatas) {
-            return secureJsonDatas(List.of(secureJsonDatas));
         }
 
         /**

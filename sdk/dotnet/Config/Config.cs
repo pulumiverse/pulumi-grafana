@@ -56,7 +56,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
         private static readonly __Value<string?> _cloudApiKey = new __Value<string?>(() => __config.Get("cloudApiKey") ?? Utilities.GetEnv("GRAFANA_CLOUD_API_KEY"));
         /// <summary>
-        /// API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+        /// Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+        /// variable.
         /// </summary>
         public static string? CloudApiKey
         {
@@ -117,8 +118,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
         private static readonly __Value<int?> _orgId = new __Value<int?>(() => __config.GetInt32("orgId") ?? Utilities.GetEnvInt32("GRAFANA_ORG_ID"));
         /// <summary>
-        /// The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
-        /// resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+        /// Deprecated: Use the `org_id` attributes on resources instead.
         /// </summary>
         public static int? OrgId
         {

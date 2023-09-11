@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
@@ -19,6 +21,8 @@ import (
 // package main
 //
 // import (
+//
+//	"encoding/json"
 //
 //	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -31,20 +35,26 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"defaultRegion": "us-east-1",
+//				"authType":      "keys",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//				"accessKey": "123",
+//				"secretKey": "456",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json1 := string(tmpJSON1)
 //			foo, err := grafana.NewDataSource(ctx, "foo", &grafana.DataSourceArgs{
-//				Type: pulumi.String("cloudwatch"),
-//				JsonDatas: grafana.DataSourceJsonDataArray{
-//					&grafana.DataSourceJsonDataArgs{
-//						DefaultRegion: pulumi.String("us-east-1"),
-//						AuthType:      pulumi.String("keys"),
-//					},
-//				},
-//				SecureJsonDatas: grafana.DataSourceSecureJsonDataArray{
-//					&grafana.DataSourceSecureJsonDataArgs{
-//						AccessKey: pulumi.String("123"),
-//						SecretKey: pulumi.String("456"),
-//					},
-//				},
+//				Type:                  pulumi.String("cloudwatch"),
+//				JsonDataEncoded:       pulumi.String(json0),
+//				SecureJsonDataEncoded: pulumi.String(json1),
 //			})
 //			if err != nil {
 //				return err
@@ -78,7 +88,9 @@ type DataSourcePermission struct {
 	pulumi.CustomResourceState
 
 	// ID of the datasource to apply permissions to.
-	DatasourceId pulumi.IntOutput `pulumi:"datasourceId"`
+	DatasourceId pulumi.StringOutput `pulumi:"datasourceId"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions DataSourcePermissionPermissionArrayOutput `pulumi:"permissions"`
 }
@@ -96,7 +108,7 @@ func NewDataSourcePermission(ctx *pulumi.Context,
 	if args.Permissions == nil {
 		return nil, errors.New("invalid value for required argument 'Permissions'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DataSourcePermission
 	err := ctx.RegisterResource("grafana:index/dataSourcePermission:DataSourcePermission", name, args, &resource, opts...)
 	if err != nil {
@@ -120,14 +132,18 @@ func GetDataSourcePermission(ctx *pulumi.Context,
 // Input properties used for looking up and filtering DataSourcePermission resources.
 type dataSourcePermissionState struct {
 	// ID of the datasource to apply permissions to.
-	DatasourceId *int `pulumi:"datasourceId"`
+	DatasourceId *string `pulumi:"datasourceId"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions []DataSourcePermissionPermission `pulumi:"permissions"`
 }
 
 type DataSourcePermissionState struct {
 	// ID of the datasource to apply permissions to.
-	DatasourceId pulumi.IntPtrInput
+	DatasourceId pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions DataSourcePermissionPermissionArrayInput
 }
@@ -138,7 +154,9 @@ func (DataSourcePermissionState) ElementType() reflect.Type {
 
 type dataSourcePermissionArgs struct {
 	// ID of the datasource to apply permissions to.
-	DatasourceId int `pulumi:"datasourceId"`
+	DatasourceId string `pulumi:"datasourceId"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions []DataSourcePermissionPermission `pulumi:"permissions"`
 }
@@ -146,7 +164,9 @@ type dataSourcePermissionArgs struct {
 // The set of arguments for constructing a DataSourcePermission resource.
 type DataSourcePermissionArgs struct {
 	// ID of the datasource to apply permissions to.
-	DatasourceId pulumi.IntInput
+	DatasourceId pulumi.StringInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions DataSourcePermissionPermissionArrayInput
 }
@@ -174,6 +194,12 @@ func (i *DataSourcePermission) ToDataSourcePermissionOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(DataSourcePermissionOutput)
 }
 
+func (i *DataSourcePermission) ToOutput(ctx context.Context) pulumix.Output[*DataSourcePermission] {
+	return pulumix.Output[*DataSourcePermission]{
+		OutputState: i.ToDataSourcePermissionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DataSourcePermissionArrayInput is an input type that accepts DataSourcePermissionArray and DataSourcePermissionArrayOutput values.
 // You can construct a concrete instance of `DataSourcePermissionArrayInput` via:
 //
@@ -197,6 +223,12 @@ func (i DataSourcePermissionArray) ToDataSourcePermissionArrayOutput() DataSourc
 
 func (i DataSourcePermissionArray) ToDataSourcePermissionArrayOutputWithContext(ctx context.Context) DataSourcePermissionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DataSourcePermissionArrayOutput)
+}
+
+func (i DataSourcePermissionArray) ToOutput(ctx context.Context) pulumix.Output[[]*DataSourcePermission] {
+	return pulumix.Output[[]*DataSourcePermission]{
+		OutputState: i.ToDataSourcePermissionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DataSourcePermissionMapInput is an input type that accepts DataSourcePermissionMap and DataSourcePermissionMapOutput values.
@@ -224,6 +256,12 @@ func (i DataSourcePermissionMap) ToDataSourcePermissionMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(DataSourcePermissionMapOutput)
 }
 
+func (i DataSourcePermissionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DataSourcePermission] {
+	return pulumix.Output[map[string]*DataSourcePermission]{
+		OutputState: i.ToDataSourcePermissionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DataSourcePermissionOutput struct{ *pulumi.OutputState }
 
 func (DataSourcePermissionOutput) ElementType() reflect.Type {
@@ -238,9 +276,20 @@ func (o DataSourcePermissionOutput) ToDataSourcePermissionOutputWithContext(ctx 
 	return o
 }
 
+func (o DataSourcePermissionOutput) ToOutput(ctx context.Context) pulumix.Output[*DataSourcePermission] {
+	return pulumix.Output[*DataSourcePermission]{
+		OutputState: o.OutputState,
+	}
+}
+
 // ID of the datasource to apply permissions to.
-func (o DataSourcePermissionOutput) DatasourceId() pulumi.IntOutput {
-	return o.ApplyT(func(v *DataSourcePermission) pulumi.IntOutput { return v.DatasourceId }).(pulumi.IntOutput)
+func (o DataSourcePermissionOutput) DatasourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DataSourcePermission) pulumi.StringOutput { return v.DatasourceId }).(pulumi.StringOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o DataSourcePermissionOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DataSourcePermission) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // The permission items to add/update. Items that are omitted from the list will be removed.
@@ -262,6 +311,12 @@ func (o DataSourcePermissionArrayOutput) ToDataSourcePermissionArrayOutputWithCo
 	return o
 }
 
+func (o DataSourcePermissionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DataSourcePermission] {
+	return pulumix.Output[[]*DataSourcePermission]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DataSourcePermissionArrayOutput) Index(i pulumi.IntInput) DataSourcePermissionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DataSourcePermission {
 		return vs[0].([]*DataSourcePermission)[vs[1].(int)]
@@ -280,6 +335,12 @@ func (o DataSourcePermissionMapOutput) ToDataSourcePermissionMapOutput() DataSou
 
 func (o DataSourcePermissionMapOutput) ToDataSourcePermissionMapOutputWithContext(ctx context.Context) DataSourcePermissionMapOutput {
 	return o
+}
+
+func (o DataSourcePermissionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DataSourcePermission] {
+	return pulumix.Output[map[string]*DataSourcePermission]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DataSourcePermissionMapOutput) MapIndex(k pulumi.StringInput) DataSourcePermissionOutput {

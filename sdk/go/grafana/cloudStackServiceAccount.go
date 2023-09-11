@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // **Note:** This resource is available only with Grafana 9.1+.
@@ -68,7 +70,7 @@ func NewCloudStackServiceAccount(ctx *pulumi.Context,
 	if args.StackSlug == nil {
 		return nil, errors.New("invalid value for required argument 'StackSlug'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CloudStackServiceAccount
 	err := ctx.RegisterResource("grafana:index/cloudStackServiceAccount:CloudStackServiceAccount", name, args, &resource, opts...)
 	if err != nil {
@@ -158,6 +160,12 @@ func (i *CloudStackServiceAccount) ToCloudStackServiceAccountOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(CloudStackServiceAccountOutput)
 }
 
+func (i *CloudStackServiceAccount) ToOutput(ctx context.Context) pulumix.Output[*CloudStackServiceAccount] {
+	return pulumix.Output[*CloudStackServiceAccount]{
+		OutputState: i.ToCloudStackServiceAccountOutputWithContext(ctx).OutputState,
+	}
+}
+
 // CloudStackServiceAccountArrayInput is an input type that accepts CloudStackServiceAccountArray and CloudStackServiceAccountArrayOutput values.
 // You can construct a concrete instance of `CloudStackServiceAccountArrayInput` via:
 //
@@ -181,6 +189,12 @@ func (i CloudStackServiceAccountArray) ToCloudStackServiceAccountArrayOutput() C
 
 func (i CloudStackServiceAccountArray) ToCloudStackServiceAccountArrayOutputWithContext(ctx context.Context) CloudStackServiceAccountArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudStackServiceAccountArrayOutput)
+}
+
+func (i CloudStackServiceAccountArray) ToOutput(ctx context.Context) pulumix.Output[[]*CloudStackServiceAccount] {
+	return pulumix.Output[[]*CloudStackServiceAccount]{
+		OutputState: i.ToCloudStackServiceAccountArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // CloudStackServiceAccountMapInput is an input type that accepts CloudStackServiceAccountMap and CloudStackServiceAccountMapOutput values.
@@ -208,6 +222,12 @@ func (i CloudStackServiceAccountMap) ToCloudStackServiceAccountMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(CloudStackServiceAccountMapOutput)
 }
 
+func (i CloudStackServiceAccountMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudStackServiceAccount] {
+	return pulumix.Output[map[string]*CloudStackServiceAccount]{
+		OutputState: i.ToCloudStackServiceAccountMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CloudStackServiceAccountOutput struct{ *pulumi.OutputState }
 
 func (CloudStackServiceAccountOutput) ElementType() reflect.Type {
@@ -220,6 +240,12 @@ func (o CloudStackServiceAccountOutput) ToCloudStackServiceAccountOutput() Cloud
 
 func (o CloudStackServiceAccountOutput) ToCloudStackServiceAccountOutputWithContext(ctx context.Context) CloudStackServiceAccountOutput {
 	return o
+}
+
+func (o CloudStackServiceAccountOutput) ToOutput(ctx context.Context) pulumix.Output[*CloudStackServiceAccount] {
+	return pulumix.Output[*CloudStackServiceAccount]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The disabled status for the service account. Defaults to `false`.
@@ -255,6 +281,12 @@ func (o CloudStackServiceAccountArrayOutput) ToCloudStackServiceAccountArrayOutp
 	return o
 }
 
+func (o CloudStackServiceAccountArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CloudStackServiceAccount] {
+	return pulumix.Output[[]*CloudStackServiceAccount]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CloudStackServiceAccountArrayOutput) Index(i pulumi.IntInput) CloudStackServiceAccountOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudStackServiceAccount {
 		return vs[0].([]*CloudStackServiceAccount)[vs[1].(int)]
@@ -273,6 +305,12 @@ func (o CloudStackServiceAccountMapOutput) ToCloudStackServiceAccountMapOutput()
 
 func (o CloudStackServiceAccountMapOutput) ToCloudStackServiceAccountMapOutputWithContext(ctx context.Context) CloudStackServiceAccountMapOutput {
 	return o
+}
+
+func (o CloudStackServiceAccountMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudStackServiceAccount] {
+	return pulumix.Output[map[string]*CloudStackServiceAccount]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CloudStackServiceAccountMapOutput) MapIndex(k pulumi.StringInput) CloudStackServiceAccountOutput {

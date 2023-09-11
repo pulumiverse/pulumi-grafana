@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // **Note:** This resource is available only with Grafana 9.1+.
@@ -75,7 +77,7 @@ func NewServiceAccountToken(ctx *pulumi.Context,
 		"key",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ServiceAccountToken
 	err := ctx.RegisterResource("grafana:index/serviceAccountToken:ServiceAccountToken", name, args, &resource, opts...)
 	if err != nil {
@@ -155,6 +157,12 @@ func (i *ServiceAccountToken) ToServiceAccountTokenOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountTokenOutput)
 }
 
+func (i *ServiceAccountToken) ToOutput(ctx context.Context) pulumix.Output[*ServiceAccountToken] {
+	return pulumix.Output[*ServiceAccountToken]{
+		OutputState: i.ToServiceAccountTokenOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceAccountTokenArrayInput is an input type that accepts ServiceAccountTokenArray and ServiceAccountTokenArrayOutput values.
 // You can construct a concrete instance of `ServiceAccountTokenArrayInput` via:
 //
@@ -178,6 +186,12 @@ func (i ServiceAccountTokenArray) ToServiceAccountTokenArrayOutput() ServiceAcco
 
 func (i ServiceAccountTokenArray) ToServiceAccountTokenArrayOutputWithContext(ctx context.Context) ServiceAccountTokenArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountTokenArrayOutput)
+}
+
+func (i ServiceAccountTokenArray) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceAccountToken] {
+	return pulumix.Output[[]*ServiceAccountToken]{
+		OutputState: i.ToServiceAccountTokenArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ServiceAccountTokenMapInput is an input type that accepts ServiceAccountTokenMap and ServiceAccountTokenMapOutput values.
@@ -205,6 +219,12 @@ func (i ServiceAccountTokenMap) ToServiceAccountTokenMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountTokenMapOutput)
 }
 
+func (i ServiceAccountTokenMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceAccountToken] {
+	return pulumix.Output[map[string]*ServiceAccountToken]{
+		OutputState: i.ToServiceAccountTokenMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceAccountTokenOutput struct{ *pulumi.OutputState }
 
 func (ServiceAccountTokenOutput) ElementType() reflect.Type {
@@ -217,6 +237,12 @@ func (o ServiceAccountTokenOutput) ToServiceAccountTokenOutput() ServiceAccountT
 
 func (o ServiceAccountTokenOutput) ToServiceAccountTokenOutputWithContext(ctx context.Context) ServiceAccountTokenOutput {
 	return o
+}
+
+func (o ServiceAccountTokenOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceAccountToken] {
+	return pulumix.Output[*ServiceAccountToken]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceAccountTokenOutput) Expiration() pulumi.StringOutput {
@@ -257,6 +283,12 @@ func (o ServiceAccountTokenArrayOutput) ToServiceAccountTokenArrayOutputWithCont
 	return o
 }
 
+func (o ServiceAccountTokenArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceAccountToken] {
+	return pulumix.Output[[]*ServiceAccountToken]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceAccountTokenArrayOutput) Index(i pulumi.IntInput) ServiceAccountTokenOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ServiceAccountToken {
 		return vs[0].([]*ServiceAccountToken)[vs[1].(int)]
@@ -275,6 +307,12 @@ func (o ServiceAccountTokenMapOutput) ToServiceAccountTokenMapOutput() ServiceAc
 
 func (o ServiceAccountTokenMapOutput) ToServiceAccountTokenMapOutputWithContext(ctx context.Context) ServiceAccountTokenMapOutput {
 	return o
+}
+
+func (o ServiceAccountTokenMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceAccountToken] {
+	return pulumix.Output[map[string]*ServiceAccountToken]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceAccountTokenMapOutput) MapIndex(k pulumi.StringInput) ServiceAccountTokenOutput {

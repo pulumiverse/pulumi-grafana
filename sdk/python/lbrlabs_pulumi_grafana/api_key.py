@@ -15,21 +15,14 @@ __all__ = ['ApiKeyArgs', 'ApiKey']
 class ApiKeyArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[str],
-                 cloud_stack_slug: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  seconds_to_live: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a ApiKey resource.
-        :param pulumi.Input[str] cloud_stack_slug: Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         pulumi.set(__self__, "role", role)
-        if cloud_stack_slug is not None:
-            warnings.warn("""Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""", DeprecationWarning)
-            pulumi.log.warn("""cloud_stack_slug is deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""")
-        if cloud_stack_slug is not None:
-            pulumi.set(__self__, "cloud_stack_slug", cloud_stack_slug)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if org_id is not None:
@@ -45,21 +38,6 @@ class ApiKeyArgs:
     @role.setter
     def role(self, value: pulumi.Input[str]):
         pulumi.set(self, "role", value)
-
-    @property
-    @pulumi.getter(name="cloudStackSlug")
-    def cloud_stack_slug(self) -> Optional[pulumi.Input[str]]:
-        """
-        Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
-        """
-        warnings.warn("""Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""", DeprecationWarning)
-        pulumi.log.warn("""cloud_stack_slug is deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""")
-
-        return pulumi.get(self, "cloud_stack_slug")
-
-    @cloud_stack_slug.setter
-    def cloud_stack_slug(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "cloud_stack_slug", value)
 
     @property
     @pulumi.getter
@@ -95,7 +73,6 @@ class ApiKeyArgs:
 @pulumi.input_type
 class _ApiKeyState:
     def __init__(__self__, *,
-                 cloud_stack_slug: Optional[pulumi.Input[str]] = None,
                  expiration: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -104,14 +81,8 @@ class _ApiKeyState:
                  seconds_to_live: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering ApiKey resources.
-        :param pulumi.Input[str] cloud_stack_slug: Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
-        if cloud_stack_slug is not None:
-            warnings.warn("""Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""", DeprecationWarning)
-            pulumi.log.warn("""cloud_stack_slug is deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""")
-        if cloud_stack_slug is not None:
-            pulumi.set(__self__, "cloud_stack_slug", cloud_stack_slug)
         if expiration is not None:
             pulumi.set(__self__, "expiration", expiration)
         if key is not None:
@@ -124,21 +95,6 @@ class _ApiKeyState:
             pulumi.set(__self__, "role", role)
         if seconds_to_live is not None:
             pulumi.set(__self__, "seconds_to_live", seconds_to_live)
-
-    @property
-    @pulumi.getter(name="cloudStackSlug")
-    def cloud_stack_slug(self) -> Optional[pulumi.Input[str]]:
-        """
-        Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
-        """
-        warnings.warn("""Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""", DeprecationWarning)
-        pulumi.log.warn("""cloud_stack_slug is deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""")
-
-        return pulumi.get(self, "cloud_stack_slug")
-
-    @cloud_stack_slug.setter
-    def cloud_stack_slug(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "cloud_stack_slug", value)
 
     @property
     @pulumi.getter
@@ -203,7 +159,6 @@ class ApiKey(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cloud_stack_slug: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
@@ -226,7 +181,6 @@ class ApiKey(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] cloud_stack_slug: Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         ...
@@ -265,7 +219,6 @@ class ApiKey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cloud_stack_slug: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
@@ -279,10 +232,6 @@ class ApiKey(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ApiKeyArgs.__new__(ApiKeyArgs)
 
-            if cloud_stack_slug is not None and not opts.urn:
-                warnings.warn("""Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""", DeprecationWarning)
-                pulumi.log.warn("""cloud_stack_slug is deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""")
-            __props__.__dict__["cloud_stack_slug"] = cloud_stack_slug
             __props__.__dict__["name"] = name
             __props__.__dict__["org_id"] = org_id
             if role is None and not opts.urn:
@@ -303,7 +252,6 @@ class ApiKey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cloud_stack_slug: Optional[pulumi.Input[str]] = None,
             expiration: Optional[pulumi.Input[str]] = None,
             key: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -317,14 +265,12 @@ class ApiKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] cloud_stack_slug: Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _ApiKeyState.__new__(_ApiKeyState)
 
-        __props__.__dict__["cloud_stack_slug"] = cloud_stack_slug
         __props__.__dict__["expiration"] = expiration
         __props__.__dict__["key"] = key
         __props__.__dict__["name"] = name
@@ -332,17 +278,6 @@ class ApiKey(pulumi.CustomResource):
         __props__.__dict__["role"] = role
         __props__.__dict__["seconds_to_live"] = seconds_to_live
         return ApiKey(resource_name, opts=opts, __props__=__props__)
-
-    @property
-    @pulumi.getter(name="cloudStackSlug")
-    def cloud_stack_slug(self) -> pulumi.Output[Optional[str]]:
-        """
-        Deprecated: Use `CloudStackServiceAccount` and `CloudStackServiceAccountToken` resources instead
-        """
-        warnings.warn("""Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""", DeprecationWarning)
-        pulumi.log.warn("""cloud_stack_slug is deprecated: Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead""")
-
-        return pulumi.get(self, "cloud_stack_slug")
 
     @property
     @pulumi.getter

@@ -10,8 +10,6 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.grafana.DataSourceArgs;
 import com.pulumi.grafana.Utilities;
 import com.pulumi.grafana.inputs.DataSourceState;
-import com.pulumi.grafana.outputs.DataSourceJsonData;
-import com.pulumi.grafana.outputs.DataSourceSecureJsonData;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -158,24 +156,6 @@ public class DataSource extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.basicAuthEnabled);
     }
     /**
-     * Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-     * 
-     * @deprecated
-     * Use secure_json_data_encoded.basicAuthPassword instead.
-     * 
-     */
-    @Deprecated /* Use secure_json_data_encoded.basicAuthPassword instead. */
-    @Export(name="basicAuthPassword", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> basicAuthPassword;
-
-    /**
-     * @return Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-     * 
-     */
-    public Output<Optional<String>> basicAuthPassword() {
-        return Codegen.optional(this.basicAuthPassword);
-    }
-    /**
      * Basic auth username. Defaults to ``.
      * 
      */
@@ -246,24 +226,6 @@ public class DataSource extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.jsonDataEncoded);
     }
     /**
-     * Use json*data*encoded instead.
-     * 
-     * @deprecated
-     * Use json_data_encoded instead.
-     * 
-     */
-    @Deprecated /* Use json_data_encoded instead. */
-    @Export(name="jsonDatas", refs={List.class,DataSourceJsonData.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<DataSourceJsonData>> jsonDatas;
-
-    /**
-     * @return Use json*data*encoded instead.
-     * 
-     */
-    public Output<Optional<List<DataSourceJsonData>>> jsonDatas() {
-        return Codegen.optional(this.jsonDatas);
-    }
-    /**
      * A unique name for the data source.
      * 
      */
@@ -278,22 +240,18 @@ public class DataSource extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * Use secure*json*data_encoded.password instead. Defaults to ``.
-     * 
-     * @deprecated
-     * Use secure_json_data_encoded.password instead.
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      * 
      */
-    @Deprecated /* Use secure_json_data_encoded.password instead. */
-    @Export(name="password", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> password;
+    @Export(name="orgId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> orgId;
 
     /**
-     * @return Use secure*json*data_encoded.password instead. Defaults to ``.
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
      * 
      */
-    public Output<Optional<String>> password() {
-        return Codegen.optional(this.password);
+    public Output<Optional<String>> orgId() {
+        return Codegen.optional(this.orgId);
     }
     /**
      * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
@@ -308,24 +266,6 @@ public class DataSource extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> secureJsonDataEncoded() {
         return Codegen.optional(this.secureJsonDataEncoded);
-    }
-    /**
-     * Use secure*json*data*encoded instead.
-     * 
-     * @deprecated
-     * Use secure_json_data_encoded instead.
-     * 
-     */
-    @Deprecated /* Use secure_json_data_encoded instead. */
-    @Export(name="secureJsonDatas", refs={List.class,DataSourceSecureJsonData.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<DataSourceSecureJsonData>> secureJsonDatas;
-
-    /**
-     * @return Use secure*json*data*encoded instead.
-     * 
-     */
-    public Output<Optional<List<DataSourceSecureJsonData>>> secureJsonDatas() {
-        return Codegen.optional(this.secureJsonDatas);
     }
     /**
      * The data source type. Must be one of the supported data source keywords.
@@ -417,11 +357,8 @@ public class DataSource extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
-                "basicAuthPassword",
                 "httpHeaders",
-                "password",
-                "secureJsonDataEncoded",
-                "secureJsonDatas"
+                "secureJsonDataEncoded"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

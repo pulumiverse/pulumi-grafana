@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages Grafana dashboards.
@@ -80,10 +82,6 @@ type Dashboard struct {
 	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
 	Overwrite pulumi.BoolPtrOutput `pulumi:"overwrite"`
-	// URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
-	//
-	// Deprecated: Use `uid` instead.
-	Slug pulumi.StringOutput `pulumi:"slug"`
 	// The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
 	Uid pulumi.StringOutput `pulumi:"uid"`
 	// The full URL of the dashboard.
@@ -102,7 +100,7 @@ func NewDashboard(ctx *pulumi.Context,
 	if args.ConfigJson == nil {
 		return nil, errors.New("invalid value for required argument 'ConfigJson'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Dashboard
 	err := ctx.RegisterResource("grafana:index/dashboard:Dashboard", name, args, &resource, opts...)
 	if err != nil {
@@ -137,10 +135,6 @@ type dashboardState struct {
 	OrgId *string `pulumi:"orgId"`
 	// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
 	Overwrite *bool `pulumi:"overwrite"`
-	// URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
-	//
-	// Deprecated: Use `uid` instead.
-	Slug *string `pulumi:"slug"`
 	// The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
 	Uid *string `pulumi:"uid"`
 	// The full URL of the dashboard.
@@ -162,10 +156,6 @@ type DashboardState struct {
 	OrgId pulumi.StringPtrInput
 	// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
 	Overwrite pulumi.BoolPtrInput
-	// URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
-	//
-	// Deprecated: Use `uid` instead.
-	Slug pulumi.StringPtrInput
 	// The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
 	Uid pulumi.StringPtrInput
 	// The full URL of the dashboard.
@@ -228,6 +218,12 @@ func (i *Dashboard) ToDashboardOutputWithContext(ctx context.Context) DashboardO
 	return pulumi.ToOutputWithContext(ctx, i).(DashboardOutput)
 }
 
+func (i *Dashboard) ToOutput(ctx context.Context) pulumix.Output[*Dashboard] {
+	return pulumix.Output[*Dashboard]{
+		OutputState: i.ToDashboardOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DashboardArrayInput is an input type that accepts DashboardArray and DashboardArrayOutput values.
 // You can construct a concrete instance of `DashboardArrayInput` via:
 //
@@ -251,6 +247,12 @@ func (i DashboardArray) ToDashboardArrayOutput() DashboardArrayOutput {
 
 func (i DashboardArray) ToDashboardArrayOutputWithContext(ctx context.Context) DashboardArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DashboardArrayOutput)
+}
+
+func (i DashboardArray) ToOutput(ctx context.Context) pulumix.Output[[]*Dashboard] {
+	return pulumix.Output[[]*Dashboard]{
+		OutputState: i.ToDashboardArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DashboardMapInput is an input type that accepts DashboardMap and DashboardMapOutput values.
@@ -278,6 +280,12 @@ func (i DashboardMap) ToDashboardMapOutputWithContext(ctx context.Context) Dashb
 	return pulumi.ToOutputWithContext(ctx, i).(DashboardMapOutput)
 }
 
+func (i DashboardMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Dashboard] {
+	return pulumix.Output[map[string]*Dashboard]{
+		OutputState: i.ToDashboardMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DashboardOutput struct{ *pulumi.OutputState }
 
 func (DashboardOutput) ElementType() reflect.Type {
@@ -290,6 +298,12 @@ func (o DashboardOutput) ToDashboardOutput() DashboardOutput {
 
 func (o DashboardOutput) ToDashboardOutputWithContext(ctx context.Context) DashboardOutput {
 	return o
+}
+
+func (o DashboardOutput) ToOutput(ctx context.Context) pulumix.Output[*Dashboard] {
+	return pulumix.Output[*Dashboard]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The complete dashboard model JSON.
@@ -322,13 +336,6 @@ func (o DashboardOutput) Overwrite() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Dashboard) pulumi.BoolPtrOutput { return v.Overwrite }).(pulumi.BoolPtrOutput)
 }
 
-// URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
-//
-// Deprecated: Use `uid` instead.
-func (o DashboardOutput) Slug() pulumi.StringOutput {
-	return o.ApplyT(func(v *Dashboard) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
-}
-
 // The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
 func (o DashboardOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dashboard) pulumi.StringOutput { return v.Uid }).(pulumi.StringOutput)
@@ -358,6 +365,12 @@ func (o DashboardArrayOutput) ToDashboardArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o DashboardArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Dashboard] {
+	return pulumix.Output[[]*Dashboard]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DashboardArrayOutput) Index(i pulumi.IntInput) DashboardOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Dashboard {
 		return vs[0].([]*Dashboard)[vs[1].(int)]
@@ -376,6 +389,12 @@ func (o DashboardMapOutput) ToDashboardMapOutput() DashboardMapOutput {
 
 func (o DashboardMapOutput) ToDashboardMapOutputWithContext(ctx context.Context) DashboardMapOutput {
 	return o
+}
+
+func (o DashboardMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Dashboard] {
+	return pulumix.Output[map[string]*Dashboard]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DashboardMapOutput) MapIndex(k pulumi.StringInput) DashboardOutput {

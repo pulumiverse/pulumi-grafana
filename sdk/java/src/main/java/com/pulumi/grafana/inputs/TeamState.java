@@ -6,6 +6,7 @@ package com.pulumi.grafana.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.grafana.inputs.TeamPreferencesArgs;
+import com.pulumi.grafana.inputs.TeamTeamSyncArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -35,18 +36,20 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
-     * Team Sync can be provisioned using grafana*team*external_group resource.
-     * Defaults to `true`.
+     * Ignores team members that have been added to team by [Team
+     * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+     * provisioned using [grafana_team_external_group
+     * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
      * 
      */
     @Import(name="ignoreExternallySyncedMembers")
     private @Nullable Output<Boolean> ignoreExternallySyncedMembers;
 
     /**
-     * @return Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
-     * Team Sync can be provisioned using grafana*team*external_group resource.
-     * Defaults to `true`.
+     * @return Ignores team members that have been added to team by [Team
+     * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+     * provisioned using [grafana_team_external_group
+     * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
      * 
      */
     public Optional<Output<Boolean>> ignoreExternallySyncedMembers() {
@@ -54,16 +57,16 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A set of email addresses corresponding to users who should be given membership
-     * to the team. Note: users specified here must already exist in Grafana.
+     * A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
+     * must already exist in Grafana.
      * 
      */
     @Import(name="members")
     private @Nullable Output<List<String>> members;
 
     /**
-     * @return A set of email addresses corresponding to users who should be given membership
-     * to the team. Note: users specified here must already exist in Grafana.
+     * @return A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
+     * must already exist in Grafana.
      * 
      */
     public Optional<Output<List<String>>> members() {
@@ -83,6 +86,21 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
+    }
+
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Import(name="orgId")
+    private @Nullable Output<String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<Output<String>> orgId() {
+        return Optional.ofNullable(this.orgId);
     }
 
     @Import(name="preferences")
@@ -107,6 +125,25 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.teamId);
     }
 
+    /**
+     * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
+     * documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
+     * API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+     * 
+     */
+    @Import(name="teamSync")
+    private @Nullable Output<TeamTeamSyncArgs> teamSync;
+
+    /**
+     * @return Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
+     * documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
+     * API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+     * 
+     */
+    public Optional<Output<TeamTeamSyncArgs>> teamSync() {
+        return Optional.ofNullable(this.teamSync);
+    }
+
     private TeamState() {}
 
     private TeamState(TeamState $) {
@@ -114,8 +151,10 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
         this.ignoreExternallySyncedMembers = $.ignoreExternallySyncedMembers;
         this.members = $.members;
         this.name = $.name;
+        this.orgId = $.orgId;
         this.preferences = $.preferences;
         this.teamId = $.teamId;
+        this.teamSync = $.teamSync;
     }
 
     public static Builder builder() {
@@ -158,9 +197,10 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ignoreExternallySyncedMembers Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
-         * Team Sync can be provisioned using grafana*team*external_group resource.
-         * Defaults to `true`.
+         * @param ignoreExternallySyncedMembers Ignores team members that have been added to team by [Team
+         * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+         * provisioned using [grafana_team_external_group
+         * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
          * 
          * @return builder
          * 
@@ -171,9 +211,10 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ignoreExternallySyncedMembers Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
-         * Team Sync can be provisioned using grafana*team*external_group resource.
-         * Defaults to `true`.
+         * @param ignoreExternallySyncedMembers Ignores team members that have been added to team by [Team
+         * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
+         * provisioned using [grafana_team_external_group
+         * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
          * 
          * @return builder
          * 
@@ -183,8 +224,8 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param members A set of email addresses corresponding to users who should be given membership
-         * to the team. Note: users specified here must already exist in Grafana.
+         * @param members A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
+         * must already exist in Grafana.
          * 
          * @return builder
          * 
@@ -195,8 +236,8 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param members A set of email addresses corresponding to users who should be given membership
-         * to the team. Note: users specified here must already exist in Grafana.
+         * @param members A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
+         * must already exist in Grafana.
          * 
          * @return builder
          * 
@@ -206,8 +247,8 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param members A set of email addresses corresponding to users who should be given membership
-         * to the team. Note: users specified here must already exist in Grafana.
+         * @param members A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
+         * must already exist in Grafana.
          * 
          * @return builder
          * 
@@ -235,6 +276,27 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(@Nullable Output<String> orgId) {
+            $.orgId = orgId;
+            return this;
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(String orgId) {
+            return orgId(Output.of(orgId));
         }
 
         public Builder preferences(@Nullable Output<TeamPreferencesArgs> preferences) {
@@ -265,6 +327,31 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder teamId(Integer teamId) {
             return teamId(Output.of(teamId));
+        }
+
+        /**
+         * @param teamSync Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
+         * documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
+         * API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder teamSync(@Nullable Output<TeamTeamSyncArgs> teamSync) {
+            $.teamSync = teamSync;
+            return this;
+        }
+
+        /**
+         * @param teamSync Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
+         * documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
+         * API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder teamSync(TeamTeamSyncArgs teamSync) {
+            return teamSync(Output.of(teamSync));
         }
 
         public TeamState build() {

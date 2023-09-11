@@ -11,8 +11,7 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Grafana
 {
     /// <summary>
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+    /// Use the `team_sync` attribute of the `grafana.Team` resource instead.
     /// 
     /// ## Example Usage
     /// 
@@ -31,7 +30,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///             "test-group-1",
     ///             "test-group-2",
     ///         },
-    ///         TeamId = 1,
+    ///         TeamId = "1",
     ///     });
     /// 
     /// });
@@ -56,7 +55,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// The Team ID
         /// </summary>
         [Output("teamId")]
-        public Output<int> TeamId { get; private set; } = null!;
+        public Output<string> TeamId { get; private set; } = null!;
 
 
         /// <summary>
@@ -121,7 +120,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// The Team ID
         /// </summary>
         [Input("teamId", required: true)]
-        public Input<int> TeamId { get; set; } = null!;
+        public Input<string> TeamId { get; set; } = null!;
 
         public TeamExternalGroupArgs()
         {
@@ -147,7 +146,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// The Team ID
         /// </summary>
         [Input("teamId")]
-        public Input<int>? TeamId { get; set; }
+        public Input<string>? TeamId { get; set; }
 
         public TeamExternalGroupState()
         {

@@ -11,7 +11,6 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
-    'BuiltinRoleAssignmentRole',
     'CloudAccessPolicyRealm',
     'CloudAccessPolicyRealmLabelPolicy',
     'ContactPointAlertmanager',
@@ -32,10 +31,7 @@ __all__ = [
     'ContactPointWebhook',
     'ContactPointWecom',
     'DashboardPermissionPermission',
-    'DataSourceJsonData',
-    'DataSourceJsonDataDerivedField',
     'DataSourcePermissionPermission',
-    'DataSourceSecureJsonData',
     'FolderPermissionPermission',
     'MachineLearningHolidayCustomPeriod',
     'MachineLearningOutlierDetectorAlgorithm',
@@ -86,6 +82,7 @@ __all__ = [
     'SLOObjective',
     'SLOQuery',
     'SLOQueryFreeform',
+    'SLOQueryRatio',
     'ServiceAccountPermissionPermission',
     'SyntheticMonitoringCheckSettings',
     'SyntheticMonitoringCheckSettingsDns',
@@ -103,8 +100,10 @@ __all__ = [
     'SyntheticMonitoringCheckSettingsTcpTlsConfig',
     'SyntheticMonitoringCheckSettingsTraceroute',
     'TeamPreferences',
+    'TeamTeamSync',
     'GetDashboardsDashboardResult',
     'GetFoldersFolderResult',
+    'GetRolePermissionResult',
     'GetSlosSloResult',
     'GetSlosSloAlertingResult',
     'GetSlosSloAlertingAnnotationResult',
@@ -119,55 +118,11 @@ __all__ = [
     'GetSlosSloObjectiveResult',
     'GetSlosSloQueryResult',
     'GetSlosSloQueryFreeformResult',
+    'GetSlosSloQueryRatioResult',
+    'GetTeamPreferenceResult',
+    'GetTeamTeamSyncResult',
     'GetUsersUserResult',
 ]
-
-@pulumi.output_type
-class BuiltinRoleAssignmentRole(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "global":
-            suggest = "global_"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in BuiltinRoleAssignmentRole. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        BuiltinRoleAssignmentRole.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        BuiltinRoleAssignmentRole.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 uid: str,
-                 global_: Optional[bool] = None):
-        """
-        :param str uid: Unique identifier of the role to assign to `builtin_role`.
-        :param bool global_: States whether the assignment is available across all organizations or not. Defaults to `false`.
-        """
-        pulumi.set(__self__, "uid", uid)
-        if global_ is not None:
-            pulumi.set(__self__, "global_", global_)
-
-    @property
-    @pulumi.getter
-    def uid(self) -> str:
-        """
-        Unique identifier of the role to assign to `builtin_role`.
-        """
-        return pulumi.get(self, "uid")
-
-    @property
-    @pulumi.getter(name="global")
-    def global_(self) -> Optional[bool]:
-        """
-        States whether the assignment is available across all organizations or not. Defaults to `false`.
-        """
-        return pulumi.get(self, "global_")
-
 
 @pulumi.output_type
 class CloudAccessPolicyRealm(dict):
@@ -2457,12 +2412,12 @@ class DashboardPermissionPermission(dict):
     def __init__(__self__, *,
                  permission: str,
                  role: Optional[str] = None,
-                 team_id: Optional[int] = None,
+                 team_id: Optional[str] = None,
                  user_id: Optional[int] = None):
         """
         :param str permission: Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
         :param str role: Manage permissions for `Viewer` or `Editor` roles.
-        :param int team_id: ID of the team to manage permissions for. Defaults to `0`.
+        :param str team_id: ID of the team to manage permissions for. Defaults to `0`.
         :param int user_id: ID of the user to manage permissions for. Defaults to `0`.
         """
         pulumi.set(__self__, "permission", permission)
@@ -2491,7 +2446,7 @@ class DashboardPermissionPermission(dict):
 
     @property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> Optional[int]:
+    def team_id(self) -> Optional[str]:
         """
         ID of the team to manage permissions for. Defaults to `0`.
         """
@@ -2504,900 +2459,6 @@ class DashboardPermissionPermission(dict):
         ID of the user to manage permissions for. Defaults to `0`.
         """
         return pulumi.get(self, "user_id")
-
-
-@pulumi.output_type
-class DataSourceJsonData(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "alertmanagerUid":
-            suggest = "alertmanager_uid"
-        elif key == "assumeRoleArn":
-            suggest = "assume_role_arn"
-        elif key == "authType":
-            suggest = "auth_type"
-        elif key == "authenticationType":
-            suggest = "authentication_type"
-        elif key == "clientEmail":
-            suggest = "client_email"
-        elif key == "clientId":
-            suggest = "client_id"
-        elif key == "cloudName":
-            suggest = "cloud_name"
-        elif key == "connMaxLifetime":
-            suggest = "conn_max_lifetime"
-        elif key == "customMetricsNamespaces":
-            suggest = "custom_metrics_namespaces"
-        elif key == "defaultBucket":
-            suggest = "default_bucket"
-        elif key == "defaultProject":
-            suggest = "default_project"
-        elif key == "defaultRegion":
-            suggest = "default_region"
-        elif key == "derivedFields":
-            suggest = "derived_fields"
-        elif key == "esVersion":
-            suggest = "es_version"
-        elif key == "externalId":
-            suggest = "external_id"
-        elif key == "githubUrl":
-            suggest = "github_url"
-        elif key == "graphiteVersion":
-            suggest = "graphite_version"
-        elif key == "httpMethod":
-            suggest = "http_method"
-        elif key == "logLevelField":
-            suggest = "log_level_field"
-        elif key == "logMessageField":
-            suggest = "log_message_field"
-        elif key == "manageAlerts":
-            suggest = "manage_alerts"
-        elif key == "maxConcurrentShardRequests":
-            suggest = "max_concurrent_shard_requests"
-        elif key == "maxIdleConns":
-            suggest = "max_idle_conns"
-        elif key == "maxLines":
-            suggest = "max_lines"
-        elif key == "maxOpenConns":
-            suggest = "max_open_conns"
-        elif key == "orgSlug":
-            suggest = "org_slug"
-        elif key == "outputLocation":
-            suggest = "output_location"
-        elif key == "postgresVersion":
-            suggest = "postgres_version"
-        elif key == "queryTimeout":
-            suggest = "query_timeout"
-        elif key == "sigv4AssumeRoleArn":
-            suggest = "sigv4_assume_role_arn"
-        elif key == "sigv4Auth":
-            suggest = "sigv4_auth"
-        elif key == "sigv4AuthType":
-            suggest = "sigv4_auth_type"
-        elif key == "sigv4ExternalId":
-            suggest = "sigv4_external_id"
-        elif key == "sigv4Profile":
-            suggest = "sigv4_profile"
-        elif key == "sigv4Region":
-            suggest = "sigv4_region"
-        elif key == "sslMode":
-            suggest = "ssl_mode"
-        elif key == "subscriptionId":
-            suggest = "subscription_id"
-        elif key == "tenantId":
-            suggest = "tenant_id"
-        elif key == "timeField":
-            suggest = "time_field"
-        elif key == "timeInterval":
-            suggest = "time_interval"
-        elif key == "tlsAuth":
-            suggest = "tls_auth"
-        elif key == "tlsAuthWithCaCert":
-            suggest = "tls_auth_with_ca_cert"
-        elif key == "tlsConfigurationMethod":
-            suggest = "tls_configuration_method"
-        elif key == "tlsSkipVerify":
-            suggest = "tls_skip_verify"
-        elif key == "tokenUri":
-            suggest = "token_uri"
-        elif key == "tracingDatasourceUid":
-            suggest = "tracing_datasource_uid"
-        elif key == "tsdbResolution":
-            suggest = "tsdb_resolution"
-        elif key == "tsdbVersion":
-            suggest = "tsdb_version"
-        elif key == "xpackEnabled":
-            suggest = "xpack_enabled"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DataSourceJsonData. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        DataSourceJsonData.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        DataSourceJsonData.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 alertmanager_uid: Optional[str] = None,
-                 assume_role_arn: Optional[str] = None,
-                 auth_type: Optional[str] = None,
-                 authentication_type: Optional[str] = None,
-                 catalog: Optional[str] = None,
-                 client_email: Optional[str] = None,
-                 client_id: Optional[str] = None,
-                 cloud_name: Optional[str] = None,
-                 conn_max_lifetime: Optional[int] = None,
-                 custom_metrics_namespaces: Optional[str] = None,
-                 database: Optional[str] = None,
-                 default_bucket: Optional[str] = None,
-                 default_project: Optional[str] = None,
-                 default_region: Optional[str] = None,
-                 derived_fields: Optional[Sequence['outputs.DataSourceJsonDataDerivedField']] = None,
-                 encrypt: Optional[str] = None,
-                 es_version: Optional[str] = None,
-                 external_id: Optional[str] = None,
-                 github_url: Optional[str] = None,
-                 graphite_version: Optional[str] = None,
-                 http_method: Optional[str] = None,
-                 implementation: Optional[str] = None,
-                 interval: Optional[str] = None,
-                 log_level_field: Optional[str] = None,
-                 log_message_field: Optional[str] = None,
-                 manage_alerts: Optional[bool] = None,
-                 max_concurrent_shard_requests: Optional[int] = None,
-                 max_idle_conns: Optional[int] = None,
-                 max_lines: Optional[int] = None,
-                 max_open_conns: Optional[int] = None,
-                 org_slug: Optional[str] = None,
-                 organization: Optional[str] = None,
-                 output_location: Optional[str] = None,
-                 postgres_version: Optional[int] = None,
-                 profile: Optional[str] = None,
-                 query_timeout: Optional[str] = None,
-                 sigv4_assume_role_arn: Optional[str] = None,
-                 sigv4_auth: Optional[bool] = None,
-                 sigv4_auth_type: Optional[str] = None,
-                 sigv4_external_id: Optional[str] = None,
-                 sigv4_profile: Optional[str] = None,
-                 sigv4_region: Optional[str] = None,
-                 ssl_mode: Optional[str] = None,
-                 subscription_id: Optional[str] = None,
-                 tenant_id: Optional[str] = None,
-                 time_field: Optional[str] = None,
-                 time_interval: Optional[str] = None,
-                 timescaledb: Optional[bool] = None,
-                 tls_auth: Optional[bool] = None,
-                 tls_auth_with_ca_cert: Optional[bool] = None,
-                 tls_configuration_method: Optional[str] = None,
-                 tls_skip_verify: Optional[bool] = None,
-                 token_uri: Optional[str] = None,
-                 tracing_datasource_uid: Optional[str] = None,
-                 tsdb_resolution: Optional[int] = None,
-                 tsdb_version: Optional[int] = None,
-                 version: Optional[str] = None,
-                 workgroup: Optional[str] = None,
-                 xpack_enabled: Optional[bool] = None):
-        """
-        :param str alertmanager_uid: (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
-        :param str assume_role_arn: (CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.
-        :param str auth_type: (CloudWatch, Athena) The authentication type used to access the data source.
-        :param str authentication_type: (Stackdriver) The authentication type: `jwt` or `gce`.
-        :param str catalog: (Athena) Athena catalog.
-        :param str client_email: (Stackdriver) Service account email address.
-        :param str client_id: (Azure Monitor) The service account client id.
-        :param str cloud_name: (Azure Monitor) The cloud name.
-        :param int conn_max_lifetime: (MySQL, PostgreSQL, and MSSQL) Maximum amount of time in seconds a connection may be reused (Grafana v5.4+).
-        :param str custom_metrics_namespaces: (CloudWatch) A comma-separated list of custom namespaces to be queried by the CloudWatch data source.
-        :param str database: (Athena) Name of the database within the catalog.
-        :param str default_bucket: (InfluxDB) The default bucket for the data source.
-        :param str default_project: (Stackdriver) The default project for the data source.
-        :param str default_region: (CloudWatch, Athena) The default region for the data source.
-        :param Sequence['DataSourceJsonDataDerivedFieldArgs'] derived_fields: (Loki) See https://grafana.com/docs/grafana/latest/datasources/loki/#derived-fields
-        :param str encrypt: (MSSQL) Connection SSL encryption handling: 'disable', 'false' or 'true'.
-        :param str es_version: (Elasticsearch) Elasticsearch semantic version (Grafana v8.0+).
-        :param str external_id: (CloudWatch, Athena) If you are assuming a role in another account, that has been created with an external ID, specify the external ID here.
-        :param str github_url: (Github) Github URL
-        :param str graphite_version: (Graphite) Graphite version.
-        :param str http_method: (Prometheus) HTTP method to use for making requests.
-        :param str implementation: (Alertmanager) Implementation of Alertmanager. Either 'cortex' or 'prometheus'
-        :param str interval: (Elasticsearch) Index date time format. nil(No Pattern), 'Hourly', 'Daily', 'Weekly', 'Monthly' or 'Yearly'.
-        :param str log_level_field: (Elasticsearch) Which field should be used to indicate the priority of the log message.
-        :param str log_message_field: (Elasticsearch) Which field should be used as the log message.
-        :param bool manage_alerts: (Prometheus) Manage alerts.
-        :param int max_concurrent_shard_requests: (Elasticsearch) Maximum number of concurrent shard requests.
-        :param int max_idle_conns: (MySQL, PostgreSQL and MSSQL) Maximum number of connections in the idle connection pool (Grafana v5.4+).
-        :param int max_lines: (Loki) Upper limit for the number of log lines returned by Loki
-        :param int max_open_conns: (MySQL, PostgreSQL and MSSQL) Maximum number of open connections to the database (Grafana v5.4+).
-        :param str org_slug: (Sentry) Organization slug.
-        :param str organization: (InfluxDB) An organization is a workspace for a group of users. All dashboards, tasks, buckets, members, etc., belong to an organization.
-        :param str output_location: (Athena) AWS S3 bucket to store execution outputs. If not specified, the default query result location from the Workgroup configuration will be used.
-        :param int postgres_version: (PostgreSQL) Postgres version as a number (903/904/905/906/1000) meaning v9.3, v9.4, etc.
-        :param str profile: (CloudWatch, Athena) The credentials profile name to use when authentication type is set as 'Credentials file'.
-        :param str query_timeout: (Prometheus) Timeout for queries made to the Prometheus data source in seconds.
-        :param str sigv4_assume_role_arn: (Elasticsearch and Prometheus) Specifies the ARN of an IAM role to assume.
-        :param bool sigv4_auth: (Elasticsearch and Prometheus) Enable usage of SigV4.
-        :param str sigv4_auth_type: (Elasticsearch and Prometheus) The Sigv4 authentication provider to use: 'default', 'credentials' or 'keys' (AMG: 'workspace-iam-role').
-        :param str sigv4_external_id: (Elasticsearch and Prometheus) When assuming a role in another account use this external ID.
-        :param str sigv4_profile: (Elasticsearch and Prometheus) Credentials profile name, leave blank for default.
-        :param str sigv4_region: (Elasticsearch and Prometheus) AWS region to use for Sigv4.
-        :param str ssl_mode: (PostgreSQL) SSLmode. 'disable', 'require', 'verify-ca' or 'verify-full'.
-        :param str subscription_id: (Azure Monitor) The subscription id
-        :param str tenant_id: (Azure Monitor) Service account tenant ID.
-        :param str time_field: (Elasticsearch) Which field that should be used as timestamp.
-        :param str time_interval: (Prometheus, Elasticsearch, InfluxDB, MySQL, PostgreSQL, and MSSQL) Lowest interval/step value that should be used for this data source. Sometimes called "Scrape Interval" in the Grafana UI.
-        :param bool timescaledb: (PostgreSQL) Enable usage of TimescaleDB extension.
-        :param bool tls_auth: (All) Enable TLS authentication using client cert configured in secure json data.
-        :param bool tls_auth_with_ca_cert: (All) Enable TLS authentication using CA cert.
-        :param str tls_configuration_method: (All) SSL Certificate configuration, either by ‘file-path’ or ‘file-content’.
-        :param bool tls_skip_verify: (All) Controls whether a client verifies the server’s certificate chain and host name.
-        :param str token_uri: (Stackdriver) The token URI used, provided in the service account key.
-        :param str tracing_datasource_uid: (Cloudwatch) The X-Ray datasource uid to associate to this Cloudwatch datasource.
-        :param int tsdb_resolution: (OpenTSDB) Resolution.
-        :param int tsdb_version: (OpenTSDB) Version.
-        :param str version: (InfluxDB) InfluxQL or Flux.
-        :param str workgroup: (Athena) Workgroup to use.
-        :param bool xpack_enabled: (Elasticsearch) Enable X-Pack support.
-        """
-        if alertmanager_uid is not None:
-            pulumi.set(__self__, "alertmanager_uid", alertmanager_uid)
-        if assume_role_arn is not None:
-            pulumi.set(__self__, "assume_role_arn", assume_role_arn)
-        if auth_type is not None:
-            pulumi.set(__self__, "auth_type", auth_type)
-        if authentication_type is not None:
-            pulumi.set(__self__, "authentication_type", authentication_type)
-        if catalog is not None:
-            pulumi.set(__self__, "catalog", catalog)
-        if client_email is not None:
-            pulumi.set(__self__, "client_email", client_email)
-        if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
-        if cloud_name is not None:
-            pulumi.set(__self__, "cloud_name", cloud_name)
-        if conn_max_lifetime is not None:
-            pulumi.set(__self__, "conn_max_lifetime", conn_max_lifetime)
-        if custom_metrics_namespaces is not None:
-            pulumi.set(__self__, "custom_metrics_namespaces", custom_metrics_namespaces)
-        if database is not None:
-            pulumi.set(__self__, "database", database)
-        if default_bucket is not None:
-            pulumi.set(__self__, "default_bucket", default_bucket)
-        if default_project is not None:
-            pulumi.set(__self__, "default_project", default_project)
-        if default_region is not None:
-            pulumi.set(__self__, "default_region", default_region)
-        if derived_fields is not None:
-            pulumi.set(__self__, "derived_fields", derived_fields)
-        if encrypt is not None:
-            pulumi.set(__self__, "encrypt", encrypt)
-        if es_version is not None:
-            pulumi.set(__self__, "es_version", es_version)
-        if external_id is not None:
-            pulumi.set(__self__, "external_id", external_id)
-        if github_url is not None:
-            pulumi.set(__self__, "github_url", github_url)
-        if graphite_version is not None:
-            pulumi.set(__self__, "graphite_version", graphite_version)
-        if http_method is not None:
-            pulumi.set(__self__, "http_method", http_method)
-        if implementation is not None:
-            pulumi.set(__self__, "implementation", implementation)
-        if interval is not None:
-            pulumi.set(__self__, "interval", interval)
-        if log_level_field is not None:
-            pulumi.set(__self__, "log_level_field", log_level_field)
-        if log_message_field is not None:
-            pulumi.set(__self__, "log_message_field", log_message_field)
-        if manage_alerts is not None:
-            pulumi.set(__self__, "manage_alerts", manage_alerts)
-        if max_concurrent_shard_requests is not None:
-            pulumi.set(__self__, "max_concurrent_shard_requests", max_concurrent_shard_requests)
-        if max_idle_conns is not None:
-            pulumi.set(__self__, "max_idle_conns", max_idle_conns)
-        if max_lines is not None:
-            pulumi.set(__self__, "max_lines", max_lines)
-        if max_open_conns is not None:
-            pulumi.set(__self__, "max_open_conns", max_open_conns)
-        if org_slug is not None:
-            pulumi.set(__self__, "org_slug", org_slug)
-        if organization is not None:
-            pulumi.set(__self__, "organization", organization)
-        if output_location is not None:
-            pulumi.set(__self__, "output_location", output_location)
-        if postgres_version is not None:
-            pulumi.set(__self__, "postgres_version", postgres_version)
-        if profile is not None:
-            pulumi.set(__self__, "profile", profile)
-        if query_timeout is not None:
-            pulumi.set(__self__, "query_timeout", query_timeout)
-        if sigv4_assume_role_arn is not None:
-            pulumi.set(__self__, "sigv4_assume_role_arn", sigv4_assume_role_arn)
-        if sigv4_auth is not None:
-            pulumi.set(__self__, "sigv4_auth", sigv4_auth)
-        if sigv4_auth_type is not None:
-            pulumi.set(__self__, "sigv4_auth_type", sigv4_auth_type)
-        if sigv4_external_id is not None:
-            pulumi.set(__self__, "sigv4_external_id", sigv4_external_id)
-        if sigv4_profile is not None:
-            pulumi.set(__self__, "sigv4_profile", sigv4_profile)
-        if sigv4_region is not None:
-            pulumi.set(__self__, "sigv4_region", sigv4_region)
-        if ssl_mode is not None:
-            pulumi.set(__self__, "ssl_mode", ssl_mode)
-        if subscription_id is not None:
-            pulumi.set(__self__, "subscription_id", subscription_id)
-        if tenant_id is not None:
-            pulumi.set(__self__, "tenant_id", tenant_id)
-        if time_field is not None:
-            pulumi.set(__self__, "time_field", time_field)
-        if time_interval is not None:
-            pulumi.set(__self__, "time_interval", time_interval)
-        if timescaledb is not None:
-            pulumi.set(__self__, "timescaledb", timescaledb)
-        if tls_auth is not None:
-            pulumi.set(__self__, "tls_auth", tls_auth)
-        if tls_auth_with_ca_cert is not None:
-            pulumi.set(__self__, "tls_auth_with_ca_cert", tls_auth_with_ca_cert)
-        if tls_configuration_method is not None:
-            pulumi.set(__self__, "tls_configuration_method", tls_configuration_method)
-        if tls_skip_verify is not None:
-            pulumi.set(__self__, "tls_skip_verify", tls_skip_verify)
-        if token_uri is not None:
-            pulumi.set(__self__, "token_uri", token_uri)
-        if tracing_datasource_uid is not None:
-            pulumi.set(__self__, "tracing_datasource_uid", tracing_datasource_uid)
-        if tsdb_resolution is not None:
-            pulumi.set(__self__, "tsdb_resolution", tsdb_resolution)
-        if tsdb_version is not None:
-            pulumi.set(__self__, "tsdb_version", tsdb_version)
-        if version is not None:
-            pulumi.set(__self__, "version", version)
-        if workgroup is not None:
-            pulumi.set(__self__, "workgroup", workgroup)
-        if xpack_enabled is not None:
-            pulumi.set(__self__, "xpack_enabled", xpack_enabled)
-
-    @property
-    @pulumi.getter(name="alertmanagerUid")
-    def alertmanager_uid(self) -> Optional[str]:
-        """
-        (Prometheus) The name of the Alertmanager datasource to manage alerts via UI
-        """
-        return pulumi.get(self, "alertmanager_uid")
-
-    @property
-    @pulumi.getter(name="assumeRoleArn")
-    def assume_role_arn(self) -> Optional[str]:
-        """
-        (CloudWatch, Athena) The ARN of the role to be assumed by Grafana when using the CloudWatch or Athena data source.
-        """
-        return pulumi.get(self, "assume_role_arn")
-
-    @property
-    @pulumi.getter(name="authType")
-    def auth_type(self) -> Optional[str]:
-        """
-        (CloudWatch, Athena) The authentication type used to access the data source.
-        """
-        return pulumi.get(self, "auth_type")
-
-    @property
-    @pulumi.getter(name="authenticationType")
-    def authentication_type(self) -> Optional[str]:
-        """
-        (Stackdriver) The authentication type: `jwt` or `gce`.
-        """
-        return pulumi.get(self, "authentication_type")
-
-    @property
-    @pulumi.getter
-    def catalog(self) -> Optional[str]:
-        """
-        (Athena) Athena catalog.
-        """
-        return pulumi.get(self, "catalog")
-
-    @property
-    @pulumi.getter(name="clientEmail")
-    def client_email(self) -> Optional[str]:
-        """
-        (Stackdriver) Service account email address.
-        """
-        return pulumi.get(self, "client_email")
-
-    @property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[str]:
-        """
-        (Azure Monitor) The service account client id.
-        """
-        return pulumi.get(self, "client_id")
-
-    @property
-    @pulumi.getter(name="cloudName")
-    def cloud_name(self) -> Optional[str]:
-        """
-        (Azure Monitor) The cloud name.
-        """
-        return pulumi.get(self, "cloud_name")
-
-    @property
-    @pulumi.getter(name="connMaxLifetime")
-    def conn_max_lifetime(self) -> Optional[int]:
-        """
-        (MySQL, PostgreSQL, and MSSQL) Maximum amount of time in seconds a connection may be reused (Grafana v5.4+).
-        """
-        return pulumi.get(self, "conn_max_lifetime")
-
-    @property
-    @pulumi.getter(name="customMetricsNamespaces")
-    def custom_metrics_namespaces(self) -> Optional[str]:
-        """
-        (CloudWatch) A comma-separated list of custom namespaces to be queried by the CloudWatch data source.
-        """
-        return pulumi.get(self, "custom_metrics_namespaces")
-
-    @property
-    @pulumi.getter
-    def database(self) -> Optional[str]:
-        """
-        (Athena) Name of the database within the catalog.
-        """
-        return pulumi.get(self, "database")
-
-    @property
-    @pulumi.getter(name="defaultBucket")
-    def default_bucket(self) -> Optional[str]:
-        """
-        (InfluxDB) The default bucket for the data source.
-        """
-        return pulumi.get(self, "default_bucket")
-
-    @property
-    @pulumi.getter(name="defaultProject")
-    def default_project(self) -> Optional[str]:
-        """
-        (Stackdriver) The default project for the data source.
-        """
-        return pulumi.get(self, "default_project")
-
-    @property
-    @pulumi.getter(name="defaultRegion")
-    def default_region(self) -> Optional[str]:
-        """
-        (CloudWatch, Athena) The default region for the data source.
-        """
-        return pulumi.get(self, "default_region")
-
-    @property
-    @pulumi.getter(name="derivedFields")
-    def derived_fields(self) -> Optional[Sequence['outputs.DataSourceJsonDataDerivedField']]:
-        """
-        (Loki) See https://grafana.com/docs/grafana/latest/datasources/loki/#derived-fields
-        """
-        return pulumi.get(self, "derived_fields")
-
-    @property
-    @pulumi.getter
-    def encrypt(self) -> Optional[str]:
-        """
-        (MSSQL) Connection SSL encryption handling: 'disable', 'false' or 'true'.
-        """
-        return pulumi.get(self, "encrypt")
-
-    @property
-    @pulumi.getter(name="esVersion")
-    def es_version(self) -> Optional[str]:
-        """
-        (Elasticsearch) Elasticsearch semantic version (Grafana v8.0+).
-        """
-        return pulumi.get(self, "es_version")
-
-    @property
-    @pulumi.getter(name="externalId")
-    def external_id(self) -> Optional[str]:
-        """
-        (CloudWatch, Athena) If you are assuming a role in another account, that has been created with an external ID, specify the external ID here.
-        """
-        return pulumi.get(self, "external_id")
-
-    @property
-    @pulumi.getter(name="githubUrl")
-    def github_url(self) -> Optional[str]:
-        """
-        (Github) Github URL
-        """
-        return pulumi.get(self, "github_url")
-
-    @property
-    @pulumi.getter(name="graphiteVersion")
-    def graphite_version(self) -> Optional[str]:
-        """
-        (Graphite) Graphite version.
-        """
-        return pulumi.get(self, "graphite_version")
-
-    @property
-    @pulumi.getter(name="httpMethod")
-    def http_method(self) -> Optional[str]:
-        """
-        (Prometheus) HTTP method to use for making requests.
-        """
-        return pulumi.get(self, "http_method")
-
-    @property
-    @pulumi.getter
-    def implementation(self) -> Optional[str]:
-        """
-        (Alertmanager) Implementation of Alertmanager. Either 'cortex' or 'prometheus'
-        """
-        return pulumi.get(self, "implementation")
-
-    @property
-    @pulumi.getter
-    def interval(self) -> Optional[str]:
-        """
-        (Elasticsearch) Index date time format. nil(No Pattern), 'Hourly', 'Daily', 'Weekly', 'Monthly' or 'Yearly'.
-        """
-        return pulumi.get(self, "interval")
-
-    @property
-    @pulumi.getter(name="logLevelField")
-    def log_level_field(self) -> Optional[str]:
-        """
-        (Elasticsearch) Which field should be used to indicate the priority of the log message.
-        """
-        return pulumi.get(self, "log_level_field")
-
-    @property
-    @pulumi.getter(name="logMessageField")
-    def log_message_field(self) -> Optional[str]:
-        """
-        (Elasticsearch) Which field should be used as the log message.
-        """
-        return pulumi.get(self, "log_message_field")
-
-    @property
-    @pulumi.getter(name="manageAlerts")
-    def manage_alerts(self) -> Optional[bool]:
-        """
-        (Prometheus) Manage alerts.
-        """
-        return pulumi.get(self, "manage_alerts")
-
-    @property
-    @pulumi.getter(name="maxConcurrentShardRequests")
-    def max_concurrent_shard_requests(self) -> Optional[int]:
-        """
-        (Elasticsearch) Maximum number of concurrent shard requests.
-        """
-        return pulumi.get(self, "max_concurrent_shard_requests")
-
-    @property
-    @pulumi.getter(name="maxIdleConns")
-    def max_idle_conns(self) -> Optional[int]:
-        """
-        (MySQL, PostgreSQL and MSSQL) Maximum number of connections in the idle connection pool (Grafana v5.4+).
-        """
-        return pulumi.get(self, "max_idle_conns")
-
-    @property
-    @pulumi.getter(name="maxLines")
-    def max_lines(self) -> Optional[int]:
-        """
-        (Loki) Upper limit for the number of log lines returned by Loki
-        """
-        return pulumi.get(self, "max_lines")
-
-    @property
-    @pulumi.getter(name="maxOpenConns")
-    def max_open_conns(self) -> Optional[int]:
-        """
-        (MySQL, PostgreSQL and MSSQL) Maximum number of open connections to the database (Grafana v5.4+).
-        """
-        return pulumi.get(self, "max_open_conns")
-
-    @property
-    @pulumi.getter(name="orgSlug")
-    def org_slug(self) -> Optional[str]:
-        """
-        (Sentry) Organization slug.
-        """
-        return pulumi.get(self, "org_slug")
-
-    @property
-    @pulumi.getter
-    def organization(self) -> Optional[str]:
-        """
-        (InfluxDB) An organization is a workspace for a group of users. All dashboards, tasks, buckets, members, etc., belong to an organization.
-        """
-        return pulumi.get(self, "organization")
-
-    @property
-    @pulumi.getter(name="outputLocation")
-    def output_location(self) -> Optional[str]:
-        """
-        (Athena) AWS S3 bucket to store execution outputs. If not specified, the default query result location from the Workgroup configuration will be used.
-        """
-        return pulumi.get(self, "output_location")
-
-    @property
-    @pulumi.getter(name="postgresVersion")
-    def postgres_version(self) -> Optional[int]:
-        """
-        (PostgreSQL) Postgres version as a number (903/904/905/906/1000) meaning v9.3, v9.4, etc.
-        """
-        return pulumi.get(self, "postgres_version")
-
-    @property
-    @pulumi.getter
-    def profile(self) -> Optional[str]:
-        """
-        (CloudWatch, Athena) The credentials profile name to use when authentication type is set as 'Credentials file'.
-        """
-        return pulumi.get(self, "profile")
-
-    @property
-    @pulumi.getter(name="queryTimeout")
-    def query_timeout(self) -> Optional[str]:
-        """
-        (Prometheus) Timeout for queries made to the Prometheus data source in seconds.
-        """
-        return pulumi.get(self, "query_timeout")
-
-    @property
-    @pulumi.getter(name="sigv4AssumeRoleArn")
-    def sigv4_assume_role_arn(self) -> Optional[str]:
-        """
-        (Elasticsearch and Prometheus) Specifies the ARN of an IAM role to assume.
-        """
-        return pulumi.get(self, "sigv4_assume_role_arn")
-
-    @property
-    @pulumi.getter(name="sigv4Auth")
-    def sigv4_auth(self) -> Optional[bool]:
-        """
-        (Elasticsearch and Prometheus) Enable usage of SigV4.
-        """
-        return pulumi.get(self, "sigv4_auth")
-
-    @property
-    @pulumi.getter(name="sigv4AuthType")
-    def sigv4_auth_type(self) -> Optional[str]:
-        """
-        (Elasticsearch and Prometheus) The Sigv4 authentication provider to use: 'default', 'credentials' or 'keys' (AMG: 'workspace-iam-role').
-        """
-        return pulumi.get(self, "sigv4_auth_type")
-
-    @property
-    @pulumi.getter(name="sigv4ExternalId")
-    def sigv4_external_id(self) -> Optional[str]:
-        """
-        (Elasticsearch and Prometheus) When assuming a role in another account use this external ID.
-        """
-        return pulumi.get(self, "sigv4_external_id")
-
-    @property
-    @pulumi.getter(name="sigv4Profile")
-    def sigv4_profile(self) -> Optional[str]:
-        """
-        (Elasticsearch and Prometheus) Credentials profile name, leave blank for default.
-        """
-        return pulumi.get(self, "sigv4_profile")
-
-    @property
-    @pulumi.getter(name="sigv4Region")
-    def sigv4_region(self) -> Optional[str]:
-        """
-        (Elasticsearch and Prometheus) AWS region to use for Sigv4.
-        """
-        return pulumi.get(self, "sigv4_region")
-
-    @property
-    @pulumi.getter(name="sslMode")
-    def ssl_mode(self) -> Optional[str]:
-        """
-        (PostgreSQL) SSLmode. 'disable', 'require', 'verify-ca' or 'verify-full'.
-        """
-        return pulumi.get(self, "ssl_mode")
-
-    @property
-    @pulumi.getter(name="subscriptionId")
-    def subscription_id(self) -> Optional[str]:
-        """
-        (Azure Monitor) The subscription id
-        """
-        return pulumi.get(self, "subscription_id")
-
-    @property
-    @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> Optional[str]:
-        """
-        (Azure Monitor) Service account tenant ID.
-        """
-        return pulumi.get(self, "tenant_id")
-
-    @property
-    @pulumi.getter(name="timeField")
-    def time_field(self) -> Optional[str]:
-        """
-        (Elasticsearch) Which field that should be used as timestamp.
-        """
-        return pulumi.get(self, "time_field")
-
-    @property
-    @pulumi.getter(name="timeInterval")
-    def time_interval(self) -> Optional[str]:
-        """
-        (Prometheus, Elasticsearch, InfluxDB, MySQL, PostgreSQL, and MSSQL) Lowest interval/step value that should be used for this data source. Sometimes called "Scrape Interval" in the Grafana UI.
-        """
-        return pulumi.get(self, "time_interval")
-
-    @property
-    @pulumi.getter
-    def timescaledb(self) -> Optional[bool]:
-        """
-        (PostgreSQL) Enable usage of TimescaleDB extension.
-        """
-        return pulumi.get(self, "timescaledb")
-
-    @property
-    @pulumi.getter(name="tlsAuth")
-    def tls_auth(self) -> Optional[bool]:
-        """
-        (All) Enable TLS authentication using client cert configured in secure json data.
-        """
-        return pulumi.get(self, "tls_auth")
-
-    @property
-    @pulumi.getter(name="tlsAuthWithCaCert")
-    def tls_auth_with_ca_cert(self) -> Optional[bool]:
-        """
-        (All) Enable TLS authentication using CA cert.
-        """
-        return pulumi.get(self, "tls_auth_with_ca_cert")
-
-    @property
-    @pulumi.getter(name="tlsConfigurationMethod")
-    def tls_configuration_method(self) -> Optional[str]:
-        """
-        (All) SSL Certificate configuration, either by ‘file-path’ or ‘file-content’.
-        """
-        return pulumi.get(self, "tls_configuration_method")
-
-    @property
-    @pulumi.getter(name="tlsSkipVerify")
-    def tls_skip_verify(self) -> Optional[bool]:
-        """
-        (All) Controls whether a client verifies the server’s certificate chain and host name.
-        """
-        return pulumi.get(self, "tls_skip_verify")
-
-    @property
-    @pulumi.getter(name="tokenUri")
-    def token_uri(self) -> Optional[str]:
-        """
-        (Stackdriver) The token URI used, provided in the service account key.
-        """
-        return pulumi.get(self, "token_uri")
-
-    @property
-    @pulumi.getter(name="tracingDatasourceUid")
-    def tracing_datasource_uid(self) -> Optional[str]:
-        """
-        (Cloudwatch) The X-Ray datasource uid to associate to this Cloudwatch datasource.
-        """
-        return pulumi.get(self, "tracing_datasource_uid")
-
-    @property
-    @pulumi.getter(name="tsdbResolution")
-    def tsdb_resolution(self) -> Optional[int]:
-        """
-        (OpenTSDB) Resolution.
-        """
-        return pulumi.get(self, "tsdb_resolution")
-
-    @property
-    @pulumi.getter(name="tsdbVersion")
-    def tsdb_version(self) -> Optional[int]:
-        """
-        (OpenTSDB) Version.
-        """
-        return pulumi.get(self, "tsdb_version")
-
-    @property
-    @pulumi.getter
-    def version(self) -> Optional[str]:
-        """
-        (InfluxDB) InfluxQL or Flux.
-        """
-        return pulumi.get(self, "version")
-
-    @property
-    @pulumi.getter
-    def workgroup(self) -> Optional[str]:
-        """
-        (Athena) Workgroup to use.
-        """
-        return pulumi.get(self, "workgroup")
-
-    @property
-    @pulumi.getter(name="xpackEnabled")
-    def xpack_enabled(self) -> Optional[bool]:
-        """
-        (Elasticsearch) Enable X-Pack support.
-        """
-        return pulumi.get(self, "xpack_enabled")
-
-
-@pulumi.output_type
-class DataSourceJsonDataDerivedField(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "datasourceUid":
-            suggest = "datasource_uid"
-        elif key == "matcherRegex":
-            suggest = "matcher_regex"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DataSourceJsonDataDerivedField. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        DataSourceJsonDataDerivedField.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        DataSourceJsonDataDerivedField.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 datasource_uid: Optional[str] = None,
-                 matcher_regex: Optional[str] = None,
-                 name: Optional[str] = None,
-                 url: Optional[str] = None):
-        """
-        :param str name: A unique name for the data source.
-        :param str url: The URL for the data source. The type of URL required varies depending on the chosen data source type.
-        """
-        if datasource_uid is not None:
-            pulumi.set(__self__, "datasource_uid", datasource_uid)
-        if matcher_regex is not None:
-            pulumi.set(__self__, "matcher_regex", matcher_regex)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if url is not None:
-            pulumi.set(__self__, "url", url)
-
-    @property
-    @pulumi.getter(name="datasourceUid")
-    def datasource_uid(self) -> Optional[str]:
-        return pulumi.get(self, "datasource_uid")
-
-    @property
-    @pulumi.getter(name="matcherRegex")
-    def matcher_regex(self) -> Optional[str]:
-        return pulumi.get(self, "matcher_regex")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        """
-        A unique name for the data source.
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def url(self) -> Optional[str]:
-        """
-        The URL for the data source. The type of URL required varies depending on the chosen data source type.
-        """
-        return pulumi.get(self, "url")
 
 
 @pulumi.output_type
@@ -3426,12 +2487,12 @@ class DataSourcePermissionPermission(dict):
     def __init__(__self__, *,
                  permission: str,
                  built_in_role: Optional[str] = None,
-                 team_id: Optional[int] = None,
+                 team_id: Optional[str] = None,
                  user_id: Optional[int] = None):
         """
         :param str permission: Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
         :param str built_in_role: Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
-        :param int team_id: ID of the team to manage permissions for. Defaults to `0`.
+        :param str team_id: ID of the team to manage permissions for. Defaults to `0`.
         :param int user_id: ID of the user to manage permissions for. Defaults to `0`.
         """
         pulumi.set(__self__, "permission", permission)
@@ -3460,7 +2521,7 @@ class DataSourcePermissionPermission(dict):
 
     @property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> Optional[int]:
+    def team_id(self) -> Optional[str]:
         """
         ID of the team to manage permissions for. Defaults to `0`.
         """
@@ -3473,208 +2534,6 @@ class DataSourcePermissionPermission(dict):
         ID of the user to manage permissions for. Defaults to `0`.
         """
         return pulumi.get(self, "user_id")
-
-
-@pulumi.output_type
-class DataSourceSecureJsonData(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "accessKey":
-            suggest = "access_key"
-        elif key == "accessToken":
-            suggest = "access_token"
-        elif key == "authToken":
-            suggest = "auth_token"
-        elif key == "basicAuthPassword":
-            suggest = "basic_auth_password"
-        elif key == "clientSecret":
-            suggest = "client_secret"
-        elif key == "privateKey":
-            suggest = "private_key"
-        elif key == "secretKey":
-            suggest = "secret_key"
-        elif key == "sigv4AccessKey":
-            suggest = "sigv4_access_key"
-        elif key == "sigv4SecretKey":
-            suggest = "sigv4_secret_key"
-        elif key == "tlsCaCert":
-            suggest = "tls_ca_cert"
-        elif key == "tlsClientCert":
-            suggest = "tls_client_cert"
-        elif key == "tlsClientKey":
-            suggest = "tls_client_key"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DataSourceSecureJsonData. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        DataSourceSecureJsonData.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        DataSourceSecureJsonData.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 access_key: Optional[str] = None,
-                 access_token: Optional[str] = None,
-                 auth_token: Optional[str] = None,
-                 basic_auth_password: Optional[str] = None,
-                 client_secret: Optional[str] = None,
-                 password: Optional[str] = None,
-                 private_key: Optional[str] = None,
-                 secret_key: Optional[str] = None,
-                 sigv4_access_key: Optional[str] = None,
-                 sigv4_secret_key: Optional[str] = None,
-                 tls_ca_cert: Optional[str] = None,
-                 tls_client_cert: Optional[str] = None,
-                 tls_client_key: Optional[str] = None):
-        """
-        :param str access_key: (CloudWatch, Athena) The access key used to access the data source.
-        :param str access_token: (Github) The access token used to access the data source.
-        :param str auth_token: (Sentry) Authorization token.
-        :param str basic_auth_password: (All) Password to use for basic authentication.
-        :param str client_secret: (Azure Monitor) Client secret for authentication.
-        :param str password: (All) Password to use for authentication.
-        :param str private_key: (Stackdriver) The service account key `private_key` to use to access the data source.
-        :param str secret_key: (CloudWatch, Athena) The secret key to use to access the data source.
-        :param str sigv4_access_key: (Elasticsearch and Prometheus) SigV4 access key. Required when using 'keys' auth provider.
-        :param str sigv4_secret_key: (Elasticsearch and Prometheus) SigV4 secret key. Required when using 'keys' auth provider.
-        :param str tls_ca_cert: (All) CA cert for out going requests.
-        :param str tls_client_cert: (All) TLS Client cert for outgoing requests.
-        :param str tls_client_key: (All) TLS Client key for outgoing requests.
-        """
-        if access_key is not None:
-            pulumi.set(__self__, "access_key", access_key)
-        if access_token is not None:
-            pulumi.set(__self__, "access_token", access_token)
-        if auth_token is not None:
-            pulumi.set(__self__, "auth_token", auth_token)
-        if basic_auth_password is not None:
-            pulumi.set(__self__, "basic_auth_password", basic_auth_password)
-        if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
-        if password is not None:
-            pulumi.set(__self__, "password", password)
-        if private_key is not None:
-            pulumi.set(__self__, "private_key", private_key)
-        if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
-        if sigv4_access_key is not None:
-            pulumi.set(__self__, "sigv4_access_key", sigv4_access_key)
-        if sigv4_secret_key is not None:
-            pulumi.set(__self__, "sigv4_secret_key", sigv4_secret_key)
-        if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
-        if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
-        if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
-
-    @property
-    @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[str]:
-        """
-        (CloudWatch, Athena) The access key used to access the data source.
-        """
-        return pulumi.get(self, "access_key")
-
-    @property
-    @pulumi.getter(name="accessToken")
-    def access_token(self) -> Optional[str]:
-        """
-        (Github) The access token used to access the data source.
-        """
-        return pulumi.get(self, "access_token")
-
-    @property
-    @pulumi.getter(name="authToken")
-    def auth_token(self) -> Optional[str]:
-        """
-        (Sentry) Authorization token.
-        """
-        return pulumi.get(self, "auth_token")
-
-    @property
-    @pulumi.getter(name="basicAuthPassword")
-    def basic_auth_password(self) -> Optional[str]:
-        """
-        (All) Password to use for basic authentication.
-        """
-        return pulumi.get(self, "basic_auth_password")
-
-    @property
-    @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[str]:
-        """
-        (Azure Monitor) Client secret for authentication.
-        """
-        return pulumi.get(self, "client_secret")
-
-    @property
-    @pulumi.getter
-    def password(self) -> Optional[str]:
-        """
-        (All) Password to use for authentication.
-        """
-        return pulumi.get(self, "password")
-
-    @property
-    @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[str]:
-        """
-        (Stackdriver) The service account key `private_key` to use to access the data source.
-        """
-        return pulumi.get(self, "private_key")
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[str]:
-        """
-        (CloudWatch, Athena) The secret key to use to access the data source.
-        """
-        return pulumi.get(self, "secret_key")
-
-    @property
-    @pulumi.getter(name="sigv4AccessKey")
-    def sigv4_access_key(self) -> Optional[str]:
-        """
-        (Elasticsearch and Prometheus) SigV4 access key. Required when using 'keys' auth provider.
-        """
-        return pulumi.get(self, "sigv4_access_key")
-
-    @property
-    @pulumi.getter(name="sigv4SecretKey")
-    def sigv4_secret_key(self) -> Optional[str]:
-        """
-        (Elasticsearch and Prometheus) SigV4 secret key. Required when using 'keys' auth provider.
-        """
-        return pulumi.get(self, "sigv4_secret_key")
-
-    @property
-    @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[str]:
-        """
-        (All) CA cert for out going requests.
-        """
-        return pulumi.get(self, "tls_ca_cert")
-
-    @property
-    @pulumi.getter(name="tlsClientCert")
-    def tls_client_cert(self) -> Optional[str]:
-        """
-        (All) TLS Client cert for outgoing requests.
-        """
-        return pulumi.get(self, "tls_client_cert")
-
-    @property
-    @pulumi.getter(name="tlsClientKey")
-    def tls_client_key(self) -> Optional[str]:
-        """
-        (All) TLS Client key for outgoing requests.
-        """
-        return pulumi.get(self, "tls_client_key")
 
 
 @pulumi.output_type
@@ -3701,12 +2560,12 @@ class FolderPermissionPermission(dict):
     def __init__(__self__, *,
                  permission: str,
                  role: Optional[str] = None,
-                 team_id: Optional[int] = None,
+                 team_id: Optional[str] = None,
                  user_id: Optional[int] = None):
         """
         :param str permission: Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
         :param str role: Manage permissions for `Viewer` or `Editor` roles.
-        :param int team_id: ID of the team to manage permissions for. Defaults to `0`.
+        :param str team_id: ID of the team to manage permissions for. Defaults to `0`.
         :param int user_id: ID of the user to manage permissions for. Defaults to `0`.
         """
         pulumi.set(__self__, "permission", permission)
@@ -3735,7 +2594,7 @@ class FolderPermissionPermission(dict):
 
     @property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> Optional[int]:
+    def team_id(self) -> Optional[str]:
         """
         ID of the team to manage permissions for. Defaults to `0`.
         """
@@ -5910,7 +4769,7 @@ class SLOAlertingFastburn(dict):
                  annotations: Optional[Sequence['outputs.SLOAlertingFastburnAnnotation']] = None,
                  labels: Optional[Sequence['outputs.SLOAlertingFastburnLabel']] = None):
         """
-        :param Sequence['SLOAlertingFastburnLabelArgs'] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        :param Sequence['SLOAlertingFastburnLabelArgs'] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         """
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
@@ -5926,7 +4785,7 @@ class SLOAlertingFastburn(dict):
     @pulumi.getter
     def labels(self) -> Optional[Sequence['outputs.SLOAlertingFastburnLabel']]:
         """
-        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         """
         return pulumi.get(self, "labels")
 
@@ -5994,7 +4853,7 @@ class SLOAlertingSlowburn(dict):
                  annotations: Optional[Sequence['outputs.SLOAlertingSlowburnAnnotation']] = None,
                  labels: Optional[Sequence['outputs.SLOAlertingSlowburnLabel']] = None):
         """
-        :param Sequence['SLOAlertingSlowburnLabelArgs'] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        :param Sequence['SLOAlertingSlowburnLabelArgs'] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         """
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
@@ -6010,7 +4869,7 @@ class SLOAlertingSlowburn(dict):
     @pulumi.getter
     def labels(self) -> Optional[Sequence['outputs.SLOAlertingSlowburnLabel']]:
         """
-        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         """
         return pulumi.get(self, "labels")
 
@@ -6104,18 +4963,17 @@ class SLOObjective(dict):
 @pulumi.output_type
 class SLOQuery(dict):
     def __init__(__self__, *,
-                 freeform: 'outputs.SLOQueryFreeform',
-                 type: str):
+                 type: str,
+                 freeform: Optional['outputs.SLOQueryFreeform'] = None,
+                 ratio: Optional['outputs.SLOQueryRatio'] = None):
         """
         :param str type: Query type must be one of: "freeform", "query", "ratio", or "threshold"
         """
-        pulumi.set(__self__, "freeform", freeform)
         pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter
-    def freeform(self) -> 'outputs.SLOQueryFreeform':
-        return pulumi.get(self, "freeform")
+        if freeform is not None:
+            pulumi.set(__self__, "freeform", freeform)
+        if ratio is not None:
+            pulumi.set(__self__, "ratio", ratio)
 
     @property
     @pulumi.getter
@@ -6125,24 +4983,81 @@ class SLOQuery(dict):
         """
         return pulumi.get(self, "type")
 
+    @property
+    @pulumi.getter
+    def freeform(self) -> Optional['outputs.SLOQueryFreeform']:
+        return pulumi.get(self, "freeform")
+
+    @property
+    @pulumi.getter
+    def ratio(self) -> Optional['outputs.SLOQueryRatio']:
+        return pulumi.get(self, "ratio")
+
 
 @pulumi.output_type
 class SLOQueryFreeform(dict):
     def __init__(__self__, *,
-                 query: Optional[str] = None):
+                 query: str):
         """
         :param str query: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
-        if query is not None:
-            pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter
-    def query(self) -> Optional[str]:
+    def query(self) -> str:
         """
         Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
         return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class SLOQueryRatio(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "successMetric":
+            suggest = "success_metric"
+        elif key == "totalMetric":
+            suggest = "total_metric"
+        elif key == "groupByLabels":
+            suggest = "group_by_labels"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SLOQueryRatio. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SLOQueryRatio.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SLOQueryRatio.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 success_metric: str,
+                 total_metric: str,
+                 group_by_labels: Optional[Sequence[str]] = None):
+        pulumi.set(__self__, "success_metric", success_metric)
+        pulumi.set(__self__, "total_metric", total_metric)
+        if group_by_labels is not None:
+            pulumi.set(__self__, "group_by_labels", group_by_labels)
+
+    @property
+    @pulumi.getter(name="successMetric")
+    def success_metric(self) -> str:
+        return pulumi.get(self, "success_metric")
+
+    @property
+    @pulumi.getter(name="totalMetric")
+    def total_metric(self) -> str:
+        return pulumi.get(self, "total_metric")
+
+    @property
+    @pulumi.getter(name="groupByLabels")
+    def group_by_labels(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "group_by_labels")
 
 
 @pulumi.output_type
@@ -6168,11 +5083,11 @@ class ServiceAccountPermissionPermission(dict):
 
     def __init__(__self__, *,
                  permission: str,
-                 team_id: Optional[int] = None,
+                 team_id: Optional[str] = None,
                  user_id: Optional[int] = None):
         """
         :param str permission: Permission to associate with item. Must be `Edit` or `Admin`.
-        :param int team_id: ID of the team to manage permissions for. Specify either this or `user_id`. Defaults to `0`.
+        :param str team_id: ID of the team to manage permissions for. Specify either this or `user_id`. Defaults to `0`.
         :param int user_id: ID of the user to manage permissions for. Specify either this or `team_id`. Defaults to `0`.
         """
         pulumi.set(__self__, "permission", permission)
@@ -6191,7 +5106,7 @@ class ServiceAccountPermissionPermission(dict):
 
     @property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> Optional[int]:
+    def team_id(self) -> Optional[str]:
         """
         ID of the team to manage permissions for. Specify either this or `user_id`. Defaults to `0`.
         """
@@ -7193,11 +6108,6 @@ class TeamPreferences(dict):
                  home_dashboard_uid: Optional[str] = None,
                  theme: Optional[str] = None,
                  timezone: Optional[str] = None):
-        """
-        :param str home_dashboard_uid: The UID of the dashboard to display when a team member logs in. Defaults to ``.
-        :param str theme: The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
-        :param str timezone: The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
-        """
         if home_dashboard_uid is not None:
             pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
         if theme is not None:
@@ -7208,26 +6118,30 @@ class TeamPreferences(dict):
     @property
     @pulumi.getter(name="homeDashboardUid")
     def home_dashboard_uid(self) -> Optional[str]:
-        """
-        The UID of the dashboard to display when a team member logs in. Defaults to ``.
-        """
         return pulumi.get(self, "home_dashboard_uid")
 
     @property
     @pulumi.getter
     def theme(self) -> Optional[str]:
-        """
-        The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
-        """
         return pulumi.get(self, "theme")
 
     @property
     @pulumi.getter
     def timezone(self) -> Optional[str]:
-        """
-        The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
-        """
         return pulumi.get(self, "timezone")
+
+
+@pulumi.output_type
+class TeamTeamSync(dict):
+    def __init__(__self__, *,
+                 groups: Optional[Sequence[str]] = None):
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
+
+    @property
+    @pulumi.getter
+    def groups(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "groups")
 
 
 @pulumi.output_type
@@ -7293,6 +6207,26 @@ class GetFoldersFolderResult(dict):
     @pulumi.getter
     def url(self) -> str:
         return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class GetRolePermissionResult(dict):
+    def __init__(__self__, *,
+                 action: str,
+                 scope: Optional[str] = None):
+        pulumi.set(__self__, "action", action)
+        if scope is not None:
+            pulumi.set(__self__, "scope", scope)
+
+    @property
+    @pulumi.getter
+    def action(self) -> str:
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter
+    def scope(self) -> Optional[str]:
+        return pulumi.get(self, "scope")
 
 
 @pulumi.output_type
@@ -7583,33 +6517,110 @@ class GetSlosSloObjectiveResult(dict):
 @pulumi.output_type
 class GetSlosSloQueryResult(dict):
     def __init__(__self__, *,
-                 freeform: 'outputs.GetSlosSloQueryFreeformResult',
-                 type: str):
-        pulumi.set(__self__, "freeform", freeform)
+                 type: str,
+                 freeform: Optional['outputs.GetSlosSloQueryFreeformResult'] = None,
+                 ratio: Optional['outputs.GetSlosSloQueryRatioResult'] = None):
         pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter
-    def freeform(self) -> 'outputs.GetSlosSloQueryFreeformResult':
-        return pulumi.get(self, "freeform")
+        if freeform is not None:
+            pulumi.set(__self__, "freeform", freeform)
+        if ratio is not None:
+            pulumi.set(__self__, "ratio", ratio)
 
     @property
     @pulumi.getter
     def type(self) -> str:
         return pulumi.get(self, "type")
 
+    @property
+    @pulumi.getter
+    def freeform(self) -> Optional['outputs.GetSlosSloQueryFreeformResult']:
+        return pulumi.get(self, "freeform")
+
+    @property
+    @pulumi.getter
+    def ratio(self) -> Optional['outputs.GetSlosSloQueryRatioResult']:
+        return pulumi.get(self, "ratio")
+
 
 @pulumi.output_type
 class GetSlosSloQueryFreeformResult(dict):
     def __init__(__self__, *,
-                 query: Optional[str] = None):
-        if query is not None:
-            pulumi.set(__self__, "query", query)
+                 query: str):
+        pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter
-    def query(self) -> Optional[str]:
+    def query(self) -> str:
         return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class GetSlosSloQueryRatioResult(dict):
+    def __init__(__self__, *,
+                 success_metric: str,
+                 total_metric: str,
+                 group_by_labels: Optional[Sequence[str]] = None):
+        pulumi.set(__self__, "success_metric", success_metric)
+        pulumi.set(__self__, "total_metric", total_metric)
+        if group_by_labels is not None:
+            pulumi.set(__self__, "group_by_labels", group_by_labels)
+
+    @property
+    @pulumi.getter(name="successMetric")
+    def success_metric(self) -> str:
+        return pulumi.get(self, "success_metric")
+
+    @property
+    @pulumi.getter(name="totalMetric")
+    def total_metric(self) -> str:
+        return pulumi.get(self, "total_metric")
+
+    @property
+    @pulumi.getter(name="groupByLabels")
+    def group_by_labels(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "group_by_labels")
+
+
+@pulumi.output_type
+class GetTeamPreferenceResult(dict):
+    def __init__(__self__, *,
+                 home_dashboard_uid: Optional[str] = None,
+                 theme: Optional[str] = None,
+                 timezone: Optional[str] = None):
+        if home_dashboard_uid is not None:
+            pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
+        if theme is not None:
+            pulumi.set(__self__, "theme", theme)
+        if timezone is not None:
+            pulumi.set(__self__, "timezone", timezone)
+
+    @property
+    @pulumi.getter(name="homeDashboardUid")
+    def home_dashboard_uid(self) -> Optional[str]:
+        return pulumi.get(self, "home_dashboard_uid")
+
+    @property
+    @pulumi.getter
+    def theme(self) -> Optional[str]:
+        return pulumi.get(self, "theme")
+
+    @property
+    @pulumi.getter
+    def timezone(self) -> Optional[str]:
+        return pulumi.get(self, "timezone")
+
+
+@pulumi.output_type
+class GetTeamTeamSyncResult(dict):
+    def __init__(__self__, *,
+                 groups: Optional[Sequence[str]] = None):
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
+
+    @property
+    @pulumi.getter
+    def groups(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "groups")
 
 
 @pulumi.output_type

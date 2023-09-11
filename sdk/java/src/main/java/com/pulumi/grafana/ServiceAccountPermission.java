@@ -13,6 +13,7 @@ import com.pulumi.grafana.inputs.ServiceAccountPermissionState;
 import com.pulumi.grafana.outputs.ServiceAccountPermissionPermission;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -81,6 +82,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="grafana:index/serviceAccountPermission:ServiceAccountPermission")
 public class ServiceAccountPermission extends com.pulumi.resources.CustomResource {
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Export(name="orgId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Output<Optional<String>> orgId() {
+        return Codegen.optional(this.orgId);
+    }
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      * 

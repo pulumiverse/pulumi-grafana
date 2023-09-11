@@ -21,7 +21,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// <summary>
         /// ID of the team to manage permissions for. Specify either this or `user_id`. Defaults to `0`.
         /// </summary>
-        public readonly int? TeamId;
+        public readonly string? TeamId;
         /// <summary>
         /// ID of the user to manage permissions for. Specify either this or `team_id`. Defaults to `0`.
         /// </summary>
@@ -31,7 +31,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         private ServiceAccountPermissionPermission(
             string permission,
 
-            int? teamId,
+            string? teamId,
 
             int? userId)
         {

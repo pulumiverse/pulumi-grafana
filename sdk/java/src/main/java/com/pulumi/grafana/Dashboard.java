@@ -150,24 +150,6 @@ public class Dashboard extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.overwrite);
     }
     /**
-     * URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
-     * 
-     * @deprecated
-     * Use `uid` instead.
-     * 
-     */
-    @Deprecated /* Use `uid` instead. */
-    @Export(name="slug", refs={String.class}, tree="[0]")
-    private Output<String> slug;
-
-    /**
-     * @return URL friendly version of the dashboard title. This field is deprecated, please use `uid` instead.
-     * 
-     */
-    public Output<String> slug() {
-        return this.slug;
-    }
-    /**
      * The unique identifier of a dashboard. This is used to construct its URL. It&#39;s automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
      * 
      */

@@ -55,7 +55,7 @@ export interface GetLibraryPanelResult {
     /**
      * ID of the folder where the library panel is stored.
      */
-    readonly folderId: number;
+    readonly folderId: string;
     /**
      * Name of the folder containing the library panel.
      */

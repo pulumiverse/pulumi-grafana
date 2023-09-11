@@ -5,12 +5,16 @@ package com.pulumi.grafana.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.grafana.outputs.SLOQueryFreeform;
+import com.pulumi.grafana.outputs.SLOQueryRatio;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class SLOQuery {
-    private SLOQueryFreeform freeform;
+    private @Nullable SLOQueryFreeform freeform;
+    private @Nullable SLOQueryRatio ratio;
     /**
      * @return Query type must be one of: &#34;freeform&#34;, &#34;query&#34;, &#34;ratio&#34;, or &#34;threshold&#34;
      * 
@@ -18,8 +22,11 @@ public final class SLOQuery {
     private String type;
 
     private SLOQuery() {}
-    public SLOQueryFreeform freeform() {
-        return this.freeform;
+    public Optional<SLOQueryFreeform> freeform() {
+        return Optional.ofNullable(this.freeform);
+    }
+    public Optional<SLOQueryRatio> ratio() {
+        return Optional.ofNullable(this.ratio);
     }
     /**
      * @return Query type must be one of: &#34;freeform&#34;, &#34;query&#34;, &#34;ratio&#34;, or &#34;threshold&#34;
@@ -38,18 +45,25 @@ public final class SLOQuery {
     }
     @CustomType.Builder
     public static final class Builder {
-        private SLOQueryFreeform freeform;
+        private @Nullable SLOQueryFreeform freeform;
+        private @Nullable SLOQueryRatio ratio;
         private String type;
         public Builder() {}
         public Builder(SLOQuery defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.freeform = defaults.freeform;
+    	      this.ratio = defaults.ratio;
     	      this.type = defaults.type;
         }
 
         @CustomType.Setter
-        public Builder freeform(SLOQueryFreeform freeform) {
-            this.freeform = Objects.requireNonNull(freeform);
+        public Builder freeform(@Nullable SLOQueryFreeform freeform) {
+            this.freeform = freeform;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder ratio(@Nullable SLOQueryRatio ratio) {
+            this.ratio = ratio;
             return this;
         }
         @CustomType.Setter
@@ -60,6 +74,7 @@ public final class SLOQuery {
         public SLOQuery build() {
             final var o = new SLOQuery();
             o.freeform = freeform;
+            o.ratio = ratio;
             o.type = type;
             return o;
         }

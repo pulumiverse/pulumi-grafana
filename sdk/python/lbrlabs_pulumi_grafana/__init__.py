@@ -5,10 +5,8 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .alert_notification import *
 from .annotation import *
 from .api_key import *
-from .builtin_role_assignment import *
 from .cloud_access_policy import *
 from .cloud_access_policy_token import *
 from .cloud_api_key import *
@@ -43,6 +41,7 @@ from .get_oncall_user import *
 from .get_oncall_user_group import *
 from .get_organization import *
 from .get_organization_preferences import *
+from .get_role import *
 from .get_slos import *
 from .get_synthetic_monitoring_probe import *
 from .get_synthetic_monitoring_probes import *
@@ -80,7 +79,6 @@ from .synthetic_monitoring_installation import *
 from .synthetic_monitoring_probe import *
 from .team import *
 from .team_external_group import *
-from .team_preferences import *
 from .user import *
 from ._inputs import *
 from . import outputs
@@ -97,14 +95,6 @@ _utilities.register(
 [
  {
   "pkg": "grafana",
-  "mod": "index/alertNotification",
-  "fqn": "lbrlabs_pulumi_grafana",
-  "classes": {
-   "grafana:index/alertNotification:AlertNotification": "AlertNotification"
-  }
- },
- {
-  "pkg": "grafana",
   "mod": "index/annotation",
   "fqn": "lbrlabs_pulumi_grafana",
   "classes": {
@@ -117,14 +107,6 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_grafana",
   "classes": {
    "grafana:index/apiKey:ApiKey": "ApiKey"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/builtinRoleAssignment",
-  "fqn": "lbrlabs_pulumi_grafana",
-  "classes": {
-   "grafana:index/builtinRoleAssignment:BuiltinRoleAssignment": "BuiltinRoleAssignment"
   }
  },
  {
@@ -485,14 +467,6 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_grafana",
   "classes": {
    "grafana:index/teamExternalGroup:TeamExternalGroup": "TeamExternalGroup"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/teamPreferences",
-  "fqn": "lbrlabs_pulumi_grafana",
-  "classes": {
-   "grafana:index/teamPreferences:TeamPreferences": "TeamPreferences"
   }
  },
  {

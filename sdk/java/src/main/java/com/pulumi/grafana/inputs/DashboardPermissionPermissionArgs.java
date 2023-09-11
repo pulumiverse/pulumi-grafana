@@ -51,13 +51,13 @@ public final class DashboardPermissionPermissionArgs extends com.pulumi.resource
      * 
      */
     @Import(name="teamId")
-    private @Nullable Output<Integer> teamId;
+    private @Nullable Output<String> teamId;
 
     /**
      * @return ID of the team to manage permissions for. Defaults to `0`.
      * 
      */
-    public Optional<Output<Integer>> teamId() {
+    public Optional<Output<String>> teamId() {
         return Optional.ofNullable(this.teamId);
     }
 
@@ -151,7 +151,7 @@ public final class DashboardPermissionPermissionArgs extends com.pulumi.resource
          * @return builder
          * 
          */
-        public Builder teamId(@Nullable Output<Integer> teamId) {
+        public Builder teamId(@Nullable Output<String> teamId) {
             $.teamId = teamId;
             return this;
         }
@@ -162,7 +162,7 @@ public final class DashboardPermissionPermissionArgs extends com.pulumi.resource
          * @return builder
          * 
          */
-        public Builder teamId(Integer teamId) {
+        public Builder teamId(String teamId) {
             return teamId(Output.of(teamId));
         }
 

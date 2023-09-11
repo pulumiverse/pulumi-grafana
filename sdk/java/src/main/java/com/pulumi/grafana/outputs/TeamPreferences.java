@@ -11,41 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TeamPreferences {
-    /**
-     * @return The UID of the dashboard to display when a team member logs in. Defaults to ``.
-     * 
-     */
     private @Nullable String homeDashboardUid;
-    /**
-     * @return The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
-     * 
-     */
     private @Nullable String theme;
-    /**
-     * @return The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
-     * 
-     */
     private @Nullable String timezone;
 
     private TeamPreferences() {}
-    /**
-     * @return The UID of the dashboard to display when a team member logs in. Defaults to ``.
-     * 
-     */
     public Optional<String> homeDashboardUid() {
         return Optional.ofNullable(this.homeDashboardUid);
     }
-    /**
-     * @return The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
-     * 
-     */
     public Optional<String> theme() {
         return Optional.ofNullable(this.theme);
     }
-    /**
-     * @return The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
-     * 
-     */
     public Optional<String> timezone() {
         return Optional.ofNullable(this.timezone);
     }

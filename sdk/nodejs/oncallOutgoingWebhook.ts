@@ -111,16 +111,18 @@ export class OncallOutgoingWebhook extends pulumi.CustomResource {
             if ((!args || args.url === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'url'");
             }
-            resourceInputs["authorizationHeader"] = args ? args.authorizationHeader : undefined;
+            resourceInputs["authorizationHeader"] = args?.authorizationHeader ? pulumi.secret(args.authorizationHeader) : undefined;
             resourceInputs["data"] = args ? args.data : undefined;
             resourceInputs["forwardWholePayload"] = args ? args.forwardWholePayload : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["teamId"] = args ? args.teamId : undefined;
             resourceInputs["url"] = args ? args.url : undefined;
             resourceInputs["user"] = args ? args.user : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["authorizationHeader", "password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(OncallOutgoingWebhook.__pulumiType, name, resourceInputs, opts);
     }
 }

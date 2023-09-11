@@ -72,7 +72,7 @@ export class LibraryPanel extends pulumi.CustomResource {
     /**
      * ID of the folder where the library panel is stored.
      */
-    public readonly folderId!: pulumi.Output<number | undefined>;
+    public readonly folderId!: pulumi.Output<string | undefined>;
     /**
      * Name of the folder containing the library panel.
      */
@@ -185,7 +185,7 @@ export interface LibraryPanelState {
     /**
      * ID of the folder where the library panel is stored.
      */
-    folderId?: pulumi.Input<number>;
+    folderId?: pulumi.Input<string>;
     /**
      * Name of the folder containing the library panel.
      */
@@ -235,7 +235,7 @@ export interface LibraryPanelArgs {
     /**
      * ID of the folder where the library panel is stored.
      */
-    folderId?: pulumi.Input<number>;
+    folderId?: pulumi.Input<string>;
     /**
      * The JSON model for the library panel.
      */

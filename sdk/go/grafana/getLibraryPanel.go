@@ -7,12 +7,14 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Data source for retrieving a single library panel by name or uid.
 func LookupLibraryPanel(ctx *pulumi.Context, args *LookupLibraryPanelArgs, opts ...pulumi.InvokeOption) (*LookupLibraryPanelResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupLibraryPanelResult
 	err := ctx.Invoke("grafana:index/getLibraryPanel:getLibraryPanel", args, &rv, opts...)
 	if err != nil {
@@ -40,7 +42,7 @@ type LookupLibraryPanelResult struct {
 	// Description of the library panel.
 	Description string `pulumi:"description"`
 	// ID of the folder where the library panel is stored.
-	FolderId int `pulumi:"folderId"`
+	FolderId string `pulumi:"folderId"`
 	// Name of the folder containing the library panel.
 	FolderName string `pulumi:"folderName"`
 	// Unique ID (UID) of the folder containing the library panel.
@@ -107,6 +109,12 @@ func (o LookupLibraryPanelResultOutput) ToLookupLibraryPanelResultOutputWithCont
 	return o
 }
 
+func (o LookupLibraryPanelResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupLibraryPanelResult] {
+	return pulumix.Output[LookupLibraryPanelResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 // Timestamp when the library panel was created.
 func (o LookupLibraryPanelResultOutput) Created() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLibraryPanelResult) string { return v.Created }).(pulumi.StringOutput)
@@ -123,8 +131,8 @@ func (o LookupLibraryPanelResultOutput) Description() pulumi.StringOutput {
 }
 
 // ID of the folder where the library panel is stored.
-func (o LookupLibraryPanelResultOutput) FolderId() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupLibraryPanelResult) int { return v.FolderId }).(pulumi.IntOutput)
+func (o LookupLibraryPanelResultOutput) FolderId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLibraryPanelResult) string { return v.FolderId }).(pulumi.StringOutput)
 }
 
 // Name of the folder containing the library panel.

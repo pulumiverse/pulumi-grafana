@@ -48,12 +48,6 @@ export class ApiKey extends pulumi.CustomResource {
         return obj['__pulumiType'] === ApiKey.__pulumiType;
     }
 
-    /**
-     * Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
-     *
-     * @deprecated Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
-     */
-    public readonly cloudStackSlug!: pulumi.Output<string | undefined>;
     public /*out*/ readonly expiration!: pulumi.Output<string>;
     public /*out*/ readonly key!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
@@ -77,7 +71,6 @@ export class ApiKey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ApiKeyState | undefined;
-            resourceInputs["cloudStackSlug"] = state ? state.cloudStackSlug : undefined;
             resourceInputs["expiration"] = state ? state.expiration : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -89,7 +82,6 @@ export class ApiKey extends pulumi.CustomResource {
             if ((!args || args.role === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            resourceInputs["cloudStackSlug"] = args ? args.cloudStackSlug : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
@@ -108,12 +100,6 @@ export class ApiKey extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ApiKey resources.
  */
 export interface ApiKeyState {
-    /**
-     * Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
-     *
-     * @deprecated Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
-     */
-    cloudStackSlug?: pulumi.Input<string>;
     expiration?: pulumi.Input<string>;
     key?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
@@ -129,12 +115,6 @@ export interface ApiKeyState {
  * The set of arguments for constructing a ApiKey resource.
  */
 export interface ApiKeyArgs {
-    /**
-     * Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
-     *
-     * @deprecated Use `grafana_cloud_stack_service_account` and `grafana_cloud_stack_service_account_token` resources instead
-     */
-    cloudStackSlug?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.

@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func GetOnCallSlackChannel(ctx *pulumi.Context, args *GetOnCallSlackChannelArgs, opts ...pulumi.InvokeOption) (*GetOnCallSlackChannelResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOnCallSlackChannelResult
 	err := ctx.Invoke("grafana:index/getOnCallSlackChannel:getOnCallSlackChannel", args, &rv, opts...)
 	if err != nil {
@@ -99,6 +101,12 @@ func (o GetOnCallSlackChannelResultOutput) ToGetOnCallSlackChannelResultOutput()
 
 func (o GetOnCallSlackChannelResultOutput) ToGetOnCallSlackChannelResultOutputWithContext(ctx context.Context) GetOnCallSlackChannelResultOutput {
 	return o
+}
+
+func (o GetOnCallSlackChannelResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOnCallSlackChannelResult] {
+	return pulumix.Output[GetOnCallSlackChannelResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

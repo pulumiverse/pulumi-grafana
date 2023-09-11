@@ -5,11 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export { AlertNotificationArgs, AlertNotificationState } from "./alertNotification";
-export type AlertNotification = import("./alertNotification").AlertNotification;
-export const AlertNotification: typeof import("./alertNotification").AlertNotification = null as any;
-utilities.lazyLoad(exports, ["AlertNotification"], () => require("./alertNotification"));
-
 export { AnnotationArgs, AnnotationState } from "./annotation";
 export type Annotation = import("./annotation").Annotation;
 export const Annotation: typeof import("./annotation").Annotation = null as any;
@@ -19,11 +14,6 @@ export { ApiKeyArgs, ApiKeyState } from "./apiKey";
 export type ApiKey = import("./apiKey").ApiKey;
 export const ApiKey: typeof import("./apiKey").ApiKey = null as any;
 utilities.lazyLoad(exports, ["ApiKey"], () => require("./apiKey"));
-
-export { BuiltinRoleAssignmentArgs, BuiltinRoleAssignmentState } from "./builtinRoleAssignment";
-export type BuiltinRoleAssignment = import("./builtinRoleAssignment").BuiltinRoleAssignment;
-export const BuiltinRoleAssignment: typeof import("./builtinRoleAssignment").BuiltinRoleAssignment = null as any;
-utilities.lazyLoad(exports, ["BuiltinRoleAssignment"], () => require("./builtinRoleAssignment"));
 
 export { CloudAccessPolicyArgs, CloudAccessPolicyState } from "./cloudAccessPolicy";
 export type CloudAccessPolicy = import("./cloudAccessPolicy").CloudAccessPolicy;
@@ -102,7 +92,8 @@ utilities.lazyLoad(exports, ["FolderPermission"], () => require("./folderPermiss
 
 export { GetCloudIpsResult } from "./getCloudIps";
 export const getCloudIps: typeof import("./getCloudIps").getCloudIps = null as any;
-utilities.lazyLoad(exports, ["getCloudIps"], () => require("./getCloudIps"));
+export const getCloudIpsOutput: typeof import("./getCloudIps").getCloudIpsOutput = null as any;
+utilities.lazyLoad(exports, ["getCloudIps","getCloudIpsOutput"], () => require("./getCloudIps"));
 
 export { GetCloudOrganizationArgs, GetCloudOrganizationResult, GetCloudOrganizationOutputArgs } from "./getCloudOrganization";
 export const getCloudOrganization: typeof import("./getCloudOrganization").getCloudOrganization = null as any;
@@ -136,7 +127,8 @@ utilities.lazyLoad(exports, ["getFolder","getFolderOutput"], () => require("./ge
 
 export { GetFoldersResult } from "./getFolders";
 export const getFolders: typeof import("./getFolders").getFolders = null as any;
-utilities.lazyLoad(exports, ["getFolders"], () => require("./getFolders"));
+export const getFoldersOutput: typeof import("./getFolders").getFoldersOutput = null as any;
+utilities.lazyLoad(exports, ["getFolders","getFoldersOutput"], () => require("./getFolders"));
 
 export { GetLibraryPanelArgs, GetLibraryPanelResult, GetLibraryPanelOutputArgs } from "./getLibraryPanel";
 export const getLibraryPanel: typeof import("./getLibraryPanel").getLibraryPanel = null as any;
@@ -190,11 +182,18 @@ utilities.lazyLoad(exports, ["getOrganization","getOrganizationOutput"], () => r
 
 export { GetOrganizationPreferencesResult } from "./getOrganizationPreferences";
 export const getOrganizationPreferences: typeof import("./getOrganizationPreferences").getOrganizationPreferences = null as any;
-utilities.lazyLoad(exports, ["getOrganizationPreferences"], () => require("./getOrganizationPreferences"));
+export const getOrganizationPreferencesOutput: typeof import("./getOrganizationPreferences").getOrganizationPreferencesOutput = null as any;
+utilities.lazyLoad(exports, ["getOrganizationPreferences","getOrganizationPreferencesOutput"], () => require("./getOrganizationPreferences"));
+
+export { GetRoleArgs, GetRoleResult, GetRoleOutputArgs } from "./getRole";
+export const getRole: typeof import("./getRole").getRole = null as any;
+export const getRoleOutput: typeof import("./getRole").getRoleOutput = null as any;
+utilities.lazyLoad(exports, ["getRole","getRoleOutput"], () => require("./getRole"));
 
 export { GetSlosResult } from "./getSlos";
 export const getSlos: typeof import("./getSlos").getSlos = null as any;
-utilities.lazyLoad(exports, ["getSlos"], () => require("./getSlos"));
+export const getSlosOutput: typeof import("./getSlos").getSlosOutput = null as any;
+utilities.lazyLoad(exports, ["getSlos","getSlosOutput"], () => require("./getSlos"));
 
 export { GetSyntheticMonitoringProbeArgs, GetSyntheticMonitoringProbeResult, GetSyntheticMonitoringProbeOutputArgs } from "./getSyntheticMonitoringProbe";
 export const getSyntheticMonitoringProbe: typeof import("./getSyntheticMonitoringProbe").getSyntheticMonitoringProbe = null as any;
@@ -218,7 +217,8 @@ utilities.lazyLoad(exports, ["getUser","getUserOutput"], () => require("./getUse
 
 export { GetUsersResult } from "./getUsers";
 export const getUsers: typeof import("./getUsers").getUsers = null as any;
-utilities.lazyLoad(exports, ["getUsers"], () => require("./getUsers"));
+export const getUsersOutput: typeof import("./getUsers").getUsersOutput = null as any;
+utilities.lazyLoad(exports, ["getUsers","getUsersOutput"], () => require("./getUsers"));
 
 export { LibraryPanelArgs, LibraryPanelState } from "./libraryPanel";
 export type LibraryPanel = import("./libraryPanel").LibraryPanel;
@@ -375,11 +375,6 @@ export type TeamExternalGroup = import("./teamExternalGroup").TeamExternalGroup;
 export const TeamExternalGroup: typeof import("./teamExternalGroup").TeamExternalGroup = null as any;
 utilities.lazyLoad(exports, ["TeamExternalGroup"], () => require("./teamExternalGroup"));
 
-export { TeamPreferencesArgs, TeamPreferencesState } from "./teamPreferences";
-export type TeamPreferences = import("./teamPreferences").TeamPreferences;
-export const TeamPreferences: typeof import("./teamPreferences").TeamPreferences = null as any;
-utilities.lazyLoad(exports, ["TeamPreferences"], () => require("./teamPreferences"));
-
 export { UserArgs, UserState } from "./user";
 export type User = import("./user").User;
 export const User: typeof import("./user").User = null as any;
@@ -399,14 +394,10 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "grafana:index/alertNotification:AlertNotification":
-                return new AlertNotification(name, <any>undefined, { urn })
             case "grafana:index/annotation:Annotation":
                 return new Annotation(name, <any>undefined, { urn })
             case "grafana:index/apiKey:ApiKey":
                 return new ApiKey(name, <any>undefined, { urn })
-            case "grafana:index/builtinRoleAssignment:BuiltinRoleAssignment":
-                return new BuiltinRoleAssignment(name, <any>undefined, { urn })
             case "grafana:index/cloudAccessPolicy:CloudAccessPolicy":
                 return new CloudAccessPolicy(name, <any>undefined, { urn })
             case "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken":
@@ -497,8 +488,6 @@ const _module = {
                 return new Team(name, <any>undefined, { urn })
             case "grafana:index/teamExternalGroup:TeamExternalGroup":
                 return new TeamExternalGroup(name, <any>undefined, { urn })
-            case "grafana:index/teamPreferences:TeamPreferences":
-                return new TeamPreferences(name, <any>undefined, { urn })
             case "grafana:index/user:User":
                 return new User(name, <any>undefined, { urn })
             default:
@@ -506,10 +495,8 @@ const _module = {
         }
     },
 };
-pulumi.runtime.registerResourceModule("grafana", "index/alertNotification", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/annotation", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/apiKey", _module)
-pulumi.runtime.registerResourceModule("grafana", "index/builtinRoleAssignment", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/cloudAccessPolicy", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/cloudAccessPolicyToken", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/cloudApiKey", _module)
@@ -555,7 +542,6 @@ pulumi.runtime.registerResourceModule("grafana", "index/syntheticMonitoringInsta
 pulumi.runtime.registerResourceModule("grafana", "index/syntheticMonitoringProbe", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/team", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/teamExternalGroup", _module)
-pulumi.runtime.registerResourceModule("grafana", "index/teamPreferences", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/user", _module)
 pulumi.runtime.registerResourcePackage("grafana", {
     version: utilities.getVersion(),

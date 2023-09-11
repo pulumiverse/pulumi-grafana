@@ -18,14 +18,14 @@ import * as utilities from "./utilities";
  * const team = new grafana.Team("team", {});
  * const foo = new grafana.DataSource("foo", {
  *     type: "cloudwatch",
- *     jsonDatas: [{
+ *     jsonDataEncoded: JSON.stringify({
  *         defaultRegion: "us-east-1",
  *         authType: "keys",
- *     }],
- *     secureJsonDatas: [{
+ *     }),
+ *     secureJsonDataEncoded: JSON.stringify({
  *         accessKey: "123",
  *         secretKey: "456",
- *     }],
+ *     }),
  * });
  * const fooPermissions = new grafana.DataSourcePermission("fooPermissions", {
  *     datasourceId: foo.id,
@@ -77,7 +77,11 @@ export class DataSourcePermission extends pulumi.CustomResource {
     /**
      * ID of the datasource to apply permissions to.
      */
-    public readonly datasourceId!: pulumi.Output<number>;
+    public readonly datasourceId!: pulumi.Output<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
@@ -97,6 +101,7 @@ export class DataSourcePermission extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as DataSourcePermissionState | undefined;
             resourceInputs["datasourceId"] = state ? state.datasourceId : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["permissions"] = state ? state.permissions : undefined;
         } else {
             const args = argsOrState as DataSourcePermissionArgs | undefined;
@@ -107,6 +112,7 @@ export class DataSourcePermission extends pulumi.CustomResource {
                 throw new Error("Missing required property 'permissions'");
             }
             resourceInputs["datasourceId"] = args ? args.datasourceId : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["permissions"] = args ? args.permissions : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -121,7 +127,11 @@ export interface DataSourcePermissionState {
     /**
      * ID of the datasource to apply permissions to.
      */
-    datasourceId?: pulumi.Input<number>;
+    datasourceId?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
@@ -135,7 +145,11 @@ export interface DataSourcePermissionArgs {
     /**
      * ID of the datasource to apply permissions to.
      */
-    datasourceId: pulumi.Input<number>;
+    datasourceId: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */

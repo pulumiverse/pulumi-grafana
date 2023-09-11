@@ -16,26 +16,30 @@ __all__ = ['DataSourcePermissionArgs', 'DataSourcePermission']
 @pulumi.input_type
 class DataSourcePermissionArgs:
     def __init__(__self__, *,
-                 datasource_id: pulumi.Input[int],
-                 permissions: pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]]):
+                 datasource_id: pulumi.Input[str],
+                 permissions: pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]],
+                 org_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DataSourcePermission resource.
-        :param pulumi.Input[int] datasource_id: ID of the datasource to apply permissions to.
+        :param pulumi.Input[str] datasource_id: ID of the datasource to apply permissions to.
         :param pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         pulumi.set(__self__, "datasource_id", datasource_id)
         pulumi.set(__self__, "permissions", permissions)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
 
     @property
     @pulumi.getter(name="datasourceId")
-    def datasource_id(self) -> pulumi.Input[int]:
+    def datasource_id(self) -> pulumi.Input[str]:
         """
         ID of the datasource to apply permissions to.
         """
         return pulumi.get(self, "datasource_id")
 
     @datasource_id.setter
-    def datasource_id(self, value: pulumi.Input[int]):
+    def datasource_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "datasource_id", value)
 
     @property
@@ -50,33 +54,61 @@ class DataSourcePermissionArgs:
     def permissions(self, value: pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]]):
         pulumi.set(self, "permissions", value)
 
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
+
 
 @pulumi.input_type
 class _DataSourcePermissionState:
     def __init__(__self__, *,
-                 datasource_id: Optional[pulumi.Input[int]] = None,
+                 datasource_id: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]]] = None):
         """
         Input properties used for looking up and filtering DataSourcePermission resources.
-        :param pulumi.Input[int] datasource_id: ID of the datasource to apply permissions to.
+        :param pulumi.Input[str] datasource_id: ID of the datasource to apply permissions to.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         if datasource_id is not None:
             pulumi.set(__self__, "datasource_id", datasource_id)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if permissions is not None:
             pulumi.set(__self__, "permissions", permissions)
 
     @property
     @pulumi.getter(name="datasourceId")
-    def datasource_id(self) -> Optional[pulumi.Input[int]]:
+    def datasource_id(self) -> Optional[pulumi.Input[str]]:
         """
         ID of the datasource to apply permissions to.
         """
         return pulumi.get(self, "datasource_id")
 
     @datasource_id.setter
-    def datasource_id(self, value: Optional[pulumi.Input[int]]):
+    def datasource_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "datasource_id", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter
@@ -96,7 +128,8 @@ class DataSourcePermission(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datasource_id: Optional[pulumi.Input[int]] = None,
+                 datasource_id: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourcePermissionPermissionArgs']]]]] = None,
                  __props__=None):
         """
@@ -106,19 +139,20 @@ class DataSourcePermission(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import lbrlabs_pulumi_grafana as grafana
 
         team = grafana.Team("team")
         foo = grafana.DataSource("foo",
             type="cloudwatch",
-            json_datas=[grafana.DataSourceJsonDataArgs(
-                default_region="us-east-1",
-                auth_type="keys",
-            )],
-            secure_json_datas=[grafana.DataSourceSecureJsonDataArgs(
-                access_key="123",
-                secret_key="456",
-            )])
+            json_data_encoded=json.dumps({
+                "defaultRegion": "us-east-1",
+                "authType": "keys",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "accessKey": "123",
+                "secretKey": "456",
+            }))
         foo_permissions = grafana.DataSourcePermission("fooPermissions",
             datasource_id=foo.id,
             permissions=[
@@ -139,7 +173,8 @@ class DataSourcePermission(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] datasource_id: ID of the datasource to apply permissions to.
+        :param pulumi.Input[str] datasource_id: ID of the datasource to apply permissions to.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourcePermissionPermissionArgs']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         ...
@@ -155,19 +190,20 @@ class DataSourcePermission(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import lbrlabs_pulumi_grafana as grafana
 
         team = grafana.Team("team")
         foo = grafana.DataSource("foo",
             type="cloudwatch",
-            json_datas=[grafana.DataSourceJsonDataArgs(
-                default_region="us-east-1",
-                auth_type="keys",
-            )],
-            secure_json_datas=[grafana.DataSourceSecureJsonDataArgs(
-                access_key="123",
-                secret_key="456",
-            )])
+            json_data_encoded=json.dumps({
+                "defaultRegion": "us-east-1",
+                "authType": "keys",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "accessKey": "123",
+                "secretKey": "456",
+            }))
         foo_permissions = grafana.DataSourcePermission("fooPermissions",
             datasource_id=foo.id,
             permissions=[
@@ -201,7 +237,8 @@ class DataSourcePermission(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datasource_id: Optional[pulumi.Input[int]] = None,
+                 datasource_id: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourcePermissionPermissionArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -215,6 +252,7 @@ class DataSourcePermission(pulumi.CustomResource):
             if datasource_id is None and not opts.urn:
                 raise TypeError("Missing required property 'datasource_id'")
             __props__.__dict__["datasource_id"] = datasource_id
+            __props__.__dict__["org_id"] = org_id
             if permissions is None and not opts.urn:
                 raise TypeError("Missing required property 'permissions'")
             __props__.__dict__["permissions"] = permissions
@@ -228,7 +266,8 @@ class DataSourcePermission(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            datasource_id: Optional[pulumi.Input[int]] = None,
+            datasource_id: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
             permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourcePermissionPermissionArgs']]]]] = None) -> 'DataSourcePermission':
         """
         Get an existing DataSourcePermission resource's state with the given name, id, and optional extra
@@ -237,7 +276,8 @@ class DataSourcePermission(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] datasource_id: ID of the datasource to apply permissions to.
+        :param pulumi.Input[str] datasource_id: ID of the datasource to apply permissions to.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourcePermissionPermissionArgs']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -245,16 +285,25 @@ class DataSourcePermission(pulumi.CustomResource):
         __props__ = _DataSourcePermissionState.__new__(_DataSourcePermissionState)
 
         __props__.__dict__["datasource_id"] = datasource_id
+        __props__.__dict__["org_id"] = org_id
         __props__.__dict__["permissions"] = permissions
         return DataSourcePermission(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="datasourceId")
-    def datasource_id(self) -> pulumi.Output[int]:
+    def datasource_id(self) -> pulumi.Output[str]:
         """
         ID of the datasource to apply permissions to.
         """
         return pulumi.get(self, "datasource_id")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter

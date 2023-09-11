@@ -16,29 +16,15 @@ class SyntheticMonitoringInstallationArgs:
     def __init__(__self__, *,
                  metrics_publisher_key: pulumi.Input[str],
                  stack_id: pulumi.Input[str],
-                 logs_instance_id: Optional[pulumi.Input[int]] = None,
-                 metrics_instance_id: Optional[pulumi.Input[int]] = None,
                  stack_sm_api_url: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SyntheticMonitoringInstallation resource.
         :param pulumi.Input[str] metrics_publisher_key: The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
         :param pulumi.Input[str] stack_id: The ID or slug of the stack to install SM on.
-        :param pulumi.Input[int] logs_instance_id: Deprecated: Not used anymore.
-        :param pulumi.Input[int] metrics_instance_id: Deprecated: Not used anymore.
         :param pulumi.Input[str] stack_sm_api_url: The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
         """
         pulumi.set(__self__, "metrics_publisher_key", metrics_publisher_key)
         pulumi.set(__self__, "stack_id", stack_id)
-        if logs_instance_id is not None:
-            warnings.warn("""Not used anymore.""", DeprecationWarning)
-            pulumi.log.warn("""logs_instance_id is deprecated: Not used anymore.""")
-        if logs_instance_id is not None:
-            pulumi.set(__self__, "logs_instance_id", logs_instance_id)
-        if metrics_instance_id is not None:
-            warnings.warn("""Not used anymore.""", DeprecationWarning)
-            pulumi.log.warn("""metrics_instance_id is deprecated: Not used anymore.""")
-        if metrics_instance_id is not None:
-            pulumi.set(__self__, "metrics_instance_id", metrics_instance_id)
         if stack_sm_api_url is not None:
             pulumi.set(__self__, "stack_sm_api_url", stack_sm_api_url)
 
@@ -67,36 +53,6 @@ class SyntheticMonitoringInstallationArgs:
         pulumi.set(self, "stack_id", value)
 
     @property
-    @pulumi.getter(name="logsInstanceId")
-    def logs_instance_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        Deprecated: Not used anymore.
-        """
-        warnings.warn("""Not used anymore.""", DeprecationWarning)
-        pulumi.log.warn("""logs_instance_id is deprecated: Not used anymore.""")
-
-        return pulumi.get(self, "logs_instance_id")
-
-    @logs_instance_id.setter
-    def logs_instance_id(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "logs_instance_id", value)
-
-    @property
-    @pulumi.getter(name="metricsInstanceId")
-    def metrics_instance_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        Deprecated: Not used anymore.
-        """
-        warnings.warn("""Not used anymore.""", DeprecationWarning)
-        pulumi.log.warn("""metrics_instance_id is deprecated: Not used anymore.""")
-
-        return pulumi.get(self, "metrics_instance_id")
-
-    @metrics_instance_id.setter
-    def metrics_instance_id(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "metrics_instance_id", value)
-
-    @property
     @pulumi.getter(name="stackSmApiUrl")
     def stack_sm_api_url(self) -> Optional[pulumi.Input[str]]:
         """
@@ -112,31 +68,17 @@ class SyntheticMonitoringInstallationArgs:
 @pulumi.input_type
 class _SyntheticMonitoringInstallationState:
     def __init__(__self__, *,
-                 logs_instance_id: Optional[pulumi.Input[int]] = None,
-                 metrics_instance_id: Optional[pulumi.Input[int]] = None,
                  metrics_publisher_key: Optional[pulumi.Input[str]] = None,
                  sm_access_token: Optional[pulumi.Input[str]] = None,
                  stack_id: Optional[pulumi.Input[str]] = None,
                  stack_sm_api_url: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SyntheticMonitoringInstallation resources.
-        :param pulumi.Input[int] logs_instance_id: Deprecated: Not used anymore.
-        :param pulumi.Input[int] metrics_instance_id: Deprecated: Not used anymore.
         :param pulumi.Input[str] metrics_publisher_key: The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
         :param pulumi.Input[str] sm_access_token: Generated token to access the SM API.
         :param pulumi.Input[str] stack_id: The ID or slug of the stack to install SM on.
         :param pulumi.Input[str] stack_sm_api_url: The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
         """
-        if logs_instance_id is not None:
-            warnings.warn("""Not used anymore.""", DeprecationWarning)
-            pulumi.log.warn("""logs_instance_id is deprecated: Not used anymore.""")
-        if logs_instance_id is not None:
-            pulumi.set(__self__, "logs_instance_id", logs_instance_id)
-        if metrics_instance_id is not None:
-            warnings.warn("""Not used anymore.""", DeprecationWarning)
-            pulumi.log.warn("""metrics_instance_id is deprecated: Not used anymore.""")
-        if metrics_instance_id is not None:
-            pulumi.set(__self__, "metrics_instance_id", metrics_instance_id)
         if metrics_publisher_key is not None:
             pulumi.set(__self__, "metrics_publisher_key", metrics_publisher_key)
         if sm_access_token is not None:
@@ -145,36 +87,6 @@ class _SyntheticMonitoringInstallationState:
             pulumi.set(__self__, "stack_id", stack_id)
         if stack_sm_api_url is not None:
             pulumi.set(__self__, "stack_sm_api_url", stack_sm_api_url)
-
-    @property
-    @pulumi.getter(name="logsInstanceId")
-    def logs_instance_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        Deprecated: Not used anymore.
-        """
-        warnings.warn("""Not used anymore.""", DeprecationWarning)
-        pulumi.log.warn("""logs_instance_id is deprecated: Not used anymore.""")
-
-        return pulumi.get(self, "logs_instance_id")
-
-    @logs_instance_id.setter
-    def logs_instance_id(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "logs_instance_id", value)
-
-    @property
-    @pulumi.getter(name="metricsInstanceId")
-    def metrics_instance_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        Deprecated: Not used anymore.
-        """
-        warnings.warn("""Not used anymore.""", DeprecationWarning)
-        pulumi.log.warn("""metrics_instance_id is deprecated: Not used anymore.""")
-
-        return pulumi.get(self, "metrics_instance_id")
-
-    @metrics_instance_id.setter
-    def metrics_instance_id(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "metrics_instance_id", value)
 
     @property
     @pulumi.getter(name="metricsPublisherKey")
@@ -230,8 +142,6 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 logs_instance_id: Optional[pulumi.Input[int]] = None,
-                 metrics_instance_id: Optional[pulumi.Input[int]] = None,
                  metrics_publisher_key: Optional[pulumi.Input[str]] = None,
                  stack_id: Optional[pulumi.Input[str]] = None,
                  stack_sm_api_url: Optional[pulumi.Input[str]] = None,
@@ -267,8 +177,6 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] logs_instance_id: Deprecated: Not used anymore.
-        :param pulumi.Input[int] metrics_instance_id: Deprecated: Not used anymore.
         :param pulumi.Input[str] metrics_publisher_key: The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
         :param pulumi.Input[str] stack_id: The ID or slug of the stack to install SM on.
         :param pulumi.Input[str] stack_sm_api_url: The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
@@ -323,8 +231,6 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 logs_instance_id: Optional[pulumi.Input[int]] = None,
-                 metrics_instance_id: Optional[pulumi.Input[int]] = None,
                  metrics_publisher_key: Optional[pulumi.Input[str]] = None,
                  stack_id: Optional[pulumi.Input[str]] = None,
                  stack_sm_api_url: Optional[pulumi.Input[str]] = None,
@@ -337,14 +243,6 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SyntheticMonitoringInstallationArgs.__new__(SyntheticMonitoringInstallationArgs)
 
-            if logs_instance_id is not None and not opts.urn:
-                warnings.warn("""Not used anymore.""", DeprecationWarning)
-                pulumi.log.warn("""logs_instance_id is deprecated: Not used anymore.""")
-            __props__.__dict__["logs_instance_id"] = logs_instance_id
-            if metrics_instance_id is not None and not opts.urn:
-                warnings.warn("""Not used anymore.""", DeprecationWarning)
-                pulumi.log.warn("""metrics_instance_id is deprecated: Not used anymore.""")
-            __props__.__dict__["metrics_instance_id"] = metrics_instance_id
             if metrics_publisher_key is None and not opts.urn:
                 raise TypeError("Missing required property 'metrics_publisher_key'")
             __props__.__dict__["metrics_publisher_key"] = None if metrics_publisher_key is None else pulumi.Output.secret(metrics_publisher_key)
@@ -365,8 +263,6 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            logs_instance_id: Optional[pulumi.Input[int]] = None,
-            metrics_instance_id: Optional[pulumi.Input[int]] = None,
             metrics_publisher_key: Optional[pulumi.Input[str]] = None,
             sm_access_token: Optional[pulumi.Input[str]] = None,
             stack_id: Optional[pulumi.Input[str]] = None,
@@ -378,8 +274,6 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] logs_instance_id: Deprecated: Not used anymore.
-        :param pulumi.Input[int] metrics_instance_id: Deprecated: Not used anymore.
         :param pulumi.Input[str] metrics_publisher_key: The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
         :param pulumi.Input[str] sm_access_token: Generated token to access the SM API.
         :param pulumi.Input[str] stack_id: The ID or slug of the stack to install SM on.
@@ -389,35 +283,11 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
 
         __props__ = _SyntheticMonitoringInstallationState.__new__(_SyntheticMonitoringInstallationState)
 
-        __props__.__dict__["logs_instance_id"] = logs_instance_id
-        __props__.__dict__["metrics_instance_id"] = metrics_instance_id
         __props__.__dict__["metrics_publisher_key"] = metrics_publisher_key
         __props__.__dict__["sm_access_token"] = sm_access_token
         __props__.__dict__["stack_id"] = stack_id
         __props__.__dict__["stack_sm_api_url"] = stack_sm_api_url
         return SyntheticMonitoringInstallation(resource_name, opts=opts, __props__=__props__)
-
-    @property
-    @pulumi.getter(name="logsInstanceId")
-    def logs_instance_id(self) -> pulumi.Output[Optional[int]]:
-        """
-        Deprecated: Not used anymore.
-        """
-        warnings.warn("""Not used anymore.""", DeprecationWarning)
-        pulumi.log.warn("""logs_instance_id is deprecated: Not used anymore.""")
-
-        return pulumi.get(self, "logs_instance_id")
-
-    @property
-    @pulumi.getter(name="metricsInstanceId")
-    def metrics_instance_id(self) -> pulumi.Output[Optional[int]]:
-        """
-        Deprecated: Not used anymore.
-        """
-        warnings.warn("""Not used anymore.""", DeprecationWarning)
-        pulumi.log.warn("""metrics_instance_id is deprecated: Not used anymore.""")
-
-        return pulumi.get(self, "metrics_instance_id")
 
     @property
     @pulumi.getter(name="metricsPublisherKey")

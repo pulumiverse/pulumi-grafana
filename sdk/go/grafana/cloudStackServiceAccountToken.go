@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // **Note:** This resource is available only with Grafana 9.1+.
@@ -82,7 +84,7 @@ func NewCloudStackServiceAccountToken(ctx *pulumi.Context,
 		"key",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CloudStackServiceAccountToken
 	err := ctx.RegisterResource("grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken", name, args, &resource, opts...)
 	if err != nil {
@@ -166,6 +168,12 @@ func (i *CloudStackServiceAccountToken) ToCloudStackServiceAccountTokenOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(CloudStackServiceAccountTokenOutput)
 }
 
+func (i *CloudStackServiceAccountToken) ToOutput(ctx context.Context) pulumix.Output[*CloudStackServiceAccountToken] {
+	return pulumix.Output[*CloudStackServiceAccountToken]{
+		OutputState: i.ToCloudStackServiceAccountTokenOutputWithContext(ctx).OutputState,
+	}
+}
+
 // CloudStackServiceAccountTokenArrayInput is an input type that accepts CloudStackServiceAccountTokenArray and CloudStackServiceAccountTokenArrayOutput values.
 // You can construct a concrete instance of `CloudStackServiceAccountTokenArrayInput` via:
 //
@@ -189,6 +197,12 @@ func (i CloudStackServiceAccountTokenArray) ToCloudStackServiceAccountTokenArray
 
 func (i CloudStackServiceAccountTokenArray) ToCloudStackServiceAccountTokenArrayOutputWithContext(ctx context.Context) CloudStackServiceAccountTokenArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudStackServiceAccountTokenArrayOutput)
+}
+
+func (i CloudStackServiceAccountTokenArray) ToOutput(ctx context.Context) pulumix.Output[[]*CloudStackServiceAccountToken] {
+	return pulumix.Output[[]*CloudStackServiceAccountToken]{
+		OutputState: i.ToCloudStackServiceAccountTokenArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // CloudStackServiceAccountTokenMapInput is an input type that accepts CloudStackServiceAccountTokenMap and CloudStackServiceAccountTokenMapOutput values.
@@ -216,6 +230,12 @@ func (i CloudStackServiceAccountTokenMap) ToCloudStackServiceAccountTokenMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(CloudStackServiceAccountTokenMapOutput)
 }
 
+func (i CloudStackServiceAccountTokenMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudStackServiceAccountToken] {
+	return pulumix.Output[map[string]*CloudStackServiceAccountToken]{
+		OutputState: i.ToCloudStackServiceAccountTokenMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CloudStackServiceAccountTokenOutput struct{ *pulumi.OutputState }
 
 func (CloudStackServiceAccountTokenOutput) ElementType() reflect.Type {
@@ -228,6 +248,12 @@ func (o CloudStackServiceAccountTokenOutput) ToCloudStackServiceAccountTokenOutp
 
 func (o CloudStackServiceAccountTokenOutput) ToCloudStackServiceAccountTokenOutputWithContext(ctx context.Context) CloudStackServiceAccountTokenOutput {
 	return o
+}
+
+func (o CloudStackServiceAccountTokenOutput) ToOutput(ctx context.Context) pulumix.Output[*CloudStackServiceAccountToken] {
+	return pulumix.Output[*CloudStackServiceAccountToken]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CloudStackServiceAccountTokenOutput) Expiration() pulumi.StringOutput {
@@ -272,6 +298,12 @@ func (o CloudStackServiceAccountTokenArrayOutput) ToCloudStackServiceAccountToke
 	return o
 }
 
+func (o CloudStackServiceAccountTokenArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CloudStackServiceAccountToken] {
+	return pulumix.Output[[]*CloudStackServiceAccountToken]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CloudStackServiceAccountTokenArrayOutput) Index(i pulumi.IntInput) CloudStackServiceAccountTokenOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudStackServiceAccountToken {
 		return vs[0].([]*CloudStackServiceAccountToken)[vs[1].(int)]
@@ -290,6 +322,12 @@ func (o CloudStackServiceAccountTokenMapOutput) ToCloudStackServiceAccountTokenM
 
 func (o CloudStackServiceAccountTokenMapOutput) ToCloudStackServiceAccountTokenMapOutputWithContext(ctx context.Context) CloudStackServiceAccountTokenMapOutput {
 	return o
+}
+
+func (o CloudStackServiceAccountTokenMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudStackServiceAccountToken] {
+	return pulumix.Output[map[string]*CloudStackServiceAccountToken]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CloudStackServiceAccountTokenMapOutput) MapIndex(k pulumi.StringInput) CloudStackServiceAccountTokenOutput {

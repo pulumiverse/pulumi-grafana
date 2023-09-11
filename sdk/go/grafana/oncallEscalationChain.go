@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
@@ -59,7 +61,7 @@ func NewOncallEscalationChain(ctx *pulumi.Context,
 		args = &OncallEscalationChainArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource OncallEscalationChain
 	err := ctx.RegisterResource("grafana:index/oncallEscalationChain:OncallEscalationChain", name, args, &resource, opts...)
 	if err != nil {
@@ -137,6 +139,12 @@ func (i *OncallEscalationChain) ToOncallEscalationChainOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(OncallEscalationChainOutput)
 }
 
+func (i *OncallEscalationChain) ToOutput(ctx context.Context) pulumix.Output[*OncallEscalationChain] {
+	return pulumix.Output[*OncallEscalationChain]{
+		OutputState: i.ToOncallEscalationChainOutputWithContext(ctx).OutputState,
+	}
+}
+
 // OncallEscalationChainArrayInput is an input type that accepts OncallEscalationChainArray and OncallEscalationChainArrayOutput values.
 // You can construct a concrete instance of `OncallEscalationChainArrayInput` via:
 //
@@ -160,6 +168,12 @@ func (i OncallEscalationChainArray) ToOncallEscalationChainArrayOutput() OncallE
 
 func (i OncallEscalationChainArray) ToOncallEscalationChainArrayOutputWithContext(ctx context.Context) OncallEscalationChainArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OncallEscalationChainArrayOutput)
+}
+
+func (i OncallEscalationChainArray) ToOutput(ctx context.Context) pulumix.Output[[]*OncallEscalationChain] {
+	return pulumix.Output[[]*OncallEscalationChain]{
+		OutputState: i.ToOncallEscalationChainArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // OncallEscalationChainMapInput is an input type that accepts OncallEscalationChainMap and OncallEscalationChainMapOutput values.
@@ -187,6 +201,12 @@ func (i OncallEscalationChainMap) ToOncallEscalationChainMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(OncallEscalationChainMapOutput)
 }
 
+func (i OncallEscalationChainMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OncallEscalationChain] {
+	return pulumix.Output[map[string]*OncallEscalationChain]{
+		OutputState: i.ToOncallEscalationChainMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type OncallEscalationChainOutput struct{ *pulumi.OutputState }
 
 func (OncallEscalationChainOutput) ElementType() reflect.Type {
@@ -199,6 +219,12 @@ func (o OncallEscalationChainOutput) ToOncallEscalationChainOutput() OncallEscal
 
 func (o OncallEscalationChainOutput) ToOncallEscalationChainOutputWithContext(ctx context.Context) OncallEscalationChainOutput {
 	return o
+}
+
+func (o OncallEscalationChainOutput) ToOutput(ctx context.Context) pulumix.Output[*OncallEscalationChain] {
+	return pulumix.Output[*OncallEscalationChain]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The name of the escalation chain.
@@ -225,6 +251,12 @@ func (o OncallEscalationChainArrayOutput) ToOncallEscalationChainArrayOutputWith
 	return o
 }
 
+func (o OncallEscalationChainArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OncallEscalationChain] {
+	return pulumix.Output[[]*OncallEscalationChain]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o OncallEscalationChainArrayOutput) Index(i pulumi.IntInput) OncallEscalationChainOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OncallEscalationChain {
 		return vs[0].([]*OncallEscalationChain)[vs[1].(int)]
@@ -243,6 +275,12 @@ func (o OncallEscalationChainMapOutput) ToOncallEscalationChainMapOutput() Oncal
 
 func (o OncallEscalationChainMapOutput) ToOncallEscalationChainMapOutputWithContext(ctx context.Context) OncallEscalationChainMapOutput {
 	return o
+}
+
+func (o OncallEscalationChainMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OncallEscalationChain] {
+	return pulumix.Output[map[string]*OncallEscalationChain]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o OncallEscalationChainMapOutput) MapIndex(k pulumi.StringInput) OncallEscalationChainOutput {

@@ -15,15 +15,19 @@ __all__ = ['FolderArgs', 'Folder']
 class FolderArgs:
     def __init__(__self__, *,
                  title: pulumi.Input[str],
+                 org_id: Optional[pulumi.Input[str]] = None,
                  prevent_destroy_if_not_empty: Optional[pulumi.Input[bool]] = None,
                  uid: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Folder resource.
         :param pulumi.Input[str] title: The title of the folder.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[bool] prevent_destroy_if_not_empty: Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
         :param pulumi.Input[str] uid: Unique identifier.
         """
         pulumi.set(__self__, "title", title)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if prevent_destroy_if_not_empty is not None:
             pulumi.set(__self__, "prevent_destroy_if_not_empty", prevent_destroy_if_not_empty)
         if uid is not None:
@@ -40,6 +44,18 @@ class FolderArgs:
     @title.setter
     def title(self, value: pulumi.Input[str]):
         pulumi.set(self, "title", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter(name="preventDestroyIfNotEmpty")
@@ -69,17 +85,21 @@ class FolderArgs:
 @pulumi.input_type
 class _FolderState:
     def __init__(__self__, *,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  prevent_destroy_if_not_empty: Optional[pulumi.Input[bool]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Folder resources.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[bool] prevent_destroy_if_not_empty: Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
         :param pulumi.Input[str] title: The title of the folder.
         :param pulumi.Input[str] uid: Unique identifier.
         :param pulumi.Input[str] url: The full URL of the folder.
         """
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if prevent_destroy_if_not_empty is not None:
             pulumi.set(__self__, "prevent_destroy_if_not_empty", prevent_destroy_if_not_empty)
         if title is not None:
@@ -88,6 +108,18 @@ class _FolderState:
             pulumi.set(__self__, "uid", uid)
         if url is not None:
             pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter(name="preventDestroyIfNotEmpty")
@@ -143,6 +175,7 @@ class Folder(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  prevent_destroy_if_not_empty: Optional[pulumi.Input[bool]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
@@ -182,6 +215,7 @@ class Folder(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[bool] prevent_destroy_if_not_empty: Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
         :param pulumi.Input[str] title: The title of the folder.
         :param pulumi.Input[str] uid: Unique identifier.
@@ -240,6 +274,7 @@ class Folder(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  prevent_destroy_if_not_empty: Optional[pulumi.Input[bool]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
@@ -252,6 +287,7 @@ class Folder(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FolderArgs.__new__(FolderArgs)
 
+            __props__.__dict__["org_id"] = org_id
             __props__.__dict__["prevent_destroy_if_not_empty"] = prevent_destroy_if_not_empty
             if title is None and not opts.urn:
                 raise TypeError("Missing required property 'title'")
@@ -268,6 +304,7 @@ class Folder(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
             prevent_destroy_if_not_empty: Optional[pulumi.Input[bool]] = None,
             title: Optional[pulumi.Input[str]] = None,
             uid: Optional[pulumi.Input[str]] = None,
@@ -279,6 +316,7 @@ class Folder(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[bool] prevent_destroy_if_not_empty: Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
         :param pulumi.Input[str] title: The title of the folder.
         :param pulumi.Input[str] uid: Unique identifier.
@@ -288,11 +326,20 @@ class Folder(pulumi.CustomResource):
 
         __props__ = _FolderState.__new__(_FolderState)
 
+        __props__.__dict__["org_id"] = org_id
         __props__.__dict__["prevent_destroy_if_not_empty"] = prevent_destroy_if_not_empty
         __props__.__dict__["title"] = title
         __props__.__dict__["uid"] = uid
         __props__.__dict__["url"] = url
         return Folder(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter(name="preventDestroyIfNotEmpty")

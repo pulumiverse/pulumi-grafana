@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
@@ -16,7 +18,7 @@ import (
 // * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
 // * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
 func GetDashboards(ctx *pulumi.Context, args *GetDashboardsArgs, opts ...pulumi.InvokeOption) (*GetDashboardsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDashboardsResult
 	err := ctx.Invoke("grafana:index/getDashboards:getDashboards", args, &rv, opts...)
 	if err != nil {
@@ -88,6 +90,12 @@ func (o GetDashboardsResultOutput) ToGetDashboardsResultOutput() GetDashboardsRe
 
 func (o GetDashboardsResultOutput) ToGetDashboardsResultOutputWithContext(ctx context.Context) GetDashboardsResultOutput {
 	return o
+}
+
+func (o GetDashboardsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDashboardsResult] {
+	return pulumix.Output[GetDashboardsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDashboardsResultOutput) Dashboards() GetDashboardsDashboardArrayOutput {

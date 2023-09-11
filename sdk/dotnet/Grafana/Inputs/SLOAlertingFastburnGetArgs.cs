@@ -25,7 +25,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         private InputList<Inputs.SLOAlertingFastburnLabelGetArgs>? _labels;
 
         /// <summary>
-        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         /// </summary>
         public InputList<Inputs.SLOAlertingFastburnLabelGetArgs> Labels
         {

@@ -15,14 +15,14 @@ __all__ = ['LibraryPanelArgs', 'LibraryPanel']
 class LibraryPanelArgs:
     def __init__(__self__, *,
                  model_json: pulumi.Input[str],
-                 folder_id: Optional[pulumi.Input[int]] = None,
+                 folder_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LibraryPanel resource.
         :param pulumi.Input[str] model_json: The JSON model for the library panel.
-        :param pulumi.Input[int] folder_id: ID of the folder where the library panel is stored.
+        :param pulumi.Input[str] folder_id: ID of the folder where the library panel is stored.
         :param pulumi.Input[str] name: Name of the library panel.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] uid: The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
@@ -51,14 +51,14 @@ class LibraryPanelArgs:
 
     @property
     @pulumi.getter(name="folderId")
-    def folder_id(self) -> Optional[pulumi.Input[int]]:
+    def folder_id(self) -> Optional[pulumi.Input[str]]:
         """
         ID of the folder where the library panel is stored.
         """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
-    def folder_id(self, value: Optional[pulumi.Input[int]]):
+    def folder_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "folder_id", value)
 
     @property
@@ -104,7 +104,7 @@ class _LibraryPanelState:
                  created: Optional[pulumi.Input[str]] = None,
                  dashboard_ids: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 folder_id: Optional[pulumi.Input[int]] = None,
+                 folder_id: Optional[pulumi.Input[str]] = None,
                  folder_name: Optional[pulumi.Input[str]] = None,
                  folder_uid: Optional[pulumi.Input[str]] = None,
                  model_json: Optional[pulumi.Input[str]] = None,
@@ -120,7 +120,7 @@ class _LibraryPanelState:
         :param pulumi.Input[str] created: Timestamp when the library panel was created.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] dashboard_ids: Numerical IDs of Grafana dashboards containing the library panel.
         :param pulumi.Input[str] description: Description of the library panel.
-        :param pulumi.Input[int] folder_id: ID of the folder where the library panel is stored.
+        :param pulumi.Input[str] folder_id: ID of the folder where the library panel is stored.
         :param pulumi.Input[str] folder_name: Name of the folder containing the library panel.
         :param pulumi.Input[str] folder_uid: Unique ID (UID) of the folder containing the library panel.
         :param pulumi.Input[str] model_json: The JSON model for the library panel.
@@ -199,14 +199,14 @@ class _LibraryPanelState:
 
     @property
     @pulumi.getter(name="folderId")
-    def folder_id(self) -> Optional[pulumi.Input[int]]:
+    def folder_id(self) -> Optional[pulumi.Input[str]]:
         """
         ID of the folder where the library panel is stored.
         """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
-    def folder_id(self, value: Optional[pulumi.Input[int]]):
+    def folder_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "folder_id", value)
 
     @property
@@ -335,7 +335,7 @@ class LibraryPanel(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 folder_id: Optional[pulumi.Input[int]] = None,
+                 folder_id: Optional[pulumi.Input[str]] = None,
                  model_json: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
@@ -369,7 +369,7 @@ class LibraryPanel(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] folder_id: ID of the folder where the library panel is stored.
+        :param pulumi.Input[str] folder_id: ID of the folder where the library panel is stored.
         :param pulumi.Input[str] model_json: The JSON model for the library panel.
         :param pulumi.Input[str] name: Name of the library panel.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -422,7 +422,7 @@ class LibraryPanel(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 folder_id: Optional[pulumi.Input[int]] = None,
+                 folder_id: Optional[pulumi.Input[str]] = None,
                  model_json: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
@@ -465,7 +465,7 @@ class LibraryPanel(pulumi.CustomResource):
             created: Optional[pulumi.Input[str]] = None,
             dashboard_ids: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
-            folder_id: Optional[pulumi.Input[int]] = None,
+            folder_id: Optional[pulumi.Input[str]] = None,
             folder_name: Optional[pulumi.Input[str]] = None,
             folder_uid: Optional[pulumi.Input[str]] = None,
             model_json: Optional[pulumi.Input[str]] = None,
@@ -486,7 +486,7 @@ class LibraryPanel(pulumi.CustomResource):
         :param pulumi.Input[str] created: Timestamp when the library panel was created.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] dashboard_ids: Numerical IDs of Grafana dashboards containing the library panel.
         :param pulumi.Input[str] description: Description of the library panel.
-        :param pulumi.Input[int] folder_id: ID of the folder where the library panel is stored.
+        :param pulumi.Input[str] folder_id: ID of the folder where the library panel is stored.
         :param pulumi.Input[str] folder_name: Name of the folder containing the library panel.
         :param pulumi.Input[str] folder_uid: Unique ID (UID) of the folder containing the library panel.
         :param pulumi.Input[str] model_json: The JSON model for the library panel.
@@ -544,7 +544,7 @@ class LibraryPanel(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="folderId")
-    def folder_id(self) -> pulumi.Output[Optional[int]]:
+    def folder_id(self) -> pulumi.Output[Optional[str]]:
         """
         ID of the folder where the library panel is stored.
         """

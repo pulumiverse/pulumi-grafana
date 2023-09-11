@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // A holiday describes time periods where a time series is expected to behave differently to normal.
@@ -35,7 +37,7 @@ func NewMachineLearningHoliday(ctx *pulumi.Context,
 		args = &MachineLearningHolidayArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MachineLearningHoliday
 	err := ctx.RegisterResource("grafana:index/machineLearningHoliday:MachineLearningHoliday", name, args, &resource, opts...)
 	if err != nil {
@@ -137,6 +139,12 @@ func (i *MachineLearningHoliday) ToMachineLearningHolidayOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningHolidayOutput)
 }
 
+func (i *MachineLearningHoliday) ToOutput(ctx context.Context) pulumix.Output[*MachineLearningHoliday] {
+	return pulumix.Output[*MachineLearningHoliday]{
+		OutputState: i.ToMachineLearningHolidayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // MachineLearningHolidayArrayInput is an input type that accepts MachineLearningHolidayArray and MachineLearningHolidayArrayOutput values.
 // You can construct a concrete instance of `MachineLearningHolidayArrayInput` via:
 //
@@ -160,6 +168,12 @@ func (i MachineLearningHolidayArray) ToMachineLearningHolidayArrayOutput() Machi
 
 func (i MachineLearningHolidayArray) ToMachineLearningHolidayArrayOutputWithContext(ctx context.Context) MachineLearningHolidayArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningHolidayArrayOutput)
+}
+
+func (i MachineLearningHolidayArray) ToOutput(ctx context.Context) pulumix.Output[[]*MachineLearningHoliday] {
+	return pulumix.Output[[]*MachineLearningHoliday]{
+		OutputState: i.ToMachineLearningHolidayArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // MachineLearningHolidayMapInput is an input type that accepts MachineLearningHolidayMap and MachineLearningHolidayMapOutput values.
@@ -187,6 +201,12 @@ func (i MachineLearningHolidayMap) ToMachineLearningHolidayMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningHolidayMapOutput)
 }
 
+func (i MachineLearningHolidayMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MachineLearningHoliday] {
+	return pulumix.Output[map[string]*MachineLearningHoliday]{
+		OutputState: i.ToMachineLearningHolidayMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type MachineLearningHolidayOutput struct{ *pulumi.OutputState }
 
 func (MachineLearningHolidayOutput) ElementType() reflect.Type {
@@ -199,6 +219,12 @@ func (o MachineLearningHolidayOutput) ToMachineLearningHolidayOutput() MachineLe
 
 func (o MachineLearningHolidayOutput) ToMachineLearningHolidayOutputWithContext(ctx context.Context) MachineLearningHolidayOutput {
 	return o
+}
+
+func (o MachineLearningHolidayOutput) ToOutput(ctx context.Context) pulumix.Output[*MachineLearningHoliday] {
+	return pulumix.Output[*MachineLearningHoliday]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A list of custom periods for the holiday.
@@ -240,6 +266,12 @@ func (o MachineLearningHolidayArrayOutput) ToMachineLearningHolidayArrayOutputWi
 	return o
 }
 
+func (o MachineLearningHolidayArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MachineLearningHoliday] {
+	return pulumix.Output[[]*MachineLearningHoliday]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o MachineLearningHolidayArrayOutput) Index(i pulumi.IntInput) MachineLearningHolidayOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MachineLearningHoliday {
 		return vs[0].([]*MachineLearningHoliday)[vs[1].(int)]
@@ -258,6 +290,12 @@ func (o MachineLearningHolidayMapOutput) ToMachineLearningHolidayMapOutput() Mac
 
 func (o MachineLearningHolidayMapOutput) ToMachineLearningHolidayMapOutputWithContext(ctx context.Context) MachineLearningHolidayMapOutput {
 	return o
+}
+
+func (o MachineLearningHolidayMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MachineLearningHoliday] {
+	return pulumix.Output[map[string]*MachineLearningHoliday]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o MachineLearningHolidayMapOutput) MapIndex(k pulumi.StringInput) MachineLearningHolidayOutput {

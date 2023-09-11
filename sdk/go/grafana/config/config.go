@@ -4,9 +4,12 @@
 package config
 
 import (
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 // API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
 // the `GRAFANA_AUTH` environment variable.
@@ -16,7 +19,7 @@ func GetAuth(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "GRAFANA_AUTH"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_AUTH"); d != nil {
 		value = d.(string)
 	}
 	return value
@@ -30,20 +33,21 @@ func GetCaCert(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "GRAFANA_CA_CERT"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_CA_CERT"); d != nil {
 		value = d.(string)
 	}
 	return value
 }
 
-// API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+// Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+// variable.
 func GetCloudApiKey(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:cloudApiKey")
 	if err == nil {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "GRAFANA_CLOUD_API_KEY"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_CLOUD_API_KEY"); d != nil {
 		value = d.(string)
 	}
 	return value
@@ -56,7 +60,7 @@ func GetCloudApiUrl(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "GRAFANA_CLOUD_API_URL"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_CLOUD_API_URL"); d != nil {
 		value = d.(string)
 	}
 	return value
@@ -75,7 +79,7 @@ func GetInsecureSkipVerify(ctx *pulumi.Context) bool {
 		return v
 	}
 	var value bool
-	if d := getEnvOrDefault(nil, parseEnvBool, "GRAFANA_INSECURE_SKIP_VERIFY"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, internal.ParseEnvBool, "GRAFANA_INSECURE_SKIP_VERIFY"); d != nil {
 		value = d.(bool)
 	}
 	return value
@@ -88,7 +92,7 @@ func GetOncallAccessToken(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "GRAFANA_ONCALL_ACCESS_TOKEN"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_ONCALL_ACCESS_TOKEN"); d != nil {
 		value = d.(string)
 	}
 	return value
@@ -101,21 +105,22 @@ func GetOncallUrl(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "GRAFANA_ONCALL_URL"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_ONCALL_URL"); d != nil {
 		value = d.(string)
 	}
 	return value
 }
 
-// The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
-// resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+// Deprecated: Use the `org_id` attributes on resources instead.
+//
+// Deprecated: Use the `org_id` attributes on resources instead.
 func GetOrgId(ctx *pulumi.Context) int {
 	v, err := config.TryInt(ctx, "grafana:orgId")
 	if err == nil {
 		return v
 	}
 	var value int
-	if d := getEnvOrDefault(nil, parseEnvInt, "GRAFANA_ORG_ID"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, internal.ParseEnvInt, "GRAFANA_ORG_ID"); d != nil {
 		value = d.(int)
 	}
 	return value
@@ -129,7 +134,7 @@ func GetRetries(ctx *pulumi.Context) int {
 		return v
 	}
 	var value int
-	if d := getEnvOrDefault(nil, parseEnvInt, "GRAFANA_RETRIES"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, internal.ParseEnvInt, "GRAFANA_RETRIES"); d != nil {
 		value = d.(int)
 	}
 	return value
@@ -148,7 +153,7 @@ func GetSmAccessToken(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "GRAFANA_SM_ACCESS_TOKEN"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_SM_ACCESS_TOKEN"); d != nil {
 		value = d.(string)
 	}
 	return value
@@ -167,7 +172,7 @@ func GetSmUrl(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "GRAFANA_SM_URL"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_SM_URL"); d != nil {
 		value = d.(string)
 	}
 	return value
@@ -180,7 +185,7 @@ func GetStoreDashboardSha256(ctx *pulumi.Context) bool {
 		return v
 	}
 	var value bool
-	if d := getEnvOrDefault(nil, parseEnvBool, "GRAFANA_STORE_DASHBOARD_SHA256"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, internal.ParseEnvBool, "GRAFANA_STORE_DASHBOARD_SHA256"); d != nil {
 		value = d.(bool)
 	}
 	return value
@@ -194,7 +199,7 @@ func GetTlsCert(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "GRAFANA_TLS_CERT"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_TLS_CERT"); d != nil {
 		value = d.(string)
 	}
 	return value
@@ -208,7 +213,7 @@ func GetTlsKey(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "GRAFANA_TLS_KEY"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_TLS_KEY"); d != nil {
 		value = d.(string)
 	}
 	return value
@@ -221,7 +226,7 @@ func GetUrl(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "GRAFANA_URL"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_URL"); d != nil {
 		value = d.(string)
 	}
 	return value

@@ -4,6 +4,7 @@
 package grafana
 
 import (
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -48,7 +49,7 @@ import (
 //
 // ```
 func GetFolders(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetFoldersResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFoldersResult
 	err := ctx.Invoke("grafana:index/getFolders:getFolders", nil, &rv, opts...)
 	if err != nil {

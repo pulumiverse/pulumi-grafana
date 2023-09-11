@@ -13,21 +13,12 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class TeamPreferencesGetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The UID of the dashboard to display when a team member logs in. Defaults to ``.
-        /// </summary>
         [Input("homeDashboardUid")]
         public Input<string>? HomeDashboardUid { get; set; }
 
-        /// <summary>
-        /// The default theme for this team. Available themes are `light`, `dark`, or an empty string for the default theme. Defaults to ``.
-        /// </summary>
         [Input("theme")]
         public Input<string>? Theme { get; set; }
 
-        /// <summary>
-        /// The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default. Defaults to ``.
-        /// </summary>
         [Input("timezone")]
         public Input<string>? Timezone { get; set; }
 

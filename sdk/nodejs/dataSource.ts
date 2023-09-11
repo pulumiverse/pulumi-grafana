@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -119,12 +117,6 @@ export class DataSource extends pulumi.CustomResource {
      */
     public readonly basicAuthEnabled!: pulumi.Output<boolean | undefined>;
     /**
-     * Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-     *
-     * @deprecated Use secure_json_data_encoded.basicAuthPassword instead.
-     */
-    public readonly basicAuthPassword!: pulumi.Output<string | undefined>;
-    /**
      * Basic auth username. Defaults to ``.
      */
     public readonly basicAuthUsername!: pulumi.Output<string | undefined>;
@@ -145,31 +137,17 @@ export class DataSource extends pulumi.CustomResource {
      */
     public readonly jsonDataEncoded!: pulumi.Output<string | undefined>;
     /**
-     * Use json*data*encoded instead.
-     *
-     * @deprecated Use json_data_encoded instead.
-     */
-    public readonly jsonDatas!: pulumi.Output<outputs.DataSourceJsonData[] | undefined>;
-    /**
      * A unique name for the data source.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Use secure*json*data_encoded.password instead. Defaults to ``.
-     *
-     * @deprecated Use secure_json_data_encoded.password instead.
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly password!: pulumi.Output<string | undefined>;
+    public readonly orgId!: pulumi.Output<string | undefined>;
     /**
      * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
     public readonly secureJsonDataEncoded!: pulumi.Output<string | undefined>;
-    /**
-     * Use secure*json*data*encoded instead.
-     *
-     * @deprecated Use secure_json_data_encoded instead.
-     */
-    public readonly secureJsonDatas!: pulumi.Output<outputs.DataSourceSecureJsonData[] | undefined>;
     /**
      * The data source type. Must be one of the supported data source keywords.
      */
@@ -202,17 +180,14 @@ export class DataSource extends pulumi.CustomResource {
             const state = argsOrState as DataSourceState | undefined;
             resourceInputs["accessMode"] = state ? state.accessMode : undefined;
             resourceInputs["basicAuthEnabled"] = state ? state.basicAuthEnabled : undefined;
-            resourceInputs["basicAuthPassword"] = state ? state.basicAuthPassword : undefined;
             resourceInputs["basicAuthUsername"] = state ? state.basicAuthUsername : undefined;
             resourceInputs["databaseName"] = state ? state.databaseName : undefined;
             resourceInputs["httpHeaders"] = state ? state.httpHeaders : undefined;
             resourceInputs["isDefault"] = state ? state.isDefault : undefined;
             resourceInputs["jsonDataEncoded"] = state ? state.jsonDataEncoded : undefined;
-            resourceInputs["jsonDatas"] = state ? state.jsonDatas : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["secureJsonDataEncoded"] = state ? state.secureJsonDataEncoded : undefined;
-            resourceInputs["secureJsonDatas"] = state ? state.secureJsonDatas : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["uid"] = state ? state.uid : undefined;
             resourceInputs["url"] = state ? state.url : undefined;
@@ -224,24 +199,21 @@ export class DataSource extends pulumi.CustomResource {
             }
             resourceInputs["accessMode"] = args ? args.accessMode : undefined;
             resourceInputs["basicAuthEnabled"] = args ? args.basicAuthEnabled : undefined;
-            resourceInputs["basicAuthPassword"] = args?.basicAuthPassword ? pulumi.secret(args.basicAuthPassword) : undefined;
             resourceInputs["basicAuthUsername"] = args ? args.basicAuthUsername : undefined;
             resourceInputs["databaseName"] = args ? args.databaseName : undefined;
             resourceInputs["httpHeaders"] = args?.httpHeaders ? pulumi.secret(args.httpHeaders) : undefined;
             resourceInputs["isDefault"] = args ? args.isDefault : undefined;
             resourceInputs["jsonDataEncoded"] = args ? args.jsonDataEncoded : undefined;
-            resourceInputs["jsonDatas"] = args ? args.jsonDatas : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["secureJsonDataEncoded"] = args?.secureJsonDataEncoded ? pulumi.secret(args.secureJsonDataEncoded) : undefined;
-            resourceInputs["secureJsonDatas"] = args?.secureJsonDatas ? pulumi.secret(args.secureJsonDatas) : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["uid"] = args ? args.uid : undefined;
             resourceInputs["url"] = args ? args.url : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["basicAuthPassword", "httpHeaders", "password", "secureJsonDataEncoded", "secureJsonDatas"] };
+        const secretOpts = { additionalSecretOutputs: ["httpHeaders", "secureJsonDataEncoded"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(DataSource.__pulumiType, name, resourceInputs, opts);
     }
@@ -259,12 +231,6 @@ export interface DataSourceState {
      * Whether to enable basic auth for the data source. Defaults to `false`.
      */
     basicAuthEnabled?: pulumi.Input<boolean>;
-    /**
-     * Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-     *
-     * @deprecated Use secure_json_data_encoded.basicAuthPassword instead.
-     */
-    basicAuthPassword?: pulumi.Input<string>;
     /**
      * Basic auth username. Defaults to ``.
      */
@@ -286,31 +252,17 @@ export interface DataSourceState {
      */
     jsonDataEncoded?: pulumi.Input<string>;
     /**
-     * Use json*data*encoded instead.
-     *
-     * @deprecated Use json_data_encoded instead.
-     */
-    jsonDatas?: pulumi.Input<pulumi.Input<inputs.DataSourceJsonData>[]>;
-    /**
      * A unique name for the data source.
      */
     name?: pulumi.Input<string>;
     /**
-     * Use secure*json*data_encoded.password instead. Defaults to ``.
-     *
-     * @deprecated Use secure_json_data_encoded.password instead.
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    password?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string>;
     /**
      * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
     secureJsonDataEncoded?: pulumi.Input<string>;
-    /**
-     * Use secure*json*data*encoded instead.
-     *
-     * @deprecated Use secure_json_data_encoded instead.
-     */
-    secureJsonDatas?: pulumi.Input<pulumi.Input<inputs.DataSourceSecureJsonData>[]>;
     /**
      * The data source type. Must be one of the supported data source keywords.
      */
@@ -342,12 +294,6 @@ export interface DataSourceArgs {
      */
     basicAuthEnabled?: pulumi.Input<boolean>;
     /**
-     * Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-     *
-     * @deprecated Use secure_json_data_encoded.basicAuthPassword instead.
-     */
-    basicAuthPassword?: pulumi.Input<string>;
-    /**
      * Basic auth username. Defaults to ``.
      */
     basicAuthUsername?: pulumi.Input<string>;
@@ -368,31 +314,17 @@ export interface DataSourceArgs {
      */
     jsonDataEncoded?: pulumi.Input<string>;
     /**
-     * Use json*data*encoded instead.
-     *
-     * @deprecated Use json_data_encoded instead.
-     */
-    jsonDatas?: pulumi.Input<pulumi.Input<inputs.DataSourceJsonData>[]>;
-    /**
      * A unique name for the data source.
      */
     name?: pulumi.Input<string>;
     /**
-     * Use secure*json*data_encoded.password instead. Defaults to ``.
-     *
-     * @deprecated Use secure_json_data_encoded.password instead.
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    password?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string>;
     /**
      * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
     secureJsonDataEncoded?: pulumi.Input<string>;
-    /**
-     * Use secure*json*data*encoded instead.
-     *
-     * @deprecated Use secure_json_data_encoded instead.
-     */
-    secureJsonDatas?: pulumi.Input<pulumi.Input<inputs.DataSourceSecureJsonData>[]>;
     /**
      * The data source type. Must be one of the supported data source keywords.
      */

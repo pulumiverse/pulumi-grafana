@@ -16,7 +16,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     {
         public readonly ImmutableArray<Outputs.SLOAlertingSlowburnAnnotation> Annotations;
         /// <summary>
-        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         /// </summary>
         public readonly ImmutableArray<Outputs.SLOAlertingSlowburnLabel> Labels;
 

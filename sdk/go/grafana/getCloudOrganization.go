@@ -7,11 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetCloudOrganization(ctx *pulumi.Context, args *GetCloudOrganizationArgs, opts ...pulumi.InvokeOption) (*GetCloudOrganizationResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCloudOrganizationResult
 	err := ctx.Invoke("grafana:index/getCloudOrganization:getCloudOrganization", args, &rv, opts...)
 	if err != nil {
@@ -75,6 +77,12 @@ func (o GetCloudOrganizationResultOutput) ToGetCloudOrganizationResultOutput() G
 
 func (o GetCloudOrganizationResultOutput) ToGetCloudOrganizationResultOutputWithContext(ctx context.Context) GetCloudOrganizationResultOutput {
 	return o
+}
+
+func (o GetCloudOrganizationResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetCloudOrganizationResult] {
+	return pulumix.Output[GetCloudOrganizationResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetCloudOrganizationResultOutput) CreatedAt() pulumi.StringOutput {

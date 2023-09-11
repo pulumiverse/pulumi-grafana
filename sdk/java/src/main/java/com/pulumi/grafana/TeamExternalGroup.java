@@ -10,14 +10,12 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.grafana.TeamExternalGroupArgs;
 import com.pulumi.grafana.Utilities;
 import com.pulumi.grafana.inputs.TeamExternalGroupState;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+ * Use the `team_sync` attribute of the `grafana.Team` resource instead.
  * 
  * ## Example Usage
  * ```java
@@ -79,14 +77,14 @@ public class TeamExternalGroup extends com.pulumi.resources.CustomResource {
      * The Team ID
      * 
      */
-    @Export(name="teamId", refs={Integer.class}, tree="[0]")
-    private Output<Integer> teamId;
+    @Export(name="teamId", refs={String.class}, tree="[0]")
+    private Output<String> teamId;
 
     /**
      * @return The Team ID
      * 
      */
-    public Output<Integer> teamId() {
+    public Output<String> teamId() {
         return this.teamId;
     }
 

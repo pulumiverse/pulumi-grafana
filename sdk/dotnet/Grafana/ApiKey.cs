@@ -43,12 +43,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
     [GrafanaResourceType("grafana:index/apiKey:ApiKey")]
     public partial class ApiKey : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
-        /// </summary>
-        [Output("cloudStackSlug")]
-        public Output<string?> CloudStackSlug { get; private set; } = null!;
-
         [Output("expiration")]
         public Output<string> Expiration { get; private set; } = null!;
 
@@ -121,12 +115,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class ApiKeyArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
-        /// </summary>
-        [Input("cloudStackSlug")]
-        public Input<string>? CloudStackSlug { get; set; }
-
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -150,12 +138,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class ApiKeyState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Deprecated: Use `grafana.CloudStackServiceAccount` and `grafana.CloudStackServiceAccountToken` resources instead
-        /// </summary>
-        [Input("cloudStackSlug")]
-        public Input<string>? CloudStackSlug { get; set; }
-
         [Input("expiration")]
         public Input<string>? Expiration { get; set; }
 

@@ -65,18 +65,6 @@ export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
     }
 
     /**
-     * Deprecated: Not used anymore.
-     *
-     * @deprecated Not used anymore.
-     */
-    public readonly logsInstanceId!: pulumi.Output<number | undefined>;
-    /**
-     * Deprecated: Not used anymore.
-     *
-     * @deprecated Not used anymore.
-     */
-    public readonly metricsInstanceId!: pulumi.Output<number | undefined>;
-    /**
      * The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
      */
     public readonly metricsPublisherKey!: pulumi.Output<string>;
@@ -106,8 +94,6 @@ export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SyntheticMonitoringInstallationState | undefined;
-            resourceInputs["logsInstanceId"] = state ? state.logsInstanceId : undefined;
-            resourceInputs["metricsInstanceId"] = state ? state.metricsInstanceId : undefined;
             resourceInputs["metricsPublisherKey"] = state ? state.metricsPublisherKey : undefined;
             resourceInputs["smAccessToken"] = state ? state.smAccessToken : undefined;
             resourceInputs["stackId"] = state ? state.stackId : undefined;
@@ -120,8 +106,6 @@ export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
             if ((!args || args.stackId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'stackId'");
             }
-            resourceInputs["logsInstanceId"] = args ? args.logsInstanceId : undefined;
-            resourceInputs["metricsInstanceId"] = args ? args.metricsInstanceId : undefined;
             resourceInputs["metricsPublisherKey"] = args?.metricsPublisherKey ? pulumi.secret(args.metricsPublisherKey) : undefined;
             resourceInputs["stackId"] = args ? args.stackId : undefined;
             resourceInputs["stackSmApiUrl"] = args ? args.stackSmApiUrl : undefined;
@@ -138,18 +122,6 @@ export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SyntheticMonitoringInstallation resources.
  */
 export interface SyntheticMonitoringInstallationState {
-    /**
-     * Deprecated: Not used anymore.
-     *
-     * @deprecated Not used anymore.
-     */
-    logsInstanceId?: pulumi.Input<number>;
-    /**
-     * Deprecated: Not used anymore.
-     *
-     * @deprecated Not used anymore.
-     */
-    metricsInstanceId?: pulumi.Input<number>;
     /**
      * The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
      */
@@ -172,18 +144,6 @@ export interface SyntheticMonitoringInstallationState {
  * The set of arguments for constructing a SyntheticMonitoringInstallation resource.
  */
 export interface SyntheticMonitoringInstallationArgs {
-    /**
-     * Deprecated: Not used anymore.
-     *
-     * @deprecated Not used anymore.
-     */
-    logsInstanceId?: pulumi.Input<number>;
-    /**
-     * Deprecated: Not used anymore.
-     *
-     * @deprecated Not used anymore.
-     */
-    metricsInstanceId?: pulumi.Input<number>;
     /**
      * The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
      */

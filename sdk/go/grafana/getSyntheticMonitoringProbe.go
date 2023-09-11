@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Data source for retrieving a single probe by name.
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupSyntheticMonitoringProbe(ctx *pulumi.Context, args *LookupSyntheticMonitoringProbeArgs, opts ...pulumi.InvokeOption) (*LookupSyntheticMonitoringProbeResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSyntheticMonitoringProbeResult
 	err := ctx.Invoke("grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe", args, &rv, opts...)
 	if err != nil {
@@ -109,6 +111,12 @@ func (o LookupSyntheticMonitoringProbeResultOutput) ToLookupSyntheticMonitoringP
 
 func (o LookupSyntheticMonitoringProbeResultOutput) ToLookupSyntheticMonitoringProbeResultOutputWithContext(ctx context.Context) LookupSyntheticMonitoringProbeResultOutput {
 	return o
+}
+
+func (o LookupSyntheticMonitoringProbeResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSyntheticMonitoringProbeResult] {
+	return pulumix.Output[LookupSyntheticMonitoringProbeResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of the probe.

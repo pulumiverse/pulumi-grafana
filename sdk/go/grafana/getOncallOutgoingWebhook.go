@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupOncallOutgoingWebhook(ctx *pulumi.Context, args *LookupOncallOutgoingWebhookArgs, opts ...pulumi.InvokeOption) (*LookupOncallOutgoingWebhookResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOncallOutgoingWebhookResult
 	err := ctx.Invoke("grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook", args, &rv, opts...)
 	if err != nil {
@@ -97,6 +99,12 @@ func (o LookupOncallOutgoingWebhookResultOutput) ToLookupOncallOutgoingWebhookRe
 
 func (o LookupOncallOutgoingWebhookResultOutput) ToLookupOncallOutgoingWebhookResultOutputWithContext(ctx context.Context) LookupOncallOutgoingWebhookResultOutput {
 	return o
+}
+
+func (o LookupOncallOutgoingWebhookResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupOncallOutgoingWebhookResult] {
+	return pulumix.Output[LookupOncallOutgoingWebhookResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

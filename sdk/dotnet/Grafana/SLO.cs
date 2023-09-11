@@ -15,6 +15,9 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
     /// * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+    /// * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
+    /// 
+    /// ## Example Usage
     /// </summary>
     [GrafanaResourceType("grafana:index/sLO:SLO")]
     public partial class SLO : global::Pulumi.CustomResource
@@ -24,7 +27,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// 			time window associated with the SLO. Grafana SLOs can generate
         /// 			alerts when the short-term error budget burn is very high, the
         /// 			long-term error budget burn rate is high, or when the remaining
-        /// 			error budget is below a certain threshold.
+        /// 			error budget is below a certain threshold. Annotations and Labels support templating.
         /// </summary>
         [Output("alertings")]
         public Output<ImmutableArray<Outputs.SLOAlerting>> Alertings { get; private set; } = null!;
@@ -36,7 +39,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         /// </summary>
         [Output("labels")]
         public Output<ImmutableArray<Outputs.SLOLabel>> Labels { get; private set; } = null!;
@@ -114,7 +117,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// 			time window associated with the SLO. Grafana SLOs can generate
         /// 			alerts when the short-term error budget burn is very high, the
         /// 			long-term error budget burn rate is high, or when the remaining
-        /// 			error budget is below a certain threshold.
+        /// 			error budget is below a certain threshold. Annotations and Labels support templating.
         /// </summary>
         public InputList<Inputs.SLOAlertingArgs> Alertings
         {
@@ -132,7 +135,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private InputList<Inputs.SLOLabelArgs>? _labels;
 
         /// <summary>
-        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         /// </summary>
         public InputList<Inputs.SLOLabelArgs> Labels
         {
@@ -186,7 +189,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// 			time window associated with the SLO. Grafana SLOs can generate
         /// 			alerts when the short-term error budget burn is very high, the
         /// 			long-term error budget burn rate is high, or when the remaining
-        /// 			error budget is below a certain threshold.
+        /// 			error budget is below a certain threshold. Annotations and Labels support templating.
         /// </summary>
         public InputList<Inputs.SLOAlertingGetArgs> Alertings
         {
@@ -204,7 +207,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private InputList<Inputs.SLOLabelGetArgs>? _labels;
 
         /// <summary>
-        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand.
+        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         /// </summary>
         public InputList<Inputs.SLOLabelGetArgs> Labels
         {

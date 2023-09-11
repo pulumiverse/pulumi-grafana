@@ -4,6 +4,7 @@
 package grafana
 
 import (
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -11,8 +12,9 @@ import (
 //
 // * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
 // * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+// * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
 func GetSlos(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetSlosResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSlosResult
 	err := ctx.Invoke("grafana:index/getSlos:getSlos", nil, &rv, opts...)
 	if err != nil {

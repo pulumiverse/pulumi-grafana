@@ -7,12 +7,14 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Data source for Grafana Stack
 func LookupCloudStack(ctx *pulumi.Context, args *LookupCloudStackArgs, opts ...pulumi.InvokeOption) (*LookupCloudStackResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudStackResult
 	err := ctx.Invoke("grafana:index/getCloudStack:getCloudStack", args, &rv, opts...)
 	if err != nil {
@@ -123,6 +125,12 @@ func (o LookupCloudStackResultOutput) ToLookupCloudStackResultOutput() LookupClo
 
 func (o LookupCloudStackResultOutput) ToLookupCloudStackResultOutputWithContext(ctx context.Context) LookupCloudStackResultOutput {
 	return o
+}
+
+func (o LookupCloudStackResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCloudStackResult] {
+	return pulumix.Output[LookupCloudStackResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Name of the Alertmanager instance configured for this stack.

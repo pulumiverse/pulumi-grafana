@@ -23,7 +23,8 @@ be set via the `GRAFANA_CA_CERT` environment variable.
 
 cloudApiKey: Optional[str]
 """
-API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+variable.
 """
 
 cloudApiUrl: Optional[str]
@@ -54,8 +55,7 @@ An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONC
 
 orgId: Optional[int]
 """
-The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
-resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+Deprecated: Use the `org_id` attributes on resources instead.
 """
 
 retries: Optional[int]

@@ -6,9 +6,11 @@ package com.pulumi.grafana;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.grafana.inputs.DataSourcePermissionPermissionArgs;
-import java.lang.Integer;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class DataSourcePermissionArgs extends com.pulumi.resources.ResourceArgs {
@@ -20,14 +22,29 @@ public final class DataSourcePermissionArgs extends com.pulumi.resources.Resourc
      * 
      */
     @Import(name="datasourceId", required=true)
-    private Output<Integer> datasourceId;
+    private Output<String> datasourceId;
 
     /**
      * @return ID of the datasource to apply permissions to.
      * 
      */
-    public Output<Integer> datasourceId() {
+    public Output<String> datasourceId() {
         return this.datasourceId;
+    }
+
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Import(name="orgId")
+    private @Nullable Output<String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<Output<String>> orgId() {
+        return Optional.ofNullable(this.orgId);
     }
 
     /**
@@ -49,6 +66,7 @@ public final class DataSourcePermissionArgs extends com.pulumi.resources.Resourc
 
     private DataSourcePermissionArgs(DataSourcePermissionArgs $) {
         this.datasourceId = $.datasourceId;
+        this.orgId = $.orgId;
         this.permissions = $.permissions;
     }
 
@@ -76,7 +94,7 @@ public final class DataSourcePermissionArgs extends com.pulumi.resources.Resourc
          * @return builder
          * 
          */
-        public Builder datasourceId(Output<Integer> datasourceId) {
+        public Builder datasourceId(Output<String> datasourceId) {
             $.datasourceId = datasourceId;
             return this;
         }
@@ -87,8 +105,29 @@ public final class DataSourcePermissionArgs extends com.pulumi.resources.Resourc
          * @return builder
          * 
          */
-        public Builder datasourceId(Integer datasourceId) {
+        public Builder datasourceId(String datasourceId) {
             return datasourceId(Output.of(datasourceId));
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(@Nullable Output<String> orgId) {
+            $.orgId = orgId;
+            return this;
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(String orgId) {
+            return orgId(Output.of(orgId));
         }
 
         /**

@@ -123,12 +123,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<bool?> BasicAuthEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-        /// </summary>
-        [Output("basicAuthPassword")]
-        public Output<string?> BasicAuthPassword { get; private set; } = null!;
-
-        /// <summary>
         /// Basic auth username. Defaults to ``.
         /// </summary>
         [Output("basicAuthUsername")]
@@ -159,34 +153,22 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string?> JsonDataEncoded { get; private set; } = null!;
 
         /// <summary>
-        /// Use json*data*encoded instead.
-        /// </summary>
-        [Output("jsonDatas")]
-        public Output<ImmutableArray<Outputs.DataSourceJsonData>> JsonDatas { get; private set; } = null!;
-
-        /// <summary>
         /// A unique name for the data source.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Use secure*json*data_encoded.password instead. Defaults to ``.
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
         /// </summary>
-        [Output("password")]
-        public Output<string?> Password { get; private set; } = null!;
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         [Output("secureJsonDataEncoded")]
         public Output<string?> SecureJsonDataEncoded { get; private set; } = null!;
-
-        /// <summary>
-        /// Use secure*json*data*encoded instead.
-        /// </summary>
-        [Output("secureJsonDatas")]
-        public Output<ImmutableArray<Outputs.DataSourceSecureJsonData>> SecureJsonDatas { get; private set; } = null!;
 
         /// <summary>
         /// The data source type. Must be one of the supported data source keywords.
@@ -238,11 +220,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
                 PluginDownloadURL = "github://api.github.com/lbrlabs",
                 AdditionalSecretOutputs =
                 {
-                    "basicAuthPassword",
                     "httpHeaders",
-                    "password",
                     "secureJsonDataEncoded",
-                    "secureJsonDatas",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -278,23 +257,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Input("basicAuthEnabled")]
         public Input<bool>? BasicAuthEnabled { get; set; }
-
-        [Input("basicAuthPassword")]
-        private Input<string>? _basicAuthPassword;
-
-        /// <summary>
-        /// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-        /// </summary>
-        [Obsolete(@"Use secure_json_data_encoded.basicAuthPassword instead.")]
-        public Input<string>? BasicAuthPassword
-        {
-            get => _basicAuthPassword;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _basicAuthPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
 
         /// <summary>
         /// Basic auth username. Defaults to ``.
@@ -336,41 +298,17 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("jsonDataEncoded")]
         public Input<string>? JsonDataEncoded { get; set; }
 
-        [Input("jsonDatas")]
-        private InputList<Inputs.DataSourceJsonDataArgs>? _jsonDatas;
-
-        /// <summary>
-        /// Use json*data*encoded instead.
-        /// </summary>
-        [Obsolete(@"Use json_data_encoded instead.")]
-        public InputList<Inputs.DataSourceJsonDataArgs> JsonDatas
-        {
-            get => _jsonDatas ?? (_jsonDatas = new InputList<Inputs.DataSourceJsonDataArgs>());
-            set => _jsonDatas = value;
-        }
-
         /// <summary>
         /// A unique name for the data source.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        [Input("password")]
-        private Input<string>? _password;
-
         /// <summary>
-        /// Use secure*json*data_encoded.password instead. Defaults to ``.
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
         /// </summary>
-        [Obsolete(@"Use secure_json_data_encoded.password instead.")]
-        public Input<string>? Password
-        {
-            get => _password;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         [Input("secureJsonDataEncoded")]
         private Input<string>? _secureJsonDataEncoded;
@@ -385,23 +323,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
             {
                 var emptySecret = Output.CreateSecret(0);
                 _secureJsonDataEncoded = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
-        [Input("secureJsonDatas")]
-        private InputList<Inputs.DataSourceSecureJsonDataArgs>? _secureJsonDatas;
-
-        /// <summary>
-        /// Use secure*json*data*encoded instead.
-        /// </summary>
-        [Obsolete(@"Use secure_json_data_encoded instead.")]
-        public InputList<Inputs.DataSourceSecureJsonDataArgs> SecureJsonDatas
-        {
-            get => _secureJsonDatas ?? (_secureJsonDatas = new InputList<Inputs.DataSourceSecureJsonDataArgs>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableArray.Create<Inputs.DataSourceSecureJsonDataArgs>());
-                _secureJsonDatas = Output.All(value, emptySecret).Apply(v => v[0]);
             }
         }
 
@@ -449,23 +370,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("basicAuthEnabled")]
         public Input<bool>? BasicAuthEnabled { get; set; }
 
-        [Input("basicAuthPassword")]
-        private Input<string>? _basicAuthPassword;
-
-        /// <summary>
-        /// Use secure*json*data_encoded.basicAuthPassword instead. Defaults to ``.
-        /// </summary>
-        [Obsolete(@"Use secure_json_data_encoded.basicAuthPassword instead.")]
-        public Input<string>? BasicAuthPassword
-        {
-            get => _basicAuthPassword;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _basicAuthPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
         /// <summary>
         /// Basic auth username. Defaults to ``.
         /// </summary>
@@ -506,41 +410,17 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("jsonDataEncoded")]
         public Input<string>? JsonDataEncoded { get; set; }
 
-        [Input("jsonDatas")]
-        private InputList<Inputs.DataSourceJsonDataGetArgs>? _jsonDatas;
-
-        /// <summary>
-        /// Use json*data*encoded instead.
-        /// </summary>
-        [Obsolete(@"Use json_data_encoded instead.")]
-        public InputList<Inputs.DataSourceJsonDataGetArgs> JsonDatas
-        {
-            get => _jsonDatas ?? (_jsonDatas = new InputList<Inputs.DataSourceJsonDataGetArgs>());
-            set => _jsonDatas = value;
-        }
-
         /// <summary>
         /// A unique name for the data source.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        [Input("password")]
-        private Input<string>? _password;
-
         /// <summary>
-        /// Use secure*json*data_encoded.password instead. Defaults to ``.
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
         /// </summary>
-        [Obsolete(@"Use secure_json_data_encoded.password instead.")]
-        public Input<string>? Password
-        {
-            get => _password;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         [Input("secureJsonDataEncoded")]
         private Input<string>? _secureJsonDataEncoded;
@@ -555,23 +435,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
             {
                 var emptySecret = Output.CreateSecret(0);
                 _secureJsonDataEncoded = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
-        [Input("secureJsonDatas")]
-        private InputList<Inputs.DataSourceSecureJsonDataGetArgs>? _secureJsonDatas;
-
-        /// <summary>
-        /// Use secure*json*data*encoded instead.
-        /// </summary>
-        [Obsolete(@"Use secure_json_data_encoded instead.")]
-        public InputList<Inputs.DataSourceSecureJsonDataGetArgs> SecureJsonDatas
-        {
-            get => _secureJsonDatas ?? (_secureJsonDatas = new InputList<Inputs.DataSourceSecureJsonDataGetArgs>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableArray.Create<Inputs.DataSourceSecureJsonDataGetArgs>());
-                _secureJsonDatas = Output.All(value, emptySecret).Apply(v => v[0]);
             }
         }
 

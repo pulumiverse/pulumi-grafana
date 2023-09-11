@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
@@ -96,6 +98,8 @@ type DashboardPermission struct {
 	DashboardId pulumi.IntOutput `pulumi:"dashboardId"`
 	// UID of the dashboard to apply permissions to.
 	DashboardUid pulumi.StringOutput `pulumi:"dashboardUid"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions DashboardPermissionPermissionArrayOutput `pulumi:"permissions"`
 }
@@ -110,7 +114,7 @@ func NewDashboardPermission(ctx *pulumi.Context,
 	if args.Permissions == nil {
 		return nil, errors.New("invalid value for required argument 'Permissions'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DashboardPermission
 	err := ctx.RegisterResource("grafana:index/dashboardPermission:DashboardPermission", name, args, &resource, opts...)
 	if err != nil {
@@ -139,6 +143,8 @@ type dashboardPermissionState struct {
 	DashboardId *int `pulumi:"dashboardId"`
 	// UID of the dashboard to apply permissions to.
 	DashboardUid *string `pulumi:"dashboardUid"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions []DashboardPermissionPermission `pulumi:"permissions"`
 }
@@ -150,6 +156,8 @@ type DashboardPermissionState struct {
 	DashboardId pulumi.IntPtrInput
 	// UID of the dashboard to apply permissions to.
 	DashboardUid pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions DashboardPermissionPermissionArrayInput
 }
@@ -165,6 +173,8 @@ type dashboardPermissionArgs struct {
 	DashboardId *int `pulumi:"dashboardId"`
 	// UID of the dashboard to apply permissions to.
 	DashboardUid *string `pulumi:"dashboardUid"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions []DashboardPermissionPermission `pulumi:"permissions"`
 }
@@ -177,6 +187,8 @@ type DashboardPermissionArgs struct {
 	DashboardId pulumi.IntPtrInput
 	// UID of the dashboard to apply permissions to.
 	DashboardUid pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions DashboardPermissionPermissionArrayInput
 }
@@ -204,6 +216,12 @@ func (i *DashboardPermission) ToDashboardPermissionOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(DashboardPermissionOutput)
 }
 
+func (i *DashboardPermission) ToOutput(ctx context.Context) pulumix.Output[*DashboardPermission] {
+	return pulumix.Output[*DashboardPermission]{
+		OutputState: i.ToDashboardPermissionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DashboardPermissionArrayInput is an input type that accepts DashboardPermissionArray and DashboardPermissionArrayOutput values.
 // You can construct a concrete instance of `DashboardPermissionArrayInput` via:
 //
@@ -227,6 +245,12 @@ func (i DashboardPermissionArray) ToDashboardPermissionArrayOutput() DashboardPe
 
 func (i DashboardPermissionArray) ToDashboardPermissionArrayOutputWithContext(ctx context.Context) DashboardPermissionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DashboardPermissionArrayOutput)
+}
+
+func (i DashboardPermissionArray) ToOutput(ctx context.Context) pulumix.Output[[]*DashboardPermission] {
+	return pulumix.Output[[]*DashboardPermission]{
+		OutputState: i.ToDashboardPermissionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DashboardPermissionMapInput is an input type that accepts DashboardPermissionMap and DashboardPermissionMapOutput values.
@@ -254,6 +278,12 @@ func (i DashboardPermissionMap) ToDashboardPermissionMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(DashboardPermissionMapOutput)
 }
 
+func (i DashboardPermissionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DashboardPermission] {
+	return pulumix.Output[map[string]*DashboardPermission]{
+		OutputState: i.ToDashboardPermissionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DashboardPermissionOutput struct{ *pulumi.OutputState }
 
 func (DashboardPermissionOutput) ElementType() reflect.Type {
@@ -268,6 +298,12 @@ func (o DashboardPermissionOutput) ToDashboardPermissionOutputWithContext(ctx co
 	return o
 }
 
+func (o DashboardPermissionOutput) ToOutput(ctx context.Context) pulumix.Output[*DashboardPermission] {
+	return pulumix.Output[*DashboardPermission]{
+		OutputState: o.OutputState,
+	}
+}
+
 // ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
 //
 // Deprecated: use `dashboard_uid` instead
@@ -278,6 +314,11 @@ func (o DashboardPermissionOutput) DashboardId() pulumi.IntOutput {
 // UID of the dashboard to apply permissions to.
 func (o DashboardPermissionOutput) DashboardUid() pulumi.StringOutput {
 	return o.ApplyT(func(v *DashboardPermission) pulumi.StringOutput { return v.DashboardUid }).(pulumi.StringOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o DashboardPermissionOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DashboardPermission) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // The permission items to add/update. Items that are omitted from the list will be removed.
@@ -299,6 +340,12 @@ func (o DashboardPermissionArrayOutput) ToDashboardPermissionArrayOutputWithCont
 	return o
 }
 
+func (o DashboardPermissionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DashboardPermission] {
+	return pulumix.Output[[]*DashboardPermission]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DashboardPermissionArrayOutput) Index(i pulumi.IntInput) DashboardPermissionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DashboardPermission {
 		return vs[0].([]*DashboardPermission)[vs[1].(int)]
@@ -317,6 +364,12 @@ func (o DashboardPermissionMapOutput) ToDashboardPermissionMapOutput() Dashboard
 
 func (o DashboardPermissionMapOutput) ToDashboardPermissionMapOutputWithContext(ctx context.Context) DashboardPermissionMapOutput {
 	return o
+}
+
+func (o DashboardPermissionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DashboardPermission] {
+	return pulumix.Output[map[string]*DashboardPermission]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DashboardPermissionMapOutput) MapIndex(k pulumi.StringInput) DashboardPermissionOutput {

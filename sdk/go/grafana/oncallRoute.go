@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/routes/)
@@ -117,7 +119,7 @@ func NewOncallRoute(ctx *pulumi.Context,
 	if args.RoutingRegex == nil {
 		return nil, errors.New("invalid value for required argument 'RoutingRegex'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource OncallRoute
 	err := ctx.RegisterResource("grafana:index/oncallRoute:OncallRoute", name, args, &resource, opts...)
 	if err != nil {
@@ -243,6 +245,12 @@ func (i *OncallRoute) ToOncallRouteOutputWithContext(ctx context.Context) Oncall
 	return pulumi.ToOutputWithContext(ctx, i).(OncallRouteOutput)
 }
 
+func (i *OncallRoute) ToOutput(ctx context.Context) pulumix.Output[*OncallRoute] {
+	return pulumix.Output[*OncallRoute]{
+		OutputState: i.ToOncallRouteOutputWithContext(ctx).OutputState,
+	}
+}
+
 // OncallRouteArrayInput is an input type that accepts OncallRouteArray and OncallRouteArrayOutput values.
 // You can construct a concrete instance of `OncallRouteArrayInput` via:
 //
@@ -266,6 +274,12 @@ func (i OncallRouteArray) ToOncallRouteArrayOutput() OncallRouteArrayOutput {
 
 func (i OncallRouteArray) ToOncallRouteArrayOutputWithContext(ctx context.Context) OncallRouteArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OncallRouteArrayOutput)
+}
+
+func (i OncallRouteArray) ToOutput(ctx context.Context) pulumix.Output[[]*OncallRoute] {
+	return pulumix.Output[[]*OncallRoute]{
+		OutputState: i.ToOncallRouteArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // OncallRouteMapInput is an input type that accepts OncallRouteMap and OncallRouteMapOutput values.
@@ -293,6 +307,12 @@ func (i OncallRouteMap) ToOncallRouteMapOutputWithContext(ctx context.Context) O
 	return pulumi.ToOutputWithContext(ctx, i).(OncallRouteMapOutput)
 }
 
+func (i OncallRouteMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OncallRoute] {
+	return pulumix.Output[map[string]*OncallRoute]{
+		OutputState: i.ToOncallRouteMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type OncallRouteOutput struct{ *pulumi.OutputState }
 
 func (OncallRouteOutput) ElementType() reflect.Type {
@@ -305,6 +325,12 @@ func (o OncallRouteOutput) ToOncallRouteOutput() OncallRouteOutput {
 
 func (o OncallRouteOutput) ToOncallRouteOutputWithContext(ctx context.Context) OncallRouteOutput {
 	return o
+}
+
+func (o OncallRouteOutput) ToOutput(ctx context.Context) pulumix.Output[*OncallRoute] {
+	return pulumix.Output[*OncallRoute]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of the escalation chain.
@@ -361,6 +387,12 @@ func (o OncallRouteArrayOutput) ToOncallRouteArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o OncallRouteArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OncallRoute] {
+	return pulumix.Output[[]*OncallRoute]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o OncallRouteArrayOutput) Index(i pulumi.IntInput) OncallRouteOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OncallRoute {
 		return vs[0].([]*OncallRoute)[vs[1].(int)]
@@ -379,6 +411,12 @@ func (o OncallRouteMapOutput) ToOncallRouteMapOutput() OncallRouteMapOutput {
 
 func (o OncallRouteMapOutput) ToOncallRouteMapOutputWithContext(ctx context.Context) OncallRouteMapOutput {
 	return o
+}
+
+func (o OncallRouteMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OncallRoute] {
+	return pulumix.Output[map[string]*OncallRoute]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o OncallRouteMapOutput) MapIndex(k pulumi.StringInput) OncallRouteOutput {

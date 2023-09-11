@@ -4,6 +4,7 @@
 package grafana
 
 import (
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -34,7 +35,7 @@ import (
 //
 // ```
 func GetOrganizationPreferences(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetOrganizationPreferencesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOrganizationPreferencesResult
 	err := ctx.Invoke("grafana:index/getOrganizationPreferences:getOrganizationPreferences", nil, &rv, opts...)
 	if err != nil {

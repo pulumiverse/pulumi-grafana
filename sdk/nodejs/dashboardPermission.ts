@@ -84,6 +84,10 @@ export class DashboardPermission extends pulumi.CustomResource {
      */
     public readonly dashboardUid!: pulumi.Output<string>;
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
+    /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
     public readonly permissions!: pulumi.Output<outputs.DashboardPermissionPermission[]>;
@@ -103,6 +107,7 @@ export class DashboardPermission extends pulumi.CustomResource {
             const state = argsOrState as DashboardPermissionState | undefined;
             resourceInputs["dashboardId"] = state ? state.dashboardId : undefined;
             resourceInputs["dashboardUid"] = state ? state.dashboardUid : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["permissions"] = state ? state.permissions : undefined;
         } else {
             const args = argsOrState as DashboardPermissionArgs | undefined;
@@ -111,6 +116,7 @@ export class DashboardPermission extends pulumi.CustomResource {
             }
             resourceInputs["dashboardId"] = args ? args.dashboardId : undefined;
             resourceInputs["dashboardUid"] = args ? args.dashboardUid : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["permissions"] = args ? args.permissions : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -133,6 +139,10 @@ export interface DashboardPermissionState {
      */
     dashboardUid?: pulumi.Input<string>;
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
+    /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
     permissions?: pulumi.Input<pulumi.Input<inputs.DashboardPermissionPermission>[]>;
@@ -152,6 +162,10 @@ export interface DashboardPermissionArgs {
      * UID of the dashboard to apply permissions to.
      */
     dashboardUid?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */

@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages Grafana library panels.
@@ -70,7 +72,7 @@ type LibraryPanel struct {
 	// Description of the library panel.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// ID of the folder where the library panel is stored.
-	FolderId pulumi.IntPtrOutput `pulumi:"folderId"`
+	FolderId pulumi.StringPtrOutput `pulumi:"folderId"`
 	// Name of the folder containing the library panel.
 	FolderName pulumi.StringOutput `pulumi:"folderName"`
 	// Unique ID (UID) of the folder containing the library panel.
@@ -103,7 +105,7 @@ func NewLibraryPanel(ctx *pulumi.Context,
 	if args.ModelJson == nil {
 		return nil, errors.New("invalid value for required argument 'ModelJson'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LibraryPanel
 	err := ctx.RegisterResource("grafana:index/libraryPanel:LibraryPanel", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +135,7 @@ type libraryPanelState struct {
 	// Description of the library panel.
 	Description *string `pulumi:"description"`
 	// ID of the folder where the library panel is stored.
-	FolderId *int `pulumi:"folderId"`
+	FolderId *string `pulumi:"folderId"`
 	// Name of the folder containing the library panel.
 	FolderName *string `pulumi:"folderName"`
 	// Unique ID (UID) of the folder containing the library panel.
@@ -164,7 +166,7 @@ type LibraryPanelState struct {
 	// Description of the library panel.
 	Description pulumi.StringPtrInput
 	// ID of the folder where the library panel is stored.
-	FolderId pulumi.IntPtrInput
+	FolderId pulumi.StringPtrInput
 	// Name of the folder containing the library panel.
 	FolderName pulumi.StringPtrInput
 	// Unique ID (UID) of the folder containing the library panel.
@@ -193,7 +195,7 @@ func (LibraryPanelState) ElementType() reflect.Type {
 
 type libraryPanelArgs struct {
 	// ID of the folder where the library panel is stored.
-	FolderId *int `pulumi:"folderId"`
+	FolderId *string `pulumi:"folderId"`
 	// The JSON model for the library panel.
 	ModelJson string `pulumi:"modelJson"`
 	// Name of the library panel.
@@ -207,7 +209,7 @@ type libraryPanelArgs struct {
 // The set of arguments for constructing a LibraryPanel resource.
 type LibraryPanelArgs struct {
 	// ID of the folder where the library panel is stored.
-	FolderId pulumi.IntPtrInput
+	FolderId pulumi.StringPtrInput
 	// The JSON model for the library panel.
 	ModelJson pulumi.StringInput
 	// Name of the library panel.
@@ -241,6 +243,12 @@ func (i *LibraryPanel) ToLibraryPanelOutputWithContext(ctx context.Context) Libr
 	return pulumi.ToOutputWithContext(ctx, i).(LibraryPanelOutput)
 }
 
+func (i *LibraryPanel) ToOutput(ctx context.Context) pulumix.Output[*LibraryPanel] {
+	return pulumix.Output[*LibraryPanel]{
+		OutputState: i.ToLibraryPanelOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LibraryPanelArrayInput is an input type that accepts LibraryPanelArray and LibraryPanelArrayOutput values.
 // You can construct a concrete instance of `LibraryPanelArrayInput` via:
 //
@@ -264,6 +272,12 @@ func (i LibraryPanelArray) ToLibraryPanelArrayOutput() LibraryPanelArrayOutput {
 
 func (i LibraryPanelArray) ToLibraryPanelArrayOutputWithContext(ctx context.Context) LibraryPanelArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LibraryPanelArrayOutput)
+}
+
+func (i LibraryPanelArray) ToOutput(ctx context.Context) pulumix.Output[[]*LibraryPanel] {
+	return pulumix.Output[[]*LibraryPanel]{
+		OutputState: i.ToLibraryPanelArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LibraryPanelMapInput is an input type that accepts LibraryPanelMap and LibraryPanelMapOutput values.
@@ -291,6 +305,12 @@ func (i LibraryPanelMap) ToLibraryPanelMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(LibraryPanelMapOutput)
 }
 
+func (i LibraryPanelMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LibraryPanel] {
+	return pulumix.Output[map[string]*LibraryPanel]{
+		OutputState: i.ToLibraryPanelMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LibraryPanelOutput struct{ *pulumi.OutputState }
 
 func (LibraryPanelOutput) ElementType() reflect.Type {
@@ -303,6 +323,12 @@ func (o LibraryPanelOutput) ToLibraryPanelOutput() LibraryPanelOutput {
 
 func (o LibraryPanelOutput) ToLibraryPanelOutputWithContext(ctx context.Context) LibraryPanelOutput {
 	return o
+}
+
+func (o LibraryPanelOutput) ToOutput(ctx context.Context) pulumix.Output[*LibraryPanel] {
+	return pulumix.Output[*LibraryPanel]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Timestamp when the library panel was created.
@@ -321,8 +347,8 @@ func (o LibraryPanelOutput) Description() pulumi.StringOutput {
 }
 
 // ID of the folder where the library panel is stored.
-func (o LibraryPanelOutput) FolderId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *LibraryPanel) pulumi.IntPtrOutput { return v.FolderId }).(pulumi.IntPtrOutput)
+func (o LibraryPanelOutput) FolderId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LibraryPanel) pulumi.StringPtrOutput { return v.FolderId }).(pulumi.StringPtrOutput)
 }
 
 // Name of the folder containing the library panel.
@@ -389,6 +415,12 @@ func (o LibraryPanelArrayOutput) ToLibraryPanelArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o LibraryPanelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LibraryPanel] {
+	return pulumix.Output[[]*LibraryPanel]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LibraryPanelArrayOutput) Index(i pulumi.IntInput) LibraryPanelOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LibraryPanel {
 		return vs[0].([]*LibraryPanel)[vs[1].(int)]
@@ -407,6 +439,12 @@ func (o LibraryPanelMapOutput) ToLibraryPanelMapOutput() LibraryPanelMapOutput {
 
 func (o LibraryPanelMapOutput) ToLibraryPanelMapOutputWithContext(ctx context.Context) LibraryPanelMapOutput {
 	return o
+}
+
+func (o LibraryPanelMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LibraryPanel] {
+	return pulumix.Output[map[string]*LibraryPanel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LibraryPanelMapOutput) MapIndex(k pulumi.StringInput) LibraryPanelOutput {

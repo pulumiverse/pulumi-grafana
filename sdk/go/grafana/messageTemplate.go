@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages Grafana Alerting message templates.
@@ -70,7 +72,7 @@ func NewMessageTemplate(ctx *pulumi.Context,
 	if args.Template == nil {
 		return nil, errors.New("invalid value for required argument 'Template'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MessageTemplate
 	err := ctx.RegisterResource("grafana:index/messageTemplate:MessageTemplate", name, args, &resource, opts...)
 	if err != nil {
@@ -148,6 +150,12 @@ func (i *MessageTemplate) ToMessageTemplateOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(MessageTemplateOutput)
 }
 
+func (i *MessageTemplate) ToOutput(ctx context.Context) pulumix.Output[*MessageTemplate] {
+	return pulumix.Output[*MessageTemplate]{
+		OutputState: i.ToMessageTemplateOutputWithContext(ctx).OutputState,
+	}
+}
+
 // MessageTemplateArrayInput is an input type that accepts MessageTemplateArray and MessageTemplateArrayOutput values.
 // You can construct a concrete instance of `MessageTemplateArrayInput` via:
 //
@@ -171,6 +179,12 @@ func (i MessageTemplateArray) ToMessageTemplateArrayOutput() MessageTemplateArra
 
 func (i MessageTemplateArray) ToMessageTemplateArrayOutputWithContext(ctx context.Context) MessageTemplateArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MessageTemplateArrayOutput)
+}
+
+func (i MessageTemplateArray) ToOutput(ctx context.Context) pulumix.Output[[]*MessageTemplate] {
+	return pulumix.Output[[]*MessageTemplate]{
+		OutputState: i.ToMessageTemplateArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // MessageTemplateMapInput is an input type that accepts MessageTemplateMap and MessageTemplateMapOutput values.
@@ -198,6 +212,12 @@ func (i MessageTemplateMap) ToMessageTemplateMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(MessageTemplateMapOutput)
 }
 
+func (i MessageTemplateMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MessageTemplate] {
+	return pulumix.Output[map[string]*MessageTemplate]{
+		OutputState: i.ToMessageTemplateMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type MessageTemplateOutput struct{ *pulumi.OutputState }
 
 func (MessageTemplateOutput) ElementType() reflect.Type {
@@ -210,6 +230,12 @@ func (o MessageTemplateOutput) ToMessageTemplateOutput() MessageTemplateOutput {
 
 func (o MessageTemplateOutput) ToMessageTemplateOutputWithContext(ctx context.Context) MessageTemplateOutput {
 	return o
+}
+
+func (o MessageTemplateOutput) ToOutput(ctx context.Context) pulumix.Output[*MessageTemplate] {
+	return pulumix.Output[*MessageTemplate]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The name of the message template.
@@ -236,6 +262,12 @@ func (o MessageTemplateArrayOutput) ToMessageTemplateArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o MessageTemplateArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MessageTemplate] {
+	return pulumix.Output[[]*MessageTemplate]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o MessageTemplateArrayOutput) Index(i pulumi.IntInput) MessageTemplateOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MessageTemplate {
 		return vs[0].([]*MessageTemplate)[vs[1].(int)]
@@ -254,6 +286,12 @@ func (o MessageTemplateMapOutput) ToMessageTemplateMapOutput() MessageTemplateMa
 
 func (o MessageTemplateMapOutput) ToMessageTemplateMapOutputWithContext(ctx context.Context) MessageTemplateMapOutput {
 	return o
+}
+
+func (o MessageTemplateMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MessageTemplate] {
+	return pulumix.Output[map[string]*MessageTemplate]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o MessageTemplateMapOutput) MapIndex(k pulumi.StringInput) MessageTemplateOutput {

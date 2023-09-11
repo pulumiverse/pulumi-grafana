@@ -71,7 +71,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// ID of the folder where the library panel is stored.
         /// </summary>
         [Output("folderId")]
-        public Output<int?> FolderId { get; private set; } = null!;
+        public Output<string?> FolderId { get; private set; } = null!;
 
         /// <summary>
         /// Name of the folder containing the library panel.
@@ -184,7 +184,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// ID of the folder where the library panel is stored.
         /// </summary>
         [Input("folderId")]
-        public Input<int>? FolderId { get; set; }
+        public Input<string>? FolderId { get; set; }
 
         /// <summary>
         /// The JSON model for the library panel.
@@ -246,7 +246,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// ID of the folder where the library panel is stored.
         /// </summary>
         [Input("folderId")]
-        public Input<int>? FolderId { get; set; }
+        public Input<string>? FolderId { get; set; }
 
         /// <summary>
         /// Name of the folder containing the library panel.

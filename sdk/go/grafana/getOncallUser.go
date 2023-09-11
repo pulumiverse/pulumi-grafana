@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func GetOncallUser(ctx *pulumi.Context, args *GetOncallUserArgs, opts ...pulumi.InvokeOption) (*GetOncallUserResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOncallUserResult
 	err := ctx.Invoke("grafana:index/getOncallUser:getOncallUser", args, &rv, opts...)
 	if err != nil {
@@ -101,6 +103,12 @@ func (o GetOncallUserResultOutput) ToGetOncallUserResultOutput() GetOncallUserRe
 
 func (o GetOncallUserResultOutput) ToGetOncallUserResultOutputWithContext(ctx context.Context) GetOncallUserResultOutput {
 	return o
+}
+
+func (o GetOncallUserResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOncallUserResult] {
+	return pulumix.Output[GetOncallUserResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The email of the user.

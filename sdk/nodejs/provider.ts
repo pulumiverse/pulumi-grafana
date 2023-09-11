@@ -36,7 +36,8 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly caCert!: pulumi.Output<string | undefined>;
     /**
-     * API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+     * Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+     * variable.
      */
     public readonly cloudApiKey!: pulumi.Output<string | undefined>;
     /**
@@ -130,7 +131,8 @@ export interface ProviderArgs {
      */
     caCert?: pulumi.Input<string>;
     /**
-     * API key for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment variable.
+     * Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+     * variable.
      */
     cloudApiKey?: pulumi.Input<string>;
     /**
@@ -150,8 +152,9 @@ export interface ProviderArgs {
      */
     oncallUrl?: pulumi.Input<string>;
     /**
-     * The default organization id to operate on within grafana. For resources that have an `org_id` attribute, the
-     * resource-level attribute has priority. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
+     * Deprecated: Use the `org_id` attributes on resources instead.
+     *
+     * @deprecated Use the `org_id` attributes on resources instead.
      */
     orgId?: pulumi.Input<number>;
     /**

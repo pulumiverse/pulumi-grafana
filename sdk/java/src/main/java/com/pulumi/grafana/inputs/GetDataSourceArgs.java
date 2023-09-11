@@ -37,6 +37,21 @@ public final class GetDataSourceArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Import(name="orgId")
+    private @Nullable Output<String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<Output<String>> orgId() {
+        return Optional.ofNullable(this.orgId);
+    }
+
     @Import(name="uid")
     private @Nullable Output<String> uid;
 
@@ -49,6 +64,7 @@ public final class GetDataSourceArgs extends com.pulumi.resources.InvokeArgs {
     private GetDataSourceArgs(GetDataSourceArgs $) {
         this.id = $.id;
         this.name = $.name;
+        this.orgId = $.orgId;
         this.uid = $.uid;
     }
 
@@ -98,6 +114,27 @@ public final class GetDataSourceArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(@Nullable Output<String> orgId) {
+            $.orgId = orgId;
+            return this;
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(String orgId) {
+            return orgId(Output.of(orgId));
         }
 
         public Builder uid(@Nullable Output<String> uid) {

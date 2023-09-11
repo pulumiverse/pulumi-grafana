@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // A job defines the queries and model parameters for a machine learning task.
@@ -57,7 +59,7 @@ func NewMachineLearningJob(ctx *pulumi.Context,
 	if args.QueryParams == nil {
 		return nil, errors.New("invalid value for required argument 'QueryParams'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MachineLearningJob
 	err := ctx.RegisterResource("grafana:index/machineLearningJob:MachineLearningJob", name, args, &resource, opts...)
 	if err != nil {
@@ -215,6 +217,12 @@ func (i *MachineLearningJob) ToMachineLearningJobOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningJobOutput)
 }
 
+func (i *MachineLearningJob) ToOutput(ctx context.Context) pulumix.Output[*MachineLearningJob] {
+	return pulumix.Output[*MachineLearningJob]{
+		OutputState: i.ToMachineLearningJobOutputWithContext(ctx).OutputState,
+	}
+}
+
 // MachineLearningJobArrayInput is an input type that accepts MachineLearningJobArray and MachineLearningJobArrayOutput values.
 // You can construct a concrete instance of `MachineLearningJobArrayInput` via:
 //
@@ -238,6 +246,12 @@ func (i MachineLearningJobArray) ToMachineLearningJobArrayOutput() MachineLearni
 
 func (i MachineLearningJobArray) ToMachineLearningJobArrayOutputWithContext(ctx context.Context) MachineLearningJobArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningJobArrayOutput)
+}
+
+func (i MachineLearningJobArray) ToOutput(ctx context.Context) pulumix.Output[[]*MachineLearningJob] {
+	return pulumix.Output[[]*MachineLearningJob]{
+		OutputState: i.ToMachineLearningJobArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // MachineLearningJobMapInput is an input type that accepts MachineLearningJobMap and MachineLearningJobMapOutput values.
@@ -265,6 +279,12 @@ func (i MachineLearningJobMap) ToMachineLearningJobMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(MachineLearningJobMapOutput)
 }
 
+func (i MachineLearningJobMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MachineLearningJob] {
+	return pulumix.Output[map[string]*MachineLearningJob]{
+		OutputState: i.ToMachineLearningJobMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type MachineLearningJobOutput struct{ *pulumi.OutputState }
 
 func (MachineLearningJobOutput) ElementType() reflect.Type {
@@ -277,6 +297,12 @@ func (o MachineLearningJobOutput) ToMachineLearningJobOutput() MachineLearningJo
 
 func (o MachineLearningJobOutput) ToMachineLearningJobOutputWithContext(ctx context.Context) MachineLearningJobOutput {
 	return o
+}
+
+func (o MachineLearningJobOutput) ToOutput(ctx context.Context) pulumix.Output[*MachineLearningJob] {
+	return pulumix.Output[*MachineLearningJob]{
+		OutputState: o.OutputState,
+	}
 }
 
 // An object representing the custom labels added on the forecast.
@@ -353,6 +379,12 @@ func (o MachineLearningJobArrayOutput) ToMachineLearningJobArrayOutputWithContex
 	return o
 }
 
+func (o MachineLearningJobArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MachineLearningJob] {
+	return pulumix.Output[[]*MachineLearningJob]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o MachineLearningJobArrayOutput) Index(i pulumi.IntInput) MachineLearningJobOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MachineLearningJob {
 		return vs[0].([]*MachineLearningJob)[vs[1].(int)]
@@ -371,6 +403,12 @@ func (o MachineLearningJobMapOutput) ToMachineLearningJobMapOutput() MachineLear
 
 func (o MachineLearningJobMapOutput) ToMachineLearningJobMapOutputWithContext(ctx context.Context) MachineLearningJobMapOutput {
 	return o
+}
+
+func (o MachineLearningJobMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MachineLearningJob] {
+	return pulumix.Output[map[string]*MachineLearningJob]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o MachineLearningJobMapOutput) MapIndex(k pulumi.StringInput) MachineLearningJobOutput {

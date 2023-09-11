@@ -17,14 +17,18 @@ __all__ = ['FolderPermissionArgs', 'FolderPermission']
 class FolderPermissionArgs:
     def __init__(__self__, *,
                  folder_uid: pulumi.Input[str],
-                 permissions: pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]]):
+                 permissions: pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]],
+                 org_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FolderPermission resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder.
         :param pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         pulumi.set(__self__, "folder_uid", folder_uid)
         pulumi.set(__self__, "permissions", permissions)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
 
     @property
     @pulumi.getter(name="folderUid")
@@ -50,19 +54,35 @@ class FolderPermissionArgs:
     def permissions(self, value: pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]]):
         pulumi.set(self, "permissions", value)
 
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
+
 
 @pulumi.input_type
 class _FolderPermissionState:
     def __init__(__self__, *,
                  folder_uid: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]]] = None):
         """
         Input properties used for looking up and filtering FolderPermission resources.
         :param pulumi.Input[str] folder_uid: The UID of the folder.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         if folder_uid is not None:
             pulumi.set(__self__, "folder_uid", folder_uid)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if permissions is not None:
             pulumi.set(__self__, "permissions", permissions)
 
@@ -77,6 +97,18 @@ class _FolderPermissionState:
     @folder_uid.setter
     def folder_uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "folder_uid", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter
@@ -97,6 +129,7 @@ class FolderPermission(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  folder_uid: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FolderPermissionPermissionArgs']]]]] = None,
                  __props__=None):
         """
@@ -133,6 +166,7 @@ class FolderPermission(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FolderPermissionPermissionArgs']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         ...
@@ -188,6 +222,7 @@ class FolderPermission(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  folder_uid: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FolderPermissionPermissionArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -201,6 +236,7 @@ class FolderPermission(pulumi.CustomResource):
             if folder_uid is None and not opts.urn:
                 raise TypeError("Missing required property 'folder_uid'")
             __props__.__dict__["folder_uid"] = folder_uid
+            __props__.__dict__["org_id"] = org_id
             if permissions is None and not opts.urn:
                 raise TypeError("Missing required property 'permissions'")
             __props__.__dict__["permissions"] = permissions
@@ -215,6 +251,7 @@ class FolderPermission(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             folder_uid: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
             permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FolderPermissionPermissionArgs']]]]] = None) -> 'FolderPermission':
         """
         Get an existing FolderPermission resource's state with the given name, id, and optional extra
@@ -224,6 +261,7 @@ class FolderPermission(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FolderPermissionPermissionArgs']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -231,6 +269,7 @@ class FolderPermission(pulumi.CustomResource):
         __props__ = _FolderPermissionState.__new__(_FolderPermissionState)
 
         __props__.__dict__["folder_uid"] = folder_uid
+        __props__.__dict__["org_id"] = org_id
         __props__.__dict__["permissions"] = permissions
         return FolderPermission(resource_name, opts=opts, __props__=__props__)
 
@@ -241,6 +280,14 @@ class FolderPermission(pulumi.CustomResource):
         The UID of the folder.
         """
         return pulumi.get(self, "folder_uid")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter

@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [Official documentation](https://grafana.com/docs/oncall/latest/escalation-chains-and-routes/)
@@ -125,7 +127,7 @@ func NewOncallEscalation(ctx *pulumi.Context,
 	if args.Position == nil {
 		return nil, errors.New("invalid value for required argument 'Position'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource OncallEscalation
 	err := ctx.RegisterResource("grafana:index/oncallEscalation:OncallEscalation", name, args, &resource, opts...)
 	if err != nil {
@@ -283,6 +285,12 @@ func (i *OncallEscalation) ToOncallEscalationOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(OncallEscalationOutput)
 }
 
+func (i *OncallEscalation) ToOutput(ctx context.Context) pulumix.Output[*OncallEscalation] {
+	return pulumix.Output[*OncallEscalation]{
+		OutputState: i.ToOncallEscalationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // OncallEscalationArrayInput is an input type that accepts OncallEscalationArray and OncallEscalationArrayOutput values.
 // You can construct a concrete instance of `OncallEscalationArrayInput` via:
 //
@@ -306,6 +314,12 @@ func (i OncallEscalationArray) ToOncallEscalationArrayOutput() OncallEscalationA
 
 func (i OncallEscalationArray) ToOncallEscalationArrayOutputWithContext(ctx context.Context) OncallEscalationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OncallEscalationArrayOutput)
+}
+
+func (i OncallEscalationArray) ToOutput(ctx context.Context) pulumix.Output[[]*OncallEscalation] {
+	return pulumix.Output[[]*OncallEscalation]{
+		OutputState: i.ToOncallEscalationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // OncallEscalationMapInput is an input type that accepts OncallEscalationMap and OncallEscalationMapOutput values.
@@ -333,6 +347,12 @@ func (i OncallEscalationMap) ToOncallEscalationMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(OncallEscalationMapOutput)
 }
 
+func (i OncallEscalationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OncallEscalation] {
+	return pulumix.Output[map[string]*OncallEscalation]{
+		OutputState: i.ToOncallEscalationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type OncallEscalationOutput struct{ *pulumi.OutputState }
 
 func (OncallEscalationOutput) ElementType() reflect.Type {
@@ -345,6 +365,12 @@ func (o OncallEscalationOutput) ToOncallEscalationOutput() OncallEscalationOutpu
 
 func (o OncallEscalationOutput) ToOncallEscalationOutputWithContext(ctx context.Context) OncallEscalationOutput {
 	return o
+}
+
+func (o OncallEscalationOutput) ToOutput(ctx context.Context) pulumix.Output[*OncallEscalation] {
+	return pulumix.Output[*OncallEscalation]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of an Action for triggerAction type step.
@@ -421,6 +447,12 @@ func (o OncallEscalationArrayOutput) ToOncallEscalationArrayOutputWithContext(ct
 	return o
 }
 
+func (o OncallEscalationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OncallEscalation] {
+	return pulumix.Output[[]*OncallEscalation]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o OncallEscalationArrayOutput) Index(i pulumi.IntInput) OncallEscalationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OncallEscalation {
 		return vs[0].([]*OncallEscalation)[vs[1].(int)]
@@ -439,6 +471,12 @@ func (o OncallEscalationMapOutput) ToOncallEscalationMapOutput() OncallEscalatio
 
 func (o OncallEscalationMapOutput) ToOncallEscalationMapOutputWithContext(ctx context.Context) OncallEscalationMapOutput {
 	return o
+}
+
+func (o OncallEscalationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OncallEscalation] {
+	return pulumix.Output[map[string]*OncallEscalation]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o OncallEscalationMapOutput) MapIndex(k pulumi.StringInput) OncallEscalationOutput {
