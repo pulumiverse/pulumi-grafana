@@ -153,6 +153,10 @@ class DataSourcePermission(pulumi.CustomResource):
                 "accessKey": "123",
                 "secretKey": "456",
             }))
+        user = grafana.User("user",
+            email="test-ds-permissions@example.com",
+            login="test-ds-permissions",
+            password="hunter2")
         foo_permissions = grafana.DataSourcePermission("fooPermissions",
             datasource_id=foo.id,
             permissions=[
@@ -161,7 +165,7 @@ class DataSourcePermission(pulumi.CustomResource):
                     permission="Query",
                 ),
                 grafana.DataSourcePermissionPermissionArgs(
-                    user_id=3,
+                    user_id=user.id,
                     permission="Edit",
                 ),
                 grafana.DataSourcePermissionPermissionArgs(
@@ -204,6 +208,10 @@ class DataSourcePermission(pulumi.CustomResource):
                 "accessKey": "123",
                 "secretKey": "456",
             }))
+        user = grafana.User("user",
+            email="test-ds-permissions@example.com",
+            login="test-ds-permissions",
+            password="hunter2")
         foo_permissions = grafana.DataSourcePermission("fooPermissions",
             datasource_id=foo.id,
             permissions=[
@@ -212,7 +220,7 @@ class DataSourcePermission(pulumi.CustomResource):
                     permission="Query",
                 ),
                 grafana.DataSourcePermissionPermissionArgs(
-                    user_id=3,
+                    user_id=user.id,
                     permission="Edit",
                 ),
                 grafana.DataSourcePermissionPermissionArgs(

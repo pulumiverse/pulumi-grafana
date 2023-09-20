@@ -71,7 +71,7 @@ import (
 //				Teams: pulumi.StringArray{
 //					testTeam.ID(),
 //				},
-//				ServiceAccounts: pulumi.IntArray{
+//				ServiceAccounts: pulumi.StringArray{
 //					testSa.ID(),
 //				},
 //			})
@@ -89,7 +89,7 @@ type RoleAssignment struct {
 	// Grafana RBAC role UID.
 	RoleUid pulumi.StringOutput `pulumi:"roleUid"`
 	// IDs of service accounts that the role should be assigned to.
-	ServiceAccounts pulumi.IntArrayOutput `pulumi:"serviceAccounts"`
+	ServiceAccounts pulumi.StringArrayOutput `pulumi:"serviceAccounts"`
 	// IDs of teams that the role should be assigned to.
 	Teams pulumi.StringArrayOutput `pulumi:"teams"`
 	// IDs of users that the role should be assigned to.
@@ -132,7 +132,7 @@ type roleAssignmentState struct {
 	// Grafana RBAC role UID.
 	RoleUid *string `pulumi:"roleUid"`
 	// IDs of service accounts that the role should be assigned to.
-	ServiceAccounts []int `pulumi:"serviceAccounts"`
+	ServiceAccounts []string `pulumi:"serviceAccounts"`
 	// IDs of teams that the role should be assigned to.
 	Teams []string `pulumi:"teams"`
 	// IDs of users that the role should be assigned to.
@@ -143,7 +143,7 @@ type RoleAssignmentState struct {
 	// Grafana RBAC role UID.
 	RoleUid pulumi.StringPtrInput
 	// IDs of service accounts that the role should be assigned to.
-	ServiceAccounts pulumi.IntArrayInput
+	ServiceAccounts pulumi.StringArrayInput
 	// IDs of teams that the role should be assigned to.
 	Teams pulumi.StringArrayInput
 	// IDs of users that the role should be assigned to.
@@ -158,7 +158,7 @@ type roleAssignmentArgs struct {
 	// Grafana RBAC role UID.
 	RoleUid string `pulumi:"roleUid"`
 	// IDs of service accounts that the role should be assigned to.
-	ServiceAccounts []int `pulumi:"serviceAccounts"`
+	ServiceAccounts []string `pulumi:"serviceAccounts"`
 	// IDs of teams that the role should be assigned to.
 	Teams []string `pulumi:"teams"`
 	// IDs of users that the role should be assigned to.
@@ -170,7 +170,7 @@ type RoleAssignmentArgs struct {
 	// Grafana RBAC role UID.
 	RoleUid pulumi.StringInput
 	// IDs of service accounts that the role should be assigned to.
-	ServiceAccounts pulumi.IntArrayInput
+	ServiceAccounts pulumi.StringArrayInput
 	// IDs of teams that the role should be assigned to.
 	Teams pulumi.StringArrayInput
 	// IDs of users that the role should be assigned to.
@@ -294,8 +294,8 @@ func (o RoleAssignmentOutput) RoleUid() pulumi.StringOutput {
 }
 
 // IDs of service accounts that the role should be assigned to.
-func (o RoleAssignmentOutput) ServiceAccounts() pulumi.IntArrayOutput {
-	return o.ApplyT(func(v *RoleAssignment) pulumi.IntArrayOutput { return v.ServiceAccounts }).(pulumi.IntArrayOutput)
+func (o RoleAssignmentOutput) ServiceAccounts() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RoleAssignment) pulumi.StringArrayOutput { return v.ServiceAccounts }).(pulumi.StringArrayOutput)
 }
 
 // IDs of teams that the role should be assigned to.

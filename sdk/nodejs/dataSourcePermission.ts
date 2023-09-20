@@ -27,6 +27,11 @@ import * as utilities from "./utilities";
  *         secretKey: "456",
  *     }),
  * });
+ * const user = new grafana.User("user", {
+ *     email: "test-ds-permissions@example.com",
+ *     login: "test-ds-permissions",
+ *     password: "hunter2",
+ * });
  * const fooPermissions = new grafana.DataSourcePermission("fooPermissions", {
  *     datasourceId: foo.id,
  *     permissions: [
@@ -35,7 +40,7 @@ import * as utilities from "./utilities";
  *             permission: "Query",
  *         },
  *         {
- *             userId: 3,
+ *             userId: user.id,
  *             permission: "Edit",
  *         },
  *         {
