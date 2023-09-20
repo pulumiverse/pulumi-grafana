@@ -87,7 +87,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// IDs of service accounts that the role should be assigned to.
         /// </summary>
         [Output("serviceAccounts")]
-        public Output<ImmutableArray<int>> ServiceAccounts { get; private set; } = null!;
+        public Output<ImmutableArray<string>> ServiceAccounts { get; private set; } = null!;
 
         /// <summary>
         /// IDs of teams that the role should be assigned to.
@@ -155,14 +155,14 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string> RoleUid { get; set; } = null!;
 
         [Input("serviceAccounts")]
-        private InputList<int>? _serviceAccounts;
+        private InputList<string>? _serviceAccounts;
 
         /// <summary>
         /// IDs of service accounts that the role should be assigned to.
         /// </summary>
-        public InputList<int> ServiceAccounts
+        public InputList<string> ServiceAccounts
         {
-            get => _serviceAccounts ?? (_serviceAccounts = new InputList<int>());
+            get => _serviceAccounts ?? (_serviceAccounts = new InputList<string>());
             set => _serviceAccounts = value;
         }
 
@@ -205,14 +205,14 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? RoleUid { get; set; }
 
         [Input("serviceAccounts")]
-        private InputList<int>? _serviceAccounts;
+        private InputList<string>? _serviceAccounts;
 
         /// <summary>
         /// IDs of service accounts that the role should be assigned to.
         /// </summary>
-        public InputList<int> ServiceAccounts
+        public InputList<string> ServiceAccounts
         {
-            get => _serviceAccounts ?? (_serviceAccounts = new InputList<int>());
+            get => _serviceAccounts ?? (_serviceAccounts = new InputList<string>());
             set => _serviceAccounts = value;
         }
 

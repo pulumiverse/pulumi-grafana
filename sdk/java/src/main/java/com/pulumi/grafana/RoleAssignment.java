@@ -105,14 +105,14 @@ public class RoleAssignment extends com.pulumi.resources.CustomResource {
      * IDs of service accounts that the role should be assigned to.
      * 
      */
-    @Export(name="serviceAccounts", refs={List.class,Integer.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<Integer>> serviceAccounts;
+    @Export(name="serviceAccounts", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> serviceAccounts;
 
     /**
      * @return IDs of service accounts that the role should be assigned to.
      * 
      */
-    public Output<Optional<List<Integer>>> serviceAccounts() {
+    public Output<Optional<List<String>>> serviceAccounts() {
         return Codegen.optional(this.serviceAccounts);
     }
     /**

@@ -140,13 +140,25 @@ import (
 //
 // ```sh
 //
-//	$ pulumi import grafana:index/dataSource:DataSource by_integer_id {{datasource id}}
+//	$ pulumi import grafana:index/dataSource:DataSource by_integer_id {{datasource_id}} # To use the default provider org
 //
 // ```
 //
 // ```sh
 //
-//	$ pulumi import grafana:index/dataSource:DataSource by_uid {{datasource uid}}
+//	$ pulumi import grafana:index/dataSource:DataSource by_uid {{datasource_uid}} # To use the default provider org
+//
+// ```
+//
+// ```sh
+//
+//	$ pulumi import grafana:index/dataSource:DataSource by_integer_id {{org_id}}:{{datasource_id}} # When "org_id" is set on the resource
+//
+// ```
+//
+// ```sh
+//
+//	$ pulumi import grafana:index/dataSource:DataSource by_uid {{org_id}}:{{datasource_uid}} # When "org_id" is set on the resource
 //
 // ```
 type DataSource struct {

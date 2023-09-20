@@ -29,6 +29,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.grafana.Team;
  * import com.pulumi.grafana.DataSource;
  * import com.pulumi.grafana.DataSourceArgs;
+ * import com.pulumi.grafana.User;
+ * import com.pulumi.grafana.UserArgs;
  * import com.pulumi.grafana.DataSourcePermission;
  * import com.pulumi.grafana.DataSourcePermissionArgs;
  * import com.pulumi.grafana.inputs.DataSourcePermissionPermissionArgs;
@@ -62,6 +64,12 @@ import javax.annotation.Nullable;
  *                 )))
  *             .build());
  * 
+ *         var user = new User(&#34;user&#34;, UserArgs.builder()        
+ *             .email(&#34;test-ds-permissions@example.com&#34;)
+ *             .login(&#34;test-ds-permissions&#34;)
+ *             .password(&#34;hunter2&#34;)
+ *             .build());
+ * 
  *         var fooPermissions = new DataSourcePermission(&#34;fooPermissions&#34;, DataSourcePermissionArgs.builder()        
  *             .datasourceId(foo.id())
  *             .permissions(            
@@ -70,7 +78,7 @@ import javax.annotation.Nullable;
  *                     .permission(&#34;Query&#34;)
  *                     .build(),
  *                 DataSourcePermissionPermissionArgs.builder()
- *                     .userId(3)
+ *                     .userId(user.id())
  *                     .permission(&#34;Edit&#34;)
  *                     .build(),
  *                 DataSourcePermissionPermissionArgs.builder()

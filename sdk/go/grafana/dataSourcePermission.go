@@ -59,6 +59,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			user, err := grafana.NewUser(ctx, "user", &grafana.UserArgs{
+//				Email:    pulumi.String("test-ds-permissions@example.com"),
+//				Login:    pulumi.String("test-ds-permissions"),
+//				Password: pulumi.String("hunter2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			_, err = grafana.NewDataSourcePermission(ctx, "fooPermissions", &grafana.DataSourcePermissionArgs{
 //				DatasourceId: foo.ID(),
 //				Permissions: grafana.DataSourcePermissionPermissionArray{
@@ -67,7 +75,7 @@ import (
 //						Permission: pulumi.String("Query"),
 //					},
 //					&grafana.DataSourcePermissionPermissionArgs{
-//						UserId:     pulumi.Int(3),
+//						UserId:     user.ID(),
 //						Permission: pulumi.String("Edit"),
 //					},
 //					&grafana.DataSourcePermissionPermissionArgs{

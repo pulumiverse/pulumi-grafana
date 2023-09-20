@@ -37,13 +37,13 @@ public final class RoleAssignmentState extends com.pulumi.resources.ResourceArgs
      * 
      */
     @Import(name="serviceAccounts")
-    private @Nullable Output<List<Integer>> serviceAccounts;
+    private @Nullable Output<List<String>> serviceAccounts;
 
     /**
      * @return IDs of service accounts that the role should be assigned to.
      * 
      */
-    public Optional<Output<List<Integer>>> serviceAccounts() {
+    public Optional<Output<List<String>>> serviceAccounts() {
         return Optional.ofNullable(this.serviceAccounts);
     }
 
@@ -131,7 +131,7 @@ public final class RoleAssignmentState extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder serviceAccounts(@Nullable Output<List<Integer>> serviceAccounts) {
+        public Builder serviceAccounts(@Nullable Output<List<String>> serviceAccounts) {
             $.serviceAccounts = serviceAccounts;
             return this;
         }
@@ -142,7 +142,7 @@ public final class RoleAssignmentState extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder serviceAccounts(List<Integer> serviceAccounts) {
+        public Builder serviceAccounts(List<String> serviceAccounts) {
             return serviceAccounts(Output.of(serviceAccounts));
         }
 
@@ -152,7 +152,7 @@ public final class RoleAssignmentState extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder serviceAccounts(Integer... serviceAccounts) {
+        public Builder serviceAccounts(String... serviceAccounts) {
             return serviceAccounts(List.of(serviceAccounts));
         }
 

@@ -41,6 +41,13 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///         }),
     ///     });
     /// 
+    ///     var user = new Grafana.User("user", new()
+    ///     {
+    ///         Email = "test-ds-permissions@example.com",
+    ///         Login = "test-ds-permissions",
+    ///         Password = "hunter2",
+    ///     });
+    /// 
     ///     var fooPermissions = new Grafana.DataSourcePermission("fooPermissions", new()
     ///     {
     ///         DatasourceId = foo.Id,
@@ -53,7 +60,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///             },
     ///             new Grafana.Inputs.DataSourcePermissionPermissionArgs
     ///             {
-    ///                 UserId = 3,
+    ///                 UserId = user.Id,
     ///                 Permission = "Edit",
     ///             },
     ///             new Grafana.Inputs.DataSourcePermissionPermissionArgs
