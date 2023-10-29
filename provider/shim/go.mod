@@ -5,7 +5,7 @@ go 1.21
 require (
 	github.com/grafana/terraform-provider-grafana v1.43.1-0.20231026120418-882513ced408
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.29.0
-	github.com/lbrlabs/pulumi-grafana/provider v0.0.0-20230521192524-f36534c468ee
+	github.com/lbrlabs/pulumi-grafana/provider v0.0.0-20231029221321-5561b3334f91
 )
 
 require (
@@ -70,7 +70,7 @@ require (
 	golang.org/x/net v0.17.0 // indirect
 	golang.org/x/sys v0.13.0 // indirect
 	golang.org/x/text v0.13.0 // indirect
-	golang.org/x/time v0.1.0 // indirect
+	golang.org/x/time v0.3.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20230711160842-782d3b101e98 // indirect
 	google.golang.org/grpc v1.58.3 // indirect
