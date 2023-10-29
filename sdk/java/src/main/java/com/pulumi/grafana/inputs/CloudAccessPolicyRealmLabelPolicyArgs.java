@@ -13,9 +13,17 @@ public final class CloudAccessPolicyRealmLabelPolicyArgs extends com.pulumi.reso
 
     public static final CloudAccessPolicyRealmLabelPolicyArgs Empty = new CloudAccessPolicyRealmLabelPolicyArgs();
 
+    /**
+     * The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
+     * 
+     */
     @Import(name="selector", required=true)
     private Output<String> selector;
 
+    /**
+     * @return The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
+     * 
+     */
     public Output<String> selector() {
         return this.selector;
     }
@@ -44,11 +52,23 @@ public final class CloudAccessPolicyRealmLabelPolicyArgs extends com.pulumi.reso
             $ = new CloudAccessPolicyRealmLabelPolicyArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param selector The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
+         * 
+         * @return builder
+         * 
+         */
         public Builder selector(Output<String> selector) {
             $.selector = selector;
             return this;
         }
 
+        /**
+         * @param selector The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
+         * 
+         * @return builder
+         * 
+         */
         public Builder selector(String selector) {
             return selector(Output.of(selector));
         }

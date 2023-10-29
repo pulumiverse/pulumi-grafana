@@ -69,6 +69,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public partial class OncallSchedule : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Enable overrides via web UI (it will ignore ical*url*overrides).
+        /// </summary>
+        [Output("enableWebOverrides")]
+        public Output<bool?> EnableWebOverrides { get; private set; } = null!;
+
+        /// <summary>
         /// The URL of external iCal calendar which override primary events.
         /// </summary>
         [Output("icalUrlOverrides")]
@@ -164,6 +170,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class OncallScheduleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable overrides via web UI (it will ignore ical*url*overrides).
+        /// </summary>
+        [Input("enableWebOverrides")]
+        public Input<bool>? EnableWebOverrides { get; set; }
+
+        /// <summary>
         /// The URL of external iCal calendar which override primary events.
         /// </summary>
         [Input("icalUrlOverrides")]
@@ -225,6 +237,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class OncallScheduleState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Enable overrides via web UI (it will ignore ical*url*overrides).
+        /// </summary>
+        [Input("enableWebOverrides")]
+        public Input<bool>? EnableWebOverrides { get; set; }
+
         /// <summary>
         /// The URL of external iCal calendar which override primary events.
         /// </summary>

@@ -63,7 +63,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string> Metric { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the outlier detector.
+        /// The name of the algorithm to use ('mad' or 'dbscan').
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -164,7 +164,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string> Metric { get; set; } = null!;
 
         /// <summary>
-        /// The name of the outlier detector.
+        /// The name of the algorithm to use ('mad' or 'dbscan').
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -232,7 +232,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? Metric { get; set; }
 
         /// <summary>
-        /// The name of the outlier detector.
+        /// The name of the algorithm to use ('mad' or 'dbscan').
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

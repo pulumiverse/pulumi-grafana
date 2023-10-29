@@ -78,14 +78,14 @@ public final class MachineLearningHolidayArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * The name of the holiday.
+     * The name of the custom period.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the holiday.
+     * @return The name of the custom period.
      * 
      */
     public Optional<Output<String>> name() {
@@ -215,7 +215,7 @@ public final class MachineLearningHolidayArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param name The name of the holiday.
+         * @param name The name of the custom period.
          * 
          * @return builder
          * 
@@ -226,7 +226,7 @@ public final class MachineLearningHolidayArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param name The name of the holiday.
+         * @param name The name of the custom period.
          * 
          * @return builder
          * 

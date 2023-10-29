@@ -59,8 +59,8 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
      * correct value for each service region is cited in the [Synthetic Monitoring
-     * documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url). Note
-     * the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
+     * documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).
+     * Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
      * `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
      * managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
      * each provider ensures all providers interact with the same SM API.
@@ -102,6 +102,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["orgId"] = pulumi.output((args ? args.orgId : undefined) ?? utilities.getEnvNumber("GRAFANA_ORG_ID")).apply(JSON.stringify);
             resourceInputs["retries"] = pulumi.output((args ? args.retries : undefined) ?? utilities.getEnvNumber("GRAFANA_RETRIES")).apply(JSON.stringify);
             resourceInputs["retryStatusCodes"] = pulumi.output(args ? args.retryStatusCodes : undefined).apply(JSON.stringify);
+            resourceInputs["retryWait"] = pulumi.output(args ? args.retryWait : undefined).apply(JSON.stringify);
             resourceInputs["smAccessToken"] = (args?.smAccessToken ? pulumi.secret(args.smAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_SM_ACCESS_TOKEN");
             resourceInputs["smUrl"] = (args ? args.smUrl : undefined) ?? utilities.getEnv("GRAFANA_SM_URL");
             resourceInputs["storeDashboardSha256"] = pulumi.output((args ? args.storeDashboardSha256 : undefined) ?? utilities.getEnvBoolean("GRAFANA_STORE_DASHBOARD_SHA256")).apply(JSON.stringify);
@@ -168,14 +169,19 @@ export interface ProviderArgs {
      */
     retryStatusCodes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be
+     * set via the `GRAFANA_RETRY_WAIT` environment variable.
+     */
+    retryWait?: pulumi.Input<number>;
+    /**
      * A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
      */
     smAccessToken?: pulumi.Input<string>;
     /**
      * Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
      * correct value for each service region is cited in the [Synthetic Monitoring
-     * documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url). Note
-     * the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
+     * documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).
+     * Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
      * `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
      * managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
      * each provider ensures all providers interact with the same SM API.

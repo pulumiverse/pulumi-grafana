@@ -13,12 +13,21 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class OncallIntegrationTemplatesMicrosoftTeamsArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Template for Alert image url.
+        /// </summary>
         [Input("imageUrl")]
         public Input<string>? ImageUrl { get; set; }
 
+        /// <summary>
+        /// Template for Alert message.
+        /// </summary>
         [Input("message")]
         public Input<string>? Message { get; set; }
 
+        /// <summary>
+        /// Template for Alert title.
+        /// </summary>
         [Input("title")]
         public Input<string>? Title { get; set; }
 

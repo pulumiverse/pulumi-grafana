@@ -18,6 +18,21 @@ public final class RoleAssignmentArgs extends com.pulumi.resources.ResourceArgs 
     public static final RoleAssignmentArgs Empty = new RoleAssignmentArgs();
 
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Import(name="orgId")
+    private @Nullable Output<String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<Output<String>> orgId() {
+        return Optional.ofNullable(this.orgId);
+    }
+
+    /**
      * Grafana RBAC role UID.
      * 
      */
@@ -80,6 +95,7 @@ public final class RoleAssignmentArgs extends com.pulumi.resources.ResourceArgs 
     private RoleAssignmentArgs() {}
 
     private RoleAssignmentArgs(RoleAssignmentArgs $) {
+        this.orgId = $.orgId;
         this.roleUid = $.roleUid;
         this.serviceAccounts = $.serviceAccounts;
         this.teams = $.teams;
@@ -102,6 +118,27 @@ public final class RoleAssignmentArgs extends com.pulumi.resources.ResourceArgs 
 
         public Builder(RoleAssignmentArgs defaults) {
             $ = new RoleAssignmentArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(@Nullable Output<String> orgId) {
+            $.orgId = orgId;
+            return this;
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(String orgId) {
+            return orgId(Output.of(orgId));
         }
 
         /**

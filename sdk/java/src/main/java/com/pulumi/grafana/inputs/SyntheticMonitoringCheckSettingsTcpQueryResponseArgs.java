@@ -16,23 +16,47 @@ public final class SyntheticMonitoringCheckSettingsTcpQueryResponseArgs extends 
 
     public static final SyntheticMonitoringCheckSettingsTcpQueryResponseArgs Empty = new SyntheticMonitoringCheckSettingsTcpQueryResponseArgs();
 
+    /**
+     * Response to expect.
+     * 
+     */
     @Import(name="expect", required=true)
     private Output<String> expect;
 
+    /**
+     * @return Response to expect.
+     * 
+     */
     public Output<String> expect() {
         return this.expect;
     }
 
+    /**
+     * Data to send.
+     * 
+     */
     @Import(name="send", required=true)
     private Output<String> send;
 
+    /**
+     * @return Data to send.
+     * 
+     */
     public Output<String> send() {
         return this.send;
     }
 
+    /**
+     * Upgrade TCP connection to TLS. Defaults to `false`.
+     * 
+     */
     @Import(name="startTls")
     private @Nullable Output<Boolean> startTls;
 
+    /**
+     * @return Upgrade TCP connection to TLS. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> startTls() {
         return Optional.ofNullable(this.startTls);
     }
@@ -63,29 +87,65 @@ public final class SyntheticMonitoringCheckSettingsTcpQueryResponseArgs extends 
             $ = new SyntheticMonitoringCheckSettingsTcpQueryResponseArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param expect Response to expect.
+         * 
+         * @return builder
+         * 
+         */
         public Builder expect(Output<String> expect) {
             $.expect = expect;
             return this;
         }
 
+        /**
+         * @param expect Response to expect.
+         * 
+         * @return builder
+         * 
+         */
         public Builder expect(String expect) {
             return expect(Output.of(expect));
         }
 
+        /**
+         * @param send Data to send.
+         * 
+         * @return builder
+         * 
+         */
         public Builder send(Output<String> send) {
             $.send = send;
             return this;
         }
 
+        /**
+         * @param send Data to send.
+         * 
+         * @return builder
+         * 
+         */
         public Builder send(String send) {
             return send(Output.of(send));
         }
 
+        /**
+         * @param startTls Upgrade TCP connection to TLS. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder startTls(@Nullable Output<Boolean> startTls) {
             $.startTls = startTls;
             return this;
         }
 
+        /**
+         * @param startTls Upgrade TCP connection to TLS. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder startTls(Boolean startTls) {
             return startTls(Output.of(startTls));
         }

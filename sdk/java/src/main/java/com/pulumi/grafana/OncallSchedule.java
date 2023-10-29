@@ -11,6 +11,7 @@ import com.pulumi.grafana.OncallScheduleArgs;
 import com.pulumi.grafana.Utilities;
 import com.pulumi.grafana.inputs.OncallScheduleState;
 import com.pulumi.grafana.outputs.OncallScheduleSlack;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -83,6 +84,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="grafana:index/oncallSchedule:OncallSchedule")
 public class OncallSchedule extends com.pulumi.resources.CustomResource {
+    /**
+     * Enable overrides via web UI (it will ignore ical*url*overrides).
+     * 
+     */
+    @Export(name="enableWebOverrides", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> enableWebOverrides;
+
+    /**
+     * @return Enable overrides via web UI (it will ignore ical*url*overrides).
+     * 
+     */
+    public Output<Optional<Boolean>> enableWebOverrides() {
+        return Codegen.optional(this.enableWebOverrides);
+    }
     /**
      * The URL of external iCal calendar which override primary events.
      * 

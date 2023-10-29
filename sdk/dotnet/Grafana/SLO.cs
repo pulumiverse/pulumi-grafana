@@ -13,8 +13,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// <summary>
     /// Resource manages Grafana SLOs.
     /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
-    /// * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
+    /// * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
     /// * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
     /// 
     /// ## Example Usage
@@ -39,7 +39,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        /// Labels to attach only to Fast Burn alerts.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableArray<Outputs.SLOLabel>> Labels { get; private set; } = null!;
@@ -57,7 +57,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<ImmutableArray<Outputs.SLOObjective>> Objectives { get; private set; } = null!;
 
         /// <summary>
-        /// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        /// Freeform Query Field
         /// </summary>
         [Output("queries")]
         public Output<ImmutableArray<Outputs.SLOQuery>> Queries { get; private set; } = null!;
@@ -135,7 +135,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private InputList<Inputs.SLOLabelArgs>? _labels;
 
         /// <summary>
-        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        /// Labels to attach only to Fast Burn alerts.
         /// </summary>
         public InputList<Inputs.SLOLabelArgs> Labels
         {
@@ -165,7 +165,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private InputList<Inputs.SLOQueryArgs>? _queries;
 
         /// <summary>
-        /// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        /// Freeform Query Field
         /// </summary>
         public InputList<Inputs.SLOQueryArgs> Queries
         {
@@ -207,7 +207,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private InputList<Inputs.SLOLabelGetArgs>? _labels;
 
         /// <summary>
-        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        /// Labels to attach only to Fast Burn alerts.
         /// </summary>
         public InputList<Inputs.SLOLabelGetArgs> Labels
         {
@@ -237,7 +237,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private InputList<Inputs.SLOQueryGetArgs>? _queries;
 
         /// <summary>
-        /// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        /// Freeform Query Field
         /// </summary>
         public InputList<Inputs.SLOQueryGetArgs> Queries
         {

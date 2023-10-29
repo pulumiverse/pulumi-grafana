@@ -13,9 +13,15 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class SyntheticMonitoringCheckSettingsHttpBasicAuthArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Basic auth password.
+        /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
+        /// <summary>
+        /// Basic auth username.
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 

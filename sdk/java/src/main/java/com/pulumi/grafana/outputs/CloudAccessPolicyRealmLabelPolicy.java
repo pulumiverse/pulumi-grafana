@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class CloudAccessPolicyRealmLabelPolicy {
+    /**
+     * @return The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
+     * 
+     */
     private String selector;
 
     private CloudAccessPolicyRealmLabelPolicy() {}
+    /**
+     * @return The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
+     * 
+     */
     public String selector() {
         return this.selector;
     }

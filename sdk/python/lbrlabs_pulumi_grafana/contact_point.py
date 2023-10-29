@@ -22,6 +22,7 @@ class ContactPointArgs:
                  emails: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointEmailArgs']]]] = None,
                  googlechats: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]]] = None,
                  kafkas: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]]] = None,
+                 lines: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyArgs']]]] = None,
                  pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointPagerdutyArgs']]]] = None,
@@ -32,6 +33,7 @@ class ContactPointArgs:
                  telegrams: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointTelegramArgs']]]] = None,
                  threemas: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointThreemaArgs']]]] = None,
                  victorops: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointVictoropArgs']]]] = None,
+                 webexes: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointWebexArgs']]]] = None,
                  webhooks: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointWebhookArgs']]]] = None,
                  wecoms: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointWecomArgs']]]] = None):
         """
@@ -42,6 +44,7 @@ class ContactPointArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointEmailArgs']]] emails: A contact point that sends notifications to an email address.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]] googlechats: A contact point that sends notifications to Google Chat.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
+        :param pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]] lines: A contact point that sends notifications to LINE.me.
         :param pulumi.Input[str] name: The name of the contact point.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyArgs']]] opsgenies: A contact point that sends notifications to OpsGenie.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointPagerdutyArgs']]] pagerduties: A contact point that sends notifications to PagerDuty.
@@ -52,6 +55,7 @@ class ContactPointArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointTelegramArgs']]] telegrams: A contact point that sends notifications to Telegram.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointThreemaArgs']]] threemas: A contact point that sends notifications to Threema.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointVictoropArgs']]] victorops: A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
+        :param pulumi.Input[Sequence[pulumi.Input['ContactPointWebexArgs']]] webexes: A contact point that sends notifications to Cisco Webex.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointWebhookArgs']]] webhooks: A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointWecomArgs']]] wecoms: A contact point that sends notifications to WeCom.
         """
@@ -67,6 +71,8 @@ class ContactPointArgs:
             pulumi.set(__self__, "googlechats", googlechats)
         if kafkas is not None:
             pulumi.set(__self__, "kafkas", kafkas)
+        if lines is not None:
+            pulumi.set(__self__, "lines", lines)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if opsgenies is not None:
@@ -87,6 +93,8 @@ class ContactPointArgs:
             pulumi.set(__self__, "threemas", threemas)
         if victorops is not None:
             pulumi.set(__self__, "victorops", victorops)
+        if webexes is not None:
+            pulumi.set(__self__, "webexes", webexes)
         if webhooks is not None:
             pulumi.set(__self__, "webhooks", webhooks)
         if wecoms is not None:
@@ -163,6 +171,18 @@ class ContactPointArgs:
     @kafkas.setter
     def kafkas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]]]):
         pulumi.set(self, "kafkas", value)
+
+    @property
+    @pulumi.getter
+    def lines(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]]]:
+        """
+        A contact point that sends notifications to LINE.me.
+        """
+        return pulumi.get(self, "lines")
+
+    @lines.setter
+    def lines(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]]]):
+        pulumi.set(self, "lines", value)
 
     @property
     @pulumi.getter
@@ -283,6 +303,18 @@ class ContactPointArgs:
     @victorops.setter
     def victorops(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointVictoropArgs']]]]):
         pulumi.set(self, "victorops", value)
+
+    @property
+    @pulumi.getter
+    def webexes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointWebexArgs']]]]:
+        """
+        A contact point that sends notifications to Cisco Webex.
+        """
+        return pulumi.get(self, "webexes")
+
+    @webexes.setter
+    def webexes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointWebexArgs']]]]):
+        pulumi.set(self, "webexes", value)
 
     @property
     @pulumi.getter
@@ -318,6 +350,7 @@ class _ContactPointState:
                  emails: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointEmailArgs']]]] = None,
                  googlechats: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]]] = None,
                  kafkas: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]]] = None,
+                 lines: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyArgs']]]] = None,
                  pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointPagerdutyArgs']]]] = None,
@@ -328,6 +361,7 @@ class _ContactPointState:
                  telegrams: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointTelegramArgs']]]] = None,
                  threemas: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointThreemaArgs']]]] = None,
                  victorops: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointVictoropArgs']]]] = None,
+                 webexes: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointWebexArgs']]]] = None,
                  webhooks: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointWebhookArgs']]]] = None,
                  wecoms: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointWecomArgs']]]] = None):
         """
@@ -338,6 +372,7 @@ class _ContactPointState:
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointEmailArgs']]] emails: A contact point that sends notifications to an email address.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]] googlechats: A contact point that sends notifications to Google Chat.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
+        :param pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]] lines: A contact point that sends notifications to LINE.me.
         :param pulumi.Input[str] name: The name of the contact point.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyArgs']]] opsgenies: A contact point that sends notifications to OpsGenie.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointPagerdutyArgs']]] pagerduties: A contact point that sends notifications to PagerDuty.
@@ -348,6 +383,7 @@ class _ContactPointState:
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointTelegramArgs']]] telegrams: A contact point that sends notifications to Telegram.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointThreemaArgs']]] threemas: A contact point that sends notifications to Threema.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointVictoropArgs']]] victorops: A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
+        :param pulumi.Input[Sequence[pulumi.Input['ContactPointWebexArgs']]] webexes: A contact point that sends notifications to Cisco Webex.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointWebhookArgs']]] webhooks: A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointWecomArgs']]] wecoms: A contact point that sends notifications to WeCom.
         """
@@ -363,6 +399,8 @@ class _ContactPointState:
             pulumi.set(__self__, "googlechats", googlechats)
         if kafkas is not None:
             pulumi.set(__self__, "kafkas", kafkas)
+        if lines is not None:
+            pulumi.set(__self__, "lines", lines)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if opsgenies is not None:
@@ -383,6 +421,8 @@ class _ContactPointState:
             pulumi.set(__self__, "threemas", threemas)
         if victorops is not None:
             pulumi.set(__self__, "victorops", victorops)
+        if webexes is not None:
+            pulumi.set(__self__, "webexes", webexes)
         if webhooks is not None:
             pulumi.set(__self__, "webhooks", webhooks)
         if wecoms is not None:
@@ -459,6 +499,18 @@ class _ContactPointState:
     @kafkas.setter
     def kafkas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]]]):
         pulumi.set(self, "kafkas", value)
+
+    @property
+    @pulumi.getter
+    def lines(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]]]:
+        """
+        A contact point that sends notifications to LINE.me.
+        """
+        return pulumi.get(self, "lines")
+
+    @lines.setter
+    def lines(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]]]):
+        pulumi.set(self, "lines", value)
 
     @property
     @pulumi.getter
@@ -579,6 +631,18 @@ class _ContactPointState:
     @victorops.setter
     def victorops(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointVictoropArgs']]]]):
         pulumi.set(self, "victorops", value)
+
+    @property
+    @pulumi.getter
+    def webexes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointWebexArgs']]]]:
+        """
+        A contact point that sends notifications to Cisco Webex.
+        """
+        return pulumi.get(self, "webexes")
+
+    @webexes.setter
+    def webexes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointWebexArgs']]]]):
+        pulumi.set(self, "webexes", value)
 
     @property
     @pulumi.getter
@@ -616,6 +680,7 @@ class ContactPoint(pulumi.CustomResource):
                  emails: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]]] = None,
                  googlechats: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]]] = None,
                  kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]]] = None,
+                 lines: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]]] = None,
                  pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]]] = None,
@@ -626,6 +691,7 @@ class ContactPoint(pulumi.CustomResource):
                  telegrams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTelegramArgs']]]]] = None,
                  threemas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]]] = None,
                  victorops: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointVictoropArgs']]]]] = None,
+                 webexes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebexArgs']]]]] = None,
                  webhooks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebhookArgs']]]]] = None,
                  wecoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWecomArgs']]]]] = None,
                  __props__=None):
@@ -669,6 +735,7 @@ class ContactPoint(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]] emails: A contact point that sends notifications to an email address.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]] googlechats: A contact point that sends notifications to Google Chat.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]] lines: A contact point that sends notifications to LINE.me.
         :param pulumi.Input[str] name: The name of the contact point.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]] opsgenies: A contact point that sends notifications to OpsGenie.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]] pagerduties: A contact point that sends notifications to PagerDuty.
@@ -679,6 +746,7 @@ class ContactPoint(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTelegramArgs']]]] telegrams: A contact point that sends notifications to Telegram.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]] threemas: A contact point that sends notifications to Threema.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointVictoropArgs']]]] victorops: A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebexArgs']]]] webexes: A contact point that sends notifications to Cisco Webex.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebhookArgs']]]] webhooks: A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWecomArgs']]]] wecoms: A contact point that sends notifications to WeCom.
         """
@@ -741,6 +809,7 @@ class ContactPoint(pulumi.CustomResource):
                  emails: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]]] = None,
                  googlechats: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]]] = None,
                  kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]]] = None,
+                 lines: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]]] = None,
                  pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]]] = None,
@@ -751,6 +820,7 @@ class ContactPoint(pulumi.CustomResource):
                  telegrams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTelegramArgs']]]]] = None,
                  threemas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]]] = None,
                  victorops: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointVictoropArgs']]]]] = None,
+                 webexes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebexArgs']]]]] = None,
                  webhooks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebhookArgs']]]]] = None,
                  wecoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWecomArgs']]]]] = None,
                  __props__=None):
@@ -768,6 +838,7 @@ class ContactPoint(pulumi.CustomResource):
             __props__.__dict__["emails"] = emails
             __props__.__dict__["googlechats"] = googlechats
             __props__.__dict__["kafkas"] = kafkas
+            __props__.__dict__["lines"] = lines
             __props__.__dict__["name"] = name
             __props__.__dict__["opsgenies"] = opsgenies
             __props__.__dict__["pagerduties"] = pagerduties
@@ -778,6 +849,7 @@ class ContactPoint(pulumi.CustomResource):
             __props__.__dict__["telegrams"] = telegrams
             __props__.__dict__["threemas"] = threemas
             __props__.__dict__["victorops"] = victorops
+            __props__.__dict__["webexes"] = webexes
             __props__.__dict__["webhooks"] = webhooks
             __props__.__dict__["wecoms"] = wecoms
         super(ContactPoint, __self__).__init__(
@@ -796,6 +868,7 @@ class ContactPoint(pulumi.CustomResource):
             emails: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]]] = None,
             googlechats: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]]] = None,
             kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]]] = None,
+            lines: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]]] = None,
             pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]]] = None,
@@ -806,6 +879,7 @@ class ContactPoint(pulumi.CustomResource):
             telegrams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTelegramArgs']]]]] = None,
             threemas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]]] = None,
             victorops: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointVictoropArgs']]]]] = None,
+            webexes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebexArgs']]]]] = None,
             webhooks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebhookArgs']]]]] = None,
             wecoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWecomArgs']]]]] = None) -> 'ContactPoint':
         """
@@ -821,6 +895,7 @@ class ContactPoint(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]] emails: A contact point that sends notifications to an email address.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]] googlechats: A contact point that sends notifications to Google Chat.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]] lines: A contact point that sends notifications to LINE.me.
         :param pulumi.Input[str] name: The name of the contact point.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]] opsgenies: A contact point that sends notifications to OpsGenie.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]] pagerduties: A contact point that sends notifications to PagerDuty.
@@ -831,6 +906,7 @@ class ContactPoint(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTelegramArgs']]]] telegrams: A contact point that sends notifications to Telegram.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]] threemas: A contact point that sends notifications to Threema.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointVictoropArgs']]]] victorops: A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebexArgs']]]] webexes: A contact point that sends notifications to Cisco Webex.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebhookArgs']]]] webhooks: A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWecomArgs']]]] wecoms: A contact point that sends notifications to WeCom.
         """
@@ -844,6 +920,7 @@ class ContactPoint(pulumi.CustomResource):
         __props__.__dict__["emails"] = emails
         __props__.__dict__["googlechats"] = googlechats
         __props__.__dict__["kafkas"] = kafkas
+        __props__.__dict__["lines"] = lines
         __props__.__dict__["name"] = name
         __props__.__dict__["opsgenies"] = opsgenies
         __props__.__dict__["pagerduties"] = pagerduties
@@ -854,6 +931,7 @@ class ContactPoint(pulumi.CustomResource):
         __props__.__dict__["telegrams"] = telegrams
         __props__.__dict__["threemas"] = threemas
         __props__.__dict__["victorops"] = victorops
+        __props__.__dict__["webexes"] = webexes
         __props__.__dict__["webhooks"] = webhooks
         __props__.__dict__["wecoms"] = wecoms
         return ContactPoint(resource_name, opts=opts, __props__=__props__)
@@ -905,6 +983,14 @@ class ContactPoint(pulumi.CustomResource):
         A contact point that publishes notifications to Apache Kafka topics.
         """
         return pulumi.get(self, "kafkas")
+
+    @property
+    @pulumi.getter
+    def lines(self) -> pulumi.Output[Optional[Sequence['outputs.ContactPointLine']]]:
+        """
+        A contact point that sends notifications to LINE.me.
+        """
+        return pulumi.get(self, "lines")
 
     @property
     @pulumi.getter
@@ -985,6 +1071,14 @@ class ContactPoint(pulumi.CustomResource):
         A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
         """
         return pulumi.get(self, "victorops")
+
+    @property
+    @pulumi.getter
+    def webexes(self) -> pulumi.Output[Optional[Sequence['outputs.ContactPointWebex']]]:
+        """
+        A contact point that sends notifications to Cisco Webex.
+        """
+        return pulumi.get(self, "webexes")
 
     @property
     @pulumi.getter

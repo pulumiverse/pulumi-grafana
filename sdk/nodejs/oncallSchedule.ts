@@ -76,6 +76,10 @@ export class OncallSchedule extends pulumi.CustomResource {
     }
 
     /**
+     * Enable overrides via web UI (it will ignore ical*url*overrides).
+     */
+    public readonly enableWebOverrides!: pulumi.Output<boolean | undefined>;
+    /**
      * The URL of external iCal calendar which override primary events.
      */
     public readonly icalUrlOverrides!: pulumi.Output<string | undefined>;
@@ -121,6 +125,7 @@ export class OncallSchedule extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OncallScheduleState | undefined;
+            resourceInputs["enableWebOverrides"] = state ? state.enableWebOverrides : undefined;
             resourceInputs["icalUrlOverrides"] = state ? state.icalUrlOverrides : undefined;
             resourceInputs["icalUrlPrimary"] = state ? state.icalUrlPrimary : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -134,6 +139,7 @@ export class OncallSchedule extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
+            resourceInputs["enableWebOverrides"] = args ? args.enableWebOverrides : undefined;
             resourceInputs["icalUrlOverrides"] = args ? args.icalUrlOverrides : undefined;
             resourceInputs["icalUrlPrimary"] = args ? args.icalUrlPrimary : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -152,6 +158,10 @@ export class OncallSchedule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering OncallSchedule resources.
  */
 export interface OncallScheduleState {
+    /**
+     * Enable overrides via web UI (it will ignore ical*url*overrides).
+     */
+    enableWebOverrides?: pulumi.Input<boolean>;
     /**
      * The URL of external iCal calendar which override primary events.
      */
@@ -190,6 +200,10 @@ export interface OncallScheduleState {
  * The set of arguments for constructing a OncallSchedule resource.
  */
 export interface OncallScheduleArgs {
+    /**
+     * Enable overrides via web UI (it will ignore ical*url*overrides).
+     */
+    enableWebOverrides?: pulumi.Input<boolean>;
     /**
      * The URL of external iCal calendar which override primary events.
      */

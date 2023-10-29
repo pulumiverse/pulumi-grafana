@@ -36,15 +36,15 @@ public final class ContactPointThreemaArgs extends com.pulumi.resources.Resource
      * The templated description of the message.
      * 
      */
-    @Import(name="description", required=true)
-    private Output<String> description;
+    @Import(name="description")
+    private @Nullable Output<String> description;
 
     /**
      * @return The templated description of the message.
      * 
      */
-    public Output<String> description() {
-        return this.description;
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
     }
 
     /**
@@ -111,15 +111,15 @@ public final class ContactPointThreemaArgs extends com.pulumi.resources.Resource
      * The templated title of the message.
      * 
      */
-    @Import(name="title", required=true)
-    private Output<String> title;
+    @Import(name="title")
+    private @Nullable Output<String> title;
 
     /**
      * @return The templated title of the message.
      * 
      */
-    public Output<String> title() {
-        return this.title;
+    public Optional<Output<String>> title() {
+        return Optional.ofNullable(this.title);
     }
 
     /**
@@ -195,7 +195,7 @@ public final class ContactPointThreemaArgs extends com.pulumi.resources.Resource
          * @return builder
          * 
          */
-        public Builder description(Output<String> description) {
+        public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
         }
@@ -300,7 +300,7 @@ public final class ContactPointThreemaArgs extends com.pulumi.resources.Resource
          * @return builder
          * 
          */
-        public Builder title(Output<String> title) {
+        public Builder title(@Nullable Output<String> title) {
             $.title = title;
             return this;
         }
@@ -338,10 +338,8 @@ public final class ContactPointThreemaArgs extends com.pulumi.resources.Resource
 
         public ContactPointThreemaArgs build() {
             $.apiSecret = Objects.requireNonNull($.apiSecret, "expected parameter 'apiSecret' to be non-null");
-            $.description = Objects.requireNonNull($.description, "expected parameter 'description' to be non-null");
             $.gatewayId = Objects.requireNonNull($.gatewayId, "expected parameter 'gatewayId' to be non-null");
             $.recipientId = Objects.requireNonNull($.recipientId, "expected parameter 'recipientId' to be non-null");
-            $.title = Objects.requireNonNull($.title, "expected parameter 'title' to be non-null");
             return $;
         }
     }

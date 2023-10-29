@@ -17,7 +17,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// what information you would like to gather about your endpoint. You can define
     /// multiple checks for a single endpoint to check different capabilities.
     /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/checks/)
+    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/checks/)
     /// 
     /// ## Example Usage
     /// ### DNS Basic
@@ -261,7 +261,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///                 {
     ///                     "HTTP/1.0",
     ///                     "HTTP/1.1",
-    ///                     "HTTP/2",
+    ///                     "HTTP/2.0",
     ///                 },
     ///                 FailIfBodyMatchesRegexps = new[]
     ///                 {
@@ -568,7 +568,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public partial class SyntheticMonitoringCheck : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+        /// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
         /// </summary>
         [Output("alertSensitivity")]
         public Output<string?> AlertSensitivity { get; private set; } = null!;
@@ -681,7 +681,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class SyntheticMonitoringCheckArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+        /// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
         /// </summary>
         [Input("alertSensitivity")]
         public Input<string>? AlertSensitivity { get; set; }
@@ -761,7 +761,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class SyntheticMonitoringCheckState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+        /// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
         /// </summary>
         [Input("alertSensitivity")]
         public Input<string>? AlertSensitivity { get; set; }

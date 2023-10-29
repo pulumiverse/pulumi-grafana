@@ -13,6 +13,9 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class OncallIntegrationTemplatesPhoneCallGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Template for Alert title.
+        /// </summary>
         [Input("title")]
         public Input<string>? Title { get; set; }
 

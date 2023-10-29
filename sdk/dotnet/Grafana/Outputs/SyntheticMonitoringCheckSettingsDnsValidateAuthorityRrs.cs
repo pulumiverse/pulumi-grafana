@@ -14,7 +14,13 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrs
     {
+        /// <summary>
+        /// Fail if value matches regex.
+        /// </summary>
         public readonly ImmutableArray<string> FailIfMatchesRegexps;
+        /// <summary>
+        /// Fail if value does not match regex.
+        /// </summary>
         public readonly ImmutableArray<string> FailIfNotMatchesRegexps;
 
         [OutputConstructor]

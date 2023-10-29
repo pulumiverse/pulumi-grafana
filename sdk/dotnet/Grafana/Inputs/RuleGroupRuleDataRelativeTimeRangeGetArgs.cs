@@ -13,9 +13,15 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class RuleGroupRuleDataRelativeTimeRangeGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The number of seconds in the past, relative to when the rule is evaluated, at which the time range begins.
+        /// </summary>
         [Input("from", required: true)]
         public Input<int> From { get; set; } = null!;
 
+        /// <summary>
+        /// The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
+        /// </summary>
         [Input("to", required: true)]
         public Input<int> To { get; set; } = null!;
 

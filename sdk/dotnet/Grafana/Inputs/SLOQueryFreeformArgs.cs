@@ -14,7 +14,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
     public sealed class SLOQueryFreeformArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        /// Freeform Query Field
         /// </summary>
         [Input("query", required: true)]
         public Input<string> Query { get; set; } = null!;

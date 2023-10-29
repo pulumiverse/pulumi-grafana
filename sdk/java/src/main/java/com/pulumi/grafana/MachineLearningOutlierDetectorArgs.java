@@ -125,14 +125,14 @@ public final class MachineLearningOutlierDetectorArgs extends com.pulumi.resourc
     }
 
     /**
-     * The name of the outlier detector.
+     * The name of the algorithm to use (&#39;mad&#39; or &#39;dbscan&#39;).
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the outlier detector.
+     * @return The name of the algorithm to use (&#39;mad&#39; or &#39;dbscan&#39;).
      * 
      */
     public Optional<Output<String>> name() {
@@ -334,7 +334,7 @@ public final class MachineLearningOutlierDetectorArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param name The name of the outlier detector.
+         * @param name The name of the algorithm to use (&#39;mad&#39; or &#39;dbscan&#39;).
          * 
          * @return builder
          * 
@@ -345,7 +345,7 @@ public final class MachineLearningOutlierDetectorArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param name The name of the outlier detector.
+         * @param name The name of the algorithm to use (&#39;mad&#39; or &#39;dbscan&#39;).
          * 
          * @return builder
          * 

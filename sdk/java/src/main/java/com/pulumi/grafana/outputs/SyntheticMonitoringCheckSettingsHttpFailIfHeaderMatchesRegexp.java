@@ -12,17 +12,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp {
+    /**
+     * @return Allow header to be missing from responses. Defaults to `false`.
+     * 
+     */
     private @Nullable Boolean allowMissing;
+    /**
+     * @return Header name.
+     * 
+     */
     private String header;
+    /**
+     * @return Regex that header value should match.
+     * 
+     */
     private String regexp;
 
     private SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp() {}
+    /**
+     * @return Allow header to be missing from responses. Defaults to `false`.
+     * 
+     */
     public Optional<Boolean> allowMissing() {
         return Optional.ofNullable(this.allowMissing);
     }
+    /**
+     * @return Header name.
+     * 
+     */
     public String header() {
         return this.header;
     }
+    /**
+     * @return Regex that header value should match.
+     * 
+     */
     public String regexp() {
         return this.regexp;
     }

@@ -75,6 +75,10 @@ export class Role extends pulumi.CustomResource {
     }
 
     /**
+     * Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+     */
+    public readonly autoIncrementVersion!: pulumi.Output<boolean | undefined>;
+    /**
      * Description of the role.
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -99,6 +103,10 @@ export class Role extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
+    /**
      * Specific set of actions granted by the role.
      */
     public readonly permissions!: pulumi.Output<outputs.RolePermission[] | undefined>;
@@ -107,9 +115,9 @@ export class Role extends pulumi.CustomResource {
      */
     public readonly uid!: pulumi.Output<string>;
     /**
-     * Version of the role. A role is updated only on version increase.
+     * Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
      */
-    public readonly version!: pulumi.Output<number>;
+    public readonly version!: pulumi.Output<number | undefined>;
 
     /**
      * Create a Role resource with the given unique name, arguments, and options.
@@ -118,32 +126,33 @@ export class Role extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: RoleArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: RoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RoleArgs | RoleState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RoleState | undefined;
+            resourceInputs["autoIncrementVersion"] = state ? state.autoIncrementVersion : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["displayName"] = state ? state.displayName : undefined;
             resourceInputs["global"] = state ? state.global : undefined;
             resourceInputs["group"] = state ? state.group : undefined;
             resourceInputs["hidden"] = state ? state.hidden : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["permissions"] = state ? state.permissions : undefined;
             resourceInputs["uid"] = state ? state.uid : undefined;
             resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as RoleArgs | undefined;
-            if ((!args || args.version === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'version'");
-            }
+            resourceInputs["autoIncrementVersion"] = args ? args.autoIncrementVersion : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["displayName"] = args ? args.displayName : undefined;
             resourceInputs["global"] = args ? args.global : undefined;
             resourceInputs["group"] = args ? args.group : undefined;
             resourceInputs["hidden"] = args ? args.hidden : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["permissions"] = args ? args.permissions : undefined;
             resourceInputs["uid"] = args ? args.uid : undefined;
             resourceInputs["version"] = args ? args.version : undefined;
@@ -158,6 +167,10 @@ export class Role extends pulumi.CustomResource {
  */
 export interface RoleState {
     /**
+     * Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+     */
+    autoIncrementVersion?: pulumi.Input<boolean>;
+    /**
      * Description of the role.
      */
     description?: pulumi.Input<string>;
@@ -182,6 +195,10 @@ export interface RoleState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
+    /**
      * Specific set of actions granted by the role.
      */
     permissions?: pulumi.Input<pulumi.Input<inputs.RolePermission>[]>;
@@ -190,7 +207,7 @@ export interface RoleState {
      */
     uid?: pulumi.Input<string>;
     /**
-     * Version of the role. A role is updated only on version increase.
+     * Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
      */
     version?: pulumi.Input<number>;
 }
@@ -200,6 +217,10 @@ export interface RoleState {
  */
 export interface RoleArgs {
     /**
+     * Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+     */
+    autoIncrementVersion?: pulumi.Input<boolean>;
+    /**
      * Description of the role.
      */
     description?: pulumi.Input<string>;
@@ -224,6 +245,10 @@ export interface RoleArgs {
      */
     name?: pulumi.Input<string>;
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
+    /**
      * Specific set of actions granted by the role.
      */
     permissions?: pulumi.Input<pulumi.Input<inputs.RolePermission>[]>;
@@ -232,7 +257,7 @@ export interface RoleArgs {
      */
     uid?: pulumi.Input<string>;
     /**
-     * Version of the role. A role is updated only on version increase.
+     * Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
      */
-    version: pulumi.Input<number>;
+    version?: pulumi.Input<number>;
 }

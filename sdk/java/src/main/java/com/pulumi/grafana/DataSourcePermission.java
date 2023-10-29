@@ -31,6 +31,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.grafana.DataSourceArgs;
  * import com.pulumi.grafana.User;
  * import com.pulumi.grafana.UserArgs;
+ * import com.pulumi.grafana.ServiceAccount;
+ * import com.pulumi.grafana.ServiceAccountArgs;
  * import com.pulumi.grafana.DataSourcePermission;
  * import com.pulumi.grafana.DataSourcePermissionArgs;
  * import com.pulumi.grafana.inputs.DataSourcePermissionPermissionArgs;
@@ -70,6 +72,10 @@ import javax.annotation.Nullable;
  *             .password(&#34;hunter2&#34;)
  *             .build());
  * 
+ *         var sa = new ServiceAccount(&#34;sa&#34;, ServiceAccountArgs.builder()        
+ *             .role(&#34;Viewer&#34;)
+ *             .build());
+ * 
  *         var fooPermissions = new DataSourcePermission(&#34;fooPermissions&#34;, DataSourcePermissionArgs.builder()        
  *             .datasourceId(foo.id())
  *             .permissions(            
@@ -83,6 +89,10 @@ import javax.annotation.Nullable;
  *                     .build(),
  *                 DataSourcePermissionPermissionArgs.builder()
  *                     .builtInRole(&#34;Viewer&#34;)
+ *                     .permission(&#34;Query&#34;)
+ *                     .build(),
+ *                 DataSourcePermissionPermissionArgs.builder()
+ *                     .userId(sa.id())
  *                     .permission(&#34;Query&#34;)
  *                     .build())
  *             .build());

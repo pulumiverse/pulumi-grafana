@@ -4,8 +4,12 @@
 package grafana
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
@@ -61,4 +65,50 @@ type GetUsersResult struct {
 	Id string `pulumi:"id"`
 	// The Grafana instance's users.
 	Users []GetUsersUser `pulumi:"users"`
+}
+
+func GetUsersOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetUsersResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetUsersResult, error) {
+		r, err := GetUsers(ctx, opts...)
+		var s GetUsersResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetUsersResultOutput)
+}
+
+// A collection of values returned by getUsers.
+type GetUsersResultOutput struct{ *pulumi.OutputState }
+
+func (GetUsersResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersResult)(nil)).Elem()
+}
+
+func (o GetUsersResultOutput) ToGetUsersResultOutput() GetUsersResultOutput {
+	return o
+}
+
+func (o GetUsersResultOutput) ToGetUsersResultOutputWithContext(ctx context.Context) GetUsersResultOutput {
+	return o
+}
+
+func (o GetUsersResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetUsersResult] {
+	return pulumix.Output[GetUsersResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetUsersResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The Grafana instance's users.
+func (o GetUsersResultOutput) Users() GetUsersUserArrayOutput {
+	return o.ApplyT(func(v GetUsersResult) []GetUsersUser { return v.Users }).(GetUsersUserArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetUsersResultOutput{})
 }

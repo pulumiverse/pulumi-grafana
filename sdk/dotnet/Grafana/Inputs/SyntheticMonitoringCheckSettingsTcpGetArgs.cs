@@ -13,23 +13,39 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class SyntheticMonitoringCheckSettingsTcpGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        /// </summary>
         [Input("ipVersion")]
         public Input<string>? IpVersion { get; set; }
 
         [Input("queryResponses")]
         private InputList<Inputs.SyntheticMonitoringCheckSettingsTcpQueryResponseGetArgs>? _queryResponses;
+
+        /// <summary>
+        /// The query sent in the TCP probe and the expected associated response.
+        /// </summary>
         public InputList<Inputs.SyntheticMonitoringCheckSettingsTcpQueryResponseGetArgs> QueryResponses
         {
             get => _queryResponses ?? (_queryResponses = new InputList<Inputs.SyntheticMonitoringCheckSettingsTcpQueryResponseGetArgs>());
             set => _queryResponses = value;
         }
 
+        /// <summary>
+        /// Source IP address.
+        /// </summary>
         [Input("sourceIpAddress")]
         public Input<string>? SourceIpAddress { get; set; }
 
+        /// <summary>
+        /// Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+        /// </summary>
         [Input("tls")]
         public Input<bool>? Tls { get; set; }
 
+        /// <summary>
+        /// TLS config.
+        /// </summary>
         [Input("tlsConfig")]
         public Input<Inputs.SyntheticMonitoringCheckSettingsTcpTlsConfigGetArgs>? TlsConfig { get; set; }
 

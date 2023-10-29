@@ -10,14 +10,14 @@ import java.util.Objects;
 @CustomType
 public final class SLOQueryFreeform {
     /**
-     * @return Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+     * @return Freeform Query Field
      * 
      */
     private String query;
 
     private SLOQueryFreeform() {}
     /**
-     * @return Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+     * @return Freeform Query Field
      * 
      */
     public String query() {

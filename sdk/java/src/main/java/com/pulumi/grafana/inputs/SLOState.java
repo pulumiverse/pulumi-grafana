@@ -59,14 +59,14 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
+     * Labels to attach only to Fast Burn alerts.
      * 
      */
     @Import(name="labels")
     private @Nullable Output<List<SLOLabelArgs>> labels;
 
     /**
-     * @return Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
+     * @return Labels to attach only to Fast Burn alerts.
      * 
      */
     public Optional<Output<List<SLOLabelArgs>>> labels() {
@@ -104,14 +104,14 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+     * Freeform Query Field
      * 
      */
     @Import(name="queries")
     private @Nullable Output<List<SLOQueryArgs>> queries;
 
     /**
-     * @return Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+     * @return Freeform Query Field
      * 
      */
     public Optional<Output<List<SLOQueryArgs>>> queries() {
@@ -212,7 +212,7 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param labels Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
+         * @param labels Labels to attach only to Fast Burn alerts.
          * 
          * @return builder
          * 
@@ -223,7 +223,7 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param labels Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
+         * @param labels Labels to attach only to Fast Burn alerts.
          * 
          * @return builder
          * 
@@ -233,7 +233,7 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param labels Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
+         * @param labels Labels to attach only to Fast Burn alerts.
          * 
          * @return builder
          * 
@@ -295,7 +295,7 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param queries Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+         * @param queries Freeform Query Field
          * 
          * @return builder
          * 
@@ -306,7 +306,7 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param queries Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+         * @param queries Freeform Query Field
          * 
          * @return builder
          * 
@@ -316,7 +316,7 @@ public final class SLOState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param queries Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+         * @param queries Freeform Query Field
          * 
          * @return builder
          * 

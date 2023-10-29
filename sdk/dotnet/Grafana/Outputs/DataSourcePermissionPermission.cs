@@ -27,9 +27,9 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// </summary>
         public readonly string? TeamId;
         /// <summary>
-        /// ID of the user to manage permissions for. Defaults to `0`.
+        /// ID of the user or service account to manage permissions for. Defaults to `0`.
         /// </summary>
-        public readonly int? UserId;
+        public readonly string? UserId;
 
         [OutputConstructor]
         private DataSourcePermissionPermission(
@@ -39,7 +39,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
             string? teamId,
 
-            int? userId)
+            string? userId)
         {
             BuiltInRole = builtInRole;
             Permission = permission;

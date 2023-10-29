@@ -80,10 +80,7 @@ import (
 //							},
 //						},
 //						ContactPoint: aContactPoint.Name,
-//						GroupBies: pulumi.StringArray{
-//							pulumi.String("alertname"),
-//						},
-//						Continue: pulumi.Bool(true),
+//						Continue:     pulumi.Bool(true),
 //						MuteTimings: pulumi.StringArray{
 //							aMuteTiming.Name,
 //						},
@@ -142,9 +139,9 @@ import (
 type NotificationPolicy struct {
 	pulumi.CustomResourceState
 
-	// The default contact point to route all unmatched notifications to.
+	// The contact point to route notifications that match this rule to.
 	ContactPoint pulumi.StringOutput `pulumi:"contactPoint"`
-	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
 	GroupBies pulumi.StringArrayOutput `pulumi:"groupBies"`
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
 	GroupInterval pulumi.StringPtrOutput `pulumi:"groupInterval"`
@@ -192,9 +189,9 @@ func GetNotificationPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NotificationPolicy resources.
 type notificationPolicyState struct {
-	// The default contact point to route all unmatched notifications to.
+	// The contact point to route notifications that match this rule to.
 	ContactPoint *string `pulumi:"contactPoint"`
-	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
 	GroupBies []string `pulumi:"groupBies"`
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
 	GroupInterval *string `pulumi:"groupInterval"`
@@ -207,9 +204,9 @@ type notificationPolicyState struct {
 }
 
 type NotificationPolicyState struct {
-	// The default contact point to route all unmatched notifications to.
+	// The contact point to route notifications that match this rule to.
 	ContactPoint pulumi.StringPtrInput
-	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
 	GroupBies pulumi.StringArrayInput
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
 	GroupInterval pulumi.StringPtrInput
@@ -226,9 +223,9 @@ func (NotificationPolicyState) ElementType() reflect.Type {
 }
 
 type notificationPolicyArgs struct {
-	// The default contact point to route all unmatched notifications to.
+	// The contact point to route notifications that match this rule to.
 	ContactPoint string `pulumi:"contactPoint"`
-	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
 	GroupBies []string `pulumi:"groupBies"`
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
 	GroupInterval *string `pulumi:"groupInterval"`
@@ -242,9 +239,9 @@ type notificationPolicyArgs struct {
 
 // The set of arguments for constructing a NotificationPolicy resource.
 type NotificationPolicyArgs struct {
-	// The default contact point to route all unmatched notifications to.
+	// The contact point to route notifications that match this rule to.
 	ContactPoint pulumi.StringInput
-	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
 	GroupBies pulumi.StringArrayInput
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
 	GroupInterval pulumi.StringPtrInput
@@ -367,12 +364,12 @@ func (o NotificationPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*
 	}
 }
 
-// The default contact point to route all unmatched notifications to.
+// The contact point to route notifications that match this rule to.
 func (o NotificationPolicyOutput) ContactPoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *NotificationPolicy) pulumi.StringOutput { return v.ContactPoint }).(pulumi.StringOutput)
 }
 
-// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
 func (o NotificationPolicyOutput) GroupBies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *NotificationPolicy) pulumi.StringArrayOutput { return v.GroupBies }).(pulumi.StringArrayOutput)
 }

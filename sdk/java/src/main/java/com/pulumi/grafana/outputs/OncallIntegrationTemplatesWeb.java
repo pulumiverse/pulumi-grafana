@@ -11,17 +11,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class OncallIntegrationTemplatesWeb {
+    /**
+     * @return Template for Alert image url.
+     * 
+     */
     private @Nullable String imageUrl;
+    /**
+     * @return Template for Alert message.
+     * 
+     */
     private @Nullable String message;
+    /**
+     * @return Template for Alert title.
+     * 
+     */
     private @Nullable String title;
 
     private OncallIntegrationTemplatesWeb() {}
+    /**
+     * @return Template for Alert image url.
+     * 
+     */
     public Optional<String> imageUrl() {
         return Optional.ofNullable(this.imageUrl);
     }
+    /**
+     * @return Template for Alert message.
+     * 
+     */
     public Optional<String> message() {
         return Optional.ofNullable(this.message);
     }
+    /**
+     * @return Template for Alert title.
+     * 
+     */
     public Optional<String> title() {
         return Optional.ofNullable(this.title);
     }

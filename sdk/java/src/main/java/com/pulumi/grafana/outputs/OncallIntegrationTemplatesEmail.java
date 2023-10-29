@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class OncallIntegrationTemplatesEmail {
+    /**
+     * @return Template for Alert message.
+     * 
+     */
     private @Nullable String message;
+    /**
+     * @return Template for Alert title.
+     * 
+     */
     private @Nullable String title;
 
     private OncallIntegrationTemplatesEmail() {}
+    /**
+     * @return Template for Alert message.
+     * 
+     */
     public Optional<String> message() {
         return Optional.ofNullable(this.message);
     }
+    /**
+     * @return Template for Alert title.
+     * 
+     */
     public Optional<String> title() {
         return Optional.ofNullable(this.title);
     }

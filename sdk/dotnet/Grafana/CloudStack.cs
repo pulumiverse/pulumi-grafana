@@ -11,7 +11,7 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Grafana
 {
     /// <summary>
-    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/reference/cloud-api/#stacks/)
+    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#stacks/)
     /// 
     /// ## Example Usage
     /// 
@@ -161,7 +161,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<int> PrometheusUserId { get; private set; } = null!;
 
         /// <summary>
-        /// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+        /// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         /// </summary>
         [Output("regionSlug")]
         public Output<string?> RegionSlug { get; private set; } = null!;
@@ -272,7 +272,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+        /// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         /// </summary>
         [Input("regionSlug")]
         public Input<string>? RegionSlug { get; set; }
@@ -425,7 +425,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<int>? PrometheusUserId { get; set; }
 
         /// <summary>
-        /// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+        /// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         /// </summary>
         [Input("regionSlug")]
         public Input<string>? RegionSlug { get; set; }

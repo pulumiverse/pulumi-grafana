@@ -90,6 +90,9 @@
                     "kafka": {
                         "maxItemsOne": false
                     },
+                    "line": {
+                        "maxItemsOne": false
+                    },
                     "opsgenie": {
                         "maxItemsOne": false
                     },
@@ -115,6 +118,9 @@
                         "maxItemsOne": false
                     },
                     "victorops": {
+                        "maxItemsOne": false
+                    },
+                    "webex": {
                         "maxItemsOne": false
                     },
                     "webhook": {
@@ -1094,8 +1100,13 @@
                 "disableResolveMessage": "disable_resolve_message"
             },
             "grafana:index/ContactPointKafka:ContactPointKafka": {
+                "apiVersion": "api_version",
+                "clusterId": "cluster_id",
                 "disableResolveMessage": "disable_resolve_message",
                 "restProxyUrl": "rest_proxy_url"
+            },
+            "grafana:index/ContactPointLine:ContactPointLine": {
+                "disableResolveMessage": "disable_resolve_message"
             },
             "grafana:index/ContactPointOpsgeny:ContactPointOpsgeny": {
                 "apiKey": "api_key",
@@ -1114,6 +1125,7 @@
                 "disableResolveMessage": "disable_resolve_message",
                 "okPriority": "ok_priority",
                 "okSound": "ok_sound",
+                "uploadImage": "upload_image",
                 "userKey": "user_key"
             },
             "grafana:index/ContactPointSensugo:ContactPointSensugo": {
@@ -1135,7 +1147,11 @@
             },
             "grafana:index/ContactPointTelegram:ContactPointTelegram": {
                 "chatId": "chat_id",
-                "disableResolveMessage": "disable_resolve_message"
+                "disableNotifications": "disable_notifications",
+                "disableResolveMessage": "disable_resolve_message",
+                "disableWebPagePreview": "disable_web_page_preview",
+                "parseMode": "parse_mode",
+                "protectContent": "protect_content"
             },
             "grafana:index/ContactPointThreema:ContactPointThreema": {
                 "apiSecret": "api_secret",
@@ -1147,6 +1163,11 @@
                 "disableResolveMessage": "disable_resolve_message",
                 "messageType": "message_type"
             },
+            "grafana:index/ContactPointWebex:ContactPointWebex": {
+                "apiUrl": "api_url",
+                "disableResolveMessage": "disable_resolve_message",
+                "roomId": "room_id"
+            },
             "grafana:index/ContactPointWebhook:ContactPointWebhook": {
                 "authorizationCredentials": "authorization_credentials",
                 "authorizationScheme": "authorization_scheme",
@@ -1157,7 +1178,11 @@
                 "maxAlerts": "max_alerts"
             },
             "grafana:index/ContactPointWecom:ContactPointWecom": {
-                "disableResolveMessage": "disable_resolve_message"
+                "agentId": "agent_id",
+                "corpId": "corp_id",
+                "disableResolveMessage": "disable_resolve_message",
+                "msgType": "msg_type",
+                "toUser": "to_user"
             },
             "grafana:index/DashboardPermissionPermission:DashboardPermissionPermission": {
                 "teamId": "team_id",
@@ -1456,6 +1481,7 @@
                 "emails": "email",
                 "googlechats": "googlechat",
                 "kafkas": "kafka",
+                "lines": "line",
                 "opsgenies": "opsgenie",
                 "pagerduties": "pagerduty",
                 "pushovers": "pushover",
@@ -1463,6 +1489,7 @@
                 "slacks": "slack",
                 "telegrams": "telegram",
                 "threemas": "threema",
+                "webexes": "webex",
                 "webhooks": "webhook",
                 "wecoms": "wecom"
             },
@@ -1584,7 +1611,8 @@
                 "weekStart": "week_start"
             },
             "grafana:index/getRole:getRole": {
-                "displayName": "display_name"
+                "displayName": "display_name",
+                "orgId": "org_id"
             },
             "grafana:index/getSlosSlo:getSlosSlo": {
                 "alertings": "alerting",
@@ -1708,6 +1736,7 @@
                 "routingType": "routing_type"
             },
             "grafana:index/oncallSchedule:OncallSchedule": {
+                "enableWebOverrides": "enable_web_overrides",
                 "icalUrlOverrides": "ical_url_overrides",
                 "icalUrlPrimary": "ical_url_primary",
                 "teamId": "team_id",
@@ -1738,9 +1767,12 @@
                 "timeRange": "time_range"
             },
             "grafana:index/role:Role": {
-                "displayName": "display_name"
+                "autoIncrementVersion": "auto_increment_version",
+                "displayName": "display_name",
+                "orgId": "org_id"
             },
             "grafana:index/roleAssignment:RoleAssignment": {
+                "orgId": "org_id",
                 "roleUid": "role_uid",
                 "serviceAccounts": "service_accounts"
             },
@@ -1806,6 +1838,7 @@
                 "oncallUrl": "oncall_url",
                 "orgId": "org_id",
                 "retryStatusCodes": "retry_status_codes",
+                "retryWait": "retry_wait",
                 "smAccessToken": "sm_access_token",
                 "smUrl": "sm_url",
                 "storeDashboardSha256": "store_dashboard_sha256",
@@ -1823,6 +1856,7 @@
             "oncallUrl": "oncall_url",
             "orgId": "org_id",
             "retryStatusCodes": "retry_status_codes",
+            "retryWait": "retry_wait",
             "smAccessToken": "sm_access_token",
             "smUrl": "sm_url",
             "storeDashboardSha256": "store_dashboard_sha256",

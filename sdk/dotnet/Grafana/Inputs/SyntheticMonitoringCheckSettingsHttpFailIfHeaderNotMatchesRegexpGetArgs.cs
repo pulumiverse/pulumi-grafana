@@ -13,12 +13,21 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allow header to be missing from responses. Defaults to `false`.
+        /// </summary>
         [Input("allowMissing")]
         public Input<bool>? AllowMissing { get; set; }
 
+        /// <summary>
+        /// Header name.
+        /// </summary>
         [Input("header", required: true)]
         public Input<string> Header { get; set; } = null!;
 
+        /// <summary>
+        /// Regex that header value should match.
+        /// </summary>
         [Input("regexp", required: true)]
         public Input<string> Regexp { get; set; } = null!;
 

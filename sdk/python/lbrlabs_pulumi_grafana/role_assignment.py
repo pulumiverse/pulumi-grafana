@@ -15,17 +15,21 @@ __all__ = ['RoleAssignmentArgs', 'RoleAssignment']
 class RoleAssignmentArgs:
     def __init__(__self__, *,
                  role_uid: pulumi.Input[str],
+                 org_id: Optional[pulumi.Input[str]] = None,
                  service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None):
         """
         The set of arguments for constructing a RoleAssignment resource.
         :param pulumi.Input[str] role_uid: Grafana RBAC role UID.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] service_accounts: IDs of service accounts that the role should be assigned to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] teams: IDs of teams that the role should be assigned to.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] users: IDs of users that the role should be assigned to.
         """
         pulumi.set(__self__, "role_uid", role_uid)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if service_accounts is not None:
             pulumi.set(__self__, "service_accounts", service_accounts)
         if teams is not None:
@@ -44,6 +48,18 @@ class RoleAssignmentArgs:
     @role_uid.setter
     def role_uid(self, value: pulumi.Input[str]):
         pulumi.set(self, "role_uid", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter(name="serviceAccounts")
@@ -85,17 +101,21 @@ class RoleAssignmentArgs:
 @pulumi.input_type
 class _RoleAssignmentState:
     def __init__(__self__, *,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  role_uid: Optional[pulumi.Input[str]] = None,
                  service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None):
         """
         Input properties used for looking up and filtering RoleAssignment resources.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] role_uid: Grafana RBAC role UID.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] service_accounts: IDs of service accounts that the role should be assigned to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] teams: IDs of teams that the role should be assigned to.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] users: IDs of users that the role should be assigned to.
         """
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if role_uid is not None:
             pulumi.set(__self__, "role_uid", role_uid)
         if service_accounts is not None:
@@ -104,6 +124,18 @@ class _RoleAssignmentState:
             pulumi.set(__self__, "teams", teams)
         if users is not None:
             pulumi.set(__self__, "users", users)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter(name="roleUid")
@@ -159,6 +191,7 @@ class RoleAssignment(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  role_uid: Optional[pulumi.Input[str]] = None,
                  service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -198,6 +231,7 @@ class RoleAssignment(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] role_uid: Grafana RBAC role UID.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] service_accounts: IDs of service accounts that the role should be assigned to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] teams: IDs of teams that the role should be assigned to.
@@ -256,6 +290,7 @@ class RoleAssignment(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  role_uid: Optional[pulumi.Input[str]] = None,
                  service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -269,6 +304,7 @@ class RoleAssignment(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = RoleAssignmentArgs.__new__(RoleAssignmentArgs)
 
+            __props__.__dict__["org_id"] = org_id
             if role_uid is None and not opts.urn:
                 raise TypeError("Missing required property 'role_uid'")
             __props__.__dict__["role_uid"] = role_uid
@@ -285,6 +321,7 @@ class RoleAssignment(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
             role_uid: Optional[pulumi.Input[str]] = None,
             service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             teams: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -296,6 +333,7 @@ class RoleAssignment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] role_uid: Grafana RBAC role UID.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] service_accounts: IDs of service accounts that the role should be assigned to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] teams: IDs of teams that the role should be assigned to.
@@ -305,11 +343,20 @@ class RoleAssignment(pulumi.CustomResource):
 
         __props__ = _RoleAssignmentState.__new__(_RoleAssignmentState)
 
+        __props__.__dict__["org_id"] = org_id
         __props__.__dict__["role_uid"] = role_uid
         __props__.__dict__["service_accounts"] = service_accounts
         __props__.__dict__["teams"] = teams
         __props__.__dict__["users"] = users
         return RoleAssignment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter(name="roleUid")

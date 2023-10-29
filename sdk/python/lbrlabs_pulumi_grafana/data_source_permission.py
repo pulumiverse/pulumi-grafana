@@ -157,6 +157,7 @@ class DataSourcePermission(pulumi.CustomResource):
             email="test-ds-permissions@example.com",
             login="test-ds-permissions",
             password="hunter2")
+        sa = grafana.ServiceAccount("sa", role="Viewer")
         foo_permissions = grafana.DataSourcePermission("fooPermissions",
             datasource_id=foo.id,
             permissions=[
@@ -170,6 +171,10 @@ class DataSourcePermission(pulumi.CustomResource):
                 ),
                 grafana.DataSourcePermissionPermissionArgs(
                     built_in_role="Viewer",
+                    permission="Query",
+                ),
+                grafana.DataSourcePermissionPermissionArgs(
+                    user_id=sa.id,
                     permission="Query",
                 ),
             ])
@@ -212,6 +217,7 @@ class DataSourcePermission(pulumi.CustomResource):
             email="test-ds-permissions@example.com",
             login="test-ds-permissions",
             password="hunter2")
+        sa = grafana.ServiceAccount("sa", role="Viewer")
         foo_permissions = grafana.DataSourcePermission("fooPermissions",
             datasource_id=foo.id,
             permissions=[
@@ -225,6 +231,10 @@ class DataSourcePermission(pulumi.CustomResource):
                 ),
                 grafana.DataSourcePermissionPermissionArgs(
                     built_in_role="Viewer",
+                    permission="Query",
+                ),
+                grafana.DataSourcePermissionPermissionArgs(
+                    user_id=sa.id,
                     permission="Query",
                 ),
             ])

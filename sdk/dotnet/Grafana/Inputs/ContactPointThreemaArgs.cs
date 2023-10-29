@@ -29,21 +29,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
             }
         }
 
-        [Input("description", required: true)]
-        private Input<string>? _description;
-
         /// <summary>
         /// The templated description of the message.
         /// </summary>
-        public Input<string>? Description
-        {
-            get => _description;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _description = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("description")]
+        public Input<string>? Description { get; set; }
 
         /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
@@ -79,21 +69,11 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
             }
         }
 
-        [Input("title", required: true)]
-        private Input<string>? _title;
-
         /// <summary>
         /// The templated title of the message.
         /// </summary>
-        public Input<string>? Title
-        {
-            get => _title;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _title = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        [Input("title")]
+        public Input<string>? Title { get; set; }
 
         /// <summary>
         /// The UID of the contact point.

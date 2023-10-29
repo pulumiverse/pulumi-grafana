@@ -85,14 +85,14 @@ public final class CloudAccessPolicyState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+     * Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+     * @return Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      * 
      */
     public Optional<Output<String>> region() {
@@ -100,14 +100,14 @@ public final class CloudAccessPolicyState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/#scopes for possible values.
+     * Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
      * 
      */
     @Import(name="scopes")
     private @Nullable Output<List<String>> scopes;
 
     /**
-     * @return Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/#scopes for possible values.
+     * @return Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
      * 
      */
     public Optional<Output<List<String>>> scopes() {
@@ -258,7 +258,7 @@ public final class CloudAccessPolicyState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param region Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+         * @param region Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
          * 
          * @return builder
          * 
@@ -269,7 +269,7 @@ public final class CloudAccessPolicyState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param region Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+         * @param region Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
          * 
          * @return builder
          * 
@@ -279,7 +279,7 @@ public final class CloudAccessPolicyState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param scopes Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/#scopes for possible values.
+         * @param scopes Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
          * 
          * @return builder
          * 
@@ -290,7 +290,7 @@ public final class CloudAccessPolicyState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param scopes Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/#scopes for possible values.
+         * @param scopes Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
          * 
          * @return builder
          * 
@@ -300,7 +300,7 @@ public final class CloudAccessPolicyState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param scopes Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/#scopes for possible values.
+         * @param scopes Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
          * 
          * @return builder
          * 

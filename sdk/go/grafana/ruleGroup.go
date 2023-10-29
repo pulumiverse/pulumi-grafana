@@ -156,7 +156,7 @@ type RuleGroup struct {
 	FolderUid pulumi.StringOutput `pulumi:"folderUid"`
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds pulumi.IntOutput `pulumi:"intervalSeconds"`
-	// The name of the rule group.
+	// The name of the alert rule.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the org to which the group belongs.
 	OrgId pulumi.StringOutput `pulumi:"orgId"`
@@ -210,7 +210,7 @@ type ruleGroupState struct {
 	FolderUid *string `pulumi:"folderUid"`
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds *int `pulumi:"intervalSeconds"`
-	// The name of the rule group.
+	// The name of the alert rule.
 	Name *string `pulumi:"name"`
 	// The ID of the org to which the group belongs.
 	OrgId *string `pulumi:"orgId"`
@@ -223,7 +223,7 @@ type RuleGroupState struct {
 	FolderUid pulumi.StringPtrInput
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds pulumi.IntPtrInput
-	// The name of the rule group.
+	// The name of the alert rule.
 	Name pulumi.StringPtrInput
 	// The ID of the org to which the group belongs.
 	OrgId pulumi.StringPtrInput
@@ -240,7 +240,7 @@ type ruleGroupArgs struct {
 	FolderUid string `pulumi:"folderUid"`
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds int `pulumi:"intervalSeconds"`
-	// The name of the rule group.
+	// The name of the alert rule.
 	Name *string `pulumi:"name"`
 	// The ID of the org to which the group belongs.
 	OrgId string `pulumi:"orgId"`
@@ -254,7 +254,7 @@ type RuleGroupArgs struct {
 	FolderUid pulumi.StringInput
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds pulumi.IntInput
-	// The name of the rule group.
+	// The name of the alert rule.
 	Name pulumi.StringPtrInput
 	// The ID of the org to which the group belongs.
 	OrgId pulumi.StringInput
@@ -383,7 +383,7 @@ func (o RuleGroupOutput) IntervalSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *RuleGroup) pulumi.IntOutput { return v.IntervalSeconds }).(pulumi.IntOutput)
 }
 
-// The name of the rule group.
+// The name of the alert rule.
 func (o RuleGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *RuleGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

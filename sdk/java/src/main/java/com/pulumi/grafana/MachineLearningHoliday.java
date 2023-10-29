@@ -81,14 +81,14 @@ public class MachineLearningHoliday extends com.pulumi.resources.CustomResource 
         return Codegen.optional(this.icalUrl);
     }
     /**
-     * The name of the holiday.
+     * The name of the custom period.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The name of the holiday.
+     * @return The name of the custom period.
      * 
      */
     public Output<String> name() {

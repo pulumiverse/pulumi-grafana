@@ -49,14 +49,14 @@ public final class RuleGroupArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The name of the rule group.
+     * The name of the alert rule.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the rule group.
+     * @return The name of the alert rule.
      * 
      */
     public Optional<Output<String>> name() {
@@ -164,7 +164,7 @@ public final class RuleGroupArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The name of the rule group.
+         * @param name The name of the alert rule.
          * 
          * @return builder
          * 
@@ -175,7 +175,7 @@ public final class RuleGroupArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The name of the rule group.
+         * @param name The name of the alert rule.
          * 
          * @return builder
          * 

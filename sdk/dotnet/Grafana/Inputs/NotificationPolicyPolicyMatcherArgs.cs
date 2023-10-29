@@ -13,12 +13,21 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class NotificationPolicyPolicyMatcherArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the label to match against.
+        /// </summary>
         [Input("label", required: true)]
         public Input<string> Label { get; set; } = null!;
 
+        /// <summary>
+        /// The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        /// </summary>
         [Input("match", required: true)]
         public Input<string> Match { get; set; } = null!;
 
+        /// <summary>
+        /// The label value to match against.
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 

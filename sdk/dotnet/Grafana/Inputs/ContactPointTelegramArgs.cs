@@ -20,16 +20,40 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public Input<string> ChatId { get; set; } = null!;
 
         /// <summary>
+        /// When set users will receive a notification with no sound.
+        /// </summary>
+        [Input("disableNotifications")]
+        public Input<bool>? DisableNotifications { get; set; }
+
+        /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
         [Input("disableResolveMessage")]
         public Input<bool>? DisableResolveMessage { get; set; }
 
         /// <summary>
+        /// When set it disables link previews for links in the message.
+        /// </summary>
+        [Input("disableWebPagePreview")]
+        public Input<bool>? DisableWebPagePreview { get; set; }
+
+        /// <summary>
         /// The templated content of the message.
         /// </summary>
         [Input("message")]
         public Input<string>? Message { get; set; }
+
+        /// <summary>
+        /// Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
+        /// </summary>
+        [Input("parseMode")]
+        public Input<string>? ParseMode { get; set; }
+
+        /// <summary>
+        /// When set it protects the contents of the message from forwarding and saving.
+        /// </summary>
+        [Input("protectContent")]
+        public Input<bool>? ProtectContent { get; set; }
 
         [Input("settings")]
         private InputMap<string>? _settings;

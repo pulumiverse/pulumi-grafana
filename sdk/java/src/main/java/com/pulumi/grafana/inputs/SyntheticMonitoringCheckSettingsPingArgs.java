@@ -17,30 +17,62 @@ public final class SyntheticMonitoringCheckSettingsPingArgs extends com.pulumi.r
 
     public static final SyntheticMonitoringCheckSettingsPingArgs Empty = new SyntheticMonitoringCheckSettingsPingArgs();
 
+    /**
+     * Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+     * 
+     */
     @Import(name="dontFragment")
     private @Nullable Output<Boolean> dontFragment;
 
+    /**
+     * @return Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> dontFragment() {
         return Optional.ofNullable(this.dontFragment);
     }
 
+    /**
+     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+     * 
+     */
     @Import(name="ipVersion")
     private @Nullable Output<String> ipVersion;
 
+    /**
+     * @return Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+     * 
+     */
     public Optional<Output<String>> ipVersion() {
         return Optional.ofNullable(this.ipVersion);
     }
 
+    /**
+     * Payload size. Defaults to `0`.
+     * 
+     */
     @Import(name="payloadSize")
     private @Nullable Output<Integer> payloadSize;
 
+    /**
+     * @return Payload size. Defaults to `0`.
+     * 
+     */
     public Optional<Output<Integer>> payloadSize() {
         return Optional.ofNullable(this.payloadSize);
     }
 
+    /**
+     * Source IP address.
+     * 
+     */
     @Import(name="sourceIpAddress")
     private @Nullable Output<String> sourceIpAddress;
 
+    /**
+     * @return Source IP address.
+     * 
+     */
     public Optional<Output<String>> sourceIpAddress() {
         return Optional.ofNullable(this.sourceIpAddress);
     }
@@ -72,38 +104,86 @@ public final class SyntheticMonitoringCheckSettingsPingArgs extends com.pulumi.r
             $ = new SyntheticMonitoringCheckSettingsPingArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param dontFragment Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dontFragment(@Nullable Output<Boolean> dontFragment) {
             $.dontFragment = dontFragment;
             return this;
         }
 
+        /**
+         * @param dontFragment Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dontFragment(Boolean dontFragment) {
             return dontFragment(Output.of(dontFragment));
         }
 
+        /**
+         * @param ipVersion Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ipVersion(@Nullable Output<String> ipVersion) {
             $.ipVersion = ipVersion;
             return this;
         }
 
+        /**
+         * @param ipVersion Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ipVersion(String ipVersion) {
             return ipVersion(Output.of(ipVersion));
         }
 
+        /**
+         * @param payloadSize Payload size. Defaults to `0`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder payloadSize(@Nullable Output<Integer> payloadSize) {
             $.payloadSize = payloadSize;
             return this;
         }
 
+        /**
+         * @param payloadSize Payload size. Defaults to `0`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder payloadSize(Integer payloadSize) {
             return payloadSize(Output.of(payloadSize));
         }
 
+        /**
+         * @param sourceIpAddress Source IP address.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sourceIpAddress(@Nullable Output<String> sourceIpAddress) {
             $.sourceIpAddress = sourceIpAddress;
             return this;
         }
 
+        /**
+         * @param sourceIpAddress Source IP address.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sourceIpAddress(String sourceIpAddress) {
             return sourceIpAddress(Output.of(sourceIpAddress));
         }

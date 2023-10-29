@@ -9,8 +9,8 @@ import * as utilities from "./utilities";
 /**
  * Datasource for retrieving all SLOs.
  *
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
- * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
+ * * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
  * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
  */
 export function getSlos(opts?: pulumi.InvokeOptions): Promise<GetSlosResult> {
@@ -36,8 +36,8 @@ export interface GetSlosResult {
 /**
  * Datasource for retrieving all SLOs.
  *
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
- * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
+ * * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
  * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
  */
 export function getSlosOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetSlosResult> {

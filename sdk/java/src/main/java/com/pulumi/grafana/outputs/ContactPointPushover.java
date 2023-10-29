@@ -80,6 +80,11 @@ public final class ContactPointPushover {
      */
     private @Nullable String uid;
     /**
+     * @return Whether to send images in the notification or not. Default is true. Requires Grafana to be configured to send images in notifications.
+     * 
+     */
+    private @Nullable Boolean uploadImage;
+    /**
      * @return The Pushover user key.
      * 
      */
@@ -178,6 +183,13 @@ public final class ContactPointPushover {
         return Optional.ofNullable(this.uid);
     }
     /**
+     * @return Whether to send images in the notification or not. Default is true. Requires Grafana to be configured to send images in notifications.
+     * 
+     */
+    public Optional<Boolean> uploadImage() {
+        return Optional.ofNullable(this.uploadImage);
+    }
+    /**
      * @return The Pushover user key.
      * 
      */
@@ -207,6 +219,7 @@ public final class ContactPointPushover {
         private @Nullable String sound;
         private @Nullable String title;
         private @Nullable String uid;
+        private @Nullable Boolean uploadImage;
         private String userKey;
         public Builder() {}
         public Builder(ContactPointPushover defaults) {
@@ -224,6 +237,7 @@ public final class ContactPointPushover {
     	      this.sound = defaults.sound;
     	      this.title = defaults.title;
     	      this.uid = defaults.uid;
+    	      this.uploadImage = defaults.uploadImage;
     	      this.userKey = defaults.userKey;
         }
 
@@ -293,6 +307,11 @@ public final class ContactPointPushover {
             return this;
         }
         @CustomType.Setter
+        public Builder uploadImage(@Nullable Boolean uploadImage) {
+            this.uploadImage = uploadImage;
+            return this;
+        }
+        @CustomType.Setter
         public Builder userKey(String userKey) {
             this.userKey = Objects.requireNonNull(userKey);
             return this;
@@ -312,6 +331,7 @@ public final class ContactPointPushover {
             o.sound = sound;
             o.title = title;
             o.uid = uid;
+            o.uploadImage = uploadImage;
             o.userKey = userKey;
             return o;
         }

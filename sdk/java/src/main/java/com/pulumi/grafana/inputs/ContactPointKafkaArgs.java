@@ -18,6 +18,66 @@ public final class ContactPointKafkaArgs extends com.pulumi.resources.ResourceAr
     public static final ContactPointKafkaArgs Empty = new ContactPointKafkaArgs();
 
     /**
+     * The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+     * 
+     */
+    @Import(name="apiVersion")
+    private @Nullable Output<String> apiVersion;
+
+    /**
+     * @return The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+     * 
+     */
+    public Optional<Output<String>> apiVersion() {
+        return Optional.ofNullable(this.apiVersion);
+    }
+
+    /**
+     * The Id of cluster to use when contacting the Kafka REST Server. Required api_version to be &#39;v3&#39;
+     * 
+     */
+    @Import(name="clusterId")
+    private @Nullable Output<String> clusterId;
+
+    /**
+     * @return The Id of cluster to use when contacting the Kafka REST Server. Required api_version to be &#39;v3&#39;
+     * 
+     */
+    public Optional<Output<String>> clusterId() {
+        return Optional.ofNullable(this.clusterId);
+    }
+
+    /**
+     * The templated description of the Kafka message.
+     * 
+     */
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    /**
+     * @return The templated description of the Kafka message.
+     * 
+     */
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
+
+    /**
+     * The templated details to include with the message.
+     * 
+     */
+    @Import(name="details")
+    private @Nullable Output<String> details;
+
+    /**
+     * @return The templated details to include with the message.
+     * 
+     */
+    public Optional<Output<String>> details() {
+        return Optional.ofNullable(this.details);
+    }
+
+    /**
      * Whether to disable sending resolve messages. Defaults to `false`.
      * 
      */
@@ -30,6 +90,21 @@ public final class ContactPointKafkaArgs extends com.pulumi.resources.ResourceAr
      */
     public Optional<Output<Boolean>> disableResolveMessage() {
         return Optional.ofNullable(this.disableResolveMessage);
+    }
+
+    /**
+     * The password to use when making a call to the Kafka REST Proxy
+     * 
+     */
+    @Import(name="password")
+    private @Nullable Output<String> password;
+
+    /**
+     * @return The password to use when making a call to the Kafka REST Proxy
+     * 
+     */
+    public Optional<Output<String>> password() {
+        return Optional.ofNullable(this.password);
     }
 
     /**
@@ -92,14 +167,35 @@ public final class ContactPointKafkaArgs extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.uid);
     }
 
+    /**
+     * The user name to use when making a call to the Kafka REST Proxy
+     * 
+     */
+    @Import(name="username")
+    private @Nullable Output<String> username;
+
+    /**
+     * @return The user name to use when making a call to the Kafka REST Proxy
+     * 
+     */
+    public Optional<Output<String>> username() {
+        return Optional.ofNullable(this.username);
+    }
+
     private ContactPointKafkaArgs() {}
 
     private ContactPointKafkaArgs(ContactPointKafkaArgs $) {
+        this.apiVersion = $.apiVersion;
+        this.clusterId = $.clusterId;
+        this.description = $.description;
+        this.details = $.details;
         this.disableResolveMessage = $.disableResolveMessage;
+        this.password = $.password;
         this.restProxyUrl = $.restProxyUrl;
         this.settings = $.settings;
         this.topic = $.topic;
         this.uid = $.uid;
+        this.username = $.username;
     }
 
     public static Builder builder() {
@@ -121,6 +217,90 @@ public final class ContactPointKafkaArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
+         * @param apiVersion The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apiVersion(@Nullable Output<String> apiVersion) {
+            $.apiVersion = apiVersion;
+            return this;
+        }
+
+        /**
+         * @param apiVersion The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apiVersion(String apiVersion) {
+            return apiVersion(Output.of(apiVersion));
+        }
+
+        /**
+         * @param clusterId The Id of cluster to use when contacting the Kafka REST Server. Required api_version to be &#39;v3&#39;
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clusterId(@Nullable Output<String> clusterId) {
+            $.clusterId = clusterId;
+            return this;
+        }
+
+        /**
+         * @param clusterId The Id of cluster to use when contacting the Kafka REST Server. Required api_version to be &#39;v3&#39;
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clusterId(String clusterId) {
+            return clusterId(Output.of(clusterId));
+        }
+
+        /**
+         * @param description The templated description of the Kafka message.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        /**
+         * @param description The templated description of the Kafka message.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(String description) {
+            return description(Output.of(description));
+        }
+
+        /**
+         * @param details The templated details to include with the message.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder details(@Nullable Output<String> details) {
+            $.details = details;
+            return this;
+        }
+
+        /**
+         * @param details The templated details to include with the message.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder details(String details) {
+            return details(Output.of(details));
+        }
+
+        /**
          * @param disableResolveMessage Whether to disable sending resolve messages. Defaults to `false`.
          * 
          * @return builder
@@ -139,6 +319,27 @@ public final class ContactPointKafkaArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder disableResolveMessage(Boolean disableResolveMessage) {
             return disableResolveMessage(Output.of(disableResolveMessage));
+        }
+
+        /**
+         * @param password The password to use when making a call to the Kafka REST Proxy
+         * 
+         * @return builder
+         * 
+         */
+        public Builder password(@Nullable Output<String> password) {
+            $.password = password;
+            return this;
+        }
+
+        /**
+         * @param password The password to use when making a call to the Kafka REST Proxy
+         * 
+         * @return builder
+         * 
+         */
+        public Builder password(String password) {
+            return password(Output.of(password));
         }
 
         /**
@@ -223,6 +424,27 @@ public final class ContactPointKafkaArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder uid(String uid) {
             return uid(Output.of(uid));
+        }
+
+        /**
+         * @param username The user name to use when making a call to the Kafka REST Proxy
+         * 
+         * @return builder
+         * 
+         */
+        public Builder username(@Nullable Output<String> username) {
+            $.username = username;
+            return this;
+        }
+
+        /**
+         * @param username The user name to use when making a call to the Kafka REST Proxy
+         * 
+         * @return builder
+         * 
+         */
+        public Builder username(String username) {
+            return username(Output.of(username));
         }
 
         public ContactPointKafkaArgs build() {

@@ -14,6 +14,9 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class OncallIntegrationTemplatesSms
     {
+        /// <summary>
+        /// Template for Alert title.
+        /// </summary>
         public readonly string? Title;
 
         [OutputConstructor]

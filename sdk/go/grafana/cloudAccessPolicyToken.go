@@ -13,8 +13,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
-// * [Official documentation](https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/)
-// * [API documentation](https://grafana.com/docs/grafana-cloud/reference/cloud-api/#create-a-token)
+// * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
+// * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-a-token)
 //
 // ## Example Usage
 //
@@ -85,7 +85,7 @@ type CloudAccessPolicyToken struct {
 	ExpiresAt pulumi.StringPtrOutput `pulumi:"expiresAt"`
 	// Name of the access policy token.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+	// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	Region pulumi.StringOutput `pulumi:"region"`
 	Token  pulumi.StringOutput `pulumi:"token"`
 	// Last update date of the access policy token.
@@ -142,7 +142,7 @@ type cloudAccessPolicyTokenState struct {
 	ExpiresAt *string `pulumi:"expiresAt"`
 	// Name of the access policy token.
 	Name *string `pulumi:"name"`
-	// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+	// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	Region *string `pulumi:"region"`
 	Token  *string `pulumi:"token"`
 	// Last update date of the access policy token.
@@ -160,7 +160,7 @@ type CloudAccessPolicyTokenState struct {
 	ExpiresAt pulumi.StringPtrInput
 	// Name of the access policy token.
 	Name pulumi.StringPtrInput
-	// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+	// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	Region pulumi.StringPtrInput
 	Token  pulumi.StringPtrInput
 	// Last update date of the access policy token.
@@ -180,7 +180,7 @@ type cloudAccessPolicyTokenArgs struct {
 	ExpiresAt *string `pulumi:"expiresAt"`
 	// Name of the access policy token.
 	Name *string `pulumi:"name"`
-	// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+	// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	Region string `pulumi:"region"`
 }
 
@@ -194,7 +194,7 @@ type CloudAccessPolicyTokenArgs struct {
 	ExpiresAt pulumi.StringPtrInput
 	// Name of the access policy token.
 	Name pulumi.StringPtrInput
-	// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+	// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	Region pulumi.StringInput
 }
 
@@ -334,7 +334,7 @@ func (o CloudAccessPolicyTokenOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudAccessPolicyToken) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 func (o CloudAccessPolicyTokenOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudAccessPolicyToken) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

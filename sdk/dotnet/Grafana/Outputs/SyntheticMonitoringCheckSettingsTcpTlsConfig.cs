@@ -14,10 +14,25 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class SyntheticMonitoringCheckSettingsTcpTlsConfig
     {
+        /// <summary>
+        /// CA certificate in PEM format.
+        /// </summary>
         public readonly string? CaCert;
+        /// <summary>
+        /// Client certificate in PEM format.
+        /// </summary>
         public readonly string? ClientCert;
+        /// <summary>
+        /// Client key in PEM format.
+        /// </summary>
         public readonly string? ClientKey;
+        /// <summary>
+        /// Disable target certificate validation. Defaults to `false`.
+        /// </summary>
         public readonly bool? InsecureSkipVerify;
+        /// <summary>
+        /// Used to verify the hostname for the targets.
+        /// </summary>
         public readonly string? ServerName;
 
         [OutputConstructor]

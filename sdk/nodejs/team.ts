@@ -21,6 +21,16 @@ import * as utilities from "./utilities";
  *     members: ["viewer-01@example.com"],
  * });
  * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ *  $ pulumi import grafana:index/team:Team team_name {{team_id}} # To use the default provider org
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import grafana:index/team:Team team_name {{org_id}}:{{team_id}} # When "org_id" is set on the resource
+ * ```
  */
 export class Team extends pulumi.CustomResource {
     /**
@@ -82,7 +92,7 @@ export class Team extends pulumi.CustomResource {
     /**
      * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
      * documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-     * API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+     * API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
      */
     public readonly teamSync!: pulumi.Output<outputs.TeamTeamSync | undefined>;
 
@@ -159,7 +169,7 @@ export interface TeamState {
     /**
      * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
      * documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-     * API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+     * API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
      */
     teamSync?: pulumi.Input<inputs.TeamTeamSync>;
 }
@@ -196,7 +206,7 @@ export interface TeamArgs {
     /**
      * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
      * documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-     * API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+     * API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
      */
     teamSync?: pulumi.Input<inputs.TeamTeamSync>;
 }

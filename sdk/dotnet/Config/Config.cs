@@ -8,7 +8,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
 {
     public static class Config
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "IDE1006", Justification = 
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "IDE1006", Justification = 
         "Double underscore prefix used to avoid conflicts with variable names.")]
         private sealed class __Value<T>
         {
@@ -148,6 +148,17 @@ namespace Lbrlabs.PulumiPackage.Grafana
             set => _retryStatusCodes.Set(value);
         }
 
+        private static readonly __Value<int?> _retryWait = new __Value<int?>(() => __config.GetInt32("retryWait"));
+        /// <summary>
+        /// The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be
+        /// set via the `GRAFANA_RETRY_WAIT` environment variable.
+        /// </summary>
+        public static int? RetryWait
+        {
+            get => _retryWait.Get();
+            set => _retryWait.Set(value);
+        }
+
         private static readonly __Value<string?> _smAccessToken = new __Value<string?>(() => __config.Get("smAccessToken") ?? Utilities.GetEnv("GRAFANA_SM_ACCESS_TOKEN"));
         /// <summary>
         /// A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
@@ -162,8 +173,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// <summary>
         /// Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
         /// correct value for each service region is cited in the [Synthetic Monitoring
-        /// documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url). Note
-        /// the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
+        /// documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).
+        /// Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
         /// `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
         /// managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
         /// each provider ensures all providers interact with the same SM API.

@@ -24,6 +24,7 @@ class ProviderArgs:
                  org_id: Optional[pulumi.Input[int]] = None,
                  retries: Optional[pulumi.Input[int]] = None,
                  retry_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 retry_wait: Optional[pulumi.Input[int]] = None,
                  sm_access_token: Optional[pulumi.Input[str]] = None,
                  sm_url: Optional[pulumi.Input[str]] = None,
                  store_dashboard_sha256: Optional[pulumi.Input[bool]] = None,
@@ -47,11 +48,13 @@ class ProviderArgs:
                `GRAFANA_RETRIES` environment variable.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_status_codes: The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
                and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+        :param pulumi.Input[int] retry_wait: The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be
+               set via the `GRAFANA_RETRY_WAIT` environment variable.
         :param pulumi.Input[str] sm_access_token: A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] sm_url: Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
                correct value for each service region is cited in the [Synthetic Monitoring
-               documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url). Note
-               the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
+               documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).
+               Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
                `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
                managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
                each provider ensures all providers interact with the same SM API.
@@ -90,11 +93,11 @@ class ProviderArgs:
             oncall_url = _utilities.get_env('GRAFANA_ONCALL_URL')
         if oncall_url is not None:
             pulumi.set(__self__, "oncall_url", oncall_url)
-        if org_id is None:
-            org_id = _utilities.get_env_int('GRAFANA_ORG_ID')
         if org_id is not None:
             warnings.warn("""Use the `org_id` attributes on resources instead.""", DeprecationWarning)
             pulumi.log.warn("""org_id is deprecated: Use the `org_id` attributes on resources instead.""")
+        if org_id is None:
+            org_id = _utilities.get_env_int('GRAFANA_ORG_ID')
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
         if retries is None:
@@ -103,6 +106,8 @@ class ProviderArgs:
             pulumi.set(__self__, "retries", retries)
         if retry_status_codes is not None:
             pulumi.set(__self__, "retry_status_codes", retry_status_codes)
+        if retry_wait is not None:
+            pulumi.set(__self__, "retry_wait", retry_wait)
         if sm_access_token is None:
             sm_access_token = _utilities.get_env('GRAFANA_SM_ACCESS_TOKEN')
         if sm_access_token is not None:
@@ -257,6 +262,19 @@ class ProviderArgs:
         pulumi.set(self, "retry_status_codes", value)
 
     @property
+    @pulumi.getter(name="retryWait")
+    def retry_wait(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be
+        set via the `GRAFANA_RETRY_WAIT` environment variable.
+        """
+        return pulumi.get(self, "retry_wait")
+
+    @retry_wait.setter
+    def retry_wait(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "retry_wait", value)
+
+    @property
     @pulumi.getter(name="smAccessToken")
     def sm_access_token(self) -> Optional[pulumi.Input[str]]:
         """
@@ -274,8 +292,8 @@ class ProviderArgs:
         """
         Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
         correct value for each service region is cited in the [Synthetic Monitoring
-        documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url). Note
-        the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
+        documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).
+        Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
         `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
         managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
         each provider ensures all providers interact with the same SM API.
@@ -352,6 +370,7 @@ class Provider(pulumi.ProviderResource):
                  org_id: Optional[pulumi.Input[int]] = None,
                  retries: Optional[pulumi.Input[int]] = None,
                  retry_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 retry_wait: Optional[pulumi.Input[int]] = None,
                  sm_access_token: Optional[pulumi.Input[str]] = None,
                  sm_url: Optional[pulumi.Input[str]] = None,
                  store_dashboard_sha256: Optional[pulumi.Input[bool]] = None,
@@ -382,11 +401,13 @@ class Provider(pulumi.ProviderResource):
                `GRAFANA_RETRIES` environment variable.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_status_codes: The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
                and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+        :param pulumi.Input[int] retry_wait: The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be
+               set via the `GRAFANA_RETRY_WAIT` environment variable.
         :param pulumi.Input[str] sm_access_token: A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] sm_url: Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
                correct value for each service region is cited in the [Synthetic Monitoring
-               documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url). Note
-               the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
+               documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).
+               Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
                `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
                managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
                each provider ensures all providers interact with the same SM API.
@@ -434,6 +455,7 @@ class Provider(pulumi.ProviderResource):
                  org_id: Optional[pulumi.Input[int]] = None,
                  retries: Optional[pulumi.Input[int]] = None,
                  retry_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 retry_wait: Optional[pulumi.Input[int]] = None,
                  sm_access_token: Optional[pulumi.Input[str]] = None,
                  sm_url: Optional[pulumi.Input[str]] = None,
                  store_dashboard_sha256: Optional[pulumi.Input[bool]] = None,
@@ -470,9 +492,6 @@ class Provider(pulumi.ProviderResource):
             if oncall_url is None:
                 oncall_url = _utilities.get_env('GRAFANA_ONCALL_URL')
             __props__.__dict__["oncall_url"] = oncall_url
-            if org_id is not None and not opts.urn:
-                warnings.warn("""Use the `org_id` attributes on resources instead.""", DeprecationWarning)
-                pulumi.log.warn("""org_id is deprecated: Use the `org_id` attributes on resources instead.""")
             if org_id is None:
                 org_id = _utilities.get_env_int('GRAFANA_ORG_ID')
             __props__.__dict__["org_id"] = pulumi.Output.from_input(org_id).apply(pulumi.runtime.to_json) if org_id is not None else None
@@ -480,6 +499,7 @@ class Provider(pulumi.ProviderResource):
                 retries = _utilities.get_env_int('GRAFANA_RETRIES')
             __props__.__dict__["retries"] = pulumi.Output.from_input(retries).apply(pulumi.runtime.to_json) if retries is not None else None
             __props__.__dict__["retry_status_codes"] = pulumi.Output.from_input(retry_status_codes).apply(pulumi.runtime.to_json) if retry_status_codes is not None else None
+            __props__.__dict__["retry_wait"] = pulumi.Output.from_input(retry_wait).apply(pulumi.runtime.to_json) if retry_wait is not None else None
             if sm_access_token is None:
                 sm_access_token = _utilities.get_env('GRAFANA_SM_ACCESS_TOKEN')
             __props__.__dict__["sm_access_token"] = None if sm_access_token is None else pulumi.Output.secret(sm_access_token)
@@ -571,8 +591,8 @@ class Provider(pulumi.ProviderResource):
         """
         Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
         correct value for each service region is cited in the [Synthetic Monitoring
-        documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url). Note
-        the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
+        documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).
+        Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
         `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
         managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
         each provider ensures all providers interact with the same SM API.

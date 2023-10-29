@@ -13,16 +13,32 @@ public final class MuteTimingIntervalTimeArgs extends com.pulumi.resources.Resou
 
     public static final MuteTimingIntervalTimeArgs Empty = new MuteTimingIntervalTimeArgs();
 
+    /**
+     * The time, in hh:mm format, of when the interval should end exclusively.
+     * 
+     */
     @Import(name="end", required=true)
     private Output<String> end;
 
+    /**
+     * @return The time, in hh:mm format, of when the interval should end exclusively.
+     * 
+     */
     public Output<String> end() {
         return this.end;
     }
 
+    /**
+     * The time, in hh:mm format, of when the interval should begin inclusively.
+     * 
+     */
     @Import(name="start", required=true)
     private Output<String> start;
 
+    /**
+     * @return The time, in hh:mm format, of when the interval should begin inclusively.
+     * 
+     */
     public Output<String> start() {
         return this.start;
     }
@@ -52,20 +68,44 @@ public final class MuteTimingIntervalTimeArgs extends com.pulumi.resources.Resou
             $ = new MuteTimingIntervalTimeArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param end The time, in hh:mm format, of when the interval should end exclusively.
+         * 
+         * @return builder
+         * 
+         */
         public Builder end(Output<String> end) {
             $.end = end;
             return this;
         }
 
+        /**
+         * @param end The time, in hh:mm format, of when the interval should end exclusively.
+         * 
+         * @return builder
+         * 
+         */
         public Builder end(String end) {
             return end(Output.of(end));
         }
 
+        /**
+         * @param start The time, in hh:mm format, of when the interval should begin inclusively.
+         * 
+         * @return builder
+         * 
+         */
         public Builder start(Output<String> start) {
             $.start = start;
             return this;
         }
 
+        /**
+         * @param start The time, in hh:mm format, of when the interval should begin inclusively.
+         * 
+         * @return builder
+         * 
+         */
         public Builder start(String start) {
             return start(Output.of(start));
         }

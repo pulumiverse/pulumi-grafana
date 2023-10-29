@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * what information you would like to gather about your endpoint. You can define
  * multiple checks for a single endpoint to check different capabilities.
  *
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/checks/)
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/checks/)
  *
  * ## Example Usage
  * ### DNS Basic
@@ -177,7 +177,7 @@ import * as utilities from "./utilities";
  *             validHttpVersions: [
  *                 "HTTP/1.0",
  *                 "HTTP/1.1",
- *                 "HTTP/2",
+ *                 "HTTP/2.0",
  *             ],
  *             failIfBodyMatchesRegexps: ["*bad stuff*"],
  *             failIfBodyNotMatchesRegexps: ["*good stuff*"],
@@ -418,7 +418,7 @@ export class SyntheticMonitoringCheck extends pulumi.CustomResource {
     }
 
     /**
-     * Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+     * Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
      */
     public readonly alertSensitivity!: pulumi.Output<string | undefined>;
     /**
@@ -522,7 +522,7 @@ export class SyntheticMonitoringCheck extends pulumi.CustomResource {
  */
 export interface SyntheticMonitoringCheckState {
     /**
-     * Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+     * Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
      */
     alertSensitivity?: pulumi.Input<string>;
     /**
@@ -572,7 +572,7 @@ export interface SyntheticMonitoringCheckState {
  */
 export interface SyntheticMonitoringCheckArgs {
     /**
-     * Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+     * Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
      */
     alertSensitivity?: pulumi.Input<string>;
     /**

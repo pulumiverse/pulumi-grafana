@@ -19,15 +19,35 @@ public final class ContactPointTelegram {
      */
     private String chatId;
     /**
+     * @return When set users will receive a notification with no sound.
+     * 
+     */
+    private @Nullable Boolean disableNotifications;
+    /**
      * @return Whether to disable sending resolve messages. Defaults to `false`.
      * 
      */
     private @Nullable Boolean disableResolveMessage;
     /**
+     * @return When set it disables link previews for links in the message.
+     * 
+     */
+    private @Nullable Boolean disableWebPagePreview;
+    /**
      * @return The templated content of the message.
      * 
      */
     private @Nullable String message;
+    /**
+     * @return Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
+     * 
+     */
+    private @Nullable String parseMode;
+    /**
+     * @return When set it protects the contents of the message from forwarding and saving.
+     * 
+     */
+    private @Nullable Boolean protectContent;
     /**
      * @return Additional custom properties to attach to the notifier. Defaults to `map[]`.
      * 
@@ -53,6 +73,13 @@ public final class ContactPointTelegram {
         return this.chatId;
     }
     /**
+     * @return When set users will receive a notification with no sound.
+     * 
+     */
+    public Optional<Boolean> disableNotifications() {
+        return Optional.ofNullable(this.disableNotifications);
+    }
+    /**
      * @return Whether to disable sending resolve messages. Defaults to `false`.
      * 
      */
@@ -60,11 +87,32 @@ public final class ContactPointTelegram {
         return Optional.ofNullable(this.disableResolveMessage);
     }
     /**
+     * @return When set it disables link previews for links in the message.
+     * 
+     */
+    public Optional<Boolean> disableWebPagePreview() {
+        return Optional.ofNullable(this.disableWebPagePreview);
+    }
+    /**
      * @return The templated content of the message.
      * 
      */
     public Optional<String> message() {
         return Optional.ofNullable(this.message);
+    }
+    /**
+     * @return Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
+     * 
+     */
+    public Optional<String> parseMode() {
+        return Optional.ofNullable(this.parseMode);
+    }
+    /**
+     * @return When set it protects the contents of the message from forwarding and saving.
+     * 
+     */
+    public Optional<Boolean> protectContent() {
+        return Optional.ofNullable(this.protectContent);
     }
     /**
      * @return Additional custom properties to attach to the notifier. Defaults to `map[]`.
@@ -98,8 +146,12 @@ public final class ContactPointTelegram {
     @CustomType.Builder
     public static final class Builder {
         private String chatId;
+        private @Nullable Boolean disableNotifications;
         private @Nullable Boolean disableResolveMessage;
+        private @Nullable Boolean disableWebPagePreview;
         private @Nullable String message;
+        private @Nullable String parseMode;
+        private @Nullable Boolean protectContent;
         private @Nullable Map<String,String> settings;
         private String token;
         private @Nullable String uid;
@@ -107,8 +159,12 @@ public final class ContactPointTelegram {
         public Builder(ContactPointTelegram defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.chatId = defaults.chatId;
+    	      this.disableNotifications = defaults.disableNotifications;
     	      this.disableResolveMessage = defaults.disableResolveMessage;
+    	      this.disableWebPagePreview = defaults.disableWebPagePreview;
     	      this.message = defaults.message;
+    	      this.parseMode = defaults.parseMode;
+    	      this.protectContent = defaults.protectContent;
     	      this.settings = defaults.settings;
     	      this.token = defaults.token;
     	      this.uid = defaults.uid;
@@ -120,13 +176,33 @@ public final class ContactPointTelegram {
             return this;
         }
         @CustomType.Setter
+        public Builder disableNotifications(@Nullable Boolean disableNotifications) {
+            this.disableNotifications = disableNotifications;
+            return this;
+        }
+        @CustomType.Setter
         public Builder disableResolveMessage(@Nullable Boolean disableResolveMessage) {
             this.disableResolveMessage = disableResolveMessage;
             return this;
         }
         @CustomType.Setter
+        public Builder disableWebPagePreview(@Nullable Boolean disableWebPagePreview) {
+            this.disableWebPagePreview = disableWebPagePreview;
+            return this;
+        }
+        @CustomType.Setter
         public Builder message(@Nullable String message) {
             this.message = message;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder parseMode(@Nullable String parseMode) {
+            this.parseMode = parseMode;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder protectContent(@Nullable Boolean protectContent) {
+            this.protectContent = protectContent;
             return this;
         }
         @CustomType.Setter
@@ -147,8 +223,12 @@ public final class ContactPointTelegram {
         public ContactPointTelegram build() {
             final var o = new ContactPointTelegram();
             o.chatId = chatId;
+            o.disableNotifications = disableNotifications;
             o.disableResolveMessage = disableResolveMessage;
+            o.disableWebPagePreview = disableWebPagePreview;
             o.message = message;
+            o.parseMode = parseMode;
+            o.protectContent = protectContent;
             o.settings = settings;
             o.token = token;
             o.uid = uid;

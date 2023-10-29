@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
@@ -71,6 +70,8 @@ import (
 type Role struct {
 	pulumi.CustomResourceState
 
+	// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+	AutoIncrementVersion pulumi.BoolPtrOutput `pulumi:"autoIncrementVersion"`
 	// Description of the role.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Display name of the role. Available with Grafana 8.5+.
@@ -83,24 +84,23 @@ type Role struct {
 	Hidden pulumi.BoolPtrOutput `pulumi:"hidden"`
 	// Name of the role
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// Specific set of actions granted by the role.
 	Permissions RolePermissionArrayOutput `pulumi:"permissions"`
 	// Unique identifier of the role. Used for assignments.
 	Uid pulumi.StringOutput `pulumi:"uid"`
-	// Version of the role. A role is updated only on version increase.
-	Version pulumi.IntOutput `pulumi:"version"`
+	// Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
+	Version pulumi.IntPtrOutput `pulumi:"version"`
 }
 
 // NewRole registers a new resource with the given unique name, arguments, and options.
 func NewRole(ctx *pulumi.Context,
 	name string, args *RoleArgs, opts ...pulumi.ResourceOption) (*Role, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &RoleArgs{}
 	}
 
-	if args.Version == nil {
-		return nil, errors.New("invalid value for required argument 'Version'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Role
 	err := ctx.RegisterResource("grafana:index/role:Role", name, args, &resource, opts...)
@@ -124,6 +124,8 @@ func GetRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Role resources.
 type roleState struct {
+	// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+	AutoIncrementVersion *bool `pulumi:"autoIncrementVersion"`
 	// Description of the role.
 	Description *string `pulumi:"description"`
 	// Display name of the role. Available with Grafana 8.5+.
@@ -136,15 +138,19 @@ type roleState struct {
 	Hidden *bool `pulumi:"hidden"`
 	// Name of the role
 	Name *string `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// Specific set of actions granted by the role.
 	Permissions []RolePermission `pulumi:"permissions"`
 	// Unique identifier of the role. Used for assignments.
 	Uid *string `pulumi:"uid"`
-	// Version of the role. A role is updated only on version increase.
+	// Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
 	Version *int `pulumi:"version"`
 }
 
 type RoleState struct {
+	// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+	AutoIncrementVersion pulumi.BoolPtrInput
 	// Description of the role.
 	Description pulumi.StringPtrInput
 	// Display name of the role. Available with Grafana 8.5+.
@@ -157,11 +163,13 @@ type RoleState struct {
 	Hidden pulumi.BoolPtrInput
 	// Name of the role
 	Name pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// Specific set of actions granted by the role.
 	Permissions RolePermissionArrayInput
 	// Unique identifier of the role. Used for assignments.
 	Uid pulumi.StringPtrInput
-	// Version of the role. A role is updated only on version increase.
+	// Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
 	Version pulumi.IntPtrInput
 }
 
@@ -170,6 +178,8 @@ func (RoleState) ElementType() reflect.Type {
 }
 
 type roleArgs struct {
+	// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+	AutoIncrementVersion *bool `pulumi:"autoIncrementVersion"`
 	// Description of the role.
 	Description *string `pulumi:"description"`
 	// Display name of the role. Available with Grafana 8.5+.
@@ -182,16 +192,20 @@ type roleArgs struct {
 	Hidden *bool `pulumi:"hidden"`
 	// Name of the role
 	Name *string `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// Specific set of actions granted by the role.
 	Permissions []RolePermission `pulumi:"permissions"`
 	// Unique identifier of the role. Used for assignments.
 	Uid *string `pulumi:"uid"`
-	// Version of the role. A role is updated only on version increase.
-	Version int `pulumi:"version"`
+	// Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
+	Version *int `pulumi:"version"`
 }
 
 // The set of arguments for constructing a Role resource.
 type RoleArgs struct {
+	// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+	AutoIncrementVersion pulumi.BoolPtrInput
 	// Description of the role.
 	Description pulumi.StringPtrInput
 	// Display name of the role. Available with Grafana 8.5+.
@@ -204,12 +218,14 @@ type RoleArgs struct {
 	Hidden pulumi.BoolPtrInput
 	// Name of the role
 	Name pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// Specific set of actions granted by the role.
 	Permissions RolePermissionArrayInput
 	// Unique identifier of the role. Used for assignments.
 	Uid pulumi.StringPtrInput
-	// Version of the role. A role is updated only on version increase.
-	Version pulumi.IntInput
+	// Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
+	Version pulumi.IntPtrInput
 }
 
 func (RoleArgs) ElementType() reflect.Type {
@@ -323,6 +339,11 @@ func (o RoleOutput) ToOutput(ctx context.Context) pulumix.Output[*Role] {
 	}
 }
 
+// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+func (o RoleOutput) AutoIncrementVersion() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Role) pulumi.BoolPtrOutput { return v.AutoIncrementVersion }).(pulumi.BoolPtrOutput)
+}
+
 // Description of the role.
 func (o RoleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Role) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
@@ -353,6 +374,11 @@ func (o RoleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Role) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o RoleOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Role) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+}
+
 // Specific set of actions granted by the role.
 func (o RoleOutput) Permissions() RolePermissionArrayOutput {
 	return o.ApplyT(func(v *Role) RolePermissionArrayOutput { return v.Permissions }).(RolePermissionArrayOutput)
@@ -363,9 +389,9 @@ func (o RoleOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v *Role) pulumi.StringOutput { return v.Uid }).(pulumi.StringOutput)
 }
 
-// Version of the role. A role is updated only on version increase.
-func (o RoleOutput) Version() pulumi.IntOutput {
-	return o.ApplyT(func(v *Role) pulumi.IntOutput { return v.Version }).(pulumi.IntOutput)
+// Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
+func (o RoleOutput) Version() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Role) pulumi.IntPtrOutput { return v.Version }).(pulumi.IntPtrOutput)
 }
 
 type RoleArrayOutput struct{ *pulumi.OutputState }

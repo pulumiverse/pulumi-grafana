@@ -35,7 +35,7 @@ type MachineLearningOutlierDetector struct {
 	Interval pulumi.IntPtrOutput `pulumi:"interval"`
 	// The metric used to query the outlier detector results.
 	Metric pulumi.StringOutput `pulumi:"metric"`
-	// The name of the outlier detector.
+	// The name of the algorithm to use ('mad' or 'dbscan').
 	Name pulumi.StringOutput `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
 	QueryParams pulumi.MapOutput `pulumi:"queryParams"`
@@ -97,7 +97,7 @@ type machineLearningOutlierDetectorState struct {
 	Interval *int `pulumi:"interval"`
 	// The metric used to query the outlier detector results.
 	Metric *string `pulumi:"metric"`
-	// The name of the outlier detector.
+	// The name of the algorithm to use ('mad' or 'dbscan').
 	Name *string `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
 	QueryParams map[string]interface{} `pulumi:"queryParams"`
@@ -118,7 +118,7 @@ type MachineLearningOutlierDetectorState struct {
 	Interval pulumi.IntPtrInput
 	// The metric used to query the outlier detector results.
 	Metric pulumi.StringPtrInput
-	// The name of the outlier detector.
+	// The name of the algorithm to use ('mad' or 'dbscan').
 	Name pulumi.StringPtrInput
 	// An object representing the query params to query Grafana with.
 	QueryParams pulumi.MapInput
@@ -143,7 +143,7 @@ type machineLearningOutlierDetectorArgs struct {
 	Interval *int `pulumi:"interval"`
 	// The metric used to query the outlier detector results.
 	Metric string `pulumi:"metric"`
-	// The name of the outlier detector.
+	// The name of the algorithm to use ('mad' or 'dbscan').
 	Name *string `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
 	QueryParams map[string]interface{} `pulumi:"queryParams"`
@@ -165,7 +165,7 @@ type MachineLearningOutlierDetectorArgs struct {
 	Interval pulumi.IntPtrInput
 	// The metric used to query the outlier detector results.
 	Metric pulumi.StringInput
-	// The name of the outlier detector.
+	// The name of the algorithm to use ('mad' or 'dbscan').
 	Name pulumi.StringPtrInput
 	// An object representing the query params to query Grafana with.
 	QueryParams pulumi.MapInput
@@ -319,7 +319,7 @@ func (o MachineLearningOutlierDetectorOutput) Metric() pulumi.StringOutput {
 	return o.ApplyT(func(v *MachineLearningOutlierDetector) pulumi.StringOutput { return v.Metric }).(pulumi.StringOutput)
 }
 
-// The name of the outlier detector.
+// The name of the algorithm to use ('mad' or 'dbscan').
 func (o MachineLearningOutlierDetectorOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MachineLearningOutlierDetector) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

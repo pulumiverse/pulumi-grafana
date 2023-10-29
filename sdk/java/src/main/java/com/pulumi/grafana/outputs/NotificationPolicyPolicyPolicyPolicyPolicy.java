@@ -25,7 +25,7 @@ public final class NotificationPolicyPolicyPolicyPolicyPolicy {
      */
     private @Nullable Boolean continue_;
     /**
-     * @return A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * @return A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      * 
      */
     private List<String> groupBies;
@@ -71,7 +71,7 @@ public final class NotificationPolicyPolicyPolicyPolicyPolicy {
         return Optional.ofNullable(this.continue_);
     }
     /**
-     * @return A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * @return A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      * 
      */
     public List<String> groupBies() {

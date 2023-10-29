@@ -14,6 +14,9 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class OncallIntegrationDefaultRouteMsteams
     {
+        /// <summary>
+        /// Enable notification in MS teams. Defaults to `true`.
+        /// </summary>
         public readonly bool? Enabled;
         /// <summary>
         /// The ID of this resource.

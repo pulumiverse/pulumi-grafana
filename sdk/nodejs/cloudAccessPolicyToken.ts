@@ -5,8 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/)
- * * [API documentation](https://grafana.com/docs/grafana-cloud/reference/cloud-api/#create-a-token)
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
+ * * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-a-token)
  *
  * ## Example Usage
  *
@@ -90,7 +90,7 @@ export class CloudAccessPolicyToken extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+     * Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
     public readonly region!: pulumi.Output<string>;
     public /*out*/ readonly token!: pulumi.Output<string>;
@@ -169,7 +169,7 @@ export interface CloudAccessPolicyTokenState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+     * Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
     region?: pulumi.Input<string>;
     token?: pulumi.Input<string>;
@@ -200,7 +200,7 @@ export interface CloudAccessPolicyTokenArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+     * Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
     region: pulumi.Input<string>;
 }

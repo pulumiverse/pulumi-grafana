@@ -33,6 +33,21 @@ public final class ContactPointTelegramArgs extends com.pulumi.resources.Resourc
     }
 
     /**
+     * When set users will receive a notification with no sound.
+     * 
+     */
+    @Import(name="disableNotifications")
+    private @Nullable Output<Boolean> disableNotifications;
+
+    /**
+     * @return When set users will receive a notification with no sound.
+     * 
+     */
+    public Optional<Output<Boolean>> disableNotifications() {
+        return Optional.ofNullable(this.disableNotifications);
+    }
+
+    /**
      * Whether to disable sending resolve messages. Defaults to `false`.
      * 
      */
@@ -48,6 +63,21 @@ public final class ContactPointTelegramArgs extends com.pulumi.resources.Resourc
     }
 
     /**
+     * When set it disables link previews for links in the message.
+     * 
+     */
+    @Import(name="disableWebPagePreview")
+    private @Nullable Output<Boolean> disableWebPagePreview;
+
+    /**
+     * @return When set it disables link previews for links in the message.
+     * 
+     */
+    public Optional<Output<Boolean>> disableWebPagePreview() {
+        return Optional.ofNullable(this.disableWebPagePreview);
+    }
+
+    /**
      * The templated content of the message.
      * 
      */
@@ -60,6 +90,36 @@ public final class ContactPointTelegramArgs extends com.pulumi.resources.Resourc
      */
     public Optional<Output<String>> message() {
         return Optional.ofNullable(this.message);
+    }
+
+    /**
+     * Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
+     * 
+     */
+    @Import(name="parseMode")
+    private @Nullable Output<String> parseMode;
+
+    /**
+     * @return Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
+     * 
+     */
+    public Optional<Output<String>> parseMode() {
+        return Optional.ofNullable(this.parseMode);
+    }
+
+    /**
+     * When set it protects the contents of the message from forwarding and saving.
+     * 
+     */
+    @Import(name="protectContent")
+    private @Nullable Output<Boolean> protectContent;
+
+    /**
+     * @return When set it protects the contents of the message from forwarding and saving.
+     * 
+     */
+    public Optional<Output<Boolean>> protectContent() {
+        return Optional.ofNullable(this.protectContent);
     }
 
     /**
@@ -111,8 +171,12 @@ public final class ContactPointTelegramArgs extends com.pulumi.resources.Resourc
 
     private ContactPointTelegramArgs(ContactPointTelegramArgs $) {
         this.chatId = $.chatId;
+        this.disableNotifications = $.disableNotifications;
         this.disableResolveMessage = $.disableResolveMessage;
+        this.disableWebPagePreview = $.disableWebPagePreview;
         this.message = $.message;
+        this.parseMode = $.parseMode;
+        this.protectContent = $.protectContent;
         this.settings = $.settings;
         this.token = $.token;
         this.uid = $.uid;
@@ -158,6 +222,27 @@ public final class ContactPointTelegramArgs extends com.pulumi.resources.Resourc
         }
 
         /**
+         * @param disableNotifications When set users will receive a notification with no sound.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableNotifications(@Nullable Output<Boolean> disableNotifications) {
+            $.disableNotifications = disableNotifications;
+            return this;
+        }
+
+        /**
+         * @param disableNotifications When set users will receive a notification with no sound.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableNotifications(Boolean disableNotifications) {
+            return disableNotifications(Output.of(disableNotifications));
+        }
+
+        /**
          * @param disableResolveMessage Whether to disable sending resolve messages. Defaults to `false`.
          * 
          * @return builder
@@ -179,6 +264,27 @@ public final class ContactPointTelegramArgs extends com.pulumi.resources.Resourc
         }
 
         /**
+         * @param disableWebPagePreview When set it disables link previews for links in the message.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableWebPagePreview(@Nullable Output<Boolean> disableWebPagePreview) {
+            $.disableWebPagePreview = disableWebPagePreview;
+            return this;
+        }
+
+        /**
+         * @param disableWebPagePreview When set it disables link previews for links in the message.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableWebPagePreview(Boolean disableWebPagePreview) {
+            return disableWebPagePreview(Output.of(disableWebPagePreview));
+        }
+
+        /**
          * @param message The templated content of the message.
          * 
          * @return builder
@@ -197,6 +303,48 @@ public final class ContactPointTelegramArgs extends com.pulumi.resources.Resourc
          */
         public Builder message(String message) {
             return message(Output.of(message));
+        }
+
+        /**
+         * @param parseMode Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder parseMode(@Nullable Output<String> parseMode) {
+            $.parseMode = parseMode;
+            return this;
+        }
+
+        /**
+         * @param parseMode Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder parseMode(String parseMode) {
+            return parseMode(Output.of(parseMode));
+        }
+
+        /**
+         * @param protectContent When set it protects the contents of the message from forwarding and saving.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder protectContent(@Nullable Output<Boolean> protectContent) {
+            $.protectContent = protectContent;
+            return this;
+        }
+
+        /**
+         * @param protectContent When set it protects the contents of the message from forwarding and saving.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder protectContent(Boolean protectContent) {
+            return protectContent(Output.of(protectContent));
         }
 
         /**

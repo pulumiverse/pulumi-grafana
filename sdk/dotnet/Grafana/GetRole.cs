@@ -191,6 +191,10 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        public readonly string OrgId;
+        /// <summary>
         /// Specific set of actions granted by the role.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetRolePermissionResult> Permissions;
@@ -199,7 +203,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         public readonly string Uid;
         /// <summary>
-        /// Version of the role. A role is updated only on version increase.
+        /// Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
         /// </summary>
         public readonly int Version;
 
@@ -219,6 +223,8 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
             string name,
 
+            string orgId,
+
             ImmutableArray<Outputs.GetRolePermissionResult> permissions,
 
             string uid,
@@ -232,6 +238,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
             Hidden = hidden;
             Id = id;
             Name = name;
+            OrgId = orgId;
             Permissions = permissions;
             Uid = uid;
             Version = version;

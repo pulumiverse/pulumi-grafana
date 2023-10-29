@@ -16,45 +16,125 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SyntheticMonitoringCheckSettingsDns {
+    /**
+     * @return Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+     * 
+     */
     private @Nullable String ipVersion;
+    /**
+     * @return Port to target. Defaults to `53`.
+     * 
+     */
     private @Nullable Integer port;
+    /**
+     * @return `TCP` or `UDP`. Defaults to `UDP`.
+     * 
+     */
     private @Nullable String protocol;
+    /**
+     * @return One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+     * 
+     */
     private @Nullable String recordType;
+    /**
+     * @return DNS server address to target. Defaults to `8.8.8.8`.
+     * 
+     */
     private @Nullable String server;
+    /**
+     * @return Source IP address.
+     * 
+     */
     private @Nullable String sourceIpAddress;
+    /**
+     * @return List of valid response codes. Options include `NOERROR`, `BADALG`, `BADMODE`, `BADKEY`, `BADCOOKIE`, `BADNAME`, `BADSIG`, `BADTIME`, `BADTRUNC`, `BADVERS`, `FORMERR`, `NOTIMP`, `NOTAUTH`, `NOTZONE`, `NXDOMAIN`, `NXRRSET`, `REFUSED`, `SERVFAIL`, `YXDOMAIN`, `YXRRSET`.
+     * 
+     */
     private @Nullable List<String> validRCodes;
+    /**
+     * @return Validate additional matches.
+     * 
+     */
     private @Nullable List<SyntheticMonitoringCheckSettingsDnsValidateAdditionalRr> validateAdditionalRrs;
+    /**
+     * @return Validate response answer.
+     * 
+     */
     private @Nullable SyntheticMonitoringCheckSettingsDnsValidateAnswerRrs validateAnswerRrs;
+    /**
+     * @return Validate response authority.
+     * 
+     */
     private @Nullable SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrs validateAuthorityRrs;
 
     private SyntheticMonitoringCheckSettingsDns() {}
+    /**
+     * @return Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+     * 
+     */
     public Optional<String> ipVersion() {
         return Optional.ofNullable(this.ipVersion);
     }
+    /**
+     * @return Port to target. Defaults to `53`.
+     * 
+     */
     public Optional<Integer> port() {
         return Optional.ofNullable(this.port);
     }
+    /**
+     * @return `TCP` or `UDP`. Defaults to `UDP`.
+     * 
+     */
     public Optional<String> protocol() {
         return Optional.ofNullable(this.protocol);
     }
+    /**
+     * @return One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+     * 
+     */
     public Optional<String> recordType() {
         return Optional.ofNullable(this.recordType);
     }
+    /**
+     * @return DNS server address to target. Defaults to `8.8.8.8`.
+     * 
+     */
     public Optional<String> server() {
         return Optional.ofNullable(this.server);
     }
+    /**
+     * @return Source IP address.
+     * 
+     */
     public Optional<String> sourceIpAddress() {
         return Optional.ofNullable(this.sourceIpAddress);
     }
+    /**
+     * @return List of valid response codes. Options include `NOERROR`, `BADALG`, `BADMODE`, `BADKEY`, `BADCOOKIE`, `BADNAME`, `BADSIG`, `BADTIME`, `BADTRUNC`, `BADVERS`, `FORMERR`, `NOTIMP`, `NOTAUTH`, `NOTZONE`, `NXDOMAIN`, `NXRRSET`, `REFUSED`, `SERVFAIL`, `YXDOMAIN`, `YXRRSET`.
+     * 
+     */
     public List<String> validRCodes() {
         return this.validRCodes == null ? List.of() : this.validRCodes;
     }
+    /**
+     * @return Validate additional matches.
+     * 
+     */
     public List<SyntheticMonitoringCheckSettingsDnsValidateAdditionalRr> validateAdditionalRrs() {
         return this.validateAdditionalRrs == null ? List.of() : this.validateAdditionalRrs;
     }
+    /**
+     * @return Validate response answer.
+     * 
+     */
     public Optional<SyntheticMonitoringCheckSettingsDnsValidateAnswerRrs> validateAnswerRrs() {
         return Optional.ofNullable(this.validateAnswerRrs);
     }
+    /**
+     * @return Validate response authority.
+     * 
+     */
     public Optional<SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrs> validateAuthorityRrs() {
         return Optional.ofNullable(this.validateAuthorityRrs);
     }

@@ -95,6 +95,10 @@ export interface GetRoleResult {
      */
     readonly name: string;
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    readonly orgId: string;
+    /**
      * Specific set of actions granted by the role.
      */
     readonly permissions: outputs.GetRolePermission[];
@@ -103,7 +107,7 @@ export interface GetRoleResult {
      */
     readonly uid: string;
     /**
-     * Version of the role. A role is updated only on version increase.
+     * Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
      */
     readonly version: number;
 }

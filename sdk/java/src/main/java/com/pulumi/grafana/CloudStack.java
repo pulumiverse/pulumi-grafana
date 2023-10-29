@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/reference/cloud-api/#stacks/)
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#stacks/)
  * 
  * ## Example Usage
  * ```java
@@ -323,14 +323,14 @@ public class CloudStack extends com.pulumi.resources.CustomResource {
         return this.prometheusUserId;
     }
     /**
-     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      * 
      */
     @Export(name="regionSlug", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> regionSlug;
 
     /**
-     * @return Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+     * @return Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      * 
      */
     public Output<Optional<String>> regionSlug() {

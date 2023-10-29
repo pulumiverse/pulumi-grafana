@@ -6,6 +6,7 @@ package com.pulumi.grafana.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.grafana.inputs.OncallScheduleSlackArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -16,6 +17,21 @@ import javax.annotation.Nullable;
 public final class OncallScheduleState extends com.pulumi.resources.ResourceArgs {
 
     public static final OncallScheduleState Empty = new OncallScheduleState();
+
+    /**
+     * Enable overrides via web UI (it will ignore ical*url*overrides).
+     * 
+     */
+    @Import(name="enableWebOverrides")
+    private @Nullable Output<Boolean> enableWebOverrides;
+
+    /**
+     * @return Enable overrides via web UI (it will ignore ical*url*overrides).
+     * 
+     */
+    public Optional<Output<Boolean>> enableWebOverrides() {
+        return Optional.ofNullable(this.enableWebOverrides);
+    }
 
     /**
      * The URL of external iCal calendar which override primary events.
@@ -140,6 +156,7 @@ public final class OncallScheduleState extends com.pulumi.resources.ResourceArgs
     private OncallScheduleState() {}
 
     private OncallScheduleState(OncallScheduleState $) {
+        this.enableWebOverrides = $.enableWebOverrides;
         this.icalUrlOverrides = $.icalUrlOverrides;
         this.icalUrlPrimary = $.icalUrlPrimary;
         this.name = $.name;
@@ -166,6 +183,27 @@ public final class OncallScheduleState extends com.pulumi.resources.ResourceArgs
 
         public Builder(OncallScheduleState defaults) {
             $ = new OncallScheduleState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param enableWebOverrides Enable overrides via web UI (it will ignore ical*url*overrides).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableWebOverrides(@Nullable Output<Boolean> enableWebOverrides) {
+            $.enableWebOverrides = enableWebOverrides;
+            return this;
+        }
+
+        /**
+         * @param enableWebOverrides Enable overrides via web UI (it will ignore ical*url*overrides).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableWebOverrides(Boolean enableWebOverrides) {
+            return enableWebOverrides(Output.of(enableWebOverrides));
         }
 
         /**

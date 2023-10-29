@@ -15,8 +15,8 @@ import (
 
 // Resource manages Grafana SLOs.
 //
-// * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
-// * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+// * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
+// * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
 // * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
 //
 // ## Example Usage
@@ -31,13 +31,13 @@ type SLO struct {
 	Alertings SLOAlertingArrayOutput `pulumi:"alertings"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringOutput `pulumi:"description"`
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+	// Labels to attach only to Fast Burn alerts.
 	Labels SLOLabelArrayOutput `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
 	Objectives SLOObjectiveArrayOutput `pulumi:"objectives"`
-	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+	// Freeform Query Field
 	Queries SLOQueryArrayOutput `pulumi:"queries"`
 }
 
@@ -88,13 +88,13 @@ type sloState struct {
 	Alertings []SLOAlerting `pulumi:"alertings"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description *string `pulumi:"description"`
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+	// Labels to attach only to Fast Burn alerts.
 	Labels []SLOLabel `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name *string `pulumi:"name"`
 	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
 	Objectives []SLOObjective `pulumi:"objectives"`
-	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+	// Freeform Query Field
 	Queries []SLOQuery `pulumi:"queries"`
 }
 
@@ -107,13 +107,13 @@ type SLOState struct {
 	Alertings SLOAlertingArrayInput
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringPtrInput
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+	// Labels to attach only to Fast Burn alerts.
 	Labels SLOLabelArrayInput
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name pulumi.StringPtrInput
 	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
 	Objectives SLOObjectiveArrayInput
-	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+	// Freeform Query Field
 	Queries SLOQueryArrayInput
 }
 
@@ -130,13 +130,13 @@ type sloArgs struct {
 	Alertings []SLOAlerting `pulumi:"alertings"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description string `pulumi:"description"`
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+	// Labels to attach only to Fast Burn alerts.
 	Labels []SLOLabel `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name *string `pulumi:"name"`
 	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
 	Objectives []SLOObjective `pulumi:"objectives"`
-	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+	// Freeform Query Field
 	Queries []SLOQuery `pulumi:"queries"`
 }
 
@@ -150,13 +150,13 @@ type SLOArgs struct {
 	Alertings SLOAlertingArrayInput
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringInput
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+	// Labels to attach only to Fast Burn alerts.
 	Labels SLOLabelArrayInput
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name pulumi.StringPtrInput
 	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
 	Objectives SLOObjectiveArrayInput
-	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+	// Freeform Query Field
 	Queries SLOQueryArrayInput
 }
 
@@ -286,7 +286,7 @@ func (o SLOOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *SLO) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+// Labels to attach only to Fast Burn alerts.
 func (o SLOOutput) Labels() SLOLabelArrayOutput {
 	return o.ApplyT(func(v *SLO) SLOLabelArrayOutput { return v.Labels }).(SLOLabelArrayOutput)
 }
@@ -301,7 +301,7 @@ func (o SLOOutput) Objectives() SLOObjectiveArrayOutput {
 	return o.ApplyT(func(v *SLO) SLOObjectiveArrayOutput { return v.Objectives }).(SLOObjectiveArrayOutput)
 }
 
-// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+// Freeform Query Field
 func (o SLOOutput) Queries() SLOQueryArrayOutput {
 	return o.ApplyT(func(v *SLO) SLOQueryArrayOutput { return v.Queries }).(SLOQueryArrayOutput)
 }

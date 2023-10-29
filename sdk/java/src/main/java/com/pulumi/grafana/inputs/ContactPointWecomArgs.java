@@ -18,6 +18,36 @@ public final class ContactPointWecomArgs extends com.pulumi.resources.ResourceAr
     public static final ContactPointWecomArgs Empty = new ContactPointWecomArgs();
 
     /**
+     * Agent ID added to the request payload when using APIAPP.
+     * 
+     */
+    @Import(name="agentId")
+    private @Nullable Output<String> agentId;
+
+    /**
+     * @return Agent ID added to the request payload when using APIAPP.
+     * 
+     */
+    public Optional<Output<String>> agentId() {
+        return Optional.ofNullable(this.agentId);
+    }
+
+    /**
+     * Corp ID used to get token when using APIAPP.
+     * 
+     */
+    @Import(name="corpId")
+    private @Nullable Output<String> corpId;
+
+    /**
+     * @return Corp ID used to get token when using APIAPP.
+     * 
+     */
+    public Optional<Output<String>> corpId() {
+        return Optional.ofNullable(this.corpId);
+    }
+
+    /**
      * Whether to disable sending resolve messages. Defaults to `false`.
      * 
      */
@@ -45,6 +75,36 @@ public final class ContactPointWecomArgs extends com.pulumi.resources.ResourceAr
      */
     public Optional<Output<String>> message() {
         return Optional.ofNullable(this.message);
+    }
+
+    /**
+     * The type of them message. Supported: markdown, text. Default: text.
+     * 
+     */
+    @Import(name="msgType")
+    private @Nullable Output<String> msgType;
+
+    /**
+     * @return The type of them message. Supported: markdown, text. Default: text.
+     * 
+     */
+    public Optional<Output<String>> msgType() {
+        return Optional.ofNullable(this.msgType);
+    }
+
+    /**
+     * The secret key required to obtain access token when using APIAPP. See https://work.weixin.qq.com/wework_admin/frame#apps to create APIAPP.
+     * 
+     */
+    @Import(name="secret")
+    private @Nullable Output<String> secret;
+
+    /**
+     * @return The secret key required to obtain access token when using APIAPP. See https://work.weixin.qq.com/wework_admin/frame#apps to create APIAPP.
+     * 
+     */
+    public Optional<Output<String>> secret() {
+        return Optional.ofNullable(this.secret);
     }
 
     /**
@@ -78,6 +138,21 @@ public final class ContactPointWecomArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The ID of user that should receive the message. Multiple entries should be separated by &#39;|&#39;. Default: @all.
+     * 
+     */
+    @Import(name="toUser")
+    private @Nullable Output<String> toUser;
+
+    /**
+     * @return The ID of user that should receive the message. Multiple entries should be separated by &#39;|&#39;. Default: @all.
+     * 
+     */
+    public Optional<Output<String>> toUser() {
+        return Optional.ofNullable(this.toUser);
+    }
+
+    /**
      * The UID of the contact point.
      * 
      */
@@ -93,27 +168,32 @@ public final class ContactPointWecomArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The WeCom webhook URL.
+     * The WeCom webhook URL. Required if using GroupRobot.
      * 
      */
-    @Import(name="url", required=true)
-    private Output<String> url;
+    @Import(name="url")
+    private @Nullable Output<String> url;
 
     /**
-     * @return The WeCom webhook URL.
+     * @return The WeCom webhook URL. Required if using GroupRobot.
      * 
      */
-    public Output<String> url() {
-        return this.url;
+    public Optional<Output<String>> url() {
+        return Optional.ofNullable(this.url);
     }
 
     private ContactPointWecomArgs() {}
 
     private ContactPointWecomArgs(ContactPointWecomArgs $) {
+        this.agentId = $.agentId;
+        this.corpId = $.corpId;
         this.disableResolveMessage = $.disableResolveMessage;
         this.message = $.message;
+        this.msgType = $.msgType;
+        this.secret = $.secret;
         this.settings = $.settings;
         this.title = $.title;
+        this.toUser = $.toUser;
         this.uid = $.uid;
         this.url = $.url;
     }
@@ -134,6 +214,48 @@ public final class ContactPointWecomArgs extends com.pulumi.resources.ResourceAr
 
         public Builder(ContactPointWecomArgs defaults) {
             $ = new ContactPointWecomArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param agentId Agent ID added to the request payload when using APIAPP.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder agentId(@Nullable Output<String> agentId) {
+            $.agentId = agentId;
+            return this;
+        }
+
+        /**
+         * @param agentId Agent ID added to the request payload when using APIAPP.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder agentId(String agentId) {
+            return agentId(Output.of(agentId));
+        }
+
+        /**
+         * @param corpId Corp ID used to get token when using APIAPP.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder corpId(@Nullable Output<String> corpId) {
+            $.corpId = corpId;
+            return this;
+        }
+
+        /**
+         * @param corpId Corp ID used to get token when using APIAPP.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder corpId(String corpId) {
+            return corpId(Output.of(corpId));
         }
 
         /**
@@ -179,6 +301,48 @@ public final class ContactPointWecomArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
+         * @param msgType The type of them message. Supported: markdown, text. Default: text.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder msgType(@Nullable Output<String> msgType) {
+            $.msgType = msgType;
+            return this;
+        }
+
+        /**
+         * @param msgType The type of them message. Supported: markdown, text. Default: text.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder msgType(String msgType) {
+            return msgType(Output.of(msgType));
+        }
+
+        /**
+         * @param secret The secret key required to obtain access token when using APIAPP. See https://work.weixin.qq.com/wework_admin/frame#apps to create APIAPP.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secret(@Nullable Output<String> secret) {
+            $.secret = secret;
+            return this;
+        }
+
+        /**
+         * @param secret The secret key required to obtain access token when using APIAPP. See https://work.weixin.qq.com/wework_admin/frame#apps to create APIAPP.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secret(String secret) {
+            return secret(Output.of(secret));
+        }
+
+        /**
          * @param settings Additional custom properties to attach to the notifier. Defaults to `map[]`.
          * 
          * @return builder
@@ -221,6 +385,27 @@ public final class ContactPointWecomArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
+         * @param toUser The ID of user that should receive the message. Multiple entries should be separated by &#39;|&#39;. Default: @all.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder toUser(@Nullable Output<String> toUser) {
+            $.toUser = toUser;
+            return this;
+        }
+
+        /**
+         * @param toUser The ID of user that should receive the message. Multiple entries should be separated by &#39;|&#39;. Default: @all.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder toUser(String toUser) {
+            return toUser(Output.of(toUser));
+        }
+
+        /**
          * @param uid The UID of the contact point.
          * 
          * @return builder
@@ -242,18 +427,18 @@ public final class ContactPointWecomArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param url The WeCom webhook URL.
+         * @param url The WeCom webhook URL. Required if using GroupRobot.
          * 
          * @return builder
          * 
          */
-        public Builder url(Output<String> url) {
+        public Builder url(@Nullable Output<String> url) {
             $.url = url;
             return this;
         }
 
         /**
-         * @param url The WeCom webhook URL.
+         * @param url The WeCom webhook URL. Required if using GroupRobot.
          * 
          * @return builder
          * 
@@ -263,7 +448,6 @@ public final class ContactPointWecomArgs extends com.pulumi.resources.ResourceAr
         }
 
         public ContactPointWecomArgs build() {
-            $.url = Objects.requireNonNull($.url, "expected parameter 'url' to be non-null");
             return $;
         }
     }

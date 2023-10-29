@@ -14,9 +14,21 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class SyntheticMonitoringCheckSettingsPing
     {
+        /// <summary>
+        /// Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+        /// </summary>
         public readonly bool? DontFragment;
+        /// <summary>
+        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        /// </summary>
         public readonly string? IpVersion;
+        /// <summary>
+        /// Payload size. Defaults to `0`.
+        /// </summary>
         public readonly int? PayloadSize;
+        /// <summary>
+        /// Source IP address.
+        /// </summary>
         public readonly string? SourceIpAddress;
 
         [OutputConstructor]

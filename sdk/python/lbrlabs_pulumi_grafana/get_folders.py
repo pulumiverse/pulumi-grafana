@@ -14,6 +14,7 @@ __all__ = [
     'GetFoldersResult',
     'AwaitableGetFoldersResult',
     'get_folders',
+    'get_folders_output',
 ]
 
 @pulumi.output_type
@@ -84,3 +85,28 @@ def get_folders(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFold
     return AwaitableGetFoldersResult(
         folders=pulumi.get(__ret__, 'folders'),
         id=pulumi.get(__ret__, 'id'))
+
+
+@_utilities.lift_output_func(get_folders)
+def get_folders_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFoldersResult]:
+    """
+    * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import lbrlabs_pulumi_grafana as grafana
+    import pulumi_grafana as grafana
+
+    test_a = grafana.Folder("testA",
+        title="test-folder-a",
+        uid="test-ds-folder-uid-a")
+    test_b = grafana.Folder("testB",
+        title="test-folder-b",
+        uid="test-ds-folder-uid-b")
+    test = grafana.get_folders()
+    ```
+    """
+    ...

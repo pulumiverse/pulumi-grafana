@@ -155,7 +155,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<int> IntervalSeconds { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the rule group.
+        /// The name of the alert rule.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -232,7 +232,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<int> IntervalSeconds { get; set; } = null!;
 
         /// <summary>
-        /// The name of the rule group.
+        /// The name of the alert rule.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -276,7 +276,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<int>? IntervalSeconds { get; set; }
 
         /// <summary>
-        /// The name of the rule group.
+        /// The name of the alert rule.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

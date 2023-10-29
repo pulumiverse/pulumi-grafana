@@ -68,6 +68,10 @@ export class RoleAssignment extends pulumi.CustomResource {
     }
 
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
+    /**
      * Grafana RBAC role UID.
      */
     public readonly roleUid!: pulumi.Output<string>;
@@ -97,6 +101,7 @@ export class RoleAssignment extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RoleAssignmentState | undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["roleUid"] = state ? state.roleUid : undefined;
             resourceInputs["serviceAccounts"] = state ? state.serviceAccounts : undefined;
             resourceInputs["teams"] = state ? state.teams : undefined;
@@ -106,6 +111,7 @@ export class RoleAssignment extends pulumi.CustomResource {
             if ((!args || args.roleUid === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleUid'");
             }
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["roleUid"] = args ? args.roleUid : undefined;
             resourceInputs["serviceAccounts"] = args ? args.serviceAccounts : undefined;
             resourceInputs["teams"] = args ? args.teams : undefined;
@@ -120,6 +126,10 @@ export class RoleAssignment extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RoleAssignment resources.
  */
 export interface RoleAssignmentState {
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * Grafana RBAC role UID.
      */
@@ -142,6 +152,10 @@ export interface RoleAssignmentState {
  * The set of arguments for constructing a RoleAssignment resource.
  */
 export interface RoleAssignmentArgs {
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * Grafana RBAC role UID.
      */

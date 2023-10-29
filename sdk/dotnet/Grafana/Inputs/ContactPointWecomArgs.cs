@@ -14,6 +14,18 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
     public sealed class ContactPointWecomArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Agent ID added to the request payload when using APIAPP.
+        /// </summary>
+        [Input("agentId")]
+        public Input<string>? AgentId { get; set; }
+
+        /// <summary>
+        /// Corp ID used to get token when using APIAPP.
+        /// </summary>
+        [Input("corpId")]
+        public Input<string>? CorpId { get; set; }
+
+        /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
         [Input("disableResolveMessage")]
@@ -24,6 +36,28 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         /// </summary>
         [Input("message")]
         public Input<string>? Message { get; set; }
+
+        /// <summary>
+        /// The type of them message. Supported: markdown, text. Default: text.
+        /// </summary>
+        [Input("msgType")]
+        public Input<string>? MsgType { get; set; }
+
+        [Input("secret")]
+        private Input<string>? _secret;
+
+        /// <summary>
+        /// The secret key required to obtain access token when using APIAPP. See https://work.weixin.qq.com/wework_admin/frame#apps to create APIAPP.
+        /// </summary>
+        public Input<string>? Secret
+        {
+            get => _secret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("settings")]
         private InputMap<string>? _settings;
@@ -48,16 +82,22 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public Input<string>? Title { get; set; }
 
         /// <summary>
+        /// The ID of user that should receive the message. Multiple entries should be separated by '|'. Default: @all.
+        /// </summary>
+        [Input("toUser")]
+        public Input<string>? ToUser { get; set; }
+
+        /// <summary>
         /// The UID of the contact point.
         /// </summary>
         [Input("uid")]
         public Input<string>? Uid { get; set; }
 
-        [Input("url", required: true)]
+        [Input("url")]
         private Input<string>? _url;
 
         /// <summary>
-        /// The WeCom webhook URL.
+        /// The WeCom webhook URL. Required if using GroupRobot.
         /// </summary>
         public Input<string>? Url
         {

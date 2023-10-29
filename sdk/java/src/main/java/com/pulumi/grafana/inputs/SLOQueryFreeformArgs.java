@@ -14,14 +14,14 @@ public final class SLOQueryFreeformArgs extends com.pulumi.resources.ResourceArg
     public static final SLOQueryFreeformArgs Empty = new SLOQueryFreeformArgs();
 
     /**
-     * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+     * Freeform Query Field
      * 
      */
     @Import(name="query", required=true)
     private Output<String> query;
 
     /**
-     * @return Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+     * @return Freeform Query Field
      * 
      */
     public Output<String> query() {
@@ -53,7 +53,7 @@ public final class SLOQueryFreeformArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param query Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+         * @param query Freeform Query Field
          * 
          * @return builder
          * 
@@ -64,7 +64,7 @@ public final class SLOQueryFreeformArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param query Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+         * @param query Freeform Query Field
          * 
          * @return builder
          * 

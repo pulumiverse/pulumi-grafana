@@ -16,37 +16,77 @@ public final class SyntheticMonitoringCheckSettingsTcpTlsConfigArgs extends com.
 
     public static final SyntheticMonitoringCheckSettingsTcpTlsConfigArgs Empty = new SyntheticMonitoringCheckSettingsTcpTlsConfigArgs();
 
+    /**
+     * CA certificate in PEM format.
+     * 
+     */
     @Import(name="caCert")
     private @Nullable Output<String> caCert;
 
+    /**
+     * @return CA certificate in PEM format.
+     * 
+     */
     public Optional<Output<String>> caCert() {
         return Optional.ofNullable(this.caCert);
     }
 
+    /**
+     * Client certificate in PEM format.
+     * 
+     */
     @Import(name="clientCert")
     private @Nullable Output<String> clientCert;
 
+    /**
+     * @return Client certificate in PEM format.
+     * 
+     */
     public Optional<Output<String>> clientCert() {
         return Optional.ofNullable(this.clientCert);
     }
 
+    /**
+     * Client key in PEM format.
+     * 
+     */
     @Import(name="clientKey")
     private @Nullable Output<String> clientKey;
 
+    /**
+     * @return Client key in PEM format.
+     * 
+     */
     public Optional<Output<String>> clientKey() {
         return Optional.ofNullable(this.clientKey);
     }
 
+    /**
+     * Disable target certificate validation. Defaults to `false`.
+     * 
+     */
     @Import(name="insecureSkipVerify")
     private @Nullable Output<Boolean> insecureSkipVerify;
 
+    /**
+     * @return Disable target certificate validation. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> insecureSkipVerify() {
         return Optional.ofNullable(this.insecureSkipVerify);
     }
 
+    /**
+     * Used to verify the hostname for the targets.
+     * 
+     */
     @Import(name="serverName")
     private @Nullable Output<String> serverName;
 
+    /**
+     * @return Used to verify the hostname for the targets.
+     * 
+     */
     public Optional<Output<String>> serverName() {
         return Optional.ofNullable(this.serverName);
     }
@@ -79,47 +119,107 @@ public final class SyntheticMonitoringCheckSettingsTcpTlsConfigArgs extends com.
             $ = new SyntheticMonitoringCheckSettingsTcpTlsConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param caCert CA certificate in PEM format.
+         * 
+         * @return builder
+         * 
+         */
         public Builder caCert(@Nullable Output<String> caCert) {
             $.caCert = caCert;
             return this;
         }
 
+        /**
+         * @param caCert CA certificate in PEM format.
+         * 
+         * @return builder
+         * 
+         */
         public Builder caCert(String caCert) {
             return caCert(Output.of(caCert));
         }
 
+        /**
+         * @param clientCert Client certificate in PEM format.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientCert(@Nullable Output<String> clientCert) {
             $.clientCert = clientCert;
             return this;
         }
 
+        /**
+         * @param clientCert Client certificate in PEM format.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientCert(String clientCert) {
             return clientCert(Output.of(clientCert));
         }
 
+        /**
+         * @param clientKey Client key in PEM format.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientKey(@Nullable Output<String> clientKey) {
             $.clientKey = clientKey;
             return this;
         }
 
+        /**
+         * @param clientKey Client key in PEM format.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientKey(String clientKey) {
             return clientKey(Output.of(clientKey));
         }
 
+        /**
+         * @param insecureSkipVerify Disable target certificate validation. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder insecureSkipVerify(@Nullable Output<Boolean> insecureSkipVerify) {
             $.insecureSkipVerify = insecureSkipVerify;
             return this;
         }
 
+        /**
+         * @param insecureSkipVerify Disable target certificate validation. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder insecureSkipVerify(Boolean insecureSkipVerify) {
             return insecureSkipVerify(Output.of(insecureSkipVerify));
         }
 
+        /**
+         * @param serverName Used to verify the hostname for the targets.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serverName(@Nullable Output<String> serverName) {
             $.serverName = serverName;
             return this;
         }
 
+        /**
+         * @param serverName Used to verify the hostname for the targets.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serverName(String serverName) {
             return serverName(Output.of(serverName));
         }

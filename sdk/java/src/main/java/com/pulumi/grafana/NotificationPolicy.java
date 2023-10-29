@@ -84,7 +84,6 @@ import javax.annotation.Nullable;
  *                         .value(&#34;myvalue&#34;)
  *                         .build())
  *                     .contactPoint(aContactPoint.name())
- *                     .groupBies(&#34;alertname&#34;)
  *                     .continue_(true)
  *                     .muteTimings(aMuteTiming.name())
  *                     .groupWait(&#34;45s&#34;)
@@ -127,28 +126,28 @@ import javax.annotation.Nullable;
 @ResourceType(type="grafana:index/notificationPolicy:NotificationPolicy")
 public class NotificationPolicy extends com.pulumi.resources.CustomResource {
     /**
-     * The default contact point to route all unmatched notifications to.
+     * The contact point to route notifications that match this rule to.
      * 
      */
     @Export(name="contactPoint", refs={String.class}, tree="[0]")
     private Output<String> contactPoint;
 
     /**
-     * @return The default contact point to route all unmatched notifications to.
+     * @return The contact point to route notifications that match this rule to.
      * 
      */
     public Output<String> contactPoint() {
         return this.contactPoint;
     }
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      * 
      */
     @Export(name="groupBies", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> groupBies;
 
     /**
-     * @return A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * @return A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      * 
      */
     public Output<List<String>> groupBies() {

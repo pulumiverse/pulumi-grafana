@@ -16,7 +16,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// your Grafana Cloud account. Private probes are instances of the open source
     /// Grafana Synthetic Monitoring Agent.
     /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/)
+    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/)
     /// 
     /// ## Example Usage
     /// 

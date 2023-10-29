@@ -13,12 +13,21 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class SyntheticMonitoringCheckSettingsTracerouteArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Maximum TTL for the trace Defaults to `64`.
+        /// </summary>
         [Input("maxHops")]
         public Input<int>? MaxHops { get; set; }
 
+        /// <summary>
+        /// Maximum number of hosts to travers that give no response Defaults to `15`.
+        /// </summary>
         [Input("maxUnknownHops")]
         public Input<int>? MaxUnknownHops { get; set; }
 
+        /// <summary>
+        /// Reverse lookup hostnames from IP addresses Defaults to `true`.
+        /// </summary>
         [Input("ptrLookup")]
         public Input<bool>? PtrLookup { get; set; }
 

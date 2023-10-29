@@ -13,16 +13,32 @@ public final class RuleGroupRuleDataRelativeTimeRangeArgs extends com.pulumi.res
 
     public static final RuleGroupRuleDataRelativeTimeRangeArgs Empty = new RuleGroupRuleDataRelativeTimeRangeArgs();
 
+    /**
+     * The number of seconds in the past, relative to when the rule is evaluated, at which the time range begins.
+     * 
+     */
     @Import(name="from", required=true)
     private Output<Integer> from;
 
+    /**
+     * @return The number of seconds in the past, relative to when the rule is evaluated, at which the time range begins.
+     * 
+     */
     public Output<Integer> from() {
         return this.from;
     }
 
+    /**
+     * The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
+     * 
+     */
     @Import(name="to", required=true)
     private Output<Integer> to;
 
+    /**
+     * @return The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
+     * 
+     */
     public Output<Integer> to() {
         return this.to;
     }
@@ -52,20 +68,44 @@ public final class RuleGroupRuleDataRelativeTimeRangeArgs extends com.pulumi.res
             $ = new RuleGroupRuleDataRelativeTimeRangeArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param from The number of seconds in the past, relative to when the rule is evaluated, at which the time range begins.
+         * 
+         * @return builder
+         * 
+         */
         public Builder from(Output<Integer> from) {
             $.from = from;
             return this;
         }
 
+        /**
+         * @param from The number of seconds in the past, relative to when the rule is evaluated, at which the time range begins.
+         * 
+         * @return builder
+         * 
+         */
         public Builder from(Integer from) {
             return from(Output.of(from));
         }
 
+        /**
+         * @param to The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
+         * 
+         * @return builder
+         * 
+         */
         public Builder to(Output<Integer> to) {
             $.to = to;
             return this;
         }
 
+        /**
+         * @param to The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
+         * 
+         * @return builder
+         * 
+         */
         public Builder to(Integer to) {
             return to(Output.of(to));
         }

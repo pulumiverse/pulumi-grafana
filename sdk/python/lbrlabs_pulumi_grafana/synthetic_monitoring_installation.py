@@ -21,7 +21,7 @@ class SyntheticMonitoringInstallationArgs:
         The set of arguments for constructing a SyntheticMonitoringInstallation resource.
         :param pulumi.Input[str] metrics_publisher_key: The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
         :param pulumi.Input[str] stack_id: The ID or slug of the stack to install SM on.
-        :param pulumi.Input[str] stack_sm_api_url: The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        :param pulumi.Input[str] stack_sm_api_url: The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
         """
         pulumi.set(__self__, "metrics_publisher_key", metrics_publisher_key)
         pulumi.set(__self__, "stack_id", stack_id)
@@ -56,7 +56,7 @@ class SyntheticMonitoringInstallationArgs:
     @pulumi.getter(name="stackSmApiUrl")
     def stack_sm_api_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
         """
         return pulumi.get(self, "stack_sm_api_url")
 
@@ -77,7 +77,7 @@ class _SyntheticMonitoringInstallationState:
         :param pulumi.Input[str] metrics_publisher_key: The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
         :param pulumi.Input[str] sm_access_token: Generated token to access the SM API.
         :param pulumi.Input[str] stack_id: The ID or slug of the stack to install SM on.
-        :param pulumi.Input[str] stack_sm_api_url: The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        :param pulumi.Input[str] stack_sm_api_url: The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
         """
         if metrics_publisher_key is not None:
             pulumi.set(__self__, "metrics_publisher_key", metrics_publisher_key)
@@ -128,7 +128,7 @@ class _SyntheticMonitoringInstallationState:
     @pulumi.getter(name="stackSmApiUrl")
     def stack_sm_api_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
         """
         return pulumi.get(self, "stack_sm_api_url")
 
@@ -153,7 +153,7 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
 
         **Note that this resource must be used on a provider configured with Grafana Cloud credentials.**
 
-        * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/installation/)
+        * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/installation/)
         * [API documentation](https://github.com/grafana/synthetic-monitoring-api-go-client/blob/main/docs/API.md#apiv1registerinstall)
 
         ## Example Usage
@@ -179,7 +179,7 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] metrics_publisher_key: The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
         :param pulumi.Input[str] stack_id: The ID or slug of the stack to install SM on.
-        :param pulumi.Input[str] stack_sm_api_url: The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        :param pulumi.Input[str] stack_sm_api_url: The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
         """
         ...
     @overload
@@ -194,7 +194,7 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
 
         **Note that this resource must be used on a provider configured with Grafana Cloud credentials.**
 
-        * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/installation/)
+        * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/installation/)
         * [API documentation](https://github.com/grafana/synthetic-monitoring-api-go-client/blob/main/docs/API.md#apiv1registerinstall)
 
         ## Example Usage
@@ -277,7 +277,7 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
         :param pulumi.Input[str] metrics_publisher_key: The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
         :param pulumi.Input[str] sm_access_token: Generated token to access the SM API.
         :param pulumi.Input[str] stack_id: The ID or slug of the stack to install SM on.
-        :param pulumi.Input[str] stack_sm_api_url: The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        :param pulumi.Input[str] stack_sm_api_url: The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -317,7 +317,7 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
     @pulumi.getter(name="stackSmApiUrl")
     def stack_sm_api_url(self) -> pulumi.Output[str]:
         """
-        The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
         """
         return pulumi.get(self, "stack_sm_api_url")
 

@@ -214,6 +214,21 @@ public final class ContactPointPushoverArgs extends com.pulumi.resources.Resourc
     }
 
     /**
+     * Whether to send images in the notification or not. Default is true. Requires Grafana to be configured to send images in notifications.
+     * 
+     */
+    @Import(name="uploadImage")
+    private @Nullable Output<Boolean> uploadImage;
+
+    /**
+     * @return Whether to send images in the notification or not. Default is true. Requires Grafana to be configured to send images in notifications.
+     * 
+     */
+    public Optional<Output<Boolean>> uploadImage() {
+        return Optional.ofNullable(this.uploadImage);
+    }
+
+    /**
      * The Pushover user key.
      * 
      */
@@ -244,6 +259,7 @@ public final class ContactPointPushoverArgs extends com.pulumi.resources.Resourc
         this.sound = $.sound;
         this.title = $.title;
         this.uid = $.uid;
+        this.uploadImage = $.uploadImage;
         this.userKey = $.userKey;
     }
 
@@ -536,6 +552,27 @@ public final class ContactPointPushoverArgs extends com.pulumi.resources.Resourc
          */
         public Builder uid(String uid) {
             return uid(Output.of(uid));
+        }
+
+        /**
+         * @param uploadImage Whether to send images in the notification or not. Default is true. Requires Grafana to be configured to send images in notifications.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder uploadImage(@Nullable Output<Boolean> uploadImage) {
+            $.uploadImage = uploadImage;
+            return this;
+        }
+
+        /**
+         * @param uploadImage Whether to send images in the notification or not. Default is true. Requires Grafana to be configured to send images in notifications.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder uploadImage(Boolean uploadImage) {
+            return uploadImage(Output.of(uploadImage));
         }
 
         /**

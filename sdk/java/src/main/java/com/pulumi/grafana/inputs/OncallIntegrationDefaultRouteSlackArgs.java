@@ -16,16 +16,32 @@ public final class OncallIntegrationDefaultRouteSlackArgs extends com.pulumi.res
 
     public static final OncallIntegrationDefaultRouteSlackArgs Empty = new OncallIntegrationDefaultRouteSlackArgs();
 
+    /**
+     * Slack channel id. Alerts will be directed to this channel in Slack.
+     * 
+     */
     @Import(name="channelId")
     private @Nullable Output<String> channelId;
 
+    /**
+     * @return Slack channel id. Alerts will be directed to this channel in Slack.
+     * 
+     */
     public Optional<Output<String>> channelId() {
         return Optional.ofNullable(this.channelId);
     }
 
+    /**
+     * Enable notification in MS teams. Defaults to `true`.
+     * 
+     */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
+    /**
+     * @return Enable notification in MS teams. Defaults to `true`.
+     * 
+     */
     public Optional<Output<Boolean>> enabled() {
         return Optional.ofNullable(this.enabled);
     }
@@ -55,20 +71,44 @@ public final class OncallIntegrationDefaultRouteSlackArgs extends com.pulumi.res
             $ = new OncallIntegrationDefaultRouteSlackArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param channelId Slack channel id. Alerts will be directed to this channel in Slack.
+         * 
+         * @return builder
+         * 
+         */
         public Builder channelId(@Nullable Output<String> channelId) {
             $.channelId = channelId;
             return this;
         }
 
+        /**
+         * @param channelId Slack channel id. Alerts will be directed to this channel in Slack.
+         * 
+         * @return builder
+         * 
+         */
         public Builder channelId(String channelId) {
             return channelId(Output.of(channelId));
         }
 
+        /**
+         * @param enabled Enable notification in MS teams. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabled(@Nullable Output<Boolean> enabled) {
             $.enabled = enabled;
             return this;
         }
 
+        /**
+         * @param enabled Enable notification in MS teams. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabled(Boolean enabled) {
             return enabled(Output.of(enabled));
         }

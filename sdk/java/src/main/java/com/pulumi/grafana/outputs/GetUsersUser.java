@@ -12,10 +12,6 @@ import java.util.Objects;
 @CustomType
 public final class GetUsersUser {
     private String email;
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     private Integer id;
     private Boolean isAdmin;
     private String login;
@@ -25,10 +21,6 @@ public final class GetUsersUser {
     public String email() {
         return this.email;
     }
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     public Integer id() {
         return this.id;
     }

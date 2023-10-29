@@ -4,8 +4,12 @@
 package grafana
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
@@ -57,4 +61,70 @@ type GetCloudIpsResult struct {
 	HostedTraces []string `pulumi:"hostedTraces"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+}
+
+func GetCloudIpsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetCloudIpsResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetCloudIpsResult, error) {
+		r, err := GetCloudIps(ctx, opts...)
+		var s GetCloudIpsResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetCloudIpsResultOutput)
+}
+
+// A collection of values returned by getCloudIps.
+type GetCloudIpsResultOutput struct{ *pulumi.OutputState }
+
+func (GetCloudIpsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudIpsResult)(nil)).Elem()
+}
+
+func (o GetCloudIpsResultOutput) ToGetCloudIpsResultOutput() GetCloudIpsResultOutput {
+	return o
+}
+
+func (o GetCloudIpsResultOutput) ToGetCloudIpsResultOutputWithContext(ctx context.Context) GetCloudIpsResultOutput {
+	return o
+}
+
+func (o GetCloudIpsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetCloudIpsResult] {
+	return pulumix.Output[GetCloudIpsResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Set of IP addresses that are used for hosted alerts.
+func (o GetCloudIpsResultOutput) HostedAlerts() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCloudIpsResult) []string { return v.HostedAlerts }).(pulumi.StringArrayOutput)
+}
+
+// Set of IP addresses that are used for hosted Grafana.
+func (o GetCloudIpsResultOutput) HostedGrafanas() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCloudIpsResult) []string { return v.HostedGrafanas }).(pulumi.StringArrayOutput)
+}
+
+// Set of IP addresses that are used for hosted logs.
+func (o GetCloudIpsResultOutput) HostedLogs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCloudIpsResult) []string { return v.HostedLogs }).(pulumi.StringArrayOutput)
+}
+
+// Set of IP addresses that are used for hosted metrics.
+func (o GetCloudIpsResultOutput) HostedMetrics() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCloudIpsResult) []string { return v.HostedMetrics }).(pulumi.StringArrayOutput)
+}
+
+// Set of IP addresses that are used for hosted traces.
+func (o GetCloudIpsResultOutput) HostedTraces() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCloudIpsResult) []string { return v.HostedTraces }).(pulumi.StringArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetCloudIpsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudIpsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetCloudIpsResultOutput{})
 }

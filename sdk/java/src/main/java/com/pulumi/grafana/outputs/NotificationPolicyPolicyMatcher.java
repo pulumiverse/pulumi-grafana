@@ -9,17 +9,41 @@ import java.util.Objects;
 
 @CustomType
 public final class NotificationPolicyPolicyMatcher {
+    /**
+     * @return The name of the label to match against.
+     * 
+     */
     private String label;
+    /**
+     * @return The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+     * 
+     */
     private String match;
+    /**
+     * @return The label value to match against.
+     * 
+     */
     private String value;
 
     private NotificationPolicyPolicyMatcher() {}
+    /**
+     * @return The name of the label to match against.
+     * 
+     */
     public String label() {
         return this.label;
     }
+    /**
+     * @return The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+     * 
+     */
     public String match() {
         return this.match;
     }
+    /**
+     * @return The label value to match against.
+     * 
+     */
     public String value() {
         return this.value;
     }

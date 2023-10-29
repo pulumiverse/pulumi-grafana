@@ -19,7 +19,7 @@ import (
 //
 // **Note that this resource must be used on a provider configured with Grafana Cloud credentials.**
 //
-// * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/installation/)
+// * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/installation/)
 // * [API documentation](https://github.com/grafana/synthetic-monitoring-api-go-client/blob/main/docs/API.md#apiv1registerinstall)
 //
 // ## Example Usage
@@ -77,7 +77,7 @@ type SyntheticMonitoringInstallation struct {
 	SmAccessToken pulumi.StringOutput `pulumi:"smAccessToken"`
 	// The ID or slug of the stack to install SM on.
 	StackId pulumi.StringOutput `pulumi:"stackId"`
-	// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+	// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
 	StackSmApiUrl pulumi.StringOutput `pulumi:"stackSmApiUrl"`
 }
 
@@ -130,7 +130,7 @@ type syntheticMonitoringInstallationState struct {
 	SmAccessToken *string `pulumi:"smAccessToken"`
 	// The ID or slug of the stack to install SM on.
 	StackId *string `pulumi:"stackId"`
-	// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+	// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
 	StackSmApiUrl *string `pulumi:"stackSmApiUrl"`
 }
 
@@ -141,7 +141,7 @@ type SyntheticMonitoringInstallationState struct {
 	SmAccessToken pulumi.StringPtrInput
 	// The ID or slug of the stack to install SM on.
 	StackId pulumi.StringPtrInput
-	// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+	// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
 	StackSmApiUrl pulumi.StringPtrInput
 }
 
@@ -154,7 +154,7 @@ type syntheticMonitoringInstallationArgs struct {
 	MetricsPublisherKey string `pulumi:"metricsPublisherKey"`
 	// The ID or slug of the stack to install SM on.
 	StackId string `pulumi:"stackId"`
-	// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+	// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
 	StackSmApiUrl *string `pulumi:"stackSmApiUrl"`
 }
 
@@ -164,7 +164,7 @@ type SyntheticMonitoringInstallationArgs struct {
 	MetricsPublisherKey pulumi.StringInput
 	// The ID or slug of the stack to install SM on.
 	StackId pulumi.StringInput
-	// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+	// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
 	StackSmApiUrl pulumi.StringPtrInput
 }
 
@@ -294,7 +294,7 @@ func (o SyntheticMonitoringInstallationOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringInstallation) pulumi.StringOutput { return v.StackId }).(pulumi.StringOutput)
 }
 
-// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
 func (o SyntheticMonitoringInstallationOutput) StackSmApiUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringInstallation) pulumi.StringOutput { return v.StackSmApiUrl }).(pulumi.StringOutput)
 }

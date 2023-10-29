@@ -128,7 +128,7 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
     /**
      * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
      * documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-     * API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+     * API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
      * 
      */
     @Import(name="teamSync")
@@ -137,7 +137,7 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
      * documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-     * API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+     * API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
      * 
      */
     public Optional<Output<TeamTeamSyncArgs>> teamSync() {
@@ -332,7 +332,7 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param teamSync Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
          * documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-         * API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+         * API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
          * 
          * @return builder
          * 
@@ -345,7 +345,7 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param teamSync Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
          * documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-         * API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+         * API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
          * 
          * @return builder
          * 

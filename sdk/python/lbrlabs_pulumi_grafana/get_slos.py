@@ -14,6 +14,7 @@ __all__ = [
     'GetSlosResult',
     'AwaitableGetSlosResult',
     'get_slos',
+    'get_slos_output',
 ]
 
 @pulumi.output_type
@@ -60,8 +61,8 @@ def get_slos(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSlosRes
     """
     Datasource for retrieving all SLOs.
 
-    * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
-    * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+    * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
+    * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
     * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
     """
     __args__ = dict()
@@ -71,3 +72,15 @@ def get_slos(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSlosRes
     return AwaitableGetSlosResult(
         id=pulumi.get(__ret__, 'id'),
         slos=pulumi.get(__ret__, 'slos'))
+
+
+@_utilities.lift_output_func(get_slos)
+def get_slos_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSlosResult]:
+    """
+    Datasource for retrieving all SLOs.
+
+    * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
+    * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
+    * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
+    """
+    ...

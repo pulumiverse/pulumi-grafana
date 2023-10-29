@@ -15,25 +15,65 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SyntheticMonitoringCheckSettingsTcp {
+    /**
+     * @return Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+     * 
+     */
     private @Nullable String ipVersion;
+    /**
+     * @return The query sent in the TCP probe and the expected associated response.
+     * 
+     */
     private @Nullable List<SyntheticMonitoringCheckSettingsTcpQueryResponse> queryResponses;
+    /**
+     * @return Source IP address.
+     * 
+     */
     private @Nullable String sourceIpAddress;
+    /**
+     * @return Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+     * 
+     */
     private @Nullable Boolean tls;
+    /**
+     * @return TLS config.
+     * 
+     */
     private @Nullable SyntheticMonitoringCheckSettingsTcpTlsConfig tlsConfig;
 
     private SyntheticMonitoringCheckSettingsTcp() {}
+    /**
+     * @return Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+     * 
+     */
     public Optional<String> ipVersion() {
         return Optional.ofNullable(this.ipVersion);
     }
+    /**
+     * @return The query sent in the TCP probe and the expected associated response.
+     * 
+     */
     public List<SyntheticMonitoringCheckSettingsTcpQueryResponse> queryResponses() {
         return this.queryResponses == null ? List.of() : this.queryResponses;
     }
+    /**
+     * @return Source IP address.
+     * 
+     */
     public Optional<String> sourceIpAddress() {
         return Optional.ofNullable(this.sourceIpAddress);
     }
+    /**
+     * @return Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+     * 
+     */
     public Optional<Boolean> tls() {
         return Optional.ofNullable(this.tls);
     }
+    /**
+     * @return TLS config.
+     * 
+     */
     public Optional<SyntheticMonitoringCheckSettingsTcpTlsConfig> tlsConfig() {
         return Optional.ofNullable(this.tlsConfig);
     }

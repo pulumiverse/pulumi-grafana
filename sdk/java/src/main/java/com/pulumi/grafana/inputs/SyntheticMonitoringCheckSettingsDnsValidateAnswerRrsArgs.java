@@ -16,16 +16,32 @@ public final class SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs exte
 
     public static final SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs Empty = new SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs();
 
+    /**
+     * Fail if value matches regex.
+     * 
+     */
     @Import(name="failIfMatchesRegexps")
     private @Nullable Output<List<String>> failIfMatchesRegexps;
 
+    /**
+     * @return Fail if value matches regex.
+     * 
+     */
     public Optional<Output<List<String>>> failIfMatchesRegexps() {
         return Optional.ofNullable(this.failIfMatchesRegexps);
     }
 
+    /**
+     * Fail if value does not match regex.
+     * 
+     */
     @Import(name="failIfNotMatchesRegexps")
     private @Nullable Output<List<String>> failIfNotMatchesRegexps;
 
+    /**
+     * @return Fail if value does not match regex.
+     * 
+     */
     public Optional<Output<List<String>>> failIfNotMatchesRegexps() {
         return Optional.ofNullable(this.failIfNotMatchesRegexps);
     }
@@ -55,28 +71,64 @@ public final class SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs exte
             $ = new SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param failIfMatchesRegexps Fail if value matches regex.
+         * 
+         * @return builder
+         * 
+         */
         public Builder failIfMatchesRegexps(@Nullable Output<List<String>> failIfMatchesRegexps) {
             $.failIfMatchesRegexps = failIfMatchesRegexps;
             return this;
         }
 
+        /**
+         * @param failIfMatchesRegexps Fail if value matches regex.
+         * 
+         * @return builder
+         * 
+         */
         public Builder failIfMatchesRegexps(List<String> failIfMatchesRegexps) {
             return failIfMatchesRegexps(Output.of(failIfMatchesRegexps));
         }
 
+        /**
+         * @param failIfMatchesRegexps Fail if value matches regex.
+         * 
+         * @return builder
+         * 
+         */
         public Builder failIfMatchesRegexps(String... failIfMatchesRegexps) {
             return failIfMatchesRegexps(List.of(failIfMatchesRegexps));
         }
 
+        /**
+         * @param failIfNotMatchesRegexps Fail if value does not match regex.
+         * 
+         * @return builder
+         * 
+         */
         public Builder failIfNotMatchesRegexps(@Nullable Output<List<String>> failIfNotMatchesRegexps) {
             $.failIfNotMatchesRegexps = failIfNotMatchesRegexps;
             return this;
         }
 
+        /**
+         * @param failIfNotMatchesRegexps Fail if value does not match regex.
+         * 
+         * @return builder
+         * 
+         */
         public Builder failIfNotMatchesRegexps(List<String> failIfNotMatchesRegexps) {
             return failIfNotMatchesRegexps(Output.of(failIfNotMatchesRegexps));
         }
 
+        /**
+         * @param failIfNotMatchesRegexps Fail if value does not match regex.
+         * 
+         * @return builder
+         * 
+         */
         public Builder failIfNotMatchesRegexps(String... failIfNotMatchesRegexps) {
             return failIfNotMatchesRegexps(List.of(failIfNotMatchesRegexps));
         }

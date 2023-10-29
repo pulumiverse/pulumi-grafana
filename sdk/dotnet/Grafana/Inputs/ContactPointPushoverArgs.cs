@@ -111,6 +111,12 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         [Input("uid")]
         public Input<string>? Uid { get; set; }
 
+        /// <summary>
+        /// Whether to send images in the notification or not. Default is true. Requires Grafana to be configured to send images in notifications.
+        /// </summary>
+        [Input("uploadImage")]
+        public Input<bool>? UploadImage { get; set; }
+
         [Input("userKey", required: true)]
         private Input<string>? _userKey;
 

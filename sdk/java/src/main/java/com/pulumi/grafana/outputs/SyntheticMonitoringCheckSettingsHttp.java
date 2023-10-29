@@ -18,77 +18,221 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SyntheticMonitoringCheckSettingsHttp {
+    /**
+     * @return Basic auth settings.
+     * 
+     */
     private @Nullable SyntheticMonitoringCheckSettingsHttpBasicAuth basicAuth;
+    /**
+     * @return Token for use with bearer authorization header.
+     * 
+     */
     private @Nullable String bearerToken;
+    /**
+     * @return The body of the HTTP request used in probe.
+     * 
+     */
     private @Nullable String body;
+    /**
+     * @return The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
+     * 
+     */
     private @Nullable String cacheBustingQueryParamName;
+    /**
+     * @return List of regexes. If any match the response body, the check will fail.
+     * 
+     */
     private @Nullable List<String> failIfBodyMatchesRegexps;
+    /**
+     * @return List of regexes. If any do not match the response body, the check will fail.
+     * 
+     */
     private @Nullable List<String> failIfBodyNotMatchesRegexps;
+    /**
+     * @return Check fails if headers match.
+     * 
+     */
     private @Nullable List<SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp> failIfHeaderMatchesRegexps;
+    /**
+     * @return Check fails if headers do not match.
+     * 
+     */
     private @Nullable List<SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexp> failIfHeaderNotMatchesRegexps;
+    /**
+     * @return Fail if SSL is not present. Defaults to `false`.
+     * 
+     */
     private @Nullable Boolean failIfNotSsl;
+    /**
+     * @return Fail if SSL is present. Defaults to `false`.
+     * 
+     */
     private @Nullable Boolean failIfSsl;
+    /**
+     * @return The HTTP headers set for the probe.
+     * 
+     */
     private @Nullable List<String> headers;
+    /**
+     * @return Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+     * 
+     */
     private @Nullable String ipVersion;
+    /**
+     * @return Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+     * 
+     */
     private @Nullable String method;
+    /**
+     * @return Do not follow redirects. Defaults to `false`.
+     * 
+     */
     private @Nullable Boolean noFollowRedirects;
+    /**
+     * @return Proxy URL.
+     * 
+     */
     private @Nullable String proxyUrl;
+    /**
+     * @return TLS config.
+     * 
+     */
     private @Nullable SyntheticMonitoringCheckSettingsHttpTlsConfig tlsConfig;
+    /**
+     * @return List of valid HTTP versions. Options include `HTTP/1.0`, `HTTP/1.1`, `HTTP/2.0`
+     * 
+     */
     private @Nullable List<String> validHttpVersions;
+    /**
+     * @return Accepted status codes. If unset, defaults to 2xx.
+     * 
+     */
     private @Nullable List<Integer> validStatusCodes;
 
     private SyntheticMonitoringCheckSettingsHttp() {}
+    /**
+     * @return Basic auth settings.
+     * 
+     */
     public Optional<SyntheticMonitoringCheckSettingsHttpBasicAuth> basicAuth() {
         return Optional.ofNullable(this.basicAuth);
     }
+    /**
+     * @return Token for use with bearer authorization header.
+     * 
+     */
     public Optional<String> bearerToken() {
         return Optional.ofNullable(this.bearerToken);
     }
+    /**
+     * @return The body of the HTTP request used in probe.
+     * 
+     */
     public Optional<String> body() {
         return Optional.ofNullable(this.body);
     }
+    /**
+     * @return The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
+     * 
+     */
     public Optional<String> cacheBustingQueryParamName() {
         return Optional.ofNullable(this.cacheBustingQueryParamName);
     }
+    /**
+     * @return List of regexes. If any match the response body, the check will fail.
+     * 
+     */
     public List<String> failIfBodyMatchesRegexps() {
         return this.failIfBodyMatchesRegexps == null ? List.of() : this.failIfBodyMatchesRegexps;
     }
+    /**
+     * @return List of regexes. If any do not match the response body, the check will fail.
+     * 
+     */
     public List<String> failIfBodyNotMatchesRegexps() {
         return this.failIfBodyNotMatchesRegexps == null ? List.of() : this.failIfBodyNotMatchesRegexps;
     }
+    /**
+     * @return Check fails if headers match.
+     * 
+     */
     public List<SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp> failIfHeaderMatchesRegexps() {
         return this.failIfHeaderMatchesRegexps == null ? List.of() : this.failIfHeaderMatchesRegexps;
     }
+    /**
+     * @return Check fails if headers do not match.
+     * 
+     */
     public List<SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexp> failIfHeaderNotMatchesRegexps() {
         return this.failIfHeaderNotMatchesRegexps == null ? List.of() : this.failIfHeaderNotMatchesRegexps;
     }
+    /**
+     * @return Fail if SSL is not present. Defaults to `false`.
+     * 
+     */
     public Optional<Boolean> failIfNotSsl() {
         return Optional.ofNullable(this.failIfNotSsl);
     }
+    /**
+     * @return Fail if SSL is present. Defaults to `false`.
+     * 
+     */
     public Optional<Boolean> failIfSsl() {
         return Optional.ofNullable(this.failIfSsl);
     }
+    /**
+     * @return The HTTP headers set for the probe.
+     * 
+     */
     public List<String> headers() {
         return this.headers == null ? List.of() : this.headers;
     }
+    /**
+     * @return Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+     * 
+     */
     public Optional<String> ipVersion() {
         return Optional.ofNullable(this.ipVersion);
     }
+    /**
+     * @return Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+     * 
+     */
     public Optional<String> method() {
         return Optional.ofNullable(this.method);
     }
+    /**
+     * @return Do not follow redirects. Defaults to `false`.
+     * 
+     */
     public Optional<Boolean> noFollowRedirects() {
         return Optional.ofNullable(this.noFollowRedirects);
     }
+    /**
+     * @return Proxy URL.
+     * 
+     */
     public Optional<String> proxyUrl() {
         return Optional.ofNullable(this.proxyUrl);
     }
+    /**
+     * @return TLS config.
+     * 
+     */
     public Optional<SyntheticMonitoringCheckSettingsHttpTlsConfig> tlsConfig() {
         return Optional.ofNullable(this.tlsConfig);
     }
+    /**
+     * @return List of valid HTTP versions. Options include `HTTP/1.0`, `HTTP/1.1`, `HTTP/2.0`
+     * 
+     */
     public List<String> validHttpVersions() {
         return this.validHttpVersions == null ? List.of() : this.validHttpVersions;
     }
+    /**
+     * @return Accepted status codes. If unset, defaults to 2xx.
+     * 
+     */
     public List<Integer> validStatusCodes() {
         return this.validStatusCodes == null ? List.of() : this.validStatusCodes;
     }

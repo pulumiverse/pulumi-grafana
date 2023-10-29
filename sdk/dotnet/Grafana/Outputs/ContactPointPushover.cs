@@ -67,6 +67,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// </summary>
         public readonly string? Uid;
         /// <summary>
+        /// Whether to send images in the notification or not. Default is true. Requires Grafana to be configured to send images in notifications.
+        /// </summary>
+        public readonly bool? UploadImage;
+        /// <summary>
         /// The Pushover user key.
         /// </summary>
         public readonly string UserKey;
@@ -99,6 +103,8 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
             string? uid,
 
+            bool? uploadImage,
+
             string userKey)
         {
             ApiToken = apiToken;
@@ -114,6 +120,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
             Sound = sound;
             Title = title;
             Uid = uid;
+            UploadImage = uploadImage;
             UserKey = userKey;
         }
     }

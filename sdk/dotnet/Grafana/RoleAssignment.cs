@@ -78,6 +78,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public partial class RoleAssignment : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
+
+        /// <summary>
         /// Grafana RBAC role UID.
         /// </summary>
         [Output("roleUid")]
@@ -149,6 +155,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class RoleAssignmentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
+        /// <summary>
         /// Grafana RBAC role UID.
         /// </summary>
         [Input("roleUid", required: true)]
@@ -198,6 +210,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class RoleAssignmentState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
         /// <summary>
         /// Grafana RBAC role UID.
         /// </summary>

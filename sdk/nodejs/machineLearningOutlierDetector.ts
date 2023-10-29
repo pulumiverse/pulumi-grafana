@@ -70,7 +70,7 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
      */
     public readonly metric!: pulumi.Output<string>;
     /**
-     * The name of the outlier detector.
+     * The name of the algorithm to use ('mad' or 'dbscan').
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -162,7 +162,7 @@ export interface MachineLearningOutlierDetectorState {
      */
     metric?: pulumi.Input<string>;
     /**
-     * The name of the outlier detector.
+     * The name of the algorithm to use ('mad' or 'dbscan').
      */
     name?: pulumi.Input<string>;
     /**
@@ -204,7 +204,7 @@ export interface MachineLearningOutlierDetectorArgs {
      */
     metric: pulumi.Input<string>;
     /**
-     * The name of the outlier detector.
+     * The name of the algorithm to use ('mad' or 'dbscan').
      */
     name?: pulumi.Input<string>;
     /**

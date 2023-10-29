@@ -12,6 +12,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class OncallIntegrationDefaultRouteTelegram {
+    /**
+     * @return Enable notification in MS teams. Defaults to `true`.
+     * 
+     */
     private @Nullable Boolean enabled;
     /**
      * @return The ID of this resource.
@@ -20,6 +24,10 @@ public final class OncallIntegrationDefaultRouteTelegram {
     private @Nullable String id;
 
     private OncallIntegrationDefaultRouteTelegram() {}
+    /**
+     * @return Enable notification in MS teams. Defaults to `true`.
+     * 
+     */
     public Optional<Boolean> enabled() {
         return Optional.ofNullable(this.enabled);
     }

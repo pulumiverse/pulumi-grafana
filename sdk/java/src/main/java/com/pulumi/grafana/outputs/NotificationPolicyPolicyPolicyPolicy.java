@@ -26,10 +26,10 @@ public final class NotificationPolicyPolicyPolicyPolicy {
      */
     private @Nullable Boolean continue_;
     /**
-     * @return A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * @return A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      * 
      */
-    private List<String> groupBies;
+    private @Nullable List<String> groupBies;
     /**
      * @return Minimum time interval between two notifications for the same group. Default is 5 minutes.
      * 
@@ -77,11 +77,11 @@ public final class NotificationPolicyPolicyPolicyPolicy {
         return Optional.ofNullable(this.continue_);
     }
     /**
-     * @return A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * @return A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      * 
      */
     public List<String> groupBies() {
-        return this.groupBies;
+        return this.groupBies == null ? List.of() : this.groupBies;
     }
     /**
      * @return Minimum time interval between two notifications for the same group. Default is 5 minutes.
@@ -137,7 +137,7 @@ public final class NotificationPolicyPolicyPolicyPolicy {
     public static final class Builder {
         private String contactPoint;
         private @Nullable Boolean continue_;
-        private List<String> groupBies;
+        private @Nullable List<String> groupBies;
         private @Nullable String groupInterval;
         private @Nullable String groupWait;
         private @Nullable List<NotificationPolicyPolicyPolicyPolicyMatcher> matchers;
@@ -169,8 +169,8 @@ public final class NotificationPolicyPolicyPolicyPolicy {
             return this;
         }
         @CustomType.Setter
-        public Builder groupBies(List<String> groupBies) {
-            this.groupBies = Objects.requireNonNull(groupBies);
+        public Builder groupBies(@Nullable List<String> groupBies) {
+            this.groupBies = groupBies;
             return this;
         }
         public Builder groupBies(String... groupBies) {

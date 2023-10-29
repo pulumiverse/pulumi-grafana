@@ -16,23 +16,47 @@ public final class SyntheticMonitoringCheckSettingsTracerouteArgs extends com.pu
 
     public static final SyntheticMonitoringCheckSettingsTracerouteArgs Empty = new SyntheticMonitoringCheckSettingsTracerouteArgs();
 
+    /**
+     * Maximum TTL for the trace Defaults to `64`.
+     * 
+     */
     @Import(name="maxHops")
     private @Nullable Output<Integer> maxHops;
 
+    /**
+     * @return Maximum TTL for the trace Defaults to `64`.
+     * 
+     */
     public Optional<Output<Integer>> maxHops() {
         return Optional.ofNullable(this.maxHops);
     }
 
+    /**
+     * Maximum number of hosts to travers that give no response Defaults to `15`.
+     * 
+     */
     @Import(name="maxUnknownHops")
     private @Nullable Output<Integer> maxUnknownHops;
 
+    /**
+     * @return Maximum number of hosts to travers that give no response Defaults to `15`.
+     * 
+     */
     public Optional<Output<Integer>> maxUnknownHops() {
         return Optional.ofNullable(this.maxUnknownHops);
     }
 
+    /**
+     * Reverse lookup hostnames from IP addresses Defaults to `true`.
+     * 
+     */
     @Import(name="ptrLookup")
     private @Nullable Output<Boolean> ptrLookup;
 
+    /**
+     * @return Reverse lookup hostnames from IP addresses Defaults to `true`.
+     * 
+     */
     public Optional<Output<Boolean>> ptrLookup() {
         return Optional.ofNullable(this.ptrLookup);
     }
@@ -63,29 +87,65 @@ public final class SyntheticMonitoringCheckSettingsTracerouteArgs extends com.pu
             $ = new SyntheticMonitoringCheckSettingsTracerouteArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param maxHops Maximum TTL for the trace Defaults to `64`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maxHops(@Nullable Output<Integer> maxHops) {
             $.maxHops = maxHops;
             return this;
         }
 
+        /**
+         * @param maxHops Maximum TTL for the trace Defaults to `64`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maxHops(Integer maxHops) {
             return maxHops(Output.of(maxHops));
         }
 
+        /**
+         * @param maxUnknownHops Maximum number of hosts to travers that give no response Defaults to `15`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maxUnknownHops(@Nullable Output<Integer> maxUnknownHops) {
             $.maxUnknownHops = maxUnknownHops;
             return this;
         }
 
+        /**
+         * @param maxUnknownHops Maximum number of hosts to travers that give no response Defaults to `15`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maxUnknownHops(Integer maxUnknownHops) {
             return maxUnknownHops(Output.of(maxUnknownHops));
         }
 
+        /**
+         * @param ptrLookup Reverse lookup hostnames from IP addresses Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ptrLookup(@Nullable Output<Boolean> ptrLookup) {
             $.ptrLookup = ptrLookup;
             return this;
         }
 
+        /**
+         * @param ptrLookup Reverse lookup hostnames from IP addresses Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ptrLookup(Boolean ptrLookup) {
             return ptrLookup(Output.of(ptrLookup));
         }

@@ -13,14 +13,24 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class SyntheticMonitoringCheckSettingsHttpTlsConfigGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// CA certificate in PEM format.
+        /// </summary>
         [Input("caCert")]
         public Input<string>? CaCert { get; set; }
 
+        /// <summary>
+        /// Client certificate in PEM format.
+        /// </summary>
         [Input("clientCert")]
         public Input<string>? ClientCert { get; set; }
 
         [Input("clientKey")]
         private Input<string>? _clientKey;
+
+        /// <summary>
+        /// Client key in PEM format.
+        /// </summary>
         public Input<string>? ClientKey
         {
             get => _clientKey;
@@ -31,9 +41,15 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
             }
         }
 
+        /// <summary>
+        /// Disable target certificate validation. Defaults to `false`.
+        /// </summary>
         [Input("insecureSkipVerify")]
         public Input<bool>? InsecureSkipVerify { get; set; }
 
+        /// <summary>
+        /// Used to verify the hostname for the targets.
+        /// </summary>
         [Input("serverName")]
         public Input<string>? ServerName { get; set; }
 

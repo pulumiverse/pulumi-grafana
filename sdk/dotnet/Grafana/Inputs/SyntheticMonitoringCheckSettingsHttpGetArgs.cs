@@ -13,20 +13,36 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class SyntheticMonitoringCheckSettingsHttpGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Basic auth settings.
+        /// </summary>
         [Input("basicAuth")]
         public Input<Inputs.SyntheticMonitoringCheckSettingsHttpBasicAuthGetArgs>? BasicAuth { get; set; }
 
+        /// <summary>
+        /// Token for use with bearer authorization header.
+        /// </summary>
         [Input("bearerToken")]
         public Input<string>? BearerToken { get; set; }
 
+        /// <summary>
+        /// The body of the HTTP request used in probe.
+        /// </summary>
         [Input("body")]
         public Input<string>? Body { get; set; }
 
+        /// <summary>
+        /// The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
+        /// </summary>
         [Input("cacheBustingQueryParamName")]
         public Input<string>? CacheBustingQueryParamName { get; set; }
 
         [Input("failIfBodyMatchesRegexps")]
         private InputList<string>? _failIfBodyMatchesRegexps;
+
+        /// <summary>
+        /// List of regexes. If any match the response body, the check will fail.
+        /// </summary>
         public InputList<string> FailIfBodyMatchesRegexps
         {
             get => _failIfBodyMatchesRegexps ?? (_failIfBodyMatchesRegexps = new InputList<string>());
@@ -35,6 +51,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
         [Input("failIfBodyNotMatchesRegexps")]
         private InputList<string>? _failIfBodyNotMatchesRegexps;
+
+        /// <summary>
+        /// List of regexes. If any do not match the response body, the check will fail.
+        /// </summary>
         public InputList<string> FailIfBodyNotMatchesRegexps
         {
             get => _failIfBodyNotMatchesRegexps ?? (_failIfBodyNotMatchesRegexps = new InputList<string>());
@@ -43,6 +63,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
         [Input("failIfHeaderMatchesRegexps")]
         private InputList<Inputs.SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpGetArgs>? _failIfHeaderMatchesRegexps;
+
+        /// <summary>
+        /// Check fails if headers match.
+        /// </summary>
         public InputList<Inputs.SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpGetArgs> FailIfHeaderMatchesRegexps
         {
             get => _failIfHeaderMatchesRegexps ?? (_failIfHeaderMatchesRegexps = new InputList<Inputs.SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpGetArgs>());
@@ -51,43 +75,76 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
         [Input("failIfHeaderNotMatchesRegexps")]
         private InputList<Inputs.SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpGetArgs>? _failIfHeaderNotMatchesRegexps;
+
+        /// <summary>
+        /// Check fails if headers do not match.
+        /// </summary>
         public InputList<Inputs.SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpGetArgs> FailIfHeaderNotMatchesRegexps
         {
             get => _failIfHeaderNotMatchesRegexps ?? (_failIfHeaderNotMatchesRegexps = new InputList<Inputs.SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpGetArgs>());
             set => _failIfHeaderNotMatchesRegexps = value;
         }
 
+        /// <summary>
+        /// Fail if SSL is not present. Defaults to `false`.
+        /// </summary>
         [Input("failIfNotSsl")]
         public Input<bool>? FailIfNotSsl { get; set; }
 
+        /// <summary>
+        /// Fail if SSL is present. Defaults to `false`.
+        /// </summary>
         [Input("failIfSsl")]
         public Input<bool>? FailIfSsl { get; set; }
 
         [Input("headers")]
         private InputList<string>? _headers;
+
+        /// <summary>
+        /// The HTTP headers set for the probe.
+        /// </summary>
         public InputList<string> Headers
         {
             get => _headers ?? (_headers = new InputList<string>());
             set => _headers = value;
         }
 
+        /// <summary>
+        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        /// </summary>
         [Input("ipVersion")]
         public Input<string>? IpVersion { get; set; }
 
+        /// <summary>
+        /// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+        /// </summary>
         [Input("method")]
         public Input<string>? Method { get; set; }
 
+        /// <summary>
+        /// Do not follow redirects. Defaults to `false`.
+        /// </summary>
         [Input("noFollowRedirects")]
         public Input<bool>? NoFollowRedirects { get; set; }
 
+        /// <summary>
+        /// Proxy URL.
+        /// </summary>
         [Input("proxyUrl")]
         public Input<string>? ProxyUrl { get; set; }
 
+        /// <summary>
+        /// TLS config.
+        /// </summary>
         [Input("tlsConfig")]
         public Input<Inputs.SyntheticMonitoringCheckSettingsHttpTlsConfigGetArgs>? TlsConfig { get; set; }
 
         [Input("validHttpVersions")]
         private InputList<string>? _validHttpVersions;
+
+        /// <summary>
+        /// List of valid HTTP versions. Options include `HTTP/1.0`, `HTTP/1.1`, `HTTP/2.0`
+        /// </summary>
         public InputList<string> ValidHttpVersions
         {
             get => _validHttpVersions ?? (_validHttpVersions = new InputList<string>());
@@ -96,6 +153,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
         [Input("validStatusCodes")]
         private InputList<int>? _validStatusCodes;
+
+        /// <summary>
+        /// Accepted status codes. If unset, defaults to 2xx.
+        /// </summary>
         public InputList<int> ValidStatusCodes
         {
             get => _validStatusCodes ?? (_validStatusCodes = new InputList<int>());
