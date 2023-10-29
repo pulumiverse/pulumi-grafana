@@ -1,6 +1,6 @@
 jobs:
   remove-old-artifacts:
-    runs-on: ubuntu-latest
+    runs-on: nscloud
     steps:
     - name: Remove old artifacts
       uses: c-hive/gha-remove-artifacts@v1

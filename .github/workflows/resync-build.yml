@@ -25,7 +25,7 @@ env:
 jobs:
   resync_build:
     name: resync-build
-    runs-on: ubuntu-latest
+    runs-on: nscloud
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v3

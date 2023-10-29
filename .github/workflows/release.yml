@@ -18,7 +18,7 @@ jobs:
   build_sdk:
     name: build_sdk
     needs: prerequisites
-    runs-on: ubuntu-latest
+    runs-on: nscloud
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v3
@@ -96,7 +96,7 @@ jobs:
         - "3.7"
   prerequisites:
     name: prerequisites
-    runs-on: ubuntu-latest
+    runs-on: nscloud
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v3
@@ -163,7 +163,7 @@ jobs:
   publish:
     name: publish
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: nscloud
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v3
@@ -200,7 +200,7 @@ jobs:
   publish_sdk:
     name: publish_sdk
     needs: publish
-    runs-on: ubuntu-latest
+    runs-on: nscloud
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v3
@@ -275,7 +275,7 @@ jobs:
   test:
     name: test
     needs: build_sdk
-    runs-on: ubuntu-latest
+    runs-on: nscloud
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v3

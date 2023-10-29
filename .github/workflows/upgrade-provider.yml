@@ -7,7 +7,7 @@ jobs:
   upgrade_provider:
     if: ${{ contains(github.event.issue.title, 'Upgrade terraform-provider-') }}
     name: upgrade-provider
-    runs-on: ubuntu-latest
+    runs-on: nscloud
     steps:
     - name: Call upgrade provider action
       uses: pulumi/pulumi-upgrade-provider-action@v0.0.5
