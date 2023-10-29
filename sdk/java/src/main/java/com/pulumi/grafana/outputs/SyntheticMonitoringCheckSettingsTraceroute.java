@@ -12,17 +12,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SyntheticMonitoringCheckSettingsTraceroute {
+    /**
+     * @return Maximum TTL for the trace Defaults to `64`.
+     * 
+     */
     private @Nullable Integer maxHops;
+    /**
+     * @return Maximum number of hosts to travers that give no response Defaults to `15`.
+     * 
+     */
     private @Nullable Integer maxUnknownHops;
+    /**
+     * @return Reverse lookup hostnames from IP addresses Defaults to `true`.
+     * 
+     */
     private @Nullable Boolean ptrLookup;
 
     private SyntheticMonitoringCheckSettingsTraceroute() {}
+    /**
+     * @return Maximum TTL for the trace Defaults to `64`.
+     * 
+     */
     public Optional<Integer> maxHops() {
         return Optional.ofNullable(this.maxHops);
     }
+    /**
+     * @return Maximum number of hosts to travers that give no response Defaults to `15`.
+     * 
+     */
     public Optional<Integer> maxUnknownHops() {
         return Optional.ofNullable(this.maxUnknownHops);
     }
+    /**
+     * @return Reverse lookup hostnames from IP addresses Defaults to `true`.
+     * 
+     */
     public Optional<Boolean> ptrLookup() {
         return Optional.ofNullable(this.ptrLookup);
     }

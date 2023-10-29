@@ -18,14 +18,14 @@ public final class NotificationPolicyArgs extends com.pulumi.resources.ResourceA
     public static final NotificationPolicyArgs Empty = new NotificationPolicyArgs();
 
     /**
-     * The default contact point to route all unmatched notifications to.
+     * The contact point to route notifications that match this rule to.
      * 
      */
     @Import(name="contactPoint", required=true)
     private Output<String> contactPoint;
 
     /**
-     * @return The default contact point to route all unmatched notifications to.
+     * @return The contact point to route notifications that match this rule to.
      * 
      */
     public Output<String> contactPoint() {
@@ -33,14 +33,14 @@ public final class NotificationPolicyArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      * 
      */
     @Import(name="groupBies", required=true)
     private Output<List<String>> groupBies;
 
     /**
-     * @return A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * @return A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      * 
      */
     public Output<List<String>> groupBies() {
@@ -137,7 +137,7 @@ public final class NotificationPolicyArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param contactPoint The default contact point to route all unmatched notifications to.
+         * @param contactPoint The contact point to route notifications that match this rule to.
          * 
          * @return builder
          * 
@@ -148,7 +148,7 @@ public final class NotificationPolicyArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param contactPoint The default contact point to route all unmatched notifications to.
+         * @param contactPoint The contact point to route notifications that match this rule to.
          * 
          * @return builder
          * 
@@ -158,7 +158,7 @@ public final class NotificationPolicyArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
          * 
          * @return builder
          * 
@@ -169,7 +169,7 @@ public final class NotificationPolicyArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
          * 
          * @return builder
          * 
@@ -179,7 +179,7 @@ public final class NotificationPolicyArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
          * 
          * @return builder
          * 

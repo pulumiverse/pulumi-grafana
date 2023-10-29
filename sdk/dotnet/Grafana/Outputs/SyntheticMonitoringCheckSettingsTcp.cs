@@ -14,10 +14,25 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class SyntheticMonitoringCheckSettingsTcp
     {
+        /// <summary>
+        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        /// </summary>
         public readonly string? IpVersion;
+        /// <summary>
+        /// The query sent in the TCP probe and the expected associated response.
+        /// </summary>
         public readonly ImmutableArray<Outputs.SyntheticMonitoringCheckSettingsTcpQueryResponse> QueryResponses;
+        /// <summary>
+        /// Source IP address.
+        /// </summary>
         public readonly string? SourceIpAddress;
+        /// <summary>
+        /// Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+        /// </summary>
         public readonly bool? Tls;
+        /// <summary>
+        /// TLS config.
+        /// </summary>
         public readonly Outputs.SyntheticMonitoringCheckSettingsTcpTlsConfig? TlsConfig;
 
         [OutputConstructor]

@@ -32,6 +32,7 @@ import * as utilities from "./utilities";
  *     login: "test-ds-permissions",
  *     password: "hunter2",
  * });
+ * const sa = new grafana.ServiceAccount("sa", {role: "Viewer"});
  * const fooPermissions = new grafana.DataSourcePermission("fooPermissions", {
  *     datasourceId: foo.id,
  *     permissions: [
@@ -45,6 +46,10 @@ import * as utilities from "./utilities";
  *         },
  *         {
  *             builtInRole: "Viewer",
+ *             permission: "Query",
+ *         },
+ *         {
+ *             userId: sa.id,
  *             permission: "Query",
  *         },
  *     ],

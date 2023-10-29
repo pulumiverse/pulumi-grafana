@@ -4,8 +4,12 @@
 package grafana
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
@@ -60,4 +64,75 @@ type GetOrganizationPreferencesResult struct {
 	Timezone string `pulumi:"timezone"`
 	// The Organization week start.
 	WeekStart string `pulumi:"weekStart"`
+}
+
+func GetOrganizationPreferencesOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetOrganizationPreferencesResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetOrganizationPreferencesResult, error) {
+		r, err := GetOrganizationPreferences(ctx, opts...)
+		var s GetOrganizationPreferencesResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetOrganizationPreferencesResultOutput)
+}
+
+// A collection of values returned by getOrganizationPreferences.
+type GetOrganizationPreferencesResultOutput struct{ *pulumi.OutputState }
+
+func (GetOrganizationPreferencesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrganizationPreferencesResult)(nil)).Elem()
+}
+
+func (o GetOrganizationPreferencesResultOutput) ToGetOrganizationPreferencesResultOutput() GetOrganizationPreferencesResultOutput {
+	return o
+}
+
+func (o GetOrganizationPreferencesResultOutput) ToGetOrganizationPreferencesResultOutputWithContext(ctx context.Context) GetOrganizationPreferencesResultOutput {
+	return o
+}
+
+func (o GetOrganizationPreferencesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOrganizationPreferencesResult] {
+	return pulumix.Output[GetOrganizationPreferencesResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The Organization home dashboard ID.
+func (o GetOrganizationPreferencesResultOutput) HomeDashboardId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOrganizationPreferencesResult) int { return v.HomeDashboardId }).(pulumi.IntOutput)
+}
+
+// The Organization home dashboard UID. This is only available in Grafana 9.0+.
+func (o GetOrganizationPreferencesResultOutput) HomeDashboardUid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationPreferencesResult) string { return v.HomeDashboardUid }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetOrganizationPreferencesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationPreferencesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o GetOrganizationPreferencesResultOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationPreferencesResult) string { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+func (o GetOrganizationPreferencesResultOutput) Theme() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationPreferencesResult) string { return v.Theme }).(pulumi.StringOutput)
+}
+
+// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+func (o GetOrganizationPreferencesResultOutput) Timezone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationPreferencesResult) string { return v.Timezone }).(pulumi.StringOutput)
+}
+
+// The Organization week start.
+func (o GetOrganizationPreferencesResultOutput) WeekStart() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationPreferencesResult) string { return v.WeekStart }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetOrganizationPreferencesResultOutput{})
 }

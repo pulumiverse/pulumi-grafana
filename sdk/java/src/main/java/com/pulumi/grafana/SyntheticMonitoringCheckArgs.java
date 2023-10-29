@@ -21,14 +21,14 @@ public final class SyntheticMonitoringCheckArgs extends com.pulumi.resources.Res
     public static final SyntheticMonitoringCheckArgs Empty = new SyntheticMonitoringCheckArgs();
 
     /**
-     * Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+     * Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
      * 
      */
     @Import(name="alertSensitivity")
     private @Nullable Output<String> alertSensitivity;
 
     /**
-     * @return Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+     * @return Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
      * 
      */
     public Optional<Output<String>> alertSensitivity() {
@@ -204,7 +204,7 @@ public final class SyntheticMonitoringCheckArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param alertSensitivity Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+         * @param alertSensitivity Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
          * 
          * @return builder
          * 
@@ -215,7 +215,7 @@ public final class SyntheticMonitoringCheckArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param alertSensitivity Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+         * @param alertSensitivity Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
          * 
          * @return builder
          * 

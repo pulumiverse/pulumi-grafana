@@ -16,37 +16,77 @@ public final class RuleGroupRuleDataArgs extends com.pulumi.resources.ResourceAr
 
     public static final RuleGroupRuleDataArgs Empty = new RuleGroupRuleDataArgs();
 
+    /**
+     * The UID of the datasource being queried, or &#34;-100&#34; if this stage is an expression stage.
+     * 
+     */
     @Import(name="datasourceUid", required=true)
     private Output<String> datasourceUid;
 
+    /**
+     * @return The UID of the datasource being queried, or &#34;-100&#34; if this stage is an expression stage.
+     * 
+     */
     public Output<String> datasourceUid() {
         return this.datasourceUid;
     }
 
+    /**
+     * Custom JSON data to send to the specified datasource when querying.
+     * 
+     */
     @Import(name="model", required=true)
     private Output<String> model;
 
+    /**
+     * @return Custom JSON data to send to the specified datasource when querying.
+     * 
+     */
     public Output<String> model() {
         return this.model;
     }
 
+    /**
+     * An optional identifier for the type of query being executed. Defaults to ``.
+     * 
+     */
     @Import(name="queryType")
     private @Nullable Output<String> queryType;
 
+    /**
+     * @return An optional identifier for the type of query being executed. Defaults to ``.
+     * 
+     */
     public Optional<Output<String>> queryType() {
         return Optional.ofNullable(this.queryType);
     }
 
+    /**
+     * A unique string to identify this query stage within a rule.
+     * 
+     */
     @Import(name="refId", required=true)
     private Output<String> refId;
 
+    /**
+     * @return A unique string to identify this query stage within a rule.
+     * 
+     */
     public Output<String> refId() {
         return this.refId;
     }
 
+    /**
+     * The time range, relative to when the query is executed, across which to query.
+     * 
+     */
     @Import(name="relativeTimeRange", required=true)
     private Output<RuleGroupRuleDataRelativeTimeRangeArgs> relativeTimeRange;
 
+    /**
+     * @return The time range, relative to when the query is executed, across which to query.
+     * 
+     */
     public Output<RuleGroupRuleDataRelativeTimeRangeArgs> relativeTimeRange() {
         return this.relativeTimeRange;
     }
@@ -79,47 +119,107 @@ public final class RuleGroupRuleDataArgs extends com.pulumi.resources.ResourceAr
             $ = new RuleGroupRuleDataArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param datasourceUid The UID of the datasource being queried, or &#34;-100&#34; if this stage is an expression stage.
+         * 
+         * @return builder
+         * 
+         */
         public Builder datasourceUid(Output<String> datasourceUid) {
             $.datasourceUid = datasourceUid;
             return this;
         }
 
+        /**
+         * @param datasourceUid The UID of the datasource being queried, or &#34;-100&#34; if this stage is an expression stage.
+         * 
+         * @return builder
+         * 
+         */
         public Builder datasourceUid(String datasourceUid) {
             return datasourceUid(Output.of(datasourceUid));
         }
 
+        /**
+         * @param model Custom JSON data to send to the specified datasource when querying.
+         * 
+         * @return builder
+         * 
+         */
         public Builder model(Output<String> model) {
             $.model = model;
             return this;
         }
 
+        /**
+         * @param model Custom JSON data to send to the specified datasource when querying.
+         * 
+         * @return builder
+         * 
+         */
         public Builder model(String model) {
             return model(Output.of(model));
         }
 
+        /**
+         * @param queryType An optional identifier for the type of query being executed. Defaults to ``.
+         * 
+         * @return builder
+         * 
+         */
         public Builder queryType(@Nullable Output<String> queryType) {
             $.queryType = queryType;
             return this;
         }
 
+        /**
+         * @param queryType An optional identifier for the type of query being executed. Defaults to ``.
+         * 
+         * @return builder
+         * 
+         */
         public Builder queryType(String queryType) {
             return queryType(Output.of(queryType));
         }
 
+        /**
+         * @param refId A unique string to identify this query stage within a rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder refId(Output<String> refId) {
             $.refId = refId;
             return this;
         }
 
+        /**
+         * @param refId A unique string to identify this query stage within a rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder refId(String refId) {
             return refId(Output.of(refId));
         }
 
+        /**
+         * @param relativeTimeRange The time range, relative to when the query is executed, across which to query.
+         * 
+         * @return builder
+         * 
+         */
         public Builder relativeTimeRange(Output<RuleGroupRuleDataRelativeTimeRangeArgs> relativeTimeRange) {
             $.relativeTimeRange = relativeTimeRange;
             return this;
         }
 
+        /**
+         * @param relativeTimeRange The time range, relative to when the query is executed, across which to query.
+         * 
+         * @return builder
+         * 
+         */
         public Builder relativeTimeRange(RuleGroupRuleDataRelativeTimeRangeArgs relativeTimeRange) {
             return relativeTimeRange(Output.of(relativeTimeRange));
         }

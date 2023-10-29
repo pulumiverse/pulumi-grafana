@@ -13,6 +13,9 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class CloudAccessPolicyRealmLabelPolicyArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
+        /// </summary>
         [Input("selector", required: true)]
         public Input<string> Selector { get; set; } = null!;
 

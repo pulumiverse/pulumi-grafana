@@ -15,9 +15,6 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     public sealed class GetUsersUserResult
     {
         public readonly string Email;
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         public readonly int Id;
         public readonly bool IsAdmin;
         public readonly string Login;

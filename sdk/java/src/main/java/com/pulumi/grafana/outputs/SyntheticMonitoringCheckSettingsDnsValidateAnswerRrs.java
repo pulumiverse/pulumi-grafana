@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SyntheticMonitoringCheckSettingsDnsValidateAnswerRrs {
+    /**
+     * @return Fail if value matches regex.
+     * 
+     */
     private @Nullable List<String> failIfMatchesRegexps;
+    /**
+     * @return Fail if value does not match regex.
+     * 
+     */
     private @Nullable List<String> failIfNotMatchesRegexps;
 
     private SyntheticMonitoringCheckSettingsDnsValidateAnswerRrs() {}
+    /**
+     * @return Fail if value matches regex.
+     * 
+     */
     public List<String> failIfMatchesRegexps() {
         return this.failIfMatchesRegexps == null ? List.of() : this.failIfMatchesRegexps;
     }
+    /**
+     * @return Fail if value does not match regex.
+     * 
+     */
     public List<String> failIfNotMatchesRegexps() {
         return this.failIfNotMatchesRegexps == null ? List.of() : this.failIfNotMatchesRegexps;
     }

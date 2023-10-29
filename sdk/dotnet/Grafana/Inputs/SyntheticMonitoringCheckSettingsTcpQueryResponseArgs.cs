@@ -13,12 +13,21 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class SyntheticMonitoringCheckSettingsTcpQueryResponseArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Response to expect.
+        /// </summary>
         [Input("expect", required: true)]
         public Input<string> Expect { get; set; } = null!;
 
+        /// <summary>
+        /// Data to send.
+        /// </summary>
         [Input("send", required: true)]
         public Input<string> Send { get; set; } = null!;
 
+        /// <summary>
+        /// Upgrade TCP connection to TLS. Defaults to `false`.
+        /// </summary>
         [Input("startTls")]
         public Input<bool>? StartTls { get; set; }
 

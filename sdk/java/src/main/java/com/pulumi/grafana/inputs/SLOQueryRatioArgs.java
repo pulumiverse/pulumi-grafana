@@ -16,23 +16,47 @@ public final class SLOQueryRatioArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final SLOQueryRatioArgs Empty = new SLOQueryRatioArgs();
 
+    /**
+     * Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
+     * 
+     */
     @Import(name="groupByLabels")
     private @Nullable Output<List<String>> groupByLabels;
 
+    /**
+     * @return Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
+     * 
+     */
     public Optional<Output<List<String>>> groupByLabels() {
         return Optional.ofNullable(this.groupByLabels);
     }
 
+    /**
+     * Counter metric for success events (numerator)
+     * 
+     */
     @Import(name="successMetric", required=true)
     private Output<String> successMetric;
 
+    /**
+     * @return Counter metric for success events (numerator)
+     * 
+     */
     public Output<String> successMetric() {
         return this.successMetric;
     }
 
+    /**
+     * Metric for total events (denominator)
+     * 
+     */
     @Import(name="totalMetric", required=true)
     private Output<String> totalMetric;
 
+    /**
+     * @return Metric for total events (denominator)
+     * 
+     */
     public Output<String> totalMetric() {
         return this.totalMetric;
     }
@@ -63,33 +87,75 @@ public final class SLOQueryRatioArgs extends com.pulumi.resources.ResourceArgs {
             $ = new SLOQueryRatioArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param groupByLabels Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupByLabels(@Nullable Output<List<String>> groupByLabels) {
             $.groupByLabels = groupByLabels;
             return this;
         }
 
+        /**
+         * @param groupByLabels Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupByLabels(List<String> groupByLabels) {
             return groupByLabels(Output.of(groupByLabels));
         }
 
+        /**
+         * @param groupByLabels Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupByLabels(String... groupByLabels) {
             return groupByLabels(List.of(groupByLabels));
         }
 
+        /**
+         * @param successMetric Counter metric for success events (numerator)
+         * 
+         * @return builder
+         * 
+         */
         public Builder successMetric(Output<String> successMetric) {
             $.successMetric = successMetric;
             return this;
         }
 
+        /**
+         * @param successMetric Counter metric for success events (numerator)
+         * 
+         * @return builder
+         * 
+         */
         public Builder successMetric(String successMetric) {
             return successMetric(Output.of(successMetric));
         }
 
+        /**
+         * @param totalMetric Metric for total events (denominator)
+         * 
+         * @return builder
+         * 
+         */
         public Builder totalMetric(Output<String> totalMetric) {
             $.totalMetric = totalMetric;
             return this;
         }
 
+        /**
+         * @param totalMetric Metric for total events (denominator)
+         * 
+         * @return builder
+         * 
+         */
         public Builder totalMetric(String totalMetric) {
             return totalMetric(Output.of(totalMetric));
         }

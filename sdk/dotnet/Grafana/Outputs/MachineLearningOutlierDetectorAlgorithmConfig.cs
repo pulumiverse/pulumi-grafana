@@ -14,6 +14,9 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class MachineLearningOutlierDetectorAlgorithmConfig
     {
+        /// <summary>
+        /// Specify the epsilon parameter (positive float)
+        /// </summary>
         public readonly double Epsilon;
 
         [OutputConstructor]

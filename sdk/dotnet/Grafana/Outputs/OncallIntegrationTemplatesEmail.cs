@@ -14,7 +14,13 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class OncallIntegrationTemplatesEmail
     {
+        /// <summary>
+        /// Template for Alert message.
+        /// </summary>
         public readonly string? Message;
+        /// <summary>
+        /// Template for Alert title.
+        /// </summary>
         public readonly string? Title;
 
         [OutputConstructor]

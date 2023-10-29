@@ -14,9 +14,6 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class GetFoldersFolderResult
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         public readonly int Id;
         public readonly string Title;
         public readonly string Uid;

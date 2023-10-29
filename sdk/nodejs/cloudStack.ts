@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/reference/cloud-api/#stacks/)
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#stacks/)
  *
  * ## Example Usage
  *
@@ -127,7 +127,7 @@ export class CloudStack extends pulumi.CustomResource {
      */
     public /*out*/ readonly prometheusUserId!: pulumi.Output<number>;
     /**
-     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
     public readonly regionSlug!: pulumi.Output<string | undefined>;
     /**
@@ -322,7 +322,7 @@ export interface CloudStackState {
      */
     prometheusUserId?: pulumi.Input<number>;
     /**
-     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
     regionSlug?: pulumi.Input<string>;
     /**
@@ -368,7 +368,7 @@ export interface CloudStackArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
     regionSlug?: pulumi.Input<string>;
     /**

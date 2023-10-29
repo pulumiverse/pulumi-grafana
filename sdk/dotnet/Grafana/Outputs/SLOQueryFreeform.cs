@@ -15,7 +15,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     public sealed class SLOQueryFreeform
     {
         /// <summary>
-        /// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        /// Freeform Query Field
         /// </summary>
         public readonly string Query;
 

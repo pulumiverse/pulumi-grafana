@@ -15,9 +15,17 @@ public final class OncallIntegrationTemplatesPhoneCallArgs extends com.pulumi.re
 
     public static final OncallIntegrationTemplatesPhoneCallArgs Empty = new OncallIntegrationTemplatesPhoneCallArgs();
 
+    /**
+     * Template for Alert title.
+     * 
+     */
     @Import(name="title")
     private @Nullable Output<String> title;
 
+    /**
+     * @return Template for Alert title.
+     * 
+     */
     public Optional<Output<String>> title() {
         return Optional.ofNullable(this.title);
     }
@@ -46,11 +54,23 @@ public final class OncallIntegrationTemplatesPhoneCallArgs extends com.pulumi.re
             $ = new OncallIntegrationTemplatesPhoneCallArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param title Template for Alert title.
+         * 
+         * @return builder
+         * 
+         */
         public Builder title(@Nullable Output<String> title) {
             $.title = title;
             return this;
         }
 
+        /**
+         * @param title Template for Alert title.
+         * 
+         * @return builder
+         * 
+         */
         public Builder title(String title) {
             return title(Output.of(title));
         }

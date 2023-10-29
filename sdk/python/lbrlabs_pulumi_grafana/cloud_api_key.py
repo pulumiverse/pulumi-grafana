@@ -148,7 +148,7 @@ class CloudApiKey(pulumi.CustomResource):
                  __props__=None):
         """
         Manages a single API key on the Grafana Cloud portal (on the organization level)
-        * [API documentation](https://grafana.com/docs/grafana-cloud/reference/cloud-api/#api-keys)
+        * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#api-keys)
 
         ## Example Usage
 
@@ -181,7 +181,7 @@ class CloudApiKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a single API key on the Grafana Cloud portal (on the organization level)
-        * [API documentation](https://grafana.com/docs/grafana-cloud/reference/cloud-api/#api-keys)
+        * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#api-keys)
 
         ## Example Usage
 

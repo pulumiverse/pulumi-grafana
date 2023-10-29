@@ -14,6 +14,9 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class CloudAccessPolicyRealmLabelPolicy
     {
+        /// <summary>
+        /// The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
+        /// </summary>
         public readonly string Selector;
 
         [OutputConstructor]

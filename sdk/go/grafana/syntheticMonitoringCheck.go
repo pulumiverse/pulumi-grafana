@@ -19,7 +19,7 @@ import (
 // what information you would like to gather about your endpoint. You can define
 // multiple checks for a single endpoint to check different capabilities.
 //
-// * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/checks/)
+// * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/checks/)
 //
 // ## Example Usage
 // ### DNS Basic
@@ -266,7 +266,7 @@ import (
 //						ValidHttpVersions: pulumi.StringArray{
 //							pulumi.String("HTTP/1.0"),
 //							pulumi.String("HTTP/1.1"),
-//							pulumi.String("HTTP/2"),
+//							pulumi.String("HTTP/2.0"),
 //						},
 //						FailIfBodyMatchesRegexps: pulumi.StringArray{
 //							pulumi.String("*bad stuff*"),
@@ -605,7 +605,7 @@ import (
 type SyntheticMonitoringCheck struct {
 	pulumi.CustomResourceState
 
-	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
 	AlertSensitivity pulumi.StringPtrOutput `pulumi:"alertSensitivity"`
 	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
 	BasicMetricsOnly pulumi.BoolPtrOutput `pulumi:"basicMetricsOnly"`
@@ -671,7 +671,7 @@ func GetSyntheticMonitoringCheck(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SyntheticMonitoringCheck resources.
 type syntheticMonitoringCheckState struct {
-	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
 	AlertSensitivity *string `pulumi:"alertSensitivity"`
 	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
 	BasicMetricsOnly *bool `pulumi:"basicMetricsOnly"`
@@ -696,7 +696,7 @@ type syntheticMonitoringCheckState struct {
 }
 
 type SyntheticMonitoringCheckState struct {
-	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
 	AlertSensitivity pulumi.StringPtrInput
 	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
 	BasicMetricsOnly pulumi.BoolPtrInput
@@ -725,7 +725,7 @@ func (SyntheticMonitoringCheckState) ElementType() reflect.Type {
 }
 
 type syntheticMonitoringCheckArgs struct {
-	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
 	AlertSensitivity *string `pulumi:"alertSensitivity"`
 	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
 	BasicMetricsOnly *bool `pulumi:"basicMetricsOnly"`
@@ -749,7 +749,7 @@ type syntheticMonitoringCheckArgs struct {
 
 // The set of arguments for constructing a SyntheticMonitoringCheck resource.
 type SyntheticMonitoringCheckArgs struct {
-	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
 	AlertSensitivity pulumi.StringPtrInput
 	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
 	BasicMetricsOnly pulumi.BoolPtrInput
@@ -882,7 +882,7 @@ func (o SyntheticMonitoringCheckOutput) ToOutput(ctx context.Context) pulumix.Ou
 	}
 }
 
-// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
 func (o SyntheticMonitoringCheckOutput) AlertSensitivity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheck) pulumi.StringPtrOutput { return v.AlertSensitivity }).(pulumi.StringPtrOutput)
 }

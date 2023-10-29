@@ -11,6 +11,7 @@ import com.pulumi.grafana.inputs.ContactPointDiscordArgs;
 import com.pulumi.grafana.inputs.ContactPointEmailArgs;
 import com.pulumi.grafana.inputs.ContactPointGooglechatArgs;
 import com.pulumi.grafana.inputs.ContactPointKafkaArgs;
+import com.pulumi.grafana.inputs.ContactPointLineArgs;
 import com.pulumi.grafana.inputs.ContactPointOpsgenyArgs;
 import com.pulumi.grafana.inputs.ContactPointPagerdutyArgs;
 import com.pulumi.grafana.inputs.ContactPointPushoverArgs;
@@ -20,6 +21,7 @@ import com.pulumi.grafana.inputs.ContactPointTeamArgs;
 import com.pulumi.grafana.inputs.ContactPointTelegramArgs;
 import com.pulumi.grafana.inputs.ContactPointThreemaArgs;
 import com.pulumi.grafana.inputs.ContactPointVictoropArgs;
+import com.pulumi.grafana.inputs.ContactPointWebexArgs;
 import com.pulumi.grafana.inputs.ContactPointWebhookArgs;
 import com.pulumi.grafana.inputs.ContactPointWecomArgs;
 import java.lang.String;
@@ -121,6 +123,21 @@ public final class ContactPointArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<List<ContactPointKafkaArgs>>> kafkas() {
         return Optional.ofNullable(this.kafkas);
+    }
+
+    /**
+     * A contact point that sends notifications to LINE.me.
+     * 
+     */
+    @Import(name="lines")
+    private @Nullable Output<List<ContactPointLineArgs>> lines;
+
+    /**
+     * @return A contact point that sends notifications to LINE.me.
+     * 
+     */
+    public Optional<Output<List<ContactPointLineArgs>>> lines() {
+        return Optional.ofNullable(this.lines);
     }
 
     /**
@@ -274,6 +291,21 @@ public final class ContactPointArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * A contact point that sends notifications to Cisco Webex.
+     * 
+     */
+    @Import(name="webexes")
+    private @Nullable Output<List<ContactPointWebexArgs>> webexes;
+
+    /**
+     * @return A contact point that sends notifications to Cisco Webex.
+     * 
+     */
+    public Optional<Output<List<ContactPointWebexArgs>>> webexes() {
+        return Optional.ofNullable(this.webexes);
+    }
+
+    /**
      * A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
      * 
      */
@@ -312,6 +344,7 @@ public final class ContactPointArgs extends com.pulumi.resources.ResourceArgs {
         this.emails = $.emails;
         this.googlechats = $.googlechats;
         this.kafkas = $.kafkas;
+        this.lines = $.lines;
         this.name = $.name;
         this.opsgenies = $.opsgenies;
         this.pagerduties = $.pagerduties;
@@ -322,6 +355,7 @@ public final class ContactPointArgs extends com.pulumi.resources.ResourceArgs {
         this.telegrams = $.telegrams;
         this.threemas = $.threemas;
         this.victorops = $.victorops;
+        this.webexes = $.webexes;
         this.webhooks = $.webhooks;
         this.wecoms = $.wecoms;
     }
@@ -528,6 +562,37 @@ public final class ContactPointArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder kafkas(ContactPointKafkaArgs... kafkas) {
             return kafkas(List.of(kafkas));
+        }
+
+        /**
+         * @param lines A contact point that sends notifications to LINE.me.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder lines(@Nullable Output<List<ContactPointLineArgs>> lines) {
+            $.lines = lines;
+            return this;
+        }
+
+        /**
+         * @param lines A contact point that sends notifications to LINE.me.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder lines(List<ContactPointLineArgs> lines) {
+            return lines(Output.of(lines));
+        }
+
+        /**
+         * @param lines A contact point that sends notifications to LINE.me.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder lines(ContactPointLineArgs... lines) {
+            return lines(List.of(lines));
         }
 
         /**
@@ -828,6 +893,37 @@ public final class ContactPointArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder victorops(ContactPointVictoropArgs... victorops) {
             return victorops(List.of(victorops));
+        }
+
+        /**
+         * @param webexes A contact point that sends notifications to Cisco Webex.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder webexes(@Nullable Output<List<ContactPointWebexArgs>> webexes) {
+            $.webexes = webexes;
+            return this;
+        }
+
+        /**
+         * @param webexes A contact point that sends notifications to Cisco Webex.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder webexes(List<ContactPointWebexArgs> webexes) {
+            return webexes(Output.of(webexes));
+        }
+
+        /**
+         * @param webexes A contact point that sends notifications to Cisco Webex.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder webexes(ContactPointWebexArgs... webexes) {
+            return webexes(List.of(webexes));
         }
 
         /**

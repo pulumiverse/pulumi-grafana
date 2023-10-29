@@ -17,6 +17,7 @@ __all__ = ['OncallScheduleArgs', 'OncallSchedule']
 class OncallScheduleArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str],
+                 enable_web_overrides: Optional[pulumi.Input[bool]] = None,
                  ical_url_overrides: Optional[pulumi.Input[str]] = None,
                  ical_url_primary: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -27,6 +28,7 @@ class OncallScheduleArgs:
         """
         The set of arguments for constructing a OncallSchedule resource.
         :param pulumi.Input[str] type: The schedule's type.
+        :param pulumi.Input[bool] enable_web_overrides: Enable overrides via web UI (it will ignore ical*url*overrides).
         :param pulumi.Input[str] ical_url_overrides: The URL of external iCal calendar which override primary events.
         :param pulumi.Input[str] ical_url_primary: The URL of the external calendar iCal file.
         :param pulumi.Input[str] name: The schedule's name.
@@ -36,6 +38,8 @@ class OncallScheduleArgs:
         :param pulumi.Input[str] time_zone: The schedule's time zone.
         """
         pulumi.set(__self__, "type", type)
+        if enable_web_overrides is not None:
+            pulumi.set(__self__, "enable_web_overrides", enable_web_overrides)
         if ical_url_overrides is not None:
             pulumi.set(__self__, "ical_url_overrides", ical_url_overrides)
         if ical_url_primary is not None:
@@ -62,6 +66,18 @@ class OncallScheduleArgs:
     @type.setter
     def type(self, value: pulumi.Input[str]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="enableWebOverrides")
+    def enable_web_overrides(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable overrides via web UI (it will ignore ical*url*overrides).
+        """
+        return pulumi.get(self, "enable_web_overrides")
+
+    @enable_web_overrides.setter
+    def enable_web_overrides(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_web_overrides", value)
 
     @property
     @pulumi.getter(name="icalUrlOverrides")
@@ -151,6 +167,7 @@ class OncallScheduleArgs:
 @pulumi.input_type
 class _OncallScheduleState:
     def __init__(__self__, *,
+                 enable_web_overrides: Optional[pulumi.Input[bool]] = None,
                  ical_url_overrides: Optional[pulumi.Input[str]] = None,
                  ical_url_primary: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -161,6 +178,7 @@ class _OncallScheduleState:
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering OncallSchedule resources.
+        :param pulumi.Input[bool] enable_web_overrides: Enable overrides via web UI (it will ignore ical*url*overrides).
         :param pulumi.Input[str] ical_url_overrides: The URL of external iCal calendar which override primary events.
         :param pulumi.Input[str] ical_url_primary: The URL of the external calendar iCal file.
         :param pulumi.Input[str] name: The schedule's name.
@@ -170,6 +188,8 @@ class _OncallScheduleState:
         :param pulumi.Input[str] time_zone: The schedule's time zone.
         :param pulumi.Input[str] type: The schedule's type.
         """
+        if enable_web_overrides is not None:
+            pulumi.set(__self__, "enable_web_overrides", enable_web_overrides)
         if ical_url_overrides is not None:
             pulumi.set(__self__, "ical_url_overrides", ical_url_overrides)
         if ical_url_primary is not None:
@@ -186,6 +206,18 @@ class _OncallScheduleState:
             pulumi.set(__self__, "time_zone", time_zone)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="enableWebOverrides")
+    def enable_web_overrides(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable overrides via web UI (it will ignore ical*url*overrides).
+        """
+        return pulumi.get(self, "enable_web_overrides")
+
+    @enable_web_overrides.setter
+    def enable_web_overrides(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_web_overrides", value)
 
     @property
     @pulumi.getter(name="icalUrlOverrides")
@@ -289,6 +321,7 @@ class OncallSchedule(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_web_overrides: Optional[pulumi.Input[bool]] = None,
                  ical_url_overrides: Optional[pulumi.Input[str]] = None,
                  ical_url_primary: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -335,6 +368,7 @@ class OncallSchedule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] enable_web_overrides: Enable overrides via web UI (it will ignore ical*url*overrides).
         :param pulumi.Input[str] ical_url_overrides: The URL of external iCal calendar which override primary events.
         :param pulumi.Input[str] ical_url_primary: The URL of the external calendar iCal file.
         :param pulumi.Input[str] name: The schedule's name.
@@ -400,6 +434,7 @@ class OncallSchedule(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_web_overrides: Optional[pulumi.Input[bool]] = None,
                  ical_url_overrides: Optional[pulumi.Input[str]] = None,
                  ical_url_primary: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -417,6 +452,7 @@ class OncallSchedule(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = OncallScheduleArgs.__new__(OncallScheduleArgs)
 
+            __props__.__dict__["enable_web_overrides"] = enable_web_overrides
             __props__.__dict__["ical_url_overrides"] = ical_url_overrides
             __props__.__dict__["ical_url_primary"] = ical_url_primary
             __props__.__dict__["name"] = name
@@ -437,6 +473,7 @@ class OncallSchedule(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            enable_web_overrides: Optional[pulumi.Input[bool]] = None,
             ical_url_overrides: Optional[pulumi.Input[str]] = None,
             ical_url_primary: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -452,6 +489,7 @@ class OncallSchedule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] enable_web_overrides: Enable overrides via web UI (it will ignore ical*url*overrides).
         :param pulumi.Input[str] ical_url_overrides: The URL of external iCal calendar which override primary events.
         :param pulumi.Input[str] ical_url_primary: The URL of the external calendar iCal file.
         :param pulumi.Input[str] name: The schedule's name.
@@ -465,6 +503,7 @@ class OncallSchedule(pulumi.CustomResource):
 
         __props__ = _OncallScheduleState.__new__(_OncallScheduleState)
 
+        __props__.__dict__["enable_web_overrides"] = enable_web_overrides
         __props__.__dict__["ical_url_overrides"] = ical_url_overrides
         __props__.__dict__["ical_url_primary"] = ical_url_primary
         __props__.__dict__["name"] = name
@@ -474,6 +513,14 @@ class OncallSchedule(pulumi.CustomResource):
         __props__.__dict__["time_zone"] = time_zone
         __props__.__dict__["type"] = type
         return OncallSchedule(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="enableWebOverrides")
+    def enable_web_overrides(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Enable overrides via web UI (it will ignore ical*url*overrides).
+        """
+        return pulumi.get(self, "enable_web_overrides")
 
     @property
     @pulumi.getter(name="icalUrlOverrides")

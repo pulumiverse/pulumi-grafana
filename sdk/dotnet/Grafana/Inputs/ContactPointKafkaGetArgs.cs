@@ -14,10 +14,50 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
     public sealed class ContactPointKafkaGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+        /// </summary>
+        [Input("apiVersion")]
+        public Input<string>? ApiVersion { get; set; }
+
+        /// <summary>
+        /// The Id of cluster to use when contacting the Kafka REST Server. Required api_version to be 'v3'
+        /// </summary>
+        [Input("clusterId")]
+        public Input<string>? ClusterId { get; set; }
+
+        /// <summary>
+        /// The templated description of the Kafka message.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// The templated details to include with the message.
+        /// </summary>
+        [Input("details")]
+        public Input<string>? Details { get; set; }
+
+        /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
         [Input("disableResolveMessage")]
         public Input<bool>? DisableResolveMessage { get; set; }
+
+        [Input("password")]
+        private Input<string>? _password;
+
+        /// <summary>
+        /// The password to use when making a call to the Kafka REST Proxy
+        /// </summary>
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("restProxyUrl", required: true)]
         private Input<string>? _restProxyUrl;
@@ -62,6 +102,12 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         /// </summary>
         [Input("uid")]
         public Input<string>? Uid { get; set; }
+
+        /// <summary>
+        /// The user name to use when making a call to the Kafka REST Proxy
+        /// </summary>
+        [Input("username")]
+        public Input<string>? Username { get; set; }
 
         public ContactPointKafkaGetArgs()
         {

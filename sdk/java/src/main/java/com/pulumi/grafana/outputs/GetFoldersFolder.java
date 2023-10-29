@@ -10,20 +10,12 @@ import java.util.Objects;
 
 @CustomType
 public final class GetFoldersFolder {
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     private Integer id;
     private String title;
     private String uid;
     private String url;
 
     private GetFoldersFolder() {}
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     public Integer id() {
         return this.id;
     }

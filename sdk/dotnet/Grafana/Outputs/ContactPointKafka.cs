@@ -15,9 +15,29 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     public sealed class ContactPointKafka
     {
         /// <summary>
+        /// The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+        /// </summary>
+        public readonly string? ApiVersion;
+        /// <summary>
+        /// The Id of cluster to use when contacting the Kafka REST Server. Required api_version to be 'v3'
+        /// </summary>
+        public readonly string? ClusterId;
+        /// <summary>
+        /// The templated description of the Kafka message.
+        /// </summary>
+        public readonly string? Description;
+        /// <summary>
+        /// The templated details to include with the message.
+        /// </summary>
+        public readonly string? Details;
+        /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
         public readonly bool? DisableResolveMessage;
+        /// <summary>
+        /// The password to use when making a call to the Kafka REST Proxy
+        /// </summary>
+        public readonly string? Password;
         /// <summary>
         /// The URL of the Kafka REST proxy to send requests to.
         /// </summary>
@@ -34,10 +54,24 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// The UID of the contact point.
         /// </summary>
         public readonly string? Uid;
+        /// <summary>
+        /// The user name to use when making a call to the Kafka REST Proxy
+        /// </summary>
+        public readonly string? Username;
 
         [OutputConstructor]
         private ContactPointKafka(
+            string? apiVersion,
+
+            string? clusterId,
+
+            string? description,
+
+            string? details,
+
             bool? disableResolveMessage,
+
+            string? password,
 
             string restProxyUrl,
 
@@ -45,13 +79,21 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
             string topic,
 
-            string? uid)
+            string? uid,
+
+            string? username)
         {
+            ApiVersion = apiVersion;
+            ClusterId = clusterId;
+            Description = description;
+            Details = details;
             DisableResolveMessage = disableResolveMessage;
+            Password = password;
             RestProxyUrl = restProxyUrl;
             Settings = settings;
             Topic = topic;
             Uid = uid;
+            Username = username;
         }
     }
 }

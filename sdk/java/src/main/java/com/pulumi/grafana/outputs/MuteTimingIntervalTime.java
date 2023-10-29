@@ -9,13 +9,29 @@ import java.util.Objects;
 
 @CustomType
 public final class MuteTimingIntervalTime {
+    /**
+     * @return The time, in hh:mm format, of when the interval should end exclusively.
+     * 
+     */
     private String end;
+    /**
+     * @return The time, in hh:mm format, of when the interval should begin inclusively.
+     * 
+     */
     private String start;
 
     private MuteTimingIntervalTime() {}
+    /**
+     * @return The time, in hh:mm format, of when the interval should end exclusively.
+     * 
+     */
     public String end() {
         return this.end;
     }
+    /**
+     * @return The time, in hh:mm format, of when the interval should begin inclusively.
+     * 
+     */
     public String start() {
         return this.start;
     }

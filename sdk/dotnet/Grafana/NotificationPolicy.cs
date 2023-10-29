@@ -84,10 +84,6 @@ namespace Lbrlabs.PulumiPackage.Grafana
     ///                     },
     ///                 },
     ///                 ContactPoint = aContactPoint.Name,
-    ///                 GroupBies = new[]
-    ///                 {
-    ///                     "alertname",
-    ///                 },
     ///                 Continue = true,
     ///                 MuteTimings = new[]
     ///                 {
@@ -152,13 +148,13 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public partial class NotificationPolicy : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The default contact point to route all unmatched notifications to.
+        /// The contact point to route notifications that match this rule to.
         /// </summary>
         [Output("contactPoint")]
         public Output<string> ContactPoint { get; private set; } = null!;
 
         /// <summary>
-        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         /// </summary>
         [Output("groupBies")]
         public Output<ImmutableArray<string>> GroupBies { get; private set; } = null!;
@@ -235,7 +231,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class NotificationPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The default contact point to route all unmatched notifications to.
+        /// The contact point to route notifications that match this rule to.
         /// </summary>
         [Input("contactPoint", required: true)]
         public Input<string> ContactPoint { get; set; } = null!;
@@ -244,7 +240,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private InputList<string>? _groupBies;
 
         /// <summary>
-        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         /// </summary>
         public InputList<string> GroupBies
         {
@@ -291,7 +287,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class NotificationPolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The default contact point to route all unmatched notifications to.
+        /// The contact point to route notifications that match this rule to.
         /// </summary>
         [Input("contactPoint")]
         public Input<string>? ContactPoint { get; set; }
@@ -300,7 +296,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         private InputList<string>? _groupBies;
 
         /// <summary>
-        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         /// </summary>
         public InputList<string> GroupBies
         {

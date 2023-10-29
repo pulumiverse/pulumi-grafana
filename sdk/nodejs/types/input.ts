@@ -18,6 +18,9 @@ export interface CloudAccessPolicyRealm {
 }
 
 export interface CloudAccessPolicyRealmLabelPolicy {
+    /**
+     * The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
+     */
     selector: pulumi.Input<string>;
 }
 
@@ -97,6 +100,10 @@ export interface ContactPointDiscord {
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * The templated content of the title.
+     */
+    title?: pulumi.Input<string>;
+    /**
      * The UID of the contact point.
      */
     uid?: pulumi.Input<string>;
@@ -155,6 +162,10 @@ export interface ContactPointGooglechat {
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * The templated content of the title.
+     */
+    title?: pulumi.Input<string>;
+    /**
      * The UID of the contact point.
      */
     uid?: pulumi.Input<string>;
@@ -166,9 +177,29 @@ export interface ContactPointGooglechat {
 
 export interface ContactPointKafka {
     /**
+     * The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+     */
+    apiVersion?: pulumi.Input<string>;
+    /**
+     * The Id of cluster to use when contacting the Kafka REST Server. Required apiVersion to be 'v3'
+     */
+    clusterId?: pulumi.Input<string>;
+    /**
+     * The templated description of the Kafka message.
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * The templated details to include with the message.
+     */
+    details?: pulumi.Input<string>;
+    /**
      * Whether to disable sending resolve messages. Defaults to `false`.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
+    /**
+     * The password to use when making a call to the Kafka REST Proxy
+     */
+    password?: pulumi.Input<string>;
     /**
      * The URL of the Kafka REST proxy to send requests to.
      */
@@ -181,6 +212,37 @@ export interface ContactPointKafka {
      * The name of the Kafka topic to publish to.
      */
     topic: pulumi.Input<string>;
+    /**
+     * The UID of the contact point.
+     */
+    uid?: pulumi.Input<string>;
+    /**
+     * The user name to use when making a call to the Kafka REST Proxy
+     */
+    username?: pulumi.Input<string>;
+}
+
+export interface ContactPointLine {
+    /**
+     * The templated description of the message.
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * Whether to disable sending resolve messages. Defaults to `false`.
+     */
+    disableResolveMessage?: pulumi.Input<boolean>;
+    /**
+     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     */
+    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The templated title of the message.
+     */
+    title?: pulumi.Input<string>;
+    /**
+     * The bearer token used to authorize the client.
+     */
+    token: pulumi.Input<string>;
     /**
      * The UID of the contact point.
      */
@@ -339,6 +401,10 @@ export interface ContactPointPushover {
      */
     uid?: pulumi.Input<string>;
     /**
+     * Whether to send images in the notification or not. Default is true. Requires Grafana to be configured to send images in notifications.
+     */
+    uploadImage?: pulumi.Input<boolean>;
+    /**
      * The Pushover user key.
      */
     userKey: pulumi.Input<string>;
@@ -487,13 +553,29 @@ export interface ContactPointTelegram {
      */
     chatId: pulumi.Input<string>;
     /**
+     * When set users will receive a notification with no sound.
+     */
+    disableNotifications?: pulumi.Input<boolean>;
+    /**
      * Whether to disable sending resolve messages. Defaults to `false`.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
+     * When set it disables link previews for links in the message.
+     */
+    disableWebPagePreview?: pulumi.Input<boolean>;
+    /**
      * The templated content of the message.
      */
     message?: pulumi.Input<string>;
+    /**
+     * Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
+     */
+    parseMode?: pulumi.Input<string>;
+    /**
+     * When set it protects the contents of the message from forwarding and saving.
+     */
+    protectContent?: pulumi.Input<boolean>;
     /**
      * Additional custom properties to attach to the notifier. Defaults to `map[]`.
      */
@@ -516,7 +598,7 @@ export interface ContactPointThreema {
     /**
      * The templated description of the message.
      */
-    description: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Whether to disable sending resolve messages. Defaults to `false`.
      */
@@ -536,7 +618,7 @@ export interface ContactPointThreema {
     /**
      * The templated title of the message.
      */
-    title: pulumi.Input<string>;
+    title?: pulumi.Input<string>;
     /**
      * The UID of the contact point.
      */
@@ -572,6 +654,37 @@ export interface ContactPointVictorop {
      * The VictorOps webhook URL.
      */
     url: pulumi.Input<string>;
+}
+
+export interface ContactPointWebex {
+    /**
+     * The URL to send webhook requests to.
+     */
+    apiUrl?: pulumi.Input<string>;
+    /**
+     * Whether to disable sending resolve messages. Defaults to `false`.
+     */
+    disableResolveMessage?: pulumi.Input<boolean>;
+    /**
+     * The templated title of the message to send.
+     */
+    message?: pulumi.Input<string>;
+    /**
+     * ID of the Webex Teams room where to send the messages.
+     */
+    roomId?: pulumi.Input<string>;
+    /**
+     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     */
+    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The bearer token used to authorize the client.
+     */
+    token?: pulumi.Input<string>;
+    /**
+     * The UID of the contact point.
+     */
+    uid?: pulumi.Input<string>;
 }
 
 export interface ContactPointWebhook {
@@ -627,6 +740,14 @@ export interface ContactPointWebhook {
 
 export interface ContactPointWecom {
     /**
+     * Agent ID added to the request payload when using APIAPP.
+     */
+    agentId?: pulumi.Input<string>;
+    /**
+     * Corp ID used to get token when using APIAPP.
+     */
+    corpId?: pulumi.Input<string>;
+    /**
      * Whether to disable sending resolve messages. Defaults to `false`.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
@@ -634,6 +755,14 @@ export interface ContactPointWecom {
      * The templated content of the message to send.
      */
     message?: pulumi.Input<string>;
+    /**
+     * The type of them message. Supported: markdown, text. Default: text.
+     */
+    msgType?: pulumi.Input<string>;
+    /**
+     * The secret key required to obtain access token when using APIAPP. See https://work.weixin.qq.com/wework_admin/frame#apps to create APIAPP.
+     */
+    secret?: pulumi.Input<string>;
     /**
      * Additional custom properties to attach to the notifier. Defaults to `map[]`.
      */
@@ -643,13 +772,17 @@ export interface ContactPointWecom {
      */
     title?: pulumi.Input<string>;
     /**
+     * The ID of user that should receive the message. Multiple entries should be separated by '|'. Default: @all.
+     */
+    toUser?: pulumi.Input<string>;
+    /**
      * The UID of the contact point.
      */
     uid?: pulumi.Input<string>;
     /**
-     * The WeCom webhook URL.
+     * The WeCom webhook URL. Required if using GroupRobot.
      */
-    url: pulumi.Input<string>;
+    url?: pulumi.Input<string>;
 }
 
 export interface DashboardPermissionPermission {
@@ -666,9 +799,9 @@ export interface DashboardPermissionPermission {
      */
     teamId?: pulumi.Input<string>;
     /**
-     * ID of the user to manage permissions for. Defaults to `0`.
+     * ID of the user or service account to manage permissions for. Defaults to `0`.
      */
-    userId?: pulumi.Input<number>;
+    userId?: pulumi.Input<string>;
 }
 
 export interface DataSourcePermissionPermission {
@@ -685,9 +818,9 @@ export interface DataSourcePermissionPermission {
      */
     teamId?: pulumi.Input<string>;
     /**
-     * ID of the user to manage permissions for. Defaults to `0`.
+     * ID of the user or service account to manage permissions for. Defaults to `0`.
      */
-    userId?: pulumi.Input<number>;
+    userId?: pulumi.Input<string>;
 }
 
 export interface FolderPermissionPermission {
@@ -704,9 +837,9 @@ export interface FolderPermissionPermission {
      */
     teamId?: pulumi.Input<string>;
     /**
-     * ID of the user to manage permissions for. Defaults to `0`.
+     * ID of the user or service account to manage permissions for. Defaults to `0`.
      */
-    userId?: pulumi.Input<number>;
+    userId?: pulumi.Input<string>;
 }
 
 export interface MachineLearningHolidayCustomPeriod {
@@ -734,6 +867,9 @@ export interface MachineLearningOutlierDetectorAlgorithm {
 }
 
 export interface MachineLearningOutlierDetectorAlgorithmConfig {
+    /**
+     * Specify the epsilon parameter (positive float)
+     */
     epsilon: pulumi.Input<number>;
 }
 
@@ -761,7 +897,13 @@ export interface MuteTimingInterval {
 }
 
 export interface MuteTimingIntervalTime {
+    /**
+     * The time, in hh:mm format, of when the interval should end exclusively.
+     */
     end: pulumi.Input<string>;
+    /**
+     * The time, in hh:mm format, of when the interval should begin inclusively.
+     */
     start: pulumi.Input<string>;
 }
 
@@ -775,9 +917,9 @@ export interface NotificationPolicyPolicy {
      */
     continue?: pulumi.Input<boolean>;
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      */
-    groupBies: pulumi.Input<pulumi.Input<string>[]>;
+    groupBies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Minimum time interval between two notifications for the same group. Default is 5 minutes.
      */
@@ -805,8 +947,17 @@ export interface NotificationPolicyPolicy {
 }
 
 export interface NotificationPolicyPolicyMatcher {
+    /**
+     * The name of the label to match against.
+     */
     label: pulumi.Input<string>;
+    /**
+     * The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+     */
     match: pulumi.Input<string>;
+    /**
+     * The label value to match against.
+     */
     value: pulumi.Input<string>;
 }
 
@@ -820,9 +971,9 @@ export interface NotificationPolicyPolicyPolicy {
      */
     continue?: pulumi.Input<boolean>;
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      */
-    groupBies: pulumi.Input<pulumi.Input<string>[]>;
+    groupBies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Minimum time interval between two notifications for the same group. Default is 5 minutes.
      */
@@ -850,8 +1001,17 @@ export interface NotificationPolicyPolicyPolicy {
 }
 
 export interface NotificationPolicyPolicyPolicyMatcher {
+    /**
+     * The name of the label to match against.
+     */
     label: pulumi.Input<string>;
+    /**
+     * The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+     */
     match: pulumi.Input<string>;
+    /**
+     * The label value to match against.
+     */
     value: pulumi.Input<string>;
 }
 
@@ -865,9 +1025,9 @@ export interface NotificationPolicyPolicyPolicyPolicy {
      */
     continue?: pulumi.Input<boolean>;
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      */
-    groupBies: pulumi.Input<pulumi.Input<string>[]>;
+    groupBies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Minimum time interval between two notifications for the same group. Default is 5 minutes.
      */
@@ -895,8 +1055,17 @@ export interface NotificationPolicyPolicyPolicyPolicy {
 }
 
 export interface NotificationPolicyPolicyPolicyPolicyMatcher {
+    /**
+     * The name of the label to match against.
+     */
     label: pulumi.Input<string>;
+    /**
+     * The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+     */
     match: pulumi.Input<string>;
+    /**
+     * The label value to match against.
+     */
     value: pulumi.Input<string>;
 }
 
@@ -910,7 +1079,7 @@ export interface NotificationPolicyPolicyPolicyPolicyPolicy {
      */
     continue?: pulumi.Input<boolean>;
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      */
     groupBies: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -936,8 +1105,17 @@ export interface NotificationPolicyPolicyPolicyPolicyPolicy {
 }
 
 export interface NotificationPolicyPolicyPolicyPolicyPolicyMatcher {
+    /**
+     * The name of the label to match against.
+     */
     label: pulumi.Input<string>;
+    /**
+     * The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+     */
     match: pulumi.Input<string>;
+    /**
+     * The label value to match against.
+     */
     value: pulumi.Input<string>;
 }
 
@@ -965,6 +1143,9 @@ export interface OncallIntegrationDefaultRoute {
 }
 
 export interface OncallIntegrationDefaultRouteMsteams {
+    /**
+     * Enable notification in MS teams. Defaults to `true`.
+     */
     enabled?: pulumi.Input<boolean>;
     /**
      * The ID of this resource.
@@ -973,11 +1154,20 @@ export interface OncallIntegrationDefaultRouteMsteams {
 }
 
 export interface OncallIntegrationDefaultRouteSlack {
+    /**
+     * Slack channel id. Alerts will be directed to this channel in Slack.
+     */
     channelId?: pulumi.Input<string>;
+    /**
+     * Enable notification in MS teams. Defaults to `true`.
+     */
     enabled?: pulumi.Input<boolean>;
 }
 
 export interface OncallIntegrationDefaultRouteTelegram {
+    /**
+     * Enable notification in MS teams. Defaults to `true`.
+     */
     enabled?: pulumi.Input<boolean>;
     /**
      * The ID of this resource.
@@ -1033,39 +1223,87 @@ export interface OncallIntegrationTemplates {
 }
 
 export interface OncallIntegrationTemplatesEmail {
+    /**
+     * Template for Alert message.
+     */
     message?: pulumi.Input<string>;
+    /**
+     * Template for Alert title.
+     */
     title?: pulumi.Input<string>;
 }
 
 export interface OncallIntegrationTemplatesMicrosoftTeams {
+    /**
+     * Template for Alert image url.
+     */
     imageUrl?: pulumi.Input<string>;
+    /**
+     * Template for Alert message.
+     */
     message?: pulumi.Input<string>;
+    /**
+     * Template for Alert title.
+     */
     title?: pulumi.Input<string>;
 }
 
 export interface OncallIntegrationTemplatesPhoneCall {
+    /**
+     * Template for Alert title.
+     */
     title?: pulumi.Input<string>;
 }
 
 export interface OncallIntegrationTemplatesSlack {
+    /**
+     * Template for Alert image url.
+     */
     imageUrl?: pulumi.Input<string>;
+    /**
+     * Template for Alert message.
+     */
     message?: pulumi.Input<string>;
+    /**
+     * Template for Alert title.
+     */
     title?: pulumi.Input<string>;
 }
 
 export interface OncallIntegrationTemplatesSms {
+    /**
+     * Template for Alert title.
+     */
     title?: pulumi.Input<string>;
 }
 
 export interface OncallIntegrationTemplatesTelegram {
+    /**
+     * Template for Alert image url.
+     */
     imageUrl?: pulumi.Input<string>;
+    /**
+     * Template for Alert message.
+     */
     message?: pulumi.Input<string>;
+    /**
+     * Template for Alert title.
+     */
     title?: pulumi.Input<string>;
 }
 
 export interface OncallIntegrationTemplatesWeb {
+    /**
+     * Template for Alert image url.
+     */
     imageUrl?: pulumi.Input<string>;
+    /**
+     * Template for Alert message.
+     */
     message?: pulumi.Input<string>;
+    /**
+     * Template for Alert title.
+     */
     title?: pulumi.Input<string>;
 }
 
@@ -1218,15 +1456,36 @@ export interface RuleGroupRule {
 }
 
 export interface RuleGroupRuleData {
+    /**
+     * The UID of the datasource being queried, or "-100" if this stage is an expression stage.
+     */
     datasourceUid: pulumi.Input<string>;
+    /**
+     * Custom JSON data to send to the specified datasource when querying.
+     */
     model: pulumi.Input<string>;
+    /**
+     * An optional identifier for the type of query being executed. Defaults to ``.
+     */
     queryType?: pulumi.Input<string>;
+    /**
+     * A unique string to identify this query stage within a rule.
+     */
     refId: pulumi.Input<string>;
+    /**
+     * The time range, relative to when the query is executed, across which to query.
+     */
     relativeTimeRange: pulumi.Input<inputs.RuleGroupRuleDataRelativeTimeRange>;
 }
 
 export interface RuleGroupRuleDataRelativeTimeRange {
+    /**
+     * The number of seconds in the past, relative to when the rule is evaluated, at which the time range begins.
+     */
     from: pulumi.Input<number>;
+    /**
+     * The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
+     */
     to: pulumi.Input<number>;
 }
 
@@ -1255,9 +1514,12 @@ export interface SLOAlertingAnnotation {
 }
 
 export interface SLOAlertingFastburn {
+    /**
+     * Annotations will be attached to all alerts generated by any of these rules.
+     */
     annotations?: pulumi.Input<pulumi.Input<inputs.SLOAlertingFastburnAnnotation>[]>;
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+     * Labels to attach only to Fast Burn alerts.
      */
     labels?: pulumi.Input<pulumi.Input<inputs.SLOAlertingFastburnLabel>[]>;
 }
@@ -1278,9 +1540,12 @@ export interface SLOAlertingLabel {
 }
 
 export interface SLOAlertingSlowburn {
+    /**
+     * Annotations will be attached to all alerts generated by any of these rules.
+     */
     annotations?: pulumi.Input<pulumi.Input<inputs.SLOAlertingSlowburnAnnotation>[]>;
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+     * Labels to attach only to Fast Burn alerts.
      */
     labels?: pulumi.Input<pulumi.Input<inputs.SLOAlertingSlowburnLabel>[]>;
 }
@@ -1322,14 +1587,23 @@ export interface SLOQuery {
 
 export interface SLOQueryFreeform {
     /**
-     * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+     * Freeform Query Field
      */
     query: pulumi.Input<string>;
 }
 
 export interface SLOQueryRatio {
+    /**
+     * Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+     */
     groupByLabels?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Counter metric for success events (numerator)
+     */
     successMetric: pulumi.Input<string>;
+    /**
+     * Metric for total events (denominator)
+     */
     totalMetric: pulumi.Input<string>;
 }
 
@@ -1343,9 +1617,9 @@ export interface ServiceAccountPermissionPermission {
      */
     teamId?: pulumi.Input<string>;
     /**
-     * ID of the user to manage permissions for. Specify either this or `teamId`. Defaults to `0`.
+     * ID of the user or service account to manage permissions for. Specify either this or `teamId`. Defaults to `0`.
      */
-    userId?: pulumi.Input<number>;
+    userId?: pulumi.Input<string>;
 }
 
 export interface SyntheticMonitoringCheckSettings {
@@ -1372,111 +1646,312 @@ export interface SyntheticMonitoringCheckSettings {
 }
 
 export interface SyntheticMonitoringCheckSettingsDns {
+    /**
+     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+     */
     ipVersion?: pulumi.Input<string>;
+    /**
+     * Port to target. Defaults to `53`.
+     */
     port?: pulumi.Input<number>;
+    /**
+     * `TCP` or `UDP`. Defaults to `UDP`.
+     */
     protocol?: pulumi.Input<string>;
+    /**
+     * One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+     */
     recordType?: pulumi.Input<string>;
+    /**
+     * DNS server address to target. Defaults to `8.8.8.8`.
+     */
     server?: pulumi.Input<string>;
+    /**
+     * Source IP address.
+     */
     sourceIpAddress?: pulumi.Input<string>;
+    /**
+     * List of valid response codes. Options include `NOERROR`, `BADALG`, `BADMODE`, `BADKEY`, `BADCOOKIE`, `BADNAME`, `BADSIG`, `BADTIME`, `BADTRUNC`, `BADVERS`, `FORMERR`, `NOTIMP`, `NOTAUTH`, `NOTZONE`, `NXDOMAIN`, `NXRRSET`, `REFUSED`, `SERVFAIL`, `YXDOMAIN`, `YXRRSET`.
+     */
     validRCodes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Validate additional matches.
+     */
     validateAdditionalRrs?: pulumi.Input<pulumi.Input<inputs.SyntheticMonitoringCheckSettingsDnsValidateAdditionalRr>[]>;
+    /**
+     * Validate response answer.
+     */
     validateAnswerRrs?: pulumi.Input<inputs.SyntheticMonitoringCheckSettingsDnsValidateAnswerRrs>;
+    /**
+     * Validate response authority.
+     */
     validateAuthorityRrs?: pulumi.Input<inputs.SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrs>;
 }
 
 export interface SyntheticMonitoringCheckSettingsDnsValidateAdditionalRr {
+    /**
+     * Fail if value matches regex.
+     */
     failIfMatchesRegexps?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Fail if value does not match regex.
+     */
     failIfNotMatchesRegexps?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface SyntheticMonitoringCheckSettingsDnsValidateAnswerRrs {
+    /**
+     * Fail if value matches regex.
+     */
     failIfMatchesRegexps?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Fail if value does not match regex.
+     */
     failIfNotMatchesRegexps?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrs {
+    /**
+     * Fail if value matches regex.
+     */
     failIfMatchesRegexps?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Fail if value does not match regex.
+     */
     failIfNotMatchesRegexps?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface SyntheticMonitoringCheckSettingsHttp {
+    /**
+     * Basic auth settings.
+     */
     basicAuth?: pulumi.Input<inputs.SyntheticMonitoringCheckSettingsHttpBasicAuth>;
+    /**
+     * Token for use with bearer authorization header.
+     */
     bearerToken?: pulumi.Input<string>;
+    /**
+     * The body of the HTTP request used in probe.
+     */
     body?: pulumi.Input<string>;
+    /**
+     * The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
+     */
     cacheBustingQueryParamName?: pulumi.Input<string>;
+    /**
+     * List of regexes. If any match the response body, the check will fail.
+     */
     failIfBodyMatchesRegexps?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of regexes. If any do not match the response body, the check will fail.
+     */
     failIfBodyNotMatchesRegexps?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Check fails if headers match.
+     */
     failIfHeaderMatchesRegexps?: pulumi.Input<pulumi.Input<inputs.SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp>[]>;
+    /**
+     * Check fails if headers do not match.
+     */
     failIfHeaderNotMatchesRegexps?: pulumi.Input<pulumi.Input<inputs.SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexp>[]>;
+    /**
+     * Fail if SSL is not present. Defaults to `false`.
+     */
     failIfNotSsl?: pulumi.Input<boolean>;
+    /**
+     * Fail if SSL is present. Defaults to `false`.
+     */
     failIfSsl?: pulumi.Input<boolean>;
+    /**
+     * The HTTP headers set for the probe.
+     */
     headers?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+     */
     ipVersion?: pulumi.Input<string>;
+    /**
+     * Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+     */
     method?: pulumi.Input<string>;
+    /**
+     * Do not follow redirects. Defaults to `false`.
+     */
     noFollowRedirects?: pulumi.Input<boolean>;
+    /**
+     * Proxy URL.
+     */
     proxyUrl?: pulumi.Input<string>;
+    /**
+     * TLS config.
+     */
     tlsConfig?: pulumi.Input<inputs.SyntheticMonitoringCheckSettingsHttpTlsConfig>;
+    /**
+     * List of valid HTTP versions. Options include `HTTP/1.0`, `HTTP/1.1`, `HTTP/2.0`
+     */
     validHttpVersions?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Accepted status codes. If unset, defaults to 2xx.
+     */
     validStatusCodes?: pulumi.Input<pulumi.Input<number>[]>;
 }
 
 export interface SyntheticMonitoringCheckSettingsHttpBasicAuth {
+    /**
+     * Basic auth password.
+     */
     password: pulumi.Input<string>;
+    /**
+     * Basic auth username.
+     */
     username: pulumi.Input<string>;
 }
 
 export interface SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp {
+    /**
+     * Allow header to be missing from responses. Defaults to `false`.
+     */
     allowMissing?: pulumi.Input<boolean>;
+    /**
+     * Header name.
+     */
     header: pulumi.Input<string>;
+    /**
+     * Regex that header value should match.
+     */
     regexp: pulumi.Input<string>;
 }
 
 export interface SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexp {
+    /**
+     * Allow header to be missing from responses. Defaults to `false`.
+     */
     allowMissing?: pulumi.Input<boolean>;
+    /**
+     * Header name.
+     */
     header: pulumi.Input<string>;
+    /**
+     * Regex that header value should match.
+     */
     regexp: pulumi.Input<string>;
 }
 
 export interface SyntheticMonitoringCheckSettingsHttpTlsConfig {
+    /**
+     * CA certificate in PEM format.
+     */
     caCert?: pulumi.Input<string>;
+    /**
+     * Client certificate in PEM format.
+     */
     clientCert?: pulumi.Input<string>;
+    /**
+     * Client key in PEM format.
+     */
     clientKey?: pulumi.Input<string>;
+    /**
+     * Disable target certificate validation. Defaults to `false`.
+     */
     insecureSkipVerify?: pulumi.Input<boolean>;
+    /**
+     * Used to verify the hostname for the targets.
+     */
     serverName?: pulumi.Input<string>;
 }
 
 export interface SyntheticMonitoringCheckSettingsPing {
+    /**
+     * Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+     */
     dontFragment?: pulumi.Input<boolean>;
+    /**
+     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+     */
     ipVersion?: pulumi.Input<string>;
+    /**
+     * Payload size. Defaults to `0`.
+     */
     payloadSize?: pulumi.Input<number>;
+    /**
+     * Source IP address.
+     */
     sourceIpAddress?: pulumi.Input<string>;
 }
 
 export interface SyntheticMonitoringCheckSettingsTcp {
+    /**
+     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+     */
     ipVersion?: pulumi.Input<string>;
+    /**
+     * The query sent in the TCP probe and the expected associated response.
+     */
     queryResponses?: pulumi.Input<pulumi.Input<inputs.SyntheticMonitoringCheckSettingsTcpQueryResponse>[]>;
+    /**
+     * Source IP address.
+     */
     sourceIpAddress?: pulumi.Input<string>;
+    /**
+     * Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+     */
     tls?: pulumi.Input<boolean>;
+    /**
+     * TLS config.
+     */
     tlsConfig?: pulumi.Input<inputs.SyntheticMonitoringCheckSettingsTcpTlsConfig>;
 }
 
 export interface SyntheticMonitoringCheckSettingsTcpQueryResponse {
+    /**
+     * Response to expect.
+     */
     expect: pulumi.Input<string>;
+    /**
+     * Data to send.
+     */
     send: pulumi.Input<string>;
+    /**
+     * Upgrade TCP connection to TLS. Defaults to `false`.
+     */
     startTls?: pulumi.Input<boolean>;
 }
 
 export interface SyntheticMonitoringCheckSettingsTcpTlsConfig {
+    /**
+     * CA certificate in PEM format.
+     */
     caCert?: pulumi.Input<string>;
+    /**
+     * Client certificate in PEM format.
+     */
     clientCert?: pulumi.Input<string>;
+    /**
+     * Client key in PEM format.
+     */
     clientKey?: pulumi.Input<string>;
+    /**
+     * Disable target certificate validation. Defaults to `false`.
+     */
     insecureSkipVerify?: pulumi.Input<boolean>;
+    /**
+     * Used to verify the hostname for the targets.
+     */
     serverName?: pulumi.Input<string>;
 }
 
 export interface SyntheticMonitoringCheckSettingsTraceroute {
+    /**
+     * Maximum TTL for the trace Defaults to `64`.
+     */
     maxHops?: pulumi.Input<number>;
+    /**
+     * Maximum number of hosts to travers that give no response Defaults to `15`.
+     */
     maxUnknownHops?: pulumi.Input<number>;
+    /**
+     * Reverse lookup hostnames from IP addresses Defaults to `true`.
+     */
     ptrLookup?: pulumi.Input<boolean>;
 }
 

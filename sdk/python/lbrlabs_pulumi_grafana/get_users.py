@@ -14,6 +14,7 @@ __all__ = [
     'GetUsersResult',
     'AwaitableGetUsersResult',
     'get_users',
+    'get_users_output',
 ]
 
 @pulumi.output_type
@@ -85,3 +86,29 @@ def get_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersR
     return AwaitableGetUsersResult(
         id=pulumi.get(__ret__, 'id'),
         users=pulumi.get(__ret__, 'users'))
+
+
+@_utilities.lift_output_func(get_users)
+def get_users_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUsersResult]:
+    """
+    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
+
+    This data source uses Grafana's admin APIs for reading users which
+    does not currently work with API Tokens. You must use basic auth.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import lbrlabs_pulumi_grafana as grafana
+    import pulumi_grafana as grafana
+
+    test_all_users = grafana.User("testAllUsers",
+        email="all_users@example.com",
+        login="test-grafana-users",
+        password="my-password")
+    all_users = grafana.get_users()
+    ```
+    """
+    ...

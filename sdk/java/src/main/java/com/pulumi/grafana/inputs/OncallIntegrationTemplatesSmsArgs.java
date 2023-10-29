@@ -15,9 +15,17 @@ public final class OncallIntegrationTemplatesSmsArgs extends com.pulumi.resource
 
     public static final OncallIntegrationTemplatesSmsArgs Empty = new OncallIntegrationTemplatesSmsArgs();
 
+    /**
+     * Template for Alert title.
+     * 
+     */
     @Import(name="title")
     private @Nullable Output<String> title;
 
+    /**
+     * @return Template for Alert title.
+     * 
+     */
     public Optional<Output<String>> title() {
         return Optional.ofNullable(this.title);
     }
@@ -46,11 +54,23 @@ public final class OncallIntegrationTemplatesSmsArgs extends com.pulumi.resource
             $ = new OncallIntegrationTemplatesSmsArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param title Template for Alert title.
+         * 
+         * @return builder
+         * 
+         */
         public Builder title(@Nullable Output<String> title) {
             $.title = title;
             return this;
         }
 
+        /**
+         * @param title Template for Alert title.
+         * 
+         * @return builder
+         * 
+         */
         public Builder title(String title) {
             return title(Output.of(title));
         }

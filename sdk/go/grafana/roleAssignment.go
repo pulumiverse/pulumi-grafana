@@ -86,6 +86,8 @@ import (
 type RoleAssignment struct {
 	pulumi.CustomResourceState
 
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// Grafana RBAC role UID.
 	RoleUid pulumi.StringOutput `pulumi:"roleUid"`
 	// IDs of service accounts that the role should be assigned to.
@@ -129,6 +131,8 @@ func GetRoleAssignment(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RoleAssignment resources.
 type roleAssignmentState struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// Grafana RBAC role UID.
 	RoleUid *string `pulumi:"roleUid"`
 	// IDs of service accounts that the role should be assigned to.
@@ -140,6 +144,8 @@ type roleAssignmentState struct {
 }
 
 type RoleAssignmentState struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// Grafana RBAC role UID.
 	RoleUid pulumi.StringPtrInput
 	// IDs of service accounts that the role should be assigned to.
@@ -155,6 +161,8 @@ func (RoleAssignmentState) ElementType() reflect.Type {
 }
 
 type roleAssignmentArgs struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// Grafana RBAC role UID.
 	RoleUid string `pulumi:"roleUid"`
 	// IDs of service accounts that the role should be assigned to.
@@ -167,6 +175,8 @@ type roleAssignmentArgs struct {
 
 // The set of arguments for constructing a RoleAssignment resource.
 type RoleAssignmentArgs struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// Grafana RBAC role UID.
 	RoleUid pulumi.StringInput
 	// IDs of service accounts that the role should be assigned to.
@@ -286,6 +296,11 @@ func (o RoleAssignmentOutput) ToOutput(ctx context.Context) pulumix.Output[*Role
 	return pulumix.Output[*RoleAssignment]{
 		OutputState: o.OutputState,
 	}
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o RoleAssignmentOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RoleAssignment) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // Grafana RBAC role UID.

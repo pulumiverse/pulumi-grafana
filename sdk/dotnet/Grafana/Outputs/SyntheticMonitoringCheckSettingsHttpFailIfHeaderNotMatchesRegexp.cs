@@ -14,8 +14,17 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexp
     {
+        /// <summary>
+        /// Allow header to be missing from responses. Defaults to `false`.
+        /// </summary>
         public readonly bool? AllowMissing;
+        /// <summary>
+        /// Header name.
+        /// </summary>
         public readonly string Header;
+        /// <summary>
+        /// Regex that header value should match.
+        /// </summary>
         public readonly string Regexp;
 
         [OutputConstructor]

@@ -4,7 +4,6 @@
 package com.pulumi.grafana.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -28,10 +27,10 @@ public final class DataSourcePermissionPermission {
      */
     private @Nullable String teamId;
     /**
-     * @return ID of the user to manage permissions for. Defaults to `0`.
+     * @return ID of the user or service account to manage permissions for. Defaults to `0`.
      * 
      */
-    private @Nullable Integer userId;
+    private @Nullable String userId;
 
     private DataSourcePermissionPermission() {}
     /**
@@ -56,10 +55,10 @@ public final class DataSourcePermissionPermission {
         return Optional.ofNullable(this.teamId);
     }
     /**
-     * @return ID of the user to manage permissions for. Defaults to `0`.
+     * @return ID of the user or service account to manage permissions for. Defaults to `0`.
      * 
      */
-    public Optional<Integer> userId() {
+    public Optional<String> userId() {
         return Optional.ofNullable(this.userId);
     }
 
@@ -75,7 +74,7 @@ public final class DataSourcePermissionPermission {
         private @Nullable String builtInRole;
         private String permission;
         private @Nullable String teamId;
-        private @Nullable Integer userId;
+        private @Nullable String userId;
         public Builder() {}
         public Builder(DataSourcePermissionPermission defaults) {
     	      Objects.requireNonNull(defaults);
@@ -101,7 +100,7 @@ public final class DataSourcePermissionPermission {
             return this;
         }
         @CustomType.Setter
-        public Builder userId(@Nullable Integer userId) {
+        public Builder userId(@Nullable String userId) {
             this.userId = userId;
             return this;
         }

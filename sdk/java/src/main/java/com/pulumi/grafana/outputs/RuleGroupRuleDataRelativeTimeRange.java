@@ -9,13 +9,29 @@ import java.util.Objects;
 
 @CustomType
 public final class RuleGroupRuleDataRelativeTimeRange {
+    /**
+     * @return The number of seconds in the past, relative to when the rule is evaluated, at which the time range begins.
+     * 
+     */
     private Integer from;
+    /**
+     * @return The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
+     * 
+     */
     private Integer to;
 
     private RuleGroupRuleDataRelativeTimeRange() {}
+    /**
+     * @return The number of seconds in the past, relative to when the rule is evaluated, at which the time range begins.
+     * 
+     */
     public Integer from() {
         return this.from;
     }
+    /**
+     * @return The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
+     * 
+     */
     public Integer to() {
         return this.to;
     }

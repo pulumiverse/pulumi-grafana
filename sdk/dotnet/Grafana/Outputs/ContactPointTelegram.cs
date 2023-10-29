@@ -19,13 +19,29 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// </summary>
         public readonly string ChatId;
         /// <summary>
+        /// When set users will receive a notification with no sound.
+        /// </summary>
+        public readonly bool? DisableNotifications;
+        /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
         public readonly bool? DisableResolveMessage;
         /// <summary>
+        /// When set it disables link previews for links in the message.
+        /// </summary>
+        public readonly bool? DisableWebPagePreview;
+        /// <summary>
         /// The templated content of the message.
         /// </summary>
         public readonly string? Message;
+        /// <summary>
+        /// Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
+        /// </summary>
+        public readonly string? ParseMode;
+        /// <summary>
+        /// When set it protects the contents of the message from forwarding and saving.
+        /// </summary>
+        public readonly bool? ProtectContent;
         /// <summary>
         /// Additional custom properties to attach to the notifier. Defaults to `map[]`.
         /// </summary>
@@ -43,9 +59,17 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         private ContactPointTelegram(
             string chatId,
 
+            bool? disableNotifications,
+
             bool? disableResolveMessage,
 
+            bool? disableWebPagePreview,
+
             string? message,
+
+            string? parseMode,
+
+            bool? protectContent,
 
             ImmutableDictionary<string, string>? settings,
 
@@ -54,8 +78,12 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
             string? uid)
         {
             ChatId = chatId;
+            DisableNotifications = disableNotifications;
             DisableResolveMessage = disableResolveMessage;
+            DisableWebPagePreview = disableWebPagePreview;
             Message = message;
+            ParseMode = parseMode;
+            ProtectContent = protectContent;
             Settings = settings;
             Token = token;
             Uid = uid;

@@ -13,21 +13,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SyntheticMonitoringCheckSettingsPing {
+    /**
+     * @return Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+     * 
+     */
     private @Nullable Boolean dontFragment;
+    /**
+     * @return Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+     * 
+     */
     private @Nullable String ipVersion;
+    /**
+     * @return Payload size. Defaults to `0`.
+     * 
+     */
     private @Nullable Integer payloadSize;
+    /**
+     * @return Source IP address.
+     * 
+     */
     private @Nullable String sourceIpAddress;
 
     private SyntheticMonitoringCheckSettingsPing() {}
+    /**
+     * @return Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+     * 
+     */
     public Optional<Boolean> dontFragment() {
         return Optional.ofNullable(this.dontFragment);
     }
+    /**
+     * @return Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+     * 
+     */
     public Optional<String> ipVersion() {
         return Optional.ofNullable(this.ipVersion);
     }
+    /**
+     * @return Payload size. Defaults to `0`.
+     * 
+     */
     public Optional<Integer> payloadSize() {
         return Optional.ofNullable(this.payloadSize);
     }
+    /**
+     * @return Source IP address.
+     * 
+     */
     public Optional<String> sourceIpAddress() {
         return Optional.ofNullable(this.sourceIpAddress);
     }

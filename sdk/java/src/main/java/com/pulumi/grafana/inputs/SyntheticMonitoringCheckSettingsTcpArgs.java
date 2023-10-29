@@ -19,37 +19,77 @@ public final class SyntheticMonitoringCheckSettingsTcpArgs extends com.pulumi.re
 
     public static final SyntheticMonitoringCheckSettingsTcpArgs Empty = new SyntheticMonitoringCheckSettingsTcpArgs();
 
+    /**
+     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+     * 
+     */
     @Import(name="ipVersion")
     private @Nullable Output<String> ipVersion;
 
+    /**
+     * @return Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+     * 
+     */
     public Optional<Output<String>> ipVersion() {
         return Optional.ofNullable(this.ipVersion);
     }
 
+    /**
+     * The query sent in the TCP probe and the expected associated response.
+     * 
+     */
     @Import(name="queryResponses")
     private @Nullable Output<List<SyntheticMonitoringCheckSettingsTcpQueryResponseArgs>> queryResponses;
 
+    /**
+     * @return The query sent in the TCP probe and the expected associated response.
+     * 
+     */
     public Optional<Output<List<SyntheticMonitoringCheckSettingsTcpQueryResponseArgs>>> queryResponses() {
         return Optional.ofNullable(this.queryResponses);
     }
 
+    /**
+     * Source IP address.
+     * 
+     */
     @Import(name="sourceIpAddress")
     private @Nullable Output<String> sourceIpAddress;
 
+    /**
+     * @return Source IP address.
+     * 
+     */
     public Optional<Output<String>> sourceIpAddress() {
         return Optional.ofNullable(this.sourceIpAddress);
     }
 
+    /**
+     * Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+     * 
+     */
     @Import(name="tls")
     private @Nullable Output<Boolean> tls;
 
+    /**
+     * @return Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> tls() {
         return Optional.ofNullable(this.tls);
     }
 
+    /**
+     * TLS config.
+     * 
+     */
     @Import(name="tlsConfig")
     private @Nullable Output<SyntheticMonitoringCheckSettingsTcpTlsConfigArgs> tlsConfig;
 
+    /**
+     * @return TLS config.
+     * 
+     */
     public Optional<Output<SyntheticMonitoringCheckSettingsTcpTlsConfigArgs>> tlsConfig() {
         return Optional.ofNullable(this.tlsConfig);
     }
@@ -82,51 +122,117 @@ public final class SyntheticMonitoringCheckSettingsTcpArgs extends com.pulumi.re
             $ = new SyntheticMonitoringCheckSettingsTcpArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param ipVersion Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ipVersion(@Nullable Output<String> ipVersion) {
             $.ipVersion = ipVersion;
             return this;
         }
 
+        /**
+         * @param ipVersion Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ipVersion(String ipVersion) {
             return ipVersion(Output.of(ipVersion));
         }
 
+        /**
+         * @param queryResponses The query sent in the TCP probe and the expected associated response.
+         * 
+         * @return builder
+         * 
+         */
         public Builder queryResponses(@Nullable Output<List<SyntheticMonitoringCheckSettingsTcpQueryResponseArgs>> queryResponses) {
             $.queryResponses = queryResponses;
             return this;
         }
 
+        /**
+         * @param queryResponses The query sent in the TCP probe and the expected associated response.
+         * 
+         * @return builder
+         * 
+         */
         public Builder queryResponses(List<SyntheticMonitoringCheckSettingsTcpQueryResponseArgs> queryResponses) {
             return queryResponses(Output.of(queryResponses));
         }
 
+        /**
+         * @param queryResponses The query sent in the TCP probe and the expected associated response.
+         * 
+         * @return builder
+         * 
+         */
         public Builder queryResponses(SyntheticMonitoringCheckSettingsTcpQueryResponseArgs... queryResponses) {
             return queryResponses(List.of(queryResponses));
         }
 
+        /**
+         * @param sourceIpAddress Source IP address.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sourceIpAddress(@Nullable Output<String> sourceIpAddress) {
             $.sourceIpAddress = sourceIpAddress;
             return this;
         }
 
+        /**
+         * @param sourceIpAddress Source IP address.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sourceIpAddress(String sourceIpAddress) {
             return sourceIpAddress(Output.of(sourceIpAddress));
         }
 
+        /**
+         * @param tls Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tls(@Nullable Output<Boolean> tls) {
             $.tls = tls;
             return this;
         }
 
+        /**
+         * @param tls Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tls(Boolean tls) {
             return tls(Output.of(tls));
         }
 
+        /**
+         * @param tlsConfig TLS config.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tlsConfig(@Nullable Output<SyntheticMonitoringCheckSettingsTcpTlsConfigArgs> tlsConfig) {
             $.tlsConfig = tlsConfig;
             return this;
         }
 
+        /**
+         * @param tlsConfig TLS config.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tlsConfig(SyntheticMonitoringCheckSettingsTcpTlsConfigArgs tlsConfig) {
             return tlsConfig(Output.of(tlsConfig));
         }

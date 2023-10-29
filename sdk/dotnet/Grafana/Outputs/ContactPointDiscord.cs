@@ -31,6 +31,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Settings;
         /// <summary>
+        /// The templated content of the title.
+        /// </summary>
+        public readonly string? Title;
+        /// <summary>
         /// The UID of the contact point.
         /// </summary>
         public readonly string? Uid;
@@ -53,6 +57,8 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
             ImmutableDictionary<string, string>? settings,
 
+            string? title,
+
             string? uid,
 
             string url,
@@ -63,6 +69,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
             DisableResolveMessage = disableResolveMessage;
             Message = message;
             Settings = settings;
+            Title = title;
             Uid = uid;
             Url = url;
             UseDiscordUsername = useDiscordUsername;

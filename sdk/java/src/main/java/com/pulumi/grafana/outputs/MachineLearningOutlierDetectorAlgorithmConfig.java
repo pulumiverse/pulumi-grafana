@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class MachineLearningOutlierDetectorAlgorithmConfig {
+    /**
+     * @return Specify the epsilon parameter (positive float)
+     * 
+     */
     private Double epsilon;
 
     private MachineLearningOutlierDetectorAlgorithmConfig() {}
+    /**
+     * @return Specify the epsilon parameter (positive float)
+     * 
+     */
     public Double epsilon() {
         return this.epsilon;
     }

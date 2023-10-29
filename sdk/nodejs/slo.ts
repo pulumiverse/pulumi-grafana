@@ -9,8 +9,8 @@ import * as utilities from "./utilities";
 /**
  * Resource manages Grafana SLOs.
  *
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
- * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
+ * * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
  * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
  *
  * ## Example Usage
@@ -56,7 +56,7 @@ export class SLO extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string>;
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+     * Labels to attach only to Fast Burn alerts.
      */
     public readonly labels!: pulumi.Output<outputs.SLOLabel[] | undefined>;
     /**
@@ -68,7 +68,7 @@ export class SLO extends pulumi.CustomResource {
      */
     public readonly objectives!: pulumi.Output<outputs.SLOObjective[]>;
     /**
-     * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+     * Freeform Query Field
      */
     public readonly queries!: pulumi.Output<outputs.SLOQuery[]>;
 
@@ -131,7 +131,7 @@ export interface SLOState {
      */
     description?: pulumi.Input<string>;
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+     * Labels to attach only to Fast Burn alerts.
      */
     labels?: pulumi.Input<pulumi.Input<inputs.SLOLabel>[]>;
     /**
@@ -143,7 +143,7 @@ export interface SLOState {
      */
     objectives?: pulumi.Input<pulumi.Input<inputs.SLOObjective>[]>;
     /**
-     * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+     * Freeform Query Field
      */
     queries?: pulumi.Input<pulumi.Input<inputs.SLOQuery>[]>;
 }
@@ -165,7 +165,7 @@ export interface SLOArgs {
      */
     description: pulumi.Input<string>;
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+     * Labels to attach only to Fast Burn alerts.
      */
     labels?: pulumi.Input<pulumi.Input<inputs.SLOLabel>[]>;
     /**
@@ -177,7 +177,7 @@ export interface SLOArgs {
      */
     objectives: pulumi.Input<pulumi.Input<inputs.SLOObjective>[]>;
     /**
-     * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+     * Freeform Query Field
      */
     queries: pulumi.Input<pulumi.Input<inputs.SLOQuery>[]>;
 }

@@ -14,7 +14,13 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class SyntheticMonitoringCheckSettingsHttpBasicAuth
     {
+        /// <summary>
+        /// Basic auth password.
+        /// </summary>
         public readonly string Password;
+        /// <summary>
+        /// Basic auth username.
+        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]

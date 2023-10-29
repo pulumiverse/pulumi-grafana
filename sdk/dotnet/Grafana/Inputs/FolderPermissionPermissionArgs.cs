@@ -32,10 +32,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         public Input<string>? TeamId { get; set; }
 
         /// <summary>
-        /// ID of the user to manage permissions for. Defaults to `0`.
+        /// ID of the user or service account to manage permissions for. Defaults to `0`.
         /// </summary>
         [Input("userId")]
-        public Input<int>? UserId { get; set; }
+        public Input<string>? UserId { get; set; }
 
         public FolderPermissionPermissionArgs()
         {

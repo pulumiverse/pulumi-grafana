@@ -16,6 +16,7 @@ import com.pulumi.grafana.outputs.ContactPointDiscord;
 import com.pulumi.grafana.outputs.ContactPointEmail;
 import com.pulumi.grafana.outputs.ContactPointGooglechat;
 import com.pulumi.grafana.outputs.ContactPointKafka;
+import com.pulumi.grafana.outputs.ContactPointLine;
 import com.pulumi.grafana.outputs.ContactPointOpsgeny;
 import com.pulumi.grafana.outputs.ContactPointPagerduty;
 import com.pulumi.grafana.outputs.ContactPointPushover;
@@ -25,6 +26,7 @@ import com.pulumi.grafana.outputs.ContactPointTeam;
 import com.pulumi.grafana.outputs.ContactPointTelegram;
 import com.pulumi.grafana.outputs.ContactPointThreema;
 import com.pulumi.grafana.outputs.ContactPointVictorop;
+import com.pulumi.grafana.outputs.ContactPointWebex;
 import com.pulumi.grafana.outputs.ContactPointWebhook;
 import com.pulumi.grafana.outputs.ContactPointWecom;
 import java.lang.String;
@@ -173,6 +175,20 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.kafkas);
     }
     /**
+     * A contact point that sends notifications to LINE.me.
+     * 
+     */
+    @Export(name="lines", refs={List.class,ContactPointLine.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ContactPointLine>> lines;
+
+    /**
+     * @return A contact point that sends notifications to LINE.me.
+     * 
+     */
+    public Output<Optional<List<ContactPointLine>>> lines() {
+        return Codegen.optional(this.lines);
+    }
+    /**
      * The name of the contact point.
      * 
      */
@@ -311,6 +327,20 @@ public class ContactPoint extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<ContactPointVictorop>>> victorops() {
         return Codegen.optional(this.victorops);
+    }
+    /**
+     * A contact point that sends notifications to Cisco Webex.
+     * 
+     */
+    @Export(name="webexes", refs={List.class,ContactPointWebex.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ContactPointWebex>> webexes;
+
+    /**
+     * @return A contact point that sends notifications to Cisco Webex.
+     * 
+     */
+    public Output<Optional<List<ContactPointWebex>>> webexes() {
+        return Codegen.optional(this.webexes);
     }
     /**
      * A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config

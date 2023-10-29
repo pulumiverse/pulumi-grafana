@@ -49,14 +49,14 @@ public final class NotificationPolicyPolicyPolicyPolicyPolicyArgs extends com.pu
     }
 
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      * 
      */
     @Import(name="groupBies", required=true)
     private Output<List<String>> groupBies;
 
     /**
-     * @return A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * @return A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      * 
      */
     public Output<List<String>> groupBies() {
@@ -212,7 +212,7 @@ public final class NotificationPolicyPolicyPolicyPolicyPolicyArgs extends com.pu
         }
 
         /**
-         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
          * 
          * @return builder
          * 
@@ -223,7 +223,7 @@ public final class NotificationPolicyPolicyPolicyPolicyPolicyArgs extends com.pu
         }
 
         /**
-         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
          * 
          * @return builder
          * 
@@ -233,7 +233,7 @@ public final class NotificationPolicyPolicyPolicyPolicyPolicyArgs extends com.pu
         }
 
         /**
-         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
          * 
          * @return builder
          * 

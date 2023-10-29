@@ -11,17 +11,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SLOQueryRatio {
+    /**
+     * @return Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
+     * 
+     */
     private @Nullable List<String> groupByLabels;
+    /**
+     * @return Counter metric for success events (numerator)
+     * 
+     */
     private String successMetric;
+    /**
+     * @return Metric for total events (denominator)
+     * 
+     */
     private String totalMetric;
 
     private SLOQueryRatio() {}
+    /**
+     * @return Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
+     * 
+     */
     public List<String> groupByLabels() {
         return this.groupByLabels == null ? List.of() : this.groupByLabels;
     }
+    /**
+     * @return Counter metric for success events (numerator)
+     * 
+     */
     public String successMetric() {
         return this.successMetric;
     }
+    /**
+     * @return Metric for total events (denominator)
+     * 
+     */
     public String totalMetric() {
         return this.totalMetric;
     }

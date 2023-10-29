@@ -29,6 +29,11 @@ public final class ContactPointGooglechat {
      */
     private @Nullable Map<String,String> settings;
     /**
+     * @return The templated content of the title.
+     * 
+     */
+    private @Nullable String title;
+    /**
      * @return The UID of the contact point.
      * 
      */
@@ -62,6 +67,13 @@ public final class ContactPointGooglechat {
         return this.settings == null ? Map.of() : this.settings;
     }
     /**
+     * @return The templated content of the title.
+     * 
+     */
+    public Optional<String> title() {
+        return Optional.ofNullable(this.title);
+    }
+    /**
      * @return The UID of the contact point.
      * 
      */
@@ -88,6 +100,7 @@ public final class ContactPointGooglechat {
         private @Nullable Boolean disableResolveMessage;
         private @Nullable String message;
         private @Nullable Map<String,String> settings;
+        private @Nullable String title;
         private @Nullable String uid;
         private String url;
         public Builder() {}
@@ -96,6 +109,7 @@ public final class ContactPointGooglechat {
     	      this.disableResolveMessage = defaults.disableResolveMessage;
     	      this.message = defaults.message;
     	      this.settings = defaults.settings;
+    	      this.title = defaults.title;
     	      this.uid = defaults.uid;
     	      this.url = defaults.url;
         }
@@ -116,6 +130,11 @@ public final class ContactPointGooglechat {
             return this;
         }
         @CustomType.Setter
+        public Builder title(@Nullable String title) {
+            this.title = title;
+            return this;
+        }
+        @CustomType.Setter
         public Builder uid(@Nullable String uid) {
             this.uid = uid;
             return this;
@@ -130,6 +149,7 @@ public final class ContactPointGooglechat {
             o.disableResolveMessage = disableResolveMessage;
             o.message = message;
             o.settings = settings;
+            o.title = title;
             o.uid = uid;
             o.url = url;
             return o;

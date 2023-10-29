@@ -13,6 +13,7 @@ __all__ = [
     'GetOrganizationPreferencesResult',
     'AwaitableGetOrganizationPreferencesResult',
     'get_organization_preferences',
+    'get_organization_preferences_output',
 ]
 
 @pulumi.output_type
@@ -141,3 +142,21 @@ def get_organization_preferences(opts: Optional[pulumi.InvokeOptions] = None) ->
         theme=pulumi.get(__ret__, 'theme'),
         timezone=pulumi.get(__ret__, 'timezone'),
         week_start=pulumi.get(__ret__, 'week_start'))
+
+
+@_utilities.lift_output_func(get_organization_preferences)
+def get_organization_preferences_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationPreferencesResult]:
+    """
+    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    test = grafana.get_organization_preferences()
+    ```
+    """
+    ...

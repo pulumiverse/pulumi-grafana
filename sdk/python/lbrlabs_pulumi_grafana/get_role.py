@@ -22,7 +22,7 @@ class GetRoleResult:
     """
     A collection of values returned by getRole.
     """
-    def __init__(__self__, description=None, display_name=None, global_=None, group=None, hidden=None, id=None, name=None, permissions=None, uid=None, version=None):
+    def __init__(__self__, description=None, display_name=None, global_=None, group=None, hidden=None, id=None, name=None, org_id=None, permissions=None, uid=None, version=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -44,6 +44,9 @@ class GetRoleResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if org_id and not isinstance(org_id, str):
+            raise TypeError("Expected argument 'org_id' to be a str")
+        pulumi.set(__self__, "org_id", org_id)
         if permissions and not isinstance(permissions, list):
             raise TypeError("Expected argument 'permissions' to be a list")
         pulumi.set(__self__, "permissions", permissions)
@@ -111,6 +114,14 @@ class GetRoleResult:
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> str:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @property
     @pulumi.getter
     def permissions(self) -> Sequence['outputs.GetRolePermissionResult']:
         """
@@ -130,7 +141,7 @@ class GetRoleResult:
     @pulumi.getter
     def version(self) -> int:
         """
-        Version of the role. A role is updated only on version increase.
+        Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
         """
         return pulumi.get(self, "version")
 
@@ -148,6 +159,7 @@ class AwaitableGetRoleResult(GetRoleResult):
             hidden=self.hidden,
             id=self.id,
             name=self.name,
+            org_id=self.org_id,
             permissions=self.permissions,
             uid=self.uid,
             version=self.version)
@@ -206,6 +218,7 @@ def get_role(name: Optional[str] = None,
         hidden=pulumi.get(__ret__, 'hidden'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
+        org_id=pulumi.get(__ret__, 'org_id'),
         permissions=pulumi.get(__ret__, 'permissions'),
         uid=pulumi.get(__ret__, 'uid'),
         version=pulumi.get(__ret__, 'version'))

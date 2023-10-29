@@ -146,6 +146,12 @@ func GetRetryStatusCodes(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:retryStatusCodes")
 }
 
+// The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be
+// set via the `GRAFANA_RETRY_WAIT` environment variable.
+func GetRetryWait(ctx *pulumi.Context) int {
+	return config.GetInt(ctx, "grafana:retryWait")
+}
+
 // A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
 func GetSmAccessToken(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:smAccessToken")
@@ -161,8 +167,8 @@ func GetSmAccessToken(ctx *pulumi.Context) string {
 
 // Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
 // correct value for each service region is cited in the [Synthetic Monitoring
-// documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url). Note
-// the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
+// documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).
+// Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
 // `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
 // managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
 // each provider ensures all providers interact with the same SM API.

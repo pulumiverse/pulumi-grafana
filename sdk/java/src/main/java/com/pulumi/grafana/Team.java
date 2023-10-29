@@ -54,6 +54,16 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ## Import
+ * 
+ * ```sh
+ *  $ pulumi import grafana:index/team:Team team_name {{team_id}} # To use the default provider org
+ * ```
+ * 
+ * ```sh
+ *  $ pulumi import grafana:index/team:Team team_name {{org_id}}:{{team_id}} # When &#34;org_id&#34; is set on the resource
+ * ```
+ * 
  */
 @ResourceType(type="grafana:index/team:Team")
 public class Team extends com.pulumi.resources.CustomResource {
@@ -158,7 +168,7 @@ public class Team extends com.pulumi.resources.CustomResource {
     /**
      * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
      * documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-     * API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+     * API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
      * 
      */
     @Export(name="teamSync", refs={TeamTeamSync.class}, tree="[0]")
@@ -167,7 +177,7 @@ public class Team extends com.pulumi.resources.CustomResource {
     /**
      * @return Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
      * documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-     * API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+     * API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
      * 
      */
     public Output<Optional<TeamTeamSync>> teamSync() {

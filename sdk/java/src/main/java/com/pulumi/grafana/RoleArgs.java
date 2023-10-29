@@ -20,6 +20,21 @@ public final class RoleArgs extends com.pulumi.resources.ResourceArgs {
     public static final RoleArgs Empty = new RoleArgs();
 
     /**
+     * Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+     * 
+     */
+    @Import(name="autoIncrementVersion")
+    private @Nullable Output<Boolean> autoIncrementVersion;
+
+    /**
+     * @return Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+     * 
+     */
+    public Optional<Output<Boolean>> autoIncrementVersion() {
+        return Optional.ofNullable(this.autoIncrementVersion);
+    }
+
+    /**
      * Description of the role.
      * 
      */
@@ -110,6 +125,21 @@ public final class RoleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Import(name="orgId")
+    private @Nullable Output<String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Optional<Output<String>> orgId() {
+        return Optional.ofNullable(this.orgId);
+    }
+
+    /**
      * Specific set of actions granted by the role.
      * 
      */
@@ -140,29 +170,31 @@ public final class RoleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Version of the role. A role is updated only on version increase.
+     * Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
      * 
      */
-    @Import(name="version", required=true)
-    private Output<Integer> version;
+    @Import(name="version")
+    private @Nullable Output<Integer> version;
 
     /**
-     * @return Version of the role. A role is updated only on version increase.
+     * @return Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
      * 
      */
-    public Output<Integer> version() {
-        return this.version;
+    public Optional<Output<Integer>> version() {
+        return Optional.ofNullable(this.version);
     }
 
     private RoleArgs() {}
 
     private RoleArgs(RoleArgs $) {
+        this.autoIncrementVersion = $.autoIncrementVersion;
         this.description = $.description;
         this.displayName = $.displayName;
         this.global = $.global;
         this.group = $.group;
         this.hidden = $.hidden;
         this.name = $.name;
+        this.orgId = $.orgId;
         this.permissions = $.permissions;
         this.uid = $.uid;
         this.version = $.version;
@@ -184,6 +216,27 @@ public final class RoleArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(RoleArgs defaults) {
             $ = new RoleArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param autoIncrementVersion Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoIncrementVersion(@Nullable Output<Boolean> autoIncrementVersion) {
+            $.autoIncrementVersion = autoIncrementVersion;
+            return this;
+        }
+
+        /**
+         * @param autoIncrementVersion Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoIncrementVersion(Boolean autoIncrementVersion) {
+            return autoIncrementVersion(Output.of(autoIncrementVersion));
         }
 
         /**
@@ -313,6 +366,27 @@ public final class RoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(@Nullable Output<String> orgId) {
+            $.orgId = orgId;
+            return this;
+        }
+
+        /**
+         * @param orgId The Organization ID. If not set, the Org ID defined in the provider block will be used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgId(String orgId) {
+            return orgId(Output.of(orgId));
+        }
+
+        /**
          * @param permissions Specific set of actions granted by the role.
          * 
          * @return builder
@@ -365,18 +439,18 @@ public final class RoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param version Version of the role. A role is updated only on version increase.
+         * @param version Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
          * 
          * @return builder
          * 
          */
-        public Builder version(Output<Integer> version) {
+        public Builder version(@Nullable Output<Integer> version) {
             $.version = version;
             return this;
         }
 
         /**
-         * @param version Version of the role. A role is updated only on version increase.
+         * @param version Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
          * 
          * @return builder
          * 
@@ -386,7 +460,6 @@ public final class RoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public RoleArgs build() {
-            $.version = Objects.requireNonNull($.version, "expected parameter 'version' to be non-null");
             return $;
         }
     }

@@ -24,8 +24,8 @@ class NotificationPolicyArgs:
                  repeat_interval: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a NotificationPolicy resource.
-        :param pulumi.Input[str] contact_point: The default contact point to route all unmatched notifications to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+        :param pulumi.Input[str] contact_point: The contact point to route notifications that match this rule to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyArgs']]] policies: Routing rules for specific label sets.
@@ -46,7 +46,7 @@ class NotificationPolicyArgs:
     @pulumi.getter(name="contactPoint")
     def contact_point(self) -> pulumi.Input[str]:
         """
-        The default contact point to route all unmatched notifications to.
+        The contact point to route notifications that match this rule to.
         """
         return pulumi.get(self, "contact_point")
 
@@ -58,7 +58,7 @@ class NotificationPolicyArgs:
     @pulumi.getter(name="groupBies")
     def group_bies(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         """
         return pulumi.get(self, "group_bies")
 
@@ -126,8 +126,8 @@ class _NotificationPolicyState:
                  repeat_interval: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering NotificationPolicy resources.
-        :param pulumi.Input[str] contact_point: The default contact point to route all unmatched notifications to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+        :param pulumi.Input[str] contact_point: The contact point to route notifications that match this rule to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyArgs']]] policies: Routing rules for specific label sets.
@@ -150,7 +150,7 @@ class _NotificationPolicyState:
     @pulumi.getter(name="contactPoint")
     def contact_point(self) -> Optional[pulumi.Input[str]]:
         """
-        The default contact point to route all unmatched notifications to.
+        The contact point to route notifications that match this rule to.
         """
         return pulumi.get(self, "contact_point")
 
@@ -162,7 +162,7 @@ class _NotificationPolicyState:
     @pulumi.getter(name="groupBies")
     def group_bies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         """
         return pulumi.get(self, "group_bies")
 
@@ -271,7 +271,6 @@ class NotificationPolicy(pulumi.CustomResource):
                         value="myvalue",
                     )],
                     contact_point=a_contact_point.name,
-                    group_bies=["alertname"],
                     continue_=True,
                     mute_timings=[a_mute_timing.name],
                     group_wait="45s",
@@ -309,8 +308,8 @@ class NotificationPolicy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] contact_point: The default contact point to route all unmatched notifications to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+        :param pulumi.Input[str] contact_point: The contact point to route notifications that match this rule to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyPolicyArgs']]]] policies: Routing rules for specific label sets.
@@ -362,7 +361,6 @@ class NotificationPolicy(pulumi.CustomResource):
                         value="myvalue",
                     )],
                     contact_point=a_contact_point.name,
-                    group_bies=["alertname"],
                     continue_=True,
                     mute_timings=[a_mute_timing.name],
                     group_wait="45s",
@@ -461,8 +459,8 @@ class NotificationPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] contact_point: The default contact point to route all unmatched notifications to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+        :param pulumi.Input[str] contact_point: The contact point to route notifications that match this rule to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyPolicyArgs']]]] policies: Routing rules for specific label sets.
@@ -484,7 +482,7 @@ class NotificationPolicy(pulumi.CustomResource):
     @pulumi.getter(name="contactPoint")
     def contact_point(self) -> pulumi.Output[str]:
         """
-        The default contact point to route all unmatched notifications to.
+        The contact point to route notifications that match this rule to.
         """
         return pulumi.get(self, "contact_point")
 
@@ -492,7 +490,7 @@ class NotificationPolicy(pulumi.CustomResource):
     @pulumi.getter(name="groupBies")
     def group_bies(self) -> pulumi.Output[Sequence[str]]:
         """
-        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         """
         return pulumi.get(self, "group_bies")
 

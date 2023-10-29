@@ -78,6 +78,8 @@ import (
 type OncallSchedule struct {
 	pulumi.CustomResourceState
 
+	// Enable overrides via web UI (it will ignore ical*url*overrides).
+	EnableWebOverrides pulumi.BoolPtrOutput `pulumi:"enableWebOverrides"`
 	// The URL of external iCal calendar which override primary events.
 	IcalUrlOverrides pulumi.StringPtrOutput `pulumi:"icalUrlOverrides"`
 	// The URL of the external calendar iCal file.
@@ -129,6 +131,8 @@ func GetOncallSchedule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OncallSchedule resources.
 type oncallScheduleState struct {
+	// Enable overrides via web UI (it will ignore ical*url*overrides).
+	EnableWebOverrides *bool `pulumi:"enableWebOverrides"`
 	// The URL of external iCal calendar which override primary events.
 	IcalUrlOverrides *string `pulumi:"icalUrlOverrides"`
 	// The URL of the external calendar iCal file.
@@ -148,6 +152,8 @@ type oncallScheduleState struct {
 }
 
 type OncallScheduleState struct {
+	// Enable overrides via web UI (it will ignore ical*url*overrides).
+	EnableWebOverrides pulumi.BoolPtrInput
 	// The URL of external iCal calendar which override primary events.
 	IcalUrlOverrides pulumi.StringPtrInput
 	// The URL of the external calendar iCal file.
@@ -171,6 +177,8 @@ func (OncallScheduleState) ElementType() reflect.Type {
 }
 
 type oncallScheduleArgs struct {
+	// Enable overrides via web UI (it will ignore ical*url*overrides).
+	EnableWebOverrides *bool `pulumi:"enableWebOverrides"`
 	// The URL of external iCal calendar which override primary events.
 	IcalUrlOverrides *string `pulumi:"icalUrlOverrides"`
 	// The URL of the external calendar iCal file.
@@ -191,6 +199,8 @@ type oncallScheduleArgs struct {
 
 // The set of arguments for constructing a OncallSchedule resource.
 type OncallScheduleArgs struct {
+	// Enable overrides via web UI (it will ignore ical*url*overrides).
+	EnableWebOverrides pulumi.BoolPtrInput
 	// The URL of external iCal calendar which override primary events.
 	IcalUrlOverrides pulumi.StringPtrInput
 	// The URL of the external calendar iCal file.
@@ -318,6 +328,11 @@ func (o OncallScheduleOutput) ToOutput(ctx context.Context) pulumix.Output[*Onca
 	return pulumix.Output[*OncallSchedule]{
 		OutputState: o.OutputState,
 	}
+}
+
+// Enable overrides via web UI (it will ignore ical*url*overrides).
+func (o OncallScheduleOutput) EnableWebOverrides() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *OncallSchedule) pulumi.BoolPtrOutput { return v.EnableWebOverrides }).(pulumi.BoolPtrOutput)
 }
 
 // The URL of external iCal calendar which override primary events.

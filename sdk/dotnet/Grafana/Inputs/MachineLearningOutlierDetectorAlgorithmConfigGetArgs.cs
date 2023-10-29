@@ -13,6 +13,9 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class MachineLearningOutlierDetectorAlgorithmConfigGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Specify the epsilon parameter (positive float)
+        /// </summary>
         [Input("epsilon", required: true)]
         public Input<double> Epsilon { get; set; } = null!;
 

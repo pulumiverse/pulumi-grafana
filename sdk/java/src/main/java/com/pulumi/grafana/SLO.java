@@ -22,8 +22,8 @@ import javax.annotation.Nullable;
 /**
  * Resource manages Grafana SLOs.
  * 
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
- * * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
+ * * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
  * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
  * 
  * ## Example Usage
@@ -196,14 +196,14 @@ public class SLO extends com.pulumi.resources.CustomResource {
         return this.description;
     }
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
+     * Labels to attach only to Fast Burn alerts.
      * 
      */
     @Export(name="labels", refs={List.class,SLOLabel.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SLOLabel>> labels;
 
     /**
-     * @return Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - &#34;^[a-zA-Z*][a-zA-Z0-9*]*$&#34;
+     * @return Labels to attach only to Fast Burn alerts.
      * 
      */
     public Output<Optional<List<SLOLabel>>> labels() {
@@ -238,14 +238,14 @@ public class SLO extends com.pulumi.resources.CustomResource {
         return this.objectives;
     }
     /**
-     * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+     * Freeform Query Field
      * 
      */
     @Export(name="queries", refs={List.class,SLOQuery.class}, tree="[0,1]")
     private Output<List<SLOQuery>> queries;
 
     /**
-     * @return Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+     * @return Freeform Query Field
      * 
      */
     public Output<List<SLOQuery>> queries() {

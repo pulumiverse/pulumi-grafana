@@ -12,25 +12,65 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SyntheticMonitoringCheckSettingsHttpTlsConfig {
+    /**
+     * @return CA certificate in PEM format.
+     * 
+     */
     private @Nullable String caCert;
+    /**
+     * @return Client certificate in PEM format.
+     * 
+     */
     private @Nullable String clientCert;
+    /**
+     * @return Client key in PEM format.
+     * 
+     */
     private @Nullable String clientKey;
+    /**
+     * @return Disable target certificate validation. Defaults to `false`.
+     * 
+     */
     private @Nullable Boolean insecureSkipVerify;
+    /**
+     * @return Used to verify the hostname for the targets.
+     * 
+     */
     private @Nullable String serverName;
 
     private SyntheticMonitoringCheckSettingsHttpTlsConfig() {}
+    /**
+     * @return CA certificate in PEM format.
+     * 
+     */
     public Optional<String> caCert() {
         return Optional.ofNullable(this.caCert);
     }
+    /**
+     * @return Client certificate in PEM format.
+     * 
+     */
     public Optional<String> clientCert() {
         return Optional.ofNullable(this.clientCert);
     }
+    /**
+     * @return Client key in PEM format.
+     * 
+     */
     public Optional<String> clientKey() {
         return Optional.ofNullable(this.clientKey);
     }
+    /**
+     * @return Disable target certificate validation. Defaults to `false`.
+     * 
+     */
     public Optional<Boolean> insecureSkipVerify() {
         return Optional.ofNullable(this.insecureSkipVerify);
     }
+    /**
+     * @return Used to verify the hostname for the targets.
+     * 
+     */
     public Optional<String> serverName() {
         return Optional.ofNullable(this.serverName);
     }

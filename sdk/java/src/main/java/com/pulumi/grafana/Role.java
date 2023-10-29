@@ -81,6 +81,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="grafana:index/role:Role")
 public class Role extends com.pulumi.resources.CustomResource {
     /**
+     * Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+     * 
+     */
+    @Export(name="autoIncrementVersion", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> autoIncrementVersion;
+
+    /**
+     * @return Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+     * 
+     */
+    public Output<Optional<Boolean>> autoIncrementVersion() {
+        return Codegen.optional(this.autoIncrementVersion);
+    }
+    /**
      * Description of the role.
      * 
      */
@@ -165,6 +179,20 @@ public class Role extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    @Export(name="orgId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> orgId;
+
+    /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public Output<Optional<String>> orgId() {
+        return Codegen.optional(this.orgId);
+    }
+    /**
      * Specific set of actions granted by the role.
      * 
      */
@@ -193,18 +221,18 @@ public class Role extends com.pulumi.resources.CustomResource {
         return this.uid;
     }
     /**
-     * Version of the role. A role is updated only on version increase.
+     * Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
      * 
      */
     @Export(name="version", refs={Integer.class}, tree="[0]")
-    private Output<Integer> version;
+    private Output</* @Nullable */ Integer> version;
 
     /**
-     * @return Version of the role. A role is updated only on version increase.
+     * @return Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
      * 
      */
-    public Output<Integer> version() {
-        return this.version;
+    public Output<Optional<Integer>> version() {
+        return Codegen.optional(this.version);
     }
 
     /**
@@ -219,7 +247,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Role(String name, RoleArgs args) {
+    public Role(String name, @Nullable RoleArgs args) {
         this(name, args, null);
     }
     /**
@@ -228,7 +256,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Role(String name, RoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public Role(String name, @Nullable RoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("grafana:index/role:Role", name, args == null ? RoleArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 

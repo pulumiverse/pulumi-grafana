@@ -20,72 +20,152 @@ public final class SyntheticMonitoringCheckSettingsDnsArgs extends com.pulumi.re
 
     public static final SyntheticMonitoringCheckSettingsDnsArgs Empty = new SyntheticMonitoringCheckSettingsDnsArgs();
 
+    /**
+     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+     * 
+     */
     @Import(name="ipVersion")
     private @Nullable Output<String> ipVersion;
 
+    /**
+     * @return Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+     * 
+     */
     public Optional<Output<String>> ipVersion() {
         return Optional.ofNullable(this.ipVersion);
     }
 
+    /**
+     * Port to target. Defaults to `53`.
+     * 
+     */
     @Import(name="port")
     private @Nullable Output<Integer> port;
 
+    /**
+     * @return Port to target. Defaults to `53`.
+     * 
+     */
     public Optional<Output<Integer>> port() {
         return Optional.ofNullable(this.port);
     }
 
+    /**
+     * `TCP` or `UDP`. Defaults to `UDP`.
+     * 
+     */
     @Import(name="protocol")
     private @Nullable Output<String> protocol;
 
+    /**
+     * @return `TCP` or `UDP`. Defaults to `UDP`.
+     * 
+     */
     public Optional<Output<String>> protocol() {
         return Optional.ofNullable(this.protocol);
     }
 
+    /**
+     * One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+     * 
+     */
     @Import(name="recordType")
     private @Nullable Output<String> recordType;
 
+    /**
+     * @return One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+     * 
+     */
     public Optional<Output<String>> recordType() {
         return Optional.ofNullable(this.recordType);
     }
 
+    /**
+     * DNS server address to target. Defaults to `8.8.8.8`.
+     * 
+     */
     @Import(name="server")
     private @Nullable Output<String> server;
 
+    /**
+     * @return DNS server address to target. Defaults to `8.8.8.8`.
+     * 
+     */
     public Optional<Output<String>> server() {
         return Optional.ofNullable(this.server);
     }
 
+    /**
+     * Source IP address.
+     * 
+     */
     @Import(name="sourceIpAddress")
     private @Nullable Output<String> sourceIpAddress;
 
+    /**
+     * @return Source IP address.
+     * 
+     */
     public Optional<Output<String>> sourceIpAddress() {
         return Optional.ofNullable(this.sourceIpAddress);
     }
 
+    /**
+     * List of valid response codes. Options include `NOERROR`, `BADALG`, `BADMODE`, `BADKEY`, `BADCOOKIE`, `BADNAME`, `BADSIG`, `BADTIME`, `BADTRUNC`, `BADVERS`, `FORMERR`, `NOTIMP`, `NOTAUTH`, `NOTZONE`, `NXDOMAIN`, `NXRRSET`, `REFUSED`, `SERVFAIL`, `YXDOMAIN`, `YXRRSET`.
+     * 
+     */
     @Import(name="validRCodes")
     private @Nullable Output<List<String>> validRCodes;
 
+    /**
+     * @return List of valid response codes. Options include `NOERROR`, `BADALG`, `BADMODE`, `BADKEY`, `BADCOOKIE`, `BADNAME`, `BADSIG`, `BADTIME`, `BADTRUNC`, `BADVERS`, `FORMERR`, `NOTIMP`, `NOTAUTH`, `NOTZONE`, `NXDOMAIN`, `NXRRSET`, `REFUSED`, `SERVFAIL`, `YXDOMAIN`, `YXRRSET`.
+     * 
+     */
     public Optional<Output<List<String>>> validRCodes() {
         return Optional.ofNullable(this.validRCodes);
     }
 
+    /**
+     * Validate additional matches.
+     * 
+     */
     @Import(name="validateAdditionalRrs")
     private @Nullable Output<List<SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs>> validateAdditionalRrs;
 
+    /**
+     * @return Validate additional matches.
+     * 
+     */
     public Optional<Output<List<SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs>>> validateAdditionalRrs() {
         return Optional.ofNullable(this.validateAdditionalRrs);
     }
 
+    /**
+     * Validate response answer.
+     * 
+     */
     @Import(name="validateAnswerRrs")
     private @Nullable Output<SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs> validateAnswerRrs;
 
+    /**
+     * @return Validate response answer.
+     * 
+     */
     public Optional<Output<SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs>> validateAnswerRrs() {
         return Optional.ofNullable(this.validateAnswerRrs);
     }
 
+    /**
+     * Validate response authority.
+     * 
+     */
     @Import(name="validateAuthorityRrs")
     private @Nullable Output<SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgs> validateAuthorityRrs;
 
+    /**
+     * @return Validate response authority.
+     * 
+     */
     public Optional<Output<SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgs>> validateAuthorityRrs() {
         return Optional.ofNullable(this.validateAuthorityRrs);
     }
@@ -123,100 +203,232 @@ public final class SyntheticMonitoringCheckSettingsDnsArgs extends com.pulumi.re
             $ = new SyntheticMonitoringCheckSettingsDnsArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param ipVersion Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ipVersion(@Nullable Output<String> ipVersion) {
             $.ipVersion = ipVersion;
             return this;
         }
 
+        /**
+         * @param ipVersion Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that&#39;s not available. Defaults to `V4`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ipVersion(String ipVersion) {
             return ipVersion(Output.of(ipVersion));
         }
 
+        /**
+         * @param port Port to target. Defaults to `53`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder port(@Nullable Output<Integer> port) {
             $.port = port;
             return this;
         }
 
+        /**
+         * @param port Port to target. Defaults to `53`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder port(Integer port) {
             return port(Output.of(port));
         }
 
+        /**
+         * @param protocol `TCP` or `UDP`. Defaults to `UDP`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder protocol(@Nullable Output<String> protocol) {
             $.protocol = protocol;
             return this;
         }
 
+        /**
+         * @param protocol `TCP` or `UDP`. Defaults to `UDP`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder protocol(String protocol) {
             return protocol(Output.of(protocol));
         }
 
+        /**
+         * @param recordType One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder recordType(@Nullable Output<String> recordType) {
             $.recordType = recordType;
             return this;
         }
 
+        /**
+         * @param recordType One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder recordType(String recordType) {
             return recordType(Output.of(recordType));
         }
 
+        /**
+         * @param server DNS server address to target. Defaults to `8.8.8.8`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder server(@Nullable Output<String> server) {
             $.server = server;
             return this;
         }
 
+        /**
+         * @param server DNS server address to target. Defaults to `8.8.8.8`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder server(String server) {
             return server(Output.of(server));
         }
 
+        /**
+         * @param sourceIpAddress Source IP address.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sourceIpAddress(@Nullable Output<String> sourceIpAddress) {
             $.sourceIpAddress = sourceIpAddress;
             return this;
         }
 
+        /**
+         * @param sourceIpAddress Source IP address.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sourceIpAddress(String sourceIpAddress) {
             return sourceIpAddress(Output.of(sourceIpAddress));
         }
 
+        /**
+         * @param validRCodes List of valid response codes. Options include `NOERROR`, `BADALG`, `BADMODE`, `BADKEY`, `BADCOOKIE`, `BADNAME`, `BADSIG`, `BADTIME`, `BADTRUNC`, `BADVERS`, `FORMERR`, `NOTIMP`, `NOTAUTH`, `NOTZONE`, `NXDOMAIN`, `NXRRSET`, `REFUSED`, `SERVFAIL`, `YXDOMAIN`, `YXRRSET`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder validRCodes(@Nullable Output<List<String>> validRCodes) {
             $.validRCodes = validRCodes;
             return this;
         }
 
+        /**
+         * @param validRCodes List of valid response codes. Options include `NOERROR`, `BADALG`, `BADMODE`, `BADKEY`, `BADCOOKIE`, `BADNAME`, `BADSIG`, `BADTIME`, `BADTRUNC`, `BADVERS`, `FORMERR`, `NOTIMP`, `NOTAUTH`, `NOTZONE`, `NXDOMAIN`, `NXRRSET`, `REFUSED`, `SERVFAIL`, `YXDOMAIN`, `YXRRSET`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder validRCodes(List<String> validRCodes) {
             return validRCodes(Output.of(validRCodes));
         }
 
+        /**
+         * @param validRCodes List of valid response codes. Options include `NOERROR`, `BADALG`, `BADMODE`, `BADKEY`, `BADCOOKIE`, `BADNAME`, `BADSIG`, `BADTIME`, `BADTRUNC`, `BADVERS`, `FORMERR`, `NOTIMP`, `NOTAUTH`, `NOTZONE`, `NXDOMAIN`, `NXRRSET`, `REFUSED`, `SERVFAIL`, `YXDOMAIN`, `YXRRSET`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder validRCodes(String... validRCodes) {
             return validRCodes(List.of(validRCodes));
         }
 
+        /**
+         * @param validateAdditionalRrs Validate additional matches.
+         * 
+         * @return builder
+         * 
+         */
         public Builder validateAdditionalRrs(@Nullable Output<List<SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs>> validateAdditionalRrs) {
             $.validateAdditionalRrs = validateAdditionalRrs;
             return this;
         }
 
+        /**
+         * @param validateAdditionalRrs Validate additional matches.
+         * 
+         * @return builder
+         * 
+         */
         public Builder validateAdditionalRrs(List<SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs> validateAdditionalRrs) {
             return validateAdditionalRrs(Output.of(validateAdditionalRrs));
         }
 
+        /**
+         * @param validateAdditionalRrs Validate additional matches.
+         * 
+         * @return builder
+         * 
+         */
         public Builder validateAdditionalRrs(SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs... validateAdditionalRrs) {
             return validateAdditionalRrs(List.of(validateAdditionalRrs));
         }
 
+        /**
+         * @param validateAnswerRrs Validate response answer.
+         * 
+         * @return builder
+         * 
+         */
         public Builder validateAnswerRrs(@Nullable Output<SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs> validateAnswerRrs) {
             $.validateAnswerRrs = validateAnswerRrs;
             return this;
         }
 
+        /**
+         * @param validateAnswerRrs Validate response answer.
+         * 
+         * @return builder
+         * 
+         */
         public Builder validateAnswerRrs(SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs validateAnswerRrs) {
             return validateAnswerRrs(Output.of(validateAnswerRrs));
         }
 
+        /**
+         * @param validateAuthorityRrs Validate response authority.
+         * 
+         * @return builder
+         * 
+         */
         public Builder validateAuthorityRrs(@Nullable Output<SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgs> validateAuthorityRrs) {
             $.validateAuthorityRrs = validateAuthorityRrs;
             return this;
         }
 
+        /**
+         * @param validateAuthorityRrs Validate response authority.
+         * 
+         * @return builder
+         * 
+         */
         public Builder validateAuthorityRrs(SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgs validateAuthorityRrs) {
             return validateAuthorityRrs(Output.of(validateAuthorityRrs));
         }

@@ -13,9 +13,17 @@ public final class MachineLearningOutlierDetectorAlgorithmConfigArgs extends com
 
     public static final MachineLearningOutlierDetectorAlgorithmConfigArgs Empty = new MachineLearningOutlierDetectorAlgorithmConfigArgs();
 
+    /**
+     * Specify the epsilon parameter (positive float)
+     * 
+     */
     @Import(name="epsilon", required=true)
     private Output<Double> epsilon;
 
+    /**
+     * @return Specify the epsilon parameter (positive float)
+     * 
+     */
     public Output<Double> epsilon() {
         return this.epsilon;
     }
@@ -44,11 +52,23 @@ public final class MachineLearningOutlierDetectorAlgorithmConfigArgs extends com
             $ = new MachineLearningOutlierDetectorAlgorithmConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param epsilon Specify the epsilon parameter (positive float)
+         * 
+         * @return builder
+         * 
+         */
         public Builder epsilon(Output<Double> epsilon) {
             $.epsilon = epsilon;
             return this;
         }
 
+        /**
+         * @param epsilon Specify the epsilon parameter (positive float)
+         * 
+         * @return builder
+         * 
+         */
         public Builder epsilon(Double epsilon) {
             return epsilon(Output.of(epsilon));
         }

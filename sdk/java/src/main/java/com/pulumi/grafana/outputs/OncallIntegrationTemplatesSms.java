@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class OncallIntegrationTemplatesSms {
+    /**
+     * @return Template for Alert title.
+     * 
+     */
     private @Nullable String title;
 
     private OncallIntegrationTemplatesSms() {}
+    /**
+     * @return Template for Alert title.
+     * 
+     */
     public Optional<String> title() {
         return Optional.ofNullable(this.title);
     }

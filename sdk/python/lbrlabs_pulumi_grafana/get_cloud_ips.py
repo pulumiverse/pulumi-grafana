@@ -13,6 +13,7 @@ __all__ = [
     'GetCloudIpsResult',
     'AwaitableGetCloudIpsResult',
     'get_cloud_ips',
+    'get_cloud_ips_output',
 ]
 
 @pulumi.output_type
@@ -127,3 +128,20 @@ def get_cloud_ips(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCl
         hosted_metrics=pulumi.get(__ret__, 'hosted_metrics'),
         hosted_traces=pulumi.get(__ret__, 'hosted_traces'),
         id=pulumi.get(__ret__, 'id'))
+
+
+@_utilities.lift_output_func(get_cloud_ips)
+def get_cloud_ips_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudIpsResult]:
+    """
+    Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    test = grafana.get_cloud_ips()
+    ```
+    """
+    ...

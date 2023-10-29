@@ -78,6 +78,8 @@ type ContactPoint struct {
 	Googlechats ContactPointGooglechatArrayOutput `pulumi:"googlechats"`
 	// A contact point that publishes notifications to Apache Kafka topics.
 	Kafkas ContactPointKafkaArrayOutput `pulumi:"kafkas"`
+	// A contact point that sends notifications to LINE.me.
+	Lines ContactPointLineArrayOutput `pulumi:"lines"`
 	// The name of the contact point.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// A contact point that sends notifications to OpsGenie.
@@ -98,6 +100,8 @@ type ContactPoint struct {
 	Threemas ContactPointThreemaArrayOutput `pulumi:"threemas"`
 	// A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
 	Victorops ContactPointVictoropArrayOutput `pulumi:"victorops"`
+	// A contact point that sends notifications to Cisco Webex.
+	Webexes ContactPointWebexArrayOutput `pulumi:"webexes"`
 	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 	Webhooks ContactPointWebhookArrayOutput `pulumi:"webhooks"`
 	// A contact point that sends notifications to WeCom.
@@ -146,6 +150,8 @@ type contactPointState struct {
 	Googlechats []ContactPointGooglechat `pulumi:"googlechats"`
 	// A contact point that publishes notifications to Apache Kafka topics.
 	Kafkas []ContactPointKafka `pulumi:"kafkas"`
+	// A contact point that sends notifications to LINE.me.
+	Lines []ContactPointLine `pulumi:"lines"`
 	// The name of the contact point.
 	Name *string `pulumi:"name"`
 	// A contact point that sends notifications to OpsGenie.
@@ -166,6 +172,8 @@ type contactPointState struct {
 	Threemas []ContactPointThreema `pulumi:"threemas"`
 	// A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
 	Victorops []ContactPointVictorop `pulumi:"victorops"`
+	// A contact point that sends notifications to Cisco Webex.
+	Webexes []ContactPointWebex `pulumi:"webexes"`
 	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 	Webhooks []ContactPointWebhook `pulumi:"webhooks"`
 	// A contact point that sends notifications to WeCom.
@@ -185,6 +193,8 @@ type ContactPointState struct {
 	Googlechats ContactPointGooglechatArrayInput
 	// A contact point that publishes notifications to Apache Kafka topics.
 	Kafkas ContactPointKafkaArrayInput
+	// A contact point that sends notifications to LINE.me.
+	Lines ContactPointLineArrayInput
 	// The name of the contact point.
 	Name pulumi.StringPtrInput
 	// A contact point that sends notifications to OpsGenie.
@@ -205,6 +215,8 @@ type ContactPointState struct {
 	Threemas ContactPointThreemaArrayInput
 	// A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
 	Victorops ContactPointVictoropArrayInput
+	// A contact point that sends notifications to Cisco Webex.
+	Webexes ContactPointWebexArrayInput
 	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 	Webhooks ContactPointWebhookArrayInput
 	// A contact point that sends notifications to WeCom.
@@ -228,6 +240,8 @@ type contactPointArgs struct {
 	Googlechats []ContactPointGooglechat `pulumi:"googlechats"`
 	// A contact point that publishes notifications to Apache Kafka topics.
 	Kafkas []ContactPointKafka `pulumi:"kafkas"`
+	// A contact point that sends notifications to LINE.me.
+	Lines []ContactPointLine `pulumi:"lines"`
 	// The name of the contact point.
 	Name *string `pulumi:"name"`
 	// A contact point that sends notifications to OpsGenie.
@@ -248,6 +262,8 @@ type contactPointArgs struct {
 	Threemas []ContactPointThreema `pulumi:"threemas"`
 	// A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
 	Victorops []ContactPointVictorop `pulumi:"victorops"`
+	// A contact point that sends notifications to Cisco Webex.
+	Webexes []ContactPointWebex `pulumi:"webexes"`
 	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 	Webhooks []ContactPointWebhook `pulumi:"webhooks"`
 	// A contact point that sends notifications to WeCom.
@@ -268,6 +284,8 @@ type ContactPointArgs struct {
 	Googlechats ContactPointGooglechatArrayInput
 	// A contact point that publishes notifications to Apache Kafka topics.
 	Kafkas ContactPointKafkaArrayInput
+	// A contact point that sends notifications to LINE.me.
+	Lines ContactPointLineArrayInput
 	// The name of the contact point.
 	Name pulumi.StringPtrInput
 	// A contact point that sends notifications to OpsGenie.
@@ -288,6 +306,8 @@ type ContactPointArgs struct {
 	Threemas ContactPointThreemaArrayInput
 	// A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
 	Victorops ContactPointVictoropArrayInput
+	// A contact point that sends notifications to Cisco Webex.
+	Webexes ContactPointWebexArrayInput
 	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 	Webhooks ContactPointWebhookArrayInput
 	// A contact point that sends notifications to WeCom.
@@ -435,6 +455,11 @@ func (o ContactPointOutput) Kafkas() ContactPointKafkaArrayOutput {
 	return o.ApplyT(func(v *ContactPoint) ContactPointKafkaArrayOutput { return v.Kafkas }).(ContactPointKafkaArrayOutput)
 }
 
+// A contact point that sends notifications to LINE.me.
+func (o ContactPointOutput) Lines() ContactPointLineArrayOutput {
+	return o.ApplyT(func(v *ContactPoint) ContactPointLineArrayOutput { return v.Lines }).(ContactPointLineArrayOutput)
+}
+
 // The name of the contact point.
 func (o ContactPointOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContactPoint) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
@@ -483,6 +508,11 @@ func (o ContactPointOutput) Threemas() ContactPointThreemaArrayOutput {
 // A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
 func (o ContactPointOutput) Victorops() ContactPointVictoropArrayOutput {
 	return o.ApplyT(func(v *ContactPoint) ContactPointVictoropArrayOutput { return v.Victorops }).(ContactPointVictoropArrayOutput)
+}
+
+// A contact point that sends notifications to Cisco Webex.
+func (o ContactPointOutput) Webexes() ContactPointWebexArrayOutput {
+	return o.ApplyT(func(v *ContactPoint) ContactPointWebexArrayOutput { return v.Webexes }).(ContactPointWebexArrayOutput)
 }
 
 // A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config

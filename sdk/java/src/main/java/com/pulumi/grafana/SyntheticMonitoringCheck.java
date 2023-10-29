@@ -26,7 +26,7 @@ import javax.annotation.Nullable;
  * what information you would like to gather about your endpoint. You can define
  * multiple checks for a single endpoint to check different capabilities.
  * 
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/checks/)
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/checks/)
  * 
  * ## Example Usage
  * ### DNS Basic
@@ -272,7 +272,7 @@ import javax.annotation.Nullable;
  *                     .validHttpVersions(                    
  *                         &#34;HTTP/1.0&#34;,
  *                         &#34;HTTP/1.1&#34;,
- *                         &#34;HTTP/2&#34;)
+ *                         &#34;HTTP/2.0&#34;)
  *                     .failIfBodyMatchesRegexps(&#34;*bad stuff*&#34;)
  *                     .failIfBodyNotMatchesRegexps(&#34;*good stuff*&#34;)
  *                     .failIfHeaderMatchesRegexps(SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs.builder()
@@ -614,14 +614,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck")
 public class SyntheticMonitoringCheck extends com.pulumi.resources.CustomResource {
     /**
-     * Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+     * Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
      * 
      */
     @Export(name="alertSensitivity", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> alertSensitivity;
 
     /**
-     * @return Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+     * @return Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
      * 
      */
     public Output<Optional<String>> alertSensitivity() {

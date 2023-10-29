@@ -49,6 +49,11 @@ public final class GetRoleResult {
      */
     private String name;
     /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    private String orgId;
+    /**
      * @return Specific set of actions granted by the role.
      * 
      */
@@ -59,7 +64,7 @@ public final class GetRoleResult {
      */
     private String uid;
     /**
-     * @return Version of the role. A role is updated only on version increase.
+     * @return Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
      * 
      */
     private Integer version;
@@ -115,6 +120,13 @@ public final class GetRoleResult {
         return this.name;
     }
     /**
+     * @return The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * 
+     */
+    public String orgId() {
+        return this.orgId;
+    }
+    /**
      * @return Specific set of actions granted by the role.
      * 
      */
@@ -129,7 +141,7 @@ public final class GetRoleResult {
         return this.uid;
     }
     /**
-     * @return Version of the role. A role is updated only on version increase.
+     * @return Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
      * 
      */
     public Integer version() {
@@ -152,6 +164,7 @@ public final class GetRoleResult {
         private Boolean hidden;
         private String id;
         private String name;
+        private String orgId;
         private List<GetRolePermission> permissions;
         private String uid;
         private Integer version;
@@ -165,6 +178,7 @@ public final class GetRoleResult {
     	      this.hidden = defaults.hidden;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
+    	      this.orgId = defaults.orgId;
     	      this.permissions = defaults.permissions;
     	      this.uid = defaults.uid;
     	      this.version = defaults.version;
@@ -206,6 +220,11 @@ public final class GetRoleResult {
             return this;
         }
         @CustomType.Setter
+        public Builder orgId(String orgId) {
+            this.orgId = Objects.requireNonNull(orgId);
+            return this;
+        }
+        @CustomType.Setter
         public Builder permissions(List<GetRolePermission> permissions) {
             this.permissions = Objects.requireNonNull(permissions);
             return this;
@@ -232,6 +251,7 @@ public final class GetRoleResult {
             o.hidden = hidden;
             o.id = id;
             o.name = name;
+            o.orgId = orgId;
             o.permissions = permissions;
             o.uid = uid;
             o.version = version;

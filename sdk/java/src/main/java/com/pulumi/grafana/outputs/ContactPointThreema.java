@@ -22,7 +22,7 @@ public final class ContactPointThreema {
      * @return The templated description of the message.
      * 
      */
-    private String description;
+    private @Nullable String description;
     /**
      * @return Whether to disable sending resolve messages. Defaults to `false`.
      * 
@@ -47,7 +47,7 @@ public final class ContactPointThreema {
      * @return The templated title of the message.
      * 
      */
-    private String title;
+    private @Nullable String title;
     /**
      * @return The UID of the contact point.
      * 
@@ -66,8 +66,8 @@ public final class ContactPointThreema {
      * @return The templated description of the message.
      * 
      */
-    public String description() {
-        return this.description;
+    public Optional<String> description() {
+        return Optional.ofNullable(this.description);
     }
     /**
      * @return Whether to disable sending resolve messages. Defaults to `false`.
@@ -101,8 +101,8 @@ public final class ContactPointThreema {
      * @return The templated title of the message.
      * 
      */
-    public String title() {
-        return this.title;
+    public Optional<String> title() {
+        return Optional.ofNullable(this.title);
     }
     /**
      * @return The UID of the contact point.
@@ -122,12 +122,12 @@ public final class ContactPointThreema {
     @CustomType.Builder
     public static final class Builder {
         private String apiSecret;
-        private String description;
+        private @Nullable String description;
         private @Nullable Boolean disableResolveMessage;
         private String gatewayId;
         private String recipientId;
         private @Nullable Map<String,String> settings;
-        private String title;
+        private @Nullable String title;
         private @Nullable String uid;
         public Builder() {}
         public Builder(ContactPointThreema defaults) {
@@ -148,8 +148,8 @@ public final class ContactPointThreema {
             return this;
         }
         @CustomType.Setter
-        public Builder description(String description) {
-            this.description = Objects.requireNonNull(description);
+        public Builder description(@Nullable String description) {
+            this.description = description;
             return this;
         }
         @CustomType.Setter
@@ -173,8 +173,8 @@ public final class ContactPointThreema {
             return this;
         }
         @CustomType.Setter
-        public Builder title(String title) {
-            this.title = Objects.requireNonNull(title);
+        public Builder title(@Nullable String title) {
+            this.title = title;
             return this;
         }
         @CustomType.Setter

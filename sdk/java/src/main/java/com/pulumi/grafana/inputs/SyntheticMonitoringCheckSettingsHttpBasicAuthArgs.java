@@ -13,16 +13,32 @@ public final class SyntheticMonitoringCheckSettingsHttpBasicAuthArgs extends com
 
     public static final SyntheticMonitoringCheckSettingsHttpBasicAuthArgs Empty = new SyntheticMonitoringCheckSettingsHttpBasicAuthArgs();
 
+    /**
+     * Basic auth password.
+     * 
+     */
     @Import(name="password", required=true)
     private Output<String> password;
 
+    /**
+     * @return Basic auth password.
+     * 
+     */
     public Output<String> password() {
         return this.password;
     }
 
+    /**
+     * Basic auth username.
+     * 
+     */
     @Import(name="username", required=true)
     private Output<String> username;
 
+    /**
+     * @return Basic auth username.
+     * 
+     */
     public Output<String> username() {
         return this.username;
     }
@@ -52,20 +68,44 @@ public final class SyntheticMonitoringCheckSettingsHttpBasicAuthArgs extends com
             $ = new SyntheticMonitoringCheckSettingsHttpBasicAuthArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param password Basic auth password.
+         * 
+         * @return builder
+         * 
+         */
         public Builder password(Output<String> password) {
             $.password = password;
             return this;
         }
 
+        /**
+         * @param password Basic auth password.
+         * 
+         * @return builder
+         * 
+         */
         public Builder password(String password) {
             return password(Output.of(password));
         }
 
+        /**
+         * @param username Basic auth username.
+         * 
+         * @return builder
+         * 
+         */
         public Builder username(Output<String> username) {
             $.username = username;
             return this;
         }
 
+        /**
+         * @param username Basic auth username.
+         * 
+         * @return builder
+         * 
+         */
         public Builder username(String username) {
             return username(Output.of(username));
         }

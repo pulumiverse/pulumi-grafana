@@ -293,9 +293,6 @@ class DashboardPermission(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DashboardPermissionArgs.__new__(DashboardPermissionArgs)
 
-            if dashboard_id is not None and not opts.urn:
-                warnings.warn("""use `dashboard_uid` instead""", DeprecationWarning)
-                pulumi.log.warn("""dashboard_id is deprecated: use `dashboard_uid` instead""")
             __props__.__dict__["dashboard_id"] = dashboard_id
             __props__.__dict__["dashboard_uid"] = dashboard_uid
             __props__.__dict__["org_id"] = org_id

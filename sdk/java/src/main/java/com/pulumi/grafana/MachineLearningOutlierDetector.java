@@ -127,14 +127,14 @@ public class MachineLearningOutlierDetector extends com.pulumi.resources.CustomR
         return this.metric;
     }
     /**
-     * The name of the outlier detector.
+     * The name of the algorithm to use (&#39;mad&#39; or &#39;dbscan&#39;).
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The name of the outlier detector.
+     * @return The name of the algorithm to use (&#39;mad&#39; or &#39;dbscan&#39;).
      * 
      */
     public Output<String> name() {

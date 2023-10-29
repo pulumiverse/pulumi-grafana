@@ -14,7 +14,13 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class RuleGroupRuleDataRelativeTimeRange
     {
+        /// <summary>
+        /// The number of seconds in the past, relative to when the rule is evaluated, at which the time range begins.
+        /// </summary>
         public readonly int From;
+        /// <summary>
+        /// The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
+        /// </summary>
         public readonly int To;
 
         [OutputConstructor]

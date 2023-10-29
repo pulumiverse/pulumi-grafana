@@ -14,15 +14,45 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class SyntheticMonitoringCheckSettingsDns
     {
+        /// <summary>
+        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        /// </summary>
         public readonly string? IpVersion;
+        /// <summary>
+        /// Port to target. Defaults to `53`.
+        /// </summary>
         public readonly int? Port;
+        /// <summary>
+        /// `TCP` or `UDP`. Defaults to `UDP`.
+        /// </summary>
         public readonly string? Protocol;
+        /// <summary>
+        /// One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+        /// </summary>
         public readonly string? RecordType;
+        /// <summary>
+        /// DNS server address to target. Defaults to `8.8.8.8`.
+        /// </summary>
         public readonly string? Server;
+        /// <summary>
+        /// Source IP address.
+        /// </summary>
         public readonly string? SourceIpAddress;
+        /// <summary>
+        /// List of valid response codes. Options include `NOERROR`, `BADALG`, `BADMODE`, `BADKEY`, `BADCOOKIE`, `BADNAME`, `BADSIG`, `BADTIME`, `BADTRUNC`, `BADVERS`, `FORMERR`, `NOTIMP`, `NOTAUTH`, `NOTZONE`, `NXDOMAIN`, `NXRRSET`, `REFUSED`, `SERVFAIL`, `YXDOMAIN`, `YXRRSET`.
+        /// </summary>
         public readonly ImmutableArray<string> ValidRCodes;
+        /// <summary>
+        /// Validate additional matches.
+        /// </summary>
         public readonly ImmutableArray<Outputs.SyntheticMonitoringCheckSettingsDnsValidateAdditionalRr> ValidateAdditionalRrs;
+        /// <summary>
+        /// Validate response answer.
+        /// </summary>
         public readonly Outputs.SyntheticMonitoringCheckSettingsDnsValidateAnswerRrs? ValidateAnswerRrs;
+        /// <summary>
+        /// Validate response authority.
+        /// </summary>
         public readonly Outputs.SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrs? ValidateAuthorityRrs;
 
         [OutputConstructor]

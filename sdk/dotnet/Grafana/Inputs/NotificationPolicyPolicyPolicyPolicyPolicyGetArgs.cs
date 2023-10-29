@@ -29,7 +29,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
         private InputList<string>? _groupBies;
 
         /// <summary>
-        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         /// </summary>
         public InputList<string> GroupBies
         {

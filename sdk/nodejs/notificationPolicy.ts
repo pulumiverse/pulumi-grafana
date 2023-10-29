@@ -46,7 +46,6 @@ import * as utilities from "./utilities";
  *                 value: "myvalue",
  *             }],
  *             contactPoint: aContactPoint.name,
- *             groupBies: ["alertname"],
  *             "continue": true,
  *             muteTimings: [aMuteTiming.name],
  *             groupWait: "45s",
@@ -112,11 +111,11 @@ export class NotificationPolicy extends pulumi.CustomResource {
     }
 
     /**
-     * The default contact point to route all unmatched notifications to.
+     * The contact point to route notifications that match this rule to.
      */
     public readonly contactPoint!: pulumi.Output<string>;
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      */
     public readonly groupBies!: pulumi.Output<string[]>;
     /**
@@ -180,11 +179,11 @@ export class NotificationPolicy extends pulumi.CustomResource {
  */
 export interface NotificationPolicyState {
     /**
-     * The default contact point to route all unmatched notifications to.
+     * The contact point to route notifications that match this rule to.
      */
     contactPoint?: pulumi.Input<string>;
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      */
     groupBies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -210,11 +209,11 @@ export interface NotificationPolicyState {
  */
 export interface NotificationPolicyArgs {
     /**
-     * The default contact point to route all unmatched notifications to.
+     * The contact point to route notifications that match this rule to.
      */
     contactPoint: pulumi.Input<string>;
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      */
     groupBies: pulumi.Input<pulumi.Input<string>[]>;
     /**

@@ -12,25 +12,65 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class RuleGroupRuleData {
+    /**
+     * @return The UID of the datasource being queried, or &#34;-100&#34; if this stage is an expression stage.
+     * 
+     */
     private String datasourceUid;
+    /**
+     * @return Custom JSON data to send to the specified datasource when querying.
+     * 
+     */
     private String model;
+    /**
+     * @return An optional identifier for the type of query being executed. Defaults to ``.
+     * 
+     */
     private @Nullable String queryType;
+    /**
+     * @return A unique string to identify this query stage within a rule.
+     * 
+     */
     private String refId;
+    /**
+     * @return The time range, relative to when the query is executed, across which to query.
+     * 
+     */
     private RuleGroupRuleDataRelativeTimeRange relativeTimeRange;
 
     private RuleGroupRuleData() {}
+    /**
+     * @return The UID of the datasource being queried, or &#34;-100&#34; if this stage is an expression stage.
+     * 
+     */
     public String datasourceUid() {
         return this.datasourceUid;
     }
+    /**
+     * @return Custom JSON data to send to the specified datasource when querying.
+     * 
+     */
     public String model() {
         return this.model;
     }
+    /**
+     * @return An optional identifier for the type of query being executed. Defaults to ``.
+     * 
+     */
     public Optional<String> queryType() {
         return Optional.ofNullable(this.queryType);
     }
+    /**
+     * @return A unique string to identify this query stage within a rule.
+     * 
+     */
     public String refId() {
         return this.refId;
     }
+    /**
+     * @return The time range, relative to when the query is executed, across which to query.
+     * 
+     */
     public RuleGroupRuleDataRelativeTimeRange relativeTimeRange() {
         return this.relativeTimeRange;
     }

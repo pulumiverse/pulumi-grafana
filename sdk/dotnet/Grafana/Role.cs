@@ -65,6 +65,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public partial class Role : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+        /// </summary>
+        [Output("autoIncrementVersion")]
+        public Output<bool?> AutoIncrementVersion { get; private set; } = null!;
+
+        /// <summary>
         /// Description of the role.
         /// </summary>
         [Output("description")]
@@ -101,6 +107,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
+
+        /// <summary>
         /// Specific set of actions granted by the role.
         /// </summary>
         [Output("permissions")]
@@ -113,10 +125,10 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string> Uid { get; private set; } = null!;
 
         /// <summary>
-        /// Version of the role. A role is updated only on version increase.
+        /// Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
         /// </summary>
         [Output("version")]
-        public Output<int> Version { get; private set; } = null!;
+        public Output<int?> Version { get; private set; } = null!;
 
 
         /// <summary>
@@ -126,7 +138,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Role(string name, RoleArgs args, CustomResourceOptions? options = null)
+        public Role(string name, RoleArgs? args = null, CustomResourceOptions? options = null)
             : base("grafana:index/role:Role", name, args ?? new RoleArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -166,6 +178,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
     public sealed class RoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+        /// </summary>
+        [Input("autoIncrementVersion")]
+        public Input<bool>? AutoIncrementVersion { get; set; }
+
+        /// <summary>
         /// Description of the role.
         /// </summary>
         [Input("description")]
@@ -200,6 +218,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         [Input("permissions")]
         private InputList<Inputs.RolePermissionArgs>? _permissions;
@@ -220,10 +244,10 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? Uid { get; set; }
 
         /// <summary>
-        /// Version of the role. A role is updated only on version increase.
+        /// Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
         /// </summary>
-        [Input("version", required: true)]
-        public Input<int> Version { get; set; } = null!;
+        [Input("version")]
+        public Input<int>? Version { get; set; }
 
         public RoleArgs()
         {
@@ -233,6 +257,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
 
     public sealed class RoleState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+        /// </summary>
+        [Input("autoIncrementVersion")]
+        public Input<bool>? AutoIncrementVersion { get; set; }
+
         /// <summary>
         /// Description of the role.
         /// </summary>
@@ -269,6 +299,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
         [Input("permissions")]
         private InputList<Inputs.RolePermissionGetArgs>? _permissions;
 
@@ -288,7 +324,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? Uid { get; set; }
 
         /// <summary>
-        /// Version of the role. A role is updated only on version increase.
+        /// Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
         /// </summary>
         [Input("version")]
         public Input<int>? Version { get; set; }

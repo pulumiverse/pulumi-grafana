@@ -27,7 +27,7 @@ class RuleGroupArgs:
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[str] org_id: The ID of the org to which the group belongs.
         :param pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleArgs']]] rules: The rules within the group.
-        :param pulumi.Input[str] name: The name of the rule group.
+        :param pulumi.Input[str] name: The name of the alert rule.
         """
         pulumi.set(__self__, "folder_uid", folder_uid)
         pulumi.set(__self__, "interval_seconds", interval_seconds)
@@ -88,7 +88,7 @@ class RuleGroupArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the rule group.
+        The name of the alert rule.
         """
         return pulumi.get(self, "name")
 
@@ -109,7 +109,7 @@ class _RuleGroupState:
         Input properties used for looking up and filtering RuleGroup resources.
         :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
-        :param pulumi.Input[str] name: The name of the rule group.
+        :param pulumi.Input[str] name: The name of the alert rule.
         :param pulumi.Input[str] org_id: The ID of the org to which the group belongs.
         :param pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleArgs']]] rules: The rules within the group.
         """
@@ -152,7 +152,7 @@ class _RuleGroupState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the rule group.
+        The name of the alert rule.
         """
         return pulumi.get(self, "name")
 
@@ -305,7 +305,7 @@ class RuleGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
-        :param pulumi.Input[str] name: The name of the rule group.
+        :param pulumi.Input[str] name: The name of the alert rule.
         :param pulumi.Input[str] org_id: The ID of the org to which the group belongs.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]] rules: The rules within the group.
         """
@@ -486,7 +486,7 @@ class RuleGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
-        :param pulumi.Input[str] name: The name of the rule group.
+        :param pulumi.Input[str] name: The name of the alert rule.
         :param pulumi.Input[str] org_id: The ID of the org to which the group belongs.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]] rules: The rules within the group.
         """
@@ -521,7 +521,7 @@ class RuleGroup(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the rule group.
+        The name of the alert rule.
         """
         return pulumi.get(self, "name")
 

@@ -14,7 +14,13 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class OncallIntegrationDefaultRouteSlack
     {
+        /// <summary>
+        /// Slack channel id. Alerts will be directed to this channel in Slack.
+        /// </summary>
         public readonly string? ChannelId;
+        /// <summary>
+        /// Enable notification in MS teams. Defaults to `true`.
+        /// </summary>
         public readonly bool? Enabled;
 
         [OutputConstructor]

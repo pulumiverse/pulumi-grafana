@@ -78,6 +78,21 @@ public final class ContactPointDiscordArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * The templated content of the title.
+     * 
+     */
+    @Import(name="title")
+    private @Nullable Output<String> title;
+
+    /**
+     * @return The templated content of the title.
+     * 
+     */
+    public Optional<Output<String>> title() {
+        return Optional.ofNullable(this.title);
+    }
+
+    /**
      * The UID of the contact point.
      * 
      */
@@ -129,6 +144,7 @@ public final class ContactPointDiscordArgs extends com.pulumi.resources.Resource
         this.disableResolveMessage = $.disableResolveMessage;
         this.message = $.message;
         this.settings = $.settings;
+        this.title = $.title;
         this.uid = $.uid;
         this.url = $.url;
         this.useDiscordUsername = $.useDiscordUsername;
@@ -234,6 +250,27 @@ public final class ContactPointDiscordArgs extends com.pulumi.resources.Resource
          */
         public Builder settings(Map<String,String> settings) {
             return settings(Output.of(settings));
+        }
+
+        /**
+         * @param title The templated content of the title.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder title(@Nullable Output<String> title) {
+            $.title = title;
+            return this;
+        }
+
+        /**
+         * @param title The templated content of the title.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder title(String title) {
+            return title(Output.of(title));
         }
 
         /**

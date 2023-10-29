@@ -14,8 +14,17 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class OncallIntegrationTemplatesMicrosoftTeams
     {
+        /// <summary>
+        /// Template for Alert image url.
+        /// </summary>
         public readonly string? ImageUrl;
+        /// <summary>
+        /// Template for Alert message.
+        /// </summary>
         public readonly string? Message;
+        /// <summary>
+        /// Template for Alert title.
+        /// </summary>
         public readonly string? Title;
 
         [OutputConstructor]

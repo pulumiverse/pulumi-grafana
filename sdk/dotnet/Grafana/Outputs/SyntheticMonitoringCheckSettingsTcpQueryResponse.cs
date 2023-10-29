@@ -14,8 +14,17 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class SyntheticMonitoringCheckSettingsTcpQueryResponse
     {
+        /// <summary>
+        /// Response to expect.
+        /// </summary>
         public readonly string Expect;
+        /// <summary>
+        /// Data to send.
+        /// </summary>
         public readonly string Send;
+        /// <summary>
+        /// Upgrade TCP connection to TLS. Defaults to `false`.
+        /// </summary>
         public readonly bool? StartTls;
 
         [OutputConstructor]

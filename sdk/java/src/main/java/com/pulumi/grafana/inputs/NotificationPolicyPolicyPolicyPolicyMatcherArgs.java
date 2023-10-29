@@ -13,23 +13,47 @@ public final class NotificationPolicyPolicyPolicyPolicyMatcherArgs extends com.p
 
     public static final NotificationPolicyPolicyPolicyPolicyMatcherArgs Empty = new NotificationPolicyPolicyPolicyPolicyMatcherArgs();
 
+    /**
+     * The name of the label to match against.
+     * 
+     */
     @Import(name="label", required=true)
     private Output<String> label;
 
+    /**
+     * @return The name of the label to match against.
+     * 
+     */
     public Output<String> label() {
         return this.label;
     }
 
+    /**
+     * The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+     * 
+     */
     @Import(name="match", required=true)
     private Output<String> match;
 
+    /**
+     * @return The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+     * 
+     */
     public Output<String> match() {
         return this.match;
     }
 
+    /**
+     * The label value to match against.
+     * 
+     */
     @Import(name="value", required=true)
     private Output<String> value;
 
+    /**
+     * @return The label value to match against.
+     * 
+     */
     public Output<String> value() {
         return this.value;
     }
@@ -60,29 +84,65 @@ public final class NotificationPolicyPolicyPolicyPolicyMatcherArgs extends com.p
             $ = new NotificationPolicyPolicyPolicyPolicyMatcherArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param label The name of the label to match against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder label(Output<String> label) {
             $.label = label;
             return this;
         }
 
+        /**
+         * @param label The name of the label to match against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder label(String label) {
             return label(Output.of(label));
         }
 
+        /**
+         * @param match The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+         * 
+         * @return builder
+         * 
+         */
         public Builder match(Output<String> match) {
             $.match = match;
             return this;
         }
 
+        /**
+         * @param match The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+         * 
+         * @return builder
+         * 
+         */
         public Builder match(String match) {
             return match(Output.of(match));
         }
 
+        /**
+         * @param value The label value to match against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Output<String> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value The label value to match against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(String value) {
             return value(Output.of(value));
         }

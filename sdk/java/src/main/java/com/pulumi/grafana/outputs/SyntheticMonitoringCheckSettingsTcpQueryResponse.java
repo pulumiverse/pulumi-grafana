@@ -12,17 +12,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SyntheticMonitoringCheckSettingsTcpQueryResponse {
+    /**
+     * @return Response to expect.
+     * 
+     */
     private String expect;
+    /**
+     * @return Data to send.
+     * 
+     */
     private String send;
+    /**
+     * @return Upgrade TCP connection to TLS. Defaults to `false`.
+     * 
+     */
     private @Nullable Boolean startTls;
 
     private SyntheticMonitoringCheckSettingsTcpQueryResponse() {}
+    /**
+     * @return Response to expect.
+     * 
+     */
     public String expect() {
         return this.expect;
     }
+    /**
+     * @return Data to send.
+     * 
+     */
     public String send() {
         return this.send;
     }
+    /**
+     * @return Upgrade TCP connection to TLS. Defaults to `false`.
+     * 
+     */
     public Optional<Boolean> startTls() {
         return Optional.ofNullable(this.startTls);
     }

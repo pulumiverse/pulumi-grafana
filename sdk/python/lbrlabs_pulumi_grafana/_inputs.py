@@ -18,6 +18,7 @@ __all__ = [
     'ContactPointEmailArgs',
     'ContactPointGooglechatArgs',
     'ContactPointKafkaArgs',
+    'ContactPointLineArgs',
     'ContactPointOpsgenyArgs',
     'ContactPointPagerdutyArgs',
     'ContactPointPushoverArgs',
@@ -27,6 +28,7 @@ __all__ = [
     'ContactPointTelegramArgs',
     'ContactPointThreemaArgs',
     'ContactPointVictoropArgs',
+    'ContactPointWebexArgs',
     'ContactPointWebhookArgs',
     'ContactPointWecomArgs',
     'DashboardPermissionPermissionArgs',
@@ -155,11 +157,17 @@ class CloudAccessPolicyRealmArgs:
 class CloudAccessPolicyRealmLabelPolicyArgs:
     def __init__(__self__, *,
                  selector: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] selector: The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
+        """
         pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
     def selector(self) -> pulumi.Input[str]:
+        """
+        The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
+        """
         return pulumi.get(self, "selector")
 
     @selector.setter
@@ -395,6 +403,7 @@ class ContactPointDiscordArgs:
                  disable_resolve_message: Optional[pulumi.Input[bool]] = None,
                  message: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  use_discord_username: Optional[pulumi.Input[bool]] = None):
         """
@@ -403,6 +412,7 @@ class ContactPointDiscordArgs:
         :param pulumi.Input[bool] disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param pulumi.Input[str] message: The templated content of the message. Defaults to ``.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        :param pulumi.Input[str] title: The templated content of the title.
         :param pulumi.Input[str] uid: The UID of the contact point.
         :param pulumi.Input[bool] use_discord_username: Whether to use the bot account's plain username instead of "Grafana." Defaults to `false`.
         """
@@ -415,6 +425,8 @@ class ContactPointDiscordArgs:
             pulumi.set(__self__, "message", message)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
         if use_discord_username is not None:
@@ -479,6 +491,18 @@ class ContactPointDiscordArgs:
     @settings.setter
     def settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "settings", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        The templated content of the title.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
 
     @property
     @pulumi.getter
@@ -630,12 +654,14 @@ class ContactPointGooglechatArgs:
                  disable_resolve_message: Optional[pulumi.Input[bool]] = None,
                  message: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] url: The Google Chat webhook URL.
         :param pulumi.Input[bool] disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param pulumi.Input[str] message: The templated content of the message.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        :param pulumi.Input[str] title: The templated content of the title.
         :param pulumi.Input[str] uid: The UID of the contact point.
         """
         pulumi.set(__self__, "url", url)
@@ -645,6 +671,8 @@ class ContactPointGooglechatArgs:
             pulumi.set(__self__, "message", message)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
 
@@ -698,6 +726,18 @@ class ContactPointGooglechatArgs:
 
     @property
     @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        The templated content of the title.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
+
+    @property
+    @pulumi.getter
     def uid(self) -> Optional[pulumi.Input[str]]:
         """
         The UID of the contact point.
@@ -714,24 +754,48 @@ class ContactPointKafkaArgs:
     def __init__(__self__, *,
                  rest_proxy_url: pulumi.Input[str],
                  topic: pulumi.Input[str],
+                 api_version: Optional[pulumi.Input[str]] = None,
+                 cluster_id: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 details: Optional[pulumi.Input[str]] = None,
                  disable_resolve_message: Optional[pulumi.Input[bool]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 uid: Optional[pulumi.Input[str]] = None):
+                 uid: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] rest_proxy_url: The URL of the Kafka REST proxy to send requests to.
         :param pulumi.Input[str] topic: The name of the Kafka topic to publish to.
+        :param pulumi.Input[str] api_version: The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+        :param pulumi.Input[str] cluster_id: The Id of cluster to use when contacting the Kafka REST Server. Required api_version to be 'v3'
+        :param pulumi.Input[str] description: The templated description of the Kafka message.
+        :param pulumi.Input[str] details: The templated details to include with the message.
         :param pulumi.Input[bool] disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
+        :param pulumi.Input[str] password: The password to use when making a call to the Kafka REST Proxy
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
         :param pulumi.Input[str] uid: The UID of the contact point.
+        :param pulumi.Input[str] username: The user name to use when making a call to the Kafka REST Proxy
         """
         pulumi.set(__self__, "rest_proxy_url", rest_proxy_url)
         pulumi.set(__self__, "topic", topic)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", api_version)
+        if cluster_id is not None:
+            pulumi.set(__self__, "cluster_id", cluster_id)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if details is not None:
+            pulumi.set(__self__, "details", details)
         if disable_resolve_message is not None:
             pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter(name="restProxyUrl")
@@ -758,6 +822,168 @@ class ContactPointKafkaArgs:
         pulumi.set(self, "topic", value)
 
     @property
+    @pulumi.getter(name="apiVersion")
+    def api_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+        """
+        return pulumi.get(self, "api_version")
+
+    @api_version.setter
+    def api_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "api_version", value)
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Id of cluster to use when contacting the Kafka REST Server. Required api_version to be 'v3'
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @cluster_id.setter
+    def cluster_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cluster_id", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The templated description of the Kafka message.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def details(self) -> Optional[pulumi.Input[str]]:
+        """
+        The templated details to include with the message.
+        """
+        return pulumi.get(self, "details")
+
+    @details.setter
+    def details(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "details", value)
+
+    @property
+    @pulumi.getter(name="disableResolveMessage")
+    def disable_resolve_message(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        return pulumi.get(self, "disable_resolve_message")
+
+    @disable_resolve_message.setter
+    def disable_resolve_message(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_resolve_message", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password to use when making a call to the Kafka REST Proxy
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        return pulumi.get(self, "settings")
+
+    @settings.setter
+    def settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "settings", value)
+
+    @property
+    @pulumi.getter
+    def uid(self) -> Optional[pulumi.Input[str]]:
+        """
+        The UID of the contact point.
+        """
+        return pulumi.get(self, "uid")
+
+    @uid.setter
+    def uid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "uid", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The user name to use when making a call to the Kafka REST Proxy
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+
+@pulumi.input_type
+class ContactPointLineArgs:
+    def __init__(__self__, *,
+                 token: pulumi.Input[str],
+                 description: Optional[pulumi.Input[str]] = None,
+                 disable_resolve_message: Optional[pulumi.Input[bool]] = None,
+                 settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
+                 uid: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] token: The bearer token used to authorize the client.
+        :param pulumi.Input[str] description: The templated description of the message.
+        :param pulumi.Input[bool] disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        :param pulumi.Input[str] title: The templated title of the message.
+        :param pulumi.Input[str] uid: The UID of the contact point.
+        """
+        pulumi.set(__self__, "token", token)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if disable_resolve_message is not None:
+            pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
+        if settings is not None:
+            pulumi.set(__self__, "settings", settings)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
+
+    @property
+    @pulumi.getter
+    def token(self) -> pulumi.Input[str]:
+        """
+        The bearer token used to authorize the client.
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: pulumi.Input[str]):
+        pulumi.set(self, "token", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The templated description of the message.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
     @pulumi.getter(name="disableResolveMessage")
     def disable_resolve_message(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -780,6 +1006,18 @@ class ContactPointKafkaArgs:
     @settings.setter
     def settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "settings", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        The templated title of the message.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
 
     @property
     @pulumi.getter
@@ -1190,7 +1428,8 @@ class ContactPointPushoverArgs:
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  sound: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None,
-                 uid: Optional[pulumi.Input[str]] = None):
+                 uid: Optional[pulumi.Input[str]] = None,
+                 upload_image: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[str] api_token: The Pushover API token.
         :param pulumi.Input[str] user_key: The Pushover user key.
@@ -1206,6 +1445,7 @@ class ContactPointPushoverArgs:
         :param pulumi.Input[str] sound: The sound associated with the notification.
         :param pulumi.Input[str] title: The templated title of the message.
         :param pulumi.Input[str] uid: The UID of the contact point.
+        :param pulumi.Input[bool] upload_image: Whether to send images in the notification or not. Default is true. Requires Grafana to be configured to send images in notifications.
         """
         pulumi.set(__self__, "api_token", api_token)
         pulumi.set(__self__, "user_key", user_key)
@@ -1233,6 +1473,8 @@ class ContactPointPushoverArgs:
             pulumi.set(__self__, "title", title)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
+        if upload_image is not None:
+            pulumi.set(__self__, "upload_image", upload_image)
 
     @property
     @pulumi.getter(name="apiToken")
@@ -1401,6 +1643,18 @@ class ContactPointPushoverArgs:
     @uid.setter
     def uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "uid", value)
+
+    @property
+    @pulumi.getter(name="uploadImage")
+    def upload_image(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to send images in the notification or not. Default is true. Requires Grafana to be configured to send images in notifications.
+        """
+        return pulumi.get(self, "upload_image")
+
+    @upload_image.setter
+    def upload_image(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "upload_image", value)
 
 
 @pulumi.input_type
@@ -1938,24 +2192,40 @@ class ContactPointTelegramArgs:
     def __init__(__self__, *,
                  chat_id: pulumi.Input[str],
                  token: pulumi.Input[str],
+                 disable_notifications: Optional[pulumi.Input[bool]] = None,
                  disable_resolve_message: Optional[pulumi.Input[bool]] = None,
+                 disable_web_page_preview: Optional[pulumi.Input[bool]] = None,
                  message: Optional[pulumi.Input[str]] = None,
+                 parse_mode: Optional[pulumi.Input[str]] = None,
+                 protect_content: Optional[pulumi.Input[bool]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  uid: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] chat_id: The chat ID to send messages to.
         :param pulumi.Input[str] token: The Telegram bot token.
+        :param pulumi.Input[bool] disable_notifications: When set users will receive a notification with no sound.
         :param pulumi.Input[bool] disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
+        :param pulumi.Input[bool] disable_web_page_preview: When set it disables link previews for links in the message.
         :param pulumi.Input[str] message: The templated content of the message.
+        :param pulumi.Input[str] parse_mode: Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
+        :param pulumi.Input[bool] protect_content: When set it protects the contents of the message from forwarding and saving.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
         :param pulumi.Input[str] uid: The UID of the contact point.
         """
         pulumi.set(__self__, "chat_id", chat_id)
         pulumi.set(__self__, "token", token)
+        if disable_notifications is not None:
+            pulumi.set(__self__, "disable_notifications", disable_notifications)
         if disable_resolve_message is not None:
             pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
+        if disable_web_page_preview is not None:
+            pulumi.set(__self__, "disable_web_page_preview", disable_web_page_preview)
         if message is not None:
             pulumi.set(__self__, "message", message)
+        if parse_mode is not None:
+            pulumi.set(__self__, "parse_mode", parse_mode)
+        if protect_content is not None:
+            pulumi.set(__self__, "protect_content", protect_content)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
         if uid is not None:
@@ -1986,6 +2256,18 @@ class ContactPointTelegramArgs:
         pulumi.set(self, "token", value)
 
     @property
+    @pulumi.getter(name="disableNotifications")
+    def disable_notifications(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When set users will receive a notification with no sound.
+        """
+        return pulumi.get(self, "disable_notifications")
+
+    @disable_notifications.setter
+    def disable_notifications(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_notifications", value)
+
+    @property
     @pulumi.getter(name="disableResolveMessage")
     def disable_resolve_message(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -1998,6 +2280,18 @@ class ContactPointTelegramArgs:
         pulumi.set(self, "disable_resolve_message", value)
 
     @property
+    @pulumi.getter(name="disableWebPagePreview")
+    def disable_web_page_preview(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When set it disables link previews for links in the message.
+        """
+        return pulumi.get(self, "disable_web_page_preview")
+
+    @disable_web_page_preview.setter
+    def disable_web_page_preview(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_web_page_preview", value)
+
+    @property
     @pulumi.getter
     def message(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2008,6 +2302,30 @@ class ContactPointTelegramArgs:
     @message.setter
     def message(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter(name="parseMode")
+    def parse_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
+        """
+        return pulumi.get(self, "parse_mode")
+
+    @parse_mode.setter
+    def parse_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "parse_mode", value)
+
+    @property
+    @pulumi.getter(name="protectContent")
+    def protect_content(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When set it protects the contents of the message from forwarding and saving.
+        """
+        return pulumi.get(self, "protect_content")
+
+    @protect_content.setter
+    def protect_content(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "protect_content", value)
 
     @property
     @pulumi.getter
@@ -2038,32 +2356,34 @@ class ContactPointTelegramArgs:
 class ContactPointThreemaArgs:
     def __init__(__self__, *,
                  api_secret: pulumi.Input[str],
-                 description: pulumi.Input[str],
                  gateway_id: pulumi.Input[str],
                  recipient_id: pulumi.Input[str],
-                 title: pulumi.Input[str],
+                 description: Optional[pulumi.Input[str]] = None,
                  disable_resolve_message: Optional[pulumi.Input[bool]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] api_secret: The Threema API key.
-        :param pulumi.Input[str] description: The templated description of the message.
         :param pulumi.Input[str] gateway_id: The Threema gateway ID.
         :param pulumi.Input[str] recipient_id: The ID of the recipient of the message.
-        :param pulumi.Input[str] title: The templated title of the message.
+        :param pulumi.Input[str] description: The templated description of the message.
         :param pulumi.Input[bool] disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        :param pulumi.Input[str] title: The templated title of the message.
         :param pulumi.Input[str] uid: The UID of the contact point.
         """
         pulumi.set(__self__, "api_secret", api_secret)
-        pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "gateway_id", gateway_id)
         pulumi.set(__self__, "recipient_id", recipient_id)
-        pulumi.set(__self__, "title", title)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if disable_resolve_message is not None:
             pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
 
@@ -2078,18 +2398,6 @@ class ContactPointThreemaArgs:
     @api_secret.setter
     def api_secret(self, value: pulumi.Input[str]):
         pulumi.set(self, "api_secret", value)
-
-    @property
-    @pulumi.getter
-    def description(self) -> pulumi.Input[str]:
-        """
-        The templated description of the message.
-        """
-        return pulumi.get(self, "description")
-
-    @description.setter
-    def description(self, value: pulumi.Input[str]):
-        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter(name="gatewayId")
@@ -2117,15 +2425,15 @@ class ContactPointThreemaArgs:
 
     @property
     @pulumi.getter
-    def title(self) -> pulumi.Input[str]:
+    def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The templated title of the message.
+        The templated description of the message.
         """
-        return pulumi.get(self, "title")
+        return pulumi.get(self, "description")
 
-    @title.setter
-    def title(self, value: pulumi.Input[str]):
-        pulumi.set(self, "title", value)
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter(name="disableResolveMessage")
@@ -2150,6 +2458,18 @@ class ContactPointThreemaArgs:
     @settings.setter
     def settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "settings", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        The templated title of the message.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
 
     @property
     @pulumi.getter
@@ -2268,6 +2588,125 @@ class ContactPointVictoropArgs:
     @title.setter
     def title(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "title", value)
+
+    @property
+    @pulumi.getter
+    def uid(self) -> Optional[pulumi.Input[str]]:
+        """
+        The UID of the contact point.
+        """
+        return pulumi.get(self, "uid")
+
+    @uid.setter
+    def uid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "uid", value)
+
+
+@pulumi.input_type
+class ContactPointWebexArgs:
+    def __init__(__self__, *,
+                 api_url: Optional[pulumi.Input[str]] = None,
+                 disable_resolve_message: Optional[pulumi.Input[bool]] = None,
+                 message: Optional[pulumi.Input[str]] = None,
+                 room_id: Optional[pulumi.Input[str]] = None,
+                 settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 token: Optional[pulumi.Input[str]] = None,
+                 uid: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_url: The URL to send webhook requests to.
+        :param pulumi.Input[bool] disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
+        :param pulumi.Input[str] message: The templated title of the message to send.
+        :param pulumi.Input[str] room_id: ID of the Webex Teams room where to send the messages.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        :param pulumi.Input[str] token: The bearer token used to authorize the client.
+        :param pulumi.Input[str] uid: The UID of the contact point.
+        """
+        if api_url is not None:
+            pulumi.set(__self__, "api_url", api_url)
+        if disable_resolve_message is not None:
+            pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if room_id is not None:
+            pulumi.set(__self__, "room_id", room_id)
+        if settings is not None:
+            pulumi.set(__self__, "settings", settings)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
+
+    @property
+    @pulumi.getter(name="apiUrl")
+    def api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The URL to send webhook requests to.
+        """
+        return pulumi.get(self, "api_url")
+
+    @api_url.setter
+    def api_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "api_url", value)
+
+    @property
+    @pulumi.getter(name="disableResolveMessage")
+    def disable_resolve_message(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        return pulumi.get(self, "disable_resolve_message")
+
+    @disable_resolve_message.setter
+    def disable_resolve_message(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_resolve_message", value)
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        The templated title of the message to send.
+        """
+        return pulumi.get(self, "message")
+
+    @message.setter
+    def message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter(name="roomId")
+    def room_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the Webex Teams room where to send the messages.
+        """
+        return pulumi.get(self, "room_id")
+
+    @room_id.setter
+    def room_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "room_id", value)
+
+    @property
+    @pulumi.getter
+    def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        return pulumi.get(self, "settings")
+
+    @settings.setter
+    def settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "settings", value)
+
+    @property
+    @pulumi.getter
+    def token(self) -> Optional[pulumi.Input[str]]:
+        """
+        The bearer token used to authorize the client.
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token", value)
 
     @property
     @pulumi.getter
@@ -2483,43 +2922,76 @@ class ContactPointWebhookArgs:
 @pulumi.input_type
 class ContactPointWecomArgs:
     def __init__(__self__, *,
-                 url: pulumi.Input[str],
+                 agent_id: Optional[pulumi.Input[str]] = None,
+                 corp_id: Optional[pulumi.Input[str]] = None,
                  disable_resolve_message: Optional[pulumi.Input[bool]] = None,
                  message: Optional[pulumi.Input[str]] = None,
+                 msg_type: Optional[pulumi.Input[str]] = None,
+                 secret: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  title: Optional[pulumi.Input[str]] = None,
-                 uid: Optional[pulumi.Input[str]] = None):
+                 to_user: Optional[pulumi.Input[str]] = None,
+                 uid: Optional[pulumi.Input[str]] = None,
+                 url: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] url: The WeCom webhook URL.
+        :param pulumi.Input[str] agent_id: Agent ID added to the request payload when using APIAPP.
+        :param pulumi.Input[str] corp_id: Corp ID used to get token when using APIAPP.
         :param pulumi.Input[bool] disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param pulumi.Input[str] message: The templated content of the message to send.
+        :param pulumi.Input[str] msg_type: The type of them message. Supported: markdown, text. Default: text.
+        :param pulumi.Input[str] secret: The secret key required to obtain access token when using APIAPP. See https://work.weixin.qq.com/wework_admin/frame#apps to create APIAPP.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
         :param pulumi.Input[str] title: The templated title of the message to send.
+        :param pulumi.Input[str] to_user: The ID of user that should receive the message. Multiple entries should be separated by '|'. Default: @all.
         :param pulumi.Input[str] uid: The UID of the contact point.
+        :param pulumi.Input[str] url: The WeCom webhook URL. Required if using GroupRobot.
         """
-        pulumi.set(__self__, "url", url)
+        if agent_id is not None:
+            pulumi.set(__self__, "agent_id", agent_id)
+        if corp_id is not None:
+            pulumi.set(__self__, "corp_id", corp_id)
         if disable_resolve_message is not None:
             pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
         if message is not None:
             pulumi.set(__self__, "message", message)
+        if msg_type is not None:
+            pulumi.set(__self__, "msg_type", msg_type)
+        if secret is not None:
+            pulumi.set(__self__, "secret", secret)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
         if title is not None:
             pulumi.set(__self__, "title", title)
+        if to_user is not None:
+            pulumi.set(__self__, "to_user", to_user)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
 
     @property
-    @pulumi.getter
-    def url(self) -> pulumi.Input[str]:
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The WeCom webhook URL.
+        Agent ID added to the request payload when using APIAPP.
         """
-        return pulumi.get(self, "url")
+        return pulumi.get(self, "agent_id")
 
-    @url.setter
-    def url(self, value: pulumi.Input[str]):
-        pulumi.set(self, "url", value)
+    @agent_id.setter
+    def agent_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "agent_id", value)
+
+    @property
+    @pulumi.getter(name="corpId")
+    def corp_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Corp ID used to get token when using APIAPP.
+        """
+        return pulumi.get(self, "corp_id")
+
+    @corp_id.setter
+    def corp_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "corp_id", value)
 
     @property
     @pulumi.getter(name="disableResolveMessage")
@@ -2546,6 +3018,30 @@ class ContactPointWecomArgs:
         pulumi.set(self, "message", value)
 
     @property
+    @pulumi.getter(name="msgType")
+    def msg_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of them message. Supported: markdown, text. Default: text.
+        """
+        return pulumi.get(self, "msg_type")
+
+    @msg_type.setter
+    def msg_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "msg_type", value)
+
+    @property
+    @pulumi.getter
+    def secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        The secret key required to obtain access token when using APIAPP. See https://work.weixin.qq.com/wework_admin/frame#apps to create APIAPP.
+        """
+        return pulumi.get(self, "secret")
+
+    @secret.setter
+    def secret(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secret", value)
+
+    @property
     @pulumi.getter
     def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
@@ -2570,6 +3066,18 @@ class ContactPointWecomArgs:
         pulumi.set(self, "title", value)
 
     @property
+    @pulumi.getter(name="toUser")
+    def to_user(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of user that should receive the message. Multiple entries should be separated by '|'. Default: @all.
+        """
+        return pulumi.get(self, "to_user")
+
+    @to_user.setter
+    def to_user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "to_user", value)
+
+    @property
     @pulumi.getter
     def uid(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2581,6 +3089,18 @@ class ContactPointWecomArgs:
     def uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "uid", value)
 
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The WeCom webhook URL. Required if using GroupRobot.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url", value)
+
 
 @pulumi.input_type
 class DashboardPermissionPermissionArgs:
@@ -2588,12 +3108,12 @@ class DashboardPermissionPermissionArgs:
                  permission: pulumi.Input[str],
                  role: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
-                 user_id: Optional[pulumi.Input[int]] = None):
+                 user_id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] permission: Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
         :param pulumi.Input[str] role: Manage permissions for `Viewer` or `Editor` roles.
         :param pulumi.Input[str] team_id: ID of the team to manage permissions for. Defaults to `0`.
-        :param pulumi.Input[int] user_id: ID of the user to manage permissions for. Defaults to `0`.
+        :param pulumi.Input[str] user_id: ID of the user or service account to manage permissions for. Defaults to `0`.
         """
         pulumi.set(__self__, "permission", permission)
         if role is not None:
@@ -2641,14 +3161,14 @@ class DashboardPermissionPermissionArgs:
 
     @property
     @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[int]]:
+    def user_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the user to manage permissions for. Defaults to `0`.
+        ID of the user or service account to manage permissions for. Defaults to `0`.
         """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[int]]):
+    def user_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user_id", value)
 
 
@@ -2658,12 +3178,12 @@ class DataSourcePermissionPermissionArgs:
                  permission: pulumi.Input[str],
                  built_in_role: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
-                 user_id: Optional[pulumi.Input[int]] = None):
+                 user_id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] permission: Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
         :param pulumi.Input[str] built_in_role: Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
         :param pulumi.Input[str] team_id: ID of the team to manage permissions for. Defaults to `0`.
-        :param pulumi.Input[int] user_id: ID of the user to manage permissions for. Defaults to `0`.
+        :param pulumi.Input[str] user_id: ID of the user or service account to manage permissions for. Defaults to `0`.
         """
         pulumi.set(__self__, "permission", permission)
         if built_in_role is not None:
@@ -2711,14 +3231,14 @@ class DataSourcePermissionPermissionArgs:
 
     @property
     @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[int]]:
+    def user_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the user to manage permissions for. Defaults to `0`.
+        ID of the user or service account to manage permissions for. Defaults to `0`.
         """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[int]]):
+    def user_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user_id", value)
 
 
@@ -2728,12 +3248,12 @@ class FolderPermissionPermissionArgs:
                  permission: pulumi.Input[str],
                  role: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
-                 user_id: Optional[pulumi.Input[int]] = None):
+                 user_id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] permission: Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
         :param pulumi.Input[str] role: Manage permissions for `Viewer` or `Editor` roles.
         :param pulumi.Input[str] team_id: ID of the team to manage permissions for. Defaults to `0`.
-        :param pulumi.Input[int] user_id: ID of the user to manage permissions for. Defaults to `0`.
+        :param pulumi.Input[str] user_id: ID of the user or service account to manage permissions for. Defaults to `0`.
         """
         pulumi.set(__self__, "permission", permission)
         if role is not None:
@@ -2781,14 +3301,14 @@ class FolderPermissionPermissionArgs:
 
     @property
     @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[int]]:
+    def user_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the user to manage permissions for. Defaults to `0`.
+        ID of the user or service account to manage permissions for. Defaults to `0`.
         """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[int]]):
+    def user_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user_id", value)
 
 
@@ -2894,11 +3414,17 @@ class MachineLearningOutlierDetectorAlgorithmArgs:
 class MachineLearningOutlierDetectorAlgorithmConfigArgs:
     def __init__(__self__, *,
                  epsilon: pulumi.Input[float]):
+        """
+        :param pulumi.Input[float] epsilon: Specify the epsilon parameter (positive float)
+        """
         pulumi.set(__self__, "epsilon", epsilon)
 
     @property
     @pulumi.getter
     def epsilon(self) -> pulumi.Input[float]:
+        """
+        Specify the epsilon parameter (positive float)
+        """
         return pulumi.get(self, "epsilon")
 
     @epsilon.setter
@@ -2998,12 +3524,19 @@ class MuteTimingIntervalTimeArgs:
     def __init__(__self__, *,
                  end: pulumi.Input[str],
                  start: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] end: The time, in hh:mm format, of when the interval should end exclusively.
+        :param pulumi.Input[str] start: The time, in hh:mm format, of when the interval should begin inclusively.
+        """
         pulumi.set(__self__, "end", end)
         pulumi.set(__self__, "start", start)
 
     @property
     @pulumi.getter
     def end(self) -> pulumi.Input[str]:
+        """
+        The time, in hh:mm format, of when the interval should end exclusively.
+        """
         return pulumi.get(self, "end")
 
     @end.setter
@@ -3013,6 +3546,9 @@ class MuteTimingIntervalTimeArgs:
     @property
     @pulumi.getter
     def start(self) -> pulumi.Input[str]:
+        """
+        The time, in hh:mm format, of when the interval should begin inclusively.
+        """
         return pulumi.get(self, "start")
 
     @start.setter
@@ -3024,8 +3560,8 @@ class MuteTimingIntervalTimeArgs:
 class NotificationPolicyPolicyArgs:
     def __init__(__self__, *,
                  contact_point: pulumi.Input[str],
-                 group_bies: pulumi.Input[Sequence[pulumi.Input[str]]],
                  continue_: Optional[pulumi.Input[bool]] = None,
+                 group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  group_interval: Optional[pulumi.Input[str]] = None,
                  group_wait: Optional[pulumi.Input[str]] = None,
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyMatcherArgs']]]] = None,
@@ -3034,8 +3570,8 @@ class NotificationPolicyPolicyArgs:
                  repeat_interval: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] contact_point: The contact point to route notifications that match this rule to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
         :param pulumi.Input[bool] continue_: Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyMatcherArgs']]] matchers: Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
@@ -3044,9 +3580,10 @@ class NotificationPolicyPolicyArgs:
         :param pulumi.Input[str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
         pulumi.set(__self__, "contact_point", contact_point)
-        pulumi.set(__self__, "group_bies", group_bies)
         if continue_ is not None:
             pulumi.set(__self__, "continue_", continue_)
+        if group_bies is not None:
+            pulumi.set(__self__, "group_bies", group_bies)
         if group_interval is not None:
             pulumi.set(__self__, "group_interval", group_interval)
         if group_wait is not None:
@@ -3073,18 +3610,6 @@ class NotificationPolicyPolicyArgs:
         pulumi.set(self, "contact_point", value)
 
     @property
-    @pulumi.getter(name="groupBies")
-    def group_bies(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        """
-        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
-        """
-        return pulumi.get(self, "group_bies")
-
-    @group_bies.setter
-    def group_bies(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "group_bies", value)
-
-    @property
     @pulumi.getter(name="continue")
     def continue_(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -3095,6 +3620,18 @@ class NotificationPolicyPolicyArgs:
     @continue_.setter
     def continue_(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "continue_", value)
+
+    @property
+    @pulumi.getter(name="groupBies")
+    def group_bies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        """
+        return pulumi.get(self, "group_bies")
+
+    @group_bies.setter
+    def group_bies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "group_bies", value)
 
     @property
     @pulumi.getter(name="groupInterval")
@@ -3175,6 +3712,11 @@ class NotificationPolicyPolicyMatcherArgs:
                  label: pulumi.Input[str],
                  match: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] label: The name of the label to match against.
+        :param pulumi.Input[str] match: The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        :param pulumi.Input[str] value: The label value to match against.
+        """
         pulumi.set(__self__, "label", label)
         pulumi.set(__self__, "match", match)
         pulumi.set(__self__, "value", value)
@@ -3182,6 +3724,9 @@ class NotificationPolicyPolicyMatcherArgs:
     @property
     @pulumi.getter
     def label(self) -> pulumi.Input[str]:
+        """
+        The name of the label to match against.
+        """
         return pulumi.get(self, "label")
 
     @label.setter
@@ -3191,6 +3736,9 @@ class NotificationPolicyPolicyMatcherArgs:
     @property
     @pulumi.getter
     def match(self) -> pulumi.Input[str]:
+        """
+        The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        """
         return pulumi.get(self, "match")
 
     @match.setter
@@ -3200,6 +3748,9 @@ class NotificationPolicyPolicyMatcherArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        The label value to match against.
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -3211,8 +3762,8 @@ class NotificationPolicyPolicyMatcherArgs:
 class NotificationPolicyPolicyPolicyArgs:
     def __init__(__self__, *,
                  contact_point: pulumi.Input[str],
-                 group_bies: pulumi.Input[Sequence[pulumi.Input[str]]],
                  continue_: Optional[pulumi.Input[bool]] = None,
+                 group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  group_interval: Optional[pulumi.Input[str]] = None,
                  group_wait: Optional[pulumi.Input[str]] = None,
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyMatcherArgs']]]] = None,
@@ -3221,8 +3772,8 @@ class NotificationPolicyPolicyPolicyArgs:
                  repeat_interval: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] contact_point: The contact point to route notifications that match this rule to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
         :param pulumi.Input[bool] continue_: Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyMatcherArgs']]] matchers: Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
@@ -3231,9 +3782,10 @@ class NotificationPolicyPolicyPolicyArgs:
         :param pulumi.Input[str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
         pulumi.set(__self__, "contact_point", contact_point)
-        pulumi.set(__self__, "group_bies", group_bies)
         if continue_ is not None:
             pulumi.set(__self__, "continue_", continue_)
+        if group_bies is not None:
+            pulumi.set(__self__, "group_bies", group_bies)
         if group_interval is not None:
             pulumi.set(__self__, "group_interval", group_interval)
         if group_wait is not None:
@@ -3260,18 +3812,6 @@ class NotificationPolicyPolicyPolicyArgs:
         pulumi.set(self, "contact_point", value)
 
     @property
-    @pulumi.getter(name="groupBies")
-    def group_bies(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        """
-        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
-        """
-        return pulumi.get(self, "group_bies")
-
-    @group_bies.setter
-    def group_bies(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "group_bies", value)
-
-    @property
     @pulumi.getter(name="continue")
     def continue_(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -3282,6 +3822,18 @@ class NotificationPolicyPolicyPolicyArgs:
     @continue_.setter
     def continue_(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "continue_", value)
+
+    @property
+    @pulumi.getter(name="groupBies")
+    def group_bies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        """
+        return pulumi.get(self, "group_bies")
+
+    @group_bies.setter
+    def group_bies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "group_bies", value)
 
     @property
     @pulumi.getter(name="groupInterval")
@@ -3362,6 +3914,11 @@ class NotificationPolicyPolicyPolicyMatcherArgs:
                  label: pulumi.Input[str],
                  match: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] label: The name of the label to match against.
+        :param pulumi.Input[str] match: The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        :param pulumi.Input[str] value: The label value to match against.
+        """
         pulumi.set(__self__, "label", label)
         pulumi.set(__self__, "match", match)
         pulumi.set(__self__, "value", value)
@@ -3369,6 +3926,9 @@ class NotificationPolicyPolicyPolicyMatcherArgs:
     @property
     @pulumi.getter
     def label(self) -> pulumi.Input[str]:
+        """
+        The name of the label to match against.
+        """
         return pulumi.get(self, "label")
 
     @label.setter
@@ -3378,6 +3938,9 @@ class NotificationPolicyPolicyPolicyMatcherArgs:
     @property
     @pulumi.getter
     def match(self) -> pulumi.Input[str]:
+        """
+        The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        """
         return pulumi.get(self, "match")
 
     @match.setter
@@ -3387,6 +3950,9 @@ class NotificationPolicyPolicyPolicyMatcherArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        The label value to match against.
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -3398,8 +3964,8 @@ class NotificationPolicyPolicyPolicyMatcherArgs:
 class NotificationPolicyPolicyPolicyPolicyArgs:
     def __init__(__self__, *,
                  contact_point: pulumi.Input[str],
-                 group_bies: pulumi.Input[Sequence[pulumi.Input[str]]],
                  continue_: Optional[pulumi.Input[bool]] = None,
+                 group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  group_interval: Optional[pulumi.Input[str]] = None,
                  group_wait: Optional[pulumi.Input[str]] = None,
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyMatcherArgs']]]] = None,
@@ -3408,8 +3974,8 @@ class NotificationPolicyPolicyPolicyPolicyArgs:
                  repeat_interval: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] contact_point: The contact point to route notifications that match this rule to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
         :param pulumi.Input[bool] continue_: Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyMatcherArgs']]] matchers: Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
@@ -3418,9 +3984,10 @@ class NotificationPolicyPolicyPolicyPolicyArgs:
         :param pulumi.Input[str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
         pulumi.set(__self__, "contact_point", contact_point)
-        pulumi.set(__self__, "group_bies", group_bies)
         if continue_ is not None:
             pulumi.set(__self__, "continue_", continue_)
+        if group_bies is not None:
+            pulumi.set(__self__, "group_bies", group_bies)
         if group_interval is not None:
             pulumi.set(__self__, "group_interval", group_interval)
         if group_wait is not None:
@@ -3447,18 +4014,6 @@ class NotificationPolicyPolicyPolicyPolicyArgs:
         pulumi.set(self, "contact_point", value)
 
     @property
-    @pulumi.getter(name="groupBies")
-    def group_bies(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        """
-        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
-        """
-        return pulumi.get(self, "group_bies")
-
-    @group_bies.setter
-    def group_bies(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "group_bies", value)
-
-    @property
     @pulumi.getter(name="continue")
     def continue_(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -3469,6 +4024,18 @@ class NotificationPolicyPolicyPolicyPolicyArgs:
     @continue_.setter
     def continue_(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "continue_", value)
+
+    @property
+    @pulumi.getter(name="groupBies")
+    def group_bies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        """
+        return pulumi.get(self, "group_bies")
+
+    @group_bies.setter
+    def group_bies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "group_bies", value)
 
     @property
     @pulumi.getter(name="groupInterval")
@@ -3549,6 +4116,11 @@ class NotificationPolicyPolicyPolicyPolicyMatcherArgs:
                  label: pulumi.Input[str],
                  match: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] label: The name of the label to match against.
+        :param pulumi.Input[str] match: The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        :param pulumi.Input[str] value: The label value to match against.
+        """
         pulumi.set(__self__, "label", label)
         pulumi.set(__self__, "match", match)
         pulumi.set(__self__, "value", value)
@@ -3556,6 +4128,9 @@ class NotificationPolicyPolicyPolicyPolicyMatcherArgs:
     @property
     @pulumi.getter
     def label(self) -> pulumi.Input[str]:
+        """
+        The name of the label to match against.
+        """
         return pulumi.get(self, "label")
 
     @label.setter
@@ -3565,6 +4140,9 @@ class NotificationPolicyPolicyPolicyPolicyMatcherArgs:
     @property
     @pulumi.getter
     def match(self) -> pulumi.Input[str]:
+        """
+        The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        """
         return pulumi.get(self, "match")
 
     @match.setter
@@ -3574,6 +4152,9 @@ class NotificationPolicyPolicyPolicyPolicyMatcherArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        The label value to match against.
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -3594,7 +4175,7 @@ class NotificationPolicyPolicyPolicyPolicyPolicyArgs:
                  repeat_interval: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] contact_point: The contact point to route notifications that match this rule to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         :param pulumi.Input[bool] continue_: Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
@@ -3633,7 +4214,7 @@ class NotificationPolicyPolicyPolicyPolicyPolicyArgs:
     @pulumi.getter(name="groupBies")
     def group_bies(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         """
         return pulumi.get(self, "group_bies")
 
@@ -3720,6 +4301,11 @@ class NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs:
                  label: pulumi.Input[str],
                  match: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] label: The name of the label to match against.
+        :param pulumi.Input[str] match: The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        :param pulumi.Input[str] value: The label value to match against.
+        """
         pulumi.set(__self__, "label", label)
         pulumi.set(__self__, "match", match)
         pulumi.set(__self__, "value", value)
@@ -3727,6 +4313,9 @@ class NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs:
     @property
     @pulumi.getter
     def label(self) -> pulumi.Input[str]:
+        """
+        The name of the label to match against.
+        """
         return pulumi.get(self, "label")
 
     @label.setter
@@ -3736,6 +4325,9 @@ class NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs:
     @property
     @pulumi.getter
     def match(self) -> pulumi.Input[str]:
+        """
+        The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        """
         return pulumi.get(self, "match")
 
     @match.setter
@@ -3745,6 +4337,9 @@ class NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        The label value to match against.
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -3845,6 +4440,7 @@ class OncallIntegrationDefaultRouteMsteamsArgs:
                  enabled: Optional[pulumi.Input[bool]] = None,
                  id: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[bool] enabled: Enable notification in MS teams. Defaults to `true`.
         :param pulumi.Input[str] id: The ID of this resource.
         """
         if enabled is not None:
@@ -3855,6 +4451,9 @@ class OncallIntegrationDefaultRouteMsteamsArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable notification in MS teams. Defaults to `true`.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -3879,6 +4478,10 @@ class OncallIntegrationDefaultRouteSlackArgs:
     def __init__(__self__, *,
                  channel_id: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] channel_id: Slack channel id. Alerts will be directed to this channel in Slack.
+        :param pulumi.Input[bool] enabled: Enable notification in MS teams. Defaults to `true`.
+        """
         if channel_id is not None:
             pulumi.set(__self__, "channel_id", channel_id)
         if enabled is not None:
@@ -3887,6 +4490,9 @@ class OncallIntegrationDefaultRouteSlackArgs:
     @property
     @pulumi.getter(name="channelId")
     def channel_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Slack channel id. Alerts will be directed to this channel in Slack.
+        """
         return pulumi.get(self, "channel_id")
 
     @channel_id.setter
@@ -3896,6 +4502,9 @@ class OncallIntegrationDefaultRouteSlackArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable notification in MS teams. Defaults to `true`.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -3909,6 +4518,7 @@ class OncallIntegrationDefaultRouteTelegramArgs:
                  enabled: Optional[pulumi.Input[bool]] = None,
                  id: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[bool] enabled: Enable notification in MS teams. Defaults to `true`.
         :param pulumi.Input[str] id: The ID of this resource.
         """
         if enabled is not None:
@@ -3919,6 +4529,9 @@ class OncallIntegrationDefaultRouteTelegramArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable notification in MS teams. Defaults to `true`.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -4126,6 +4739,10 @@ class OncallIntegrationTemplatesEmailArgs:
     def __init__(__self__, *,
                  message: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] message: Template for Alert message.
+        :param pulumi.Input[str] title: Template for Alert title.
+        """
         if message is not None:
             pulumi.set(__self__, "message", message)
         if title is not None:
@@ -4134,6 +4751,9 @@ class OncallIntegrationTemplatesEmailArgs:
     @property
     @pulumi.getter
     def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert message.
+        """
         return pulumi.get(self, "message")
 
     @message.setter
@@ -4143,6 +4763,9 @@ class OncallIntegrationTemplatesEmailArgs:
     @property
     @pulumi.getter
     def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert title.
+        """
         return pulumi.get(self, "title")
 
     @title.setter
@@ -4156,6 +4779,11 @@ class OncallIntegrationTemplatesMicrosoftTeamsArgs:
                  image_url: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] image_url: Template for Alert image url.
+        :param pulumi.Input[str] message: Template for Alert message.
+        :param pulumi.Input[str] title: Template for Alert title.
+        """
         if image_url is not None:
             pulumi.set(__self__, "image_url", image_url)
         if message is not None:
@@ -4166,6 +4794,9 @@ class OncallIntegrationTemplatesMicrosoftTeamsArgs:
     @property
     @pulumi.getter(name="imageUrl")
     def image_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert image url.
+        """
         return pulumi.get(self, "image_url")
 
     @image_url.setter
@@ -4175,6 +4806,9 @@ class OncallIntegrationTemplatesMicrosoftTeamsArgs:
     @property
     @pulumi.getter
     def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert message.
+        """
         return pulumi.get(self, "message")
 
     @message.setter
@@ -4184,6 +4818,9 @@ class OncallIntegrationTemplatesMicrosoftTeamsArgs:
     @property
     @pulumi.getter
     def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert title.
+        """
         return pulumi.get(self, "title")
 
     @title.setter
@@ -4195,12 +4832,18 @@ class OncallIntegrationTemplatesMicrosoftTeamsArgs:
 class OncallIntegrationTemplatesPhoneCallArgs:
     def __init__(__self__, *,
                  title: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] title: Template for Alert title.
+        """
         if title is not None:
             pulumi.set(__self__, "title", title)
 
     @property
     @pulumi.getter
     def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert title.
+        """
         return pulumi.get(self, "title")
 
     @title.setter
@@ -4214,6 +4857,11 @@ class OncallIntegrationTemplatesSlackArgs:
                  image_url: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] image_url: Template for Alert image url.
+        :param pulumi.Input[str] message: Template for Alert message.
+        :param pulumi.Input[str] title: Template for Alert title.
+        """
         if image_url is not None:
             pulumi.set(__self__, "image_url", image_url)
         if message is not None:
@@ -4224,6 +4872,9 @@ class OncallIntegrationTemplatesSlackArgs:
     @property
     @pulumi.getter(name="imageUrl")
     def image_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert image url.
+        """
         return pulumi.get(self, "image_url")
 
     @image_url.setter
@@ -4233,6 +4884,9 @@ class OncallIntegrationTemplatesSlackArgs:
     @property
     @pulumi.getter
     def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert message.
+        """
         return pulumi.get(self, "message")
 
     @message.setter
@@ -4242,6 +4896,9 @@ class OncallIntegrationTemplatesSlackArgs:
     @property
     @pulumi.getter
     def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert title.
+        """
         return pulumi.get(self, "title")
 
     @title.setter
@@ -4253,12 +4910,18 @@ class OncallIntegrationTemplatesSlackArgs:
 class OncallIntegrationTemplatesSmsArgs:
     def __init__(__self__, *,
                  title: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] title: Template for Alert title.
+        """
         if title is not None:
             pulumi.set(__self__, "title", title)
 
     @property
     @pulumi.getter
     def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert title.
+        """
         return pulumi.get(self, "title")
 
     @title.setter
@@ -4272,6 +4935,11 @@ class OncallIntegrationTemplatesTelegramArgs:
                  image_url: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] image_url: Template for Alert image url.
+        :param pulumi.Input[str] message: Template for Alert message.
+        :param pulumi.Input[str] title: Template for Alert title.
+        """
         if image_url is not None:
             pulumi.set(__self__, "image_url", image_url)
         if message is not None:
@@ -4282,6 +4950,9 @@ class OncallIntegrationTemplatesTelegramArgs:
     @property
     @pulumi.getter(name="imageUrl")
     def image_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert image url.
+        """
         return pulumi.get(self, "image_url")
 
     @image_url.setter
@@ -4291,6 +4962,9 @@ class OncallIntegrationTemplatesTelegramArgs:
     @property
     @pulumi.getter
     def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert message.
+        """
         return pulumi.get(self, "message")
 
     @message.setter
@@ -4300,6 +4974,9 @@ class OncallIntegrationTemplatesTelegramArgs:
     @property
     @pulumi.getter
     def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert title.
+        """
         return pulumi.get(self, "title")
 
     @title.setter
@@ -4313,6 +4990,11 @@ class OncallIntegrationTemplatesWebArgs:
                  image_url: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] image_url: Template for Alert image url.
+        :param pulumi.Input[str] message: Template for Alert message.
+        :param pulumi.Input[str] title: Template for Alert title.
+        """
         if image_url is not None:
             pulumi.set(__self__, "image_url", image_url)
         if message is not None:
@@ -4323,6 +5005,9 @@ class OncallIntegrationTemplatesWebArgs:
     @property
     @pulumi.getter(name="imageUrl")
     def image_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert image url.
+        """
         return pulumi.get(self, "image_url")
 
     @image_url.setter
@@ -4332,6 +5017,9 @@ class OncallIntegrationTemplatesWebArgs:
     @property
     @pulumi.getter
     def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert message.
+        """
         return pulumi.get(self, "message")
 
     @message.setter
@@ -4341,6 +5029,9 @@ class OncallIntegrationTemplatesWebArgs:
     @property
     @pulumi.getter
     def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert title.
+        """
         return pulumi.get(self, "title")
 
     @title.setter
@@ -4926,6 +5617,13 @@ class RuleGroupRuleDataArgs:
                  ref_id: pulumi.Input[str],
                  relative_time_range: pulumi.Input['RuleGroupRuleDataRelativeTimeRangeArgs'],
                  query_type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] datasource_uid: The UID of the datasource being queried, or "-100" if this stage is an expression stage.
+        :param pulumi.Input[str] model: Custom JSON data to send to the specified datasource when querying.
+        :param pulumi.Input[str] ref_id: A unique string to identify this query stage within a rule.
+        :param pulumi.Input['RuleGroupRuleDataRelativeTimeRangeArgs'] relative_time_range: The time range, relative to when the query is executed, across which to query.
+        :param pulumi.Input[str] query_type: An optional identifier for the type of query being executed. Defaults to ``.
+        """
         pulumi.set(__self__, "datasource_uid", datasource_uid)
         pulumi.set(__self__, "model", model)
         pulumi.set(__self__, "ref_id", ref_id)
@@ -4936,6 +5634,9 @@ class RuleGroupRuleDataArgs:
     @property
     @pulumi.getter(name="datasourceUid")
     def datasource_uid(self) -> pulumi.Input[str]:
+        """
+        The UID of the datasource being queried, or "-100" if this stage is an expression stage.
+        """
         return pulumi.get(self, "datasource_uid")
 
     @datasource_uid.setter
@@ -4945,6 +5646,9 @@ class RuleGroupRuleDataArgs:
     @property
     @pulumi.getter
     def model(self) -> pulumi.Input[str]:
+        """
+        Custom JSON data to send to the specified datasource when querying.
+        """
         return pulumi.get(self, "model")
 
     @model.setter
@@ -4954,6 +5658,9 @@ class RuleGroupRuleDataArgs:
     @property
     @pulumi.getter(name="refId")
     def ref_id(self) -> pulumi.Input[str]:
+        """
+        A unique string to identify this query stage within a rule.
+        """
         return pulumi.get(self, "ref_id")
 
     @ref_id.setter
@@ -4963,6 +5670,9 @@ class RuleGroupRuleDataArgs:
     @property
     @pulumi.getter(name="relativeTimeRange")
     def relative_time_range(self) -> pulumi.Input['RuleGroupRuleDataRelativeTimeRangeArgs']:
+        """
+        The time range, relative to when the query is executed, across which to query.
+        """
         return pulumi.get(self, "relative_time_range")
 
     @relative_time_range.setter
@@ -4972,6 +5682,9 @@ class RuleGroupRuleDataArgs:
     @property
     @pulumi.getter(name="queryType")
     def query_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional identifier for the type of query being executed. Defaults to ``.
+        """
         return pulumi.get(self, "query_type")
 
     @query_type.setter
@@ -4984,12 +5697,19 @@ class RuleGroupRuleDataRelativeTimeRangeArgs:
     def __init__(__self__, *,
                  from_: pulumi.Input[int],
                  to: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] from_: The number of seconds in the past, relative to when the rule is evaluated, at which the time range begins.
+        :param pulumi.Input[int] to: The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
+        """
         pulumi.set(__self__, "from_", from_)
         pulumi.set(__self__, "to", to)
 
     @property
     @pulumi.getter(name="from")
     def from_(self) -> pulumi.Input[int]:
+        """
+        The number of seconds in the past, relative to when the rule is evaluated, at which the time range begins.
+        """
         return pulumi.get(self, "from_")
 
     @from_.setter
@@ -4999,6 +5719,9 @@ class RuleGroupRuleDataRelativeTimeRangeArgs:
     @property
     @pulumi.getter
     def to(self) -> pulumi.Input[int]:
+        """
+        The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
+        """
         return pulumi.get(self, "to")
 
     @to.setter
@@ -5110,7 +5833,8 @@ class SLOAlertingFastburnArgs:
                  annotations: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnAnnotationArgs']]]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnLabelArgs']]]] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnAnnotationArgs']]] annotations: Annotations will be attached to all alerts generated by any of these rules.
+        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnLabelArgs']]] labels: Labels to attach only to Fast Burn alerts.
         """
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
@@ -5120,6 +5844,9 @@ class SLOAlertingFastburnArgs:
     @property
     @pulumi.getter
     def annotations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnAnnotationArgs']]]]:
+        """
+        Annotations will be attached to all alerts generated by any of these rules.
+        """
         return pulumi.get(self, "annotations")
 
     @annotations.setter
@@ -5130,7 +5857,7 @@ class SLOAlertingFastburnArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnLabelArgs']]]]:
         """
-        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        Labels to attach only to Fast Burn alerts.
         """
         return pulumi.get(self, "labels")
 
@@ -5226,7 +5953,8 @@ class SLOAlertingSlowburnArgs:
                  annotations: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnAnnotationArgs']]]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnLabelArgs']]]] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnAnnotationArgs']]] annotations: Annotations will be attached to all alerts generated by any of these rules.
+        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnLabelArgs']]] labels: Labels to attach only to Fast Burn alerts.
         """
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
@@ -5236,6 +5964,9 @@ class SLOAlertingSlowburnArgs:
     @property
     @pulumi.getter
     def annotations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnAnnotationArgs']]]]:
+        """
+        Annotations will be attached to all alerts generated by any of these rules.
+        """
         return pulumi.get(self, "annotations")
 
     @annotations.setter
@@ -5246,7 +5977,7 @@ class SLOAlertingSlowburnArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnLabelArgs']]]]:
         """
-        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        Labels to attach only to Fast Burn alerts.
         """
         return pulumi.get(self, "labels")
 
@@ -5424,7 +6155,7 @@ class SLOQueryFreeformArgs:
     def __init__(__self__, *,
                  query: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] query: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        :param pulumi.Input[str] query: Freeform Query Field
         """
         pulumi.set(__self__, "query", query)
 
@@ -5432,7 +6163,7 @@ class SLOQueryFreeformArgs:
     @pulumi.getter
     def query(self) -> pulumi.Input[str]:
         """
-        Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        Freeform Query Field
         """
         return pulumi.get(self, "query")
 
@@ -5447,6 +6178,11 @@ class SLOQueryRatioArgs:
                  success_metric: pulumi.Input[str],
                  total_metric: pulumi.Input[str],
                  group_by_labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] success_metric: Counter metric for success events (numerator)
+        :param pulumi.Input[str] total_metric: Metric for total events (denominator)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_by_labels: Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        """
         pulumi.set(__self__, "success_metric", success_metric)
         pulumi.set(__self__, "total_metric", total_metric)
         if group_by_labels is not None:
@@ -5455,6 +6191,9 @@ class SLOQueryRatioArgs:
     @property
     @pulumi.getter(name="successMetric")
     def success_metric(self) -> pulumi.Input[str]:
+        """
+        Counter metric for success events (numerator)
+        """
         return pulumi.get(self, "success_metric")
 
     @success_metric.setter
@@ -5464,6 +6203,9 @@ class SLOQueryRatioArgs:
     @property
     @pulumi.getter(name="totalMetric")
     def total_metric(self) -> pulumi.Input[str]:
+        """
+        Metric for total events (denominator)
+        """
         return pulumi.get(self, "total_metric")
 
     @total_metric.setter
@@ -5473,6 +6215,9 @@ class SLOQueryRatioArgs:
     @property
     @pulumi.getter(name="groupByLabels")
     def group_by_labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        """
         return pulumi.get(self, "group_by_labels")
 
     @group_by_labels.setter
@@ -5485,11 +6230,11 @@ class ServiceAccountPermissionPermissionArgs:
     def __init__(__self__, *,
                  permission: pulumi.Input[str],
                  team_id: Optional[pulumi.Input[str]] = None,
-                 user_id: Optional[pulumi.Input[int]] = None):
+                 user_id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] permission: Permission to associate with item. Must be `Edit` or `Admin`.
         :param pulumi.Input[str] team_id: ID of the team to manage permissions for. Specify either this or `user_id`. Defaults to `0`.
-        :param pulumi.Input[int] user_id: ID of the user to manage permissions for. Specify either this or `team_id`. Defaults to `0`.
+        :param pulumi.Input[str] user_id: ID of the user or service account to manage permissions for. Specify either this or `team_id`. Defaults to `0`.
         """
         pulumi.set(__self__, "permission", permission)
         if team_id is not None:
@@ -5523,14 +6268,14 @@ class ServiceAccountPermissionPermissionArgs:
 
     @property
     @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[int]]:
+    def user_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the user to manage permissions for. Specify either this or `team_id`. Defaults to `0`.
+        ID of the user or service account to manage permissions for. Specify either this or `team_id`. Defaults to `0`.
         """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[int]]):
+    def user_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user_id", value)
 
 
@@ -5634,6 +6379,18 @@ class SyntheticMonitoringCheckSettingsDnsArgs:
                  validate_additional_rrs: Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs']]]] = None,
                  validate_answer_rrs: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs']] = None,
                  validate_authority_rrs: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgs']] = None):
+        """
+        :param pulumi.Input[str] ip_version: Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        :param pulumi.Input[int] port: Port to target. Defaults to `53`.
+        :param pulumi.Input[str] protocol: `TCP` or `UDP`. Defaults to `UDP`.
+        :param pulumi.Input[str] record_type: One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+        :param pulumi.Input[str] server: DNS server address to target. Defaults to `8.8.8.8`.
+        :param pulumi.Input[str] source_ip_address: Source IP address.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_r_codes: List of valid response codes. Options include `NOERROR`, `BADALG`, `BADMODE`, `BADKEY`, `BADCOOKIE`, `BADNAME`, `BADSIG`, `BADTIME`, `BADTRUNC`, `BADVERS`, `FORMERR`, `NOTIMP`, `NOTAUTH`, `NOTZONE`, `NXDOMAIN`, `NXRRSET`, `REFUSED`, `SERVFAIL`, `YXDOMAIN`, `YXRRSET`.
+        :param pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs']]] validate_additional_rrs: Validate additional matches.
+        :param pulumi.Input['SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs'] validate_answer_rrs: Validate response answer.
+        :param pulumi.Input['SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgs'] validate_authority_rrs: Validate response authority.
+        """
         if ip_version is not None:
             pulumi.set(__self__, "ip_version", ip_version)
         if port is not None:
@@ -5658,6 +6415,9 @@ class SyntheticMonitoringCheckSettingsDnsArgs:
     @property
     @pulumi.getter(name="ipVersion")
     def ip_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        """
         return pulumi.get(self, "ip_version")
 
     @ip_version.setter
@@ -5667,6 +6427,9 @@ class SyntheticMonitoringCheckSettingsDnsArgs:
     @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port to target. Defaults to `53`.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -5676,6 +6439,9 @@ class SyntheticMonitoringCheckSettingsDnsArgs:
     @property
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        `TCP` or `UDP`. Defaults to `UDP`.
+        """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
@@ -5685,6 +6451,9 @@ class SyntheticMonitoringCheckSettingsDnsArgs:
     @property
     @pulumi.getter(name="recordType")
     def record_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+        """
         return pulumi.get(self, "record_type")
 
     @record_type.setter
@@ -5694,6 +6463,9 @@ class SyntheticMonitoringCheckSettingsDnsArgs:
     @property
     @pulumi.getter
     def server(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS server address to target. Defaults to `8.8.8.8`.
+        """
         return pulumi.get(self, "server")
 
     @server.setter
@@ -5703,6 +6475,9 @@ class SyntheticMonitoringCheckSettingsDnsArgs:
     @property
     @pulumi.getter(name="sourceIpAddress")
     def source_ip_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Source IP address.
+        """
         return pulumi.get(self, "source_ip_address")
 
     @source_ip_address.setter
@@ -5712,6 +6487,9 @@ class SyntheticMonitoringCheckSettingsDnsArgs:
     @property
     @pulumi.getter(name="validRCodes")
     def valid_r_codes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of valid response codes. Options include `NOERROR`, `BADALG`, `BADMODE`, `BADKEY`, `BADCOOKIE`, `BADNAME`, `BADSIG`, `BADTIME`, `BADTRUNC`, `BADVERS`, `FORMERR`, `NOTIMP`, `NOTAUTH`, `NOTZONE`, `NXDOMAIN`, `NXRRSET`, `REFUSED`, `SERVFAIL`, `YXDOMAIN`, `YXRRSET`.
+        """
         return pulumi.get(self, "valid_r_codes")
 
     @valid_r_codes.setter
@@ -5721,6 +6499,9 @@ class SyntheticMonitoringCheckSettingsDnsArgs:
     @property
     @pulumi.getter(name="validateAdditionalRrs")
     def validate_additional_rrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs']]]]:
+        """
+        Validate additional matches.
+        """
         return pulumi.get(self, "validate_additional_rrs")
 
     @validate_additional_rrs.setter
@@ -5730,6 +6511,9 @@ class SyntheticMonitoringCheckSettingsDnsArgs:
     @property
     @pulumi.getter(name="validateAnswerRrs")
     def validate_answer_rrs(self) -> Optional[pulumi.Input['SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs']]:
+        """
+        Validate response answer.
+        """
         return pulumi.get(self, "validate_answer_rrs")
 
     @validate_answer_rrs.setter
@@ -5739,6 +6523,9 @@ class SyntheticMonitoringCheckSettingsDnsArgs:
     @property
     @pulumi.getter(name="validateAuthorityRrs")
     def validate_authority_rrs(self) -> Optional[pulumi.Input['SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgs']]:
+        """
+        Validate response authority.
+        """
         return pulumi.get(self, "validate_authority_rrs")
 
     @validate_authority_rrs.setter
@@ -5751,6 +6538,10 @@ class SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs:
     def __init__(__self__, *,
                  fail_if_matches_regexps: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  fail_if_not_matches_regexps: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] fail_if_matches_regexps: Fail if value matches regex.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] fail_if_not_matches_regexps: Fail if value does not match regex.
+        """
         if fail_if_matches_regexps is not None:
             pulumi.set(__self__, "fail_if_matches_regexps", fail_if_matches_regexps)
         if fail_if_not_matches_regexps is not None:
@@ -5759,6 +6550,9 @@ class SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs:
     @property
     @pulumi.getter(name="failIfMatchesRegexps")
     def fail_if_matches_regexps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Fail if value matches regex.
+        """
         return pulumi.get(self, "fail_if_matches_regexps")
 
     @fail_if_matches_regexps.setter
@@ -5768,6 +6562,9 @@ class SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs:
     @property
     @pulumi.getter(name="failIfNotMatchesRegexps")
     def fail_if_not_matches_regexps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Fail if value does not match regex.
+        """
         return pulumi.get(self, "fail_if_not_matches_regexps")
 
     @fail_if_not_matches_regexps.setter
@@ -5780,6 +6577,10 @@ class SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs:
     def __init__(__self__, *,
                  fail_if_matches_regexps: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  fail_if_not_matches_regexps: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] fail_if_matches_regexps: Fail if value matches regex.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] fail_if_not_matches_regexps: Fail if value does not match regex.
+        """
         if fail_if_matches_regexps is not None:
             pulumi.set(__self__, "fail_if_matches_regexps", fail_if_matches_regexps)
         if fail_if_not_matches_regexps is not None:
@@ -5788,6 +6589,9 @@ class SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs:
     @property
     @pulumi.getter(name="failIfMatchesRegexps")
     def fail_if_matches_regexps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Fail if value matches regex.
+        """
         return pulumi.get(self, "fail_if_matches_regexps")
 
     @fail_if_matches_regexps.setter
@@ -5797,6 +6601,9 @@ class SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs:
     @property
     @pulumi.getter(name="failIfNotMatchesRegexps")
     def fail_if_not_matches_regexps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Fail if value does not match regex.
+        """
         return pulumi.get(self, "fail_if_not_matches_regexps")
 
     @fail_if_not_matches_regexps.setter
@@ -5809,6 +6616,10 @@ class SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgs:
     def __init__(__self__, *,
                  fail_if_matches_regexps: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  fail_if_not_matches_regexps: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] fail_if_matches_regexps: Fail if value matches regex.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] fail_if_not_matches_regexps: Fail if value does not match regex.
+        """
         if fail_if_matches_regexps is not None:
             pulumi.set(__self__, "fail_if_matches_regexps", fail_if_matches_regexps)
         if fail_if_not_matches_regexps is not None:
@@ -5817,6 +6628,9 @@ class SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgs:
     @property
     @pulumi.getter(name="failIfMatchesRegexps")
     def fail_if_matches_regexps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Fail if value matches regex.
+        """
         return pulumi.get(self, "fail_if_matches_regexps")
 
     @fail_if_matches_regexps.setter
@@ -5826,6 +6640,9 @@ class SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgs:
     @property
     @pulumi.getter(name="failIfNotMatchesRegexps")
     def fail_if_not_matches_regexps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Fail if value does not match regex.
+        """
         return pulumi.get(self, "fail_if_not_matches_regexps")
 
     @fail_if_not_matches_regexps.setter
@@ -5854,6 +6671,26 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
                  tls_config: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsHttpTlsConfigArgs']] = None,
                  valid_http_versions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  valid_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None):
+        """
+        :param pulumi.Input['SyntheticMonitoringCheckSettingsHttpBasicAuthArgs'] basic_auth: Basic auth settings.
+        :param pulumi.Input[str] bearer_token: Token for use with bearer authorization header.
+        :param pulumi.Input[str] body: The body of the HTTP request used in probe.
+        :param pulumi.Input[str] cache_busting_query_param_name: The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] fail_if_body_matches_regexps: List of regexes. If any match the response body, the check will fail.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] fail_if_body_not_matches_regexps: List of regexes. If any do not match the response body, the check will fail.
+        :param pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs']]] fail_if_header_matches_regexps: Check fails if headers match.
+        :param pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArgs']]] fail_if_header_not_matches_regexps: Check fails if headers do not match.
+        :param pulumi.Input[bool] fail_if_not_ssl: Fail if SSL is not present. Defaults to `false`.
+        :param pulumi.Input[bool] fail_if_ssl: Fail if SSL is present. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] headers: The HTTP headers set for the probe.
+        :param pulumi.Input[str] ip_version: Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        :param pulumi.Input[str] method: Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+        :param pulumi.Input[bool] no_follow_redirects: Do not follow redirects. Defaults to `false`.
+        :param pulumi.Input[str] proxy_url: Proxy URL.
+        :param pulumi.Input['SyntheticMonitoringCheckSettingsHttpTlsConfigArgs'] tls_config: TLS config.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_http_versions: List of valid HTTP versions. Options include `HTTP/1.0`, `HTTP/1.1`, `HTTP/2.0`
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] valid_status_codes: Accepted status codes. If unset, defaults to 2xx.
+        """
         if basic_auth is not None:
             pulumi.set(__self__, "basic_auth", basic_auth)
         if bearer_token is not None:
@@ -5894,6 +6731,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter(name="basicAuth")
     def basic_auth(self) -> Optional[pulumi.Input['SyntheticMonitoringCheckSettingsHttpBasicAuthArgs']]:
+        """
+        Basic auth settings.
+        """
         return pulumi.get(self, "basic_auth")
 
     @basic_auth.setter
@@ -5903,6 +6743,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Token for use with bearer authorization header.
+        """
         return pulumi.get(self, "bearer_token")
 
     @bearer_token.setter
@@ -5912,6 +6755,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter
     def body(self) -> Optional[pulumi.Input[str]]:
+        """
+        The body of the HTTP request used in probe.
+        """
         return pulumi.get(self, "body")
 
     @body.setter
@@ -5921,6 +6767,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter(name="cacheBustingQueryParamName")
     def cache_busting_query_param_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
+        """
         return pulumi.get(self, "cache_busting_query_param_name")
 
     @cache_busting_query_param_name.setter
@@ -5930,6 +6779,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter(name="failIfBodyMatchesRegexps")
     def fail_if_body_matches_regexps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of regexes. If any match the response body, the check will fail.
+        """
         return pulumi.get(self, "fail_if_body_matches_regexps")
 
     @fail_if_body_matches_regexps.setter
@@ -5939,6 +6791,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter(name="failIfBodyNotMatchesRegexps")
     def fail_if_body_not_matches_regexps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of regexes. If any do not match the response body, the check will fail.
+        """
         return pulumi.get(self, "fail_if_body_not_matches_regexps")
 
     @fail_if_body_not_matches_regexps.setter
@@ -5948,6 +6803,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter(name="failIfHeaderMatchesRegexps")
     def fail_if_header_matches_regexps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs']]]]:
+        """
+        Check fails if headers match.
+        """
         return pulumi.get(self, "fail_if_header_matches_regexps")
 
     @fail_if_header_matches_regexps.setter
@@ -5957,6 +6815,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter(name="failIfHeaderNotMatchesRegexps")
     def fail_if_header_not_matches_regexps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArgs']]]]:
+        """
+        Check fails if headers do not match.
+        """
         return pulumi.get(self, "fail_if_header_not_matches_regexps")
 
     @fail_if_header_not_matches_regexps.setter
@@ -5966,6 +6827,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter(name="failIfNotSsl")
     def fail_if_not_ssl(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Fail if SSL is not present. Defaults to `false`.
+        """
         return pulumi.get(self, "fail_if_not_ssl")
 
     @fail_if_not_ssl.setter
@@ -5975,6 +6839,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter(name="failIfSsl")
     def fail_if_ssl(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Fail if SSL is present. Defaults to `false`.
+        """
         return pulumi.get(self, "fail_if_ssl")
 
     @fail_if_ssl.setter
@@ -5984,6 +6851,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter
     def headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The HTTP headers set for the probe.
+        """
         return pulumi.get(self, "headers")
 
     @headers.setter
@@ -5993,6 +6863,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter(name="ipVersion")
     def ip_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        """
         return pulumi.get(self, "ip_version")
 
     @ip_version.setter
@@ -6002,6 +6875,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter
     def method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+        """
         return pulumi.get(self, "method")
 
     @method.setter
@@ -6011,6 +6887,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter(name="noFollowRedirects")
     def no_follow_redirects(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Do not follow redirects. Defaults to `false`.
+        """
         return pulumi.get(self, "no_follow_redirects")
 
     @no_follow_redirects.setter
@@ -6020,6 +6899,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Proxy URL.
+        """
         return pulumi.get(self, "proxy_url")
 
     @proxy_url.setter
@@ -6029,6 +6911,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter(name="tlsConfig")
     def tls_config(self) -> Optional[pulumi.Input['SyntheticMonitoringCheckSettingsHttpTlsConfigArgs']]:
+        """
+        TLS config.
+        """
         return pulumi.get(self, "tls_config")
 
     @tls_config.setter
@@ -6038,6 +6923,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter(name="validHttpVersions")
     def valid_http_versions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of valid HTTP versions. Options include `HTTP/1.0`, `HTTP/1.1`, `HTTP/2.0`
+        """
         return pulumi.get(self, "valid_http_versions")
 
     @valid_http_versions.setter
@@ -6047,6 +6935,9 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @property
     @pulumi.getter(name="validStatusCodes")
     def valid_status_codes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]:
+        """
+        Accepted status codes. If unset, defaults to 2xx.
+        """
         return pulumi.get(self, "valid_status_codes")
 
     @valid_status_codes.setter
@@ -6059,12 +6950,19 @@ class SyntheticMonitoringCheckSettingsHttpBasicAuthArgs:
     def __init__(__self__, *,
                  password: pulumi.Input[str],
                  username: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] password: Basic auth password.
+        :param pulumi.Input[str] username: Basic auth username.
+        """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        Basic auth password.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -6074,6 +6972,9 @@ class SyntheticMonitoringCheckSettingsHttpBasicAuthArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Basic auth username.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -6087,6 +6988,11 @@ class SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs:
                  header: pulumi.Input[str],
                  regexp: pulumi.Input[str],
                  allow_missing: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] header: Header name.
+        :param pulumi.Input[str] regexp: Regex that header value should match.
+        :param pulumi.Input[bool] allow_missing: Allow header to be missing from responses. Defaults to `false`.
+        """
         pulumi.set(__self__, "header", header)
         pulumi.set(__self__, "regexp", regexp)
         if allow_missing is not None:
@@ -6095,6 +7001,9 @@ class SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs:
     @property
     @pulumi.getter
     def header(self) -> pulumi.Input[str]:
+        """
+        Header name.
+        """
         return pulumi.get(self, "header")
 
     @header.setter
@@ -6104,6 +7013,9 @@ class SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs:
     @property
     @pulumi.getter
     def regexp(self) -> pulumi.Input[str]:
+        """
+        Regex that header value should match.
+        """
         return pulumi.get(self, "regexp")
 
     @regexp.setter
@@ -6113,6 +7025,9 @@ class SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs:
     @property
     @pulumi.getter(name="allowMissing")
     def allow_missing(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow header to be missing from responses. Defaults to `false`.
+        """
         return pulumi.get(self, "allow_missing")
 
     @allow_missing.setter
@@ -6126,6 +7041,11 @@ class SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArgs:
                  header: pulumi.Input[str],
                  regexp: pulumi.Input[str],
                  allow_missing: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] header: Header name.
+        :param pulumi.Input[str] regexp: Regex that header value should match.
+        :param pulumi.Input[bool] allow_missing: Allow header to be missing from responses. Defaults to `false`.
+        """
         pulumi.set(__self__, "header", header)
         pulumi.set(__self__, "regexp", regexp)
         if allow_missing is not None:
@@ -6134,6 +7054,9 @@ class SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArgs:
     @property
     @pulumi.getter
     def header(self) -> pulumi.Input[str]:
+        """
+        Header name.
+        """
         return pulumi.get(self, "header")
 
     @header.setter
@@ -6143,6 +7066,9 @@ class SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArgs:
     @property
     @pulumi.getter
     def regexp(self) -> pulumi.Input[str]:
+        """
+        Regex that header value should match.
+        """
         return pulumi.get(self, "regexp")
 
     @regexp.setter
@@ -6152,6 +7078,9 @@ class SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArgs:
     @property
     @pulumi.getter(name="allowMissing")
     def allow_missing(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow header to be missing from responses. Defaults to `false`.
+        """
         return pulumi.get(self, "allow_missing")
 
     @allow_missing.setter
@@ -6167,6 +7096,13 @@ class SyntheticMonitoringCheckSettingsHttpTlsConfigArgs:
                  client_key: Optional[pulumi.Input[str]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  server_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] ca_cert: CA certificate in PEM format.
+        :param pulumi.Input[str] client_cert: Client certificate in PEM format.
+        :param pulumi.Input[str] client_key: Client key in PEM format.
+        :param pulumi.Input[bool] insecure_skip_verify: Disable target certificate validation. Defaults to `false`.
+        :param pulumi.Input[str] server_name: Used to verify the hostname for the targets.
+        """
         if ca_cert is not None:
             pulumi.set(__self__, "ca_cert", ca_cert)
         if client_cert is not None:
@@ -6181,6 +7117,9 @@ class SyntheticMonitoringCheckSettingsHttpTlsConfigArgs:
     @property
     @pulumi.getter(name="caCert")
     def ca_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA certificate in PEM format.
+        """
         return pulumi.get(self, "ca_cert")
 
     @ca_cert.setter
@@ -6190,6 +7129,9 @@ class SyntheticMonitoringCheckSettingsHttpTlsConfigArgs:
     @property
     @pulumi.getter(name="clientCert")
     def client_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client certificate in PEM format.
+        """
         return pulumi.get(self, "client_cert")
 
     @client_cert.setter
@@ -6199,6 +7141,9 @@ class SyntheticMonitoringCheckSettingsHttpTlsConfigArgs:
     @property
     @pulumi.getter(name="clientKey")
     def client_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client key in PEM format.
+        """
         return pulumi.get(self, "client_key")
 
     @client_key.setter
@@ -6208,6 +7153,9 @@ class SyntheticMonitoringCheckSettingsHttpTlsConfigArgs:
     @property
     @pulumi.getter(name="insecureSkipVerify")
     def insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable target certificate validation. Defaults to `false`.
+        """
         return pulumi.get(self, "insecure_skip_verify")
 
     @insecure_skip_verify.setter
@@ -6217,6 +7165,9 @@ class SyntheticMonitoringCheckSettingsHttpTlsConfigArgs:
     @property
     @pulumi.getter(name="serverName")
     def server_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Used to verify the hostname for the targets.
+        """
         return pulumi.get(self, "server_name")
 
     @server_name.setter
@@ -6231,6 +7182,12 @@ class SyntheticMonitoringCheckSettingsPingArgs:
                  ip_version: Optional[pulumi.Input[str]] = None,
                  payload_size: Optional[pulumi.Input[int]] = None,
                  source_ip_address: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] dont_fragment: Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+        :param pulumi.Input[str] ip_version: Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        :param pulumi.Input[int] payload_size: Payload size. Defaults to `0`.
+        :param pulumi.Input[str] source_ip_address: Source IP address.
+        """
         if dont_fragment is not None:
             pulumi.set(__self__, "dont_fragment", dont_fragment)
         if ip_version is not None:
@@ -6243,6 +7200,9 @@ class SyntheticMonitoringCheckSettingsPingArgs:
     @property
     @pulumi.getter(name="dontFragment")
     def dont_fragment(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+        """
         return pulumi.get(self, "dont_fragment")
 
     @dont_fragment.setter
@@ -6252,6 +7212,9 @@ class SyntheticMonitoringCheckSettingsPingArgs:
     @property
     @pulumi.getter(name="ipVersion")
     def ip_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        """
         return pulumi.get(self, "ip_version")
 
     @ip_version.setter
@@ -6261,6 +7224,9 @@ class SyntheticMonitoringCheckSettingsPingArgs:
     @property
     @pulumi.getter(name="payloadSize")
     def payload_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Payload size. Defaults to `0`.
+        """
         return pulumi.get(self, "payload_size")
 
     @payload_size.setter
@@ -6270,6 +7236,9 @@ class SyntheticMonitoringCheckSettingsPingArgs:
     @property
     @pulumi.getter(name="sourceIpAddress")
     def source_ip_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Source IP address.
+        """
         return pulumi.get(self, "source_ip_address")
 
     @source_ip_address.setter
@@ -6285,6 +7254,13 @@ class SyntheticMonitoringCheckSettingsTcpArgs:
                  source_ip_address: Optional[pulumi.Input[str]] = None,
                  tls: Optional[pulumi.Input[bool]] = None,
                  tls_config: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsTcpTlsConfigArgs']] = None):
+        """
+        :param pulumi.Input[str] ip_version: Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        :param pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsTcpQueryResponseArgs']]] query_responses: The query sent in the TCP probe and the expected associated response.
+        :param pulumi.Input[str] source_ip_address: Source IP address.
+        :param pulumi.Input[bool] tls: Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+        :param pulumi.Input['SyntheticMonitoringCheckSettingsTcpTlsConfigArgs'] tls_config: TLS config.
+        """
         if ip_version is not None:
             pulumi.set(__self__, "ip_version", ip_version)
         if query_responses is not None:
@@ -6299,6 +7275,9 @@ class SyntheticMonitoringCheckSettingsTcpArgs:
     @property
     @pulumi.getter(name="ipVersion")
     def ip_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        """
         return pulumi.get(self, "ip_version")
 
     @ip_version.setter
@@ -6308,6 +7287,9 @@ class SyntheticMonitoringCheckSettingsTcpArgs:
     @property
     @pulumi.getter(name="queryResponses")
     def query_responses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsTcpQueryResponseArgs']]]]:
+        """
+        The query sent in the TCP probe and the expected associated response.
+        """
         return pulumi.get(self, "query_responses")
 
     @query_responses.setter
@@ -6317,6 +7299,9 @@ class SyntheticMonitoringCheckSettingsTcpArgs:
     @property
     @pulumi.getter(name="sourceIpAddress")
     def source_ip_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Source IP address.
+        """
         return pulumi.get(self, "source_ip_address")
 
     @source_ip_address.setter
@@ -6326,6 +7311,9 @@ class SyntheticMonitoringCheckSettingsTcpArgs:
     @property
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+        """
         return pulumi.get(self, "tls")
 
     @tls.setter
@@ -6335,6 +7323,9 @@ class SyntheticMonitoringCheckSettingsTcpArgs:
     @property
     @pulumi.getter(name="tlsConfig")
     def tls_config(self) -> Optional[pulumi.Input['SyntheticMonitoringCheckSettingsTcpTlsConfigArgs']]:
+        """
+        TLS config.
+        """
         return pulumi.get(self, "tls_config")
 
     @tls_config.setter
@@ -6348,6 +7339,11 @@ class SyntheticMonitoringCheckSettingsTcpQueryResponseArgs:
                  expect: pulumi.Input[str],
                  send: pulumi.Input[str],
                  start_tls: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] expect: Response to expect.
+        :param pulumi.Input[str] send: Data to send.
+        :param pulumi.Input[bool] start_tls: Upgrade TCP connection to TLS. Defaults to `false`.
+        """
         pulumi.set(__self__, "expect", expect)
         pulumi.set(__self__, "send", send)
         if start_tls is not None:
@@ -6356,6 +7352,9 @@ class SyntheticMonitoringCheckSettingsTcpQueryResponseArgs:
     @property
     @pulumi.getter
     def expect(self) -> pulumi.Input[str]:
+        """
+        Response to expect.
+        """
         return pulumi.get(self, "expect")
 
     @expect.setter
@@ -6365,6 +7364,9 @@ class SyntheticMonitoringCheckSettingsTcpQueryResponseArgs:
     @property
     @pulumi.getter
     def send(self) -> pulumi.Input[str]:
+        """
+        Data to send.
+        """
         return pulumi.get(self, "send")
 
     @send.setter
@@ -6374,6 +7376,9 @@ class SyntheticMonitoringCheckSettingsTcpQueryResponseArgs:
     @property
     @pulumi.getter(name="startTls")
     def start_tls(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Upgrade TCP connection to TLS. Defaults to `false`.
+        """
         return pulumi.get(self, "start_tls")
 
     @start_tls.setter
@@ -6389,6 +7394,13 @@ class SyntheticMonitoringCheckSettingsTcpTlsConfigArgs:
                  client_key: Optional[pulumi.Input[str]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  server_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] ca_cert: CA certificate in PEM format.
+        :param pulumi.Input[str] client_cert: Client certificate in PEM format.
+        :param pulumi.Input[str] client_key: Client key in PEM format.
+        :param pulumi.Input[bool] insecure_skip_verify: Disable target certificate validation. Defaults to `false`.
+        :param pulumi.Input[str] server_name: Used to verify the hostname for the targets.
+        """
         if ca_cert is not None:
             pulumi.set(__self__, "ca_cert", ca_cert)
         if client_cert is not None:
@@ -6403,6 +7415,9 @@ class SyntheticMonitoringCheckSettingsTcpTlsConfigArgs:
     @property
     @pulumi.getter(name="caCert")
     def ca_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA certificate in PEM format.
+        """
         return pulumi.get(self, "ca_cert")
 
     @ca_cert.setter
@@ -6412,6 +7427,9 @@ class SyntheticMonitoringCheckSettingsTcpTlsConfigArgs:
     @property
     @pulumi.getter(name="clientCert")
     def client_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client certificate in PEM format.
+        """
         return pulumi.get(self, "client_cert")
 
     @client_cert.setter
@@ -6421,6 +7439,9 @@ class SyntheticMonitoringCheckSettingsTcpTlsConfigArgs:
     @property
     @pulumi.getter(name="clientKey")
     def client_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client key in PEM format.
+        """
         return pulumi.get(self, "client_key")
 
     @client_key.setter
@@ -6430,6 +7451,9 @@ class SyntheticMonitoringCheckSettingsTcpTlsConfigArgs:
     @property
     @pulumi.getter(name="insecureSkipVerify")
     def insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable target certificate validation. Defaults to `false`.
+        """
         return pulumi.get(self, "insecure_skip_verify")
 
     @insecure_skip_verify.setter
@@ -6439,6 +7463,9 @@ class SyntheticMonitoringCheckSettingsTcpTlsConfigArgs:
     @property
     @pulumi.getter(name="serverName")
     def server_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Used to verify the hostname for the targets.
+        """
         return pulumi.get(self, "server_name")
 
     @server_name.setter
@@ -6452,6 +7479,11 @@ class SyntheticMonitoringCheckSettingsTracerouteArgs:
                  max_hops: Optional[pulumi.Input[int]] = None,
                  max_unknown_hops: Optional[pulumi.Input[int]] = None,
                  ptr_lookup: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[int] max_hops: Maximum TTL for the trace Defaults to `64`.
+        :param pulumi.Input[int] max_unknown_hops: Maximum number of hosts to travers that give no response Defaults to `15`.
+        :param pulumi.Input[bool] ptr_lookup: Reverse lookup hostnames from IP addresses Defaults to `true`.
+        """
         if max_hops is not None:
             pulumi.set(__self__, "max_hops", max_hops)
         if max_unknown_hops is not None:
@@ -6462,6 +7494,9 @@ class SyntheticMonitoringCheckSettingsTracerouteArgs:
     @property
     @pulumi.getter(name="maxHops")
     def max_hops(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum TTL for the trace Defaults to `64`.
+        """
         return pulumi.get(self, "max_hops")
 
     @max_hops.setter
@@ -6471,6 +7506,9 @@ class SyntheticMonitoringCheckSettingsTracerouteArgs:
     @property
     @pulumi.getter(name="maxUnknownHops")
     def max_unknown_hops(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of hosts to travers that give no response Defaults to `15`.
+        """
         return pulumi.get(self, "max_unknown_hops")
 
     @max_unknown_hops.setter
@@ -6480,6 +7518,9 @@ class SyntheticMonitoringCheckSettingsTracerouteArgs:
     @property
     @pulumi.getter(name="ptrLookup")
     def ptr_lookup(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Reverse lookup hostnames from IP addresses Defaults to `true`.
+        """
         return pulumi.get(self, "ptr_lookup")
 
     @ptr_lookup.setter

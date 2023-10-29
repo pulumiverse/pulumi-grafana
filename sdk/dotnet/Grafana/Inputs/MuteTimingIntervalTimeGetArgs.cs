@@ -13,9 +13,15 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class MuteTimingIntervalTimeGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The time, in hh:mm format, of when the interval should end exclusively.
+        /// </summary>
         [Input("end", required: true)]
         public Input<string> End { get; set; } = null!;
 
+        /// <summary>
+        /// The time, in hh:mm format, of when the interval should begin inclusively.
+        /// </summary>
         [Input("start", required: true)]
         public Input<string> Start { get; set; } = null!;
 

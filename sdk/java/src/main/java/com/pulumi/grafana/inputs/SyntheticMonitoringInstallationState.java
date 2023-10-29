@@ -61,14 +61,14 @@ public final class SyntheticMonitoringInstallationState extends com.pulumi.resou
     }
 
     /**
-     * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack&#39;s region, this field is computed automatically and readable.
+     * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack&#39;s region, this field is computed automatically and readable.
      * 
      */
     @Import(name="stackSmApiUrl")
     private @Nullable Output<String> stackSmApiUrl;
 
     /**
-     * @return The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack&#39;s region, this field is computed automatically and readable.
+     * @return The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack&#39;s region, this field is computed automatically and readable.
      * 
      */
     public Optional<Output<String>> stackSmApiUrl() {
@@ -166,7 +166,7 @@ public final class SyntheticMonitoringInstallationState extends com.pulumi.resou
         }
 
         /**
-         * @param stackSmApiUrl The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack&#39;s region, this field is computed automatically and readable.
+         * @param stackSmApiUrl The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack&#39;s region, this field is computed automatically and readable.
          * 
          * @return builder
          * 
@@ -177,7 +177,7 @@ public final class SyntheticMonitoringInstallationState extends com.pulumi.resou
         }
 
         /**
-         * @param stackSmApiUrl The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack&#39;s region, this field is computed automatically and readable.
+         * @param stackSmApiUrl The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack&#39;s region, this field is computed automatically and readable.
          * 
          * @return builder
          * 

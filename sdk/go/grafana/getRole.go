@@ -94,11 +94,13 @@ type LookupRoleResult struct {
 	Id string `pulumi:"id"`
 	// Name of the role
 	Name string `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId string `pulumi:"orgId"`
 	// Specific set of actions granted by the role.
 	Permissions []GetRolePermission `pulumi:"permissions"`
 	// Unique identifier of the role. Used for assignments.
 	Uid string `pulumi:"uid"`
-	// Version of the role. A role is updated only on version increase.
+	// Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
 	Version int `pulumi:"version"`
 }
 
@@ -181,6 +183,11 @@ func (o LookupRoleResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRoleResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o LookupRoleResultOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRoleResult) string { return v.OrgId }).(pulumi.StringOutput)
+}
+
 // Specific set of actions granted by the role.
 func (o LookupRoleResultOutput) Permissions() GetRolePermissionArrayOutput {
 	return o.ApplyT(func(v LookupRoleResult) []GetRolePermission { return v.Permissions }).(GetRolePermissionArrayOutput)
@@ -191,7 +198,7 @@ func (o LookupRoleResultOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRoleResult) string { return v.Uid }).(pulumi.StringOutput)
 }
 
-// Version of the role. A role is updated only on version increase.
+// Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
 func (o LookupRoleResultOutput) Version() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRoleResult) int { return v.Version }).(pulumi.IntOutput)
 }

@@ -43,7 +43,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string?> IcalUrl { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the holiday.
+        /// The name of the custom period.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -126,7 +126,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? IcalUrl { get; set; }
 
         /// <summary>
-        /// The name of the holiday.
+        /// The name of the custom period.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -170,7 +170,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? IcalUrl { get; set; }
 
         /// <summary>
-        /// The name of the holiday.
+        /// The name of the custom period.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

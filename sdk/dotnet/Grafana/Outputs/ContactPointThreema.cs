@@ -21,7 +21,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// <summary>
         /// The templated description of the message.
         /// </summary>
-        public readonly string Description;
+        public readonly string? Description;
         /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
@@ -41,7 +41,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// <summary>
         /// The templated title of the message.
         /// </summary>
-        public readonly string Title;
+        public readonly string? Title;
         /// <summary>
         /// The UID of the contact point.
         /// </summary>
@@ -51,7 +51,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         private ContactPointThreema(
             string apiSecret,
 
-            string description,
+            string? description,
 
             bool? disableResolveMessage,
 
@@ -61,7 +61,7 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
 
             ImmutableDictionary<string, string>? settings,
 
-            string title,
+            string? title,
 
             string? uid)
         {

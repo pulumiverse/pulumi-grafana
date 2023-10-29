@@ -4,14 +4,18 @@
 package grafana
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Datasource for retrieving all SLOs.
 //
-// * [Official documentation](https://grafana.com/docs/grafana-cloud/slo/)
-// * [API documentation](https://grafana.com/docs/grafana-cloud/slo/api/)
+// * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
+// * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
 // * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
 func GetSlos(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetSlosResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
@@ -29,4 +33,50 @@ type GetSlosResult struct {
 	Id string `pulumi:"id"`
 	// Returns a list of all SLOs"
 	Slos []GetSlosSlo `pulumi:"slos"`
+}
+
+func GetSlosOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetSlosResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetSlosResult, error) {
+		r, err := GetSlos(ctx, opts...)
+		var s GetSlosResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetSlosResultOutput)
+}
+
+// A collection of values returned by getSlos.
+type GetSlosResultOutput struct{ *pulumi.OutputState }
+
+func (GetSlosResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosResult)(nil)).Elem()
+}
+
+func (o GetSlosResultOutput) ToGetSlosResultOutput() GetSlosResultOutput {
+	return o
+}
+
+func (o GetSlosResultOutput) ToGetSlosResultOutputWithContext(ctx context.Context) GetSlosResultOutput {
+	return o
+}
+
+func (o GetSlosResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSlosResult] {
+	return pulumix.Output[GetSlosResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSlosResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Returns a list of all SLOs"
+func (o GetSlosResultOutput) Slos() GetSlosSloArrayOutput {
+	return o.ApplyT(func(v GetSlosResult) []GetSlosSlo { return v.Slos }).(GetSlosSloArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSlosResultOutput{})
 }

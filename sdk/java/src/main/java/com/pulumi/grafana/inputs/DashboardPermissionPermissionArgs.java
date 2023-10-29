@@ -5,7 +5,6 @@ package com.pulumi.grafana.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -62,17 +61,17 @@ public final class DashboardPermissionPermissionArgs extends com.pulumi.resource
     }
 
     /**
-     * ID of the user to manage permissions for. Defaults to `0`.
+     * ID of the user or service account to manage permissions for. Defaults to `0`.
      * 
      */
     @Import(name="userId")
-    private @Nullable Output<Integer> userId;
+    private @Nullable Output<String> userId;
 
     /**
-     * @return ID of the user to manage permissions for. Defaults to `0`.
+     * @return ID of the user or service account to manage permissions for. Defaults to `0`.
      * 
      */
-    public Optional<Output<Integer>> userId() {
+    public Optional<Output<String>> userId() {
         return Optional.ofNullable(this.userId);
     }
 
@@ -167,23 +166,23 @@ public final class DashboardPermissionPermissionArgs extends com.pulumi.resource
         }
 
         /**
-         * @param userId ID of the user to manage permissions for. Defaults to `0`.
+         * @param userId ID of the user or service account to manage permissions for. Defaults to `0`.
          * 
          * @return builder
          * 
          */
-        public Builder userId(@Nullable Output<Integer> userId) {
+        public Builder userId(@Nullable Output<String> userId) {
             $.userId = userId;
             return this;
         }
 
         /**
-         * @param userId ID of the user to manage permissions for. Defaults to `0`.
+         * @param userId ID of the user or service account to manage permissions for. Defaults to `0`.
          * 
          * @return builder
          * 
          */
-        public Builder userId(Integer userId) {
+        public Builder userId(String userId) {
             return userId(Output.of(userId));
         }
 

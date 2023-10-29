@@ -91,6 +91,10 @@ export class ContactPoint extends pulumi.CustomResource {
      */
     public readonly kafkas!: pulumi.Output<outputs.ContactPointKafka[] | undefined>;
     /**
+     * A contact point that sends notifications to LINE.me.
+     */
+    public readonly lines!: pulumi.Output<outputs.ContactPointLine[] | undefined>;
+    /**
      * The name of the contact point.
      */
     public readonly name!: pulumi.Output<string>;
@@ -131,6 +135,10 @@ export class ContactPoint extends pulumi.CustomResource {
      */
     public readonly victorops!: pulumi.Output<outputs.ContactPointVictorop[] | undefined>;
     /**
+     * A contact point that sends notifications to Cisco Webex.
+     */
+    public readonly webexes!: pulumi.Output<outputs.ContactPointWebex[] | undefined>;
+    /**
      * A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
      */
     public readonly webhooks!: pulumi.Output<outputs.ContactPointWebhook[] | undefined>;
@@ -158,6 +166,7 @@ export class ContactPoint extends pulumi.CustomResource {
             resourceInputs["emails"] = state ? state.emails : undefined;
             resourceInputs["googlechats"] = state ? state.googlechats : undefined;
             resourceInputs["kafkas"] = state ? state.kafkas : undefined;
+            resourceInputs["lines"] = state ? state.lines : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["opsgenies"] = state ? state.opsgenies : undefined;
             resourceInputs["pagerduties"] = state ? state.pagerduties : undefined;
@@ -168,6 +177,7 @@ export class ContactPoint extends pulumi.CustomResource {
             resourceInputs["telegrams"] = state ? state.telegrams : undefined;
             resourceInputs["threemas"] = state ? state.threemas : undefined;
             resourceInputs["victorops"] = state ? state.victorops : undefined;
+            resourceInputs["webexes"] = state ? state.webexes : undefined;
             resourceInputs["webhooks"] = state ? state.webhooks : undefined;
             resourceInputs["wecoms"] = state ? state.wecoms : undefined;
         } else {
@@ -178,6 +188,7 @@ export class ContactPoint extends pulumi.CustomResource {
             resourceInputs["emails"] = args ? args.emails : undefined;
             resourceInputs["googlechats"] = args ? args.googlechats : undefined;
             resourceInputs["kafkas"] = args ? args.kafkas : undefined;
+            resourceInputs["lines"] = args ? args.lines : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["opsgenies"] = args ? args.opsgenies : undefined;
             resourceInputs["pagerduties"] = args ? args.pagerduties : undefined;
@@ -188,6 +199,7 @@ export class ContactPoint extends pulumi.CustomResource {
             resourceInputs["telegrams"] = args ? args.telegrams : undefined;
             resourceInputs["threemas"] = args ? args.threemas : undefined;
             resourceInputs["victorops"] = args ? args.victorops : undefined;
+            resourceInputs["webexes"] = args ? args.webexes : undefined;
             resourceInputs["webhooks"] = args ? args.webhooks : undefined;
             resourceInputs["wecoms"] = args ? args.wecoms : undefined;
         }
@@ -224,6 +236,10 @@ export interface ContactPointState {
      * A contact point that publishes notifications to Apache Kafka topics.
      */
     kafkas?: pulumi.Input<pulumi.Input<inputs.ContactPointKafka>[]>;
+    /**
+     * A contact point that sends notifications to LINE.me.
+     */
+    lines?: pulumi.Input<pulumi.Input<inputs.ContactPointLine>[]>;
     /**
      * The name of the contact point.
      */
@@ -264,6 +280,10 @@ export interface ContactPointState {
      * A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
      */
     victorops?: pulumi.Input<pulumi.Input<inputs.ContactPointVictorop>[]>;
+    /**
+     * A contact point that sends notifications to Cisco Webex.
+     */
+    webexes?: pulumi.Input<pulumi.Input<inputs.ContactPointWebex>[]>;
     /**
      * A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
      */
@@ -303,6 +323,10 @@ export interface ContactPointArgs {
      */
     kafkas?: pulumi.Input<pulumi.Input<inputs.ContactPointKafka>[]>;
     /**
+     * A contact point that sends notifications to LINE.me.
+     */
+    lines?: pulumi.Input<pulumi.Input<inputs.ContactPointLine>[]>;
+    /**
      * The name of the contact point.
      */
     name?: pulumi.Input<string>;
@@ -342,6 +366,10 @@ export interface ContactPointArgs {
      * A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
      */
     victorops?: pulumi.Input<pulumi.Input<inputs.ContactPointVictorop>[]>;
+    /**
+     * A contact point that sends notifications to Cisco Webex.
+     */
+    webexes?: pulumi.Input<pulumi.Input<inputs.ContactPointWebex>[]>;
     /**
      * A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
      */

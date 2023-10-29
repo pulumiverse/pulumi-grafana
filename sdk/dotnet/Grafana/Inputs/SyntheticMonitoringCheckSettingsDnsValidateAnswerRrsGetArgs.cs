@@ -15,6 +15,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
     {
         [Input("failIfMatchesRegexps")]
         private InputList<string>? _failIfMatchesRegexps;
+
+        /// <summary>
+        /// Fail if value matches regex.
+        /// </summary>
         public InputList<string> FailIfMatchesRegexps
         {
             get => _failIfMatchesRegexps ?? (_failIfMatchesRegexps = new InputList<string>());
@@ -23,6 +27,10 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
         [Input("failIfNotMatchesRegexps")]
         private InputList<string>? _failIfNotMatchesRegexps;
+
+        /// <summary>
+        /// Fail if value does not match regex.
+        /// </summary>
         public InputList<string> FailIfNotMatchesRegexps
         {
             get => _failIfNotMatchesRegexps ?? (_failIfNotMatchesRegexps = new InputList<string>());

@@ -43,6 +43,20 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// ```sh
+//
+//	$ pulumi import grafana:index/team:Team team_name {{team_id}} # To use the default provider org
+//
+// ```
+//
+// ```sh
+//
+//	$ pulumi import grafana:index/team:Team team_name {{org_id}}:{{team_id}} # When "org_id" is set on the resource
+//
+// ```
 type Team struct {
 	pulumi.CustomResourceState
 
@@ -65,7 +79,7 @@ type Team struct {
 	TeamId pulumi.IntOutput `pulumi:"teamId"`
 	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
 	// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-	// API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+	// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
 	TeamSync TeamTeamSyncPtrOutput `pulumi:"teamSync"`
 }
 
@@ -118,7 +132,7 @@ type teamState struct {
 	TeamId *int `pulumi:"teamId"`
 	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
 	// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-	// API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+	// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
 	TeamSync *TeamTeamSync `pulumi:"teamSync"`
 }
 
@@ -142,7 +156,7 @@ type TeamState struct {
 	TeamId pulumi.IntPtrInput
 	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
 	// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-	// API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+	// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
 	TeamSync TeamTeamSyncPtrInput
 }
 
@@ -168,7 +182,7 @@ type teamArgs struct {
 	Preferences *TeamPreferences `pulumi:"preferences"`
 	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
 	// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-	// API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+	// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
 	TeamSync *TeamTeamSync `pulumi:"teamSync"`
 }
 
@@ -191,7 +205,7 @@ type TeamArgs struct {
 	Preferences TeamPreferencesPtrInput
 	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
 	// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-	// API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+	// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
 	TeamSync TeamTeamSyncPtrInput
 }
 
@@ -346,7 +360,7 @@ func (o TeamOutput) TeamId() pulumi.IntOutput {
 
 // Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
 // documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-// API](https://grafana.com/docs/grafana/latest/developers/http_api/external_group_sync/)
+// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
 func (o TeamOutput) TeamSync() TeamTeamSyncPtrOutput {
 	return o.ApplyT(func(v *Team) TeamTeamSyncPtrOutput { return v.TeamSync }).(TeamTeamSyncPtrOutput)
 }

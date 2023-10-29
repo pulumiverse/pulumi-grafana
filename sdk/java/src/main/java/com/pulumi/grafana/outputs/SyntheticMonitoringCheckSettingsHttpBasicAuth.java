@@ -9,13 +9,29 @@ import java.util.Objects;
 
 @CustomType
 public final class SyntheticMonitoringCheckSettingsHttpBasicAuth {
+    /**
+     * @return Basic auth password.
+     * 
+     */
     private String password;
+    /**
+     * @return Basic auth username.
+     * 
+     */
     private String username;
 
     private SyntheticMonitoringCheckSettingsHttpBasicAuth() {}
+    /**
+     * @return Basic auth password.
+     * 
+     */
     public String password() {
         return this.password;
     }
+    /**
+     * @return Basic auth username.
+     * 
+     */
     public String username() {
         return this.username;
     }

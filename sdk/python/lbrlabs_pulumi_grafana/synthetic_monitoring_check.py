@@ -32,7 +32,7 @@ class SyntheticMonitoringCheckArgs:
         :param pulumi.Input[Sequence[pulumi.Input[int]]] probes: List of probe location IDs where this target will be checked from.
         :param pulumi.Input['SyntheticMonitoringCheckSettingsArgs'] settings: Check settings. Should contain exactly one nested block.
         :param pulumi.Input[str] target: Hostname to ping.
-        :param pulumi.Input[str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+        :param pulumi.Input[str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
         :param pulumi.Input[bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
         :param pulumi.Input[bool] enabled: Whether to enable the check. Defaults to `true`.
         :param pulumi.Input[int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms). Defaults to `60000`.
@@ -108,7 +108,7 @@ class SyntheticMonitoringCheckArgs:
     @pulumi.getter(name="alertSensitivity")
     def alert_sensitivity(self) -> Optional[pulumi.Input[str]]:
         """
-        Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+        Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
         """
         return pulumi.get(self, "alert_sensitivity")
 
@@ -193,7 +193,7 @@ class _SyntheticMonitoringCheckState:
                  timeout: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering SyntheticMonitoringCheck resources.
-        :param pulumi.Input[str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+        :param pulumi.Input[str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
         :param pulumi.Input[bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
         :param pulumi.Input[bool] enabled: Whether to enable the check. Defaults to `true`.
         :param pulumi.Input[int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms). Defaults to `60000`.
@@ -232,7 +232,7 @@ class _SyntheticMonitoringCheckState:
     @pulumi.getter(name="alertSensitivity")
     def alert_sensitivity(self) -> Optional[pulumi.Input[str]]:
         """
-        Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+        Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
         """
         return pulumi.get(self, "alert_sensitivity")
 
@@ -384,7 +384,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
         what information you would like to gather about your endpoint. You can define
         multiple checks for a single endpoint to check different capabilities.
 
-        * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/checks/)
+        * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/checks/)
 
         ## Example Usage
         ### DNS Basic
@@ -545,7 +545,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                     valid_http_versions=[
                         "HTTP/1.0",
                         "HTTP/1.1",
-                        "HTTP/2",
+                        "HTTP/2.0",
                     ],
                     fail_if_body_matches_regexps=["*bad stuff*"],
                     fail_if_body_not_matches_regexps=["*good stuff*"],
@@ -752,7 +752,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+        :param pulumi.Input[str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
         :param pulumi.Input[bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
         :param pulumi.Input[bool] enabled: Whether to enable the check. Defaults to `true`.
         :param pulumi.Input[int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms). Defaults to `60000`.
@@ -776,7 +776,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
         what information you would like to gather about your endpoint. You can define
         multiple checks for a single endpoint to check different capabilities.
 
-        * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/checks/)
+        * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/checks/)
 
         ## Example Usage
         ### DNS Basic
@@ -937,7 +937,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                     valid_http_versions=[
                         "HTTP/1.0",
                         "HTTP/1.1",
-                        "HTTP/2",
+                        "HTTP/2.0",
                     ],
                     fail_if_body_matches_regexps=["*bad stuff*"],
                     fail_if_body_not_matches_regexps=["*good stuff*"],
@@ -1223,7 +1223,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+        :param pulumi.Input[str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
         :param pulumi.Input[bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
         :param pulumi.Input[bool] enabled: Whether to enable the check. Defaults to `true`.
         :param pulumi.Input[int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms). Defaults to `60000`.
@@ -1256,7 +1256,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
     @pulumi.getter(name="alertSensitivity")
     def alert_sensitivity(self) -> pulumi.Output[Optional[str]]:
         """
-        Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/synthetic-monitoring-alerting/). Defaults to `none`.
+        Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
         """
         return pulumi.get(self, "alert_sensitivity")
 

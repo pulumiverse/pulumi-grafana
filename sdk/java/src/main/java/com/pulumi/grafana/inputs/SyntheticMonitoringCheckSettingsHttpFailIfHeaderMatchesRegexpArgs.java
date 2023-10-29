@@ -16,23 +16,47 @@ public final class SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp
 
     public static final SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs Empty = new SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs();
 
+    /**
+     * Allow header to be missing from responses. Defaults to `false`.
+     * 
+     */
     @Import(name="allowMissing")
     private @Nullable Output<Boolean> allowMissing;
 
+    /**
+     * @return Allow header to be missing from responses. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> allowMissing() {
         return Optional.ofNullable(this.allowMissing);
     }
 
+    /**
+     * Header name.
+     * 
+     */
     @Import(name="header", required=true)
     private Output<String> header;
 
+    /**
+     * @return Header name.
+     * 
+     */
     public Output<String> header() {
         return this.header;
     }
 
+    /**
+     * Regex that header value should match.
+     * 
+     */
     @Import(name="regexp", required=true)
     private Output<String> regexp;
 
+    /**
+     * @return Regex that header value should match.
+     * 
+     */
     public Output<String> regexp() {
         return this.regexp;
     }
@@ -63,29 +87,65 @@ public final class SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp
             $ = new SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param allowMissing Allow header to be missing from responses. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allowMissing(@Nullable Output<Boolean> allowMissing) {
             $.allowMissing = allowMissing;
             return this;
         }
 
+        /**
+         * @param allowMissing Allow header to be missing from responses. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allowMissing(Boolean allowMissing) {
             return allowMissing(Output.of(allowMissing));
         }
 
+        /**
+         * @param header Header name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder header(Output<String> header) {
             $.header = header;
             return this;
         }
 
+        /**
+         * @param header Header name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder header(String header) {
             return header(Output.of(header));
         }
 
+        /**
+         * @param regexp Regex that header value should match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder regexp(Output<String> regexp) {
             $.regexp = regexp;
             return this;
         }
 
+        /**
+         * @param regexp Regex that header value should match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder regexp(String regexp) {
             return regexp(Output.of(regexp));
         }

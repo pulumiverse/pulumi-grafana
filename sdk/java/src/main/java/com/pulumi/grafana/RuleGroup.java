@@ -180,14 +180,14 @@ public class RuleGroup extends com.pulumi.resources.CustomResource {
         return this.intervalSeconds;
     }
     /**
-     * The name of the rule group.
+     * The name of the alert rule.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The name of the rule group.
+     * @return The name of the alert rule.
      * 
      */
     public Output<String> name() {

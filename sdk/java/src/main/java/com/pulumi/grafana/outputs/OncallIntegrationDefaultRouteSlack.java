@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class OncallIntegrationDefaultRouteSlack {
+    /**
+     * @return Slack channel id. Alerts will be directed to this channel in Slack.
+     * 
+     */
     private @Nullable String channelId;
+    /**
+     * @return Enable notification in MS teams. Defaults to `true`.
+     * 
+     */
     private @Nullable Boolean enabled;
 
     private OncallIntegrationDefaultRouteSlack() {}
+    /**
+     * @return Slack channel id. Alerts will be directed to this channel in Slack.
+     * 
+     */
     public Optional<String> channelId() {
         return Optional.ofNullable(this.channelId);
     }
+    /**
+     * @return Enable notification in MS teams. Defaults to `true`.
+     * 
+     */
     public Optional<Boolean> enabled() {
         return Optional.ofNullable(this.enabled);
     }

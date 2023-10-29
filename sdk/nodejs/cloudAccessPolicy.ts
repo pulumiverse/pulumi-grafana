@@ -7,8 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/)
- * * [API documentation](https://grafana.com/docs/grafana-cloud/reference/cloud-api/#create-an-access-policy)
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
+ * * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-an-access-policy)
  *
  * ## Example Usage
  *
@@ -95,11 +95,11 @@ export class CloudAccessPolicy extends pulumi.CustomResource {
     public /*out*/ readonly policyId!: pulumi.Output<string>;
     public readonly realms!: pulumi.Output<outputs.CloudAccessPolicyRealm[]>;
     /**
-     * Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+     * Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/#scopes for possible values.
+     * Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
      */
     public readonly scopes!: pulumi.Output<string[]>;
     /**
@@ -175,11 +175,11 @@ export interface CloudAccessPolicyState {
     policyId?: pulumi.Input<string>;
     realms?: pulumi.Input<pulumi.Input<inputs.CloudAccessPolicyRealm>[]>;
     /**
-     * Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+     * Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
     region?: pulumi.Input<string>;
     /**
-     * Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/#scopes for possible values.
+     * Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
      */
     scopes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -202,11 +202,11 @@ export interface CloudAccessPolicyArgs {
     name?: pulumi.Input<string>;
     realms: pulumi.Input<pulumi.Input<inputs.CloudAccessPolicyRealm>[]>;
     /**
-     * Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/reference/cloud-api/#list-regions.
+     * Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
     region: pulumi.Input<string>;
     /**
-     * Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/authentication-and-permissions/access-policies/#scopes for possible values.
+     * Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
      */
     scopes: pulumi.Input<pulumi.Input<string>[]>;
 }

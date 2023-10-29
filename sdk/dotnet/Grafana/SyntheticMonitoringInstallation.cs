@@ -17,7 +17,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
     /// 
     /// **Note that this resource must be used on a provider configured with Grafana Cloud credentials.**
     /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/synthetic-monitoring/installation/)
+    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/installation/)
     /// * [API documentation](https://github.com/grafana/synthetic-monitoring-api-go-client/blob/main/docs/API.md#apiv1registerinstall)
     /// 
     /// ## Example Usage
@@ -79,7 +79,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<string> StackId { get; private set; } = null!;
 
         /// <summary>
-        /// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        /// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
         /// </summary>
         [Output("stackSmApiUrl")]
         public Output<string> StackSmApiUrl { get; private set; } = null!;
@@ -158,7 +158,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string> StackId { get; set; } = null!;
 
         /// <summary>
-        /// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        /// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
         /// </summary>
         [Input("stackSmApiUrl")]
         public Input<string>? StackSmApiUrl { get; set; }
@@ -200,7 +200,7 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Input<string>? StackId { get; set; }
 
         /// <summary>
-        /// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/synthetic-monitoring/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
+        /// The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
         /// </summary>
         [Input("stackSmApiUrl")]
         public Input<string>? StackSmApiUrl { get; set; }

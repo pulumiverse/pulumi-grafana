@@ -96,6 +96,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         public Output<ImmutableArray<Outputs.ContactPointKafka>> Kafkas { get; private set; } = null!;
 
         /// <summary>
+        /// A contact point that sends notifications to LINE.me.
+        /// </summary>
+        [Output("lines")]
+        public Output<ImmutableArray<Outputs.ContactPointLine>> Lines { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the contact point.
         /// </summary>
         [Output("name")]
@@ -154,6 +160,12 @@ namespace Lbrlabs.PulumiPackage.Grafana
         /// </summary>
         [Output("victorops")]
         public Output<ImmutableArray<Outputs.ContactPointVictorop>> Victorops { get; private set; } = null!;
+
+        /// <summary>
+        /// A contact point that sends notifications to Cisco Webex.
+        /// </summary>
+        [Output("webexes")]
+        public Output<ImmutableArray<Outputs.ContactPointWebex>> Webexes { get; private set; } = null!;
 
         /// <summary>
         /// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
@@ -286,6 +298,18 @@ namespace Lbrlabs.PulumiPackage.Grafana
             set => _kafkas = value;
         }
 
+        [Input("lines")]
+        private InputList<Inputs.ContactPointLineArgs>? _lines;
+
+        /// <summary>
+        /// A contact point that sends notifications to LINE.me.
+        /// </summary>
+        public InputList<Inputs.ContactPointLineArgs> Lines
+        {
+            get => _lines ?? (_lines = new InputList<Inputs.ContactPointLineArgs>());
+            set => _lines = value;
+        }
+
         /// <summary>
         /// The name of the contact point.
         /// </summary>
@@ -400,6 +424,18 @@ namespace Lbrlabs.PulumiPackage.Grafana
             set => _victorops = value;
         }
 
+        [Input("webexes")]
+        private InputList<Inputs.ContactPointWebexArgs>? _webexes;
+
+        /// <summary>
+        /// A contact point that sends notifications to Cisco Webex.
+        /// </summary>
+        public InputList<Inputs.ContactPointWebexArgs> Webexes
+        {
+            get => _webexes ?? (_webexes = new InputList<Inputs.ContactPointWebexArgs>());
+            set => _webexes = value;
+        }
+
         [Input("webhooks")]
         private InputList<Inputs.ContactPointWebhookArgs>? _webhooks;
 
@@ -502,6 +538,18 @@ namespace Lbrlabs.PulumiPackage.Grafana
         {
             get => _kafkas ?? (_kafkas = new InputList<Inputs.ContactPointKafkaGetArgs>());
             set => _kafkas = value;
+        }
+
+        [Input("lines")]
+        private InputList<Inputs.ContactPointLineGetArgs>? _lines;
+
+        /// <summary>
+        /// A contact point that sends notifications to LINE.me.
+        /// </summary>
+        public InputList<Inputs.ContactPointLineGetArgs> Lines
+        {
+            get => _lines ?? (_lines = new InputList<Inputs.ContactPointLineGetArgs>());
+            set => _lines = value;
         }
 
         /// <summary>
@@ -616,6 +664,18 @@ namespace Lbrlabs.PulumiPackage.Grafana
         {
             get => _victorops ?? (_victorops = new InputList<Inputs.ContactPointVictoropGetArgs>());
             set => _victorops = value;
+        }
+
+        [Input("webexes")]
+        private InputList<Inputs.ContactPointWebexGetArgs>? _webexes;
+
+        /// <summary>
+        /// A contact point that sends notifications to Cisco Webex.
+        /// </summary>
+        public InputList<Inputs.ContactPointWebexGetArgs> Webexes
+        {
+            get => _webexes ?? (_webexes = new InputList<Inputs.ContactPointWebexGetArgs>());
+            set => _webexes = value;
         }
 
         [Input("webhooks")]

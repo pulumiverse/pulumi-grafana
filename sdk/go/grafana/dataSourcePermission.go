@@ -67,6 +67,12 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			sa, err := grafana.NewServiceAccount(ctx, "sa", &grafana.ServiceAccountArgs{
+//				Role: pulumi.String("Viewer"),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			_, err = grafana.NewDataSourcePermission(ctx, "fooPermissions", &grafana.DataSourcePermissionArgs{
 //				DatasourceId: foo.ID(),
 //				Permissions: grafana.DataSourcePermissionPermissionArray{
@@ -81,6 +87,10 @@ import (
 //					&grafana.DataSourcePermissionPermissionArgs{
 //						BuiltInRole: pulumi.String("Viewer"),
 //						Permission:  pulumi.String("Query"),
+//					},
+//					&grafana.DataSourcePermissionPermissionArgs{
+//						UserId:     sa.ID(),
+//						Permission: pulumi.String("Query"),
 //					},
 //				},
 //			})

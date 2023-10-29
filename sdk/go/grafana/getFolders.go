@@ -4,8 +4,12 @@
 package grafana
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/lbrlabs/pulumi-grafana/sdk/go/grafana/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
@@ -64,4 +68,50 @@ type GetFoldersResult struct {
 	Folders []GetFoldersFolder `pulumi:"folders"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+}
+
+func GetFoldersOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetFoldersResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetFoldersResult, error) {
+		r, err := GetFolders(ctx, opts...)
+		var s GetFoldersResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetFoldersResultOutput)
+}
+
+// A collection of values returned by getFolders.
+type GetFoldersResultOutput struct{ *pulumi.OutputState }
+
+func (GetFoldersResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFoldersResult)(nil)).Elem()
+}
+
+func (o GetFoldersResultOutput) ToGetFoldersResultOutput() GetFoldersResultOutput {
+	return o
+}
+
+func (o GetFoldersResultOutput) ToGetFoldersResultOutputWithContext(ctx context.Context) GetFoldersResultOutput {
+	return o
+}
+
+func (o GetFoldersResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetFoldersResult] {
+	return pulumix.Output[GetFoldersResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The Grafana instance's folders.
+func (o GetFoldersResultOutput) Folders() GetFoldersFolderArrayOutput {
+	return o.ApplyT(func(v GetFoldersResult) []GetFoldersFolder { return v.Folders }).(GetFoldersFolderArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetFoldersResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFoldersResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetFoldersResultOutput{})
 }

@@ -15,6 +15,14 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     public sealed class ContactPointWecom
     {
         /// <summary>
+        /// Agent ID added to the request payload when using APIAPP.
+        /// </summary>
+        public readonly string? AgentId;
+        /// <summary>
+        /// Corp ID used to get token when using APIAPP.
+        /// </summary>
+        public readonly string? CorpId;
+        /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
         public readonly bool? DisableResolveMessage;
@@ -22,6 +30,14 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// The templated content of the message to send.
         /// </summary>
         public readonly string? Message;
+        /// <summary>
+        /// The type of them message. Supported: markdown, text. Default: text.
+        /// </summary>
+        public readonly string? MsgType;
+        /// <summary>
+        /// The secret key required to obtain access token when using APIAPP. See https://work.weixin.qq.com/wework_admin/frame#apps to create APIAPP.
+        /// </summary>
+        public readonly string? Secret;
         /// <summary>
         /// Additional custom properties to attach to the notifier. Defaults to `map[]`.
         /// </summary>
@@ -31,32 +47,51 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
         /// </summary>
         public readonly string? Title;
         /// <summary>
+        /// The ID of user that should receive the message. Multiple entries should be separated by '|'. Default: @all.
+        /// </summary>
+        public readonly string? ToUser;
+        /// <summary>
         /// The UID of the contact point.
         /// </summary>
         public readonly string? Uid;
         /// <summary>
-        /// The WeCom webhook URL.
+        /// The WeCom webhook URL. Required if using GroupRobot.
         /// </summary>
-        public readonly string Url;
+        public readonly string? Url;
 
         [OutputConstructor]
         private ContactPointWecom(
+            string? agentId,
+
+            string? corpId,
+
             bool? disableResolveMessage,
 
             string? message,
+
+            string? msgType,
+
+            string? secret,
 
             ImmutableDictionary<string, string>? settings,
 
             string? title,
 
+            string? toUser,
+
             string? uid,
 
-            string url)
+            string? url)
         {
+            AgentId = agentId;
+            CorpId = corpId;
             DisableResolveMessage = disableResolveMessage;
             Message = message;
+            MsgType = msgType;
+            Secret = secret;
             Settings = settings;
             Title = title;
+            ToUser = toUser;
             Uid = uid;
             Url = url;
         }

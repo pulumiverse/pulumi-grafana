@@ -14,7 +14,13 @@ namespace Lbrlabs.PulumiPackage.Grafana.Outputs
     [OutputType]
     public sealed class MuteTimingIntervalTime
     {
+        /// <summary>
+        /// The time, in hh:mm format, of when the interval should end exclusively.
+        /// </summary>
         public readonly string End;
+        /// <summary>
+        /// The time, in hh:mm format, of when the interval should begin inclusively.
+        /// </summary>
         public readonly string Start;
 
         [OutputConstructor]

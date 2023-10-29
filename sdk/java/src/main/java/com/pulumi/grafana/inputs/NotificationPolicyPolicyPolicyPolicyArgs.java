@@ -50,18 +50,18 @@ public final class NotificationPolicyPolicyPolicyPolicyArgs extends com.pulumi.r
     }
 
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      * 
      */
-    @Import(name="groupBies", required=true)
-    private Output<List<String>> groupBies;
+    @Import(name="groupBies")
+    private @Nullable Output<List<String>> groupBies;
 
     /**
-     * @return A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * @return A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      * 
      */
-    public Output<List<String>> groupBies() {
-        return this.groupBies;
+    public Optional<Output<List<String>>> groupBies() {
+        return Optional.ofNullable(this.groupBies);
     }
 
     /**
@@ -229,18 +229,18 @@ public final class NotificationPolicyPolicyPolicyPolicyArgs extends com.pulumi.r
         }
 
         /**
-         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
          * 
          * @return builder
          * 
          */
-        public Builder groupBies(Output<List<String>> groupBies) {
+        public Builder groupBies(@Nullable Output<List<String>> groupBies) {
             $.groupBies = groupBies;
             return this;
         }
 
         /**
-         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
          * 
          * @return builder
          * 
@@ -250,7 +250,7 @@ public final class NotificationPolicyPolicyPolicyPolicyArgs extends com.pulumi.r
         }
 
         /**
-         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+         * @param groupBies A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
          * 
          * @return builder
          * 
@@ -417,7 +417,6 @@ public final class NotificationPolicyPolicyPolicyPolicyArgs extends com.pulumi.r
 
         public NotificationPolicyPolicyPolicyPolicyArgs build() {
             $.contactPoint = Objects.requireNonNull($.contactPoint, "expected parameter 'contactPoint' to be non-null");
-            $.groupBies = Objects.requireNonNull($.groupBies, "expected parameter 'groupBies' to be non-null");
             return $;
         }
     }

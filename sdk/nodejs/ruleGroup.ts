@@ -148,7 +148,7 @@ export class RuleGroup extends pulumi.CustomResource {
      */
     public readonly intervalSeconds!: pulumi.Output<number>;
     /**
-     * The name of the rule group.
+     * The name of the alert rule.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -216,7 +216,7 @@ export interface RuleGroupState {
      */
     intervalSeconds?: pulumi.Input<number>;
     /**
-     * The name of the rule group.
+     * The name of the alert rule.
      */
     name?: pulumi.Input<string>;
     /**
@@ -242,7 +242,7 @@ export interface RuleGroupArgs {
      */
     intervalSeconds: pulumi.Input<number>;
     /**
-     * The name of the rule group.
+     * The name of the alert rule.
      */
     name?: pulumi.Input<string>;
     /**

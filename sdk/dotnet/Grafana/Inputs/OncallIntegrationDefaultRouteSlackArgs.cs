@@ -13,9 +13,15 @@ namespace Lbrlabs.PulumiPackage.Grafana.Inputs
 
     public sealed class OncallIntegrationDefaultRouteSlackArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Slack channel id. Alerts will be directed to this channel in Slack.
+        /// </summary>
         [Input("channelId")]
         public Input<string>? ChannelId { get; set; }
 
+        /// <summary>
+        /// Enable notification in MS teams. Defaults to `true`.
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
