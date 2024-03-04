@@ -35,3 +35,9 @@ service_account = grafana.ServiceAccount(
 
 {{% /choosable %}}
 {{< /chooser >}}
+
+## Issues
+
+This is a community maintained provider. Please file issues and feature requests here:
+
+[pulumiverse/pulumi-grafana](https://github.com/pulumiverse/pulumi-grafana/issues)

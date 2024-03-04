@@ -23,6 +23,22 @@ pulumi plugin install resource grafana <version>  --server github://api.github.c
 
 Replace the version string with your desired version.
 
+### Migrating from the LbrLabs package
+
+The maintenance of this provider has been transferred from LbrLabs to Pulumiverse.
+LbrLabs published up to v0.2.0, where Pulumiverse picks up with an initial v0.2.1
+containing the renamed packages.
+
+If you were using the LbrLabs edition, please update your dependencies to the
+Pulumiverse edition:
+
+| Programming Language | LbrLabs name | Pulumiverse name |
+| -- | -- | -- |
+| JavaScript/TypeScript | `@lbrlabs/pulumi-grafana` | `@pulumiverse/grafana` |
+| Python | `lbrlabs_pulumi_grafana` | `pulumiverse_grafana` |
+| Go | `github.com/lbrlabs/pulumi-grafana/sdk/go/grafana` | `github.com/pulumiverse/pulumi-grafana/sdk/go/grafana` |
+| .NET | `Lbrlabs.PulumiPackage.Grafana` | `Pulumiverse.Grafana` |
+
 ## Setup
 
 To provision resources with the Pulumi Grafana provider, you need to have Grafana credentials. 
