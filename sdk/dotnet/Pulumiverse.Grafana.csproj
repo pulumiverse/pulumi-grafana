@@ -6,7 +6,7 @@
     <Company>pulumiverse</Company>
     <Description>A Pulumi package for creating and managing grafana.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://www.pulumi.com</PackageProjectUrl>
+    <PackageProjectUrl>https://grafana.com</PackageProjectUrl>
     <RepositoryUrl>https://github.com/pulumiverse/pulumi-grafana</RepositoryUrl>
     <PackageIcon>logo.png</PackageIcon>
 

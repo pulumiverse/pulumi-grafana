@@ -24,7 +24,7 @@ setup(name='pulumiverse_grafana',
       long_description=readme(),
       long_description_content_type='text/markdown',
       keywords='pulumi grafana pulumiverse',
-      url='https://www.pulumi.com',
+      url='https://grafana.com',
       project_urls={
           'Repository': 'https://github.com/pulumiverse/pulumi-grafana'
       },

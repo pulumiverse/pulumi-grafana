@@ -7,7 +7,7 @@
         "grafana",
         "pulumiverse"
     ],
-    "homepage": "https://www.pulumi.com",
+    "homepage": "https://grafana.com",
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`grafana` Terraform Provider](https://github.com/grafana/terraform-provider-grafana).",
     "repository": "https://github.com/pulumiverse/pulumi-grafana",

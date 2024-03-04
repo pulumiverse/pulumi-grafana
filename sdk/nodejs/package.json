@@ -7,7 +7,7 @@
         "grafana",
         "pulumiverse"
     ],
-    "homepage": "https://www.pulumi.com",
+    "homepage": "https://grafana.com",
     "repository": "https://github.com/pulumiverse/pulumi-grafana",
     "license": "Apache-2.0",
     "scripts": {

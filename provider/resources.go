@@ -80,7 +80,7 @@ func Provider() tfbridge.ProviderInfo {
 		Description:       "A Pulumi package for creating and managing grafana.",
 		Keywords:          []string{"pulumi", "grafana", "pulumiverse"},
 		License:           "Apache-2.0",
-		Homepage:          "https://www.pulumi.com",
+		Homepage:          "https://grafana.com",
 		Repository:        "https://github.com/pulumiverse/pulumi-grafana",
 		GitHubOrg:         "grafana",
 		Config: map[string]*tfbridge.SchemaInfo{

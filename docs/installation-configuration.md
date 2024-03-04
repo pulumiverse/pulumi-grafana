@@ -18,7 +18,7 @@ The Pulumi Grafana provider is available as a package in all Pulumi languages:
 The Grafana provider binary is a third party binary. It can be installed using the `pulumi plugin` command.
 
 ```bash
-pulumi plugin install resource grafana <version>
+pulumi plugin install resource grafana <version>  --server github://api.github.com/pulumiverse
 ```
 
 Replace the version string with your desired version.
