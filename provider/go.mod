@@ -1,4 +1,4 @@
-module github.com/lbrlabs/pulumi-grafana/provider
+module github.com/pulumiverse/pulumi-grafana/provider
 
 go 1.21
 

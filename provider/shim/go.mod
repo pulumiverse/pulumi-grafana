@@ -1,11 +1,10 @@
-module github.com/lbrlabs/terraform-provider-grafana/shim
+module github.com/pulumiverse/pulumi-grafana/shim
 
 go 1.21
 
 require (
 	github.com/grafana/terraform-provider-grafana v1.43.1-0.20231026120418-882513ced408
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.29.0
-	github.com/lbrlabs/pulumi-grafana/provider v0.0.0-20230521192524-f36534c468ee
 )
 
 require (

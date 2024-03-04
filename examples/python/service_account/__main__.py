@@ -1,7 +1,7 @@
 """A Python Pulumi program"""
 
 import pulumi
-import lbrlabs_pulumi_grafana as grafana
+import pulumiverse_grafana as grafana
 
 service_account = grafana.ServiceAccount(
     "example",

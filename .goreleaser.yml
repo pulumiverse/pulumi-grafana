@@ -20,7 +20,7 @@ builds:
   ldflags:
   - -s
   - -w
-  - -X github.com/lbrlabs/pulumi-grafana/provider/pkg/version.Version={{.Tag}}
+  - -X github.com/pulumiverse/pulumi-grafana/provider/pkg/version.Version={{.Tag}}
   main: ./cmd/pulumi-resource-grafana/
 changelog:
   skip: true

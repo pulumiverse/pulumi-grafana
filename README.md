@@ -13,13 +13,13 @@ This package is available in many languages in the standard packaging formats.
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```
-$ npm install @lbrlabs/pulumi-grafana
+$ npm install @pulumiverse/grafana
 ```
 
 or `yarn`:
 
 ```
-$ yarn add @lbrlabs/pulumi-grafana
+$ yarn add @pulumiverse/grafana
 ```
 
 ### Python
@@ -27,7 +27,7 @@ $ yarn add @lbrlabs/pulumi-grafana
 To use from Python, install using `pip`:
 
 ```
-$ pip install lbrlabs_pulumi_grafana
+$ pip install pulumiverse_grafana
 ```
 
 ### Go
@@ -35,7 +35,7 @@ $ pip install lbrlabs_pulumi_grafana
 To use from Go, use `go get` to grab the latest version of the library
 
 ```
-$ go get github.com/lbrlabs/pulumi-grafana/sdk/go/...
+$ go get github.com/pulumiverse/pulumi-grafana/sdk/go/...
 ```
 
 ### .NET
@@ -44,7 +44,7 @@ To use from Dotnet, use `dotnet add package` to install into your project. You m
 
 
 ```
-$ dotnet add package Lbrlabs.PulumiPackage.grafana
+$ dotnet add package Pulumiverse.Grafana
 ```
 
 ## Reference

@@ -2,7 +2,7 @@
 
 import pulumi
 import pulumi_random as random
-import lbrlabs_pulumi_grafana as grafana
+import pulumiverse_grafana as grafana
 
 
 service_account = grafana.ServiceAccount(

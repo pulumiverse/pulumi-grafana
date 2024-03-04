@@ -5,9 +5,9 @@ package main
 import (
 	_ "embed"
 
-	grafana "github.com/lbrlabs/pulumi-grafana/provider"
-	"github.com/lbrlabs/pulumi-grafana/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	grafana "github.com/pulumiverse/pulumi-grafana/provider"
+	"github.com/pulumiverse/pulumi-grafana/provider/pkg/version"
 )
 
 //go:embed schema-embed.json

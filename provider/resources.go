@@ -9,13 +9,13 @@ import (
 	_ "embed"
 
 	grafanaShim "github.com/grafana/terraform-provider-grafana/shim"
-	"github.com/lbrlabs/pulumi-grafana/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/pulumiverse/pulumi-grafana/provider/pkg/version"
 )
 
 // all of the token components used below.
@@ -74,14 +74,14 @@ func Provider() tfbridge.ProviderInfo {
 		P:                 p,
 		Name:              "grafana",
 		DisplayName:       "Grafana",
-		Publisher:         "lbrlabs",
-		LogoURL:           "https://raw.githubusercontent.com/lbrlabs/pulumi-grafana/main/assets/grafana.png", // nolint[:lll]
-		PluginDownloadURL: "github://api.github.com/lbrlabs",
+		Publisher:         "pulumiverse",
+		LogoURL:           "https://raw.githubusercontent.com/pulumiverse/pulumi-grafana/main/assets/grafana.png", // nolint[:lll]
+		PluginDownloadURL: "github://api.github.com/pulumiverse",
 		Description:       "A Pulumi package for creating and managing grafana.",
-		Keywords:          []string{"pulumi", "grafana", "lbrlabs"},
+		Keywords:          []string{"pulumi", "grafana", "pulumiverse"},
 		License:           "Apache-2.0",
 		Homepage:          "https://www.pulumi.com",
-		Repository:        "https://github.com/lbrlabs/pulumi-grafana",
+		Repository:        "https://github.com/pulumiverse/pulumi-grafana",
 		GitHubOrg:         "grafana",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"url": {
@@ -301,7 +301,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
-			PackageName: "@lbrlabs/pulumi-grafana",
+			PackageName: "@pulumiverse/grafana",
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^3.0.0",
@@ -317,14 +317,14 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
-			PackageName: "lbrlabs_pulumi_grafana",
+			PackageName: "pulumiverse_grafana",
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/lbrlabs/pulumi-%[1]s/sdk/", grafanaPkg),
+				fmt.Sprintf("github.com/pulumiverse/pulumi-%[1]s/sdk/", grafanaPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				grafanaPkg,
@@ -332,7 +332,7 @@ func Provider() tfbridge.ProviderInfo {
 			GenerateResourceContainerTypes: true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
-			RootNamespace: "Lbrlabs.PulumiPackage",
+			RootNamespace: "Pulumiverse.Grafana",
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},

@@ -13,7 +13,7 @@ The Grafana provider must be configured with credentials to deploy and update re
 {{% choosable language typescript %}}
 
 ```typescript
-import * as grafana from "@lbrlabs/pulumi-grafana";
+import * as grafana from "@pulumiverse/grafana";
 
 const sa = new grafana.ServiceAccount("example", {
     role: "Viewer",
@@ -25,7 +25,7 @@ const sa = new grafana.ServiceAccount("example", {
 {{% choosable language python %}}
 
 ```python
-import lbrlabs_pulumi_grafana as grafana
+import pulumiverse_grafana as grafana
 
 service_account = grafana.ServiceAccount(
     "example",

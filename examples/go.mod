@@ -1,4 +1,4 @@
-module github.com/lbrlabs/pulumi-grafana/examples
+module github.com/pulumiverse/pulumi-grafana/examples
 
 go 1.19
 

@@ -8,10 +8,10 @@ layout: package
 
 The Pulumi Grafana provider is available as a package in all Pulumi languages:
 
-* JavaScript/TypeScript: [`@lbrlabs/pulumi-grafana`](https://www.npmjs.com/package/@lbrlabs/pulumi-grafana)
-* Python: [`lbrlabs_pulumi_grafana`](https://pypi.org/project/lbrlabs-pulumi-grafana/)
-* Go: [`github.com/lbrlabs/pulumi-grafana/sdk/go/grafana`](https://pkg.go.dev/github.com/lbrlabs/pulumi-grafana/sdk)
-* .NET: [`Lbrlabs.PulumiPackage.Grafana`](https://www.nuget.org/packages/Lbrlabs.PulumiPackage.Grafana)
+* JavaScript/TypeScript: [`@pulumiverse/grafana`](https://www.npmjs.com/package/@pulumiverse/grafana)
+* Python: [`pulumiverse_grafana`](https://pypi.org/project/pulumiverse-grafana/)
+* Go: [`github.com/pulumiverse/pulumi-grafana/sdk/go/grafana`](https://pkg.go.dev/github.com/pulumiverse/pulumi-grafana/sdk)
+* .NET: [`Pulumiverse.Grafana`](https://www.nuget.org/packages/Pulumiverse.Grafana)
 
 ### Provider Binary
 

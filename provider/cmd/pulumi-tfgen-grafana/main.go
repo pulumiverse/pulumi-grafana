@@ -1,9 +1,9 @@
 package main
 
 import (
-	grafana "github.com/lbrlabs/pulumi-grafana/provider"
-	"github.com/lbrlabs/pulumi-grafana/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
+	grafana "github.com/pulumiverse/pulumi-grafana/provider"
+	"github.com/pulumiverse/pulumi-grafana/provider/pkg/version"
 )
 
 func main() {
