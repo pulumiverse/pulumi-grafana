@@ -75,6 +75,10 @@ export class ContactPoint extends pulumi.CustomResource {
      */
     public readonly dingdings!: pulumi.Output<outputs.ContactPointDingding[] | undefined>;
     /**
+     * Allow modifying the contact point from other sources than Terraform or the Grafana API.
+     */
+    public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
+    /**
      * A contact point that sends notifications as Discord messages
      */
     public readonly discords!: pulumi.Output<outputs.ContactPointDiscord[] | undefined>;
@@ -107,6 +111,10 @@ export class ContactPoint extends pulumi.CustomResource {
      */
     public readonly opsgenies!: pulumi.Output<outputs.ContactPointOpsgeny[] | undefined>;
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
+    /**
      * A contact point that sends notifications to PagerDuty.
      */
     public readonly pagerduties!: pulumi.Output<outputs.ContactPointPagerduty[] | undefined>;
@@ -122,6 +130,10 @@ export class ContactPoint extends pulumi.CustomResource {
      * A contact point that sends notifications to Slack.
      */
     public readonly slacks!: pulumi.Output<outputs.ContactPointSlack[] | undefined>;
+    /**
+     * A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+     */
+    public readonly sns!: pulumi.Output<outputs.ContactPointSn[] | undefined>;
     /**
      * A contact point that sends notifications to Microsoft Teams.
      */
@@ -166,6 +178,7 @@ export class ContactPoint extends pulumi.CustomResource {
             const state = argsOrState as ContactPointState | undefined;
             resourceInputs["alertmanagers"] = state ? state.alertmanagers : undefined;
             resourceInputs["dingdings"] = state ? state.dingdings : undefined;
+            resourceInputs["disableProvenance"] = state ? state.disableProvenance : undefined;
             resourceInputs["discords"] = state ? state.discords : undefined;
             resourceInputs["emails"] = state ? state.emails : undefined;
             resourceInputs["googlechats"] = state ? state.googlechats : undefined;
@@ -174,10 +187,12 @@ export class ContactPoint extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["oncalls"] = state ? state.oncalls : undefined;
             resourceInputs["opsgenies"] = state ? state.opsgenies : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["pagerduties"] = state ? state.pagerduties : undefined;
             resourceInputs["pushovers"] = state ? state.pushovers : undefined;
             resourceInputs["sensugos"] = state ? state.sensugos : undefined;
             resourceInputs["slacks"] = state ? state.slacks : undefined;
+            resourceInputs["sns"] = state ? state.sns : undefined;
             resourceInputs["teams"] = state ? state.teams : undefined;
             resourceInputs["telegrams"] = state ? state.telegrams : undefined;
             resourceInputs["threemas"] = state ? state.threemas : undefined;
@@ -189,6 +204,7 @@ export class ContactPoint extends pulumi.CustomResource {
             const args = argsOrState as ContactPointArgs | undefined;
             resourceInputs["alertmanagers"] = args ? args.alertmanagers : undefined;
             resourceInputs["dingdings"] = args ? args.dingdings : undefined;
+            resourceInputs["disableProvenance"] = args ? args.disableProvenance : undefined;
             resourceInputs["discords"] = args ? args.discords : undefined;
             resourceInputs["emails"] = args ? args.emails : undefined;
             resourceInputs["googlechats"] = args ? args.googlechats : undefined;
@@ -197,10 +213,12 @@ export class ContactPoint extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["oncalls"] = args ? args.oncalls : undefined;
             resourceInputs["opsgenies"] = args ? args.opsgenies : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["pagerduties"] = args ? args.pagerduties : undefined;
             resourceInputs["pushovers"] = args ? args.pushovers : undefined;
             resourceInputs["sensugos"] = args ? args.sensugos : undefined;
             resourceInputs["slacks"] = args ? args.slacks : undefined;
+            resourceInputs["sns"] = args ? args.sns : undefined;
             resourceInputs["teams"] = args ? args.teams : undefined;
             resourceInputs["telegrams"] = args ? args.telegrams : undefined;
             resourceInputs["threemas"] = args ? args.threemas : undefined;
@@ -226,6 +244,10 @@ export interface ContactPointState {
      * A contact point that sends notifications to DingDing.
      */
     dingdings?: pulumi.Input<pulumi.Input<inputs.ContactPointDingding>[]>;
+    /**
+     * Allow modifying the contact point from other sources than Terraform or the Grafana API.
+     */
+    disableProvenance?: pulumi.Input<boolean>;
     /**
      * A contact point that sends notifications as Discord messages
      */
@@ -259,6 +281,10 @@ export interface ContactPointState {
      */
     opsgenies?: pulumi.Input<pulumi.Input<inputs.ContactPointOpsgeny>[]>;
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
+    /**
      * A contact point that sends notifications to PagerDuty.
      */
     pagerduties?: pulumi.Input<pulumi.Input<inputs.ContactPointPagerduty>[]>;
@@ -274,6 +300,10 @@ export interface ContactPointState {
      * A contact point that sends notifications to Slack.
      */
     slacks?: pulumi.Input<pulumi.Input<inputs.ContactPointSlack>[]>;
+    /**
+     * A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+     */
+    sns?: pulumi.Input<pulumi.Input<inputs.ContactPointSn>[]>;
     /**
      * A contact point that sends notifications to Microsoft Teams.
      */
@@ -317,6 +347,10 @@ export interface ContactPointArgs {
      */
     dingdings?: pulumi.Input<pulumi.Input<inputs.ContactPointDingding>[]>;
     /**
+     * Allow modifying the contact point from other sources than Terraform or the Grafana API.
+     */
+    disableProvenance?: pulumi.Input<boolean>;
+    /**
      * A contact point that sends notifications as Discord messages
      */
     discords?: pulumi.Input<pulumi.Input<inputs.ContactPointDiscord>[]>;
@@ -349,6 +383,10 @@ export interface ContactPointArgs {
      */
     opsgenies?: pulumi.Input<pulumi.Input<inputs.ContactPointOpsgeny>[]>;
     /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
+    /**
      * A contact point that sends notifications to PagerDuty.
      */
     pagerduties?: pulumi.Input<pulumi.Input<inputs.ContactPointPagerduty>[]>;
@@ -364,6 +402,10 @@ export interface ContactPointArgs {
      * A contact point that sends notifications to Slack.
      */
     slacks?: pulumi.Input<pulumi.Input<inputs.ContactPointSlack>[]>;
+    /**
+     * A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+     */
+    sns?: pulumi.Input<pulumi.Input<inputs.ContactPointSn>[]>;
     /**
      * A contact point that sends notifications to Microsoft Teams.
      */

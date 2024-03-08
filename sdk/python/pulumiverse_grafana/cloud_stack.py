@@ -16,6 +16,7 @@ class CloudStackArgs:
     def __init__(__self__, *,
                  slug: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  region_slug: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -23,10 +24,10 @@ class CloudStackArgs:
                  wait_for_readiness_timeout: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CloudStack resource.
-        :param pulumi.Input[str] slug: Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
-               available at “https://\\n\\n.grafana.net".
+        :param pulumi.Input[str] slug: Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
         :param pulumi.Input[str] description: Description of stack.
-        :param pulumi.Input[str] name: Name of stack. Conventionally matches the url of the instance (e.g. “\\n\\n.grafana.net”).
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
+        :param pulumi.Input[str] name: Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
         :param pulumi.Input[str] region_slug: Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         :param pulumi.Input[str] url: Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
         :param pulumi.Input[bool] wait_for_readiness: Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
@@ -35,6 +36,8 @@ class CloudStackArgs:
         pulumi.set(__self__, "slug", slug)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if region_slug is not None:
@@ -50,8 +53,7 @@ class CloudStackArgs:
     @pulumi.getter
     def slug(self) -> pulumi.Input[str]:
         """
-        Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
-        available at “https://\\n\\n.grafana.net".
+        Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
         """
         return pulumi.get(self, "slug")
 
@@ -73,9 +75,21 @@ class CloudStackArgs:
 
     @property
     @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "labels", value)
+
+    @property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of stack. Conventionally matches the url of the instance (e.g. “\\n\\n.grafana.net”).
+        Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
         """
         return pulumi.get(self, "name")
 
@@ -144,6 +158,7 @@ class _CloudStackState:
                  graphite_status: Optional[pulumi.Input[str]] = None,
                  graphite_url: Optional[pulumi.Input[str]] = None,
                  graphite_user_id: Optional[pulumi.Input[int]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  logs_name: Optional[pulumi.Input[str]] = None,
                  logs_status: Optional[pulumi.Input[str]] = None,
                  logs_url: Optional[pulumi.Input[str]] = None,
@@ -152,6 +167,11 @@ class _CloudStackState:
                  org_id: Optional[pulumi.Input[int]] = None,
                  org_name: Optional[pulumi.Input[str]] = None,
                  org_slug: Optional[pulumi.Input[str]] = None,
+                 otlp_url: Optional[pulumi.Input[str]] = None,
+                 profiles_name: Optional[pulumi.Input[str]] = None,
+                 profiles_status: Optional[pulumi.Input[str]] = None,
+                 profiles_url: Optional[pulumi.Input[str]] = None,
+                 profiles_user_id: Optional[pulumi.Input[int]] = None,
                  prometheus_name: Optional[pulumi.Input[str]] = None,
                  prometheus_remote_endpoint: Optional[pulumi.Input[str]] = None,
                  prometheus_remote_write_endpoint: Optional[pulumi.Input[str]] = None,
@@ -175,10 +195,12 @@ class _CloudStackState:
         :param pulumi.Input[str] alertmanager_url: Base URL of the Alertmanager instance configured for this stack.
         :param pulumi.Input[int] alertmanager_user_id: User ID of the Alertmanager instance configured for this stack.
         :param pulumi.Input[str] description: Description of stack.
-        :param pulumi.Input[str] name: Name of stack. Conventionally matches the url of the instance (e.g. “\\n\\n.grafana.net”).
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
+        :param pulumi.Input[str] name: Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
         :param pulumi.Input[int] org_id: Organization id to assign to this stack.
         :param pulumi.Input[str] org_name: Organization name to assign to this stack.
         :param pulumi.Input[str] org_slug: Organization slug to assign to this stack.
+        :param pulumi.Input[str] otlp_url: Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         :param pulumi.Input[str] prometheus_name: Prometheus name for this instance.
         :param pulumi.Input[str] prometheus_remote_endpoint: Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
         :param pulumi.Input[str] prometheus_remote_write_endpoint: Use this URL to send prometheus metrics to Grafana cloud
@@ -186,8 +208,7 @@ class _CloudStackState:
         :param pulumi.Input[str] prometheus_url: Prometheus url for this instance.
         :param pulumi.Input[int] prometheus_user_id: Prometheus user ID. Used for e.g. remote_write.
         :param pulumi.Input[str] region_slug: Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
-        :param pulumi.Input[str] slug: Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
-               available at “https://\\n\\n.grafana.net".
+        :param pulumi.Input[str] slug: Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
         :param pulumi.Input[str] status: Status of the stack.
         :param pulumi.Input[str] traces_url: Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
         :param pulumi.Input[str] url: Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
@@ -212,6 +233,8 @@ class _CloudStackState:
             pulumi.set(__self__, "graphite_url", graphite_url)
         if graphite_user_id is not None:
             pulumi.set(__self__, "graphite_user_id", graphite_user_id)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
         if logs_name is not None:
             pulumi.set(__self__, "logs_name", logs_name)
         if logs_status is not None:
@@ -228,6 +251,16 @@ class _CloudStackState:
             pulumi.set(__self__, "org_name", org_name)
         if org_slug is not None:
             pulumi.set(__self__, "org_slug", org_slug)
+        if otlp_url is not None:
+            pulumi.set(__self__, "otlp_url", otlp_url)
+        if profiles_name is not None:
+            pulumi.set(__self__, "profiles_name", profiles_name)
+        if profiles_status is not None:
+            pulumi.set(__self__, "profiles_status", profiles_status)
+        if profiles_url is not None:
+            pulumi.set(__self__, "profiles_url", profiles_url)
+        if profiles_user_id is not None:
+            pulumi.set(__self__, "profiles_user_id", profiles_user_id)
         if prometheus_name is not None:
             pulumi.set(__self__, "prometheus_name", prometheus_name)
         if prometheus_remote_endpoint is not None:
@@ -358,6 +391,18 @@ class _CloudStackState:
         pulumi.set(self, "graphite_user_id", value)
 
     @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "labels", value)
+
+    @property
     @pulumi.getter(name="logsName")
     def logs_name(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "logs_name")
@@ -397,7 +442,7 @@ class _CloudStackState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of stack. Conventionally matches the url of the instance (e.g. “\\n\\n.grafana.net”).
+        Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
         """
         return pulumi.get(self, "name")
 
@@ -440,6 +485,54 @@ class _CloudStackState:
     @org_slug.setter
     def org_slug(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "org_slug", value)
+
+    @property
+    @pulumi.getter(name="otlpUrl")
+    def otlp_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        """
+        return pulumi.get(self, "otlp_url")
+
+    @otlp_url.setter
+    def otlp_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "otlp_url", value)
+
+    @property
+    @pulumi.getter(name="profilesName")
+    def profiles_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "profiles_name")
+
+    @profiles_name.setter
+    def profiles_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "profiles_name", value)
+
+    @property
+    @pulumi.getter(name="profilesStatus")
+    def profiles_status(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "profiles_status")
+
+    @profiles_status.setter
+    def profiles_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "profiles_status", value)
+
+    @property
+    @pulumi.getter(name="profilesUrl")
+    def profiles_url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "profiles_url")
+
+    @profiles_url.setter
+    def profiles_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "profiles_url", value)
+
+    @property
+    @pulumi.getter(name="profilesUserId")
+    def profiles_user_id(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "profiles_user_id")
+
+    @profiles_user_id.setter
+    def profiles_user_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "profiles_user_id", value)
 
     @property
     @pulumi.getter(name="prometheusName")
@@ -529,8 +622,7 @@ class _CloudStackState:
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
         """
-        Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
-        available at “https://\\n\\n.grafana.net".
+        Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
         """
         return pulumi.get(self, "slug")
 
@@ -632,6 +724,7 @@ class CloudStack(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  region_slug: Optional[pulumi.Input[str]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
@@ -641,6 +734,12 @@ class CloudStack(pulumi.CustomResource):
                  __props__=None):
         """
         * [Official documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#stacks/)
+
+        Required access policy scopes:
+
+        * stacks:read
+        * stacks:write
+        * stacks:delete
 
         ## Example Usage
 
@@ -667,10 +766,10 @@ class CloudStack(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description of stack.
-        :param pulumi.Input[str] name: Name of stack. Conventionally matches the url of the instance (e.g. “\\n\\n.grafana.net”).
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
+        :param pulumi.Input[str] name: Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
         :param pulumi.Input[str] region_slug: Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
-        :param pulumi.Input[str] slug: Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
-               available at “https://\\n\\n.grafana.net".
+        :param pulumi.Input[str] slug: Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
         :param pulumi.Input[str] url: Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
         :param pulumi.Input[bool] wait_for_readiness: Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
         :param pulumi.Input[str] wait_for_readiness_timeout: How long to wait for readiness (if enabled). Defaults to `5m0s`.
@@ -683,6 +782,12 @@ class CloudStack(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         * [Official documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#stacks/)
+
+        Required access policy scopes:
+
+        * stacks:read
+        * stacks:write
+        * stacks:delete
 
         ## Example Usage
 
@@ -722,6 +827,7 @@ class CloudStack(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  region_slug: Optional[pulumi.Input[str]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
@@ -738,6 +844,7 @@ class CloudStack(pulumi.CustomResource):
             __props__ = CloudStackArgs.__new__(CloudStackArgs)
 
             __props__.__dict__["description"] = description
+            __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name
             __props__.__dict__["region_slug"] = region_slug
             if slug is None and not opts.urn:
@@ -761,6 +868,11 @@ class CloudStack(pulumi.CustomResource):
             __props__.__dict__["org_id"] = None
             __props__.__dict__["org_name"] = None
             __props__.__dict__["org_slug"] = None
+            __props__.__dict__["otlp_url"] = None
+            __props__.__dict__["profiles_name"] = None
+            __props__.__dict__["profiles_status"] = None
+            __props__.__dict__["profiles_url"] = None
+            __props__.__dict__["profiles_user_id"] = None
             __props__.__dict__["prometheus_name"] = None
             __props__.__dict__["prometheus_remote_endpoint"] = None
             __props__.__dict__["prometheus_remote_write_endpoint"] = None
@@ -791,6 +903,7 @@ class CloudStack(pulumi.CustomResource):
             graphite_status: Optional[pulumi.Input[str]] = None,
             graphite_url: Optional[pulumi.Input[str]] = None,
             graphite_user_id: Optional[pulumi.Input[int]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             logs_name: Optional[pulumi.Input[str]] = None,
             logs_status: Optional[pulumi.Input[str]] = None,
             logs_url: Optional[pulumi.Input[str]] = None,
@@ -799,6 +912,11 @@ class CloudStack(pulumi.CustomResource):
             org_id: Optional[pulumi.Input[int]] = None,
             org_name: Optional[pulumi.Input[str]] = None,
             org_slug: Optional[pulumi.Input[str]] = None,
+            otlp_url: Optional[pulumi.Input[str]] = None,
+            profiles_name: Optional[pulumi.Input[str]] = None,
+            profiles_status: Optional[pulumi.Input[str]] = None,
+            profiles_url: Optional[pulumi.Input[str]] = None,
+            profiles_user_id: Optional[pulumi.Input[int]] = None,
             prometheus_name: Optional[pulumi.Input[str]] = None,
             prometheus_remote_endpoint: Optional[pulumi.Input[str]] = None,
             prometheus_remote_write_endpoint: Optional[pulumi.Input[str]] = None,
@@ -827,10 +945,12 @@ class CloudStack(pulumi.CustomResource):
         :param pulumi.Input[str] alertmanager_url: Base URL of the Alertmanager instance configured for this stack.
         :param pulumi.Input[int] alertmanager_user_id: User ID of the Alertmanager instance configured for this stack.
         :param pulumi.Input[str] description: Description of stack.
-        :param pulumi.Input[str] name: Name of stack. Conventionally matches the url of the instance (e.g. “\\n\\n.grafana.net”).
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
+        :param pulumi.Input[str] name: Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
         :param pulumi.Input[int] org_id: Organization id to assign to this stack.
         :param pulumi.Input[str] org_name: Organization name to assign to this stack.
         :param pulumi.Input[str] org_slug: Organization slug to assign to this stack.
+        :param pulumi.Input[str] otlp_url: Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         :param pulumi.Input[str] prometheus_name: Prometheus name for this instance.
         :param pulumi.Input[str] prometheus_remote_endpoint: Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
         :param pulumi.Input[str] prometheus_remote_write_endpoint: Use this URL to send prometheus metrics to Grafana cloud
@@ -838,8 +958,7 @@ class CloudStack(pulumi.CustomResource):
         :param pulumi.Input[str] prometheus_url: Prometheus url for this instance.
         :param pulumi.Input[int] prometheus_user_id: Prometheus user ID. Used for e.g. remote_write.
         :param pulumi.Input[str] region_slug: Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
-        :param pulumi.Input[str] slug: Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
-               available at “https://\\n\\n.grafana.net".
+        :param pulumi.Input[str] slug: Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
         :param pulumi.Input[str] status: Status of the stack.
         :param pulumi.Input[str] traces_url: Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
         :param pulumi.Input[str] url: Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
@@ -859,6 +978,7 @@ class CloudStack(pulumi.CustomResource):
         __props__.__dict__["graphite_status"] = graphite_status
         __props__.__dict__["graphite_url"] = graphite_url
         __props__.__dict__["graphite_user_id"] = graphite_user_id
+        __props__.__dict__["labels"] = labels
         __props__.__dict__["logs_name"] = logs_name
         __props__.__dict__["logs_status"] = logs_status
         __props__.__dict__["logs_url"] = logs_url
@@ -867,6 +987,11 @@ class CloudStack(pulumi.CustomResource):
         __props__.__dict__["org_id"] = org_id
         __props__.__dict__["org_name"] = org_name
         __props__.__dict__["org_slug"] = org_slug
+        __props__.__dict__["otlp_url"] = otlp_url
+        __props__.__dict__["profiles_name"] = profiles_name
+        __props__.__dict__["profiles_status"] = profiles_status
+        __props__.__dict__["profiles_url"] = profiles_url
+        __props__.__dict__["profiles_user_id"] = profiles_user_id
         __props__.__dict__["prometheus_name"] = prometheus_name
         __props__.__dict__["prometheus_remote_endpoint"] = prometheus_remote_endpoint
         __props__.__dict__["prometheus_remote_write_endpoint"] = prometheus_remote_write_endpoint
@@ -946,6 +1071,14 @@ class CloudStack(pulumi.CustomResource):
         return pulumi.get(self, "graphite_user_id")
 
     @property
+    @pulumi.getter
+    def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
+        """
+        return pulumi.get(self, "labels")
+
+    @property
     @pulumi.getter(name="logsName")
     def logs_name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "logs_name")
@@ -969,7 +1102,7 @@ class CloudStack(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Name of stack. Conventionally matches the url of the instance (e.g. “\\n\\n.grafana.net”).
+        Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
         """
         return pulumi.get(self, "name")
 
@@ -996,6 +1129,34 @@ class CloudStack(pulumi.CustomResource):
         Organization slug to assign to this stack.
         """
         return pulumi.get(self, "org_slug")
+
+    @property
+    @pulumi.getter(name="otlpUrl")
+    def otlp_url(self) -> pulumi.Output[str]:
+        """
+        Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        """
+        return pulumi.get(self, "otlp_url")
+
+    @property
+    @pulumi.getter(name="profilesName")
+    def profiles_name(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "profiles_name")
+
+    @property
+    @pulumi.getter(name="profilesStatus")
+    def profiles_status(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "profiles_status")
+
+    @property
+    @pulumi.getter(name="profilesUrl")
+    def profiles_url(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "profiles_url")
+
+    @property
+    @pulumi.getter(name="profilesUserId")
+    def profiles_user_id(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "profiles_user_id")
 
     @property
     @pulumi.getter(name="prometheusName")
@@ -1057,8 +1218,7 @@ class CloudStack(pulumi.CustomResource):
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
         """
-        Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
-        available at “https://\\n\\n.grafana.net".
+        Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
         """
         return pulumi.get(self, "slug")
 
@@ -1095,7 +1255,7 @@ class CloudStack(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def url(self) -> pulumi.Output[str]:
+    def url(self) -> pulumi.Output[Optional[str]]:
         """
         Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
         """

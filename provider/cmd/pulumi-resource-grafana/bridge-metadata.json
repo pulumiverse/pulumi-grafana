@@ -118,6 +118,9 @@
                     "slack": {
                         "maxItemsOne": false
                     },
+                    "sns": {
+                        "maxItemsOne": false
+                    },
                     "teams": {
                         "maxItemsOne": false
                     },
@@ -483,6 +486,16 @@
             "grafana_report": {
                 "current": "grafana:index/report:Report",
                 "fields": {
+                    "dashboards": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "time_range": {
+                                    "maxItemsOne": true
+                                }
+                            }
+                        }
+                    },
                     "formats": {
                         "maxItemsOne": false
                     },
@@ -625,6 +638,14 @@
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "grafana_sso_settings": {
+                "current": "grafana:index/ssoSettings:SsoSettings",
+                "fields": {
+                    "oauth2_settings": {
+                        "maxItemsOne": true
                     }
                 }
             },
@@ -941,6 +962,9 @@
                     }
                 }
             },
+            "grafana_service_account": {
+                "current": "grafana:index/getServiceAccount:getServiceAccount"
+            },
             "grafana_slos": {
                 "current": "grafana:index/getSlos:getSlos",
                 "fields": {
@@ -1106,6 +1130,7 @@
             "grafana:index/serviceAccount:ServiceAccount": "grafana_service_account",
             "grafana:index/serviceAccountPermission:ServiceAccountPermission": "grafana_service_account_permission",
             "grafana:index/serviceAccountToken:ServiceAccountToken": "grafana_service_account_token",
+            "grafana:index/ssoSettings:SsoSettings": "grafana_sso_settings",
             "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck": "grafana_synthetic_monitoring_check",
             "grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation": "grafana_synthetic_monitoring_installation",
             "grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe": "grafana_synthetic_monitoring_probe",
@@ -1134,6 +1159,7 @@
             "grafana:index/getOrganization:getOrganization": "grafana_organization",
             "grafana:index/getOrganizationPreferences:getOrganizationPreferences": "grafana_organization_preferences",
             "grafana:index/getRole:getRole": "grafana_role",
+            "grafana:index/getServiceAccount:getServiceAccount": "grafana_service_account",
             "grafana:index/getSlos:getSlos": "grafana_slos",
             "grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe": "grafana_synthetic_monitoring_probe",
             "grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes": "grafana_synthetic_monitoring_probes",
@@ -1216,6 +1242,15 @@
                 "mentionChannel": "mention_channel",
                 "mentionGroups": "mention_groups",
                 "mentionUsers": "mention_users"
+            },
+            "grafana:index/ContactPointSn:ContactPointSn": {
+                "accessKey": "access_key",
+                "assumeRoleArn": "assume_role_arn",
+                "authProvider": "auth_provider",
+                "disableResolveMessage": "disable_resolve_message",
+                "externalId": "external_id",
+                "messageFormat": "message_format",
+                "secretKey": "secret_key"
             },
             "grafana:index/ContactPointTeam:ContactPointTeam": {
                 "disableResolveMessage": "disable_resolve_message",
@@ -1352,6 +1387,10 @@
                 "channelId": "channel_id",
                 "userGroupId": "user_group_id"
             },
+            "grafana:index/ReportDashboard:ReportDashboard": {
+                "reportVariables": "report_variables",
+                "timeRange": "time_range"
+            },
             "grafana:index/ReportSchedule:ReportSchedule": {
                 "customInterval": "custom_interval",
                 "endTime": "end_time",
@@ -1393,6 +1432,42 @@
             "grafana:index/ServiceAccountPermissionPermission:ServiceAccountPermissionPermission": {
                 "teamId": "team_id",
                 "userId": "user_id"
+            },
+            "grafana:index/SsoSettingsOauth2Settings:SsoSettingsOauth2Settings": {
+                "allowAssignGrafanaAdmin": "allow_assign_grafana_admin",
+                "allowSignUp": "allow_sign_up",
+                "allowedDomains": "allowed_domains",
+                "allowedGroups": "allowed_groups",
+                "allowedOrganizations": "allowed_organizations",
+                "apiUrl": "api_url",
+                "authStyle": "auth_style",
+                "authUrl": "auth_url",
+                "autoLogin": "auto_login",
+                "clientId": "client_id",
+                "clientSecret": "client_secret",
+                "defineAllowedGroups": "define_allowed_groups",
+                "defineAllowedTeamsIds": "define_allowed_teams_ids",
+                "emailAttributeName": "email_attribute_name",
+                "emailAttributePath": "email_attribute_path",
+                "emptyScopes": "empty_scopes",
+                "groupsAttributePath": "groups_attribute_path",
+                "idTokenAttributeName": "id_token_attribute_name",
+                "loginAttributePath": "login_attribute_path",
+                "nameAttributePath": "name_attribute_path",
+                "roleAttributePath": "role_attribute_path",
+                "roleAttributeStrict": "role_attribute_strict",
+                "signoutRedirectUrl": "signout_redirect_url",
+                "skipOrgRoleSync": "skip_org_role_sync",
+                "teamIds": "team_ids",
+                "teamIdsAttributePath": "team_ids_attribute_path",
+                "teamsUrl": "teams_url",
+                "tlsClientCa": "tls_client_ca",
+                "tlsClientCert": "tls_client_cert",
+                "tlsClientKey": "tls_client_key",
+                "tlsSkipVerifyInsecure": "tls_skip_verify_insecure",
+                "tokenUrl": "token_url",
+                "usePkce": "use_pkce",
+                "useRefreshToken": "use_refresh_token"
             },
             "grafana:index/SyntheticMonitoringCheckSettingsDns:SyntheticMonitoringCheckSettingsDns": {
                 "ipVersion": "ip_version",
@@ -1482,7 +1557,8 @@
                 "ptrLookup": "ptr_lookup"
             },
             "grafana:index/TeamPreferences:TeamPreferences": {
-                "homeDashboardUid": "home_dashboard_uid"
+                "homeDashboardUid": "home_dashboard_uid",
+                "weekStart": "week_start"
             },
             "grafana:index/annotation:Annotation": {
                 "dashboardId": "dashboard_id",
@@ -1531,6 +1607,11 @@
                 "orgId": "org_id",
                 "orgName": "org_name",
                 "orgSlug": "org_slug",
+                "otlpUrl": "otlp_url",
+                "profilesName": "profiles_name",
+                "profilesStatus": "profiles_status",
+                "profilesUrl": "profiles_url",
+                "profilesUserId": "profiles_user_id",
                 "prometheusName": "prometheus_name",
                 "prometheusRemoteEndpoint": "prometheus_remote_endpoint",
                 "prometheusRemoteWriteEndpoint": "prometheus_remote_write_endpoint",
@@ -1562,6 +1643,7 @@
             "grafana:index/contactPoint:ContactPoint": {
                 "alertmanagers": "alertmanager",
                 "dingdings": "dingding",
+                "disableProvenance": "disable_provenance",
                 "discords": "discord",
                 "emails": "email",
                 "googlechats": "googlechat",
@@ -1569,6 +1651,7 @@
                 "lines": "line",
                 "oncalls": "oncall",
                 "opsgenies": "opsgenie",
+                "orgId": "org_id",
                 "pagerduties": "pagerduty",
                 "pushovers": "pushover",
                 "sensugos": "sensugo",
@@ -1648,6 +1731,11 @@
                 "orgId": "org_id",
                 "orgName": "org_name",
                 "orgSlug": "org_slug",
+                "otlpUrl": "otlp_url",
+                "profilesName": "profiles_name",
+                "profilesStatus": "profiles_status",
+                "profilesUrl": "profiles_url",
+                "profilesUserId": "profiles_user_id",
                 "prometheusName": "prometheus_name",
                 "prometheusRemoteEndpoint": "prometheus_remote_endpoint",
                 "prometheusRemoteWriteEndpoint": "prometheus_remote_write_endpoint",
@@ -1717,6 +1805,10 @@
                 "displayName": "display_name",
                 "orgId": "org_id"
             },
+            "grafana:index/getServiceAccount:getServiceAccount": {
+                "isDisabled": "is_disabled",
+                "orgId": "org_id"
+            },
             "grafana:index/getSlosSlo:getSlosSlo": {
                 "alertings": "alerting",
                 "destinationDatasources": "destination_datasource",
@@ -1755,7 +1847,8 @@
                 "teamSyncs": "team_sync"
             },
             "grafana:index/getTeamPreference:getTeamPreference": {
-                "homeDashboardUid": "home_dashboard_uid"
+                "homeDashboardUid": "home_dashboard_uid",
+                "weekStart": "week_start"
             },
             "grafana:index/getUser:getUser": {
                 "isAdmin": "is_admin",
@@ -1793,11 +1886,20 @@
                 "datasourceUid": "datasource_uid",
                 "queryParams": "query_params"
             },
+            "grafana:index/messageTemplate:MessageTemplate": {
+                "disableProvenance": "disable_provenance",
+                "orgId": "org_id"
+            },
+            "grafana:index/muteTiming:MuteTiming": {
+                "orgId": "org_id"
+            },
             "grafana:index/notificationPolicy:NotificationPolicy": {
                 "contactPoint": "contact_point",
+                "disableProvenance": "disable_provenance",
                 "groupBies": "group_by",
                 "groupInterval": "group_interval",
                 "groupWait": "group_wait",
+                "orgId": "org_id",
                 "policies": "policy",
                 "repeatInterval": "repeat_interval"
             },
@@ -1887,6 +1989,7 @@
                 "serviceAccounts": "service_accounts"
             },
             "grafana:index/ruleGroup:RuleGroup": {
+                "disableProvenance": "disable_provenance",
                 "folderUid": "folder_uid",
                 "intervalSeconds": "interval_seconds",
                 "orgId": "org_id",
@@ -1910,6 +2013,10 @@
                 "hasExpired": "has_expired",
                 "secondsToLive": "seconds_to_live",
                 "serviceAccountId": "service_account_id"
+            },
+            "grafana:index/ssoSettings:SsoSettings": {
+                "oauth2Settings": "oauth2_settings",
+                "providerName": "provider_name"
             },
             "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck": {
                 "alertSensitivity": "alert_sensitivity",
@@ -1941,6 +2048,7 @@
             },
             "grafana:index:Provider": {
                 "caCert": "ca_cert",
+                "cloudAccessPolicyToken": "cloud_access_policy_token",
                 "cloudApiKey": "cloud_api_key",
                 "cloudApiUrl": "cloud_api_url",
                 "httpHeaders": "http_headers",
@@ -1959,6 +2067,7 @@
         },
         "renamedConfigProperties": {
             "caCert": "ca_cert",
+            "cloudAccessPolicyToken": "cloud_access_policy_token",
             "cloudApiKey": "cloud_api_key",
             "cloudApiUrl": "cloud_api_url",
             "httpHeaders": "http_headers",

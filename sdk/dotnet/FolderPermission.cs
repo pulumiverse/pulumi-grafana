@@ -30,6 +30,8 @@ namespace Pulumiverse.Grafana
     ///     var user = new Grafana.User("user", new()
     ///     {
     ///         Email = "user.name@example.com",
+    ///         Login = "user.name",
+    ///         Password = "my-password",
     ///     });
     /// 
     ///     var collection = new Grafana.Folder("collection", new()

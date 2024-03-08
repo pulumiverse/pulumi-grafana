@@ -98,7 +98,7 @@ class TeamExternalGroup(pulumi.CustomResource):
                  team_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Use the `team_sync` attribute of the `Team` resource instead.
+        Equivalent to the the `team_sync` attribute of the `Team` resource. Use one or the other to configure a team's external groups syncing config.
 
         ## Example Usage
 
@@ -106,12 +106,13 @@ class TeamExternalGroup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
+        my_team = grafana.Team("myTeam")
         test_team_group = grafana.TeamExternalGroup("test-team-group",
+            team_id=my_team.id,
             groups=[
                 "test-group-1",
                 "test-group-2",
-            ],
-            team_id="1")
+            ])
         ```
 
         ## Import
@@ -132,7 +133,7 @@ class TeamExternalGroup(pulumi.CustomResource):
                  args: TeamExternalGroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Use the `team_sync` attribute of the `Team` resource instead.
+        Equivalent to the the `team_sync` attribute of the `Team` resource. Use one or the other to configure a team's external groups syncing config.
 
         ## Example Usage
 
@@ -140,12 +141,13 @@ class TeamExternalGroup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
+        my_team = grafana.Team("myTeam")
         test_team_group = grafana.TeamExternalGroup("test-team-group",
+            team_id=my_team.id,
             groups=[
                 "test-group-1",
                 "test-group-2",
-            ],
-            team_id="1")
+            ])
         ```
 
         ## Import

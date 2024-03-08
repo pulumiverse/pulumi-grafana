@@ -22,6 +22,10 @@ import (
 // * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/installation/)
 // * [API documentation](https://github.com/grafana/synthetic-monitoring-api-go-client/blob/main/docs/API.md#apiv1registerinstall)
 //
+// Required access policy scopes:
+//
+// * stacks:read
+//
 // ## Example Usage
 //
 // ```go
@@ -30,29 +34,60 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			smStackCloudStack, err := grafana.NewCloudStack(ctx, "smStackCloudStack", &grafana.CloudStackArgs{
-//				Slug:       pulumi.String("<stack-slug>"),
-//				RegionSlug: pulumi.String("us"),
+//			cfg := config.New(ctx, "")
+//			cloudApiKey := cfg.RequireObject("cloudApiKey")
+//			stackSlug := cfg.RequireObject("stackSlug")
+//			cloudRegion := "us"
+//			if param := cfg.Get("cloudRegion"); param != "" {
+//				cloudRegion = param
+//			}
+//			_, err := grafana.NewProvider(ctx, "cloud", &grafana.ProviderArgs{
+//				CloudApiKey: pulumi.Any(cloudApiKey),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = grafana.NewCloudApiKey(ctx, "metricsPublish", &grafana.CloudApiKeyArgs{
-//				Role:         pulumi.String("MetricsPublisher"),
-//				CloudOrgSlug: pulumi.String("<org-slug>"),
-//			})
+//			smStackCloudStack, err := grafana.NewCloudStack(ctx, "smStackCloudStack", &grafana.CloudStackArgs{
+//				Slug:       pulumi.Any(stackSlug),
+//				RegionSlug: pulumi.String(cloudRegion),
+//			}, pulumi.Provider(grafana.Cloud))
+//			if err != nil {
+//				return err
+//			}
+//			smMetricsPublishCloudAccessPolicy, err := grafana.NewCloudAccessPolicy(ctx, "smMetricsPublishCloudAccessPolicy", &grafana.CloudAccessPolicyArgs{
+//				Region: pulumi.String(cloudRegion),
+//				Scopes: pulumi.StringArray{
+//					pulumi.String("metrics:write"),
+//					pulumi.String("stacks:read"),
+//				},
+//				Realms: grafana.CloudAccessPolicyRealmArray{
+//					&grafana.CloudAccessPolicyRealmArgs{
+//						Type:       pulumi.String("stack"),
+//						Identifier: smStackCloudStack.ID(),
+//					},
+//				},
+//			}, pulumi.Provider(grafana.Cloud))
+//			if err != nil {
+//				return err
+//			}
+//			smMetricsPublishCloudAccessPolicyToken, err := grafana.NewCloudAccessPolicyToken(ctx, "smMetricsPublishCloudAccessPolicyToken", &grafana.CloudAccessPolicyTokenArgs{
+//				Region:         pulumi.String(cloudRegion),
+//				AccessPolicyId: smMetricsPublishCloudAccessPolicy.PolicyId,
+//			}, pulumi.Provider(grafana.Cloud))
 //			if err != nil {
 //				return err
 //			}
 //			smStackSyntheticMonitoringInstallation, err := grafana.NewSyntheticMonitoringInstallation(ctx, "smStackSyntheticMonitoringInstallation", &grafana.SyntheticMonitoringInstallationArgs{
-//				StackId: smStackCloudStack.ID(),
-//			})
+//				StackId:             smStackCloudStack.ID(),
+//				MetricsPublisherKey: smMetricsPublishCloudAccessPolicyToken.Token,
+//			}, pulumi.Provider(grafana.Cloud))
 //			if err != nil {
 //				return err
 //			}
@@ -60,6 +95,10 @@ import (
 //				SmAccessToken: smStackSyntheticMonitoringInstallation.SmAccessToken,
 //				SmUrl:         smStackSyntheticMonitoringInstallation.StackSmApiUrl,
 //			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = grafana.GetSyntheticMonitoringProbes(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -71,7 +110,7 @@ import (
 type SyntheticMonitoringInstallation struct {
 	pulumi.CustomResourceState
 
-	// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
+	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
 	MetricsPublisherKey pulumi.StringOutput `pulumi:"metricsPublisherKey"`
 	// Generated token to access the SM API.
 	SmAccessToken pulumi.StringOutput `pulumi:"smAccessToken"`
@@ -124,7 +163,7 @@ func GetSyntheticMonitoringInstallation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SyntheticMonitoringInstallation resources.
 type syntheticMonitoringInstallationState struct {
-	// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
+	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
 	MetricsPublisherKey *string `pulumi:"metricsPublisherKey"`
 	// Generated token to access the SM API.
 	SmAccessToken *string `pulumi:"smAccessToken"`
@@ -135,7 +174,7 @@ type syntheticMonitoringInstallationState struct {
 }
 
 type SyntheticMonitoringInstallationState struct {
-	// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
+	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
 	MetricsPublisherKey pulumi.StringPtrInput
 	// Generated token to access the SM API.
 	SmAccessToken pulumi.StringPtrInput
@@ -150,7 +189,7 @@ func (SyntheticMonitoringInstallationState) ElementType() reflect.Type {
 }
 
 type syntheticMonitoringInstallationArgs struct {
-	// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
+	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
 	MetricsPublisherKey string `pulumi:"metricsPublisherKey"`
 	// The ID or slug of the stack to install SM on.
 	StackId string `pulumi:"stackId"`
@@ -160,7 +199,7 @@ type syntheticMonitoringInstallationArgs struct {
 
 // The set of arguments for constructing a SyntheticMonitoringInstallation resource.
 type SyntheticMonitoringInstallationArgs struct {
-	// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
+	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
 	MetricsPublisherKey pulumi.StringInput
 	// The ID or slug of the stack to install SM on.
 	StackId pulumi.StringInput
@@ -279,7 +318,7 @@ func (o SyntheticMonitoringInstallationOutput) ToOutput(ctx context.Context) pul
 	}
 }
 
-// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
+// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
 func (o SyntheticMonitoringInstallationOutput) MetricsPublisherKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringInstallation) pulumi.StringOutput { return v.MetricsPublisherKey }).(pulumi.StringOutput)
 }

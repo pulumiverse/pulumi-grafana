@@ -48,8 +48,11 @@ class GetOrganizationPreferencesResult:
     @pulumi.getter(name="homeDashboardId")
     def home_dashboard_id(self) -> int:
         """
-        The Organization home dashboard ID.
+        The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         """
+        warnings.warn("""Use `home_dashboard_uid` instead.""", DeprecationWarning)
+        pulumi.log.warn("""home_dashboard_id is deprecated: Use `home_dashboard_uid` instead.""")
+
         return pulumi.get(self, "home_dashboard_id")
 
     @property
@@ -80,7 +83,7 @@ class GetOrganizationPreferencesResult:
     @pulumi.getter
     def theme(self) -> str:
         """
-        The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+        The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         """
         return pulumi.get(self, "theme")
 
@@ -96,7 +99,7 @@ class GetOrganizationPreferencesResult:
     @pulumi.getter(name="weekStart")
     def week_start(self) -> str:
         """
-        The Organization week start.
+        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
         """
         return pulumi.get(self, "week_start")
 

@@ -72,6 +72,12 @@ namespace Pulumiverse.Grafana
         public Output<ImmutableArray<Outputs.ContactPointDingding>> Dingdings { get; private set; } = null!;
 
         /// <summary>
+        /// Allow modifying the contact point from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Output("disableProvenance")]
+        public Output<bool?> DisableProvenance { get; private set; } = null!;
+
+        /// <summary>
         /// A contact point that sends notifications as Discord messages
         /// </summary>
         [Output("discords")]
@@ -120,6 +126,12 @@ namespace Pulumiverse.Grafana
         public Output<ImmutableArray<Outputs.ContactPointOpsgeny>> Opsgenies { get; private set; } = null!;
 
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
+
+        /// <summary>
         /// A contact point that sends notifications to PagerDuty.
         /// </summary>
         [Output("pagerduties")]
@@ -142,6 +154,12 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Output("slacks")]
         public Output<ImmutableArray<Outputs.ContactPointSlack>> Slacks { get; private set; } = null!;
+
+        /// <summary>
+        /// A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+        /// </summary>
+        [Output("sns")]
+        public Output<ImmutableArray<Outputs.ContactPointSn>> Sns { get; private set; } = null!;
 
         /// <summary>
         /// A contact point that sends notifications to Microsoft Teams.
@@ -256,6 +274,12 @@ namespace Pulumiverse.Grafana
             set => _dingdings = value;
         }
 
+        /// <summary>
+        /// Allow modifying the contact point from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Input("disableProvenance")]
+        public Input<bool>? DisableProvenance { get; set; }
+
         [Input("discords")]
         private InputList<Inputs.ContactPointDiscordArgs>? _discords;
 
@@ -346,6 +370,12 @@ namespace Pulumiverse.Grafana
             set => _opsgenies = value;
         }
 
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
         [Input("pagerduties")]
         private InputList<Inputs.ContactPointPagerdutyArgs>? _pagerduties;
 
@@ -392,6 +422,18 @@ namespace Pulumiverse.Grafana
         {
             get => _slacks ?? (_slacks = new InputList<Inputs.ContactPointSlackArgs>());
             set => _slacks = value;
+        }
+
+        [Input("sns")]
+        private InputList<Inputs.ContactPointSnArgs>? _sns;
+
+        /// <summary>
+        /// A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+        /// </summary>
+        public InputList<Inputs.ContactPointSnArgs> Sns
+        {
+            get => _sns ?? (_sns = new InputList<Inputs.ContactPointSnArgs>());
+            set => _sns = value;
         }
 
         [Input("teams")]
@@ -510,6 +552,12 @@ namespace Pulumiverse.Grafana
             set => _dingdings = value;
         }
 
+        /// <summary>
+        /// Allow modifying the contact point from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Input("disableProvenance")]
+        public Input<bool>? DisableProvenance { get; set; }
+
         [Input("discords")]
         private InputList<Inputs.ContactPointDiscordGetArgs>? _discords;
 
@@ -600,6 +648,12 @@ namespace Pulumiverse.Grafana
             set => _opsgenies = value;
         }
 
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
         [Input("pagerduties")]
         private InputList<Inputs.ContactPointPagerdutyGetArgs>? _pagerduties;
 
@@ -646,6 +700,18 @@ namespace Pulumiverse.Grafana
         {
             get => _slacks ?? (_slacks = new InputList<Inputs.ContactPointSlackGetArgs>());
             set => _slacks = value;
+        }
+
+        [Input("sns")]
+        private InputList<Inputs.ContactPointSnGetArgs>? _sns;
+
+        /// <summary>
+        /// A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+        /// </summary>
+        public InputList<Inputs.ContactPointSnGetArgs> Sns
+        {
+            get => _sns ?? (_sns = new InputList<Inputs.ContactPointSnGetArgs>());
+            set => _sns = value;
         }
 
         [Input("teams")]

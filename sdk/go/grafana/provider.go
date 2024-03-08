@@ -25,8 +25,12 @@ type Provider struct {
 	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
 	// be set via the `GRAFANA_CA_CERT` environment variable.
 	CaCert pulumi.StringPtrOutput `pulumi:"caCert"`
-	// Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
 	// variable.
+	CloudAccessPolicyToken pulumi.StringPtrOutput `pulumi:"cloudAccessPolicyToken"`
+	// Deprecated: Use `cloud_access_policy_token` instead.
+	//
+	// Deprecated: Use `cloud_access_policy_token` instead.
 	CloudApiKey pulumi.StringPtrOutput `pulumi:"cloudApiKey"`
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl pulumi.StringPtrOutput `pulumi:"cloudApiUrl"`
@@ -139,6 +143,9 @@ func NewProvider(ctx *pulumi.Context,
 	if args.Auth != nil {
 		args.Auth = pulumi.ToSecret(args.Auth).(pulumi.StringPtrInput)
 	}
+	if args.CloudAccessPolicyToken != nil {
+		args.CloudAccessPolicyToken = pulumi.ToSecret(args.CloudAccessPolicyToken).(pulumi.StringPtrInput)
+	}
 	if args.CloudApiKey != nil {
 		args.CloudApiKey = pulumi.ToSecret(args.CloudApiKey).(pulumi.StringPtrInput)
 	}
@@ -153,6 +160,7 @@ func NewProvider(ctx *pulumi.Context,
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"auth",
+		"cloudAccessPolicyToken",
 		"cloudApiKey",
 		"oncallAccessToken",
 		"smAccessToken",
@@ -175,8 +183,12 @@ type providerArgs struct {
 	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
 	// be set via the `GRAFANA_CA_CERT` environment variable.
 	CaCert *string `pulumi:"caCert"`
-	// Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
 	// variable.
+	CloudAccessPolicyToken *string `pulumi:"cloudAccessPolicyToken"`
+	// Deprecated: Use `cloud_access_policy_token` instead.
+	//
+	// Deprecated: Use `cloud_access_policy_token` instead.
 	CloudApiKey *string `pulumi:"cloudApiKey"`
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl *string `pulumi:"cloudApiUrl"`
@@ -229,8 +241,12 @@ type ProviderArgs struct {
 	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
 	// be set via the `GRAFANA_CA_CERT` environment variable.
 	CaCert pulumi.StringPtrInput
-	// Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
 	// variable.
+	CloudAccessPolicyToken pulumi.StringPtrInput
+	// Deprecated: Use `cloud_access_policy_token` instead.
+	//
+	// Deprecated: Use `cloud_access_policy_token` instead.
 	CloudApiKey pulumi.StringPtrInput
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl pulumi.StringPtrInput
@@ -336,8 +352,15 @@ func (o ProviderOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CaCert }).(pulumi.StringPtrOutput)
 }
 
-// Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
 // variable.
+func (o ProviderOutput) CloudAccessPolicyToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CloudAccessPolicyToken }).(pulumi.StringPtrOutput)
+}
+
+// Deprecated: Use `cloud_access_policy_token` instead.
+//
+// Deprecated: Use `cloud_access_policy_token` instead.
 func (o ProviderOutput) CloudApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CloudApiKey }).(pulumi.StringPtrOutput)
 }

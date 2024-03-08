@@ -36,7 +36,9 @@ import (
 //				return err
 //			}
 //			user, err := grafana.NewUser(ctx, "user", &grafana.UserArgs{
-//				Email: pulumi.String("user.name@example.com"),
+//				Email:    pulumi.String("user.name@example.com"),
+//				Login:    pulumi.String("user.name"),
+//				Password: pulumi.String("my-password"),
 //			})
 //			if err != nil {
 //				return err

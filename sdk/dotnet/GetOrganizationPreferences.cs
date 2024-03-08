@@ -99,7 +99,7 @@ namespace Pulumiverse.Grafana
     public sealed class GetOrganizationPreferencesResult
     {
         /// <summary>
-        /// The Organization home dashboard ID.
+        /// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         /// </summary>
         public readonly int HomeDashboardId;
         /// <summary>
@@ -115,7 +115,7 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public readonly string? OrgId;
         /// <summary>
-        /// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+        /// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         /// </summary>
         public readonly string Theme;
         /// <summary>
@@ -123,7 +123,7 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public readonly string Timezone;
         /// <summary>
-        /// The Organization week start.
+        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
         /// </summary>
         public readonly string WeekStart;
 

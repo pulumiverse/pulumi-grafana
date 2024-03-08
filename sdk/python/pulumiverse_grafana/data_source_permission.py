@@ -165,7 +165,7 @@ class DataSourcePermission(pulumi.CustomResource):
             permissions=[
                 grafana.DataSourcePermissionPermissionArgs(
                     team_id=team.id,
-                    permission="Admin",
+                    permission="Edit",
                 ),
                 grafana.DataSourcePermissionPermissionArgs(
                     user_id=user.id,
@@ -226,7 +226,7 @@ class DataSourcePermission(pulumi.CustomResource):
             permissions=[
                 grafana.DataSourcePermissionPermissionArgs(
                     team_id=team.id,
-                    permission="Admin",
+                    permission="Edit",
                 ),
                 grafana.DataSourcePermissionPermissionArgs(
                     user_id=user.id,

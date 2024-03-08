@@ -127,6 +127,10 @@ export class NotificationPolicy extends pulumi.CustomResource {
      */
     public readonly contactPoint!: pulumi.Output<string>;
     /**
+     * Allow modifying the notification policy from other sources than Terraform or the Grafana API.
+     */
+    public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
+    /**
      * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      */
     public readonly groupBies!: pulumi.Output<string[]>;
@@ -138,6 +142,10 @@ export class NotificationPolicy extends pulumi.CustomResource {
      * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
      */
     public readonly groupWait!: pulumi.Output<string | undefined>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
     /**
      * Routing rules for specific label sets.
      */
@@ -161,9 +169,11 @@ export class NotificationPolicy extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as NotificationPolicyState | undefined;
             resourceInputs["contactPoint"] = state ? state.contactPoint : undefined;
+            resourceInputs["disableProvenance"] = state ? state.disableProvenance : undefined;
             resourceInputs["groupBies"] = state ? state.groupBies : undefined;
             resourceInputs["groupInterval"] = state ? state.groupInterval : undefined;
             resourceInputs["groupWait"] = state ? state.groupWait : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["policies"] = state ? state.policies : undefined;
             resourceInputs["repeatInterval"] = state ? state.repeatInterval : undefined;
         } else {
@@ -175,9 +185,11 @@ export class NotificationPolicy extends pulumi.CustomResource {
                 throw new Error("Missing required property 'groupBies'");
             }
             resourceInputs["contactPoint"] = args ? args.contactPoint : undefined;
+            resourceInputs["disableProvenance"] = args ? args.disableProvenance : undefined;
             resourceInputs["groupBies"] = args ? args.groupBies : undefined;
             resourceInputs["groupInterval"] = args ? args.groupInterval : undefined;
             resourceInputs["groupWait"] = args ? args.groupWait : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["policies"] = args ? args.policies : undefined;
             resourceInputs["repeatInterval"] = args ? args.repeatInterval : undefined;
         }
@@ -195,6 +207,10 @@ export interface NotificationPolicyState {
      */
     contactPoint?: pulumi.Input<string>;
     /**
+     * Allow modifying the notification policy from other sources than Terraform or the Grafana API.
+     */
+    disableProvenance?: pulumi.Input<boolean>;
+    /**
      * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      */
     groupBies?: pulumi.Input<pulumi.Input<string>[]>;
@@ -206,6 +222,10 @@ export interface NotificationPolicyState {
      * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
      */
     groupWait?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * Routing rules for specific label sets.
      */
@@ -225,6 +245,10 @@ export interface NotificationPolicyArgs {
      */
     contactPoint: pulumi.Input<string>;
     /**
+     * Allow modifying the notification policy from other sources than Terraform or the Grafana API.
+     */
+    disableProvenance?: pulumi.Input<boolean>;
+    /**
      * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      */
     groupBies: pulumi.Input<pulumi.Input<string>[]>;
@@ -236,6 +260,10 @@ export interface NotificationPolicyArgs {
      * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
      */
     groupWait?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * Routing rules for specific label sets.
      */

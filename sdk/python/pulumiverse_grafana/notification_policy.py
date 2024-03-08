@@ -18,25 +18,33 @@ class NotificationPolicyArgs:
     def __init__(__self__, *,
                  contact_point: pulumi.Input[str],
                  group_bies: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 disable_provenance: Optional[pulumi.Input[bool]] = None,
                  group_interval: Optional[pulumi.Input[str]] = None,
                  group_wait: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyArgs']]]] = None,
                  repeat_interval: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a NotificationPolicy resource.
         :param pulumi.Input[str] contact_point: The contact point to route notifications that match this rule to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        :param pulumi.Input[bool] disable_provenance: Allow modifying the notification policy from other sources than Terraform or the Grafana API.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyArgs']]] policies: Routing rules for specific label sets.
         :param pulumi.Input[str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
         pulumi.set(__self__, "contact_point", contact_point)
         pulumi.set(__self__, "group_bies", group_bies)
+        if disable_provenance is not None:
+            pulumi.set(__self__, "disable_provenance", disable_provenance)
         if group_interval is not None:
             pulumi.set(__self__, "group_interval", group_interval)
         if group_wait is not None:
             pulumi.set(__self__, "group_wait", group_wait)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
         if repeat_interval is not None:
@@ -67,6 +75,18 @@ class NotificationPolicyArgs:
         pulumi.set(self, "group_bies", value)
 
     @property
+    @pulumi.getter(name="disableProvenance")
+    def disable_provenance(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow modifying the notification policy from other sources than Terraform or the Grafana API.
+        """
+        return pulumi.get(self, "disable_provenance")
+
+    @disable_provenance.setter
+    def disable_provenance(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_provenance", value)
+
+    @property
     @pulumi.getter(name="groupInterval")
     def group_interval(self) -> Optional[pulumi.Input[str]]:
         """
@@ -89,6 +109,18 @@ class NotificationPolicyArgs:
     @group_wait.setter
     def group_wait(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "group_wait", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter
@@ -119,28 +151,36 @@ class NotificationPolicyArgs:
 class _NotificationPolicyState:
     def __init__(__self__, *,
                  contact_point: Optional[pulumi.Input[str]] = None,
+                 disable_provenance: Optional[pulumi.Input[bool]] = None,
                  group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  group_interval: Optional[pulumi.Input[str]] = None,
                  group_wait: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyArgs']]]] = None,
                  repeat_interval: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering NotificationPolicy resources.
         :param pulumi.Input[str] contact_point: The contact point to route notifications that match this rule to.
+        :param pulumi.Input[bool] disable_provenance: Allow modifying the notification policy from other sources than Terraform or the Grafana API.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyArgs']]] policies: Routing rules for specific label sets.
         :param pulumi.Input[str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
         if contact_point is not None:
             pulumi.set(__self__, "contact_point", contact_point)
+        if disable_provenance is not None:
+            pulumi.set(__self__, "disable_provenance", disable_provenance)
         if group_bies is not None:
             pulumi.set(__self__, "group_bies", group_bies)
         if group_interval is not None:
             pulumi.set(__self__, "group_interval", group_interval)
         if group_wait is not None:
             pulumi.set(__self__, "group_wait", group_wait)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
         if repeat_interval is not None:
@@ -157,6 +197,18 @@ class _NotificationPolicyState:
     @contact_point.setter
     def contact_point(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "contact_point", value)
+
+    @property
+    @pulumi.getter(name="disableProvenance")
+    def disable_provenance(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow modifying the notification policy from other sources than Terraform or the Grafana API.
+        """
+        return pulumi.get(self, "disable_provenance")
+
+    @disable_provenance.setter
+    def disable_provenance(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_provenance", value)
 
     @property
     @pulumi.getter(name="groupBies")
@@ -195,6 +247,18 @@ class _NotificationPolicyState:
         pulumi.set(self, "group_wait", value)
 
     @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
+
+    @property
     @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyArgs']]]]:
         """
@@ -225,9 +289,11 @@ class NotificationPolicy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  contact_point: Optional[pulumi.Input[str]] = None,
+                 disable_provenance: Optional[pulumi.Input[bool]] = None,
                  group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  group_interval: Optional[pulumi.Input[str]] = None,
                  group_wait: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyPolicyArgs']]]]] = None,
                  repeat_interval: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -321,9 +387,11 @@ class NotificationPolicy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] contact_point: The contact point to route notifications that match this rule to.
+        :param pulumi.Input[bool] disable_provenance: Allow modifying the notification policy from other sources than Terraform or the Grafana API.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyPolicyArgs']]]] policies: Routing rules for specific label sets.
         :param pulumi.Input[str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
@@ -436,9 +504,11 @@ class NotificationPolicy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  contact_point: Optional[pulumi.Input[str]] = None,
+                 disable_provenance: Optional[pulumi.Input[bool]] = None,
                  group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  group_interval: Optional[pulumi.Input[str]] = None,
                  group_wait: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyPolicyArgs']]]]] = None,
                  repeat_interval: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -453,11 +523,13 @@ class NotificationPolicy(pulumi.CustomResource):
             if contact_point is None and not opts.urn:
                 raise TypeError("Missing required property 'contact_point'")
             __props__.__dict__["contact_point"] = contact_point
+            __props__.__dict__["disable_provenance"] = disable_provenance
             if group_bies is None and not opts.urn:
                 raise TypeError("Missing required property 'group_bies'")
             __props__.__dict__["group_bies"] = group_bies
             __props__.__dict__["group_interval"] = group_interval
             __props__.__dict__["group_wait"] = group_wait
+            __props__.__dict__["org_id"] = org_id
             __props__.__dict__["policies"] = policies
             __props__.__dict__["repeat_interval"] = repeat_interval
         super(NotificationPolicy, __self__).__init__(
@@ -471,9 +543,11 @@ class NotificationPolicy(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             contact_point: Optional[pulumi.Input[str]] = None,
+            disable_provenance: Optional[pulumi.Input[bool]] = None,
             group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             group_interval: Optional[pulumi.Input[str]] = None,
             group_wait: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyPolicyArgs']]]]] = None,
             repeat_interval: Optional[pulumi.Input[str]] = None) -> 'NotificationPolicy':
         """
@@ -484,9 +558,11 @@ class NotificationPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] contact_point: The contact point to route notifications that match this rule to.
+        :param pulumi.Input[bool] disable_provenance: Allow modifying the notification policy from other sources than Terraform or the Grafana API.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyPolicyArgs']]]] policies: Routing rules for specific label sets.
         :param pulumi.Input[str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
@@ -495,9 +571,11 @@ class NotificationPolicy(pulumi.CustomResource):
         __props__ = _NotificationPolicyState.__new__(_NotificationPolicyState)
 
         __props__.__dict__["contact_point"] = contact_point
+        __props__.__dict__["disable_provenance"] = disable_provenance
         __props__.__dict__["group_bies"] = group_bies
         __props__.__dict__["group_interval"] = group_interval
         __props__.__dict__["group_wait"] = group_wait
+        __props__.__dict__["org_id"] = org_id
         __props__.__dict__["policies"] = policies
         __props__.__dict__["repeat_interval"] = repeat_interval
         return NotificationPolicy(resource_name, opts=opts, __props__=__props__)
@@ -509,6 +587,14 @@ class NotificationPolicy(pulumi.CustomResource):
         The contact point to route notifications that match this rule to.
         """
         return pulumi.get(self, "contact_point")
+
+    @property
+    @pulumi.getter(name="disableProvenance")
+    def disable_provenance(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Allow modifying the notification policy from other sources than Terraform or the Grafana API.
+        """
+        return pulumi.get(self, "disable_provenance")
 
     @property
     @pulumi.getter(name="groupBies")
@@ -533,6 +619,14 @@ class NotificationPolicy(pulumi.CustomResource):
         Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         """
         return pulumi.get(self, "group_wait")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter

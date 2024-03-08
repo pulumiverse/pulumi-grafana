@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * const test = new grafana.OrganizationPreference("test", {
  *     theme: "light",
  *     timezone: "utc",
- *     weekStart: "Tuesday",
+ *     weekStart: "sunday",
  * });
  * ```
  */
@@ -50,7 +50,9 @@ export class OrganizationPreference extends pulumi.CustomResource {
     }
 
     /**
-     * The Organization home dashboard ID.
+     * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
+     *
+     * @deprecated Use `home_dashboard_uid` instead.
      */
     public readonly homeDashboardId!: pulumi.Output<number | undefined>;
     /**
@@ -62,7 +64,7 @@ export class OrganizationPreference extends pulumi.CustomResource {
      */
     public readonly orgId!: pulumi.Output<string | undefined>;
     /**
-     * The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+     * The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
      */
     public readonly theme!: pulumi.Output<string | undefined>;
     /**
@@ -70,7 +72,7 @@ export class OrganizationPreference extends pulumi.CustomResource {
      */
     public readonly timezone!: pulumi.Output<string | undefined>;
     /**
-     * The Organization week start.
+     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
      */
     public readonly weekStart!: pulumi.Output<string | undefined>;
 
@@ -112,7 +114,9 @@ export class OrganizationPreference extends pulumi.CustomResource {
  */
 export interface OrganizationPreferenceState {
     /**
-     * The Organization home dashboard ID.
+     * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
+     *
+     * @deprecated Use `home_dashboard_uid` instead.
      */
     homeDashboardId?: pulumi.Input<number>;
     /**
@@ -124,7 +128,7 @@ export interface OrganizationPreferenceState {
      */
     orgId?: pulumi.Input<string>;
     /**
-     * The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+     * The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
      */
     theme?: pulumi.Input<string>;
     /**
@@ -132,7 +136,7 @@ export interface OrganizationPreferenceState {
      */
     timezone?: pulumi.Input<string>;
     /**
-     * The Organization week start.
+     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
      */
     weekStart?: pulumi.Input<string>;
 }
@@ -142,7 +146,9 @@ export interface OrganizationPreferenceState {
  */
 export interface OrganizationPreferenceArgs {
     /**
-     * The Organization home dashboard ID.
+     * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
+     *
+     * @deprecated Use `home_dashboard_uid` instead.
      */
     homeDashboardId?: pulumi.Input<number>;
     /**
@@ -154,7 +160,7 @@ export interface OrganizationPreferenceArgs {
      */
     orgId?: pulumi.Input<string>;
     /**
-     * The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+     * The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
      */
     theme?: pulumi.Input<string>;
     /**
@@ -162,7 +168,7 @@ export interface OrganizationPreferenceArgs {
      */
     timezone?: pulumi.Input<string>;
     /**
-     * The Organization week start.
+     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
      */
     weekStart?: pulumi.Input<string>;
 }

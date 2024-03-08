@@ -11,8 +11,16 @@ using Pulumi;
 namespace Pulumiverse.Grafana
 {
     /// <summary>
+    /// This resource is deprecated and will be removed in a future release. Please use grafana.CloudAccessPolicy instead.
+    /// 
     /// Manages a single API key on the Grafana Cloud portal (on the organization level)
     /// * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#api-keys)
+    /// 
+    /// Required access policy scopes:
+    /// 
+    /// * api-keys:read
+    /// * api-keys:write
+    /// * api-keys:delete
     /// 
     /// ## Example Usage
     /// 
@@ -36,7 +44,7 @@ namespace Pulumiverse.Grafana
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/cloudApiKey:CloudApiKey resource_name "{{org-name}}-{{api_key_name}}"
+    ///  $ pulumi import grafana:index/cloudApiKey:CloudApiKey name "{{ orgSlug }}:{{ apiKeyName }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/cloudApiKey:CloudApiKey")]

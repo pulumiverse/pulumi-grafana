@@ -195,6 +195,11 @@ export const getRole: typeof import("./getRole").getRole = null as any;
 export const getRoleOutput: typeof import("./getRole").getRoleOutput = null as any;
 utilities.lazyLoad(exports, ["getRole","getRoleOutput"], () => require("./getRole"));
 
+export { GetServiceAccountArgs, GetServiceAccountResult, GetServiceAccountOutputArgs } from "./getServiceAccount";
+export const getServiceAccount: typeof import("./getServiceAccount").getServiceAccount = null as any;
+export const getServiceAccountOutput: typeof import("./getServiceAccount").getServiceAccountOutput = null as any;
+utilities.lazyLoad(exports, ["getServiceAccount","getServiceAccountOutput"], () => require("./getServiceAccount"));
+
 export { GetSlosResult } from "./getSlos";
 export const getSlos: typeof import("./getSlos").getSlos = null as any;
 export const getSlosOutput: typeof import("./getSlos").getSlosOutput = null as any;
@@ -355,6 +360,11 @@ export type SLO = import("./slo").SLO;
 export const SLO: typeof import("./slo").SLO = null as any;
 utilities.lazyLoad(exports, ["SLO"], () => require("./slo"));
 
+export { SsoSettingsArgs, SsoSettingsState } from "./ssoSettings";
+export type SsoSettings = import("./ssoSettings").SsoSettings;
+export const SsoSettings: typeof import("./ssoSettings").SsoSettings = null as any;
+utilities.lazyLoad(exports, ["SsoSettings"], () => require("./ssoSettings"));
+
 export { SyntheticMonitoringCheckArgs, SyntheticMonitoringCheckState } from "./syntheticMonitoringCheck";
 export type SyntheticMonitoringCheck = import("./syntheticMonitoringCheck").SyntheticMonitoringCheck;
 export const SyntheticMonitoringCheck: typeof import("./syntheticMonitoringCheck").SyntheticMonitoringCheck = null as any;
@@ -485,6 +495,8 @@ const _module = {
                 return new ServiceAccountPermission(name, <any>undefined, { urn })
             case "grafana:index/serviceAccountToken:ServiceAccountToken":
                 return new ServiceAccountToken(name, <any>undefined, { urn })
+            case "grafana:index/ssoSettings:SsoSettings":
+                return new SsoSettings(name, <any>undefined, { urn })
             case "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck":
                 return new SyntheticMonitoringCheck(name, <any>undefined, { urn })
             case "grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation":
@@ -545,6 +557,7 @@ pulumi.runtime.registerResourceModule("grafana", "index/sLO", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/serviceAccount", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/serviceAccountPermission", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/serviceAccountToken", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/ssoSettings", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/syntheticMonitoringCheck", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/syntheticMonitoringInstallation", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/syntheticMonitoringProbe", _module)

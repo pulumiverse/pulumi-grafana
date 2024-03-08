@@ -54,10 +54,20 @@ namespace Pulumiverse.Grafana
             set => _caCert.Set(value);
         }
 
+        private static readonly __Value<string?> _cloudAccessPolicyToken = new __Value<string?>(() => __config.Get("cloudAccessPolicyToken"));
+        /// <summary>
+        /// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
+        /// variable.
+        /// </summary>
+        public static string? CloudAccessPolicyToken
+        {
+            get => _cloudAccessPolicyToken.Get();
+            set => _cloudAccessPolicyToken.Set(value);
+        }
+
         private static readonly __Value<string?> _cloudApiKey = new __Value<string?>(() => __config.Get("cloudApiKey") ?? Utilities.GetEnv("GRAFANA_CLOUD_API_KEY"));
         /// <summary>
-        /// Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
-        /// variable.
+        /// Deprecated: Use `cloud_access_policy_token` instead.
         /// </summary>
         public static string? CloudApiKey
         {

@@ -56,7 +56,9 @@ type GetOrganizationPreferencesArgs struct {
 
 // A collection of values returned by getOrganizationPreferences.
 type GetOrganizationPreferencesResult struct {
-	// The Organization home dashboard ID.
+	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
+	//
+	// Deprecated: Use `home_dashboard_uid` instead.
 	HomeDashboardId int `pulumi:"homeDashboardId"`
 	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid string `pulumi:"homeDashboardUid"`
@@ -64,11 +66,11 @@ type GetOrganizationPreferencesResult struct {
 	Id string `pulumi:"id"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
-	// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+	// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
 	Theme string `pulumi:"theme"`
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
 	Timezone string `pulumi:"timezone"`
-	// The Organization week start.
+	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
 	WeekStart string `pulumi:"weekStart"`
 }
 
@@ -116,7 +118,9 @@ func (o GetOrganizationPreferencesResultOutput) ToOutput(ctx context.Context) pu
 	}
 }
 
-// The Organization home dashboard ID.
+// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
+//
+// Deprecated: Use `home_dashboard_uid` instead.
 func (o GetOrganizationPreferencesResultOutput) HomeDashboardId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetOrganizationPreferencesResult) int { return v.HomeDashboardId }).(pulumi.IntOutput)
 }
@@ -136,7 +140,7 @@ func (o GetOrganizationPreferencesResultOutput) OrgId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetOrganizationPreferencesResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
-// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
 func (o GetOrganizationPreferencesResultOutput) Theme() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationPreferencesResult) string { return v.Theme }).(pulumi.StringOutput)
 }
@@ -146,7 +150,7 @@ func (o GetOrganizationPreferencesResultOutput) Timezone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationPreferencesResult) string { return v.Timezone }).(pulumi.StringOutput)
 }
 
-// The Organization week start.
+// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
 func (o GetOrganizationPreferencesResultOutput) WeekStart() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationPreferencesResult) string { return v.WeekStart }).(pulumi.StringOutput)
 }

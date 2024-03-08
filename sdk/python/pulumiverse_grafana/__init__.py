@@ -43,6 +43,7 @@ from .get_oncall_user_group import *
 from .get_organization import *
 from .get_organization_preferences import *
 from .get_role import *
+from .get_service_account import *
 from .get_slos import *
 from .get_synthetic_monitoring_probe import *
 from .get_synthetic_monitoring_probes import *
@@ -75,6 +76,7 @@ from .service_account import *
 from .service_account_permission import *
 from .service_account_token import *
 from .slo import *
+from .sso_settings import *
 from .synthetic_monitoring_check import *
 from .synthetic_monitoring_installation import *
 from .synthetic_monitoring_probe import *
@@ -436,6 +438,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana",
   "classes": {
    "grafana:index/serviceAccountToken:ServiceAccountToken": "ServiceAccountToken"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/ssoSettings",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/ssoSettings:SsoSettings": "SsoSettings"
   }
  },
  {

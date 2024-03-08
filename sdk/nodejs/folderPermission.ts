@@ -18,7 +18,11 @@ import * as utilities from "./utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const team = new grafana.Team("team", {});
- * const user = new grafana.User("user", {email: "user.name@example.com"});
+ * const user = new grafana.User("user", {
+ *     email: "user.name@example.com",
+ *     login: "user.name",
+ *     password: "my-password",
+ * });
  * const collection = new grafana.Folder("collection", {title: "Folder Title"});
  * const collectionPermission = new grafana.FolderPermission("collectionPermission", {
  *     folderUid: collection.uid,

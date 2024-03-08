@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Use the `teamSync` attribute of the `grafana.Team` resource instead.
+ * Equivalent to the the `teamSync` attribute of the `grafana.Team` resource. Use one or the other to configure a team's external groups syncing config.
  *
  * ## Example Usage
  *
@@ -13,12 +13,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
+ * const myTeam = new grafana.Team("myTeam", {});
  * const test_team_group = new grafana.TeamExternalGroup("test-team-group", {
+ *     teamId: myTeam.id,
  *     groups: [
  *         "test-group-1",
  *         "test-group-2",
  *     ],
- *     teamId: "1",
  * });
  * ```
  *

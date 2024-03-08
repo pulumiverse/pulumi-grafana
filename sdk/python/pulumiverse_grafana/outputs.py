@@ -27,6 +27,7 @@ __all__ = [
     'ContactPointPushover',
     'ContactPointSensugo',
     'ContactPointSlack',
+    'ContactPointSn',
     'ContactPointTeam',
     'ContactPointTelegram',
     'ContactPointThreema',
@@ -67,6 +68,8 @@ __all__ = [
     'OncallRouteTelegram',
     'OncallScheduleSlack',
     'PlaylistItem',
+    'ReportDashboard',
+    'ReportDashboardTimeRange',
     'ReportSchedule',
     'ReportTimeRange',
     'RolePermission',
@@ -89,6 +92,7 @@ __all__ = [
     'SLOQueryFreeform',
     'SLOQueryRatio',
     'ServiceAccountPermissionPermission',
+    'SsoSettingsOauth2Settings',
     'SyntheticMonitoringCheckSettings',
     'SyntheticMonitoringCheckSettingsDns',
     'SyntheticMonitoringCheckSettingsDnsValidateAdditionalRr',
@@ -2154,6 +2158,177 @@ class ContactPointSlack(dict):
 
 
 @pulumi.output_type
+class ContactPointSn(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessKey":
+            suggest = "access_key"
+        elif key == "assumeRoleArn":
+            suggest = "assume_role_arn"
+        elif key == "authProvider":
+            suggest = "auth_provider"
+        elif key == "disableResolveMessage":
+            suggest = "disable_resolve_message"
+        elif key == "externalId":
+            suggest = "external_id"
+        elif key == "messageFormat":
+            suggest = "message_format"
+        elif key == "secretKey":
+            suggest = "secret_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ContactPointSn. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ContactPointSn.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ContactPointSn.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 topic: str,
+                 access_key: Optional[str] = None,
+                 assume_role_arn: Optional[str] = None,
+                 auth_provider: Optional[str] = None,
+                 body: Optional[str] = None,
+                 disable_resolve_message: Optional[bool] = None,
+                 external_id: Optional[str] = None,
+                 message_format: Optional[str] = None,
+                 secret_key: Optional[str] = None,
+                 settings: Optional[Mapping[str, str]] = None,
+                 subject: Optional[str] = None,
+                 uid: Optional[str] = None):
+        """
+        :param str topic: The Amazon SNS topic to send notifications to.
+        :param str access_key: AWS access key ID used to authenticate with Amazon SNS.
+        :param str assume_role_arn: The Amazon Resource Name (ARN) of the role to assume to send notifications to Amazon SNS.
+        :param str auth_provider: The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+        :param bool disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
+        :param str external_id: The external ID to use when assuming the role.
+        :param str message_format: The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+        :param str secret_key: AWS secret access key used to authenticate with Amazon SNS.
+        :param Mapping[str, str] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        :param str uid: The UID of the contact point.
+        """
+        pulumi.set(__self__, "topic", topic)
+        if access_key is not None:
+            pulumi.set(__self__, "access_key", access_key)
+        if assume_role_arn is not None:
+            pulumi.set(__self__, "assume_role_arn", assume_role_arn)
+        if auth_provider is not None:
+            pulumi.set(__self__, "auth_provider", auth_provider)
+        if body is not None:
+            pulumi.set(__self__, "body", body)
+        if disable_resolve_message is not None:
+            pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
+        if message_format is not None:
+            pulumi.set(__self__, "message_format", message_format)
+        if secret_key is not None:
+            pulumi.set(__self__, "secret_key", secret_key)
+        if settings is not None:
+            pulumi.set(__self__, "settings", settings)
+        if subject is not None:
+            pulumi.set(__self__, "subject", subject)
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
+
+    @property
+    @pulumi.getter
+    def topic(self) -> str:
+        """
+        The Amazon SNS topic to send notifications to.
+        """
+        return pulumi.get(self, "topic")
+
+    @property
+    @pulumi.getter(name="accessKey")
+    def access_key(self) -> Optional[str]:
+        """
+        AWS access key ID used to authenticate with Amazon SNS.
+        """
+        return pulumi.get(self, "access_key")
+
+    @property
+    @pulumi.getter(name="assumeRoleArn")
+    def assume_role_arn(self) -> Optional[str]:
+        """
+        The Amazon Resource Name (ARN) of the role to assume to send notifications to Amazon SNS.
+        """
+        return pulumi.get(self, "assume_role_arn")
+
+    @property
+    @pulumi.getter(name="authProvider")
+    def auth_provider(self) -> Optional[str]:
+        """
+        The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+        """
+        return pulumi.get(self, "auth_provider")
+
+    @property
+    @pulumi.getter
+    def body(self) -> Optional[str]:
+        return pulumi.get(self, "body")
+
+    @property
+    @pulumi.getter(name="disableResolveMessage")
+    def disable_resolve_message(self) -> Optional[bool]:
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        return pulumi.get(self, "disable_resolve_message")
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> Optional[str]:
+        """
+        The external ID to use when assuming the role.
+        """
+        return pulumi.get(self, "external_id")
+
+    @property
+    @pulumi.getter(name="messageFormat")
+    def message_format(self) -> Optional[str]:
+        """
+        The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+        """
+        return pulumi.get(self, "message_format")
+
+    @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> Optional[str]:
+        """
+        AWS secret access key used to authenticate with Amazon SNS.
+        """
+        return pulumi.get(self, "secret_key")
+
+    @property
+    @pulumi.getter
+    def settings(self) -> Optional[Mapping[str, str]]:
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        return pulumi.get(self, "settings")
+
+    @property
+    @pulumi.getter
+    def subject(self) -> Optional[str]:
+        return pulumi.get(self, "subject")
+
+    @property
+    @pulumi.getter
+    def uid(self) -> Optional[str]:
+        """
+        The UID of the contact point.
+        """
+        return pulumi.get(self, "uid")
+
+
+@pulumi.output_type
 class ContactPointTeam(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -3454,12 +3629,14 @@ class MuteTimingInterval(dict):
 
     def __init__(__self__, *,
                  days_of_months: Optional[Sequence[str]] = None,
+                 location: Optional[str] = None,
                  months: Optional[Sequence[str]] = None,
                  times: Optional[Sequence['outputs.MuteTimingIntervalTime']] = None,
                  weekdays: Optional[Sequence[str]] = None,
                  years: Optional[Sequence[str]] = None):
         """
         :param Sequence[str] days_of_months: An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
+        :param str location: Provides the time zone for the time interval. Must be a location in the IANA time zone database, e.g "America/New_York"
         :param Sequence[str] months: An inclusive range of months, either numerical or full calendar month, e.g. "1:3", "december", or "may:august".
         :param Sequence['MuteTimingIntervalTimeArgs'] times: The time ranges, represented in minutes, during which to mute in a given day.
         :param Sequence[str] weekdays: An inclusive range of weekdays, e.g. "monday" or "tuesday:thursday".
@@ -3467,6 +3644,8 @@ class MuteTimingInterval(dict):
         """
         if days_of_months is not None:
             pulumi.set(__self__, "days_of_months", days_of_months)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if months is not None:
             pulumi.set(__self__, "months", months)
         if times is not None:
@@ -3483,6 +3662,14 @@ class MuteTimingInterval(dict):
         An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
         """
         return pulumi.get(self, "days_of_months")
+
+    @property
+    @pulumi.getter
+    def location(self) -> Optional[str]:
+        """
+        Provides the time zone for the time interval. Must be a location in the IANA time zone database, e.g "America/New_York"
+        """
+        return pulumi.get(self, "location")
 
     @property
     @pulumi.getter
@@ -5144,6 +5331,115 @@ class PlaylistItem(dict):
 
 
 @pulumi.output_type
+class ReportDashboard(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "reportVariables":
+            suggest = "report_variables"
+        elif key == "timeRange":
+            suggest = "time_range"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ReportDashboard. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ReportDashboard.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ReportDashboard.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 uid: str,
+                 report_variables: Optional[Mapping[str, Any]] = None,
+                 time_range: Optional['outputs.ReportDashboardTimeRange'] = None):
+        """
+        :param str uid: Dashboard uid.
+        :param Mapping[str, Any] report_variables: Add report variables to the dashboard. Values should be separated by commas.
+        :param 'ReportDashboardTimeRangeArgs' time_range: Time range of the report.
+        """
+        pulumi.set(__self__, "uid", uid)
+        if report_variables is not None:
+            pulumi.set(__self__, "report_variables", report_variables)
+        if time_range is not None:
+            pulumi.set(__self__, "time_range", time_range)
+
+    @property
+    @pulumi.getter
+    def uid(self) -> str:
+        """
+        Dashboard uid.
+        """
+        return pulumi.get(self, "uid")
+
+    @property
+    @pulumi.getter(name="reportVariables")
+    def report_variables(self) -> Optional[Mapping[str, Any]]:
+        """
+        Add report variables to the dashboard. Values should be separated by commas.
+        """
+        return pulumi.get(self, "report_variables")
+
+    @property
+    @pulumi.getter(name="timeRange")
+    def time_range(self) -> Optional['outputs.ReportDashboardTimeRange']:
+        """
+        Time range of the report.
+        """
+        return pulumi.get(self, "time_range")
+
+
+@pulumi.output_type
+class ReportDashboardTimeRange(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "from":
+            suggest = "from_"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ReportDashboardTimeRange. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ReportDashboardTimeRange.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ReportDashboardTimeRange.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 from_: Optional[str] = None,
+                 to: Optional[str] = None):
+        """
+        :param str from_: Start of the time range.
+        :param str to: End of the time range.
+        """
+        if from_ is not None:
+            pulumi.set(__self__, "from_", from_)
+        if to is not None:
+            pulumi.set(__self__, "to", to)
+
+    @property
+    @pulumi.getter(name="from")
+    def from_(self) -> Optional[str]:
+        """
+        Start of the time range.
+        """
+        return pulumi.get(self, "from_")
+
+    @property
+    @pulumi.getter
+    def to(self) -> Optional[str]:
+        """
+        End of the time range.
+        """
+        return pulumi.get(self, "to")
+
+
+@pulumi.output_type
 class ReportSchedule(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -5176,14 +5472,16 @@ class ReportSchedule(dict):
                  end_time: Optional[str] = None,
                  last_day_of_month: Optional[bool] = None,
                  start_time: Optional[str] = None,
+                 timezone: Optional[str] = None,
                  workdays_only: Optional[bool] = None):
         """
         :param str frequency: Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
         :param str custom_interval: Custom interval of the report.
                **Note:** This field is only available when frequency is set to `custom`.
-        :param str end_time: End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
+        :param str end_time: End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
         :param bool last_day_of_month: Send the report on the last day of the month Defaults to `false`.
-        :param str start_time: Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
+        :param str start_time: Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
+        :param str timezone: Set the report time zone. Defaults to `GMT`.
         :param bool workdays_only: Whether to send the report only on work days. Defaults to `false`.
         """
         pulumi.set(__self__, "frequency", frequency)
@@ -5195,6 +5493,8 @@ class ReportSchedule(dict):
             pulumi.set(__self__, "last_day_of_month", last_day_of_month)
         if start_time is not None:
             pulumi.set(__self__, "start_time", start_time)
+        if timezone is not None:
+            pulumi.set(__self__, "timezone", timezone)
         if workdays_only is not None:
             pulumi.set(__self__, "workdays_only", workdays_only)
 
@@ -5219,7 +5519,7 @@ class ReportSchedule(dict):
     @pulumi.getter(name="endTime")
     def end_time(self) -> Optional[str]:
         """
-        End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
+        End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
         """
         return pulumi.get(self, "end_time")
 
@@ -5235,9 +5535,17 @@ class ReportSchedule(dict):
     @pulumi.getter(name="startTime")
     def start_time(self) -> Optional[str]:
         """
-        Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
+        Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
         """
         return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter
+    def timezone(self) -> Optional[str]:
+        """
+        Set the report time zone. Defaults to `GMT`.
+        """
+        return pulumi.get(self, "timezone")
 
     @property
     @pulumi.getter(name="workdaysOnly")
@@ -6076,6 +6384,551 @@ class ServiceAccountPermissionPermission(dict):
         ID of the user or service account to manage permissions for. Specify either this or `team_id`. Defaults to `0`.
         """
         return pulumi.get(self, "user_id")
+
+
+@pulumi.output_type
+class SsoSettingsOauth2Settings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clientId":
+            suggest = "client_id"
+        elif key == "allowAssignGrafanaAdmin":
+            suggest = "allow_assign_grafana_admin"
+        elif key == "allowSignUp":
+            suggest = "allow_sign_up"
+        elif key == "allowedDomains":
+            suggest = "allowed_domains"
+        elif key == "allowedGroups":
+            suggest = "allowed_groups"
+        elif key == "allowedOrganizations":
+            suggest = "allowed_organizations"
+        elif key == "apiUrl":
+            suggest = "api_url"
+        elif key == "authStyle":
+            suggest = "auth_style"
+        elif key == "authUrl":
+            suggest = "auth_url"
+        elif key == "autoLogin":
+            suggest = "auto_login"
+        elif key == "clientSecret":
+            suggest = "client_secret"
+        elif key == "defineAllowedGroups":
+            suggest = "define_allowed_groups"
+        elif key == "defineAllowedTeamsIds":
+            suggest = "define_allowed_teams_ids"
+        elif key == "emailAttributeName":
+            suggest = "email_attribute_name"
+        elif key == "emailAttributePath":
+            suggest = "email_attribute_path"
+        elif key == "emptyScopes":
+            suggest = "empty_scopes"
+        elif key == "groupsAttributePath":
+            suggest = "groups_attribute_path"
+        elif key == "idTokenAttributeName":
+            suggest = "id_token_attribute_name"
+        elif key == "loginAttributePath":
+            suggest = "login_attribute_path"
+        elif key == "nameAttributePath":
+            suggest = "name_attribute_path"
+        elif key == "roleAttributePath":
+            suggest = "role_attribute_path"
+        elif key == "roleAttributeStrict":
+            suggest = "role_attribute_strict"
+        elif key == "signoutRedirectUrl":
+            suggest = "signout_redirect_url"
+        elif key == "skipOrgRoleSync":
+            suggest = "skip_org_role_sync"
+        elif key == "teamIds":
+            suggest = "team_ids"
+        elif key == "teamIdsAttributePath":
+            suggest = "team_ids_attribute_path"
+        elif key == "teamsUrl":
+            suggest = "teams_url"
+        elif key == "tlsClientCa":
+            suggest = "tls_client_ca"
+        elif key == "tlsClientCert":
+            suggest = "tls_client_cert"
+        elif key == "tlsClientKey":
+            suggest = "tls_client_key"
+        elif key == "tlsSkipVerifyInsecure":
+            suggest = "tls_skip_verify_insecure"
+        elif key == "tokenUrl":
+            suggest = "token_url"
+        elif key == "usePkce":
+            suggest = "use_pkce"
+        elif key == "useRefreshToken":
+            suggest = "use_refresh_token"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SsoSettingsOauth2Settings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SsoSettingsOauth2Settings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SsoSettingsOauth2Settings.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 client_id: str,
+                 allow_assign_grafana_admin: Optional[bool] = None,
+                 allow_sign_up: Optional[bool] = None,
+                 allowed_domains: Optional[str] = None,
+                 allowed_groups: Optional[str] = None,
+                 allowed_organizations: Optional[str] = None,
+                 api_url: Optional[str] = None,
+                 auth_style: Optional[str] = None,
+                 auth_url: Optional[str] = None,
+                 auto_login: Optional[bool] = None,
+                 client_secret: Optional[str] = None,
+                 custom: Optional[Mapping[str, str]] = None,
+                 define_allowed_groups: Optional[bool] = None,
+                 define_allowed_teams_ids: Optional[bool] = None,
+                 email_attribute_name: Optional[str] = None,
+                 email_attribute_path: Optional[str] = None,
+                 empty_scopes: Optional[bool] = None,
+                 enabled: Optional[bool] = None,
+                 groups_attribute_path: Optional[str] = None,
+                 id_token_attribute_name: Optional[str] = None,
+                 login_attribute_path: Optional[str] = None,
+                 name: Optional[str] = None,
+                 name_attribute_path: Optional[str] = None,
+                 role_attribute_path: Optional[str] = None,
+                 role_attribute_strict: Optional[bool] = None,
+                 scopes: Optional[str] = None,
+                 signout_redirect_url: Optional[str] = None,
+                 skip_org_role_sync: Optional[bool] = None,
+                 team_ids: Optional[str] = None,
+                 team_ids_attribute_path: Optional[str] = None,
+                 teams_url: Optional[str] = None,
+                 tls_client_ca: Optional[str] = None,
+                 tls_client_cert: Optional[str] = None,
+                 tls_client_key: Optional[str] = None,
+                 tls_skip_verify_insecure: Optional[bool] = None,
+                 token_url: Optional[str] = None,
+                 use_pkce: Optional[bool] = None,
+                 use_refresh_token: Optional[bool] = None):
+        """
+        :param str client_id: The client Id of your OAuth2 app.
+        :param bool allow_assign_grafana_admin: If enabled, it will automatically sync the Grafana server administrator role.
+        :param bool allow_sign_up: If not enabled, only existing Grafana users can log in using OAuth.
+        :param str allowed_domains: List of comma- or space-separated domains. The user should belong to at least one domain to log in.
+        :param str allowed_groups: List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+        :param str allowed_organizations: List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
+        :param str api_url: The user information endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        :param str auth_style: It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+        :param str auth_url: The authorization endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        :param bool auto_login: Log in automatically, skipping the login screen.
+        :param str client_secret: The client secret of your OAuth2 app.
+        :param Mapping[str, str] custom: Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+        :param bool define_allowed_groups: Define allowed groups.
+        :param bool define_allowed_teams_ids: Define allowed teams ids.
+        :param str email_attribute_name: Name of the key to use for user email lookup within the attributes map of OAuth2 ID token. Only applicable to Generic OAuth.
+        :param str email_attribute_path: JMESPath expression to use for user email lookup from the user information. Only applicable to Generic OAuth.
+        :param bool empty_scopes: If enabled, no scopes will be sent to the OAuth2 provider.
+        :param bool enabled: Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+        :param str groups_attribute_path: JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+        :param str id_token_attribute_name: The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
+        :param str login_attribute_path: JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
+        :param str name: Helpful if you use more than one identity providers or SSO protocols.
+        :param str name_attribute_path: JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+        :param str role_attribute_path: JMESPath expression to use for Grafana role lookup.
+        :param bool role_attribute_strict: If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
+        :param str scopes: List of comma- or space-separated OAuth2 scopes.
+        :param str signout_redirect_url: The URL to redirect the user to after signing out from Grafana.
+        :param bool skip_org_role_sync: Prevent synchronizing users’ organization roles from your IdP.
+        :param str team_ids: String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+        :param str team_ids_attribute_path: The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teams_url endpoint. Only applicable to Generic OAuth.
+        :param str teams_url: The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+        :param str tls_client_ca: The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
+        :param str tls_client_cert: The path to the certificate. Is not applicable on Grafana Cloud.
+        :param str tls_client_key: The path to the key. Is not applicable on Grafana Cloud.
+        :param bool tls_skip_verify_insecure: If enabled, the client accepts any certificate presented by the server and any host name in that certificate. You should only use this for testing, because this mode leaves SSL/TLS susceptible to man-in-the-middle attacks.
+        :param str token_url: The token endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        :param bool use_pkce: If enabled, Grafana will use Proof Key for Code Exchange (PKCE) with the OAuth2 Authorization Code Grant.
+        :param bool use_refresh_token: If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
+        """
+        pulumi.set(__self__, "client_id", client_id)
+        if allow_assign_grafana_admin is not None:
+            pulumi.set(__self__, "allow_assign_grafana_admin", allow_assign_grafana_admin)
+        if allow_sign_up is not None:
+            pulumi.set(__self__, "allow_sign_up", allow_sign_up)
+        if allowed_domains is not None:
+            pulumi.set(__self__, "allowed_domains", allowed_domains)
+        if allowed_groups is not None:
+            pulumi.set(__self__, "allowed_groups", allowed_groups)
+        if allowed_organizations is not None:
+            pulumi.set(__self__, "allowed_organizations", allowed_organizations)
+        if api_url is not None:
+            pulumi.set(__self__, "api_url", api_url)
+        if auth_style is not None:
+            pulumi.set(__self__, "auth_style", auth_style)
+        if auth_url is not None:
+            pulumi.set(__self__, "auth_url", auth_url)
+        if auto_login is not None:
+            pulumi.set(__self__, "auto_login", auto_login)
+        if client_secret is not None:
+            pulumi.set(__self__, "client_secret", client_secret)
+        if custom is not None:
+            pulumi.set(__self__, "custom", custom)
+        if define_allowed_groups is not None:
+            pulumi.set(__self__, "define_allowed_groups", define_allowed_groups)
+        if define_allowed_teams_ids is not None:
+            pulumi.set(__self__, "define_allowed_teams_ids", define_allowed_teams_ids)
+        if email_attribute_name is not None:
+            pulumi.set(__self__, "email_attribute_name", email_attribute_name)
+        if email_attribute_path is not None:
+            pulumi.set(__self__, "email_attribute_path", email_attribute_path)
+        if empty_scopes is not None:
+            pulumi.set(__self__, "empty_scopes", empty_scopes)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if groups_attribute_path is not None:
+            pulumi.set(__self__, "groups_attribute_path", groups_attribute_path)
+        if id_token_attribute_name is not None:
+            pulumi.set(__self__, "id_token_attribute_name", id_token_attribute_name)
+        if login_attribute_path is not None:
+            pulumi.set(__self__, "login_attribute_path", login_attribute_path)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if name_attribute_path is not None:
+            pulumi.set(__self__, "name_attribute_path", name_attribute_path)
+        if role_attribute_path is not None:
+            pulumi.set(__self__, "role_attribute_path", role_attribute_path)
+        if role_attribute_strict is not None:
+            pulumi.set(__self__, "role_attribute_strict", role_attribute_strict)
+        if scopes is not None:
+            pulumi.set(__self__, "scopes", scopes)
+        if signout_redirect_url is not None:
+            pulumi.set(__self__, "signout_redirect_url", signout_redirect_url)
+        if skip_org_role_sync is not None:
+            pulumi.set(__self__, "skip_org_role_sync", skip_org_role_sync)
+        if team_ids is not None:
+            pulumi.set(__self__, "team_ids", team_ids)
+        if team_ids_attribute_path is not None:
+            pulumi.set(__self__, "team_ids_attribute_path", team_ids_attribute_path)
+        if teams_url is not None:
+            pulumi.set(__self__, "teams_url", teams_url)
+        if tls_client_ca is not None:
+            pulumi.set(__self__, "tls_client_ca", tls_client_ca)
+        if tls_client_cert is not None:
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+        if tls_client_key is not None:
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
+        if tls_skip_verify_insecure is not None:
+            pulumi.set(__self__, "tls_skip_verify_insecure", tls_skip_verify_insecure)
+        if token_url is not None:
+            pulumi.set(__self__, "token_url", token_url)
+        if use_pkce is not None:
+            pulumi.set(__self__, "use_pkce", use_pkce)
+        if use_refresh_token is not None:
+            pulumi.set(__self__, "use_refresh_token", use_refresh_token)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        """
+        The client Id of your OAuth2 app.
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="allowAssignGrafanaAdmin")
+    def allow_assign_grafana_admin(self) -> Optional[bool]:
+        """
+        If enabled, it will automatically sync the Grafana server administrator role.
+        """
+        return pulumi.get(self, "allow_assign_grafana_admin")
+
+    @property
+    @pulumi.getter(name="allowSignUp")
+    def allow_sign_up(self) -> Optional[bool]:
+        """
+        If not enabled, only existing Grafana users can log in using OAuth.
+        """
+        return pulumi.get(self, "allow_sign_up")
+
+    @property
+    @pulumi.getter(name="allowedDomains")
+    def allowed_domains(self) -> Optional[str]:
+        """
+        List of comma- or space-separated domains. The user should belong to at least one domain to log in.
+        """
+        return pulumi.get(self, "allowed_domains")
+
+    @property
+    @pulumi.getter(name="allowedGroups")
+    def allowed_groups(self) -> Optional[str]:
+        """
+        List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+        """
+        return pulumi.get(self, "allowed_groups")
+
+    @property
+    @pulumi.getter(name="allowedOrganizations")
+    def allowed_organizations(self) -> Optional[str]:
+        """
+        List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
+        """
+        return pulumi.get(self, "allowed_organizations")
+
+    @property
+    @pulumi.getter(name="apiUrl")
+    def api_url(self) -> Optional[str]:
+        """
+        The user information endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        """
+        return pulumi.get(self, "api_url")
+
+    @property
+    @pulumi.getter(name="authStyle")
+    def auth_style(self) -> Optional[str]:
+        """
+        It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+        """
+        return pulumi.get(self, "auth_style")
+
+    @property
+    @pulumi.getter(name="authUrl")
+    def auth_url(self) -> Optional[str]:
+        """
+        The authorization endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        """
+        return pulumi.get(self, "auth_url")
+
+    @property
+    @pulumi.getter(name="autoLogin")
+    def auto_login(self) -> Optional[bool]:
+        """
+        Log in automatically, skipping the login screen.
+        """
+        return pulumi.get(self, "auto_login")
+
+    @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> Optional[str]:
+        """
+        The client secret of your OAuth2 app.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @property
+    @pulumi.getter
+    def custom(self) -> Optional[Mapping[str, str]]:
+        """
+        Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+        """
+        return pulumi.get(self, "custom")
+
+    @property
+    @pulumi.getter(name="defineAllowedGroups")
+    def define_allowed_groups(self) -> Optional[bool]:
+        """
+        Define allowed groups.
+        """
+        return pulumi.get(self, "define_allowed_groups")
+
+    @property
+    @pulumi.getter(name="defineAllowedTeamsIds")
+    def define_allowed_teams_ids(self) -> Optional[bool]:
+        """
+        Define allowed teams ids.
+        """
+        return pulumi.get(self, "define_allowed_teams_ids")
+
+    @property
+    @pulumi.getter(name="emailAttributeName")
+    def email_attribute_name(self) -> Optional[str]:
+        """
+        Name of the key to use for user email lookup within the attributes map of OAuth2 ID token. Only applicable to Generic OAuth.
+        """
+        return pulumi.get(self, "email_attribute_name")
+
+    @property
+    @pulumi.getter(name="emailAttributePath")
+    def email_attribute_path(self) -> Optional[str]:
+        """
+        JMESPath expression to use for user email lookup from the user information. Only applicable to Generic OAuth.
+        """
+        return pulumi.get(self, "email_attribute_path")
+
+    @property
+    @pulumi.getter(name="emptyScopes")
+    def empty_scopes(self) -> Optional[bool]:
+        """
+        If enabled, no scopes will be sent to the OAuth2 provider.
+        """
+        return pulumi.get(self, "empty_scopes")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="groupsAttributePath")
+    def groups_attribute_path(self) -> Optional[str]:
+        """
+        JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+        """
+        return pulumi.get(self, "groups_attribute_path")
+
+    @property
+    @pulumi.getter(name="idTokenAttributeName")
+    def id_token_attribute_name(self) -> Optional[str]:
+        """
+        The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
+        """
+        return pulumi.get(self, "id_token_attribute_name")
+
+    @property
+    @pulumi.getter(name="loginAttributePath")
+    def login_attribute_path(self) -> Optional[str]:
+        """
+        JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
+        """
+        return pulumi.get(self, "login_attribute_path")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Helpful if you use more than one identity providers or SSO protocols.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nameAttributePath")
+    def name_attribute_path(self) -> Optional[str]:
+        """
+        JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+        """
+        return pulumi.get(self, "name_attribute_path")
+
+    @property
+    @pulumi.getter(name="roleAttributePath")
+    def role_attribute_path(self) -> Optional[str]:
+        """
+        JMESPath expression to use for Grafana role lookup.
+        """
+        return pulumi.get(self, "role_attribute_path")
+
+    @property
+    @pulumi.getter(name="roleAttributeStrict")
+    def role_attribute_strict(self) -> Optional[bool]:
+        """
+        If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
+        """
+        return pulumi.get(self, "role_attribute_strict")
+
+    @property
+    @pulumi.getter
+    def scopes(self) -> Optional[str]:
+        """
+        List of comma- or space-separated OAuth2 scopes.
+        """
+        return pulumi.get(self, "scopes")
+
+    @property
+    @pulumi.getter(name="signoutRedirectUrl")
+    def signout_redirect_url(self) -> Optional[str]:
+        """
+        The URL to redirect the user to after signing out from Grafana.
+        """
+        return pulumi.get(self, "signout_redirect_url")
+
+    @property
+    @pulumi.getter(name="skipOrgRoleSync")
+    def skip_org_role_sync(self) -> Optional[bool]:
+        """
+        Prevent synchronizing users’ organization roles from your IdP.
+        """
+        return pulumi.get(self, "skip_org_role_sync")
+
+    @property
+    @pulumi.getter(name="teamIds")
+    def team_ids(self) -> Optional[str]:
+        """
+        String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+        """
+        return pulumi.get(self, "team_ids")
+
+    @property
+    @pulumi.getter(name="teamIdsAttributePath")
+    def team_ids_attribute_path(self) -> Optional[str]:
+        """
+        The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teams_url endpoint. Only applicable to Generic OAuth.
+        """
+        return pulumi.get(self, "team_ids_attribute_path")
+
+    @property
+    @pulumi.getter(name="teamsUrl")
+    def teams_url(self) -> Optional[str]:
+        """
+        The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+        """
+        return pulumi.get(self, "teams_url")
+
+    @property
+    @pulumi.getter(name="tlsClientCa")
+    def tls_client_ca(self) -> Optional[str]:
+        """
+        The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
+        """
+        return pulumi.get(self, "tls_client_ca")
+
+    @property
+    @pulumi.getter(name="tlsClientCert")
+    def tls_client_cert(self) -> Optional[str]:
+        """
+        The path to the certificate. Is not applicable on Grafana Cloud.
+        """
+        return pulumi.get(self, "tls_client_cert")
+
+    @property
+    @pulumi.getter(name="tlsClientKey")
+    def tls_client_key(self) -> Optional[str]:
+        """
+        The path to the key. Is not applicable on Grafana Cloud.
+        """
+        return pulumi.get(self, "tls_client_key")
+
+    @property
+    @pulumi.getter(name="tlsSkipVerifyInsecure")
+    def tls_skip_verify_insecure(self) -> Optional[bool]:
+        """
+        If enabled, the client accepts any certificate presented by the server and any host name in that certificate. You should only use this for testing, because this mode leaves SSL/TLS susceptible to man-in-the-middle attacks.
+        """
+        return pulumi.get(self, "tls_skip_verify_insecure")
+
+    @property
+    @pulumi.getter(name="tokenUrl")
+    def token_url(self) -> Optional[str]:
+        """
+        The token endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        """
+        return pulumi.get(self, "token_url")
+
+    @property
+    @pulumi.getter(name="usePkce")
+    def use_pkce(self) -> Optional[bool]:
+        """
+        If enabled, Grafana will use Proof Key for Code Exchange (PKCE) with the OAuth2 Authorization Code Grant.
+        """
+        return pulumi.get(self, "use_pkce")
+
+    @property
+    @pulumi.getter(name="useRefreshToken")
+    def use_refresh_token(self) -> Optional[bool]:
+        """
+        If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
+        """
+        return pulumi.get(self, "use_refresh_token")
 
 
 @pulumi.output_type
@@ -7749,6 +8602,8 @@ class TeamPreferences(dict):
         suggest = None
         if key == "homeDashboardUid":
             suggest = "home_dashboard_uid"
+        elif key == "weekStart":
+            suggest = "week_start"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in TeamPreferences. Access the value via the '{suggest}' property getter instead.")
@@ -7764,13 +8619,16 @@ class TeamPreferences(dict):
     def __init__(__self__, *,
                  home_dashboard_uid: Optional[str] = None,
                  theme: Optional[str] = None,
-                 timezone: Optional[str] = None):
+                 timezone: Optional[str] = None,
+                 week_start: Optional[str] = None):
         if home_dashboard_uid is not None:
             pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
         if theme is not None:
             pulumi.set(__self__, "theme", theme)
         if timezone is not None:
             pulumi.set(__self__, "timezone", timezone)
+        if week_start is not None:
+            pulumi.set(__self__, "week_start", week_start)
 
     @property
     @pulumi.getter(name="homeDashboardUid")
@@ -7786,6 +8644,11 @@ class TeamPreferences(dict):
     @pulumi.getter
     def timezone(self) -> Optional[str]:
         return pulumi.get(self, "timezone")
+
+    @property
+    @pulumi.getter(name="weekStart")
+    def week_start(self) -> Optional[str]:
+        return pulumi.get(self, "week_start")
 
 
 @pulumi.output_type
@@ -8257,13 +9120,16 @@ class GetTeamPreferenceResult(dict):
     def __init__(__self__, *,
                  home_dashboard_uid: Optional[str] = None,
                  theme: Optional[str] = None,
-                 timezone: Optional[str] = None):
+                 timezone: Optional[str] = None,
+                 week_start: Optional[str] = None):
         if home_dashboard_uid is not None:
             pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
         if theme is not None:
             pulumi.set(__self__, "theme", theme)
         if timezone is not None:
             pulumi.set(__self__, "timezone", timezone)
+        if week_start is not None:
+            pulumi.set(__self__, "week_start", week_start)
 
     @property
     @pulumi.getter(name="homeDashboardUid")
@@ -8279,6 +9145,11 @@ class GetTeamPreferenceResult(dict):
     @pulumi.getter
     def timezone(self) -> Optional[str]:
         return pulumi.get(self, "timezone")
+
+    @property
+    @pulumi.getter(name="weekStart")
+    def week_start(self) -> Optional[str]:
+        return pulumi.get(self, "week_start")
 
 
 @pulumi.output_type

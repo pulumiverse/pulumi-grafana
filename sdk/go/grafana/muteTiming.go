@@ -40,6 +40,7 @@ import (
 //							pulumi.String("1:7"),
 //							pulumi.String("-1"),
 //						},
+//						Location: pulumi.String("America/New_York"),
 //						Months: pulumi.StringArray{
 //							pulumi.String("1:3"),
 //							pulumi.String("december"),
@@ -80,10 +81,12 @@ import (
 type MuteTiming struct {
 	pulumi.CustomResourceState
 
-	// The time intervals at which to mute notifications.
+	// The time intervals at which to mute notifications. Use an empty block to mute all the time.
 	Intervals MuteTimingIntervalArrayOutput `pulumi:"intervals"`
 	// The name of the mute timing.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 }
 
 // NewMuteTiming registers a new resource with the given unique name, arguments, and options.
@@ -116,17 +119,21 @@ func GetMuteTiming(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MuteTiming resources.
 type muteTimingState struct {
-	// The time intervals at which to mute notifications.
+	// The time intervals at which to mute notifications. Use an empty block to mute all the time.
 	Intervals []MuteTimingInterval `pulumi:"intervals"`
 	// The name of the mute timing.
 	Name *string `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 }
 
 type MuteTimingState struct {
-	// The time intervals at which to mute notifications.
+	// The time intervals at which to mute notifications. Use an empty block to mute all the time.
 	Intervals MuteTimingIntervalArrayInput
 	// The name of the mute timing.
 	Name pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 }
 
 func (MuteTimingState) ElementType() reflect.Type {
@@ -134,18 +141,22 @@ func (MuteTimingState) ElementType() reflect.Type {
 }
 
 type muteTimingArgs struct {
-	// The time intervals at which to mute notifications.
+	// The time intervals at which to mute notifications. Use an empty block to mute all the time.
 	Intervals []MuteTimingInterval `pulumi:"intervals"`
 	// The name of the mute timing.
 	Name *string `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 }
 
 // The set of arguments for constructing a MuteTiming resource.
 type MuteTimingArgs struct {
-	// The time intervals at which to mute notifications.
+	// The time intervals at which to mute notifications. Use an empty block to mute all the time.
 	Intervals MuteTimingIntervalArrayInput
 	// The name of the mute timing.
 	Name pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 }
 
 func (MuteTimingArgs) ElementType() reflect.Type {
@@ -259,7 +270,7 @@ func (o MuteTimingOutput) ToOutput(ctx context.Context) pulumix.Output[*MuteTimi
 	}
 }
 
-// The time intervals at which to mute notifications.
+// The time intervals at which to mute notifications. Use an empty block to mute all the time.
 func (o MuteTimingOutput) Intervals() MuteTimingIntervalArrayOutput {
 	return o.ApplyT(func(v *MuteTiming) MuteTimingIntervalArrayOutput { return v.Intervals }).(MuteTimingIntervalArrayOutput)
 }
@@ -267,6 +278,11 @@ func (o MuteTimingOutput) Intervals() MuteTimingIntervalArrayOutput {
 // The name of the mute timing.
 func (o MuteTimingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MuteTiming) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o MuteTimingOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MuteTiming) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 type MuteTimingArrayOutput struct{ *pulumi.OutputState }

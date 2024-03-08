@@ -20,6 +20,7 @@ class ReportArgs:
                  schedule: pulumi.Input['ReportScheduleArgs'],
                  dashboard_id: Optional[pulumi.Input[int]] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 dashboards: Optional[pulumi.Input[Sequence[pulumi.Input['ReportDashboardArgs']]]] = None,
                  formats: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  include_dashboard_link: Optional[pulumi.Input[bool]] = None,
                  include_table_csv: Optional[pulumi.Input[bool]] = None,
@@ -36,6 +37,7 @@ class ReportArgs:
         :param pulumi.Input['ReportScheduleArgs'] schedule: Schedule of the report.
         :param pulumi.Input[int] dashboard_id: Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         :param pulumi.Input[str] dashboard_uid: Dashboard to be sent in the report.
+        :param pulumi.Input[Sequence[pulumi.Input['ReportDashboardArgs']]] dashboards: List of dashboards to render into the report
         :param pulumi.Input[Sequence[pulumi.Input[str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
         :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
         :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
@@ -50,12 +52,17 @@ class ReportArgs:
         pulumi.set(__self__, "recipients", recipients)
         pulumi.set(__self__, "schedule", schedule)
         if dashboard_id is not None:
-            warnings.warn("""Use dashboard_uid instead""", DeprecationWarning)
-            pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead""")
+            warnings.warn("""Use dashboards instead""", DeprecationWarning)
+            pulumi.log.warn("""dashboard_id is deprecated: Use dashboards instead""")
         if dashboard_id is not None:
             pulumi.set(__self__, "dashboard_id", dashboard_id)
         if dashboard_uid is not None:
+            warnings.warn("""Use dashboards instead""", DeprecationWarning)
+            pulumi.log.warn("""dashboard_uid is deprecated: Use dashboards instead""")
+        if dashboard_uid is not None:
             pulumi.set(__self__, "dashboard_uid", dashboard_uid)
+        if dashboards is not None:
+            pulumi.set(__self__, "dashboards", dashboards)
         if formats is not None:
             pulumi.set(__self__, "formats", formats)
         if include_dashboard_link is not None:
@@ -74,6 +81,9 @@ class ReportArgs:
             pulumi.set(__self__, "orientation", orientation)
         if reply_to is not None:
             pulumi.set(__self__, "reply_to", reply_to)
+        if time_range is not None:
+            warnings.warn("""Use time_range in dashboards instead. This field is completely ignored when dashboards is set.""", DeprecationWarning)
+            pulumi.log.warn("""time_range is deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.""")
         if time_range is not None:
             pulumi.set(__self__, "time_range", time_range)
 
@@ -107,8 +117,8 @@ class ReportArgs:
         """
         Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         """
-        warnings.warn("""Use dashboard_uid instead""", DeprecationWarning)
-        pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead""")
+        warnings.warn("""Use dashboards instead""", DeprecationWarning)
+        pulumi.log.warn("""dashboard_id is deprecated: Use dashboards instead""")
 
         return pulumi.get(self, "dashboard_id")
 
@@ -122,11 +132,26 @@ class ReportArgs:
         """
         Dashboard to be sent in the report.
         """
+        warnings.warn("""Use dashboards instead""", DeprecationWarning)
+        pulumi.log.warn("""dashboard_uid is deprecated: Use dashboards instead""")
+
         return pulumi.get(self, "dashboard_uid")
 
     @dashboard_uid.setter
     def dashboard_uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dashboard_uid", value)
+
+    @property
+    @pulumi.getter
+    def dashboards(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ReportDashboardArgs']]]]:
+        """
+        List of dashboards to render into the report
+        """
+        return pulumi.get(self, "dashboards")
+
+    @dashboards.setter
+    def dashboards(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ReportDashboardArgs']]]]):
+        pulumi.set(self, "dashboards", value)
 
     @property
     @pulumi.getter
@@ -242,6 +267,9 @@ class ReportArgs:
         """
         Time range of the report.
         """
+        warnings.warn("""Use time_range in dashboards instead. This field is completely ignored when dashboards is set.""", DeprecationWarning)
+        pulumi.log.warn("""time_range is deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.""")
+
         return pulumi.get(self, "time_range")
 
     @time_range.setter
@@ -254,6 +282,7 @@ class _ReportState:
     def __init__(__self__, *,
                  dashboard_id: Optional[pulumi.Input[int]] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 dashboards: Optional[pulumi.Input[Sequence[pulumi.Input['ReportDashboardArgs']]]] = None,
                  formats: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  include_dashboard_link: Optional[pulumi.Input[bool]] = None,
                  include_table_csv: Optional[pulumi.Input[bool]] = None,
@@ -270,6 +299,7 @@ class _ReportState:
         Input properties used for looking up and filtering Report resources.
         :param pulumi.Input[int] dashboard_id: Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         :param pulumi.Input[str] dashboard_uid: Dashboard to be sent in the report.
+        :param pulumi.Input[Sequence[pulumi.Input['ReportDashboardArgs']]] dashboards: List of dashboards to render into the report
         :param pulumi.Input[Sequence[pulumi.Input[str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
         :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
         :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
@@ -284,12 +314,17 @@ class _ReportState:
         :param pulumi.Input['ReportTimeRangeArgs'] time_range: Time range of the report.
         """
         if dashboard_id is not None:
-            warnings.warn("""Use dashboard_uid instead""", DeprecationWarning)
-            pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead""")
+            warnings.warn("""Use dashboards instead""", DeprecationWarning)
+            pulumi.log.warn("""dashboard_id is deprecated: Use dashboards instead""")
         if dashboard_id is not None:
             pulumi.set(__self__, "dashboard_id", dashboard_id)
         if dashboard_uid is not None:
+            warnings.warn("""Use dashboards instead""", DeprecationWarning)
+            pulumi.log.warn("""dashboard_uid is deprecated: Use dashboards instead""")
+        if dashboard_uid is not None:
             pulumi.set(__self__, "dashboard_uid", dashboard_uid)
+        if dashboards is not None:
+            pulumi.set(__self__, "dashboards", dashboards)
         if formats is not None:
             pulumi.set(__self__, "formats", formats)
         if include_dashboard_link is not None:
@@ -313,6 +348,9 @@ class _ReportState:
         if schedule is not None:
             pulumi.set(__self__, "schedule", schedule)
         if time_range is not None:
+            warnings.warn("""Use time_range in dashboards instead. This field is completely ignored when dashboards is set.""", DeprecationWarning)
+            pulumi.log.warn("""time_range is deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.""")
+        if time_range is not None:
             pulumi.set(__self__, "time_range", time_range)
 
     @property
@@ -321,8 +359,8 @@ class _ReportState:
         """
         Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         """
-        warnings.warn("""Use dashboard_uid instead""", DeprecationWarning)
-        pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead""")
+        warnings.warn("""Use dashboards instead""", DeprecationWarning)
+        pulumi.log.warn("""dashboard_id is deprecated: Use dashboards instead""")
 
         return pulumi.get(self, "dashboard_id")
 
@@ -336,11 +374,26 @@ class _ReportState:
         """
         Dashboard to be sent in the report.
         """
+        warnings.warn("""Use dashboards instead""", DeprecationWarning)
+        pulumi.log.warn("""dashboard_uid is deprecated: Use dashboards instead""")
+
         return pulumi.get(self, "dashboard_uid")
 
     @dashboard_uid.setter
     def dashboard_uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dashboard_uid", value)
+
+    @property
+    @pulumi.getter
+    def dashboards(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ReportDashboardArgs']]]]:
+        """
+        List of dashboards to render into the report
+        """
+        return pulumi.get(self, "dashboards")
+
+    @dashboards.setter
+    def dashboards(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ReportDashboardArgs']]]]):
+        pulumi.set(self, "dashboards", value)
 
     @property
     @pulumi.getter
@@ -480,6 +533,9 @@ class _ReportState:
         """
         Time range of the report.
         """
+        warnings.warn("""Use time_range in dashboards instead. This field is completely ignored when dashboards is set.""", DeprecationWarning)
+        pulumi.log.warn("""time_range is deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.""")
+
         return pulumi.get(self, "time_range")
 
     @time_range.setter
@@ -494,6 +550,7 @@ class Report(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dashboard_id: Optional[pulumi.Input[int]] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 dashboards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDashboardArgs']]]]] = None,
                  formats: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  include_dashboard_link: Optional[pulumi.Input[bool]] = None,
                  include_table_csv: Optional[pulumi.Input[bool]] = None,
@@ -521,8 +578,8 @@ class Report(pulumi.CustomResource):
 
         test_dashboard = grafana.Dashboard("testDashboard",
             config_json=\"\"\"{
-          "title": "Dashboard for report",
-          "uid": "report"
+          "uid": "report-dashboard",
+          "title": "report-dashboard"
         }
         \"\"\",
             message="inital commit.")
@@ -538,6 +595,7 @@ class Report(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] dashboard_id: Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         :param pulumi.Input[str] dashboard_uid: Dashboard to be sent in the report.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDashboardArgs']]]] dashboards: List of dashboards to render into the report
         :param pulumi.Input[Sequence[pulumi.Input[str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
         :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
         :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
@@ -571,8 +629,8 @@ class Report(pulumi.CustomResource):
 
         test_dashboard = grafana.Dashboard("testDashboard",
             config_json=\"\"\"{
-          "title": "Dashboard for report",
-          "uid": "report"
+          "uid": "report-dashboard",
+          "title": "report-dashboard"
         }
         \"\"\",
             message="inital commit.")
@@ -601,6 +659,7 @@ class Report(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dashboard_id: Optional[pulumi.Input[int]] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
+                 dashboards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDashboardArgs']]]]] = None,
                  formats: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  include_dashboard_link: Optional[pulumi.Input[bool]] = None,
                  include_table_csv: Optional[pulumi.Input[bool]] = None,
@@ -624,6 +683,7 @@ class Report(pulumi.CustomResource):
 
             __props__.__dict__["dashboard_id"] = dashboard_id
             __props__.__dict__["dashboard_uid"] = dashboard_uid
+            __props__.__dict__["dashboards"] = dashboards
             __props__.__dict__["formats"] = formats
             __props__.__dict__["include_dashboard_link"] = include_dashboard_link
             __props__.__dict__["include_table_csv"] = include_table_csv
@@ -652,6 +712,7 @@ class Report(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dashboard_id: Optional[pulumi.Input[int]] = None,
             dashboard_uid: Optional[pulumi.Input[str]] = None,
+            dashboards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDashboardArgs']]]]] = None,
             formats: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             include_dashboard_link: Optional[pulumi.Input[bool]] = None,
             include_table_csv: Optional[pulumi.Input[bool]] = None,
@@ -673,6 +734,7 @@ class Report(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] dashboard_id: Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         :param pulumi.Input[str] dashboard_uid: Dashboard to be sent in the report.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDashboardArgs']]]] dashboards: List of dashboards to render into the report
         :param pulumi.Input[Sequence[pulumi.Input[str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
         :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
         :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
@@ -692,6 +754,7 @@ class Report(pulumi.CustomResource):
 
         __props__.__dict__["dashboard_id"] = dashboard_id
         __props__.__dict__["dashboard_uid"] = dashboard_uid
+        __props__.__dict__["dashboards"] = dashboards
         __props__.__dict__["formats"] = formats
         __props__.__dict__["include_dashboard_link"] = include_dashboard_link
         __props__.__dict__["include_table_csv"] = include_table_csv
@@ -712,8 +775,8 @@ class Report(pulumi.CustomResource):
         """
         Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         """
-        warnings.warn("""Use dashboard_uid instead""", DeprecationWarning)
-        pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead""")
+        warnings.warn("""Use dashboards instead""", DeprecationWarning)
+        pulumi.log.warn("""dashboard_id is deprecated: Use dashboards instead""")
 
         return pulumi.get(self, "dashboard_id")
 
@@ -723,7 +786,18 @@ class Report(pulumi.CustomResource):
         """
         Dashboard to be sent in the report.
         """
+        warnings.warn("""Use dashboards instead""", DeprecationWarning)
+        pulumi.log.warn("""dashboard_uid is deprecated: Use dashboards instead""")
+
         return pulumi.get(self, "dashboard_uid")
+
+    @property
+    @pulumi.getter
+    def dashboards(self) -> pulumi.Output[Optional[Sequence['outputs.ReportDashboard']]]:
+        """
+        List of dashboards to render into the report
+        """
+        return pulumi.get(self, "dashboards")
 
     @property
     @pulumi.getter
@@ -819,5 +893,8 @@ class Report(pulumi.CustomResource):
         """
         Time range of the report.
         """
+        warnings.warn("""Use time_range in dashboards instead. This field is completely ignored when dashboards is set.""", DeprecationWarning)
+        pulumi.log.warn("""time_range is deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.""")
+
         return pulumi.get(self, "time_range")
 

@@ -13,7 +13,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Use the `teamSync` attribute of the `Team` resource instead.
+// Equivalent to the the `teamSync` attribute of the `Team` resource. Use one or the other to configure a team's external groups syncing config.
 //
 // ## Example Usage
 //
@@ -29,12 +29,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.NewTeamExternalGroup(ctx, "test-team-group", &grafana.TeamExternalGroupArgs{
+//			myTeam, err := grafana.NewTeam(ctx, "myTeam", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = grafana.NewTeamExternalGroup(ctx, "test-team-group", &grafana.TeamExternalGroupArgs{
+//				TeamId: myTeam.ID(),
 //				Groups: pulumi.StringArray{
 //					pulumi.String("test-group-1"),
 //					pulumi.String("test-group-2"),
 //				},
-//				TeamId: pulumi.String("1"),
 //			})
 //			if err != nil {
 //				return err

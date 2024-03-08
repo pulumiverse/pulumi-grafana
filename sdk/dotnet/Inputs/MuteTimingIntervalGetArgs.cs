@@ -25,6 +25,12 @@ namespace Pulumiverse.Grafana.Inputs
             set => _daysOfMonths = value;
         }
 
+        /// <summary>
+        /// Provides the time zone for the time interval. Must be a location in the IANA time zone database, e.g "America/New_York"
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
         [Input("months")]
         private InputList<string>? _months;
 

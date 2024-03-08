@@ -15,12 +15,18 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const team = new grafana.Team("team", {});
- * const user = new grafana.User("user", {email: "user.name@example.com"});
- * const metrics = new grafana.Dashboard("metrics", {configJson: fs.readFileSync("grafana-dashboard.json")});
+ * const user = new grafana.User("user", {
+ *     email: "user.name@example.com",
+ *     password: "my-password",
+ *     login: "user.name",
+ * });
+ * const metrics = new grafana.Dashboard("metrics", {configJson: JSON.stringify({
+ *     title: "My Dashboard",
+ *     uid: "my-dashboard-uid",
+ * })});
  * const collectionPermission = new grafana.DashboardPermission("collectionPermission", {
  *     dashboardUid: metrics.uid,
  *     permissions: [

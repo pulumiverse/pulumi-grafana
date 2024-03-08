@@ -39,7 +39,7 @@ import * as utilities from "./utilities";
  *     permissions: [
  *         {
  *             teamId: team.id,
- *             permission: "Admin",
+ *             permission: "Edit",
  *         },
  *         {
  *             userId: user.id,

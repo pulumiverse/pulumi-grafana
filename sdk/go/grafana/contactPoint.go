@@ -70,6 +70,8 @@ type ContactPoint struct {
 	Alertmanagers ContactPointAlertmanagerArrayOutput `pulumi:"alertmanagers"`
 	// A contact point that sends notifications to DingDing.
 	Dingdings ContactPointDingdingArrayOutput `pulumi:"dingdings"`
+	// Allow modifying the contact point from other sources than Terraform or the Grafana API.
+	DisableProvenance pulumi.BoolPtrOutput `pulumi:"disableProvenance"`
 	// A contact point that sends notifications as Discord messages
 	Discords ContactPointDiscordArrayOutput `pulumi:"discords"`
 	// A contact point that sends notifications to an email address.
@@ -86,6 +88,8 @@ type ContactPoint struct {
 	Oncalls ContactPointOncallArrayOutput `pulumi:"oncalls"`
 	// A contact point that sends notifications to OpsGenie.
 	Opsgenies ContactPointOpsgenyArrayOutput `pulumi:"opsgenies"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// A contact point that sends notifications to PagerDuty.
 	Pagerduties ContactPointPagerdutyArrayOutput `pulumi:"pagerduties"`
 	// A contact point that sends notifications to Pushover.
@@ -94,6 +98,8 @@ type ContactPoint struct {
 	Sensugos ContactPointSensugoArrayOutput `pulumi:"sensugos"`
 	// A contact point that sends notifications to Slack.
 	Slacks ContactPointSlackArrayOutput `pulumi:"slacks"`
+	// A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+	Sns ContactPointSnArrayOutput `pulumi:"sns"`
 	// A contact point that sends notifications to Microsoft Teams.
 	Teams ContactPointTeamArrayOutput `pulumi:"teams"`
 	// A contact point that sends notifications to Telegram.
@@ -144,6 +150,8 @@ type contactPointState struct {
 	Alertmanagers []ContactPointAlertmanager `pulumi:"alertmanagers"`
 	// A contact point that sends notifications to DingDing.
 	Dingdings []ContactPointDingding `pulumi:"dingdings"`
+	// Allow modifying the contact point from other sources than Terraform or the Grafana API.
+	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// A contact point that sends notifications as Discord messages
 	Discords []ContactPointDiscord `pulumi:"discords"`
 	// A contact point that sends notifications to an email address.
@@ -160,6 +168,8 @@ type contactPointState struct {
 	Oncalls []ContactPointOncall `pulumi:"oncalls"`
 	// A contact point that sends notifications to OpsGenie.
 	Opsgenies []ContactPointOpsgeny `pulumi:"opsgenies"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// A contact point that sends notifications to PagerDuty.
 	Pagerduties []ContactPointPagerduty `pulumi:"pagerduties"`
 	// A contact point that sends notifications to Pushover.
@@ -168,6 +178,8 @@ type contactPointState struct {
 	Sensugos []ContactPointSensugo `pulumi:"sensugos"`
 	// A contact point that sends notifications to Slack.
 	Slacks []ContactPointSlack `pulumi:"slacks"`
+	// A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+	Sns []ContactPointSn `pulumi:"sns"`
 	// A contact point that sends notifications to Microsoft Teams.
 	Teams []ContactPointTeam `pulumi:"teams"`
 	// A contact point that sends notifications to Telegram.
@@ -189,6 +201,8 @@ type ContactPointState struct {
 	Alertmanagers ContactPointAlertmanagerArrayInput
 	// A contact point that sends notifications to DingDing.
 	Dingdings ContactPointDingdingArrayInput
+	// Allow modifying the contact point from other sources than Terraform or the Grafana API.
+	DisableProvenance pulumi.BoolPtrInput
 	// A contact point that sends notifications as Discord messages
 	Discords ContactPointDiscordArrayInput
 	// A contact point that sends notifications to an email address.
@@ -205,6 +219,8 @@ type ContactPointState struct {
 	Oncalls ContactPointOncallArrayInput
 	// A contact point that sends notifications to OpsGenie.
 	Opsgenies ContactPointOpsgenyArrayInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// A contact point that sends notifications to PagerDuty.
 	Pagerduties ContactPointPagerdutyArrayInput
 	// A contact point that sends notifications to Pushover.
@@ -213,6 +229,8 @@ type ContactPointState struct {
 	Sensugos ContactPointSensugoArrayInput
 	// A contact point that sends notifications to Slack.
 	Slacks ContactPointSlackArrayInput
+	// A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+	Sns ContactPointSnArrayInput
 	// A contact point that sends notifications to Microsoft Teams.
 	Teams ContactPointTeamArrayInput
 	// A contact point that sends notifications to Telegram.
@@ -238,6 +256,8 @@ type contactPointArgs struct {
 	Alertmanagers []ContactPointAlertmanager `pulumi:"alertmanagers"`
 	// A contact point that sends notifications to DingDing.
 	Dingdings []ContactPointDingding `pulumi:"dingdings"`
+	// Allow modifying the contact point from other sources than Terraform or the Grafana API.
+	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// A contact point that sends notifications as Discord messages
 	Discords []ContactPointDiscord `pulumi:"discords"`
 	// A contact point that sends notifications to an email address.
@@ -254,6 +274,8 @@ type contactPointArgs struct {
 	Oncalls []ContactPointOncall `pulumi:"oncalls"`
 	// A contact point that sends notifications to OpsGenie.
 	Opsgenies []ContactPointOpsgeny `pulumi:"opsgenies"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// A contact point that sends notifications to PagerDuty.
 	Pagerduties []ContactPointPagerduty `pulumi:"pagerduties"`
 	// A contact point that sends notifications to Pushover.
@@ -262,6 +284,8 @@ type contactPointArgs struct {
 	Sensugos []ContactPointSensugo `pulumi:"sensugos"`
 	// A contact point that sends notifications to Slack.
 	Slacks []ContactPointSlack `pulumi:"slacks"`
+	// A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+	Sns []ContactPointSn `pulumi:"sns"`
 	// A contact point that sends notifications to Microsoft Teams.
 	Teams []ContactPointTeam `pulumi:"teams"`
 	// A contact point that sends notifications to Telegram.
@@ -284,6 +308,8 @@ type ContactPointArgs struct {
 	Alertmanagers ContactPointAlertmanagerArrayInput
 	// A contact point that sends notifications to DingDing.
 	Dingdings ContactPointDingdingArrayInput
+	// Allow modifying the contact point from other sources than Terraform or the Grafana API.
+	DisableProvenance pulumi.BoolPtrInput
 	// A contact point that sends notifications as Discord messages
 	Discords ContactPointDiscordArrayInput
 	// A contact point that sends notifications to an email address.
@@ -300,6 +326,8 @@ type ContactPointArgs struct {
 	Oncalls ContactPointOncallArrayInput
 	// A contact point that sends notifications to OpsGenie.
 	Opsgenies ContactPointOpsgenyArrayInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// A contact point that sends notifications to PagerDuty.
 	Pagerduties ContactPointPagerdutyArrayInput
 	// A contact point that sends notifications to Pushover.
@@ -308,6 +336,8 @@ type ContactPointArgs struct {
 	Sensugos ContactPointSensugoArrayInput
 	// A contact point that sends notifications to Slack.
 	Slacks ContactPointSlackArrayInput
+	// A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+	Sns ContactPointSnArrayInput
 	// A contact point that sends notifications to Microsoft Teams.
 	Teams ContactPointTeamArrayInput
 	// A contact point that sends notifications to Telegram.
@@ -445,6 +475,11 @@ func (o ContactPointOutput) Dingdings() ContactPointDingdingArrayOutput {
 	return o.ApplyT(func(v *ContactPoint) ContactPointDingdingArrayOutput { return v.Dingdings }).(ContactPointDingdingArrayOutput)
 }
 
+// Allow modifying the contact point from other sources than Terraform or the Grafana API.
+func (o ContactPointOutput) DisableProvenance() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ContactPoint) pulumi.BoolPtrOutput { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
+}
+
 // A contact point that sends notifications as Discord messages
 func (o ContactPointOutput) Discords() ContactPointDiscordArrayOutput {
 	return o.ApplyT(func(v *ContactPoint) ContactPointDiscordArrayOutput { return v.Discords }).(ContactPointDiscordArrayOutput)
@@ -485,6 +520,11 @@ func (o ContactPointOutput) Opsgenies() ContactPointOpsgenyArrayOutput {
 	return o.ApplyT(func(v *ContactPoint) ContactPointOpsgenyArrayOutput { return v.Opsgenies }).(ContactPointOpsgenyArrayOutput)
 }
 
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o ContactPointOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContactPoint) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+}
+
 // A contact point that sends notifications to PagerDuty.
 func (o ContactPointOutput) Pagerduties() ContactPointPagerdutyArrayOutput {
 	return o.ApplyT(func(v *ContactPoint) ContactPointPagerdutyArrayOutput { return v.Pagerduties }).(ContactPointPagerdutyArrayOutput)
@@ -503,6 +543,11 @@ func (o ContactPointOutput) Sensugos() ContactPointSensugoArrayOutput {
 // A contact point that sends notifications to Slack.
 func (o ContactPointOutput) Slacks() ContactPointSlackArrayOutput {
 	return o.ApplyT(func(v *ContactPoint) ContactPointSlackArrayOutput { return v.Slacks }).(ContactPointSlackArrayOutput)
+}
+
+// A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+func (o ContactPointOutput) Sns() ContactPointSnArrayOutput {
+	return o.ApplyT(func(v *ContactPoint) ContactPointSnArrayOutput { return v.Sns }).(ContactPointSnArrayOutput)
 }
 
 // A contact point that sends notifications to Microsoft Teams.

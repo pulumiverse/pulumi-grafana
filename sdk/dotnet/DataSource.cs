@@ -53,7 +53,7 @@ namespace Pulumiverse.Grafana
     ///         Url = "http://influxdb.example.net:8086/",
     ///         BasicAuthEnabled = true,
     ///         BasicAuthUsername = "username",
-    ///         DatabaseName = influxdb_database.Metrics.Name,
+    ///         DatabaseName = "dbname",
     ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["authType"] = "default",

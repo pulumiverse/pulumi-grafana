@@ -25,6 +25,7 @@ import * as utilities from "./utilities";
  *         "1:7",
  *         "-1",
  *     ],
+ *     location: "America/New_York",
  *     months: [
  *         "1:3",
  *         "december",
@@ -79,13 +80,17 @@ export class MuteTiming extends pulumi.CustomResource {
     }
 
     /**
-     * The time intervals at which to mute notifications.
+     * The time intervals at which to mute notifications. Use an empty block to mute all the time.
      */
     public readonly intervals!: pulumi.Output<outputs.MuteTimingInterval[] | undefined>;
     /**
      * The name of the mute timing.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
 
     /**
      * Create a MuteTiming resource with the given unique name, arguments, and options.
@@ -102,10 +107,12 @@ export class MuteTiming extends pulumi.CustomResource {
             const state = argsOrState as MuteTimingState | undefined;
             resourceInputs["intervals"] = state ? state.intervals : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
         } else {
             const args = argsOrState as MuteTimingArgs | undefined;
             resourceInputs["intervals"] = args ? args.intervals : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(MuteTiming.__pulumiType, name, resourceInputs, opts);
@@ -117,13 +124,17 @@ export class MuteTiming extends pulumi.CustomResource {
  */
 export interface MuteTimingState {
     /**
-     * The time intervals at which to mute notifications.
+     * The time intervals at which to mute notifications. Use an empty block to mute all the time.
      */
     intervals?: pulumi.Input<pulumi.Input<inputs.MuteTimingInterval>[]>;
     /**
      * The name of the mute timing.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
 }
 
 /**
@@ -131,11 +142,15 @@ export interface MuteTimingState {
  */
 export interface MuteTimingArgs {
     /**
-     * The time intervals at which to mute notifications.
+     * The time intervals at which to mute notifications. Use an empty block to mute all the time.
      */
     intervals?: pulumi.Input<pulumi.Input<inputs.MuteTimingInterval>[]>;
     /**
      * The name of the mute timing.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
 }

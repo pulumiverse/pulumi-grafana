@@ -79,7 +79,7 @@ import (
 //				Permissions: grafana.DataSourcePermissionPermissionArray{
 //					&grafana.DataSourcePermissionPermissionArgs{
 //						TeamId:     team.ID(),
-//						Permission: pulumi.String("Admin"),
+//						Permission: pulumi.String("Edit"),
 //					},
 //					&grafana.DataSourcePermissionPermissionArgs{
 //						UserId:     user.ID(),

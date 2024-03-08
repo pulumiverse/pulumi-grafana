@@ -62,7 +62,7 @@ namespace Pulumiverse.Grafana
     ///             new Grafana.Inputs.DataSourcePermissionPermissionArgs
     ///             {
     ///                 TeamId = team.Id,
-    ///                 Permission = "Admin",
+    ///                 Permission = "Edit",
     ///             },
     ///             new Grafana.Inputs.DataSourcePermissionPermissionArgs
     ///             {

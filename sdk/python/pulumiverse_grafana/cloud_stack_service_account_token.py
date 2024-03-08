@@ -168,13 +168,15 @@ class CloudStackServiceAccountToken(pulumi.CustomResource):
                  stack_slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        **Note:** This resource is available only with Grafana 9.1+.
-
         Manages service account tokens of a Grafana Cloud stack using the Cloud API
         This can be used to bootstrap a management service account token for a new stack
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+
+        Required access policy scopes:
+
+        * stack-service-accounts:write
 
         ## Example Usage
 
@@ -200,13 +202,15 @@ class CloudStackServiceAccountToken(pulumi.CustomResource):
                  args: CloudStackServiceAccountTokenArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        **Note:** This resource is available only with Grafana 9.1+.
-
         Manages service account tokens of a Grafana Cloud stack using the Cloud API
         This can be used to bootstrap a management service account token for a new stack
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+
+        Required access policy scopes:
+
+        * stack-service-accounts:write
 
         ## Example Usage
 

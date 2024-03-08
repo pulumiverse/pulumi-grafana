@@ -39,6 +39,7 @@ namespace Pulumiverse.Grafana
     ///                     "1:7",
     ///                     "-1",
     ///                 },
+    ///                 Location = "America/New_York",
     ///                 Months = new[]
     ///                 {
     ///                     "1:3",
@@ -79,7 +80,7 @@ namespace Pulumiverse.Grafana
     public partial class MuteTiming : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The time intervals at which to mute notifications.
+        /// The time intervals at which to mute notifications. Use an empty block to mute all the time.
         /// </summary>
         [Output("intervals")]
         public Output<ImmutableArray<Outputs.MuteTimingInterval>> Intervals { get; private set; } = null!;
@@ -89,6 +90,12 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
 
 
         /// <summary>
@@ -141,7 +148,7 @@ namespace Pulumiverse.Grafana
         private InputList<Inputs.MuteTimingIntervalArgs>? _intervals;
 
         /// <summary>
-        /// The time intervals at which to mute notifications.
+        /// The time intervals at which to mute notifications. Use an empty block to mute all the time.
         /// </summary>
         public InputList<Inputs.MuteTimingIntervalArgs> Intervals
         {
@@ -155,6 +162,12 @@ namespace Pulumiverse.Grafana
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
         public MuteTimingArgs()
         {
         }
@@ -167,7 +180,7 @@ namespace Pulumiverse.Grafana
         private InputList<Inputs.MuteTimingIntervalGetArgs>? _intervals;
 
         /// <summary>
-        /// The time intervals at which to mute notifications.
+        /// The time intervals at which to mute notifications. Use an empty block to mute all the time.
         /// </summary>
         public InputList<Inputs.MuteTimingIntervalGetArgs> Intervals
         {
@@ -180,6 +193,12 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         public MuteTimingState()
         {

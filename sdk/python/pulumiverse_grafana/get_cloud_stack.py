@@ -21,7 +21,7 @@ class GetCloudStackResult:
     """
     A collection of values returned by getCloudStack.
     """
-    def __init__(__self__, alertmanager_name=None, alertmanager_status=None, alertmanager_url=None, alertmanager_user_id=None, description=None, graphite_name=None, graphite_status=None, graphite_url=None, graphite_user_id=None, id=None, logs_name=None, logs_status=None, logs_url=None, logs_user_id=None, name=None, org_id=None, org_name=None, org_slug=None, prometheus_name=None, prometheus_remote_endpoint=None, prometheus_remote_write_endpoint=None, prometheus_status=None, prometheus_url=None, prometheus_user_id=None, region_slug=None, slug=None, status=None, traces_name=None, traces_status=None, traces_url=None, traces_user_id=None, url=None):
+    def __init__(__self__, alertmanager_name=None, alertmanager_status=None, alertmanager_url=None, alertmanager_user_id=None, description=None, graphite_name=None, graphite_status=None, graphite_url=None, graphite_user_id=None, id=None, labels=None, logs_name=None, logs_status=None, logs_url=None, logs_user_id=None, name=None, org_id=None, org_name=None, org_slug=None, otlp_url=None, profiles_name=None, profiles_status=None, profiles_url=None, profiles_user_id=None, prometheus_name=None, prometheus_remote_endpoint=None, prometheus_remote_write_endpoint=None, prometheus_status=None, prometheus_url=None, prometheus_user_id=None, region_slug=None, slug=None, status=None, traces_name=None, traces_status=None, traces_url=None, traces_user_id=None, url=None):
         if alertmanager_name and not isinstance(alertmanager_name, str):
             raise TypeError("Expected argument 'alertmanager_name' to be a str")
         pulumi.set(__self__, "alertmanager_name", alertmanager_name)
@@ -52,6 +52,9 @@ class GetCloudStackResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if labels and not isinstance(labels, dict):
+            raise TypeError("Expected argument 'labels' to be a dict")
+        pulumi.set(__self__, "labels", labels)
         if logs_name and not isinstance(logs_name, str):
             raise TypeError("Expected argument 'logs_name' to be a str")
         pulumi.set(__self__, "logs_name", logs_name)
@@ -76,6 +79,21 @@ class GetCloudStackResult:
         if org_slug and not isinstance(org_slug, str):
             raise TypeError("Expected argument 'org_slug' to be a str")
         pulumi.set(__self__, "org_slug", org_slug)
+        if otlp_url and not isinstance(otlp_url, str):
+            raise TypeError("Expected argument 'otlp_url' to be a str")
+        pulumi.set(__self__, "otlp_url", otlp_url)
+        if profiles_name and not isinstance(profiles_name, str):
+            raise TypeError("Expected argument 'profiles_name' to be a str")
+        pulumi.set(__self__, "profiles_name", profiles_name)
+        if profiles_status and not isinstance(profiles_status, str):
+            raise TypeError("Expected argument 'profiles_status' to be a str")
+        pulumi.set(__self__, "profiles_status", profiles_status)
+        if profiles_url and not isinstance(profiles_url, str):
+            raise TypeError("Expected argument 'profiles_url' to be a str")
+        pulumi.set(__self__, "profiles_url", profiles_url)
+        if profiles_user_id and not isinstance(profiles_user_id, int):
+            raise TypeError("Expected argument 'profiles_user_id' to be a int")
+        pulumi.set(__self__, "profiles_user_id", profiles_user_id)
         if prometheus_name and not isinstance(prometheus_name, str):
             raise TypeError("Expected argument 'prometheus_name' to be a str")
         pulumi.set(__self__, "prometheus_name", prometheus_name)
@@ -188,6 +206,14 @@ class GetCloudStackResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter
+    def labels(self) -> Mapping[str, str]:
+        """
+        A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
+        """
+        return pulumi.get(self, "labels")
+
+    @property
     @pulumi.getter(name="logsName")
     def logs_name(self) -> str:
         return pulumi.get(self, "logs_name")
@@ -211,7 +237,7 @@ class GetCloudStackResult:
     @pulumi.getter
     def name(self) -> str:
         """
-        Name of stack. Conventionally matches the url of the instance (e.g. “\\n\\n.grafana.net”).
+        Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
         """
         return pulumi.get(self, "name")
 
@@ -238,6 +264,34 @@ class GetCloudStackResult:
         Organization slug to assign to this stack.
         """
         return pulumi.get(self, "org_slug")
+
+    @property
+    @pulumi.getter(name="otlpUrl")
+    def otlp_url(self) -> str:
+        """
+        Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        """
+        return pulumi.get(self, "otlp_url")
+
+    @property
+    @pulumi.getter(name="profilesName")
+    def profiles_name(self) -> str:
+        return pulumi.get(self, "profiles_name")
+
+    @property
+    @pulumi.getter(name="profilesStatus")
+    def profiles_status(self) -> str:
+        return pulumi.get(self, "profiles_status")
+
+    @property
+    @pulumi.getter(name="profilesUrl")
+    def profiles_url(self) -> str:
+        return pulumi.get(self, "profiles_url")
+
+    @property
+    @pulumi.getter(name="profilesUserId")
+    def profiles_user_id(self) -> int:
+        return pulumi.get(self, "profiles_user_id")
 
     @property
     @pulumi.getter(name="prometheusName")
@@ -360,6 +414,7 @@ class AwaitableGetCloudStackResult(GetCloudStackResult):
             graphite_url=self.graphite_url,
             graphite_user_id=self.graphite_user_id,
             id=self.id,
+            labels=self.labels,
             logs_name=self.logs_name,
             logs_status=self.logs_status,
             logs_url=self.logs_url,
@@ -368,6 +423,11 @@ class AwaitableGetCloudStackResult(GetCloudStackResult):
             org_id=self.org_id,
             org_name=self.org_name,
             org_slug=self.org_slug,
+            otlp_url=self.otlp_url,
+            profiles_name=self.profiles_name,
+            profiles_status=self.profiles_status,
+            profiles_url=self.profiles_url,
+            profiles_user_id=self.profiles_user_id,
             prometheus_name=self.prometheus_name,
             prometheus_remote_endpoint=self.prometheus_remote_endpoint,
             prometheus_remote_write_endpoint=self.prometheus_remote_write_endpoint,
@@ -409,6 +469,7 @@ def get_cloud_stack(slug: Optional[str] = None,
         graphite_url=pulumi.get(__ret__, 'graphite_url'),
         graphite_user_id=pulumi.get(__ret__, 'graphite_user_id'),
         id=pulumi.get(__ret__, 'id'),
+        labels=pulumi.get(__ret__, 'labels'),
         logs_name=pulumi.get(__ret__, 'logs_name'),
         logs_status=pulumi.get(__ret__, 'logs_status'),
         logs_url=pulumi.get(__ret__, 'logs_url'),
@@ -417,6 +478,11 @@ def get_cloud_stack(slug: Optional[str] = None,
         org_id=pulumi.get(__ret__, 'org_id'),
         org_name=pulumi.get(__ret__, 'org_name'),
         org_slug=pulumi.get(__ret__, 'org_slug'),
+        otlp_url=pulumi.get(__ret__, 'otlp_url'),
+        profiles_name=pulumi.get(__ret__, 'profiles_name'),
+        profiles_status=pulumi.get(__ret__, 'profiles_status'),
+        profiles_url=pulumi.get(__ret__, 'profiles_url'),
+        profiles_user_id=pulumi.get(__ret__, 'profiles_user_id'),
         prometheus_name=pulumi.get(__ret__, 'prometheus_name'),
         prometheus_remote_endpoint=pulumi.get(__ret__, 'prometheus_remote_endpoint'),
         prometheus_remote_write_endpoint=pulumi.get(__ret__, 'prometheus_remote_write_endpoint'),

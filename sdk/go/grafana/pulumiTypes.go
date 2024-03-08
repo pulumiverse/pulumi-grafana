@@ -3018,6 +3018,220 @@ func (o ContactPointSlackArrayOutput) Index(i pulumi.IntInput) ContactPointSlack
 	}).(ContactPointSlackOutput)
 }
 
+type ContactPointSn struct {
+	// AWS access key ID used to authenticate with Amazon SNS.
+	AccessKey *string `pulumi:"accessKey"`
+	// The Amazon Resource Name (ARN) of the role to assume to send notifications to Amazon SNS.
+	AssumeRoleArn *string `pulumi:"assumeRoleArn"`
+	// The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+	AuthProvider *string `pulumi:"authProvider"`
+	Body         *string `pulumi:"body"`
+	// Whether to disable sending resolve messages. Defaults to `false`.
+	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
+	// The external ID to use when assuming the role.
+	ExternalId *string `pulumi:"externalId"`
+	// The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+	MessageFormat *string `pulumi:"messageFormat"`
+	// AWS secret access key used to authenticate with Amazon SNS.
+	SecretKey *string `pulumi:"secretKey"`
+	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	Settings map[string]string `pulumi:"settings"`
+	Subject  *string           `pulumi:"subject"`
+	// The Amazon SNS topic to send notifications to.
+	Topic string `pulumi:"topic"`
+	// The UID of the contact point.
+	Uid *string `pulumi:"uid"`
+}
+
+// ContactPointSnInput is an input type that accepts ContactPointSnArgs and ContactPointSnOutput values.
+// You can construct a concrete instance of `ContactPointSnInput` via:
+//
+//	ContactPointSnArgs{...}
+type ContactPointSnInput interface {
+	pulumi.Input
+
+	ToContactPointSnOutput() ContactPointSnOutput
+	ToContactPointSnOutputWithContext(context.Context) ContactPointSnOutput
+}
+
+type ContactPointSnArgs struct {
+	// AWS access key ID used to authenticate with Amazon SNS.
+	AccessKey pulumi.StringPtrInput `pulumi:"accessKey"`
+	// The Amazon Resource Name (ARN) of the role to assume to send notifications to Amazon SNS.
+	AssumeRoleArn pulumi.StringPtrInput `pulumi:"assumeRoleArn"`
+	// The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+	AuthProvider pulumi.StringPtrInput `pulumi:"authProvider"`
+	Body         pulumi.StringPtrInput `pulumi:"body"`
+	// Whether to disable sending resolve messages. Defaults to `false`.
+	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
+	// The external ID to use when assuming the role.
+	ExternalId pulumi.StringPtrInput `pulumi:"externalId"`
+	// The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+	MessageFormat pulumi.StringPtrInput `pulumi:"messageFormat"`
+	// AWS secret access key used to authenticate with Amazon SNS.
+	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
+	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	Settings pulumi.StringMapInput `pulumi:"settings"`
+	Subject  pulumi.StringPtrInput `pulumi:"subject"`
+	// The Amazon SNS topic to send notifications to.
+	Topic pulumi.StringInput `pulumi:"topic"`
+	// The UID of the contact point.
+	Uid pulumi.StringPtrInput `pulumi:"uid"`
+}
+
+func (ContactPointSnArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointSn)(nil)).Elem()
+}
+
+func (i ContactPointSnArgs) ToContactPointSnOutput() ContactPointSnOutput {
+	return i.ToContactPointSnOutputWithContext(context.Background())
+}
+
+func (i ContactPointSnArgs) ToContactPointSnOutputWithContext(ctx context.Context) ContactPointSnOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointSnOutput)
+}
+
+func (i ContactPointSnArgs) ToOutput(ctx context.Context) pulumix.Output[ContactPointSn] {
+	return pulumix.Output[ContactPointSn]{
+		OutputState: i.ToContactPointSnOutputWithContext(ctx).OutputState,
+	}
+}
+
+// ContactPointSnArrayInput is an input type that accepts ContactPointSnArray and ContactPointSnArrayOutput values.
+// You can construct a concrete instance of `ContactPointSnArrayInput` via:
+//
+//	ContactPointSnArray{ ContactPointSnArgs{...} }
+type ContactPointSnArrayInput interface {
+	pulumi.Input
+
+	ToContactPointSnArrayOutput() ContactPointSnArrayOutput
+	ToContactPointSnArrayOutputWithContext(context.Context) ContactPointSnArrayOutput
+}
+
+type ContactPointSnArray []ContactPointSnInput
+
+func (ContactPointSnArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContactPointSn)(nil)).Elem()
+}
+
+func (i ContactPointSnArray) ToContactPointSnArrayOutput() ContactPointSnArrayOutput {
+	return i.ToContactPointSnArrayOutputWithContext(context.Background())
+}
+
+func (i ContactPointSnArray) ToContactPointSnArrayOutputWithContext(ctx context.Context) ContactPointSnArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointSnArrayOutput)
+}
+
+func (i ContactPointSnArray) ToOutput(ctx context.Context) pulumix.Output[[]ContactPointSn] {
+	return pulumix.Output[[]ContactPointSn]{
+		OutputState: i.ToContactPointSnArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type ContactPointSnOutput struct{ *pulumi.OutputState }
+
+func (ContactPointSnOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointSn)(nil)).Elem()
+}
+
+func (o ContactPointSnOutput) ToContactPointSnOutput() ContactPointSnOutput {
+	return o
+}
+
+func (o ContactPointSnOutput) ToContactPointSnOutputWithContext(ctx context.Context) ContactPointSnOutput {
+	return o
+}
+
+func (o ContactPointSnOutput) ToOutput(ctx context.Context) pulumix.Output[ContactPointSn] {
+	return pulumix.Output[ContactPointSn]{
+		OutputState: o.OutputState,
+	}
+}
+
+// AWS access key ID used to authenticate with Amazon SNS.
+func (o ContactPointSnOutput) AccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.AccessKey }).(pulumi.StringPtrOutput)
+}
+
+// The Amazon Resource Name (ARN) of the role to assume to send notifications to Amazon SNS.
+func (o ContactPointSnOutput) AssumeRoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.AssumeRoleArn }).(pulumi.StringPtrOutput)
+}
+
+// The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+func (o ContactPointSnOutput) AuthProvider() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.AuthProvider }).(pulumi.StringPtrOutput)
+}
+
+func (o ContactPointSnOutput) Body() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.Body }).(pulumi.StringPtrOutput)
+}
+
+// Whether to disable sending resolve messages. Defaults to `false`.
+func (o ContactPointSnOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
+}
+
+// The external ID to use when assuming the role.
+func (o ContactPointSnOutput) ExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.ExternalId }).(pulumi.StringPtrOutput)
+}
+
+// The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+func (o ContactPointSnOutput) MessageFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.MessageFormat }).(pulumi.StringPtrOutput)
+}
+
+// AWS secret access key used to authenticate with Amazon SNS.
+func (o ContactPointSnOutput) SecretKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
+}
+
+// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+func (o ContactPointSnOutput) Settings() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ContactPointSn) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
+}
+
+func (o ContactPointSnOutput) Subject() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.Subject }).(pulumi.StringPtrOutput)
+}
+
+// The Amazon SNS topic to send notifications to.
+func (o ContactPointSnOutput) Topic() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactPointSn) string { return v.Topic }).(pulumi.StringOutput)
+}
+
+// The UID of the contact point.
+func (o ContactPointSnOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.Uid }).(pulumi.StringPtrOutput)
+}
+
+type ContactPointSnArrayOutput struct{ *pulumi.OutputState }
+
+func (ContactPointSnArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContactPointSn)(nil)).Elem()
+}
+
+func (o ContactPointSnArrayOutput) ToContactPointSnArrayOutput() ContactPointSnArrayOutput {
+	return o
+}
+
+func (o ContactPointSnArrayOutput) ToContactPointSnArrayOutputWithContext(ctx context.Context) ContactPointSnArrayOutput {
+	return o
+}
+
+func (o ContactPointSnArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ContactPointSn] {
+	return pulumix.Output[[]ContactPointSn]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o ContactPointSnArrayOutput) Index(i pulumi.IntInput) ContactPointSnOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ContactPointSn {
+		return vs[0].([]ContactPointSn)[vs[1].(int)]
+	}).(ContactPointSnOutput)
+}
+
 type ContactPointTeam struct {
 	// Whether to disable sending resolve messages. Defaults to `false`.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
@@ -5302,6 +5516,8 @@ func (o MachineLearningOutlierDetectorAlgorithmConfigPtrOutput) Epsilon() pulumi
 type MuteTimingInterval struct {
 	// An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
 	DaysOfMonths []string `pulumi:"daysOfMonths"`
+	// Provides the time zone for the time interval. Must be a location in the IANA time zone database, e.g "America/New_York"
+	Location *string `pulumi:"location"`
 	// An inclusive range of months, either numerical or full calendar month, e.g. "1:3", "december", or "may:august".
 	Months []string `pulumi:"months"`
 	// The time ranges, represented in minutes, during which to mute in a given day.
@@ -5326,6 +5542,8 @@ type MuteTimingIntervalInput interface {
 type MuteTimingIntervalArgs struct {
 	// An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
 	DaysOfMonths pulumi.StringArrayInput `pulumi:"daysOfMonths"`
+	// Provides the time zone for the time interval. Must be a location in the IANA time zone database, e.g "America/New_York"
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// An inclusive range of months, either numerical or full calendar month, e.g. "1:3", "december", or "may:august".
 	Months pulumi.StringArrayInput `pulumi:"months"`
 	// The time ranges, represented in minutes, during which to mute in a given day.
@@ -5408,6 +5626,11 @@ func (o MuteTimingIntervalOutput) ToOutput(ctx context.Context) pulumix.Output[M
 // An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
 func (o MuteTimingIntervalOutput) DaysOfMonths() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v MuteTimingInterval) []string { return v.DaysOfMonths }).(pulumi.StringArrayOutput)
+}
+
+// Provides the time zone for the time interval. Must be a location in the IANA time zone database, e.g "America/New_York"
+func (o MuteTimingIntervalOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MuteTimingInterval) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // An inclusive range of months, either numerical or full calendar month, e.g. "1:3", "december", or "may:august".
@@ -10202,18 +10425,339 @@ func (o PlaylistItemArrayOutput) Index(i pulumi.IntInput) PlaylistItemOutput {
 	}).(PlaylistItemOutput)
 }
 
+type ReportDashboard struct {
+	// Add report variables to the dashboard. Values should be separated by commas.
+	ReportVariables map[string]interface{} `pulumi:"reportVariables"`
+	// Time range of the report.
+	TimeRange *ReportDashboardTimeRange `pulumi:"timeRange"`
+	// Dashboard uid.
+	Uid string `pulumi:"uid"`
+}
+
+// ReportDashboardInput is an input type that accepts ReportDashboardArgs and ReportDashboardOutput values.
+// You can construct a concrete instance of `ReportDashboardInput` via:
+//
+//	ReportDashboardArgs{...}
+type ReportDashboardInput interface {
+	pulumi.Input
+
+	ToReportDashboardOutput() ReportDashboardOutput
+	ToReportDashboardOutputWithContext(context.Context) ReportDashboardOutput
+}
+
+type ReportDashboardArgs struct {
+	// Add report variables to the dashboard. Values should be separated by commas.
+	ReportVariables pulumi.MapInput `pulumi:"reportVariables"`
+	// Time range of the report.
+	TimeRange ReportDashboardTimeRangePtrInput `pulumi:"timeRange"`
+	// Dashboard uid.
+	Uid pulumi.StringInput `pulumi:"uid"`
+}
+
+func (ReportDashboardArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReportDashboard)(nil)).Elem()
+}
+
+func (i ReportDashboardArgs) ToReportDashboardOutput() ReportDashboardOutput {
+	return i.ToReportDashboardOutputWithContext(context.Background())
+}
+
+func (i ReportDashboardArgs) ToReportDashboardOutputWithContext(ctx context.Context) ReportDashboardOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReportDashboardOutput)
+}
+
+func (i ReportDashboardArgs) ToOutput(ctx context.Context) pulumix.Output[ReportDashboard] {
+	return pulumix.Output[ReportDashboard]{
+		OutputState: i.ToReportDashboardOutputWithContext(ctx).OutputState,
+	}
+}
+
+// ReportDashboardArrayInput is an input type that accepts ReportDashboardArray and ReportDashboardArrayOutput values.
+// You can construct a concrete instance of `ReportDashboardArrayInput` via:
+//
+//	ReportDashboardArray{ ReportDashboardArgs{...} }
+type ReportDashboardArrayInput interface {
+	pulumi.Input
+
+	ToReportDashboardArrayOutput() ReportDashboardArrayOutput
+	ToReportDashboardArrayOutputWithContext(context.Context) ReportDashboardArrayOutput
+}
+
+type ReportDashboardArray []ReportDashboardInput
+
+func (ReportDashboardArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ReportDashboard)(nil)).Elem()
+}
+
+func (i ReportDashboardArray) ToReportDashboardArrayOutput() ReportDashboardArrayOutput {
+	return i.ToReportDashboardArrayOutputWithContext(context.Background())
+}
+
+func (i ReportDashboardArray) ToReportDashboardArrayOutputWithContext(ctx context.Context) ReportDashboardArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReportDashboardArrayOutput)
+}
+
+func (i ReportDashboardArray) ToOutput(ctx context.Context) pulumix.Output[[]ReportDashboard] {
+	return pulumix.Output[[]ReportDashboard]{
+		OutputState: i.ToReportDashboardArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type ReportDashboardOutput struct{ *pulumi.OutputState }
+
+func (ReportDashboardOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReportDashboard)(nil)).Elem()
+}
+
+func (o ReportDashboardOutput) ToReportDashboardOutput() ReportDashboardOutput {
+	return o
+}
+
+func (o ReportDashboardOutput) ToReportDashboardOutputWithContext(ctx context.Context) ReportDashboardOutput {
+	return o
+}
+
+func (o ReportDashboardOutput) ToOutput(ctx context.Context) pulumix.Output[ReportDashboard] {
+	return pulumix.Output[ReportDashboard]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Add report variables to the dashboard. Values should be separated by commas.
+func (o ReportDashboardOutput) ReportVariables() pulumi.MapOutput {
+	return o.ApplyT(func(v ReportDashboard) map[string]interface{} { return v.ReportVariables }).(pulumi.MapOutput)
+}
+
+// Time range of the report.
+func (o ReportDashboardOutput) TimeRange() ReportDashboardTimeRangePtrOutput {
+	return o.ApplyT(func(v ReportDashboard) *ReportDashboardTimeRange { return v.TimeRange }).(ReportDashboardTimeRangePtrOutput)
+}
+
+// Dashboard uid.
+func (o ReportDashboardOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v ReportDashboard) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+type ReportDashboardArrayOutput struct{ *pulumi.OutputState }
+
+func (ReportDashboardArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ReportDashboard)(nil)).Elem()
+}
+
+func (o ReportDashboardArrayOutput) ToReportDashboardArrayOutput() ReportDashboardArrayOutput {
+	return o
+}
+
+func (o ReportDashboardArrayOutput) ToReportDashboardArrayOutputWithContext(ctx context.Context) ReportDashboardArrayOutput {
+	return o
+}
+
+func (o ReportDashboardArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ReportDashboard] {
+	return pulumix.Output[[]ReportDashboard]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o ReportDashboardArrayOutput) Index(i pulumi.IntInput) ReportDashboardOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ReportDashboard {
+		return vs[0].([]ReportDashboard)[vs[1].(int)]
+	}).(ReportDashboardOutput)
+}
+
+type ReportDashboardTimeRange struct {
+	// Start of the time range.
+	From *string `pulumi:"from"`
+	// End of the time range.
+	To *string `pulumi:"to"`
+}
+
+// ReportDashboardTimeRangeInput is an input type that accepts ReportDashboardTimeRangeArgs and ReportDashboardTimeRangeOutput values.
+// You can construct a concrete instance of `ReportDashboardTimeRangeInput` via:
+//
+//	ReportDashboardTimeRangeArgs{...}
+type ReportDashboardTimeRangeInput interface {
+	pulumi.Input
+
+	ToReportDashboardTimeRangeOutput() ReportDashboardTimeRangeOutput
+	ToReportDashboardTimeRangeOutputWithContext(context.Context) ReportDashboardTimeRangeOutput
+}
+
+type ReportDashboardTimeRangeArgs struct {
+	// Start of the time range.
+	From pulumi.StringPtrInput `pulumi:"from"`
+	// End of the time range.
+	To pulumi.StringPtrInput `pulumi:"to"`
+}
+
+func (ReportDashboardTimeRangeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReportDashboardTimeRange)(nil)).Elem()
+}
+
+func (i ReportDashboardTimeRangeArgs) ToReportDashboardTimeRangeOutput() ReportDashboardTimeRangeOutput {
+	return i.ToReportDashboardTimeRangeOutputWithContext(context.Background())
+}
+
+func (i ReportDashboardTimeRangeArgs) ToReportDashboardTimeRangeOutputWithContext(ctx context.Context) ReportDashboardTimeRangeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReportDashboardTimeRangeOutput)
+}
+
+func (i ReportDashboardTimeRangeArgs) ToOutput(ctx context.Context) pulumix.Output[ReportDashboardTimeRange] {
+	return pulumix.Output[ReportDashboardTimeRange]{
+		OutputState: i.ToReportDashboardTimeRangeOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i ReportDashboardTimeRangeArgs) ToReportDashboardTimeRangePtrOutput() ReportDashboardTimeRangePtrOutput {
+	return i.ToReportDashboardTimeRangePtrOutputWithContext(context.Background())
+}
+
+func (i ReportDashboardTimeRangeArgs) ToReportDashboardTimeRangePtrOutputWithContext(ctx context.Context) ReportDashboardTimeRangePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReportDashboardTimeRangeOutput).ToReportDashboardTimeRangePtrOutputWithContext(ctx)
+}
+
+// ReportDashboardTimeRangePtrInput is an input type that accepts ReportDashboardTimeRangeArgs, ReportDashboardTimeRangePtr and ReportDashboardTimeRangePtrOutput values.
+// You can construct a concrete instance of `ReportDashboardTimeRangePtrInput` via:
+//
+//	        ReportDashboardTimeRangeArgs{...}
+//
+//	or:
+//
+//	        nil
+type ReportDashboardTimeRangePtrInput interface {
+	pulumi.Input
+
+	ToReportDashboardTimeRangePtrOutput() ReportDashboardTimeRangePtrOutput
+	ToReportDashboardTimeRangePtrOutputWithContext(context.Context) ReportDashboardTimeRangePtrOutput
+}
+
+type reportDashboardTimeRangePtrType ReportDashboardTimeRangeArgs
+
+func ReportDashboardTimeRangePtr(v *ReportDashboardTimeRangeArgs) ReportDashboardTimeRangePtrInput {
+	return (*reportDashboardTimeRangePtrType)(v)
+}
+
+func (*reportDashboardTimeRangePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ReportDashboardTimeRange)(nil)).Elem()
+}
+
+func (i *reportDashboardTimeRangePtrType) ToReportDashboardTimeRangePtrOutput() ReportDashboardTimeRangePtrOutput {
+	return i.ToReportDashboardTimeRangePtrOutputWithContext(context.Background())
+}
+
+func (i *reportDashboardTimeRangePtrType) ToReportDashboardTimeRangePtrOutputWithContext(ctx context.Context) ReportDashboardTimeRangePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReportDashboardTimeRangePtrOutput)
+}
+
+func (i *reportDashboardTimeRangePtrType) ToOutput(ctx context.Context) pulumix.Output[*ReportDashboardTimeRange] {
+	return pulumix.Output[*ReportDashboardTimeRange]{
+		OutputState: i.ToReportDashboardTimeRangePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type ReportDashboardTimeRangeOutput struct{ *pulumi.OutputState }
+
+func (ReportDashboardTimeRangeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReportDashboardTimeRange)(nil)).Elem()
+}
+
+func (o ReportDashboardTimeRangeOutput) ToReportDashboardTimeRangeOutput() ReportDashboardTimeRangeOutput {
+	return o
+}
+
+func (o ReportDashboardTimeRangeOutput) ToReportDashboardTimeRangeOutputWithContext(ctx context.Context) ReportDashboardTimeRangeOutput {
+	return o
+}
+
+func (o ReportDashboardTimeRangeOutput) ToReportDashboardTimeRangePtrOutput() ReportDashboardTimeRangePtrOutput {
+	return o.ToReportDashboardTimeRangePtrOutputWithContext(context.Background())
+}
+
+func (o ReportDashboardTimeRangeOutput) ToReportDashboardTimeRangePtrOutputWithContext(ctx context.Context) ReportDashboardTimeRangePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ReportDashboardTimeRange) *ReportDashboardTimeRange {
+		return &v
+	}).(ReportDashboardTimeRangePtrOutput)
+}
+
+func (o ReportDashboardTimeRangeOutput) ToOutput(ctx context.Context) pulumix.Output[ReportDashboardTimeRange] {
+	return pulumix.Output[ReportDashboardTimeRange]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Start of the time range.
+func (o ReportDashboardTimeRangeOutput) From() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ReportDashboardTimeRange) *string { return v.From }).(pulumi.StringPtrOutput)
+}
+
+// End of the time range.
+func (o ReportDashboardTimeRangeOutput) To() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ReportDashboardTimeRange) *string { return v.To }).(pulumi.StringPtrOutput)
+}
+
+type ReportDashboardTimeRangePtrOutput struct{ *pulumi.OutputState }
+
+func (ReportDashboardTimeRangePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ReportDashboardTimeRange)(nil)).Elem()
+}
+
+func (o ReportDashboardTimeRangePtrOutput) ToReportDashboardTimeRangePtrOutput() ReportDashboardTimeRangePtrOutput {
+	return o
+}
+
+func (o ReportDashboardTimeRangePtrOutput) ToReportDashboardTimeRangePtrOutputWithContext(ctx context.Context) ReportDashboardTimeRangePtrOutput {
+	return o
+}
+
+func (o ReportDashboardTimeRangePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ReportDashboardTimeRange] {
+	return pulumix.Output[*ReportDashboardTimeRange]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o ReportDashboardTimeRangePtrOutput) Elem() ReportDashboardTimeRangeOutput {
+	return o.ApplyT(func(v *ReportDashboardTimeRange) ReportDashboardTimeRange {
+		if v != nil {
+			return *v
+		}
+		var ret ReportDashboardTimeRange
+		return ret
+	}).(ReportDashboardTimeRangeOutput)
+}
+
+// Start of the time range.
+func (o ReportDashboardTimeRangePtrOutput) From() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportDashboardTimeRange) *string {
+		if v == nil {
+			return nil
+		}
+		return v.From
+	}).(pulumi.StringPtrOutput)
+}
+
+// End of the time range.
+func (o ReportDashboardTimeRangePtrOutput) To() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportDashboardTimeRange) *string {
+		if v == nil {
+			return nil
+		}
+		return v.To
+	}).(pulumi.StringPtrOutput)
+}
+
 type ReportSchedule struct {
 	// Custom interval of the report.
 	// **Note:** This field is only available when frequency is set to `custom`.
 	CustomInterval *string `pulumi:"customInterval"`
-	// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
+	// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 	EndTime *string `pulumi:"endTime"`
 	// Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
 	Frequency string `pulumi:"frequency"`
 	// Send the report on the last day of the month Defaults to `false`.
 	LastDayOfMonth *bool `pulumi:"lastDayOfMonth"`
-	// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
+	// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 	StartTime *string `pulumi:"startTime"`
+	// Set the report time zone. Defaults to `GMT`.
+	Timezone *string `pulumi:"timezone"`
 	// Whether to send the report only on work days. Defaults to `false`.
 	WorkdaysOnly *bool `pulumi:"workdaysOnly"`
 }
@@ -10233,14 +10777,16 @@ type ReportScheduleArgs struct {
 	// Custom interval of the report.
 	// **Note:** This field is only available when frequency is set to `custom`.
 	CustomInterval pulumi.StringPtrInput `pulumi:"customInterval"`
-	// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
+	// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 	EndTime pulumi.StringPtrInput `pulumi:"endTime"`
 	// Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
 	Frequency pulumi.StringInput `pulumi:"frequency"`
 	// Send the report on the last day of the month Defaults to `false`.
 	LastDayOfMonth pulumi.BoolPtrInput `pulumi:"lastDayOfMonth"`
-	// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
+	// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 	StartTime pulumi.StringPtrInput `pulumi:"startTime"`
+	// Set the report time zone. Defaults to `GMT`.
+	Timezone pulumi.StringPtrInput `pulumi:"timezone"`
 	// Whether to send the report only on work days. Defaults to `false`.
 	WorkdaysOnly pulumi.BoolPtrInput `pulumi:"workdaysOnly"`
 }
@@ -10346,7 +10892,7 @@ func (o ReportScheduleOutput) CustomInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *string { return v.CustomInterval }).(pulumi.StringPtrOutput)
 }
 
-// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
+// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 func (o ReportScheduleOutput) EndTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *string { return v.EndTime }).(pulumi.StringPtrOutput)
 }
@@ -10361,9 +10907,14 @@ func (o ReportScheduleOutput) LastDayOfMonth() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *bool { return v.LastDayOfMonth }).(pulumi.BoolPtrOutput)
 }
 
-// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
+// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 func (o ReportScheduleOutput) StartTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *string { return v.StartTime }).(pulumi.StringPtrOutput)
+}
+
+// Set the report time zone. Defaults to `GMT`.
+func (o ReportScheduleOutput) Timezone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ReportSchedule) *string { return v.Timezone }).(pulumi.StringPtrOutput)
 }
 
 // Whether to send the report only on work days. Defaults to `false`.
@@ -10412,7 +10963,7 @@ func (o ReportSchedulePtrOutput) CustomInterval() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
+// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 func (o ReportSchedulePtrOutput) EndTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ReportSchedule) *string {
 		if v == nil {
@@ -10442,13 +10993,23 @@ func (o ReportSchedulePtrOutput) LastDayOfMonth() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
+// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 func (o ReportSchedulePtrOutput) StartTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ReportSchedule) *string {
 		if v == nil {
 			return nil
 		}
 		return v.StartTime
+	}).(pulumi.StringPtrOutput)
+}
+
+// Set the report time zone. Defaults to `GMT`.
+func (o ReportSchedulePtrOutput) Timezone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportSchedule) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timezone
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -13401,6 +13962,870 @@ func (o ServiceAccountPermissionPermissionArrayOutput) Index(i pulumi.IntInput) 
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceAccountPermissionPermission {
 		return vs[0].([]ServiceAccountPermissionPermission)[vs[1].(int)]
 	}).(ServiceAccountPermissionPermissionOutput)
+}
+
+type SsoSettingsOauth2Settings struct {
+	// If enabled, it will automatically sync the Grafana server administrator role.
+	AllowAssignGrafanaAdmin *bool `pulumi:"allowAssignGrafanaAdmin"`
+	// If not enabled, only existing Grafana users can log in using OAuth.
+	AllowSignUp *bool `pulumi:"allowSignUp"`
+	// List of comma- or space-separated domains. The user should belong to at least one domain to log in.
+	AllowedDomains *string `pulumi:"allowedDomains"`
+	// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+	AllowedGroups *string `pulumi:"allowedGroups"`
+	// List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
+	AllowedOrganizations *string `pulumi:"allowedOrganizations"`
+	// The user information endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+	ApiUrl *string `pulumi:"apiUrl"`
+	// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+	AuthStyle *string `pulumi:"authStyle"`
+	// The authorization endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+	AuthUrl *string `pulumi:"authUrl"`
+	// Log in automatically, skipping the login screen.
+	AutoLogin *bool `pulumi:"autoLogin"`
+	// The client Id of your OAuth2 app.
+	ClientId string `pulumi:"clientId"`
+	// The client secret of your OAuth2 app.
+	ClientSecret *string `pulumi:"clientSecret"`
+	// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+	Custom map[string]string `pulumi:"custom"`
+	// Define allowed groups.
+	DefineAllowedGroups *bool `pulumi:"defineAllowedGroups"`
+	// Define allowed teams ids.
+	DefineAllowedTeamsIds *bool `pulumi:"defineAllowedTeamsIds"`
+	// Name of the key to use for user email lookup within the attributes map of OAuth2 ID token. Only applicable to Generic OAuth.
+	EmailAttributeName *string `pulumi:"emailAttributeName"`
+	// JMESPath expression to use for user email lookup from the user information. Only applicable to Generic OAuth.
+	EmailAttributePath *string `pulumi:"emailAttributePath"`
+	// If enabled, no scopes will be sent to the OAuth2 provider.
+	EmptyScopes *bool `pulumi:"emptyScopes"`
+	// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+	Enabled *bool `pulumi:"enabled"`
+	// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+	GroupsAttributePath *string `pulumi:"groupsAttributePath"`
+	// The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
+	IdTokenAttributeName *string `pulumi:"idTokenAttributeName"`
+	// JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
+	LoginAttributePath *string `pulumi:"loginAttributePath"`
+	// Helpful if you use more than one identity providers or SSO protocols.
+	Name *string `pulumi:"name"`
+	// JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+	NameAttributePath *string `pulumi:"nameAttributePath"`
+	// JMESPath expression to use for Grafana role lookup.
+	RoleAttributePath *string `pulumi:"roleAttributePath"`
+	// If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
+	RoleAttributeStrict *bool `pulumi:"roleAttributeStrict"`
+	// List of comma- or space-separated OAuth2 scopes.
+	Scopes *string `pulumi:"scopes"`
+	// The URL to redirect the user to after signing out from Grafana.
+	SignoutRedirectUrl *string `pulumi:"signoutRedirectUrl"`
+	// Prevent synchronizing users’ organization roles from your IdP.
+	SkipOrgRoleSync *bool `pulumi:"skipOrgRoleSync"`
+	// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+	TeamIds *string `pulumi:"teamIds"`
+	// The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teamsUrl endpoint. Only applicable to Generic OAuth.
+	TeamIdsAttributePath *string `pulumi:"teamIdsAttributePath"`
+	// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+	TeamsUrl *string `pulumi:"teamsUrl"`
+	// The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
+	TlsClientCa *string `pulumi:"tlsClientCa"`
+	// The path to the certificate. Is not applicable on Grafana Cloud.
+	TlsClientCert *string `pulumi:"tlsClientCert"`
+	// The path to the key. Is not applicable on Grafana Cloud.
+	TlsClientKey *string `pulumi:"tlsClientKey"`
+	// If enabled, the client accepts any certificate presented by the server and any host name in that certificate. You should only use this for testing, because this mode leaves SSL/TLS susceptible to man-in-the-middle attacks.
+	TlsSkipVerifyInsecure *bool `pulumi:"tlsSkipVerifyInsecure"`
+	// The token endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+	TokenUrl *string `pulumi:"tokenUrl"`
+	// If enabled, Grafana will use Proof Key for Code Exchange (PKCE) with the OAuth2 Authorization Code Grant.
+	UsePkce *bool `pulumi:"usePkce"`
+	// If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
+	UseRefreshToken *bool `pulumi:"useRefreshToken"`
+}
+
+// SsoSettingsOauth2SettingsInput is an input type that accepts SsoSettingsOauth2SettingsArgs and SsoSettingsOauth2SettingsOutput values.
+// You can construct a concrete instance of `SsoSettingsOauth2SettingsInput` via:
+//
+//	SsoSettingsOauth2SettingsArgs{...}
+type SsoSettingsOauth2SettingsInput interface {
+	pulumi.Input
+
+	ToSsoSettingsOauth2SettingsOutput() SsoSettingsOauth2SettingsOutput
+	ToSsoSettingsOauth2SettingsOutputWithContext(context.Context) SsoSettingsOauth2SettingsOutput
+}
+
+type SsoSettingsOauth2SettingsArgs struct {
+	// If enabled, it will automatically sync the Grafana server administrator role.
+	AllowAssignGrafanaAdmin pulumi.BoolPtrInput `pulumi:"allowAssignGrafanaAdmin"`
+	// If not enabled, only existing Grafana users can log in using OAuth.
+	AllowSignUp pulumi.BoolPtrInput `pulumi:"allowSignUp"`
+	// List of comma- or space-separated domains. The user should belong to at least one domain to log in.
+	AllowedDomains pulumi.StringPtrInput `pulumi:"allowedDomains"`
+	// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+	AllowedGroups pulumi.StringPtrInput `pulumi:"allowedGroups"`
+	// List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
+	AllowedOrganizations pulumi.StringPtrInput `pulumi:"allowedOrganizations"`
+	// The user information endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+	ApiUrl pulumi.StringPtrInput `pulumi:"apiUrl"`
+	// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+	AuthStyle pulumi.StringPtrInput `pulumi:"authStyle"`
+	// The authorization endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+	AuthUrl pulumi.StringPtrInput `pulumi:"authUrl"`
+	// Log in automatically, skipping the login screen.
+	AutoLogin pulumi.BoolPtrInput `pulumi:"autoLogin"`
+	// The client Id of your OAuth2 app.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// The client secret of your OAuth2 app.
+	ClientSecret pulumi.StringPtrInput `pulumi:"clientSecret"`
+	// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+	Custom pulumi.StringMapInput `pulumi:"custom"`
+	// Define allowed groups.
+	DefineAllowedGroups pulumi.BoolPtrInput `pulumi:"defineAllowedGroups"`
+	// Define allowed teams ids.
+	DefineAllowedTeamsIds pulumi.BoolPtrInput `pulumi:"defineAllowedTeamsIds"`
+	// Name of the key to use for user email lookup within the attributes map of OAuth2 ID token. Only applicable to Generic OAuth.
+	EmailAttributeName pulumi.StringPtrInput `pulumi:"emailAttributeName"`
+	// JMESPath expression to use for user email lookup from the user information. Only applicable to Generic OAuth.
+	EmailAttributePath pulumi.StringPtrInput `pulumi:"emailAttributePath"`
+	// If enabled, no scopes will be sent to the OAuth2 provider.
+	EmptyScopes pulumi.BoolPtrInput `pulumi:"emptyScopes"`
+	// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+	GroupsAttributePath pulumi.StringPtrInput `pulumi:"groupsAttributePath"`
+	// The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
+	IdTokenAttributeName pulumi.StringPtrInput `pulumi:"idTokenAttributeName"`
+	// JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
+	LoginAttributePath pulumi.StringPtrInput `pulumi:"loginAttributePath"`
+	// Helpful if you use more than one identity providers or SSO protocols.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+	NameAttributePath pulumi.StringPtrInput `pulumi:"nameAttributePath"`
+	// JMESPath expression to use for Grafana role lookup.
+	RoleAttributePath pulumi.StringPtrInput `pulumi:"roleAttributePath"`
+	// If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
+	RoleAttributeStrict pulumi.BoolPtrInput `pulumi:"roleAttributeStrict"`
+	// List of comma- or space-separated OAuth2 scopes.
+	Scopes pulumi.StringPtrInput `pulumi:"scopes"`
+	// The URL to redirect the user to after signing out from Grafana.
+	SignoutRedirectUrl pulumi.StringPtrInput `pulumi:"signoutRedirectUrl"`
+	// Prevent synchronizing users’ organization roles from your IdP.
+	SkipOrgRoleSync pulumi.BoolPtrInput `pulumi:"skipOrgRoleSync"`
+	// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+	TeamIds pulumi.StringPtrInput `pulumi:"teamIds"`
+	// The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teamsUrl endpoint. Only applicable to Generic OAuth.
+	TeamIdsAttributePath pulumi.StringPtrInput `pulumi:"teamIdsAttributePath"`
+	// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+	TeamsUrl pulumi.StringPtrInput `pulumi:"teamsUrl"`
+	// The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
+	TlsClientCa pulumi.StringPtrInput `pulumi:"tlsClientCa"`
+	// The path to the certificate. Is not applicable on Grafana Cloud.
+	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	// The path to the key. Is not applicable on Grafana Cloud.
+	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// If enabled, the client accepts any certificate presented by the server and any host name in that certificate. You should only use this for testing, because this mode leaves SSL/TLS susceptible to man-in-the-middle attacks.
+	TlsSkipVerifyInsecure pulumi.BoolPtrInput `pulumi:"tlsSkipVerifyInsecure"`
+	// The token endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+	TokenUrl pulumi.StringPtrInput `pulumi:"tokenUrl"`
+	// If enabled, Grafana will use Proof Key for Code Exchange (PKCE) with the OAuth2 Authorization Code Grant.
+	UsePkce pulumi.BoolPtrInput `pulumi:"usePkce"`
+	// If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
+	UseRefreshToken pulumi.BoolPtrInput `pulumi:"useRefreshToken"`
+}
+
+func (SsoSettingsOauth2SettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsOauth2Settings)(nil)).Elem()
+}
+
+func (i SsoSettingsOauth2SettingsArgs) ToSsoSettingsOauth2SettingsOutput() SsoSettingsOauth2SettingsOutput {
+	return i.ToSsoSettingsOauth2SettingsOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsOauth2SettingsArgs) ToSsoSettingsOauth2SettingsOutputWithContext(ctx context.Context) SsoSettingsOauth2SettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsOauth2SettingsOutput)
+}
+
+func (i SsoSettingsOauth2SettingsArgs) ToOutput(ctx context.Context) pulumix.Output[SsoSettingsOauth2Settings] {
+	return pulumix.Output[SsoSettingsOauth2Settings]{
+		OutputState: i.ToSsoSettingsOauth2SettingsOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i SsoSettingsOauth2SettingsArgs) ToSsoSettingsOauth2SettingsPtrOutput() SsoSettingsOauth2SettingsPtrOutput {
+	return i.ToSsoSettingsOauth2SettingsPtrOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsOauth2SettingsArgs) ToSsoSettingsOauth2SettingsPtrOutputWithContext(ctx context.Context) SsoSettingsOauth2SettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsOauth2SettingsOutput).ToSsoSettingsOauth2SettingsPtrOutputWithContext(ctx)
+}
+
+// SsoSettingsOauth2SettingsPtrInput is an input type that accepts SsoSettingsOauth2SettingsArgs, SsoSettingsOauth2SettingsPtr and SsoSettingsOauth2SettingsPtrOutput values.
+// You can construct a concrete instance of `SsoSettingsOauth2SettingsPtrInput` via:
+//
+//	        SsoSettingsOauth2SettingsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SsoSettingsOauth2SettingsPtrInput interface {
+	pulumi.Input
+
+	ToSsoSettingsOauth2SettingsPtrOutput() SsoSettingsOauth2SettingsPtrOutput
+	ToSsoSettingsOauth2SettingsPtrOutputWithContext(context.Context) SsoSettingsOauth2SettingsPtrOutput
+}
+
+type ssoSettingsOauth2SettingsPtrType SsoSettingsOauth2SettingsArgs
+
+func SsoSettingsOauth2SettingsPtr(v *SsoSettingsOauth2SettingsArgs) SsoSettingsOauth2SettingsPtrInput {
+	return (*ssoSettingsOauth2SettingsPtrType)(v)
+}
+
+func (*ssoSettingsOauth2SettingsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SsoSettingsOauth2Settings)(nil)).Elem()
+}
+
+func (i *ssoSettingsOauth2SettingsPtrType) ToSsoSettingsOauth2SettingsPtrOutput() SsoSettingsOauth2SettingsPtrOutput {
+	return i.ToSsoSettingsOauth2SettingsPtrOutputWithContext(context.Background())
+}
+
+func (i *ssoSettingsOauth2SettingsPtrType) ToSsoSettingsOauth2SettingsPtrOutputWithContext(ctx context.Context) SsoSettingsOauth2SettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsOauth2SettingsPtrOutput)
+}
+
+func (i *ssoSettingsOauth2SettingsPtrType) ToOutput(ctx context.Context) pulumix.Output[*SsoSettingsOauth2Settings] {
+	return pulumix.Output[*SsoSettingsOauth2Settings]{
+		OutputState: i.ToSsoSettingsOauth2SettingsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SsoSettingsOauth2SettingsOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsOauth2SettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsOauth2Settings)(nil)).Elem()
+}
+
+func (o SsoSettingsOauth2SettingsOutput) ToSsoSettingsOauth2SettingsOutput() SsoSettingsOauth2SettingsOutput {
+	return o
+}
+
+func (o SsoSettingsOauth2SettingsOutput) ToSsoSettingsOauth2SettingsOutputWithContext(ctx context.Context) SsoSettingsOauth2SettingsOutput {
+	return o
+}
+
+func (o SsoSettingsOauth2SettingsOutput) ToSsoSettingsOauth2SettingsPtrOutput() SsoSettingsOauth2SettingsPtrOutput {
+	return o.ToSsoSettingsOauth2SettingsPtrOutputWithContext(context.Background())
+}
+
+func (o SsoSettingsOauth2SettingsOutput) ToSsoSettingsOauth2SettingsPtrOutputWithContext(ctx context.Context) SsoSettingsOauth2SettingsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SsoSettingsOauth2Settings) *SsoSettingsOauth2Settings {
+		return &v
+	}).(SsoSettingsOauth2SettingsPtrOutput)
+}
+
+func (o SsoSettingsOauth2SettingsOutput) ToOutput(ctx context.Context) pulumix.Output[SsoSettingsOauth2Settings] {
+	return pulumix.Output[SsoSettingsOauth2Settings]{
+		OutputState: o.OutputState,
+	}
+}
+
+// If enabled, it will automatically sync the Grafana server administrator role.
+func (o SsoSettingsOauth2SettingsOutput) AllowAssignGrafanaAdmin() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.AllowAssignGrafanaAdmin }).(pulumi.BoolPtrOutput)
+}
+
+// If not enabled, only existing Grafana users can log in using OAuth.
+func (o SsoSettingsOauth2SettingsOutput) AllowSignUp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.AllowSignUp }).(pulumi.BoolPtrOutput)
+}
+
+// List of comma- or space-separated domains. The user should belong to at least one domain to log in.
+func (o SsoSettingsOauth2SettingsOutput) AllowedDomains() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.AllowedDomains }).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+func (o SsoSettingsOauth2SettingsOutput) AllowedGroups() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.AllowedGroups }).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
+func (o SsoSettingsOauth2SettingsOutput) AllowedOrganizations() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.AllowedOrganizations }).(pulumi.StringPtrOutput)
+}
+
+// The user information endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+func (o SsoSettingsOauth2SettingsOutput) ApiUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.ApiUrl }).(pulumi.StringPtrOutput)
+}
+
+// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+func (o SsoSettingsOauth2SettingsOutput) AuthStyle() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.AuthStyle }).(pulumi.StringPtrOutput)
+}
+
+// The authorization endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+func (o SsoSettingsOauth2SettingsOutput) AuthUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.AuthUrl }).(pulumi.StringPtrOutput)
+}
+
+// Log in automatically, skipping the login screen.
+func (o SsoSettingsOauth2SettingsOutput) AutoLogin() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.AutoLogin }).(pulumi.BoolPtrOutput)
+}
+
+// The client Id of your OAuth2 app.
+func (o SsoSettingsOauth2SettingsOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// The client secret of your OAuth2 app.
+func (o SsoSettingsOauth2SettingsOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+func (o SsoSettingsOauth2SettingsOutput) Custom() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) map[string]string { return v.Custom }).(pulumi.StringMapOutput)
+}
+
+// Define allowed groups.
+func (o SsoSettingsOauth2SettingsOutput) DefineAllowedGroups() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.DefineAllowedGroups }).(pulumi.BoolPtrOutput)
+}
+
+// Define allowed teams ids.
+func (o SsoSettingsOauth2SettingsOutput) DefineAllowedTeamsIds() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.DefineAllowedTeamsIds }).(pulumi.BoolPtrOutput)
+}
+
+// Name of the key to use for user email lookup within the attributes map of OAuth2 ID token. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsOutput) EmailAttributeName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.EmailAttributeName }).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for user email lookup from the user information. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsOutput) EmailAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.EmailAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// If enabled, no scopes will be sent to the OAuth2 provider.
+func (o SsoSettingsOauth2SettingsOutput) EmptyScopes() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.EmptyScopes }).(pulumi.BoolPtrOutput)
+}
+
+// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+func (o SsoSettingsOauth2SettingsOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+func (o SsoSettingsOauth2SettingsOutput) GroupsAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.GroupsAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsOutput) IdTokenAttributeName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.IdTokenAttributeName }).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsOutput) LoginAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.LoginAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// Helpful if you use more than one identity providers or SSO protocols.
+func (o SsoSettingsOauth2SettingsOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsOutput) NameAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.NameAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for Grafana role lookup.
+func (o SsoSettingsOauth2SettingsOutput) RoleAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.RoleAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
+func (o SsoSettingsOauth2SettingsOutput) RoleAttributeStrict() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.RoleAttributeStrict }).(pulumi.BoolPtrOutput)
+}
+
+// List of comma- or space-separated OAuth2 scopes.
+func (o SsoSettingsOauth2SettingsOutput) Scopes() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.Scopes }).(pulumi.StringPtrOutput)
+}
+
+// The URL to redirect the user to after signing out from Grafana.
+func (o SsoSettingsOauth2SettingsOutput) SignoutRedirectUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.SignoutRedirectUrl }).(pulumi.StringPtrOutput)
+}
+
+// Prevent synchronizing users’ organization roles from your IdP.
+func (o SsoSettingsOauth2SettingsOutput) SkipOrgRoleSync() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.SkipOrgRoleSync }).(pulumi.BoolPtrOutput)
+}
+
+// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+func (o SsoSettingsOauth2SettingsOutput) TeamIds() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TeamIds }).(pulumi.StringPtrOutput)
+}
+
+// The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teamsUrl endpoint. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsOutput) TeamIdsAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TeamIdsAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsOutput) TeamsUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TeamsUrl }).(pulumi.StringPtrOutput)
+}
+
+// The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
+func (o SsoSettingsOauth2SettingsOutput) TlsClientCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TlsClientCa }).(pulumi.StringPtrOutput)
+}
+
+// The path to the certificate. Is not applicable on Grafana Cloud.
+func (o SsoSettingsOauth2SettingsOutput) TlsClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
+}
+
+// The path to the key. Is not applicable on Grafana Cloud.
+func (o SsoSettingsOauth2SettingsOutput) TlsClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
+}
+
+// If enabled, the client accepts any certificate presented by the server and any host name in that certificate. You should only use this for testing, because this mode leaves SSL/TLS susceptible to man-in-the-middle attacks.
+func (o SsoSettingsOauth2SettingsOutput) TlsSkipVerifyInsecure() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.TlsSkipVerifyInsecure }).(pulumi.BoolPtrOutput)
+}
+
+// The token endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+func (o SsoSettingsOauth2SettingsOutput) TokenUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TokenUrl }).(pulumi.StringPtrOutput)
+}
+
+// If enabled, Grafana will use Proof Key for Code Exchange (PKCE) with the OAuth2 Authorization Code Grant.
+func (o SsoSettingsOauth2SettingsOutput) UsePkce() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.UsePkce }).(pulumi.BoolPtrOutput)
+}
+
+// If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
+func (o SsoSettingsOauth2SettingsOutput) UseRefreshToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.UseRefreshToken }).(pulumi.BoolPtrOutput)
+}
+
+type SsoSettingsOauth2SettingsPtrOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsOauth2SettingsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SsoSettingsOauth2Settings)(nil)).Elem()
+}
+
+func (o SsoSettingsOauth2SettingsPtrOutput) ToSsoSettingsOauth2SettingsPtrOutput() SsoSettingsOauth2SettingsPtrOutput {
+	return o
+}
+
+func (o SsoSettingsOauth2SettingsPtrOutput) ToSsoSettingsOauth2SettingsPtrOutputWithContext(ctx context.Context) SsoSettingsOauth2SettingsPtrOutput {
+	return o
+}
+
+func (o SsoSettingsOauth2SettingsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SsoSettingsOauth2Settings] {
+	return pulumix.Output[*SsoSettingsOauth2Settings]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SsoSettingsOauth2SettingsPtrOutput) Elem() SsoSettingsOauth2SettingsOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) SsoSettingsOauth2Settings {
+		if v != nil {
+			return *v
+		}
+		var ret SsoSettingsOauth2Settings
+		return ret
+	}).(SsoSettingsOauth2SettingsOutput)
+}
+
+// If enabled, it will automatically sync the Grafana server administrator role.
+func (o SsoSettingsOauth2SettingsPtrOutput) AllowAssignGrafanaAdmin() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowAssignGrafanaAdmin
+	}).(pulumi.BoolPtrOutput)
+}
+
+// If not enabled, only existing Grafana users can log in using OAuth.
+func (o SsoSettingsOauth2SettingsPtrOutput) AllowSignUp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowSignUp
+	}).(pulumi.BoolPtrOutput)
+}
+
+// List of comma- or space-separated domains. The user should belong to at least one domain to log in.
+func (o SsoSettingsOauth2SettingsPtrOutput) AllowedDomains() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AllowedDomains
+	}).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+func (o SsoSettingsOauth2SettingsPtrOutput) AllowedGroups() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AllowedGroups
+	}).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
+func (o SsoSettingsOauth2SettingsPtrOutput) AllowedOrganizations() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AllowedOrganizations
+	}).(pulumi.StringPtrOutput)
+}
+
+// The user information endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+func (o SsoSettingsOauth2SettingsPtrOutput) ApiUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+func (o SsoSettingsOauth2SettingsPtrOutput) AuthStyle() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthStyle
+	}).(pulumi.StringPtrOutput)
+}
+
+// The authorization endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+func (o SsoSettingsOauth2SettingsPtrOutput) AuthUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// Log in automatically, skipping the login screen.
+func (o SsoSettingsOauth2SettingsPtrOutput) AutoLogin() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AutoLogin
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The client Id of your OAuth2 app.
+func (o SsoSettingsOauth2SettingsPtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The client secret of your OAuth2 app.
+func (o SsoSettingsOauth2SettingsPtrOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientSecret
+	}).(pulumi.StringPtrOutput)
+}
+
+// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+func (o SsoSettingsOauth2SettingsPtrOutput) Custom() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Custom
+	}).(pulumi.StringMapOutput)
+}
+
+// Define allowed groups.
+func (o SsoSettingsOauth2SettingsPtrOutput) DefineAllowedGroups() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DefineAllowedGroups
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Define allowed teams ids.
+func (o SsoSettingsOauth2SettingsPtrOutput) DefineAllowedTeamsIds() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DefineAllowedTeamsIds
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Name of the key to use for user email lookup within the attributes map of OAuth2 ID token. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsPtrOutput) EmailAttributeName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EmailAttributeName
+	}).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for user email lookup from the user information. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsPtrOutput) EmailAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EmailAttributePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// If enabled, no scopes will be sent to the OAuth2 provider.
+func (o SsoSettingsOauth2SettingsPtrOutput) EmptyScopes() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.EmptyScopes
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+func (o SsoSettingsOauth2SettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+func (o SsoSettingsOauth2SettingsPtrOutput) GroupsAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupsAttributePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsPtrOutput) IdTokenAttributeName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IdTokenAttributeName
+	}).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsPtrOutput) LoginAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LoginAttributePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// Helpful if you use more than one identity providers or SSO protocols.
+func (o SsoSettingsOauth2SettingsPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsPtrOutput) NameAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NameAttributePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for Grafana role lookup.
+func (o SsoSettingsOauth2SettingsPtrOutput) RoleAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RoleAttributePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
+func (o SsoSettingsOauth2SettingsPtrOutput) RoleAttributeStrict() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.RoleAttributeStrict
+	}).(pulumi.BoolPtrOutput)
+}
+
+// List of comma- or space-separated OAuth2 scopes.
+func (o SsoSettingsOauth2SettingsPtrOutput) Scopes() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Scopes
+	}).(pulumi.StringPtrOutput)
+}
+
+// The URL to redirect the user to after signing out from Grafana.
+func (o SsoSettingsOauth2SettingsPtrOutput) SignoutRedirectUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SignoutRedirectUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// Prevent synchronizing users’ organization roles from your IdP.
+func (o SsoSettingsOauth2SettingsPtrOutput) SkipOrgRoleSync() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SkipOrgRoleSync
+	}).(pulumi.BoolPtrOutput)
+}
+
+// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+func (o SsoSettingsOauth2SettingsPtrOutput) TeamIds() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TeamIds
+	}).(pulumi.StringPtrOutput)
+}
+
+// The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teamsUrl endpoint. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsPtrOutput) TeamIdsAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TeamIdsAttributePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsPtrOutput) TeamsUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TeamsUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
+func (o SsoSettingsOauth2SettingsPtrOutput) TlsClientCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsClientCa
+	}).(pulumi.StringPtrOutput)
+}
+
+// The path to the certificate. Is not applicable on Grafana Cloud.
+func (o SsoSettingsOauth2SettingsPtrOutput) TlsClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsClientCert
+	}).(pulumi.StringPtrOutput)
+}
+
+// The path to the key. Is not applicable on Grafana Cloud.
+func (o SsoSettingsOauth2SettingsPtrOutput) TlsClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsClientKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// If enabled, the client accepts any certificate presented by the server and any host name in that certificate. You should only use this for testing, because this mode leaves SSL/TLS susceptible to man-in-the-middle attacks.
+func (o SsoSettingsOauth2SettingsPtrOutput) TlsSkipVerifyInsecure() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.TlsSkipVerifyInsecure
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The token endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+func (o SsoSettingsOauth2SettingsPtrOutput) TokenUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TokenUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// If enabled, Grafana will use Proof Key for Code Exchange (PKCE) with the OAuth2 Authorization Code Grant.
+func (o SsoSettingsOauth2SettingsPtrOutput) UsePkce() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UsePkce
+	}).(pulumi.BoolPtrOutput)
+}
+
+// If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
+func (o SsoSettingsOauth2SettingsPtrOutput) UseRefreshToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRefreshToken
+	}).(pulumi.BoolPtrOutput)
 }
 
 type SyntheticMonitoringCheckSettings struct {
@@ -17996,6 +19421,7 @@ type TeamPreferences struct {
 	HomeDashboardUid *string `pulumi:"homeDashboardUid"`
 	Theme            *string `pulumi:"theme"`
 	Timezone         *string `pulumi:"timezone"`
+	WeekStart        *string `pulumi:"weekStart"`
 }
 
 // TeamPreferencesInput is an input type that accepts TeamPreferencesArgs and TeamPreferencesOutput values.
@@ -18013,6 +19439,7 @@ type TeamPreferencesArgs struct {
 	HomeDashboardUid pulumi.StringPtrInput `pulumi:"homeDashboardUid"`
 	Theme            pulumi.StringPtrInput `pulumi:"theme"`
 	Timezone         pulumi.StringPtrInput `pulumi:"timezone"`
+	WeekStart        pulumi.StringPtrInput `pulumi:"weekStart"`
 }
 
 func (TeamPreferencesArgs) ElementType() reflect.Type {
@@ -18122,6 +19549,10 @@ func (o TeamPreferencesOutput) Timezone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TeamPreferences) *string { return v.Timezone }).(pulumi.StringPtrOutput)
 }
 
+func (o TeamPreferencesOutput) WeekStart() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamPreferences) *string { return v.WeekStart }).(pulumi.StringPtrOutput)
+}
+
 type TeamPreferencesPtrOutput struct{ *pulumi.OutputState }
 
 func (TeamPreferencesPtrOutput) ElementType() reflect.Type {
@@ -18176,6 +19607,15 @@ func (o TeamPreferencesPtrOutput) Timezone() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.Timezone
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TeamPreferencesPtrOutput) WeekStart() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TeamPreferences) *string {
+		if v == nil {
+			return nil
+		}
+		return v.WeekStart
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -20858,6 +22298,7 @@ type GetTeamPreference struct {
 	HomeDashboardUid *string `pulumi:"homeDashboardUid"`
 	Theme            *string `pulumi:"theme"`
 	Timezone         *string `pulumi:"timezone"`
+	WeekStart        *string `pulumi:"weekStart"`
 }
 
 // GetTeamPreferenceInput is an input type that accepts GetTeamPreferenceArgs and GetTeamPreferenceOutput values.
@@ -20875,6 +22316,7 @@ type GetTeamPreferenceArgs struct {
 	HomeDashboardUid pulumi.StringPtrInput `pulumi:"homeDashboardUid"`
 	Theme            pulumi.StringPtrInput `pulumi:"theme"`
 	Timezone         pulumi.StringPtrInput `pulumi:"timezone"`
+	WeekStart        pulumi.StringPtrInput `pulumi:"weekStart"`
 }
 
 func (GetTeamPreferenceArgs) ElementType() reflect.Type {
@@ -20956,6 +22398,10 @@ func (o GetTeamPreferenceOutput) Theme() pulumi.StringPtrOutput {
 
 func (o GetTeamPreferenceOutput) Timezone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetTeamPreference) *string { return v.Timezone }).(pulumi.StringPtrOutput)
+}
+
+func (o GetTeamPreferenceOutput) WeekStart() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetTeamPreference) *string { return v.WeekStart }).(pulumi.StringPtrOutput)
 }
 
 type GetTeamPreferenceArrayOutput struct{ *pulumi.OutputState }
@@ -21277,6 +22723,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointSensugoArrayInput)(nil)).Elem(), ContactPointSensugoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointSlackInput)(nil)).Elem(), ContactPointSlackArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointSlackArrayInput)(nil)).Elem(), ContactPointSlackArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointSnInput)(nil)).Elem(), ContactPointSnArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointSnArrayInput)(nil)).Elem(), ContactPointSnArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointTeamInput)(nil)).Elem(), ContactPointTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointTeamArrayInput)(nil)).Elem(), ContactPointTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointTelegramInput)(nil)).Elem(), ContactPointTelegramArgs{})
@@ -21357,6 +22805,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*OncallScheduleSlackPtrInput)(nil)).Elem(), OncallScheduleSlackArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PlaylistItemInput)(nil)).Elem(), PlaylistItemArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PlaylistItemArrayInput)(nil)).Elem(), PlaylistItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportDashboardInput)(nil)).Elem(), ReportDashboardArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportDashboardArrayInput)(nil)).Elem(), ReportDashboardArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportDashboardTimeRangeInput)(nil)).Elem(), ReportDashboardTimeRangeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportDashboardTimeRangePtrInput)(nil)).Elem(), ReportDashboardTimeRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ReportScheduleInput)(nil)).Elem(), ReportScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ReportSchedulePtrInput)(nil)).Elem(), ReportScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ReportTimeRangeInput)(nil)).Elem(), ReportTimeRangeArgs{})
@@ -21400,6 +22852,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOQueryRatioPtrInput)(nil)).Elem(), SLOQueryRatioArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountPermissionPermissionInput)(nil)).Elem(), ServiceAccountPermissionPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountPermissionPermissionArrayInput)(nil)).Elem(), ServiceAccountPermissionPermissionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsOauth2SettingsInput)(nil)).Elem(), SsoSettingsOauth2SettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsOauth2SettingsPtrInput)(nil)).Elem(), SsoSettingsOauth2SettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsPtrInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsDnsInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsDnsArgs{})
@@ -21526,6 +22980,8 @@ func init() {
 	pulumi.RegisterOutputType(ContactPointSensugoArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointSlackOutput{})
 	pulumi.RegisterOutputType(ContactPointSlackArrayOutput{})
+	pulumi.RegisterOutputType(ContactPointSnOutput{})
+	pulumi.RegisterOutputType(ContactPointSnArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointTeamOutput{})
 	pulumi.RegisterOutputType(ContactPointTeamArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointTelegramOutput{})
@@ -21606,6 +23062,10 @@ func init() {
 	pulumi.RegisterOutputType(OncallScheduleSlackPtrOutput{})
 	pulumi.RegisterOutputType(PlaylistItemOutput{})
 	pulumi.RegisterOutputType(PlaylistItemArrayOutput{})
+	pulumi.RegisterOutputType(ReportDashboardOutput{})
+	pulumi.RegisterOutputType(ReportDashboardArrayOutput{})
+	pulumi.RegisterOutputType(ReportDashboardTimeRangeOutput{})
+	pulumi.RegisterOutputType(ReportDashboardTimeRangePtrOutput{})
 	pulumi.RegisterOutputType(ReportScheduleOutput{})
 	pulumi.RegisterOutputType(ReportSchedulePtrOutput{})
 	pulumi.RegisterOutputType(ReportTimeRangeOutput{})
@@ -21649,6 +23109,8 @@ func init() {
 	pulumi.RegisterOutputType(SLOQueryRatioPtrOutput{})
 	pulumi.RegisterOutputType(ServiceAccountPermissionPermissionOutput{})
 	pulumi.RegisterOutputType(ServiceAccountPermissionPermissionArrayOutput{})
+	pulumi.RegisterOutputType(SsoSettingsOauth2SettingsOutput{})
+	pulumi.RegisterOutputType(SsoSettingsOauth2SettingsPtrOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsPtrOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsDnsOutput{})

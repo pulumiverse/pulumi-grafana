@@ -17,6 +17,7 @@ namespace Pulumiverse.Grafana.Outputs
         public readonly string? HomeDashboardUid;
         public readonly string? Theme;
         public readonly string? Timezone;
+        public readonly string? WeekStart;
 
         [OutputConstructor]
         private TeamPreferences(
@@ -24,11 +25,14 @@ namespace Pulumiverse.Grafana.Outputs
 
             string? theme,
 
-            string? timezone)
+            string? timezone,
+
+            string? weekStart)
         {
             HomeDashboardUid = homeDashboardUid;
             Theme = theme;
             Timezone = timezone;
+            WeekStart = weekStart;
         }
     }
 }

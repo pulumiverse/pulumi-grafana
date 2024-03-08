@@ -107,6 +107,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ServiceAccountPermission{}
 	case "grafana:index/serviceAccountToken:ServiceAccountToken":
 		r = &ServiceAccountToken{}
+	case "grafana:index/ssoSettings:SsoSettings":
+		r = &SsoSettings{}
 	case "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck":
 		r = &SyntheticMonitoringCheck{}
 	case "grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation":
@@ -363,6 +365,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"index/serviceAccountToken",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/ssoSettings",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

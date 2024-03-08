@@ -143,6 +143,12 @@ namespace Pulumiverse.Grafana
     public partial class RuleGroup : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Output("disableProvenance")]
+        public Output<bool?> DisableProvenance { get; private set; } = null!;
+
+        /// <summary>
         /// The UID of the folder that the group belongs to.
         /// </summary>
         [Output("folderUid")]
@@ -220,6 +226,12 @@ namespace Pulumiverse.Grafana
     public sealed class RuleGroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Input("disableProvenance")]
+        public Input<bool>? DisableProvenance { get; set; }
+
+        /// <summary>
         /// The UID of the folder that the group belongs to.
         /// </summary>
         [Input("folderUid", required: true)]
@@ -263,6 +275,12 @@ namespace Pulumiverse.Grafana
 
     public sealed class RuleGroupState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Input("disableProvenance")]
+        public Input<bool>? DisableProvenance { get; set; }
+
         /// <summary>
         /// The UID of the folder that the group belongs to.
         /// </summary>

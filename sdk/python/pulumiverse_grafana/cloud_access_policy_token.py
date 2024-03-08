@@ -244,6 +244,12 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
         * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-a-token)
 
+        Required access policy scopes:
+
+        * accesspolicies:read
+        * accesspolicies:write
+        * accesspolicies:delete
+
         ## Example Usage
 
         ```python
@@ -273,6 +279,12 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
             expires_at="2023-01-01T00:00:00Z")
         ```
 
+        ## Import
+
+        ```sh
+         $ pulumi import grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken name "{{ region }}:{{ tokenId }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_policy_id: ID of the access policy for which to create a token.
@@ -290,6 +302,12 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
         """
         * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-a-token)
+
+        Required access policy scopes:
+
+        * accesspolicies:read
+        * accesspolicies:write
+        * accesspolicies:delete
 
         ## Example Usage
 
@@ -318,6 +336,12 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
             access_policy_id=test_cloud_access_policy.policy_id,
             display_name="My Policy Token",
             expires_at="2023-01-01T00:00:00Z")
+        ```
+
+        ## Import
+
+        ```sh
+         $ pulumi import grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken name "{{ region }}:{{ tokenId }}"
         ```
 
         :param str resource_name: The name of the resource.

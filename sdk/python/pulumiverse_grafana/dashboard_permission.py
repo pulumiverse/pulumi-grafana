@@ -188,11 +188,18 @@ class DashboardPermission(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import pulumiverse_grafana as grafana
 
         team = grafana.Team("team")
-        user = grafana.User("user", email="user.name@example.com")
-        metrics = grafana.Dashboard("metrics", config_json=(lambda path: open(path).read())("grafana-dashboard.json"))
+        user = grafana.User("user",
+            email="user.name@example.com",
+            password="my-password",
+            login="user.name")
+        metrics = grafana.Dashboard("metrics", config_json=json.dumps({
+            "title": "My Dashboard",
+            "uid": "my-dashboard-uid",
+        }))
         collection_permission = grafana.DashboardPermission("collectionPermission",
             dashboard_uid=metrics.uid,
             permissions=[
@@ -239,11 +246,18 @@ class DashboardPermission(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import pulumiverse_grafana as grafana
 
         team = grafana.Team("team")
-        user = grafana.User("user", email="user.name@example.com")
-        metrics = grafana.Dashboard("metrics", config_json=(lambda path: open(path).read())("grafana-dashboard.json"))
+        user = grafana.User("user",
+            email="user.name@example.com",
+            password="my-password",
+            login="user.name")
+        metrics = grafana.Dashboard("metrics", config_json=json.dumps({
+            "title": "My Dashboard",
+            "uid": "my-dashboard-uid",
+        }))
         collection_permission = grafana.DashboardPermission("collectionPermission",
             dashboard_uid=metrics.uid,
             permissions=[

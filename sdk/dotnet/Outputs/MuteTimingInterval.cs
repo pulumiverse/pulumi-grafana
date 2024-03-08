@@ -19,6 +19,10 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly ImmutableArray<string> DaysOfMonths;
         /// <summary>
+        /// Provides the time zone for the time interval. Must be a location in the IANA time zone database, e.g "America/New_York"
+        /// </summary>
+        public readonly string? Location;
+        /// <summary>
         /// An inclusive range of months, either numerical or full calendar month, e.g. "1:3", "december", or "may:august".
         /// </summary>
         public readonly ImmutableArray<string> Months;
@@ -39,6 +43,8 @@ namespace Pulumiverse.Grafana.Outputs
         private MuteTimingInterval(
             ImmutableArray<string> daysOfMonths,
 
+            string? location,
+
             ImmutableArray<string> months,
 
             ImmutableArray<Outputs.MuteTimingIntervalTime> times,
@@ -48,6 +54,7 @@ namespace Pulumiverse.Grafana.Outputs
             ImmutableArray<string> years)
         {
             DaysOfMonths = daysOfMonths;
+            Location = location;
             Months = months;
             Times = times;
             Weekdays = weekdays;

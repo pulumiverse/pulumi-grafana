@@ -14,26 +14,61 @@ import * as utilities from "./utilities";
  * * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/installation/)
  * * [API documentation](https://github.com/grafana/synthetic-monitoring-api-go-client/blob/main/docs/API.md#apiv1registerinstall)
  *
+ * Required access policy scopes:
+ *
+ * * stacks:read
+ *
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
  * import * as grafana from "@pulumiverse/grafana";
  *
+ * const config = new pulumi.Config();
+ * const cloudApiKey = config.requireObject("cloudApiKey");
+ * const stackSlug = config.requireObject("stackSlug");
+ * const cloudRegion = config.get("cloudRegion") || "us";
+ * // Step 1: Create a stack
+ * const cloud = new grafana.Provider("cloud", {cloudApiKey: cloudApiKey});
  * const smStackCloudStack = new grafana.CloudStack("smStackCloudStack", {
- *     slug: "<stack-slug>",
- *     regionSlug: "us",
+ *     slug: stackSlug,
+ *     regionSlug: cloudRegion,
+ * }, {
+ *     provider: grafana.cloud,
  * });
- * const metricsPublish = new grafana.CloudApiKey("metricsPublish", {
- *     role: "MetricsPublisher",
- *     cloudOrgSlug: "<org-slug>",
+ * // Step 2: Install Synthetic Monitoring on the stack
+ * const smMetricsPublishCloudAccessPolicy = new grafana.CloudAccessPolicy("smMetricsPublishCloudAccessPolicy", {
+ *     region: cloudRegion,
+ *     scopes: [
+ *         "metrics:write",
+ *         "stacks:read",
+ *     ],
+ *     realms: [{
+ *         type: "stack",
+ *         identifier: smStackCloudStack.id,
+ *     }],
+ * }, {
+ *     provider: grafana.cloud,
  * });
- * const smStackSyntheticMonitoringInstallation = new grafana.SyntheticMonitoringInstallation("smStackSyntheticMonitoringInstallation", {stackId: smStackCloudStack.id});
- * // Create a new provider instance to interact with Synthetic Monitoring
+ * const smMetricsPublishCloudAccessPolicyToken = new grafana.CloudAccessPolicyToken("smMetricsPublishCloudAccessPolicyToken", {
+ *     region: cloudRegion,
+ *     accessPolicyId: smMetricsPublishCloudAccessPolicy.policyId,
+ * }, {
+ *     provider: grafana.cloud,
+ * });
+ * const smStackSyntheticMonitoringInstallation = new grafana.SyntheticMonitoringInstallation("smStackSyntheticMonitoringInstallation", {
+ *     stackId: smStackCloudStack.id,
+ *     metricsPublisherKey: smMetricsPublishCloudAccessPolicyToken.token,
+ * }, {
+ *     provider: grafana.cloud,
+ * });
+ * // Step 3: Interact with Synthetic Monitoring
  * const sm = new grafana.Provider("sm", {
  *     smAccessToken: smStackSyntheticMonitoringInstallation.smAccessToken,
  *     smUrl: smStackSyntheticMonitoringInstallation.stackSmApiUrl,
  * });
+ * const main = grafana.getSyntheticMonitoringProbes({});
  * ```
  */
 export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
@@ -65,7 +100,7 @@ export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
     }
 
     /**
-     * The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
+     * The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
      */
     public readonly metricsPublisherKey!: pulumi.Output<string>;
     /**
@@ -123,7 +158,7 @@ export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
  */
 export interface SyntheticMonitoringInstallationState {
     /**
-     * The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
+     * The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
      */
     metricsPublisherKey?: pulumi.Input<string>;
     /**
@@ -145,7 +180,7 @@ export interface SyntheticMonitoringInstallationState {
  */
 export interface SyntheticMonitoringInstallationArgs {
     /**
-     * The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
+     * The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
      */
     metricsPublisherKey: pulumi.Input<string>;
     /**

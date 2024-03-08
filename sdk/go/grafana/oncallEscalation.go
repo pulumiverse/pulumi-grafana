@@ -13,7 +13,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// * [Official documentation](https://grafana.com/docs/oncall/latest/escalation-chains-and-routes/)
+// * [Official documentation](https://grafana.com/docs/oncall/latest/configure/escalation-chains-and-routes/)
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_policies/)
 //
 // ## Example Usage

@@ -88,12 +88,16 @@ namespace Pulumiverse.Grafana
         /// The stack id assigned to this stack by Grafana.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string> Labels;
         public readonly string LogsName;
         public readonly string LogsStatus;
         public readonly string LogsUrl;
         public readonly int LogsUserId;
         /// <summary>
-        /// Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
+        /// Name of stack. Conventionally matches the url of the instance (e.g. `&lt;stack_slug&gt;.grafana.net`).
         /// </summary>
         public readonly string Name;
         /// <summary>
@@ -108,6 +112,14 @@ namespace Pulumiverse.Grafana
         /// Organization slug to assign to this stack.
         /// </summary>
         public readonly string OrgSlug;
+        /// <summary>
+        /// Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        /// </summary>
+        public readonly string OtlpUrl;
+        public readonly string ProfilesName;
+        public readonly string ProfilesStatus;
+        public readonly string ProfilesUrl;
+        public readonly int ProfilesUserId;
         /// <summary>
         /// Prometheus name for this instance.
         /// </summary>
@@ -179,6 +191,8 @@ namespace Pulumiverse.Grafana
 
             string id,
 
+            ImmutableDictionary<string, string> labels,
+
             string logsName,
 
             string logsStatus,
@@ -194,6 +208,16 @@ namespace Pulumiverse.Grafana
             string orgName,
 
             string orgSlug,
+
+            string otlpUrl,
+
+            string profilesName,
+
+            string profilesStatus,
+
+            string profilesUrl,
+
+            int profilesUserId,
 
             string prometheusName,
 
@@ -233,6 +257,7 @@ namespace Pulumiverse.Grafana
             GraphiteUrl = graphiteUrl;
             GraphiteUserId = graphiteUserId;
             Id = id;
+            Labels = labels;
             LogsName = logsName;
             LogsStatus = logsStatus;
             LogsUrl = logsUrl;
@@ -241,6 +266,11 @@ namespace Pulumiverse.Grafana
             OrgId = orgId;
             OrgName = orgName;
             OrgSlug = orgSlug;
+            OtlpUrl = otlpUrl;
+            ProfilesName = profilesName;
+            ProfilesStatus = profilesStatus;
+            ProfilesUrl = profilesUrl;
+            ProfilesUserId = profilesUserId;
             PrometheusName = prometheusName;
             PrometheusRemoteEndpoint = prometheusRemoteEndpoint;
             PrometheusRemoteWriteEndpoint = prometheusRemoteWriteEndpoint;

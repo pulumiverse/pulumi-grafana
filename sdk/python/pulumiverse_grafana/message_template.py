@@ -15,15 +15,23 @@ __all__ = ['MessageTemplateArgs', 'MessageTemplate']
 class MessageTemplateArgs:
     def __init__(__self__, *,
                  template: pulumi.Input[str],
-                 name: Optional[pulumi.Input[str]] = None):
+                 disable_provenance: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MessageTemplate resource.
         :param pulumi.Input[str] template: The content of the message template.
+        :param pulumi.Input[bool] disable_provenance: Allow modifying the message template from other sources than Terraform or the Grafana API.
         :param pulumi.Input[str] name: The name of the message template.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         pulumi.set(__self__, "template", template)
+        if disable_provenance is not None:
+            pulumi.set(__self__, "disable_provenance", disable_provenance)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
 
     @property
     @pulumi.getter
@@ -38,32 +46,16 @@ class MessageTemplateArgs:
         pulumi.set(self, "template", value)
 
     @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
+    @pulumi.getter(name="disableProvenance")
+    def disable_provenance(self) -> Optional[pulumi.Input[bool]]:
         """
-        The name of the message template.
+        Allow modifying the message template from other sources than Terraform or the Grafana API.
         """
-        return pulumi.get(self, "name")
+        return pulumi.get(self, "disable_provenance")
 
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class _MessageTemplateState:
-    def __init__(__self__, *,
-                 name: Optional[pulumi.Input[str]] = None,
-                 template: Optional[pulumi.Input[str]] = None):
-        """
-        Input properties used for looking up and filtering MessageTemplate resources.
-        :param pulumi.Input[str] name: The name of the message template.
-        :param pulumi.Input[str] template: The content of the message template.
-        """
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if template is not None:
-            pulumi.set(__self__, "template", template)
+    @disable_provenance.setter
+    def disable_provenance(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_provenance", value)
 
     @property
     @pulumi.getter
@@ -76,6 +68,78 @@ class _MessageTemplateState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
+
+
+@pulumi.input_type
+class _MessageTemplateState:
+    def __init__(__self__, *,
+                 disable_provenance: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
+                 template: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering MessageTemplate resources.
+        :param pulumi.Input[bool] disable_provenance: Allow modifying the message template from other sources than Terraform or the Grafana API.
+        :param pulumi.Input[str] name: The name of the message template.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[str] template: The content of the message template.
+        """
+        if disable_provenance is not None:
+            pulumi.set(__self__, "disable_provenance", disable_provenance)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
+        if template is not None:
+            pulumi.set(__self__, "template", template)
+
+    @property
+    @pulumi.getter(name="disableProvenance")
+    def disable_provenance(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow modifying the message template from other sources than Terraform or the Grafana API.
+        """
+        return pulumi.get(self, "disable_provenance")
+
+    @disable_provenance.setter
+    def disable_provenance(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_provenance", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the message template.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter
@@ -95,7 +159,9 @@ class MessageTemplate(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 disable_provenance: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -126,7 +192,9 @@ class MessageTemplate(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] disable_provenance: Allow modifying the message template from other sources than Terraform or the Grafana API.
         :param pulumi.Input[str] name: The name of the message template.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] template: The content of the message template.
         """
         ...
@@ -176,7 +244,9 @@ class MessageTemplate(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 disable_provenance: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -187,7 +257,9 @@ class MessageTemplate(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = MessageTemplateArgs.__new__(MessageTemplateArgs)
 
+            __props__.__dict__["disable_provenance"] = disable_provenance
             __props__.__dict__["name"] = name
+            __props__.__dict__["org_id"] = org_id
             if template is None and not opts.urn:
                 raise TypeError("Missing required property 'template'")
             __props__.__dict__["template"] = template
@@ -201,7 +273,9 @@ class MessageTemplate(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            disable_provenance: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
             template: Optional[pulumi.Input[str]] = None) -> 'MessageTemplate':
         """
         Get an existing MessageTemplate resource's state with the given name, id, and optional extra
@@ -210,16 +284,28 @@ class MessageTemplate(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] disable_provenance: Allow modifying the message template from other sources than Terraform or the Grafana API.
         :param pulumi.Input[str] name: The name of the message template.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] template: The content of the message template.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _MessageTemplateState.__new__(_MessageTemplateState)
 
+        __props__.__dict__["disable_provenance"] = disable_provenance
         __props__.__dict__["name"] = name
+        __props__.__dict__["org_id"] = org_id
         __props__.__dict__["template"] = template
         return MessageTemplate(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="disableProvenance")
+    def disable_provenance(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Allow modifying the message template from other sources than Terraform or the Grafana API.
+        """
+        return pulumi.get(self, "disable_provenance")
 
     @property
     @pulumi.getter
@@ -228,6 +314,14 @@ class MessageTemplate(pulumi.CustomResource):
         The name of the message template.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter

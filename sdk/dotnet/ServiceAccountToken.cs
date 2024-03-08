@@ -26,14 +26,19 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var test = new Grafana.ServiceAccount("test", new()
+    ///     {
+    ///         Role = "Viewer",
+    ///     });
+    /// 
     ///     var foo = new Grafana.ServiceAccountToken("foo", new()
     ///     {
-    ///         ServiceAccountId = "1",
+    ///         ServiceAccountId = test.Id,
     ///     });
     /// 
     ///     var bar = new Grafana.ServiceAccountToken("bar", new()
     ///     {
-    ///         ServiceAccountId = "1",
+    ///         ServiceAccountId = test.Id,
     ///         SecondsToLive = 30,
     ///     });
     /// 
@@ -48,21 +53,39 @@ namespace Pulumiverse.Grafana
     [GrafanaResourceType("grafana:index/serviceAccountToken:ServiceAccountToken")]
     public partial class ServiceAccountToken : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The expiration date of the service account token.
+        /// </summary>
         [Output("expiration")]
         public Output<string> Expiration { get; private set; } = null!;
 
+        /// <summary>
+        /// The status of the service account token.
+        /// </summary>
         [Output("hasExpired")]
         public Output<bool> HasExpired { get; private set; } = null!;
 
+        /// <summary>
+        /// The key of the service account token.
+        /// </summary>
         [Output("key")]
         public Output<string> Key { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the service account token.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
+        /// </summary>
         [Output("secondsToLive")]
         public Output<int?> SecondsToLive { get; private set; } = null!;
 
+        /// <summary>
+        /// The ID of the service account to which the token belongs.
+        /// </summary>
         [Output("serviceAccountId")]
         public Output<string> ServiceAccountId { get; private set; } = null!;
 
@@ -117,12 +140,21 @@ namespace Pulumiverse.Grafana
 
     public sealed class ServiceAccountTokenArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the service account token.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
+        /// </summary>
         [Input("secondsToLive")]
         public Input<int>? SecondsToLive { get; set; }
 
+        /// <summary>
+        /// The ID of the service account to which the token belongs.
+        /// </summary>
         [Input("serviceAccountId", required: true)]
         public Input<string> ServiceAccountId { get; set; } = null!;
 
@@ -134,14 +166,24 @@ namespace Pulumiverse.Grafana
 
     public sealed class ServiceAccountTokenState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The expiration date of the service account token.
+        /// </summary>
         [Input("expiration")]
         public Input<string>? Expiration { get; set; }
 
+        /// <summary>
+        /// The status of the service account token.
+        /// </summary>
         [Input("hasExpired")]
         public Input<bool>? HasExpired { get; set; }
 
         [Input("key")]
         private Input<string>? _key;
+
+        /// <summary>
+        /// The key of the service account token.
+        /// </summary>
         public Input<string>? Key
         {
             get => _key;
@@ -152,12 +194,21 @@ namespace Pulumiverse.Grafana
             }
         }
 
+        /// <summary>
+        /// The name of the service account token.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
+        /// </summary>
         [Input("secondsToLive")]
         public Input<int>? SecondsToLive { get; set; }
 
+        /// <summary>
+        /// The ID of the service account to which the token belongs.
+        /// </summary>
         [Input("serviceAccountId")]
         public Input<string>? ServiceAccountId { get; set; }
 

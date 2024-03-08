@@ -145,7 +145,10 @@ class FolderPermission(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         team = grafana.Team("team")
-        user = grafana.User("user", email="user.name@example.com")
+        user = grafana.User("user",
+            email="user.name@example.com",
+            login="user.name",
+            password="my-password")
         collection = grafana.Folder("collection", title="Folder Title")
         collection_permission = grafana.FolderPermission("collectionPermission",
             folder_uid=collection.uid,
@@ -199,7 +202,10 @@ class FolderPermission(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         team = grafana.Team("team")
-        user = grafana.User("user", email="user.name@example.com")
+        user = grafana.User("user",
+            email="user.name@example.com",
+            login="user.name",
+            password="my-password")
         collection = grafana.Folder("collection", title="Folder Title")
         collection_permission = grafana.FolderPermission("collectionPermission",
             folder_uid=collection.uid,

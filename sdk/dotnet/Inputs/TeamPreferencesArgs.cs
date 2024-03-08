@@ -22,6 +22,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("timezone")]
         public Input<string>? Timezone { get; set; }
 
+        [Input("weekStart")]
+        public Input<string>? WeekStart { get; set; }
+
         public TeamPreferencesArgs()
         {
         }

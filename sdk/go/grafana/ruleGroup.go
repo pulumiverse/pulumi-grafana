@@ -152,6 +152,8 @@ import (
 type RuleGroup struct {
 	pulumi.CustomResourceState
 
+	// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+	DisableProvenance pulumi.BoolPtrOutput `pulumi:"disableProvenance"`
 	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringOutput `pulumi:"folderUid"`
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
@@ -203,6 +205,8 @@ func GetRuleGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RuleGroup resources.
 type ruleGroupState struct {
+	// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The UID of the folder that the group belongs to.
 	FolderUid *string `pulumi:"folderUid"`
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
@@ -216,6 +220,8 @@ type ruleGroupState struct {
 }
 
 type RuleGroupState struct {
+	// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+	DisableProvenance pulumi.BoolPtrInput
 	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringPtrInput
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
@@ -233,6 +239,8 @@ func (RuleGroupState) ElementType() reflect.Type {
 }
 
 type ruleGroupArgs struct {
+	// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The UID of the folder that the group belongs to.
 	FolderUid string `pulumi:"folderUid"`
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
@@ -247,6 +255,8 @@ type ruleGroupArgs struct {
 
 // The set of arguments for constructing a RuleGroup resource.
 type RuleGroupArgs struct {
+	// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+	DisableProvenance pulumi.BoolPtrInput
 	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringInput
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
@@ -368,6 +378,11 @@ func (o RuleGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*RuleGroup
 	return pulumix.Output[*RuleGroup]{
 		OutputState: o.OutputState,
 	}
+}
+
+// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+func (o RuleGroupOutput) DisableProvenance() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RuleGroup) pulumi.BoolPtrOutput { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
 }
 
 // The UID of the folder that the group belongs to.

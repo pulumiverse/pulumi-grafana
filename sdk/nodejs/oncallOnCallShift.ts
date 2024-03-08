@@ -58,7 +58,7 @@ export class OncallOnCallShift extends pulumi.CustomResource {
      */
     public readonly duration!: pulumi.Output<number>;
     /**
-     * The frequency of the event. Can be daily, weekly, monthly
+     * The frequency of the event. Can be hourly, daily, weekly, monthly
      */
     public readonly frequency!: pulumi.Output<string | undefined>;
     /**
@@ -189,7 +189,7 @@ export interface OncallOnCallShiftState {
      */
     duration?: pulumi.Input<number>;
     /**
-     * The frequency of the event. Can be daily, weekly, monthly
+     * The frequency of the event. Can be hourly, daily, weekly, monthly
      */
     frequency?: pulumi.Input<string>;
     /**
@@ -259,7 +259,7 @@ export interface OncallOnCallShiftArgs {
      */
     duration: pulumi.Input<number>;
     /**
-     * The frequency of the event. Can be daily, weekly, monthly
+     * The frequency of the event. Can be hourly, daily, weekly, monthly
      */
     frequency?: pulumi.Input<string>;
     /**

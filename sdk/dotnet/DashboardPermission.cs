@@ -19,8 +19,8 @@ namespace Pulumiverse.Grafana
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
-    /// using System.IO;
     /// using System.Linq;
+    /// using System.Text.Json;
     /// using Pulumi;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
@@ -31,11 +31,17 @@ namespace Pulumiverse.Grafana
     ///     var user = new Grafana.User("user", new()
     ///     {
     ///         Email = "user.name@example.com",
+    ///         Password = "my-password",
+    ///         Login = "user.name",
     ///     });
     /// 
     ///     var metrics = new Grafana.Dashboard("metrics", new()
     ///     {
-    ///         ConfigJson = File.ReadAllText("grafana-dashboard.json"),
+    ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["title"] = "My Dashboard",
+    ///             ["uid"] = "my-dashboard-uid",
+    ///         }),
     ///     });
     /// 
     ///     var collectionPermission = new Grafana.DashboardPermission("collectionPermission", new()

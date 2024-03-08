@@ -29,10 +29,18 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.NewTeam(ctx, "test-team", &grafana.TeamArgs{
+//			viewer, err := grafana.NewUser(ctx, "viewer", &grafana.UserArgs{
+//				Email:    pulumi.String("viewer@example.com"),
+//				Login:    pulumi.String("viewer"),
+//				Password: pulumi.String("my-password"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = grafana.NewTeam(ctx, "test-team", &grafana.TeamArgs{
 //				Email: pulumi.String("teamemail@example.com"),
 //				Members: pulumi.StringArray{
-//					pulumi.String("viewer-01@example.com"),
+//					viewer.Email,
 //				},
 //			})
 //			if err != nil {

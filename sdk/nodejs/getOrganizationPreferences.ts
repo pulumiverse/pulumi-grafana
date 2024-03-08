@@ -41,7 +41,9 @@ export interface GetOrganizationPreferencesArgs {
  */
 export interface GetOrganizationPreferencesResult {
     /**
-     * The Organization home dashboard ID.
+     * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
+     *
+     * @deprecated Use `home_dashboard_uid` instead.
      */
     readonly homeDashboardId: number;
     /**
@@ -57,7 +59,7 @@ export interface GetOrganizationPreferencesResult {
      */
     readonly orgId?: string;
     /**
-     * The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+     * The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
      */
     readonly theme: string;
     /**
@@ -65,7 +67,7 @@ export interface GetOrganizationPreferencesResult {
      */
     readonly timezone: string;
     /**
-     * The Organization week start.
+     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
      */
     readonly weekStart: string;
 }

@@ -11,13 +11,16 @@ using Pulumi;
 namespace Pulumiverse.Grafana
 {
     /// <summary>
-    /// **Note:** This resource is available only with Grafana 9.1+.
-    /// 
     /// Manages service accounts of a Grafana Cloud stack using the Cloud API
     /// This can be used to bootstrap a management service account for a new stack
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
     /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+    /// 
+    /// Required access policy scopes:
+    /// 
+    /// * stacks:read
+    /// * stack-service-accounts:write
     /// 
     /// ## Example Usage
     /// 
