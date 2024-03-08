@@ -4,6 +4,18 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const test = grafana.getCloudOrganization({
+ *     slug: "my-org",
+ * });
+ * ```
+ */
 export function getCloudOrganization(args?: GetCloudOrganizationArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudOrganizationResult> {
     args = args || {};
 
@@ -39,6 +51,18 @@ export interface GetCloudOrganizationResult {
     readonly updatedAt: string;
     readonly url: string;
 }
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const test = grafana.getCloudOrganization({
+ *     slug: "my-org",
+ * });
+ * ```
+ */
 export function getCloudOrganizationOutput(args?: GetCloudOrganizationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudOrganizationResult> {
     return pulumi.output(args).apply((a: any) => getCloudOrganization(a, opts))
 }

@@ -16,6 +16,7 @@ namespace Pulumiverse.Grafana.Outputs
     {
         public readonly ImmutableArray<Outputs.GetSlosSloAlertingResult> Alertings;
         public readonly string Description;
+        public readonly ImmutableArray<Outputs.GetSlosSloDestinationDatasourceResult> DestinationDatasources;
         public readonly ImmutableArray<Outputs.GetSlosSloLabelResult> Labels;
         public readonly string Name;
         public readonly ImmutableArray<Outputs.GetSlosSloObjectiveResult> Objectives;
@@ -27,6 +28,8 @@ namespace Pulumiverse.Grafana.Outputs
             ImmutableArray<Outputs.GetSlosSloAlertingResult> alertings,
 
             string description,
+
+            ImmutableArray<Outputs.GetSlosSloDestinationDatasourceResult> destinationDatasources,
 
             ImmutableArray<Outputs.GetSlosSloLabelResult> labels,
 
@@ -40,6 +43,7 @@ namespace Pulumiverse.Grafana.Outputs
         {
             Alertings = alertings;
             Description = description;
+            DestinationDatasources = destinationDatasources;
             Labels = labels;
             Name = name;
             Objectives = objectives;

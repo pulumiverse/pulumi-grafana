@@ -56,6 +56,10 @@ export class SLO extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string>;
     /**
+     * Destination Datasource sets the datasource defined for an SLO
+     */
+    public readonly destinationDatasource!: pulumi.Output<outputs.SLODestinationDatasource | undefined>;
+    /**
      * Labels to attach only to Fast Burn alerts.
      */
     public readonly labels!: pulumi.Output<outputs.SLOLabel[] | undefined>;
@@ -87,6 +91,7 @@ export class SLO extends pulumi.CustomResource {
             const state = argsOrState as SLOState | undefined;
             resourceInputs["alertings"] = state ? state.alertings : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["destinationDatasource"] = state ? state.destinationDatasource : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["objectives"] = state ? state.objectives : undefined;
@@ -104,6 +109,7 @@ export class SLO extends pulumi.CustomResource {
             }
             resourceInputs["alertings"] = args ? args.alertings : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["destinationDatasource"] = args ? args.destinationDatasource : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["objectives"] = args ? args.objectives : undefined;
@@ -130,6 +136,10 @@ export interface SLOState {
      * Description is a free-text field that can provide more context to an SLO.
      */
     description?: pulumi.Input<string>;
+    /**
+     * Destination Datasource sets the datasource defined for an SLO
+     */
+    destinationDatasource?: pulumi.Input<inputs.SLODestinationDatasource>;
     /**
      * Labels to attach only to Fast Burn alerts.
      */
@@ -164,6 +174,10 @@ export interface SLOArgs {
      * Description is a free-text field that can provide more context to an SLO.
      */
     description: pulumi.Input<string>;
+    /**
+     * Destination Datasource sets the datasource defined for an SLO
+     */
+    destinationDatasource?: pulumi.Input<inputs.SLODestinationDatasource>;
     /**
      * Labels to attach only to Fast Burn alerts.
      */

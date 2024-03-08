@@ -28,11 +28,23 @@ import * as utilities from "./utilities";
  * const test = grafana.getFolders({});
  * ```
  */
-export function getFolders(opts?: pulumi.InvokeOptions): Promise<GetFoldersResult> {
+export function getFolders(args?: GetFoldersArgs, opts?: pulumi.InvokeOptions): Promise<GetFoldersResult> {
+    args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getFolders:getFolders", {
+        "orgId": args.orgId,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getFolders.
+ */
+export interface GetFoldersArgs {
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: string;
 }
 
 /**
@@ -47,6 +59,10 @@ export interface GetFoldersResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    readonly orgId?: string;
 }
 /**
  * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
@@ -70,6 +86,16 @@ export interface GetFoldersResult {
  * const test = grafana.getFolders({});
  * ```
  */
-export function getFoldersOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetFoldersResult> {
-    return pulumi.output(getFolders(opts))
+export function getFoldersOutput(args?: GetFoldersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFoldersResult> {
+    return pulumi.output(args).apply((a: any) => getFolders(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getFolders.
+ */
+export interface GetFoldersOutputArgs {
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
 }

@@ -152,9 +152,9 @@ export class RuleGroup extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The ID of the org to which the group belongs.
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string>;
+    public readonly orgId!: pulumi.Output<string | undefined>;
     /**
      * The rules within the group.
      */
@@ -185,9 +185,6 @@ export class RuleGroup extends pulumi.CustomResource {
             }
             if ((!args || args.intervalSeconds === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'intervalSeconds'");
-            }
-            if ((!args || args.orgId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'orgId'");
             }
             if ((!args || args.rules === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'rules'");
@@ -220,7 +217,7 @@ export interface RuleGroupState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the org to which the group belongs.
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
     orgId?: pulumi.Input<string>;
     /**
@@ -246,9 +243,9 @@ export interface RuleGroupArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the org to which the group belongs.
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    orgId: pulumi.Input<string>;
+    orgId?: pulumi.Input<string>;
     /**
      * The rules within the group.
      */

@@ -17,11 +17,23 @@ import * as utilities from "./utilities";
  * const test = grafana.getOrganizationPreferences({});
  * ```
  */
-export function getOrganizationPreferences(opts?: pulumi.InvokeOptions): Promise<GetOrganizationPreferencesResult> {
+export function getOrganizationPreferences(args?: GetOrganizationPreferencesArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationPreferencesResult> {
+    args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOrganizationPreferences:getOrganizationPreferences", {
+        "orgId": args.orgId,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getOrganizationPreferences.
+ */
+export interface GetOrganizationPreferencesArgs {
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: string;
 }
 
 /**
@@ -43,7 +55,7 @@ export interface GetOrganizationPreferencesResult {
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    readonly orgId: string;
+    readonly orgId?: string;
     /**
      * The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
      */
@@ -70,6 +82,16 @@ export interface GetOrganizationPreferencesResult {
  * const test = grafana.getOrganizationPreferences({});
  * ```
  */
-export function getOrganizationPreferencesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationPreferencesResult> {
-    return pulumi.output(getOrganizationPreferences(opts))
+export function getOrganizationPreferencesOutput(args?: GetOrganizationPreferencesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationPreferencesResult> {
+    return pulumi.output(args).apply((a: any) => getOrganizationPreferences(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getOrganizationPreferences.
+ */
+export interface GetOrganizationPreferencesOutputArgs {
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
 }

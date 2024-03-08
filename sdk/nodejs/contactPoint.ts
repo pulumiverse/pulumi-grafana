@@ -95,9 +95,13 @@ export class ContactPoint extends pulumi.CustomResource {
      */
     public readonly lines!: pulumi.Output<outputs.ContactPointLine[] | undefined>;
     /**
-     * The name of the contact point.
+     * Name of the responder. Must be specified if username and id are empty.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * A contact point that sends notifications to Grafana On-Call.
+     */
+    public readonly oncalls!: pulumi.Output<outputs.ContactPointOncall[] | undefined>;
     /**
      * A contact point that sends notifications to OpsGenie.
      */
@@ -168,6 +172,7 @@ export class ContactPoint extends pulumi.CustomResource {
             resourceInputs["kafkas"] = state ? state.kafkas : undefined;
             resourceInputs["lines"] = state ? state.lines : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["oncalls"] = state ? state.oncalls : undefined;
             resourceInputs["opsgenies"] = state ? state.opsgenies : undefined;
             resourceInputs["pagerduties"] = state ? state.pagerduties : undefined;
             resourceInputs["pushovers"] = state ? state.pushovers : undefined;
@@ -190,6 +195,7 @@ export class ContactPoint extends pulumi.CustomResource {
             resourceInputs["kafkas"] = args ? args.kafkas : undefined;
             resourceInputs["lines"] = args ? args.lines : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["oncalls"] = args ? args.oncalls : undefined;
             resourceInputs["opsgenies"] = args ? args.opsgenies : undefined;
             resourceInputs["pagerduties"] = args ? args.pagerduties : undefined;
             resourceInputs["pushovers"] = args ? args.pushovers : undefined;
@@ -241,9 +247,13 @@ export interface ContactPointState {
      */
     lines?: pulumi.Input<pulumi.Input<inputs.ContactPointLine>[]>;
     /**
-     * The name of the contact point.
+     * Name of the responder. Must be specified if username and id are empty.
      */
     name?: pulumi.Input<string>;
+    /**
+     * A contact point that sends notifications to Grafana On-Call.
+     */
+    oncalls?: pulumi.Input<pulumi.Input<inputs.ContactPointOncall>[]>;
     /**
      * A contact point that sends notifications to OpsGenie.
      */
@@ -327,9 +337,13 @@ export interface ContactPointArgs {
      */
     lines?: pulumi.Input<pulumi.Input<inputs.ContactPointLine>[]>;
     /**
-     * The name of the contact point.
+     * Name of the responder. Must be specified if username and id are empty.
      */
     name?: pulumi.Input<string>;
+    /**
+     * A contact point that sends notifications to Grafana On-Call.
+     */
+    oncalls?: pulumi.Input<pulumi.Input<inputs.ContactPointOncall>[]>;
     /**
      * A contact point that sends notifications to OpsGenie.
      */

@@ -16,18 +16,17 @@ __all__ = ['DashboardPermissionArgs', 'DashboardPermission']
 @pulumi.input_type
 class DashboardPermissionArgs:
     def __init__(__self__, *,
-                 permissions: pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]],
                  dashboard_id: Optional[pulumi.Input[int]] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
-                 org_id: Optional[pulumi.Input[str]] = None):
+                 org_id: Optional[pulumi.Input[str]] = None,
+                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]]] = None):
         """
         The set of arguments for constructing a DashboardPermission resource.
-        :param pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         :param pulumi.Input[int] dashboard_id: ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
         :param pulumi.Input[str] dashboard_uid: UID of the dashboard to apply permissions to.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
-        pulumi.set(__self__, "permissions", permissions)
         if dashboard_id is not None:
             warnings.warn("""use `dashboard_uid` instead""", DeprecationWarning)
             pulumi.log.warn("""dashboard_id is deprecated: use `dashboard_uid` instead""")
@@ -37,18 +36,8 @@ class DashboardPermissionArgs:
             pulumi.set(__self__, "dashboard_uid", dashboard_uid)
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
-
-    @property
-    @pulumi.getter
-    def permissions(self) -> pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]]:
-        """
-        The permission items to add/update. Items that are omitted from the list will be removed.
-        """
-        return pulumi.get(self, "permissions")
-
-    @permissions.setter
-    def permissions(self, value: pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]]):
-        pulumi.set(self, "permissions", value)
+        if permissions is not None:
+            pulumi.set(__self__, "permissions", permissions)
 
     @property
     @pulumi.getter(name="dashboardId")
@@ -88,6 +77,18 @@ class DashboardPermissionArgs:
     @org_id.setter
     def org_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "org_id", value)
+
+    @property
+    @pulumi.getter
+    def permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]]]:
+        """
+        The permission items to add/update. Items that are omitted from the list will be removed.
+        """
+        return pulumi.get(self, "permissions")
+
+    @permissions.setter
+    def permissions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]]]):
+        pulumi.set(self, "permissions", value)
 
 
 @pulumi.input_type
@@ -179,6 +180,7 @@ class DashboardPermission(pulumi.CustomResource):
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DashboardPermissionPermissionArgs']]]]] = None,
                  __props__=None):
         """
+        Manages the entire set of permissions for a dashboard. Permissions that aren't specified when applying this resource will be removed.
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard_permissions/)
 
@@ -226,9 +228,10 @@ class DashboardPermission(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: DashboardPermissionArgs,
+                 args: Optional[DashboardPermissionArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages the entire set of permissions for a dashboard. Permissions that aren't specified when applying this resource will be removed.
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard_permissions/)
 
@@ -296,8 +299,6 @@ class DashboardPermission(pulumi.CustomResource):
             __props__.__dict__["dashboard_id"] = dashboard_id
             __props__.__dict__["dashboard_uid"] = dashboard_uid
             __props__.__dict__["org_id"] = org_id
-            if permissions is None and not opts.urn:
-                raise TypeError("Missing required property 'permissions'")
             __props__.__dict__["permissions"] = permissions
         super(DashboardPermission, __self__).__init__(
             'grafana:index/dashboardPermission:DashboardPermission',
@@ -364,7 +365,7 @@ class DashboardPermission(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def permissions(self) -> pulumi.Output[Sequence['outputs.DashboardPermissionPermission']]:
+    def permissions(self) -> pulumi.Output[Optional[Sequence['outputs.DashboardPermissionPermission']]]:
         """
         The permission items to add/update. Items that are omitted from the list will be removed.
         """

@@ -28,6 +28,7 @@
         "contactPoint.ts",
         "dashboard.ts",
         "dashboardPermission.ts",
+        "dashboardPublic.ts",
         "dataSource.ts",
         "dataSourcePermission.ts",
         "folder.ts",

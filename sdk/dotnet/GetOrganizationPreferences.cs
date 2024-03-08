@@ -35,8 +35,8 @@ namespace Pulumiverse.Grafana
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Task<GetOrganizationPreferencesResult> InvokeAsync(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationPreferencesResult>("grafana:index/getOrganizationPreferences:getOrganizationPreferences", InvokeArgs.Empty, options.WithDefaults());
+        public static Task<GetOrganizationPreferencesResult> InvokeAsync(GetOrganizationPreferencesArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationPreferencesResult>("grafana:index/getOrganizationPreferences:getOrganizationPreferences", args ?? new GetOrganizationPreferencesArgs(), options.WithDefaults());
 
         /// <summary>
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
@@ -61,8 +61,37 @@ namespace Pulumiverse.Grafana
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Output<GetOrganizationPreferencesResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationPreferencesResult>("grafana:index/getOrganizationPreferences:getOrganizationPreferences", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetOrganizationPreferencesResult> Invoke(GetOrganizationPreferencesInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationPreferencesResult>("grafana:index/getOrganizationPreferences:getOrganizationPreferences", args ?? new GetOrganizationPreferencesInvokeArgs(), options.WithDefaults());
+    }
+
+
+    public sealed class GetOrganizationPreferencesArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public string? OrgId { get; set; }
+
+        public GetOrganizationPreferencesArgs()
+        {
+        }
+        public static new GetOrganizationPreferencesArgs Empty => new GetOrganizationPreferencesArgs();
+    }
+
+    public sealed class GetOrganizationPreferencesInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
+        public GetOrganizationPreferencesInvokeArgs()
+        {
+        }
+        public static new GetOrganizationPreferencesInvokeArgs Empty => new GetOrganizationPreferencesInvokeArgs();
     }
 
 
@@ -84,7 +113,7 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
         /// </summary>
-        public readonly string OrgId;
+        public readonly string? OrgId;
         /// <summary>
         /// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
         /// </summary>
@@ -106,7 +135,7 @@ namespace Pulumiverse.Grafana
 
             string id,
 
-            string orgId,
+            string? orgId,
 
             string theme,
 

@@ -21,7 +21,7 @@ class GetDashboardResult:
     """
     A collection of values returned by getDashboard.
     """
-    def __init__(__self__, config_json=None, dashboard_id=None, folder=None, id=None, is_starred=None, slug=None, title=None, uid=None, url=None, version=None):
+    def __init__(__self__, config_json=None, dashboard_id=None, folder=None, id=None, is_starred=None, org_id=None, slug=None, title=None, uid=None, url=None, version=None):
         if config_json and not isinstance(config_json, str):
             raise TypeError("Expected argument 'config_json' to be a str")
         pulumi.set(__self__, "config_json", config_json)
@@ -37,6 +37,9 @@ class GetDashboardResult:
         if is_starred and not isinstance(is_starred, bool):
             raise TypeError("Expected argument 'is_starred' to be a bool")
         pulumi.set(__self__, "is_starred", is_starred)
+        if org_id and not isinstance(org_id, str):
+            raise TypeError("Expected argument 'org_id' to be a str")
+        pulumi.set(__self__, "org_id", org_id)
         if slug and not isinstance(slug, str):
             raise TypeError("Expected argument 'slug' to be a str")
         pulumi.set(__self__, "slug", slug)
@@ -94,6 +97,14 @@ class GetDashboardResult:
         return pulumi.get(self, "is_starred")
 
     @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[str]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @property
     @pulumi.getter
     def slug(self) -> str:
         """
@@ -145,6 +156,7 @@ class AwaitableGetDashboardResult(GetDashboardResult):
             folder=self.folder,
             id=self.id,
             is_starred=self.is_starred,
+            org_id=self.org_id,
             slug=self.slug,
             title=self.title,
             uid=self.uid,
@@ -153,6 +165,7 @@ class AwaitableGetDashboardResult(GetDashboardResult):
 
 
 def get_dashboard(dashboard_id: Optional[int] = None,
+                  org_id: Optional[str] = None,
                   uid: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDashboardResult:
     """
@@ -184,10 +197,12 @@ def get_dashboard(dashboard_id: Optional[int] = None,
 
 
     :param int dashboard_id: The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     :param str uid: The uid of the Grafana dashboard. Specify either this or `dashboard_id`. Defaults to ``.
     """
     __args__ = dict()
     __args__['dashboardId'] = dashboard_id
+    __args__['orgId'] = org_id
     __args__['uid'] = uid
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('grafana:index/getDashboard:getDashboard', __args__, opts=opts, typ=GetDashboardResult).value
@@ -198,6 +213,7 @@ def get_dashboard(dashboard_id: Optional[int] = None,
         folder=pulumi.get(__ret__, 'folder'),
         id=pulumi.get(__ret__, 'id'),
         is_starred=pulumi.get(__ret__, 'is_starred'),
+        org_id=pulumi.get(__ret__, 'org_id'),
         slug=pulumi.get(__ret__, 'slug'),
         title=pulumi.get(__ret__, 'title'),
         uid=pulumi.get(__ret__, 'uid'),
@@ -207,6 +223,7 @@ def get_dashboard(dashboard_id: Optional[int] = None,
 
 @_utilities.lift_output_func(get_dashboard)
 def get_dashboard_output(dashboard_id: Optional[pulumi.Input[Optional[int]]] = None,
+                         org_id: Optional[pulumi.Input[Optional[str]]] = None,
                          uid: Optional[pulumi.Input[Optional[str]]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDashboardResult]:
     """
@@ -238,6 +255,7 @@ def get_dashboard_output(dashboard_id: Optional[pulumi.Input[Optional[int]]] = N
 
 
     :param int dashboard_id: The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     :param str uid: The uid of the Grafana dashboard. Specify either this or `dashboard_id`. Defaults to ``.
     """
     ...

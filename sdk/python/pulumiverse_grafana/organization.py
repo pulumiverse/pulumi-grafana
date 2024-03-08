@@ -19,6 +19,7 @@ class OrganizationArgs:
                  create_users: Optional[pulumi.Input[bool]] = None,
                  editors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 users_without_accesses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  viewers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Organization resource.
@@ -39,6 +40,9 @@ class OrganizationArgs:
                access to the organization. Note: users specified here must already exist in
                Grafana unless 'create_users' is set to true.
         :param pulumi.Input[str] name: The display name for the Grafana organization created.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] users_without_accesses: A list of email addresses corresponding to users who should be given none access to the organization.
+               Note: users specified here must already exist in Grafana, unless 'create_users' is
+               set to true. This feature is only available in Grafana 10.2+.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] viewers: A list of email addresses corresponding to users who should be given viewer
                access to the organization. Note: users specified here must already exist in
                Grafana unless 'create_users' is set to true.
@@ -53,6 +57,8 @@ class OrganizationArgs:
             pulumi.set(__self__, "editors", editors)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if users_without_accesses is not None:
+            pulumi.set(__self__, "users_without_accesses", users_without_accesses)
         if viewers is not None:
             pulumi.set(__self__, "viewers", viewers)
 
@@ -129,6 +135,20 @@ class OrganizationArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="usersWithoutAccesses")
+    def users_without_accesses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of email addresses corresponding to users who should be given none access to the organization.
+        Note: users specified here must already exist in Grafana, unless 'create_users' is
+        set to true. This feature is only available in Grafana 10.2+.
+        """
+        return pulumi.get(self, "users_without_accesses")
+
+    @users_without_accesses.setter
+    def users_without_accesses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "users_without_accesses", value)
+
+    @property
     @pulumi.getter
     def viewers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -152,6 +172,7 @@ class _OrganizationState:
                  editors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[int]] = None,
+                 users_without_accesses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  viewers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Organization resources.
@@ -173,6 +194,9 @@ class _OrganizationState:
                Grafana unless 'create_users' is set to true.
         :param pulumi.Input[str] name: The display name for the Grafana organization created.
         :param pulumi.Input[int] org_id: The organization id assigned to this organization by Grafana.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] users_without_accesses: A list of email addresses corresponding to users who should be given none access to the organization.
+               Note: users specified here must already exist in Grafana, unless 'create_users' is
+               set to true. This feature is only available in Grafana 10.2+.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] viewers: A list of email addresses corresponding to users who should be given viewer
                access to the organization. Note: users specified here must already exist in
                Grafana unless 'create_users' is set to true.
@@ -189,6 +213,8 @@ class _OrganizationState:
             pulumi.set(__self__, "name", name)
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
+        if users_without_accesses is not None:
+            pulumi.set(__self__, "users_without_accesses", users_without_accesses)
         if viewers is not None:
             pulumi.set(__self__, "viewers", viewers)
 
@@ -277,6 +303,20 @@ class _OrganizationState:
         pulumi.set(self, "org_id", value)
 
     @property
+    @pulumi.getter(name="usersWithoutAccesses")
+    def users_without_accesses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of email addresses corresponding to users who should be given none access to the organization.
+        Note: users specified here must already exist in Grafana, unless 'create_users' is
+        set to true. This feature is only available in Grafana 10.2+.
+        """
+        return pulumi.get(self, "users_without_accesses")
+
+    @users_without_accesses.setter
+    def users_without_accesses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "users_without_accesses", value)
+
+    @property
     @pulumi.getter
     def viewers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -301,6 +341,7 @@ class Organization(pulumi.CustomResource):
                  create_users: Optional[pulumi.Input[bool]] = None,
                  editors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 users_without_accesses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  viewers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
@@ -356,6 +397,9 @@ class Organization(pulumi.CustomResource):
                access to the organization. Note: users specified here must already exist in
                Grafana unless 'create_users' is set to true.
         :param pulumi.Input[str] name: The display name for the Grafana organization created.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] users_without_accesses: A list of email addresses corresponding to users who should be given none access to the organization.
+               Note: users specified here must already exist in Grafana, unless 'create_users' is
+               set to true. This feature is only available in Grafana 10.2+.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] viewers: A list of email addresses corresponding to users who should be given viewer
                access to the organization. Note: users specified here must already exist in
                Grafana unless 'create_users' is set to true.
@@ -420,6 +464,7 @@ class Organization(pulumi.CustomResource):
                  create_users: Optional[pulumi.Input[bool]] = None,
                  editors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 users_without_accesses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  viewers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -435,6 +480,7 @@ class Organization(pulumi.CustomResource):
             __props__.__dict__["create_users"] = create_users
             __props__.__dict__["editors"] = editors
             __props__.__dict__["name"] = name
+            __props__.__dict__["users_without_accesses"] = users_without_accesses
             __props__.__dict__["viewers"] = viewers
             __props__.__dict__["org_id"] = None
         super(Organization, __self__).__init__(
@@ -453,6 +499,7 @@ class Organization(pulumi.CustomResource):
             editors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[int]] = None,
+            users_without_accesses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             viewers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Organization':
         """
         Get an existing Organization resource's state with the given name, id, and optional extra
@@ -479,6 +526,9 @@ class Organization(pulumi.CustomResource):
                Grafana unless 'create_users' is set to true.
         :param pulumi.Input[str] name: The display name for the Grafana organization created.
         :param pulumi.Input[int] org_id: The organization id assigned to this organization by Grafana.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] users_without_accesses: A list of email addresses corresponding to users who should be given none access to the organization.
+               Note: users specified here must already exist in Grafana, unless 'create_users' is
+               set to true. This feature is only available in Grafana 10.2+.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] viewers: A list of email addresses corresponding to users who should be given viewer
                access to the organization. Note: users specified here must already exist in
                Grafana unless 'create_users' is set to true.
@@ -493,6 +543,7 @@ class Organization(pulumi.CustomResource):
         __props__.__dict__["editors"] = editors
         __props__.__dict__["name"] = name
         __props__.__dict__["org_id"] = org_id
+        __props__.__dict__["users_without_accesses"] = users_without_accesses
         __props__.__dict__["viewers"] = viewers
         return Organization(resource_name, opts=opts, __props__=__props__)
 
@@ -555,6 +606,16 @@ class Organization(pulumi.CustomResource):
         The organization id assigned to this organization by Grafana.
         """
         return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter(name="usersWithoutAccesses")
+    def users_without_accesses(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A list of email addresses corresponding to users who should be given none access to the organization.
+        Note: users specified here must already exist in Grafana, unless 'create_users' is
+        set to true. This feature is only available in Grafana 10.2+.
+        """
+        return pulumi.get(self, "users_without_accesses")
 
     @property
     @pulumi.getter

@@ -19,7 +19,9 @@ __all__ = [
     'ContactPointGooglechatArgs',
     'ContactPointKafkaArgs',
     'ContactPointLineArgs',
+    'ContactPointOncallArgs',
     'ContactPointOpsgenyArgs',
+    'ContactPointOpsgenyResponderArgs',
     'ContactPointPagerdutyArgs',
     'ContactPointPushoverArgs',
     'ContactPointSensugoArgs',
@@ -79,6 +81,7 @@ __all__ = [
     'SLOAlertingSlowburnArgs',
     'SLOAlertingSlowburnAnnotationArgs',
     'SLOAlertingSlowburnLabelArgs',
+    'SLODestinationDatasourceArgs',
     'SLOLabelArgs',
     'SLOObjectiveArgs',
     'SLOQueryArgs',
@@ -95,6 +98,14 @@ __all__ = [
     'SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs',
     'SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArgs',
     'SyntheticMonitoringCheckSettingsHttpTlsConfigArgs',
+    'SyntheticMonitoringCheckSettingsMultihttpArgs',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryArgs',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs',
     'SyntheticMonitoringCheckSettingsPingArgs',
     'SyntheticMonitoringCheckSettingsTcpArgs',
     'SyntheticMonitoringCheckSettingsTcpQueryResponseArgs',
@@ -1033,6 +1044,204 @@ class ContactPointLineArgs:
 
 
 @pulumi.input_type
+class ContactPointOncallArgs:
+    def __init__(__self__, *,
+                 url: pulumi.Input[str],
+                 authorization_credentials: Optional[pulumi.Input[str]] = None,
+                 authorization_scheme: Optional[pulumi.Input[str]] = None,
+                 basic_auth_password: Optional[pulumi.Input[str]] = None,
+                 basic_auth_user: Optional[pulumi.Input[str]] = None,
+                 disable_resolve_message: Optional[pulumi.Input[bool]] = None,
+                 http_method: Optional[pulumi.Input[str]] = None,
+                 max_alerts: Optional[pulumi.Input[int]] = None,
+                 message: Optional[pulumi.Input[str]] = None,
+                 settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
+                 uid: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] url: The URL to send webhook requests to.
+        :param pulumi.Input[str] authorization_credentials: Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.
+        :param pulumi.Input[str] authorization_scheme: Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.
+        :param pulumi.Input[str] basic_auth_password: The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+        :param pulumi.Input[str] basic_auth_user: The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+        :param pulumi.Input[bool] disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
+        :param pulumi.Input[str] http_method: The HTTP method to use in the request. Defaults to `POST`.
+        :param pulumi.Input[int] max_alerts: The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
+        :param pulumi.Input[str] message: Custom message. You can use template variables.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        :param pulumi.Input[str] title: Templated title of the message.
+        :param pulumi.Input[str] uid: The UID of the contact point.
+        """
+        pulumi.set(__self__, "url", url)
+        if authorization_credentials is not None:
+            pulumi.set(__self__, "authorization_credentials", authorization_credentials)
+        if authorization_scheme is not None:
+            pulumi.set(__self__, "authorization_scheme", authorization_scheme)
+        if basic_auth_password is not None:
+            pulumi.set(__self__, "basic_auth_password", basic_auth_password)
+        if basic_auth_user is not None:
+            pulumi.set(__self__, "basic_auth_user", basic_auth_user)
+        if disable_resolve_message is not None:
+            pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
+        if http_method is not None:
+            pulumi.set(__self__, "http_method", http_method)
+        if max_alerts is not None:
+            pulumi.set(__self__, "max_alerts", max_alerts)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if settings is not None:
+            pulumi.set(__self__, "settings", settings)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
+
+    @property
+    @pulumi.getter
+    def url(self) -> pulumi.Input[str]:
+        """
+        The URL to send webhook requests to.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "url", value)
+
+    @property
+    @pulumi.getter(name="authorizationCredentials")
+    def authorization_credentials(self) -> Optional[pulumi.Input[str]]:
+        """
+        Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.
+        """
+        return pulumi.get(self, "authorization_credentials")
+
+    @authorization_credentials.setter
+    def authorization_credentials(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "authorization_credentials", value)
+
+    @property
+    @pulumi.getter(name="authorizationScheme")
+    def authorization_scheme(self) -> Optional[pulumi.Input[str]]:
+        """
+        Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.
+        """
+        return pulumi.get(self, "authorization_scheme")
+
+    @authorization_scheme.setter
+    def authorization_scheme(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "authorization_scheme", value)
+
+    @property
+    @pulumi.getter(name="basicAuthPassword")
+    def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+        """
+        return pulumi.get(self, "basic_auth_password")
+
+    @basic_auth_password.setter
+    def basic_auth_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "basic_auth_password", value)
+
+    @property
+    @pulumi.getter(name="basicAuthUser")
+    def basic_auth_user(self) -> Optional[pulumi.Input[str]]:
+        """
+        The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+        """
+        return pulumi.get(self, "basic_auth_user")
+
+    @basic_auth_user.setter
+    def basic_auth_user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "basic_auth_user", value)
+
+    @property
+    @pulumi.getter(name="disableResolveMessage")
+    def disable_resolve_message(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        return pulumi.get(self, "disable_resolve_message")
+
+    @disable_resolve_message.setter
+    def disable_resolve_message(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_resolve_message", value)
+
+    @property
+    @pulumi.getter(name="httpMethod")
+    def http_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        The HTTP method to use in the request. Defaults to `POST`.
+        """
+        return pulumi.get(self, "http_method")
+
+    @http_method.setter
+    def http_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_method", value)
+
+    @property
+    @pulumi.getter(name="maxAlerts")
+    def max_alerts(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
+        """
+        return pulumi.get(self, "max_alerts")
+
+    @max_alerts.setter
+    def max_alerts(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_alerts", value)
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Custom message. You can use template variables.
+        """
+        return pulumi.get(self, "message")
+
+    @message.setter
+    def message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter
+    def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        return pulumi.get(self, "settings")
+
+    @settings.setter
+    def settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "settings", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        Templated title of the message.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
+
+    @property
+    @pulumi.getter
+    def uid(self) -> Optional[pulumi.Input[str]]:
+        """
+        The UID of the contact point.
+        """
+        return pulumi.get(self, "uid")
+
+    @uid.setter
+    def uid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "uid", value)
+
+
+@pulumi.input_type
 class ContactPointOpsgenyArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
@@ -1041,6 +1250,7 @@ class ContactPointOpsgenyArgs:
                  disable_resolve_message: Optional[pulumi.Input[bool]] = None,
                  message: Optional[pulumi.Input[str]] = None,
                  override_priority: Optional[pulumi.Input[bool]] = None,
+                 responders: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyResponderArgs']]]] = None,
                  send_tags_as: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
@@ -1052,6 +1262,7 @@ class ContactPointOpsgenyArgs:
         :param pulumi.Input[bool] disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param pulumi.Input[str] message: The templated content of the message.
         :param pulumi.Input[bool] override_priority: Whether to allow the alert priority to be configured via the value of the `og_priority` annotation on the alert.
+        :param pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyResponderArgs']]] responders: Teams, users, escalations and schedules that the alert will be routed to send notifications. If the API Key belongs to a team integration, this field will be overwritten with the owner team. This feature is available from Grafana 10.3+.
         :param pulumi.Input[str] send_tags_as: Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
         :param pulumi.Input[str] uid: The UID of the contact point.
@@ -1068,6 +1279,8 @@ class ContactPointOpsgenyArgs:
             pulumi.set(__self__, "message", message)
         if override_priority is not None:
             pulumi.set(__self__, "override_priority", override_priority)
+        if responders is not None:
+            pulumi.set(__self__, "responders", responders)
         if send_tags_as is not None:
             pulumi.set(__self__, "send_tags_as", send_tags_as)
         if settings is not None:
@@ -1150,6 +1363,18 @@ class ContactPointOpsgenyArgs:
         pulumi.set(self, "override_priority", value)
 
     @property
+    @pulumi.getter
+    def responders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyResponderArgs']]]]:
+        """
+        Teams, users, escalations and schedules that the alert will be routed to send notifications. If the API Key belongs to a team integration, this field will be overwritten with the owner team. This feature is available from Grafana 10.3+.
+        """
+        return pulumi.get(self, "responders")
+
+    @responders.setter
+    def responders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyResponderArgs']]]]):
+        pulumi.set(self, "responders", value)
+
+    @property
     @pulumi.getter(name="sendTagsAs")
     def send_tags_as(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1196,6 +1421,76 @@ class ContactPointOpsgenyArgs:
     @url.setter
     def url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "url", value)
+
+
+@pulumi.input_type
+class ContactPointOpsgenyResponderArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[str],
+                 id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] type: Type of the responder. Supported: team, teams, user, escalation, schedule or a template that is expanded to one of these values.
+        :param pulumi.Input[str] id: ID of the responder. Must be specified if name and username are empty.
+        :param pulumi.Input[str] name: Name of the responder. Must be specified if username and id are empty.
+        :param pulumi.Input[str] username: The user name to use when making a call to the Kafka REST Proxy
+        """
+        pulumi.set(__self__, "type", type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        Type of the responder. Supported: team, teams, user, escalation, schedule or a template that is expanded to one of these values.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the responder. Must be specified if name and username are empty.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the responder. Must be specified if username and id are empty.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The user name to use when making a call to the Kafka REST Proxy
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
 
 
 @pulumi.input_type
@@ -3180,7 +3475,7 @@ class DataSourcePermissionPermissionArgs:
                  team_id: Optional[pulumi.Input[str]] = None,
                  user_id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] permission: Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
+        :param pulumi.Input[str] permission: Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
         :param pulumi.Input[str] built_in_role: Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
         :param pulumi.Input[str] team_id: ID of the team to manage permissions for. Defaults to `0`.
         :param pulumi.Input[str] user_id: ID of the user or service account to manage permissions for. Defaults to `0`.
@@ -3197,7 +3492,7 @@ class DataSourcePermissionPermissionArgs:
     @pulumi.getter
     def permission(self) -> pulumi.Input[str]:
         """
-        Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
+        Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
         """
         return pulumi.get(self, "permission")
 
@@ -6041,6 +6336,29 @@ class SLOAlertingSlowburnLabelArgs:
 
 
 @pulumi.input_type
+class SLODestinationDatasourceArgs:
+    def __init__(__self__, *,
+                 uid: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] uid: UID for the Mimir Datasource
+        """
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
+
+    @property
+    @pulumi.getter
+    def uid(self) -> Optional[pulumi.Input[str]]:
+        """
+        UID for the Mimir Datasource
+        """
+        return pulumi.get(self, "uid")
+
+    @uid.setter
+    def uid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "uid", value)
+
+
+@pulumi.input_type
 class SLOLabelArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
@@ -6284,12 +6602,14 @@ class SyntheticMonitoringCheckSettingsArgs:
     def __init__(__self__, *,
                  dns: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsDnsArgs']] = None,
                  http: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsHttpArgs']] = None,
+                 multihttp: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpArgs']] = None,
                  ping: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsPingArgs']] = None,
                  tcp: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsTcpArgs']] = None,
                  traceroute: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsTracerouteArgs']] = None):
         """
         :param pulumi.Input['SyntheticMonitoringCheckSettingsDnsArgs'] dns: Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
         :param pulumi.Input['SyntheticMonitoringCheckSettingsHttpArgs'] http: Settings for HTTP check. The target must be a URL (http or https).
+        :param pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpArgs'] multihttp: Settings for MultiHTTP check. The target must be a URL (http or https)
         :param pulumi.Input['SyntheticMonitoringCheckSettingsPingArgs'] ping: Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
         :param pulumi.Input['SyntheticMonitoringCheckSettingsTcpArgs'] tcp: Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
         :param pulumi.Input['SyntheticMonitoringCheckSettingsTracerouteArgs'] traceroute: Settings for traceroute check. The target must be a valid hostname or IP address
@@ -6298,6 +6618,8 @@ class SyntheticMonitoringCheckSettingsArgs:
             pulumi.set(__self__, "dns", dns)
         if http is not None:
             pulumi.set(__self__, "http", http)
+        if multihttp is not None:
+            pulumi.set(__self__, "multihttp", multihttp)
         if ping is not None:
             pulumi.set(__self__, "ping", ping)
         if tcp is not None:
@@ -6328,6 +6650,18 @@ class SyntheticMonitoringCheckSettingsArgs:
     @http.setter
     def http(self, value: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsHttpArgs']]):
         pulumi.set(self, "http", value)
+
+    @property
+    @pulumi.getter
+    def multihttp(self) -> Optional[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpArgs']]:
+        """
+        Settings for MultiHTTP check. The target must be a URL (http or https)
+        """
+        return pulumi.get(self, "multihttp")
+
+    @multihttp.setter
+    def multihttp(self, value: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpArgs']]):
+        pulumi.set(self, "multihttp", value)
 
     @property
     @pulumi.getter
@@ -6667,6 +7001,7 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
                  ip_version: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  no_follow_redirects: Optional[pulumi.Input[bool]] = None,
+                 proxy_connect_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  proxy_url: Optional[pulumi.Input[str]] = None,
                  tls_config: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsHttpTlsConfigArgs']] = None,
                  valid_http_versions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -6686,6 +7021,7 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
         :param pulumi.Input[str] ip_version: Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
         :param pulumi.Input[str] method: Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
         :param pulumi.Input[bool] no_follow_redirects: Do not follow redirects. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] proxy_connect_headers: The HTTP headers sent to the proxy URL
         :param pulumi.Input[str] proxy_url: Proxy URL.
         :param pulumi.Input['SyntheticMonitoringCheckSettingsHttpTlsConfigArgs'] tls_config: TLS config.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_http_versions: List of valid HTTP versions. Options include `HTTP/1.0`, `HTTP/1.1`, `HTTP/2.0`
@@ -6719,6 +7055,8 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
             pulumi.set(__self__, "method", method)
         if no_follow_redirects is not None:
             pulumi.set(__self__, "no_follow_redirects", no_follow_redirects)
+        if proxy_connect_headers is not None:
+            pulumi.set(__self__, "proxy_connect_headers", proxy_connect_headers)
         if proxy_url is not None:
             pulumi.set(__self__, "proxy_url", proxy_url)
         if tls_config is not None:
@@ -6895,6 +7233,18 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
     @no_follow_redirects.setter
     def no_follow_redirects(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "no_follow_redirects", value)
+
+    @property
+    @pulumi.getter(name="proxyConnectHeaders")
+    def proxy_connect_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The HTTP headers sent to the proxy URL
+        """
+        return pulumi.get(self, "proxy_connect_headers")
+
+    @proxy_connect_headers.setter
+    def proxy_connect_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "proxy_connect_headers", value)
 
     @property
     @pulumi.getter(name="proxyUrl")
@@ -7173,6 +7523,448 @@ class SyntheticMonitoringCheckSettingsHttpTlsConfigArgs:
     @server_name.setter
     def server_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_name", value)
+
+
+@pulumi.input_type
+class SyntheticMonitoringCheckSettingsMultihttpArgs:
+    def __init__(__self__, *,
+                 entries: Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryArgs']]]] = None):
+        if entries is not None:
+            pulumi.set(__self__, "entries", entries)
+
+    @property
+    @pulumi.getter
+    def entries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryArgs']]]]:
+        return pulumi.get(self, "entries")
+
+    @entries.setter
+    def entries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryArgs']]]]):
+        pulumi.set(self, "entries", value)
+
+
+@pulumi.input_type
+class SyntheticMonitoringCheckSettingsMultihttpEntryArgs:
+    def __init__(__self__, *,
+                 assertions: Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs']]]] = None,
+                 request: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs']] = None,
+                 variables: Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs']]] assertions: Assertions to make on the request response
+        :param pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs'] request: An individual MultiHTTP request
+        :param pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs']]] variables: Variables to extract from the request response
+        """
+        if assertions is not None:
+            pulumi.set(__self__, "assertions", assertions)
+        if request is not None:
+            pulumi.set(__self__, "request", request)
+        if variables is not None:
+            pulumi.set(__self__, "variables", variables)
+
+    @property
+    @pulumi.getter
+    def assertions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs']]]]:
+        """
+        Assertions to make on the request response
+        """
+        return pulumi.get(self, "assertions")
+
+    @assertions.setter
+    def assertions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs']]]]):
+        pulumi.set(self, "assertions", value)
+
+    @property
+    @pulumi.getter
+    def request(self) -> Optional[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs']]:
+        """
+        An individual MultiHTTP request
+        """
+        return pulumi.get(self, "request")
+
+    @request.setter
+    def request(self, value: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs']]):
+        pulumi.set(self, "request", value)
+
+    @property
+    @pulumi.getter
+    def variables(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs']]]]:
+        """
+        Variables to extract from the request response
+        """
+        return pulumi.get(self, "variables")
+
+    @variables.setter
+    def variables(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs']]]]):
+        pulumi.set(self, "variables", value)
+
+
+@pulumi.input_type
+class SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[str],
+                 condition: Optional[pulumi.Input[str]] = None,
+                 expression: Optional[pulumi.Input[str]] = None,
+                 subject: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] type: The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+        :param pulumi.Input[str] condition: The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+        :param pulumi.Input[str] expression: The expression of the assertion. Should start with $.
+        :param pulumi.Input[str] subject: The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+        :param pulumi.Input[str] value: The value of the assertion
+        """
+        pulumi.set(__self__, "type", type)
+        if condition is not None:
+            pulumi.set(__self__, "condition", condition)
+        if expression is not None:
+            pulumi.set(__self__, "expression", expression)
+        if subject is not None:
+            pulumi.set(__self__, "subject", subject)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> Optional[pulumi.Input[str]]:
+        """
+        The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+        """
+        return pulumi.get(self, "condition")
+
+    @condition.setter
+    def condition(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "condition", value)
+
+    @property
+    @pulumi.getter
+    def expression(self) -> Optional[pulumi.Input[str]]:
+        """
+        The expression of the assertion. Should start with $.
+        """
+        return pulumi.get(self, "expression")
+
+    @expression.setter
+    def expression(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "expression", value)
+
+    @property
+    @pulumi.getter
+    def subject(self) -> Optional[pulumi.Input[str]]:
+        """
+        The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+        """
+        return pulumi.get(self, "subject")
+
+    @subject.setter
+    def subject(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subject", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The value of the assertion
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs:
+    def __init__(__self__, *,
+                 method: pulumi.Input[str],
+                 url: pulumi.Input[str],
+                 bodies: Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs']]]] = None,
+                 headers: Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs']]]] = None,
+                 query_fields: Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs']]]] = None):
+        """
+        :param pulumi.Input[str] method: Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+        :param pulumi.Input[str] url: The URL for the request
+        :param pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs']]] bodies: The body of the HTTP request used in probe.
+        :param pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs']]] headers: The HTTP headers set for the probe.
+        :param pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs']]] query_fields: Query fields to send with the request
+        """
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "url", url)
+        if bodies is not None:
+            pulumi.set(__self__, "bodies", bodies)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if query_fields is not None:
+            pulumi.set(__self__, "query_fields", query_fields)
+
+    @property
+    @pulumi.getter
+    def method(self) -> pulumi.Input[str]:
+        """
+        Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+        """
+        return pulumi.get(self, "method")
+
+    @method.setter
+    def method(self, value: pulumi.Input[str]):
+        pulumi.set(self, "method", value)
+
+    @property
+    @pulumi.getter
+    def url(self) -> pulumi.Input[str]:
+        """
+        The URL for the request
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "url", value)
+
+    @property
+    @pulumi.getter
+    def bodies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs']]]]:
+        """
+        The body of the HTTP request used in probe.
+        """
+        return pulumi.get(self, "bodies")
+
+    @bodies.setter
+    def bodies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs']]]]):
+        pulumi.set(self, "bodies", value)
+
+    @property
+    @pulumi.getter
+    def headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs']]]]:
+        """
+        The HTTP headers set for the probe.
+        """
+        return pulumi.get(self, "headers")
+
+    @headers.setter
+    def headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs']]]]):
+        pulumi.set(self, "headers", value)
+
+    @property
+    @pulumi.getter(name="queryFields")
+    def query_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs']]]]:
+        """
+        Query fields to send with the request
+        """
+        return pulumi.get(self, "query_fields")
+
+    @query_fields.setter
+    def query_fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs']]]]):
+        pulumi.set(self, "query_fields", value)
+
+
+@pulumi.input_type
+class SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs:
+    def __init__(__self__, *,
+                 content_encoding: Optional[pulumi.Input[str]] = None,
+                 content_type: Optional[pulumi.Input[str]] = None,
+                 payload: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] content_encoding: The content encoding of the body
+        :param pulumi.Input[str] content_type: The content type of the body
+        :param pulumi.Input[str] payload: The body payload
+        """
+        if content_encoding is not None:
+            pulumi.set(__self__, "content_encoding", content_encoding)
+        if content_type is not None:
+            pulumi.set(__self__, "content_type", content_type)
+        if payload is not None:
+            pulumi.set(__self__, "payload", payload)
+
+    @property
+    @pulumi.getter(name="contentEncoding")
+    def content_encoding(self) -> Optional[pulumi.Input[str]]:
+        """
+        The content encoding of the body
+        """
+        return pulumi.get(self, "content_encoding")
+
+    @content_encoding.setter
+    def content_encoding(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "content_encoding", value)
+
+    @property
+    @pulumi.getter(name="contentType")
+    def content_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The content type of the body
+        """
+        return pulumi.get(self, "content_type")
+
+    @content_type.setter
+    def content_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "content_type", value)
+
+    @property
+    @pulumi.getter
+    def payload(self) -> Optional[pulumi.Input[str]]:
+        """
+        The body payload
+        """
+        return pulumi.get(self, "payload")
+
+    @payload.setter
+    def payload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "payload", value)
+
+
+@pulumi.input_type
+class SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] name: Name of the header to send
+        :param pulumi.Input[str] value: The value of the assertion
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Name of the header to send
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The value of the assertion
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] name: Name of the header to send
+        :param pulumi.Input[str] value: The value of the assertion
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Name of the header to send
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The value of the assertion
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[str],
+                 attribute: Optional[pulumi.Input[str]] = None,
+                 expression: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] type: The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+        :param pulumi.Input[str] attribute: The attribute to use when finding the variable value. Only used when type is CSS_SELECTOR
+        :param pulumi.Input[str] expression: The expression of the assertion. Should start with $.
+        :param pulumi.Input[str] name: Name of the header to send
+        """
+        pulumi.set(__self__, "type", type)
+        if attribute is not None:
+            pulumi.set(__self__, "attribute", attribute)
+        if expression is not None:
+            pulumi.set(__self__, "expression", expression)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def attribute(self) -> Optional[pulumi.Input[str]]:
+        """
+        The attribute to use when finding the variable value. Only used when type is CSS_SELECTOR
+        """
+        return pulumi.get(self, "attribute")
+
+    @attribute.setter
+    def attribute(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "attribute", value)
+
+    @property
+    @pulumi.getter
+    def expression(self) -> Optional[pulumi.Input[str]]:
+        """
+        The expression of the assertion. Should start with $.
+        """
+        return pulumi.get(self, "expression")
+
+    @expression.setter
+    def expression(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "expression", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the header to send
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type

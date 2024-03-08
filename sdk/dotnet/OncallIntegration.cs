@@ -48,13 +48,13 @@ namespace Pulumiverse.Grafana
         public Output<string?> TeamId { get; private set; } = null!;
 
         /// <summary>
-        /// Jinja2 templates for Alert payload.
+        /// Jinja2 templates for Alert payload. An empty templates block will be ignored.
         /// </summary>
         [Output("templates")]
         public Output<Outputs.OncallIntegrationTemplates?> Templates { get; private set; } = null!;
 
         /// <summary>
-        /// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
+        /// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -125,13 +125,13 @@ namespace Pulumiverse.Grafana
         public Input<string>? TeamId { get; set; }
 
         /// <summary>
-        /// Jinja2 templates for Alert payload.
+        /// Jinja2 templates for Alert payload. An empty templates block will be ignored.
         /// </summary>
         [Input("templates")]
         public Input<Inputs.OncallIntegrationTemplatesArgs>? Templates { get; set; }
 
         /// <summary>
-        /// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
+        /// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -169,13 +169,13 @@ namespace Pulumiverse.Grafana
         public Input<string>? TeamId { get; set; }
 
         /// <summary>
-        /// Jinja2 templates for Alert payload.
+        /// Jinja2 templates for Alert payload. An empty templates block will be ignored.
         /// </summary>
         [Input("templates")]
         public Input<Inputs.OncallIntegrationTemplatesGetArgs>? Templates { get; set; }
 
         /// <summary>
-        /// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
+        /// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

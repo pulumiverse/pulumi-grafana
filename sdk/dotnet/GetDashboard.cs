@@ -133,6 +133,12 @@ namespace Pulumiverse.Grafana
         public int? DashboardId { get; set; }
 
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public string? OrgId { get; set; }
+
+        /// <summary>
         /// The uid of the Grafana dashboard. Specify either this or `dashboard_id`. Defaults to ``.
         /// </summary>
         [Input("uid")]
@@ -151,6 +157,12 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("dashboardId")]
         public Input<int>? DashboardId { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         /// <summary>
         /// The uid of the Grafana dashboard. Specify either this or `dashboard_id`. Defaults to ``.
@@ -189,6 +201,10 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public readonly bool IsStarred;
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        public readonly string? OrgId;
+        /// <summary>
         /// URL slug of the dashboard (deprecated).
         /// </summary>
         public readonly string Slug;
@@ -221,6 +237,8 @@ namespace Pulumiverse.Grafana
 
             bool isStarred,
 
+            string? orgId,
+
             string slug,
 
             string title,
@@ -236,6 +254,7 @@ namespace Pulumiverse.Grafana
             Folder = folder;
             Id = id;
             IsStarred = isStarred;
+            OrgId = orgId;
             Slug = slug;
             Title = title;
             Uid = uid;

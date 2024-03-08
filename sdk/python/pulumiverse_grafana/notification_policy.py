@@ -265,11 +265,23 @@ class NotificationPolicy(pulumi.CustomResource):
             repeat_interval="3h",
             policies=[
                 grafana.NotificationPolicyPolicyArgs(
-                    matchers=[grafana.NotificationPolicyPolicyMatcherArgs(
-                        label="mylabel",
-                        match="=",
-                        value="myvalue",
-                    )],
+                    matchers=[
+                        grafana.NotificationPolicyPolicyMatcherArgs(
+                            label="mylabel",
+                            match="=",
+                            value="myvalue",
+                        ),
+                        grafana.NotificationPolicyPolicyMatcherArgs(
+                            label="alertname",
+                            match="=",
+                            value="CPU Usage",
+                        ),
+                        grafana.NotificationPolicyPolicyMatcherArgs(
+                            label="Name",
+                            match="=~",
+                            value="host.*|host-b.*",
+                        ),
+                    ],
                     contact_point=a_contact_point.name,
                     continue_=True,
                     mute_timings=[a_mute_timing.name],
@@ -355,11 +367,23 @@ class NotificationPolicy(pulumi.CustomResource):
             repeat_interval="3h",
             policies=[
                 grafana.NotificationPolicyPolicyArgs(
-                    matchers=[grafana.NotificationPolicyPolicyMatcherArgs(
-                        label="mylabel",
-                        match="=",
-                        value="myvalue",
-                    )],
+                    matchers=[
+                        grafana.NotificationPolicyPolicyMatcherArgs(
+                            label="mylabel",
+                            match="=",
+                            value="myvalue",
+                        ),
+                        grafana.NotificationPolicyPolicyMatcherArgs(
+                            label="alertname",
+                            match="=",
+                            value="CPU Usage",
+                        ),
+                        grafana.NotificationPolicyPolicyMatcherArgs(
+                            label="Name",
+                            match="=~",
+                            value="host.*|host-b.*",
+                        ),
+                    ],
                     contact_point=a_contact_point.name,
                     continue_=True,
                     mute_timings=[a_mute_timing.name],

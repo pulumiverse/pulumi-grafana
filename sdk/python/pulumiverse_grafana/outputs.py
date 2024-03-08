@@ -20,7 +20,9 @@ __all__ = [
     'ContactPointGooglechat',
     'ContactPointKafka',
     'ContactPointLine',
+    'ContactPointOncall',
     'ContactPointOpsgeny',
+    'ContactPointOpsgenyResponder',
     'ContactPointPagerduty',
     'ContactPointPushover',
     'ContactPointSensugo',
@@ -80,6 +82,7 @@ __all__ = [
     'SLOAlertingSlowburn',
     'SLOAlertingSlowburnAnnotation',
     'SLOAlertingSlowburnLabel',
+    'SLODestinationDatasource',
     'SLOLabel',
     'SLOObjective',
     'SLOQuery',
@@ -96,6 +99,14 @@ __all__ = [
     'SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp',
     'SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexp',
     'SyntheticMonitoringCheckSettingsHttpTlsConfig',
+    'SyntheticMonitoringCheckSettingsMultihttp',
+    'SyntheticMonitoringCheckSettingsMultihttpEntry',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryAssertion',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryRequest',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryVariable',
     'SyntheticMonitoringCheckSettingsPing',
     'SyntheticMonitoringCheckSettingsTcp',
     'SyntheticMonitoringCheckSettingsTcpQueryResponse',
@@ -116,6 +127,7 @@ __all__ = [
     'GetSlosSloAlertingSlowburnResult',
     'GetSlosSloAlertingSlowburnAnnotationResult',
     'GetSlosSloAlertingSlowburnLabelResult',
+    'GetSlosSloDestinationDatasourceResult',
     'GetSlosSloLabelResult',
     'GetSlosSloObjectiveResult',
     'GetSlosSloQueryResult',
@@ -989,6 +1001,185 @@ class ContactPointLine(dict):
 
 
 @pulumi.output_type
+class ContactPointOncall(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "authorizationCredentials":
+            suggest = "authorization_credentials"
+        elif key == "authorizationScheme":
+            suggest = "authorization_scheme"
+        elif key == "basicAuthPassword":
+            suggest = "basic_auth_password"
+        elif key == "basicAuthUser":
+            suggest = "basic_auth_user"
+        elif key == "disableResolveMessage":
+            suggest = "disable_resolve_message"
+        elif key == "httpMethod":
+            suggest = "http_method"
+        elif key == "maxAlerts":
+            suggest = "max_alerts"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ContactPointOncall. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ContactPointOncall.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ContactPointOncall.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 url: str,
+                 authorization_credentials: Optional[str] = None,
+                 authorization_scheme: Optional[str] = None,
+                 basic_auth_password: Optional[str] = None,
+                 basic_auth_user: Optional[str] = None,
+                 disable_resolve_message: Optional[bool] = None,
+                 http_method: Optional[str] = None,
+                 max_alerts: Optional[int] = None,
+                 message: Optional[str] = None,
+                 settings: Optional[Mapping[str, str]] = None,
+                 title: Optional[str] = None,
+                 uid: Optional[str] = None):
+        """
+        :param str url: The URL to send webhook requests to.
+        :param str authorization_credentials: Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.
+        :param str authorization_scheme: Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.
+        :param str basic_auth_password: The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+        :param str basic_auth_user: The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+        :param bool disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
+        :param str http_method: The HTTP method to use in the request. Defaults to `POST`.
+        :param int max_alerts: The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
+        :param str message: Custom message. You can use template variables.
+        :param Mapping[str, str] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        :param str title: Templated title of the message.
+        :param str uid: The UID of the contact point.
+        """
+        pulumi.set(__self__, "url", url)
+        if authorization_credentials is not None:
+            pulumi.set(__self__, "authorization_credentials", authorization_credentials)
+        if authorization_scheme is not None:
+            pulumi.set(__self__, "authorization_scheme", authorization_scheme)
+        if basic_auth_password is not None:
+            pulumi.set(__self__, "basic_auth_password", basic_auth_password)
+        if basic_auth_user is not None:
+            pulumi.set(__self__, "basic_auth_user", basic_auth_user)
+        if disable_resolve_message is not None:
+            pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
+        if http_method is not None:
+            pulumi.set(__self__, "http_method", http_method)
+        if max_alerts is not None:
+            pulumi.set(__self__, "max_alerts", max_alerts)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if settings is not None:
+            pulumi.set(__self__, "settings", settings)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        """
+        The URL to send webhook requests to.
+        """
+        return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter(name="authorizationCredentials")
+    def authorization_credentials(self) -> Optional[str]:
+        """
+        Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.
+        """
+        return pulumi.get(self, "authorization_credentials")
+
+    @property
+    @pulumi.getter(name="authorizationScheme")
+    def authorization_scheme(self) -> Optional[str]:
+        """
+        Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.
+        """
+        return pulumi.get(self, "authorization_scheme")
+
+    @property
+    @pulumi.getter(name="basicAuthPassword")
+    def basic_auth_password(self) -> Optional[str]:
+        """
+        The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+        """
+        return pulumi.get(self, "basic_auth_password")
+
+    @property
+    @pulumi.getter(name="basicAuthUser")
+    def basic_auth_user(self) -> Optional[str]:
+        """
+        The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+        """
+        return pulumi.get(self, "basic_auth_user")
+
+    @property
+    @pulumi.getter(name="disableResolveMessage")
+    def disable_resolve_message(self) -> Optional[bool]:
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        return pulumi.get(self, "disable_resolve_message")
+
+    @property
+    @pulumi.getter(name="httpMethod")
+    def http_method(self) -> Optional[str]:
+        """
+        The HTTP method to use in the request. Defaults to `POST`.
+        """
+        return pulumi.get(self, "http_method")
+
+    @property
+    @pulumi.getter(name="maxAlerts")
+    def max_alerts(self) -> Optional[int]:
+        """
+        The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
+        """
+        return pulumi.get(self, "max_alerts")
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[str]:
+        """
+        Custom message. You can use template variables.
+        """
+        return pulumi.get(self, "message")
+
+    @property
+    @pulumi.getter
+    def settings(self) -> Optional[Mapping[str, str]]:
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        return pulumi.get(self, "settings")
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        """
+        Templated title of the message.
+        """
+        return pulumi.get(self, "title")
+
+    @property
+    @pulumi.getter
+    def uid(self) -> Optional[str]:
+        """
+        The UID of the contact point.
+        """
+        return pulumi.get(self, "uid")
+
+
+@pulumi.output_type
 class ContactPointOpsgeny(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1022,6 +1213,7 @@ class ContactPointOpsgeny(dict):
                  disable_resolve_message: Optional[bool] = None,
                  message: Optional[str] = None,
                  override_priority: Optional[bool] = None,
+                 responders: Optional[Sequence['outputs.ContactPointOpsgenyResponder']] = None,
                  send_tags_as: Optional[str] = None,
                  settings: Optional[Mapping[str, str]] = None,
                  uid: Optional[str] = None,
@@ -1033,6 +1225,7 @@ class ContactPointOpsgeny(dict):
         :param bool disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param str message: The templated content of the message.
         :param bool override_priority: Whether to allow the alert priority to be configured via the value of the `og_priority` annotation on the alert.
+        :param Sequence['ContactPointOpsgenyResponderArgs'] responders: Teams, users, escalations and schedules that the alert will be routed to send notifications. If the API Key belongs to a team integration, this field will be overwritten with the owner team. This feature is available from Grafana 10.3+.
         :param str send_tags_as: Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.
         :param Mapping[str, str] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
         :param str uid: The UID of the contact point.
@@ -1049,6 +1242,8 @@ class ContactPointOpsgeny(dict):
             pulumi.set(__self__, "message", message)
         if override_priority is not None:
             pulumi.set(__self__, "override_priority", override_priority)
+        if responders is not None:
+            pulumi.set(__self__, "responders", responders)
         if send_tags_as is not None:
             pulumi.set(__self__, "send_tags_as", send_tags_as)
         if settings is not None:
@@ -1107,6 +1302,14 @@ class ContactPointOpsgeny(dict):
         return pulumi.get(self, "override_priority")
 
     @property
+    @pulumi.getter
+    def responders(self) -> Optional[Sequence['outputs.ContactPointOpsgenyResponder']]:
+        """
+        Teams, users, escalations and schedules that the alert will be routed to send notifications. If the API Key belongs to a team integration, this field will be overwritten with the owner team. This feature is available from Grafana 10.3+.
+        """
+        return pulumi.get(self, "responders")
+
+    @property
     @pulumi.getter(name="sendTagsAs")
     def send_tags_as(self) -> Optional[str]:
         """
@@ -1137,6 +1340,60 @@ class ContactPointOpsgeny(dict):
         Allows customization of the OpsGenie API URL.
         """
         return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class ContactPointOpsgenyResponder(dict):
+    def __init__(__self__, *,
+                 type: str,
+                 id: Optional[str] = None,
+                 name: Optional[str] = None,
+                 username: Optional[str] = None):
+        """
+        :param str type: Type of the responder. Supported: team, teams, user, escalation, schedule or a template that is expanded to one of these values.
+        :param str id: ID of the responder. Must be specified if name and username are empty.
+        :param str name: Name of the responder. Must be specified if username and id are empty.
+        :param str username: The user name to use when making a call to the Kafka REST Proxy
+        """
+        pulumi.set(__self__, "type", type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Type of the responder. Supported: team, teams, user, escalation, schedule or a template that is expanded to one of these values.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        ID of the responder. Must be specified if name and username are empty.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Name of the responder. Must be specified if username and id are empty.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The user name to use when making a call to the Kafka REST Proxy
+        """
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type
@@ -2946,7 +3203,7 @@ class DataSourcePermissionPermission(dict):
                  team_id: Optional[str] = None,
                  user_id: Optional[str] = None):
         """
-        :param str permission: Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
+        :param str permission: Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
         :param str built_in_role: Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
         :param str team_id: ID of the team to manage permissions for. Defaults to `0`.
         :param str user_id: ID of the user or service account to manage permissions for. Defaults to `0`.
@@ -2963,7 +3220,7 @@ class DataSourcePermissionPermission(dict):
     @pulumi.getter
     def permission(self) -> str:
         """
-        Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
+        Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
         """
         return pulumi.get(self, "permission")
 
@@ -5580,6 +5837,25 @@ class SLOAlertingSlowburnLabel(dict):
 
 
 @pulumi.output_type
+class SLODestinationDatasource(dict):
+    def __init__(__self__, *,
+                 uid: Optional[str] = None):
+        """
+        :param str uid: UID for the Mimir Datasource
+        """
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
+
+    @property
+    @pulumi.getter
+    def uid(self) -> Optional[str]:
+        """
+        UID for the Mimir Datasource
+        """
+        return pulumi.get(self, "uid")
+
+
+@pulumi.output_type
 class SLOLabel(dict):
     def __init__(__self__, *,
                  key: str,
@@ -5807,12 +6083,14 @@ class SyntheticMonitoringCheckSettings(dict):
     def __init__(__self__, *,
                  dns: Optional['outputs.SyntheticMonitoringCheckSettingsDns'] = None,
                  http: Optional['outputs.SyntheticMonitoringCheckSettingsHttp'] = None,
+                 multihttp: Optional['outputs.SyntheticMonitoringCheckSettingsMultihttp'] = None,
                  ping: Optional['outputs.SyntheticMonitoringCheckSettingsPing'] = None,
                  tcp: Optional['outputs.SyntheticMonitoringCheckSettingsTcp'] = None,
                  traceroute: Optional['outputs.SyntheticMonitoringCheckSettingsTraceroute'] = None):
         """
         :param 'SyntheticMonitoringCheckSettingsDnsArgs' dns: Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
         :param 'SyntheticMonitoringCheckSettingsHttpArgs' http: Settings for HTTP check. The target must be a URL (http or https).
+        :param 'SyntheticMonitoringCheckSettingsMultihttpArgs' multihttp: Settings for MultiHTTP check. The target must be a URL (http or https)
         :param 'SyntheticMonitoringCheckSettingsPingArgs' ping: Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
         :param 'SyntheticMonitoringCheckSettingsTcpArgs' tcp: Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
         :param 'SyntheticMonitoringCheckSettingsTracerouteArgs' traceroute: Settings for traceroute check. The target must be a valid hostname or IP address
@@ -5821,6 +6099,8 @@ class SyntheticMonitoringCheckSettings(dict):
             pulumi.set(__self__, "dns", dns)
         if http is not None:
             pulumi.set(__self__, "http", http)
+        if multihttp is not None:
+            pulumi.set(__self__, "multihttp", multihttp)
         if ping is not None:
             pulumi.set(__self__, "ping", ping)
         if tcp is not None:
@@ -5843,6 +6123,14 @@ class SyntheticMonitoringCheckSettings(dict):
         Settings for HTTP check. The target must be a URL (http or https).
         """
         return pulumi.get(self, "http")
+
+    @property
+    @pulumi.getter
+    def multihttp(self) -> Optional['outputs.SyntheticMonitoringCheckSettingsMultihttp']:
+        """
+        Settings for MultiHTTP check. The target must be a URL (http or https)
+        """
+        return pulumi.get(self, "multihttp")
 
     @property
     @pulumi.getter
@@ -6202,6 +6490,8 @@ class SyntheticMonitoringCheckSettingsHttp(dict):
             suggest = "ip_version"
         elif key == "noFollowRedirects":
             suggest = "no_follow_redirects"
+        elif key == "proxyConnectHeaders":
+            suggest = "proxy_connect_headers"
         elif key == "proxyUrl":
             suggest = "proxy_url"
         elif key == "tlsConfig":
@@ -6237,6 +6527,7 @@ class SyntheticMonitoringCheckSettingsHttp(dict):
                  ip_version: Optional[str] = None,
                  method: Optional[str] = None,
                  no_follow_redirects: Optional[bool] = None,
+                 proxy_connect_headers: Optional[Sequence[str]] = None,
                  proxy_url: Optional[str] = None,
                  tls_config: Optional['outputs.SyntheticMonitoringCheckSettingsHttpTlsConfig'] = None,
                  valid_http_versions: Optional[Sequence[str]] = None,
@@ -6256,6 +6547,7 @@ class SyntheticMonitoringCheckSettingsHttp(dict):
         :param str ip_version: Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
         :param str method: Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
         :param bool no_follow_redirects: Do not follow redirects. Defaults to `false`.
+        :param Sequence[str] proxy_connect_headers: The HTTP headers sent to the proxy URL
         :param str proxy_url: Proxy URL.
         :param 'SyntheticMonitoringCheckSettingsHttpTlsConfigArgs' tls_config: TLS config.
         :param Sequence[str] valid_http_versions: List of valid HTTP versions. Options include `HTTP/1.0`, `HTTP/1.1`, `HTTP/2.0`
@@ -6289,6 +6581,8 @@ class SyntheticMonitoringCheckSettingsHttp(dict):
             pulumi.set(__self__, "method", method)
         if no_follow_redirects is not None:
             pulumi.set(__self__, "no_follow_redirects", no_follow_redirects)
+        if proxy_connect_headers is not None:
+            pulumi.set(__self__, "proxy_connect_headers", proxy_connect_headers)
         if proxy_url is not None:
             pulumi.set(__self__, "proxy_url", proxy_url)
         if tls_config is not None:
@@ -6409,6 +6703,14 @@ class SyntheticMonitoringCheckSettingsHttp(dict):
         Do not follow redirects. Defaults to `false`.
         """
         return pulumi.get(self, "no_follow_redirects")
+
+    @property
+    @pulumi.getter(name="proxyConnectHeaders")
+    def proxy_connect_headers(self) -> Optional[Sequence[str]]:
+        """
+        The HTTP headers sent to the proxy URL
+        """
+        return pulumi.get(self, "proxy_connect_headers")
 
     @property
     @pulumi.getter(name="proxyUrl")
@@ -6678,6 +6980,384 @@ class SyntheticMonitoringCheckSettingsHttpTlsConfig(dict):
         Used to verify the hostname for the targets.
         """
         return pulumi.get(self, "server_name")
+
+
+@pulumi.output_type
+class SyntheticMonitoringCheckSettingsMultihttp(dict):
+    def __init__(__self__, *,
+                 entries: Optional[Sequence['outputs.SyntheticMonitoringCheckSettingsMultihttpEntry']] = None):
+        if entries is not None:
+            pulumi.set(__self__, "entries", entries)
+
+    @property
+    @pulumi.getter
+    def entries(self) -> Optional[Sequence['outputs.SyntheticMonitoringCheckSettingsMultihttpEntry']]:
+        return pulumi.get(self, "entries")
+
+
+@pulumi.output_type
+class SyntheticMonitoringCheckSettingsMultihttpEntry(dict):
+    def __init__(__self__, *,
+                 assertions: Optional[Sequence['outputs.SyntheticMonitoringCheckSettingsMultihttpEntryAssertion']] = None,
+                 request: Optional['outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequest'] = None,
+                 variables: Optional[Sequence['outputs.SyntheticMonitoringCheckSettingsMultihttpEntryVariable']] = None):
+        """
+        :param Sequence['SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs'] assertions: Assertions to make on the request response
+        :param 'SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs' request: An individual MultiHTTP request
+        :param Sequence['SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs'] variables: Variables to extract from the request response
+        """
+        if assertions is not None:
+            pulumi.set(__self__, "assertions", assertions)
+        if request is not None:
+            pulumi.set(__self__, "request", request)
+        if variables is not None:
+            pulumi.set(__self__, "variables", variables)
+
+    @property
+    @pulumi.getter
+    def assertions(self) -> Optional[Sequence['outputs.SyntheticMonitoringCheckSettingsMultihttpEntryAssertion']]:
+        """
+        Assertions to make on the request response
+        """
+        return pulumi.get(self, "assertions")
+
+    @property
+    @pulumi.getter
+    def request(self) -> Optional['outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequest']:
+        """
+        An individual MultiHTTP request
+        """
+        return pulumi.get(self, "request")
+
+    @property
+    @pulumi.getter
+    def variables(self) -> Optional[Sequence['outputs.SyntheticMonitoringCheckSettingsMultihttpEntryVariable']]:
+        """
+        Variables to extract from the request response
+        """
+        return pulumi.get(self, "variables")
+
+
+@pulumi.output_type
+class SyntheticMonitoringCheckSettingsMultihttpEntryAssertion(dict):
+    def __init__(__self__, *,
+                 type: str,
+                 condition: Optional[str] = None,
+                 expression: Optional[str] = None,
+                 subject: Optional[str] = None,
+                 value: Optional[str] = None):
+        """
+        :param str type: The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+        :param str condition: The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+        :param str expression: The expression of the assertion. Should start with $.
+        :param str subject: The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+        :param str value: The value of the assertion
+        """
+        pulumi.set(__self__, "type", type)
+        if condition is not None:
+            pulumi.set(__self__, "condition", condition)
+        if expression is not None:
+            pulumi.set(__self__, "expression", expression)
+        if subject is not None:
+            pulumi.set(__self__, "subject", subject)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def condition(self) -> Optional[str]:
+        """
+        The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+        """
+        return pulumi.get(self, "condition")
+
+    @property
+    @pulumi.getter
+    def expression(self) -> Optional[str]:
+        """
+        The expression of the assertion. Should start with $.
+        """
+        return pulumi.get(self, "expression")
+
+    @property
+    @pulumi.getter
+    def subject(self) -> Optional[str]:
+        """
+        The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+        """
+        return pulumi.get(self, "subject")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        """
+        The value of the assertion
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SyntheticMonitoringCheckSettingsMultihttpEntryRequest(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "queryFields":
+            suggest = "query_fields"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SyntheticMonitoringCheckSettingsMultihttpEntryRequest. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SyntheticMonitoringCheckSettingsMultihttpEntryRequest.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SyntheticMonitoringCheckSettingsMultihttpEntryRequest.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 method: str,
+                 url: str,
+                 bodies: Optional[Sequence['outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody']] = None,
+                 headers: Optional[Sequence['outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader']] = None,
+                 query_fields: Optional[Sequence['outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField']] = None):
+        """
+        :param str method: Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+        :param str url: The URL for the request
+        :param Sequence['SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs'] bodies: The body of the HTTP request used in probe.
+        :param Sequence['SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs'] headers: The HTTP headers set for the probe.
+        :param Sequence['SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs'] query_fields: Query fields to send with the request
+        """
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "url", url)
+        if bodies is not None:
+            pulumi.set(__self__, "bodies", bodies)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if query_fields is not None:
+            pulumi.set(__self__, "query_fields", query_fields)
+
+    @property
+    @pulumi.getter
+    def method(self) -> str:
+        """
+        Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+        """
+        return pulumi.get(self, "method")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        """
+        The URL for the request
+        """
+        return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter
+    def bodies(self) -> Optional[Sequence['outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody']]:
+        """
+        The body of the HTTP request used in probe.
+        """
+        return pulumi.get(self, "bodies")
+
+    @property
+    @pulumi.getter
+    def headers(self) -> Optional[Sequence['outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader']]:
+        """
+        The HTTP headers set for the probe.
+        """
+        return pulumi.get(self, "headers")
+
+    @property
+    @pulumi.getter(name="queryFields")
+    def query_fields(self) -> Optional[Sequence['outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField']]:
+        """
+        Query fields to send with the request
+        """
+        return pulumi.get(self, "query_fields")
+
+
+@pulumi.output_type
+class SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "contentEncoding":
+            suggest = "content_encoding"
+        elif key == "contentType":
+            suggest = "content_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 content_encoding: Optional[str] = None,
+                 content_type: Optional[str] = None,
+                 payload: Optional[str] = None):
+        """
+        :param str content_encoding: The content encoding of the body
+        :param str content_type: The content type of the body
+        :param str payload: The body payload
+        """
+        if content_encoding is not None:
+            pulumi.set(__self__, "content_encoding", content_encoding)
+        if content_type is not None:
+            pulumi.set(__self__, "content_type", content_type)
+        if payload is not None:
+            pulumi.set(__self__, "payload", payload)
+
+    @property
+    @pulumi.getter(name="contentEncoding")
+    def content_encoding(self) -> Optional[str]:
+        """
+        The content encoding of the body
+        """
+        return pulumi.get(self, "content_encoding")
+
+    @property
+    @pulumi.getter(name="contentType")
+    def content_type(self) -> Optional[str]:
+        """
+        The content type of the body
+        """
+        return pulumi.get(self, "content_type")
+
+    @property
+    @pulumi.getter
+    def payload(self) -> Optional[str]:
+        """
+        The body payload
+        """
+        return pulumi.get(self, "payload")
+
+
+@pulumi.output_type
+class SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 value: str):
+        """
+        :param str name: Name of the header to send
+        :param str value: The value of the assertion
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the header to send
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the assertion
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 value: str):
+        """
+        :param str name: Name of the header to send
+        :param str value: The value of the assertion
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the header to send
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the assertion
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SyntheticMonitoringCheckSettingsMultihttpEntryVariable(dict):
+    def __init__(__self__, *,
+                 type: str,
+                 attribute: Optional[str] = None,
+                 expression: Optional[str] = None,
+                 name: Optional[str] = None):
+        """
+        :param str type: The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+        :param str attribute: The attribute to use when finding the variable value. Only used when type is CSS_SELECTOR
+        :param str expression: The expression of the assertion. Should start with $.
+        :param str name: Name of the header to send
+        """
+        pulumi.set(__self__, "type", type)
+        if attribute is not None:
+            pulumi.set(__self__, "attribute", attribute)
+        if expression is not None:
+            pulumi.set(__self__, "expression", expression)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def attribute(self) -> Optional[str]:
+        """
+        The attribute to use when finding the variable value. Only used when type is CSS_SELECTOR
+        """
+        return pulumi.get(self, "attribute")
+
+    @property
+    @pulumi.getter
+    def expression(self) -> Optional[str]:
+        """
+        The expression of the assertion. Should start with $.
+        """
+        return pulumi.get(self, "expression")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Name of the header to send
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -7205,6 +7885,7 @@ class GetSlosSloResult(dict):
     def __init__(__self__, *,
                  alertings: Sequence['outputs.GetSlosSloAlertingResult'],
                  description: str,
+                 destination_datasources: Sequence['outputs.GetSlosSloDestinationDatasourceResult'],
                  labels: Sequence['outputs.GetSlosSloLabelResult'],
                  name: str,
                  objectives: Sequence['outputs.GetSlosSloObjectiveResult'],
@@ -7212,6 +7893,7 @@ class GetSlosSloResult(dict):
                  uuid: str):
         pulumi.set(__self__, "alertings", alertings)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "destination_datasources", destination_datasources)
         pulumi.set(__self__, "labels", labels)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "objectives", objectives)
@@ -7227,6 +7909,11 @@ class GetSlosSloResult(dict):
     @pulumi.getter
     def description(self) -> str:
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destinationDatasources")
+    def destination_datasources(self) -> Sequence['outputs.GetSlosSloDestinationDatasourceResult']:
+        return pulumi.get(self, "destination_datasources")
 
     @property
     @pulumi.getter
@@ -7445,6 +8132,19 @@ class GetSlosSloAlertingSlowburnLabelResult(dict):
     @pulumi.getter
     def value(self) -> str:
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSlosSloDestinationDatasourceResult(dict):
+    def __init__(__self__, *,
+                 uid: Optional[str] = None):
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
+
+    @property
+    @pulumi.getter
+    def uid(self) -> Optional[str]:
+        return pulumi.get(self, "uid")
 
 
 @pulumi.output_type

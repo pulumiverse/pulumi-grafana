@@ -18,6 +18,7 @@ from .cloud_stack_service_account_token import *
 from .contact_point import *
 from .dashboard import *
 from .dashboard_permission import *
+from .dashboard_public import *
 from .data_source import *
 from .data_source_permission import *
 from .folder import *
@@ -195,6 +196,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana",
   "classes": {
    "grafana:index/dashboardPermission:DashboardPermission": "DashboardPermission"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/dashboardPublic",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/dashboardPublic:DashboardPublic": "DashboardPublic"
   }
  },
  {

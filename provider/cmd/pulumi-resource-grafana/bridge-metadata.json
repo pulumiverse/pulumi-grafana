@@ -93,8 +93,18 @@
                     "line": {
                         "maxItemsOne": false
                     },
-                    "opsgenie": {
+                    "oncall": {
                         "maxItemsOne": false
+                    },
+                    "opsgenie": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "responders": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "pagerduty": {
                         "maxItemsOne": false
@@ -141,6 +151,9 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "grafana_dashboard_public": {
+                "current": "grafana:index/dashboardPublic:DashboardPublic"
             },
             "grafana_data_source": {
                 "current": "grafana:index/dataSource:DataSource",
@@ -407,7 +420,12 @@
                 }
             },
             "grafana_oncall_outgoing_webhook": {
-                "current": "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook"
+                "current": "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook",
+                "fields": {
+                    "integration_filter": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "grafana_oncall_route": {
                 "current": "grafana:index/oncallRoute:OncallRoute",
@@ -441,6 +459,9 @@
                         "maxItemsOne": false
                     },
                     "editors": {
+                        "maxItemsOne": false
+                    },
+                    "users_without_access": {
                         "maxItemsOne": false
                     },
                     "viewers": {
@@ -576,6 +597,9 @@
                             }
                         }
                     },
+                    "destination_datasource": {
+                        "maxItemsOne": true
+                    },
                     "label": {
                         "maxItemsOne": false
                     },
@@ -685,6 +709,9 @@
                                             "headers": {
                                                 "maxItemsOne": false
                                             },
+                                            "proxy_connect_headers": {
+                                                "maxItemsOne": false
+                                            },
                                             "tls_config": {
                                                 "maxItemsOne": true
                                             },
@@ -693,6 +720,42 @@
                                             },
                                             "valid_status_codes": {
                                                 "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "multihttp": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "entries": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "assertions": {
+                                                            "maxItemsOne": false
+                                                        },
+                                                        "request": {
+                                                            "maxItemsOne": true,
+                                                            "elem": {
+                                                                "fields": {
+                                                                    "body": {
+                                                                        "maxItemsOne": false
+                                                                    },
+                                                                    "headers": {
+                                                                        "maxItemsOne": false
+                                                                    },
+                                                                    "query_fields": {
+                                                                        "maxItemsOne": false
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "variables": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -924,6 +987,9 @@
                                         }
                                     }
                                 },
+                                "destination_datasource": {
+                                    "maxItemsOne": false
+                                },
                                 "label": {
                                     "maxItemsOne": false
                                 },
@@ -1010,6 +1076,7 @@
             "grafana:index/contactPoint:ContactPoint": "grafana_contact_point",
             "grafana:index/dashboard:Dashboard": "grafana_dashboard",
             "grafana:index/dashboardPermission:DashboardPermission": "grafana_dashboard_permission",
+            "grafana:index/dashboardPublic:DashboardPublic": "grafana_dashboard_public",
             "grafana:index/dataSource:DataSource": "grafana_data_source",
             "grafana:index/dataSourcePermission:DataSourcePermission": "grafana_data_source_permission",
             "grafana:index/folder:Folder": "grafana_folder",
@@ -1107,6 +1174,15 @@
             },
             "grafana:index/ContactPointLine:ContactPointLine": {
                 "disableResolveMessage": "disable_resolve_message"
+            },
+            "grafana:index/ContactPointOncall:ContactPointOncall": {
+                "authorizationCredentials": "authorization_credentials",
+                "authorizationScheme": "authorization_scheme",
+                "basicAuthPassword": "basic_auth_password",
+                "basicAuthUser": "basic_auth_user",
+                "disableResolveMessage": "disable_resolve_message",
+                "httpMethod": "http_method",
+                "maxAlerts": "max_alerts"
             },
             "grafana:index/ContactPointOpsgeny:ContactPointOpsgeny": {
                 "apiKey": "api_key",
@@ -1351,6 +1427,7 @@
                 "failIfSsl": "fail_if_ssl",
                 "ipVersion": "ip_version",
                 "noFollowRedirects": "no_follow_redirects",
+                "proxyConnectHeaders": "proxy_connect_headers",
                 "proxyUrl": "proxy_url",
                 "tlsConfig": "tls_config",
                 "validHttpVersions": "valid_http_versions",
@@ -1368,6 +1445,14 @@
                 "clientKey": "client_key",
                 "insecureSkipVerify": "insecure_skip_verify",
                 "serverName": "server_name"
+            },
+            "grafana:index/SyntheticMonitoringCheckSettingsMultihttpEntryRequest:SyntheticMonitoringCheckSettingsMultihttpEntryRequest": {
+                "bodies": "body",
+                "queryFields": "query_fields"
+            },
+            "grafana:index/SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody:SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody": {
+                "contentEncoding": "content_encoding",
+                "contentType": "content_type"
             },
             "grafana:index/SyntheticMonitoringCheckSettingsPing:SyntheticMonitoringCheckSettingsPing": {
                 "dontFragment": "dont_fragment",
@@ -1482,6 +1567,7 @@
                 "googlechats": "googlechat",
                 "kafkas": "kafka",
                 "lines": "line",
+                "oncalls": "oncall",
                 "opsgenies": "opsgenie",
                 "pagerduties": "pagerduty",
                 "pushovers": "pushover",
@@ -1503,6 +1589,14 @@
                 "dashboardUid": "dashboard_uid",
                 "orgId": "org_id"
             },
+            "grafana:index/dashboardPublic:DashboardPublic": {
+                "accessToken": "access_token",
+                "annotationsEnabled": "annotations_enabled",
+                "dashboardUid": "dashboard_uid",
+                "isEnabled": "is_enabled",
+                "orgId": "org_id",
+                "timeSelectionEnabled": "time_selection_enabled"
+            },
             "grafana:index/dataSource:DataSource": {
                 "accessMode": "access_mode",
                 "basicAuthEnabled": "basic_auth_enabled",
@@ -1520,6 +1614,7 @@
             },
             "grafana:index/folder:Folder": {
                 "orgId": "org_id",
+                "parentFolderUid": "parent_folder_uid",
                 "preventDestroyIfNotEmpty": "prevent_destroy_if_not_empty"
             },
             "grafana:index/folderPermission:FolderPermission": {
@@ -1568,10 +1663,12 @@
             "grafana:index/getDashboard:getDashboard": {
                 "configJson": "config_json",
                 "dashboardId": "dashboard_id",
-                "isStarred": "is_starred"
+                "isStarred": "is_starred",
+                "orgId": "org_id"
             },
             "grafana:index/getDashboards:getDashboards": {
-                "folderIds": "folder_ids"
+                "folderIds": "folder_ids",
+                "orgId": "org_id"
             },
             "grafana:index/getDashboardsDashboard:getDashboardsDashboard": {
                 "folderTitle": "folder_title"
@@ -1583,6 +1680,12 @@
                 "databaseName": "database_name",
                 "isDefault": "is_default",
                 "jsonDataEncoded": "json_data_encoded",
+                "orgId": "org_id"
+            },
+            "grafana:index/getFolder:getFolder": {
+                "orgId": "org_id"
+            },
+            "grafana:index/getFolders:getFolders": {
                 "orgId": "org_id"
             },
             "grafana:index/getLibraryPanel:getLibraryPanel": {
@@ -1616,6 +1719,7 @@
             },
             "grafana:index/getSlosSlo:getSlosSlo": {
                 "alertings": "alerting",
+                "destinationDatasources": "destination_datasource",
                 "labels": "label",
                 "queries": "query"
             },
@@ -1727,7 +1831,12 @@
             "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook": {
                 "authorizationHeader": "authorization_header",
                 "forwardWholePayload": "forward_whole_payload",
-                "teamId": "team_id"
+                "httpMethod": "http_method",
+                "integrationFilters": "integration_filter",
+                "isWebhookEnabled": "is_webhook_enabled",
+                "teamId": "team_id",
+                "triggerTemplate": "trigger_template",
+                "triggerType": "trigger_type"
             },
             "grafana:index/oncallRoute:OncallRoute": {
                 "escalationChainId": "escalation_chain_id",
@@ -1745,7 +1854,8 @@
             "grafana:index/organization:Organization": {
                 "adminUser": "admin_user",
                 "createUsers": "create_users",
-                "orgId": "org_id"
+                "orgId": "org_id",
+                "usersWithoutAccesses": "users_without_access"
             },
             "grafana:index/organizationPreference:OrganizationPreference": {
                 "homeDashboardId": "home_dashboard_id",
@@ -1784,6 +1894,7 @@
             },
             "grafana:index/sLO:SLO": {
                 "alertings": "alerting",
+                "destinationDatasource": "destination_datasource",
                 "labels": "label",
                 "queries": "query"
             },

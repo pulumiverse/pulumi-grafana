@@ -28,6 +28,7 @@ export function getFolder(args: GetFolderArgs, opts?: pulumi.InvokeOptions): Pro
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getFolder:getFolder", {
+        "orgId": args.orgId,
         "title": args.title,
     }, opts);
 }
@@ -36,6 +37,10 @@ export function getFolder(args: GetFolderArgs, opts?: pulumi.InvokeOptions): Pro
  * A collection of arguments for invoking getFolder.
  */
 export interface GetFolderArgs {
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: string;
     /**
      * The name of the Grafana folder.
      */
@@ -50,6 +55,10 @@ export interface GetFolderResult {
      * The numerical ID of the Grafana folder.
      */
     readonly id: number;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    readonly orgId?: string;
     /**
      * The name of the Grafana folder.
      */
@@ -91,6 +100,10 @@ export function getFolderOutput(args: GetFolderOutputArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getFolder.
  */
 export interface GetFolderOutputArgs {
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * The name of the Grafana folder.
      */

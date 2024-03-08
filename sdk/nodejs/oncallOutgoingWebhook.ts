@@ -61,9 +61,25 @@ export class OncallOutgoingWebhook extends pulumi.CustomResource {
      */
     public readonly data!: pulumi.Output<string | undefined>;
     /**
-     * Forwards whole payload of the alert to the webhook's url as POST data.
+     * Toggle to send the entire webhook payload instead of using the values in the Data field.
      */
     public readonly forwardWholePayload!: pulumi.Output<boolean | undefined>;
+    /**
+     * Headers to add to the outgoing webhook request.
+     */
+    public readonly headers!: pulumi.Output<string | undefined>;
+    /**
+     * The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+     */
+    public readonly httpMethod!: pulumi.Output<string | undefined>;
+    /**
+     * Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+     */
+    public readonly integrationFilters!: pulumi.Output<string[] | undefined>;
+    /**
+     * Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+     */
+    public readonly isWebhookEnabled!: pulumi.Output<boolean | undefined>;
     /**
      * The name of the outgoing webhook.
      */
@@ -77,11 +93,19 @@ export class OncallOutgoingWebhook extends pulumi.CustomResource {
      */
     public readonly teamId!: pulumi.Output<string | undefined>;
     /**
+     * A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+     */
+    public readonly triggerTemplate!: pulumi.Output<string | undefined>;
+    /**
+     * The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+     */
+    public readonly triggerType!: pulumi.Output<string | undefined>;
+    /**
      * The webhook URL.
      */
     public readonly url!: pulumi.Output<string>;
     /**
-     * The auth data of the webhook. Used for Basic authentication.
+     * Username to use when making the outgoing webhook request.
      */
     public readonly user!: pulumi.Output<string | undefined>;
 
@@ -101,9 +125,15 @@ export class OncallOutgoingWebhook extends pulumi.CustomResource {
             resourceInputs["authorizationHeader"] = state ? state.authorizationHeader : undefined;
             resourceInputs["data"] = state ? state.data : undefined;
             resourceInputs["forwardWholePayload"] = state ? state.forwardWholePayload : undefined;
+            resourceInputs["headers"] = state ? state.headers : undefined;
+            resourceInputs["httpMethod"] = state ? state.httpMethod : undefined;
+            resourceInputs["integrationFilters"] = state ? state.integrationFilters : undefined;
+            resourceInputs["isWebhookEnabled"] = state ? state.isWebhookEnabled : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["teamId"] = state ? state.teamId : undefined;
+            resourceInputs["triggerTemplate"] = state ? state.triggerTemplate : undefined;
+            resourceInputs["triggerType"] = state ? state.triggerType : undefined;
             resourceInputs["url"] = state ? state.url : undefined;
             resourceInputs["user"] = state ? state.user : undefined;
         } else {
@@ -114,9 +144,15 @@ export class OncallOutgoingWebhook extends pulumi.CustomResource {
             resourceInputs["authorizationHeader"] = args?.authorizationHeader ? pulumi.secret(args.authorizationHeader) : undefined;
             resourceInputs["data"] = args ? args.data : undefined;
             resourceInputs["forwardWholePayload"] = args ? args.forwardWholePayload : undefined;
+            resourceInputs["headers"] = args ? args.headers : undefined;
+            resourceInputs["httpMethod"] = args ? args.httpMethod : undefined;
+            resourceInputs["integrationFilters"] = args ? args.integrationFilters : undefined;
+            resourceInputs["isWebhookEnabled"] = args ? args.isWebhookEnabled : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["teamId"] = args ? args.teamId : undefined;
+            resourceInputs["triggerTemplate"] = args ? args.triggerTemplate : undefined;
+            resourceInputs["triggerType"] = args ? args.triggerType : undefined;
             resourceInputs["url"] = args ? args.url : undefined;
             resourceInputs["user"] = args ? args.user : undefined;
         }
@@ -140,9 +176,25 @@ export interface OncallOutgoingWebhookState {
      */
     data?: pulumi.Input<string>;
     /**
-     * Forwards whole payload of the alert to the webhook's url as POST data.
+     * Toggle to send the entire webhook payload instead of using the values in the Data field.
      */
     forwardWholePayload?: pulumi.Input<boolean>;
+    /**
+     * Headers to add to the outgoing webhook request.
+     */
+    headers?: pulumi.Input<string>;
+    /**
+     * The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+     */
+    httpMethod?: pulumi.Input<string>;
+    /**
+     * Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+     */
+    integrationFilters?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+     */
+    isWebhookEnabled?: pulumi.Input<boolean>;
     /**
      * The name of the outgoing webhook.
      */
@@ -156,11 +208,19 @@ export interface OncallOutgoingWebhookState {
      */
     teamId?: pulumi.Input<string>;
     /**
+     * A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+     */
+    triggerTemplate?: pulumi.Input<string>;
+    /**
+     * The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+     */
+    triggerType?: pulumi.Input<string>;
+    /**
      * The webhook URL.
      */
     url?: pulumi.Input<string>;
     /**
-     * The auth data of the webhook. Used for Basic authentication.
+     * Username to use when making the outgoing webhook request.
      */
     user?: pulumi.Input<string>;
 }
@@ -178,9 +238,25 @@ export interface OncallOutgoingWebhookArgs {
      */
     data?: pulumi.Input<string>;
     /**
-     * Forwards whole payload of the alert to the webhook's url as POST data.
+     * Toggle to send the entire webhook payload instead of using the values in the Data field.
      */
     forwardWholePayload?: pulumi.Input<boolean>;
+    /**
+     * Headers to add to the outgoing webhook request.
+     */
+    headers?: pulumi.Input<string>;
+    /**
+     * The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+     */
+    httpMethod?: pulumi.Input<string>;
+    /**
+     * Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+     */
+    integrationFilters?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+     */
+    isWebhookEnabled?: pulumi.Input<boolean>;
     /**
      * The name of the outgoing webhook.
      */
@@ -194,11 +270,19 @@ export interface OncallOutgoingWebhookArgs {
      */
     teamId?: pulumi.Input<string>;
     /**
+     * A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+     */
+    triggerTemplate?: pulumi.Input<string>;
+    /**
+     * The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+     */
+    triggerType?: pulumi.Input<string>;
+    /**
      * The webhook URL.
      */
     url: pulumi.Input<string>;
     /**
-     * The auth data of the webhook. Used for Basic authentication.
+     * Username to use when making the outgoing webhook request.
      */
     user?: pulumi.Input<string>;
 }

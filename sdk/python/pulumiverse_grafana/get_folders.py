@@ -22,13 +22,16 @@ class GetFoldersResult:
     """
     A collection of values returned by getFolders.
     """
-    def __init__(__self__, folders=None, id=None):
+    def __init__(__self__, folders=None, id=None, org_id=None):
         if folders and not isinstance(folders, list):
             raise TypeError("Expected argument 'folders' to be a list")
         pulumi.set(__self__, "folders", folders)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if org_id and not isinstance(org_id, str):
+            raise TypeError("Expected argument 'org_id' to be a str")
+        pulumi.set(__self__, "org_id", org_id)
 
     @property
     @pulumi.getter
@@ -46,6 +49,14 @@ class GetFoldersResult:
         """
         return pulumi.get(self, "id")
 
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[str]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
 
 class AwaitableGetFoldersResult(GetFoldersResult):
     # pylint: disable=using-constant-test
@@ -54,10 +65,12 @@ class AwaitableGetFoldersResult(GetFoldersResult):
             yield self
         return GetFoldersResult(
             folders=self.folders,
-            id=self.id)
+            id=self.id,
+            org_id=self.org_id)
 
 
-def get_folders(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFoldersResult:
+def get_folders(org_id: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFoldersResult:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
     * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
@@ -77,18 +90,24 @@ def get_folders(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFold
         uid="test-ds-folder-uid-b")
     test = grafana.get_folders()
     ```
+
+
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
     __args__ = dict()
+    __args__['orgId'] = org_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('grafana:index/getFolders:getFolders', __args__, opts=opts, typ=GetFoldersResult).value
 
     return AwaitableGetFoldersResult(
         folders=pulumi.get(__ret__, 'folders'),
-        id=pulumi.get(__ret__, 'id'))
+        id=pulumi.get(__ret__, 'id'),
+        org_id=pulumi.get(__ret__, 'org_id'))
 
 
 @_utilities.lift_output_func(get_folders)
-def get_folders_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFoldersResult]:
+def get_folders_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFoldersResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
     * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
@@ -108,5 +127,8 @@ def get_folders_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Ou
         uid="test-ds-folder-uid-b")
     test = grafana.get_folders()
     ```
+
+
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
     ...

@@ -82,6 +82,18 @@ namespace Pulumiverse.Grafana
     ///                         Match = "=",
     ///                         Value = "myvalue",
     ///                     },
+    ///                     new Grafana.Inputs.NotificationPolicyPolicyMatcherArgs
+    ///                     {
+    ///                         Label = "alertname",
+    ///                         Match = "=",
+    ///                         Value = "CPU Usage",
+    ///                     },
+    ///                     new Grafana.Inputs.NotificationPolicyPolicyMatcherArgs
+    ///                     {
+    ///                         Label = "Name",
+    ///                         Match = "=~",
+    ///                         Value = "host.*|host-b.*",
+    ///                     },
     ///                 },
     ///                 ContactPoint = aContactPoint.Name,
     ///                 Continue = true,

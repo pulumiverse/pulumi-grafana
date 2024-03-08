@@ -78,6 +78,16 @@ import (
 //								Match: pulumi.String("="),
 //								Value: pulumi.String("myvalue"),
 //							},
+//							&grafana.NotificationPolicyPolicyMatcherArgs{
+//								Label: pulumi.String("alertname"),
+//								Match: pulumi.String("="),
+//								Value: pulumi.String("CPU Usage"),
+//							},
+//							&grafana.NotificationPolicyPolicyMatcherArgs{
+//								Label: pulumi.String("Name"),
+//								Match: pulumi.String("=~"),
+//								Value: pulumi.String("host.*|host-b.*"),
+//							},
 //						},
 //						ContactPoint: aContactPoint.Name,
 //						Continue:     pulumi.Bool(true),

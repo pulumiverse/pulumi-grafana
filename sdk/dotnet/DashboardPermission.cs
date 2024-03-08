@@ -11,6 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana
 {
     /// <summary>
+    /// Manages the entire set of permissions for a dashboard. Permissions that aren't specified when applying this resource will be removed.
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
     /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard_permissions/)
     /// 
@@ -104,7 +105,7 @@ namespace Pulumiverse.Grafana
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public DashboardPermission(string name, DashboardPermissionArgs args, CustomResourceOptions? options = null)
+        public DashboardPermission(string name, DashboardPermissionArgs? args = null, CustomResourceOptions? options = null)
             : base("grafana:index/dashboardPermission:DashboardPermission", name, args ?? new DashboardPermissionArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -161,7 +162,7 @@ namespace Pulumiverse.Grafana
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
 
-        [Input("permissions", required: true)]
+        [Input("permissions")]
         private InputList<Inputs.DashboardPermissionPermissionArgs>? _permissions;
 
         /// <summary>

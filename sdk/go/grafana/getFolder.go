@@ -56,6 +56,8 @@ func LookupFolder(ctx *pulumi.Context, args *LookupFolderArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getFolder.
 type LookupFolderArgs struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The name of the Grafana folder.
 	Title string `pulumi:"title"`
 }
@@ -64,6 +66,8 @@ type LookupFolderArgs struct {
 type LookupFolderResult struct {
 	// The numerical ID of the Grafana folder.
 	Id int `pulumi:"id"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The name of the Grafana folder.
 	Title string `pulumi:"title"`
 	// The uid of the Grafana folder.
@@ -87,6 +91,8 @@ func LookupFolderOutput(ctx *pulumi.Context, args LookupFolderOutputArgs, opts .
 
 // A collection of arguments for invoking getFolder.
 type LookupFolderOutputArgs struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
 	// The name of the Grafana folder.
 	Title pulumi.StringInput `pulumi:"title"`
 }
@@ -119,6 +125,11 @@ func (o LookupFolderResultOutput) ToOutput(ctx context.Context) pulumix.Output[L
 // The numerical ID of the Grafana folder.
 func (o LookupFolderResultOutput) Id() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFolderResult) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o LookupFolderResultOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFolderResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // The name of the Grafana folder.

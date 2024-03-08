@@ -13,6 +13,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages the entire set of permissions for a datasource. Permissions that aren't specified when applying this resource will be removed.
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
 //
 // ## Example Usage
@@ -78,7 +79,7 @@ import (
 //				Permissions: grafana.DataSourcePermissionPermissionArray{
 //					&grafana.DataSourcePermissionPermissionArgs{
 //						TeamId:     team.ID(),
-//						Permission: pulumi.String("Query"),
+//						Permission: pulumi.String("Admin"),
 //					},
 //					&grafana.DataSourcePermissionPermissionArgs{
 //						UserId:     user.ID(),
@@ -122,9 +123,6 @@ func NewDataSourcePermission(ctx *pulumi.Context,
 
 	if args.DatasourceId == nil {
 		return nil, errors.New("invalid value for required argument 'DatasourceId'")
-	}
-	if args.Permissions == nil {
-		return nil, errors.New("invalid value for required argument 'Permissions'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DataSourcePermission

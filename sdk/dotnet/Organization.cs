@@ -109,6 +109,14 @@ namespace Pulumiverse.Grafana
         public Output<int> OrgId { get; private set; } = null!;
 
         /// <summary>
+        /// A list of email addresses corresponding to users who should be given none access to the organization.
+        /// Note: users specified here must already exist in Grafana, unless 'create_users' is
+        /// set to true. This feature is only available in Grafana 10.2+.
+        /// </summary>
+        [Output("usersWithoutAccesses")]
+        public Output<ImmutableArray<string>> UsersWithoutAccesses { get; private set; } = null!;
+
+        /// <summary>
         /// A list of email addresses corresponding to users who should be given viewer
         /// access to the organization. Note: users specified here must already exist in
         /// Grafana unless 'create_users' is set to true.
@@ -217,6 +225,20 @@ namespace Pulumiverse.Grafana
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("usersWithoutAccesses")]
+        private InputList<string>? _usersWithoutAccesses;
+
+        /// <summary>
+        /// A list of email addresses corresponding to users who should be given none access to the organization.
+        /// Note: users specified here must already exist in Grafana, unless 'create_users' is
+        /// set to true. This feature is only available in Grafana 10.2+.
+        /// </summary>
+        public InputList<string> UsersWithoutAccesses
+        {
+            get => _usersWithoutAccesses ?? (_usersWithoutAccesses = new InputList<string>());
+            set => _usersWithoutAccesses = value;
+        }
+
         [Input("viewers")]
         private InputList<string>? _viewers;
 
@@ -298,6 +320,20 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("orgId")]
         public Input<int>? OrgId { get; set; }
+
+        [Input("usersWithoutAccesses")]
+        private InputList<string>? _usersWithoutAccesses;
+
+        /// <summary>
+        /// A list of email addresses corresponding to users who should be given none access to the organization.
+        /// Note: users specified here must already exist in Grafana, unless 'create_users' is
+        /// set to true. This feature is only available in Grafana 10.2+.
+        /// </summary>
+        public InputList<string> UsersWithoutAccesses
+        {
+            get => _usersWithoutAccesses ?? (_usersWithoutAccesses = new InputList<string>());
+            set => _usersWithoutAccesses = value;
+        }
 
         [Input("viewers")]
         private InputList<string>? _viewers;

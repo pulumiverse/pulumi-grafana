@@ -70,6 +70,11 @@ export type DashboardPermission = import("./dashboardPermission").DashboardPermi
 export const DashboardPermission: typeof import("./dashboardPermission").DashboardPermission = null as any;
 utilities.lazyLoad(exports, ["DashboardPermission"], () => require("./dashboardPermission"));
 
+export { DashboardPublicArgs, DashboardPublicState } from "./dashboardPublic";
+export type DashboardPublic = import("./dashboardPublic").DashboardPublic;
+export const DashboardPublic: typeof import("./dashboardPublic").DashboardPublic = null as any;
+utilities.lazyLoad(exports, ["DashboardPublic"], () => require("./dashboardPublic"));
+
 export { DataSourceArgs, DataSourceState } from "./dataSource";
 export type DataSource = import("./dataSource").DataSource;
 export const DataSource: typeof import("./dataSource").DataSource = null as any;
@@ -125,7 +130,7 @@ export const getFolder: typeof import("./getFolder").getFolder = null as any;
 export const getFolderOutput: typeof import("./getFolder").getFolderOutput = null as any;
 utilities.lazyLoad(exports, ["getFolder","getFolderOutput"], () => require("./getFolder"));
 
-export { GetFoldersResult } from "./getFolders";
+export { GetFoldersArgs, GetFoldersResult, GetFoldersOutputArgs } from "./getFolders";
 export const getFolders: typeof import("./getFolders").getFolders = null as any;
 export const getFoldersOutput: typeof import("./getFolders").getFoldersOutput = null as any;
 utilities.lazyLoad(exports, ["getFolders","getFoldersOutput"], () => require("./getFolders"));
@@ -180,7 +185,7 @@ export const getOrganization: typeof import("./getOrganization").getOrganization
 export const getOrganizationOutput: typeof import("./getOrganization").getOrganizationOutput = null as any;
 utilities.lazyLoad(exports, ["getOrganization","getOrganizationOutput"], () => require("./getOrganization"));
 
-export { GetOrganizationPreferencesResult } from "./getOrganizationPreferences";
+export { GetOrganizationPreferencesArgs, GetOrganizationPreferencesResult, GetOrganizationPreferencesOutputArgs } from "./getOrganizationPreferences";
 export const getOrganizationPreferences: typeof import("./getOrganizationPreferences").getOrganizationPreferences = null as any;
 export const getOrganizationPreferencesOutput: typeof import("./getOrganizationPreferences").getOrganizationPreferencesOutput = null as any;
 utilities.lazyLoad(exports, ["getOrganizationPreferences","getOrganizationPreferencesOutput"], () => require("./getOrganizationPreferences"));
@@ -420,6 +425,8 @@ const _module = {
                 return new Dashboard(name, <any>undefined, { urn })
             case "grafana:index/dashboardPermission:DashboardPermission":
                 return new DashboardPermission(name, <any>undefined, { urn })
+            case "grafana:index/dashboardPublic:DashboardPublic":
+                return new DashboardPublic(name, <any>undefined, { urn })
             case "grafana:index/dataSource:DataSource":
                 return new DataSource(name, <any>undefined, { urn })
             case "grafana:index/dataSourcePermission:DataSourcePermission":
@@ -508,6 +515,7 @@ pulumi.runtime.registerResourceModule("grafana", "index/cloudStackServiceAccount
 pulumi.runtime.registerResourceModule("grafana", "index/contactPoint", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dashboard", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dashboardPermission", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/dashboardPublic", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dataSource", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dataSourcePermission", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/folder", _module)

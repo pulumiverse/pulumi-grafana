@@ -47,6 +47,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Dashboard{}
 	case "grafana:index/dashboardPermission:DashboardPermission":
 		r = &DashboardPermission{}
+	case "grafana:index/dashboardPublic:DashboardPublic":
+		r = &DashboardPublic{}
 	case "grafana:index/dataSource:DataSource":
 		r = &DataSource{}
 	case "grafana:index/dataSourcePermission:DataSourcePermission":
@@ -211,6 +213,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"index/dashboardPermission",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/dashboardPublic",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

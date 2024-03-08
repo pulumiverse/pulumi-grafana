@@ -7,12 +7,12 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages the entire set of permissions for a dashboard. Permissions that aren't specified when applying this resource will be removed.
 // * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard_permissions/)
 //
@@ -108,12 +108,9 @@ type DashboardPermission struct {
 func NewDashboardPermission(ctx *pulumi.Context,
 	name string, args *DashboardPermissionArgs, opts ...pulumi.ResourceOption) (*DashboardPermission, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &DashboardPermissionArgs{}
 	}
 
-	if args.Permissions == nil {
-		return nil, errors.New("invalid value for required argument 'Permissions'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DashboardPermission
 	err := ctx.RegisterResource("grafana:index/dashboardPermission:DashboardPermission", name, args, &resource, opts...)

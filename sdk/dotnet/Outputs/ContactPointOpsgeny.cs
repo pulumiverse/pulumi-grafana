@@ -39,6 +39,10 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly bool? OverridePriority;
         /// <summary>
+        /// Teams, users, escalations and schedules that the alert will be routed to send notifications. If the API Key belongs to a team integration, this field will be overwritten with the owner team. This feature is available from Grafana 10.3+.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ContactPointOpsgenyResponder> Responders;
+        /// <summary>
         /// Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.
         /// </summary>
         public readonly string? SendTagsAs;
@@ -69,6 +73,8 @@ namespace Pulumiverse.Grafana.Outputs
 
             bool? overridePriority,
 
+            ImmutableArray<Outputs.ContactPointOpsgenyResponder> responders,
+
             string? sendTagsAs,
 
             ImmutableDictionary<string, string>? settings,
@@ -83,6 +89,7 @@ namespace Pulumiverse.Grafana.Outputs
             DisableResolveMessage = disableResolveMessage;
             Message = message;
             OverridePriority = overridePriority;
+            Responders = responders;
             SendTagsAs = sendTagsAs;
             Settings = settings;
             Uid = uid;

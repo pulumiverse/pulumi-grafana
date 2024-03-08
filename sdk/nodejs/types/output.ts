@@ -249,6 +249,57 @@ export interface ContactPointLine {
     uid: string;
 }
 
+export interface ContactPointOncall {
+    /**
+     * Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.
+     */
+    authorizationCredentials?: string;
+    /**
+     * Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.
+     */
+    authorizationScheme?: string;
+    /**
+     * The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+     */
+    basicAuthPassword?: string;
+    /**
+     * The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+     */
+    basicAuthUser?: string;
+    /**
+     * Whether to disable sending resolve messages. Defaults to `false`.
+     */
+    disableResolveMessage?: boolean;
+    /**
+     * The HTTP method to use in the request. Defaults to `POST`.
+     */
+    httpMethod?: string;
+    /**
+     * The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
+     */
+    maxAlerts?: number;
+    /**
+     * Custom message. You can use template variables.
+     */
+    message?: string;
+    /**
+     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     */
+    settings?: {[key: string]: string};
+    /**
+     * Templated title of the message.
+     */
+    title?: string;
+    /**
+     * The UID of the contact point.
+     */
+    uid: string;
+    /**
+     * The URL to send webhook requests to.
+     */
+    url: string;
+}
+
 export interface ContactPointOpsgeny {
     /**
      * The OpsGenie API key to use.
@@ -275,6 +326,10 @@ export interface ContactPointOpsgeny {
      */
     overridePriority?: boolean;
     /**
+     * Teams, users, escalations and schedules that the alert will be routed to send notifications. If the API Key belongs to a team integration, this field will be overwritten with the owner team. This feature is available from Grafana 10.3+.
+     */
+    responders?: outputs.ContactPointOpsgenyResponder[];
+    /**
      * Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.
      */
     sendTagsAs?: string;
@@ -290,6 +345,25 @@ export interface ContactPointOpsgeny {
      * Allows customization of the OpsGenie API URL.
      */
     url?: string;
+}
+
+export interface ContactPointOpsgenyResponder {
+    /**
+     * ID of the responder. Must be specified if name and username are empty.
+     */
+    id?: string;
+    /**
+     * Name of the responder. Must be specified if username and id are empty.
+     */
+    name?: string;
+    /**
+     * Type of the responder. Supported: team, teams, user, escalation, schedule or a template that is expanded to one of these values.
+     */
+    type: string;
+    /**
+     * The user name to use when making a call to the Kafka REST Proxy
+     */
+    username?: string;
 }
 
 export interface ContactPointPagerduty {
@@ -810,7 +884,7 @@ export interface DataSourcePermissionPermission {
      */
     builtInRole?: string;
     /**
-     * Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
+     * Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
      */
     permission: string;
     /**
@@ -863,6 +937,7 @@ export interface GetRolePermission {
 export interface GetSlosSlo {
     alertings: outputs.GetSlosSloAlerting[];
     description: string;
+    destinationDatasources: outputs.GetSlosSloDestinationDatasource[];
     labels: outputs.GetSlosSloLabel[];
     name: string;
     objectives: outputs.GetSlosSloObjective[];
@@ -915,6 +990,10 @@ export interface GetSlosSloAlertingSlowburnAnnotation {
 export interface GetSlosSloAlertingSlowburnLabel {
     key: string;
     value: string;
+}
+
+export interface GetSlosSloDestinationDatasource {
+    uid?: string;
 }
 
 export interface GetSlosSloLabel {
@@ -1679,6 +1758,13 @@ export interface SLOAlertingSlowburnLabel {
     value: string;
 }
 
+export interface SLODestinationDatasource {
+    /**
+     * UID for the Mimir Datasource
+     */
+    uid?: string;
+}
+
 export interface SLOLabel {
     key: string;
     value: string;
@@ -1750,6 +1836,10 @@ export interface SyntheticMonitoringCheckSettings {
      * Settings for HTTP check. The target must be a URL (http or https).
      */
     http?: outputs.SyntheticMonitoringCheckSettingsHttp;
+    /**
+     * Settings for MultiHTTP check. The target must be a URL (http or https)
+     */
+    multihttp?: outputs.SyntheticMonitoringCheckSettingsMultihttp;
     /**
      * Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
      */
@@ -1898,6 +1988,10 @@ export interface SyntheticMonitoringCheckSettingsHttp {
      */
     noFollowRedirects?: boolean;
     /**
+     * The HTTP headers sent to the proxy URL
+     */
+    proxyConnectHeaders?: string[];
+    /**
      * Proxy URL.
      */
     proxyUrl?: string;
@@ -1977,6 +2071,127 @@ export interface SyntheticMonitoringCheckSettingsHttpTlsConfig {
      * Used to verify the hostname for the targets.
      */
     serverName?: string;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttp {
+    entries?: outputs.SyntheticMonitoringCheckSettingsMultihttpEntry[];
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntry {
+    /**
+     * Assertions to make on the request response
+     */
+    assertions?: outputs.SyntheticMonitoringCheckSettingsMultihttpEntryAssertion[];
+    /**
+     * An individual MultiHTTP request
+     */
+    request?: outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequest;
+    /**
+     * Variables to extract from the request response
+     */
+    variables?: outputs.SyntheticMonitoringCheckSettingsMultihttpEntryVariable[];
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryAssertion {
+    /**
+     * The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+     */
+    condition?: string;
+    /**
+     * The expression of the assertion. Should start with $.
+     */
+    expression?: string;
+    /**
+     * The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+     */
+    subject?: string;
+    /**
+     * The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+     */
+    type: string;
+    /**
+     * The value of the assertion
+     */
+    value?: string;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryRequest {
+    /**
+     * The body of the HTTP request used in probe.
+     */
+    bodies?: outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody[];
+    /**
+     * The HTTP headers set for the probe.
+     */
+    headers?: outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader[];
+    /**
+     * Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+     */
+    method: string;
+    /**
+     * Query fields to send with the request
+     */
+    queryFields?: outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField[];
+    /**
+     * The URL for the request
+     */
+    url: string;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody {
+    /**
+     * The content encoding of the body
+     */
+    contentEncoding?: string;
+    /**
+     * The content type of the body
+     */
+    contentType?: string;
+    /**
+     * The body payload
+     */
+    payload?: string;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader {
+    /**
+     * Name of the header to send
+     */
+    name: string;
+    /**
+     * The value of the assertion
+     */
+    value: string;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField {
+    /**
+     * Name of the header to send
+     */
+    name: string;
+    /**
+     * The value of the assertion
+     */
+    value: string;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryVariable {
+    /**
+     * The attribute to use when finding the variable value. Only used when type is CSS_SELECTOR
+     */
+    attribute?: string;
+    /**
+     * The expression of the assertion. Should start with $.
+     */
+    expression?: string;
+    /**
+     * Name of the header to send
+     */
+    name?: string;
+    /**
+     * The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+     */
+    type: string;
 }
 
 export interface SyntheticMonitoringCheckSettingsPing {

@@ -40,6 +40,7 @@ export function getDashboard(args?: GetDashboardArgs, opts?: pulumi.InvokeOption
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getDashboard:getDashboard", {
         "dashboardId": args.dashboardId,
+        "orgId": args.orgId,
         "uid": args.uid,
     }, opts);
 }
@@ -52,6 +53,10 @@ export interface GetDashboardArgs {
      * The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
      */
     dashboardId?: number;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: string;
     /**
      * The uid of the Grafana dashboard. Specify either this or `dashboardId`. Defaults to ``.
      */
@@ -82,6 +87,10 @@ export interface GetDashboardResult {
      * Whether or not the Grafana dashboard is starred. Starred Dashboards will show up on your own Home Dashboard by default, and are a convenient way to mark Dashboards that you’re interested in.
      */
     readonly isStarred: boolean;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    readonly orgId?: string;
     /**
      * URL slug of the dashboard (deprecated).
      */
@@ -145,6 +154,10 @@ export interface GetDashboardOutputArgs {
      * The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
      */
     dashboardId?: pulumi.Input<number>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * The uid of the Grafana dashboard. Specify either this or `dashboardId`. Defaults to ``.
      */

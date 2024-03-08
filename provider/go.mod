@@ -119,7 +119,7 @@ require (
 	github.com/grafana/machine-learning-go-client v0.5.0 // indirect
 	github.com/grafana/synthetic-monitoring-agent v0.18.1 // indirect
 	github.com/grafana/synthetic-monitoring-api-go-client v0.7.0 // indirect
-	github.com/grafana/terraform-provider-grafana v1.43.1-0.20231026120418-882513ced408 // indirect
+	github.com/grafana/terraform-provider-grafana v1.43.1-0.20231129173602-30649488b046 // indirect
 	github.com/grpc-ecosystem/grpc-opentracing v0.0.0-20180507213350-8e809c8a8645 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect

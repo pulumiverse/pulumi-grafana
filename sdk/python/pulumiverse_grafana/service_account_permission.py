@@ -16,31 +16,20 @@ __all__ = ['ServiceAccountPermissionArgs', 'ServiceAccountPermission']
 @pulumi.input_type
 class ServiceAccountPermissionArgs:
     def __init__(__self__, *,
-                 permissions: pulumi.Input[Sequence[pulumi.Input['ServiceAccountPermissionPermissionArgs']]],
                  service_account_id: pulumi.Input[str],
-                 org_id: Optional[pulumi.Input[str]] = None):
+                 org_id: Optional[pulumi.Input[str]] = None,
+                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceAccountPermissionPermissionArgs']]]] = None):
         """
         The set of arguments for constructing a ServiceAccountPermission resource.
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceAccountPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         :param pulumi.Input[str] service_account_id: The id of the service account.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceAccountPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
-        pulumi.set(__self__, "permissions", permissions)
         pulumi.set(__self__, "service_account_id", service_account_id)
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
-
-    @property
-    @pulumi.getter
-    def permissions(self) -> pulumi.Input[Sequence[pulumi.Input['ServiceAccountPermissionPermissionArgs']]]:
-        """
-        The permission items to add/update. Items that are omitted from the list will be removed.
-        """
-        return pulumi.get(self, "permissions")
-
-    @permissions.setter
-    def permissions(self, value: pulumi.Input[Sequence[pulumi.Input['ServiceAccountPermissionPermissionArgs']]]):
-        pulumi.set(self, "permissions", value)
+        if permissions is not None:
+            pulumi.set(__self__, "permissions", permissions)
 
     @property
     @pulumi.getter(name="serviceAccountId")
@@ -65,6 +54,18 @@ class ServiceAccountPermissionArgs:
     @org_id.setter
     def org_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "org_id", value)
+
+    @property
+    @pulumi.getter
+    def permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceAccountPermissionPermissionArgs']]]]:
+        """
+        The permission items to add/update. Items that are omitted from the list will be removed.
+        """
+        return pulumi.get(self, "permissions")
+
+    @permissions.setter
+    def permissions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceAccountPermissionPermissionArgs']]]]):
+        pulumi.set(self, "permissions", value)
 
 
 @pulumi.input_type
@@ -133,6 +134,8 @@ class ServiceAccountPermission(pulumi.CustomResource):
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        Manages the entire set of permissions for a service account. Permissions that aren't specified when applying this resource will be removed.
+
         **Note:** This resource is available from Grafana 9.2.4 onwards.
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
@@ -178,6 +181,8 @@ class ServiceAccountPermission(pulumi.CustomResource):
                  args: ServiceAccountPermissionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages the entire set of permissions for a service account. Permissions that aren't specified when applying this resource will be removed.
+
         **Note:** This resource is available from Grafana 9.2.4 onwards.
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
@@ -238,8 +243,6 @@ class ServiceAccountPermission(pulumi.CustomResource):
             __props__ = ServiceAccountPermissionArgs.__new__(ServiceAccountPermissionArgs)
 
             __props__.__dict__["org_id"] = org_id
-            if permissions is None and not opts.urn:
-                raise TypeError("Missing required property 'permissions'")
             __props__.__dict__["permissions"] = permissions
             if service_account_id is None and not opts.urn:
                 raise TypeError("Missing required property 'service_account_id'")
@@ -287,7 +290,7 @@ class ServiceAccountPermission(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def permissions(self) -> pulumi.Output[Sequence['outputs.ServiceAccountPermissionPermission']]:
+    def permissions(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceAccountPermissionPermission']]]:
         """
         The permission items to add/update. Items that are omitted from the list will be removed.
         """

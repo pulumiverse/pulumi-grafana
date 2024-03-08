@@ -102,10 +102,16 @@ namespace Pulumiverse.Grafana
         public Output<ImmutableArray<Outputs.ContactPointLine>> Lines { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the contact point.
+        /// Name of the responder. Must be specified if username and id are empty.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// A contact point that sends notifications to Grafana On-Call.
+        /// </summary>
+        [Output("oncalls")]
+        public Output<ImmutableArray<Outputs.ContactPointOncall>> Oncalls { get; private set; } = null!;
 
         /// <summary>
         /// A contact point that sends notifications to OpsGenie.
@@ -311,10 +317,22 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The name of the contact point.
+        /// Name of the responder. Must be specified if username and id are empty.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("oncalls")]
+        private InputList<Inputs.ContactPointOncallArgs>? _oncalls;
+
+        /// <summary>
+        /// A contact point that sends notifications to Grafana On-Call.
+        /// </summary>
+        public InputList<Inputs.ContactPointOncallArgs> Oncalls
+        {
+            get => _oncalls ?? (_oncalls = new InputList<Inputs.ContactPointOncallArgs>());
+            set => _oncalls = value;
+        }
 
         [Input("opsgenies")]
         private InputList<Inputs.ContactPointOpsgenyArgs>? _opsgenies;
@@ -553,10 +571,22 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The name of the contact point.
+        /// Name of the responder. Must be specified if username and id are empty.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("oncalls")]
+        private InputList<Inputs.ContactPointOncallGetArgs>? _oncalls;
+
+        /// <summary>
+        /// A contact point that sends notifications to Grafana On-Call.
+        /// </summary>
+        public InputList<Inputs.ContactPointOncallGetArgs> Oncalls
+        {
+            get => _oncalls ?? (_oncalls = new InputList<Inputs.ContactPointOncallGetArgs>());
+            set => _oncalls = value;
+        }
 
         [Input("opsgenies")]
         private InputList<Inputs.ContactPointOpsgenyGetArgs>? _opsgenies;

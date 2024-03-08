@@ -52,14 +52,20 @@ import (
 //	}
 //
 // ```
-func GetFolders(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetFoldersResult, error) {
+func GetFolders(ctx *pulumi.Context, args *GetFoldersArgs, opts ...pulumi.InvokeOption) (*GetFoldersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFoldersResult
-	err := ctx.Invoke("grafana:index/getFolders:getFolders", nil, &rv, opts...)
+	err := ctx.Invoke("grafana:index/getFolders:getFolders", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
+}
+
+// A collection of arguments for invoking getFolders.
+type GetFoldersArgs struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 }
 
 // A collection of values returned by getFolders.
@@ -68,17 +74,31 @@ type GetFoldersResult struct {
 	Folders []GetFoldersFolder `pulumi:"folders"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 }
 
-func GetFoldersOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetFoldersResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetFoldersResult, error) {
-		r, err := GetFolders(ctx, opts...)
-		var s GetFoldersResult
-		if r != nil {
-			s = *r
-		}
-		return s, err
-	}).(GetFoldersResultOutput)
+func GetFoldersOutput(ctx *pulumi.Context, args GetFoldersOutputArgs, opts ...pulumi.InvokeOption) GetFoldersResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetFoldersResult, error) {
+			args := v.(GetFoldersArgs)
+			r, err := GetFolders(ctx, &args, opts...)
+			var s GetFoldersResult
+			if r != nil {
+				s = *r
+			}
+			return s, err
+		}).(GetFoldersResultOutput)
+}
+
+// A collection of arguments for invoking getFolders.
+type GetFoldersOutputArgs struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
+}
+
+func (GetFoldersOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFoldersArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getFolders.
@@ -110,6 +130,11 @@ func (o GetFoldersResultOutput) Folders() GetFoldersFolderArrayOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o GetFoldersResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFoldersResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o GetFoldersResultOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFoldersResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 func init() {

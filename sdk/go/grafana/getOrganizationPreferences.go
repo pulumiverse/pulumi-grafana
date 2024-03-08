@@ -38,14 +38,20 @@ import (
 //	}
 //
 // ```
-func GetOrganizationPreferences(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetOrganizationPreferencesResult, error) {
+func GetOrganizationPreferences(ctx *pulumi.Context, args *GetOrganizationPreferencesArgs, opts ...pulumi.InvokeOption) (*GetOrganizationPreferencesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOrganizationPreferencesResult
-	err := ctx.Invoke("grafana:index/getOrganizationPreferences:getOrganizationPreferences", nil, &rv, opts...)
+	err := ctx.Invoke("grafana:index/getOrganizationPreferences:getOrganizationPreferences", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
+}
+
+// A collection of arguments for invoking getOrganizationPreferences.
+type GetOrganizationPreferencesArgs struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 }
 
 // A collection of values returned by getOrganizationPreferences.
@@ -57,7 +63,7 @@ type GetOrganizationPreferencesResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-	OrgId string `pulumi:"orgId"`
+	OrgId *string `pulumi:"orgId"`
 	// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
 	Theme string `pulumi:"theme"`
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
@@ -66,15 +72,27 @@ type GetOrganizationPreferencesResult struct {
 	WeekStart string `pulumi:"weekStart"`
 }
 
-func GetOrganizationPreferencesOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetOrganizationPreferencesResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetOrganizationPreferencesResult, error) {
-		r, err := GetOrganizationPreferences(ctx, opts...)
-		var s GetOrganizationPreferencesResult
-		if r != nil {
-			s = *r
-		}
-		return s, err
-	}).(GetOrganizationPreferencesResultOutput)
+func GetOrganizationPreferencesOutput(ctx *pulumi.Context, args GetOrganizationPreferencesOutputArgs, opts ...pulumi.InvokeOption) GetOrganizationPreferencesResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetOrganizationPreferencesResult, error) {
+			args := v.(GetOrganizationPreferencesArgs)
+			r, err := GetOrganizationPreferences(ctx, &args, opts...)
+			var s GetOrganizationPreferencesResult
+			if r != nil {
+				s = *r
+			}
+			return s, err
+		}).(GetOrganizationPreferencesResultOutput)
+}
+
+// A collection of arguments for invoking getOrganizationPreferences.
+type GetOrganizationPreferencesOutputArgs struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
+}
+
+func (GetOrganizationPreferencesOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrganizationPreferencesArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getOrganizationPreferences.
@@ -114,8 +132,8 @@ func (o GetOrganizationPreferencesResultOutput) Id() pulumi.StringOutput {
 }
 
 // The Organization ID. If not set, the Org ID defined in the provider block will be used.
-func (o GetOrganizationPreferencesResultOutput) OrgId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetOrganizationPreferencesResult) string { return v.OrgId }).(pulumi.StringOutput)
+func (o GetOrganizationPreferencesResultOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetOrganizationPreferencesResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // The Organization theme. Available values are `light`, `dark`, or an empty string for the default.

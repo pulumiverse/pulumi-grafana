@@ -80,8 +80,10 @@ type ContactPoint struct {
 	Kafkas ContactPointKafkaArrayOutput `pulumi:"kafkas"`
 	// A contact point that sends notifications to LINE.me.
 	Lines ContactPointLineArrayOutput `pulumi:"lines"`
-	// The name of the contact point.
+	// Name of the responder. Must be specified if username and id are empty.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// A contact point that sends notifications to Grafana On-Call.
+	Oncalls ContactPointOncallArrayOutput `pulumi:"oncalls"`
 	// A contact point that sends notifications to OpsGenie.
 	Opsgenies ContactPointOpsgenyArrayOutput `pulumi:"opsgenies"`
 	// A contact point that sends notifications to PagerDuty.
@@ -152,8 +154,10 @@ type contactPointState struct {
 	Kafkas []ContactPointKafka `pulumi:"kafkas"`
 	// A contact point that sends notifications to LINE.me.
 	Lines []ContactPointLine `pulumi:"lines"`
-	// The name of the contact point.
+	// Name of the responder. Must be specified if username and id are empty.
 	Name *string `pulumi:"name"`
+	// A contact point that sends notifications to Grafana On-Call.
+	Oncalls []ContactPointOncall `pulumi:"oncalls"`
 	// A contact point that sends notifications to OpsGenie.
 	Opsgenies []ContactPointOpsgeny `pulumi:"opsgenies"`
 	// A contact point that sends notifications to PagerDuty.
@@ -195,8 +199,10 @@ type ContactPointState struct {
 	Kafkas ContactPointKafkaArrayInput
 	// A contact point that sends notifications to LINE.me.
 	Lines ContactPointLineArrayInput
-	// The name of the contact point.
+	// Name of the responder. Must be specified if username and id are empty.
 	Name pulumi.StringPtrInput
+	// A contact point that sends notifications to Grafana On-Call.
+	Oncalls ContactPointOncallArrayInput
 	// A contact point that sends notifications to OpsGenie.
 	Opsgenies ContactPointOpsgenyArrayInput
 	// A contact point that sends notifications to PagerDuty.
@@ -242,8 +248,10 @@ type contactPointArgs struct {
 	Kafkas []ContactPointKafka `pulumi:"kafkas"`
 	// A contact point that sends notifications to LINE.me.
 	Lines []ContactPointLine `pulumi:"lines"`
-	// The name of the contact point.
+	// Name of the responder. Must be specified if username and id are empty.
 	Name *string `pulumi:"name"`
+	// A contact point that sends notifications to Grafana On-Call.
+	Oncalls []ContactPointOncall `pulumi:"oncalls"`
 	// A contact point that sends notifications to OpsGenie.
 	Opsgenies []ContactPointOpsgeny `pulumi:"opsgenies"`
 	// A contact point that sends notifications to PagerDuty.
@@ -286,8 +294,10 @@ type ContactPointArgs struct {
 	Kafkas ContactPointKafkaArrayInput
 	// A contact point that sends notifications to LINE.me.
 	Lines ContactPointLineArrayInput
-	// The name of the contact point.
+	// Name of the responder. Must be specified if username and id are empty.
 	Name pulumi.StringPtrInput
+	// A contact point that sends notifications to Grafana On-Call.
+	Oncalls ContactPointOncallArrayInput
 	// A contact point that sends notifications to OpsGenie.
 	Opsgenies ContactPointOpsgenyArrayInput
 	// A contact point that sends notifications to PagerDuty.
@@ -460,9 +470,14 @@ func (o ContactPointOutput) Lines() ContactPointLineArrayOutput {
 	return o.ApplyT(func(v *ContactPoint) ContactPointLineArrayOutput { return v.Lines }).(ContactPointLineArrayOutput)
 }
 
-// The name of the contact point.
+// Name of the responder. Must be specified if username and id are empty.
 func (o ContactPointOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContactPoint) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// A contact point that sends notifications to Grafana On-Call.
+func (o ContactPointOutput) Oncalls() ContactPointOncallArrayOutput {
+	return o.ApplyT(func(v *ContactPoint) ContactPointOncallArrayOutput { return v.Oncalls }).(ContactPointOncallArrayOutput)
 }
 
 // A contact point that sends notifications to OpsGenie.

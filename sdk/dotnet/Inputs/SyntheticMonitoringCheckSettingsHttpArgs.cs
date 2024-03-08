@@ -127,6 +127,18 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("noFollowRedirects")]
         public Input<bool>? NoFollowRedirects { get; set; }
 
+        [Input("proxyConnectHeaders")]
+        private InputList<string>? _proxyConnectHeaders;
+
+        /// <summary>
+        /// The HTTP headers sent to the proxy URL
+        /// </summary>
+        public InputList<string> ProxyConnectHeaders
+        {
+            get => _proxyConnectHeaders ?? (_proxyConnectHeaders = new InputList<string>());
+            set => _proxyConnectHeaders = value;
+        }
+
         /// <summary>
         /// Proxy URL.
         /// </summary>

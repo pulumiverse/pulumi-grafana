@@ -158,8 +158,8 @@ type RuleGroup struct {
 	IntervalSeconds pulumi.IntOutput `pulumi:"intervalSeconds"`
 	// The name of the alert rule.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The ID of the org to which the group belongs.
-	OrgId pulumi.StringOutput `pulumi:"orgId"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// The rules within the group.
 	Rules RuleGroupRuleArrayOutput `pulumi:"rules"`
 }
@@ -176,9 +176,6 @@ func NewRuleGroup(ctx *pulumi.Context,
 	}
 	if args.IntervalSeconds == nil {
 		return nil, errors.New("invalid value for required argument 'IntervalSeconds'")
-	}
-	if args.OrgId == nil {
-		return nil, errors.New("invalid value for required argument 'OrgId'")
 	}
 	if args.Rules == nil {
 		return nil, errors.New("invalid value for required argument 'Rules'")
@@ -212,7 +209,7 @@ type ruleGroupState struct {
 	IntervalSeconds *int `pulumi:"intervalSeconds"`
 	// The name of the alert rule.
 	Name *string `pulumi:"name"`
-	// The ID of the org to which the group belongs.
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
 	// The rules within the group.
 	Rules []RuleGroupRule `pulumi:"rules"`
@@ -225,7 +222,7 @@ type RuleGroupState struct {
 	IntervalSeconds pulumi.IntPtrInput
 	// The name of the alert rule.
 	Name pulumi.StringPtrInput
-	// The ID of the org to which the group belongs.
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
 	// The rules within the group.
 	Rules RuleGroupRuleArrayInput
@@ -242,8 +239,8 @@ type ruleGroupArgs struct {
 	IntervalSeconds int `pulumi:"intervalSeconds"`
 	// The name of the alert rule.
 	Name *string `pulumi:"name"`
-	// The ID of the org to which the group belongs.
-	OrgId string `pulumi:"orgId"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The rules within the group.
 	Rules []RuleGroupRule `pulumi:"rules"`
 }
@@ -256,8 +253,8 @@ type RuleGroupArgs struct {
 	IntervalSeconds pulumi.IntInput
 	// The name of the alert rule.
 	Name pulumi.StringPtrInput
-	// The ID of the org to which the group belongs.
-	OrgId pulumi.StringInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The rules within the group.
 	Rules RuleGroupRuleArrayInput
 }
@@ -388,9 +385,9 @@ func (o RuleGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *RuleGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The ID of the org to which the group belongs.
-func (o RuleGroupOutput) OrgId() pulumi.StringOutput {
-	return o.ApplyT(func(v *RuleGroup) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o RuleGroupOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleGroup) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // The rules within the group.

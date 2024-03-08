@@ -89,6 +89,12 @@ namespace Pulumiverse.Grafana
     public sealed class GetFolderArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public string? OrgId { get; set; }
+
+        /// <summary>
         /// The name of the Grafana folder.
         /// </summary>
         [Input("title", required: true)]
@@ -102,6 +108,12 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetFolderInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
         /// <summary>
         /// The name of the Grafana folder.
         /// </summary>
@@ -123,6 +135,10 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public readonly int Id;
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        public readonly string? OrgId;
+        /// <summary>
         /// The name of the Grafana folder.
         /// </summary>
         public readonly string Title;
@@ -139,6 +155,8 @@ namespace Pulumiverse.Grafana
         private GetFolderResult(
             int id,
 
+            string? orgId,
+
             string title,
 
             string uid,
@@ -146,6 +164,7 @@ namespace Pulumiverse.Grafana
             string url)
         {
             Id = id;
+            OrgId = orgId;
             Title = title;
             Uid = uid;
             Url = url;

@@ -33,6 +33,8 @@ type GetDashboardsArgs struct {
 	FolderIds []int `pulumi:"folderIds"`
 	// Maximum number of dashboard search results to return. Defaults to `5000`.
 	Limit *int `pulumi:"limit"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
 	Tags []string `pulumi:"tags"`
 }
@@ -46,6 +48,8 @@ type GetDashboardsResult struct {
 	Id string `pulumi:"id"`
 	// Maximum number of dashboard search results to return. Defaults to `5000`.
 	Limit *int `pulumi:"limit"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
 	Tags []string `pulumi:"tags"`
 }
@@ -69,6 +73,8 @@ type GetDashboardsOutputArgs struct {
 	FolderIds pulumi.IntArrayInput `pulumi:"folderIds"`
 	// Maximum number of dashboard search results to return. Defaults to `5000`.
 	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
 	// List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 }
@@ -115,6 +121,11 @@ func (o GetDashboardsResultOutput) Id() pulumi.StringOutput {
 // Maximum number of dashboard search results to return. Defaults to `5000`.
 func (o GetDashboardsResultOutput) Limit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetDashboardsResult) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o GetDashboardsResultOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDashboardsResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.

@@ -13,6 +13,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages the entire set of permissions for a folder. Permissions that aren't specified when applying this resource will be removed.
 // * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
 //
@@ -71,6 +72,20 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// ```sh
+//
+//	$ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
+//
+// ```
+//
+// ```sh
+//
+//	$ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
+//
+// ```
 type FolderPermission struct {
 	pulumi.CustomResourceState
 
@@ -91,9 +106,6 @@ func NewFolderPermission(ctx *pulumi.Context,
 
 	if args.FolderUid == nil {
 		return nil, errors.New("invalid value for required argument 'FolderUid'")
-	}
-	if args.Permissions == nil {
-		return nil, errors.New("invalid value for required argument 'Permissions'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FolderPermission

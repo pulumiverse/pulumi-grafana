@@ -22,7 +22,7 @@ class GetDashboardsResult:
     """
     A collection of values returned by getDashboards.
     """
-    def __init__(__self__, dashboards=None, folder_ids=None, id=None, limit=None, tags=None):
+    def __init__(__self__, dashboards=None, folder_ids=None, id=None, limit=None, org_id=None, tags=None):
         if dashboards and not isinstance(dashboards, list):
             raise TypeError("Expected argument 'dashboards' to be a list")
         pulumi.set(__self__, "dashboards", dashboards)
@@ -35,6 +35,9 @@ class GetDashboardsResult:
         if limit and not isinstance(limit, int):
             raise TypeError("Expected argument 'limit' to be a int")
         pulumi.set(__self__, "limit", limit)
+        if org_id and not isinstance(org_id, str):
+            raise TypeError("Expected argument 'org_id' to be a str")
+        pulumi.set(__self__, "org_id", org_id)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -69,6 +72,14 @@ class GetDashboardsResult:
         return pulumi.get(self, "limit")
 
     @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[str]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence[str]]:
         """
@@ -87,11 +98,13 @@ class AwaitableGetDashboardsResult(GetDashboardsResult):
             folder_ids=self.folder_ids,
             id=self.id,
             limit=self.limit,
+            org_id=self.org_id,
             tags=self.tags)
 
 
 def get_dashboards(folder_ids: Optional[Sequence[int]] = None,
                    limit: Optional[int] = None,
+                   org_id: Optional[str] = None,
                    tags: Optional[Sequence[str]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDashboardsResult:
     """
@@ -104,11 +117,13 @@ def get_dashboards(folder_ids: Optional[Sequence[int]] = None,
 
     :param Sequence[int] folder_ids: Numerical IDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `[0]` for General folder), or leave blank to get all dashboards in all folders.
     :param int limit: Maximum number of dashboard search results to return. Defaults to `5000`.
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     :param Sequence[str] tags: List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
     """
     __args__ = dict()
     __args__['folderIds'] = folder_ids
     __args__['limit'] = limit
+    __args__['orgId'] = org_id
     __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('grafana:index/getDashboards:getDashboards', __args__, opts=opts, typ=GetDashboardsResult).value
@@ -118,12 +133,14 @@ def get_dashboards(folder_ids: Optional[Sequence[int]] = None,
         folder_ids=pulumi.get(__ret__, 'folder_ids'),
         id=pulumi.get(__ret__, 'id'),
         limit=pulumi.get(__ret__, 'limit'),
+        org_id=pulumi.get(__ret__, 'org_id'),
         tags=pulumi.get(__ret__, 'tags'))
 
 
 @_utilities.lift_output_func(get_dashboards)
 def get_dashboards_output(folder_ids: Optional[pulumi.Input[Optional[Sequence[int]]]] = None,
                           limit: Optional[pulumi.Input[Optional[int]]] = None,
+                          org_id: Optional[pulumi.Input[Optional[str]]] = None,
                           tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDashboardsResult]:
     """
@@ -136,6 +153,7 @@ def get_dashboards_output(folder_ids: Optional[pulumi.Input[Optional[Sequence[in
 
     :param Sequence[int] folder_ids: Numerical IDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `[0]` for General folder), or leave blank to get all dashboards in all folders.
     :param int limit: Maximum number of dashboard search results to return. Defaults to `5000`.
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     :param Sequence[str] tags: List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
     """
     ...

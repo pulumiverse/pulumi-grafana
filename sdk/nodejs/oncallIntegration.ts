@@ -61,11 +61,11 @@ export class OncallIntegration extends pulumi.CustomResource {
      */
     public readonly teamId!: pulumi.Output<string | undefined>;
     /**
-     * Jinja2 templates for Alert payload.
+     * Jinja2 templates for Alert payload. An empty templates block will be ignored.
      */
     public readonly templates!: pulumi.Output<outputs.OncallIntegrationTemplates | undefined>;
     /**
-     * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
+     * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
      */
     public readonly type!: pulumi.Output<string>;
 
@@ -129,11 +129,11 @@ export interface OncallIntegrationState {
      */
     teamId?: pulumi.Input<string>;
     /**
-     * Jinja2 templates for Alert payload.
+     * Jinja2 templates for Alert payload. An empty templates block will be ignored.
      */
     templates?: pulumi.Input<inputs.OncallIntegrationTemplates>;
     /**
-     * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
+     * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
      */
     type?: pulumi.Input<string>;
 }
@@ -155,11 +155,11 @@ export interface OncallIntegrationArgs {
      */
     teamId?: pulumi.Input<string>;
     /**
-     * Jinja2 templates for Alert payload.
+     * Jinja2 templates for Alert payload. An empty templates block will be ignored.
      */
     templates?: pulumi.Input<inputs.OncallIntegrationTemplates>;
     /**
-     * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
+     * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
      */
     type: pulumi.Input<string>;
 }

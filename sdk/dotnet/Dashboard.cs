@@ -20,16 +20,27 @@ namespace Pulumiverse.Grafana
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
-    /// using System.IO;
     /// using System.Linq;
+    /// using System.Text.Json;
     /// using Pulumi;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var metrics = new Grafana.Dashboard("metrics", new()
+    ///     var testFolder = new Grafana.Folder("testFolder", new()
     ///     {
-    ///         ConfigJson = File.ReadAllText("grafana-dashboard.json"),
+    ///         Title = "My Folder",
+    ///         Uid = "my-folder-uid",
+    ///     });
+    /// 
+    ///     var testDashboard = new Grafana.Dashboard("testDashboard", new()
+    ///     {
+    ///         Folder = testFolder.Uid,
+    ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["title"] = "My Dashboard",
+    ///             ["uid"] = "my-dashboard-uid",
+    ///         }),
     ///     });
     /// 
     /// });

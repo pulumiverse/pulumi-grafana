@@ -24,6 +24,7 @@ class ContactPointArgs:
                  kafkas: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]]] = None,
                  lines: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 oncalls: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]]] = None,
                  opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyArgs']]]] = None,
                  pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointPagerdutyArgs']]]] = None,
                  pushovers: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointPushoverArgs']]]] = None,
@@ -45,7 +46,8 @@ class ContactPointArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]] googlechats: A contact point that sends notifications to Google Chat.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]] lines: A contact point that sends notifications to LINE.me.
-        :param pulumi.Input[str] name: The name of the contact point.
+        :param pulumi.Input[str] name: Name of the responder. Must be specified if username and id are empty.
+        :param pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]] oncalls: A contact point that sends notifications to Grafana On-Call.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyArgs']]] opsgenies: A contact point that sends notifications to OpsGenie.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointPagerdutyArgs']]] pagerduties: A contact point that sends notifications to PagerDuty.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointPushoverArgs']]] pushovers: A contact point that sends notifications to Pushover.
@@ -75,6 +77,8 @@ class ContactPointArgs:
             pulumi.set(__self__, "lines", lines)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if oncalls is not None:
+            pulumi.set(__self__, "oncalls", oncalls)
         if opsgenies is not None:
             pulumi.set(__self__, "opsgenies", opsgenies)
         if pagerduties is not None:
@@ -188,13 +192,25 @@ class ContactPointArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the contact point.
+        Name of the responder. Must be specified if username and id are empty.
         """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def oncalls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]]]:
+        """
+        A contact point that sends notifications to Grafana On-Call.
+        """
+        return pulumi.get(self, "oncalls")
+
+    @oncalls.setter
+    def oncalls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]]]):
+        pulumi.set(self, "oncalls", value)
 
     @property
     @pulumi.getter
@@ -352,6 +368,7 @@ class _ContactPointState:
                  kafkas: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]]] = None,
                  lines: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 oncalls: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]]] = None,
                  opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyArgs']]]] = None,
                  pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointPagerdutyArgs']]]] = None,
                  pushovers: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointPushoverArgs']]]] = None,
@@ -373,7 +390,8 @@ class _ContactPointState:
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]] googlechats: A contact point that sends notifications to Google Chat.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]] lines: A contact point that sends notifications to LINE.me.
-        :param pulumi.Input[str] name: The name of the contact point.
+        :param pulumi.Input[str] name: Name of the responder. Must be specified if username and id are empty.
+        :param pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]] oncalls: A contact point that sends notifications to Grafana On-Call.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyArgs']]] opsgenies: A contact point that sends notifications to OpsGenie.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointPagerdutyArgs']]] pagerduties: A contact point that sends notifications to PagerDuty.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointPushoverArgs']]] pushovers: A contact point that sends notifications to Pushover.
@@ -403,6 +421,8 @@ class _ContactPointState:
             pulumi.set(__self__, "lines", lines)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if oncalls is not None:
+            pulumi.set(__self__, "oncalls", oncalls)
         if opsgenies is not None:
             pulumi.set(__self__, "opsgenies", opsgenies)
         if pagerduties is not None:
@@ -516,13 +536,25 @@ class _ContactPointState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the contact point.
+        Name of the responder. Must be specified if username and id are empty.
         """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def oncalls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]]]:
+        """
+        A contact point that sends notifications to Grafana On-Call.
+        """
+        return pulumi.get(self, "oncalls")
+
+    @oncalls.setter
+    def oncalls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]]]):
+        pulumi.set(self, "oncalls", value)
 
     @property
     @pulumi.getter
@@ -682,6 +714,7 @@ class ContactPoint(pulumi.CustomResource):
                  kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]]] = None,
                  lines: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 oncalls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]]] = None,
                  opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]]] = None,
                  pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]]] = None,
                  pushovers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPushoverArgs']]]]] = None,
@@ -736,7 +769,8 @@ class ContactPoint(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]] googlechats: A contact point that sends notifications to Google Chat.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]] lines: A contact point that sends notifications to LINE.me.
-        :param pulumi.Input[str] name: The name of the contact point.
+        :param pulumi.Input[str] name: Name of the responder. Must be specified if username and id are empty.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]] oncalls: A contact point that sends notifications to Grafana On-Call.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]] opsgenies: A contact point that sends notifications to OpsGenie.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]] pagerduties: A contact point that sends notifications to PagerDuty.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPushoverArgs']]]] pushovers: A contact point that sends notifications to Pushover.
@@ -811,6 +845,7 @@ class ContactPoint(pulumi.CustomResource):
                  kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]]] = None,
                  lines: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 oncalls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]]] = None,
                  opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]]] = None,
                  pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]]] = None,
                  pushovers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPushoverArgs']]]]] = None,
@@ -840,6 +875,7 @@ class ContactPoint(pulumi.CustomResource):
             __props__.__dict__["kafkas"] = kafkas
             __props__.__dict__["lines"] = lines
             __props__.__dict__["name"] = name
+            __props__.__dict__["oncalls"] = oncalls
             __props__.__dict__["opsgenies"] = opsgenies
             __props__.__dict__["pagerduties"] = pagerduties
             __props__.__dict__["pushovers"] = pushovers
@@ -870,6 +906,7 @@ class ContactPoint(pulumi.CustomResource):
             kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]]] = None,
             lines: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            oncalls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]]] = None,
             opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]]] = None,
             pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]]] = None,
             pushovers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPushoverArgs']]]]] = None,
@@ -896,7 +933,8 @@ class ContactPoint(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]] googlechats: A contact point that sends notifications to Google Chat.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]] lines: A contact point that sends notifications to LINE.me.
-        :param pulumi.Input[str] name: The name of the contact point.
+        :param pulumi.Input[str] name: Name of the responder. Must be specified if username and id are empty.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]] oncalls: A contact point that sends notifications to Grafana On-Call.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]] opsgenies: A contact point that sends notifications to OpsGenie.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]] pagerduties: A contact point that sends notifications to PagerDuty.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPushoverArgs']]]] pushovers: A contact point that sends notifications to Pushover.
@@ -922,6 +960,7 @@ class ContactPoint(pulumi.CustomResource):
         __props__.__dict__["kafkas"] = kafkas
         __props__.__dict__["lines"] = lines
         __props__.__dict__["name"] = name
+        __props__.__dict__["oncalls"] = oncalls
         __props__.__dict__["opsgenies"] = opsgenies
         __props__.__dict__["pagerduties"] = pagerduties
         __props__.__dict__["pushovers"] = pushovers
@@ -996,9 +1035,17 @@ class ContactPoint(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the contact point.
+        Name of the responder. Must be specified if username and id are empty.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def oncalls(self) -> pulumi.Output[Optional[Sequence['outputs.ContactPointOncall']]]:
+        """
+        A contact point that sends notifications to Grafana On-Call.
+        """
+        return pulumi.get(self, "oncalls")
 
     @property
     @pulumi.getter

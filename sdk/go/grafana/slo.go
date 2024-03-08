@@ -31,6 +31,8 @@ type SLO struct {
 	Alertings SLOAlertingArrayOutput `pulumi:"alertings"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringOutput `pulumi:"description"`
+	// Destination Datasource sets the datasource defined for an SLO
+	DestinationDatasource SLODestinationDatasourcePtrOutput `pulumi:"destinationDatasource"`
 	// Labels to attach only to Fast Burn alerts.
 	Labels SLOLabelArrayOutput `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
@@ -88,6 +90,8 @@ type sloState struct {
 	Alertings []SLOAlerting `pulumi:"alertings"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description *string `pulumi:"description"`
+	// Destination Datasource sets the datasource defined for an SLO
+	DestinationDatasource *SLODestinationDatasource `pulumi:"destinationDatasource"`
 	// Labels to attach only to Fast Burn alerts.
 	Labels []SLOLabel `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
@@ -107,6 +111,8 @@ type SLOState struct {
 	Alertings SLOAlertingArrayInput
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringPtrInput
+	// Destination Datasource sets the datasource defined for an SLO
+	DestinationDatasource SLODestinationDatasourcePtrInput
 	// Labels to attach only to Fast Burn alerts.
 	Labels SLOLabelArrayInput
 	// Name should be a short description of your indicator. Consider names like "API Availability"
@@ -130,6 +136,8 @@ type sloArgs struct {
 	Alertings []SLOAlerting `pulumi:"alertings"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description string `pulumi:"description"`
+	// Destination Datasource sets the datasource defined for an SLO
+	DestinationDatasource *SLODestinationDatasource `pulumi:"destinationDatasource"`
 	// Labels to attach only to Fast Burn alerts.
 	Labels []SLOLabel `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
@@ -150,6 +158,8 @@ type SLOArgs struct {
 	Alertings SLOAlertingArrayInput
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringInput
+	// Destination Datasource sets the datasource defined for an SLO
+	DestinationDatasource SLODestinationDatasourcePtrInput
 	// Labels to attach only to Fast Burn alerts.
 	Labels SLOLabelArrayInput
 	// Name should be a short description of your indicator. Consider names like "API Availability"
@@ -284,6 +294,11 @@ func (o SLOOutput) Alertings() SLOAlertingArrayOutput {
 // Description is a free-text field that can provide more context to an SLO.
 func (o SLOOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *SLO) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+// Destination Datasource sets the datasource defined for an SLO
+func (o SLOOutput) DestinationDatasource() SLODestinationDatasourcePtrOutput {
+	return o.ApplyT(func(v *SLO) SLODestinationDatasourcePtrOutput { return v.DestinationDatasource }).(SLODestinationDatasourcePtrOutput)
 }
 
 // Labels to attach only to Fast Burn alerts.

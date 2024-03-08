@@ -18,23 +18,24 @@ class RuleGroupArgs:
     def __init__(__self__, *,
                  folder_uid: pulumi.Input[str],
                  interval_seconds: pulumi.Input[int],
-                 org_id: pulumi.Input[str],
                  rules: pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleArgs']]],
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RuleGroup resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
-        :param pulumi.Input[str] org_id: The ID of the org to which the group belongs.
         :param pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleArgs']]] rules: The rules within the group.
         :param pulumi.Input[str] name: The name of the alert rule.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         pulumi.set(__self__, "folder_uid", folder_uid)
         pulumi.set(__self__, "interval_seconds", interval_seconds)
-        pulumi.set(__self__, "org_id", org_id)
         pulumi.set(__self__, "rules", rules)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
 
     @property
     @pulumi.getter(name="folderUid")
@@ -61,18 +62,6 @@ class RuleGroupArgs:
         pulumi.set(self, "interval_seconds", value)
 
     @property
-    @pulumi.getter(name="orgId")
-    def org_id(self) -> pulumi.Input[str]:
-        """
-        The ID of the org to which the group belongs.
-        """
-        return pulumi.get(self, "org_id")
-
-    @org_id.setter
-    def org_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "org_id", value)
-
-    @property
     @pulumi.getter
     def rules(self) -> pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleArgs']]]:
         """
@@ -96,6 +85,18 @@ class RuleGroupArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
+
 
 @pulumi.input_type
 class _RuleGroupState:
@@ -110,7 +111,7 @@ class _RuleGroupState:
         :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[str] name: The name of the alert rule.
-        :param pulumi.Input[str] org_id: The ID of the org to which the group belongs.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleArgs']]] rules: The rules within the group.
         """
         if folder_uid is not None:
@@ -164,7 +165,7 @@ class _RuleGroupState:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the org to which the group belongs.
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         return pulumi.get(self, "org_id")
 
@@ -306,7 +307,7 @@ class RuleGroup(pulumi.CustomResource):
         :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[str] name: The name of the alert rule.
-        :param pulumi.Input[str] org_id: The ID of the org to which the group belongs.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]] rules: The rules within the group.
         """
         ...
@@ -456,8 +457,6 @@ class RuleGroup(pulumi.CustomResource):
                 raise TypeError("Missing required property 'interval_seconds'")
             __props__.__dict__["interval_seconds"] = interval_seconds
             __props__.__dict__["name"] = name
-            if org_id is None and not opts.urn:
-                raise TypeError("Missing required property 'org_id'")
             __props__.__dict__["org_id"] = org_id
             if rules is None and not opts.urn:
                 raise TypeError("Missing required property 'rules'")
@@ -487,7 +486,7 @@ class RuleGroup(pulumi.CustomResource):
         :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[str] name: The name of the alert rule.
-        :param pulumi.Input[str] org_id: The ID of the org to which the group belongs.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]] rules: The rules within the group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -527,9 +526,9 @@ class RuleGroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> pulumi.Output[str]:
+    def org_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the org to which the group belongs.
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         return pulumi.get(self, "org_id")
 

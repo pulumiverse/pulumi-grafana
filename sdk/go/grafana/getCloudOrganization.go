@@ -12,6 +12,31 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := grafana.GetCloudOrganization(ctx, &grafana.GetCloudOrganizationArgs{
+//				Slug: pulumi.StringRef("my-org"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetCloudOrganization(ctx *pulumi.Context, args *GetCloudOrganizationArgs, opts ...pulumi.InvokeOption) (*GetCloudOrganizationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCloudOrganizationResult

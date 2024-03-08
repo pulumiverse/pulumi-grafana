@@ -40,11 +40,23 @@ import * as utilities from "./utilities";
  *     repeatInterval: "3h",
  *     policies: [
  *         {
- *             matchers: [{
- *                 label: "mylabel",
- *                 match: "=",
- *                 value: "myvalue",
- *             }],
+ *             matchers: [
+ *                 {
+ *                     label: "mylabel",
+ *                     match: "=",
+ *                     value: "myvalue",
+ *                 },
+ *                 {
+ *                     label: "alertname",
+ *                     match: "=",
+ *                     value: "CPU Usage",
+ *                 },
+ *                 {
+ *                     label: "Name",
+ *                     match: "=~",
+ *                     value: "host.*|host-b.*",
+ *                 },
+ *             ],
  *             contactPoint: aContactPoint.name,
  *             "continue": true,
  *             muteTimings: [aMuteTiming.name],
