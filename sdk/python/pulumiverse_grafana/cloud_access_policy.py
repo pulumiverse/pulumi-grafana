@@ -241,6 +241,12 @@ class CloudAccessPolicy(pulumi.CustomResource):
         * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-an-access-policy)
 
+        Required access policy scopes:
+
+        * accesspolicies:read
+        * accesspolicies:write
+        * accesspolicies:delete
+
         ## Example Usage
 
         ```python
@@ -273,7 +279,7 @@ class CloudAccessPolicy(pulumi.CustomResource):
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy policyname {{region}}/{{policy_id}}
+         $ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy name "{{ region }}:{{ policyId }}"
         ```
 
         :param str resource_name: The name of the resource.
@@ -293,6 +299,12 @@ class CloudAccessPolicy(pulumi.CustomResource):
         * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-an-access-policy)
 
+        Required access policy scopes:
+
+        * accesspolicies:read
+        * accesspolicies:write
+        * accesspolicies:delete
+
         ## Example Usage
 
         ```python
@@ -325,7 +337,7 @@ class CloudAccessPolicy(pulumi.CustomResource):
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy policyname {{region}}/{{policy_id}}
+         $ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy name "{{ region }}:{{ policyId }}"
         ```
 
         :param str resource_name: The name of the resource.

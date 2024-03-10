@@ -55,17 +55,29 @@ type OncallOutgoingWebhook struct {
 	AuthorizationHeader pulumi.StringPtrOutput `pulumi:"authorizationHeader"`
 	// The data of the webhook.
 	Data pulumi.StringPtrOutput `pulumi:"data"`
-	// Forwards whole payload of the alert to the webhook's url as POST data.
+	// Toggle to send the entire webhook payload instead of using the values in the Data field.
 	ForwardWholePayload pulumi.BoolPtrOutput `pulumi:"forwardWholePayload"`
+	// Headers to add to the outgoing webhook request.
+	Headers pulumi.StringPtrOutput `pulumi:"headers"`
+	// The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+	HttpMethod pulumi.StringPtrOutput `pulumi:"httpMethod"`
+	// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+	IntegrationFilters pulumi.StringArrayOutput `pulumi:"integrationFilters"`
+	// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+	IsWebhookEnabled pulumi.BoolPtrOutput `pulumi:"isWebhookEnabled"`
 	// The name of the outgoing webhook.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The auth data of the webhook. Used for Basic authentication
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
+	// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+	TriggerTemplate pulumi.StringPtrOutput `pulumi:"triggerTemplate"`
+	// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+	TriggerType pulumi.StringPtrOutput `pulumi:"triggerType"`
 	// The webhook URL.
 	Url pulumi.StringOutput `pulumi:"url"`
-	// The auth data of the webhook. Used for Basic authentication.
+	// Username to use when making the outgoing webhook request.
 	User pulumi.StringPtrOutput `pulumi:"user"`
 }
 
@@ -117,17 +129,29 @@ type oncallOutgoingWebhookState struct {
 	AuthorizationHeader *string `pulumi:"authorizationHeader"`
 	// The data of the webhook.
 	Data *string `pulumi:"data"`
-	// Forwards whole payload of the alert to the webhook's url as POST data.
+	// Toggle to send the entire webhook payload instead of using the values in the Data field.
 	ForwardWholePayload *bool `pulumi:"forwardWholePayload"`
+	// Headers to add to the outgoing webhook request.
+	Headers *string `pulumi:"headers"`
+	// The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+	HttpMethod *string `pulumi:"httpMethod"`
+	// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+	IntegrationFilters []string `pulumi:"integrationFilters"`
+	// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+	IsWebhookEnabled *bool `pulumi:"isWebhookEnabled"`
 	// The name of the outgoing webhook.
 	Name *string `pulumi:"name"`
 	// The auth data of the webhook. Used for Basic authentication
 	Password *string `pulumi:"password"`
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId *string `pulumi:"teamId"`
+	// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+	TriggerTemplate *string `pulumi:"triggerTemplate"`
+	// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+	TriggerType *string `pulumi:"triggerType"`
 	// The webhook URL.
 	Url *string `pulumi:"url"`
-	// The auth data of the webhook. Used for Basic authentication.
+	// Username to use when making the outgoing webhook request.
 	User *string `pulumi:"user"`
 }
 
@@ -136,17 +160,29 @@ type OncallOutgoingWebhookState struct {
 	AuthorizationHeader pulumi.StringPtrInput
 	// The data of the webhook.
 	Data pulumi.StringPtrInput
-	// Forwards whole payload of the alert to the webhook's url as POST data.
+	// Toggle to send the entire webhook payload instead of using the values in the Data field.
 	ForwardWholePayload pulumi.BoolPtrInput
+	// Headers to add to the outgoing webhook request.
+	Headers pulumi.StringPtrInput
+	// The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+	HttpMethod pulumi.StringPtrInput
+	// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+	IntegrationFilters pulumi.StringArrayInput
+	// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+	IsWebhookEnabled pulumi.BoolPtrInput
 	// The name of the outgoing webhook.
 	Name pulumi.StringPtrInput
 	// The auth data of the webhook. Used for Basic authentication
 	Password pulumi.StringPtrInput
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId pulumi.StringPtrInput
+	// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+	TriggerTemplate pulumi.StringPtrInput
+	// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+	TriggerType pulumi.StringPtrInput
 	// The webhook URL.
 	Url pulumi.StringPtrInput
-	// The auth data of the webhook. Used for Basic authentication.
+	// Username to use when making the outgoing webhook request.
 	User pulumi.StringPtrInput
 }
 
@@ -159,17 +195,29 @@ type oncallOutgoingWebhookArgs struct {
 	AuthorizationHeader *string `pulumi:"authorizationHeader"`
 	// The data of the webhook.
 	Data *string `pulumi:"data"`
-	// Forwards whole payload of the alert to the webhook's url as POST data.
+	// Toggle to send the entire webhook payload instead of using the values in the Data field.
 	ForwardWholePayload *bool `pulumi:"forwardWholePayload"`
+	// Headers to add to the outgoing webhook request.
+	Headers *string `pulumi:"headers"`
+	// The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+	HttpMethod *string `pulumi:"httpMethod"`
+	// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+	IntegrationFilters []string `pulumi:"integrationFilters"`
+	// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+	IsWebhookEnabled *bool `pulumi:"isWebhookEnabled"`
 	// The name of the outgoing webhook.
 	Name *string `pulumi:"name"`
 	// The auth data of the webhook. Used for Basic authentication
 	Password *string `pulumi:"password"`
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId *string `pulumi:"teamId"`
+	// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+	TriggerTemplate *string `pulumi:"triggerTemplate"`
+	// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+	TriggerType *string `pulumi:"triggerType"`
 	// The webhook URL.
 	Url string `pulumi:"url"`
-	// The auth data of the webhook. Used for Basic authentication.
+	// Username to use when making the outgoing webhook request.
 	User *string `pulumi:"user"`
 }
 
@@ -179,17 +227,29 @@ type OncallOutgoingWebhookArgs struct {
 	AuthorizationHeader pulumi.StringPtrInput
 	// The data of the webhook.
 	Data pulumi.StringPtrInput
-	// Forwards whole payload of the alert to the webhook's url as POST data.
+	// Toggle to send the entire webhook payload instead of using the values in the Data field.
 	ForwardWholePayload pulumi.BoolPtrInput
+	// Headers to add to the outgoing webhook request.
+	Headers pulumi.StringPtrInput
+	// The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+	HttpMethod pulumi.StringPtrInput
+	// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+	IntegrationFilters pulumi.StringArrayInput
+	// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+	IsWebhookEnabled pulumi.BoolPtrInput
 	// The name of the outgoing webhook.
 	Name pulumi.StringPtrInput
 	// The auth data of the webhook. Used for Basic authentication
 	Password pulumi.StringPtrInput
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId pulumi.StringPtrInput
+	// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+	TriggerTemplate pulumi.StringPtrInput
+	// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+	TriggerType pulumi.StringPtrInput
 	// The webhook URL.
 	Url pulumi.StringInput
-	// The auth data of the webhook. Used for Basic authentication.
+	// Username to use when making the outgoing webhook request.
 	User pulumi.StringPtrInput
 }
 
@@ -314,9 +374,29 @@ func (o OncallOutgoingWebhookOutput) Data() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallOutgoingWebhook) pulumi.StringPtrOutput { return v.Data }).(pulumi.StringPtrOutput)
 }
 
-// Forwards whole payload of the alert to the webhook's url as POST data.
+// Toggle to send the entire webhook payload instead of using the values in the Data field.
 func (o OncallOutgoingWebhookOutput) ForwardWholePayload() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OncallOutgoingWebhook) pulumi.BoolPtrOutput { return v.ForwardWholePayload }).(pulumi.BoolPtrOutput)
+}
+
+// Headers to add to the outgoing webhook request.
+func (o OncallOutgoingWebhookOutput) Headers() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OncallOutgoingWebhook) pulumi.StringPtrOutput { return v.Headers }).(pulumi.StringPtrOutput)
+}
+
+// The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+func (o OncallOutgoingWebhookOutput) HttpMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OncallOutgoingWebhook) pulumi.StringPtrOutput { return v.HttpMethod }).(pulumi.StringPtrOutput)
+}
+
+// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+func (o OncallOutgoingWebhookOutput) IntegrationFilters() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *OncallOutgoingWebhook) pulumi.StringArrayOutput { return v.IntegrationFilters }).(pulumi.StringArrayOutput)
+}
+
+// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+func (o OncallOutgoingWebhookOutput) IsWebhookEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *OncallOutgoingWebhook) pulumi.BoolPtrOutput { return v.IsWebhookEnabled }).(pulumi.BoolPtrOutput)
 }
 
 // The name of the outgoing webhook.
@@ -334,12 +414,22 @@ func (o OncallOutgoingWebhookOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallOutgoingWebhook) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
 }
 
+// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+func (o OncallOutgoingWebhookOutput) TriggerTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OncallOutgoingWebhook) pulumi.StringPtrOutput { return v.TriggerTemplate }).(pulumi.StringPtrOutput)
+}
+
+// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+func (o OncallOutgoingWebhookOutput) TriggerType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OncallOutgoingWebhook) pulumi.StringPtrOutput { return v.TriggerType }).(pulumi.StringPtrOutput)
+}
+
 // The webhook URL.
 func (o OncallOutgoingWebhookOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v *OncallOutgoingWebhook) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
 }
 
-// The auth data of the webhook. Used for Basic authentication.
+// Username to use when making the outgoing webhook request.
 func (o OncallOutgoingWebhookOutput) User() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallOutgoingWebhook) pulumi.StringPtrOutput { return v.User }).(pulumi.StringPtrOutput)
 }

@@ -72,6 +72,10 @@ export class Folder extends pulumi.CustomResource {
      */
     public readonly orgId!: pulumi.Output<string | undefined>;
     /**
+     * The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+     */
+    public readonly parentFolderUid!: pulumi.Output<string | undefined>;
+    /**
      * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
      */
     public readonly preventDestroyIfNotEmpty!: pulumi.Output<boolean | undefined>;
@@ -102,6 +106,7 @@ export class Folder extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as FolderState | undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
+            resourceInputs["parentFolderUid"] = state ? state.parentFolderUid : undefined;
             resourceInputs["preventDestroyIfNotEmpty"] = state ? state.preventDestroyIfNotEmpty : undefined;
             resourceInputs["title"] = state ? state.title : undefined;
             resourceInputs["uid"] = state ? state.uid : undefined;
@@ -112,6 +117,7 @@ export class Folder extends pulumi.CustomResource {
                 throw new Error("Missing required property 'title'");
             }
             resourceInputs["orgId"] = args ? args.orgId : undefined;
+            resourceInputs["parentFolderUid"] = args ? args.parentFolderUid : undefined;
             resourceInputs["preventDestroyIfNotEmpty"] = args ? args.preventDestroyIfNotEmpty : undefined;
             resourceInputs["title"] = args ? args.title : undefined;
             resourceInputs["uid"] = args ? args.uid : undefined;
@@ -130,6 +136,10 @@ export interface FolderState {
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
     orgId?: pulumi.Input<string>;
+    /**
+     * The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+     */
+    parentFolderUid?: pulumi.Input<string>;
     /**
      * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
      */
@@ -156,6 +166,10 @@ export interface FolderArgs {
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
     orgId?: pulumi.Input<string>;
+    /**
+     * The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+     */
+    parentFolderUid?: pulumi.Input<string>;
     /**
      * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
      */

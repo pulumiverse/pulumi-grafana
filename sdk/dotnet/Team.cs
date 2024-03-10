@@ -24,12 +24,19 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var viewer = new Grafana.User("viewer", new()
+    ///     {
+    ///         Email = "viewer@example.com",
+    ///         Login = "viewer",
+    ///         Password = "my-password",
+    ///     });
+    /// 
     ///     var test_team = new Grafana.Team("test-team", new()
     ///     {
     ///         Email = "teamemail@example.com",
     ///         Members = new[]
     ///         {
-    ///             "viewer-01@example.com",
+    ///             viewer.Email,
     ///         },
     ///     });
     /// 

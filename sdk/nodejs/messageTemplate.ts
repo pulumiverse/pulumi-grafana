@@ -59,9 +59,17 @@ export class MessageTemplate extends pulumi.CustomResource {
     }
 
     /**
+     * Allow modifying the message template from other sources than Terraform or the Grafana API.
+     */
+    public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
+    /**
      * The name of the message template.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    public readonly orgId!: pulumi.Output<string | undefined>;
     /**
      * The content of the message template.
      */
@@ -80,14 +88,18 @@ export class MessageTemplate extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MessageTemplateState | undefined;
+            resourceInputs["disableProvenance"] = state ? state.disableProvenance : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["template"] = state ? state.template : undefined;
         } else {
             const args = argsOrState as MessageTemplateArgs | undefined;
             if ((!args || args.template === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'template'");
             }
+            resourceInputs["disableProvenance"] = args ? args.disableProvenance : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["template"] = args ? args.template : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -100,9 +112,17 @@ export class MessageTemplate extends pulumi.CustomResource {
  */
 export interface MessageTemplateState {
     /**
+     * Allow modifying the message template from other sources than Terraform or the Grafana API.
+     */
+    disableProvenance?: pulumi.Input<boolean>;
+    /**
      * The name of the message template.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * The content of the message template.
      */
@@ -114,9 +134,17 @@ export interface MessageTemplateState {
  */
 export interface MessageTemplateArgs {
     /**
+     * Allow modifying the message template from other sources than Terraform or the Grafana API.
+     */
+    disableProvenance?: pulumi.Input<boolean>;
+    /**
      * The name of the message template.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * The content of the message template.
      */

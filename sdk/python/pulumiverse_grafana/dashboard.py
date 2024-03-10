@@ -271,9 +271,18 @@ class Dashboard(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import pulumiverse_grafana as grafana
 
-        metrics = grafana.Dashboard("metrics", config_json=(lambda path: open(path).read())("grafana-dashboard.json"))
+        test_folder = grafana.Folder("testFolder",
+            title="My Folder",
+            uid="my-folder-uid")
+        test_dashboard = grafana.Dashboard("testDashboard",
+            folder=test_folder.uid,
+            config_json=json.dumps({
+                "title": "My Dashboard",
+                "uid": "my-dashboard-uid",
+            }))
         ```
 
         ## Import
@@ -310,9 +319,18 @@ class Dashboard(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import pulumiverse_grafana as grafana
 
-        metrics = grafana.Dashboard("metrics", config_json=(lambda path: open(path).read())("grafana-dashboard.json"))
+        test_folder = grafana.Folder("testFolder",
+            title="My Folder",
+            uid="my-folder-uid")
+        test_dashboard = grafana.Dashboard("testDashboard",
+            folder=test_folder.uid,
+            config_json=json.dumps({
+                "title": "My Dashboard",
+                "uid": "my-dashboard-uid",
+            }))
         ```
 
         ## Import

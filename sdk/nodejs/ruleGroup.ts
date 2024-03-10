@@ -140,6 +140,10 @@ export class RuleGroup extends pulumi.CustomResource {
     }
 
     /**
+     * Allow modifying the rule group from other sources than Terraform or the Grafana API.
+     */
+    public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
+    /**
      * The UID of the folder that the group belongs to.
      */
     public readonly folderUid!: pulumi.Output<string>;
@@ -152,9 +156,9 @@ export class RuleGroup extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The ID of the org to which the group belongs.
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string>;
+    public readonly orgId!: pulumi.Output<string | undefined>;
     /**
      * The rules within the group.
      */
@@ -173,6 +177,7 @@ export class RuleGroup extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RuleGroupState | undefined;
+            resourceInputs["disableProvenance"] = state ? state.disableProvenance : undefined;
             resourceInputs["folderUid"] = state ? state.folderUid : undefined;
             resourceInputs["intervalSeconds"] = state ? state.intervalSeconds : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -186,12 +191,10 @@ export class RuleGroup extends pulumi.CustomResource {
             if ((!args || args.intervalSeconds === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'intervalSeconds'");
             }
-            if ((!args || args.orgId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'orgId'");
-            }
             if ((!args || args.rules === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'rules'");
             }
+            resourceInputs["disableProvenance"] = args ? args.disableProvenance : undefined;
             resourceInputs["folderUid"] = args ? args.folderUid : undefined;
             resourceInputs["intervalSeconds"] = args ? args.intervalSeconds : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -208,6 +211,10 @@ export class RuleGroup extends pulumi.CustomResource {
  */
 export interface RuleGroupState {
     /**
+     * Allow modifying the rule group from other sources than Terraform or the Grafana API.
+     */
+    disableProvenance?: pulumi.Input<boolean>;
+    /**
      * The UID of the folder that the group belongs to.
      */
     folderUid?: pulumi.Input<string>;
@@ -220,7 +227,7 @@ export interface RuleGroupState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the org to which the group belongs.
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
     orgId?: pulumi.Input<string>;
     /**
@@ -234,6 +241,10 @@ export interface RuleGroupState {
  */
 export interface RuleGroupArgs {
     /**
+     * Allow modifying the rule group from other sources than Terraform or the Grafana API.
+     */
+    disableProvenance?: pulumi.Input<boolean>;
+    /**
      * The UID of the folder that the group belongs to.
      */
     folderUid: pulumi.Input<string>;
@@ -246,9 +257,9 @@ export interface RuleGroupArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the org to which the group belongs.
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    orgId: pulumi.Input<string>;
+    orgId?: pulumi.Input<string>;
     /**
      * The rules within the group.
      */

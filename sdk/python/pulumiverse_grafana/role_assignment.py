@@ -198,6 +198,7 @@ class RoleAssignment(pulumi.CustomResource):
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  __props__=None):
         """
+        Manages the entire set of assignments for a role. Assignments that aren't specified when applying this resource will be removed.
         **Note:** This resource is available only with Grafana Enterprise 9.2+.
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
@@ -244,6 +245,7 @@ class RoleAssignment(pulumi.CustomResource):
                  args: RoleAssignmentArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages the entire set of assignments for a role. Assignments that aren't specified when applying this resource will be removed.
         **Note:** This resource is available only with Grafana Enterprise 9.2+.
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)

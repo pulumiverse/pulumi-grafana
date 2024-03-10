@@ -36,8 +36,14 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly caCert!: pulumi.Output<string | undefined>;
     /**
-     * Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+     * Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
      * variable.
+     */
+    public readonly cloudAccessPolicyToken!: pulumi.Output<string | undefined>;
+    /**
+     * Deprecated: Use `cloud_access_policy_token` instead.
+     *
+     * @deprecated Use `cloud_access_policy_token` instead.
      */
     public readonly cloudApiKey!: pulumi.Output<string | undefined>;
     /**
@@ -94,6 +100,7 @@ export class Provider extends pulumi.ProviderResource {
         {
             resourceInputs["auth"] = (args?.auth ? pulumi.secret(args.auth) : undefined) ?? utilities.getEnv("GRAFANA_AUTH");
             resourceInputs["caCert"] = (args ? args.caCert : undefined) ?? utilities.getEnv("GRAFANA_CA_CERT");
+            resourceInputs["cloudAccessPolicyToken"] = args?.cloudAccessPolicyToken ? pulumi.secret(args.cloudAccessPolicyToken) : undefined;
             resourceInputs["cloudApiKey"] = (args?.cloudApiKey ? pulumi.secret(args.cloudApiKey) : undefined) ?? utilities.getEnv("GRAFANA_CLOUD_API_KEY");
             resourceInputs["cloudApiUrl"] = (args ? args.cloudApiUrl : undefined) ?? utilities.getEnv("GRAFANA_CLOUD_API_URL");
             resourceInputs["insecureSkipVerify"] = pulumi.output((args ? args.insecureSkipVerify : undefined) ?? utilities.getEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY")).apply(JSON.stringify);
@@ -111,7 +118,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["url"] = (args ? args.url : undefined) ?? utilities.getEnv("GRAFANA_URL");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["auth", "cloudApiKey", "oncallAccessToken", "smAccessToken", "tlsKey"] };
+        const secretOpts = { additionalSecretOutputs: ["auth", "cloudAccessPolicyToken", "cloudApiKey", "oncallAccessToken", "smAccessToken", "tlsKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
@@ -132,8 +139,14 @@ export interface ProviderArgs {
      */
     caCert?: pulumi.Input<string>;
     /**
-     * Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+     * Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
      * variable.
+     */
+    cloudAccessPolicyToken?: pulumi.Input<string>;
+    /**
+     * Deprecated: Use `cloud_access_policy_token` instead.
+     *
+     * @deprecated Use `cloud_access_policy_token` instead.
      */
     cloudApiKey?: pulumi.Input<string>;
     /**

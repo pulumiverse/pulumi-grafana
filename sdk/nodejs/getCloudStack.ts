@@ -58,12 +58,16 @@ export interface GetCloudStackResult {
      * The stack id assigned to this stack by Grafana.
      */
     readonly id: string;
+    /**
+     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+     */
+    readonly labels: {[key: string]: string};
     readonly logsName: string;
     readonly logsStatus: string;
     readonly logsUrl: string;
     readonly logsUserId: number;
     /**
-     * Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
+     * Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
      */
     readonly name: string;
     /**
@@ -78,6 +82,14 @@ export interface GetCloudStackResult {
      * Organization slug to assign to this stack.
      */
     readonly orgSlug: string;
+    /**
+     * Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+     */
+    readonly otlpUrl: string;
+    readonly profilesName: string;
+    readonly profilesStatus: string;
+    readonly profilesUrl: string;
+    readonly profilesUserId: number;
     /**
      * Prometheus name for this instance.
      */

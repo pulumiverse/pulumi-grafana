@@ -21,10 +21,13 @@ class GetFolderResult:
     """
     A collection of values returned by getFolder.
     """
-    def __init__(__self__, id=None, title=None, uid=None, url=None):
+    def __init__(__self__, id=None, org_id=None, title=None, uid=None, url=None):
         if id and not isinstance(id, int):
             raise TypeError("Expected argument 'id' to be a int")
         pulumi.set(__self__, "id", id)
+        if org_id and not isinstance(org_id, str):
+            raise TypeError("Expected argument 'org_id' to be a str")
+        pulumi.set(__self__, "org_id", org_id)
         if title and not isinstance(title, str):
             raise TypeError("Expected argument 'title' to be a str")
         pulumi.set(__self__, "title", title)
@@ -42,6 +45,14 @@ class GetFolderResult:
         The numerical ID of the Grafana folder.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[str]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter
@@ -75,12 +86,14 @@ class AwaitableGetFolderResult(GetFolderResult):
             yield self
         return GetFolderResult(
             id=self.id,
+            org_id=self.org_id,
             title=self.title,
             uid=self.uid,
             url=self.url)
 
 
-def get_folder(title: Optional[str] = None,
+def get_folder(org_id: Optional[str] = None,
+               title: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFolderResult:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
@@ -100,22 +113,26 @@ def get_folder(title: Optional[str] = None,
     ```
 
 
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     :param str title: The name of the Grafana folder.
     """
     __args__ = dict()
+    __args__['orgId'] = org_id
     __args__['title'] = title
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('grafana:index/getFolder:getFolder', __args__, opts=opts, typ=GetFolderResult).value
 
     return AwaitableGetFolderResult(
         id=pulumi.get(__ret__, 'id'),
+        org_id=pulumi.get(__ret__, 'org_id'),
         title=pulumi.get(__ret__, 'title'),
         uid=pulumi.get(__ret__, 'uid'),
         url=pulumi.get(__ret__, 'url'))
 
 
 @_utilities.lift_output_func(get_folder)
-def get_folder_output(title: Optional[pulumi.Input[str]] = None,
+def get_folder_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
+                      title: Optional[pulumi.Input[str]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFolderResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
@@ -135,6 +152,7 @@ def get_folder_output(title: Optional[pulumi.Input[str]] = None,
     ```
 
 
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     :param str title: The name of the Grafana folder.
     """
     ...

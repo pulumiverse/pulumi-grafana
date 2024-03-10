@@ -71,7 +71,7 @@ class AwaitableGetOncallScheduleResult(GetOncallScheduleResult):
 def get_oncall_schedule(name: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallScheduleResult:
     """
-    * [Official documentation](https://grafana.com/docs/oncall/latest/on-call-schedules/)
+    * [Official documentation](https://grafana.com/docs/oncall/latest/manage/on-call-schedules/)
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
 
     ## Example Usage
@@ -101,7 +101,7 @@ def get_oncall_schedule(name: Optional[str] = None,
 def get_oncall_schedule_output(name: Optional[pulumi.Input[str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallScheduleResult]:
     """
-    * [Official documentation](https://grafana.com/docs/oncall/latest/on-call-schedules/)
+    * [Official documentation](https://grafana.com/docs/oncall/latest/manage/on-call-schedules/)
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
 
     ## Example Usage

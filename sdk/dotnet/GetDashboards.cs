@@ -54,6 +54,12 @@ namespace Pulumiverse.Grafana
         [Input("limit")]
         public int? Limit { get; set; }
 
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public string? OrgId { get; set; }
+
         [Input("tags")]
         private List<string>? _tags;
 
@@ -92,6 +98,12 @@ namespace Pulumiverse.Grafana
         [Input("limit")]
         public Input<int>? Limit { get; set; }
 
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
         [Input("tags")]
         private InputList<string>? _tags;
 
@@ -128,6 +140,10 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public readonly int? Limit;
         /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        public readonly string? OrgId;
+        /// <summary>
         /// List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
@@ -142,12 +158,15 @@ namespace Pulumiverse.Grafana
 
             int? limit,
 
+            string? orgId,
+
             ImmutableArray<string> tags)
         {
             Dashboards = dashboards;
             FolderIds = folderIds;
             Id = id;
             Limit = limit;
+            OrgId = orgId;
             Tags = tags;
         }
     }

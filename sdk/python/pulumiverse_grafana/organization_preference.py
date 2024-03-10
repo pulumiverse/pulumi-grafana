@@ -22,13 +22,16 @@ class OrganizationPreferenceArgs:
                  week_start: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a OrganizationPreference resource.
-        :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID.
+        :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+        :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         :param pulumi.Input[str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
-        :param pulumi.Input[str] week_start: The Organization week start.
+        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
+        if home_dashboard_id is not None:
+            warnings.warn("""Use `home_dashboard_uid` instead.""", DeprecationWarning)
+            pulumi.log.warn("""home_dashboard_id is deprecated: Use `home_dashboard_uid` instead.""")
         if home_dashboard_id is not None:
             pulumi.set(__self__, "home_dashboard_id", home_dashboard_id)
         if home_dashboard_uid is not None:
@@ -46,8 +49,11 @@ class OrganizationPreferenceArgs:
     @pulumi.getter(name="homeDashboardId")
     def home_dashboard_id(self) -> Optional[pulumi.Input[int]]:
         """
-        The Organization home dashboard ID.
+        The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         """
+        warnings.warn("""Use `home_dashboard_uid` instead.""", DeprecationWarning)
+        pulumi.log.warn("""home_dashboard_id is deprecated: Use `home_dashboard_uid` instead.""")
+
         return pulumi.get(self, "home_dashboard_id")
 
     @home_dashboard_id.setter
@@ -82,7 +88,7 @@ class OrganizationPreferenceArgs:
     @pulumi.getter
     def theme(self) -> Optional[pulumi.Input[str]]:
         """
-        The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+        The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         """
         return pulumi.get(self, "theme")
 
@@ -106,7 +112,7 @@ class OrganizationPreferenceArgs:
     @pulumi.getter(name="weekStart")
     def week_start(self) -> Optional[pulumi.Input[str]]:
         """
-        The Organization week start.
+        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
         return pulumi.get(self, "week_start")
 
@@ -126,13 +132,16 @@ class _OrganizationPreferenceState:
                  week_start: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering OrganizationPreference resources.
-        :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID.
+        :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+        :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         :param pulumi.Input[str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
-        :param pulumi.Input[str] week_start: The Organization week start.
+        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
+        if home_dashboard_id is not None:
+            warnings.warn("""Use `home_dashboard_uid` instead.""", DeprecationWarning)
+            pulumi.log.warn("""home_dashboard_id is deprecated: Use `home_dashboard_uid` instead.""")
         if home_dashboard_id is not None:
             pulumi.set(__self__, "home_dashboard_id", home_dashboard_id)
         if home_dashboard_uid is not None:
@@ -150,8 +159,11 @@ class _OrganizationPreferenceState:
     @pulumi.getter(name="homeDashboardId")
     def home_dashboard_id(self) -> Optional[pulumi.Input[int]]:
         """
-        The Organization home dashboard ID.
+        The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         """
+        warnings.warn("""Use `home_dashboard_uid` instead.""", DeprecationWarning)
+        pulumi.log.warn("""home_dashboard_id is deprecated: Use `home_dashboard_uid` instead.""")
+
         return pulumi.get(self, "home_dashboard_id")
 
     @home_dashboard_id.setter
@@ -186,7 +198,7 @@ class _OrganizationPreferenceState:
     @pulumi.getter
     def theme(self) -> Optional[pulumi.Input[str]]:
         """
-        The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+        The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         """
         return pulumi.get(self, "theme")
 
@@ -210,7 +222,7 @@ class _OrganizationPreferenceState:
     @pulumi.getter(name="weekStart")
     def week_start(self) -> Optional[pulumi.Input[str]]:
         """
-        The Organization week start.
+        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
         return pulumi.get(self, "week_start")
 
@@ -244,17 +256,17 @@ class OrganizationPreference(pulumi.CustomResource):
         test = grafana.OrganizationPreference("test",
             theme="light",
             timezone="utc",
-            week_start="Tuesday")
+            week_start="sunday")
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID.
+        :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+        :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         :param pulumi.Input[str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
-        :param pulumi.Input[str] week_start: The Organization week start.
+        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
         ...
     @overload
@@ -275,7 +287,7 @@ class OrganizationPreference(pulumi.CustomResource):
         test = grafana.OrganizationPreference("test",
             theme="light",
             timezone="utc",
-            week_start="Tuesday")
+            week_start="sunday")
         ```
 
         :param str resource_name: The name of the resource.
@@ -337,12 +349,12 @@ class OrganizationPreference(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID.
+        :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+        :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         :param pulumi.Input[str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
-        :param pulumi.Input[str] week_start: The Organization week start.
+        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -360,8 +372,11 @@ class OrganizationPreference(pulumi.CustomResource):
     @pulumi.getter(name="homeDashboardId")
     def home_dashboard_id(self) -> pulumi.Output[Optional[int]]:
         """
-        The Organization home dashboard ID.
+        The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         """
+        warnings.warn("""Use `home_dashboard_uid` instead.""", DeprecationWarning)
+        pulumi.log.warn("""home_dashboard_id is deprecated: Use `home_dashboard_uid` instead.""")
+
         return pulumi.get(self, "home_dashboard_id")
 
     @property
@@ -384,7 +399,7 @@ class OrganizationPreference(pulumi.CustomResource):
     @pulumi.getter
     def theme(self) -> pulumi.Output[Optional[str]]:
         """
-        The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+        The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         """
         return pulumi.get(self, "theme")
 
@@ -400,7 +415,7 @@ class OrganizationPreference(pulumi.CustomResource):
     @pulumi.getter(name="weekStart")
     def week_start(self) -> pulumi.Output[Optional[str]]:
         """
-        The Organization week start.
+        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
         return pulumi.get(self, "week_start")
 

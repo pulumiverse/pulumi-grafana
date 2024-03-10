@@ -17,6 +17,12 @@ import (
 //
 // * [Plugin Catalog](https://grafana.com/grafana/plugins/)
 //
+// Required access policy scopes:
+//
+// * stack-plugins:read
+// * stack-plugins:write
+// * stack-plugins:delete
+//
 // ## Example Usage
 //
 // ```go
@@ -49,7 +55,7 @@ import (
 //
 // ```sh
 //
-//	$ pulumi import grafana:index/cloudPluginInstallation:CloudPluginInstallation plugin_name {{stack_slug}}_{{plugin_slug}}
+//	$ pulumi import grafana:index/cloudPluginInstallation:CloudPluginInstallation name "{{ stackSlug }}:{{ pluginSlug }}"
 //
 // ```
 type CloudPluginInstallation struct {

@@ -20,7 +20,7 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string>? BuiltInRole { get; set; }
 
         /// <summary>
-        /// Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
+        /// Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
         /// </summary>
         [Input("permission", required: true)]
         public Input<string> Permission { get; set; } = null!;

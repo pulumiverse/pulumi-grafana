@@ -56,8 +56,12 @@ import (
 type MessageTemplate struct {
 	pulumi.CustomResourceState
 
+	// Allow modifying the message template from other sources than Terraform or the Grafana API.
+	DisableProvenance pulumi.BoolPtrOutput `pulumi:"disableProvenance"`
 	// The name of the message template.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// The content of the message template.
 	Template pulumi.StringOutput `pulumi:"template"`
 }
@@ -95,15 +99,23 @@ func GetMessageTemplate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MessageTemplate resources.
 type messageTemplateState struct {
+	// Allow modifying the message template from other sources than Terraform or the Grafana API.
+	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The name of the message template.
 	Name *string `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The content of the message template.
 	Template *string `pulumi:"template"`
 }
 
 type MessageTemplateState struct {
+	// Allow modifying the message template from other sources than Terraform or the Grafana API.
+	DisableProvenance pulumi.BoolPtrInput
 	// The name of the message template.
 	Name pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The content of the message template.
 	Template pulumi.StringPtrInput
 }
@@ -113,16 +125,24 @@ func (MessageTemplateState) ElementType() reflect.Type {
 }
 
 type messageTemplateArgs struct {
+	// Allow modifying the message template from other sources than Terraform or the Grafana API.
+	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The name of the message template.
 	Name *string `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The content of the message template.
 	Template string `pulumi:"template"`
 }
 
 // The set of arguments for constructing a MessageTemplate resource.
 type MessageTemplateArgs struct {
+	// Allow modifying the message template from other sources than Terraform or the Grafana API.
+	DisableProvenance pulumi.BoolPtrInput
 	// The name of the message template.
 	Name pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The content of the message template.
 	Template pulumi.StringInput
 }
@@ -238,9 +258,19 @@ func (o MessageTemplateOutput) ToOutput(ctx context.Context) pulumix.Output[*Mes
 	}
 }
 
+// Allow modifying the message template from other sources than Terraform or the Grafana API.
+func (o MessageTemplateOutput) DisableProvenance() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *MessageTemplate) pulumi.BoolPtrOutput { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
+}
+
 // The name of the message template.
 func (o MessageTemplateOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MessageTemplate) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o MessageTemplateOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MessageTemplate) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // The content of the message template.

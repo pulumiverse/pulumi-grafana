@@ -33,7 +33,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			testDashboard, err := grafana.NewDashboard(ctx, "testDashboard", &grafana.DashboardArgs{
-//				ConfigJson: pulumi.String("{\n  \"title\": \"Dashboard for report\",\n  \"uid\": \"report\"\n}\n"),
+//				ConfigJson: pulumi.String("{\n  \"uid\": \"report-dashboard\",\n  \"title\": \"report-dashboard\"\n}\n"),
 //				Message:    pulumi.String("inital commit."),
 //			})
 //			if err != nil {
@@ -61,10 +61,14 @@ type Report struct {
 
 	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 	//
-	// Deprecated: Use dashboard_uid instead
+	// Deprecated: Use dashboards instead
 	DashboardId pulumi.IntOutput `pulumi:"dashboardId"`
 	// Dashboard to be sent in the report.
+	//
+	// Deprecated: Use dashboards instead
 	DashboardUid pulumi.StringOutput `pulumi:"dashboardUid"`
+	// List of dashboards to render into the report
+	Dashboards ReportDashboardArrayOutput `pulumi:"dashboards"`
 	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
 	Formats pulumi.StringArrayOutput `pulumi:"formats"`
 	// Whether to include a link to the dashboard in the report. Defaults to `true`.
@@ -88,6 +92,8 @@ type Report struct {
 	// Schedule of the report.
 	Schedule ReportScheduleOutput `pulumi:"schedule"`
 	// Time range of the report.
+	//
+	// Deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
 	TimeRange ReportTimeRangePtrOutput `pulumi:"timeRange"`
 }
 
@@ -129,10 +135,14 @@ func GetReport(ctx *pulumi.Context,
 type reportState struct {
 	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 	//
-	// Deprecated: Use dashboard_uid instead
+	// Deprecated: Use dashboards instead
 	DashboardId *int `pulumi:"dashboardId"`
 	// Dashboard to be sent in the report.
+	//
+	// Deprecated: Use dashboards instead
 	DashboardUid *string `pulumi:"dashboardUid"`
+	// List of dashboards to render into the report
+	Dashboards []ReportDashboard `pulumi:"dashboards"`
 	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
 	Formats []string `pulumi:"formats"`
 	// Whether to include a link to the dashboard in the report. Defaults to `true`.
@@ -156,16 +166,22 @@ type reportState struct {
 	// Schedule of the report.
 	Schedule *ReportSchedule `pulumi:"schedule"`
 	// Time range of the report.
+	//
+	// Deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
 	TimeRange *ReportTimeRange `pulumi:"timeRange"`
 }
 
 type ReportState struct {
 	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 	//
-	// Deprecated: Use dashboard_uid instead
+	// Deprecated: Use dashboards instead
 	DashboardId pulumi.IntPtrInput
 	// Dashboard to be sent in the report.
+	//
+	// Deprecated: Use dashboards instead
 	DashboardUid pulumi.StringPtrInput
+	// List of dashboards to render into the report
+	Dashboards ReportDashboardArrayInput
 	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
 	Formats pulumi.StringArrayInput
 	// Whether to include a link to the dashboard in the report. Defaults to `true`.
@@ -189,6 +205,8 @@ type ReportState struct {
 	// Schedule of the report.
 	Schedule ReportSchedulePtrInput
 	// Time range of the report.
+	//
+	// Deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
 	TimeRange ReportTimeRangePtrInput
 }
 
@@ -199,10 +217,14 @@ func (ReportState) ElementType() reflect.Type {
 type reportArgs struct {
 	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 	//
-	// Deprecated: Use dashboard_uid instead
+	// Deprecated: Use dashboards instead
 	DashboardId *int `pulumi:"dashboardId"`
 	// Dashboard to be sent in the report.
+	//
+	// Deprecated: Use dashboards instead
 	DashboardUid *string `pulumi:"dashboardUid"`
+	// List of dashboards to render into the report
+	Dashboards []ReportDashboard `pulumi:"dashboards"`
 	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
 	Formats []string `pulumi:"formats"`
 	// Whether to include a link to the dashboard in the report. Defaults to `true`.
@@ -226,6 +248,8 @@ type reportArgs struct {
 	// Schedule of the report.
 	Schedule ReportSchedule `pulumi:"schedule"`
 	// Time range of the report.
+	//
+	// Deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
 	TimeRange *ReportTimeRange `pulumi:"timeRange"`
 }
 
@@ -233,10 +257,14 @@ type reportArgs struct {
 type ReportArgs struct {
 	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 	//
-	// Deprecated: Use dashboard_uid instead
+	// Deprecated: Use dashboards instead
 	DashboardId pulumi.IntPtrInput
 	// Dashboard to be sent in the report.
+	//
+	// Deprecated: Use dashboards instead
 	DashboardUid pulumi.StringPtrInput
+	// List of dashboards to render into the report
+	Dashboards ReportDashboardArrayInput
 	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
 	Formats pulumi.StringArrayInput
 	// Whether to include a link to the dashboard in the report. Defaults to `true`.
@@ -260,6 +288,8 @@ type ReportArgs struct {
 	// Schedule of the report.
 	Schedule ReportScheduleInput
 	// Time range of the report.
+	//
+	// Deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
 	TimeRange ReportTimeRangePtrInput
 }
 
@@ -376,14 +406,21 @@ func (o ReportOutput) ToOutput(ctx context.Context) pulumix.Output[*Report] {
 
 // Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 //
-// Deprecated: Use dashboard_uid instead
+// Deprecated: Use dashboards instead
 func (o ReportOutput) DashboardId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Report) pulumi.IntOutput { return v.DashboardId }).(pulumi.IntOutput)
 }
 
 // Dashboard to be sent in the report.
+//
+// Deprecated: Use dashboards instead
 func (o ReportOutput) DashboardUid() pulumi.StringOutput {
 	return o.ApplyT(func(v *Report) pulumi.StringOutput { return v.DashboardUid }).(pulumi.StringOutput)
+}
+
+// List of dashboards to render into the report
+func (o ReportOutput) Dashboards() ReportDashboardArrayOutput {
+	return o.ApplyT(func(v *Report) ReportDashboardArrayOutput { return v.Dashboards }).(ReportDashboardArrayOutput)
 }
 
 // Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
@@ -442,6 +479,8 @@ func (o ReportOutput) Schedule() ReportScheduleOutput {
 }
 
 // Time range of the report.
+//
+// Deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
 func (o ReportOutput) TimeRange() ReportTimeRangePtrOutput {
 	return o.ApplyT(func(v *Report) ReportTimeRangePtrOutput { return v.TimeRange }).(ReportTimeRangePtrOutput)
 }

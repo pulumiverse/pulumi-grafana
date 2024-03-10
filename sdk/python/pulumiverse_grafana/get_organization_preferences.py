@@ -48,8 +48,11 @@ class GetOrganizationPreferencesResult:
     @pulumi.getter(name="homeDashboardId")
     def home_dashboard_id(self) -> int:
         """
-        The Organization home dashboard ID.
+        The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         """
+        warnings.warn("""Use `home_dashboard_uid` instead.""", DeprecationWarning)
+        pulumi.log.warn("""home_dashboard_id is deprecated: Use `home_dashboard_uid` instead.""")
+
         return pulumi.get(self, "home_dashboard_id")
 
     @property
@@ -70,7 +73,7 @@ class GetOrganizationPreferencesResult:
 
     @property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> str:
+    def org_id(self) -> Optional[str]:
         """
         The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
@@ -80,7 +83,7 @@ class GetOrganizationPreferencesResult:
     @pulumi.getter
     def theme(self) -> str:
         """
-        The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+        The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         """
         return pulumi.get(self, "theme")
 
@@ -96,7 +99,7 @@ class GetOrganizationPreferencesResult:
     @pulumi.getter(name="weekStart")
     def week_start(self) -> str:
         """
-        The Organization week start.
+        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
         """
         return pulumi.get(self, "week_start")
 
@@ -116,7 +119,8 @@ class AwaitableGetOrganizationPreferencesResult(GetOrganizationPreferencesResult
             week_start=self.week_start)
 
 
-def get_organization_preferences(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationPreferencesResult:
+def get_organization_preferences(org_id: Optional[str] = None,
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationPreferencesResult:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
     * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
@@ -129,8 +133,12 @@ def get_organization_preferences(opts: Optional[pulumi.InvokeOptions] = None) ->
 
     test = grafana.get_organization_preferences()
     ```
+
+
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
     __args__ = dict()
+    __args__['orgId'] = org_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('grafana:index/getOrganizationPreferences:getOrganizationPreferences', __args__, opts=opts, typ=GetOrganizationPreferencesResult).value
 
@@ -145,7 +153,8 @@ def get_organization_preferences(opts: Optional[pulumi.InvokeOptions] = None) ->
 
 
 @_utilities.lift_output_func(get_organization_preferences)
-def get_organization_preferences_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationPreferencesResult]:
+def get_organization_preferences_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationPreferencesResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
     * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
@@ -158,5 +167,8 @@ def get_organization_preferences_output(opts: Optional[pulumi.InvokeOptions] = N
 
     test = grafana.get_organization_preferences()
     ```
+
+
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
     ...

@@ -11,6 +11,8 @@ using Pulumi;
 namespace Pulumiverse.Grafana
 {
     /// <summary>
+    /// Manages the entire set of permissions for a service account. Permissions that aren't specified when applying this resource will be removed.
+    /// 
     /// **Note:** This resource is available from Grafana 9.2.4 onwards.
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
@@ -135,7 +137,7 @@ namespace Pulumiverse.Grafana
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
 
-        [Input("permissions", required: true)]
+        [Input("permissions")]
         private InputList<Inputs.ServiceAccountPermissionPermissionArgs>? _permissions;
 
         /// <summary>

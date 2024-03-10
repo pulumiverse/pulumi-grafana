@@ -31,9 +31,16 @@ namespace Pulumiverse.Grafana
     ///     {
     ///         ModelJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             ["title"] = "updated name",
-    ///             ["id"] = 12,
-    ///             ["version"] = 35,
+    ///             ["gridPos"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["x"] = 0,
+    ///                 ["y"] = 0,
+    ///                 ["h"] = 10,
+    ///                 ["w"] = 10,
+    ///             },
+    ///             ["title"] = "panel",
+    ///             ["type"] = "text",
+    ///             ["version"] = 0,
     ///         }),
     ///     });
     /// 

@@ -93,8 +93,18 @@
                     "line": {
                         "maxItemsOne": false
                     },
-                    "opsgenie": {
+                    "oncall": {
                         "maxItemsOne": false
+                    },
+                    "opsgenie": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "responders": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "pagerduty": {
                         "maxItemsOne": false
@@ -106,6 +116,9 @@
                         "maxItemsOne": false
                     },
                     "slack": {
+                        "maxItemsOne": false
+                    },
+                    "sns": {
                         "maxItemsOne": false
                     },
                     "teams": {
@@ -141,6 +154,9 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "grafana_dashboard_public": {
+                "current": "grafana:index/dashboardPublic:DashboardPublic"
             },
             "grafana_data_source": {
                 "current": "grafana:index/dataSource:DataSource",
@@ -407,7 +423,12 @@
                 }
             },
             "grafana_oncall_outgoing_webhook": {
-                "current": "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook"
+                "current": "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook",
+                "fields": {
+                    "integration_filter": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "grafana_oncall_route": {
                 "current": "grafana:index/oncallRoute:OncallRoute",
@@ -443,6 +464,9 @@
                     "editors": {
                         "maxItemsOne": false
                     },
+                    "users_without_access": {
+                        "maxItemsOne": false
+                    },
                     "viewers": {
                         "maxItemsOne": false
                     }
@@ -462,6 +486,16 @@
             "grafana_report": {
                 "current": "grafana:index/report:Report",
                 "fields": {
+                    "dashboards": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "time_range": {
+                                    "maxItemsOne": true
+                                }
+                            }
+                        }
+                    },
                     "formats": {
                         "maxItemsOne": false
                     },
@@ -576,6 +610,9 @@
                             }
                         }
                     },
+                    "destination_datasource": {
+                        "maxItemsOne": true
+                    },
                     "label": {
                         "maxItemsOne": false
                     },
@@ -601,6 +638,14 @@
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "grafana_sso_settings": {
+                "current": "grafana:index/ssoSettings:SsoSettings",
+                "fields": {
+                    "oauth2_settings": {
+                        "maxItemsOne": true
                     }
                 }
             },
@@ -685,6 +730,9 @@
                                             "headers": {
                                                 "maxItemsOne": false
                                             },
+                                            "proxy_connect_headers": {
+                                                "maxItemsOne": false
+                                            },
                                             "tls_config": {
                                                 "maxItemsOne": true
                                             },
@@ -693,6 +741,42 @@
                                             },
                                             "valid_status_codes": {
                                                 "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "multihttp": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "entries": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "assertions": {
+                                                            "maxItemsOne": false
+                                                        },
+                                                        "request": {
+                                                            "maxItemsOne": true,
+                                                            "elem": {
+                                                                "fields": {
+                                                                    "body": {
+                                                                        "maxItemsOne": false
+                                                                    },
+                                                                    "headers": {
+                                                                        "maxItemsOne": false
+                                                                    },
+                                                                    "query_fields": {
+                                                                        "maxItemsOne": false
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "variables": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -878,6 +962,9 @@
                     }
                 }
             },
+            "grafana_service_account": {
+                "current": "grafana:index/getServiceAccount:getServiceAccount"
+            },
             "grafana_slos": {
                 "current": "grafana:index/getSlos:getSlos",
                 "fields": {
@@ -923,6 +1010,9 @@
                                             }
                                         }
                                     }
+                                },
+                                "destination_datasource": {
+                                    "maxItemsOne": false
                                 },
                                 "label": {
                                     "maxItemsOne": false
@@ -1010,6 +1100,7 @@
             "grafana:index/contactPoint:ContactPoint": "grafana_contact_point",
             "grafana:index/dashboard:Dashboard": "grafana_dashboard",
             "grafana:index/dashboardPermission:DashboardPermission": "grafana_dashboard_permission",
+            "grafana:index/dashboardPublic:DashboardPublic": "grafana_dashboard_public",
             "grafana:index/dataSource:DataSource": "grafana_data_source",
             "grafana:index/dataSourcePermission:DataSourcePermission": "grafana_data_source_permission",
             "grafana:index/folder:Folder": "grafana_folder",
@@ -1039,6 +1130,7 @@
             "grafana:index/serviceAccount:ServiceAccount": "grafana_service_account",
             "grafana:index/serviceAccountPermission:ServiceAccountPermission": "grafana_service_account_permission",
             "grafana:index/serviceAccountToken:ServiceAccountToken": "grafana_service_account_token",
+            "grafana:index/ssoSettings:SsoSettings": "grafana_sso_settings",
             "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck": "grafana_synthetic_monitoring_check",
             "grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation": "grafana_synthetic_monitoring_installation",
             "grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe": "grafana_synthetic_monitoring_probe",
@@ -1067,6 +1159,7 @@
             "grafana:index/getOrganization:getOrganization": "grafana_organization",
             "grafana:index/getOrganizationPreferences:getOrganizationPreferences": "grafana_organization_preferences",
             "grafana:index/getRole:getRole": "grafana_role",
+            "grafana:index/getServiceAccount:getServiceAccount": "grafana_service_account",
             "grafana:index/getSlos:getSlos": "grafana_slos",
             "grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe": "grafana_synthetic_monitoring_probe",
             "grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes": "grafana_synthetic_monitoring_probes",
@@ -1108,6 +1201,15 @@
             "grafana:index/ContactPointLine:ContactPointLine": {
                 "disableResolveMessage": "disable_resolve_message"
             },
+            "grafana:index/ContactPointOncall:ContactPointOncall": {
+                "authorizationCredentials": "authorization_credentials",
+                "authorizationScheme": "authorization_scheme",
+                "basicAuthPassword": "basic_auth_password",
+                "basicAuthUser": "basic_auth_user",
+                "disableResolveMessage": "disable_resolve_message",
+                "httpMethod": "http_method",
+                "maxAlerts": "max_alerts"
+            },
             "grafana:index/ContactPointOpsgeny:ContactPointOpsgeny": {
                 "apiKey": "api_key",
                 "autoClose": "auto_close",
@@ -1140,6 +1242,15 @@
                 "mentionChannel": "mention_channel",
                 "mentionGroups": "mention_groups",
                 "mentionUsers": "mention_users"
+            },
+            "grafana:index/ContactPointSn:ContactPointSn": {
+                "accessKey": "access_key",
+                "assumeRoleArn": "assume_role_arn",
+                "authProvider": "auth_provider",
+                "disableResolveMessage": "disable_resolve_message",
+                "externalId": "external_id",
+                "messageFormat": "message_format",
+                "secretKey": "secret_key"
             },
             "grafana:index/ContactPointTeam:ContactPointTeam": {
                 "disableResolveMessage": "disable_resolve_message",
@@ -1276,6 +1387,10 @@
                 "channelId": "channel_id",
                 "userGroupId": "user_group_id"
             },
+            "grafana:index/ReportDashboard:ReportDashboard": {
+                "reportVariables": "report_variables",
+                "timeRange": "time_range"
+            },
             "grafana:index/ReportSchedule:ReportSchedule": {
                 "customInterval": "custom_interval",
                 "endTime": "end_time",
@@ -1318,6 +1433,42 @@
                 "teamId": "team_id",
                 "userId": "user_id"
             },
+            "grafana:index/SsoSettingsOauth2Settings:SsoSettingsOauth2Settings": {
+                "allowAssignGrafanaAdmin": "allow_assign_grafana_admin",
+                "allowSignUp": "allow_sign_up",
+                "allowedDomains": "allowed_domains",
+                "allowedGroups": "allowed_groups",
+                "allowedOrganizations": "allowed_organizations",
+                "apiUrl": "api_url",
+                "authStyle": "auth_style",
+                "authUrl": "auth_url",
+                "autoLogin": "auto_login",
+                "clientId": "client_id",
+                "clientSecret": "client_secret",
+                "defineAllowedGroups": "define_allowed_groups",
+                "defineAllowedTeamsIds": "define_allowed_teams_ids",
+                "emailAttributeName": "email_attribute_name",
+                "emailAttributePath": "email_attribute_path",
+                "emptyScopes": "empty_scopes",
+                "groupsAttributePath": "groups_attribute_path",
+                "idTokenAttributeName": "id_token_attribute_name",
+                "loginAttributePath": "login_attribute_path",
+                "nameAttributePath": "name_attribute_path",
+                "roleAttributePath": "role_attribute_path",
+                "roleAttributeStrict": "role_attribute_strict",
+                "signoutRedirectUrl": "signout_redirect_url",
+                "skipOrgRoleSync": "skip_org_role_sync",
+                "teamIds": "team_ids",
+                "teamIdsAttributePath": "team_ids_attribute_path",
+                "teamsUrl": "teams_url",
+                "tlsClientCa": "tls_client_ca",
+                "tlsClientCert": "tls_client_cert",
+                "tlsClientKey": "tls_client_key",
+                "tlsSkipVerifyInsecure": "tls_skip_verify_insecure",
+                "tokenUrl": "token_url",
+                "usePkce": "use_pkce",
+                "useRefreshToken": "use_refresh_token"
+            },
             "grafana:index/SyntheticMonitoringCheckSettingsDns:SyntheticMonitoringCheckSettingsDns": {
                 "ipVersion": "ip_version",
                 "recordType": "record_type",
@@ -1351,6 +1502,7 @@
                 "failIfSsl": "fail_if_ssl",
                 "ipVersion": "ip_version",
                 "noFollowRedirects": "no_follow_redirects",
+                "proxyConnectHeaders": "proxy_connect_headers",
                 "proxyUrl": "proxy_url",
                 "tlsConfig": "tls_config",
                 "validHttpVersions": "valid_http_versions",
@@ -1368,6 +1520,14 @@
                 "clientKey": "client_key",
                 "insecureSkipVerify": "insecure_skip_verify",
                 "serverName": "server_name"
+            },
+            "grafana:index/SyntheticMonitoringCheckSettingsMultihttpEntryRequest:SyntheticMonitoringCheckSettingsMultihttpEntryRequest": {
+                "bodies": "body",
+                "queryFields": "query_fields"
+            },
+            "grafana:index/SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody:SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody": {
+                "contentEncoding": "content_encoding",
+                "contentType": "content_type"
             },
             "grafana:index/SyntheticMonitoringCheckSettingsPing:SyntheticMonitoringCheckSettingsPing": {
                 "dontFragment": "dont_fragment",
@@ -1397,7 +1557,8 @@
                 "ptrLookup": "ptr_lookup"
             },
             "grafana:index/TeamPreferences:TeamPreferences": {
-                "homeDashboardUid": "home_dashboard_uid"
+                "homeDashboardUid": "home_dashboard_uid",
+                "weekStart": "week_start"
             },
             "grafana:index/annotation:Annotation": {
                 "dashboardId": "dashboard_id",
@@ -1446,6 +1607,11 @@
                 "orgId": "org_id",
                 "orgName": "org_name",
                 "orgSlug": "org_slug",
+                "otlpUrl": "otlp_url",
+                "profilesName": "profiles_name",
+                "profilesStatus": "profiles_status",
+                "profilesUrl": "profiles_url",
+                "profilesUserId": "profiles_user_id",
                 "prometheusName": "prometheus_name",
                 "prometheusRemoteEndpoint": "prometheus_remote_endpoint",
                 "prometheusRemoteWriteEndpoint": "prometheus_remote_write_endpoint",
@@ -1477,12 +1643,15 @@
             "grafana:index/contactPoint:ContactPoint": {
                 "alertmanagers": "alertmanager",
                 "dingdings": "dingding",
+                "disableProvenance": "disable_provenance",
                 "discords": "discord",
                 "emails": "email",
                 "googlechats": "googlechat",
                 "kafkas": "kafka",
                 "lines": "line",
+                "oncalls": "oncall",
                 "opsgenies": "opsgenie",
+                "orgId": "org_id",
                 "pagerduties": "pagerduty",
                 "pushovers": "pushover",
                 "sensugos": "sensugo",
@@ -1503,6 +1672,14 @@
                 "dashboardUid": "dashboard_uid",
                 "orgId": "org_id"
             },
+            "grafana:index/dashboardPublic:DashboardPublic": {
+                "accessToken": "access_token",
+                "annotationsEnabled": "annotations_enabled",
+                "dashboardUid": "dashboard_uid",
+                "isEnabled": "is_enabled",
+                "orgId": "org_id",
+                "timeSelectionEnabled": "time_selection_enabled"
+            },
             "grafana:index/dataSource:DataSource": {
                 "accessMode": "access_mode",
                 "basicAuthEnabled": "basic_auth_enabled",
@@ -1520,6 +1697,7 @@
             },
             "grafana:index/folder:Folder": {
                 "orgId": "org_id",
+                "parentFolderUid": "parent_folder_uid",
                 "preventDestroyIfNotEmpty": "prevent_destroy_if_not_empty"
             },
             "grafana:index/folderPermission:FolderPermission": {
@@ -1553,6 +1731,11 @@
                 "orgId": "org_id",
                 "orgName": "org_name",
                 "orgSlug": "org_slug",
+                "otlpUrl": "otlp_url",
+                "profilesName": "profiles_name",
+                "profilesStatus": "profiles_status",
+                "profilesUrl": "profiles_url",
+                "profilesUserId": "profiles_user_id",
                 "prometheusName": "prometheus_name",
                 "prometheusRemoteEndpoint": "prometheus_remote_endpoint",
                 "prometheusRemoteWriteEndpoint": "prometheus_remote_write_endpoint",
@@ -1568,10 +1751,12 @@
             "grafana:index/getDashboard:getDashboard": {
                 "configJson": "config_json",
                 "dashboardId": "dashboard_id",
-                "isStarred": "is_starred"
+                "isStarred": "is_starred",
+                "orgId": "org_id"
             },
             "grafana:index/getDashboards:getDashboards": {
-                "folderIds": "folder_ids"
+                "folderIds": "folder_ids",
+                "orgId": "org_id"
             },
             "grafana:index/getDashboardsDashboard:getDashboardsDashboard": {
                 "folderTitle": "folder_title"
@@ -1583,6 +1768,12 @@
                 "databaseName": "database_name",
                 "isDefault": "is_default",
                 "jsonDataEncoded": "json_data_encoded",
+                "orgId": "org_id"
+            },
+            "grafana:index/getFolder:getFolder": {
+                "orgId": "org_id"
+            },
+            "grafana:index/getFolders:getFolders": {
                 "orgId": "org_id"
             },
             "grafana:index/getLibraryPanel:getLibraryPanel": {
@@ -1614,8 +1805,13 @@
                 "displayName": "display_name",
                 "orgId": "org_id"
             },
+            "grafana:index/getServiceAccount:getServiceAccount": {
+                "isDisabled": "is_disabled",
+                "orgId": "org_id"
+            },
             "grafana:index/getSlosSlo:getSlosSlo": {
                 "alertings": "alerting",
+                "destinationDatasources": "destination_datasource",
                 "labels": "label",
                 "queries": "query"
             },
@@ -1651,7 +1847,8 @@
                 "teamSyncs": "team_sync"
             },
             "grafana:index/getTeamPreference:getTeamPreference": {
-                "homeDashboardUid": "home_dashboard_uid"
+                "homeDashboardUid": "home_dashboard_uid",
+                "weekStart": "week_start"
             },
             "grafana:index/getUser:getUser": {
                 "isAdmin": "is_admin",
@@ -1689,11 +1886,20 @@
                 "datasourceUid": "datasource_uid",
                 "queryParams": "query_params"
             },
+            "grafana:index/messageTemplate:MessageTemplate": {
+                "disableProvenance": "disable_provenance",
+                "orgId": "org_id"
+            },
+            "grafana:index/muteTiming:MuteTiming": {
+                "orgId": "org_id"
+            },
             "grafana:index/notificationPolicy:NotificationPolicy": {
                 "contactPoint": "contact_point",
+                "disableProvenance": "disable_provenance",
                 "groupBies": "group_by",
                 "groupInterval": "group_interval",
                 "groupWait": "group_wait",
+                "orgId": "org_id",
                 "policies": "policy",
                 "repeatInterval": "repeat_interval"
             },
@@ -1727,7 +1933,12 @@
             "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook": {
                 "authorizationHeader": "authorization_header",
                 "forwardWholePayload": "forward_whole_payload",
-                "teamId": "team_id"
+                "httpMethod": "http_method",
+                "integrationFilters": "integration_filter",
+                "isWebhookEnabled": "is_webhook_enabled",
+                "teamId": "team_id",
+                "triggerTemplate": "trigger_template",
+                "triggerType": "trigger_type"
             },
             "grafana:index/oncallRoute:OncallRoute": {
                 "escalationChainId": "escalation_chain_id",
@@ -1745,7 +1956,8 @@
             "grafana:index/organization:Organization": {
                 "adminUser": "admin_user",
                 "createUsers": "create_users",
-                "orgId": "org_id"
+                "orgId": "org_id",
+                "usersWithoutAccesses": "users_without_access"
             },
             "grafana:index/organizationPreference:OrganizationPreference": {
                 "homeDashboardId": "home_dashboard_id",
@@ -1777,6 +1989,7 @@
                 "serviceAccounts": "service_accounts"
             },
             "grafana:index/ruleGroup:RuleGroup": {
+                "disableProvenance": "disable_provenance",
                 "folderUid": "folder_uid",
                 "intervalSeconds": "interval_seconds",
                 "orgId": "org_id",
@@ -1784,6 +1997,7 @@
             },
             "grafana:index/sLO:SLO": {
                 "alertings": "alerting",
+                "destinationDatasource": "destination_datasource",
                 "labels": "label",
                 "queries": "query"
             },
@@ -1799,6 +2013,10 @@
                 "hasExpired": "has_expired",
                 "secondsToLive": "seconds_to_live",
                 "serviceAccountId": "service_account_id"
+            },
+            "grafana:index/ssoSettings:SsoSettings": {
+                "oauth2Settings": "oauth2_settings",
+                "providerName": "provider_name"
             },
             "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck": {
                 "alertSensitivity": "alert_sensitivity",
@@ -1830,6 +2048,7 @@
             },
             "grafana:index:Provider": {
                 "caCert": "ca_cert",
+                "cloudAccessPolicyToken": "cloud_access_policy_token",
                 "cloudApiKey": "cloud_api_key",
                 "cloudApiUrl": "cloud_api_url",
                 "httpHeaders": "http_headers",
@@ -1848,6 +2067,7 @@
         },
         "renamedConfigProperties": {
             "caCert": "ca_cert",
+            "cloudAccessPolicyToken": "cloud_access_policy_token",
             "cloudApiKey": "cloud_api_key",
             "cloudApiUrl": "cloud_api_url",
             "httpHeaders": "http_headers",

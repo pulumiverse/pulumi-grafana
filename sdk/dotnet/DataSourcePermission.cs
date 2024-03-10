@@ -11,6 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana
 {
     /// <summary>
+    /// Manages the entire set of permissions for a datasource. Permissions that aren't specified when applying this resource will be removed.
     /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
     /// 
     /// ## Example Usage
@@ -61,7 +62,7 @@ namespace Pulumiverse.Grafana
     ///             new Grafana.Inputs.DataSourcePermissionPermissionArgs
     ///             {
     ///                 TeamId = team.Id,
-    ///                 Permission = "Query",
+    ///                 Permission = "Edit",
     ///             },
     ///             new Grafana.Inputs.DataSourcePermissionPermissionArgs
     ///             {
@@ -164,7 +165,7 @@ namespace Pulumiverse.Grafana
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
 
-        [Input("permissions", required: true)]
+        [Input("permissions")]
         private InputList<Inputs.DataSourcePermissionPermissionArgs>? _permissions;
 
         /// <summary>

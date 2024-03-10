@@ -91,6 +91,10 @@ type Organization struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization id assigned to this organization by Grafana.
 	OrgId pulumi.IntOutput `pulumi:"orgId"`
+	// A list of email addresses corresponding to users who should be given none access to the organization.
+	// Note: users specified here must already exist in Grafana, unless 'create_users' is
+	// set to true. This feature is only available in Grafana 10.2+.
+	UsersWithoutAccesses pulumi.StringArrayOutput `pulumi:"usersWithoutAccesses"`
 	// A list of email addresses corresponding to users who should be given viewer
 	// access to the organization. Note: users specified here must already exist in
 	// Grafana unless 'create_users' is set to true.
@@ -151,6 +155,10 @@ type organizationState struct {
 	Name *string `pulumi:"name"`
 	// The organization id assigned to this organization by Grafana.
 	OrgId *int `pulumi:"orgId"`
+	// A list of email addresses corresponding to users who should be given none access to the organization.
+	// Note: users specified here must already exist in Grafana, unless 'create_users' is
+	// set to true. This feature is only available in Grafana 10.2+.
+	UsersWithoutAccesses []string `pulumi:"usersWithoutAccesses"`
 	// A list of email addresses corresponding to users who should be given viewer
 	// access to the organization. Note: users specified here must already exist in
 	// Grafana unless 'create_users' is set to true.
@@ -182,6 +190,10 @@ type OrganizationState struct {
 	Name pulumi.StringPtrInput
 	// The organization id assigned to this organization by Grafana.
 	OrgId pulumi.IntPtrInput
+	// A list of email addresses corresponding to users who should be given none access to the organization.
+	// Note: users specified here must already exist in Grafana, unless 'create_users' is
+	// set to true. This feature is only available in Grafana 10.2+.
+	UsersWithoutAccesses pulumi.StringArrayInput
 	// A list of email addresses corresponding to users who should be given viewer
 	// access to the organization. Note: users specified here must already exist in
 	// Grafana unless 'create_users' is set to true.
@@ -215,6 +227,10 @@ type organizationArgs struct {
 	Editors []string `pulumi:"editors"`
 	// The display name for the Grafana organization created.
 	Name *string `pulumi:"name"`
+	// A list of email addresses corresponding to users who should be given none access to the organization.
+	// Note: users specified here must already exist in Grafana, unless 'create_users' is
+	// set to true. This feature is only available in Grafana 10.2+.
+	UsersWithoutAccesses []string `pulumi:"usersWithoutAccesses"`
 	// A list of email addresses corresponding to users who should be given viewer
 	// access to the organization. Note: users specified here must already exist in
 	// Grafana unless 'create_users' is set to true.
@@ -245,6 +261,10 @@ type OrganizationArgs struct {
 	Editors pulumi.StringArrayInput
 	// The display name for the Grafana organization created.
 	Name pulumi.StringPtrInput
+	// A list of email addresses corresponding to users who should be given none access to the organization.
+	// Note: users specified here must already exist in Grafana, unless 'create_users' is
+	// set to true. This feature is only available in Grafana 10.2+.
+	UsersWithoutAccesses pulumi.StringArrayInput
 	// A list of email addresses corresponding to users who should be given viewer
 	// access to the organization. Note: users specified here must already exist in
 	// Grafana unless 'create_users' is set to true.
@@ -402,6 +422,13 @@ func (o OrganizationOutput) Name() pulumi.StringOutput {
 // The organization id assigned to this organization by Grafana.
 func (o OrganizationOutput) OrgId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Organization) pulumi.IntOutput { return v.OrgId }).(pulumi.IntOutput)
+}
+
+// A list of email addresses corresponding to users who should be given none access to the organization.
+// Note: users specified here must already exist in Grafana, unless 'create_users' is
+// set to true. This feature is only available in Grafana 10.2+.
+func (o OrganizationOutput) UsersWithoutAccesses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Organization) pulumi.StringArrayOutput { return v.UsersWithoutAccesses }).(pulumi.StringArrayOutput)
 }
 
 // A list of email addresses corresponding to users who should be given viewer

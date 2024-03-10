@@ -47,7 +47,7 @@ namespace Pulumiverse.Grafana
         public Output<int> Duration { get; private set; } = null!;
 
         /// <summary>
-        /// The frequency of the event. Can be daily, weekly, monthly
+        /// The frequency of the event. Can be hourly, daily, weekly, monthly
         /// </summary>
         [Output("frequency")]
         public Output<string?> Frequency { get; private set; } = null!;
@@ -208,7 +208,7 @@ namespace Pulumiverse.Grafana
         public Input<int> Duration { get; set; } = null!;
 
         /// <summary>
-        /// The frequency of the event. Can be daily, weekly, monthly
+        /// The frequency of the event. Can be hourly, daily, weekly, monthly
         /// </summary>
         [Input("frequency")]
         public Input<string>? Frequency { get; set; }
@@ -342,7 +342,7 @@ namespace Pulumiverse.Grafana
         public Input<int>? Duration { get; set; }
 
         /// <summary>
-        /// The frequency of the event. Can be daily, weekly, monthly
+        /// The frequency of the event. Can be hourly, daily, weekly, monthly
         /// </summary>
         [Input("frequency")]
         public Input<string>? Frequency { get; set; }

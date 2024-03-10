@@ -33,7 +33,7 @@ type OncallOnCallShift struct {
 	ByMonths pulumi.IntArrayOutput `pulumi:"byMonths"`
 	// The duration of the event.
 	Duration pulumi.IntOutput `pulumi:"duration"`
-	// The frequency of the event. Can be daily, weekly, monthly
+	// The frequency of the event. Can be hourly, daily, weekly, monthly
 	Frequency pulumi.StringPtrOutput `pulumi:"frequency"`
 	// The positive integer representing at which intervals the recurrence rule repeats.
 	Interval pulumi.IntPtrOutput `pulumi:"interval"`
@@ -106,7 +106,7 @@ type oncallOnCallShiftState struct {
 	ByMonths []int `pulumi:"byMonths"`
 	// The duration of the event.
 	Duration *int `pulumi:"duration"`
-	// The frequency of the event. Can be daily, weekly, monthly
+	// The frequency of the event. Can be hourly, daily, weekly, monthly
 	Frequency *string `pulumi:"frequency"`
 	// The positive integer representing at which intervals the recurrence rule repeats.
 	Interval *int `pulumi:"interval"`
@@ -141,7 +141,7 @@ type OncallOnCallShiftState struct {
 	ByMonths pulumi.IntArrayInput
 	// The duration of the event.
 	Duration pulumi.IntPtrInput
-	// The frequency of the event. Can be daily, weekly, monthly
+	// The frequency of the event. Can be hourly, daily, weekly, monthly
 	Frequency pulumi.StringPtrInput
 	// The positive integer representing at which intervals the recurrence rule repeats.
 	Interval pulumi.IntPtrInput
@@ -180,7 +180,7 @@ type oncallOnCallShiftArgs struct {
 	ByMonths []int `pulumi:"byMonths"`
 	// The duration of the event.
 	Duration int `pulumi:"duration"`
-	// The frequency of the event. Can be daily, weekly, monthly
+	// The frequency of the event. Can be hourly, daily, weekly, monthly
 	Frequency *string `pulumi:"frequency"`
 	// The positive integer representing at which intervals the recurrence rule repeats.
 	Interval *int `pulumi:"interval"`
@@ -216,7 +216,7 @@ type OncallOnCallShiftArgs struct {
 	ByMonths pulumi.IntArrayInput
 	// The duration of the event.
 	Duration pulumi.IntInput
-	// The frequency of the event. Can be daily, weekly, monthly
+	// The frequency of the event. Can be hourly, daily, weekly, monthly
 	Frequency pulumi.StringPtrInput
 	// The positive integer representing at which intervals the recurrence rule repeats.
 	Interval pulumi.IntPtrInput
@@ -373,7 +373,7 @@ func (o OncallOnCallShiftOutput) Duration() pulumi.IntOutput {
 	return o.ApplyT(func(v *OncallOnCallShift) pulumi.IntOutput { return v.Duration }).(pulumi.IntOutput)
 }
 
-// The frequency of the event. Can be daily, weekly, monthly
+// The frequency of the event. Can be hourly, daily, weekly, monthly
 func (o OncallOnCallShiftOutput) Frequency() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallOnCallShift) pulumi.StringPtrOutput { return v.Frequency }).(pulumi.StringPtrOutput)
 }

@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  *     url: "http://influxdb.example.net:8086/",
  *     basicAuthEnabled: true,
  *     basicAuthUsername: "username",
- *     databaseName: influxdb_database.metrics.name,
+ *     databaseName: "dbname",
  *     jsonDataEncoded: JSON.stringify({
  *         authType: "default",
  *         basicAuthPassword: "mypassword",

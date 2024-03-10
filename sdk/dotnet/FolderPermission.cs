@@ -11,6 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana
 {
     /// <summary>
+    /// Manages the entire set of permissions for a folder. Permissions that aren't specified when applying this resource will be removed.
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
     /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
     /// 
@@ -29,6 +30,8 @@ namespace Pulumiverse.Grafana
     ///     var user = new Grafana.User("user", new()
     ///     {
     ///         Email = "user.name@example.com",
+    ///         Login = "user.name",
+    ///         Password = "my-password",
     ///     });
     /// 
     ///     var collection = new Grafana.Folder("collection", new()
@@ -60,6 +63,16 @@ namespace Pulumiverse.Grafana
     ///     });
     /// 
     /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    ///  $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/folderPermission:FolderPermission")]
@@ -142,7 +155,7 @@ namespace Pulumiverse.Grafana
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
 
-        [Input("permissions", required: true)]
+        [Input("permissions")]
         private InputList<Inputs.FolderPermissionPermissionArgs>? _permissions;
 
         /// <summary>

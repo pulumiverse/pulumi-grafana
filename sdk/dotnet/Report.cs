@@ -29,8 +29,8 @@ namespace Pulumiverse.Grafana
     ///     var testDashboard = new Grafana.Dashboard("testDashboard", new()
     ///     {
     ///         ConfigJson = @"{
-    ///   ""title"": ""Dashboard for report"",
-    ///   ""uid"": ""report""
+    ///   ""uid"": ""report-dashboard"",
+    ///   ""title"": ""report-dashboard""
     /// }
     /// ",
     ///         Message = "inital commit.",
@@ -66,6 +66,12 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Output("dashboardUid")]
         public Output<string> DashboardUid { get; private set; } = null!;
+
+        /// <summary>
+        /// List of dashboards to render into the report
+        /// </summary>
+        [Output("dashboards")]
+        public Output<ImmutableArray<Outputs.ReportDashboard>> Dashboards { get; private set; } = null!;
 
         /// <summary>
         /// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
@@ -198,6 +204,18 @@ namespace Pulumiverse.Grafana
         [Input("dashboardUid")]
         public Input<string>? DashboardUid { get; set; }
 
+        [Input("dashboards")]
+        private InputList<Inputs.ReportDashboardArgs>? _dashboards;
+
+        /// <summary>
+        /// List of dashboards to render into the report
+        /// </summary>
+        public InputList<Inputs.ReportDashboardArgs> Dashboards
+        {
+            get => _dashboards ?? (_dashboards = new InputList<Inputs.ReportDashboardArgs>());
+            set => _dashboards = value;
+        }
+
         [Input("formats")]
         private InputList<string>? _formats;
 
@@ -301,6 +319,18 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("dashboardUid")]
         public Input<string>? DashboardUid { get; set; }
+
+        [Input("dashboards")]
+        private InputList<Inputs.ReportDashboardGetArgs>? _dashboards;
+
+        /// <summary>
+        /// List of dashboards to render into the report
+        /// </summary>
+        public InputList<Inputs.ReportDashboardGetArgs> Dashboards
+        {
+            get => _dashboards ?? (_dashboards = new InputList<Inputs.ReportDashboardGetArgs>());
+            set => _dashboards = value;
+        }
 
         [Input("formats")]
         private InputList<string>? _formats;

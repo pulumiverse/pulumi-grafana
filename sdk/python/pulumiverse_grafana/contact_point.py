@@ -18,17 +18,21 @@ class ContactPointArgs:
     def __init__(__self__, *,
                  alertmanagers: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointAlertmanagerArgs']]]] = None,
                  dingdings: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointDingdingArgs']]]] = None,
+                 disable_provenance: Optional[pulumi.Input[bool]] = None,
                  discords: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointDiscordArgs']]]] = None,
                  emails: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointEmailArgs']]]] = None,
                  googlechats: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]]] = None,
                  kafkas: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]]] = None,
                  lines: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 oncalls: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]]] = None,
                  opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyArgs']]]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointPagerdutyArgs']]]] = None,
                  pushovers: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointPushoverArgs']]]] = None,
                  sensugos: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointSensugoArgs']]]] = None,
                  slacks: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointSlackArgs']]]] = None,
+                 sns: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointSnArgs']]]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointTeamArgs']]]] = None,
                  telegrams: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointTelegramArgs']]]] = None,
                  threemas: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointThreemaArgs']]]] = None,
@@ -40,17 +44,21 @@ class ContactPointArgs:
         The set of arguments for constructing a ContactPoint resource.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointAlertmanagerArgs']]] alertmanagers: A contact point that sends notifications to other Alertmanager instances.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointDingdingArgs']]] dingdings: A contact point that sends notifications to DingDing.
+        :param pulumi.Input[bool] disable_provenance: Allow modifying the contact point from other sources than Terraform or the Grafana API.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointDiscordArgs']]] discords: A contact point that sends notifications as Discord messages
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointEmailArgs']]] emails: A contact point that sends notifications to an email address.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]] googlechats: A contact point that sends notifications to Google Chat.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]] lines: A contact point that sends notifications to LINE.me.
-        :param pulumi.Input[str] name: The name of the contact point.
+        :param pulumi.Input[str] name: Name of the responder. Must be specified if username and id are empty.
+        :param pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]] oncalls: A contact point that sends notifications to Grafana On-Call.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyArgs']]] opsgenies: A contact point that sends notifications to OpsGenie.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointPagerdutyArgs']]] pagerduties: A contact point that sends notifications to PagerDuty.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointPushoverArgs']]] pushovers: A contact point that sends notifications to Pushover.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointSensugoArgs']]] sensugos: A contact point that sends notifications to SensuGo.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointSlackArgs']]] slacks: A contact point that sends notifications to Slack.
+        :param pulumi.Input[Sequence[pulumi.Input['ContactPointSnArgs']]] sns: A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointTeamArgs']]] teams: A contact point that sends notifications to Microsoft Teams.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointTelegramArgs']]] telegrams: A contact point that sends notifications to Telegram.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointThreemaArgs']]] threemas: A contact point that sends notifications to Threema.
@@ -63,6 +71,8 @@ class ContactPointArgs:
             pulumi.set(__self__, "alertmanagers", alertmanagers)
         if dingdings is not None:
             pulumi.set(__self__, "dingdings", dingdings)
+        if disable_provenance is not None:
+            pulumi.set(__self__, "disable_provenance", disable_provenance)
         if discords is not None:
             pulumi.set(__self__, "discords", discords)
         if emails is not None:
@@ -75,8 +85,12 @@ class ContactPointArgs:
             pulumi.set(__self__, "lines", lines)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if oncalls is not None:
+            pulumi.set(__self__, "oncalls", oncalls)
         if opsgenies is not None:
             pulumi.set(__self__, "opsgenies", opsgenies)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if pagerduties is not None:
             pulumi.set(__self__, "pagerduties", pagerduties)
         if pushovers is not None:
@@ -85,6 +99,8 @@ class ContactPointArgs:
             pulumi.set(__self__, "sensugos", sensugos)
         if slacks is not None:
             pulumi.set(__self__, "slacks", slacks)
+        if sns is not None:
+            pulumi.set(__self__, "sns", sns)
         if teams is not None:
             pulumi.set(__self__, "teams", teams)
         if telegrams is not None:
@@ -123,6 +139,18 @@ class ContactPointArgs:
     @dingdings.setter
     def dingdings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointDingdingArgs']]]]):
         pulumi.set(self, "dingdings", value)
+
+    @property
+    @pulumi.getter(name="disableProvenance")
+    def disable_provenance(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow modifying the contact point from other sources than Terraform or the Grafana API.
+        """
+        return pulumi.get(self, "disable_provenance")
+
+    @disable_provenance.setter
+    def disable_provenance(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_provenance", value)
 
     @property
     @pulumi.getter
@@ -188,13 +216,25 @@ class ContactPointArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the contact point.
+        Name of the responder. Must be specified if username and id are empty.
         """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def oncalls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]]]:
+        """
+        A contact point that sends notifications to Grafana On-Call.
+        """
+        return pulumi.get(self, "oncalls")
+
+    @oncalls.setter
+    def oncalls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]]]):
+        pulumi.set(self, "oncalls", value)
 
     @property
     @pulumi.getter
@@ -207,6 +247,18 @@ class ContactPointArgs:
     @opsgenies.setter
     def opsgenies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyArgs']]]]):
         pulumi.set(self, "opsgenies", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter
@@ -255,6 +307,18 @@ class ContactPointArgs:
     @slacks.setter
     def slacks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointSlackArgs']]]]):
         pulumi.set(self, "slacks", value)
+
+    @property
+    @pulumi.getter
+    def sns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointSnArgs']]]]:
+        """
+        A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+        """
+        return pulumi.get(self, "sns")
+
+    @sns.setter
+    def sns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointSnArgs']]]]):
+        pulumi.set(self, "sns", value)
 
     @property
     @pulumi.getter
@@ -346,17 +410,21 @@ class _ContactPointState:
     def __init__(__self__, *,
                  alertmanagers: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointAlertmanagerArgs']]]] = None,
                  dingdings: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointDingdingArgs']]]] = None,
+                 disable_provenance: Optional[pulumi.Input[bool]] = None,
                  discords: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointDiscordArgs']]]] = None,
                  emails: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointEmailArgs']]]] = None,
                  googlechats: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]]] = None,
                  kafkas: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]]] = None,
                  lines: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 oncalls: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]]] = None,
                  opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyArgs']]]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointPagerdutyArgs']]]] = None,
                  pushovers: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointPushoverArgs']]]] = None,
                  sensugos: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointSensugoArgs']]]] = None,
                  slacks: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointSlackArgs']]]] = None,
+                 sns: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointSnArgs']]]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointTeamArgs']]]] = None,
                  telegrams: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointTelegramArgs']]]] = None,
                  threemas: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointThreemaArgs']]]] = None,
@@ -368,17 +436,21 @@ class _ContactPointState:
         Input properties used for looking up and filtering ContactPoint resources.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointAlertmanagerArgs']]] alertmanagers: A contact point that sends notifications to other Alertmanager instances.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointDingdingArgs']]] dingdings: A contact point that sends notifications to DingDing.
+        :param pulumi.Input[bool] disable_provenance: Allow modifying the contact point from other sources than Terraform or the Grafana API.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointDiscordArgs']]] discords: A contact point that sends notifications as Discord messages
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointEmailArgs']]] emails: A contact point that sends notifications to an email address.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]] googlechats: A contact point that sends notifications to Google Chat.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]] lines: A contact point that sends notifications to LINE.me.
-        :param pulumi.Input[str] name: The name of the contact point.
+        :param pulumi.Input[str] name: Name of the responder. Must be specified if username and id are empty.
+        :param pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]] oncalls: A contact point that sends notifications to Grafana On-Call.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyArgs']]] opsgenies: A contact point that sends notifications to OpsGenie.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointPagerdutyArgs']]] pagerduties: A contact point that sends notifications to PagerDuty.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointPushoverArgs']]] pushovers: A contact point that sends notifications to Pushover.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointSensugoArgs']]] sensugos: A contact point that sends notifications to SensuGo.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointSlackArgs']]] slacks: A contact point that sends notifications to Slack.
+        :param pulumi.Input[Sequence[pulumi.Input['ContactPointSnArgs']]] sns: A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointTeamArgs']]] teams: A contact point that sends notifications to Microsoft Teams.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointTelegramArgs']]] telegrams: A contact point that sends notifications to Telegram.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointThreemaArgs']]] threemas: A contact point that sends notifications to Threema.
@@ -391,6 +463,8 @@ class _ContactPointState:
             pulumi.set(__self__, "alertmanagers", alertmanagers)
         if dingdings is not None:
             pulumi.set(__self__, "dingdings", dingdings)
+        if disable_provenance is not None:
+            pulumi.set(__self__, "disable_provenance", disable_provenance)
         if discords is not None:
             pulumi.set(__self__, "discords", discords)
         if emails is not None:
@@ -403,8 +477,12 @@ class _ContactPointState:
             pulumi.set(__self__, "lines", lines)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if oncalls is not None:
+            pulumi.set(__self__, "oncalls", oncalls)
         if opsgenies is not None:
             pulumi.set(__self__, "opsgenies", opsgenies)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if pagerduties is not None:
             pulumi.set(__self__, "pagerduties", pagerduties)
         if pushovers is not None:
@@ -413,6 +491,8 @@ class _ContactPointState:
             pulumi.set(__self__, "sensugos", sensugos)
         if slacks is not None:
             pulumi.set(__self__, "slacks", slacks)
+        if sns is not None:
+            pulumi.set(__self__, "sns", sns)
         if teams is not None:
             pulumi.set(__self__, "teams", teams)
         if telegrams is not None:
@@ -451,6 +531,18 @@ class _ContactPointState:
     @dingdings.setter
     def dingdings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointDingdingArgs']]]]):
         pulumi.set(self, "dingdings", value)
+
+    @property
+    @pulumi.getter(name="disableProvenance")
+    def disable_provenance(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow modifying the contact point from other sources than Terraform or the Grafana API.
+        """
+        return pulumi.get(self, "disable_provenance")
+
+    @disable_provenance.setter
+    def disable_provenance(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_provenance", value)
 
     @property
     @pulumi.getter
@@ -516,13 +608,25 @@ class _ContactPointState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the contact point.
+        Name of the responder. Must be specified if username and id are empty.
         """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def oncalls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]]]:
+        """
+        A contact point that sends notifications to Grafana On-Call.
+        """
+        return pulumi.get(self, "oncalls")
+
+    @oncalls.setter
+    def oncalls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]]]):
+        pulumi.set(self, "oncalls", value)
 
     @property
     @pulumi.getter
@@ -535,6 +639,18 @@ class _ContactPointState:
     @opsgenies.setter
     def opsgenies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyArgs']]]]):
         pulumi.set(self, "opsgenies", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter
@@ -583,6 +699,18 @@ class _ContactPointState:
     @slacks.setter
     def slacks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointSlackArgs']]]]):
         pulumi.set(self, "slacks", value)
+
+    @property
+    @pulumi.getter
+    def sns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointSnArgs']]]]:
+        """
+        A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+        """
+        return pulumi.get(self, "sns")
+
+    @sns.setter
+    def sns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointSnArgs']]]]):
+        pulumi.set(self, "sns", value)
 
     @property
     @pulumi.getter
@@ -676,17 +804,21 @@ class ContactPoint(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alertmanagers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointAlertmanagerArgs']]]]] = None,
                  dingdings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDingdingArgs']]]]] = None,
+                 disable_provenance: Optional[pulumi.Input[bool]] = None,
                  discords: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDiscordArgs']]]]] = None,
                  emails: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]]] = None,
                  googlechats: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]]] = None,
                  kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]]] = None,
                  lines: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 oncalls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]]] = None,
                  opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]]] = None,
                  pushovers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPushoverArgs']]]]] = None,
                  sensugos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSensugoArgs']]]]] = None,
                  slacks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSlackArgs']]]]] = None,
+                 sns: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSnArgs']]]]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTeamArgs']]]]] = None,
                  telegrams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTelegramArgs']]]]] = None,
                  threemas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]]] = None,
@@ -731,17 +863,21 @@ class ContactPoint(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointAlertmanagerArgs']]]] alertmanagers: A contact point that sends notifications to other Alertmanager instances.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDingdingArgs']]]] dingdings: A contact point that sends notifications to DingDing.
+        :param pulumi.Input[bool] disable_provenance: Allow modifying the contact point from other sources than Terraform or the Grafana API.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDiscordArgs']]]] discords: A contact point that sends notifications as Discord messages
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]] emails: A contact point that sends notifications to an email address.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]] googlechats: A contact point that sends notifications to Google Chat.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]] lines: A contact point that sends notifications to LINE.me.
-        :param pulumi.Input[str] name: The name of the contact point.
+        :param pulumi.Input[str] name: Name of the responder. Must be specified if username and id are empty.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]] oncalls: A contact point that sends notifications to Grafana On-Call.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]] opsgenies: A contact point that sends notifications to OpsGenie.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]] pagerduties: A contact point that sends notifications to PagerDuty.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPushoverArgs']]]] pushovers: A contact point that sends notifications to Pushover.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSensugoArgs']]]] sensugos: A contact point that sends notifications to SensuGo.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSlackArgs']]]] slacks: A contact point that sends notifications to Slack.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSnArgs']]]] sns: A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTeamArgs']]]] teams: A contact point that sends notifications to Microsoft Teams.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTelegramArgs']]]] telegrams: A contact point that sends notifications to Telegram.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]] threemas: A contact point that sends notifications to Threema.
@@ -805,17 +941,21 @@ class ContactPoint(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alertmanagers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointAlertmanagerArgs']]]]] = None,
                  dingdings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDingdingArgs']]]]] = None,
+                 disable_provenance: Optional[pulumi.Input[bool]] = None,
                  discords: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDiscordArgs']]]]] = None,
                  emails: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]]] = None,
                  googlechats: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]]] = None,
                  kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]]] = None,
                  lines: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 oncalls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]]] = None,
                  opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]]] = None,
                  pushovers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPushoverArgs']]]]] = None,
                  sensugos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSensugoArgs']]]]] = None,
                  slacks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSlackArgs']]]]] = None,
+                 sns: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSnArgs']]]]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTeamArgs']]]]] = None,
                  telegrams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTelegramArgs']]]]] = None,
                  threemas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]]] = None,
@@ -834,17 +974,21 @@ class ContactPoint(pulumi.CustomResource):
 
             __props__.__dict__["alertmanagers"] = alertmanagers
             __props__.__dict__["dingdings"] = dingdings
+            __props__.__dict__["disable_provenance"] = disable_provenance
             __props__.__dict__["discords"] = discords
             __props__.__dict__["emails"] = emails
             __props__.__dict__["googlechats"] = googlechats
             __props__.__dict__["kafkas"] = kafkas
             __props__.__dict__["lines"] = lines
             __props__.__dict__["name"] = name
+            __props__.__dict__["oncalls"] = oncalls
             __props__.__dict__["opsgenies"] = opsgenies
+            __props__.__dict__["org_id"] = org_id
             __props__.__dict__["pagerduties"] = pagerduties
             __props__.__dict__["pushovers"] = pushovers
             __props__.__dict__["sensugos"] = sensugos
             __props__.__dict__["slacks"] = slacks
+            __props__.__dict__["sns"] = sns
             __props__.__dict__["teams"] = teams
             __props__.__dict__["telegrams"] = telegrams
             __props__.__dict__["threemas"] = threemas
@@ -864,17 +1008,21 @@ class ContactPoint(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             alertmanagers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointAlertmanagerArgs']]]]] = None,
             dingdings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDingdingArgs']]]]] = None,
+            disable_provenance: Optional[pulumi.Input[bool]] = None,
             discords: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDiscordArgs']]]]] = None,
             emails: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]]] = None,
             googlechats: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]]] = None,
             kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]]] = None,
             lines: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            oncalls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]]] = None,
             opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
             pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]]] = None,
             pushovers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPushoverArgs']]]]] = None,
             sensugos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSensugoArgs']]]]] = None,
             slacks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSlackArgs']]]]] = None,
+            sns: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSnArgs']]]]] = None,
             teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTeamArgs']]]]] = None,
             telegrams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTelegramArgs']]]]] = None,
             threemas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]]] = None,
@@ -891,17 +1039,21 @@ class ContactPoint(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointAlertmanagerArgs']]]] alertmanagers: A contact point that sends notifications to other Alertmanager instances.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDingdingArgs']]]] dingdings: A contact point that sends notifications to DingDing.
+        :param pulumi.Input[bool] disable_provenance: Allow modifying the contact point from other sources than Terraform or the Grafana API.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDiscordArgs']]]] discords: A contact point that sends notifications as Discord messages
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]] emails: A contact point that sends notifications to an email address.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]] googlechats: A contact point that sends notifications to Google Chat.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]] lines: A contact point that sends notifications to LINE.me.
-        :param pulumi.Input[str] name: The name of the contact point.
+        :param pulumi.Input[str] name: Name of the responder. Must be specified if username and id are empty.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]] oncalls: A contact point that sends notifications to Grafana On-Call.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]] opsgenies: A contact point that sends notifications to OpsGenie.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]] pagerduties: A contact point that sends notifications to PagerDuty.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPushoverArgs']]]] pushovers: A contact point that sends notifications to Pushover.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSensugoArgs']]]] sensugos: A contact point that sends notifications to SensuGo.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSlackArgs']]]] slacks: A contact point that sends notifications to Slack.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSnArgs']]]] sns: A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTeamArgs']]]] teams: A contact point that sends notifications to Microsoft Teams.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTelegramArgs']]]] telegrams: A contact point that sends notifications to Telegram.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]] threemas: A contact point that sends notifications to Threema.
@@ -916,17 +1068,21 @@ class ContactPoint(pulumi.CustomResource):
 
         __props__.__dict__["alertmanagers"] = alertmanagers
         __props__.__dict__["dingdings"] = dingdings
+        __props__.__dict__["disable_provenance"] = disable_provenance
         __props__.__dict__["discords"] = discords
         __props__.__dict__["emails"] = emails
         __props__.__dict__["googlechats"] = googlechats
         __props__.__dict__["kafkas"] = kafkas
         __props__.__dict__["lines"] = lines
         __props__.__dict__["name"] = name
+        __props__.__dict__["oncalls"] = oncalls
         __props__.__dict__["opsgenies"] = opsgenies
+        __props__.__dict__["org_id"] = org_id
         __props__.__dict__["pagerduties"] = pagerduties
         __props__.__dict__["pushovers"] = pushovers
         __props__.__dict__["sensugos"] = sensugos
         __props__.__dict__["slacks"] = slacks
+        __props__.__dict__["sns"] = sns
         __props__.__dict__["teams"] = teams
         __props__.__dict__["telegrams"] = telegrams
         __props__.__dict__["threemas"] = threemas
@@ -951,6 +1107,14 @@ class ContactPoint(pulumi.CustomResource):
         A contact point that sends notifications to DingDing.
         """
         return pulumi.get(self, "dingdings")
+
+    @property
+    @pulumi.getter(name="disableProvenance")
+    def disable_provenance(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Allow modifying the contact point from other sources than Terraform or the Grafana API.
+        """
+        return pulumi.get(self, "disable_provenance")
 
     @property
     @pulumi.getter
@@ -996,9 +1160,17 @@ class ContactPoint(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the contact point.
+        Name of the responder. Must be specified if username and id are empty.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def oncalls(self) -> pulumi.Output[Optional[Sequence['outputs.ContactPointOncall']]]:
+        """
+        A contact point that sends notifications to Grafana On-Call.
+        """
+        return pulumi.get(self, "oncalls")
 
     @property
     @pulumi.getter
@@ -1007,6 +1179,14 @@ class ContactPoint(pulumi.CustomResource):
         A contact point that sends notifications to OpsGenie.
         """
         return pulumi.get(self, "opsgenies")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter
@@ -1039,6 +1219,14 @@ class ContactPoint(pulumi.CustomResource):
         A contact point that sends notifications to Slack.
         """
         return pulumi.get(self, "slacks")
+
+    @property
+    @pulumi.getter
+    def sns(self) -> pulumi.Output[Optional[Sequence['outputs.ContactPointSn']]]:
+        """
+        A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+        """
+        return pulumi.get(self, "sns")
 
     @property
     @pulumi.getter

@@ -32,10 +32,17 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('caCert') or _utilities.get_env('GRAFANA_CA_CERT')
 
     @property
+    def cloud_access_policy_token(self) -> Optional[str]:
+        """
+        Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
+        variable.
+        """
+        return __config__.get('cloudAccessPolicyToken')
+
+    @property
     def cloud_api_key(self) -> Optional[str]:
         """
-        Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
-        variable.
+        Deprecated: Use `cloud_access_policy_token` instead.
         """
         return __config__.get('cloudApiKey') or _utilities.get_env('GRAFANA_CLOUD_API_KEY')
 

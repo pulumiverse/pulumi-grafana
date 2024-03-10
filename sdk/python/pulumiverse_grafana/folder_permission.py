@@ -17,18 +17,19 @@ __all__ = ['FolderPermissionArgs', 'FolderPermission']
 class FolderPermissionArgs:
     def __init__(__self__, *,
                  folder_uid: pulumi.Input[str],
-                 permissions: pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]],
-                 org_id: Optional[pulumi.Input[str]] = None):
+                 org_id: Optional[pulumi.Input[str]] = None,
+                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]]] = None):
         """
         The set of arguments for constructing a FolderPermission resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder.
-        :param pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         pulumi.set(__self__, "folder_uid", folder_uid)
-        pulumi.set(__self__, "permissions", permissions)
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
+        if permissions is not None:
+            pulumi.set(__self__, "permissions", permissions)
 
     @property
     @pulumi.getter(name="folderUid")
@@ -43,18 +44,6 @@ class FolderPermissionArgs:
         pulumi.set(self, "folder_uid", value)
 
     @property
-    @pulumi.getter
-    def permissions(self) -> pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]]:
-        """
-        The permission items to add/update. Items that are omitted from the list will be removed.
-        """
-        return pulumi.get(self, "permissions")
-
-    @permissions.setter
-    def permissions(self, value: pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]]):
-        pulumi.set(self, "permissions", value)
-
-    @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -65,6 +54,18 @@ class FolderPermissionArgs:
     @org_id.setter
     def org_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "org_id", value)
+
+    @property
+    @pulumi.getter
+    def permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]]]:
+        """
+        The permission items to add/update. Items that are omitted from the list will be removed.
+        """
+        return pulumi.get(self, "permissions")
+
+    @permissions.setter
+    def permissions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]]]):
+        pulumi.set(self, "permissions", value)
 
 
 @pulumi.input_type
@@ -133,6 +134,7 @@ class FolderPermission(pulumi.CustomResource):
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FolderPermissionPermissionArgs']]]]] = None,
                  __props__=None):
         """
+        Manages the entire set of permissions for a folder. Permissions that aren't specified when applying this resource will be removed.
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
 
@@ -143,7 +145,10 @@ class FolderPermission(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         team = grafana.Team("team")
-        user = grafana.User("user", email="user.name@example.com")
+        user = grafana.User("user",
+            email="user.name@example.com",
+            login="user.name",
+            password="my-password")
         collection = grafana.Folder("collection", title="Folder Title")
         collection_permission = grafana.FolderPermission("collectionPermission",
             folder_uid=collection.uid,
@@ -163,6 +168,16 @@ class FolderPermission(pulumi.CustomResource):
             ])
         ```
 
+        ## Import
+
+        ```sh
+         $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
+        ```
+
+        ```sh
+         $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder.
@@ -176,6 +191,7 @@ class FolderPermission(pulumi.CustomResource):
                  args: FolderPermissionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages the entire set of permissions for a folder. Permissions that aren't specified when applying this resource will be removed.
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
 
@@ -186,7 +202,10 @@ class FolderPermission(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         team = grafana.Team("team")
-        user = grafana.User("user", email="user.name@example.com")
+        user = grafana.User("user",
+            email="user.name@example.com",
+            login="user.name",
+            password="my-password")
         collection = grafana.Folder("collection", title="Folder Title")
         collection_permission = grafana.FolderPermission("collectionPermission",
             folder_uid=collection.uid,
@@ -204,6 +223,16 @@ class FolderPermission(pulumi.CustomResource):
                     permission="Admin",
                 ),
             ])
+        ```
+
+        ## Import
+
+        ```sh
+         $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
+        ```
+
+        ```sh
+         $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
         ```
 
         :param str resource_name: The name of the resource.
@@ -237,8 +266,6 @@ class FolderPermission(pulumi.CustomResource):
                 raise TypeError("Missing required property 'folder_uid'")
             __props__.__dict__["folder_uid"] = folder_uid
             __props__.__dict__["org_id"] = org_id
-            if permissions is None and not opts.urn:
-                raise TypeError("Missing required property 'permissions'")
             __props__.__dict__["permissions"] = permissions
         super(FolderPermission, __self__).__init__(
             'grafana:index/folderPermission:FolderPermission',
@@ -291,7 +318,7 @@ class FolderPermission(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def permissions(self) -> pulumi.Output[Sequence['outputs.FolderPermissionPermission']]:
+    def permissions(self) -> pulumi.Output[Optional[Sequence['outputs.FolderPermissionPermission']]]:
         """
         The permission items to add/update. Items that are omitted from the list will be removed.
         """

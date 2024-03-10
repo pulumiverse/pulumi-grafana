@@ -13,6 +13,12 @@ namespace Pulumiverse.Grafana
     /// <summary>
     /// * [Official documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#stacks/)
     /// 
+    /// Required access policy scopes:
+    /// 
+    /// * stacks:read
+    /// * stacks:write
+    /// * stacks:delete
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -88,6 +94,12 @@ namespace Pulumiverse.Grafana
         [Output("graphiteUserId")]
         public Output<int> GraphiteUserId { get; private set; } = null!;
 
+        /// <summary>
+        /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+        /// </summary>
+        [Output("labels")]
+        public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
+
         [Output("logsName")]
         public Output<string> LogsName { get; private set; } = null!;
 
@@ -101,7 +113,7 @@ namespace Pulumiverse.Grafana
         public Output<int> LogsUserId { get; private set; } = null!;
 
         /// <summary>
-        /// Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
+        /// Name of stack. Conventionally matches the url of the instance (e.g. `&lt;stack_slug&gt;.grafana.net`).
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -123,6 +135,24 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Output("orgSlug")]
         public Output<string> OrgSlug { get; private set; } = null!;
+
+        /// <summary>
+        /// Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        /// </summary>
+        [Output("otlpUrl")]
+        public Output<string> OtlpUrl { get; private set; } = null!;
+
+        [Output("profilesName")]
+        public Output<string> ProfilesName { get; private set; } = null!;
+
+        [Output("profilesStatus")]
+        public Output<string> ProfilesStatus { get; private set; } = null!;
+
+        [Output("profilesUrl")]
+        public Output<string> ProfilesUrl { get; private set; } = null!;
+
+        [Output("profilesUserId")]
+        public Output<int> ProfilesUserId { get; private set; } = null!;
 
         /// <summary>
         /// Prometheus name for this instance.
@@ -167,8 +197,7 @@ namespace Pulumiverse.Grafana
         public Output<string?> RegionSlug { get; private set; } = null!;
 
         /// <summary>
-        /// Subdomain that the Grafana instance will be available at (i.e. setting slug to “\n\n” will make the instance
-        /// available at “https://\n\n.grafana.net".
+        /// Subdomain that the Grafana instance will be available at. Setting slug to `&lt;stack_slug&gt;` will make the instance available at `https://&lt;stack_slug&gt;.grafana.net`.
         /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
@@ -198,7 +227,7 @@ namespace Pulumiverse.Grafana
         /// Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
         /// </summary>
         [Output("url")]
-        public Output<string> Url { get; private set; } = null!;
+        public Output<string?> Url { get; private set; } = null!;
 
         /// <summary>
         /// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
@@ -265,8 +294,20 @@ namespace Pulumiverse.Grafana
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        [Input("labels")]
+        private InputMap<string>? _labels;
+
         /// <summary>
-        /// Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
+        /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+        /// </summary>
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
+
+        /// <summary>
+        /// Name of stack. Conventionally matches the url of the instance (e.g. `&lt;stack_slug&gt;.grafana.net`).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -278,8 +319,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? RegionSlug { get; set; }
 
         /// <summary>
-        /// Subdomain that the Grafana instance will be available at (i.e. setting slug to “\n\n” will make the instance
-        /// available at “https://\n\n.grafana.net".
+        /// Subdomain that the Grafana instance will be available at. Setting slug to `&lt;stack_slug&gt;` will make the instance available at `https://&lt;stack_slug&gt;.grafana.net`.
         /// </summary>
         [Input("slug", required: true)]
         public Input<string> Slug { get; set; } = null!;
@@ -352,6 +392,18 @@ namespace Pulumiverse.Grafana
         [Input("graphiteUserId")]
         public Input<int>? GraphiteUserId { get; set; }
 
+        [Input("labels")]
+        private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+        /// </summary>
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
+
         [Input("logsName")]
         public Input<string>? LogsName { get; set; }
 
@@ -365,7 +417,7 @@ namespace Pulumiverse.Grafana
         public Input<int>? LogsUserId { get; set; }
 
         /// <summary>
-        /// Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
+        /// Name of stack. Conventionally matches the url of the instance (e.g. `&lt;stack_slug&gt;.grafana.net`).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -387,6 +439,24 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("orgSlug")]
         public Input<string>? OrgSlug { get; set; }
+
+        /// <summary>
+        /// Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        /// </summary>
+        [Input("otlpUrl")]
+        public Input<string>? OtlpUrl { get; set; }
+
+        [Input("profilesName")]
+        public Input<string>? ProfilesName { get; set; }
+
+        [Input("profilesStatus")]
+        public Input<string>? ProfilesStatus { get; set; }
+
+        [Input("profilesUrl")]
+        public Input<string>? ProfilesUrl { get; set; }
+
+        [Input("profilesUserId")]
+        public Input<int>? ProfilesUserId { get; set; }
 
         /// <summary>
         /// Prometheus name for this instance.
@@ -431,8 +501,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? RegionSlug { get; set; }
 
         /// <summary>
-        /// Subdomain that the Grafana instance will be available at (i.e. setting slug to “\n\n” will make the instance
-        /// available at “https://\n\n.grafana.net".
+        /// Subdomain that the Grafana instance will be available at. Setting slug to `&lt;stack_slug&gt;` will make the instance available at `https://&lt;stack_slug&gt;.grafana.net`.
         /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }

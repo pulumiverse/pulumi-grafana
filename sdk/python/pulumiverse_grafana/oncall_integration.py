@@ -24,10 +24,10 @@ class OncallIntegrationArgs:
         """
         The set of arguments for constructing a OncallIntegration resource.
         :param pulumi.Input['OncallIntegrationDefaultRouteArgs'] default_route: The Default route for all alerts from the given integration
-        :param pulumi.Input[str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
+        :param pulumi.Input[str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
         :param pulumi.Input[str] name: The name of the service integration.
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
-        :param pulumi.Input['OncallIntegrationTemplatesArgs'] templates: Jinja2 templates for Alert payload.
+        :param pulumi.Input['OncallIntegrationTemplatesArgs'] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
         """
         pulumi.set(__self__, "default_route", default_route)
         pulumi.set(__self__, "type", type)
@@ -54,7 +54,7 @@ class OncallIntegrationArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
+        The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
         """
         return pulumi.get(self, "type")
 
@@ -90,7 +90,7 @@ class OncallIntegrationArgs:
     @pulumi.getter
     def templates(self) -> Optional[pulumi.Input['OncallIntegrationTemplatesArgs']]:
         """
-        Jinja2 templates for Alert payload.
+        Jinja2 templates for Alert payload. An empty templates block will be ignored.
         """
         return pulumi.get(self, "templates")
 
@@ -114,8 +114,8 @@ class _OncallIntegrationState:
         :param pulumi.Input[str] link: The link for using in an integrated tool.
         :param pulumi.Input[str] name: The name of the service integration.
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
-        :param pulumi.Input['OncallIntegrationTemplatesArgs'] templates: Jinja2 templates for Alert payload.
-        :param pulumi.Input[str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
+        :param pulumi.Input['OncallIntegrationTemplatesArgs'] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
+        :param pulumi.Input[str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
         """
         if default_route is not None:
             pulumi.set(__self__, "default_route", default_route)
@@ -182,7 +182,7 @@ class _OncallIntegrationState:
     @pulumi.getter
     def templates(self) -> Optional[pulumi.Input['OncallIntegrationTemplatesArgs']]:
         """
-        Jinja2 templates for Alert payload.
+        Jinja2 templates for Alert payload. An empty templates block will be ignored.
         """
         return pulumi.get(self, "templates")
 
@@ -194,7 +194,7 @@ class _OncallIntegrationState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
+        The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
         """
         return pulumi.get(self, "type")
 
@@ -229,8 +229,8 @@ class OncallIntegration(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['OncallIntegrationDefaultRouteArgs']] default_route: The Default route for all alerts from the given integration
         :param pulumi.Input[str] name: The name of the service integration.
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
-        :param pulumi.Input[pulumi.InputType['OncallIntegrationTemplatesArgs']] templates: Jinja2 templates for Alert payload.
-        :param pulumi.Input[str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
+        :param pulumi.Input[pulumi.InputType['OncallIntegrationTemplatesArgs']] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
+        :param pulumi.Input[str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
         """
         ...
     @overload
@@ -314,8 +314,8 @@ class OncallIntegration(pulumi.CustomResource):
         :param pulumi.Input[str] link: The link for using in an integrated tool.
         :param pulumi.Input[str] name: The name of the service integration.
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
-        :param pulumi.Input[pulumi.InputType['OncallIntegrationTemplatesArgs']] templates: Jinja2 templates for Alert payload.
-        :param pulumi.Input[str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
+        :param pulumi.Input[pulumi.InputType['OncallIntegrationTemplatesArgs']] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
+        :param pulumi.Input[str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -365,7 +365,7 @@ class OncallIntegration(pulumi.CustomResource):
     @pulumi.getter
     def templates(self) -> pulumi.Output[Optional['outputs.OncallIntegrationTemplates']]:
         """
-        Jinja2 templates for Alert payload.
+        Jinja2 templates for Alert payload. An empty templates block will be ignored.
         """
         return pulumi.get(self, "templates")
 
@@ -373,7 +373,7 @@ class OncallIntegration(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging.
+        The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
         """
         return pulumi.get(self, "type")
 

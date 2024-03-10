@@ -49,10 +49,22 @@ namespace Pulumiverse.Grafana
     public partial class MessageTemplate : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Allow modifying the message template from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Output("disableProvenance")]
+        public Output<bool?> DisableProvenance { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the message template.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// The content of the message template.
@@ -108,10 +120,22 @@ namespace Pulumiverse.Grafana
     public sealed class MessageTemplateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Allow modifying the message template from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Input("disableProvenance")]
+        public Input<bool>? DisableProvenance { get; set; }
+
+        /// <summary>
         /// The name of the message template.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         /// <summary>
         /// The content of the message template.
@@ -128,10 +152,22 @@ namespace Pulumiverse.Grafana
     public sealed class MessageTemplateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Allow modifying the message template from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Input("disableProvenance")]
+        public Input<bool>? DisableProvenance { get; set; }
+
+        /// <summary>
         /// The name of the message template.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         /// <summary>
         /// The content of the message template.

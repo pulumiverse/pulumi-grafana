@@ -7,6 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Manages the entire set of permissions for a datasource. Permissions that aren't specified when applying this resource will be removed.
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
  *
  * ## Example Usage
@@ -38,7 +39,7 @@ import * as utilities from "./utilities";
  *     permissions: [
  *         {
  *             teamId: team.id,
- *             permission: "Query",
+ *             permission: "Edit",
  *         },
  *         {
  *             userId: user.id,
@@ -95,7 +96,7 @@ export class DataSourcePermission extends pulumi.CustomResource {
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
-    public readonly permissions!: pulumi.Output<outputs.DataSourcePermissionPermission[]>;
+    public readonly permissions!: pulumi.Output<outputs.DataSourcePermissionPermission[] | undefined>;
 
     /**
      * Create a DataSourcePermission resource with the given unique name, arguments, and options.
@@ -117,9 +118,6 @@ export class DataSourcePermission extends pulumi.CustomResource {
             const args = argsOrState as DataSourcePermissionArgs | undefined;
             if ((!args || args.datasourceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'datasourceId'");
-            }
-            if ((!args || args.permissions === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'permissions'");
             }
             resourceInputs["datasourceId"] = args ? args.datasourceId : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
@@ -163,5 +161,5 @@ export interface DataSourcePermissionArgs {
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
-    permissions: pulumi.Input<pulumi.Input<inputs.DataSourcePermissionPermission>[]>;
+    permissions?: pulumi.Input<pulumi.Input<inputs.DataSourcePermissionPermission>[]>;
 }

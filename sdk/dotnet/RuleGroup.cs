@@ -143,6 +143,12 @@ namespace Pulumiverse.Grafana
     public partial class RuleGroup : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Output("disableProvenance")]
+        public Output<bool?> DisableProvenance { get; private set; } = null!;
+
+        /// <summary>
         /// The UID of the folder that the group belongs to.
         /// </summary>
         [Output("folderUid")]
@@ -161,10 +167,10 @@ namespace Pulumiverse.Grafana
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the org to which the group belongs.
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
         /// </summary>
         [Output("orgId")]
-        public Output<string> OrgId { get; private set; } = null!;
+        public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// The rules within the group.
@@ -220,6 +226,12 @@ namespace Pulumiverse.Grafana
     public sealed class RuleGroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Input("disableProvenance")]
+        public Input<bool>? DisableProvenance { get; set; }
+
+        /// <summary>
         /// The UID of the folder that the group belongs to.
         /// </summary>
         [Input("folderUid", required: true)]
@@ -238,10 +250,10 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the org to which the group belongs.
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
         /// </summary>
-        [Input("orgId", required: true)]
-        public Input<string> OrgId { get; set; } = null!;
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         [Input("rules", required: true)]
         private InputList<Inputs.RuleGroupRuleArgs>? _rules;
@@ -264,6 +276,12 @@ namespace Pulumiverse.Grafana
     public sealed class RuleGroupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Input("disableProvenance")]
+        public Input<bool>? DisableProvenance { get; set; }
+
+        /// <summary>
         /// The UID of the folder that the group belongs to.
         /// </summary>
         [Input("folderUid")]
@@ -282,7 +300,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the org to which the group belongs.
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
         /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }

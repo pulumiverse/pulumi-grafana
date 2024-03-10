@@ -34,8 +34,14 @@ namespace Pulumiverse.Grafana
         public Output<string?> CaCert { get; private set; } = null!;
 
         /// <summary>
-        /// Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+        /// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
         /// variable.
+        /// </summary>
+        [Output("cloudAccessPolicyToken")]
+        public Output<string?> CloudAccessPolicyToken { get; private set; } = null!;
+
+        /// <summary>
+        /// Deprecated: Use `cloud_access_policy_token` instead.
         /// </summary>
         [Output("cloudApiKey")]
         public Output<string?> CloudApiKey { get; private set; } = null!;
@@ -118,6 +124,7 @@ namespace Pulumiverse.Grafana
                 AdditionalSecretOutputs =
                 {
                     "auth",
+                    "cloudAccessPolicyToken",
                     "cloudApiKey",
                     "oncallAccessToken",
                     "smAccessToken",
@@ -157,13 +164,30 @@ namespace Pulumiverse.Grafana
         [Input("caCert")]
         public Input<string>? CaCert { get; set; }
 
+        [Input("cloudAccessPolicyToken")]
+        private Input<string>? _cloudAccessPolicyToken;
+
+        /// <summary>
+        /// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
+        /// variable.
+        /// </summary>
+        public Input<string>? CloudAccessPolicyToken
+        {
+            get => _cloudAccessPolicyToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _cloudAccessPolicyToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         [Input("cloudApiKey")]
         private Input<string>? _cloudApiKey;
 
         /// <summary>
-        /// Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
-        /// variable.
+        /// Deprecated: Use `cloud_access_policy_token` instead.
         /// </summary>
+        [Obsolete(@"Use `cloud_access_policy_token` instead.")]
         public Input<string>? CloudApiKey
         {
             get => _cloudApiKey;

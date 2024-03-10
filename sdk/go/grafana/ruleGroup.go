@@ -152,14 +152,16 @@ import (
 type RuleGroup struct {
 	pulumi.CustomResourceState
 
+	// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+	DisableProvenance pulumi.BoolPtrOutput `pulumi:"disableProvenance"`
 	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringOutput `pulumi:"folderUid"`
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds pulumi.IntOutput `pulumi:"intervalSeconds"`
 	// The name of the alert rule.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The ID of the org to which the group belongs.
-	OrgId pulumi.StringOutput `pulumi:"orgId"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// The rules within the group.
 	Rules RuleGroupRuleArrayOutput `pulumi:"rules"`
 }
@@ -176,9 +178,6 @@ func NewRuleGroup(ctx *pulumi.Context,
 	}
 	if args.IntervalSeconds == nil {
 		return nil, errors.New("invalid value for required argument 'IntervalSeconds'")
-	}
-	if args.OrgId == nil {
-		return nil, errors.New("invalid value for required argument 'OrgId'")
 	}
 	if args.Rules == nil {
 		return nil, errors.New("invalid value for required argument 'Rules'")
@@ -206,26 +205,30 @@ func GetRuleGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RuleGroup resources.
 type ruleGroupState struct {
+	// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The UID of the folder that the group belongs to.
 	FolderUid *string `pulumi:"folderUid"`
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds *int `pulumi:"intervalSeconds"`
 	// The name of the alert rule.
 	Name *string `pulumi:"name"`
-	// The ID of the org to which the group belongs.
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
 	// The rules within the group.
 	Rules []RuleGroupRule `pulumi:"rules"`
 }
 
 type RuleGroupState struct {
+	// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+	DisableProvenance pulumi.BoolPtrInput
 	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringPtrInput
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds pulumi.IntPtrInput
 	// The name of the alert rule.
 	Name pulumi.StringPtrInput
-	// The ID of the org to which the group belongs.
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
 	// The rules within the group.
 	Rules RuleGroupRuleArrayInput
@@ -236,28 +239,32 @@ func (RuleGroupState) ElementType() reflect.Type {
 }
 
 type ruleGroupArgs struct {
+	// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The UID of the folder that the group belongs to.
 	FolderUid string `pulumi:"folderUid"`
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds int `pulumi:"intervalSeconds"`
 	// The name of the alert rule.
 	Name *string `pulumi:"name"`
-	// The ID of the org to which the group belongs.
-	OrgId string `pulumi:"orgId"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The rules within the group.
 	Rules []RuleGroupRule `pulumi:"rules"`
 }
 
 // The set of arguments for constructing a RuleGroup resource.
 type RuleGroupArgs struct {
+	// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+	DisableProvenance pulumi.BoolPtrInput
 	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringInput
 	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds pulumi.IntInput
 	// The name of the alert rule.
 	Name pulumi.StringPtrInput
-	// The ID of the org to which the group belongs.
-	OrgId pulumi.StringInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// The rules within the group.
 	Rules RuleGroupRuleArrayInput
 }
@@ -373,6 +380,11 @@ func (o RuleGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*RuleGroup
 	}
 }
 
+// Allow modifying the rule group from other sources than Terraform or the Grafana API.
+func (o RuleGroupOutput) DisableProvenance() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RuleGroup) pulumi.BoolPtrOutput { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
+}
+
 // The UID of the folder that the group belongs to.
 func (o RuleGroupOutput) FolderUid() pulumi.StringOutput {
 	return o.ApplyT(func(v *RuleGroup) pulumi.StringOutput { return v.FolderUid }).(pulumi.StringOutput)
@@ -388,9 +400,9 @@ func (o RuleGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *RuleGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The ID of the org to which the group belongs.
-func (o RuleGroupOutput) OrgId() pulumi.StringOutput {
-	return o.ApplyT(func(v *RuleGroup) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o RuleGroupOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleGroup) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // The rules within the group.

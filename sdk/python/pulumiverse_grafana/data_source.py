@@ -527,7 +527,7 @@ class DataSource(pulumi.CustomResource):
             url="http://influxdb.example.net:8086/",
             basic_auth_enabled=True,
             basic_auth_username="username",
-            database_name=influxdb_database["metrics"]["name"],
+            database_name="dbname",
             json_data_encoded=json.dumps({
                 "authType": "default",
                 "basicAuthPassword": "mypassword",
@@ -631,7 +631,7 @@ class DataSource(pulumi.CustomResource):
             url="http://influxdb.example.net:8086/",
             basic_auth_enabled=True,
             basic_auth_username="username",
-            database_name=influxdb_database["metrics"]["name"],
+            database_name="dbname",
             json_data_encoded=json.dumps({
                 "authType": "default",
                 "basicAuthPassword": "mypassword",

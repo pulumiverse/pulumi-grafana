@@ -249,6 +249,57 @@ export interface ContactPointLine {
     uid?: pulumi.Input<string>;
 }
 
+export interface ContactPointOncall {
+    /**
+     * Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.
+     */
+    authorizationCredentials?: pulumi.Input<string>;
+    /**
+     * Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.
+     */
+    authorizationScheme?: pulumi.Input<string>;
+    /**
+     * The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+     */
+    basicAuthPassword?: pulumi.Input<string>;
+    /**
+     * The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+     */
+    basicAuthUser?: pulumi.Input<string>;
+    /**
+     * Whether to disable sending resolve messages. Defaults to `false`.
+     */
+    disableResolveMessage?: pulumi.Input<boolean>;
+    /**
+     * The HTTP method to use in the request. Defaults to `POST`.
+     */
+    httpMethod?: pulumi.Input<string>;
+    /**
+     * The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
+     */
+    maxAlerts?: pulumi.Input<number>;
+    /**
+     * Custom message. You can use template variables.
+     */
+    message?: pulumi.Input<string>;
+    /**
+     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     */
+    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Templated title of the message.
+     */
+    title?: pulumi.Input<string>;
+    /**
+     * The UID of the contact point.
+     */
+    uid?: pulumi.Input<string>;
+    /**
+     * The URL to send webhook requests to.
+     */
+    url: pulumi.Input<string>;
+}
+
 export interface ContactPointOpsgeny {
     /**
      * The OpsGenie API key to use.
@@ -275,6 +326,10 @@ export interface ContactPointOpsgeny {
      */
     overridePriority?: pulumi.Input<boolean>;
     /**
+     * Teams, users, escalations and schedules that the alert will be routed to send notifications. If the API Key belongs to a team integration, this field will be overwritten with the owner team. This feature is available from Grafana 10.3+.
+     */
+    responders?: pulumi.Input<pulumi.Input<inputs.ContactPointOpsgenyResponder>[]>;
+    /**
      * Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.
      */
     sendTagsAs?: pulumi.Input<string>;
@@ -290,6 +345,25 @@ export interface ContactPointOpsgeny {
      * Allows customization of the OpsGenie API URL.
      */
     url?: pulumi.Input<string>;
+}
+
+export interface ContactPointOpsgenyResponder {
+    /**
+     * ID of the responder. Must be specified if name and username are empty.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Name of the responder. Must be specified if username and id are empty.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Type of the responder. Supported: team, teams, user, escalation, schedule or a template that is expanded to one of these values.
+     */
+    type: pulumi.Input<string>;
+    /**
+     * The user name to use when making a call to the Kafka REST Proxy
+     */
+    username?: pulumi.Input<string>;
 }
 
 export interface ContactPointPagerduty {
@@ -514,6 +588,51 @@ export interface ContactPointSlack {
      * Username for the bot to use.
      */
     username?: pulumi.Input<string>;
+}
+
+export interface ContactPointSn {
+    /**
+     * AWS access key ID used to authenticate with Amazon SNS.
+     */
+    accessKey?: pulumi.Input<string>;
+    /**
+     * The Amazon Resource Name (ARN) of the role to assume to send notifications to Amazon SNS.
+     */
+    assumeRoleArn?: pulumi.Input<string>;
+    /**
+     * The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+     */
+    authProvider?: pulumi.Input<string>;
+    body?: pulumi.Input<string>;
+    /**
+     * Whether to disable sending resolve messages. Defaults to `false`.
+     */
+    disableResolveMessage?: pulumi.Input<boolean>;
+    /**
+     * The external ID to use when assuming the role.
+     */
+    externalId?: pulumi.Input<string>;
+    /**
+     * The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+     */
+    messageFormat?: pulumi.Input<string>;
+    /**
+     * AWS secret access key used to authenticate with Amazon SNS.
+     */
+    secretKey?: pulumi.Input<string>;
+    /**
+     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     */
+    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    subject?: pulumi.Input<string>;
+    /**
+     * The Amazon SNS topic to send notifications to.
+     */
+    topic: pulumi.Input<string>;
+    /**
+     * The UID of the contact point.
+     */
+    uid?: pulumi.Input<string>;
 }
 
 export interface ContactPointTeam {
@@ -810,7 +929,7 @@ export interface DataSourcePermissionPermission {
      */
     builtInRole?: pulumi.Input<string>;
     /**
-     * Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
+     * Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
      */
     permission: pulumi.Input<string>;
     /**
@@ -878,6 +997,10 @@ export interface MuteTimingInterval {
      * An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
      */
     daysOfMonths?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Provides the time zone for the time interval. Must be a location in the IANA time zone database, e.g "America/New_York"
+     */
+    location?: pulumi.Input<string>;
     /**
      * An inclusive range of months, either numerical or full calendar month, e.g. "1:3", "december", or "may:august".
      */
@@ -1362,6 +1485,32 @@ export interface PlaylistItem {
     value?: pulumi.Input<string>;
 }
 
+export interface ReportDashboard {
+    /**
+     * Add report variables to the dashboard. Values should be separated by commas.
+     */
+    reportVariables?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Time range of the report.
+     */
+    timeRange?: pulumi.Input<inputs.ReportDashboardTimeRange>;
+    /**
+     * Dashboard uid.
+     */
+    uid: pulumi.Input<string>;
+}
+
+export interface ReportDashboardTimeRange {
+    /**
+     * Start of the time range.
+     */
+    from?: pulumi.Input<string>;
+    /**
+     * End of the time range.
+     */
+    to?: pulumi.Input<string>;
+}
+
 export interface ReportSchedule {
     /**
      * Custom interval of the report.
@@ -1369,7 +1518,7 @@ export interface ReportSchedule {
      */
     customInterval?: pulumi.Input<string>;
     /**
-     * End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
+     * End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
      */
     endTime?: pulumi.Input<string>;
     /**
@@ -1381,9 +1530,13 @@ export interface ReportSchedule {
      */
     lastDayOfMonth?: pulumi.Input<boolean>;
     /**
-     * Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
+     * Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
      */
     startTime?: pulumi.Input<string>;
+    /**
+     * Set the report time zone. Defaults to `GMT`.
+     */
+    timezone?: pulumi.Input<string>;
     /**
      * Whether to send the report only on work days. Defaults to `false`.
      */
@@ -1560,6 +1713,13 @@ export interface SLOAlertingSlowburnLabel {
     value: pulumi.Input<string>;
 }
 
+export interface SLODestinationDatasource {
+    /**
+     * UID for the Mimir Datasource
+     */
+    uid?: pulumi.Input<string>;
+}
+
 export interface SLOLabel {
     key: pulumi.Input<string>;
     value: pulumi.Input<string>;
@@ -1622,6 +1782,161 @@ export interface ServiceAccountPermissionPermission {
     userId?: pulumi.Input<string>;
 }
 
+export interface SsoSettingsOauth2Settings {
+    /**
+     * If enabled, it will automatically sync the Grafana server administrator role.
+     */
+    allowAssignGrafanaAdmin?: pulumi.Input<boolean>;
+    /**
+     * If not enabled, only existing Grafana users can log in using OAuth.
+     */
+    allowSignUp?: pulumi.Input<boolean>;
+    /**
+     * List of comma- or space-separated domains. The user should belong to at least one domain to log in.
+     */
+    allowedDomains?: pulumi.Input<string>;
+    /**
+     * List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+     */
+    allowedGroups?: pulumi.Input<string>;
+    /**
+     * List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
+     */
+    allowedOrganizations?: pulumi.Input<string>;
+    /**
+     * The user information endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+     */
+    apiUrl?: pulumi.Input<string>;
+    /**
+     * It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+     */
+    authStyle?: pulumi.Input<string>;
+    /**
+     * The authorization endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+     */
+    authUrl?: pulumi.Input<string>;
+    /**
+     * Log in automatically, skipping the login screen.
+     */
+    autoLogin?: pulumi.Input<boolean>;
+    /**
+     * The client Id of your OAuth2 app.
+     */
+    clientId: pulumi.Input<string>;
+    /**
+     * The client secret of your OAuth2 app.
+     */
+    clientSecret?: pulumi.Input<string>;
+    /**
+     * Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+     */
+    custom?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Define allowed groups.
+     */
+    defineAllowedGroups?: pulumi.Input<boolean>;
+    /**
+     * Define allowed teams ids.
+     */
+    defineAllowedTeamsIds?: pulumi.Input<boolean>;
+    /**
+     * Name of the key to use for user email lookup within the attributes map of OAuth2 ID token. Only applicable to Generic OAuth.
+     */
+    emailAttributeName?: pulumi.Input<string>;
+    /**
+     * JMESPath expression to use for user email lookup from the user information. Only applicable to Generic OAuth.
+     */
+    emailAttributePath?: pulumi.Input<string>;
+    /**
+     * If enabled, no scopes will be sent to the OAuth2 provider.
+     */
+    emptyScopes?: pulumi.Input<boolean>;
+    /**
+     * Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+     */
+    enabled?: pulumi.Input<boolean>;
+    /**
+     * JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+     */
+    groupsAttributePath?: pulumi.Input<string>;
+    /**
+     * The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
+     */
+    idTokenAttributeName?: pulumi.Input<string>;
+    /**
+     * JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
+     */
+    loginAttributePath?: pulumi.Input<string>;
+    /**
+     * Helpful if you use more than one identity providers or SSO protocols.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+     */
+    nameAttributePath?: pulumi.Input<string>;
+    /**
+     * JMESPath expression to use for Grafana role lookup.
+     */
+    roleAttributePath?: pulumi.Input<string>;
+    /**
+     * If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
+     */
+    roleAttributeStrict?: pulumi.Input<boolean>;
+    /**
+     * List of comma- or space-separated OAuth2 scopes.
+     */
+    scopes?: pulumi.Input<string>;
+    /**
+     * The URL to redirect the user to after signing out from Grafana.
+     */
+    signoutRedirectUrl?: pulumi.Input<string>;
+    /**
+     * Prevent synchronizing users’ organization roles from your IdP.
+     */
+    skipOrgRoleSync?: pulumi.Input<boolean>;
+    /**
+     * String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+     */
+    teamIds?: pulumi.Input<string>;
+    /**
+     * The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teamsUrl endpoint. Only applicable to Generic OAuth.
+     */
+    teamIdsAttributePath?: pulumi.Input<string>;
+    /**
+     * The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+     */
+    teamsUrl?: pulumi.Input<string>;
+    /**
+     * The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
+     */
+    tlsClientCa?: pulumi.Input<string>;
+    /**
+     * The path to the certificate. Is not applicable on Grafana Cloud.
+     */
+    tlsClientCert?: pulumi.Input<string>;
+    /**
+     * The path to the key. Is not applicable on Grafana Cloud.
+     */
+    tlsClientKey?: pulumi.Input<string>;
+    /**
+     * If enabled, the client accepts any certificate presented by the server and any host name in that certificate. You should only use this for testing, because this mode leaves SSL/TLS susceptible to man-in-the-middle attacks.
+     */
+    tlsSkipVerifyInsecure?: pulumi.Input<boolean>;
+    /**
+     * The token endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+     */
+    tokenUrl?: pulumi.Input<string>;
+    /**
+     * If enabled, Grafana will use Proof Key for Code Exchange (PKCE) with the OAuth2 Authorization Code Grant.
+     */
+    usePkce?: pulumi.Input<boolean>;
+    /**
+     * If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
+     */
+    useRefreshToken?: pulumi.Input<boolean>;
+}
+
 export interface SyntheticMonitoringCheckSettings {
     /**
      * Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
@@ -1631,6 +1946,10 @@ export interface SyntheticMonitoringCheckSettings {
      * Settings for HTTP check. The target must be a URL (http or https).
      */
     http?: pulumi.Input<inputs.SyntheticMonitoringCheckSettingsHttp>;
+    /**
+     * Settings for MultiHTTP check. The target must be a URL (http or https)
+     */
+    multihttp?: pulumi.Input<inputs.SyntheticMonitoringCheckSettingsMultihttp>;
     /**
      * Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
      */
@@ -1779,6 +2098,10 @@ export interface SyntheticMonitoringCheckSettingsHttp {
      */
     noFollowRedirects?: pulumi.Input<boolean>;
     /**
+     * The HTTP headers sent to the proxy URL
+     */
+    proxyConnectHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Proxy URL.
      */
     proxyUrl?: pulumi.Input<string>;
@@ -1858,6 +2181,127 @@ export interface SyntheticMonitoringCheckSettingsHttpTlsConfig {
      * Used to verify the hostname for the targets.
      */
     serverName?: pulumi.Input<string>;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttp {
+    entries?: pulumi.Input<pulumi.Input<inputs.SyntheticMonitoringCheckSettingsMultihttpEntry>[]>;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntry {
+    /**
+     * Assertions to make on the request response
+     */
+    assertions?: pulumi.Input<pulumi.Input<inputs.SyntheticMonitoringCheckSettingsMultihttpEntryAssertion>[]>;
+    /**
+     * An individual MultiHTTP request
+     */
+    request?: pulumi.Input<inputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequest>;
+    /**
+     * Variables to extract from the request response
+     */
+    variables?: pulumi.Input<pulumi.Input<inputs.SyntheticMonitoringCheckSettingsMultihttpEntryVariable>[]>;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryAssertion {
+    /**
+     * The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+     */
+    condition?: pulumi.Input<string>;
+    /**
+     * The expression of the assertion. Should start with $.
+     */
+    expression?: pulumi.Input<string>;
+    /**
+     * The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+     */
+    subject?: pulumi.Input<string>;
+    /**
+     * The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+     */
+    type: pulumi.Input<string>;
+    /**
+     * The value of the assertion
+     */
+    value?: pulumi.Input<string>;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryRequest {
+    /**
+     * The body of the HTTP request used in probe.
+     */
+    bodies?: pulumi.Input<pulumi.Input<inputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody>[]>;
+    /**
+     * The HTTP headers set for the probe.
+     */
+    headers?: pulumi.Input<pulumi.Input<inputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader>[]>;
+    /**
+     * Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+     */
+    method: pulumi.Input<string>;
+    /**
+     * Query fields to send with the request
+     */
+    queryFields?: pulumi.Input<pulumi.Input<inputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField>[]>;
+    /**
+     * The URL for the request
+     */
+    url: pulumi.Input<string>;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody {
+    /**
+     * The content encoding of the body
+     */
+    contentEncoding?: pulumi.Input<string>;
+    /**
+     * The content type of the body
+     */
+    contentType?: pulumi.Input<string>;
+    /**
+     * The body payload
+     */
+    payload?: pulumi.Input<string>;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader {
+    /**
+     * Name of the header to send
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The value of the assertion
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField {
+    /**
+     * Name of the header to send
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The value of the assertion
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryVariable {
+    /**
+     * The attribute to use when finding the variable value. Only used when type is CSS_SELECTOR
+     */
+    attribute?: pulumi.Input<string>;
+    /**
+     * The expression of the assertion. Should start with $.
+     */
+    expression?: pulumi.Input<string>;
+    /**
+     * Name of the header to send
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+     */
+    type: pulumi.Input<string>;
 }
 
 export interface SyntheticMonitoringCheckSettingsPing {
@@ -1959,6 +2403,7 @@ export interface TeamPreferences {
     homeDashboardUid?: pulumi.Input<string>;
     theme?: pulumi.Input<string>;
     timezone?: pulumi.Input<string>;
+    weekStart?: pulumi.Input<string>;
 }
 
 export interface TeamTeamSync {

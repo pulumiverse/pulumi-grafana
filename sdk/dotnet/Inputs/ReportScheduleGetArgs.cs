@@ -21,7 +21,7 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string>? CustomInterval { get; set; }
 
         /// <summary>
-        /// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
+        /// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
         /// </summary>
         [Input("endTime")]
         public Input<string>? EndTime { get; set; }
@@ -39,10 +39,16 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<bool>? LastDayOfMonth { get; set; }
 
         /// <summary>
-        /// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
+        /// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
         /// </summary>
         [Input("startTime")]
         public Input<string>? StartTime { get; set; }
+
+        /// <summary>
+        /// Set the report time zone. Defaults to `GMT`.
+        /// </summary>
+        [Input("timezone")]
+        public Input<string>? Timezone { get; set; }
 
         /// <summary>
         /// Whether to send the report only on work days. Defaults to `false`.

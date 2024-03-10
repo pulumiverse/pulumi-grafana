@@ -73,7 +73,7 @@ import (
 //				Url:               pulumi.String("http://influxdb.example.net:8086/"),
 //				BasicAuthEnabled:  pulumi.Bool(true),
 //				BasicAuthUsername: pulumi.String("username"),
-//				DatabaseName:      pulumi.Any(influxdb_database.Metrics.Name),
+//				DatabaseName:      pulumi.String("dbname"),
 //				JsonDataEncoded:   pulumi.String(json2),
 //			})
 //			if err != nil {

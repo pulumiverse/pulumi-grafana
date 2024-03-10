@@ -59,6 +59,18 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("overridePriority")]
         public Input<bool>? OverridePriority { get; set; }
 
+        [Input("responders")]
+        private InputList<Inputs.ContactPointOpsgenyResponderArgs>? _responders;
+
+        /// <summary>
+        /// Teams, users, escalations and schedules that the alert will be routed to send notifications. If the API Key belongs to a team integration, this field will be overwritten with the owner team. This feature is available from Grafana 10.3+.
+        /// </summary>
+        public InputList<Inputs.ContactPointOpsgenyResponderArgs> Responders
+        {
+            get => _responders ?? (_responders = new InputList<Inputs.ContactPointOpsgenyResponderArgs>());
+            set => _responders = value;
+        }
+
         /// <summary>
         /// Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.
         /// </summary>

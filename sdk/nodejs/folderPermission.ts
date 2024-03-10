@@ -7,6 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Manages the entire set of permissions for a folder. Permissions that aren't specified when applying this resource will be removed.
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
  *
@@ -17,7 +18,11 @@ import * as utilities from "./utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const team = new grafana.Team("team", {});
- * const user = new grafana.User("user", {email: "user.name@example.com"});
+ * const user = new grafana.User("user", {
+ *     email: "user.name@example.com",
+ *     login: "user.name",
+ *     password: "my-password",
+ * });
  * const collection = new grafana.Folder("collection", {title: "Folder Title"});
  * const collectionPermission = new grafana.FolderPermission("collectionPermission", {
  *     folderUid: collection.uid,
@@ -36,6 +41,16 @@ import * as utilities from "./utilities";
  *         },
  *     ],
  * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ *  $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
  * ```
  */
 export class FolderPermission extends pulumi.CustomResource {
@@ -77,7 +92,7 @@ export class FolderPermission extends pulumi.CustomResource {
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
-    public readonly permissions!: pulumi.Output<outputs.FolderPermissionPermission[]>;
+    public readonly permissions!: pulumi.Output<outputs.FolderPermissionPermission[] | undefined>;
 
     /**
      * Create a FolderPermission resource with the given unique name, arguments, and options.
@@ -99,9 +114,6 @@ export class FolderPermission extends pulumi.CustomResource {
             const args = argsOrState as FolderPermissionArgs | undefined;
             if ((!args || args.folderUid === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'folderUid'");
-            }
-            if ((!args || args.permissions === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'permissions'");
             }
             resourceInputs["folderUid"] = args ? args.folderUid : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
@@ -145,5 +157,5 @@ export interface FolderPermissionArgs {
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
-    permissions: pulumi.Input<pulumi.Input<inputs.FolderPermissionPermission>[]>;
+    permissions?: pulumi.Input<pulumi.Input<inputs.FolderPermissionPermission>[]>;
 }

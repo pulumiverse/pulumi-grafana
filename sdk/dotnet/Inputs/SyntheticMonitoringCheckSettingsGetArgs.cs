@@ -26,6 +26,12 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<Inputs.SyntheticMonitoringCheckSettingsHttpGetArgs>? Http { get; set; }
 
         /// <summary>
+        /// Settings for MultiHTTP check. The target must be a URL (http or https)
+        /// </summary>
+        [Input("multihttp")]
+        public Input<Inputs.SyntheticMonitoringCheckSettingsMultihttpGetArgs>? Multihttp { get; set; }
+
+        /// <summary>
         /// Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
         /// </summary>
         [Input("ping")]

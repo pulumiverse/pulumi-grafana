@@ -17,22 +17,26 @@ __all__ = ['MuteTimingArgs', 'MuteTiming']
 class MuteTimingArgs:
     def __init__(__self__, *,
                  intervals: Optional[pulumi.Input[Sequence[pulumi.Input['MuteTimingIntervalArgs']]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MuteTiming resource.
-        :param pulumi.Input[Sequence[pulumi.Input['MuteTimingIntervalArgs']]] intervals: The time intervals at which to mute notifications.
+        :param pulumi.Input[Sequence[pulumi.Input['MuteTimingIntervalArgs']]] intervals: The time intervals at which to mute notifications. Use an empty block to mute all the time.
         :param pulumi.Input[str] name: The name of the mute timing.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         if intervals is not None:
             pulumi.set(__self__, "intervals", intervals)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
 
     @property
     @pulumi.getter
     def intervals(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MuteTimingIntervalArgs']]]]:
         """
-        The time intervals at which to mute notifications.
+        The time intervals at which to mute notifications. Use an empty block to mute all the time.
         """
         return pulumi.get(self, "intervals")
 
@@ -51,28 +55,44 @@ class MuteTimingArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
 
 @pulumi.input_type
 class _MuteTimingState:
     def __init__(__self__, *,
                  intervals: Optional[pulumi.Input[Sequence[pulumi.Input['MuteTimingIntervalArgs']]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MuteTiming resources.
-        :param pulumi.Input[Sequence[pulumi.Input['MuteTimingIntervalArgs']]] intervals: The time intervals at which to mute notifications.
+        :param pulumi.Input[Sequence[pulumi.Input['MuteTimingIntervalArgs']]] intervals: The time intervals at which to mute notifications. Use an empty block to mute all the time.
         :param pulumi.Input[str] name: The name of the mute timing.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         if intervals is not None:
             pulumi.set(__self__, "intervals", intervals)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
 
     @property
     @pulumi.getter
     def intervals(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MuteTimingIntervalArgs']]]]:
         """
-        The time intervals at which to mute notifications.
+        The time intervals at which to mute notifications. Use an empty block to mute all the time.
         """
         return pulumi.get(self, "intervals")
 
@@ -91,6 +111,18 @@ class _MuteTimingState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
 
 class MuteTiming(pulumi.CustomResource):
@@ -100,6 +132,7 @@ class MuteTiming(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  intervals: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Manages Grafana Alerting mute timings.
@@ -120,6 +153,7 @@ class MuteTiming(pulumi.CustomResource):
                 "1:7",
                 "-1",
             ],
+            location="America/New_York",
             months=[
                 "1:3",
                 "december",
@@ -147,8 +181,9 @@ class MuteTiming(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]] intervals: The time intervals at which to mute notifications.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]] intervals: The time intervals at which to mute notifications. Use an empty block to mute all the time.
         :param pulumi.Input[str] name: The name of the mute timing.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         ...
     @overload
@@ -175,6 +210,7 @@ class MuteTiming(pulumi.CustomResource):
                 "1:7",
                 "-1",
             ],
+            location="America/New_York",
             months=[
                 "1:3",
                 "december",
@@ -217,6 +253,7 @@ class MuteTiming(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  intervals: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -228,6 +265,7 @@ class MuteTiming(pulumi.CustomResource):
 
             __props__.__dict__["intervals"] = intervals
             __props__.__dict__["name"] = name
+            __props__.__dict__["org_id"] = org_id
         super(MuteTiming, __self__).__init__(
             'grafana:index/muteTiming:MuteTiming',
             resource_name,
@@ -239,7 +277,8 @@ class MuteTiming(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             intervals: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]]] = None,
-            name: Optional[pulumi.Input[str]] = None) -> 'MuteTiming':
+            name: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None) -> 'MuteTiming':
         """
         Get an existing MuteTiming resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -247,8 +286,9 @@ class MuteTiming(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]] intervals: The time intervals at which to mute notifications.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]] intervals: The time intervals at which to mute notifications. Use an empty block to mute all the time.
         :param pulumi.Input[str] name: The name of the mute timing.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -256,13 +296,14 @@ class MuteTiming(pulumi.CustomResource):
 
         __props__.__dict__["intervals"] = intervals
         __props__.__dict__["name"] = name
+        __props__.__dict__["org_id"] = org_id
         return MuteTiming(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
     def intervals(self) -> pulumi.Output[Optional[Sequence['outputs.MuteTimingInterval']]]:
         """
-        The time intervals at which to mute notifications.
+        The time intervals at which to mute notifications. Use an empty block to mute all the time.
         """
         return pulumi.get(self, "intervals")
 
@@ -273,4 +314,12 @@ class MuteTiming(pulumi.CustomResource):
         The name of the mute timing.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
+        return pulumi.get(self, "org_id")
 

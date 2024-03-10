@@ -39,6 +39,12 @@ namespace Pulumiverse.Grafana
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
+        /// Destination Datasource sets the datasource defined for an SLO
+        /// </summary>
+        [Output("destinationDatasource")]
+        public Output<Outputs.SLODestinationDatasource?> DestinationDatasource { get; private set; } = null!;
+
+        /// <summary>
         /// Labels to attach only to Fast Burn alerts.
         /// </summary>
         [Output("labels")]
@@ -131,6 +137,12 @@ namespace Pulumiverse.Grafana
         [Input("description", required: true)]
         public Input<string> Description { get; set; } = null!;
 
+        /// <summary>
+        /// Destination Datasource sets the datasource defined for an SLO
+        /// </summary>
+        [Input("destinationDatasource")]
+        public Input<Inputs.SLODestinationDatasourceArgs>? DestinationDatasource { get; set; }
+
         [Input("labels")]
         private InputList<Inputs.SLOLabelArgs>? _labels;
 
@@ -202,6 +214,12 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Destination Datasource sets the datasource defined for an SLO
+        /// </summary>
+        [Input("destinationDatasource")]
+        public Input<Inputs.SLODestinationDatasourceGetArgs>? DestinationDatasource { get; set; }
 
         [Input("labels")]
         private InputList<Inputs.SLOLabelGetArgs>? _labels;

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana
 {
     /// <summary>
-    /// Use the `team_sync` attribute of the `grafana.Team` resource instead.
+    /// Equivalent to the the `team_sync` attribute of the `grafana.Team` resource. Use one or the other to configure a team's external groups syncing config.
     /// 
     /// ## Example Usage
     /// 
@@ -23,14 +23,16 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var myTeam = new Grafana.Team("myTeam");
+    /// 
     ///     var test_team_group = new Grafana.TeamExternalGroup("test-team-group", new()
     ///     {
+    ///         TeamId = myTeam.Id,
     ///         Groups = new[]
     ///         {
     ///             "test-group-1",
     ///             "test-group-2",
     ///         },
-    ///         TeamId = "1",
     ///     });
     /// 
     /// });

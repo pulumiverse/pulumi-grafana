@@ -56,10 +56,34 @@ namespace Pulumiverse.Grafana
         public Output<string?> Data { get; private set; } = null!;
 
         /// <summary>
-        /// Forwards whole payload of the alert to the webhook's url as POST data.
+        /// Toggle to send the entire webhook payload instead of using the values in the Data field.
         /// </summary>
         [Output("forwardWholePayload")]
         public Output<bool?> ForwardWholePayload { get; private set; } = null!;
+
+        /// <summary>
+        /// Headers to add to the outgoing webhook request.
+        /// </summary>
+        [Output("headers")]
+        public Output<string?> Headers { get; private set; } = null!;
+
+        /// <summary>
+        /// The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+        /// </summary>
+        [Output("httpMethod")]
+        public Output<string?> HttpMethod { get; private set; } = null!;
+
+        /// <summary>
+        /// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        /// </summary>
+        [Output("integrationFilters")]
+        public Output<ImmutableArray<string>> IntegrationFilters { get; private set; } = null!;
+
+        /// <summary>
+        /// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+        /// </summary>
+        [Output("isWebhookEnabled")]
+        public Output<bool?> IsWebhookEnabled { get; private set; } = null!;
 
         /// <summary>
         /// The name of the outgoing webhook.
@@ -80,13 +104,25 @@ namespace Pulumiverse.Grafana
         public Output<string?> TeamId { get; private set; } = null!;
 
         /// <summary>
+        /// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+        /// </summary>
+        [Output("triggerTemplate")]
+        public Output<string?> TriggerTemplate { get; private set; } = null!;
+
+        /// <summary>
+        /// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        /// </summary>
+        [Output("triggerType")]
+        public Output<string?> TriggerType { get; private set; } = null!;
+
+        /// <summary>
         /// The webhook URL.
         /// </summary>
         [Output("url")]
         public Output<string> Url { get; private set; } = null!;
 
         /// <summary>
-        /// The auth data of the webhook. Used for Basic authentication.
+        /// Username to use when making the outgoing webhook request.
         /// </summary>
         [Output("user")]
         public Output<string?> User { get; private set; } = null!;
@@ -166,10 +202,40 @@ namespace Pulumiverse.Grafana
         public Input<string>? Data { get; set; }
 
         /// <summary>
-        /// Forwards whole payload of the alert to the webhook's url as POST data.
+        /// Toggle to send the entire webhook payload instead of using the values in the Data field.
         /// </summary>
         [Input("forwardWholePayload")]
         public Input<bool>? ForwardWholePayload { get; set; }
+
+        /// <summary>
+        /// Headers to add to the outgoing webhook request.
+        /// </summary>
+        [Input("headers")]
+        public Input<string>? Headers { get; set; }
+
+        /// <summary>
+        /// The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+        /// </summary>
+        [Input("httpMethod")]
+        public Input<string>? HttpMethod { get; set; }
+
+        [Input("integrationFilters")]
+        private InputList<string>? _integrationFilters;
+
+        /// <summary>
+        /// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        /// </summary>
+        public InputList<string> IntegrationFilters
+        {
+            get => _integrationFilters ?? (_integrationFilters = new InputList<string>());
+            set => _integrationFilters = value;
+        }
+
+        /// <summary>
+        /// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+        /// </summary>
+        [Input("isWebhookEnabled")]
+        public Input<bool>? IsWebhookEnabled { get; set; }
 
         /// <summary>
         /// The name of the outgoing webhook.
@@ -200,13 +266,25 @@ namespace Pulumiverse.Grafana
         public Input<string>? TeamId { get; set; }
 
         /// <summary>
+        /// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+        /// </summary>
+        [Input("triggerTemplate")]
+        public Input<string>? TriggerTemplate { get; set; }
+
+        /// <summary>
+        /// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        /// </summary>
+        [Input("triggerType")]
+        public Input<string>? TriggerType { get; set; }
+
+        /// <summary>
         /// The webhook URL.
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
 
         /// <summary>
-        /// The auth data of the webhook. Used for Basic authentication.
+        /// Username to use when making the outgoing webhook request.
         /// </summary>
         [Input("user")]
         public Input<string>? User { get; set; }
@@ -242,10 +320,40 @@ namespace Pulumiverse.Grafana
         public Input<string>? Data { get; set; }
 
         /// <summary>
-        /// Forwards whole payload of the alert to the webhook's url as POST data.
+        /// Toggle to send the entire webhook payload instead of using the values in the Data field.
         /// </summary>
         [Input("forwardWholePayload")]
         public Input<bool>? ForwardWholePayload { get; set; }
+
+        /// <summary>
+        /// Headers to add to the outgoing webhook request.
+        /// </summary>
+        [Input("headers")]
+        public Input<string>? Headers { get; set; }
+
+        /// <summary>
+        /// The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+        /// </summary>
+        [Input("httpMethod")]
+        public Input<string>? HttpMethod { get; set; }
+
+        [Input("integrationFilters")]
+        private InputList<string>? _integrationFilters;
+
+        /// <summary>
+        /// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        /// </summary>
+        public InputList<string> IntegrationFilters
+        {
+            get => _integrationFilters ?? (_integrationFilters = new InputList<string>());
+            set => _integrationFilters = value;
+        }
+
+        /// <summary>
+        /// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+        /// </summary>
+        [Input("isWebhookEnabled")]
+        public Input<bool>? IsWebhookEnabled { get; set; }
 
         /// <summary>
         /// The name of the outgoing webhook.
@@ -276,13 +384,25 @@ namespace Pulumiverse.Grafana
         public Input<string>? TeamId { get; set; }
 
         /// <summary>
+        /// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+        /// </summary>
+        [Input("triggerTemplate")]
+        public Input<string>? TriggerTemplate { get; set; }
+
+        /// <summary>
+        /// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        /// </summary>
+        [Input("triggerType")]
+        public Input<string>? TriggerType { get; set; }
+
+        /// <summary>
         /// The webhook URL.
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// The auth data of the webhook. Used for Basic authentication.
+        /// Username to use when making the outgoing webhook request.
         /// </summary>
         [Input("user")]
         public Input<string>? User { get; set; }

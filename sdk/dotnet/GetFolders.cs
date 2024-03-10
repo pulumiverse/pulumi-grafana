@@ -48,8 +48,8 @@ namespace Pulumiverse.Grafana
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Task<GetFoldersResult> InvokeAsync(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetFoldersResult>("grafana:index/getFolders:getFolders", InvokeArgs.Empty, options.WithDefaults());
+        public static Task<GetFoldersResult> InvokeAsync(GetFoldersArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetFoldersResult>("grafana:index/getFolders:getFolders", args ?? new GetFoldersArgs(), options.WithDefaults());
 
         /// <summary>
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
@@ -87,8 +87,37 @@ namespace Pulumiverse.Grafana
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Output<GetFoldersResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetFoldersResult>("grafana:index/getFolders:getFolders", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetFoldersResult> Invoke(GetFoldersInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetFoldersResult>("grafana:index/getFolders:getFolders", args ?? new GetFoldersInvokeArgs(), options.WithDefaults());
+    }
+
+
+    public sealed class GetFoldersArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public string? OrgId { get; set; }
+
+        public GetFoldersArgs()
+        {
+        }
+        public static new GetFoldersArgs Empty => new GetFoldersArgs();
+    }
+
+    public sealed class GetFoldersInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
+
+        public GetFoldersInvokeArgs()
+        {
+        }
+        public static new GetFoldersInvokeArgs Empty => new GetFoldersInvokeArgs();
     }
 
 
@@ -103,15 +132,22 @@ namespace Pulumiverse.Grafana
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        public readonly string? OrgId;
 
         [OutputConstructor]
         private GetFoldersResult(
             ImmutableArray<Outputs.GetFoldersFolderResult> folders,
 
-            string id)
+            string id,
+
+            string? orgId)
         {
             Folders = folders;
             Id = id;
+            OrgId = orgId;
         }
     }
 }

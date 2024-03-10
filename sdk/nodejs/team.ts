@@ -16,9 +16,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
+ * const viewer = new grafana.User("viewer", {
+ *     email: "viewer@example.com",
+ *     login: "viewer",
+ *     password: "my-password",
+ * });
  * const test_team = new grafana.Team("test-team", {
  *     email: "teamemail@example.com",
- *     members: ["viewer-01@example.com"],
+ *     members: [viewer.email],
  * });
  * ```
  *

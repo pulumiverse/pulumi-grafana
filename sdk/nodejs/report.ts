@@ -20,8 +20,8 @@ import * as utilities from "./utilities";
  *
  * const testDashboard = new grafana.Dashboard("testDashboard", {
  *     configJson: `{
- *   "title": "Dashboard for report",
- *   "uid": "report"
+ *   "uid": "report-dashboard",
+ *   "title": "report-dashboard"
  * }
  * `,
  *     message: "inital commit.",
@@ -66,13 +66,19 @@ export class Report extends pulumi.CustomResource {
     /**
      * Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
      *
-     * @deprecated Use dashboard_uid instead
+     * @deprecated Use dashboards instead
      */
     public readonly dashboardId!: pulumi.Output<number>;
     /**
      * Dashboard to be sent in the report.
+     *
+     * @deprecated Use dashboards instead
      */
     public readonly dashboardUid!: pulumi.Output<string>;
+    /**
+     * List of dashboards to render into the report
+     */
+    public readonly dashboards!: pulumi.Output<outputs.ReportDashboard[] | undefined>;
     /**
      * Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
      */
@@ -119,6 +125,8 @@ export class Report extends pulumi.CustomResource {
     public readonly schedule!: pulumi.Output<outputs.ReportSchedule>;
     /**
      * Time range of the report.
+     *
+     * @deprecated Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
      */
     public readonly timeRange!: pulumi.Output<outputs.ReportTimeRange | undefined>;
 
@@ -137,6 +145,7 @@ export class Report extends pulumi.CustomResource {
             const state = argsOrState as ReportState | undefined;
             resourceInputs["dashboardId"] = state ? state.dashboardId : undefined;
             resourceInputs["dashboardUid"] = state ? state.dashboardUid : undefined;
+            resourceInputs["dashboards"] = state ? state.dashboards : undefined;
             resourceInputs["formats"] = state ? state.formats : undefined;
             resourceInputs["includeDashboardLink"] = state ? state.includeDashboardLink : undefined;
             resourceInputs["includeTableCsv"] = state ? state.includeTableCsv : undefined;
@@ -159,6 +168,7 @@ export class Report extends pulumi.CustomResource {
             }
             resourceInputs["dashboardId"] = args ? args.dashboardId : undefined;
             resourceInputs["dashboardUid"] = args ? args.dashboardUid : undefined;
+            resourceInputs["dashboards"] = args ? args.dashboards : undefined;
             resourceInputs["formats"] = args ? args.formats : undefined;
             resourceInputs["includeDashboardLink"] = args ? args.includeDashboardLink : undefined;
             resourceInputs["includeTableCsv"] = args ? args.includeTableCsv : undefined;
@@ -184,13 +194,19 @@ export interface ReportState {
     /**
      * Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
      *
-     * @deprecated Use dashboard_uid instead
+     * @deprecated Use dashboards instead
      */
     dashboardId?: pulumi.Input<number>;
     /**
      * Dashboard to be sent in the report.
+     *
+     * @deprecated Use dashboards instead
      */
     dashboardUid?: pulumi.Input<string>;
+    /**
+     * List of dashboards to render into the report
+     */
+    dashboards?: pulumi.Input<pulumi.Input<inputs.ReportDashboard>[]>;
     /**
      * Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
      */
@@ -237,6 +253,8 @@ export interface ReportState {
     schedule?: pulumi.Input<inputs.ReportSchedule>;
     /**
      * Time range of the report.
+     *
+     * @deprecated Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
      */
     timeRange?: pulumi.Input<inputs.ReportTimeRange>;
 }
@@ -248,13 +266,19 @@ export interface ReportArgs {
     /**
      * Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
      *
-     * @deprecated Use dashboard_uid instead
+     * @deprecated Use dashboards instead
      */
     dashboardId?: pulumi.Input<number>;
     /**
      * Dashboard to be sent in the report.
+     *
+     * @deprecated Use dashboards instead
      */
     dashboardUid?: pulumi.Input<string>;
+    /**
+     * List of dashboards to render into the report
+     */
+    dashboards?: pulumi.Input<pulumi.Input<inputs.ReportDashboard>[]>;
     /**
      * Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
      */
@@ -301,6 +325,8 @@ export interface ReportArgs {
     schedule: pulumi.Input<inputs.ReportSchedule>;
     /**
      * Time range of the report.
+     *
+     * @deprecated Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
      */
     timeRange?: pulumi.Input<inputs.ReportTimeRange>;
 }

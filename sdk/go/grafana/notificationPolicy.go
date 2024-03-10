@@ -78,6 +78,16 @@ import (
 //								Match: pulumi.String("="),
 //								Value: pulumi.String("myvalue"),
 //							},
+//							&grafana.NotificationPolicyPolicyMatcherArgs{
+//								Label: pulumi.String("alertname"),
+//								Match: pulumi.String("="),
+//								Value: pulumi.String("CPU Usage"),
+//							},
+//							&grafana.NotificationPolicyPolicyMatcherArgs{
+//								Label: pulumi.String("Name"),
+//								Match: pulumi.String("=~"),
+//								Value: pulumi.String("host.*|host-b.*"),
+//							},
 //						},
 //						ContactPoint: aContactPoint.Name,
 //						Continue:     pulumi.Bool(true),
@@ -141,12 +151,16 @@ type NotificationPolicy struct {
 
 	// The contact point to route notifications that match this rule to.
 	ContactPoint pulumi.StringOutput `pulumi:"contactPoint"`
+	// Allow modifying the notification policy from other sources than Terraform or the Grafana API.
+	DisableProvenance pulumi.BoolPtrOutput `pulumi:"disableProvenance"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
 	GroupBies pulumi.StringArrayOutput `pulumi:"groupBies"`
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
 	GroupInterval pulumi.StringPtrOutput `pulumi:"groupInterval"`
 	// Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
 	GroupWait pulumi.StringPtrOutput `pulumi:"groupWait"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// Routing rules for specific label sets.
 	Policies NotificationPolicyPolicyArrayOutput `pulumi:"policies"`
 	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
@@ -191,12 +205,16 @@ func GetNotificationPolicy(ctx *pulumi.Context,
 type notificationPolicyState struct {
 	// The contact point to route notifications that match this rule to.
 	ContactPoint *string `pulumi:"contactPoint"`
+	// Allow modifying the notification policy from other sources than Terraform or the Grafana API.
+	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
 	GroupBies []string `pulumi:"groupBies"`
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
 	GroupInterval *string `pulumi:"groupInterval"`
 	// Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
 	GroupWait *string `pulumi:"groupWait"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// Routing rules for specific label sets.
 	Policies []NotificationPolicyPolicy `pulumi:"policies"`
 	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
@@ -206,12 +224,16 @@ type notificationPolicyState struct {
 type NotificationPolicyState struct {
 	// The contact point to route notifications that match this rule to.
 	ContactPoint pulumi.StringPtrInput
+	// Allow modifying the notification policy from other sources than Terraform or the Grafana API.
+	DisableProvenance pulumi.BoolPtrInput
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
 	GroupBies pulumi.StringArrayInput
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
 	GroupInterval pulumi.StringPtrInput
 	// Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
 	GroupWait pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// Routing rules for specific label sets.
 	Policies NotificationPolicyPolicyArrayInput
 	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
@@ -225,12 +247,16 @@ func (NotificationPolicyState) ElementType() reflect.Type {
 type notificationPolicyArgs struct {
 	// The contact point to route notifications that match this rule to.
 	ContactPoint string `pulumi:"contactPoint"`
+	// Allow modifying the notification policy from other sources than Terraform or the Grafana API.
+	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
 	GroupBies []string `pulumi:"groupBies"`
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
 	GroupInterval *string `pulumi:"groupInterval"`
 	// Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
 	GroupWait *string `pulumi:"groupWait"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// Routing rules for specific label sets.
 	Policies []NotificationPolicyPolicy `pulumi:"policies"`
 	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
@@ -241,12 +267,16 @@ type notificationPolicyArgs struct {
 type NotificationPolicyArgs struct {
 	// The contact point to route notifications that match this rule to.
 	ContactPoint pulumi.StringInput
+	// Allow modifying the notification policy from other sources than Terraform or the Grafana API.
+	DisableProvenance pulumi.BoolPtrInput
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
 	GroupBies pulumi.StringArrayInput
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
 	GroupInterval pulumi.StringPtrInput
 	// Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
 	GroupWait pulumi.StringPtrInput
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput
 	// Routing rules for specific label sets.
 	Policies NotificationPolicyPolicyArrayInput
 	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
@@ -369,6 +399,11 @@ func (o NotificationPolicyOutput) ContactPoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *NotificationPolicy) pulumi.StringOutput { return v.ContactPoint }).(pulumi.StringOutput)
 }
 
+// Allow modifying the notification policy from other sources than Terraform or the Grafana API.
+func (o NotificationPolicyOutput) DisableProvenance() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NotificationPolicy) pulumi.BoolPtrOutput { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
+}
+
 // A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
 func (o NotificationPolicyOutput) GroupBies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *NotificationPolicy) pulumi.StringArrayOutput { return v.GroupBies }).(pulumi.StringArrayOutput)
@@ -382,6 +417,11 @@ func (o NotificationPolicyOutput) GroupInterval() pulumi.StringPtrOutput {
 // Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
 func (o NotificationPolicyOutput) GroupWait() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NotificationPolicy) pulumi.StringPtrOutput { return v.GroupWait }).(pulumi.StringPtrOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o NotificationPolicyOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationPolicy) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // Routing rules for specific label sets.

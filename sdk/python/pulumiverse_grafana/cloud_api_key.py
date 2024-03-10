@@ -147,8 +147,16 @@ class CloudApiKey(pulumi.CustomResource):
                  role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        This resource is deprecated and will be removed in a future release. Please use CloudAccessPolicy instead.
+
         Manages a single API key on the Grafana Cloud portal (on the organization level)
         * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#api-keys)
+
+        Required access policy scopes:
+
+        * api-keys:read
+        * api-keys:write
+        * api-keys:delete
 
         ## Example Usage
 
@@ -164,7 +172,7 @@ class CloudApiKey(pulumi.CustomResource):
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/cloudApiKey:CloudApiKey resource_name "{{org-name}}-{{api_key_name}}"
+         $ pulumi import grafana:index/cloudApiKey:CloudApiKey name "{{ orgSlug }}:{{ apiKeyName }}"
         ```
 
         :param str resource_name: The name of the resource.
@@ -180,8 +188,16 @@ class CloudApiKey(pulumi.CustomResource):
                  args: CloudApiKeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        This resource is deprecated and will be removed in a future release. Please use CloudAccessPolicy instead.
+
         Manages a single API key on the Grafana Cloud portal (on the organization level)
         * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#api-keys)
+
+        Required access policy scopes:
+
+        * api-keys:read
+        * api-keys:write
+        * api-keys:delete
 
         ## Example Usage
 
@@ -197,7 +213,7 @@ class CloudApiKey(pulumi.CustomResource):
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/cloudApiKey:CloudApiKey resource_name "{{org-name}}-{{api_key_name}}"
+         $ pulumi import grafana:index/cloudApiKey:CloudApiKey name "{{ orgSlug }}:{{ apiKeyName }}"
         ```
 
         :param str resource_name: The name of the resource.

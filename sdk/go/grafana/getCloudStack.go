@@ -47,12 +47,14 @@ type LookupCloudStackResult struct {
 	GraphiteUrl    string `pulumi:"graphiteUrl"`
 	GraphiteUserId int    `pulumi:"graphiteUserId"`
 	// The stack id assigned to this stack by Grafana.
-	Id         string `pulumi:"id"`
-	LogsName   string `pulumi:"logsName"`
-	LogsStatus string `pulumi:"logsStatus"`
-	LogsUrl    string `pulumi:"logsUrl"`
-	LogsUserId int    `pulumi:"logsUserId"`
-	// Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
+	Id string `pulumi:"id"`
+	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+	Labels     map[string]string `pulumi:"labels"`
+	LogsName   string            `pulumi:"logsName"`
+	LogsStatus string            `pulumi:"logsStatus"`
+	LogsUrl    string            `pulumi:"logsUrl"`
+	LogsUserId int               `pulumi:"logsUserId"`
+	// Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 	Name string `pulumi:"name"`
 	// Organization id to assign to this stack.
 	OrgId int `pulumi:"orgId"`
@@ -60,6 +62,12 @@ type LookupCloudStackResult struct {
 	OrgName string `pulumi:"orgName"`
 	// Organization slug to assign to this stack.
 	OrgSlug string `pulumi:"orgSlug"`
+	// Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+	OtlpUrl        string `pulumi:"otlpUrl"`
+	ProfilesName   string `pulumi:"profilesName"`
+	ProfilesStatus string `pulumi:"profilesStatus"`
+	ProfilesUrl    string `pulumi:"profilesUrl"`
+	ProfilesUserId int    `pulumi:"profilesUserId"`
 	// Prometheus name for this instance.
 	PrometheusName string `pulumi:"prometheusName"`
 	// Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
@@ -179,6 +187,11 @@ func (o LookupCloudStackResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudStackResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+func (o LookupCloudStackResultOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupCloudStackResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
 func (o LookupCloudStackResultOutput) LogsName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudStackResult) string { return v.LogsName }).(pulumi.StringOutput)
 }
@@ -195,7 +208,7 @@ func (o LookupCloudStackResultOutput) LogsUserId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupCloudStackResult) int { return v.LogsUserId }).(pulumi.IntOutput)
 }
 
-// Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
+// Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 func (o LookupCloudStackResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudStackResult) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -213,6 +226,27 @@ func (o LookupCloudStackResultOutput) OrgName() pulumi.StringOutput {
 // Organization slug to assign to this stack.
 func (o LookupCloudStackResultOutput) OrgSlug() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudStackResult) string { return v.OrgSlug }).(pulumi.StringOutput)
+}
+
+// Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+func (o LookupCloudStackResultOutput) OtlpUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudStackResult) string { return v.OtlpUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupCloudStackResultOutput) ProfilesName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudStackResult) string { return v.ProfilesName }).(pulumi.StringOutput)
+}
+
+func (o LookupCloudStackResultOutput) ProfilesStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudStackResult) string { return v.ProfilesStatus }).(pulumi.StringOutput)
+}
+
+func (o LookupCloudStackResultOutput) ProfilesUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudStackResult) string { return v.ProfilesUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupCloudStackResultOutput) ProfilesUserId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupCloudStackResult) int { return v.ProfilesUserId }).(pulumi.IntOutput)
 }
 
 // Prometheus name for this instance.

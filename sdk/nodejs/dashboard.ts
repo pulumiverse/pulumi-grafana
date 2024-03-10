@@ -14,10 +14,19 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const metrics = new grafana.Dashboard("metrics", {configJson: fs.readFileSync("grafana-dashboard.json")});
+ * const testFolder = new grafana.Folder("testFolder", {
+ *     title: "My Folder",
+ *     uid: "my-folder-uid",
+ * });
+ * const testDashboard = new grafana.Dashboard("testDashboard", {
+ *     folder: testFolder.uid,
+ *     configJson: JSON.stringify({
+ *         title: "My Dashboard",
+ *         uid: "my-dashboard-uid",
+ *     }),
+ * });
  * ```
  *
  * ## Import

@@ -21,10 +21,15 @@ Certificate CA bundle (file path or literal value) to use to verify the Grafana 
 be set via the `GRAFANA_CA_CERT` environment variable.
 """
 
+cloudAccessPolicyToken: Optional[str]
+"""
+Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
+variable.
+"""
+
 cloudApiKey: Optional[str]
 """
-Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
-variable.
+Deprecated: Use `cloud_access_policy_token` instead.
 """
 
 cloudApiUrl: Optional[str]

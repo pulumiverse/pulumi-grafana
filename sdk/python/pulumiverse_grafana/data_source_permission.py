@@ -17,18 +17,19 @@ __all__ = ['DataSourcePermissionArgs', 'DataSourcePermission']
 class DataSourcePermissionArgs:
     def __init__(__self__, *,
                  datasource_id: pulumi.Input[str],
-                 permissions: pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]],
-                 org_id: Optional[pulumi.Input[str]] = None):
+                 org_id: Optional[pulumi.Input[str]] = None,
+                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]]] = None):
         """
         The set of arguments for constructing a DataSourcePermission resource.
         :param pulumi.Input[str] datasource_id: ID of the datasource to apply permissions to.
-        :param pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         pulumi.set(__self__, "datasource_id", datasource_id)
-        pulumi.set(__self__, "permissions", permissions)
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
+        if permissions is not None:
+            pulumi.set(__self__, "permissions", permissions)
 
     @property
     @pulumi.getter(name="datasourceId")
@@ -43,18 +44,6 @@ class DataSourcePermissionArgs:
         pulumi.set(self, "datasource_id", value)
 
     @property
-    @pulumi.getter
-    def permissions(self) -> pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]]:
-        """
-        The permission items to add/update. Items that are omitted from the list will be removed.
-        """
-        return pulumi.get(self, "permissions")
-
-    @permissions.setter
-    def permissions(self, value: pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]]):
-        pulumi.set(self, "permissions", value)
-
-    @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -65,6 +54,18 @@ class DataSourcePermissionArgs:
     @org_id.setter
     def org_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "org_id", value)
+
+    @property
+    @pulumi.getter
+    def permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]]]:
+        """
+        The permission items to add/update. Items that are omitted from the list will be removed.
+        """
+        return pulumi.get(self, "permissions")
+
+    @permissions.setter
+    def permissions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]]]):
+        pulumi.set(self, "permissions", value)
 
 
 @pulumi.input_type
@@ -133,6 +134,7 @@ class DataSourcePermission(pulumi.CustomResource):
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourcePermissionPermissionArgs']]]]] = None,
                  __props__=None):
         """
+        Manages the entire set of permissions for a datasource. Permissions that aren't specified when applying this resource will be removed.
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
 
         ## Example Usage
@@ -163,7 +165,7 @@ class DataSourcePermission(pulumi.CustomResource):
             permissions=[
                 grafana.DataSourcePermissionPermissionArgs(
                     team_id=team.id,
-                    permission="Query",
+                    permission="Edit",
                 ),
                 grafana.DataSourcePermissionPermissionArgs(
                     user_id=user.id,
@@ -193,6 +195,7 @@ class DataSourcePermission(pulumi.CustomResource):
                  args: DataSourcePermissionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages the entire set of permissions for a datasource. Permissions that aren't specified when applying this resource will be removed.
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
 
         ## Example Usage
@@ -223,7 +226,7 @@ class DataSourcePermission(pulumi.CustomResource):
             permissions=[
                 grafana.DataSourcePermissionPermissionArgs(
                     team_id=team.id,
-                    permission="Query",
+                    permission="Edit",
                 ),
                 grafana.DataSourcePermissionPermissionArgs(
                     user_id=user.id,
@@ -271,8 +274,6 @@ class DataSourcePermission(pulumi.CustomResource):
                 raise TypeError("Missing required property 'datasource_id'")
             __props__.__dict__["datasource_id"] = datasource_id
             __props__.__dict__["org_id"] = org_id
-            if permissions is None and not opts.urn:
-                raise TypeError("Missing required property 'permissions'")
             __props__.__dict__["permissions"] = permissions
         super(DataSourcePermission, __self__).__init__(
             'grafana:index/dataSourcePermission:DataSourcePermission',
@@ -325,7 +326,7 @@ class DataSourcePermission(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def permissions(self) -> pulumi.Output[Sequence['outputs.DataSourcePermissionPermission']]:
+    def permissions(self) -> pulumi.Output[Optional[Sequence['outputs.DataSourcePermissionPermission']]]:
         """
         The permission items to add/update. Items that are omitted from the list will be removed.
         """

@@ -32,8 +32,19 @@ Object.defineProperty(exports, "caCert", {
 });
 
 /**
- * Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+ * Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
  * variable.
+ */
+export declare const cloudAccessPolicyToken: string | undefined;
+Object.defineProperty(exports, "cloudAccessPolicyToken", {
+    get() {
+        return __config.get("cloudAccessPolicyToken");
+    },
+    enumerable: true,
+});
+
+/**
+ * Deprecated: Use `cloud_access_policy_token` instead.
  */
 export declare const cloudApiKey: string | undefined;
 Object.defineProperty(exports, "cloudApiKey", {

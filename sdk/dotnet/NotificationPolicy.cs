@@ -82,6 +82,18 @@ namespace Pulumiverse.Grafana
     ///                         Match = "=",
     ///                         Value = "myvalue",
     ///                     },
+    ///                     new Grafana.Inputs.NotificationPolicyPolicyMatcherArgs
+    ///                     {
+    ///                         Label = "alertname",
+    ///                         Match = "=",
+    ///                         Value = "CPU Usage",
+    ///                     },
+    ///                     new Grafana.Inputs.NotificationPolicyPolicyMatcherArgs
+    ///                     {
+    ///                         Label = "Name",
+    ///                         Match = "=~",
+    ///                         Value = "host.*|host-b.*",
+    ///                     },
     ///                 },
     ///                 ContactPoint = aContactPoint.Name,
     ///                 Continue = true,
@@ -154,6 +166,12 @@ namespace Pulumiverse.Grafana
         public Output<string> ContactPoint { get; private set; } = null!;
 
         /// <summary>
+        /// Allow modifying the notification policy from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Output("disableProvenance")]
+        public Output<bool?> DisableProvenance { get; private set; } = null!;
+
+        /// <summary>
         /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
         /// </summary>
         [Output("groupBies")]
@@ -170,6 +188,12 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Output("groupWait")]
         public Output<string?> GroupWait { get; private set; } = null!;
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Output("orgId")]
+        public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// Routing rules for specific label sets.
@@ -236,6 +260,12 @@ namespace Pulumiverse.Grafana
         [Input("contactPoint", required: true)]
         public Input<string> ContactPoint { get; set; } = null!;
 
+        /// <summary>
+        /// Allow modifying the notification policy from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Input("disableProvenance")]
+        public Input<bool>? DisableProvenance { get; set; }
+
         [Input("groupBies", required: true)]
         private InputList<string>? _groupBies;
 
@@ -259,6 +289,12 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("groupWait")]
         public Input<string>? GroupWait { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         [Input("policies")]
         private InputList<Inputs.NotificationPolicyPolicyArgs>? _policies;
@@ -292,6 +328,12 @@ namespace Pulumiverse.Grafana
         [Input("contactPoint")]
         public Input<string>? ContactPoint { get; set; }
 
+        /// <summary>
+        /// Allow modifying the notification policy from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Input("disableProvenance")]
+        public Input<bool>? DisableProvenance { get; set; }
+
         [Input("groupBies")]
         private InputList<string>? _groupBies;
 
@@ -315,6 +357,12 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("groupWait")]
         public Input<string>? GroupWait { get; set; }
+
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
+        [Input("orgId")]
+        public Input<string>? OrgId { get; set; }
 
         [Input("policies")]
         private InputList<Inputs.NotificationPolicyPolicyGetArgs>? _policies;

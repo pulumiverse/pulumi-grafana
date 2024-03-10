@@ -82,6 +82,8 @@ func LookupDashboard(ctx *pulumi.Context, args *LookupDashboardArgs, opts ...pul
 type LookupDashboardArgs struct {
 	// The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
 	DashboardId *int `pulumi:"dashboardId"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// The uid of the Grafana dashboard. Specify either this or `dashboardId`. Defaults to ``.
 	Uid *string `pulumi:"uid"`
 }
@@ -98,6 +100,8 @@ type LookupDashboardResult struct {
 	Id string `pulumi:"id"`
 	// Whether or not the Grafana dashboard is starred. Starred Dashboards will show up on your own Home Dashboard by default, and are a convenient way to mark Dashboards that you’re interested in.
 	IsStarred bool `pulumi:"isStarred"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
 	// URL slug of the dashboard (deprecated).
 	Slug string `pulumi:"slug"`
 	// The title of the Grafana dashboard.
@@ -127,6 +131,8 @@ func LookupDashboardOutput(ctx *pulumi.Context, args LookupDashboardOutputArgs, 
 type LookupDashboardOutputArgs struct {
 	// The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
 	DashboardId pulumi.IntPtrInput `pulumi:"dashboardId"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
 	// The uid of the Grafana dashboard. Specify either this or `dashboardId`. Defaults to ``.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
 }
@@ -179,6 +185,11 @@ func (o LookupDashboardResultOutput) Id() pulumi.StringOutput {
 // Whether or not the Grafana dashboard is starred. Starred Dashboards will show up on your own Home Dashboard by default, and are a convenient way to mark Dashboards that you’re interested in.
 func (o LookupDashboardResultOutput) IsStarred() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupDashboardResult) bool { return v.IsStarred }).(pulumi.BoolOutput)
+}
+
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+func (o LookupDashboardResultOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDashboardResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // URL slug of the dashboard (deprecated).

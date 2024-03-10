@@ -20,7 +20,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? CustomInterval;
         /// <summary>
-        /// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
+        /// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
         /// </summary>
         public readonly string? EndTime;
         /// <summary>
@@ -32,9 +32,13 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly bool? LastDayOfMonth;
         /// <summary>
-        /// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
+        /// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
         /// </summary>
         public readonly string? StartTime;
+        /// <summary>
+        /// Set the report time zone. Defaults to `GMT`.
+        /// </summary>
+        public readonly string? Timezone;
         /// <summary>
         /// Whether to send the report only on work days. Defaults to `false`.
         /// </summary>
@@ -52,6 +56,8 @@ namespace Pulumiverse.Grafana.Outputs
 
             string? startTime,
 
+            string? timezone,
+
             bool? workdaysOnly)
         {
             CustomInterval = customInterval;
@@ -59,6 +65,7 @@ namespace Pulumiverse.Grafana.Outputs
             Frequency = frequency;
             LastDayOfMonth = lastDayOfMonth;
             StartTime = startTime;
+            Timezone = timezone;
             WorkdaysOnly = workdaysOnly;
         }
     }

@@ -38,7 +38,7 @@ class OncallOnCallShiftArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] by_days: This parameter takes a list of days in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
         :param pulumi.Input[Sequence[pulumi.Input[int]]] by_monthdays: This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
         :param pulumi.Input[Sequence[pulumi.Input[int]]] by_months: This parameter takes a list of months. Valid values are 1 to 12
-        :param pulumi.Input[str] frequency: The frequency of the event. Can be daily, weekly, monthly
+        :param pulumi.Input[str] frequency: The frequency of the event. Can be hourly, daily, weekly, monthly
         :param pulumi.Input[int] interval: The positive integer representing at which intervals the recurrence rule repeats.
         :param pulumi.Input[int] level: The priority level. The higher the value, the higher the priority.
         :param pulumi.Input[str] name: The shift's name.
@@ -155,7 +155,7 @@ class OncallOnCallShiftArgs:
     @pulumi.getter
     def frequency(self) -> Optional[pulumi.Input[str]]:
         """
-        The frequency of the event. Can be daily, weekly, monthly
+        The frequency of the event. Can be hourly, daily, weekly, monthly
         """
         return pulumi.get(self, "frequency")
 
@@ -297,7 +297,7 @@ class _OncallOnCallShiftState:
         :param pulumi.Input[Sequence[pulumi.Input[int]]] by_monthdays: This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
         :param pulumi.Input[Sequence[pulumi.Input[int]]] by_months: This parameter takes a list of months. Valid values are 1 to 12
         :param pulumi.Input[int] duration: The duration of the event.
-        :param pulumi.Input[str] frequency: The frequency of the event. Can be daily, weekly, monthly
+        :param pulumi.Input[str] frequency: The frequency of the event. Can be hourly, daily, weekly, monthly
         :param pulumi.Input[int] interval: The positive integer representing at which intervals the recurrence rule repeats.
         :param pulumi.Input[int] level: The priority level. The higher the value, the higher the priority.
         :param pulumi.Input[str] name: The shift's name.
@@ -395,7 +395,7 @@ class _OncallOnCallShiftState:
     @pulumi.getter
     def frequency(self) -> Optional[pulumi.Input[str]]:
         """
-        The frequency of the event. Can be daily, weekly, monthly
+        The frequency of the event. Can be hourly, daily, weekly, monthly
         """
         return pulumi.get(self, "frequency")
 
@@ -573,7 +573,7 @@ class OncallOnCallShift(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[int]]] by_monthdays: This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
         :param pulumi.Input[Sequence[pulumi.Input[int]]] by_months: This parameter takes a list of months. Valid values are 1 to 12
         :param pulumi.Input[int] duration: The duration of the event.
-        :param pulumi.Input[str] frequency: The frequency of the event. Can be daily, weekly, monthly
+        :param pulumi.Input[str] frequency: The frequency of the event. Can be hourly, daily, weekly, monthly
         :param pulumi.Input[int] interval: The positive integer representing at which intervals the recurrence rule repeats.
         :param pulumi.Input[int] level: The priority level. The higher the value, the higher the priority.
         :param pulumi.Input[str] name: The shift's name.
@@ -700,7 +700,7 @@ class OncallOnCallShift(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[int]]] by_monthdays: This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
         :param pulumi.Input[Sequence[pulumi.Input[int]]] by_months: This parameter takes a list of months. Valid values are 1 to 12
         :param pulumi.Input[int] duration: The duration of the event.
-        :param pulumi.Input[str] frequency: The frequency of the event. Can be daily, weekly, monthly
+        :param pulumi.Input[str] frequency: The frequency of the event. Can be hourly, daily, weekly, monthly
         :param pulumi.Input[int] interval: The positive integer representing at which intervals the recurrence rule repeats.
         :param pulumi.Input[int] level: The priority level. The higher the value, the higher the priority.
         :param pulumi.Input[str] name: The shift's name.
@@ -771,7 +771,7 @@ class OncallOnCallShift(pulumi.CustomResource):
     @pulumi.getter
     def frequency(self) -> pulumi.Output[Optional[str]]:
         """
-        The frequency of the event. Can be daily, weekly, monthly
+        The frequency of the event. Can be hourly, daily, weekly, monthly
         """
         return pulumi.get(self, "frequency")
 

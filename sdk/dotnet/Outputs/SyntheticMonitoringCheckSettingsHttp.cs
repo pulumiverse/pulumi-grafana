@@ -71,6 +71,10 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly bool? NoFollowRedirects;
         /// <summary>
+        /// The HTTP headers sent to the proxy URL
+        /// </summary>
+        public readonly ImmutableArray<string> ProxyConnectHeaders;
+        /// <summary>
         /// Proxy URL.
         /// </summary>
         public readonly string? ProxyUrl;
@@ -117,6 +121,8 @@ namespace Pulumiverse.Grafana.Outputs
 
             bool? noFollowRedirects,
 
+            ImmutableArray<string> proxyConnectHeaders,
+
             string? proxyUrl,
 
             Outputs.SyntheticMonitoringCheckSettingsHttpTlsConfig? tlsConfig,
@@ -139,6 +145,7 @@ namespace Pulumiverse.Grafana.Outputs
             IpVersion = ipVersion;
             Method = method;
             NoFollowRedirects = noFollowRedirects;
+            ProxyConnectHeaders = proxyConnectHeaders;
             ProxyUrl = proxyUrl;
             TlsConfig = tlsConfig;
             ValidHttpVersions = validHttpVersions;

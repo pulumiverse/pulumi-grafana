@@ -13,6 +13,8 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages the entire set of permissions for a service account. Permissions that aren't specified when applying this resource will be removed.
+//
 // **Note:** This resource is available from Grafana 9.2.4 onwards.
 //
 // * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
@@ -89,9 +91,6 @@ func NewServiceAccountPermission(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Permissions == nil {
-		return nil, errors.New("invalid value for required argument 'Permissions'")
-	}
 	if args.ServiceAccountId == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceAccountId'")
 	}

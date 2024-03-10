@@ -14,6 +14,12 @@ namespace Pulumiverse.Grafana
     /// * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
     /// * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-a-token)
     /// 
+    /// Required access policy scopes:
+    /// 
+    /// * accesspolicies:read
+    /// * accesspolicies:write
+    /// * accesspolicies:delete
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -65,6 +71,12 @@ namespace Pulumiverse.Grafana
     ///     });
     /// 
     /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    ///  $ pulumi import grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken name "{{ region }}:{{ tokenId }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken")]

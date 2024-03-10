@@ -16,6 +16,12 @@ import (
 // * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
 // * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-a-token)
 //
+// Required access policy scopes:
+//
+// * accesspolicies:read
+// * accesspolicies:write
+// * accesspolicies:delete
+//
 // ## Example Usage
 //
 // ```go
@@ -70,6 +76,14 @@ import (
 //			return nil
 //		})
 //	}
+//
+// ```
+//
+// ## Import
+//
+// ```sh
+//
+//	$ pulumi import grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken name "{{ region }}:{{ tokenId }}"
 //
 // ```
 type CloudAccessPolicyToken struct {

@@ -39,8 +39,15 @@ func GetCaCert(ctx *pulumi.Context) string {
 	return value
 }
 
-// Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
 // variable.
+func GetCloudAccessPolicyToken(ctx *pulumi.Context) string {
+	return config.Get(ctx, "grafana:cloudAccessPolicyToken")
+}
+
+// Deprecated: Use `cloud_access_policy_token` instead.
+//
+// Deprecated: Use `cloud_access_policy_token` instead.
 func GetCloudApiKey(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:cloudApiKey")
 	if err == nil {

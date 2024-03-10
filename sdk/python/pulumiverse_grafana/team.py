@@ -308,9 +308,13 @@ class Team(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
+        viewer = grafana.User("viewer",
+            email="viewer@example.com",
+            login="viewer",
+            password="my-password")
         test_team = grafana.Team("test-team",
             email="teamemail@example.com",
-            members=["viewer-01@example.com"])
+            members=[viewer.email])
         ```
 
         ## Import
@@ -354,9 +358,13 @@ class Team(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
+        viewer = grafana.User("viewer",
+            email="viewer@example.com",
+            login="viewer",
+            password="my-password")
         test_team = grafana.Team("test-team",
             email="teamemail@example.com",
-            members=["viewer-01@example.com"])
+            members=[viewer.email])
         ```
 
         ## Import

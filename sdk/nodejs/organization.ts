@@ -104,6 +104,12 @@ export class Organization extends pulumi.CustomResource {
      */
     public /*out*/ readonly orgId!: pulumi.Output<number>;
     /**
+     * A list of email addresses corresponding to users who should be given none access to the organization.
+     * Note: users specified here must already exist in Grafana, unless 'create_users' is
+     * set to true. This feature is only available in Grafana 10.2+.
+     */
+    public readonly usersWithoutAccesses!: pulumi.Output<string[] | undefined>;
+    /**
      * A list of email addresses corresponding to users who should be given viewer
      * access to the organization. Note: users specified here must already exist in
      * Grafana unless 'create_users' is set to true.
@@ -129,6 +135,7 @@ export class Organization extends pulumi.CustomResource {
             resourceInputs["editors"] = state ? state.editors : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
+            resourceInputs["usersWithoutAccesses"] = state ? state.usersWithoutAccesses : undefined;
             resourceInputs["viewers"] = state ? state.viewers : undefined;
         } else {
             const args = argsOrState as OrganizationArgs | undefined;
@@ -137,6 +144,7 @@ export class Organization extends pulumi.CustomResource {
             resourceInputs["createUsers"] = args ? args.createUsers : undefined;
             resourceInputs["editors"] = args ? args.editors : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["usersWithoutAccesses"] = args ? args.usersWithoutAccesses : undefined;
             resourceInputs["viewers"] = args ? args.viewers : undefined;
             resourceInputs["orgId"] = undefined /*out*/;
         }
@@ -186,6 +194,12 @@ export interface OrganizationState {
      */
     orgId?: pulumi.Input<number>;
     /**
+     * A list of email addresses corresponding to users who should be given none access to the organization.
+     * Note: users specified here must already exist in Grafana, unless 'create_users' is
+     * set to true. This feature is only available in Grafana 10.2+.
+     */
+    usersWithoutAccesses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * A list of email addresses corresponding to users who should be given viewer
      * access to the organization. Note: users specified here must already exist in
      * Grafana unless 'create_users' is set to true.
@@ -229,6 +243,12 @@ export interface OrganizationArgs {
      * The display name for the Grafana organization created.
      */
     name?: pulumi.Input<string>;
+    /**
+     * A list of email addresses corresponding to users who should be given none access to the organization.
+     * Note: users specified here must already exist in Grafana, unless 'create_users' is
+     * set to true. This feature is only available in Grafana 10.2+.
+     */
+    usersWithoutAccesses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * A list of email addresses corresponding to users who should be given viewer
      * access to the organization. Note: users specified here must already exist in

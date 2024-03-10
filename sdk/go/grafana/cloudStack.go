@@ -15,6 +15,12 @@ import (
 
 // * [Official documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#stacks/)
 //
+// Required access policy scopes:
+//
+// * stacks:read
+// * stacks:write
+// * stacks:delete
+//
 // ## Example Usage
 //
 // ```go
@@ -73,11 +79,13 @@ type CloudStack struct {
 	GraphiteStatus pulumi.StringOutput    `pulumi:"graphiteStatus"`
 	GraphiteUrl    pulumi.StringOutput    `pulumi:"graphiteUrl"`
 	GraphiteUserId pulumi.IntOutput       `pulumi:"graphiteUserId"`
-	LogsName       pulumi.StringOutput    `pulumi:"logsName"`
-	LogsStatus     pulumi.StringOutput    `pulumi:"logsStatus"`
-	LogsUrl        pulumi.StringOutput    `pulumi:"logsUrl"`
-	LogsUserId     pulumi.IntOutput       `pulumi:"logsUserId"`
-	// Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
+	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+	Labels     pulumi.StringMapOutput `pulumi:"labels"`
+	LogsName   pulumi.StringOutput    `pulumi:"logsName"`
+	LogsStatus pulumi.StringOutput    `pulumi:"logsStatus"`
+	LogsUrl    pulumi.StringOutput    `pulumi:"logsUrl"`
+	LogsUserId pulumi.IntOutput       `pulumi:"logsUserId"`
+	// Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Organization id to assign to this stack.
 	OrgId pulumi.IntOutput `pulumi:"orgId"`
@@ -85,6 +93,12 @@ type CloudStack struct {
 	OrgName pulumi.StringOutput `pulumi:"orgName"`
 	// Organization slug to assign to this stack.
 	OrgSlug pulumi.StringOutput `pulumi:"orgSlug"`
+	// Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+	OtlpUrl        pulumi.StringOutput `pulumi:"otlpUrl"`
+	ProfilesName   pulumi.StringOutput `pulumi:"profilesName"`
+	ProfilesStatus pulumi.StringOutput `pulumi:"profilesStatus"`
+	ProfilesUrl    pulumi.StringOutput `pulumi:"profilesUrl"`
+	ProfilesUserId pulumi.IntOutput    `pulumi:"profilesUserId"`
 	// Prometheus name for this instance.
 	PrometheusName pulumi.StringOutput `pulumi:"prometheusName"`
 	// Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
@@ -99,8 +113,7 @@ type CloudStack struct {
 	PrometheusUserId pulumi.IntOutput `pulumi:"prometheusUserId"`
 	// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	RegionSlug pulumi.StringPtrOutput `pulumi:"regionSlug"`
-	// Subdomain that the Grafana instance will be available at (i.e. setting slug to “\n\n” will make the instance
-	// available at “https://\n\n.grafana.net".
+	// Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
 	Slug pulumi.StringOutput `pulumi:"slug"`
 	// Status of the stack.
 	Status       pulumi.StringOutput `pulumi:"status"`
@@ -110,7 +123,7 @@ type CloudStack struct {
 	TracesUrl    pulumi.StringOutput `pulumi:"tracesUrl"`
 	TracesUserId pulumi.IntOutput    `pulumi:"tracesUserId"`
 	// Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
-	Url pulumi.StringOutput `pulumi:"url"`
+	Url pulumi.StringPtrOutput `pulumi:"url"`
 	// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
 	WaitForReadiness pulumi.BoolPtrOutput `pulumi:"waitForReadiness"`
 	// How long to wait for readiness (if enabled). Defaults to `5m0s`.
@@ -164,11 +177,13 @@ type cloudStackState struct {
 	GraphiteStatus *string `pulumi:"graphiteStatus"`
 	GraphiteUrl    *string `pulumi:"graphiteUrl"`
 	GraphiteUserId *int    `pulumi:"graphiteUserId"`
-	LogsName       *string `pulumi:"logsName"`
-	LogsStatus     *string `pulumi:"logsStatus"`
-	LogsUrl        *string `pulumi:"logsUrl"`
-	LogsUserId     *int    `pulumi:"logsUserId"`
-	// Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
+	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+	Labels     map[string]string `pulumi:"labels"`
+	LogsName   *string           `pulumi:"logsName"`
+	LogsStatus *string           `pulumi:"logsStatus"`
+	LogsUrl    *string           `pulumi:"logsUrl"`
+	LogsUserId *int              `pulumi:"logsUserId"`
+	// Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 	Name *string `pulumi:"name"`
 	// Organization id to assign to this stack.
 	OrgId *int `pulumi:"orgId"`
@@ -176,6 +191,12 @@ type cloudStackState struct {
 	OrgName *string `pulumi:"orgName"`
 	// Organization slug to assign to this stack.
 	OrgSlug *string `pulumi:"orgSlug"`
+	// Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+	OtlpUrl        *string `pulumi:"otlpUrl"`
+	ProfilesName   *string `pulumi:"profilesName"`
+	ProfilesStatus *string `pulumi:"profilesStatus"`
+	ProfilesUrl    *string `pulumi:"profilesUrl"`
+	ProfilesUserId *int    `pulumi:"profilesUserId"`
 	// Prometheus name for this instance.
 	PrometheusName *string `pulumi:"prometheusName"`
 	// Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
@@ -190,8 +211,7 @@ type cloudStackState struct {
 	PrometheusUserId *int `pulumi:"prometheusUserId"`
 	// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	RegionSlug *string `pulumi:"regionSlug"`
-	// Subdomain that the Grafana instance will be available at (i.e. setting slug to “\n\n” will make the instance
-	// available at “https://\n\n.grafana.net".
+	// Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
 	Slug *string `pulumi:"slug"`
 	// Status of the stack.
 	Status       *string `pulumi:"status"`
@@ -223,11 +243,13 @@ type CloudStackState struct {
 	GraphiteStatus pulumi.StringPtrInput
 	GraphiteUrl    pulumi.StringPtrInput
 	GraphiteUserId pulumi.IntPtrInput
-	LogsName       pulumi.StringPtrInput
-	LogsStatus     pulumi.StringPtrInput
-	LogsUrl        pulumi.StringPtrInput
-	LogsUserId     pulumi.IntPtrInput
-	// Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
+	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+	Labels     pulumi.StringMapInput
+	LogsName   pulumi.StringPtrInput
+	LogsStatus pulumi.StringPtrInput
+	LogsUrl    pulumi.StringPtrInput
+	LogsUserId pulumi.IntPtrInput
+	// Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 	Name pulumi.StringPtrInput
 	// Organization id to assign to this stack.
 	OrgId pulumi.IntPtrInput
@@ -235,6 +257,12 @@ type CloudStackState struct {
 	OrgName pulumi.StringPtrInput
 	// Organization slug to assign to this stack.
 	OrgSlug pulumi.StringPtrInput
+	// Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+	OtlpUrl        pulumi.StringPtrInput
+	ProfilesName   pulumi.StringPtrInput
+	ProfilesStatus pulumi.StringPtrInput
+	ProfilesUrl    pulumi.StringPtrInput
+	ProfilesUserId pulumi.IntPtrInput
 	// Prometheus name for this instance.
 	PrometheusName pulumi.StringPtrInput
 	// Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
@@ -249,8 +277,7 @@ type CloudStackState struct {
 	PrometheusUserId pulumi.IntPtrInput
 	// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	RegionSlug pulumi.StringPtrInput
-	// Subdomain that the Grafana instance will be available at (i.e. setting slug to “\n\n” will make the instance
-	// available at “https://\n\n.grafana.net".
+	// Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
 	Slug pulumi.StringPtrInput
 	// Status of the stack.
 	Status       pulumi.StringPtrInput
@@ -274,12 +301,13 @@ func (CloudStackState) ElementType() reflect.Type {
 type cloudStackArgs struct {
 	// Description of stack.
 	Description *string `pulumi:"description"`
-	// Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
+	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 	Name *string `pulumi:"name"`
 	// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	RegionSlug *string `pulumi:"regionSlug"`
-	// Subdomain that the Grafana instance will be available at (i.e. setting slug to “\n\n” will make the instance
-	// available at “https://\n\n.grafana.net".
+	// Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
 	Slug string `pulumi:"slug"`
 	// Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
 	Url *string `pulumi:"url"`
@@ -293,12 +321,13 @@ type cloudStackArgs struct {
 type CloudStackArgs struct {
 	// Description of stack.
 	Description pulumi.StringPtrInput
-	// Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
+	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+	Labels pulumi.StringMapInput
+	// Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 	Name pulumi.StringPtrInput
 	// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	RegionSlug pulumi.StringPtrInput
-	// Subdomain that the Grafana instance will be available at (i.e. setting slug to “\n\n” will make the instance
-	// available at “https://\n\n.grafana.net".
+	// Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
 	Slug pulumi.StringInput
 	// Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
 	Url pulumi.StringPtrInput
@@ -460,6 +489,11 @@ func (o CloudStackOutput) GraphiteUserId() pulumi.IntOutput {
 	return o.ApplyT(func(v *CloudStack) pulumi.IntOutput { return v.GraphiteUserId }).(pulumi.IntOutput)
 }
 
+// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+func (o CloudStackOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CloudStack) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
+}
+
 func (o CloudStackOutput) LogsName() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.LogsName }).(pulumi.StringOutput)
 }
@@ -476,7 +510,7 @@ func (o CloudStackOutput) LogsUserId() pulumi.IntOutput {
 	return o.ApplyT(func(v *CloudStack) pulumi.IntOutput { return v.LogsUserId }).(pulumi.IntOutput)
 }
 
-// Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
+// Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 func (o CloudStackOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -494,6 +528,27 @@ func (o CloudStackOutput) OrgName() pulumi.StringOutput {
 // Organization slug to assign to this stack.
 func (o CloudStackOutput) OrgSlug() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.OrgSlug }).(pulumi.StringOutput)
+}
+
+// Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+func (o CloudStackOutput) OtlpUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.OtlpUrl }).(pulumi.StringOutput)
+}
+
+func (o CloudStackOutput) ProfilesName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.ProfilesName }).(pulumi.StringOutput)
+}
+
+func (o CloudStackOutput) ProfilesStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.ProfilesStatus }).(pulumi.StringOutput)
+}
+
+func (o CloudStackOutput) ProfilesUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.ProfilesUrl }).(pulumi.StringOutput)
+}
+
+func (o CloudStackOutput) ProfilesUserId() pulumi.IntOutput {
+	return o.ApplyT(func(v *CloudStack) pulumi.IntOutput { return v.ProfilesUserId }).(pulumi.IntOutput)
 }
 
 // Prometheus name for this instance.
@@ -531,8 +586,7 @@ func (o CloudStackOutput) RegionSlug() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudStack) pulumi.StringPtrOutput { return v.RegionSlug }).(pulumi.StringPtrOutput)
 }
 
-// Subdomain that the Grafana instance will be available at (i.e. setting slug to “\n\n” will make the instance
-// available at “https://\n\n.grafana.net".
+// Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
 func (o CloudStackOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
@@ -560,8 +614,8 @@ func (o CloudStackOutput) TracesUserId() pulumi.IntOutput {
 }
 
 // Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
-func (o CloudStackOutput) Url() pulumi.StringOutput {
-	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
+func (o CloudStackOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudStack) pulumi.StringPtrOutput { return v.Url }).(pulumi.StringPtrOutput)
 }
 
 // Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.

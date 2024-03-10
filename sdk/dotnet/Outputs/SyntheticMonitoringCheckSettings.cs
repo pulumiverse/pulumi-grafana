@@ -23,6 +23,10 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly Outputs.SyntheticMonitoringCheckSettingsHttp? Http;
         /// <summary>
+        /// Settings for MultiHTTP check. The target must be a URL (http or https)
+        /// </summary>
+        public readonly Outputs.SyntheticMonitoringCheckSettingsMultihttp? Multihttp;
+        /// <summary>
         /// Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
         /// </summary>
         public readonly Outputs.SyntheticMonitoringCheckSettingsPing? Ping;
@@ -41,6 +45,8 @@ namespace Pulumiverse.Grafana.Outputs
 
             Outputs.SyntheticMonitoringCheckSettingsHttp? http,
 
+            Outputs.SyntheticMonitoringCheckSettingsMultihttp? multihttp,
+
             Outputs.SyntheticMonitoringCheckSettingsPing? ping,
 
             Outputs.SyntheticMonitoringCheckSettingsTcp? tcp,
@@ -49,6 +55,7 @@ namespace Pulumiverse.Grafana.Outputs
         {
             Dns = dns;
             Http = http;
+            Multihttp = multihttp;
             Ping = ping;
             Tcp = tcp;
             Traceroute = traceroute;

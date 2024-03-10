@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Manages the entire set of permissions for a service account. Permissions that aren't specified when applying this resource will be removed.
+ *
  * **Note:** This resource is available from Grafana 9.2.4 onwards.
  *
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
@@ -77,7 +79,7 @@ export class ServiceAccountPermission extends pulumi.CustomResource {
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
-    public readonly permissions!: pulumi.Output<outputs.ServiceAccountPermissionPermission[]>;
+    public readonly permissions!: pulumi.Output<outputs.ServiceAccountPermissionPermission[] | undefined>;
     /**
      * The id of the service account.
      */
@@ -101,9 +103,6 @@ export class ServiceAccountPermission extends pulumi.CustomResource {
             resourceInputs["serviceAccountId"] = state ? state.serviceAccountId : undefined;
         } else {
             const args = argsOrState as ServiceAccountPermissionArgs | undefined;
-            if ((!args || args.permissions === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'permissions'");
-            }
             if ((!args || args.serviceAccountId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountId'");
             }
@@ -145,7 +144,7 @@ export interface ServiceAccountPermissionArgs {
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
-    permissions: pulumi.Input<pulumi.Input<inputs.ServiceAccountPermissionPermission>[]>;
+    permissions?: pulumi.Input<pulumi.Input<inputs.ServiceAccountPermissionPermission>[]>;
     /**
      * The id of the service account.
      */

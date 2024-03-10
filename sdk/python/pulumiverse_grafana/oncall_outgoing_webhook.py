@@ -18,20 +18,32 @@ class OncallOutgoingWebhookArgs:
                  authorization_header: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[str]] = None,
                  forward_whole_payload: Optional[pulumi.Input[bool]] = None,
+                 headers: Optional[pulumi.Input[str]] = None,
+                 http_method: Optional[pulumi.Input[str]] = None,
+                 integration_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 is_webhook_enabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
+                 trigger_template: Optional[pulumi.Input[str]] = None,
+                 trigger_type: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a OncallOutgoingWebhook resource.
         :param pulumi.Input[str] url: The webhook URL.
         :param pulumi.Input[str] authorization_header: The auth data of the webhook. Used in Authorization header instead of user/password auth.
         :param pulumi.Input[str] data: The data of the webhook.
-        :param pulumi.Input[bool] forward_whole_payload: Forwards whole payload of the alert to the webhook's url as POST data.
+        :param pulumi.Input[bool] forward_whole_payload: Toggle to send the entire webhook payload instead of using the values in the Data field.
+        :param pulumi.Input[str] headers: Headers to add to the outgoing webhook request.
+        :param pulumi.Input[str] http_method: The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_filters: Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        :param pulumi.Input[bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
-        :param pulumi.Input[str] user: The auth data of the webhook. Used for Basic authentication.
+        :param pulumi.Input[str] trigger_template: A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+        :param pulumi.Input[str] trigger_type: The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        :param pulumi.Input[str] user: Username to use when making the outgoing webhook request.
         """
         pulumi.set(__self__, "url", url)
         if authorization_header is not None:
@@ -40,12 +52,24 @@ class OncallOutgoingWebhookArgs:
             pulumi.set(__self__, "data", data)
         if forward_whole_payload is not None:
             pulumi.set(__self__, "forward_whole_payload", forward_whole_payload)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if http_method is not None:
+            pulumi.set(__self__, "http_method", http_method)
+        if integration_filters is not None:
+            pulumi.set(__self__, "integration_filters", integration_filters)
+        if is_webhook_enabled is not None:
+            pulumi.set(__self__, "is_webhook_enabled", is_webhook_enabled)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if team_id is not None:
             pulumi.set(__self__, "team_id", team_id)
+        if trigger_template is not None:
+            pulumi.set(__self__, "trigger_template", trigger_template)
+        if trigger_type is not None:
+            pulumi.set(__self__, "trigger_type", trigger_type)
         if user is not None:
             pulumi.set(__self__, "user", user)
 
@@ -89,13 +113,61 @@ class OncallOutgoingWebhookArgs:
     @pulumi.getter(name="forwardWholePayload")
     def forward_whole_payload(self) -> Optional[pulumi.Input[bool]]:
         """
-        Forwards whole payload of the alert to the webhook's url as POST data.
+        Toggle to send the entire webhook payload instead of using the values in the Data field.
         """
         return pulumi.get(self, "forward_whole_payload")
 
     @forward_whole_payload.setter
     def forward_whole_payload(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "forward_whole_payload", value)
+
+    @property
+    @pulumi.getter
+    def headers(self) -> Optional[pulumi.Input[str]]:
+        """
+        Headers to add to the outgoing webhook request.
+        """
+        return pulumi.get(self, "headers")
+
+    @headers.setter
+    def headers(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "headers", value)
+
+    @property
+    @pulumi.getter(name="httpMethod")
+    def http_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+        """
+        return pulumi.get(self, "http_method")
+
+    @http_method.setter
+    def http_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_method", value)
+
+    @property
+    @pulumi.getter(name="integrationFilters")
+    def integration_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        """
+        return pulumi.get(self, "integration_filters")
+
+    @integration_filters.setter
+    def integration_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "integration_filters", value)
+
+    @property
+    @pulumi.getter(name="isWebhookEnabled")
+    def is_webhook_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+        """
+        return pulumi.get(self, "is_webhook_enabled")
+
+    @is_webhook_enabled.setter
+    def is_webhook_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_webhook_enabled", value)
 
     @property
     @pulumi.getter
@@ -134,10 +206,34 @@ class OncallOutgoingWebhookArgs:
         pulumi.set(self, "team_id", value)
 
     @property
+    @pulumi.getter(name="triggerTemplate")
+    def trigger_template(self) -> Optional[pulumi.Input[str]]:
+        """
+        A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+        """
+        return pulumi.get(self, "trigger_template")
+
+    @trigger_template.setter
+    def trigger_template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "trigger_template", value)
+
+    @property
+    @pulumi.getter(name="triggerType")
+    def trigger_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        """
+        return pulumi.get(self, "trigger_type")
+
+    @trigger_type.setter
+    def trigger_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "trigger_type", value)
+
+    @property
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[str]]:
         """
-        The auth data of the webhook. Used for Basic authentication.
+        Username to use when making the outgoing webhook request.
         """
         return pulumi.get(self, "user")
 
@@ -152,21 +248,33 @@ class _OncallOutgoingWebhookState:
                  authorization_header: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[str]] = None,
                  forward_whole_payload: Optional[pulumi.Input[bool]] = None,
+                 headers: Optional[pulumi.Input[str]] = None,
+                 http_method: Optional[pulumi.Input[str]] = None,
+                 integration_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 is_webhook_enabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
+                 trigger_template: Optional[pulumi.Input[str]] = None,
+                 trigger_type: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering OncallOutgoingWebhook resources.
         :param pulumi.Input[str] authorization_header: The auth data of the webhook. Used in Authorization header instead of user/password auth.
         :param pulumi.Input[str] data: The data of the webhook.
-        :param pulumi.Input[bool] forward_whole_payload: Forwards whole payload of the alert to the webhook's url as POST data.
+        :param pulumi.Input[bool] forward_whole_payload: Toggle to send the entire webhook payload instead of using the values in the Data field.
+        :param pulumi.Input[str] headers: Headers to add to the outgoing webhook request.
+        :param pulumi.Input[str] http_method: The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_filters: Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        :param pulumi.Input[bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        :param pulumi.Input[str] trigger_template: A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+        :param pulumi.Input[str] trigger_type: The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
         :param pulumi.Input[str] url: The webhook URL.
-        :param pulumi.Input[str] user: The auth data of the webhook. Used for Basic authentication.
+        :param pulumi.Input[str] user: Username to use when making the outgoing webhook request.
         """
         if authorization_header is not None:
             pulumi.set(__self__, "authorization_header", authorization_header)
@@ -174,12 +282,24 @@ class _OncallOutgoingWebhookState:
             pulumi.set(__self__, "data", data)
         if forward_whole_payload is not None:
             pulumi.set(__self__, "forward_whole_payload", forward_whole_payload)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if http_method is not None:
+            pulumi.set(__self__, "http_method", http_method)
+        if integration_filters is not None:
+            pulumi.set(__self__, "integration_filters", integration_filters)
+        if is_webhook_enabled is not None:
+            pulumi.set(__self__, "is_webhook_enabled", is_webhook_enabled)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if team_id is not None:
             pulumi.set(__self__, "team_id", team_id)
+        if trigger_template is not None:
+            pulumi.set(__self__, "trigger_template", trigger_template)
+        if trigger_type is not None:
+            pulumi.set(__self__, "trigger_type", trigger_type)
         if url is not None:
             pulumi.set(__self__, "url", url)
         if user is not None:
@@ -213,13 +333,61 @@ class _OncallOutgoingWebhookState:
     @pulumi.getter(name="forwardWholePayload")
     def forward_whole_payload(self) -> Optional[pulumi.Input[bool]]:
         """
-        Forwards whole payload of the alert to the webhook's url as POST data.
+        Toggle to send the entire webhook payload instead of using the values in the Data field.
         """
         return pulumi.get(self, "forward_whole_payload")
 
     @forward_whole_payload.setter
     def forward_whole_payload(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "forward_whole_payload", value)
+
+    @property
+    @pulumi.getter
+    def headers(self) -> Optional[pulumi.Input[str]]:
+        """
+        Headers to add to the outgoing webhook request.
+        """
+        return pulumi.get(self, "headers")
+
+    @headers.setter
+    def headers(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "headers", value)
+
+    @property
+    @pulumi.getter(name="httpMethod")
+    def http_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+        """
+        return pulumi.get(self, "http_method")
+
+    @http_method.setter
+    def http_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_method", value)
+
+    @property
+    @pulumi.getter(name="integrationFilters")
+    def integration_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        """
+        return pulumi.get(self, "integration_filters")
+
+    @integration_filters.setter
+    def integration_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "integration_filters", value)
+
+    @property
+    @pulumi.getter(name="isWebhookEnabled")
+    def is_webhook_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+        """
+        return pulumi.get(self, "is_webhook_enabled")
+
+    @is_webhook_enabled.setter
+    def is_webhook_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_webhook_enabled", value)
 
     @property
     @pulumi.getter
@@ -258,6 +426,30 @@ class _OncallOutgoingWebhookState:
         pulumi.set(self, "team_id", value)
 
     @property
+    @pulumi.getter(name="triggerTemplate")
+    def trigger_template(self) -> Optional[pulumi.Input[str]]:
+        """
+        A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+        """
+        return pulumi.get(self, "trigger_template")
+
+    @trigger_template.setter
+    def trigger_template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "trigger_template", value)
+
+    @property
+    @pulumi.getter(name="triggerType")
+    def trigger_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        """
+        return pulumi.get(self, "trigger_type")
+
+    @trigger_type.setter
+    def trigger_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "trigger_type", value)
+
+    @property
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
         """
@@ -273,7 +465,7 @@ class _OncallOutgoingWebhookState:
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[str]]:
         """
-        The auth data of the webhook. Used for Basic authentication.
+        Username to use when making the outgoing webhook request.
         """
         return pulumi.get(self, "user")
 
@@ -290,9 +482,15 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
                  authorization_header: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[str]] = None,
                  forward_whole_payload: Optional[pulumi.Input[bool]] = None,
+                 headers: Optional[pulumi.Input[str]] = None,
+                 http_method: Optional[pulumi.Input[str]] = None,
+                 integration_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 is_webhook_enabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
+                 trigger_template: Optional[pulumi.Input[str]] = None,
+                 trigger_type: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -319,12 +517,18 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] authorization_header: The auth data of the webhook. Used in Authorization header instead of user/password auth.
         :param pulumi.Input[str] data: The data of the webhook.
-        :param pulumi.Input[bool] forward_whole_payload: Forwards whole payload of the alert to the webhook's url as POST data.
+        :param pulumi.Input[bool] forward_whole_payload: Toggle to send the entire webhook payload instead of using the values in the Data field.
+        :param pulumi.Input[str] headers: Headers to add to the outgoing webhook request.
+        :param pulumi.Input[str] http_method: The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_filters: Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        :param pulumi.Input[bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        :param pulumi.Input[str] trigger_template: A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+        :param pulumi.Input[str] trigger_type: The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
         :param pulumi.Input[str] url: The webhook URL.
-        :param pulumi.Input[str] user: The auth data of the webhook. Used for Basic authentication.
+        :param pulumi.Input[str] user: Username to use when making the outgoing webhook request.
         """
         ...
     @overload
@@ -369,9 +573,15 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
                  authorization_header: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[str]] = None,
                  forward_whole_payload: Optional[pulumi.Input[bool]] = None,
+                 headers: Optional[pulumi.Input[str]] = None,
+                 http_method: Optional[pulumi.Input[str]] = None,
+                 integration_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 is_webhook_enabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
+                 trigger_template: Optional[pulumi.Input[str]] = None,
+                 trigger_type: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -386,9 +596,15 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
             __props__.__dict__["authorization_header"] = None if authorization_header is None else pulumi.Output.secret(authorization_header)
             __props__.__dict__["data"] = data
             __props__.__dict__["forward_whole_payload"] = forward_whole_payload
+            __props__.__dict__["headers"] = headers
+            __props__.__dict__["http_method"] = http_method
+            __props__.__dict__["integration_filters"] = integration_filters
+            __props__.__dict__["is_webhook_enabled"] = is_webhook_enabled
             __props__.__dict__["name"] = name
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["team_id"] = team_id
+            __props__.__dict__["trigger_template"] = trigger_template
+            __props__.__dict__["trigger_type"] = trigger_type
             if url is None and not opts.urn:
                 raise TypeError("Missing required property 'url'")
             __props__.__dict__["url"] = url
@@ -408,9 +624,15 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
             authorization_header: Optional[pulumi.Input[str]] = None,
             data: Optional[pulumi.Input[str]] = None,
             forward_whole_payload: Optional[pulumi.Input[bool]] = None,
+            headers: Optional[pulumi.Input[str]] = None,
+            http_method: Optional[pulumi.Input[str]] = None,
+            integration_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            is_webhook_enabled: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
             team_id: Optional[pulumi.Input[str]] = None,
+            trigger_template: Optional[pulumi.Input[str]] = None,
+            trigger_type: Optional[pulumi.Input[str]] = None,
             url: Optional[pulumi.Input[str]] = None,
             user: Optional[pulumi.Input[str]] = None) -> 'OncallOutgoingWebhook':
         """
@@ -422,12 +644,18 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] authorization_header: The auth data of the webhook. Used in Authorization header instead of user/password auth.
         :param pulumi.Input[str] data: The data of the webhook.
-        :param pulumi.Input[bool] forward_whole_payload: Forwards whole payload of the alert to the webhook's url as POST data.
+        :param pulumi.Input[bool] forward_whole_payload: Toggle to send the entire webhook payload instead of using the values in the Data field.
+        :param pulumi.Input[str] headers: Headers to add to the outgoing webhook request.
+        :param pulumi.Input[str] http_method: The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_filters: Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        :param pulumi.Input[bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        :param pulumi.Input[str] trigger_template: A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+        :param pulumi.Input[str] trigger_type: The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
         :param pulumi.Input[str] url: The webhook URL.
-        :param pulumi.Input[str] user: The auth data of the webhook. Used for Basic authentication.
+        :param pulumi.Input[str] user: Username to use when making the outgoing webhook request.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -436,9 +664,15 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
         __props__.__dict__["authorization_header"] = authorization_header
         __props__.__dict__["data"] = data
         __props__.__dict__["forward_whole_payload"] = forward_whole_payload
+        __props__.__dict__["headers"] = headers
+        __props__.__dict__["http_method"] = http_method
+        __props__.__dict__["integration_filters"] = integration_filters
+        __props__.__dict__["is_webhook_enabled"] = is_webhook_enabled
         __props__.__dict__["name"] = name
         __props__.__dict__["password"] = password
         __props__.__dict__["team_id"] = team_id
+        __props__.__dict__["trigger_template"] = trigger_template
+        __props__.__dict__["trigger_type"] = trigger_type
         __props__.__dict__["url"] = url
         __props__.__dict__["user"] = user
         return OncallOutgoingWebhook(resource_name, opts=opts, __props__=__props__)
@@ -463,9 +697,41 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
     @pulumi.getter(name="forwardWholePayload")
     def forward_whole_payload(self) -> pulumi.Output[Optional[bool]]:
         """
-        Forwards whole payload of the alert to the webhook's url as POST data.
+        Toggle to send the entire webhook payload instead of using the values in the Data field.
         """
         return pulumi.get(self, "forward_whole_payload")
+
+    @property
+    @pulumi.getter
+    def headers(self) -> pulumi.Output[Optional[str]]:
+        """
+        Headers to add to the outgoing webhook request.
+        """
+        return pulumi.get(self, "headers")
+
+    @property
+    @pulumi.getter(name="httpMethod")
+    def http_method(self) -> pulumi.Output[Optional[str]]:
+        """
+        The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+        """
+        return pulumi.get(self, "http_method")
+
+    @property
+    @pulumi.getter(name="integrationFilters")
+    def integration_filters(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        """
+        return pulumi.get(self, "integration_filters")
+
+    @property
+    @pulumi.getter(name="isWebhookEnabled")
+    def is_webhook_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+        """
+        return pulumi.get(self, "is_webhook_enabled")
 
     @property
     @pulumi.getter
@@ -492,6 +758,22 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
         return pulumi.get(self, "team_id")
 
     @property
+    @pulumi.getter(name="triggerTemplate")
+    def trigger_template(self) -> pulumi.Output[Optional[str]]:
+        """
+        A template used to dynamically determine whether the webhook should execute based on the content of the payload.
+        """
+        return pulumi.get(self, "trigger_template")
+
+    @property
+    @pulumi.getter(name="triggerType")
+    def trigger_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        """
+        return pulumi.get(self, "trigger_type")
+
+    @property
     @pulumi.getter
     def url(self) -> pulumi.Output[str]:
         """
@@ -503,7 +785,7 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
     @pulumi.getter
     def user(self) -> pulumi.Output[Optional[str]]:
         """
-        The auth data of the webhook. Used for Basic authentication.
+        Username to use when making the outgoing webhook request.
         """
         return pulumi.get(self, "user")
 

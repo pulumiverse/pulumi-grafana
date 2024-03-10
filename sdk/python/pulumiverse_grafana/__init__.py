@@ -18,6 +18,7 @@ from .cloud_stack_service_account_token import *
 from .contact_point import *
 from .dashboard import *
 from .dashboard_permission import *
+from .dashboard_public import *
 from .data_source import *
 from .data_source_permission import *
 from .folder import *
@@ -42,6 +43,7 @@ from .get_oncall_user_group import *
 from .get_organization import *
 from .get_organization_preferences import *
 from .get_role import *
+from .get_service_account import *
 from .get_slos import *
 from .get_synthetic_monitoring_probe import *
 from .get_synthetic_monitoring_probes import *
@@ -74,6 +76,7 @@ from .service_account import *
 from .service_account_permission import *
 from .service_account_token import *
 from .slo import *
+from .sso_settings import *
 from .synthetic_monitoring_check import *
 from .synthetic_monitoring_installation import *
 from .synthetic_monitoring_probe import *
@@ -195,6 +198,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana",
   "classes": {
    "grafana:index/dashboardPermission:DashboardPermission": "DashboardPermission"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/dashboardPublic",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/dashboardPublic:DashboardPublic": "DashboardPublic"
   }
  },
  {
@@ -427,6 +438,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana",
   "classes": {
    "grafana:index/serviceAccountToken:ServiceAccountToken": "ServiceAccountToken"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/ssoSettings",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/ssoSettings:SsoSettings": "SsoSettings"
   }
  },
  {

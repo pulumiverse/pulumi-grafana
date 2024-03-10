@@ -16,6 +16,7 @@ class ProviderArgs:
     def __init__(__self__, *,
                  auth: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
+                 cloud_access_policy_token: Optional[pulumi.Input[str]] = None,
                  cloud_api_key: Optional[pulumi.Input[str]] = None,
                  cloud_api_url: Optional[pulumi.Input[str]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
@@ -37,8 +38,9 @@ class ProviderArgs:
                the `GRAFANA_AUTH` environment variable.
         :param pulumi.Input[str] ca_cert: Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
                be set via the `GRAFANA_CA_CERT` environment variable.
-        :param pulumi.Input[str] cloud_api_key: Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+        :param pulumi.Input[str] cloud_access_policy_token: Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
                variable.
+        :param pulumi.Input[str] cloud_api_key: Deprecated: Use `cloud_access_policy_token` instead.
         :param pulumi.Input[str] cloud_api_url: Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
@@ -73,6 +75,11 @@ class ProviderArgs:
             ca_cert = _utilities.get_env('GRAFANA_CA_CERT')
         if ca_cert is not None:
             pulumi.set(__self__, "ca_cert", ca_cert)
+        if cloud_access_policy_token is not None:
+            pulumi.set(__self__, "cloud_access_policy_token", cloud_access_policy_token)
+        if cloud_api_key is not None:
+            warnings.warn("""Use `cloud_access_policy_token` instead.""", DeprecationWarning)
+            pulumi.log.warn("""cloud_api_key is deprecated: Use `cloud_access_policy_token` instead.""")
         if cloud_api_key is None:
             cloud_api_key = _utilities.get_env('GRAFANA_CLOUD_API_KEY')
         if cloud_api_key is not None:
@@ -160,12 +167,27 @@ class ProviderArgs:
         pulumi.set(self, "ca_cert", value)
 
     @property
+    @pulumi.getter(name="cloudAccessPolicyToken")
+    def cloud_access_policy_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
+        variable.
+        """
+        return pulumi.get(self, "cloud_access_policy_token")
+
+    @cloud_access_policy_token.setter
+    def cloud_access_policy_token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cloud_access_policy_token", value)
+
+    @property
     @pulumi.getter(name="cloudApiKey")
     def cloud_api_key(self) -> Optional[pulumi.Input[str]]:
         """
-        Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
-        variable.
+        Deprecated: Use `cloud_access_policy_token` instead.
         """
+        warnings.warn("""Use `cloud_access_policy_token` instead.""", DeprecationWarning)
+        pulumi.log.warn("""cloud_api_key is deprecated: Use `cloud_access_policy_token` instead.""")
+
         return pulumi.get(self, "cloud_api_key")
 
     @cloud_api_key.setter
@@ -362,6 +384,7 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auth: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
+                 cloud_access_policy_token: Optional[pulumi.Input[str]] = None,
                  cloud_api_key: Optional[pulumi.Input[str]] = None,
                  cloud_api_url: Optional[pulumi.Input[str]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
@@ -390,8 +413,9 @@ class Provider(pulumi.ProviderResource):
                the `GRAFANA_AUTH` environment variable.
         :param pulumi.Input[str] ca_cert: Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
                be set via the `GRAFANA_CA_CERT` environment variable.
-        :param pulumi.Input[str] cloud_api_key: Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
+        :param pulumi.Input[str] cloud_access_policy_token: Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
                variable.
+        :param pulumi.Input[str] cloud_api_key: Deprecated: Use `cloud_access_policy_token` instead.
         :param pulumi.Input[str] cloud_api_url: Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
@@ -447,6 +471,7 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auth: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
+                 cloud_access_policy_token: Optional[pulumi.Input[str]] = None,
                  cloud_api_key: Optional[pulumi.Input[str]] = None,
                  cloud_api_url: Optional[pulumi.Input[str]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
@@ -477,6 +502,7 @@ class Provider(pulumi.ProviderResource):
             if ca_cert is None:
                 ca_cert = _utilities.get_env('GRAFANA_CA_CERT')
             __props__.__dict__["ca_cert"] = ca_cert
+            __props__.__dict__["cloud_access_policy_token"] = None if cloud_access_policy_token is None else pulumi.Output.secret(cloud_access_policy_token)
             if cloud_api_key is None:
                 cloud_api_key = _utilities.get_env('GRAFANA_CLOUD_API_KEY')
             __props__.__dict__["cloud_api_key"] = None if cloud_api_key is None else pulumi.Output.secret(cloud_api_key)
@@ -518,7 +544,7 @@ class Provider(pulumi.ProviderResource):
             if url is None:
                 url = _utilities.get_env('GRAFANA_URL')
             __props__.__dict__["url"] = url
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["auth", "cloudApiKey", "oncallAccessToken", "smAccessToken", "tlsKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["auth", "cloudAccessPolicyToken", "cloudApiKey", "oncallAccessToken", "smAccessToken", "tlsKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'grafana',
@@ -545,12 +571,23 @@ class Provider(pulumi.ProviderResource):
         return pulumi.get(self, "ca_cert")
 
     @property
+    @pulumi.getter(name="cloudAccessPolicyToken")
+    def cloud_access_policy_token(self) -> pulumi.Output[Optional[str]]:
+        """
+        Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
+        variable.
+        """
+        return pulumi.get(self, "cloud_access_policy_token")
+
+    @property
     @pulumi.getter(name="cloudApiKey")
     def cloud_api_key(self) -> pulumi.Output[Optional[str]]:
         """
-        Access Policy Token (or API key) for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_API_KEY` environment
-        variable.
+        Deprecated: Use `cloud_access_policy_token` instead.
         """
+        warnings.warn("""Use `cloud_access_policy_token` instead.""", DeprecationWarning)
+        pulumi.log.warn("""cloud_api_key is deprecated: Use `cloud_access_policy_token` instead.""")
+
         return pulumi.get(self, "cloud_api_key")
 
     @property

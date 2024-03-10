@@ -20,39 +20,88 @@ namespace Pulumiverse.Grafana
     /// * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/installation/)
     /// * [API documentation](https://github.com/grafana/synthetic-monitoring-api-go-client/blob/main/docs/API.md#apiv1registerinstall)
     /// 
+    /// Required access policy scopes:
+    /// 
+    /// * stacks:read
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Grafana = Pulumi.Grafana;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var smStackCloudStack = new Grafana.CloudStack("smStackCloudStack", new()
+    ///     var config = new Config();
+    ///     var cloudApiKey = config.RequireObject&lt;dynamic&gt;("cloudApiKey");
+    ///     var stackSlug = config.RequireObject&lt;dynamic&gt;("stackSlug");
+    ///     var cloudRegion = config.Get("cloudRegion") ?? "us";
+    ///     // Step 1: Create a stack
+    ///     var cloud = new Grafana.Provider("cloud", new()
     ///     {
-    ///         Slug = "&lt;stack-slug&gt;",
-    ///         RegionSlug = "us",
+    ///         CloudApiKey = cloudApiKey,
     ///     });
     /// 
-    ///     var metricsPublish = new Grafana.CloudApiKey("metricsPublish", new()
+    ///     var smStackCloudStack = new Grafana.CloudStack("smStackCloudStack", new()
     ///     {
-    ///         Role = "MetricsPublisher",
-    ///         CloudOrgSlug = "&lt;org-slug&gt;",
+    ///         Slug = stackSlug,
+    ///         RegionSlug = cloudRegion,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         Provider = grafana.Cloud,
+    ///     });
+    /// 
+    ///     // Step 2: Install Synthetic Monitoring on the stack
+    ///     var smMetricsPublishCloudAccessPolicy = new Grafana.CloudAccessPolicy("smMetricsPublishCloudAccessPolicy", new()
+    ///     {
+    ///         Region = cloudRegion,
+    ///         Scopes = new[]
+    ///         {
+    ///             "metrics:write",
+    ///             "stacks:read",
+    ///         },
+    ///         Realms = new[]
+    ///         {
+    ///             new Grafana.Inputs.CloudAccessPolicyRealmArgs
+    ///             {
+    ///                 Type = "stack",
+    ///                 Identifier = smStackCloudStack.Id,
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         Provider = grafana.Cloud,
+    ///     });
+    /// 
+    ///     var smMetricsPublishCloudAccessPolicyToken = new Grafana.CloudAccessPolicyToken("smMetricsPublishCloudAccessPolicyToken", new()
+    ///     {
+    ///         Region = cloudRegion,
+    ///         AccessPolicyId = smMetricsPublishCloudAccessPolicy.PolicyId,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         Provider = grafana.Cloud,
     ///     });
     /// 
     ///     var smStackSyntheticMonitoringInstallation = new Grafana.SyntheticMonitoringInstallation("smStackSyntheticMonitoringInstallation", new()
     ///     {
     ///         StackId = smStackCloudStack.Id,
+    ///         MetricsPublisherKey = smMetricsPublishCloudAccessPolicyToken.Token,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         Provider = grafana.Cloud,
     ///     });
     /// 
-    ///     // Create a new provider instance to interact with Synthetic Monitoring
+    ///     // Step 3: Interact with Synthetic Monitoring
     ///     var sm = new Grafana.Provider("sm", new()
     ///     {
     ///         SmAccessToken = smStackSyntheticMonitoringInstallation.SmAccessToken,
     ///         SmUrl = smStackSyntheticMonitoringInstallation.StackSmApiUrl,
     ///     });
+    /// 
+    ///     var main = Grafana.GetSyntheticMonitoringProbes.Invoke();
     /// 
     /// });
     /// ```
@@ -61,7 +110,7 @@ namespace Pulumiverse.Grafana
     public partial class SyntheticMonitoringInstallation : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
+        /// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
         /// </summary>
         [Output("metricsPublisherKey")]
         public Output<string> MetricsPublisherKey { get; private set; } = null!;
@@ -139,7 +188,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _metricsPublisherKey;
 
         /// <summary>
-        /// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
+        /// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
         /// </summary>
         public Input<string>? MetricsPublisherKey
         {
@@ -175,7 +224,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _metricsPublisherKey;
 
         /// <summary>
-        /// The Cloud API Key with the `MetricsPublisher` role used to publish metrics to the SM API
+        /// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
         /// </summary>
         public Input<string>? MetricsPublisherKey
         {

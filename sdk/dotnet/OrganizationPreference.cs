@@ -28,7 +28,7 @@ namespace Pulumiverse.Grafana
     ///     {
     ///         Theme = "light",
     ///         Timezone = "utc",
-    ///         WeekStart = "Tuesday",
+    ///         WeekStart = "sunday",
     ///     });
     /// 
     /// });
@@ -38,7 +38,7 @@ namespace Pulumiverse.Grafana
     public partial class OrganizationPreference : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The Organization home dashboard ID.
+        /// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         /// </summary>
         [Output("homeDashboardId")]
         public Output<int?> HomeDashboardId { get; private set; } = null!;
@@ -56,7 +56,7 @@ namespace Pulumiverse.Grafana
         public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
-        /// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+        /// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         /// </summary>
         [Output("theme")]
         public Output<string?> Theme { get; private set; } = null!;
@@ -68,7 +68,7 @@ namespace Pulumiverse.Grafana
         public Output<string?> Timezone { get; private set; } = null!;
 
         /// <summary>
-        /// The Organization week start.
+        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         /// </summary>
         [Output("weekStart")]
         public Output<string?> WeekStart { get; private set; } = null!;
@@ -121,7 +121,7 @@ namespace Pulumiverse.Grafana
     public sealed class OrganizationPreferenceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Organization home dashboard ID.
+        /// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         /// </summary>
         [Input("homeDashboardId")]
         public Input<int>? HomeDashboardId { get; set; }
@@ -139,7 +139,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+        /// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         /// </summary>
         [Input("theme")]
         public Input<string>? Theme { get; set; }
@@ -151,7 +151,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Timezone { get; set; }
 
         /// <summary>
-        /// The Organization week start.
+        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         /// </summary>
         [Input("weekStart")]
         public Input<string>? WeekStart { get; set; }
@@ -165,7 +165,7 @@ namespace Pulumiverse.Grafana
     public sealed class OrganizationPreferenceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Organization home dashboard ID.
+        /// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         /// </summary>
         [Input("homeDashboardId")]
         public Input<int>? HomeDashboardId { get; set; }
@@ -183,7 +183,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// The Organization theme. Available values are `light`, `dark`, or an empty string for the default.
+        /// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         /// </summary>
         [Input("theme")]
         public Input<string>? Theme { get; set; }
@@ -195,7 +195,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Timezone { get; set; }
 
         /// <summary>
-        /// The Organization week start.
+        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         /// </summary>
         [Input("weekStart")]
         public Input<string>? WeekStart { get; set; }

@@ -68,6 +68,12 @@ namespace Pulumiverse.Grafana
         public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
+        /// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+        /// </summary>
+        [Output("parentFolderUid")]
+        public Output<string?> ParentFolderUid { get; private set; } = null!;
+
+        /// <summary>
         /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
         /// </summary>
         [Output("preventDestroyIfNotEmpty")]
@@ -145,6 +151,12 @@ namespace Pulumiverse.Grafana
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
+        /// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+        /// </summary>
+        [Input("parentFolderUid")]
+        public Input<string>? ParentFolderUid { get; set; }
+
+        /// <summary>
         /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
         /// </summary>
         [Input("preventDestroyIfNotEmpty")]
@@ -175,6 +187,12 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
+
+        /// <summary>
+        /// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+        /// </summary>
+        [Input("parentFolderUid")]
+        public Input<string>? ParentFolderUid { get; set; }
 
         /// <summary>
         /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.

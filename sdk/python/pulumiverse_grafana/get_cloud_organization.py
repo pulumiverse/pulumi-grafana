@@ -93,7 +93,15 @@ def get_cloud_organization(id: Optional[str] = None,
                            slug: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudOrganizationResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    test = grafana.get_cloud_organization(slug="my-org")
+    ```
+
 
     :param str id: The ID of this resource.
     """
@@ -117,7 +125,15 @@ def get_cloud_organization_output(id: Optional[pulumi.Input[Optional[str]]] = No
                                   slug: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudOrganizationResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    test = grafana.get_cloud_organization(slug="my-org")
+    ```
+
 
     :param str id: The ID of this resource.
     """

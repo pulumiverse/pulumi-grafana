@@ -20,6 +20,7 @@ export function getDashboards(args?: GetDashboardsArgs, opts?: pulumi.InvokeOpti
     return pulumi.runtime.invoke("grafana:index/getDashboards:getDashboards", {
         "folderIds": args.folderIds,
         "limit": args.limit,
+        "orgId": args.orgId,
         "tags": args.tags,
     }, opts);
 }
@@ -36,6 +37,10 @@ export interface GetDashboardsArgs {
      * Maximum number of dashboard search results to return. Defaults to `5000`.
      */
     limit?: number;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: string;
     /**
      * List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
      */
@@ -59,6 +64,10 @@ export interface GetDashboardsResult {
      * Maximum number of dashboard search results to return. Defaults to `5000`.
      */
     readonly limit?: number;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    readonly orgId?: string;
     /**
      * List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
      */
@@ -87,6 +96,10 @@ export interface GetDashboardsOutputArgs {
      * Maximum number of dashboard search results to return. Defaults to `5000`.
      */
     limit?: pulumi.Input<number>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
+    orgId?: pulumi.Input<string>;
     /**
      * List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
      */

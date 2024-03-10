@@ -7,6 +7,12 @@ import * as utilities from "./utilities";
 /**
  * * [Official documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#stacks/)
  *
+ * Required access policy scopes:
+ *
+ * * stacks:read
+ * * stacks:write
+ * * stacks:delete
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -82,12 +88,16 @@ export class CloudStack extends pulumi.CustomResource {
     public /*out*/ readonly graphiteStatus!: pulumi.Output<string>;
     public /*out*/ readonly graphiteUrl!: pulumi.Output<string>;
     public /*out*/ readonly graphiteUserId!: pulumi.Output<number>;
+    /**
+     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+     */
+    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     public /*out*/ readonly logsName!: pulumi.Output<string>;
     public /*out*/ readonly logsStatus!: pulumi.Output<string>;
     public /*out*/ readonly logsUrl!: pulumi.Output<string>;
     public /*out*/ readonly logsUserId!: pulumi.Output<number>;
     /**
-     * Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
+     * Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -102,6 +112,14 @@ export class CloudStack extends pulumi.CustomResource {
      * Organization slug to assign to this stack.
      */
     public /*out*/ readonly orgSlug!: pulumi.Output<string>;
+    /**
+     * Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+     */
+    public /*out*/ readonly otlpUrl!: pulumi.Output<string>;
+    public /*out*/ readonly profilesName!: pulumi.Output<string>;
+    public /*out*/ readonly profilesStatus!: pulumi.Output<string>;
+    public /*out*/ readonly profilesUrl!: pulumi.Output<string>;
+    public /*out*/ readonly profilesUserId!: pulumi.Output<number>;
     /**
      * Prometheus name for this instance.
      */
@@ -131,8 +149,7 @@ export class CloudStack extends pulumi.CustomResource {
      */
     public readonly regionSlug!: pulumi.Output<string | undefined>;
     /**
-     * Subdomain that the Grafana instance will be available at (i.e. setting slug to “\n\n” will make the instance
-     * available at “https://\n\n.grafana.net".
+     * Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
      */
     public readonly slug!: pulumi.Output<string>;
     /**
@@ -149,7 +166,7 @@ export class CloudStack extends pulumi.CustomResource {
     /**
      * Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
      */
-    public readonly url!: pulumi.Output<string>;
+    public readonly url!: pulumi.Output<string | undefined>;
     /**
      * Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
      */
@@ -181,6 +198,7 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["graphiteStatus"] = state ? state.graphiteStatus : undefined;
             resourceInputs["graphiteUrl"] = state ? state.graphiteUrl : undefined;
             resourceInputs["graphiteUserId"] = state ? state.graphiteUserId : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["logsName"] = state ? state.logsName : undefined;
             resourceInputs["logsStatus"] = state ? state.logsStatus : undefined;
             resourceInputs["logsUrl"] = state ? state.logsUrl : undefined;
@@ -189,6 +207,11 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["orgName"] = state ? state.orgName : undefined;
             resourceInputs["orgSlug"] = state ? state.orgSlug : undefined;
+            resourceInputs["otlpUrl"] = state ? state.otlpUrl : undefined;
+            resourceInputs["profilesName"] = state ? state.profilesName : undefined;
+            resourceInputs["profilesStatus"] = state ? state.profilesStatus : undefined;
+            resourceInputs["profilesUrl"] = state ? state.profilesUrl : undefined;
+            resourceInputs["profilesUserId"] = state ? state.profilesUserId : undefined;
             resourceInputs["prometheusName"] = state ? state.prometheusName : undefined;
             resourceInputs["prometheusRemoteEndpoint"] = state ? state.prometheusRemoteEndpoint : undefined;
             resourceInputs["prometheusRemoteWriteEndpoint"] = state ? state.prometheusRemoteWriteEndpoint : undefined;
@@ -211,6 +234,7 @@ export class CloudStack extends pulumi.CustomResource {
                 throw new Error("Missing required property 'slug'");
             }
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["regionSlug"] = args ? args.regionSlug : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
@@ -232,6 +256,11 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["orgId"] = undefined /*out*/;
             resourceInputs["orgName"] = undefined /*out*/;
             resourceInputs["orgSlug"] = undefined /*out*/;
+            resourceInputs["otlpUrl"] = undefined /*out*/;
+            resourceInputs["profilesName"] = undefined /*out*/;
+            resourceInputs["profilesStatus"] = undefined /*out*/;
+            resourceInputs["profilesUrl"] = undefined /*out*/;
+            resourceInputs["profilesUserId"] = undefined /*out*/;
             resourceInputs["prometheusName"] = undefined /*out*/;
             resourceInputs["prometheusRemoteEndpoint"] = undefined /*out*/;
             resourceInputs["prometheusRemoteWriteEndpoint"] = undefined /*out*/;
@@ -277,12 +306,16 @@ export interface CloudStackState {
     graphiteStatus?: pulumi.Input<string>;
     graphiteUrl?: pulumi.Input<string>;
     graphiteUserId?: pulumi.Input<number>;
+    /**
+     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     logsName?: pulumi.Input<string>;
     logsStatus?: pulumi.Input<string>;
     logsUrl?: pulumi.Input<string>;
     logsUserId?: pulumi.Input<number>;
     /**
-     * Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
+     * Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
      */
     name?: pulumi.Input<string>;
     /**
@@ -297,6 +330,14 @@ export interface CloudStackState {
      * Organization slug to assign to this stack.
      */
     orgSlug?: pulumi.Input<string>;
+    /**
+     * Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+     */
+    otlpUrl?: pulumi.Input<string>;
+    profilesName?: pulumi.Input<string>;
+    profilesStatus?: pulumi.Input<string>;
+    profilesUrl?: pulumi.Input<string>;
+    profilesUserId?: pulumi.Input<number>;
     /**
      * Prometheus name for this instance.
      */
@@ -326,8 +367,7 @@ export interface CloudStackState {
      */
     regionSlug?: pulumi.Input<string>;
     /**
-     * Subdomain that the Grafana instance will be available at (i.e. setting slug to “\n\n” will make the instance
-     * available at “https://\n\n.grafana.net".
+     * Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
      */
     slug?: pulumi.Input<string>;
     /**
@@ -364,7 +404,11 @@ export interface CloudStackArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * Name of stack. Conventionally matches the url of the instance (e.g. “\n\n.grafana.net”).
+     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
      */
     name?: pulumi.Input<string>;
     /**
@@ -372,8 +416,7 @@ export interface CloudStackArgs {
      */
     regionSlug?: pulumi.Input<string>;
     /**
-     * Subdomain that the Grafana instance will be available at (i.e. setting slug to “\n\n” will make the instance
-     * available at “https://\n\n.grafana.net".
+     * Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
      */
     slug: pulumi.Input<string>;
     /**

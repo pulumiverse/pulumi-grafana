@@ -1514,6 +1514,226 @@ func (o ContactPointLineArrayOutput) Index(i pulumi.IntInput) ContactPointLineOu
 	}).(ContactPointLineOutput)
 }
 
+type ContactPointOncall struct {
+	// Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.
+	AuthorizationCredentials *string `pulumi:"authorizationCredentials"`
+	// Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.
+	AuthorizationScheme *string `pulumi:"authorizationScheme"`
+	// The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
+	// The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+	BasicAuthUser *string `pulumi:"basicAuthUser"`
+	// Whether to disable sending resolve messages. Defaults to `false`.
+	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
+	// The HTTP method to use in the request. Defaults to `POST`.
+	HttpMethod *string `pulumi:"httpMethod"`
+	// The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
+	MaxAlerts *int `pulumi:"maxAlerts"`
+	// Custom message. You can use template variables.
+	Message *string `pulumi:"message"`
+	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	Settings map[string]string `pulumi:"settings"`
+	// Templated title of the message.
+	Title *string `pulumi:"title"`
+	// The UID of the contact point.
+	Uid *string `pulumi:"uid"`
+	// The URL to send webhook requests to.
+	Url string `pulumi:"url"`
+}
+
+// ContactPointOncallInput is an input type that accepts ContactPointOncallArgs and ContactPointOncallOutput values.
+// You can construct a concrete instance of `ContactPointOncallInput` via:
+//
+//	ContactPointOncallArgs{...}
+type ContactPointOncallInput interface {
+	pulumi.Input
+
+	ToContactPointOncallOutput() ContactPointOncallOutput
+	ToContactPointOncallOutputWithContext(context.Context) ContactPointOncallOutput
+}
+
+type ContactPointOncallArgs struct {
+	// Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.
+	AuthorizationCredentials pulumi.StringPtrInput `pulumi:"authorizationCredentials"`
+	// Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.
+	AuthorizationScheme pulumi.StringPtrInput `pulumi:"authorizationScheme"`
+	// The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+	BasicAuthPassword pulumi.StringPtrInput `pulumi:"basicAuthPassword"`
+	// The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+	BasicAuthUser pulumi.StringPtrInput `pulumi:"basicAuthUser"`
+	// Whether to disable sending resolve messages. Defaults to `false`.
+	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
+	// The HTTP method to use in the request. Defaults to `POST`.
+	HttpMethod pulumi.StringPtrInput `pulumi:"httpMethod"`
+	// The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
+	MaxAlerts pulumi.IntPtrInput `pulumi:"maxAlerts"`
+	// Custom message. You can use template variables.
+	Message pulumi.StringPtrInput `pulumi:"message"`
+	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	Settings pulumi.StringMapInput `pulumi:"settings"`
+	// Templated title of the message.
+	Title pulumi.StringPtrInput `pulumi:"title"`
+	// The UID of the contact point.
+	Uid pulumi.StringPtrInput `pulumi:"uid"`
+	// The URL to send webhook requests to.
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (ContactPointOncallArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointOncall)(nil)).Elem()
+}
+
+func (i ContactPointOncallArgs) ToContactPointOncallOutput() ContactPointOncallOutput {
+	return i.ToContactPointOncallOutputWithContext(context.Background())
+}
+
+func (i ContactPointOncallArgs) ToContactPointOncallOutputWithContext(ctx context.Context) ContactPointOncallOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointOncallOutput)
+}
+
+func (i ContactPointOncallArgs) ToOutput(ctx context.Context) pulumix.Output[ContactPointOncall] {
+	return pulumix.Output[ContactPointOncall]{
+		OutputState: i.ToContactPointOncallOutputWithContext(ctx).OutputState,
+	}
+}
+
+// ContactPointOncallArrayInput is an input type that accepts ContactPointOncallArray and ContactPointOncallArrayOutput values.
+// You can construct a concrete instance of `ContactPointOncallArrayInput` via:
+//
+//	ContactPointOncallArray{ ContactPointOncallArgs{...} }
+type ContactPointOncallArrayInput interface {
+	pulumi.Input
+
+	ToContactPointOncallArrayOutput() ContactPointOncallArrayOutput
+	ToContactPointOncallArrayOutputWithContext(context.Context) ContactPointOncallArrayOutput
+}
+
+type ContactPointOncallArray []ContactPointOncallInput
+
+func (ContactPointOncallArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContactPointOncall)(nil)).Elem()
+}
+
+func (i ContactPointOncallArray) ToContactPointOncallArrayOutput() ContactPointOncallArrayOutput {
+	return i.ToContactPointOncallArrayOutputWithContext(context.Background())
+}
+
+func (i ContactPointOncallArray) ToContactPointOncallArrayOutputWithContext(ctx context.Context) ContactPointOncallArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointOncallArrayOutput)
+}
+
+func (i ContactPointOncallArray) ToOutput(ctx context.Context) pulumix.Output[[]ContactPointOncall] {
+	return pulumix.Output[[]ContactPointOncall]{
+		OutputState: i.ToContactPointOncallArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type ContactPointOncallOutput struct{ *pulumi.OutputState }
+
+func (ContactPointOncallOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointOncall)(nil)).Elem()
+}
+
+func (o ContactPointOncallOutput) ToContactPointOncallOutput() ContactPointOncallOutput {
+	return o
+}
+
+func (o ContactPointOncallOutput) ToContactPointOncallOutputWithContext(ctx context.Context) ContactPointOncallOutput {
+	return o
+}
+
+func (o ContactPointOncallOutput) ToOutput(ctx context.Context) pulumix.Output[ContactPointOncall] {
+	return pulumix.Output[ContactPointOncall]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.
+func (o ContactPointOncallOutput) AuthorizationCredentials() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointOncall) *string { return v.AuthorizationCredentials }).(pulumi.StringPtrOutput)
+}
+
+// Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.
+func (o ContactPointOncallOutput) AuthorizationScheme() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointOncall) *string { return v.AuthorizationScheme }).(pulumi.StringPtrOutput)
+}
+
+// The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+func (o ContactPointOncallOutput) BasicAuthPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointOncall) *string { return v.BasicAuthPassword }).(pulumi.StringPtrOutput)
+}
+
+// The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+func (o ContactPointOncallOutput) BasicAuthUser() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointOncall) *string { return v.BasicAuthUser }).(pulumi.StringPtrOutput)
+}
+
+// Whether to disable sending resolve messages. Defaults to `false`.
+func (o ContactPointOncallOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ContactPointOncall) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
+}
+
+// The HTTP method to use in the request. Defaults to `POST`.
+func (o ContactPointOncallOutput) HttpMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointOncall) *string { return v.HttpMethod }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
+func (o ContactPointOncallOutput) MaxAlerts() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ContactPointOncall) *int { return v.MaxAlerts }).(pulumi.IntPtrOutput)
+}
+
+// Custom message. You can use template variables.
+func (o ContactPointOncallOutput) Message() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointOncall) *string { return v.Message }).(pulumi.StringPtrOutput)
+}
+
+// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+func (o ContactPointOncallOutput) Settings() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ContactPointOncall) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
+}
+
+// Templated title of the message.
+func (o ContactPointOncallOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointOncall) *string { return v.Title }).(pulumi.StringPtrOutput)
+}
+
+// The UID of the contact point.
+func (o ContactPointOncallOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointOncall) *string { return v.Uid }).(pulumi.StringPtrOutput)
+}
+
+// The URL to send webhook requests to.
+func (o ContactPointOncallOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactPointOncall) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type ContactPointOncallArrayOutput struct{ *pulumi.OutputState }
+
+func (ContactPointOncallArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContactPointOncall)(nil)).Elem()
+}
+
+func (o ContactPointOncallArrayOutput) ToContactPointOncallArrayOutput() ContactPointOncallArrayOutput {
+	return o
+}
+
+func (o ContactPointOncallArrayOutput) ToContactPointOncallArrayOutputWithContext(ctx context.Context) ContactPointOncallArrayOutput {
+	return o
+}
+
+func (o ContactPointOncallArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ContactPointOncall] {
+	return pulumix.Output[[]ContactPointOncall]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o ContactPointOncallArrayOutput) Index(i pulumi.IntInput) ContactPointOncallOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ContactPointOncall {
+		return vs[0].([]ContactPointOncall)[vs[1].(int)]
+	}).(ContactPointOncallOutput)
+}
+
 type ContactPointOpsgeny struct {
 	// The OpsGenie API key to use.
 	ApiKey string `pulumi:"apiKey"`
@@ -1527,6 +1747,8 @@ type ContactPointOpsgeny struct {
 	Message *string `pulumi:"message"`
 	// Whether to allow the alert priority to be configured via the value of the `ogPriority` annotation on the alert.
 	OverridePriority *bool `pulumi:"overridePriority"`
+	// Teams, users, escalations and schedules that the alert will be routed to send notifications. If the API Key belongs to a team integration, this field will be overwritten with the owner team. This feature is available from Grafana 10.3+.
+	Responders []ContactPointOpsgenyResponder `pulumi:"responders"`
 	// Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.
 	SendTagsAs *string `pulumi:"sendTagsAs"`
 	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
@@ -1561,6 +1783,8 @@ type ContactPointOpsgenyArgs struct {
 	Message pulumi.StringPtrInput `pulumi:"message"`
 	// Whether to allow the alert priority to be configured via the value of the `ogPriority` annotation on the alert.
 	OverridePriority pulumi.BoolPtrInput `pulumi:"overridePriority"`
+	// Teams, users, escalations and schedules that the alert will be routed to send notifications. If the API Key belongs to a team integration, this field will be overwritten with the owner team. This feature is available from Grafana 10.3+.
+	Responders ContactPointOpsgenyResponderArrayInput `pulumi:"responders"`
 	// Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.
 	SendTagsAs pulumi.StringPtrInput `pulumi:"sendTagsAs"`
 	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
@@ -1670,6 +1894,11 @@ func (o ContactPointOpsgenyOutput) OverridePriority() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointOpsgeny) *bool { return v.OverridePriority }).(pulumi.BoolPtrOutput)
 }
 
+// Teams, users, escalations and schedules that the alert will be routed to send notifications. If the API Key belongs to a team integration, this field will be overwritten with the owner team. This feature is available from Grafana 10.3+.
+func (o ContactPointOpsgenyOutput) Responders() ContactPointOpsgenyResponderArrayOutput {
+	return o.ApplyT(func(v ContactPointOpsgeny) []ContactPointOpsgenyResponder { return v.Responders }).(ContactPointOpsgenyResponderArrayOutput)
+}
+
 // Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.
 func (o ContactPointOpsgenyOutput) SendTagsAs() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointOpsgeny) *string { return v.SendTagsAs }).(pulumi.StringPtrOutput)
@@ -1714,6 +1943,154 @@ func (o ContactPointOpsgenyArrayOutput) Index(i pulumi.IntInput) ContactPointOps
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ContactPointOpsgeny {
 		return vs[0].([]ContactPointOpsgeny)[vs[1].(int)]
 	}).(ContactPointOpsgenyOutput)
+}
+
+type ContactPointOpsgenyResponder struct {
+	// ID of the responder. Must be specified if name and username are empty.
+	Id *string `pulumi:"id"`
+	// Name of the responder. Must be specified if username and id are empty.
+	Name *string `pulumi:"name"`
+	// Type of the responder. Supported: team, teams, user, escalation, schedule or a template that is expanded to one of these values.
+	Type string `pulumi:"type"`
+	// The user name to use when making a call to the Kafka REST Proxy
+	Username *string `pulumi:"username"`
+}
+
+// ContactPointOpsgenyResponderInput is an input type that accepts ContactPointOpsgenyResponderArgs and ContactPointOpsgenyResponderOutput values.
+// You can construct a concrete instance of `ContactPointOpsgenyResponderInput` via:
+//
+//	ContactPointOpsgenyResponderArgs{...}
+type ContactPointOpsgenyResponderInput interface {
+	pulumi.Input
+
+	ToContactPointOpsgenyResponderOutput() ContactPointOpsgenyResponderOutput
+	ToContactPointOpsgenyResponderOutputWithContext(context.Context) ContactPointOpsgenyResponderOutput
+}
+
+type ContactPointOpsgenyResponderArgs struct {
+	// ID of the responder. Must be specified if name and username are empty.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Name of the responder. Must be specified if username and id are empty.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Type of the responder. Supported: team, teams, user, escalation, schedule or a template that is expanded to one of these values.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The user name to use when making a call to the Kafka REST Proxy
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (ContactPointOpsgenyResponderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointOpsgenyResponder)(nil)).Elem()
+}
+
+func (i ContactPointOpsgenyResponderArgs) ToContactPointOpsgenyResponderOutput() ContactPointOpsgenyResponderOutput {
+	return i.ToContactPointOpsgenyResponderOutputWithContext(context.Background())
+}
+
+func (i ContactPointOpsgenyResponderArgs) ToContactPointOpsgenyResponderOutputWithContext(ctx context.Context) ContactPointOpsgenyResponderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointOpsgenyResponderOutput)
+}
+
+func (i ContactPointOpsgenyResponderArgs) ToOutput(ctx context.Context) pulumix.Output[ContactPointOpsgenyResponder] {
+	return pulumix.Output[ContactPointOpsgenyResponder]{
+		OutputState: i.ToContactPointOpsgenyResponderOutputWithContext(ctx).OutputState,
+	}
+}
+
+// ContactPointOpsgenyResponderArrayInput is an input type that accepts ContactPointOpsgenyResponderArray and ContactPointOpsgenyResponderArrayOutput values.
+// You can construct a concrete instance of `ContactPointOpsgenyResponderArrayInput` via:
+//
+//	ContactPointOpsgenyResponderArray{ ContactPointOpsgenyResponderArgs{...} }
+type ContactPointOpsgenyResponderArrayInput interface {
+	pulumi.Input
+
+	ToContactPointOpsgenyResponderArrayOutput() ContactPointOpsgenyResponderArrayOutput
+	ToContactPointOpsgenyResponderArrayOutputWithContext(context.Context) ContactPointOpsgenyResponderArrayOutput
+}
+
+type ContactPointOpsgenyResponderArray []ContactPointOpsgenyResponderInput
+
+func (ContactPointOpsgenyResponderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContactPointOpsgenyResponder)(nil)).Elem()
+}
+
+func (i ContactPointOpsgenyResponderArray) ToContactPointOpsgenyResponderArrayOutput() ContactPointOpsgenyResponderArrayOutput {
+	return i.ToContactPointOpsgenyResponderArrayOutputWithContext(context.Background())
+}
+
+func (i ContactPointOpsgenyResponderArray) ToContactPointOpsgenyResponderArrayOutputWithContext(ctx context.Context) ContactPointOpsgenyResponderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointOpsgenyResponderArrayOutput)
+}
+
+func (i ContactPointOpsgenyResponderArray) ToOutput(ctx context.Context) pulumix.Output[[]ContactPointOpsgenyResponder] {
+	return pulumix.Output[[]ContactPointOpsgenyResponder]{
+		OutputState: i.ToContactPointOpsgenyResponderArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type ContactPointOpsgenyResponderOutput struct{ *pulumi.OutputState }
+
+func (ContactPointOpsgenyResponderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointOpsgenyResponder)(nil)).Elem()
+}
+
+func (o ContactPointOpsgenyResponderOutput) ToContactPointOpsgenyResponderOutput() ContactPointOpsgenyResponderOutput {
+	return o
+}
+
+func (o ContactPointOpsgenyResponderOutput) ToContactPointOpsgenyResponderOutputWithContext(ctx context.Context) ContactPointOpsgenyResponderOutput {
+	return o
+}
+
+func (o ContactPointOpsgenyResponderOutput) ToOutput(ctx context.Context) pulumix.Output[ContactPointOpsgenyResponder] {
+	return pulumix.Output[ContactPointOpsgenyResponder]{
+		OutputState: o.OutputState,
+	}
+}
+
+// ID of the responder. Must be specified if name and username are empty.
+func (o ContactPointOpsgenyResponderOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointOpsgenyResponder) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Name of the responder. Must be specified if username and id are empty.
+func (o ContactPointOpsgenyResponderOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointOpsgenyResponder) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Type of the responder. Supported: team, teams, user, escalation, schedule or a template that is expanded to one of these values.
+func (o ContactPointOpsgenyResponderOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactPointOpsgenyResponder) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The user name to use when making a call to the Kafka REST Proxy
+func (o ContactPointOpsgenyResponderOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointOpsgenyResponder) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type ContactPointOpsgenyResponderArrayOutput struct{ *pulumi.OutputState }
+
+func (ContactPointOpsgenyResponderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContactPointOpsgenyResponder)(nil)).Elem()
+}
+
+func (o ContactPointOpsgenyResponderArrayOutput) ToContactPointOpsgenyResponderArrayOutput() ContactPointOpsgenyResponderArrayOutput {
+	return o
+}
+
+func (o ContactPointOpsgenyResponderArrayOutput) ToContactPointOpsgenyResponderArrayOutputWithContext(ctx context.Context) ContactPointOpsgenyResponderArrayOutput {
+	return o
+}
+
+func (o ContactPointOpsgenyResponderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ContactPointOpsgenyResponder] {
+	return pulumix.Output[[]ContactPointOpsgenyResponder]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o ContactPointOpsgenyResponderArrayOutput) Index(i pulumi.IntInput) ContactPointOpsgenyResponderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ContactPointOpsgenyResponder {
+		return vs[0].([]ContactPointOpsgenyResponder)[vs[1].(int)]
+	}).(ContactPointOpsgenyResponderOutput)
 }
 
 type ContactPointPagerduty struct {
@@ -2639,6 +3016,220 @@ func (o ContactPointSlackArrayOutput) Index(i pulumi.IntInput) ContactPointSlack
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ContactPointSlack {
 		return vs[0].([]ContactPointSlack)[vs[1].(int)]
 	}).(ContactPointSlackOutput)
+}
+
+type ContactPointSn struct {
+	// AWS access key ID used to authenticate with Amazon SNS.
+	AccessKey *string `pulumi:"accessKey"`
+	// The Amazon Resource Name (ARN) of the role to assume to send notifications to Amazon SNS.
+	AssumeRoleArn *string `pulumi:"assumeRoleArn"`
+	// The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+	AuthProvider *string `pulumi:"authProvider"`
+	Body         *string `pulumi:"body"`
+	// Whether to disable sending resolve messages. Defaults to `false`.
+	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
+	// The external ID to use when assuming the role.
+	ExternalId *string `pulumi:"externalId"`
+	// The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+	MessageFormat *string `pulumi:"messageFormat"`
+	// AWS secret access key used to authenticate with Amazon SNS.
+	SecretKey *string `pulumi:"secretKey"`
+	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	Settings map[string]string `pulumi:"settings"`
+	Subject  *string           `pulumi:"subject"`
+	// The Amazon SNS topic to send notifications to.
+	Topic string `pulumi:"topic"`
+	// The UID of the contact point.
+	Uid *string `pulumi:"uid"`
+}
+
+// ContactPointSnInput is an input type that accepts ContactPointSnArgs and ContactPointSnOutput values.
+// You can construct a concrete instance of `ContactPointSnInput` via:
+//
+//	ContactPointSnArgs{...}
+type ContactPointSnInput interface {
+	pulumi.Input
+
+	ToContactPointSnOutput() ContactPointSnOutput
+	ToContactPointSnOutputWithContext(context.Context) ContactPointSnOutput
+}
+
+type ContactPointSnArgs struct {
+	// AWS access key ID used to authenticate with Amazon SNS.
+	AccessKey pulumi.StringPtrInput `pulumi:"accessKey"`
+	// The Amazon Resource Name (ARN) of the role to assume to send notifications to Amazon SNS.
+	AssumeRoleArn pulumi.StringPtrInput `pulumi:"assumeRoleArn"`
+	// The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+	AuthProvider pulumi.StringPtrInput `pulumi:"authProvider"`
+	Body         pulumi.StringPtrInput `pulumi:"body"`
+	// Whether to disable sending resolve messages. Defaults to `false`.
+	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
+	// The external ID to use when assuming the role.
+	ExternalId pulumi.StringPtrInput `pulumi:"externalId"`
+	// The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+	MessageFormat pulumi.StringPtrInput `pulumi:"messageFormat"`
+	// AWS secret access key used to authenticate with Amazon SNS.
+	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
+	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	Settings pulumi.StringMapInput `pulumi:"settings"`
+	Subject  pulumi.StringPtrInput `pulumi:"subject"`
+	// The Amazon SNS topic to send notifications to.
+	Topic pulumi.StringInput `pulumi:"topic"`
+	// The UID of the contact point.
+	Uid pulumi.StringPtrInput `pulumi:"uid"`
+}
+
+func (ContactPointSnArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointSn)(nil)).Elem()
+}
+
+func (i ContactPointSnArgs) ToContactPointSnOutput() ContactPointSnOutput {
+	return i.ToContactPointSnOutputWithContext(context.Background())
+}
+
+func (i ContactPointSnArgs) ToContactPointSnOutputWithContext(ctx context.Context) ContactPointSnOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointSnOutput)
+}
+
+func (i ContactPointSnArgs) ToOutput(ctx context.Context) pulumix.Output[ContactPointSn] {
+	return pulumix.Output[ContactPointSn]{
+		OutputState: i.ToContactPointSnOutputWithContext(ctx).OutputState,
+	}
+}
+
+// ContactPointSnArrayInput is an input type that accepts ContactPointSnArray and ContactPointSnArrayOutput values.
+// You can construct a concrete instance of `ContactPointSnArrayInput` via:
+//
+//	ContactPointSnArray{ ContactPointSnArgs{...} }
+type ContactPointSnArrayInput interface {
+	pulumi.Input
+
+	ToContactPointSnArrayOutput() ContactPointSnArrayOutput
+	ToContactPointSnArrayOutputWithContext(context.Context) ContactPointSnArrayOutput
+}
+
+type ContactPointSnArray []ContactPointSnInput
+
+func (ContactPointSnArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContactPointSn)(nil)).Elem()
+}
+
+func (i ContactPointSnArray) ToContactPointSnArrayOutput() ContactPointSnArrayOutput {
+	return i.ToContactPointSnArrayOutputWithContext(context.Background())
+}
+
+func (i ContactPointSnArray) ToContactPointSnArrayOutputWithContext(ctx context.Context) ContactPointSnArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointSnArrayOutput)
+}
+
+func (i ContactPointSnArray) ToOutput(ctx context.Context) pulumix.Output[[]ContactPointSn] {
+	return pulumix.Output[[]ContactPointSn]{
+		OutputState: i.ToContactPointSnArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type ContactPointSnOutput struct{ *pulumi.OutputState }
+
+func (ContactPointSnOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointSn)(nil)).Elem()
+}
+
+func (o ContactPointSnOutput) ToContactPointSnOutput() ContactPointSnOutput {
+	return o
+}
+
+func (o ContactPointSnOutput) ToContactPointSnOutputWithContext(ctx context.Context) ContactPointSnOutput {
+	return o
+}
+
+func (o ContactPointSnOutput) ToOutput(ctx context.Context) pulumix.Output[ContactPointSn] {
+	return pulumix.Output[ContactPointSn]{
+		OutputState: o.OutputState,
+	}
+}
+
+// AWS access key ID used to authenticate with Amazon SNS.
+func (o ContactPointSnOutput) AccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.AccessKey }).(pulumi.StringPtrOutput)
+}
+
+// The Amazon Resource Name (ARN) of the role to assume to send notifications to Amazon SNS.
+func (o ContactPointSnOutput) AssumeRoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.AssumeRoleArn }).(pulumi.StringPtrOutput)
+}
+
+// The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+func (o ContactPointSnOutput) AuthProvider() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.AuthProvider }).(pulumi.StringPtrOutput)
+}
+
+func (o ContactPointSnOutput) Body() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.Body }).(pulumi.StringPtrOutput)
+}
+
+// Whether to disable sending resolve messages. Defaults to `false`.
+func (o ContactPointSnOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
+}
+
+// The external ID to use when assuming the role.
+func (o ContactPointSnOutput) ExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.ExternalId }).(pulumi.StringPtrOutput)
+}
+
+// The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+func (o ContactPointSnOutput) MessageFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.MessageFormat }).(pulumi.StringPtrOutput)
+}
+
+// AWS secret access key used to authenticate with Amazon SNS.
+func (o ContactPointSnOutput) SecretKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
+}
+
+// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+func (o ContactPointSnOutput) Settings() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ContactPointSn) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
+}
+
+func (o ContactPointSnOutput) Subject() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.Subject }).(pulumi.StringPtrOutput)
+}
+
+// The Amazon SNS topic to send notifications to.
+func (o ContactPointSnOutput) Topic() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactPointSn) string { return v.Topic }).(pulumi.StringOutput)
+}
+
+// The UID of the contact point.
+func (o ContactPointSnOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSn) *string { return v.Uid }).(pulumi.StringPtrOutput)
+}
+
+type ContactPointSnArrayOutput struct{ *pulumi.OutputState }
+
+func (ContactPointSnArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContactPointSn)(nil)).Elem()
+}
+
+func (o ContactPointSnArrayOutput) ToContactPointSnArrayOutput() ContactPointSnArrayOutput {
+	return o
+}
+
+func (o ContactPointSnArrayOutput) ToContactPointSnArrayOutputWithContext(ctx context.Context) ContactPointSnArrayOutput {
+	return o
+}
+
+func (o ContactPointSnArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ContactPointSn] {
+	return pulumix.Output[[]ContactPointSn]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o ContactPointSnArrayOutput) Index(i pulumi.IntInput) ContactPointSnOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ContactPointSn {
+		return vs[0].([]ContactPointSn)[vs[1].(int)]
+	}).(ContactPointSnOutput)
 }
 
 type ContactPointTeam struct {
@@ -4134,7 +4725,7 @@ func (o DashboardPermissionPermissionArrayOutput) Index(i pulumi.IntInput) Dashb
 type DataSourcePermissionPermission struct {
 	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
 	BuiltInRole *string `pulumi:"builtInRole"`
-	// Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
+	// Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
 	Permission string `pulumi:"permission"`
 	// ID of the team to manage permissions for. Defaults to `0`.
 	TeamId *string `pulumi:"teamId"`
@@ -4156,7 +4747,7 @@ type DataSourcePermissionPermissionInput interface {
 type DataSourcePermissionPermissionArgs struct {
 	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
 	BuiltInRole pulumi.StringPtrInput `pulumi:"builtInRole"`
-	// Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
+	// Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
 	Permission pulumi.StringInput `pulumi:"permission"`
 	// ID of the team to manage permissions for. Defaults to `0`.
 	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
@@ -4238,7 +4829,7 @@ func (o DataSourcePermissionPermissionOutput) BuiltInRole() pulumi.StringPtrOutp
 	return o.ApplyT(func(v DataSourcePermissionPermission) *string { return v.BuiltInRole }).(pulumi.StringPtrOutput)
 }
 
-// Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
+// Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
 func (o DataSourcePermissionPermissionOutput) Permission() pulumi.StringOutput {
 	return o.ApplyT(func(v DataSourcePermissionPermission) string { return v.Permission }).(pulumi.StringOutput)
 }
@@ -4925,6 +5516,8 @@ func (o MachineLearningOutlierDetectorAlgorithmConfigPtrOutput) Epsilon() pulumi
 type MuteTimingInterval struct {
 	// An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
 	DaysOfMonths []string `pulumi:"daysOfMonths"`
+	// Provides the time zone for the time interval. Must be a location in the IANA time zone database, e.g "America/New_York"
+	Location *string `pulumi:"location"`
 	// An inclusive range of months, either numerical or full calendar month, e.g. "1:3", "december", or "may:august".
 	Months []string `pulumi:"months"`
 	// The time ranges, represented in minutes, during which to mute in a given day.
@@ -4949,6 +5542,8 @@ type MuteTimingIntervalInput interface {
 type MuteTimingIntervalArgs struct {
 	// An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
 	DaysOfMonths pulumi.StringArrayInput `pulumi:"daysOfMonths"`
+	// Provides the time zone for the time interval. Must be a location in the IANA time zone database, e.g "America/New_York"
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// An inclusive range of months, either numerical or full calendar month, e.g. "1:3", "december", or "may:august".
 	Months pulumi.StringArrayInput `pulumi:"months"`
 	// The time ranges, represented in minutes, during which to mute in a given day.
@@ -5031,6 +5626,11 @@ func (o MuteTimingIntervalOutput) ToOutput(ctx context.Context) pulumix.Output[M
 // An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
 func (o MuteTimingIntervalOutput) DaysOfMonths() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v MuteTimingInterval) []string { return v.DaysOfMonths }).(pulumi.StringArrayOutput)
+}
+
+// Provides the time zone for the time interval. Must be a location in the IANA time zone database, e.g "America/New_York"
+func (o MuteTimingIntervalOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MuteTimingInterval) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // An inclusive range of months, either numerical or full calendar month, e.g. "1:3", "december", or "may:august".
@@ -9825,18 +10425,339 @@ func (o PlaylistItemArrayOutput) Index(i pulumi.IntInput) PlaylistItemOutput {
 	}).(PlaylistItemOutput)
 }
 
+type ReportDashboard struct {
+	// Add report variables to the dashboard. Values should be separated by commas.
+	ReportVariables map[string]interface{} `pulumi:"reportVariables"`
+	// Time range of the report.
+	TimeRange *ReportDashboardTimeRange `pulumi:"timeRange"`
+	// Dashboard uid.
+	Uid string `pulumi:"uid"`
+}
+
+// ReportDashboardInput is an input type that accepts ReportDashboardArgs and ReportDashboardOutput values.
+// You can construct a concrete instance of `ReportDashboardInput` via:
+//
+//	ReportDashboardArgs{...}
+type ReportDashboardInput interface {
+	pulumi.Input
+
+	ToReportDashboardOutput() ReportDashboardOutput
+	ToReportDashboardOutputWithContext(context.Context) ReportDashboardOutput
+}
+
+type ReportDashboardArgs struct {
+	// Add report variables to the dashboard. Values should be separated by commas.
+	ReportVariables pulumi.MapInput `pulumi:"reportVariables"`
+	// Time range of the report.
+	TimeRange ReportDashboardTimeRangePtrInput `pulumi:"timeRange"`
+	// Dashboard uid.
+	Uid pulumi.StringInput `pulumi:"uid"`
+}
+
+func (ReportDashboardArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReportDashboard)(nil)).Elem()
+}
+
+func (i ReportDashboardArgs) ToReportDashboardOutput() ReportDashboardOutput {
+	return i.ToReportDashboardOutputWithContext(context.Background())
+}
+
+func (i ReportDashboardArgs) ToReportDashboardOutputWithContext(ctx context.Context) ReportDashboardOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReportDashboardOutput)
+}
+
+func (i ReportDashboardArgs) ToOutput(ctx context.Context) pulumix.Output[ReportDashboard] {
+	return pulumix.Output[ReportDashboard]{
+		OutputState: i.ToReportDashboardOutputWithContext(ctx).OutputState,
+	}
+}
+
+// ReportDashboardArrayInput is an input type that accepts ReportDashboardArray and ReportDashboardArrayOutput values.
+// You can construct a concrete instance of `ReportDashboardArrayInput` via:
+//
+//	ReportDashboardArray{ ReportDashboardArgs{...} }
+type ReportDashboardArrayInput interface {
+	pulumi.Input
+
+	ToReportDashboardArrayOutput() ReportDashboardArrayOutput
+	ToReportDashboardArrayOutputWithContext(context.Context) ReportDashboardArrayOutput
+}
+
+type ReportDashboardArray []ReportDashboardInput
+
+func (ReportDashboardArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ReportDashboard)(nil)).Elem()
+}
+
+func (i ReportDashboardArray) ToReportDashboardArrayOutput() ReportDashboardArrayOutput {
+	return i.ToReportDashboardArrayOutputWithContext(context.Background())
+}
+
+func (i ReportDashboardArray) ToReportDashboardArrayOutputWithContext(ctx context.Context) ReportDashboardArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReportDashboardArrayOutput)
+}
+
+func (i ReportDashboardArray) ToOutput(ctx context.Context) pulumix.Output[[]ReportDashboard] {
+	return pulumix.Output[[]ReportDashboard]{
+		OutputState: i.ToReportDashboardArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type ReportDashboardOutput struct{ *pulumi.OutputState }
+
+func (ReportDashboardOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReportDashboard)(nil)).Elem()
+}
+
+func (o ReportDashboardOutput) ToReportDashboardOutput() ReportDashboardOutput {
+	return o
+}
+
+func (o ReportDashboardOutput) ToReportDashboardOutputWithContext(ctx context.Context) ReportDashboardOutput {
+	return o
+}
+
+func (o ReportDashboardOutput) ToOutput(ctx context.Context) pulumix.Output[ReportDashboard] {
+	return pulumix.Output[ReportDashboard]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Add report variables to the dashboard. Values should be separated by commas.
+func (o ReportDashboardOutput) ReportVariables() pulumi.MapOutput {
+	return o.ApplyT(func(v ReportDashboard) map[string]interface{} { return v.ReportVariables }).(pulumi.MapOutput)
+}
+
+// Time range of the report.
+func (o ReportDashboardOutput) TimeRange() ReportDashboardTimeRangePtrOutput {
+	return o.ApplyT(func(v ReportDashboard) *ReportDashboardTimeRange { return v.TimeRange }).(ReportDashboardTimeRangePtrOutput)
+}
+
+// Dashboard uid.
+func (o ReportDashboardOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v ReportDashboard) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+type ReportDashboardArrayOutput struct{ *pulumi.OutputState }
+
+func (ReportDashboardArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ReportDashboard)(nil)).Elem()
+}
+
+func (o ReportDashboardArrayOutput) ToReportDashboardArrayOutput() ReportDashboardArrayOutput {
+	return o
+}
+
+func (o ReportDashboardArrayOutput) ToReportDashboardArrayOutputWithContext(ctx context.Context) ReportDashboardArrayOutput {
+	return o
+}
+
+func (o ReportDashboardArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ReportDashboard] {
+	return pulumix.Output[[]ReportDashboard]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o ReportDashboardArrayOutput) Index(i pulumi.IntInput) ReportDashboardOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ReportDashboard {
+		return vs[0].([]ReportDashboard)[vs[1].(int)]
+	}).(ReportDashboardOutput)
+}
+
+type ReportDashboardTimeRange struct {
+	// Start of the time range.
+	From *string `pulumi:"from"`
+	// End of the time range.
+	To *string `pulumi:"to"`
+}
+
+// ReportDashboardTimeRangeInput is an input type that accepts ReportDashboardTimeRangeArgs and ReportDashboardTimeRangeOutput values.
+// You can construct a concrete instance of `ReportDashboardTimeRangeInput` via:
+//
+//	ReportDashboardTimeRangeArgs{...}
+type ReportDashboardTimeRangeInput interface {
+	pulumi.Input
+
+	ToReportDashboardTimeRangeOutput() ReportDashboardTimeRangeOutput
+	ToReportDashboardTimeRangeOutputWithContext(context.Context) ReportDashboardTimeRangeOutput
+}
+
+type ReportDashboardTimeRangeArgs struct {
+	// Start of the time range.
+	From pulumi.StringPtrInput `pulumi:"from"`
+	// End of the time range.
+	To pulumi.StringPtrInput `pulumi:"to"`
+}
+
+func (ReportDashboardTimeRangeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReportDashboardTimeRange)(nil)).Elem()
+}
+
+func (i ReportDashboardTimeRangeArgs) ToReportDashboardTimeRangeOutput() ReportDashboardTimeRangeOutput {
+	return i.ToReportDashboardTimeRangeOutputWithContext(context.Background())
+}
+
+func (i ReportDashboardTimeRangeArgs) ToReportDashboardTimeRangeOutputWithContext(ctx context.Context) ReportDashboardTimeRangeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReportDashboardTimeRangeOutput)
+}
+
+func (i ReportDashboardTimeRangeArgs) ToOutput(ctx context.Context) pulumix.Output[ReportDashboardTimeRange] {
+	return pulumix.Output[ReportDashboardTimeRange]{
+		OutputState: i.ToReportDashboardTimeRangeOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i ReportDashboardTimeRangeArgs) ToReportDashboardTimeRangePtrOutput() ReportDashboardTimeRangePtrOutput {
+	return i.ToReportDashboardTimeRangePtrOutputWithContext(context.Background())
+}
+
+func (i ReportDashboardTimeRangeArgs) ToReportDashboardTimeRangePtrOutputWithContext(ctx context.Context) ReportDashboardTimeRangePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReportDashboardTimeRangeOutput).ToReportDashboardTimeRangePtrOutputWithContext(ctx)
+}
+
+// ReportDashboardTimeRangePtrInput is an input type that accepts ReportDashboardTimeRangeArgs, ReportDashboardTimeRangePtr and ReportDashboardTimeRangePtrOutput values.
+// You can construct a concrete instance of `ReportDashboardTimeRangePtrInput` via:
+//
+//	        ReportDashboardTimeRangeArgs{...}
+//
+//	or:
+//
+//	        nil
+type ReportDashboardTimeRangePtrInput interface {
+	pulumi.Input
+
+	ToReportDashboardTimeRangePtrOutput() ReportDashboardTimeRangePtrOutput
+	ToReportDashboardTimeRangePtrOutputWithContext(context.Context) ReportDashboardTimeRangePtrOutput
+}
+
+type reportDashboardTimeRangePtrType ReportDashboardTimeRangeArgs
+
+func ReportDashboardTimeRangePtr(v *ReportDashboardTimeRangeArgs) ReportDashboardTimeRangePtrInput {
+	return (*reportDashboardTimeRangePtrType)(v)
+}
+
+func (*reportDashboardTimeRangePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ReportDashboardTimeRange)(nil)).Elem()
+}
+
+func (i *reportDashboardTimeRangePtrType) ToReportDashboardTimeRangePtrOutput() ReportDashboardTimeRangePtrOutput {
+	return i.ToReportDashboardTimeRangePtrOutputWithContext(context.Background())
+}
+
+func (i *reportDashboardTimeRangePtrType) ToReportDashboardTimeRangePtrOutputWithContext(ctx context.Context) ReportDashboardTimeRangePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReportDashboardTimeRangePtrOutput)
+}
+
+func (i *reportDashboardTimeRangePtrType) ToOutput(ctx context.Context) pulumix.Output[*ReportDashboardTimeRange] {
+	return pulumix.Output[*ReportDashboardTimeRange]{
+		OutputState: i.ToReportDashboardTimeRangePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type ReportDashboardTimeRangeOutput struct{ *pulumi.OutputState }
+
+func (ReportDashboardTimeRangeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReportDashboardTimeRange)(nil)).Elem()
+}
+
+func (o ReportDashboardTimeRangeOutput) ToReportDashboardTimeRangeOutput() ReportDashboardTimeRangeOutput {
+	return o
+}
+
+func (o ReportDashboardTimeRangeOutput) ToReportDashboardTimeRangeOutputWithContext(ctx context.Context) ReportDashboardTimeRangeOutput {
+	return o
+}
+
+func (o ReportDashboardTimeRangeOutput) ToReportDashboardTimeRangePtrOutput() ReportDashboardTimeRangePtrOutput {
+	return o.ToReportDashboardTimeRangePtrOutputWithContext(context.Background())
+}
+
+func (o ReportDashboardTimeRangeOutput) ToReportDashboardTimeRangePtrOutputWithContext(ctx context.Context) ReportDashboardTimeRangePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ReportDashboardTimeRange) *ReportDashboardTimeRange {
+		return &v
+	}).(ReportDashboardTimeRangePtrOutput)
+}
+
+func (o ReportDashboardTimeRangeOutput) ToOutput(ctx context.Context) pulumix.Output[ReportDashboardTimeRange] {
+	return pulumix.Output[ReportDashboardTimeRange]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Start of the time range.
+func (o ReportDashboardTimeRangeOutput) From() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ReportDashboardTimeRange) *string { return v.From }).(pulumi.StringPtrOutput)
+}
+
+// End of the time range.
+func (o ReportDashboardTimeRangeOutput) To() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ReportDashboardTimeRange) *string { return v.To }).(pulumi.StringPtrOutput)
+}
+
+type ReportDashboardTimeRangePtrOutput struct{ *pulumi.OutputState }
+
+func (ReportDashboardTimeRangePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ReportDashboardTimeRange)(nil)).Elem()
+}
+
+func (o ReportDashboardTimeRangePtrOutput) ToReportDashboardTimeRangePtrOutput() ReportDashboardTimeRangePtrOutput {
+	return o
+}
+
+func (o ReportDashboardTimeRangePtrOutput) ToReportDashboardTimeRangePtrOutputWithContext(ctx context.Context) ReportDashboardTimeRangePtrOutput {
+	return o
+}
+
+func (o ReportDashboardTimeRangePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ReportDashboardTimeRange] {
+	return pulumix.Output[*ReportDashboardTimeRange]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o ReportDashboardTimeRangePtrOutput) Elem() ReportDashboardTimeRangeOutput {
+	return o.ApplyT(func(v *ReportDashboardTimeRange) ReportDashboardTimeRange {
+		if v != nil {
+			return *v
+		}
+		var ret ReportDashboardTimeRange
+		return ret
+	}).(ReportDashboardTimeRangeOutput)
+}
+
+// Start of the time range.
+func (o ReportDashboardTimeRangePtrOutput) From() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportDashboardTimeRange) *string {
+		if v == nil {
+			return nil
+		}
+		return v.From
+	}).(pulumi.StringPtrOutput)
+}
+
+// End of the time range.
+func (o ReportDashboardTimeRangePtrOutput) To() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportDashboardTimeRange) *string {
+		if v == nil {
+			return nil
+		}
+		return v.To
+	}).(pulumi.StringPtrOutput)
+}
+
 type ReportSchedule struct {
 	// Custom interval of the report.
 	// **Note:** This field is only available when frequency is set to `custom`.
 	CustomInterval *string `pulumi:"customInterval"`
-	// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
+	// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 	EndTime *string `pulumi:"endTime"`
 	// Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
 	Frequency string `pulumi:"frequency"`
 	// Send the report on the last day of the month Defaults to `false`.
 	LastDayOfMonth *bool `pulumi:"lastDayOfMonth"`
-	// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
+	// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 	StartTime *string `pulumi:"startTime"`
+	// Set the report time zone. Defaults to `GMT`.
+	Timezone *string `pulumi:"timezone"`
 	// Whether to send the report only on work days. Defaults to `false`.
 	WorkdaysOnly *bool `pulumi:"workdaysOnly"`
 }
@@ -9856,14 +10777,16 @@ type ReportScheduleArgs struct {
 	// Custom interval of the report.
 	// **Note:** This field is only available when frequency is set to `custom`.
 	CustomInterval pulumi.StringPtrInput `pulumi:"customInterval"`
-	// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
+	// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 	EndTime pulumi.StringPtrInput `pulumi:"endTime"`
 	// Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
 	Frequency pulumi.StringInput `pulumi:"frequency"`
 	// Send the report on the last day of the month Defaults to `false`.
 	LastDayOfMonth pulumi.BoolPtrInput `pulumi:"lastDayOfMonth"`
-	// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
+	// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 	StartTime pulumi.StringPtrInput `pulumi:"startTime"`
+	// Set the report time zone. Defaults to `GMT`.
+	Timezone pulumi.StringPtrInput `pulumi:"timezone"`
 	// Whether to send the report only on work days. Defaults to `false`.
 	WorkdaysOnly pulumi.BoolPtrInput `pulumi:"workdaysOnly"`
 }
@@ -9969,7 +10892,7 @@ func (o ReportScheduleOutput) CustomInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *string { return v.CustomInterval }).(pulumi.StringPtrOutput)
 }
 
-// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
+// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 func (o ReportScheduleOutput) EndTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *string { return v.EndTime }).(pulumi.StringPtrOutput)
 }
@@ -9984,9 +10907,14 @@ func (o ReportScheduleOutput) LastDayOfMonth() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *bool { return v.LastDayOfMonth }).(pulumi.BoolPtrOutput)
 }
 
-// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
+// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 func (o ReportScheduleOutput) StartTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *string { return v.StartTime }).(pulumi.StringPtrOutput)
+}
+
+// Set the report time zone. Defaults to `GMT`.
+func (o ReportScheduleOutput) Timezone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ReportSchedule) *string { return v.Timezone }).(pulumi.StringPtrOutput)
 }
 
 // Whether to send the report only on work days. Defaults to `false`.
@@ -10035,7 +10963,7 @@ func (o ReportSchedulePtrOutput) CustomInterval() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
+// End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 func (o ReportSchedulePtrOutput) EndTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ReportSchedule) *string {
 		if v == nil {
@@ -10065,13 +10993,23 @@ func (o ReportSchedulePtrOutput) LastDayOfMonth() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
+// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 func (o ReportSchedulePtrOutput) StartTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ReportSchedule) *string {
 		if v == nil {
 			return nil
 		}
 		return v.StartTime
+	}).(pulumi.StringPtrOutput)
+}
+
+// Set the report time zone. Defaults to `GMT`.
+func (o ReportSchedulePtrOutput) Timezone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportSchedule) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timezone
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -11979,6 +12917,167 @@ func (o SLOAlertingSlowburnLabelArrayOutput) Index(i pulumi.IntInput) SLOAlertin
 	}).(SLOAlertingSlowburnLabelOutput)
 }
 
+type SLODestinationDatasource struct {
+	// UID for the Mimir Datasource
+	Uid *string `pulumi:"uid"`
+}
+
+// SLODestinationDatasourceInput is an input type that accepts SLODestinationDatasourceArgs and SLODestinationDatasourceOutput values.
+// You can construct a concrete instance of `SLODestinationDatasourceInput` via:
+//
+//	SLODestinationDatasourceArgs{...}
+type SLODestinationDatasourceInput interface {
+	pulumi.Input
+
+	ToSLODestinationDatasourceOutput() SLODestinationDatasourceOutput
+	ToSLODestinationDatasourceOutputWithContext(context.Context) SLODestinationDatasourceOutput
+}
+
+type SLODestinationDatasourceArgs struct {
+	// UID for the Mimir Datasource
+	Uid pulumi.StringPtrInput `pulumi:"uid"`
+}
+
+func (SLODestinationDatasourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLODestinationDatasource)(nil)).Elem()
+}
+
+func (i SLODestinationDatasourceArgs) ToSLODestinationDatasourceOutput() SLODestinationDatasourceOutput {
+	return i.ToSLODestinationDatasourceOutputWithContext(context.Background())
+}
+
+func (i SLODestinationDatasourceArgs) ToSLODestinationDatasourceOutputWithContext(ctx context.Context) SLODestinationDatasourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLODestinationDatasourceOutput)
+}
+
+func (i SLODestinationDatasourceArgs) ToOutput(ctx context.Context) pulumix.Output[SLODestinationDatasource] {
+	return pulumix.Output[SLODestinationDatasource]{
+		OutputState: i.ToSLODestinationDatasourceOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i SLODestinationDatasourceArgs) ToSLODestinationDatasourcePtrOutput() SLODestinationDatasourcePtrOutput {
+	return i.ToSLODestinationDatasourcePtrOutputWithContext(context.Background())
+}
+
+func (i SLODestinationDatasourceArgs) ToSLODestinationDatasourcePtrOutputWithContext(ctx context.Context) SLODestinationDatasourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLODestinationDatasourceOutput).ToSLODestinationDatasourcePtrOutputWithContext(ctx)
+}
+
+// SLODestinationDatasourcePtrInput is an input type that accepts SLODestinationDatasourceArgs, SLODestinationDatasourcePtr and SLODestinationDatasourcePtrOutput values.
+// You can construct a concrete instance of `SLODestinationDatasourcePtrInput` via:
+//
+//	        SLODestinationDatasourceArgs{...}
+//
+//	or:
+//
+//	        nil
+type SLODestinationDatasourcePtrInput interface {
+	pulumi.Input
+
+	ToSLODestinationDatasourcePtrOutput() SLODestinationDatasourcePtrOutput
+	ToSLODestinationDatasourcePtrOutputWithContext(context.Context) SLODestinationDatasourcePtrOutput
+}
+
+type slodestinationDatasourcePtrType SLODestinationDatasourceArgs
+
+func SLODestinationDatasourcePtr(v *SLODestinationDatasourceArgs) SLODestinationDatasourcePtrInput {
+	return (*slodestinationDatasourcePtrType)(v)
+}
+
+func (*slodestinationDatasourcePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SLODestinationDatasource)(nil)).Elem()
+}
+
+func (i *slodestinationDatasourcePtrType) ToSLODestinationDatasourcePtrOutput() SLODestinationDatasourcePtrOutput {
+	return i.ToSLODestinationDatasourcePtrOutputWithContext(context.Background())
+}
+
+func (i *slodestinationDatasourcePtrType) ToSLODestinationDatasourcePtrOutputWithContext(ctx context.Context) SLODestinationDatasourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLODestinationDatasourcePtrOutput)
+}
+
+func (i *slodestinationDatasourcePtrType) ToOutput(ctx context.Context) pulumix.Output[*SLODestinationDatasource] {
+	return pulumix.Output[*SLODestinationDatasource]{
+		OutputState: i.ToSLODestinationDatasourcePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SLODestinationDatasourceOutput struct{ *pulumi.OutputState }
+
+func (SLODestinationDatasourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLODestinationDatasource)(nil)).Elem()
+}
+
+func (o SLODestinationDatasourceOutput) ToSLODestinationDatasourceOutput() SLODestinationDatasourceOutput {
+	return o
+}
+
+func (o SLODestinationDatasourceOutput) ToSLODestinationDatasourceOutputWithContext(ctx context.Context) SLODestinationDatasourceOutput {
+	return o
+}
+
+func (o SLODestinationDatasourceOutput) ToSLODestinationDatasourcePtrOutput() SLODestinationDatasourcePtrOutput {
+	return o.ToSLODestinationDatasourcePtrOutputWithContext(context.Background())
+}
+
+func (o SLODestinationDatasourceOutput) ToSLODestinationDatasourcePtrOutputWithContext(ctx context.Context) SLODestinationDatasourcePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SLODestinationDatasource) *SLODestinationDatasource {
+		return &v
+	}).(SLODestinationDatasourcePtrOutput)
+}
+
+func (o SLODestinationDatasourceOutput) ToOutput(ctx context.Context) pulumix.Output[SLODestinationDatasource] {
+	return pulumix.Output[SLODestinationDatasource]{
+		OutputState: o.OutputState,
+	}
+}
+
+// UID for the Mimir Datasource
+func (o SLODestinationDatasourceOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SLODestinationDatasource) *string { return v.Uid }).(pulumi.StringPtrOutput)
+}
+
+type SLODestinationDatasourcePtrOutput struct{ *pulumi.OutputState }
+
+func (SLODestinationDatasourcePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SLODestinationDatasource)(nil)).Elem()
+}
+
+func (o SLODestinationDatasourcePtrOutput) ToSLODestinationDatasourcePtrOutput() SLODestinationDatasourcePtrOutput {
+	return o
+}
+
+func (o SLODestinationDatasourcePtrOutput) ToSLODestinationDatasourcePtrOutputWithContext(ctx context.Context) SLODestinationDatasourcePtrOutput {
+	return o
+}
+
+func (o SLODestinationDatasourcePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SLODestinationDatasource] {
+	return pulumix.Output[*SLODestinationDatasource]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SLODestinationDatasourcePtrOutput) Elem() SLODestinationDatasourceOutput {
+	return o.ApplyT(func(v *SLODestinationDatasource) SLODestinationDatasource {
+		if v != nil {
+			return *v
+		}
+		var ret SLODestinationDatasource
+		return ret
+	}).(SLODestinationDatasourceOutput)
+}
+
+// UID for the Mimir Datasource
+func (o SLODestinationDatasourcePtrOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SLODestinationDatasource) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uid
+	}).(pulumi.StringPtrOutput)
+}
+
 type SLOLabel struct {
 	Key   string `pulumi:"key"`
 	Value string `pulumi:"value"`
@@ -12865,11 +13964,877 @@ func (o ServiceAccountPermissionPermissionArrayOutput) Index(i pulumi.IntInput) 
 	}).(ServiceAccountPermissionPermissionOutput)
 }
 
+type SsoSettingsOauth2Settings struct {
+	// If enabled, it will automatically sync the Grafana server administrator role.
+	AllowAssignGrafanaAdmin *bool `pulumi:"allowAssignGrafanaAdmin"`
+	// If not enabled, only existing Grafana users can log in using OAuth.
+	AllowSignUp *bool `pulumi:"allowSignUp"`
+	// List of comma- or space-separated domains. The user should belong to at least one domain to log in.
+	AllowedDomains *string `pulumi:"allowedDomains"`
+	// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+	AllowedGroups *string `pulumi:"allowedGroups"`
+	// List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
+	AllowedOrganizations *string `pulumi:"allowedOrganizations"`
+	// The user information endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+	ApiUrl *string `pulumi:"apiUrl"`
+	// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+	AuthStyle *string `pulumi:"authStyle"`
+	// The authorization endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+	AuthUrl *string `pulumi:"authUrl"`
+	// Log in automatically, skipping the login screen.
+	AutoLogin *bool `pulumi:"autoLogin"`
+	// The client Id of your OAuth2 app.
+	ClientId string `pulumi:"clientId"`
+	// The client secret of your OAuth2 app.
+	ClientSecret *string `pulumi:"clientSecret"`
+	// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+	Custom map[string]string `pulumi:"custom"`
+	// Define allowed groups.
+	DefineAllowedGroups *bool `pulumi:"defineAllowedGroups"`
+	// Define allowed teams ids.
+	DefineAllowedTeamsIds *bool `pulumi:"defineAllowedTeamsIds"`
+	// Name of the key to use for user email lookup within the attributes map of OAuth2 ID token. Only applicable to Generic OAuth.
+	EmailAttributeName *string `pulumi:"emailAttributeName"`
+	// JMESPath expression to use for user email lookup from the user information. Only applicable to Generic OAuth.
+	EmailAttributePath *string `pulumi:"emailAttributePath"`
+	// If enabled, no scopes will be sent to the OAuth2 provider.
+	EmptyScopes *bool `pulumi:"emptyScopes"`
+	// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+	Enabled *bool `pulumi:"enabled"`
+	// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+	GroupsAttributePath *string `pulumi:"groupsAttributePath"`
+	// The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
+	IdTokenAttributeName *string `pulumi:"idTokenAttributeName"`
+	// JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
+	LoginAttributePath *string `pulumi:"loginAttributePath"`
+	// Helpful if you use more than one identity providers or SSO protocols.
+	Name *string `pulumi:"name"`
+	// JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+	NameAttributePath *string `pulumi:"nameAttributePath"`
+	// JMESPath expression to use for Grafana role lookup.
+	RoleAttributePath *string `pulumi:"roleAttributePath"`
+	// If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
+	RoleAttributeStrict *bool `pulumi:"roleAttributeStrict"`
+	// List of comma- or space-separated OAuth2 scopes.
+	Scopes *string `pulumi:"scopes"`
+	// The URL to redirect the user to after signing out from Grafana.
+	SignoutRedirectUrl *string `pulumi:"signoutRedirectUrl"`
+	// Prevent synchronizing users’ organization roles from your IdP.
+	SkipOrgRoleSync *bool `pulumi:"skipOrgRoleSync"`
+	// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+	TeamIds *string `pulumi:"teamIds"`
+	// The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teamsUrl endpoint. Only applicable to Generic OAuth.
+	TeamIdsAttributePath *string `pulumi:"teamIdsAttributePath"`
+	// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+	TeamsUrl *string `pulumi:"teamsUrl"`
+	// The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
+	TlsClientCa *string `pulumi:"tlsClientCa"`
+	// The path to the certificate. Is not applicable on Grafana Cloud.
+	TlsClientCert *string `pulumi:"tlsClientCert"`
+	// The path to the key. Is not applicable on Grafana Cloud.
+	TlsClientKey *string `pulumi:"tlsClientKey"`
+	// If enabled, the client accepts any certificate presented by the server and any host name in that certificate. You should only use this for testing, because this mode leaves SSL/TLS susceptible to man-in-the-middle attacks.
+	TlsSkipVerifyInsecure *bool `pulumi:"tlsSkipVerifyInsecure"`
+	// The token endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+	TokenUrl *string `pulumi:"tokenUrl"`
+	// If enabled, Grafana will use Proof Key for Code Exchange (PKCE) with the OAuth2 Authorization Code Grant.
+	UsePkce *bool `pulumi:"usePkce"`
+	// If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
+	UseRefreshToken *bool `pulumi:"useRefreshToken"`
+}
+
+// SsoSettingsOauth2SettingsInput is an input type that accepts SsoSettingsOauth2SettingsArgs and SsoSettingsOauth2SettingsOutput values.
+// You can construct a concrete instance of `SsoSettingsOauth2SettingsInput` via:
+//
+//	SsoSettingsOauth2SettingsArgs{...}
+type SsoSettingsOauth2SettingsInput interface {
+	pulumi.Input
+
+	ToSsoSettingsOauth2SettingsOutput() SsoSettingsOauth2SettingsOutput
+	ToSsoSettingsOauth2SettingsOutputWithContext(context.Context) SsoSettingsOauth2SettingsOutput
+}
+
+type SsoSettingsOauth2SettingsArgs struct {
+	// If enabled, it will automatically sync the Grafana server administrator role.
+	AllowAssignGrafanaAdmin pulumi.BoolPtrInput `pulumi:"allowAssignGrafanaAdmin"`
+	// If not enabled, only existing Grafana users can log in using OAuth.
+	AllowSignUp pulumi.BoolPtrInput `pulumi:"allowSignUp"`
+	// List of comma- or space-separated domains. The user should belong to at least one domain to log in.
+	AllowedDomains pulumi.StringPtrInput `pulumi:"allowedDomains"`
+	// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+	AllowedGroups pulumi.StringPtrInput `pulumi:"allowedGroups"`
+	// List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
+	AllowedOrganizations pulumi.StringPtrInput `pulumi:"allowedOrganizations"`
+	// The user information endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+	ApiUrl pulumi.StringPtrInput `pulumi:"apiUrl"`
+	// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+	AuthStyle pulumi.StringPtrInput `pulumi:"authStyle"`
+	// The authorization endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+	AuthUrl pulumi.StringPtrInput `pulumi:"authUrl"`
+	// Log in automatically, skipping the login screen.
+	AutoLogin pulumi.BoolPtrInput `pulumi:"autoLogin"`
+	// The client Id of your OAuth2 app.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// The client secret of your OAuth2 app.
+	ClientSecret pulumi.StringPtrInput `pulumi:"clientSecret"`
+	// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+	Custom pulumi.StringMapInput `pulumi:"custom"`
+	// Define allowed groups.
+	DefineAllowedGroups pulumi.BoolPtrInput `pulumi:"defineAllowedGroups"`
+	// Define allowed teams ids.
+	DefineAllowedTeamsIds pulumi.BoolPtrInput `pulumi:"defineAllowedTeamsIds"`
+	// Name of the key to use for user email lookup within the attributes map of OAuth2 ID token. Only applicable to Generic OAuth.
+	EmailAttributeName pulumi.StringPtrInput `pulumi:"emailAttributeName"`
+	// JMESPath expression to use for user email lookup from the user information. Only applicable to Generic OAuth.
+	EmailAttributePath pulumi.StringPtrInput `pulumi:"emailAttributePath"`
+	// If enabled, no scopes will be sent to the OAuth2 provider.
+	EmptyScopes pulumi.BoolPtrInput `pulumi:"emptyScopes"`
+	// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+	GroupsAttributePath pulumi.StringPtrInput `pulumi:"groupsAttributePath"`
+	// The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
+	IdTokenAttributeName pulumi.StringPtrInput `pulumi:"idTokenAttributeName"`
+	// JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
+	LoginAttributePath pulumi.StringPtrInput `pulumi:"loginAttributePath"`
+	// Helpful if you use more than one identity providers or SSO protocols.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+	NameAttributePath pulumi.StringPtrInput `pulumi:"nameAttributePath"`
+	// JMESPath expression to use for Grafana role lookup.
+	RoleAttributePath pulumi.StringPtrInput `pulumi:"roleAttributePath"`
+	// If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
+	RoleAttributeStrict pulumi.BoolPtrInput `pulumi:"roleAttributeStrict"`
+	// List of comma- or space-separated OAuth2 scopes.
+	Scopes pulumi.StringPtrInput `pulumi:"scopes"`
+	// The URL to redirect the user to after signing out from Grafana.
+	SignoutRedirectUrl pulumi.StringPtrInput `pulumi:"signoutRedirectUrl"`
+	// Prevent synchronizing users’ organization roles from your IdP.
+	SkipOrgRoleSync pulumi.BoolPtrInput `pulumi:"skipOrgRoleSync"`
+	// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+	TeamIds pulumi.StringPtrInput `pulumi:"teamIds"`
+	// The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teamsUrl endpoint. Only applicable to Generic OAuth.
+	TeamIdsAttributePath pulumi.StringPtrInput `pulumi:"teamIdsAttributePath"`
+	// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+	TeamsUrl pulumi.StringPtrInput `pulumi:"teamsUrl"`
+	// The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
+	TlsClientCa pulumi.StringPtrInput `pulumi:"tlsClientCa"`
+	// The path to the certificate. Is not applicable on Grafana Cloud.
+	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	// The path to the key. Is not applicable on Grafana Cloud.
+	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// If enabled, the client accepts any certificate presented by the server and any host name in that certificate. You should only use this for testing, because this mode leaves SSL/TLS susceptible to man-in-the-middle attacks.
+	TlsSkipVerifyInsecure pulumi.BoolPtrInput `pulumi:"tlsSkipVerifyInsecure"`
+	// The token endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+	TokenUrl pulumi.StringPtrInput `pulumi:"tokenUrl"`
+	// If enabled, Grafana will use Proof Key for Code Exchange (PKCE) with the OAuth2 Authorization Code Grant.
+	UsePkce pulumi.BoolPtrInput `pulumi:"usePkce"`
+	// If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
+	UseRefreshToken pulumi.BoolPtrInput `pulumi:"useRefreshToken"`
+}
+
+func (SsoSettingsOauth2SettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsOauth2Settings)(nil)).Elem()
+}
+
+func (i SsoSettingsOauth2SettingsArgs) ToSsoSettingsOauth2SettingsOutput() SsoSettingsOauth2SettingsOutput {
+	return i.ToSsoSettingsOauth2SettingsOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsOauth2SettingsArgs) ToSsoSettingsOauth2SettingsOutputWithContext(ctx context.Context) SsoSettingsOauth2SettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsOauth2SettingsOutput)
+}
+
+func (i SsoSettingsOauth2SettingsArgs) ToOutput(ctx context.Context) pulumix.Output[SsoSettingsOauth2Settings] {
+	return pulumix.Output[SsoSettingsOauth2Settings]{
+		OutputState: i.ToSsoSettingsOauth2SettingsOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i SsoSettingsOauth2SettingsArgs) ToSsoSettingsOauth2SettingsPtrOutput() SsoSettingsOauth2SettingsPtrOutput {
+	return i.ToSsoSettingsOauth2SettingsPtrOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsOauth2SettingsArgs) ToSsoSettingsOauth2SettingsPtrOutputWithContext(ctx context.Context) SsoSettingsOauth2SettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsOauth2SettingsOutput).ToSsoSettingsOauth2SettingsPtrOutputWithContext(ctx)
+}
+
+// SsoSettingsOauth2SettingsPtrInput is an input type that accepts SsoSettingsOauth2SettingsArgs, SsoSettingsOauth2SettingsPtr and SsoSettingsOauth2SettingsPtrOutput values.
+// You can construct a concrete instance of `SsoSettingsOauth2SettingsPtrInput` via:
+//
+//	        SsoSettingsOauth2SettingsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SsoSettingsOauth2SettingsPtrInput interface {
+	pulumi.Input
+
+	ToSsoSettingsOauth2SettingsPtrOutput() SsoSettingsOauth2SettingsPtrOutput
+	ToSsoSettingsOauth2SettingsPtrOutputWithContext(context.Context) SsoSettingsOauth2SettingsPtrOutput
+}
+
+type ssoSettingsOauth2SettingsPtrType SsoSettingsOauth2SettingsArgs
+
+func SsoSettingsOauth2SettingsPtr(v *SsoSettingsOauth2SettingsArgs) SsoSettingsOauth2SettingsPtrInput {
+	return (*ssoSettingsOauth2SettingsPtrType)(v)
+}
+
+func (*ssoSettingsOauth2SettingsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SsoSettingsOauth2Settings)(nil)).Elem()
+}
+
+func (i *ssoSettingsOauth2SettingsPtrType) ToSsoSettingsOauth2SettingsPtrOutput() SsoSettingsOauth2SettingsPtrOutput {
+	return i.ToSsoSettingsOauth2SettingsPtrOutputWithContext(context.Background())
+}
+
+func (i *ssoSettingsOauth2SettingsPtrType) ToSsoSettingsOauth2SettingsPtrOutputWithContext(ctx context.Context) SsoSettingsOauth2SettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsOauth2SettingsPtrOutput)
+}
+
+func (i *ssoSettingsOauth2SettingsPtrType) ToOutput(ctx context.Context) pulumix.Output[*SsoSettingsOauth2Settings] {
+	return pulumix.Output[*SsoSettingsOauth2Settings]{
+		OutputState: i.ToSsoSettingsOauth2SettingsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SsoSettingsOauth2SettingsOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsOauth2SettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsOauth2Settings)(nil)).Elem()
+}
+
+func (o SsoSettingsOauth2SettingsOutput) ToSsoSettingsOauth2SettingsOutput() SsoSettingsOauth2SettingsOutput {
+	return o
+}
+
+func (o SsoSettingsOauth2SettingsOutput) ToSsoSettingsOauth2SettingsOutputWithContext(ctx context.Context) SsoSettingsOauth2SettingsOutput {
+	return o
+}
+
+func (o SsoSettingsOauth2SettingsOutput) ToSsoSettingsOauth2SettingsPtrOutput() SsoSettingsOauth2SettingsPtrOutput {
+	return o.ToSsoSettingsOauth2SettingsPtrOutputWithContext(context.Background())
+}
+
+func (o SsoSettingsOauth2SettingsOutput) ToSsoSettingsOauth2SettingsPtrOutputWithContext(ctx context.Context) SsoSettingsOauth2SettingsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SsoSettingsOauth2Settings) *SsoSettingsOauth2Settings {
+		return &v
+	}).(SsoSettingsOauth2SettingsPtrOutput)
+}
+
+func (o SsoSettingsOauth2SettingsOutput) ToOutput(ctx context.Context) pulumix.Output[SsoSettingsOauth2Settings] {
+	return pulumix.Output[SsoSettingsOauth2Settings]{
+		OutputState: o.OutputState,
+	}
+}
+
+// If enabled, it will automatically sync the Grafana server administrator role.
+func (o SsoSettingsOauth2SettingsOutput) AllowAssignGrafanaAdmin() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.AllowAssignGrafanaAdmin }).(pulumi.BoolPtrOutput)
+}
+
+// If not enabled, only existing Grafana users can log in using OAuth.
+func (o SsoSettingsOauth2SettingsOutput) AllowSignUp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.AllowSignUp }).(pulumi.BoolPtrOutput)
+}
+
+// List of comma- or space-separated domains. The user should belong to at least one domain to log in.
+func (o SsoSettingsOauth2SettingsOutput) AllowedDomains() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.AllowedDomains }).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+func (o SsoSettingsOauth2SettingsOutput) AllowedGroups() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.AllowedGroups }).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
+func (o SsoSettingsOauth2SettingsOutput) AllowedOrganizations() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.AllowedOrganizations }).(pulumi.StringPtrOutput)
+}
+
+// The user information endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+func (o SsoSettingsOauth2SettingsOutput) ApiUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.ApiUrl }).(pulumi.StringPtrOutput)
+}
+
+// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+func (o SsoSettingsOauth2SettingsOutput) AuthStyle() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.AuthStyle }).(pulumi.StringPtrOutput)
+}
+
+// The authorization endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+func (o SsoSettingsOauth2SettingsOutput) AuthUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.AuthUrl }).(pulumi.StringPtrOutput)
+}
+
+// Log in automatically, skipping the login screen.
+func (o SsoSettingsOauth2SettingsOutput) AutoLogin() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.AutoLogin }).(pulumi.BoolPtrOutput)
+}
+
+// The client Id of your OAuth2 app.
+func (o SsoSettingsOauth2SettingsOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// The client secret of your OAuth2 app.
+func (o SsoSettingsOauth2SettingsOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+func (o SsoSettingsOauth2SettingsOutput) Custom() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) map[string]string { return v.Custom }).(pulumi.StringMapOutput)
+}
+
+// Define allowed groups.
+func (o SsoSettingsOauth2SettingsOutput) DefineAllowedGroups() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.DefineAllowedGroups }).(pulumi.BoolPtrOutput)
+}
+
+// Define allowed teams ids.
+func (o SsoSettingsOauth2SettingsOutput) DefineAllowedTeamsIds() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.DefineAllowedTeamsIds }).(pulumi.BoolPtrOutput)
+}
+
+// Name of the key to use for user email lookup within the attributes map of OAuth2 ID token. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsOutput) EmailAttributeName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.EmailAttributeName }).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for user email lookup from the user information. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsOutput) EmailAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.EmailAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// If enabled, no scopes will be sent to the OAuth2 provider.
+func (o SsoSettingsOauth2SettingsOutput) EmptyScopes() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.EmptyScopes }).(pulumi.BoolPtrOutput)
+}
+
+// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+func (o SsoSettingsOauth2SettingsOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+func (o SsoSettingsOauth2SettingsOutput) GroupsAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.GroupsAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsOutput) IdTokenAttributeName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.IdTokenAttributeName }).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsOutput) LoginAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.LoginAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// Helpful if you use more than one identity providers or SSO protocols.
+func (o SsoSettingsOauth2SettingsOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsOutput) NameAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.NameAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for Grafana role lookup.
+func (o SsoSettingsOauth2SettingsOutput) RoleAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.RoleAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
+func (o SsoSettingsOauth2SettingsOutput) RoleAttributeStrict() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.RoleAttributeStrict }).(pulumi.BoolPtrOutput)
+}
+
+// List of comma- or space-separated OAuth2 scopes.
+func (o SsoSettingsOauth2SettingsOutput) Scopes() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.Scopes }).(pulumi.StringPtrOutput)
+}
+
+// The URL to redirect the user to after signing out from Grafana.
+func (o SsoSettingsOauth2SettingsOutput) SignoutRedirectUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.SignoutRedirectUrl }).(pulumi.StringPtrOutput)
+}
+
+// Prevent synchronizing users’ organization roles from your IdP.
+func (o SsoSettingsOauth2SettingsOutput) SkipOrgRoleSync() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.SkipOrgRoleSync }).(pulumi.BoolPtrOutput)
+}
+
+// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+func (o SsoSettingsOauth2SettingsOutput) TeamIds() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TeamIds }).(pulumi.StringPtrOutput)
+}
+
+// The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teamsUrl endpoint. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsOutput) TeamIdsAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TeamIdsAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsOutput) TeamsUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TeamsUrl }).(pulumi.StringPtrOutput)
+}
+
+// The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
+func (o SsoSettingsOauth2SettingsOutput) TlsClientCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TlsClientCa }).(pulumi.StringPtrOutput)
+}
+
+// The path to the certificate. Is not applicable on Grafana Cloud.
+func (o SsoSettingsOauth2SettingsOutput) TlsClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
+}
+
+// The path to the key. Is not applicable on Grafana Cloud.
+func (o SsoSettingsOauth2SettingsOutput) TlsClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
+}
+
+// If enabled, the client accepts any certificate presented by the server and any host name in that certificate. You should only use this for testing, because this mode leaves SSL/TLS susceptible to man-in-the-middle attacks.
+func (o SsoSettingsOauth2SettingsOutput) TlsSkipVerifyInsecure() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.TlsSkipVerifyInsecure }).(pulumi.BoolPtrOutput)
+}
+
+// The token endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+func (o SsoSettingsOauth2SettingsOutput) TokenUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TokenUrl }).(pulumi.StringPtrOutput)
+}
+
+// If enabled, Grafana will use Proof Key for Code Exchange (PKCE) with the OAuth2 Authorization Code Grant.
+func (o SsoSettingsOauth2SettingsOutput) UsePkce() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.UsePkce }).(pulumi.BoolPtrOutput)
+}
+
+// If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
+func (o SsoSettingsOauth2SettingsOutput) UseRefreshToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.UseRefreshToken }).(pulumi.BoolPtrOutput)
+}
+
+type SsoSettingsOauth2SettingsPtrOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsOauth2SettingsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SsoSettingsOauth2Settings)(nil)).Elem()
+}
+
+func (o SsoSettingsOauth2SettingsPtrOutput) ToSsoSettingsOauth2SettingsPtrOutput() SsoSettingsOauth2SettingsPtrOutput {
+	return o
+}
+
+func (o SsoSettingsOauth2SettingsPtrOutput) ToSsoSettingsOauth2SettingsPtrOutputWithContext(ctx context.Context) SsoSettingsOauth2SettingsPtrOutput {
+	return o
+}
+
+func (o SsoSettingsOauth2SettingsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SsoSettingsOauth2Settings] {
+	return pulumix.Output[*SsoSettingsOauth2Settings]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SsoSettingsOauth2SettingsPtrOutput) Elem() SsoSettingsOauth2SettingsOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) SsoSettingsOauth2Settings {
+		if v != nil {
+			return *v
+		}
+		var ret SsoSettingsOauth2Settings
+		return ret
+	}).(SsoSettingsOauth2SettingsOutput)
+}
+
+// If enabled, it will automatically sync the Grafana server administrator role.
+func (o SsoSettingsOauth2SettingsPtrOutput) AllowAssignGrafanaAdmin() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowAssignGrafanaAdmin
+	}).(pulumi.BoolPtrOutput)
+}
+
+// If not enabled, only existing Grafana users can log in using OAuth.
+func (o SsoSettingsOauth2SettingsPtrOutput) AllowSignUp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowSignUp
+	}).(pulumi.BoolPtrOutput)
+}
+
+// List of comma- or space-separated domains. The user should belong to at least one domain to log in.
+func (o SsoSettingsOauth2SettingsPtrOutput) AllowedDomains() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AllowedDomains
+	}).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+func (o SsoSettingsOauth2SettingsPtrOutput) AllowedGroups() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AllowedGroups
+	}).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
+func (o SsoSettingsOauth2SettingsPtrOutput) AllowedOrganizations() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AllowedOrganizations
+	}).(pulumi.StringPtrOutput)
+}
+
+// The user information endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+func (o SsoSettingsOauth2SettingsPtrOutput) ApiUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+func (o SsoSettingsOauth2SettingsPtrOutput) AuthStyle() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthStyle
+	}).(pulumi.StringPtrOutput)
+}
+
+// The authorization endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+func (o SsoSettingsOauth2SettingsPtrOutput) AuthUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// Log in automatically, skipping the login screen.
+func (o SsoSettingsOauth2SettingsPtrOutput) AutoLogin() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AutoLogin
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The client Id of your OAuth2 app.
+func (o SsoSettingsOauth2SettingsPtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The client secret of your OAuth2 app.
+func (o SsoSettingsOauth2SettingsPtrOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientSecret
+	}).(pulumi.StringPtrOutput)
+}
+
+// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+func (o SsoSettingsOauth2SettingsPtrOutput) Custom() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Custom
+	}).(pulumi.StringMapOutput)
+}
+
+// Define allowed groups.
+func (o SsoSettingsOauth2SettingsPtrOutput) DefineAllowedGroups() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DefineAllowedGroups
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Define allowed teams ids.
+func (o SsoSettingsOauth2SettingsPtrOutput) DefineAllowedTeamsIds() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DefineAllowedTeamsIds
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Name of the key to use for user email lookup within the attributes map of OAuth2 ID token. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsPtrOutput) EmailAttributeName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EmailAttributeName
+	}).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for user email lookup from the user information. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsPtrOutput) EmailAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EmailAttributePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// If enabled, no scopes will be sent to the OAuth2 provider.
+func (o SsoSettingsOauth2SettingsPtrOutput) EmptyScopes() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.EmptyScopes
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+func (o SsoSettingsOauth2SettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+func (o SsoSettingsOauth2SettingsPtrOutput) GroupsAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupsAttributePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsPtrOutput) IdTokenAttributeName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IdTokenAttributeName
+	}).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsPtrOutput) LoginAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LoginAttributePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// Helpful if you use more than one identity providers or SSO protocols.
+func (o SsoSettingsOauth2SettingsPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsPtrOutput) NameAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NameAttributePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for Grafana role lookup.
+func (o SsoSettingsOauth2SettingsPtrOutput) RoleAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RoleAttributePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
+func (o SsoSettingsOauth2SettingsPtrOutput) RoleAttributeStrict() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.RoleAttributeStrict
+	}).(pulumi.BoolPtrOutput)
+}
+
+// List of comma- or space-separated OAuth2 scopes.
+func (o SsoSettingsOauth2SettingsPtrOutput) Scopes() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Scopes
+	}).(pulumi.StringPtrOutput)
+}
+
+// The URL to redirect the user to after signing out from Grafana.
+func (o SsoSettingsOauth2SettingsPtrOutput) SignoutRedirectUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SignoutRedirectUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// Prevent synchronizing users’ organization roles from your IdP.
+func (o SsoSettingsOauth2SettingsPtrOutput) SkipOrgRoleSync() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SkipOrgRoleSync
+	}).(pulumi.BoolPtrOutput)
+}
+
+// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+func (o SsoSettingsOauth2SettingsPtrOutput) TeamIds() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TeamIds
+	}).(pulumi.StringPtrOutput)
+}
+
+// The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teamsUrl endpoint. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsPtrOutput) TeamIdsAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TeamIdsAttributePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+func (o SsoSettingsOauth2SettingsPtrOutput) TeamsUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TeamsUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
+func (o SsoSettingsOauth2SettingsPtrOutput) TlsClientCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsClientCa
+	}).(pulumi.StringPtrOutput)
+}
+
+// The path to the certificate. Is not applicable on Grafana Cloud.
+func (o SsoSettingsOauth2SettingsPtrOutput) TlsClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsClientCert
+	}).(pulumi.StringPtrOutput)
+}
+
+// The path to the key. Is not applicable on Grafana Cloud.
+func (o SsoSettingsOauth2SettingsPtrOutput) TlsClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsClientKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// If enabled, the client accepts any certificate presented by the server and any host name in that certificate. You should only use this for testing, because this mode leaves SSL/TLS susceptible to man-in-the-middle attacks.
+func (o SsoSettingsOauth2SettingsPtrOutput) TlsSkipVerifyInsecure() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.TlsSkipVerifyInsecure
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The token endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+func (o SsoSettingsOauth2SettingsPtrOutput) TokenUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TokenUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// If enabled, Grafana will use Proof Key for Code Exchange (PKCE) with the OAuth2 Authorization Code Grant.
+func (o SsoSettingsOauth2SettingsPtrOutput) UsePkce() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UsePkce
+	}).(pulumi.BoolPtrOutput)
+}
+
+// If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
+func (o SsoSettingsOauth2SettingsPtrOutput) UseRefreshToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRefreshToken
+	}).(pulumi.BoolPtrOutput)
+}
+
 type SyntheticMonitoringCheckSettings struct {
 	// Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
 	Dns *SyntheticMonitoringCheckSettingsDns `pulumi:"dns"`
 	// Settings for HTTP check. The target must be a URL (http or https).
 	Http *SyntheticMonitoringCheckSettingsHttp `pulumi:"http"`
+	// Settings for MultiHTTP check. The target must be a URL (http or https)
+	Multihttp *SyntheticMonitoringCheckSettingsMultihttp `pulumi:"multihttp"`
 	// Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
 	Ping *SyntheticMonitoringCheckSettingsPing `pulumi:"ping"`
 	// Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
@@ -12894,6 +14859,8 @@ type SyntheticMonitoringCheckSettingsArgs struct {
 	Dns SyntheticMonitoringCheckSettingsDnsPtrInput `pulumi:"dns"`
 	// Settings for HTTP check. The target must be a URL (http or https).
 	Http SyntheticMonitoringCheckSettingsHttpPtrInput `pulumi:"http"`
+	// Settings for MultiHTTP check. The target must be a URL (http or https)
+	Multihttp SyntheticMonitoringCheckSettingsMultihttpPtrInput `pulumi:"multihttp"`
 	// Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
 	Ping SyntheticMonitoringCheckSettingsPingPtrInput `pulumi:"ping"`
 	// Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
@@ -13007,6 +14974,13 @@ func (o SyntheticMonitoringCheckSettingsOutput) Http() SyntheticMonitoringCheckS
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettings) *SyntheticMonitoringCheckSettingsHttp { return v.Http }).(SyntheticMonitoringCheckSettingsHttpPtrOutput)
 }
 
+// Settings for MultiHTTP check. The target must be a URL (http or https)
+func (o SyntheticMonitoringCheckSettingsOutput) Multihttp() SyntheticMonitoringCheckSettingsMultihttpPtrOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettings) *SyntheticMonitoringCheckSettingsMultihttp {
+		return v.Multihttp
+	}).(SyntheticMonitoringCheckSettingsMultihttpPtrOutput)
+}
+
 // Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
 func (o SyntheticMonitoringCheckSettingsOutput) Ping() SyntheticMonitoringCheckSettingsPingPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettings) *SyntheticMonitoringCheckSettingsPing { return v.Ping }).(SyntheticMonitoringCheckSettingsPingPtrOutput)
@@ -13072,6 +15046,16 @@ func (o SyntheticMonitoringCheckSettingsPtrOutput) Http() SyntheticMonitoringChe
 		}
 		return v.Http
 	}).(SyntheticMonitoringCheckSettingsHttpPtrOutput)
+}
+
+// Settings for MultiHTTP check. The target must be a URL (http or https)
+func (o SyntheticMonitoringCheckSettingsPtrOutput) Multihttp() SyntheticMonitoringCheckSettingsMultihttpPtrOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettings) *SyntheticMonitoringCheckSettingsMultihttp {
+		if v == nil {
+			return nil
+		}
+		return v.Multihttp
+	}).(SyntheticMonitoringCheckSettingsMultihttpPtrOutput)
 }
 
 // Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
@@ -13971,6 +15955,8 @@ type SyntheticMonitoringCheckSettingsHttp struct {
 	Method *string `pulumi:"method"`
 	// Do not follow redirects. Defaults to `false`.
 	NoFollowRedirects *bool `pulumi:"noFollowRedirects"`
+	// The HTTP headers sent to the proxy URL
+	ProxyConnectHeaders []string `pulumi:"proxyConnectHeaders"`
 	// Proxy URL.
 	ProxyUrl *string `pulumi:"proxyUrl"`
 	// TLS config.
@@ -14021,6 +16007,8 @@ type SyntheticMonitoringCheckSettingsHttpArgs struct {
 	Method pulumi.StringPtrInput `pulumi:"method"`
 	// Do not follow redirects. Defaults to `false`.
 	NoFollowRedirects pulumi.BoolPtrInput `pulumi:"noFollowRedirects"`
+	// The HTTP headers sent to the proxy URL
+	ProxyConnectHeaders pulumi.StringArrayInput `pulumi:"proxyConnectHeaders"`
 	// Proxy URL.
 	ProxyUrl pulumi.StringPtrInput `pulumi:"proxyUrl"`
 	// TLS config.
@@ -14200,6 +16188,11 @@ func (o SyntheticMonitoringCheckSettingsHttpOutput) Method() pulumi.StringPtrOut
 // Do not follow redirects. Defaults to `false`.
 func (o SyntheticMonitoringCheckSettingsHttpOutput) NoFollowRedirects() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsHttp) *bool { return v.NoFollowRedirects }).(pulumi.BoolPtrOutput)
+}
+
+// The HTTP headers sent to the proxy URL
+func (o SyntheticMonitoringCheckSettingsHttpOutput) ProxyConnectHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsHttp) []string { return v.ProxyConnectHeaders }).(pulumi.StringArrayOutput)
 }
 
 // Proxy URL.
@@ -14392,6 +16385,16 @@ func (o SyntheticMonitoringCheckSettingsHttpPtrOutput) NoFollowRedirects() pulum
 		}
 		return v.NoFollowRedirects
 	}).(pulumi.BoolPtrOutput)
+}
+
+// The HTTP headers sent to the proxy URL
+func (o SyntheticMonitoringCheckSettingsHttpPtrOutput) ProxyConnectHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsHttp) []string {
+		if v == nil {
+			return nil
+		}
+		return v.ProxyConnectHeaders
+	}).(pulumi.StringArrayOutput)
 }
 
 // Proxy URL.
@@ -15127,6 +17130,1257 @@ func (o SyntheticMonitoringCheckSettingsHttpTlsConfigPtrOutput) ServerName() pul
 		}
 		return v.ServerName
 	}).(pulumi.StringPtrOutput)
+}
+
+type SyntheticMonitoringCheckSettingsMultihttp struct {
+	Entries []SyntheticMonitoringCheckSettingsMultihttpEntry `pulumi:"entries"`
+}
+
+// SyntheticMonitoringCheckSettingsMultihttpInput is an input type that accepts SyntheticMonitoringCheckSettingsMultihttpArgs and SyntheticMonitoringCheckSettingsMultihttpOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsMultihttpInput` via:
+//
+//	SyntheticMonitoringCheckSettingsMultihttpArgs{...}
+type SyntheticMonitoringCheckSettingsMultihttpInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsMultihttpOutput() SyntheticMonitoringCheckSettingsMultihttpOutput
+	ToSyntheticMonitoringCheckSettingsMultihttpOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsMultihttpOutput
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpArgs struct {
+	Entries SyntheticMonitoringCheckSettingsMultihttpEntryArrayInput `pulumi:"entries"`
+}
+
+func (SyntheticMonitoringCheckSettingsMultihttpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttp)(nil)).Elem()
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpArgs) ToSyntheticMonitoringCheckSettingsMultihttpOutput() SyntheticMonitoringCheckSettingsMultihttpOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpArgs) ToSyntheticMonitoringCheckSettingsMultihttpOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpOutput)
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpArgs) ToOutput(ctx context.Context) pulumix.Output[SyntheticMonitoringCheckSettingsMultihttp] {
+	return pulumix.Output[SyntheticMonitoringCheckSettingsMultihttp]{
+		OutputState: i.ToSyntheticMonitoringCheckSettingsMultihttpOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpArgs) ToSyntheticMonitoringCheckSettingsMultihttpPtrOutput() SyntheticMonitoringCheckSettingsMultihttpPtrOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpPtrOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpArgs) ToSyntheticMonitoringCheckSettingsMultihttpPtrOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpOutput).ToSyntheticMonitoringCheckSettingsMultihttpPtrOutputWithContext(ctx)
+}
+
+// SyntheticMonitoringCheckSettingsMultihttpPtrInput is an input type that accepts SyntheticMonitoringCheckSettingsMultihttpArgs, SyntheticMonitoringCheckSettingsMultihttpPtr and SyntheticMonitoringCheckSettingsMultihttpPtrOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsMultihttpPtrInput` via:
+//
+//	        SyntheticMonitoringCheckSettingsMultihttpArgs{...}
+//
+//	or:
+//
+//	        nil
+type SyntheticMonitoringCheckSettingsMultihttpPtrInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsMultihttpPtrOutput() SyntheticMonitoringCheckSettingsMultihttpPtrOutput
+	ToSyntheticMonitoringCheckSettingsMultihttpPtrOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsMultihttpPtrOutput
+}
+
+type syntheticMonitoringCheckSettingsMultihttpPtrType SyntheticMonitoringCheckSettingsMultihttpArgs
+
+func SyntheticMonitoringCheckSettingsMultihttpPtr(v *SyntheticMonitoringCheckSettingsMultihttpArgs) SyntheticMonitoringCheckSettingsMultihttpPtrInput {
+	return (*syntheticMonitoringCheckSettingsMultihttpPtrType)(v)
+}
+
+func (*syntheticMonitoringCheckSettingsMultihttpPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticMonitoringCheckSettingsMultihttp)(nil)).Elem()
+}
+
+func (i *syntheticMonitoringCheckSettingsMultihttpPtrType) ToSyntheticMonitoringCheckSettingsMultihttpPtrOutput() SyntheticMonitoringCheckSettingsMultihttpPtrOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpPtrOutputWithContext(context.Background())
+}
+
+func (i *syntheticMonitoringCheckSettingsMultihttpPtrType) ToSyntheticMonitoringCheckSettingsMultihttpPtrOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpPtrOutput)
+}
+
+func (i *syntheticMonitoringCheckSettingsMultihttpPtrType) ToOutput(ctx context.Context) pulumix.Output[*SyntheticMonitoringCheckSettingsMultihttp] {
+	return pulumix.Output[*SyntheticMonitoringCheckSettingsMultihttp]{
+		OutputState: i.ToSyntheticMonitoringCheckSettingsMultihttpPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsMultihttpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttp)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpOutput) ToSyntheticMonitoringCheckSettingsMultihttpOutput() SyntheticMonitoringCheckSettingsMultihttpOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpOutput) ToSyntheticMonitoringCheckSettingsMultihttpOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpOutput) ToSyntheticMonitoringCheckSettingsMultihttpPtrOutput() SyntheticMonitoringCheckSettingsMultihttpPtrOutput {
+	return o.ToSyntheticMonitoringCheckSettingsMultihttpPtrOutputWithContext(context.Background())
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpOutput) ToSyntheticMonitoringCheckSettingsMultihttpPtrOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SyntheticMonitoringCheckSettingsMultihttp) *SyntheticMonitoringCheckSettingsMultihttp {
+		return &v
+	}).(SyntheticMonitoringCheckSettingsMultihttpPtrOutput)
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpOutput) ToOutput(ctx context.Context) pulumix.Output[SyntheticMonitoringCheckSettingsMultihttp] {
+	return pulumix.Output[SyntheticMonitoringCheckSettingsMultihttp]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpOutput) Entries() SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttp) []SyntheticMonitoringCheckSettingsMultihttpEntry {
+		return v.Entries
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput)
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpPtrOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsMultihttpPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticMonitoringCheckSettingsMultihttp)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpPtrOutput) ToSyntheticMonitoringCheckSettingsMultihttpPtrOutput() SyntheticMonitoringCheckSettingsMultihttpPtrOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpPtrOutput) ToSyntheticMonitoringCheckSettingsMultihttpPtrOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpPtrOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SyntheticMonitoringCheckSettingsMultihttp] {
+	return pulumix.Output[*SyntheticMonitoringCheckSettingsMultihttp]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpPtrOutput) Elem() SyntheticMonitoringCheckSettingsMultihttpOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsMultihttp) SyntheticMonitoringCheckSettingsMultihttp {
+		if v != nil {
+			return *v
+		}
+		var ret SyntheticMonitoringCheckSettingsMultihttp
+		return ret
+	}).(SyntheticMonitoringCheckSettingsMultihttpOutput)
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpPtrOutput) Entries() SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsMultihttp) []SyntheticMonitoringCheckSettingsMultihttpEntry {
+		if v == nil {
+			return nil
+		}
+		return v.Entries
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput)
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntry struct {
+	// Assertions to make on the request response
+	Assertions []SyntheticMonitoringCheckSettingsMultihttpEntryAssertion `pulumi:"assertions"`
+	// An individual MultiHTTP request
+	Request *SyntheticMonitoringCheckSettingsMultihttpEntryRequest `pulumi:"request"`
+	// Variables to extract from the request response
+	Variables []SyntheticMonitoringCheckSettingsMultihttpEntryVariable `pulumi:"variables"`
+}
+
+// SyntheticMonitoringCheckSettingsMultihttpEntryInput is an input type that accepts SyntheticMonitoringCheckSettingsMultihttpEntryArgs and SyntheticMonitoringCheckSettingsMultihttpEntryOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsMultihttpEntryInput` via:
+//
+//	SyntheticMonitoringCheckSettingsMultihttpEntryArgs{...}
+type SyntheticMonitoringCheckSettingsMultihttpEntryInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryOutput() SyntheticMonitoringCheckSettingsMultihttpEntryOutput
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryOutput
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryArgs struct {
+	// Assertions to make on the request response
+	Assertions SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayInput `pulumi:"assertions"`
+	// An individual MultiHTTP request
+	Request SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrInput `pulumi:"request"`
+	// Variables to extract from the request response
+	Variables SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayInput `pulumi:"variables"`
+}
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntry)(nil)).Elem()
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryArgs) ToSyntheticMonitoringCheckSettingsMultihttpEntryOutput() SyntheticMonitoringCheckSettingsMultihttpEntryOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpEntryOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryArgs) ToSyntheticMonitoringCheckSettingsMultihttpEntryOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpEntryOutput)
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryArgs) ToOutput(ctx context.Context) pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntry] {
+	return pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntry]{
+		OutputState: i.ToSyntheticMonitoringCheckSettingsMultihttpEntryOutputWithContext(ctx).OutputState,
+	}
+}
+
+// SyntheticMonitoringCheckSettingsMultihttpEntryArrayInput is an input type that accepts SyntheticMonitoringCheckSettingsMultihttpEntryArray and SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsMultihttpEntryArrayInput` via:
+//
+//	SyntheticMonitoringCheckSettingsMultihttpEntryArray{ SyntheticMonitoringCheckSettingsMultihttpEntryArgs{...} }
+type SyntheticMonitoringCheckSettingsMultihttpEntryArrayInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryArrayOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryArray []SyntheticMonitoringCheckSettingsMultihttpEntryInput
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SyntheticMonitoringCheckSettingsMultihttpEntry)(nil)).Elem()
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryArray) ToSyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpEntryArrayOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryArray) ToSyntheticMonitoringCheckSettingsMultihttpEntryArrayOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput)
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryArray) ToOutput(ctx context.Context) pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntry] {
+	return pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntry]{
+		OutputState: i.ToSyntheticMonitoringCheckSettingsMultihttpEntryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntry)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryOutput() SyntheticMonitoringCheckSettingsMultihttpEntryOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryOutput) ToOutput(ctx context.Context) pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntry] {
+	return pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntry]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Assertions to make on the request response
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryOutput) Assertions() SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntry) []SyntheticMonitoringCheckSettingsMultihttpEntryAssertion {
+		return v.Assertions
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput)
+}
+
+// An individual MultiHTTP request
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryOutput) Request() SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntry) *SyntheticMonitoringCheckSettingsMultihttpEntryRequest {
+		return v.Request
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput)
+}
+
+// Variables to extract from the request response
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryOutput) Variables() SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntry) []SyntheticMonitoringCheckSettingsMultihttpEntryVariable {
+		return v.Variables
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput)
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SyntheticMonitoringCheckSettingsMultihttpEntry)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryArrayOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntry] {
+	return pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntry]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput) Index(i pulumi.IntInput) SyntheticMonitoringCheckSettingsMultihttpEntryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SyntheticMonitoringCheckSettingsMultihttpEntry {
+		return vs[0].([]SyntheticMonitoringCheckSettingsMultihttpEntry)[vs[1].(int)]
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryOutput)
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryAssertion struct {
+	// The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+	Condition *string `pulumi:"condition"`
+	// The expression of the assertion. Should start with $.
+	Expression *string `pulumi:"expression"`
+	// The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+	Subject *string `pulumi:"subject"`
+	// The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+	Type string `pulumi:"type"`
+	// The value of the assertion
+	Value *string `pulumi:"value"`
+}
+
+// SyntheticMonitoringCheckSettingsMultihttpEntryAssertionInput is an input type that accepts SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs and SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsMultihttpEntryAssertionInput` via:
+//
+//	SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs{...}
+type SyntheticMonitoringCheckSettingsMultihttpEntryAssertionInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput() SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs struct {
+	// The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+	Condition pulumi.StringPtrInput `pulumi:"condition"`
+	// The expression of the assertion. Should start with $.
+	Expression pulumi.StringPtrInput `pulumi:"expression"`
+	// The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+	Subject pulumi.StringPtrInput `pulumi:"subject"`
+	// The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+	Type pulumi.StringInput `pulumi:"type"`
+	// The value of the assertion
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryAssertion)(nil)).Elem()
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs) ToSyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput() SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs) ToSyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput)
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs) ToOutput(ctx context.Context) pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryAssertion] {
+	return pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryAssertion]{
+		OutputState: i.ToSyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutputWithContext(ctx).OutputState,
+	}
+}
+
+// SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayInput is an input type that accepts SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArray and SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayInput` via:
+//
+//	SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArray{ SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs{...} }
+type SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArray []SyntheticMonitoringCheckSettingsMultihttpEntryAssertionInput
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SyntheticMonitoringCheckSettingsMultihttpEntryAssertion)(nil)).Elem()
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArray) ToSyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArray) ToSyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput)
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArray) ToOutput(ctx context.Context) pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryAssertion] {
+	return pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryAssertion]{
+		OutputState: i.ToSyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryAssertion)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput() SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput) ToOutput(ctx context.Context) pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryAssertion] {
+	return pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryAssertion]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput) Condition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryAssertion) *string { return v.Condition }).(pulumi.StringPtrOutput)
+}
+
+// The expression of the assertion. Should start with $.
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput) Expression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryAssertion) *string { return v.Expression }).(pulumi.StringPtrOutput)
+}
+
+// The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput) Subject() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryAssertion) *string { return v.Subject }).(pulumi.StringPtrOutput)
+}
+
+// The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryAssertion) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The value of the assertion
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryAssertion) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SyntheticMonitoringCheckSettingsMultihttpEntryAssertion)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryAssertion] {
+	return pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryAssertion]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput) Index(i pulumi.IntInput) SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SyntheticMonitoringCheckSettingsMultihttpEntryAssertion {
+		return vs[0].([]SyntheticMonitoringCheckSettingsMultihttpEntryAssertion)[vs[1].(int)]
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput)
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequest struct {
+	// The body of the HTTP request used in probe.
+	Bodies []SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody `pulumi:"bodies"`
+	// The HTTP headers set for the probe.
+	Headers []SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader `pulumi:"headers"`
+	// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+	Method string `pulumi:"method"`
+	// Query fields to send with the request
+	QueryFields []SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField `pulumi:"queryFields"`
+	// The URL for the request
+	Url string `pulumi:"url"`
+}
+
+// SyntheticMonitoringCheckSettingsMultihttpEntryRequestInput is an input type that accepts SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs and SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsMultihttpEntryRequestInput` via:
+//
+//	SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs{...}
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs struct {
+	// The body of the HTTP request used in probe.
+	Bodies SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayInput `pulumi:"bodies"`
+	// The HTTP headers set for the probe.
+	Headers SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayInput `pulumi:"headers"`
+	// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+	Method pulumi.StringInput `pulumi:"method"`
+	// Query fields to send with the request
+	QueryFields SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayInput `pulumi:"queryFields"`
+	// The URL for the request
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryRequest)(nil)).Elem()
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput)
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs) ToOutput(ctx context.Context) pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryRequest] {
+	return pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryRequest]{
+		OutputState: i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput).ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutputWithContext(ctx)
+}
+
+// SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrInput is an input type that accepts SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs, SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtr and SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrInput` via:
+//
+//	        SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs{...}
+//
+//	or:
+//
+//	        nil
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput
+}
+
+type syntheticMonitoringCheckSettingsMultihttpEntryRequestPtrType SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs
+
+func SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtr(v *SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs) SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrInput {
+	return (*syntheticMonitoringCheckSettingsMultihttpEntryRequestPtrType)(v)
+}
+
+func (*syntheticMonitoringCheckSettingsMultihttpEntryRequestPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticMonitoringCheckSettingsMultihttpEntryRequest)(nil)).Elem()
+}
+
+func (i *syntheticMonitoringCheckSettingsMultihttpEntryRequestPtrType) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutputWithContext(context.Background())
+}
+
+func (i *syntheticMonitoringCheckSettingsMultihttpEntryRequestPtrType) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput)
+}
+
+func (i *syntheticMonitoringCheckSettingsMultihttpEntryRequestPtrType) ToOutput(ctx context.Context) pulumix.Output[*SyntheticMonitoringCheckSettingsMultihttpEntryRequest] {
+	return pulumix.Output[*SyntheticMonitoringCheckSettingsMultihttpEntryRequest]{
+		OutputState: i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryRequest)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput {
+	return o.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutputWithContext(context.Background())
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SyntheticMonitoringCheckSettingsMultihttpEntryRequest) *SyntheticMonitoringCheckSettingsMultihttpEntryRequest {
+		return &v
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput)
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput) ToOutput(ctx context.Context) pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryRequest] {
+	return pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryRequest]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The body of the HTTP request used in probe.
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput) Bodies() SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequest) []SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody {
+		return v.Bodies
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput)
+}
+
+// The HTTP headers set for the probe.
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput) Headers() SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequest) []SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader {
+		return v.Headers
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput)
+}
+
+// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequest) string { return v.Method }).(pulumi.StringOutput)
+}
+
+// Query fields to send with the request
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput) QueryFields() SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequest) []SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField {
+		return v.QueryFields
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput)
+}
+
+// The URL for the request
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequest) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticMonitoringCheckSettingsMultihttpEntryRequest)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SyntheticMonitoringCheckSettingsMultihttpEntryRequest] {
+	return pulumix.Output[*SyntheticMonitoringCheckSettingsMultihttpEntryRequest]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput) Elem() SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsMultihttpEntryRequest) SyntheticMonitoringCheckSettingsMultihttpEntryRequest {
+		if v != nil {
+			return *v
+		}
+		var ret SyntheticMonitoringCheckSettingsMultihttpEntryRequest
+		return ret
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput)
+}
+
+// The body of the HTTP request used in probe.
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput) Bodies() SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsMultihttpEntryRequest) []SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody {
+		if v == nil {
+			return nil
+		}
+		return v.Bodies
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput)
+}
+
+// The HTTP headers set for the probe.
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput) Headers() SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsMultihttpEntryRequest) []SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader {
+		if v == nil {
+			return nil
+		}
+		return v.Headers
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput)
+}
+
+// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsMultihttpEntryRequest) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Method
+	}).(pulumi.StringPtrOutput)
+}
+
+// Query fields to send with the request
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput) QueryFields() SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsMultihttpEntryRequest) []SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField {
+		if v == nil {
+			return nil
+		}
+		return v.QueryFields
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput)
+}
+
+// The URL for the request
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsMultihttpEntryRequest) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody struct {
+	// The content encoding of the body
+	ContentEncoding *string `pulumi:"contentEncoding"`
+	// The content type of the body
+	ContentType *string `pulumi:"contentType"`
+	// The body payload
+	Payload *string `pulumi:"payload"`
+}
+
+// SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyInput is an input type that accepts SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs and SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyInput` via:
+//
+//	SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs{...}
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs struct {
+	// The content encoding of the body
+	ContentEncoding pulumi.StringPtrInput `pulumi:"contentEncoding"`
+	// The content type of the body
+	ContentType pulumi.StringPtrInput `pulumi:"contentType"`
+	// The body payload
+	Payload pulumi.StringPtrInput `pulumi:"payload"`
+}
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody)(nil)).Elem()
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput)
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs) ToOutput(ctx context.Context) pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody] {
+	return pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody]{
+		OutputState: i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutputWithContext(ctx).OutputState,
+	}
+}
+
+// SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayInput is an input type that accepts SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArray and SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayInput` via:
+//
+//	SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArray{ SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs{...} }
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArray []SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyInput
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody)(nil)).Elem()
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArray) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArray) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput)
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArray) ToOutput(ctx context.Context) pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody] {
+	return pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody]{
+		OutputState: i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput) ToOutput(ctx context.Context) pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody] {
+	return pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The content encoding of the body
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput) ContentEncoding() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody) *string { return v.ContentEncoding }).(pulumi.StringPtrOutput)
+}
+
+// The content type of the body
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput) ContentType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody) *string { return v.ContentType }).(pulumi.StringPtrOutput)
+}
+
+// The body payload
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput) Payload() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody) *string { return v.Payload }).(pulumi.StringPtrOutput)
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody] {
+	return pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput) Index(i pulumi.IntInput) SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody {
+		return vs[0].([]SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody)[vs[1].(int)]
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput)
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader struct {
+	// Name of the header to send
+	Name string `pulumi:"name"`
+	// The value of the assertion
+	Value string `pulumi:"value"`
+}
+
+// SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderInput is an input type that accepts SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs and SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderInput` via:
+//
+//	SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs{...}
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs struct {
+	// Name of the header to send
+	Name pulumi.StringInput `pulumi:"name"`
+	// The value of the assertion
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader)(nil)).Elem()
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput)
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs) ToOutput(ctx context.Context) pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader] {
+	return pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader]{
+		OutputState: i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutputWithContext(ctx).OutputState,
+	}
+}
+
+// SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayInput is an input type that accepts SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArray and SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayInput` via:
+//
+//	SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArray{ SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs{...} }
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArray []SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderInput
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader)(nil)).Elem()
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArray) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArray) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput)
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArray) ToOutput(ctx context.Context) pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader] {
+	return pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader]{
+		OutputState: i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput) ToOutput(ctx context.Context) pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader] {
+	return pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Name of the header to send
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The value of the assertion
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader] {
+	return pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput) Index(i pulumi.IntInput) SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader {
+		return vs[0].([]SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader)[vs[1].(int)]
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput)
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField struct {
+	// Name of the header to send
+	Name string `pulumi:"name"`
+	// The value of the assertion
+	Value string `pulumi:"value"`
+}
+
+// SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldInput is an input type that accepts SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs and SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldInput` via:
+//
+//	SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs{...}
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs struct {
+	// Name of the header to send
+	Name pulumi.StringInput `pulumi:"name"`
+	// The value of the assertion
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField)(nil)).Elem()
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput)
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs) ToOutput(ctx context.Context) pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField] {
+	return pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField]{
+		OutputState: i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutputWithContext(ctx).OutputState,
+	}
+}
+
+// SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayInput is an input type that accepts SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArray and SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayInput` via:
+//
+//	SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArray{ SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs{...} }
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArray []SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldInput
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField)(nil)).Elem()
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArray) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArray) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput)
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArray) ToOutput(ctx context.Context) pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField] {
+	return pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField]{
+		OutputState: i.ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput) ToOutput(ctx context.Context) pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField] {
+	return pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Name of the header to send
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The value of the assertion
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField] {
+	return pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput) Index(i pulumi.IntInput) SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField {
+		return vs[0].([]SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField)[vs[1].(int)]
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput)
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryVariable struct {
+	// The attribute to use when finding the variable value. Only used when type is CSS_SELECTOR
+	Attribute *string `pulumi:"attribute"`
+	// The expression of the assertion. Should start with $.
+	Expression *string `pulumi:"expression"`
+	// Name of the header to send
+	Name *string `pulumi:"name"`
+	// The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+	Type string `pulumi:"type"`
+}
+
+// SyntheticMonitoringCheckSettingsMultihttpEntryVariableInput is an input type that accepts SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs and SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsMultihttpEntryVariableInput` via:
+//
+//	SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs{...}
+type SyntheticMonitoringCheckSettingsMultihttpEntryVariableInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput() SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryVariableOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs struct {
+	// The attribute to use when finding the variable value. Only used when type is CSS_SELECTOR
+	Attribute pulumi.StringPtrInput `pulumi:"attribute"`
+	// The expression of the assertion. Should start with $.
+	Expression pulumi.StringPtrInput `pulumi:"expression"`
+	// Name of the header to send
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryVariable)(nil)).Elem()
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs) ToSyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput() SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpEntryVariableOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs) ToSyntheticMonitoringCheckSettingsMultihttpEntryVariableOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput)
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs) ToOutput(ctx context.Context) pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryVariable] {
+	return pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryVariable]{
+		OutputState: i.ToSyntheticMonitoringCheckSettingsMultihttpEntryVariableOutputWithContext(ctx).OutputState,
+	}
+}
+
+// SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayInput is an input type that accepts SyntheticMonitoringCheckSettingsMultihttpEntryVariableArray and SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayInput` via:
+//
+//	SyntheticMonitoringCheckSettingsMultihttpEntryVariableArray{ SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs{...} }
+type SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput
+	ToSyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryVariableArray []SyntheticMonitoringCheckSettingsMultihttpEntryVariableInput
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryVariableArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SyntheticMonitoringCheckSettingsMultihttpEntryVariable)(nil)).Elem()
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryVariableArray) ToSyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput {
+	return i.ToSyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryVariableArray) ToSyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput)
+}
+
+func (i SyntheticMonitoringCheckSettingsMultihttpEntryVariableArray) ToOutput(ctx context.Context) pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryVariable] {
+	return pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryVariable]{
+		OutputState: i.ToSyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryVariable)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput() SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryVariableOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput) ToOutput(ctx context.Context) pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryVariable] {
+	return pulumix.Output[SyntheticMonitoringCheckSettingsMultihttpEntryVariable]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The attribute to use when finding the variable value. Only used when type is CSS_SELECTOR
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput) Attribute() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryVariable) *string { return v.Attribute }).(pulumi.StringPtrOutput)
+}
+
+// The expression of the assertion. Should start with $.
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput) Expression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryVariable) *string { return v.Expression }).(pulumi.StringPtrOutput)
+}
+
+// Name of the header to send
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryVariable) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryVariable) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SyntheticMonitoringCheckSettingsMultihttpEntryVariable)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput() SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput) ToSyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryVariable] {
+	return pulumix.Output[[]SyntheticMonitoringCheckSettingsMultihttpEntryVariable]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput) Index(i pulumi.IntInput) SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SyntheticMonitoringCheckSettingsMultihttpEntryVariable {
+		return vs[0].([]SyntheticMonitoringCheckSettingsMultihttpEntryVariable)[vs[1].(int)]
+	}).(SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput)
 }
 
 type SyntheticMonitoringCheckSettingsPing struct {
@@ -16167,6 +19421,7 @@ type TeamPreferences struct {
 	HomeDashboardUid *string `pulumi:"homeDashboardUid"`
 	Theme            *string `pulumi:"theme"`
 	Timezone         *string `pulumi:"timezone"`
+	WeekStart        *string `pulumi:"weekStart"`
 }
 
 // TeamPreferencesInput is an input type that accepts TeamPreferencesArgs and TeamPreferencesOutput values.
@@ -16184,6 +19439,7 @@ type TeamPreferencesArgs struct {
 	HomeDashboardUid pulumi.StringPtrInput `pulumi:"homeDashboardUid"`
 	Theme            pulumi.StringPtrInput `pulumi:"theme"`
 	Timezone         pulumi.StringPtrInput `pulumi:"timezone"`
+	WeekStart        pulumi.StringPtrInput `pulumi:"weekStart"`
 }
 
 func (TeamPreferencesArgs) ElementType() reflect.Type {
@@ -16293,6 +19549,10 @@ func (o TeamPreferencesOutput) Timezone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TeamPreferences) *string { return v.Timezone }).(pulumi.StringPtrOutput)
 }
 
+func (o TeamPreferencesOutput) WeekStart() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamPreferences) *string { return v.WeekStart }).(pulumi.StringPtrOutput)
+}
+
 type TeamPreferencesPtrOutput struct{ *pulumi.OutputState }
 
 func (TeamPreferencesPtrOutput) ElementType() reflect.Type {
@@ -16347,6 +19607,15 @@ func (o TeamPreferencesPtrOutput) Timezone() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.Timezone
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TeamPreferencesPtrOutput) WeekStart() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TeamPreferences) *string {
+		if v == nil {
+			return nil
+		}
+		return v.WeekStart
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -16898,13 +20167,14 @@ func (o GetRolePermissionArrayOutput) Index(i pulumi.IntInput) GetRolePermission
 }
 
 type GetSlosSlo struct {
-	Alertings   []GetSlosSloAlerting  `pulumi:"alertings"`
-	Description string                `pulumi:"description"`
-	Labels      []GetSlosSloLabel     `pulumi:"labels"`
-	Name        string                `pulumi:"name"`
-	Objectives  []GetSlosSloObjective `pulumi:"objectives"`
-	Queries     []GetSlosSloQuery     `pulumi:"queries"`
-	Uuid        string                `pulumi:"uuid"`
+	Alertings              []GetSlosSloAlerting              `pulumi:"alertings"`
+	Description            string                            `pulumi:"description"`
+	DestinationDatasources []GetSlosSloDestinationDatasource `pulumi:"destinationDatasources"`
+	Labels                 []GetSlosSloLabel                 `pulumi:"labels"`
+	Name                   string                            `pulumi:"name"`
+	Objectives             []GetSlosSloObjective             `pulumi:"objectives"`
+	Queries                []GetSlosSloQuery                 `pulumi:"queries"`
+	Uuid                   string                            `pulumi:"uuid"`
 }
 
 // GetSlosSloInput is an input type that accepts GetSlosSloArgs and GetSlosSloOutput values.
@@ -16919,13 +20189,14 @@ type GetSlosSloInput interface {
 }
 
 type GetSlosSloArgs struct {
-	Alertings   GetSlosSloAlertingArrayInput  `pulumi:"alertings"`
-	Description pulumi.StringInput            `pulumi:"description"`
-	Labels      GetSlosSloLabelArrayInput     `pulumi:"labels"`
-	Name        pulumi.StringInput            `pulumi:"name"`
-	Objectives  GetSlosSloObjectiveArrayInput `pulumi:"objectives"`
-	Queries     GetSlosSloQueryArrayInput     `pulumi:"queries"`
-	Uuid        pulumi.StringInput            `pulumi:"uuid"`
+	Alertings              GetSlosSloAlertingArrayInput              `pulumi:"alertings"`
+	Description            pulumi.StringInput                        `pulumi:"description"`
+	DestinationDatasources GetSlosSloDestinationDatasourceArrayInput `pulumi:"destinationDatasources"`
+	Labels                 GetSlosSloLabelArrayInput                 `pulumi:"labels"`
+	Name                   pulumi.StringInput                        `pulumi:"name"`
+	Objectives             GetSlosSloObjectiveArrayInput             `pulumi:"objectives"`
+	Queries                GetSlosSloQueryArrayInput                 `pulumi:"queries"`
+	Uuid                   pulumi.StringInput                        `pulumi:"uuid"`
 }
 
 func (GetSlosSloArgs) ElementType() reflect.Type {
@@ -17003,6 +20274,10 @@ func (o GetSlosSloOutput) Alertings() GetSlosSloAlertingArrayOutput {
 
 func (o GetSlosSloOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSlo) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o GetSlosSloOutput) DestinationDatasources() GetSlosSloDestinationDatasourceArrayOutput {
+	return o.ApplyT(func(v GetSlosSlo) []GetSlosSloDestinationDatasource { return v.DestinationDatasources }).(GetSlosSloDestinationDatasourceArrayOutput)
 }
 
 func (o GetSlosSloOutput) Labels() GetSlosSloLabelArrayOutput {
@@ -18179,6 +21454,124 @@ func (o GetSlosSloAlertingSlowburnLabelArrayOutput) Index(i pulumi.IntInput) Get
 	}).(GetSlosSloAlertingSlowburnLabelOutput)
 }
 
+type GetSlosSloDestinationDatasource struct {
+	Uid *string `pulumi:"uid"`
+}
+
+// GetSlosSloDestinationDatasourceInput is an input type that accepts GetSlosSloDestinationDatasourceArgs and GetSlosSloDestinationDatasourceOutput values.
+// You can construct a concrete instance of `GetSlosSloDestinationDatasourceInput` via:
+//
+//	GetSlosSloDestinationDatasourceArgs{...}
+type GetSlosSloDestinationDatasourceInput interface {
+	pulumi.Input
+
+	ToGetSlosSloDestinationDatasourceOutput() GetSlosSloDestinationDatasourceOutput
+	ToGetSlosSloDestinationDatasourceOutputWithContext(context.Context) GetSlosSloDestinationDatasourceOutput
+}
+
+type GetSlosSloDestinationDatasourceArgs struct {
+	Uid pulumi.StringPtrInput `pulumi:"uid"`
+}
+
+func (GetSlosSloDestinationDatasourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloDestinationDatasource)(nil)).Elem()
+}
+
+func (i GetSlosSloDestinationDatasourceArgs) ToGetSlosSloDestinationDatasourceOutput() GetSlosSloDestinationDatasourceOutput {
+	return i.ToGetSlosSloDestinationDatasourceOutputWithContext(context.Background())
+}
+
+func (i GetSlosSloDestinationDatasourceArgs) ToGetSlosSloDestinationDatasourceOutputWithContext(ctx context.Context) GetSlosSloDestinationDatasourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloDestinationDatasourceOutput)
+}
+
+func (i GetSlosSloDestinationDatasourceArgs) ToOutput(ctx context.Context) pulumix.Output[GetSlosSloDestinationDatasource] {
+	return pulumix.Output[GetSlosSloDestinationDatasource]{
+		OutputState: i.ToGetSlosSloDestinationDatasourceOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetSlosSloDestinationDatasourceArrayInput is an input type that accepts GetSlosSloDestinationDatasourceArray and GetSlosSloDestinationDatasourceArrayOutput values.
+// You can construct a concrete instance of `GetSlosSloDestinationDatasourceArrayInput` via:
+//
+//	GetSlosSloDestinationDatasourceArray{ GetSlosSloDestinationDatasourceArgs{...} }
+type GetSlosSloDestinationDatasourceArrayInput interface {
+	pulumi.Input
+
+	ToGetSlosSloDestinationDatasourceArrayOutput() GetSlosSloDestinationDatasourceArrayOutput
+	ToGetSlosSloDestinationDatasourceArrayOutputWithContext(context.Context) GetSlosSloDestinationDatasourceArrayOutput
+}
+
+type GetSlosSloDestinationDatasourceArray []GetSlosSloDestinationDatasourceInput
+
+func (GetSlosSloDestinationDatasourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloDestinationDatasource)(nil)).Elem()
+}
+
+func (i GetSlosSloDestinationDatasourceArray) ToGetSlosSloDestinationDatasourceArrayOutput() GetSlosSloDestinationDatasourceArrayOutput {
+	return i.ToGetSlosSloDestinationDatasourceArrayOutputWithContext(context.Background())
+}
+
+func (i GetSlosSloDestinationDatasourceArray) ToGetSlosSloDestinationDatasourceArrayOutputWithContext(ctx context.Context) GetSlosSloDestinationDatasourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloDestinationDatasourceArrayOutput)
+}
+
+func (i GetSlosSloDestinationDatasourceArray) ToOutput(ctx context.Context) pulumix.Output[[]GetSlosSloDestinationDatasource] {
+	return pulumix.Output[[]GetSlosSloDestinationDatasource]{
+		OutputState: i.ToGetSlosSloDestinationDatasourceArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetSlosSloDestinationDatasourceOutput struct{ *pulumi.OutputState }
+
+func (GetSlosSloDestinationDatasourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloDestinationDatasource)(nil)).Elem()
+}
+
+func (o GetSlosSloDestinationDatasourceOutput) ToGetSlosSloDestinationDatasourceOutput() GetSlosSloDestinationDatasourceOutput {
+	return o
+}
+
+func (o GetSlosSloDestinationDatasourceOutput) ToGetSlosSloDestinationDatasourceOutputWithContext(ctx context.Context) GetSlosSloDestinationDatasourceOutput {
+	return o
+}
+
+func (o GetSlosSloDestinationDatasourceOutput) ToOutput(ctx context.Context) pulumix.Output[GetSlosSloDestinationDatasource] {
+	return pulumix.Output[GetSlosSloDestinationDatasource]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetSlosSloDestinationDatasourceOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSlosSloDestinationDatasource) *string { return v.Uid }).(pulumi.StringPtrOutput)
+}
+
+type GetSlosSloDestinationDatasourceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSlosSloDestinationDatasourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloDestinationDatasource)(nil)).Elem()
+}
+
+func (o GetSlosSloDestinationDatasourceArrayOutput) ToGetSlosSloDestinationDatasourceArrayOutput() GetSlosSloDestinationDatasourceArrayOutput {
+	return o
+}
+
+func (o GetSlosSloDestinationDatasourceArrayOutput) ToGetSlosSloDestinationDatasourceArrayOutputWithContext(ctx context.Context) GetSlosSloDestinationDatasourceArrayOutput {
+	return o
+}
+
+func (o GetSlosSloDestinationDatasourceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetSlosSloDestinationDatasource] {
+	return pulumix.Output[[]GetSlosSloDestinationDatasource]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetSlosSloDestinationDatasourceArrayOutput) Index(i pulumi.IntInput) GetSlosSloDestinationDatasourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloDestinationDatasource {
+		return vs[0].([]GetSlosSloDestinationDatasource)[vs[1].(int)]
+	}).(GetSlosSloDestinationDatasourceOutput)
+}
+
 type GetSlosSloLabel struct {
 	Key   string `pulumi:"key"`
 	Value string `pulumi:"value"`
@@ -18905,6 +22298,7 @@ type GetTeamPreference struct {
 	HomeDashboardUid *string `pulumi:"homeDashboardUid"`
 	Theme            *string `pulumi:"theme"`
 	Timezone         *string `pulumi:"timezone"`
+	WeekStart        *string `pulumi:"weekStart"`
 }
 
 // GetTeamPreferenceInput is an input type that accepts GetTeamPreferenceArgs and GetTeamPreferenceOutput values.
@@ -18922,6 +22316,7 @@ type GetTeamPreferenceArgs struct {
 	HomeDashboardUid pulumi.StringPtrInput `pulumi:"homeDashboardUid"`
 	Theme            pulumi.StringPtrInput `pulumi:"theme"`
 	Timezone         pulumi.StringPtrInput `pulumi:"timezone"`
+	WeekStart        pulumi.StringPtrInput `pulumi:"weekStart"`
 }
 
 func (GetTeamPreferenceArgs) ElementType() reflect.Type {
@@ -19003,6 +22398,10 @@ func (o GetTeamPreferenceOutput) Theme() pulumi.StringPtrOutput {
 
 func (o GetTeamPreferenceOutput) Timezone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetTeamPreference) *string { return v.Timezone }).(pulumi.StringPtrOutput)
+}
+
+func (o GetTeamPreferenceOutput) WeekStart() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetTeamPreference) *string { return v.WeekStart }).(pulumi.StringPtrOutput)
 }
 
 type GetTeamPreferenceArrayOutput struct{ *pulumi.OutputState }
@@ -19310,8 +22709,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointKafkaArrayInput)(nil)).Elem(), ContactPointKafkaArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointLineInput)(nil)).Elem(), ContactPointLineArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointLineArrayInput)(nil)).Elem(), ContactPointLineArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointOncallInput)(nil)).Elem(), ContactPointOncallArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointOncallArrayInput)(nil)).Elem(), ContactPointOncallArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointOpsgenyInput)(nil)).Elem(), ContactPointOpsgenyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointOpsgenyArrayInput)(nil)).Elem(), ContactPointOpsgenyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointOpsgenyResponderInput)(nil)).Elem(), ContactPointOpsgenyResponderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointOpsgenyResponderArrayInput)(nil)).Elem(), ContactPointOpsgenyResponderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointPagerdutyInput)(nil)).Elem(), ContactPointPagerdutyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointPagerdutyArrayInput)(nil)).Elem(), ContactPointPagerdutyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointPushoverInput)(nil)).Elem(), ContactPointPushoverArgs{})
@@ -19320,6 +22723,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointSensugoArrayInput)(nil)).Elem(), ContactPointSensugoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointSlackInput)(nil)).Elem(), ContactPointSlackArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointSlackArrayInput)(nil)).Elem(), ContactPointSlackArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointSnInput)(nil)).Elem(), ContactPointSnArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointSnArrayInput)(nil)).Elem(), ContactPointSnArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointTeamInput)(nil)).Elem(), ContactPointTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointTeamArrayInput)(nil)).Elem(), ContactPointTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointTelegramInput)(nil)).Elem(), ContactPointTelegramArgs{})
@@ -19400,6 +22805,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*OncallScheduleSlackPtrInput)(nil)).Elem(), OncallScheduleSlackArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PlaylistItemInput)(nil)).Elem(), PlaylistItemArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PlaylistItemArrayInput)(nil)).Elem(), PlaylistItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportDashboardInput)(nil)).Elem(), ReportDashboardArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportDashboardArrayInput)(nil)).Elem(), ReportDashboardArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportDashboardTimeRangeInput)(nil)).Elem(), ReportDashboardTimeRangeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportDashboardTimeRangePtrInput)(nil)).Elem(), ReportDashboardTimeRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ReportScheduleInput)(nil)).Elem(), ReportScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ReportSchedulePtrInput)(nil)).Elem(), ReportScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ReportTimeRangeInput)(nil)).Elem(), ReportTimeRangeArgs{})
@@ -19429,6 +22838,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingSlowburnAnnotationArrayInput)(nil)).Elem(), SLOAlertingSlowburnAnnotationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingSlowburnLabelInput)(nil)).Elem(), SLOAlertingSlowburnLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingSlowburnLabelArrayInput)(nil)).Elem(), SLOAlertingSlowburnLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLODestinationDatasourceInput)(nil)).Elem(), SLODestinationDatasourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLODestinationDatasourcePtrInput)(nil)).Elem(), SLODestinationDatasourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOLabelInput)(nil)).Elem(), SLOLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOLabelArrayInput)(nil)).Elem(), SLOLabelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOObjectiveInput)(nil)).Elem(), SLOObjectiveArgs{})
@@ -19441,6 +22852,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOQueryRatioPtrInput)(nil)).Elem(), SLOQueryRatioArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountPermissionPermissionInput)(nil)).Elem(), ServiceAccountPermissionPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountPermissionPermissionArrayInput)(nil)).Elem(), ServiceAccountPermissionPermissionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsOauth2SettingsInput)(nil)).Elem(), SsoSettingsOauth2SettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsOauth2SettingsPtrInput)(nil)).Elem(), SsoSettingsOauth2SettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsPtrInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsDnsInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsDnsArgs{})
@@ -19461,6 +22874,22 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArrayInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsHttpTlsConfigInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsHttpTlsConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsHttpTlsConfigPtrInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsHttpTlsConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpPtrInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpEntryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryArrayInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpEntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryAssertionInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryRequestInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryVariableInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpEntryVariableArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsPingInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsPingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsPingPtrInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsPingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsTcpInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsTcpArgs{})
@@ -19501,6 +22930,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnAnnotationArrayInput)(nil)).Elem(), GetSlosSloAlertingSlowburnAnnotationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnLabelInput)(nil)).Elem(), GetSlosSloAlertingSlowburnLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnLabelArrayInput)(nil)).Elem(), GetSlosSloAlertingSlowburnLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloDestinationDatasourceInput)(nil)).Elem(), GetSlosSloDestinationDatasourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloDestinationDatasourceArrayInput)(nil)).Elem(), GetSlosSloDestinationDatasourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloLabelInput)(nil)).Elem(), GetSlosSloLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloLabelArrayInput)(nil)).Elem(), GetSlosSloLabelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloObjectiveInput)(nil)).Elem(), GetSlosSloObjectiveArgs{})
@@ -19535,8 +22966,12 @@ func init() {
 	pulumi.RegisterOutputType(ContactPointKafkaArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointLineOutput{})
 	pulumi.RegisterOutputType(ContactPointLineArrayOutput{})
+	pulumi.RegisterOutputType(ContactPointOncallOutput{})
+	pulumi.RegisterOutputType(ContactPointOncallArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointOpsgenyOutput{})
 	pulumi.RegisterOutputType(ContactPointOpsgenyArrayOutput{})
+	pulumi.RegisterOutputType(ContactPointOpsgenyResponderOutput{})
+	pulumi.RegisterOutputType(ContactPointOpsgenyResponderArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointPagerdutyOutput{})
 	pulumi.RegisterOutputType(ContactPointPagerdutyArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointPushoverOutput{})
@@ -19545,6 +22980,8 @@ func init() {
 	pulumi.RegisterOutputType(ContactPointSensugoArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointSlackOutput{})
 	pulumi.RegisterOutputType(ContactPointSlackArrayOutput{})
+	pulumi.RegisterOutputType(ContactPointSnOutput{})
+	pulumi.RegisterOutputType(ContactPointSnArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointTeamOutput{})
 	pulumi.RegisterOutputType(ContactPointTeamArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointTelegramOutput{})
@@ -19625,6 +23062,10 @@ func init() {
 	pulumi.RegisterOutputType(OncallScheduleSlackPtrOutput{})
 	pulumi.RegisterOutputType(PlaylistItemOutput{})
 	pulumi.RegisterOutputType(PlaylistItemArrayOutput{})
+	pulumi.RegisterOutputType(ReportDashboardOutput{})
+	pulumi.RegisterOutputType(ReportDashboardArrayOutput{})
+	pulumi.RegisterOutputType(ReportDashboardTimeRangeOutput{})
+	pulumi.RegisterOutputType(ReportDashboardTimeRangePtrOutput{})
 	pulumi.RegisterOutputType(ReportScheduleOutput{})
 	pulumi.RegisterOutputType(ReportSchedulePtrOutput{})
 	pulumi.RegisterOutputType(ReportTimeRangeOutput{})
@@ -19654,6 +23095,8 @@ func init() {
 	pulumi.RegisterOutputType(SLOAlertingSlowburnAnnotationArrayOutput{})
 	pulumi.RegisterOutputType(SLOAlertingSlowburnLabelOutput{})
 	pulumi.RegisterOutputType(SLOAlertingSlowburnLabelArrayOutput{})
+	pulumi.RegisterOutputType(SLODestinationDatasourceOutput{})
+	pulumi.RegisterOutputType(SLODestinationDatasourcePtrOutput{})
 	pulumi.RegisterOutputType(SLOLabelOutput{})
 	pulumi.RegisterOutputType(SLOLabelArrayOutput{})
 	pulumi.RegisterOutputType(SLOObjectiveOutput{})
@@ -19666,6 +23109,8 @@ func init() {
 	pulumi.RegisterOutputType(SLOQueryRatioPtrOutput{})
 	pulumi.RegisterOutputType(ServiceAccountPermissionPermissionOutput{})
 	pulumi.RegisterOutputType(ServiceAccountPermissionPermissionArrayOutput{})
+	pulumi.RegisterOutputType(SsoSettingsOauth2SettingsOutput{})
+	pulumi.RegisterOutputType(SsoSettingsOauth2SettingsPtrOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsPtrOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsDnsOutput{})
@@ -19686,6 +23131,22 @@ func init() {
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArrayOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsHttpTlsConfigOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsHttpTlsConfigPtrOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpPtrOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpEntryOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsPingOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsPingPtrOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsTcpOutput{})
@@ -19726,6 +23187,8 @@ func init() {
 	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnAnnotationArrayOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnLabelOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnLabelArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloDestinationDatasourceOutput{})
+	pulumi.RegisterOutputType(GetSlosSloDestinationDatasourceArrayOutput{})
 	pulumi.RegisterOutputType(GetSlosSloLabelOutput{})
 	pulumi.RegisterOutputType(GetSlosSloLabelArrayOutput{})
 	pulumi.RegisterOutputType(GetSlosSloObjectiveOutput{})

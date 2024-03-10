@@ -7,6 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Manages the entire set of permissions for a dashboard. Permissions that aren't specified when applying this resource will be removed.
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard_permissions/)
  *
@@ -14,12 +15,18 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const team = new grafana.Team("team", {});
- * const user = new grafana.User("user", {email: "user.name@example.com"});
- * const metrics = new grafana.Dashboard("metrics", {configJson: fs.readFileSync("grafana-dashboard.json")});
+ * const user = new grafana.User("user", {
+ *     email: "user.name@example.com",
+ *     password: "my-password",
+ *     login: "user.name",
+ * });
+ * const metrics = new grafana.Dashboard("metrics", {configJson: JSON.stringify({
+ *     title: "My Dashboard",
+ *     uid: "my-dashboard-uid",
+ * })});
  * const collectionPermission = new grafana.DashboardPermission("collectionPermission", {
  *     dashboardUid: metrics.uid,
  *     permissions: [
@@ -90,7 +97,7 @@ export class DashboardPermission extends pulumi.CustomResource {
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
-    public readonly permissions!: pulumi.Output<outputs.DashboardPermissionPermission[]>;
+    public readonly permissions!: pulumi.Output<outputs.DashboardPermissionPermission[] | undefined>;
 
     /**
      * Create a DashboardPermission resource with the given unique name, arguments, and options.
@@ -99,7 +106,7 @@ export class DashboardPermission extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: DashboardPermissionArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: DashboardPermissionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DashboardPermissionArgs | DashboardPermissionState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -111,9 +118,6 @@ export class DashboardPermission extends pulumi.CustomResource {
             resourceInputs["permissions"] = state ? state.permissions : undefined;
         } else {
             const args = argsOrState as DashboardPermissionArgs | undefined;
-            if ((!args || args.permissions === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'permissions'");
-            }
             resourceInputs["dashboardId"] = args ? args.dashboardId : undefined;
             resourceInputs["dashboardUid"] = args ? args.dashboardUid : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
@@ -169,5 +173,5 @@ export interface DashboardPermissionArgs {
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
-    permissions: pulumi.Input<pulumi.Input<inputs.DashboardPermissionPermission>[]>;
+    permissions?: pulumi.Input<pulumi.Input<inputs.DashboardPermissionPermission>[]>;
 }

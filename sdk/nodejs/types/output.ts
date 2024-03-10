@@ -249,6 +249,57 @@ export interface ContactPointLine {
     uid: string;
 }
 
+export interface ContactPointOncall {
+    /**
+     * Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.
+     */
+    authorizationCredentials?: string;
+    /**
+     * Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.
+     */
+    authorizationScheme?: string;
+    /**
+     * The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+     */
+    basicAuthPassword?: string;
+    /**
+     * The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+     */
+    basicAuthUser?: string;
+    /**
+     * Whether to disable sending resolve messages. Defaults to `false`.
+     */
+    disableResolveMessage?: boolean;
+    /**
+     * The HTTP method to use in the request. Defaults to `POST`.
+     */
+    httpMethod?: string;
+    /**
+     * The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
+     */
+    maxAlerts?: number;
+    /**
+     * Custom message. You can use template variables.
+     */
+    message?: string;
+    /**
+     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     */
+    settings?: {[key: string]: string};
+    /**
+     * Templated title of the message.
+     */
+    title?: string;
+    /**
+     * The UID of the contact point.
+     */
+    uid: string;
+    /**
+     * The URL to send webhook requests to.
+     */
+    url: string;
+}
+
 export interface ContactPointOpsgeny {
     /**
      * The OpsGenie API key to use.
@@ -275,6 +326,10 @@ export interface ContactPointOpsgeny {
      */
     overridePriority?: boolean;
     /**
+     * Teams, users, escalations and schedules that the alert will be routed to send notifications. If the API Key belongs to a team integration, this field will be overwritten with the owner team. This feature is available from Grafana 10.3+.
+     */
+    responders?: outputs.ContactPointOpsgenyResponder[];
+    /**
      * Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.
      */
     sendTagsAs?: string;
@@ -290,6 +345,25 @@ export interface ContactPointOpsgeny {
      * Allows customization of the OpsGenie API URL.
      */
     url?: string;
+}
+
+export interface ContactPointOpsgenyResponder {
+    /**
+     * ID of the responder. Must be specified if name and username are empty.
+     */
+    id?: string;
+    /**
+     * Name of the responder. Must be specified if username and id are empty.
+     */
+    name?: string;
+    /**
+     * Type of the responder. Supported: team, teams, user, escalation, schedule or a template that is expanded to one of these values.
+     */
+    type: string;
+    /**
+     * The user name to use when making a call to the Kafka REST Proxy
+     */
+    username?: string;
 }
 
 export interface ContactPointPagerduty {
@@ -514,6 +588,51 @@ export interface ContactPointSlack {
      * Username for the bot to use.
      */
     username?: string;
+}
+
+export interface ContactPointSn {
+    /**
+     * AWS access key ID used to authenticate with Amazon SNS.
+     */
+    accessKey?: string;
+    /**
+     * The Amazon Resource Name (ARN) of the role to assume to send notifications to Amazon SNS.
+     */
+    assumeRoleArn?: string;
+    /**
+     * The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+     */
+    authProvider?: string;
+    body?: string;
+    /**
+     * Whether to disable sending resolve messages. Defaults to `false`.
+     */
+    disableResolveMessage?: boolean;
+    /**
+     * The external ID to use when assuming the role.
+     */
+    externalId?: string;
+    /**
+     * The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+     */
+    messageFormat?: string;
+    /**
+     * AWS secret access key used to authenticate with Amazon SNS.
+     */
+    secretKey?: string;
+    /**
+     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     */
+    settings?: {[key: string]: string};
+    subject?: string;
+    /**
+     * The Amazon SNS topic to send notifications to.
+     */
+    topic: string;
+    /**
+     * The UID of the contact point.
+     */
+    uid: string;
 }
 
 export interface ContactPointTeam {
@@ -810,7 +929,7 @@ export interface DataSourcePermissionPermission {
      */
     builtInRole?: string;
     /**
-     * Permission to associate with item. Options: `Query` or `Edit` (`Edit` can only be used with Grafana v9.2.3+).
+     * Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
      */
     permission: string;
     /**
@@ -863,6 +982,7 @@ export interface GetRolePermission {
 export interface GetSlosSlo {
     alertings: outputs.GetSlosSloAlerting[];
     description: string;
+    destinationDatasources: outputs.GetSlosSloDestinationDatasource[];
     labels: outputs.GetSlosSloLabel[];
     name: string;
     objectives: outputs.GetSlosSloObjective[];
@@ -917,6 +1037,10 @@ export interface GetSlosSloAlertingSlowburnLabel {
     value: string;
 }
 
+export interface GetSlosSloDestinationDatasource {
+    uid?: string;
+}
+
 export interface GetSlosSloLabel {
     key: string;
     value: string;
@@ -947,6 +1071,7 @@ export interface GetTeamPreference {
     homeDashboardUid?: string;
     theme?: string;
     timezone?: string;
+    weekStart?: string;
 }
 
 export interface GetTeamTeamSync {
@@ -997,6 +1122,10 @@ export interface MuteTimingInterval {
      * An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
      */
     daysOfMonths?: string[];
+    /**
+     * Provides the time zone for the time interval. Must be a location in the IANA time zone database, e.g "America/New_York"
+     */
+    location?: string;
     /**
      * An inclusive range of months, either numerical or full calendar month, e.g. "1:3", "december", or "may:august".
      */
@@ -1481,6 +1610,32 @@ export interface PlaylistItem {
     value?: string;
 }
 
+export interface ReportDashboard {
+    /**
+     * Add report variables to the dashboard. Values should be separated by commas.
+     */
+    reportVariables?: {[key: string]: any};
+    /**
+     * Time range of the report.
+     */
+    timeRange?: outputs.ReportDashboardTimeRange;
+    /**
+     * Dashboard uid.
+     */
+    uid: string;
+}
+
+export interface ReportDashboardTimeRange {
+    /**
+     * Start of the time range.
+     */
+    from?: string;
+    /**
+     * End of the time range.
+     */
+    to?: string;
+}
+
 export interface ReportSchedule {
     /**
      * Custom interval of the report.
@@ -1488,7 +1643,7 @@ export interface ReportSchedule {
      */
     customInterval?: string;
     /**
-     * End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana.
+     * End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
      */
     endTime?: string;
     /**
@@ -1500,9 +1655,13 @@ export interface ReportSchedule {
      */
     lastDayOfMonth?: boolean;
     /**
-     * Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana.
+     * Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
      */
     startTime?: string;
+    /**
+     * Set the report time zone. Defaults to `GMT`.
+     */
+    timezone?: string;
     /**
      * Whether to send the report only on work days. Defaults to `false`.
      */
@@ -1679,6 +1838,13 @@ export interface SLOAlertingSlowburnLabel {
     value: string;
 }
 
+export interface SLODestinationDatasource {
+    /**
+     * UID for the Mimir Datasource
+     */
+    uid?: string;
+}
+
 export interface SLOLabel {
     key: string;
     value: string;
@@ -1741,6 +1907,161 @@ export interface ServiceAccountPermissionPermission {
     userId?: string;
 }
 
+export interface SsoSettingsOauth2Settings {
+    /**
+     * If enabled, it will automatically sync the Grafana server administrator role.
+     */
+    allowAssignGrafanaAdmin?: boolean;
+    /**
+     * If not enabled, only existing Grafana users can log in using OAuth.
+     */
+    allowSignUp?: boolean;
+    /**
+     * List of comma- or space-separated domains. The user should belong to at least one domain to log in.
+     */
+    allowedDomains?: string;
+    /**
+     * List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+     */
+    allowedGroups?: string;
+    /**
+     * List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
+     */
+    allowedOrganizations?: string;
+    /**
+     * The user information endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+     */
+    apiUrl?: string;
+    /**
+     * It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+     */
+    authStyle?: string;
+    /**
+     * The authorization endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+     */
+    authUrl?: string;
+    /**
+     * Log in automatically, skipping the login screen.
+     */
+    autoLogin?: boolean;
+    /**
+     * The client Id of your OAuth2 app.
+     */
+    clientId: string;
+    /**
+     * The client secret of your OAuth2 app.
+     */
+    clientSecret?: string;
+    /**
+     * Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+     */
+    custom?: {[key: string]: string};
+    /**
+     * Define allowed groups.
+     */
+    defineAllowedGroups?: boolean;
+    /**
+     * Define allowed teams ids.
+     */
+    defineAllowedTeamsIds?: boolean;
+    /**
+     * Name of the key to use for user email lookup within the attributes map of OAuth2 ID token. Only applicable to Generic OAuth.
+     */
+    emailAttributeName?: string;
+    /**
+     * JMESPath expression to use for user email lookup from the user information. Only applicable to Generic OAuth.
+     */
+    emailAttributePath?: string;
+    /**
+     * If enabled, no scopes will be sent to the OAuth2 provider.
+     */
+    emptyScopes?: boolean;
+    /**
+     * Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+     */
+    enabled?: boolean;
+    /**
+     * JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+     */
+    groupsAttributePath?: string;
+    /**
+     * The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
+     */
+    idTokenAttributeName?: string;
+    /**
+     * JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
+     */
+    loginAttributePath?: string;
+    /**
+     * Helpful if you use more than one identity providers or SSO protocols.
+     */
+    name?: string;
+    /**
+     * JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+     */
+    nameAttributePath?: string;
+    /**
+     * JMESPath expression to use for Grafana role lookup.
+     */
+    roleAttributePath?: string;
+    /**
+     * If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
+     */
+    roleAttributeStrict?: boolean;
+    /**
+     * List of comma- or space-separated OAuth2 scopes.
+     */
+    scopes?: string;
+    /**
+     * The URL to redirect the user to after signing out from Grafana.
+     */
+    signoutRedirectUrl?: string;
+    /**
+     * Prevent synchronizing users’ organization roles from your IdP.
+     */
+    skipOrgRoleSync?: boolean;
+    /**
+     * String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+     */
+    teamIds?: string;
+    /**
+     * The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teamsUrl endpoint. Only applicable to Generic OAuth.
+     */
+    teamIdsAttributePath?: string;
+    /**
+     * The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+     */
+    teamsUrl?: string;
+    /**
+     * The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
+     */
+    tlsClientCa?: string;
+    /**
+     * The path to the certificate. Is not applicable on Grafana Cloud.
+     */
+    tlsClientCert?: string;
+    /**
+     * The path to the key. Is not applicable on Grafana Cloud.
+     */
+    tlsClientKey?: string;
+    /**
+     * If enabled, the client accepts any certificate presented by the server and any host name in that certificate. You should only use this for testing, because this mode leaves SSL/TLS susceptible to man-in-the-middle attacks.
+     */
+    tlsSkipVerifyInsecure?: boolean;
+    /**
+     * The token endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+     */
+    tokenUrl?: string;
+    /**
+     * If enabled, Grafana will use Proof Key for Code Exchange (PKCE) with the OAuth2 Authorization Code Grant.
+     */
+    usePkce?: boolean;
+    /**
+     * If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
+     */
+    useRefreshToken?: boolean;
+}
+
 export interface SyntheticMonitoringCheckSettings {
     /**
      * Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
@@ -1750,6 +2071,10 @@ export interface SyntheticMonitoringCheckSettings {
      * Settings for HTTP check. The target must be a URL (http or https).
      */
     http?: outputs.SyntheticMonitoringCheckSettingsHttp;
+    /**
+     * Settings for MultiHTTP check. The target must be a URL (http or https)
+     */
+    multihttp?: outputs.SyntheticMonitoringCheckSettingsMultihttp;
     /**
      * Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
      */
@@ -1898,6 +2223,10 @@ export interface SyntheticMonitoringCheckSettingsHttp {
      */
     noFollowRedirects?: boolean;
     /**
+     * The HTTP headers sent to the proxy URL
+     */
+    proxyConnectHeaders?: string[];
+    /**
      * Proxy URL.
      */
     proxyUrl?: string;
@@ -1977,6 +2306,127 @@ export interface SyntheticMonitoringCheckSettingsHttpTlsConfig {
      * Used to verify the hostname for the targets.
      */
     serverName?: string;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttp {
+    entries?: outputs.SyntheticMonitoringCheckSettingsMultihttpEntry[];
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntry {
+    /**
+     * Assertions to make on the request response
+     */
+    assertions?: outputs.SyntheticMonitoringCheckSettingsMultihttpEntryAssertion[];
+    /**
+     * An individual MultiHTTP request
+     */
+    request?: outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequest;
+    /**
+     * Variables to extract from the request response
+     */
+    variables?: outputs.SyntheticMonitoringCheckSettingsMultihttpEntryVariable[];
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryAssertion {
+    /**
+     * The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+     */
+    condition?: string;
+    /**
+     * The expression of the assertion. Should start with $.
+     */
+    expression?: string;
+    /**
+     * The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+     */
+    subject?: string;
+    /**
+     * The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+     */
+    type: string;
+    /**
+     * The value of the assertion
+     */
+    value?: string;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryRequest {
+    /**
+     * The body of the HTTP request used in probe.
+     */
+    bodies?: outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody[];
+    /**
+     * The HTTP headers set for the probe.
+     */
+    headers?: outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader[];
+    /**
+     * Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+     */
+    method: string;
+    /**
+     * Query fields to send with the request
+     */
+    queryFields?: outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField[];
+    /**
+     * The URL for the request
+     */
+    url: string;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody {
+    /**
+     * The content encoding of the body
+     */
+    contentEncoding?: string;
+    /**
+     * The content type of the body
+     */
+    contentType?: string;
+    /**
+     * The body payload
+     */
+    payload?: string;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader {
+    /**
+     * Name of the header to send
+     */
+    name: string;
+    /**
+     * The value of the assertion
+     */
+    value: string;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField {
+    /**
+     * Name of the header to send
+     */
+    name: string;
+    /**
+     * The value of the assertion
+     */
+    value: string;
+}
+
+export interface SyntheticMonitoringCheckSettingsMultihttpEntryVariable {
+    /**
+     * The attribute to use when finding the variable value. Only used when type is CSS_SELECTOR
+     */
+    attribute?: string;
+    /**
+     * The expression of the assertion. Should start with $.
+     */
+    expression?: string;
+    /**
+     * Name of the header to send
+     */
+    name?: string;
+    /**
+     * The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+     */
+    type: string;
 }
 
 export interface SyntheticMonitoringCheckSettingsPing {
@@ -2078,6 +2528,7 @@ export interface TeamPreferences {
     homeDashboardUid?: string;
     theme?: string;
     timezone?: string;
+    weekStart?: string;
 }
 
 export interface TeamTeamSync {
