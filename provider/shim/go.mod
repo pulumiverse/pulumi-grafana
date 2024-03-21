@@ -7,7 +7,7 @@ require (
 	// versioning. From v2 you need to utilise pseudo versions for each release.
 	//
 	// 20240306191859-d6e8d1744de3 is the pseudo version for v2.13.0
-	github.com/grafana/terraform-provider-grafana v1.43.1-0.20240306191859-d6e8d1744de3
+	github.com/grafana/terraform-provider-grafana aaa20a20f309
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.32.0
 )
 
