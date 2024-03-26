@@ -1,4 +1,4 @@
-module github.com/pulumiverse/pulumi-grafana/shim
+module github.com/grafana/terraform-provider-grafana/shim
 
 go 1.21
 
