@@ -2,7 +2,7 @@ module github.com/pulumiverse/pulumi-grafana/provider
 
 go 1.21
 
-replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240229143312-4f60ee4e2975
+replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 7ac578ce47fc
 
 require (
 	github.com/grafana/terraform-provider-grafana/v2 v2.14.3
