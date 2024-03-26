@@ -22,6 +22,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -147,13 +148,14 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// The policy is a singleton, so the ID is a constant "policy" value.
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/notificationPolicy:NotificationPolicy notification_policy_name "policy"
+    /// $ pulumi import grafana:index/notificationPolicy:NotificationPolicy notification_policy_name "policy"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/notificationPolicy:NotificationPolicy")]

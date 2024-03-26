@@ -8,12 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,6 +37,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetOncallTeam(ctx *pulumi.Context, args *GetOncallTeamArgs, opts ...pulumi.InvokeOption) (*GetOncallTeamResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOncallTeamResult
@@ -99,12 +100,6 @@ func (o GetOncallTeamResultOutput) ToGetOncallTeamResultOutput() GetOncallTeamRe
 
 func (o GetOncallTeamResultOutput) ToGetOncallTeamResultOutputWithContext(ctx context.Context) GetOncallTeamResultOutput {
 	return o
-}
-
-func (o GetOncallTeamResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOncallTeamResult] {
-	return pulumix.Output[GetOncallTeamResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetOncallTeamResultOutput) AvatarUrl() pulumi.StringOutput {

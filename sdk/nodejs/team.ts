@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -26,15 +27,16 @@ import * as utilities from "./utilities";
  *     members: [viewer.email],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/team:Team team_name {{team_id}} # To use the default provider org
+ * $ pulumi import grafana:index/team:Team team_name {{team_id}} # To use the default provider org
  * ```
  *
  * ```sh
- *  $ pulumi import grafana:index/team:Team team_name {{org_id}}:{{team_id}} # When "org_id" is set on the resource
+ * $ pulumi import grafana:index/team:Team team_name {{org_id}}:{{team_id}} # When "org_id" is set on the resource
  * ```
  */
 export class Team extends pulumi.CustomResource {

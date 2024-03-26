@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -16,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,6 +39,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupSyntheticMonitoringProbe(ctx *pulumi.Context, args *LookupSyntheticMonitoringProbeArgs, opts ...pulumi.InvokeOption) (*LookupSyntheticMonitoringProbeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSyntheticMonitoringProbeResult
@@ -111,12 +112,6 @@ func (o LookupSyntheticMonitoringProbeResultOutput) ToLookupSyntheticMonitoringP
 
 func (o LookupSyntheticMonitoringProbeResultOutput) ToLookupSyntheticMonitoringProbeResultOutputWithContext(ctx context.Context) LookupSyntheticMonitoringProbeResultOutput {
 	return o
-}
-
-func (o LookupSyntheticMonitoringProbeResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSyntheticMonitoringProbeResult] {
-	return pulumix.Output[LookupSyntheticMonitoringProbeResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of the probe.

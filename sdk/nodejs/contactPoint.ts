@@ -16,6 +16,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -31,11 +32,12 @@ import * as utilities from "./utilities";
  *     subject: "{{ template \"default.title\" .}}",
  * }]});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/contactPoint:ContactPoint contact_point_name {{contact_point_name}}
+ * $ pulumi import grafana:index/contactPoint:ContactPoint contact_point_name {{contact_point_name}}
  * ```
  */
 export class ContactPoint extends pulumi.CustomResource {

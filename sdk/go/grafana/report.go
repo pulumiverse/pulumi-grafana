@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -20,6 +19,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -56,6 +56,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type Report struct {
 	pulumi.CustomResourceState
 
@@ -93,7 +94,7 @@ type Report struct {
 	Schedule ReportScheduleOutput `pulumi:"schedule"`
 	// Time range of the report.
 	//
-	// Deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
+	// Deprecated: Use timeRange in dashboards instead. This field is completely ignored when dashboards is set.
 	TimeRange ReportTimeRangePtrOutput `pulumi:"timeRange"`
 }
 
@@ -167,7 +168,7 @@ type reportState struct {
 	Schedule *ReportSchedule `pulumi:"schedule"`
 	// Time range of the report.
 	//
-	// Deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
+	// Deprecated: Use timeRange in dashboards instead. This field is completely ignored when dashboards is set.
 	TimeRange *ReportTimeRange `pulumi:"timeRange"`
 }
 
@@ -206,7 +207,7 @@ type ReportState struct {
 	Schedule ReportSchedulePtrInput
 	// Time range of the report.
 	//
-	// Deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
+	// Deprecated: Use timeRange in dashboards instead. This field is completely ignored when dashboards is set.
 	TimeRange ReportTimeRangePtrInput
 }
 
@@ -249,7 +250,7 @@ type reportArgs struct {
 	Schedule ReportSchedule `pulumi:"schedule"`
 	// Time range of the report.
 	//
-	// Deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
+	// Deprecated: Use timeRange in dashboards instead. This field is completely ignored when dashboards is set.
 	TimeRange *ReportTimeRange `pulumi:"timeRange"`
 }
 
@@ -289,7 +290,7 @@ type ReportArgs struct {
 	Schedule ReportScheduleInput
 	// Time range of the report.
 	//
-	// Deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
+	// Deprecated: Use timeRange in dashboards instead. This field is completely ignored when dashboards is set.
 	TimeRange ReportTimeRangePtrInput
 }
 
@@ -314,12 +315,6 @@ func (i *Report) ToReportOutput() ReportOutput {
 
 func (i *Report) ToReportOutputWithContext(ctx context.Context) ReportOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReportOutput)
-}
-
-func (i *Report) ToOutput(ctx context.Context) pulumix.Output[*Report] {
-	return pulumix.Output[*Report]{
-		OutputState: i.ToReportOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ReportArrayInput is an input type that accepts ReportArray and ReportArrayOutput values.
@@ -347,12 +342,6 @@ func (i ReportArray) ToReportArrayOutputWithContext(ctx context.Context) ReportA
 	return pulumi.ToOutputWithContext(ctx, i).(ReportArrayOutput)
 }
 
-func (i ReportArray) ToOutput(ctx context.Context) pulumix.Output[[]*Report] {
-	return pulumix.Output[[]*Report]{
-		OutputState: i.ToReportArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ReportMapInput is an input type that accepts ReportMap and ReportMapOutput values.
 // You can construct a concrete instance of `ReportMapInput` via:
 //
@@ -378,12 +367,6 @@ func (i ReportMap) ToReportMapOutputWithContext(ctx context.Context) ReportMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(ReportMapOutput)
 }
 
-func (i ReportMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Report] {
-	return pulumix.Output[map[string]*Report]{
-		OutputState: i.ToReportMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ReportOutput struct{ *pulumi.OutputState }
 
 func (ReportOutput) ElementType() reflect.Type {
@@ -396,12 +379,6 @@ func (o ReportOutput) ToReportOutput() ReportOutput {
 
 func (o ReportOutput) ToReportOutputWithContext(ctx context.Context) ReportOutput {
 	return o
-}
-
-func (o ReportOutput) ToOutput(ctx context.Context) pulumix.Output[*Report] {
-	return pulumix.Output[*Report]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
@@ -480,7 +457,7 @@ func (o ReportOutput) Schedule() ReportScheduleOutput {
 
 // Time range of the report.
 //
-// Deprecated: Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
+// Deprecated: Use timeRange in dashboards instead. This field is completely ignored when dashboards is set.
 func (o ReportOutput) TimeRange() ReportTimeRangePtrOutput {
 	return o.ApplyT(func(v *Report) ReportTimeRangePtrOutput { return v.TimeRange }).(ReportTimeRangePtrOutput)
 }
@@ -497,12 +474,6 @@ func (o ReportArrayOutput) ToReportArrayOutput() ReportArrayOutput {
 
 func (o ReportArrayOutput) ToReportArrayOutputWithContext(ctx context.Context) ReportArrayOutput {
 	return o
-}
-
-func (o ReportArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Report] {
-	return pulumix.Output[[]*Report]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ReportArrayOutput) Index(i pulumi.IntInput) ReportOutput {
@@ -523,12 +494,6 @@ func (o ReportMapOutput) ToReportMapOutput() ReportMapOutput {
 
 func (o ReportMapOutput) ToReportMapOutputWithContext(ctx context.Context) ReportMapOutput {
 	return o
-}
-
-func (o ReportMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Report] {
-	return pulumix.Output[map[string]*Report]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ReportMapOutput) MapIndex(k pulumi.StringInput) ReportOutput {

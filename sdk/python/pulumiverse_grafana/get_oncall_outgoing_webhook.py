@@ -63,12 +63,14 @@ def get_oncall_outgoing_webhook(name: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     example_outgoing_webhook = grafana.get_oncall_outgoing_webhook(name="example_outgoing_webhook")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The outgoing webhook name.
@@ -91,12 +93,14 @@ def get_oncall_outgoing_webhook_output(name: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     example_outgoing_webhook = grafana.get_oncall_outgoing_webhook(name="example_outgoing_webhook")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The outgoing webhook name.

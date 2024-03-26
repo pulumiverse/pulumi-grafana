@@ -270,6 +270,7 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -282,15 +283,16 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
             longitude=86.92262,
             region="APAC")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}
+        $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}
         ```
 
         ```sh
-         $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}:{{auth_token}}
+        $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}:{{auth_token}}
         ```
 
         :param str resource_name: The name of the resource.
@@ -318,6 +320,7 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -330,15 +333,16 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
             longitude=86.92262,
             region="APAC")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}
+        $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}
         ```
 
         ```sh
-         $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}:{{auth_token}}
+        $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}:{{auth_token}}
         ```
 
         :param str resource_name: The name of the resource.

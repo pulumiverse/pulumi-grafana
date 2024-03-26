@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -22,6 +21,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -36,10 +36,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Optional (On-premise, not supported in Grafana Cloud): Create an organization
 //			myOrg, err := grafana.NewOrganization(ctx, "myOrg", nil)
 //			if err != nil {
 //				return err
 //			}
+//			// Create resources (optional: within the organization)
 //			myFolder, err := grafana.NewFolder(ctx, "myFolder", &grafana.FolderArgs{
 //				OrgId: myOrg.OrgId,
 //				Title: pulumi.String("test Folder"),
@@ -76,6 +78,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Optional (On-premise, not supported in Grafana Cloud): Create an organization
 //			myOrg2, err := grafana.NewOrganization(ctx, "myOrg2", nil)
 //			if err != nil {
 //				return err
@@ -108,19 +111,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {{dashboard_uid}}:{{public_dashboard_uid}} # To use the default provider org
-//
+// $ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {{dashboard_uid}}:{{public_dashboard_uid}} # To use the default provider org
 // ```
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {org_id}}:{{dashboard_uid}}:{{public_dashboard_uid}} # When "org_id" is set on the resource
-//
+// $ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {org_id}}:{{dashboard_uid}}:{{public_dashboard_uid}} # When "org_id" is set on the resource
 // ```
 type DashboardPublic struct {
 	pulumi.CustomResourceState
@@ -279,12 +279,6 @@ func (i *DashboardPublic) ToDashboardPublicOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(DashboardPublicOutput)
 }
 
-func (i *DashboardPublic) ToOutput(ctx context.Context) pulumix.Output[*DashboardPublic] {
-	return pulumix.Output[*DashboardPublic]{
-		OutputState: i.ToDashboardPublicOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DashboardPublicArrayInput is an input type that accepts DashboardPublicArray and DashboardPublicArrayOutput values.
 // You can construct a concrete instance of `DashboardPublicArrayInput` via:
 //
@@ -308,12 +302,6 @@ func (i DashboardPublicArray) ToDashboardPublicArrayOutput() DashboardPublicArra
 
 func (i DashboardPublicArray) ToDashboardPublicArrayOutputWithContext(ctx context.Context) DashboardPublicArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DashboardPublicArrayOutput)
-}
-
-func (i DashboardPublicArray) ToOutput(ctx context.Context) pulumix.Output[[]*DashboardPublic] {
-	return pulumix.Output[[]*DashboardPublic]{
-		OutputState: i.ToDashboardPublicArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DashboardPublicMapInput is an input type that accepts DashboardPublicMap and DashboardPublicMapOutput values.
@@ -341,12 +329,6 @@ func (i DashboardPublicMap) ToDashboardPublicMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(DashboardPublicMapOutput)
 }
 
-func (i DashboardPublicMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DashboardPublic] {
-	return pulumix.Output[map[string]*DashboardPublic]{
-		OutputState: i.ToDashboardPublicMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DashboardPublicOutput struct{ *pulumi.OutputState }
 
 func (DashboardPublicOutput) ElementType() reflect.Type {
@@ -359,12 +341,6 @@ func (o DashboardPublicOutput) ToDashboardPublicOutput() DashboardPublicOutput {
 
 func (o DashboardPublicOutput) ToDashboardPublicOutputWithContext(ctx context.Context) DashboardPublicOutput {
 	return o
-}
-
-func (o DashboardPublicOutput) ToOutput(ctx context.Context) pulumix.Output[*DashboardPublic] {
-	return pulumix.Output[*DashboardPublic]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
@@ -421,12 +397,6 @@ func (o DashboardPublicArrayOutput) ToDashboardPublicArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o DashboardPublicArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DashboardPublic] {
-	return pulumix.Output[[]*DashboardPublic]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DashboardPublicArrayOutput) Index(i pulumi.IntInput) DashboardPublicOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DashboardPublic {
 		return vs[0].([]*DashboardPublic)[vs[1].(int)]
@@ -445,12 +415,6 @@ func (o DashboardPublicMapOutput) ToDashboardPublicMapOutput() DashboardPublicMa
 
 func (o DashboardPublicMapOutput) ToDashboardPublicMapOutputWithContext(ctx context.Context) DashboardPublicMapOutput {
 	return o
-}
-
-func (o DashboardPublicMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DashboardPublic] {
-	return pulumix.Output[map[string]*DashboardPublic]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DashboardPublicMapOutput) MapIndex(k pulumi.StringInput) DashboardPublicOutput {

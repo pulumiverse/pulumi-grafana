@@ -16,10 +16,9 @@ namespace Pulumiverse.Grafana
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
         /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -42,8 +41,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetFolderResult> InvokeAsync(GetFolderArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFolderResult>("grafana:index/getFolder:getFolder", args ?? new GetFolderArgs(), options.WithDefaults());
@@ -52,10 +50,9 @@ namespace Pulumiverse.Grafana
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
         /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -78,8 +75,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetFolderResult> Invoke(GetFolderInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFolderResult>("grafana:index/getFolder:getFolder", args ?? new GetFolderInvokeArgs(), options.WithDefaults());

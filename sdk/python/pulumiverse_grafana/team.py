@@ -304,6 +304,7 @@ class Team(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -316,15 +317,16 @@ class Team(pulumi.CustomResource):
             email="teamemail@example.com",
             members=[viewer.email])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/team:Team team_name {{team_id}} # To use the default provider org
+        $ pulumi import grafana:index/team:Team team_name {{team_id}} # To use the default provider org
         ```
 
         ```sh
-         $ pulumi import grafana:index/team:Team team_name {{org_id}}:{{team_id}} # When "org_id" is set on the resource
+        $ pulumi import grafana:index/team:Team team_name {{org_id}}:{{team_id}} # When "org_id" is set on the resource
         ```
 
         :param str resource_name: The name of the resource.
@@ -354,6 +356,7 @@ class Team(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -366,15 +369,16 @@ class Team(pulumi.CustomResource):
             email="teamemail@example.com",
             members=[viewer.email])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/team:Team team_name {{team_id}} # To use the default provider org
+        $ pulumi import grafana:index/team:Team team_name {{team_id}} # To use the default provider org
         ```
 
         ```sh
-         $ pulumi import grafana:index/team:Team team_name {{org_id}}:{{team_id}} # When "org_id" is set on the resource
+        $ pulumi import grafana:index/team:Team team_name {{org_id}}:{{team_id}} # When "org_id" is set on the resource
         ```
 
         :param str resource_name: The name of the resource.

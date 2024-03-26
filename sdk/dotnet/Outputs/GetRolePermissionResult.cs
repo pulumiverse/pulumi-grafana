@@ -14,7 +14,13 @@ namespace Pulumiverse.Grafana.Outputs
     [OutputType]
     public sealed class GetRolePermissionResult
     {
+        /// <summary>
+        /// Specific action users granted with the role will be allowed to perform (for example: `users:read`)
+        /// </summary>
         public readonly string Action;
+        /// <summary>
+        /// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+        /// </summary>
         public readonly string? Scope;
 
         [OutputConstructor]

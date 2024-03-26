@@ -135,12 +135,14 @@ def get_synthetic_monitoring_probe(name: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     atlanta = grafana.get_synthetic_monitoring_probe(name="Atlanta")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: Name of the probe.
@@ -169,12 +171,14 @@ def get_synthetic_monitoring_probe_output(name: Optional[pulumi.Input[str]] = No
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     atlanta = grafana.get_synthetic_monitoring_probe(name="Atlanta")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: Name of the probe.

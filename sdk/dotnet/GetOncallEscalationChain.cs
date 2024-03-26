@@ -15,10 +15,9 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,8 +33,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetOncallEscalationChainResult> InvokeAsync(GetOncallEscalationChainArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallEscalationChainResult>("grafana:index/getOncallEscalationChain:getOncallEscalationChain", args ?? new GetOncallEscalationChainArgs(), options.WithDefaults());
@@ -43,10 +41,9 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,8 +59,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetOncallEscalationChainResult> Invoke(GetOncallEscalationChainInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOncallEscalationChainResult>("grafana:index/getOncallEscalationChain:getOncallEscalationChain", args ?? new GetOncallEscalationChainInvokeArgs(), options.WithDefaults());

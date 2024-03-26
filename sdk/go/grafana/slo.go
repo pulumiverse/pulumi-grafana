@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -193,12 +192,6 @@ func (i *SLO) ToSLOOutputWithContext(ctx context.Context) SLOOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SLOOutput)
 }
 
-func (i *SLO) ToOutput(ctx context.Context) pulumix.Output[*SLO] {
-	return pulumix.Output[*SLO]{
-		OutputState: i.ToSLOOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SLOArrayInput is an input type that accepts SLOArray and SLOArrayOutput values.
 // You can construct a concrete instance of `SLOArrayInput` via:
 //
@@ -222,12 +215,6 @@ func (i SLOArray) ToSLOArrayOutput() SLOArrayOutput {
 
 func (i SLOArray) ToSLOArrayOutputWithContext(ctx context.Context) SLOArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SLOArrayOutput)
-}
-
-func (i SLOArray) ToOutput(ctx context.Context) pulumix.Output[[]*SLO] {
-	return pulumix.Output[[]*SLO]{
-		OutputState: i.ToSLOArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SLOMapInput is an input type that accepts SLOMap and SLOMapOutput values.
@@ -255,12 +242,6 @@ func (i SLOMap) ToSLOMapOutputWithContext(ctx context.Context) SLOMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SLOMapOutput)
 }
 
-func (i SLOMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SLO] {
-	return pulumix.Output[map[string]*SLO]{
-		OutputState: i.ToSLOMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SLOOutput struct{ *pulumi.OutputState }
 
 func (SLOOutput) ElementType() reflect.Type {
@@ -273,12 +254,6 @@ func (o SLOOutput) ToSLOOutput() SLOOutput {
 
 func (o SLOOutput) ToSLOOutputWithContext(ctx context.Context) SLOOutput {
 	return o
-}
-
-func (o SLOOutput) ToOutput(ctx context.Context) pulumix.Output[*SLO] {
-	return pulumix.Output[*SLO]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Configures the alerting rules that will be generated for each
@@ -335,12 +310,6 @@ func (o SLOArrayOutput) ToSLOArrayOutputWithContext(ctx context.Context) SLOArra
 	return o
 }
 
-func (o SLOArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SLO] {
-	return pulumix.Output[[]*SLO]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SLOArrayOutput) Index(i pulumi.IntInput) SLOOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SLO {
 		return vs[0].([]*SLO)[vs[1].(int)]
@@ -359,12 +328,6 @@ func (o SLOMapOutput) ToSLOMapOutput() SLOMapOutput {
 
 func (o SLOMapOutput) ToSLOMapOutputWithContext(ctx context.Context) SLOMapOutput {
 	return o
-}
-
-func (o SLOMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SLO] {
-	return pulumix.Output[map[string]*SLO]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SLOMapOutput) MapIndex(k pulumi.StringInput) SLOOutput {

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -17,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,12 +42,13 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type OrganizationPreference struct {
 	pulumi.CustomResourceState
 
 	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
 	//
-	// Deprecated: Use `home_dashboard_uid` instead.
+	// Deprecated: Use `homeDashboardUid` instead.
 	HomeDashboardId pulumi.IntPtrOutput `pulumi:"homeDashboardId"`
 	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid pulumi.StringPtrOutput `pulumi:"homeDashboardUid"`
@@ -93,7 +94,7 @@ func GetOrganizationPreference(ctx *pulumi.Context,
 type organizationPreferenceState struct {
 	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
 	//
-	// Deprecated: Use `home_dashboard_uid` instead.
+	// Deprecated: Use `homeDashboardUid` instead.
 	HomeDashboardId *int `pulumi:"homeDashboardId"`
 	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid *string `pulumi:"homeDashboardUid"`
@@ -110,7 +111,7 @@ type organizationPreferenceState struct {
 type OrganizationPreferenceState struct {
 	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
 	//
-	// Deprecated: Use `home_dashboard_uid` instead.
+	// Deprecated: Use `homeDashboardUid` instead.
 	HomeDashboardId pulumi.IntPtrInput
 	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid pulumi.StringPtrInput
@@ -131,7 +132,7 @@ func (OrganizationPreferenceState) ElementType() reflect.Type {
 type organizationPreferenceArgs struct {
 	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
 	//
-	// Deprecated: Use `home_dashboard_uid` instead.
+	// Deprecated: Use `homeDashboardUid` instead.
 	HomeDashboardId *int `pulumi:"homeDashboardId"`
 	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid *string `pulumi:"homeDashboardUid"`
@@ -149,7 +150,7 @@ type organizationPreferenceArgs struct {
 type OrganizationPreferenceArgs struct {
 	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
 	//
-	// Deprecated: Use `home_dashboard_uid` instead.
+	// Deprecated: Use `homeDashboardUid` instead.
 	HomeDashboardId pulumi.IntPtrInput
 	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid pulumi.StringPtrInput
@@ -186,12 +187,6 @@ func (i *OrganizationPreference) ToOrganizationPreferenceOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPreferenceOutput)
 }
 
-func (i *OrganizationPreference) ToOutput(ctx context.Context) pulumix.Output[*OrganizationPreference] {
-	return pulumix.Output[*OrganizationPreference]{
-		OutputState: i.ToOrganizationPreferenceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // OrganizationPreferenceArrayInput is an input type that accepts OrganizationPreferenceArray and OrganizationPreferenceArrayOutput values.
 // You can construct a concrete instance of `OrganizationPreferenceArrayInput` via:
 //
@@ -215,12 +210,6 @@ func (i OrganizationPreferenceArray) ToOrganizationPreferenceArrayOutput() Organ
 
 func (i OrganizationPreferenceArray) ToOrganizationPreferenceArrayOutputWithContext(ctx context.Context) OrganizationPreferenceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPreferenceArrayOutput)
-}
-
-func (i OrganizationPreferenceArray) ToOutput(ctx context.Context) pulumix.Output[[]*OrganizationPreference] {
-	return pulumix.Output[[]*OrganizationPreference]{
-		OutputState: i.ToOrganizationPreferenceArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // OrganizationPreferenceMapInput is an input type that accepts OrganizationPreferenceMap and OrganizationPreferenceMapOutput values.
@@ -248,12 +237,6 @@ func (i OrganizationPreferenceMap) ToOrganizationPreferenceMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPreferenceMapOutput)
 }
 
-func (i OrganizationPreferenceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OrganizationPreference] {
-	return pulumix.Output[map[string]*OrganizationPreference]{
-		OutputState: i.ToOrganizationPreferenceMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type OrganizationPreferenceOutput struct{ *pulumi.OutputState }
 
 func (OrganizationPreferenceOutput) ElementType() reflect.Type {
@@ -268,15 +251,9 @@ func (o OrganizationPreferenceOutput) ToOrganizationPreferenceOutputWithContext(
 	return o
 }
 
-func (o OrganizationPreferenceOutput) ToOutput(ctx context.Context) pulumix.Output[*OrganizationPreference] {
-	return pulumix.Output[*OrganizationPreference]{
-		OutputState: o.OutputState,
-	}
-}
-
 // The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
 //
-// Deprecated: Use `home_dashboard_uid` instead.
+// Deprecated: Use `homeDashboardUid` instead.
 func (o OrganizationPreferenceOutput) HomeDashboardId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *OrganizationPreference) pulumi.IntPtrOutput { return v.HomeDashboardId }).(pulumi.IntPtrOutput)
 }
@@ -320,12 +297,6 @@ func (o OrganizationPreferenceArrayOutput) ToOrganizationPreferenceArrayOutputWi
 	return o
 }
 
-func (o OrganizationPreferenceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OrganizationPreference] {
-	return pulumix.Output[[]*OrganizationPreference]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o OrganizationPreferenceArrayOutput) Index(i pulumi.IntInput) OrganizationPreferenceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OrganizationPreference {
 		return vs[0].([]*OrganizationPreference)[vs[1].(int)]
@@ -344,12 +315,6 @@ func (o OrganizationPreferenceMapOutput) ToOrganizationPreferenceMapOutput() Org
 
 func (o OrganizationPreferenceMapOutput) ToOrganizationPreferenceMapOutputWithContext(ctx context.Context) OrganizationPreferenceMapOutput {
 	return o
-}
-
-func (o OrganizationPreferenceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OrganizationPreference] {
-	return pulumix.Output[map[string]*OrganizationPreference]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o OrganizationPreferenceMapOutput) MapIndex(k pulumi.StringInput) OrganizationPreferenceOutput {

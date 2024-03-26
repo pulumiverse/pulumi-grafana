@@ -20,6 +20,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -84,15 +85,16 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {{dashboard_uid}}:{{public_dashboard_uid}} # To use the default provider org
+    /// $ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {{dashboard_uid}}:{{public_dashboard_uid}} # To use the default provider org
     /// ```
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {org_id}}:{{dashboard_uid}}:{{public_dashboard_uid}} # When "org_id" is set on the resource
+    /// $ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {org_id}}:{{dashboard_uid}}:{{public_dashboard_uid}} # When "org_id" is set on the resource
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/dashboardPublic:DashboardPublic")]

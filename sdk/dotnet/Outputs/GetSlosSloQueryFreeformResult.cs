@@ -14,6 +14,9 @@ namespace Pulumiverse.Grafana.Outputs
     [OutputType]
     public sealed class GetSlosSloQueryFreeformResult
     {
+        /// <summary>
+        /// Freeform Query Field
+        /// </summary>
         public readonly string Query;
 
         [OutputConstructor]

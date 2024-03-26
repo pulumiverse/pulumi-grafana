@@ -10,6 +10,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -28,15 +29,16 @@ import * as utilities from "./utilities";
  *     title: "Terraform Test Folder With UID",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/folder:Folder by_integer_id {{folder_id}}
+ * $ pulumi import grafana:index/folder:Folder by_integer_id {{folder_id}}
  * ```
  *
  * ```sh
- *  $ pulumi import grafana:index/folder:Folder by_uid {{folder_uid}}
+ * $ pulumi import grafana:index/folder:Folder by_uid {{folder_uid}}
  * ```
  */
 export class Folder extends pulumi.CustomResource {

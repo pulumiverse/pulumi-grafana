@@ -14,9 +14,21 @@ namespace Pulumiverse.Grafana.Outputs
     [OutputType]
     public sealed class GetTeamPreferenceResult
     {
+        /// <summary>
+        /// The UID of the dashboard to display when a team member logs in.
+        /// </summary>
         public readonly string? HomeDashboardUid;
+        /// <summary>
+        /// The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.
+        /// </summary>
         public readonly string? Theme;
+        /// <summary>
+        /// The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.
+        /// </summary>
         public readonly string? Timezone;
+        /// <summary>
+        /// The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
+        /// </summary>
         public readonly string? WeekStart;
 
         [OutputConstructor]

@@ -140,6 +140,7 @@ class FolderPermission(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -167,15 +168,16 @@ class FolderPermission(pulumi.CustomResource):
                 ),
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
+        $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
         ```
 
         ```sh
-         $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
+        $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
         ```
 
         :param str resource_name: The name of the resource.
@@ -197,6 +199,7 @@ class FolderPermission(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -224,15 +227,16 @@ class FolderPermission(pulumi.CustomResource):
                 ),
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
+        $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
         ```
 
         ```sh
-         $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
+        $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
         ```
 
         :param str resource_name: The name of the resource.

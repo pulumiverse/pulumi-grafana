@@ -9260,6 +9260,12 @@ class TeamPreferencesArgs:
                  theme: Optional[pulumi.Input[str]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
                  week_start: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] home_dashboard_uid: The UID of the dashboard to display when a team member logs in.
+        :param pulumi.Input[str] theme: The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.
+        :param pulumi.Input[str] timezone: The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.
+        :param pulumi.Input[str] week_start: The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
+        """
         if home_dashboard_uid is not None:
             pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
         if theme is not None:
@@ -9272,6 +9278,9 @@ class TeamPreferencesArgs:
     @property
     @pulumi.getter(name="homeDashboardUid")
     def home_dashboard_uid(self) -> Optional[pulumi.Input[str]]:
+        """
+        The UID of the dashboard to display when a team member logs in.
+        """
         return pulumi.get(self, "home_dashboard_uid")
 
     @home_dashboard_uid.setter
@@ -9281,6 +9290,9 @@ class TeamPreferencesArgs:
     @property
     @pulumi.getter
     def theme(self) -> Optional[pulumi.Input[str]]:
+        """
+        The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.
+        """
         return pulumi.get(self, "theme")
 
     @theme.setter
@@ -9290,6 +9302,9 @@ class TeamPreferencesArgs:
     @property
     @pulumi.getter
     def timezone(self) -> Optional[pulumi.Input[str]]:
+        """
+        The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.
+        """
         return pulumi.get(self, "timezone")
 
     @timezone.setter
@@ -9299,6 +9314,9 @@ class TeamPreferencesArgs:
     @property
     @pulumi.getter(name="weekStart")
     def week_start(self) -> Optional[pulumi.Input[str]]:
+        """
+        The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
+        """
         return pulumi.get(self, "week_start")
 
     @week_start.setter

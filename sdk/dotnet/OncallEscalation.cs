@@ -16,6 +16,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -73,11 +74,12 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/oncallEscalation:OncallEscalation escalation_name {{escalation_id}}
+    /// $ pulumi import grafana:index/oncallEscalation:OncallEscalation escalation_name {{escalation_id}}
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/oncallEscalation:OncallEscalation")]

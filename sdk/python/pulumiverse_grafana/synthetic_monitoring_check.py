@@ -387,8 +387,10 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
         * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/checks/)
 
         ## Example Usage
+
         ### DNS Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -407,8 +409,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 dns=grafana.SyntheticMonitoringCheckSettingsDnsArgs(),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### DNS Complex
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -452,8 +457,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### HTTP Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -472,8 +480,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 http=grafana.SyntheticMonitoringCheckSettingsHttpArgs(),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### HTTP Complex
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -557,8 +568,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Ping Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -577,8 +591,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ping=grafana.SyntheticMonitoringCheckSettingsPingArgs(),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Ping Complex
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -604,8 +621,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### TCP Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -624,8 +644,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 tcp=grafana.SyntheticMonitoringCheckSettingsTcpArgs(),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### TCP Complex
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -692,8 +715,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Traceroute Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -714,8 +740,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 traceroute=grafana.SyntheticMonitoringCheckSettingsTracerouteArgs(),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Traceroute Complex
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -743,11 +772,12 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck check {{check-id}}
+        $ pulumi import grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck check {{check-id}}
         ```
 
         :param str resource_name: The name of the resource.
@@ -779,8 +809,10 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
         * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/checks/)
 
         ## Example Usage
+
         ### DNS Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -799,8 +831,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 dns=grafana.SyntheticMonitoringCheckSettingsDnsArgs(),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### DNS Complex
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -844,8 +879,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### HTTP Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -864,8 +902,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 http=grafana.SyntheticMonitoringCheckSettingsHttpArgs(),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### HTTP Complex
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -949,8 +990,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Ping Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -969,8 +1013,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ping=grafana.SyntheticMonitoringCheckSettingsPingArgs(),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Ping Complex
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -996,8 +1043,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### TCP Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -1016,8 +1066,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 tcp=grafana.SyntheticMonitoringCheckSettingsTcpArgs(),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### TCP Complex
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -1084,8 +1137,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Traceroute Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -1106,8 +1162,11 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 traceroute=grafana.SyntheticMonitoringCheckSettingsTracerouteArgs(),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Traceroute Complex
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -1135,11 +1194,12 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck check {{check-id}}
+        $ pulumi import grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck check {{check-id}}
         ```
 
         :param str resource_name: The name of the resource.

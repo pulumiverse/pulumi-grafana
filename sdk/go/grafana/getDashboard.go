@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -18,6 +17,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -68,6 +68,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupDashboard(ctx *pulumi.Context, args *LookupDashboardArgs, opts ...pulumi.InvokeOption) (*LookupDashboardResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDashboardResult
@@ -154,12 +155,6 @@ func (o LookupDashboardResultOutput) ToLookupDashboardResultOutput() LookupDashb
 
 func (o LookupDashboardResultOutput) ToLookupDashboardResultOutputWithContext(ctx context.Context) LookupDashboardResultOutput {
 	return o
-}
-
-func (o LookupDashboardResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDashboardResult] {
-	return pulumix.Output[LookupDashboardResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The complete dashboard model JSON.

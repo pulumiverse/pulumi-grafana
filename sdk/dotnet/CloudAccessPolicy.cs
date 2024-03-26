@@ -22,6 +22,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -72,11 +73,12 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy name "{{ region }}:{{ policyId }}"
+    /// $ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy name "{{ region }}:{{ policyId }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/cloudAccessPolicy:CloudAccessPolicy")]

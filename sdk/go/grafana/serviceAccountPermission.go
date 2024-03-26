@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -21,6 +20,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -73,6 +73,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type ServiceAccountPermission struct {
 	pulumi.CustomResourceState
 
@@ -180,12 +181,6 @@ func (i *ServiceAccountPermission) ToServiceAccountPermissionOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountPermissionOutput)
 }
 
-func (i *ServiceAccountPermission) ToOutput(ctx context.Context) pulumix.Output[*ServiceAccountPermission] {
-	return pulumix.Output[*ServiceAccountPermission]{
-		OutputState: i.ToServiceAccountPermissionOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ServiceAccountPermissionArrayInput is an input type that accepts ServiceAccountPermissionArray and ServiceAccountPermissionArrayOutput values.
 // You can construct a concrete instance of `ServiceAccountPermissionArrayInput` via:
 //
@@ -209,12 +204,6 @@ func (i ServiceAccountPermissionArray) ToServiceAccountPermissionArrayOutput() S
 
 func (i ServiceAccountPermissionArray) ToServiceAccountPermissionArrayOutputWithContext(ctx context.Context) ServiceAccountPermissionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountPermissionArrayOutput)
-}
-
-func (i ServiceAccountPermissionArray) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceAccountPermission] {
-	return pulumix.Output[[]*ServiceAccountPermission]{
-		OutputState: i.ToServiceAccountPermissionArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ServiceAccountPermissionMapInput is an input type that accepts ServiceAccountPermissionMap and ServiceAccountPermissionMapOutput values.
@@ -242,12 +231,6 @@ func (i ServiceAccountPermissionMap) ToServiceAccountPermissionMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountPermissionMapOutput)
 }
 
-func (i ServiceAccountPermissionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceAccountPermission] {
-	return pulumix.Output[map[string]*ServiceAccountPermission]{
-		OutputState: i.ToServiceAccountPermissionMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ServiceAccountPermissionOutput struct{ *pulumi.OutputState }
 
 func (ServiceAccountPermissionOutput) ElementType() reflect.Type {
@@ -260,12 +243,6 @@ func (o ServiceAccountPermissionOutput) ToServiceAccountPermissionOutput() Servi
 
 func (o ServiceAccountPermissionOutput) ToServiceAccountPermissionOutputWithContext(ctx context.Context) ServiceAccountPermissionOutput {
 	return o
-}
-
-func (o ServiceAccountPermissionOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceAccountPermission] {
-	return pulumix.Output[*ServiceAccountPermission]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -297,12 +274,6 @@ func (o ServiceAccountPermissionArrayOutput) ToServiceAccountPermissionArrayOutp
 	return o
 }
 
-func (o ServiceAccountPermissionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceAccountPermission] {
-	return pulumix.Output[[]*ServiceAccountPermission]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ServiceAccountPermissionArrayOutput) Index(i pulumi.IntInput) ServiceAccountPermissionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ServiceAccountPermission {
 		return vs[0].([]*ServiceAccountPermission)[vs[1].(int)]
@@ -321,12 +292,6 @@ func (o ServiceAccountPermissionMapOutput) ToServiceAccountPermissionMapOutput()
 
 func (o ServiceAccountPermissionMapOutput) ToServiceAccountPermissionMapOutputWithContext(ctx context.Context) ServiceAccountPermissionMapOutput {
 	return o
-}
-
-func (o ServiceAccountPermissionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceAccountPermission] {
-	return pulumix.Output[map[string]*ServiceAccountPermission]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ServiceAccountPermissionMapOutput) MapIndex(k pulumi.StringInput) ServiceAccountPermissionOutput {

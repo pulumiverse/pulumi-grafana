@@ -10,6 +10,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -20,6 +21,7 @@ import * as utilities from "./utilities";
  *     weekStart: "sunday",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class OrganizationPreference extends pulumi.CustomResource {
     /**
@@ -52,7 +54,7 @@ export class OrganizationPreference extends pulumi.CustomResource {
     /**
      * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
      *
-     * @deprecated Use `home_dashboard_uid` instead.
+     * @deprecated Use `homeDashboardUid` instead.
      */
     public readonly homeDashboardId!: pulumi.Output<number | undefined>;
     /**
@@ -116,7 +118,7 @@ export interface OrganizationPreferenceState {
     /**
      * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
      *
-     * @deprecated Use `home_dashboard_uid` instead.
+     * @deprecated Use `homeDashboardUid` instead.
      */
     homeDashboardId?: pulumi.Input<number>;
     /**
@@ -148,7 +150,7 @@ export interface OrganizationPreferenceArgs {
     /**
      * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
      *
-     * @deprecated Use `home_dashboard_uid` instead.
+     * @deprecated Use `homeDashboardUid` instead.
      */
     homeDashboardId?: pulumi.Input<number>;
     /**

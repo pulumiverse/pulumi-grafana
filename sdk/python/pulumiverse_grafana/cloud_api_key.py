@@ -160,6 +160,7 @@ class CloudApiKey(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -168,11 +169,12 @@ class CloudApiKey(pulumi.CustomResource):
             cloud_org_slug="myorg",
             role="Admin")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/cloudApiKey:CloudApiKey name "{{ orgSlug }}:{{ apiKeyName }}"
+        $ pulumi import grafana:index/cloudApiKey:CloudApiKey name "{{ orgSlug }}:{{ apiKeyName }}"
         ```
 
         :param str resource_name: The name of the resource.
@@ -201,6 +203,7 @@ class CloudApiKey(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -209,11 +212,12 @@ class CloudApiKey(pulumi.CustomResource):
             cloud_org_slug="myorg",
             role="Admin")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/cloudApiKey:CloudApiKey name "{{ orgSlug }}:{{ apiKeyName }}"
+        $ pulumi import grafana:index/cloudApiKey:CloudApiKey name "{{ orgSlug }}:{{ apiKeyName }}"
         ```
 
         :param str resource_name: The name of the resource.

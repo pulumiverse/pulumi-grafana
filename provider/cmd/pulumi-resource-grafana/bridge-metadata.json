@@ -1,9 +1,6 @@
 {
     "auto-aliasing": {
         "resources": {
-            "grafana_alert_notification": {
-                "current": "grafana:index/alertNotification:AlertNotification"
-            },
             "grafana_annotation": {
                 "current": "grafana:index/annotation:Annotation",
                 "fields": {
@@ -14,14 +11,6 @@
             },
             "grafana_api_key": {
                 "current": "grafana:index/apiKey:ApiKey"
-            },
-            "grafana_builtin_role_assignment": {
-                "current": "grafana:index/builtinRoleAssignment:BuiltinRoleAssignment",
-                "fields": {
-                    "roles": {
-                        "maxItemsOne": false
-                    }
-                }
             },
             "grafana_cloud_access_policy": {
                 "current": "grafana:index/cloudAccessPolicy:CloudAccessPolicy",
@@ -159,22 +148,7 @@
                 "current": "grafana:index/dashboardPublic:DashboardPublic"
             },
             "grafana_data_source": {
-                "current": "grafana:index/dataSource:DataSource",
-                "fields": {
-                    "json_data": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "derived_field": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
-                    },
-                    "secure_json_data": {
-                        "maxItemsOne": false
-                    }
-                }
+                "current": "grafana:index/dataSource:DataSource"
             },
             "grafana_data_source_permission": {
                 "current": "grafana:index/dataSourcePermission:DataSourcePermission",
@@ -840,9 +814,6 @@
                     }
                 }
             },
-            "grafana_team_preferences": {
-                "current": "grafana:index/teamPreferences:TeamPreferences"
-            },
             "grafana_user": {
                 "current": "grafana:index/user:User"
             }
@@ -1081,6 +1052,25 @@
                     "users": {
                         "maxItemsOne": false
                     }
+                }
+            }
+        }
+    },
+    "auto-settings": {
+        "resources": {
+            "grafana_slo": {
+                "maxItemsOneOverrides": {
+                    "alerting": false,
+                    "alerting.$.fastburn": false,
+                    "alerting.$.slowburn": false
+                }
+            }
+        },
+        "datasources": {
+            "grafana_slos": {
+                "maxItemsOneOverrides": {
+                    "slos.$.alerting.$.fastburn": false,
+                    "slos.$.alerting.$.slowburn": false
                 }
             }
         }

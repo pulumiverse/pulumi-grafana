@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -24,6 +23,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,7 +52,7 @@ import (
 //				Realms: grafana.CloudAccessPolicyRealmArray{
 //					&grafana.CloudAccessPolicyRealmArgs{
 //						Type:       pulumi.String("org"),
-//						Identifier: *pulumi.String(current.Id),
+//						Identifier: pulumi.String(current.Id),
 //						LabelPolicies: grafana.CloudAccessPolicyRealmLabelPolicyArray{
 //							&grafana.CloudAccessPolicyRealmLabelPolicyArgs{
 //								Selector: pulumi.String("{namespace=\"default\"}"),
@@ -78,13 +78,12 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy name "{{ region }}:{{ policyId }}"
-//
+// $ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy name "{{ region }}:{{ policyId }}"
 // ```
 type CloudAccessPolicy struct {
 	pulumi.CustomResourceState
@@ -232,12 +231,6 @@ func (i *CloudAccessPolicy) ToCloudAccessPolicyOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(CloudAccessPolicyOutput)
 }
 
-func (i *CloudAccessPolicy) ToOutput(ctx context.Context) pulumix.Output[*CloudAccessPolicy] {
-	return pulumix.Output[*CloudAccessPolicy]{
-		OutputState: i.ToCloudAccessPolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CloudAccessPolicyArrayInput is an input type that accepts CloudAccessPolicyArray and CloudAccessPolicyArrayOutput values.
 // You can construct a concrete instance of `CloudAccessPolicyArrayInput` via:
 //
@@ -261,12 +254,6 @@ func (i CloudAccessPolicyArray) ToCloudAccessPolicyArrayOutput() CloudAccessPoli
 
 func (i CloudAccessPolicyArray) ToCloudAccessPolicyArrayOutputWithContext(ctx context.Context) CloudAccessPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudAccessPolicyArrayOutput)
-}
-
-func (i CloudAccessPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*CloudAccessPolicy] {
-	return pulumix.Output[[]*CloudAccessPolicy]{
-		OutputState: i.ToCloudAccessPolicyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CloudAccessPolicyMapInput is an input type that accepts CloudAccessPolicyMap and CloudAccessPolicyMapOutput values.
@@ -294,12 +281,6 @@ func (i CloudAccessPolicyMap) ToCloudAccessPolicyMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(CloudAccessPolicyMapOutput)
 }
 
-func (i CloudAccessPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudAccessPolicy] {
-	return pulumix.Output[map[string]*CloudAccessPolicy]{
-		OutputState: i.ToCloudAccessPolicyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CloudAccessPolicyOutput struct{ *pulumi.OutputState }
 
 func (CloudAccessPolicyOutput) ElementType() reflect.Type {
@@ -312,12 +293,6 @@ func (o CloudAccessPolicyOutput) ToCloudAccessPolicyOutput() CloudAccessPolicyOu
 
 func (o CloudAccessPolicyOutput) ToCloudAccessPolicyOutputWithContext(ctx context.Context) CloudAccessPolicyOutput {
 	return o
-}
-
-func (o CloudAccessPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*CloudAccessPolicy] {
-	return pulumix.Output[*CloudAccessPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Creation date of the access policy.
@@ -373,12 +348,6 @@ func (o CloudAccessPolicyArrayOutput) ToCloudAccessPolicyArrayOutputWithContext(
 	return o
 }
 
-func (o CloudAccessPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CloudAccessPolicy] {
-	return pulumix.Output[[]*CloudAccessPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CloudAccessPolicyArrayOutput) Index(i pulumi.IntInput) CloudAccessPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudAccessPolicy {
 		return vs[0].([]*CloudAccessPolicy)[vs[1].(int)]
@@ -397,12 +366,6 @@ func (o CloudAccessPolicyMapOutput) ToCloudAccessPolicyMapOutput() CloudAccessPo
 
 func (o CloudAccessPolicyMapOutput) ToCloudAccessPolicyMapOutputWithContext(ctx context.Context) CloudAccessPolicyMapOutput {
 	return o
-}
-
-func (o CloudAccessPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudAccessPolicy] {
-	return pulumix.Output[map[string]*CloudAccessPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CloudAccessPolicyMapOutput) MapIndex(k pulumi.StringInput) CloudAccessPolicyOutput {

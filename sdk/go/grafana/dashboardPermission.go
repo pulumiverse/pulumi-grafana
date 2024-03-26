@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -18,6 +17,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -83,20 +83,19 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/dashboardPermission:DashboardPermission dashboard_name {{dashboard_uid}}
-//
+// $ pulumi import grafana:index/dashboardPermission:DashboardPermission dashboard_name {{dashboard_uid}}
 // ```
 type DashboardPermission struct {
 	pulumi.CustomResourceState
 
 	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
 	//
-	// Deprecated: use `dashboard_uid` instead
+	// Deprecated: use `dashboardUid` instead
 	DashboardId pulumi.IntOutput `pulumi:"dashboardId"`
 	// UID of the dashboard to apply permissions to.
 	DashboardUid pulumi.StringOutput `pulumi:"dashboardUid"`
@@ -138,7 +137,7 @@ func GetDashboardPermission(ctx *pulumi.Context,
 type dashboardPermissionState struct {
 	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
 	//
-	// Deprecated: use `dashboard_uid` instead
+	// Deprecated: use `dashboardUid` instead
 	DashboardId *int `pulumi:"dashboardId"`
 	// UID of the dashboard to apply permissions to.
 	DashboardUid *string `pulumi:"dashboardUid"`
@@ -151,7 +150,7 @@ type dashboardPermissionState struct {
 type DashboardPermissionState struct {
 	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
 	//
-	// Deprecated: use `dashboard_uid` instead
+	// Deprecated: use `dashboardUid` instead
 	DashboardId pulumi.IntPtrInput
 	// UID of the dashboard to apply permissions to.
 	DashboardUid pulumi.StringPtrInput
@@ -168,7 +167,7 @@ func (DashboardPermissionState) ElementType() reflect.Type {
 type dashboardPermissionArgs struct {
 	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
 	//
-	// Deprecated: use `dashboard_uid` instead
+	// Deprecated: use `dashboardUid` instead
 	DashboardId *int `pulumi:"dashboardId"`
 	// UID of the dashboard to apply permissions to.
 	DashboardUid *string `pulumi:"dashboardUid"`
@@ -182,7 +181,7 @@ type dashboardPermissionArgs struct {
 type DashboardPermissionArgs struct {
 	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
 	//
-	// Deprecated: use `dashboard_uid` instead
+	// Deprecated: use `dashboardUid` instead
 	DashboardId pulumi.IntPtrInput
 	// UID of the dashboard to apply permissions to.
 	DashboardUid pulumi.StringPtrInput
@@ -215,12 +214,6 @@ func (i *DashboardPermission) ToDashboardPermissionOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(DashboardPermissionOutput)
 }
 
-func (i *DashboardPermission) ToOutput(ctx context.Context) pulumix.Output[*DashboardPermission] {
-	return pulumix.Output[*DashboardPermission]{
-		OutputState: i.ToDashboardPermissionOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DashboardPermissionArrayInput is an input type that accepts DashboardPermissionArray and DashboardPermissionArrayOutput values.
 // You can construct a concrete instance of `DashboardPermissionArrayInput` via:
 //
@@ -244,12 +237,6 @@ func (i DashboardPermissionArray) ToDashboardPermissionArrayOutput() DashboardPe
 
 func (i DashboardPermissionArray) ToDashboardPermissionArrayOutputWithContext(ctx context.Context) DashboardPermissionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DashboardPermissionArrayOutput)
-}
-
-func (i DashboardPermissionArray) ToOutput(ctx context.Context) pulumix.Output[[]*DashboardPermission] {
-	return pulumix.Output[[]*DashboardPermission]{
-		OutputState: i.ToDashboardPermissionArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DashboardPermissionMapInput is an input type that accepts DashboardPermissionMap and DashboardPermissionMapOutput values.
@@ -277,12 +264,6 @@ func (i DashboardPermissionMap) ToDashboardPermissionMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(DashboardPermissionMapOutput)
 }
 
-func (i DashboardPermissionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DashboardPermission] {
-	return pulumix.Output[map[string]*DashboardPermission]{
-		OutputState: i.ToDashboardPermissionMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DashboardPermissionOutput struct{ *pulumi.OutputState }
 
 func (DashboardPermissionOutput) ElementType() reflect.Type {
@@ -297,15 +278,9 @@ func (o DashboardPermissionOutput) ToDashboardPermissionOutputWithContext(ctx co
 	return o
 }
 
-func (o DashboardPermissionOutput) ToOutput(ctx context.Context) pulumix.Output[*DashboardPermission] {
-	return pulumix.Output[*DashboardPermission]{
-		OutputState: o.OutputState,
-	}
-}
-
 // ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
 //
-// Deprecated: use `dashboard_uid` instead
+// Deprecated: use `dashboardUid` instead
 func (o DashboardPermissionOutput) DashboardId() pulumi.IntOutput {
 	return o.ApplyT(func(v *DashboardPermission) pulumi.IntOutput { return v.DashboardId }).(pulumi.IntOutput)
 }
@@ -339,12 +314,6 @@ func (o DashboardPermissionArrayOutput) ToDashboardPermissionArrayOutputWithCont
 	return o
 }
 
-func (o DashboardPermissionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DashboardPermission] {
-	return pulumix.Output[[]*DashboardPermission]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DashboardPermissionArrayOutput) Index(i pulumi.IntInput) DashboardPermissionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DashboardPermission {
 		return vs[0].([]*DashboardPermission)[vs[1].(int)]
@@ -363,12 +332,6 @@ func (o DashboardPermissionMapOutput) ToDashboardPermissionMapOutput() Dashboard
 
 func (o DashboardPermissionMapOutput) ToDashboardPermissionMapOutputWithContext(ctx context.Context) DashboardPermissionMapOutput {
 	return o
-}
-
-func (o DashboardPermissionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DashboardPermission] {
-	return pulumix.Output[map[string]*DashboardPermission]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DashboardPermissionMapOutput) MapIndex(k pulumi.StringInput) DashboardPermissionOutput {

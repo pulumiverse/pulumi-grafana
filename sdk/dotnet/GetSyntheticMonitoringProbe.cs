@@ -15,10 +15,9 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// Data source for retrieving a single probe by name.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,8 +33,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetSyntheticMonitoringProbeResult> InvokeAsync(GetSyntheticMonitoringProbeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSyntheticMonitoringProbeResult>("grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe", args ?? new GetSyntheticMonitoringProbeArgs(), options.WithDefaults());
@@ -43,10 +41,9 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// Data source for retrieving a single probe by name.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,8 +59,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetSyntheticMonitoringProbeResult> Invoke(GetSyntheticMonitoringProbeInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSyntheticMonitoringProbeResult>("grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe", args ?? new GetSyntheticMonitoringProbeInvokeArgs(), options.WithDefaults());

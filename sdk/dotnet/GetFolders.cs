@@ -16,10 +16,9 @@ namespace Pulumiverse.Grafana
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
         /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -45,8 +44,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetFoldersResult> InvokeAsync(GetFoldersArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFoldersResult>("grafana:index/getFolders:getFolders", args ?? new GetFoldersArgs(), options.WithDefaults());
@@ -55,10 +53,9 @@ namespace Pulumiverse.Grafana
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
         /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -84,8 +81,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetFoldersResult> Invoke(GetFoldersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFoldersResult>("grafana:index/getFolders:getFolders", args ?? new GetFoldersInvokeArgs(), options.WithDefaults());

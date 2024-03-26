@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -42,15 +43,16 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
+ * $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
  * ```
  *
  * ```sh
- *  $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
+ * $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
  * ```
  */
 export class FolderPermission extends pulumi.CustomResource {

@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -28,11 +29,12 @@ import * as utilities from "./utilities";
  *     version: 0,
  * })});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/libraryPanel:LibraryPanel panel_name {{library_panel_slug}}
+ * $ pulumi import grafana:index/libraryPanel:LibraryPanel panel_name {{library_panel_slug}}
  * ```
  */
 export class LibraryPanel extends pulumi.CustomResource {

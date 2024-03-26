@@ -15,10 +15,9 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// Data source for retrieving all probes.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -31,8 +30,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetSyntheticMonitoringProbesResult> InvokeAsync(GetSyntheticMonitoringProbesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSyntheticMonitoringProbesResult>("grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes", args ?? new GetSyntheticMonitoringProbesArgs(), options.WithDefaults());
@@ -40,10 +38,9 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// Data source for retrieving all probes.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -56,8 +53,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetSyntheticMonitoringProbesResult> Invoke(GetSyntheticMonitoringProbesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSyntheticMonitoringProbesResult>("grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes", args ?? new GetSyntheticMonitoringProbesInvokeArgs(), options.WithDefaults());

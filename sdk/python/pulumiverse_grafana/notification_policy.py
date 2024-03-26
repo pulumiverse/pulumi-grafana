@@ -309,6 +309,7 @@ class NotificationPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -375,13 +376,14 @@ class NotificationPolicy(pulumi.CustomResource):
                 ),
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         The policy is a singleton, so the ID is a constant "policy" value.
 
         ```sh
-         $ pulumi import grafana:index/notificationPolicy:NotificationPolicy notification_policy_name "policy"
+        $ pulumi import grafana:index/notificationPolicy:NotificationPolicy notification_policy_name "policy"
         ```
 
         :param str resource_name: The name of the resource.
@@ -413,6 +415,7 @@ class NotificationPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -479,13 +482,14 @@ class NotificationPolicy(pulumi.CustomResource):
                 ),
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         The policy is a singleton, so the ID is a constant "policy" value.
 
         ```sh
-         $ pulumi import grafana:index/notificationPolicy:NotificationPolicy notification_policy_name "policy"
+        $ pulumi import grafana:index/notificationPolicy:NotificationPolicy notification_policy_name "policy"
         ```
 
         :param str resource_name: The name of the resource.

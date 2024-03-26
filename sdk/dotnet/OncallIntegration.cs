@@ -17,7 +17,7 @@ namespace Pulumiverse.Grafana
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/oncallIntegration:OncallIntegration integration_name {{integration_id}}
+    /// $ pulumi import grafana:index/oncallIntegration:OncallIntegration integration_name {{integration_id}}
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/oncallIntegration:OncallIntegration")]

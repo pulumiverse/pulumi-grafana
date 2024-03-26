@@ -14,6 +14,9 @@ namespace Pulumiverse.Grafana.Outputs
     [OutputType]
     public sealed class GetSlosSloDestinationDatasourceResult
     {
+        /// <summary>
+        /// UID for the Mimir Datasource
+        /// </summary>
         public readonly string? Uid;
 
         [OutputConstructor]

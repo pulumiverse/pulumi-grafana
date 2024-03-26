@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -18,6 +17,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -55,6 +55,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type Playlist struct {
 	pulumi.CustomResourceState
 
@@ -165,12 +166,6 @@ func (i *Playlist) ToPlaylistOutputWithContext(ctx context.Context) PlaylistOutp
 	return pulumi.ToOutputWithContext(ctx, i).(PlaylistOutput)
 }
 
-func (i *Playlist) ToOutput(ctx context.Context) pulumix.Output[*Playlist] {
-	return pulumix.Output[*Playlist]{
-		OutputState: i.ToPlaylistOutputWithContext(ctx).OutputState,
-	}
-}
-
 // PlaylistArrayInput is an input type that accepts PlaylistArray and PlaylistArrayOutput values.
 // You can construct a concrete instance of `PlaylistArrayInput` via:
 //
@@ -194,12 +189,6 @@ func (i PlaylistArray) ToPlaylistArrayOutput() PlaylistArrayOutput {
 
 func (i PlaylistArray) ToPlaylistArrayOutputWithContext(ctx context.Context) PlaylistArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PlaylistArrayOutput)
-}
-
-func (i PlaylistArray) ToOutput(ctx context.Context) pulumix.Output[[]*Playlist] {
-	return pulumix.Output[[]*Playlist]{
-		OutputState: i.ToPlaylistArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // PlaylistMapInput is an input type that accepts PlaylistMap and PlaylistMapOutput values.
@@ -227,12 +216,6 @@ func (i PlaylistMap) ToPlaylistMapOutputWithContext(ctx context.Context) Playlis
 	return pulumi.ToOutputWithContext(ctx, i).(PlaylistMapOutput)
 }
 
-func (i PlaylistMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Playlist] {
-	return pulumix.Output[map[string]*Playlist]{
-		OutputState: i.ToPlaylistMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type PlaylistOutput struct{ *pulumi.OutputState }
 
 func (PlaylistOutput) ElementType() reflect.Type {
@@ -245,12 +228,6 @@ func (o PlaylistOutput) ToPlaylistOutput() PlaylistOutput {
 
 func (o PlaylistOutput) ToPlaylistOutputWithContext(ctx context.Context) PlaylistOutput {
 	return o
-}
-
-func (o PlaylistOutput) ToOutput(ctx context.Context) pulumix.Output[*Playlist] {
-	return pulumix.Output[*Playlist]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o PlaylistOutput) Interval() pulumi.StringOutput {
@@ -285,12 +262,6 @@ func (o PlaylistArrayOutput) ToPlaylistArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o PlaylistArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Playlist] {
-	return pulumix.Output[[]*Playlist]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o PlaylistArrayOutput) Index(i pulumi.IntInput) PlaylistOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Playlist {
 		return vs[0].([]*Playlist)[vs[1].(int)]
@@ -309,12 +280,6 @@ func (o PlaylistMapOutput) ToPlaylistMapOutput() PlaylistMapOutput {
 
 func (o PlaylistMapOutput) ToPlaylistMapOutputWithContext(ctx context.Context) PlaylistMapOutput {
 	return o
-}
-
-func (o PlaylistMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Playlist] {
-	return pulumix.Output[map[string]*Playlist]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o PlaylistMapOutput) MapIndex(k pulumi.StringInput) PlaylistOutput {

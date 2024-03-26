@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -33,6 +34,7 @@ import * as utilities from "./utilities";
  *     uid: "test-ds-dashboard-uid",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDashboard(args?: GetDashboardArgs, opts?: pulumi.InvokeOptions): Promise<GetDashboardResult> {
     args = args || {};
@@ -119,6 +121,7 @@ export interface GetDashboardResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -141,6 +144,7 @@ export interface GetDashboardResult {
  *     uid: "test-ds-dashboard-uid",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDashboardOutput(args?: GetDashboardOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDashboardResult> {
     return pulumi.output(args).apply((a: any) => getDashboard(a, opts))

@@ -67,6 +67,7 @@ def get_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersR
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
@@ -78,6 +79,7 @@ def get_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersR
         password="my-password")
     all_users = grafana.get_users()
     ```
+    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -99,6 +101,7 @@ def get_users_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Outp
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
@@ -110,5 +113,6 @@ def get_users_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Outp
         password="my-password")
     all_users = grafana.get_users()
     ```
+    <!--End PulumiCodeChooser -->
     """
     ...

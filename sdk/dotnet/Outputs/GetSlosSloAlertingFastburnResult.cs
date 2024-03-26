@@ -14,7 +14,13 @@ namespace Pulumiverse.Grafana.Outputs
     [OutputType]
     public sealed class GetSlosSloAlertingFastburnResult
     {
+        /// <summary>
+        /// Annotations to attach only to Fast Burn alerts.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloAlertingFastburnAnnotationResult> Annotations;
+        /// <summary>
+        /// Labels to attach only to Fast Burn alerts.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloAlertingFastburnLabelResult> Labels;
 
         [OutputConstructor]

@@ -349,6 +349,7 @@ class LibraryPanel(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -366,11 +367,12 @@ class LibraryPanel(pulumi.CustomResource):
             "version": 0,
         }))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/libraryPanel:LibraryPanel panel_name {{library_panel_slug}}
+        $ pulumi import grafana:index/libraryPanel:LibraryPanel panel_name {{library_panel_slug}}
         ```
 
         :param str resource_name: The name of the resource.
@@ -395,6 +397,7 @@ class LibraryPanel(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -412,11 +415,12 @@ class LibraryPanel(pulumi.CustomResource):
             "version": 0,
         }))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/libraryPanel:LibraryPanel panel_name {{library_panel_slug}}
+        $ pulumi import grafana:index/libraryPanel:LibraryPanel panel_name {{library_panel_slug}}
         ```
 
         :param str resource_name: The name of the resource.

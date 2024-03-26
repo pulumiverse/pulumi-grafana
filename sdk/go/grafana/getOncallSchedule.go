@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -17,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,6 +40,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupOncallSchedule(ctx *pulumi.Context, args *LookupOncallScheduleArgs, opts ...pulumi.InvokeOption) (*LookupOncallScheduleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOncallScheduleResult
@@ -102,12 +103,6 @@ func (o LookupOncallScheduleResultOutput) ToLookupOncallScheduleResultOutput() L
 
 func (o LookupOncallScheduleResultOutput) ToLookupOncallScheduleResultOutputWithContext(ctx context.Context) LookupOncallScheduleResultOutput {
 	return o
-}
-
-func (o LookupOncallScheduleResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupOncallScheduleResult] {
-	return pulumix.Output[LookupOncallScheduleResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

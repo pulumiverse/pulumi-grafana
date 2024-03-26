@@ -240,6 +240,7 @@ class RuleGroup(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -328,11 +329,12 @@ class RuleGroup(pulumi.CustomResource):
                 ],
             )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/ruleGroup:RuleGroup rule_group_name {{folder_uid}};{{rule_group_name}}
+        $ pulumi import grafana:index/ruleGroup:RuleGroup rule_group_name {{folder_uid}};{{rule_group_name}}
         ```
 
         :param str resource_name: The name of the resource.
@@ -360,6 +362,7 @@ class RuleGroup(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -448,11 +451,12 @@ class RuleGroup(pulumi.CustomResource):
                 ],
             )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/ruleGroup:RuleGroup rule_group_name {{folder_uid}};{{rule_group_name}}
+        $ pulumi import grafana:index/ruleGroup:RuleGroup rule_group_name {{folder_uid}};{{rule_group_name}}
         ```
 
         :param str resource_name: The name of the resource.

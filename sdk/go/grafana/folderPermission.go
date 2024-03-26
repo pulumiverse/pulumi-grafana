@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -19,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -74,19 +74,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
-//
+// $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
 // ```
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
-//
+// $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
 // ```
 type FolderPermission struct {
 	pulumi.CustomResourceState
@@ -195,12 +192,6 @@ func (i *FolderPermission) ToFolderPermissionOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(FolderPermissionOutput)
 }
 
-func (i *FolderPermission) ToOutput(ctx context.Context) pulumix.Output[*FolderPermission] {
-	return pulumix.Output[*FolderPermission]{
-		OutputState: i.ToFolderPermissionOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FolderPermissionArrayInput is an input type that accepts FolderPermissionArray and FolderPermissionArrayOutput values.
 // You can construct a concrete instance of `FolderPermissionArrayInput` via:
 //
@@ -224,12 +215,6 @@ func (i FolderPermissionArray) ToFolderPermissionArrayOutput() FolderPermissionA
 
 func (i FolderPermissionArray) ToFolderPermissionArrayOutputWithContext(ctx context.Context) FolderPermissionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FolderPermissionArrayOutput)
-}
-
-func (i FolderPermissionArray) ToOutput(ctx context.Context) pulumix.Output[[]*FolderPermission] {
-	return pulumix.Output[[]*FolderPermission]{
-		OutputState: i.ToFolderPermissionArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FolderPermissionMapInput is an input type that accepts FolderPermissionMap and FolderPermissionMapOutput values.
@@ -257,12 +242,6 @@ func (i FolderPermissionMap) ToFolderPermissionMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(FolderPermissionMapOutput)
 }
 
-func (i FolderPermissionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FolderPermission] {
-	return pulumix.Output[map[string]*FolderPermission]{
-		OutputState: i.ToFolderPermissionMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FolderPermissionOutput struct{ *pulumi.OutputState }
 
 func (FolderPermissionOutput) ElementType() reflect.Type {
@@ -275,12 +254,6 @@ func (o FolderPermissionOutput) ToFolderPermissionOutput() FolderPermissionOutpu
 
 func (o FolderPermissionOutput) ToFolderPermissionOutputWithContext(ctx context.Context) FolderPermissionOutput {
 	return o
-}
-
-func (o FolderPermissionOutput) ToOutput(ctx context.Context) pulumix.Output[*FolderPermission] {
-	return pulumix.Output[*FolderPermission]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The UID of the folder.
@@ -312,12 +285,6 @@ func (o FolderPermissionArrayOutput) ToFolderPermissionArrayOutputWithContext(ct
 	return o
 }
 
-func (o FolderPermissionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FolderPermission] {
-	return pulumix.Output[[]*FolderPermission]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FolderPermissionArrayOutput) Index(i pulumi.IntInput) FolderPermissionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FolderPermission {
 		return vs[0].([]*FolderPermission)[vs[1].(int)]
@@ -336,12 +303,6 @@ func (o FolderPermissionMapOutput) ToFolderPermissionMapOutput() FolderPermissio
 
 func (o FolderPermissionMapOutput) ToFolderPermissionMapOutputWithContext(ctx context.Context) FolderPermissionMapOutput {
 	return o
-}
-
-func (o FolderPermissionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FolderPermission] {
-	return pulumix.Output[map[string]*FolderPermission]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FolderPermissionMapOutput) MapIndex(k pulumi.StringInput) FolderPermissionOutput {

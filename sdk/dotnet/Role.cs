@@ -18,6 +18,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -54,11 +55,12 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/role:Role role_name {{uid}}
+    /// $ pulumi import grafana:index/role:Role role_name {{uid}}
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/role:Role")]

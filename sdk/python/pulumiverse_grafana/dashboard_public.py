@@ -306,6 +306,7 @@ class DashboardPublic(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -346,15 +347,16 @@ class DashboardPublic(pulumi.CustomResource):
             dashboard_uid=test_dash2.uid,
             share="public")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {{dashboard_uid}}:{{public_dashboard_uid}} # To use the default provider org
+        $ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {{dashboard_uid}}:{{public_dashboard_uid}} # To use the default provider org
         ```
 
         ```sh
-         $ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {org_id}}:{{dashboard_uid}}:{{public_dashboard_uid}} # When "org_id" is set on the resource
+        $ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {org_id}}:{{dashboard_uid}}:{{public_dashboard_uid}} # When "org_id" is set on the resource
         ```
 
         :param str resource_name: The name of the resource.
@@ -384,6 +386,7 @@ class DashboardPublic(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -424,15 +427,16 @@ class DashboardPublic(pulumi.CustomResource):
             dashboard_uid=test_dash2.uid,
             share="public")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {{dashboard_uid}}:{{public_dashboard_uid}} # To use the default provider org
+        $ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {{dashboard_uid}}:{{public_dashboard_uid}} # To use the default provider org
         ```
 
         ```sh
-         $ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {org_id}}:{{dashboard_uid}}:{{public_dashboard_uid}} # When "org_id" is set on the resource
+        $ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {org_id}}:{{dashboard_uid}}:{{public_dashboard_uid}} # When "org_id" is set on the resource
         ```
 
         :param str resource_name: The name of the resource.

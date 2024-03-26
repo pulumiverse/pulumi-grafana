@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -18,6 +17,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -103,6 +103,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type DataSourcePermission struct {
 	pulumi.CustomResourceState
 
@@ -210,12 +211,6 @@ func (i *DataSourcePermission) ToDataSourcePermissionOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(DataSourcePermissionOutput)
 }
 
-func (i *DataSourcePermission) ToOutput(ctx context.Context) pulumix.Output[*DataSourcePermission] {
-	return pulumix.Output[*DataSourcePermission]{
-		OutputState: i.ToDataSourcePermissionOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DataSourcePermissionArrayInput is an input type that accepts DataSourcePermissionArray and DataSourcePermissionArrayOutput values.
 // You can construct a concrete instance of `DataSourcePermissionArrayInput` via:
 //
@@ -239,12 +234,6 @@ func (i DataSourcePermissionArray) ToDataSourcePermissionArrayOutput() DataSourc
 
 func (i DataSourcePermissionArray) ToDataSourcePermissionArrayOutputWithContext(ctx context.Context) DataSourcePermissionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DataSourcePermissionArrayOutput)
-}
-
-func (i DataSourcePermissionArray) ToOutput(ctx context.Context) pulumix.Output[[]*DataSourcePermission] {
-	return pulumix.Output[[]*DataSourcePermission]{
-		OutputState: i.ToDataSourcePermissionArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DataSourcePermissionMapInput is an input type that accepts DataSourcePermissionMap and DataSourcePermissionMapOutput values.
@@ -272,12 +261,6 @@ func (i DataSourcePermissionMap) ToDataSourcePermissionMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(DataSourcePermissionMapOutput)
 }
 
-func (i DataSourcePermissionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DataSourcePermission] {
-	return pulumix.Output[map[string]*DataSourcePermission]{
-		OutputState: i.ToDataSourcePermissionMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DataSourcePermissionOutput struct{ *pulumi.OutputState }
 
 func (DataSourcePermissionOutput) ElementType() reflect.Type {
@@ -290,12 +273,6 @@ func (o DataSourcePermissionOutput) ToDataSourcePermissionOutput() DataSourcePer
 
 func (o DataSourcePermissionOutput) ToDataSourcePermissionOutputWithContext(ctx context.Context) DataSourcePermissionOutput {
 	return o
-}
-
-func (o DataSourcePermissionOutput) ToOutput(ctx context.Context) pulumix.Output[*DataSourcePermission] {
-	return pulumix.Output[*DataSourcePermission]{
-		OutputState: o.OutputState,
-	}
 }
 
 // ID of the datasource to apply permissions to.
@@ -327,12 +304,6 @@ func (o DataSourcePermissionArrayOutput) ToDataSourcePermissionArrayOutputWithCo
 	return o
 }
 
-func (o DataSourcePermissionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DataSourcePermission] {
-	return pulumix.Output[[]*DataSourcePermission]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DataSourcePermissionArrayOutput) Index(i pulumi.IntInput) DataSourcePermissionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DataSourcePermission {
 		return vs[0].([]*DataSourcePermission)[vs[1].(int)]
@@ -351,12 +322,6 @@ func (o DataSourcePermissionMapOutput) ToDataSourcePermissionMapOutput() DataSou
 
 func (o DataSourcePermissionMapOutput) ToDataSourcePermissionMapOutputWithContext(ctx context.Context) DataSourcePermissionMapOutput {
 	return o
-}
-
-func (o DataSourcePermissionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DataSourcePermission] {
-	return pulumix.Output[map[string]*DataSourcePermission]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DataSourcePermissionMapOutput) MapIndex(k pulumi.StringInput) DataSourcePermissionOutput {

@@ -16,6 +16,9 @@ namespace Pulumiverse.Grafana.Outputs
     {
         public readonly Outputs.GetSlosSloQueryFreeformResult? Freeform;
         public readonly Outputs.GetSlosSloQueryRatioResult? Ratio;
+        /// <summary>
+        /// Query type must be one of: "freeform", "query", "ratio", or "threshold"
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

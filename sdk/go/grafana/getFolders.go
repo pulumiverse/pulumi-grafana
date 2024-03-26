@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -17,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,6 +52,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetFolders(ctx *pulumi.Context, args *GetFoldersArgs, opts ...pulumi.InvokeOption) (*GetFoldersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFoldersResult
@@ -114,12 +115,6 @@ func (o GetFoldersResultOutput) ToGetFoldersResultOutput() GetFoldersResultOutpu
 
 func (o GetFoldersResultOutput) ToGetFoldersResultOutputWithContext(ctx context.Context) GetFoldersResultOutput {
 	return o
-}
-
-func (o GetFoldersResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetFoldersResult] {
-	return pulumix.Output[GetFoldersResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The Grafana instance's folders.

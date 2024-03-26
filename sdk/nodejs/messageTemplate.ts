@@ -14,6 +14,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -23,11 +24,12 @@ import * as utilities from "./utilities";
  * {{ end }}
  * `});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/messageTemplate:MessageTemplate message_template_name {{message_template_name}}
+ * $ pulumi import grafana:index/messageTemplate:MessageTemplate message_template_name {{message_template_name}}
  * ```
  */
 export class MessageTemplate extends pulumi.CustomResource {

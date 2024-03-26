@@ -43,7 +43,7 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * Deprecated: Use `cloud_access_policy_token` instead.
      *
-     * @deprecated Use `cloud_access_policy_token` instead.
+     * @deprecated Use `cloudAccessPolicyToken` instead.
      */
     public readonly cloudApiKey!: pulumi.Output<string | undefined>;
     /**
@@ -146,7 +146,7 @@ export interface ProviderArgs {
     /**
      * Deprecated: Use `cloud_access_policy_token` instead.
      *
-     * @deprecated Use `cloud_access_policy_token` instead.
+     * @deprecated Use `cloudAccessPolicyToken` instead.
      */
     cloudApiKey?: pulumi.Input<string>;
     /**
@@ -168,7 +168,7 @@ export interface ProviderArgs {
     /**
      * Deprecated: Use the `org_id` attributes on resources instead.
      *
-     * @deprecated Use the `org_id` attributes on resources instead.
+     * @deprecated Use the `orgId` attributes on resources instead.
      */
     orgId?: pulumi.Input<number>;
     /**

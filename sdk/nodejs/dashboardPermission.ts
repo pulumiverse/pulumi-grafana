@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -45,11 +46,12 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/dashboardPermission:DashboardPermission dashboard_name {{dashboard_uid}}
+ * $ pulumi import grafana:index/dashboardPermission:DashboardPermission dashboard_name {{dashboard_uid}}
  * ```
  */
 export class DashboardPermission extends pulumi.CustomResource {
@@ -83,7 +85,7 @@ export class DashboardPermission extends pulumi.CustomResource {
     /**
      * ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
      *
-     * @deprecated use `dashboard_uid` instead
+     * @deprecated use `dashboardUid` instead
      */
     public readonly dashboardId!: pulumi.Output<number>;
     /**
@@ -135,7 +137,7 @@ export interface DashboardPermissionState {
     /**
      * ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
      *
-     * @deprecated use `dashboard_uid` instead
+     * @deprecated use `dashboardUid` instead
      */
     dashboardId?: pulumi.Input<number>;
     /**
@@ -159,7 +161,7 @@ export interface DashboardPermissionArgs {
     /**
      * ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
      *
-     * @deprecated use `dashboard_uid` instead
+     * @deprecated use `dashboardUid` instead
      */
     dashboardId?: pulumi.Input<number>;
     /**

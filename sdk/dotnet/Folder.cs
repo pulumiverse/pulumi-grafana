@@ -16,6 +16,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -47,15 +48,16 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/folder:Folder by_integer_id {{folder_id}}
+    /// $ pulumi import grafana:index/folder:Folder by_integer_id {{folder_id}}
     /// ```
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/folder:Folder by_uid {{folder_uid}}
+    /// $ pulumi import grafana:index/folder:Folder by_uid {{folder_uid}}
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/folder:Folder")]

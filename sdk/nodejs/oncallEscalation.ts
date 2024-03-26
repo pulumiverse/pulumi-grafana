@@ -10,6 +10,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -44,11 +45,12 @@ import * as utilities from "./utilities";
  *     position: 0,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/oncallEscalation:OncallEscalation escalation_name {{escalation_id}}
+ * $ pulumi import grafana:index/oncallEscalation:OncallEscalation escalation_name {{escalation_id}}
  * ```
  */
 export class OncallEscalation extends pulumi.CustomResource {

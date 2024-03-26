@@ -15,6 +15,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -61,11 +62,12 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/oncallRoute:OncallRoute route_name {{route_id}}
+    /// $ pulumi import grafana:index/oncallRoute:OncallRoute route_name {{route_id}}
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/oncallRoute:OncallRoute")]

@@ -15,6 +15,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -58,11 +59,12 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/oncallSchedule:OncallSchedule schedule_name {{schedule_id}}
+    /// $ pulumi import grafana:index/oncallSchedule:OncallSchedule schedule_name {{schedule_id}}
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/oncallSchedule:OncallSchedule")]

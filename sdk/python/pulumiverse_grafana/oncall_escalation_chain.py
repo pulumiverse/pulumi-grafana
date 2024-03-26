@@ -104,17 +104,19 @@ class OncallEscalationChain(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
 
         default = grafana.OncallEscalationChain("default", opts=pulumi.ResourceOptions(provider=grafana["oncall"]))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/oncallEscalationChain:OncallEscalationChain escalation_chain_name {{escalation_chain_id}}
+        $ pulumi import grafana:index/oncallEscalationChain:OncallEscalationChain escalation_chain_name {{escalation_chain_id}}
         ```
 
         :param str resource_name: The name of the resource.
@@ -133,17 +135,19 @@ class OncallEscalationChain(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
 
         default = grafana.OncallEscalationChain("default", opts=pulumi.ResourceOptions(provider=grafana["oncall"]))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/oncallEscalationChain:OncallEscalationChain escalation_chain_name {{escalation_chain_id}}
+        $ pulumi import grafana:index/oncallEscalationChain:OncallEscalationChain escalation_chain_name {{escalation_chain_id}}
         ```
 
         :param str resource_name: The name of the resource.

@@ -221,7 +221,7 @@ class OncallIntegration(pulumi.CustomResource):
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/oncallIntegration:OncallIntegration integration_name {{integration_id}}
+        $ pulumi import grafana:index/oncallIntegration:OncallIntegration integration_name {{integration_id}}
         ```
 
         :param str resource_name: The name of the resource.
@@ -245,7 +245,7 @@ class OncallIntegration(pulumi.CustomResource):
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/oncallIntegration:OncallIntegration integration_name {{integration_id}}
+        $ pulumi import grafana:index/oncallIntegration:OncallIntegration integration_name {{integration_id}}
         ```
 
         :param str resource_name: The name of the resource.

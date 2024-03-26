@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/oncallIntegration:OncallIntegration integration_name {{integration_id}}
+ * $ pulumi import grafana:index/oncallIntegration:OncallIntegration integration_name {{integration_id}}
  * ```
  */
 export class OncallIntegration extends pulumi.CustomResource {

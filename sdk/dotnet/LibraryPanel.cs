@@ -18,6 +18,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -46,11 +47,12 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/libraryPanel:LibraryPanel panel_name {{library_panel_slug}}
+    /// $ pulumi import grafana:index/libraryPanel:LibraryPanel panel_name {{library_panel_slug}}
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/libraryPanel:LibraryPanel")]

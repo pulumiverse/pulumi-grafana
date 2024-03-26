@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -69,23 +70,24 @@ import * as utilities from "./utilities";
  *     }),
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/dataSource:DataSource by_integer_id {{datasource_id}} # To use the default provider org
+ * $ pulumi import grafana:index/dataSource:DataSource by_integer_id {{datasource_id}} # To use the default provider org
  * ```
  *
  * ```sh
- *  $ pulumi import grafana:index/dataSource:DataSource by_uid {{datasource_uid}} # To use the default provider org
+ * $ pulumi import grafana:index/dataSource:DataSource by_uid {{datasource_uid}} # To use the default provider org
  * ```
  *
  * ```sh
- *  $ pulumi import grafana:index/dataSource:DataSource by_integer_id {{org_id}}:{{datasource_id}} # When "org_id" is set on the resource
+ * $ pulumi import grafana:index/dataSource:DataSource by_integer_id {{org_id}}:{{datasource_id}} # When "org_id" is set on the resource
  * ```
  *
  * ```sh
- *  $ pulumi import grafana:index/dataSource:DataSource by_uid {{org_id}}:{{datasource_uid}} # When "org_id" is set on the resource
+ * $ pulumi import grafana:index/dataSource:DataSource by_uid {{org_id}}:{{datasource_uid}} # When "org_id" is set on the resource
  * ```
  */
 export class DataSource extends pulumi.CustomResource {

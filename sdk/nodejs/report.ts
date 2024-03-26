@@ -14,6 +14,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -34,6 +35,7 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class Report extends pulumi.CustomResource {
     /**
@@ -126,7 +128,7 @@ export class Report extends pulumi.CustomResource {
     /**
      * Time range of the report.
      *
-     * @deprecated Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
+     * @deprecated Use timeRange in dashboards instead. This field is completely ignored when dashboards is set.
      */
     public readonly timeRange!: pulumi.Output<outputs.ReportTimeRange | undefined>;
 
@@ -254,7 +256,7 @@ export interface ReportState {
     /**
      * Time range of the report.
      *
-     * @deprecated Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
+     * @deprecated Use timeRange in dashboards instead. This field is completely ignored when dashboards is set.
      */
     timeRange?: pulumi.Input<inputs.ReportTimeRange>;
 }
@@ -326,7 +328,7 @@ export interface ReportArgs {
     /**
      * Time range of the report.
      *
-     * @deprecated Use time_range in dashboards instead. This field is completely ignored when dashboards is set.
+     * @deprecated Use timeRange in dashboards instead. This field is completely ignored when dashboards is set.
      */
     timeRange?: pulumi.Input<inputs.ReportTimeRange>;
 }
