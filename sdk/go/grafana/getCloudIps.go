@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -16,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,6 +37,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetCloudIps(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetCloudIpsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCloudIpsResult
@@ -87,12 +88,6 @@ func (o GetCloudIpsResultOutput) ToGetCloudIpsResultOutput() GetCloudIpsResultOu
 
 func (o GetCloudIpsResultOutput) ToGetCloudIpsResultOutputWithContext(ctx context.Context) GetCloudIpsResultOutput {
 	return o
-}
-
-func (o GetCloudIpsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetCloudIpsResult] {
-	return pulumix.Output[GetCloudIpsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Set of IP addresses that are used for hosted alerts.

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -107,12 +106,6 @@ func (o LookupLibraryPanelResultOutput) ToLookupLibraryPanelResultOutput() Looku
 
 func (o LookupLibraryPanelResultOutput) ToLookupLibraryPanelResultOutputWithContext(ctx context.Context) LookupLibraryPanelResultOutput {
 	return o
-}
-
-func (o LookupLibraryPanelResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupLibraryPanelResult] {
-	return pulumix.Output[LookupLibraryPanelResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Timestamp when the library panel was created.

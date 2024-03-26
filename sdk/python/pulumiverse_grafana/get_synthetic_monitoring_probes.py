@@ -75,12 +75,14 @@ def get_synthetic_monitoring_probes(filter_deprecated: Optional[bool] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     main = grafana.get_synthetic_monitoring_probes()
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param bool filter_deprecated: If true, only probes that are not deprecated will be returned. Defaults to `true`.
@@ -104,12 +106,14 @@ def get_synthetic_monitoring_probes_output(filter_deprecated: Optional[pulumi.In
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     main = grafana.get_synthetic_monitoring_probes()
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param bool filter_deprecated: If true, only probes that are not deprecated will be returned. Defaults to `true`.

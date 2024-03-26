@@ -107,6 +107,7 @@ class SsoSettings(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -120,6 +121,7 @@ class SsoSettings(pulumi.CustomResource):
             ),
             provider_name="github")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -140,6 +142,7 @@ class SsoSettings(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -153,6 +156,7 @@ class SsoSettings(pulumi.CustomResource):
             ),
             provider_name="github")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SsoSettingsArgs args: The arguments to use to populate this resource's properties.

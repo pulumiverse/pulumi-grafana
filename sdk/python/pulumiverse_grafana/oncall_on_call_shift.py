@@ -564,7 +564,7 @@ class OncallOnCallShift(pulumi.CustomResource):
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/oncallOnCallShift:OncallOnCallShift on_call_shift_name {{on_call_shift_id}}
+        $ pulumi import grafana:index/oncallOnCallShift:OncallOnCallShift on_call_shift_name {{on_call_shift_id}}
         ```
 
         :param str resource_name: The name of the resource.
@@ -598,7 +598,7 @@ class OncallOnCallShift(pulumi.CustomResource):
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/oncallOnCallShift:OncallOnCallShift on_call_shift_name {{on_call_shift_id}}
+        $ pulumi import grafana:index/oncallOnCallShift:OncallOnCallShift on_call_shift_name {{on_call_shift_id}}
         ```
 
         :param str resource_name: The name of the resource.

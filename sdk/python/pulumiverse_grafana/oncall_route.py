@@ -300,6 +300,7 @@ class OncallRoute(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -326,11 +327,12 @@ class OncallRoute(pulumi.CustomResource):
                 enabled=False,
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/oncallRoute:OncallRoute route_name {{route_id}}
+        $ pulumi import grafana:index/oncallRoute:OncallRoute route_name {{route_id}}
         ```
 
         :param str resource_name: The name of the resource.
@@ -355,6 +357,7 @@ class OncallRoute(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -381,11 +384,12 @@ class OncallRoute(pulumi.CustomResource):
                 enabled=False,
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/oncallRoute:OncallRoute route_name {{route_id}}
+        $ pulumi import grafana:index/oncallRoute:OncallRoute route_name {{route_id}}
         ```
 
         :param str resource_name: The name of the resource.

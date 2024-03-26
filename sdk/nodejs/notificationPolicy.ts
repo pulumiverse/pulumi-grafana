@@ -18,6 +18,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -85,13 +86,14 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * The policy is a singleton, so the ID is a constant "policy" value.
  *
  * ```sh
- *  $ pulumi import grafana:index/notificationPolicy:NotificationPolicy notification_policy_name "policy"
+ * $ pulumi import grafana:index/notificationPolicy:NotificationPolicy notification_policy_name "policy"
  * ```
  */
 export class NotificationPolicy extends pulumi.CustomResource {

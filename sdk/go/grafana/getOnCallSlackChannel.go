@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -16,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,6 +39,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetOnCallSlackChannel(ctx *pulumi.Context, args *GetOnCallSlackChannelArgs, opts ...pulumi.InvokeOption) (*GetOnCallSlackChannelResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOnCallSlackChannelResult
@@ -101,12 +102,6 @@ func (o GetOnCallSlackChannelResultOutput) ToGetOnCallSlackChannelResultOutput()
 
 func (o GetOnCallSlackChannelResultOutput) ToGetOnCallSlackChannelResultOutputWithContext(ctx context.Context) GetOnCallSlackChannelResultOutput {
 	return o
-}
-
-func (o GetOnCallSlackChannelResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOnCallSlackChannelResult] {
-	return pulumix.Output[GetOnCallSlackChannelResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

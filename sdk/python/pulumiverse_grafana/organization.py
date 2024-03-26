@@ -354,6 +354,7 @@ class Organization(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -371,11 +372,12 @@ class Organization(pulumi.CustomResource):
                 "viewer-02@example.com",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/organization:Organization org_name {{org_id}}
+        $ pulumi import grafana:index/organization:Organization org_name {{org_id}}
         ```
 
         :param str resource_name: The name of the resource.
@@ -420,6 +422,7 @@ class Organization(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -437,11 +440,12 @@ class Organization(pulumi.CustomResource):
                 "viewer-02@example.com",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/organization:Organization org_name {{org_id}}
+        $ pulumi import grafana:index/organization:Organization org_name {{org_id}}
         ```
 
         :param str resource_name: The name of the resource.

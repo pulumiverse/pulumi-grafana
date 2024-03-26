@@ -15,10 +15,9 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,8 +33,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetOncallOutgoingWebhookResult> InvokeAsync(GetOncallOutgoingWebhookArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallOutgoingWebhookResult>("grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook", args ?? new GetOncallOutgoingWebhookArgs(), options.WithDefaults());
@@ -43,10 +41,9 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,8 +59,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetOncallOutgoingWebhookResult> Invoke(GetOncallOutgoingWebhookInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOncallOutgoingWebhookResult>("grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook", args ?? new GetOncallOutgoingWebhookInvokeArgs(), options.WithDefaults());

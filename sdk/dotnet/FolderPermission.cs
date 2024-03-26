@@ -17,6 +17,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -64,15 +65,16 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
+    /// $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
     /// ```
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
+    /// $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/folderPermission:FolderPermission")]

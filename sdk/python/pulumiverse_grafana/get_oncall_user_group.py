@@ -69,12 +69,14 @@ def get_oncall_user_group(slack_handle: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     example_user_group = grafana.get_oncall_user_group(slack_handle="example_slack_handle")
     ```
+    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     __args__['slackHandle'] = slack_handle
@@ -95,11 +97,13 @@ def get_oncall_user_group_output(slack_handle: Optional[pulumi.Input[str]] = Non
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     example_user_group = grafana.get_oncall_user_group(slack_handle="example_slack_handle")
     ```
+    <!--End PulumiCodeChooser -->
     """
     ...

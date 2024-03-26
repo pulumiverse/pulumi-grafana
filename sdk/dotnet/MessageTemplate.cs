@@ -20,6 +20,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -38,11 +39,12 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/messageTemplate:MessageTemplate message_template_name {{message_template_name}}
+    /// $ pulumi import grafana:index/messageTemplate:MessageTemplate message_template_name {{message_template_name}}
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/messageTemplate:MessageTemplate")]

@@ -336,6 +336,7 @@ class OncallSchedule(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -359,11 +360,12 @@ class OncallSchedule(pulumi.CustomResource):
             shifts=[],
             ical_url_overrides="https://example.com/example_overrides_ical.ics")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/oncallSchedule:OncallSchedule schedule_name {{schedule_id}}
+        $ pulumi import grafana:index/oncallSchedule:OncallSchedule schedule_name {{schedule_id}}
         ```
 
         :param str resource_name: The name of the resource.
@@ -389,6 +391,7 @@ class OncallSchedule(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -412,11 +415,12 @@ class OncallSchedule(pulumi.CustomResource):
             shifts=[],
             ical_url_overrides="https://example.com/example_overrides_ical.ics")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/oncallSchedule:OncallSchedule schedule_name {{schedule_id}}
+        $ pulumi import grafana:index/oncallSchedule:OncallSchedule schedule_name {{schedule_id}}
         ```
 
         :param str resource_name: The name of the resource.

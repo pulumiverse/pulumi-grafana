@@ -16,6 +16,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -104,11 +105,12 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/ruleGroup:RuleGroup rule_group_name {{folder_uid}};{{rule_group_name}}
+ * $ pulumi import grafana:index/ruleGroup:RuleGroup rule_group_name {{folder_uid}};{{rule_group_name}}
  * ```
  */
 export class RuleGroup extends pulumi.CustomResource {

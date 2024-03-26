@@ -16,6 +16,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -44,11 +45,12 @@ import * as utilities from "./utilities";
  *     ],
  * }]});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/muteTiming:MuteTiming mute_timing_name {{mute_timing_name}}
+ * $ pulumi import grafana:index/muteTiming:MuteTiming mute_timing_name {{mute_timing_name}}
  * ```
  */
 export class MuteTiming extends pulumi.CustomResource {

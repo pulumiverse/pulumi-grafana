@@ -10,6 +10,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -18,6 +19,7 @@ import * as utilities from "./utilities";
  *     name: "example_schedule",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getOncallSchedule(args: GetOncallScheduleArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallScheduleResult> {
 
@@ -60,6 +62,7 @@ export interface GetOncallScheduleResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -68,6 +71,7 @@ export interface GetOncallScheduleResult {
  *     name: "example_schedule",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getOncallScheduleOutput(args: GetOncallScheduleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallScheduleResult> {
     return pulumi.output(args).apply((a: any) => getOncallSchedule(a, opts))

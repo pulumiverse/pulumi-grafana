@@ -15,6 +15,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -27,6 +28,7 @@ import * as utilities from "./utilities";
  * });
  * const allUsers = grafana.getUsers({});
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getUsers(opts?: pulumi.InvokeOptions): Promise<GetUsersResult> {
 
@@ -57,6 +59,7 @@ export interface GetUsersResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -69,6 +72,7 @@ export interface GetUsersResult {
  * });
  * const allUsers = grafana.getUsers({});
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getUsersOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetUsersResult> {
     return pulumi.output(getUsers(opts))

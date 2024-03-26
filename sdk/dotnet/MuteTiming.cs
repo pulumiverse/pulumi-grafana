@@ -20,6 +20,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -69,11 +70,12 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/muteTiming:MuteTiming mute_timing_name {{mute_timing_name}}
+    /// $ pulumi import grafana:index/muteTiming:MuteTiming mute_timing_name {{mute_timing_name}}
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/muteTiming:MuteTiming")]

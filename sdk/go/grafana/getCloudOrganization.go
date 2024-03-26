@@ -8,12 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,6 +37,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetCloudOrganization(ctx *pulumi.Context, args *GetCloudOrganizationArgs, opts ...pulumi.InvokeOption) (*GetCloudOrganizationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCloudOrganizationResult
@@ -102,12 +103,6 @@ func (o GetCloudOrganizationResultOutput) ToGetCloudOrganizationResultOutput() G
 
 func (o GetCloudOrganizationResultOutput) ToGetCloudOrganizationResultOutputWithContext(ctx context.Context) GetCloudOrganizationResultOutput {
 	return o
-}
-
-func (o GetCloudOrganizationResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetCloudOrganizationResult] {
-	return pulumix.Output[GetCloudOrganizationResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetCloudOrganizationResultOutput) CreatedAt() pulumi.StringOutput {

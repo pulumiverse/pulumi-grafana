@@ -10,12 +10,14 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
  * const test = grafana.getOrganizationPreferences({});
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getOrganizationPreferences(args?: GetOrganizationPreferencesArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationPreferencesResult> {
     args = args || {};
@@ -43,7 +45,7 @@ export interface GetOrganizationPreferencesResult {
     /**
      * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
      *
-     * @deprecated Use `home_dashboard_uid` instead.
+     * @deprecated Use `homeDashboardUid` instead.
      */
     readonly homeDashboardId: number;
     /**
@@ -77,12 +79,14 @@ export interface GetOrganizationPreferencesResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
  * const test = grafana.getOrganizationPreferences({});
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getOrganizationPreferencesOutput(args?: GetOrganizationPreferencesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationPreferencesResult> {
     return pulumi.output(args).apply((a: any) => getOrganizationPreferences(a, opts))

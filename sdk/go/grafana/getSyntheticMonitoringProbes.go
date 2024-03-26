@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -16,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,6 +37,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetSyntheticMonitoringProbes(ctx *pulumi.Context, args *GetSyntheticMonitoringProbesArgs, opts ...pulumi.InvokeOption) (*GetSyntheticMonitoringProbesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSyntheticMonitoringProbesResult
@@ -99,12 +100,6 @@ func (o GetSyntheticMonitoringProbesResultOutput) ToGetSyntheticMonitoringProbes
 
 func (o GetSyntheticMonitoringProbesResultOutput) ToGetSyntheticMonitoringProbesResultOutputWithContext(ctx context.Context) GetSyntheticMonitoringProbesResultOutput {
 	return o
-}
-
-func (o GetSyntheticMonitoringProbesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSyntheticMonitoringProbesResult] {
-	return pulumix.Output[GetSyntheticMonitoringProbesResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // If true, only probes that are not deprecated will be returned. Defaults to `true`.

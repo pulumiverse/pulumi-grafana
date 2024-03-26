@@ -14,6 +14,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -27,15 +28,16 @@ import * as utilities from "./utilities";
  *     region: "APAC",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}
+ * $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}
  * ```
  *
  * ```sh
- *  $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}:{{auth_token}}
+ * $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}:{{auth_token}}
  * ```
  */
 export class SyntheticMonitoringProbe extends pulumi.CustomResource {

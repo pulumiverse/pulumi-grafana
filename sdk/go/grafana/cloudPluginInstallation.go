@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -25,6 +24,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,13 +50,12 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/cloudPluginInstallation:CloudPluginInstallation name "{{ stackSlug }}:{{ pluginSlug }}"
-//
+// $ pulumi import grafana:index/cloudPluginInstallation:CloudPluginInstallation name "{{ stackSlug }}:{{ pluginSlug }}"
 // ```
 type CloudPluginInstallation struct {
 	pulumi.CustomResourceState
@@ -171,12 +170,6 @@ func (i *CloudPluginInstallation) ToCloudPluginInstallationOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(CloudPluginInstallationOutput)
 }
 
-func (i *CloudPluginInstallation) ToOutput(ctx context.Context) pulumix.Output[*CloudPluginInstallation] {
-	return pulumix.Output[*CloudPluginInstallation]{
-		OutputState: i.ToCloudPluginInstallationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CloudPluginInstallationArrayInput is an input type that accepts CloudPluginInstallationArray and CloudPluginInstallationArrayOutput values.
 // You can construct a concrete instance of `CloudPluginInstallationArrayInput` via:
 //
@@ -200,12 +193,6 @@ func (i CloudPluginInstallationArray) ToCloudPluginInstallationArrayOutput() Clo
 
 func (i CloudPluginInstallationArray) ToCloudPluginInstallationArrayOutputWithContext(ctx context.Context) CloudPluginInstallationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudPluginInstallationArrayOutput)
-}
-
-func (i CloudPluginInstallationArray) ToOutput(ctx context.Context) pulumix.Output[[]*CloudPluginInstallation] {
-	return pulumix.Output[[]*CloudPluginInstallation]{
-		OutputState: i.ToCloudPluginInstallationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CloudPluginInstallationMapInput is an input type that accepts CloudPluginInstallationMap and CloudPluginInstallationMapOutput values.
@@ -233,12 +220,6 @@ func (i CloudPluginInstallationMap) ToCloudPluginInstallationMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(CloudPluginInstallationMapOutput)
 }
 
-func (i CloudPluginInstallationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudPluginInstallation] {
-	return pulumix.Output[map[string]*CloudPluginInstallation]{
-		OutputState: i.ToCloudPluginInstallationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CloudPluginInstallationOutput struct{ *pulumi.OutputState }
 
 func (CloudPluginInstallationOutput) ElementType() reflect.Type {
@@ -251,12 +232,6 @@ func (o CloudPluginInstallationOutput) ToCloudPluginInstallationOutput() CloudPl
 
 func (o CloudPluginInstallationOutput) ToCloudPluginInstallationOutputWithContext(ctx context.Context) CloudPluginInstallationOutput {
 	return o
-}
-
-func (o CloudPluginInstallationOutput) ToOutput(ctx context.Context) pulumix.Output[*CloudPluginInstallation] {
-	return pulumix.Output[*CloudPluginInstallation]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Slug of the plugin to be installed.
@@ -288,12 +263,6 @@ func (o CloudPluginInstallationArrayOutput) ToCloudPluginInstallationArrayOutput
 	return o
 }
 
-func (o CloudPluginInstallationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CloudPluginInstallation] {
-	return pulumix.Output[[]*CloudPluginInstallation]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CloudPluginInstallationArrayOutput) Index(i pulumi.IntInput) CloudPluginInstallationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudPluginInstallation {
 		return vs[0].([]*CloudPluginInstallation)[vs[1].(int)]
@@ -312,12 +281,6 @@ func (o CloudPluginInstallationMapOutput) ToCloudPluginInstallationMapOutput() C
 
 func (o CloudPluginInstallationMapOutput) ToCloudPluginInstallationMapOutputWithContext(ctx context.Context) CloudPluginInstallationMapOutput {
 	return o
-}
-
-func (o CloudPluginInstallationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudPluginInstallation] {
-	return pulumix.Output[map[string]*CloudPluginInstallation]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CloudPluginInstallationMapOutput) MapIndex(k pulumi.StringInput) CloudPluginInstallationOutput {

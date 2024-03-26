@@ -144,6 +144,7 @@ class MuteTiming(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -172,11 +173,12 @@ class MuteTiming(pulumi.CustomResource):
             ],
         )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/muteTiming:MuteTiming mute_timing_name {{mute_timing_name}}
+        $ pulumi import grafana:index/muteTiming:MuteTiming mute_timing_name {{mute_timing_name}}
         ```
 
         :param str resource_name: The name of the resource.
@@ -201,6 +203,7 @@ class MuteTiming(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -229,11 +232,12 @@ class MuteTiming(pulumi.CustomResource):
             ],
         )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/muteTiming:MuteTiming mute_timing_name {{mute_timing_name}}
+        $ pulumi import grafana:index/muteTiming:MuteTiming mute_timing_name {{mute_timing_name}}
         ```
 
         :param str resource_name: The name of the resource.

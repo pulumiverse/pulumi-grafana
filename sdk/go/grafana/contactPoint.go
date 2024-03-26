@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -21,6 +20,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -55,13 +55,12 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/contactPoint:ContactPoint contact_point_name {{contact_point_name}}
-//
+// $ pulumi import grafana:index/contactPoint:ContactPoint contact_point_name {{contact_point_name}}
 // ```
 type ContactPoint struct {
 	pulumi.CustomResourceState
@@ -377,12 +376,6 @@ func (i *ContactPoint) ToContactPointOutputWithContext(ctx context.Context) Cont
 	return pulumi.ToOutputWithContext(ctx, i).(ContactPointOutput)
 }
 
-func (i *ContactPoint) ToOutput(ctx context.Context) pulumix.Output[*ContactPoint] {
-	return pulumix.Output[*ContactPoint]{
-		OutputState: i.ToContactPointOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ContactPointArrayInput is an input type that accepts ContactPointArray and ContactPointArrayOutput values.
 // You can construct a concrete instance of `ContactPointArrayInput` via:
 //
@@ -406,12 +399,6 @@ func (i ContactPointArray) ToContactPointArrayOutput() ContactPointArrayOutput {
 
 func (i ContactPointArray) ToContactPointArrayOutputWithContext(ctx context.Context) ContactPointArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ContactPointArrayOutput)
-}
-
-func (i ContactPointArray) ToOutput(ctx context.Context) pulumix.Output[[]*ContactPoint] {
-	return pulumix.Output[[]*ContactPoint]{
-		OutputState: i.ToContactPointArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ContactPointMapInput is an input type that accepts ContactPointMap and ContactPointMapOutput values.
@@ -439,12 +426,6 @@ func (i ContactPointMap) ToContactPointMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(ContactPointMapOutput)
 }
 
-func (i ContactPointMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ContactPoint] {
-	return pulumix.Output[map[string]*ContactPoint]{
-		OutputState: i.ToContactPointMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ContactPointOutput struct{ *pulumi.OutputState }
 
 func (ContactPointOutput) ElementType() reflect.Type {
@@ -457,12 +438,6 @@ func (o ContactPointOutput) ToContactPointOutput() ContactPointOutput {
 
 func (o ContactPointOutput) ToContactPointOutputWithContext(ctx context.Context) ContactPointOutput {
 	return o
-}
-
-func (o ContactPointOutput) ToOutput(ctx context.Context) pulumix.Output[*ContactPoint] {
-	return pulumix.Output[*ContactPoint]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A contact point that sends notifications to other Alertmanager instances.
@@ -599,12 +574,6 @@ func (o ContactPointArrayOutput) ToContactPointArrayOutputWithContext(ctx contex
 	return o
 }
 
-func (o ContactPointArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ContactPoint] {
-	return pulumix.Output[[]*ContactPoint]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ContactPointArrayOutput) Index(i pulumi.IntInput) ContactPointOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ContactPoint {
 		return vs[0].([]*ContactPoint)[vs[1].(int)]
@@ -623,12 +592,6 @@ func (o ContactPointMapOutput) ToContactPointMapOutput() ContactPointMapOutput {
 
 func (o ContactPointMapOutput) ToContactPointMapOutputWithContext(ctx context.Context) ContactPointMapOutput {
 	return o
-}
-
-func (o ContactPointMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ContactPoint] {
-	return pulumix.Output[map[string]*ContactPoint]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ContactPointMapOutput) MapIndex(k pulumi.StringInput) ContactPointOutput {

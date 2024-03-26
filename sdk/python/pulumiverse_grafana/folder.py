@@ -219,6 +219,7 @@ class Folder(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -235,15 +236,16 @@ class Folder(pulumi.CustomResource):
             uid="test-folder-uid",
             title="Terraform Test Folder With UID")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/folder:Folder by_integer_id {{folder_id}}
+        $ pulumi import grafana:index/folder:Folder by_integer_id {{folder_id}}
         ```
 
         ```sh
-         $ pulumi import grafana:index/folder:Folder by_uid {{folder_uid}}
+        $ pulumi import grafana:index/folder:Folder by_uid {{folder_uid}}
         ```
 
         :param str resource_name: The name of the resource.
@@ -266,6 +268,7 @@ class Folder(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -282,15 +285,16 @@ class Folder(pulumi.CustomResource):
             uid="test-folder-uid",
             title="Terraform Test Folder With UID")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/folder:Folder by_integer_id {{folder_id}}
+        $ pulumi import grafana:index/folder:Folder by_integer_id {{folder_id}}
         ```
 
         ```sh
-         $ pulumi import grafana:index/folder:Folder by_uid {{folder_uid}}
+        $ pulumi import grafana:index/folder:Folder by_uid {{folder_uid}}
         ```
 
         :param str resource_name: The name of the resource.

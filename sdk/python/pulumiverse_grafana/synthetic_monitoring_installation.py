@@ -162,6 +162,7 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -205,6 +206,7 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
             sm_url=sm_stack_synthetic_monitoring_installation.stack_sm_api_url)
         main = grafana.get_synthetic_monitoring_probes()
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -234,6 +236,7 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -277,6 +280,7 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
             sm_url=sm_stack_synthetic_monitoring_installation.stack_sm_api_url)
         main = grafana.get_synthetic_monitoring_probes()
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SyntheticMonitoringInstallationArgs args: The arguments to use to populate this resource's properties.

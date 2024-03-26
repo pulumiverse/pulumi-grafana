@@ -15,10 +15,9 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,8 +33,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetOnCallSlackChannelResult> InvokeAsync(GetOnCallSlackChannelArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOnCallSlackChannelResult>("grafana:index/getOnCallSlackChannel:getOnCallSlackChannel", args ?? new GetOnCallSlackChannelArgs(), options.WithDefaults());
@@ -43,10 +41,9 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,8 +59,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetOnCallSlackChannelResult> Invoke(GetOnCallSlackChannelInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOnCallSlackChannelResult>("grafana:index/getOnCallSlackChannel:getOnCallSlackChannel", args ?? new GetOnCallSlackChannelInvokeArgs(), options.WithDefaults());

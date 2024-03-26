@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -19,9 +18,7 @@ import (
 // ## Import
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/oncallIntegration:OncallIntegration integration_name {{integration_id}}
-//
+// $ pulumi import grafana:index/oncallIntegration:OncallIntegration integration_name {{integration_id}}
 // ```
 type OncallIntegration struct {
 	pulumi.CustomResourceState
@@ -159,12 +156,6 @@ func (i *OncallIntegration) ToOncallIntegrationOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(OncallIntegrationOutput)
 }
 
-func (i *OncallIntegration) ToOutput(ctx context.Context) pulumix.Output[*OncallIntegration] {
-	return pulumix.Output[*OncallIntegration]{
-		OutputState: i.ToOncallIntegrationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // OncallIntegrationArrayInput is an input type that accepts OncallIntegrationArray and OncallIntegrationArrayOutput values.
 // You can construct a concrete instance of `OncallIntegrationArrayInput` via:
 //
@@ -188,12 +179,6 @@ func (i OncallIntegrationArray) ToOncallIntegrationArrayOutput() OncallIntegrati
 
 func (i OncallIntegrationArray) ToOncallIntegrationArrayOutputWithContext(ctx context.Context) OncallIntegrationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OncallIntegrationArrayOutput)
-}
-
-func (i OncallIntegrationArray) ToOutput(ctx context.Context) pulumix.Output[[]*OncallIntegration] {
-	return pulumix.Output[[]*OncallIntegration]{
-		OutputState: i.ToOncallIntegrationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // OncallIntegrationMapInput is an input type that accepts OncallIntegrationMap and OncallIntegrationMapOutput values.
@@ -221,12 +206,6 @@ func (i OncallIntegrationMap) ToOncallIntegrationMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(OncallIntegrationMapOutput)
 }
 
-func (i OncallIntegrationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OncallIntegration] {
-	return pulumix.Output[map[string]*OncallIntegration]{
-		OutputState: i.ToOncallIntegrationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type OncallIntegrationOutput struct{ *pulumi.OutputState }
 
 func (OncallIntegrationOutput) ElementType() reflect.Type {
@@ -239,12 +218,6 @@ func (o OncallIntegrationOutput) ToOncallIntegrationOutput() OncallIntegrationOu
 
 func (o OncallIntegrationOutput) ToOncallIntegrationOutputWithContext(ctx context.Context) OncallIntegrationOutput {
 	return o
-}
-
-func (o OncallIntegrationOutput) ToOutput(ctx context.Context) pulumix.Output[*OncallIntegration] {
-	return pulumix.Output[*OncallIntegration]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The Default route for all alerts from the given integration
@@ -291,12 +264,6 @@ func (o OncallIntegrationArrayOutput) ToOncallIntegrationArrayOutputWithContext(
 	return o
 }
 
-func (o OncallIntegrationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OncallIntegration] {
-	return pulumix.Output[[]*OncallIntegration]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o OncallIntegrationArrayOutput) Index(i pulumi.IntInput) OncallIntegrationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OncallIntegration {
 		return vs[0].([]*OncallIntegration)[vs[1].(int)]
@@ -315,12 +282,6 @@ func (o OncallIntegrationMapOutput) ToOncallIntegrationMapOutput() OncallIntegra
 
 func (o OncallIntegrationMapOutput) ToOncallIntegrationMapOutputWithContext(ctx context.Context) OncallIntegrationMapOutput {
 	return o
-}
-
-func (o OncallIntegrationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OncallIntegration] {
-	return pulumix.Output[map[string]*OncallIntegration]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o OncallIntegrationMapOutput) MapIndex(k pulumi.StringInput) OncallIntegrationOutput {

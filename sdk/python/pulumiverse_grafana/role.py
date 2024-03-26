@@ -406,6 +406,7 @@ class Role(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -430,11 +431,12 @@ class Role(pulumi.CustomResource):
             uid="superuseruid",
             version=1)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/role:Role role_name {{uid}}
+        $ pulumi import grafana:index/role:Role role_name {{uid}}
         ```
 
         :param str resource_name: The name of the resource.
@@ -465,6 +467,7 @@ class Role(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -489,11 +492,12 @@ class Role(pulumi.CustomResource):
             uid="superuseruid",
             version=1)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/role:Role role_name {{uid}}
+        $ pulumi import grafana:index/role:Role role_name {{uid}}
         ```
 
         :param str resource_name: The name of the resource.

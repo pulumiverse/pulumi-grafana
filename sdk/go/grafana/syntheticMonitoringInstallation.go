@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -28,6 +27,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -48,6 +48,7 @@ import (
 //			if param := cfg.Get("cloudRegion"); param != "" {
 //				cloudRegion = param
 //			}
+//			// Step 1: Create a stack
 //			_, err := grafana.NewProvider(ctx, "cloud", &grafana.ProviderArgs{
 //				CloudApiKey: pulumi.Any(cloudApiKey),
 //			})
@@ -61,6 +62,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Step 2: Install Synthetic Monitoring on the stack
 //			smMetricsPublishCloudAccessPolicy, err := grafana.NewCloudAccessPolicy(ctx, "smMetricsPublishCloudAccessPolicy", &grafana.CloudAccessPolicyArgs{
 //				Region: pulumi.String(cloudRegion),
 //				Scopes: pulumi.StringArray{
@@ -91,6 +93,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Step 3: Interact with Synthetic Monitoring
 //			_, err = grafana.NewProvider(ctx, "sm", &grafana.ProviderArgs{
 //				SmAccessToken: smStackSyntheticMonitoringInstallation.SmAccessToken,
 //				SmUrl:         smStackSyntheticMonitoringInstallation.StackSmApiUrl,
@@ -107,6 +110,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type SyntheticMonitoringInstallation struct {
 	pulumi.CustomResourceState
 
@@ -230,12 +234,6 @@ func (i *SyntheticMonitoringInstallation) ToSyntheticMonitoringInstallationOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringInstallationOutput)
 }
 
-func (i *SyntheticMonitoringInstallation) ToOutput(ctx context.Context) pulumix.Output[*SyntheticMonitoringInstallation] {
-	return pulumix.Output[*SyntheticMonitoringInstallation]{
-		OutputState: i.ToSyntheticMonitoringInstallationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SyntheticMonitoringInstallationArrayInput is an input type that accepts SyntheticMonitoringInstallationArray and SyntheticMonitoringInstallationArrayOutput values.
 // You can construct a concrete instance of `SyntheticMonitoringInstallationArrayInput` via:
 //
@@ -259,12 +257,6 @@ func (i SyntheticMonitoringInstallationArray) ToSyntheticMonitoringInstallationA
 
 func (i SyntheticMonitoringInstallationArray) ToSyntheticMonitoringInstallationArrayOutputWithContext(ctx context.Context) SyntheticMonitoringInstallationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringInstallationArrayOutput)
-}
-
-func (i SyntheticMonitoringInstallationArray) ToOutput(ctx context.Context) pulumix.Output[[]*SyntheticMonitoringInstallation] {
-	return pulumix.Output[[]*SyntheticMonitoringInstallation]{
-		OutputState: i.ToSyntheticMonitoringInstallationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SyntheticMonitoringInstallationMapInput is an input type that accepts SyntheticMonitoringInstallationMap and SyntheticMonitoringInstallationMapOutput values.
@@ -292,12 +284,6 @@ func (i SyntheticMonitoringInstallationMap) ToSyntheticMonitoringInstallationMap
 	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringInstallationMapOutput)
 }
 
-func (i SyntheticMonitoringInstallationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SyntheticMonitoringInstallation] {
-	return pulumix.Output[map[string]*SyntheticMonitoringInstallation]{
-		OutputState: i.ToSyntheticMonitoringInstallationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SyntheticMonitoringInstallationOutput struct{ *pulumi.OutputState }
 
 func (SyntheticMonitoringInstallationOutput) ElementType() reflect.Type {
@@ -310,12 +296,6 @@ func (o SyntheticMonitoringInstallationOutput) ToSyntheticMonitoringInstallation
 
 func (o SyntheticMonitoringInstallationOutput) ToSyntheticMonitoringInstallationOutputWithContext(ctx context.Context) SyntheticMonitoringInstallationOutput {
 	return o
-}
-
-func (o SyntheticMonitoringInstallationOutput) ToOutput(ctx context.Context) pulumix.Output[*SyntheticMonitoringInstallation] {
-	return pulumix.Output[*SyntheticMonitoringInstallation]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
@@ -352,12 +332,6 @@ func (o SyntheticMonitoringInstallationArrayOutput) ToSyntheticMonitoringInstall
 	return o
 }
 
-func (o SyntheticMonitoringInstallationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SyntheticMonitoringInstallation] {
-	return pulumix.Output[[]*SyntheticMonitoringInstallation]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SyntheticMonitoringInstallationArrayOutput) Index(i pulumi.IntInput) SyntheticMonitoringInstallationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SyntheticMonitoringInstallation {
 		return vs[0].([]*SyntheticMonitoringInstallation)[vs[1].(int)]
@@ -376,12 +350,6 @@ func (o SyntheticMonitoringInstallationMapOutput) ToSyntheticMonitoringInstallat
 
 func (o SyntheticMonitoringInstallationMapOutput) ToSyntheticMonitoringInstallationMapOutputWithContext(ctx context.Context) SyntheticMonitoringInstallationMapOutput {
 	return o
-}
-
-func (o SyntheticMonitoringInstallationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SyntheticMonitoringInstallation] {
-	return pulumix.Output[map[string]*SyntheticMonitoringInstallation]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SyntheticMonitoringInstallationMapOutput) MapIndex(k pulumi.StringInput) SyntheticMonitoringInstallationOutput {

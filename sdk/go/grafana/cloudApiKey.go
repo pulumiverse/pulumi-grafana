@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -26,6 +25,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,13 +50,12 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/cloudApiKey:CloudApiKey name "{{ orgSlug }}:{{ apiKeyName }}"
-//
+// $ pulumi import grafana:index/cloudApiKey:CloudApiKey name "{{ orgSlug }}:{{ apiKeyName }}"
 // ```
 type CloudApiKey struct {
 	pulumi.CustomResourceState
@@ -178,12 +177,6 @@ func (i *CloudApiKey) ToCloudApiKeyOutputWithContext(ctx context.Context) CloudA
 	return pulumi.ToOutputWithContext(ctx, i).(CloudApiKeyOutput)
 }
 
-func (i *CloudApiKey) ToOutput(ctx context.Context) pulumix.Output[*CloudApiKey] {
-	return pulumix.Output[*CloudApiKey]{
-		OutputState: i.ToCloudApiKeyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CloudApiKeyArrayInput is an input type that accepts CloudApiKeyArray and CloudApiKeyArrayOutput values.
 // You can construct a concrete instance of `CloudApiKeyArrayInput` via:
 //
@@ -207,12 +200,6 @@ func (i CloudApiKeyArray) ToCloudApiKeyArrayOutput() CloudApiKeyArrayOutput {
 
 func (i CloudApiKeyArray) ToCloudApiKeyArrayOutputWithContext(ctx context.Context) CloudApiKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudApiKeyArrayOutput)
-}
-
-func (i CloudApiKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*CloudApiKey] {
-	return pulumix.Output[[]*CloudApiKey]{
-		OutputState: i.ToCloudApiKeyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CloudApiKeyMapInput is an input type that accepts CloudApiKeyMap and CloudApiKeyMapOutput values.
@@ -240,12 +227,6 @@ func (i CloudApiKeyMap) ToCloudApiKeyMapOutputWithContext(ctx context.Context) C
 	return pulumi.ToOutputWithContext(ctx, i).(CloudApiKeyMapOutput)
 }
 
-func (i CloudApiKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudApiKey] {
-	return pulumix.Output[map[string]*CloudApiKey]{
-		OutputState: i.ToCloudApiKeyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CloudApiKeyOutput struct{ *pulumi.OutputState }
 
 func (CloudApiKeyOutput) ElementType() reflect.Type {
@@ -258,12 +239,6 @@ func (o CloudApiKeyOutput) ToCloudApiKeyOutput() CloudApiKeyOutput {
 
 func (o CloudApiKeyOutput) ToCloudApiKeyOutputWithContext(ctx context.Context) CloudApiKeyOutput {
 	return o
-}
-
-func (o CloudApiKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*CloudApiKey] {
-	return pulumix.Output[*CloudApiKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The slug of the organization to create the API key in. This is the same slug as the organization name in the URL.
@@ -300,12 +275,6 @@ func (o CloudApiKeyArrayOutput) ToCloudApiKeyArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o CloudApiKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CloudApiKey] {
-	return pulumix.Output[[]*CloudApiKey]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CloudApiKeyArrayOutput) Index(i pulumi.IntInput) CloudApiKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudApiKey {
 		return vs[0].([]*CloudApiKey)[vs[1].(int)]
@@ -324,12 +293,6 @@ func (o CloudApiKeyMapOutput) ToCloudApiKeyMapOutput() CloudApiKeyMapOutput {
 
 func (o CloudApiKeyMapOutput) ToCloudApiKeyMapOutputWithContext(ctx context.Context) CloudApiKeyMapOutput {
 	return o
-}
-
-func (o CloudApiKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudApiKey] {
-	return pulumix.Output[map[string]*CloudApiKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CloudApiKeyMapOutput) MapIndex(k pulumi.StringInput) CloudApiKeyOutput {

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -84,12 +83,6 @@ func (o LookupServiceAccountResultOutput) ToLookupServiceAccountResultOutput() L
 
 func (o LookupServiceAccountResultOutput) ToLookupServiceAccountResultOutputWithContext(ctx context.Context) LookupServiceAccountResultOutput {
 	return o
-}
-
-func (o LookupServiceAccountResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupServiceAccountResult] {
-	return pulumix.Output[LookupServiceAccountResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

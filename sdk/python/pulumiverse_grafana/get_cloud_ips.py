@@ -110,12 +110,14 @@ def get_cloud_ips(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCl
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     test = grafana.get_cloud_ips()
     ```
+    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -137,11 +139,13 @@ def get_cloud_ips_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     test = grafana.get_cloud_ips()
     ```
+    <!--End PulumiCodeChooser -->
     """
     ...

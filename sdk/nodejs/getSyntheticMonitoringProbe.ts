@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -17,6 +18,7 @@ import * as utilities from "./utilities";
  *     name: "Atlanta",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getSyntheticMonitoringProbe(args: GetSyntheticMonitoringProbeArgs, opts?: pulumi.InvokeOptions): Promise<GetSyntheticMonitoringProbeResult> {
 
@@ -78,6 +80,7 @@ export interface GetSyntheticMonitoringProbeResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -86,6 +89,7 @@ export interface GetSyntheticMonitoringProbeResult {
  *     name: "Atlanta",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getSyntheticMonitoringProbeOutput(args: GetSyntheticMonitoringProbeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSyntheticMonitoringProbeResult> {
     return pulumi.output(args).apply((a: any) => getSyntheticMonitoringProbe(a, opts))

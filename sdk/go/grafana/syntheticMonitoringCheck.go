@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -22,8 +21,10 @@ import (
 // * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/checks/)
 //
 // ## Example Usage
+//
 // ### DNS Basic
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,7 +46,7 @@ import (
 //				Target:  pulumi.String("grafana.com"),
 //				Enabled: pulumi.Bool(false),
 //				Probes: pulumi.IntArray{
-//					*pulumi.Int(main.Probes.Atlanta),
+//					pulumi.Int(main.Probes.Atlanta),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
@@ -62,8 +63,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### DNS Complex
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -85,8 +89,8 @@ import (
 //				Target:  pulumi.String("grafana.net"),
 //				Enabled: pulumi.Bool(false),
 //				Probes: pulumi.IntArray{
-//					*pulumi.Int(main.Probes.Frankfurt),
-//					*pulumi.Int(main.Probes.London),
+//					pulumi.Int(main.Probes.Frankfurt),
+//					pulumi.Int(main.Probes.London),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("baz"),
@@ -139,8 +143,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### HTTP Basic
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -162,7 +169,7 @@ import (
 //				Target:  pulumi.String("https://grafana.com"),
 //				Enabled: pulumi.Bool(false),
 //				Probes: pulumi.IntArray{
-//					*pulumi.Int(main.Probes.Atlanta),
+//					pulumi.Int(main.Probes.Atlanta),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
@@ -179,8 +186,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### HTTP Complex
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -202,8 +212,8 @@ import (
 //				Target:  pulumi.String("https://grafana.org"),
 //				Enabled: pulumi.Bool(false),
 //				Probes: pulumi.IntArray{
-//					*pulumi.Int(main.Probes.Bangalore),
-//					*pulumi.Int(main.Probes.Mumbai),
+//					pulumi.Int(main.Probes.Bangalore),
+//					pulumi.Int(main.Probes.Mumbai),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
@@ -292,8 +302,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Ping Basic
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -315,7 +328,7 @@ import (
 //				Target:  pulumi.String("grafana.com"),
 //				Enabled: pulumi.Bool(false),
 //				Probes: pulumi.IntArray{
-//					*pulumi.Int(main.Probes.Atlanta),
+//					pulumi.Int(main.Probes.Atlanta),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
@@ -332,8 +345,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Ping Complex
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -355,8 +371,8 @@ import (
 //				Target:  pulumi.String("grafana.net"),
 //				Enabled: pulumi.Bool(false),
 //				Probes: pulumi.IntArray{
-//					*pulumi.Int(main.Probes.Frankfurt),
-//					*pulumi.Int(main.Probes.London),
+//					pulumi.Int(main.Probes.Frankfurt),
+//					pulumi.Int(main.Probes.London),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("baz"),
@@ -377,8 +393,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### TCP Basic
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -400,7 +419,7 @@ import (
 //				Target:  pulumi.String("grafana.com:80"),
 //				Enabled: pulumi.Bool(false),
 //				Probes: pulumi.IntArray{
-//					*pulumi.Int(main.Probes.Atlanta),
+//					pulumi.Int(main.Probes.Atlanta),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
@@ -417,8 +436,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### TCP Complex
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -440,8 +462,8 @@ import (
 //				Target:  pulumi.String("grafana.com:443"),
 //				Enabled: pulumi.Bool(false),
 //				Probes: pulumi.IntArray{
-//					*pulumi.Int(main.Probes.Frankfurt),
-//					*pulumi.Int(main.Probes.London),
+//					pulumi.Int(main.Probes.Frankfurt),
+//					pulumi.Int(main.Probes.London),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("baz"),
@@ -505,8 +527,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Traceroute Basic
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -530,7 +555,7 @@ import (
 //				Frequency: pulumi.Int(120000),
 //				Timeout:   pulumi.Int(30000),
 //				Probes: pulumi.IntArray{
-//					*pulumi.Int(main.Probes.Atlanta),
+//					pulumi.Int(main.Probes.Atlanta),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
@@ -547,8 +572,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Traceroute Complex
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -572,8 +600,8 @@ import (
 //				Frequency: pulumi.Int(120000),
 //				Timeout:   pulumi.Int(30000),
 //				Probes: pulumi.IntArray{
-//					*pulumi.Int(main.Probes.Frankfurt),
-//					*pulumi.Int(main.Probes.London),
+//					pulumi.Int(main.Probes.Frankfurt),
+//					pulumi.Int(main.Probes.London),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("baz"),
@@ -594,13 +622,12 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck check {{check-id}}
-//
+// $ pulumi import grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck check {{check-id}}
 // ```
 type SyntheticMonitoringCheck struct {
 	pulumi.CustomResourceState
@@ -794,12 +821,6 @@ func (i *SyntheticMonitoringCheck) ToSyntheticMonitoringCheckOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckOutput)
 }
 
-func (i *SyntheticMonitoringCheck) ToOutput(ctx context.Context) pulumix.Output[*SyntheticMonitoringCheck] {
-	return pulumix.Output[*SyntheticMonitoringCheck]{
-		OutputState: i.ToSyntheticMonitoringCheckOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SyntheticMonitoringCheckArrayInput is an input type that accepts SyntheticMonitoringCheckArray and SyntheticMonitoringCheckArrayOutput values.
 // You can construct a concrete instance of `SyntheticMonitoringCheckArrayInput` via:
 //
@@ -823,12 +844,6 @@ func (i SyntheticMonitoringCheckArray) ToSyntheticMonitoringCheckArrayOutput() S
 
 func (i SyntheticMonitoringCheckArray) ToSyntheticMonitoringCheckArrayOutputWithContext(ctx context.Context) SyntheticMonitoringCheckArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckArrayOutput)
-}
-
-func (i SyntheticMonitoringCheckArray) ToOutput(ctx context.Context) pulumix.Output[[]*SyntheticMonitoringCheck] {
-	return pulumix.Output[[]*SyntheticMonitoringCheck]{
-		OutputState: i.ToSyntheticMonitoringCheckArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SyntheticMonitoringCheckMapInput is an input type that accepts SyntheticMonitoringCheckMap and SyntheticMonitoringCheckMapOutput values.
@@ -856,12 +871,6 @@ func (i SyntheticMonitoringCheckMap) ToSyntheticMonitoringCheckMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckMapOutput)
 }
 
-func (i SyntheticMonitoringCheckMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SyntheticMonitoringCheck] {
-	return pulumix.Output[map[string]*SyntheticMonitoringCheck]{
-		OutputState: i.ToSyntheticMonitoringCheckMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SyntheticMonitoringCheckOutput struct{ *pulumi.OutputState }
 
 func (SyntheticMonitoringCheckOutput) ElementType() reflect.Type {
@@ -874,12 +883,6 @@ func (o SyntheticMonitoringCheckOutput) ToSyntheticMonitoringCheckOutput() Synth
 
 func (o SyntheticMonitoringCheckOutput) ToSyntheticMonitoringCheckOutputWithContext(ctx context.Context) SyntheticMonitoringCheckOutput {
 	return o
-}
-
-func (o SyntheticMonitoringCheckOutput) ToOutput(ctx context.Context) pulumix.Output[*SyntheticMonitoringCheck] {
-	return pulumix.Output[*SyntheticMonitoringCheck]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
@@ -951,12 +954,6 @@ func (o SyntheticMonitoringCheckArrayOutput) ToSyntheticMonitoringCheckArrayOutp
 	return o
 }
 
-func (o SyntheticMonitoringCheckArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SyntheticMonitoringCheck] {
-	return pulumix.Output[[]*SyntheticMonitoringCheck]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SyntheticMonitoringCheckArrayOutput) Index(i pulumi.IntInput) SyntheticMonitoringCheckOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SyntheticMonitoringCheck {
 		return vs[0].([]*SyntheticMonitoringCheck)[vs[1].(int)]
@@ -975,12 +972,6 @@ func (o SyntheticMonitoringCheckMapOutput) ToSyntheticMonitoringCheckMapOutput()
 
 func (o SyntheticMonitoringCheckMapOutput) ToSyntheticMonitoringCheckMapOutputWithContext(ctx context.Context) SyntheticMonitoringCheckMapOutput {
 	return o
-}
-
-func (o SyntheticMonitoringCheckMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SyntheticMonitoringCheck] {
-	return pulumix.Output[map[string]*SyntheticMonitoringCheck]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SyntheticMonitoringCheckMapOutput) MapIndex(k pulumi.StringInput) SyntheticMonitoringCheckOutput {

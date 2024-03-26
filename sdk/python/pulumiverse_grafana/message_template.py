@@ -174,6 +174,7 @@ class MessageTemplate(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -183,11 +184,12 @@ class MessageTemplate(pulumi.CustomResource):
         {{ end }}
         \"\"\")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/messageTemplate:MessageTemplate message_template_name {{message_template_name}}
+        $ pulumi import grafana:index/messageTemplate:MessageTemplate message_template_name {{message_template_name}}
         ```
 
         :param str resource_name: The name of the resource.
@@ -213,6 +215,7 @@ class MessageTemplate(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -222,11 +225,12 @@ class MessageTemplate(pulumi.CustomResource):
         {{ end }}
         \"\"\")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/messageTemplate:MessageTemplate message_template_name {{message_template_name}}
+        $ pulumi import grafana:index/messageTemplate:MessageTemplate message_template_name {{message_template_name}}
         ```
 
         :param str resource_name: The name of the resource.

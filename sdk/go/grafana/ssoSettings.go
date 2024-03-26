@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -20,6 +19,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -49,6 +49,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type SsoSettings struct {
 	pulumi.CustomResourceState
 
@@ -149,12 +150,6 @@ func (i *SsoSettings) ToSsoSettingsOutputWithContext(ctx context.Context) SsoSet
 	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsOutput)
 }
 
-func (i *SsoSettings) ToOutput(ctx context.Context) pulumix.Output[*SsoSettings] {
-	return pulumix.Output[*SsoSettings]{
-		OutputState: i.ToSsoSettingsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SsoSettingsArrayInput is an input type that accepts SsoSettingsArray and SsoSettingsArrayOutput values.
 // You can construct a concrete instance of `SsoSettingsArrayInput` via:
 //
@@ -178,12 +173,6 @@ func (i SsoSettingsArray) ToSsoSettingsArrayOutput() SsoSettingsArrayOutput {
 
 func (i SsoSettingsArray) ToSsoSettingsArrayOutputWithContext(ctx context.Context) SsoSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsArrayOutput)
-}
-
-func (i SsoSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*SsoSettings] {
-	return pulumix.Output[[]*SsoSettings]{
-		OutputState: i.ToSsoSettingsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SsoSettingsMapInput is an input type that accepts SsoSettingsMap and SsoSettingsMapOutput values.
@@ -211,12 +200,6 @@ func (i SsoSettingsMap) ToSsoSettingsMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsMapOutput)
 }
 
-func (i SsoSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SsoSettings] {
-	return pulumix.Output[map[string]*SsoSettings]{
-		OutputState: i.ToSsoSettingsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SsoSettingsOutput struct{ *pulumi.OutputState }
 
 func (SsoSettingsOutput) ElementType() reflect.Type {
@@ -229,12 +212,6 @@ func (o SsoSettingsOutput) ToSsoSettingsOutput() SsoSettingsOutput {
 
 func (o SsoSettingsOutput) ToSsoSettingsOutputWithContext(ctx context.Context) SsoSettingsOutput {
 	return o
-}
-
-func (o SsoSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*SsoSettings] {
-	return pulumix.Output[*SsoSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The SSO settings set.
@@ -261,12 +238,6 @@ func (o SsoSettingsArrayOutput) ToSsoSettingsArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o SsoSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SsoSettings] {
-	return pulumix.Output[[]*SsoSettings]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SsoSettingsArrayOutput) Index(i pulumi.IntInput) SsoSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SsoSettings {
 		return vs[0].([]*SsoSettings)[vs[1].(int)]
@@ -285,12 +256,6 @@ func (o SsoSettingsMapOutput) ToSsoSettingsMapOutput() SsoSettingsMapOutput {
 
 func (o SsoSettingsMapOutput) ToSsoSettingsMapOutputWithContext(ctx context.Context) SsoSettingsMapOutput {
 	return o
-}
-
-func (o SsoSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SsoSettings] {
-	return pulumix.Output[map[string]*SsoSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SsoSettingsMapOutput) MapIndex(k pulumi.StringInput) SsoSettingsOutput {

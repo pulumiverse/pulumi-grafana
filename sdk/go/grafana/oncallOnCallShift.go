@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -18,9 +17,7 @@ import (
 // ## Import
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/oncallOnCallShift:OncallOnCallShift on_call_shift_name {{on_call_shift_id}}
-//
+// $ pulumi import grafana:index/oncallOnCallShift:OncallOnCallShift on_call_shift_name {{on_call_shift_id}}
 // ```
 type OncallOnCallShift struct {
 	pulumi.CustomResourceState
@@ -265,12 +262,6 @@ func (i *OncallOnCallShift) ToOncallOnCallShiftOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(OncallOnCallShiftOutput)
 }
 
-func (i *OncallOnCallShift) ToOutput(ctx context.Context) pulumix.Output[*OncallOnCallShift] {
-	return pulumix.Output[*OncallOnCallShift]{
-		OutputState: i.ToOncallOnCallShiftOutputWithContext(ctx).OutputState,
-	}
-}
-
 // OncallOnCallShiftArrayInput is an input type that accepts OncallOnCallShiftArray and OncallOnCallShiftArrayOutput values.
 // You can construct a concrete instance of `OncallOnCallShiftArrayInput` via:
 //
@@ -294,12 +285,6 @@ func (i OncallOnCallShiftArray) ToOncallOnCallShiftArrayOutput() OncallOnCallShi
 
 func (i OncallOnCallShiftArray) ToOncallOnCallShiftArrayOutputWithContext(ctx context.Context) OncallOnCallShiftArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OncallOnCallShiftArrayOutput)
-}
-
-func (i OncallOnCallShiftArray) ToOutput(ctx context.Context) pulumix.Output[[]*OncallOnCallShift] {
-	return pulumix.Output[[]*OncallOnCallShift]{
-		OutputState: i.ToOncallOnCallShiftArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // OncallOnCallShiftMapInput is an input type that accepts OncallOnCallShiftMap and OncallOnCallShiftMapOutput values.
@@ -327,12 +312,6 @@ func (i OncallOnCallShiftMap) ToOncallOnCallShiftMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(OncallOnCallShiftMapOutput)
 }
 
-func (i OncallOnCallShiftMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OncallOnCallShift] {
-	return pulumix.Output[map[string]*OncallOnCallShift]{
-		OutputState: i.ToOncallOnCallShiftMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type OncallOnCallShiftOutput struct{ *pulumi.OutputState }
 
 func (OncallOnCallShiftOutput) ElementType() reflect.Type {
@@ -345,12 +324,6 @@ func (o OncallOnCallShiftOutput) ToOncallOnCallShiftOutput() OncallOnCallShiftOu
 
 func (o OncallOnCallShiftOutput) ToOncallOnCallShiftOutputWithContext(ctx context.Context) OncallOnCallShiftOutput {
 	return o
-}
-
-func (o OncallOnCallShiftOutput) ToOutput(ctx context.Context) pulumix.Output[*OncallOnCallShift] {
-	return pulumix.Output[*OncallOnCallShift]{
-		OutputState: o.OutputState,
-	}
 }
 
 // This parameter takes a list of days in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
@@ -447,12 +420,6 @@ func (o OncallOnCallShiftArrayOutput) ToOncallOnCallShiftArrayOutputWithContext(
 	return o
 }
 
-func (o OncallOnCallShiftArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OncallOnCallShift] {
-	return pulumix.Output[[]*OncallOnCallShift]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o OncallOnCallShiftArrayOutput) Index(i pulumi.IntInput) OncallOnCallShiftOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OncallOnCallShift {
 		return vs[0].([]*OncallOnCallShift)[vs[1].(int)]
@@ -471,12 +438,6 @@ func (o OncallOnCallShiftMapOutput) ToOncallOnCallShiftMapOutput() OncallOnCallS
 
 func (o OncallOnCallShiftMapOutput) ToOncallOnCallShiftMapOutputWithContext(ctx context.Context) OncallOnCallShiftMapOutput {
 	return o
-}
-
-func (o OncallOnCallShiftMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OncallOnCallShift] {
-	return pulumix.Output[map[string]*OncallOnCallShift]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o OncallOnCallShiftMapOutput) MapIndex(k pulumi.StringInput) OncallOnCallShiftOutput {

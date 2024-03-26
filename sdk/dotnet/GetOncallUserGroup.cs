@@ -15,10 +15,9 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,8 +33,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetOncallUserGroupResult> InvokeAsync(GetOncallUserGroupArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallUserGroupResult>("grafana:index/getOncallUserGroup:getOncallUserGroup", args ?? new GetOncallUserGroupArgs(), options.WithDefaults());
@@ -43,10 +41,9 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,8 +59,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetOncallUserGroupResult> Invoke(GetOncallUserGroupInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOncallUserGroupResult>("grafana:index/getOncallUserGroup:getOncallUserGroup", args ?? new GetOncallUserGroupInvokeArgs(), options.WithDefaults());

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -17,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -47,6 +47,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupTeam(ctx *pulumi.Context, args *LookupTeamArgs, opts ...pulumi.InvokeOption) (*LookupTeamResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTeamResult
@@ -115,12 +116,6 @@ func (o LookupTeamResultOutput) ToLookupTeamResultOutput() LookupTeamResultOutpu
 
 func (o LookupTeamResultOutput) ToLookupTeamResultOutputWithContext(ctx context.Context) LookupTeamResultOutput {
 	return o
-}
-
-func (o LookupTeamResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupTeamResult] {
-	return pulumix.Output[LookupTeamResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupTeamResultOutput) Email() pulumi.StringOutput {

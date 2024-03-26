@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -17,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,13 +40,12 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook outgoing_webhook_name {{outgoing_webhook_id}}
-//
+// $ pulumi import grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook outgoing_webhook_name {{outgoing_webhook_id}}
 // ```
 type OncallOutgoingWebhook struct {
 	pulumi.CustomResourceState
@@ -276,12 +275,6 @@ func (i *OncallOutgoingWebhook) ToOncallOutgoingWebhookOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(OncallOutgoingWebhookOutput)
 }
 
-func (i *OncallOutgoingWebhook) ToOutput(ctx context.Context) pulumix.Output[*OncallOutgoingWebhook] {
-	return pulumix.Output[*OncallOutgoingWebhook]{
-		OutputState: i.ToOncallOutgoingWebhookOutputWithContext(ctx).OutputState,
-	}
-}
-
 // OncallOutgoingWebhookArrayInput is an input type that accepts OncallOutgoingWebhookArray and OncallOutgoingWebhookArrayOutput values.
 // You can construct a concrete instance of `OncallOutgoingWebhookArrayInput` via:
 //
@@ -305,12 +298,6 @@ func (i OncallOutgoingWebhookArray) ToOncallOutgoingWebhookArrayOutput() OncallO
 
 func (i OncallOutgoingWebhookArray) ToOncallOutgoingWebhookArrayOutputWithContext(ctx context.Context) OncallOutgoingWebhookArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OncallOutgoingWebhookArrayOutput)
-}
-
-func (i OncallOutgoingWebhookArray) ToOutput(ctx context.Context) pulumix.Output[[]*OncallOutgoingWebhook] {
-	return pulumix.Output[[]*OncallOutgoingWebhook]{
-		OutputState: i.ToOncallOutgoingWebhookArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // OncallOutgoingWebhookMapInput is an input type that accepts OncallOutgoingWebhookMap and OncallOutgoingWebhookMapOutput values.
@@ -338,12 +325,6 @@ func (i OncallOutgoingWebhookMap) ToOncallOutgoingWebhookMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(OncallOutgoingWebhookMapOutput)
 }
 
-func (i OncallOutgoingWebhookMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OncallOutgoingWebhook] {
-	return pulumix.Output[map[string]*OncallOutgoingWebhook]{
-		OutputState: i.ToOncallOutgoingWebhookMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type OncallOutgoingWebhookOutput struct{ *pulumi.OutputState }
 
 func (OncallOutgoingWebhookOutput) ElementType() reflect.Type {
@@ -356,12 +337,6 @@ func (o OncallOutgoingWebhookOutput) ToOncallOutgoingWebhookOutput() OncallOutgo
 
 func (o OncallOutgoingWebhookOutput) ToOncallOutgoingWebhookOutputWithContext(ctx context.Context) OncallOutgoingWebhookOutput {
 	return o
-}
-
-func (o OncallOutgoingWebhookOutput) ToOutput(ctx context.Context) pulumix.Output[*OncallOutgoingWebhook] {
-	return pulumix.Output[*OncallOutgoingWebhook]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The auth data of the webhook. Used in Authorization header instead of user/password auth.
@@ -448,12 +423,6 @@ func (o OncallOutgoingWebhookArrayOutput) ToOncallOutgoingWebhookArrayOutputWith
 	return o
 }
 
-func (o OncallOutgoingWebhookArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OncallOutgoingWebhook] {
-	return pulumix.Output[[]*OncallOutgoingWebhook]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o OncallOutgoingWebhookArrayOutput) Index(i pulumi.IntInput) OncallOutgoingWebhookOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OncallOutgoingWebhook {
 		return vs[0].([]*OncallOutgoingWebhook)[vs[1].(int)]
@@ -472,12 +441,6 @@ func (o OncallOutgoingWebhookMapOutput) ToOncallOutgoingWebhookMapOutput() Oncal
 
 func (o OncallOutgoingWebhookMapOutput) ToOncallOutgoingWebhookMapOutputWithContext(ctx context.Context) OncallOutgoingWebhookMapOutput {
 	return o
-}
-
-func (o OncallOutgoingWebhookMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OncallOutgoingWebhook] {
-	return pulumix.Output[map[string]*OncallOutgoingWebhook]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o OncallOutgoingWebhookMapOutput) MapIndex(k pulumi.StringInput) OncallOutgoingWebhookOutput {

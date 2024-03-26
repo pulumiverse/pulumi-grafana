@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -17,6 +18,7 @@ import * as utilities from "./utilities";
  *     name: "default",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getOncallEscalationChain(args: GetOncallEscalationChainArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallEscalationChainResult> {
 
@@ -54,6 +56,7 @@ export interface GetOncallEscalationChainResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -62,6 +65,7 @@ export interface GetOncallEscalationChainResult {
  *     name: "default",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getOncallEscalationChainOutput(args: GetOncallEscalationChainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallEscalationChainResult> {
     return pulumi.output(args).apply((a: any) => getOncallEscalationChain(a, opts))

@@ -14,10 +14,25 @@ namespace Pulumiverse.Grafana.Outputs
     [OutputType]
     public sealed class GetUsersUserResult
     {
+        /// <summary>
+        /// The user's email.
+        /// </summary>
         public readonly string Email;
+        /// <summary>
+        /// The user ID.
+        /// </summary>
         public readonly int Id;
+        /// <summary>
+        /// Whether the user is admin or not.
+        /// </summary>
         public readonly bool IsAdmin;
+        /// <summary>
+        /// The user's login.
+        /// </summary>
         public readonly string Login;
+        /// <summary>
+        /// The user's name.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

@@ -23,6 +23,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -49,6 +50,7 @@ namespace Pulumiverse.Grafana
     ///     };
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [GrafanaResourceType("grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken")]
     public partial class CloudStackServiceAccountToken : global::Pulumi.CustomResource

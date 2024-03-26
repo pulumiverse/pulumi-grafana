@@ -2400,9 +2400,21 @@ export interface SyntheticMonitoringCheckSettingsTraceroute {
 }
 
 export interface TeamPreferences {
+    /**
+     * The UID of the dashboard to display when a team member logs in.
+     */
     homeDashboardUid?: pulumi.Input<string>;
+    /**
+     * The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.
+     */
     theme?: pulumi.Input<string>;
+    /**
+     * The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.
+     */
     timezone?: pulumi.Input<string>;
+    /**
+     * The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
+     */
     weekStart?: pulumi.Input<string>;
 }
 

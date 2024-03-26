@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -21,6 +20,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -70,13 +70,12 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/muteTiming:MuteTiming mute_timing_name {{mute_timing_name}}
-//
+// $ pulumi import grafana:index/muteTiming:MuteTiming mute_timing_name {{mute_timing_name}}
 // ```
 type MuteTiming struct {
 	pulumi.CustomResourceState
@@ -182,12 +181,6 @@ func (i *MuteTiming) ToMuteTimingOutputWithContext(ctx context.Context) MuteTimi
 	return pulumi.ToOutputWithContext(ctx, i).(MuteTimingOutput)
 }
 
-func (i *MuteTiming) ToOutput(ctx context.Context) pulumix.Output[*MuteTiming] {
-	return pulumix.Output[*MuteTiming]{
-		OutputState: i.ToMuteTimingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // MuteTimingArrayInput is an input type that accepts MuteTimingArray and MuteTimingArrayOutput values.
 // You can construct a concrete instance of `MuteTimingArrayInput` via:
 //
@@ -211,12 +204,6 @@ func (i MuteTimingArray) ToMuteTimingArrayOutput() MuteTimingArrayOutput {
 
 func (i MuteTimingArray) ToMuteTimingArrayOutputWithContext(ctx context.Context) MuteTimingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MuteTimingArrayOutput)
-}
-
-func (i MuteTimingArray) ToOutput(ctx context.Context) pulumix.Output[[]*MuteTiming] {
-	return pulumix.Output[[]*MuteTiming]{
-		OutputState: i.ToMuteTimingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // MuteTimingMapInput is an input type that accepts MuteTimingMap and MuteTimingMapOutput values.
@@ -244,12 +231,6 @@ func (i MuteTimingMap) ToMuteTimingMapOutputWithContext(ctx context.Context) Mut
 	return pulumi.ToOutputWithContext(ctx, i).(MuteTimingMapOutput)
 }
 
-func (i MuteTimingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MuteTiming] {
-	return pulumix.Output[map[string]*MuteTiming]{
-		OutputState: i.ToMuteTimingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type MuteTimingOutput struct{ *pulumi.OutputState }
 
 func (MuteTimingOutput) ElementType() reflect.Type {
@@ -262,12 +243,6 @@ func (o MuteTimingOutput) ToMuteTimingOutput() MuteTimingOutput {
 
 func (o MuteTimingOutput) ToMuteTimingOutputWithContext(ctx context.Context) MuteTimingOutput {
 	return o
-}
-
-func (o MuteTimingOutput) ToOutput(ctx context.Context) pulumix.Output[*MuteTiming] {
-	return pulumix.Output[*MuteTiming]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The time intervals at which to mute notifications. Use an empty block to mute all the time.
@@ -299,12 +274,6 @@ func (o MuteTimingArrayOutput) ToMuteTimingArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o MuteTimingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MuteTiming] {
-	return pulumix.Output[[]*MuteTiming]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o MuteTimingArrayOutput) Index(i pulumi.IntInput) MuteTimingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MuteTiming {
 		return vs[0].([]*MuteTiming)[vs[1].(int)]
@@ -323,12 +292,6 @@ func (o MuteTimingMapOutput) ToMuteTimingMapOutput() MuteTimingMapOutput {
 
 func (o MuteTimingMapOutput) ToMuteTimingMapOutputWithContext(ctx context.Context) MuteTimingMapOutput {
 	return o
-}
-
-func (o MuteTimingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MuteTiming] {
-	return pulumix.Output[map[string]*MuteTiming]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o MuteTimingMapOutput) MapIndex(k pulumi.StringInput) MuteTimingOutput {

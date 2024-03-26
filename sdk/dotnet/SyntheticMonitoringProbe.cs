@@ -20,6 +20,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -41,15 +42,16 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}
+    /// $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}
     /// ```
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}:{{auth_token}}
+    /// $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}:{{auth_token}}
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe")]

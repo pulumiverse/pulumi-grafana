@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -16,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,6 +39,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetOncallUserGroup(ctx *pulumi.Context, args *GetOncallUserGroupArgs, opts ...pulumi.InvokeOption) (*GetOncallUserGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOncallUserGroupResult
@@ -97,12 +98,6 @@ func (o GetOncallUserGroupResultOutput) ToGetOncallUserGroupResultOutput() GetOn
 
 func (o GetOncallUserGroupResultOutput) ToGetOncallUserGroupResultOutputWithContext(ctx context.Context) GetOncallUserGroupResultOutput {
 	return o
-}
-
-func (o GetOncallUserGroupResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOncallUserGroupResult] {
-	return pulumix.Output[GetOncallUserGroupResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -23,6 +22,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -48,19 +48,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}} // import by numerical ID
-//
+// $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}} // import by numerical ID
 // ```
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_slug}} // or import by slug
-//
+// $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_slug}} // or import by slug
 // ```
 type CloudStack struct {
 	pulumi.CustomResourceState
@@ -360,12 +357,6 @@ func (i *CloudStack) ToCloudStackOutputWithContext(ctx context.Context) CloudSta
 	return pulumi.ToOutputWithContext(ctx, i).(CloudStackOutput)
 }
 
-func (i *CloudStack) ToOutput(ctx context.Context) pulumix.Output[*CloudStack] {
-	return pulumix.Output[*CloudStack]{
-		OutputState: i.ToCloudStackOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CloudStackArrayInput is an input type that accepts CloudStackArray and CloudStackArrayOutput values.
 // You can construct a concrete instance of `CloudStackArrayInput` via:
 //
@@ -389,12 +380,6 @@ func (i CloudStackArray) ToCloudStackArrayOutput() CloudStackArrayOutput {
 
 func (i CloudStackArray) ToCloudStackArrayOutputWithContext(ctx context.Context) CloudStackArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudStackArrayOutput)
-}
-
-func (i CloudStackArray) ToOutput(ctx context.Context) pulumix.Output[[]*CloudStack] {
-	return pulumix.Output[[]*CloudStack]{
-		OutputState: i.ToCloudStackArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CloudStackMapInput is an input type that accepts CloudStackMap and CloudStackMapOutput values.
@@ -422,12 +407,6 @@ func (i CloudStackMap) ToCloudStackMapOutputWithContext(ctx context.Context) Clo
 	return pulumi.ToOutputWithContext(ctx, i).(CloudStackMapOutput)
 }
 
-func (i CloudStackMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudStack] {
-	return pulumix.Output[map[string]*CloudStack]{
-		OutputState: i.ToCloudStackMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CloudStackOutput struct{ *pulumi.OutputState }
 
 func (CloudStackOutput) ElementType() reflect.Type {
@@ -440,12 +419,6 @@ func (o CloudStackOutput) ToCloudStackOutput() CloudStackOutput {
 
 func (o CloudStackOutput) ToCloudStackOutputWithContext(ctx context.Context) CloudStackOutput {
 	return o
-}
-
-func (o CloudStackOutput) ToOutput(ctx context.Context) pulumix.Output[*CloudStack] {
-	return pulumix.Output[*CloudStack]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Name of the Alertmanager instance configured for this stack.
@@ -642,12 +615,6 @@ func (o CloudStackArrayOutput) ToCloudStackArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o CloudStackArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CloudStack] {
-	return pulumix.Output[[]*CloudStack]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CloudStackArrayOutput) Index(i pulumi.IntInput) CloudStackOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudStack {
 		return vs[0].([]*CloudStack)[vs[1].(int)]
@@ -666,12 +633,6 @@ func (o CloudStackMapOutput) ToCloudStackMapOutput() CloudStackMapOutput {
 
 func (o CloudStackMapOutput) ToCloudStackMapOutputWithContext(ctx context.Context) CloudStackMapOutput {
 	return o
-}
-
-func (o CloudStackMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudStack] {
-	return pulumix.Output[map[string]*CloudStack]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CloudStackMapOutput) MapIndex(k pulumi.StringInput) CloudStackOutput {

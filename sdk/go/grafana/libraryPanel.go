@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -20,6 +19,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -60,13 +60,12 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // ```sh
-//
-//	$ pulumi import grafana:index/libraryPanel:LibraryPanel panel_name {{library_panel_slug}}
-//
+// $ pulumi import grafana:index/libraryPanel:LibraryPanel panel_name {{library_panel_slug}}
 // ```
 type LibraryPanel struct {
 	pulumi.CustomResourceState
@@ -249,12 +248,6 @@ func (i *LibraryPanel) ToLibraryPanelOutputWithContext(ctx context.Context) Libr
 	return pulumi.ToOutputWithContext(ctx, i).(LibraryPanelOutput)
 }
 
-func (i *LibraryPanel) ToOutput(ctx context.Context) pulumix.Output[*LibraryPanel] {
-	return pulumix.Output[*LibraryPanel]{
-		OutputState: i.ToLibraryPanelOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LibraryPanelArrayInput is an input type that accepts LibraryPanelArray and LibraryPanelArrayOutput values.
 // You can construct a concrete instance of `LibraryPanelArrayInput` via:
 //
@@ -278,12 +271,6 @@ func (i LibraryPanelArray) ToLibraryPanelArrayOutput() LibraryPanelArrayOutput {
 
 func (i LibraryPanelArray) ToLibraryPanelArrayOutputWithContext(ctx context.Context) LibraryPanelArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LibraryPanelArrayOutput)
-}
-
-func (i LibraryPanelArray) ToOutput(ctx context.Context) pulumix.Output[[]*LibraryPanel] {
-	return pulumix.Output[[]*LibraryPanel]{
-		OutputState: i.ToLibraryPanelArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LibraryPanelMapInput is an input type that accepts LibraryPanelMap and LibraryPanelMapOutput values.
@@ -311,12 +298,6 @@ func (i LibraryPanelMap) ToLibraryPanelMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(LibraryPanelMapOutput)
 }
 
-func (i LibraryPanelMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LibraryPanel] {
-	return pulumix.Output[map[string]*LibraryPanel]{
-		OutputState: i.ToLibraryPanelMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LibraryPanelOutput struct{ *pulumi.OutputState }
 
 func (LibraryPanelOutput) ElementType() reflect.Type {
@@ -329,12 +310,6 @@ func (o LibraryPanelOutput) ToLibraryPanelOutput() LibraryPanelOutput {
 
 func (o LibraryPanelOutput) ToLibraryPanelOutputWithContext(ctx context.Context) LibraryPanelOutput {
 	return o
-}
-
-func (o LibraryPanelOutput) ToOutput(ctx context.Context) pulumix.Output[*LibraryPanel] {
-	return pulumix.Output[*LibraryPanel]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Timestamp when the library panel was created.
@@ -421,12 +396,6 @@ func (o LibraryPanelArrayOutput) ToLibraryPanelArrayOutputWithContext(ctx contex
 	return o
 }
 
-func (o LibraryPanelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LibraryPanel] {
-	return pulumix.Output[[]*LibraryPanel]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LibraryPanelArrayOutput) Index(i pulumi.IntInput) LibraryPanelOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LibraryPanel {
 		return vs[0].([]*LibraryPanel)[vs[1].(int)]
@@ -445,12 +414,6 @@ func (o LibraryPanelMapOutput) ToLibraryPanelMapOutput() LibraryPanelMapOutput {
 
 func (o LibraryPanelMapOutput) ToLibraryPanelMapOutputWithContext(ctx context.Context) LibraryPanelMapOutput {
 	return o
-}
-
-func (o LibraryPanelMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LibraryPanel] {
-	return pulumix.Output[map[string]*LibraryPanel]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LibraryPanelMapOutput) MapIndex(k pulumi.StringInput) LibraryPanelOutput {

@@ -21,6 +21,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -38,15 +39,16 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}} // import by numerical ID
+    /// $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}} // import by numerical ID
     /// ```
     /// 
     /// ```sh
-    ///  $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_slug}} // or import by slug
+    /// $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_slug}} // or import by slug
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:index/cloudStack:CloudStack")]

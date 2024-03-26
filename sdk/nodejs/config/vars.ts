@@ -44,7 +44,7 @@ Object.defineProperty(exports, "cloudAccessPolicyToken", {
 });
 
 /**
- * Deprecated: Use `cloud_access_policy_token` instead.
+ * Deprecated: Use `cloudAccessPolicyToken` instead.
  */
 export declare const cloudApiKey: string | undefined;
 Object.defineProperty(exports, "cloudApiKey", {
@@ -61,18 +61,6 @@ export declare const cloudApiUrl: string | undefined;
 Object.defineProperty(exports, "cloudApiUrl", {
     get() {
         return __config.get("cloudApiUrl") ?? utilities.getEnv("GRAFANA_CLOUD_API_URL");
-    },
-    enumerable: true,
-});
-
-/**
- * Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
- * be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
- */
-export declare const httpHeaders: {[key: string]: string} | undefined;
-Object.defineProperty(exports, "httpHeaders", {
-    get() {
-        return __config.getObject<{[key: string]: string}>("httpHeaders");
     },
     enumerable: true,
 });
@@ -111,7 +99,7 @@ Object.defineProperty(exports, "oncallUrl", {
 });
 
 /**
- * Deprecated: Use the `org_id` attributes on resources instead.
+ * Deprecated: Use the `orgId` attributes on resources instead.
  */
 export declare const orgId: number | undefined;
 Object.defineProperty(exports, "orgId", {
@@ -168,15 +156,6 @@ Object.defineProperty(exports, "smAccessToken", {
     enumerable: true,
 });
 
-/**
- * Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
- * correct value for each service region is cited in the [Synthetic Monitoring
- * documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).
- * Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
- * `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
- * managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
- * each provider ensures all providers interact with the same SM API.
- */
 export declare const smUrl: string | undefined;
 Object.defineProperty(exports, "smUrl", {
     get() {

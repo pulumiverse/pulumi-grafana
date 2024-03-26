@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -16,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -72,6 +72,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupDataSource(ctx *pulumi.Context, args *LookupDataSourceArgs, opts ...pulumi.InvokeOption) (*LookupDataSourceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDataSourceResult
@@ -160,12 +161,6 @@ func (o LookupDataSourceResultOutput) ToLookupDataSourceResultOutput() LookupDat
 
 func (o LookupDataSourceResultOutput) ToLookupDataSourceResultOutputWithContext(ctx context.Context) LookupDataSourceResultOutput {
 	return o
-}
-
-func (o LookupDataSourceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDataSourceResult] {
-	return pulumix.Output[LookupDataSourceResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The method by which Grafana will access the data source: `proxy` or `direct`.

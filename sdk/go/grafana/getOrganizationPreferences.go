@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -17,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +38,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetOrganizationPreferences(ctx *pulumi.Context, args *GetOrganizationPreferencesArgs, opts ...pulumi.InvokeOption) (*GetOrganizationPreferencesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOrganizationPreferencesResult
@@ -58,7 +59,7 @@ type GetOrganizationPreferencesArgs struct {
 type GetOrganizationPreferencesResult struct {
 	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
 	//
-	// Deprecated: Use `home_dashboard_uid` instead.
+	// Deprecated: Use `homeDashboardUid` instead.
 	HomeDashboardId int `pulumi:"homeDashboardId"`
 	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid string `pulumi:"homeDashboardUid"`
@@ -112,15 +113,9 @@ func (o GetOrganizationPreferencesResultOutput) ToGetOrganizationPreferencesResu
 	return o
 }
 
-func (o GetOrganizationPreferencesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOrganizationPreferencesResult] {
-	return pulumix.Output[GetOrganizationPreferencesResult]{
-		OutputState: o.OutputState,
-	}
-}
-
 // The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
 //
-// Deprecated: Use `home_dashboard_uid` instead.
+// Deprecated: Use `homeDashboardUid` instead.
 func (o GetOrganizationPreferencesResultOutput) HomeDashboardId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetOrganizationPreferencesResult) int { return v.HomeDashboardId }).(pulumi.IntOutput)
 }

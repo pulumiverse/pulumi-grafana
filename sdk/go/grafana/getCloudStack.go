@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -133,12 +132,6 @@ func (o LookupCloudStackResultOutput) ToLookupCloudStackResultOutput() LookupClo
 
 func (o LookupCloudStackResultOutput) ToLookupCloudStackResultOutputWithContext(ctx context.Context) LookupCloudStackResultOutput {
 	return o
-}
-
-func (o LookupCloudStackResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCloudStackResult] {
-	return pulumix.Output[LookupCloudStackResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Name of the Alertmanager instance configured for this stack.

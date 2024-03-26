@@ -222,6 +222,7 @@ class User(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -232,11 +233,12 @@ class User(pulumi.CustomResource):
             login="staff",
             password="my-password")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/user:User user_name {{user_id}}
+        $ pulumi import grafana:index/user:User user_name {{user_id}}
         ```
 
         :param str resource_name: The name of the resource.
@@ -263,6 +265,7 @@ class User(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -273,11 +276,12 @@ class User(pulumi.CustomResource):
             login="staff",
             password="my-password")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/user:User user_name {{user_id}}
+        $ pulumi import grafana:index/user:User user_name {{user_id}}
         ```
 
         :param str resource_name: The name of the resource.

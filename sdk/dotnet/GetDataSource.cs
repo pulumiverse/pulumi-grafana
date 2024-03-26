@@ -15,10 +15,9 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// Get details about a Grafana Datasource querying by either name, uid or ID
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -65,8 +64,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDataSourceResult> InvokeAsync(GetDataSourceArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDataSourceResult>("grafana:index/getDataSource:getDataSource", args ?? new GetDataSourceArgs(), options.WithDefaults());
@@ -74,10 +72,9 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// Get details about a Grafana Datasource querying by either name, uid or ID
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -124,8 +121,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDataSourceResult> Invoke(GetDataSourceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDataSourceResult>("grafana:index/getDataSource:getDataSource", args ?? new GetDataSourceInvokeArgs(), options.WithDefaults());

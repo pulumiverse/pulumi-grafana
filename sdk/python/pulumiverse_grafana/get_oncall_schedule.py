@@ -76,12 +76,14 @@ def get_oncall_schedule(name: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     schedule = grafana.get_oncall_schedule(name="example_schedule")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The schedule name.
@@ -106,12 +108,14 @@ def get_oncall_schedule_output(name: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     schedule = grafana.get_oncall_schedule(name="example_schedule")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The schedule name.

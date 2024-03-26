@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -59,12 +58,6 @@ func (o GetSlosResultOutput) ToGetSlosResultOutput() GetSlosResultOutput {
 
 func (o GetSlosResultOutput) ToGetSlosResultOutputWithContext(ctx context.Context) GetSlosResultOutput {
 	return o
-}
-
-func (o GetSlosResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSlosResult] {
-	return pulumix.Output[GetSlosResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

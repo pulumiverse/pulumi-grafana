@@ -837,6 +837,7 @@ class ContactPoint(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -852,11 +853,12 @@ class ContactPoint(pulumi.CustomResource):
             subject="{{ template \\"default.title\\" .}}",
         )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/contactPoint:ContactPoint contact_point_name {{contact_point_name}}
+        $ pulumi import grafana:index/contactPoint:ContactPoint contact_point_name {{contact_point_name}}
         ```
 
         :param str resource_name: The name of the resource.
@@ -902,6 +904,7 @@ class ContactPoint(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -917,11 +920,12 @@ class ContactPoint(pulumi.CustomResource):
             subject="{{ template \\"default.title\\" .}}",
         )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import grafana:index/contactPoint:ContactPoint contact_point_name {{contact_point_name}}
+        $ pulumi import grafana:index/contactPoint:ContactPoint contact_point_name {{contact_point_name}}
         ```
 
         :param str resource_name: The name of the resource.

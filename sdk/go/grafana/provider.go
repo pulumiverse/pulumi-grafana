@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -30,7 +29,7 @@ type Provider struct {
 	CloudAccessPolicyToken pulumi.StringPtrOutput `pulumi:"cloudAccessPolicyToken"`
 	// Deprecated: Use `cloud_access_policy_token` instead.
 	//
-	// Deprecated: Use `cloud_access_policy_token` instead.
+	// Deprecated: Use `cloudAccessPolicyToken` instead.
 	CloudApiKey pulumi.StringPtrOutput `pulumi:"cloudApiKey"`
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl pulumi.StringPtrOutput `pulumi:"cloudApiUrl"`
@@ -188,7 +187,7 @@ type providerArgs struct {
 	CloudAccessPolicyToken *string `pulumi:"cloudAccessPolicyToken"`
 	// Deprecated: Use `cloud_access_policy_token` instead.
 	//
-	// Deprecated: Use `cloud_access_policy_token` instead.
+	// Deprecated: Use `cloudAccessPolicyToken` instead.
 	CloudApiKey *string `pulumi:"cloudApiKey"`
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl *string `pulumi:"cloudApiUrl"`
@@ -200,7 +199,7 @@ type providerArgs struct {
 	OncallUrl *string `pulumi:"oncallUrl"`
 	// Deprecated: Use the `org_id` attributes on resources instead.
 	//
-	// Deprecated: Use the `org_id` attributes on resources instead.
+	// Deprecated: Use the `orgId` attributes on resources instead.
 	OrgId *int `pulumi:"orgId"`
 	// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
 	// `GRAFANA_RETRIES` environment variable.
@@ -246,7 +245,7 @@ type ProviderArgs struct {
 	CloudAccessPolicyToken pulumi.StringPtrInput
 	// Deprecated: Use `cloud_access_policy_token` instead.
 	//
-	// Deprecated: Use `cloud_access_policy_token` instead.
+	// Deprecated: Use `cloudAccessPolicyToken` instead.
 	CloudApiKey pulumi.StringPtrInput
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl pulumi.StringPtrInput
@@ -258,7 +257,7 @@ type ProviderArgs struct {
 	OncallUrl pulumi.StringPtrInput
 	// Deprecated: Use the `org_id` attributes on resources instead.
 	//
-	// Deprecated: Use the `org_id` attributes on resources instead.
+	// Deprecated: Use the `orgId` attributes on resources instead.
 	OrgId pulumi.IntPtrInput
 	// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
 	// `GRAFANA_RETRIES` environment variable.
@@ -314,12 +313,6 @@ func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
-func (i *Provider) ToOutput(ctx context.Context) pulumix.Output[*Provider] {
-	return pulumix.Output[*Provider]{
-		OutputState: i.ToProviderOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ProviderOutput struct{ *pulumi.OutputState }
 
 func (ProviderOutput) ElementType() reflect.Type {
@@ -332,12 +325,6 @@ func (o ProviderOutput) ToProviderOutput() ProviderOutput {
 
 func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
 	return o
-}
-
-func (o ProviderOutput) ToOutput(ctx context.Context) pulumix.Output[*Provider] {
-	return pulumix.Output[*Provider]{
-		OutputState: o.OutputState,
-	}
 }
 
 // API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
@@ -360,7 +347,7 @@ func (o ProviderOutput) CloudAccessPolicyToken() pulumi.StringPtrOutput {
 
 // Deprecated: Use `cloud_access_policy_token` instead.
 //
-// Deprecated: Use `cloud_access_policy_token` instead.
+// Deprecated: Use `cloudAccessPolicyToken` instead.
 func (o ProviderOutput) CloudApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CloudApiKey }).(pulumi.StringPtrOutput)
 }

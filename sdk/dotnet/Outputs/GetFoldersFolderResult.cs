@@ -14,9 +14,21 @@ namespace Pulumiverse.Grafana.Outputs
     [OutputType]
     public sealed class GetFoldersFolderResult
     {
+        /// <summary>
+        /// The folder ID.
+        /// </summary>
         public readonly int Id;
+        /// <summary>
+        /// The folder title.
+        /// </summary>
         public readonly string Title;
+        /// <summary>
+        /// The folder's unique identifier.
+        /// </summary>
         public readonly string Uid;
+        /// <summary>
+        /// The folder's URL
+        /// </summary>
         public readonly string Url;
 
         [OutputConstructor]

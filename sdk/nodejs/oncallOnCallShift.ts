@@ -10,7 +10,7 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/oncallOnCallShift:OncallOnCallShift on_call_shift_name {{on_call_shift_id}}
+ * $ pulumi import grafana:index/oncallOnCallShift:OncallOnCallShift on_call_shift_name {{on_call_shift_id}}
  * ```
  */
 export class OncallOnCallShift extends pulumi.CustomResource {

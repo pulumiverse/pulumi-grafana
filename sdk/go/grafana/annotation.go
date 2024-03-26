@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -18,6 +17,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,12 +41,13 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type Annotation struct {
 	pulumi.CustomResourceState
 
 	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 	//
-	// Deprecated: Use dashboard_uid instead.
+	// Deprecated: Use dashboardUid instead.
 	DashboardId pulumi.IntPtrOutput `pulumi:"dashboardId"`
 	// The ID of the dashboard on which to create the annotation.
 	DashboardUid pulumi.StringPtrOutput `pulumi:"dashboardUid"`
@@ -99,7 +100,7 @@ func GetAnnotation(ctx *pulumi.Context,
 type annotationState struct {
 	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 	//
-	// Deprecated: Use dashboard_uid instead.
+	// Deprecated: Use dashboardUid instead.
 	DashboardId *int `pulumi:"dashboardId"`
 	// The ID of the dashboard on which to create the annotation.
 	DashboardUid *string `pulumi:"dashboardUid"`
@@ -120,7 +121,7 @@ type annotationState struct {
 type AnnotationState struct {
 	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 	//
-	// Deprecated: Use dashboard_uid instead.
+	// Deprecated: Use dashboardUid instead.
 	DashboardId pulumi.IntPtrInput
 	// The ID of the dashboard on which to create the annotation.
 	DashboardUid pulumi.StringPtrInput
@@ -145,7 +146,7 @@ func (AnnotationState) ElementType() reflect.Type {
 type annotationArgs struct {
 	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 	//
-	// Deprecated: Use dashboard_uid instead.
+	// Deprecated: Use dashboardUid instead.
 	DashboardId *int `pulumi:"dashboardId"`
 	// The ID of the dashboard on which to create the annotation.
 	DashboardUid *string `pulumi:"dashboardUid"`
@@ -167,7 +168,7 @@ type annotationArgs struct {
 type AnnotationArgs struct {
 	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 	//
-	// Deprecated: Use dashboard_uid instead.
+	// Deprecated: Use dashboardUid instead.
 	DashboardId pulumi.IntPtrInput
 	// The ID of the dashboard on which to create the annotation.
 	DashboardUid pulumi.StringPtrInput
@@ -208,12 +209,6 @@ func (i *Annotation) ToAnnotationOutputWithContext(ctx context.Context) Annotati
 	return pulumi.ToOutputWithContext(ctx, i).(AnnotationOutput)
 }
 
-func (i *Annotation) ToOutput(ctx context.Context) pulumix.Output[*Annotation] {
-	return pulumix.Output[*Annotation]{
-		OutputState: i.ToAnnotationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AnnotationArrayInput is an input type that accepts AnnotationArray and AnnotationArrayOutput values.
 // You can construct a concrete instance of `AnnotationArrayInput` via:
 //
@@ -237,12 +232,6 @@ func (i AnnotationArray) ToAnnotationArrayOutput() AnnotationArrayOutput {
 
 func (i AnnotationArray) ToAnnotationArrayOutputWithContext(ctx context.Context) AnnotationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AnnotationArrayOutput)
-}
-
-func (i AnnotationArray) ToOutput(ctx context.Context) pulumix.Output[[]*Annotation] {
-	return pulumix.Output[[]*Annotation]{
-		OutputState: i.ToAnnotationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AnnotationMapInput is an input type that accepts AnnotationMap and AnnotationMapOutput values.
@@ -270,12 +259,6 @@ func (i AnnotationMap) ToAnnotationMapOutputWithContext(ctx context.Context) Ann
 	return pulumi.ToOutputWithContext(ctx, i).(AnnotationMapOutput)
 }
 
-func (i AnnotationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Annotation] {
-	return pulumix.Output[map[string]*Annotation]{
-		OutputState: i.ToAnnotationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AnnotationOutput struct{ *pulumi.OutputState }
 
 func (AnnotationOutput) ElementType() reflect.Type {
@@ -290,15 +273,9 @@ func (o AnnotationOutput) ToAnnotationOutputWithContext(ctx context.Context) Ann
 	return o
 }
 
-func (o AnnotationOutput) ToOutput(ctx context.Context) pulumix.Output[*Annotation] {
-	return pulumix.Output[*Annotation]{
-		OutputState: o.OutputState,
-	}
-}
-
 // The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 //
-// Deprecated: Use dashboard_uid instead.
+// Deprecated: Use dashboardUid instead.
 func (o AnnotationOutput) DashboardId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Annotation) pulumi.IntPtrOutput { return v.DashboardId }).(pulumi.IntPtrOutput)
 }
@@ -352,12 +329,6 @@ func (o AnnotationArrayOutput) ToAnnotationArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o AnnotationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Annotation] {
-	return pulumix.Output[[]*Annotation]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AnnotationArrayOutput) Index(i pulumi.IntInput) AnnotationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Annotation {
 		return vs[0].([]*Annotation)[vs[1].(int)]
@@ -376,12 +347,6 @@ func (o AnnotationMapOutput) ToAnnotationMapOutput() AnnotationMapOutput {
 
 func (o AnnotationMapOutput) ToAnnotationMapOutputWithContext(ctx context.Context) AnnotationMapOutput {
 	return o
-}
-
-func (o AnnotationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Annotation] {
-	return pulumix.Output[map[string]*Annotation]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AnnotationMapOutput) MapIndex(k pulumi.StringInput) AnnotationOutput {

@@ -15,6 +15,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -25,15 +26,16 @@ import * as utilities from "./utilities";
  *     slug: "gcloudstacktest",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * ```sh
- *  $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}} // import by numerical ID
+ * $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_id}} // import by numerical ID
  * ```
  *
  * ```sh
- *  $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_slug}} // or import by slug
+ * $ pulumi import grafana:index/cloudStack:CloudStack stack_name {{stack_slug}} // or import by slug
  * ```
  */
 export class CloudStack extends pulumi.CustomResource {

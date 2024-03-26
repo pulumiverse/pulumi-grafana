@@ -10,12 +10,14 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.Annotation("test", {text: "basic text"});
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class Annotation extends pulumi.CustomResource {
     /**
@@ -48,7 +50,7 @@ export class Annotation extends pulumi.CustomResource {
     /**
      * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
      *
-     * @deprecated Use dashboard_uid instead.
+     * @deprecated Use dashboardUid instead.
      */
     public readonly dashboardId!: pulumi.Output<number | undefined>;
     /**
@@ -127,7 +129,7 @@ export interface AnnotationState {
     /**
      * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
      *
-     * @deprecated Use dashboard_uid instead.
+     * @deprecated Use dashboardUid instead.
      */
     dashboardId?: pulumi.Input<number>;
     /**
@@ -167,7 +169,7 @@ export interface AnnotationArgs {
     /**
      * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
      *
-     * @deprecated Use dashboard_uid instead.
+     * @deprecated Use dashboardUid instead.
      */
     dashboardId?: pulumi.Input<number>;
     /**

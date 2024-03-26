@@ -127,12 +127,14 @@ def get_organization_preferences(org_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     test = grafana.get_organization_preferences()
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -161,12 +163,14 @@ def get_organization_preferences_output(org_id: Optional[pulumi.Input[Optional[s
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     test = grafana.get_organization_preferences()
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.

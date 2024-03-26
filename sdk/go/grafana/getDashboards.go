@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
@@ -96,12 +95,6 @@ func (o GetDashboardsResultOutput) ToGetDashboardsResultOutput() GetDashboardsRe
 
 func (o GetDashboardsResultOutput) ToGetDashboardsResultOutputWithContext(ctx context.Context) GetDashboardsResultOutput {
 	return o
-}
-
-func (o GetDashboardsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDashboardsResult] {
-	return pulumix.Output[GetDashboardsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetDashboardsResultOutput) Dashboards() GetDashboardsDashboardArrayOutput {
