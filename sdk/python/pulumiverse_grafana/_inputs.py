@@ -75,6 +75,7 @@ __all__ = [
     'RuleGroupRuleArgs',
     'RuleGroupRuleDataArgs',
     'RuleGroupRuleDataRelativeTimeRangeArgs',
+    'RuleGroupRuleNotificationSettingsArgs',
     'SLOAlertingArgs',
     'SLOAlertingAnnotationArgs',
     'SLOAlertingFastburnArgs',
@@ -6071,6 +6072,7 @@ class RuleGroupRuleArgs:
                  is_paused: Optional[pulumi.Input[bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  no_data_state: Optional[pulumi.Input[str]] = None,
+                 notification_settings: Optional[pulumi.Input['RuleGroupRuleNotificationSettingsArgs']] = None,
                  uid: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] condition: The `ref_id` of the query node in the `data` field to use as the alert condition.
@@ -6082,6 +6084,7 @@ class RuleGroupRuleArgs:
         :param pulumi.Input[bool] is_paused: Sets whether the alert should be paused or not. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
         :param pulumi.Input[str] no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting. Defaults to `NoData`.
+        :param pulumi.Input['RuleGroupRuleNotificationSettingsArgs'] notification_settings: Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
         :param pulumi.Input[str] uid: The unique identifier of the alert rule.
         """
         pulumi.set(__self__, "condition", condition)
@@ -6099,6 +6102,8 @@ class RuleGroupRuleArgs:
             pulumi.set(__self__, "labels", labels)
         if no_data_state is not None:
             pulumi.set(__self__, "no_data_state", no_data_state)
+        if notification_settings is not None:
+            pulumi.set(__self__, "notification_settings", notification_settings)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
 
@@ -6209,6 +6214,18 @@ class RuleGroupRuleArgs:
     @no_data_state.setter
     def no_data_state(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "no_data_state", value)
+
+    @property
+    @pulumi.getter(name="notificationSettings")
+    def notification_settings(self) -> Optional[pulumi.Input['RuleGroupRuleNotificationSettingsArgs']]:
+        """
+        Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+        """
+        return pulumi.get(self, "notification_settings")
+
+    @notification_settings.setter
+    def notification_settings(self, value: Optional[pulumi.Input['RuleGroupRuleNotificationSettingsArgs']]):
+        pulumi.set(self, "notification_settings", value)
 
     @property
     @pulumi.getter
@@ -6341,6 +6358,108 @@ class RuleGroupRuleDataRelativeTimeRangeArgs:
     @to.setter
     def to(self, value: pulumi.Input[int]):
         pulumi.set(self, "to", value)
+
+
+@pulumi.input_type
+class RuleGroupRuleNotificationSettingsArgs:
+    def __init__(__self__, *,
+                 contact_point: pulumi.Input[str],
+                 group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 group_interval: Optional[pulumi.Input[str]] = None,
+                 group_wait: Optional[pulumi.Input[str]] = None,
+                 mute_timings: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 repeat_interval: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] contact_point: The contact point to route notifications that match this rule to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
+        :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
+        :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] mute_timings: A list of mute timing names to apply to alerts that match this policy.
+        :param pulumi.Input[str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+        """
+        pulumi.set(__self__, "contact_point", contact_point)
+        if group_bies is not None:
+            pulumi.set(__self__, "group_bies", group_bies)
+        if group_interval is not None:
+            pulumi.set(__self__, "group_interval", group_interval)
+        if group_wait is not None:
+            pulumi.set(__self__, "group_wait", group_wait)
+        if mute_timings is not None:
+            pulumi.set(__self__, "mute_timings", mute_timings)
+        if repeat_interval is not None:
+            pulumi.set(__self__, "repeat_interval", repeat_interval)
+
+    @property
+    @pulumi.getter(name="contactPoint")
+    def contact_point(self) -> pulumi.Input[str]:
+        """
+        The contact point to route notifications that match this rule to.
+        """
+        return pulumi.get(self, "contact_point")
+
+    @contact_point.setter
+    def contact_point(self, value: pulumi.Input[str]):
+        pulumi.set(self, "contact_point", value)
+
+    @property
+    @pulumi.getter(name="groupBies")
+    def group_bies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
+        """
+        return pulumi.get(self, "group_bies")
+
+    @group_bies.setter
+    def group_bies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "group_bies", value)
+
+    @property
+    @pulumi.getter(name="groupInterval")
+    def group_interval(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum time interval between two notifications for the same group. Default is 5 minutes.
+        """
+        return pulumi.get(self, "group_interval")
+
+    @group_interval.setter
+    def group_interval(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "group_interval", value)
+
+    @property
+    @pulumi.getter(name="groupWait")
+    def group_wait(self) -> Optional[pulumi.Input[str]]:
+        """
+        Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        """
+        return pulumi.get(self, "group_wait")
+
+    @group_wait.setter
+    def group_wait(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "group_wait", value)
+
+    @property
+    @pulumi.getter(name="muteTimings")
+    def mute_timings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of mute timing names to apply to alerts that match this policy.
+        """
+        return pulumi.get(self, "mute_timings")
+
+    @mute_timings.setter
+    def mute_timings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "mute_timings", value)
+
+    @property
+    @pulumi.getter(name="repeatInterval")
+    def repeat_interval(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+        """
+        return pulumi.get(self, "repeat_interval")
+
+    @repeat_interval.setter
+    def repeat_interval(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "repeat_interval", value)
 
 
 @pulumi.input_type

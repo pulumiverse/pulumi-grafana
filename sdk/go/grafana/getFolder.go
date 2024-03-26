@@ -65,10 +65,11 @@ type LookupFolderArgs struct {
 
 // A collection of values returned by getFolder.
 type LookupFolderResult struct {
-	// The numerical ID of the Grafana folder.
-	Id int `pulumi:"id"`
+	// The provider-assigned unique ID for this managed resource.
+	Id string `pulumi:"id"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-	OrgId *string `pulumi:"orgId"`
+	OrgId           *string `pulumi:"orgId"`
+	ParentFolderUid string  `pulumi:"parentFolderUid"`
 	// The name of the Grafana folder.
 	Title string `pulumi:"title"`
 	// The uid of the Grafana folder.
@@ -117,14 +118,18 @@ func (o LookupFolderResultOutput) ToLookupFolderResultOutputWithContext(ctx cont
 	return o
 }
 
-// The numerical ID of the Grafana folder.
-func (o LookupFolderResultOutput) Id() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupFolderResult) int { return v.Id }).(pulumi.IntOutput)
+// The provider-assigned unique ID for this managed resource.
+func (o LookupFolderResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFolderResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The Organization ID. If not set, the Org ID defined in the provider block will be used.
 func (o LookupFolderResultOutput) OrgId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupFolderResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupFolderResultOutput) ParentFolderUid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFolderResult) string { return v.ParentFolderUid }).(pulumi.StringOutput)
 }
 
 // The name of the Grafana folder.

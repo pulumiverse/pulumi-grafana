@@ -2,13 +2,10 @@ module github.com/pulumiverse/pulumi-grafana/provider
 
 go 1.21
 
-replace (
-	github.com/grafana/terraform-provider-grafana/shim => ./shim
-	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240229143312-4f60ee4e2975
-)
+replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240229143312-4f60ee4e2975
 
 require (
-	github.com/grafana/terraform-provider-grafana/shim v0.0.0
+	github.com/grafana/terraform-provider-grafana/v2 v2.14.3
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.78.0
 	github.com/pulumi/pulumi/sdk/v3 v3.111.1
 )
@@ -83,18 +80,18 @@ require (
 	github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 // indirect
 	github.com/go-git/go-billy/v5 v5.5.0 // indirect
 	github.com/go-git/go-git/v5 v5.11.0 // indirect
-	github.com/go-logr/logr v1.3.0 // indirect
+	github.com/go-logr/logr v1.4.1 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
-	github.com/go-openapi/analysis v0.22.2 // indirect
-	github.com/go-openapi/errors v0.21.1 // indirect
-	github.com/go-openapi/jsonpointer v0.20.2 // indirect
-	github.com/go-openapi/jsonreference v0.20.4 // indirect
-	github.com/go-openapi/loads v0.21.5 // indirect
-	github.com/go-openapi/runtime v0.27.2 // indirect
-	github.com/go-openapi/spec v0.20.14 // indirect
-	github.com/go-openapi/strfmt v0.22.2 // indirect
-	github.com/go-openapi/swag v0.22.10 // indirect
-	github.com/go-openapi/validate v0.23.1 // indirect
+	github.com/go-openapi/analysis v0.23.0 // indirect
+	github.com/go-openapi/errors v0.22.0 // indirect
+	github.com/go-openapi/jsonpointer v0.21.0 // indirect
+	github.com/go-openapi/jsonreference v0.21.0 // indirect
+	github.com/go-openapi/loads v0.22.0 // indirect
+	github.com/go-openapi/runtime v0.28.0 // indirect
+	github.com/go-openapi/spec v0.21.0 // indirect
+	github.com/go-openapi/strfmt v0.23.0 // indirect
+	github.com/go-openapi/swag v0.23.0 // indirect
+	github.com/go-openapi/validate v0.24.0 // indirect
 	github.com/gofrs/uuid v4.2.0+incompatible // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang-jwt/jwt/v5 v5.1.0 // indirect
@@ -112,11 +109,11 @@ require (
 	github.com/googleapis/gax-go/v2 v2.12.0 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/grafana/amixr-api-go-client v0.0.11 // indirect
-	github.com/grafana/grafana-com-public-clients/go/gcom v0.0.0-20240305213348-af081a82f063 // indirect
+	github.com/grafana/grafana-com-public-clients/go/gcom v0.0.0-20240322153219-42c6a1d2bcab // indirect
 	github.com/grafana/grafana-openapi-client-go v0.0.0-20240306142804-861284d1ba83 // indirect
 	github.com/grafana/machine-learning-go-client v0.5.0 // indirect
 	github.com/grafana/slo-openapi-client/go v0.0.0-20240112175006-de02e75b9d73 // indirect
-	github.com/grafana/synthetic-monitoring-agent v0.21.0 // indirect
+	github.com/grafana/synthetic-monitoring-agent v0.23.1 // indirect
 	github.com/grafana/synthetic-monitoring-api-go-client v0.8.0 // indirect
 	github.com/grafana/terraform-provider-grafana v1.43.1-0.20240306191859-d6e8d1744de3 // indirect
 	github.com/grpc-ecosystem/grpc-opentracing v0.0.0-20180507213350-8e809c8a8645 // indirect
@@ -145,7 +142,9 @@ require (
 	github.com/hashicorp/terraform-plugin-framework v1.7.0 // indirect
 	github.com/hashicorp/terraform-plugin-go v0.22.1 // indirect
 	github.com/hashicorp/terraform-plugin-log v0.9.0 // indirect
+	github.com/hashicorp/terraform-plugin-mux v0.15.0 // indirect
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.33.0 // indirect
+	github.com/hashicorp/terraform-registry-address v0.2.3 // indirect
 	github.com/hashicorp/terraform-svchost v0.1.1 // indirect
 	github.com/hashicorp/vault/api v1.8.2 // indirect
 	github.com/hashicorp/vault/sdk v0.6.1 // indirect
@@ -199,6 +198,7 @@ require (
 	github.com/pulumi/appdash v0.0.0-20231130102222-75f619a67231 // indirect
 	github.com/pulumi/esc v0.6.2 // indirect
 	github.com/pulumi/pulumi-java/pkg v0.9.9 // indirect
+	github.com/pulumi/pulumi-terraform-bridge/pf v0.31.0 // indirect
 	github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.8 // indirect
 	github.com/pulumi/pulumi-yaml v1.6.0 // indirect
 	github.com/pulumi/pulumi/pkg/v3 v3.111.1 // indirect
@@ -237,20 +237,20 @@ require (
 	go.opencensus.io v0.24.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.46.1 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.46.1 // indirect
-	go.opentelemetry.io/otel v1.21.0 // indirect
-	go.opentelemetry.io/otel/metric v1.21.0 // indirect
-	go.opentelemetry.io/otel/trace v1.21.0 // indirect
+	go.opentelemetry.io/otel v1.24.0 // indirect
+	go.opentelemetry.io/otel/metric v1.24.0 // indirect
+	go.opentelemetry.io/otel/trace v1.24.0 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
 	gocloud.dev v0.36.0 // indirect
 	gocloud.dev/secrets/hashivault v0.27.0 // indirect
-	golang.org/x/crypto v0.19.0 // indirect
+	golang.org/x/crypto v0.21.0 // indirect
 	golang.org/x/exp v0.0.0-20240119083558-1b970713d09a // indirect
 	golang.org/x/mod v0.15.0 // indirect
-	golang.org/x/net v0.21.0 // indirect
-	golang.org/x/oauth2 v0.16.0 // indirect
+	golang.org/x/net v0.22.0 // indirect
+	golang.org/x/oauth2 v0.18.0 // indirect
 	golang.org/x/sync v0.6.0 // indirect
-	golang.org/x/sys v0.17.0 // indirect
-	golang.org/x/term v0.17.0 // indirect
+	golang.org/x/sys v0.18.0 // indirect
+	golang.org/x/term v0.18.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 	golang.org/x/tools v0.17.0 // indirect

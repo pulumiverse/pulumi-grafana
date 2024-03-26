@@ -76,6 +76,7 @@ __all__ = [
     'RuleGroupRule',
     'RuleGroupRuleData',
     'RuleGroupRuleDataRelativeTimeRange',
+    'RuleGroupRuleNotificationSettings',
     'SLOAlerting',
     'SLOAlertingAnnotation',
     'SLOAlertingFastburn',
@@ -5647,6 +5648,8 @@ class RuleGroupRule(dict):
             suggest = "is_paused"
         elif key == "noDataState":
             suggest = "no_data_state"
+        elif key == "notificationSettings":
+            suggest = "notification_settings"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in RuleGroupRule. Access the value via the '{suggest}' property getter instead.")
@@ -5669,6 +5672,7 @@ class RuleGroupRule(dict):
                  is_paused: Optional[bool] = None,
                  labels: Optional[Mapping[str, str]] = None,
                  no_data_state: Optional[str] = None,
+                 notification_settings: Optional['outputs.RuleGroupRuleNotificationSettings'] = None,
                  uid: Optional[str] = None):
         """
         :param str condition: The `ref_id` of the query node in the `data` field to use as the alert condition.
@@ -5680,6 +5684,7 @@ class RuleGroupRule(dict):
         :param bool is_paused: Sets whether the alert should be paused or not. Defaults to `false`.
         :param Mapping[str, str] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
         :param str no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting. Defaults to `NoData`.
+        :param 'RuleGroupRuleNotificationSettingsArgs' notification_settings: Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
         :param str uid: The unique identifier of the alert rule.
         """
         pulumi.set(__self__, "condition", condition)
@@ -5697,6 +5702,8 @@ class RuleGroupRule(dict):
             pulumi.set(__self__, "labels", labels)
         if no_data_state is not None:
             pulumi.set(__self__, "no_data_state", no_data_state)
+        if notification_settings is not None:
+            pulumi.set(__self__, "notification_settings", notification_settings)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
 
@@ -5771,6 +5778,14 @@ class RuleGroupRule(dict):
         Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting. Defaults to `NoData`.
         """
         return pulumi.get(self, "no_data_state")
+
+    @property
+    @pulumi.getter(name="notificationSettings")
+    def notification_settings(self) -> Optional['outputs.RuleGroupRuleNotificationSettings']:
+        """
+        Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+        """
+        return pulumi.get(self, "notification_settings")
 
     @property
     @pulumi.getter
@@ -5911,6 +5926,111 @@ class RuleGroupRuleDataRelativeTimeRange(dict):
         The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
         """
         return pulumi.get(self, "to")
+
+
+@pulumi.output_type
+class RuleGroupRuleNotificationSettings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "contactPoint":
+            suggest = "contact_point"
+        elif key == "groupBies":
+            suggest = "group_bies"
+        elif key == "groupInterval":
+            suggest = "group_interval"
+        elif key == "groupWait":
+            suggest = "group_wait"
+        elif key == "muteTimings":
+            suggest = "mute_timings"
+        elif key == "repeatInterval":
+            suggest = "repeat_interval"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RuleGroupRuleNotificationSettings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RuleGroupRuleNotificationSettings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RuleGroupRuleNotificationSettings.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 contact_point: str,
+                 group_bies: Optional[Sequence[str]] = None,
+                 group_interval: Optional[str] = None,
+                 group_wait: Optional[str] = None,
+                 mute_timings: Optional[Sequence[str]] = None,
+                 repeat_interval: Optional[str] = None):
+        """
+        :param str contact_point: The contact point to route notifications that match this rule to.
+        :param Sequence[str] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
+        :param str group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
+        :param str group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        :param Sequence[str] mute_timings: A list of mute timing names to apply to alerts that match this policy.
+        :param str repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+        """
+        pulumi.set(__self__, "contact_point", contact_point)
+        if group_bies is not None:
+            pulumi.set(__self__, "group_bies", group_bies)
+        if group_interval is not None:
+            pulumi.set(__self__, "group_interval", group_interval)
+        if group_wait is not None:
+            pulumi.set(__self__, "group_wait", group_wait)
+        if mute_timings is not None:
+            pulumi.set(__self__, "mute_timings", mute_timings)
+        if repeat_interval is not None:
+            pulumi.set(__self__, "repeat_interval", repeat_interval)
+
+    @property
+    @pulumi.getter(name="contactPoint")
+    def contact_point(self) -> str:
+        """
+        The contact point to route notifications that match this rule to.
+        """
+        return pulumi.get(self, "contact_point")
+
+    @property
+    @pulumi.getter(name="groupBies")
+    def group_bies(self) -> Optional[Sequence[str]]:
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
+        """
+        return pulumi.get(self, "group_bies")
+
+    @property
+    @pulumi.getter(name="groupInterval")
+    def group_interval(self) -> Optional[str]:
+        """
+        Minimum time interval between two notifications for the same group. Default is 5 minutes.
+        """
+        return pulumi.get(self, "group_interval")
+
+    @property
+    @pulumi.getter(name="groupWait")
+    def group_wait(self) -> Optional[str]:
+        """
+        Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        """
+        return pulumi.get(self, "group_wait")
+
+    @property
+    @pulumi.getter(name="muteTimings")
+    def mute_timings(self) -> Optional[Sequence[str]]:
+        """
+        A list of mute timing names to apply to alerts that match this policy.
+        """
+        return pulumi.get(self, "mute_timings")
+
+    @property
+    @pulumi.getter(name="repeatInterval")
+    def repeat_interval(self) -> Optional[str]:
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+        """
+        return pulumi.get(self, "repeat_interval")
 
 
 @pulumi.output_type

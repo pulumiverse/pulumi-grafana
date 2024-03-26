@@ -2475,6 +2475,10 @@
                     "type": "string",
                     "description": "Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting. Defaults to `NoData`.\n"
                 },
+                "notificationSettings": {
+                    "$ref": "#/types/grafana:index/RuleGroupRuleNotificationSettings:RuleGroupRuleNotificationSettings",
+                    "description": "Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.\n"
+                },
                 "uid": {
                     "type": "string",
                     "description": "The unique identifier of the alert rule.\n"
@@ -2543,6 +2547,44 @@
             "required": [
                 "from",
                 "to"
+            ]
+        },
+        "grafana:index/RuleGroupRuleNotificationSettings:RuleGroupRuleNotificationSettings": {
+            "properties": {
+                "contactPoint": {
+                    "type": "string",
+                    "description": "The contact point to route notifications that match this rule to.\n"
+                },
+                "groupBies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.\n"
+                },
+                "groupInterval": {
+                    "type": "string",
+                    "description": "Minimum time interval between two notifications for the same group. Default is 5 minutes.\n"
+                },
+                "groupWait": {
+                    "type": "string",
+                    "description": "Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.\n"
+                },
+                "muteTimings": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of mute timing names to apply to alerts that match this policy.\n"
+                },
+                "repeatInterval": {
+                    "type": "string",
+                    "description": "Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "contactPoint"
             ]
         },
         "grafana:index/SLOAlerting:SLOAlerting": {
@@ -5506,7 +5548,8 @@
                 },
                 "role": {
                     "type": "string",
-                    "description": "The basic role of the service account in the organization.\n"
+                    "description": "The basic role of the service account in the organization.\n",
+                    "willReplaceOnChanges": true
                 },
                 "stackSlug": {
                     "type": "string",
@@ -5531,7 +5574,8 @@
                     },
                     "role": {
                         "type": "string",
-                        "description": "The basic role of the service account in the organization.\n"
+                        "description": "The basic role of the service account in the organization.\n",
+                        "willReplaceOnChanges": true
                     },
                     "stackSlug": {
                         "type": "string",
@@ -11394,12 +11438,15 @@
                 "description": "A collection of values returned by getFolder.\n",
                 "properties": {
                     "id": {
-                        "type": "integer",
-                        "description": "The numerical ID of the Grafana folder.\n"
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
                     "orgId": {
                         "type": "string",
                         "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
+                    },
+                    "parentFolderUid": {
+                        "type": "string"
                     },
                     "title": {
                         "type": "string",
@@ -11416,10 +11463,11 @@
                 },
                 "type": "object",
                 "required": [
-                    "id",
+                    "parentFolderUid",
                     "title",
                     "uid",
-                    "url"
+                    "url",
+                    "id"
                 ]
             }
         },
