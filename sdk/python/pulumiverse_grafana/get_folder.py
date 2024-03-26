@@ -21,13 +21,16 @@ class GetFolderResult:
     """
     A collection of values returned by getFolder.
     """
-    def __init__(__self__, id=None, org_id=None, title=None, uid=None, url=None):
-        if id and not isinstance(id, int):
-            raise TypeError("Expected argument 'id' to be a int")
+    def __init__(__self__, id=None, org_id=None, parent_folder_uid=None, title=None, uid=None, url=None):
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if org_id and not isinstance(org_id, str):
             raise TypeError("Expected argument 'org_id' to be a str")
         pulumi.set(__self__, "org_id", org_id)
+        if parent_folder_uid and not isinstance(parent_folder_uid, str):
+            raise TypeError("Expected argument 'parent_folder_uid' to be a str")
+        pulumi.set(__self__, "parent_folder_uid", parent_folder_uid)
         if title and not isinstance(title, str):
             raise TypeError("Expected argument 'title' to be a str")
         pulumi.set(__self__, "title", title)
@@ -40,9 +43,9 @@ class GetFolderResult:
 
     @property
     @pulumi.getter
-    def id(self) -> int:
+    def id(self) -> str:
         """
-        The numerical ID of the Grafana folder.
+        The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
 
@@ -53,6 +56,11 @@ class GetFolderResult:
         The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter(name="parentFolderUid")
+    def parent_folder_uid(self) -> str:
+        return pulumi.get(self, "parent_folder_uid")
 
     @property
     @pulumi.getter
@@ -87,6 +95,7 @@ class AwaitableGetFolderResult(GetFolderResult):
         return GetFolderResult(
             id=self.id,
             org_id=self.org_id,
+            parent_folder_uid=self.parent_folder_uid,
             title=self.title,
             uid=self.uid,
             url=self.url)
@@ -127,6 +136,7 @@ def get_folder(org_id: Optional[str] = None,
     return AwaitableGetFolderResult(
         id=pulumi.get(__ret__, 'id'),
         org_id=pulumi.get(__ret__, 'org_id'),
+        parent_folder_uid=pulumi.get(__ret__, 'parent_folder_uid'),
         title=pulumi.get(__ret__, 'title'),
         uid=pulumi.get(__ret__, 'uid'),
         url=pulumi.get(__ret__, 'url'))

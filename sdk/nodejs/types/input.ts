@@ -1603,6 +1603,10 @@ export interface RuleGroupRule {
      */
     noDataState?: pulumi.Input<string>;
     /**
+     * Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+     */
+    notificationSettings?: pulumi.Input<inputs.RuleGroupRuleNotificationSettings>;
+    /**
      * The unique identifier of the alert rule.
      */
     uid?: pulumi.Input<string>;
@@ -1640,6 +1644,33 @@ export interface RuleGroupRuleDataRelativeTimeRange {
      * The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
      */
     to: pulumi.Input<number>;
+}
+
+export interface RuleGroupRuleNotificationSettings {
+    /**
+     * The contact point to route notifications that match this rule to.
+     */
+    contactPoint: pulumi.Input<string>;
+    /**
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
+     */
+    groupBies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Minimum time interval between two notifications for the same group. Default is 5 minutes.
+     */
+    groupInterval?: pulumi.Input<string>;
+    /**
+     * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+     */
+    groupWait?: pulumi.Input<string>;
+    /**
+     * A list of mute timing names to apply to alerts that match this policy.
+     */
+    muteTimings?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+     */
+    repeatInterval?: pulumi.Input<string>;
 }
 
 export interface SLOAlerting {

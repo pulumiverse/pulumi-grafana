@@ -1849,6 +1849,10 @@ export interface RuleGroupRule {
      */
     noDataState?: string;
     /**
+     * Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+     */
+    notificationSettings?: outputs.RuleGroupRuleNotificationSettings;
+    /**
      * The unique identifier of the alert rule.
      */
     uid: string;
@@ -1886,6 +1890,33 @@ export interface RuleGroupRuleDataRelativeTimeRange {
      * The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
      */
     to: number;
+}
+
+export interface RuleGroupRuleNotificationSettings {
+    /**
+     * The contact point to route notifications that match this rule to.
+     */
+    contactPoint: string;
+    /**
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
+     */
+    groupBies?: string[];
+    /**
+     * Minimum time interval between two notifications for the same group. Default is 5 minutes.
+     */
+    groupInterval?: string;
+    /**
+     * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+     */
+    groupWait?: string;
+    /**
+     * A list of mute timing names to apply to alerts that match this policy.
+     */
+    muteTimings?: string[];
+    /**
+     * Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+     */
+    repeatInterval?: string;
 }
 
 export interface SLOAlerting {

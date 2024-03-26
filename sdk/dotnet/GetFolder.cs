@@ -127,13 +127,14 @@ namespace Pulumiverse.Grafana
     public sealed class GetFolderResult
     {
         /// <summary>
-        /// The numerical ID of the Grafana folder.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
-        public readonly int Id;
+        public readonly string Id;
         /// <summary>
         /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
         /// </summary>
         public readonly string? OrgId;
+        public readonly string ParentFolderUid;
         /// <summary>
         /// The name of the Grafana folder.
         /// </summary>
@@ -149,9 +150,11 @@ namespace Pulumiverse.Grafana
 
         [OutputConstructor]
         private GetFolderResult(
-            int id,
+            string id,
 
             string? orgId,
+
+            string parentFolderUid,
 
             string title,
 
@@ -161,6 +164,7 @@ namespace Pulumiverse.Grafana
         {
             Id = id;
             OrgId = orgId;
+            ParentFolderUid = parentFolderUid;
             Title = title;
             Uid = uid;
             Url = url;

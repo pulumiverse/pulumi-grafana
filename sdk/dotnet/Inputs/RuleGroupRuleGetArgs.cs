@@ -86,6 +86,12 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string>? NoDataState { get; set; }
 
         /// <summary>
+        /// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+        /// </summary>
+        [Input("notificationSettings")]
+        public Input<Inputs.RuleGroupRuleNotificationSettingsGetArgs>? NotificationSettings { get; set; }
+
+        /// <summary>
         /// The unique identifier of the alert rule.
         /// </summary>
         [Input("uid")]

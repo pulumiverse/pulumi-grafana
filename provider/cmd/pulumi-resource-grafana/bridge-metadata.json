@@ -522,6 +522,19 @@
                                             }
                                         }
                                     }
+                                },
+                                "notification_settings": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "group_by": {
+                                                "maxItemsOne": false
+                                            },
+                                            "mute_timings": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -1073,6 +1086,89 @@
                     "slos.$.alerting.$.slowburn": false
                 }
             }
+        }
+    },
+    "mux": {
+        "resources": {
+            "grafana:index/annotation:Annotation": 0,
+            "grafana:index/apiKey:ApiKey": 0,
+            "grafana:index/cloudAccessPolicy:CloudAccessPolicy": 0,
+            "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken": 0,
+            "grafana:index/cloudApiKey:CloudApiKey": 0,
+            "grafana:index/cloudPluginInstallation:CloudPluginInstallation": 0,
+            "grafana:index/cloudStack:CloudStack": 0,
+            "grafana:index/cloudStackApiKey:CloudStackApiKey": 0,
+            "grafana:index/cloudStackServiceAccount:CloudStackServiceAccount": 0,
+            "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken": 0,
+            "grafana:index/contactPoint:ContactPoint": 0,
+            "grafana:index/dashboard:Dashboard": 0,
+            "grafana:index/dashboardPermission:DashboardPermission": 0,
+            "grafana:index/dashboardPublic:DashboardPublic": 0,
+            "grafana:index/dataSource:DataSource": 0,
+            "grafana:index/dataSourcePermission:DataSourcePermission": 0,
+            "grafana:index/folder:Folder": 0,
+            "grafana:index/folderPermission:FolderPermission": 0,
+            "grafana:index/libraryPanel:LibraryPanel": 0,
+            "grafana:index/machineLearningHoliday:MachineLearningHoliday": 0,
+            "grafana:index/machineLearningJob:MachineLearningJob": 0,
+            "grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector": 0,
+            "grafana:index/messageTemplate:MessageTemplate": 0,
+            "grafana:index/muteTiming:MuteTiming": 0,
+            "grafana:index/notificationPolicy:NotificationPolicy": 0,
+            "grafana:index/oncallEscalation:OncallEscalation": 0,
+            "grafana:index/oncallEscalationChain:OncallEscalationChain": 0,
+            "grafana:index/oncallIntegration:OncallIntegration": 0,
+            "grafana:index/oncallOnCallShift:OncallOnCallShift": 0,
+            "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook": 0,
+            "grafana:index/oncallRoute:OncallRoute": 0,
+            "grafana:index/oncallSchedule:OncallSchedule": 0,
+            "grafana:index/organization:Organization": 0,
+            "grafana:index/organizationPreference:OrganizationPreference": 0,
+            "grafana:index/playlist:Playlist": 0,
+            "grafana:index/report:Report": 0,
+            "grafana:index/role:Role": 0,
+            "grafana:index/roleAssignment:RoleAssignment": 0,
+            "grafana:index/ruleGroup:RuleGroup": 0,
+            "grafana:index/sLO:SLO": 0,
+            "grafana:index/serviceAccount:ServiceAccount": 0,
+            "grafana:index/serviceAccountPermission:ServiceAccountPermission": 0,
+            "grafana:index/serviceAccountToken:ServiceAccountToken": 0,
+            "grafana:index/ssoSettings:SsoSettings": 0,
+            "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck": 0,
+            "grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation": 0,
+            "grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe": 0,
+            "grafana:index/team:Team": 0,
+            "grafana:index/teamExternalGroup:TeamExternalGroup": 0,
+            "grafana:index/user:User": 0
+        },
+        "functions": {
+            "grafana:index/getCloudIps:getCloudIps": 0,
+            "grafana:index/getCloudOrganization:getCloudOrganization": 0,
+            "grafana:index/getCloudStack:getCloudStack": 0,
+            "grafana:index/getDashboard:getDashboard": 0,
+            "grafana:index/getDashboards:getDashboards": 0,
+            "grafana:index/getDataSource:getDataSource": 0,
+            "grafana:index/getFolder:getFolder": 0,
+            "grafana:index/getFolders:getFolders": 0,
+            "grafana:index/getLibraryPanel:getLibraryPanel": 0,
+            "grafana:index/getOnCallSlackChannel:getOnCallSlackChannel": 0,
+            "grafana:index/getOncallAction:getOncallAction": 0,
+            "grafana:index/getOncallEscalationChain:getOncallEscalationChain": 0,
+            "grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook": 0,
+            "grafana:index/getOncallSchedule:getOncallSchedule": 0,
+            "grafana:index/getOncallTeam:getOncallTeam": 0,
+            "grafana:index/getOncallUser:getOncallUser": 0,
+            "grafana:index/getOncallUserGroup:getOncallUserGroup": 0,
+            "grafana:index/getOrganization:getOrganization": 0,
+            "grafana:index/getOrganizationPreferences:getOrganizationPreferences": 0,
+            "grafana:index/getRole:getRole": 0,
+            "grafana:index/getServiceAccount:getServiceAccount": 0,
+            "grafana:index/getSlos:getSlos": 0,
+            "grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe": 0,
+            "grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes": 0,
+            "grafana:index/getTeam:getTeam": 0,
+            "grafana:index/getUser:getUser": 0,
+            "grafana:index/getUsers:getUsers": 0
         }
     },
     "renames": {

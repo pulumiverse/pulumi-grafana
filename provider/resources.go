@@ -1,6 +1,7 @@
 package grafana
 
 import (
+	"context"
 	"fmt"
 	"path/filepath"
 	"unicode"
@@ -8,7 +9,8 @@ import (
 	// The linter requires unnamed imports to have a doc comment
 	_ "embed"
 
-	grafanaShim "github.com/grafana/terraform-provider-grafana/shim"
+	grafana "github.com/grafana/terraform-provider-grafana/v2/pkg/provider"
+	pfbridge "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
@@ -67,7 +69,9 @@ var metadata []byte
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv2.NewProvider(grafanaShim.NewProvider(version.Version))
+	p := pfbridge.MuxShimWithPF(context.Background(),
+		shimv2.NewProvider(grafana.Provider(version.Version)),
+		grafana.FrameworkProvider(version.Version))
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{

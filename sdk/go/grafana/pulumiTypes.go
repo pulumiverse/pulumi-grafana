@@ -9863,6 +9863,8 @@ type RuleGroupRule struct {
 	Name string `pulumi:"name"`
 	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting. Defaults to `NoData`.
 	NoDataState *string `pulumi:"noDataState"`
+	// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+	NotificationSettings *RuleGroupRuleNotificationSettings `pulumi:"notificationSettings"`
 	// The unique identifier of the alert rule.
 	Uid *string `pulumi:"uid"`
 }
@@ -9897,6 +9899,8 @@ type RuleGroupRuleArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting. Defaults to `NoData`.
 	NoDataState pulumi.StringPtrInput `pulumi:"noDataState"`
+	// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+	NotificationSettings RuleGroupRuleNotificationSettingsPtrInput `pulumi:"notificationSettings"`
 	// The unique identifier of the alert rule.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
 }
@@ -9995,6 +9999,11 @@ func (o RuleGroupRuleOutput) Name() pulumi.StringOutput {
 // Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting. Defaults to `NoData`.
 func (o RuleGroupRuleOutput) NoDataState() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RuleGroupRule) *string { return v.NoDataState }).(pulumi.StringPtrOutput)
+}
+
+// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+func (o RuleGroupRuleOutput) NotificationSettings() RuleGroupRuleNotificationSettingsPtrOutput {
+	return o.ApplyT(func(v RuleGroupRule) *RuleGroupRuleNotificationSettings { return v.NotificationSettings }).(RuleGroupRuleNotificationSettingsPtrOutput)
 }
 
 // The unique identifier of the alert rule.
@@ -10214,6 +10223,238 @@ func (o RuleGroupRuleDataRelativeTimeRangeOutput) From() pulumi.IntOutput {
 // The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
 func (o RuleGroupRuleDataRelativeTimeRangeOutput) To() pulumi.IntOutput {
 	return o.ApplyT(func(v RuleGroupRuleDataRelativeTimeRange) int { return v.To }).(pulumi.IntOutput)
+}
+
+type RuleGroupRuleNotificationSettings struct {
+	// The contact point to route notifications that match this rule to.
+	ContactPoint string `pulumi:"contactPoint"`
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
+	GroupBies []string `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
+	GroupInterval *string `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+	GroupWait *string `pulumi:"groupWait"`
+	// A list of mute timing names to apply to alerts that match this policy.
+	MuteTimings []string `pulumi:"muteTimings"`
+	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+	RepeatInterval *string `pulumi:"repeatInterval"`
+}
+
+// RuleGroupRuleNotificationSettingsInput is an input type that accepts RuleGroupRuleNotificationSettingsArgs and RuleGroupRuleNotificationSettingsOutput values.
+// You can construct a concrete instance of `RuleGroupRuleNotificationSettingsInput` via:
+//
+//	RuleGroupRuleNotificationSettingsArgs{...}
+type RuleGroupRuleNotificationSettingsInput interface {
+	pulumi.Input
+
+	ToRuleGroupRuleNotificationSettingsOutput() RuleGroupRuleNotificationSettingsOutput
+	ToRuleGroupRuleNotificationSettingsOutputWithContext(context.Context) RuleGroupRuleNotificationSettingsOutput
+}
+
+type RuleGroupRuleNotificationSettingsArgs struct {
+	// The contact point to route notifications that match this rule to.
+	ContactPoint pulumi.StringInput `pulumi:"contactPoint"`
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
+	GroupBies pulumi.StringArrayInput `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
+	GroupInterval pulumi.StringPtrInput `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
+	// A list of mute timing names to apply to alerts that match this policy.
+	MuteTimings pulumi.StringArrayInput `pulumi:"muteTimings"`
+	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+	RepeatInterval pulumi.StringPtrInput `pulumi:"repeatInterval"`
+}
+
+func (RuleGroupRuleNotificationSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleGroupRuleNotificationSettings)(nil)).Elem()
+}
+
+func (i RuleGroupRuleNotificationSettingsArgs) ToRuleGroupRuleNotificationSettingsOutput() RuleGroupRuleNotificationSettingsOutput {
+	return i.ToRuleGroupRuleNotificationSettingsOutputWithContext(context.Background())
+}
+
+func (i RuleGroupRuleNotificationSettingsArgs) ToRuleGroupRuleNotificationSettingsOutputWithContext(ctx context.Context) RuleGroupRuleNotificationSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleGroupRuleNotificationSettingsOutput)
+}
+
+func (i RuleGroupRuleNotificationSettingsArgs) ToRuleGroupRuleNotificationSettingsPtrOutput() RuleGroupRuleNotificationSettingsPtrOutput {
+	return i.ToRuleGroupRuleNotificationSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i RuleGroupRuleNotificationSettingsArgs) ToRuleGroupRuleNotificationSettingsPtrOutputWithContext(ctx context.Context) RuleGroupRuleNotificationSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleGroupRuleNotificationSettingsOutput).ToRuleGroupRuleNotificationSettingsPtrOutputWithContext(ctx)
+}
+
+// RuleGroupRuleNotificationSettingsPtrInput is an input type that accepts RuleGroupRuleNotificationSettingsArgs, RuleGroupRuleNotificationSettingsPtr and RuleGroupRuleNotificationSettingsPtrOutput values.
+// You can construct a concrete instance of `RuleGroupRuleNotificationSettingsPtrInput` via:
+//
+//	        RuleGroupRuleNotificationSettingsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleGroupRuleNotificationSettingsPtrInput interface {
+	pulumi.Input
+
+	ToRuleGroupRuleNotificationSettingsPtrOutput() RuleGroupRuleNotificationSettingsPtrOutput
+	ToRuleGroupRuleNotificationSettingsPtrOutputWithContext(context.Context) RuleGroupRuleNotificationSettingsPtrOutput
+}
+
+type ruleGroupRuleNotificationSettingsPtrType RuleGroupRuleNotificationSettingsArgs
+
+func RuleGroupRuleNotificationSettingsPtr(v *RuleGroupRuleNotificationSettingsArgs) RuleGroupRuleNotificationSettingsPtrInput {
+	return (*ruleGroupRuleNotificationSettingsPtrType)(v)
+}
+
+func (*ruleGroupRuleNotificationSettingsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleGroupRuleNotificationSettings)(nil)).Elem()
+}
+
+func (i *ruleGroupRuleNotificationSettingsPtrType) ToRuleGroupRuleNotificationSettingsPtrOutput() RuleGroupRuleNotificationSettingsPtrOutput {
+	return i.ToRuleGroupRuleNotificationSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleGroupRuleNotificationSettingsPtrType) ToRuleGroupRuleNotificationSettingsPtrOutputWithContext(ctx context.Context) RuleGroupRuleNotificationSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleGroupRuleNotificationSettingsPtrOutput)
+}
+
+type RuleGroupRuleNotificationSettingsOutput struct{ *pulumi.OutputState }
+
+func (RuleGroupRuleNotificationSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleGroupRuleNotificationSettings)(nil)).Elem()
+}
+
+func (o RuleGroupRuleNotificationSettingsOutput) ToRuleGroupRuleNotificationSettingsOutput() RuleGroupRuleNotificationSettingsOutput {
+	return o
+}
+
+func (o RuleGroupRuleNotificationSettingsOutput) ToRuleGroupRuleNotificationSettingsOutputWithContext(ctx context.Context) RuleGroupRuleNotificationSettingsOutput {
+	return o
+}
+
+func (o RuleGroupRuleNotificationSettingsOutput) ToRuleGroupRuleNotificationSettingsPtrOutput() RuleGroupRuleNotificationSettingsPtrOutput {
+	return o.ToRuleGroupRuleNotificationSettingsPtrOutputWithContext(context.Background())
+}
+
+func (o RuleGroupRuleNotificationSettingsOutput) ToRuleGroupRuleNotificationSettingsPtrOutputWithContext(ctx context.Context) RuleGroupRuleNotificationSettingsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleGroupRuleNotificationSettings) *RuleGroupRuleNotificationSettings {
+		return &v
+	}).(RuleGroupRuleNotificationSettingsPtrOutput)
+}
+
+// The contact point to route notifications that match this rule to.
+func (o RuleGroupRuleNotificationSettingsOutput) ContactPoint() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleGroupRuleNotificationSettings) string { return v.ContactPoint }).(pulumi.StringOutput)
+}
+
+// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
+func (o RuleGroupRuleNotificationSettingsOutput) GroupBies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RuleGroupRuleNotificationSettings) []string { return v.GroupBies }).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval between two notifications for the same group. Default is 5 minutes.
+func (o RuleGroupRuleNotificationSettingsOutput) GroupInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleGroupRuleNotificationSettings) *string { return v.GroupInterval }).(pulumi.StringPtrOutput)
+}
+
+// Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+func (o RuleGroupRuleNotificationSettingsOutput) GroupWait() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleGroupRuleNotificationSettings) *string { return v.GroupWait }).(pulumi.StringPtrOutput)
+}
+
+// A list of mute timing names to apply to alerts that match this policy.
+func (o RuleGroupRuleNotificationSettingsOutput) MuteTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RuleGroupRuleNotificationSettings) []string { return v.MuteTimings }).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+func (o RuleGroupRuleNotificationSettingsOutput) RepeatInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleGroupRuleNotificationSettings) *string { return v.RepeatInterval }).(pulumi.StringPtrOutput)
+}
+
+type RuleGroupRuleNotificationSettingsPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleGroupRuleNotificationSettingsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleGroupRuleNotificationSettings)(nil)).Elem()
+}
+
+func (o RuleGroupRuleNotificationSettingsPtrOutput) ToRuleGroupRuleNotificationSettingsPtrOutput() RuleGroupRuleNotificationSettingsPtrOutput {
+	return o
+}
+
+func (o RuleGroupRuleNotificationSettingsPtrOutput) ToRuleGroupRuleNotificationSettingsPtrOutputWithContext(ctx context.Context) RuleGroupRuleNotificationSettingsPtrOutput {
+	return o
+}
+
+func (o RuleGroupRuleNotificationSettingsPtrOutput) Elem() RuleGroupRuleNotificationSettingsOutput {
+	return o.ApplyT(func(v *RuleGroupRuleNotificationSettings) RuleGroupRuleNotificationSettings {
+		if v != nil {
+			return *v
+		}
+		var ret RuleGroupRuleNotificationSettings
+		return ret
+	}).(RuleGroupRuleNotificationSettingsOutput)
+}
+
+// The contact point to route notifications that match this rule to.
+func (o RuleGroupRuleNotificationSettingsPtrOutput) ContactPoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleGroupRuleNotificationSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ContactPoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
+func (o RuleGroupRuleNotificationSettingsPtrOutput) GroupBies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleGroupRuleNotificationSettings) []string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupBies
+	}).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval between two notifications for the same group. Default is 5 minutes.
+func (o RuleGroupRuleNotificationSettingsPtrOutput) GroupInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleGroupRuleNotificationSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupInterval
+	}).(pulumi.StringPtrOutput)
+}
+
+// Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+func (o RuleGroupRuleNotificationSettingsPtrOutput) GroupWait() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleGroupRuleNotificationSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupWait
+	}).(pulumi.StringPtrOutput)
+}
+
+// A list of mute timing names to apply to alerts that match this policy.
+func (o RuleGroupRuleNotificationSettingsPtrOutput) MuteTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleGroupRuleNotificationSettings) []string {
+		if v == nil {
+			return nil
+		}
+		return v.MuteTimings
+	}).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+func (o RuleGroupRuleNotificationSettingsPtrOutput) RepeatInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleGroupRuleNotificationSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RepeatInterval
+	}).(pulumi.StringPtrOutput)
 }
 
 type SLOAlerting struct {
@@ -19885,6 +20126,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleDataInput)(nil)).Elem(), RuleGroupRuleDataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleDataArrayInput)(nil)).Elem(), RuleGroupRuleDataArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleDataRelativeTimeRangeInput)(nil)).Elem(), RuleGroupRuleDataRelativeTimeRangeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleNotificationSettingsInput)(nil)).Elem(), RuleGroupRuleNotificationSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleNotificationSettingsPtrInput)(nil)).Elem(), RuleGroupRuleNotificationSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingInput)(nil)).Elem(), SLOAlertingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingArrayInput)(nil)).Elem(), SLOAlertingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingAnnotationInput)(nil)).Elem(), SLOAlertingAnnotationArgs{})
@@ -20142,6 +20385,8 @@ func init() {
 	pulumi.RegisterOutputType(RuleGroupRuleDataOutput{})
 	pulumi.RegisterOutputType(RuleGroupRuleDataArrayOutput{})
 	pulumi.RegisterOutputType(RuleGroupRuleDataRelativeTimeRangeOutput{})
+	pulumi.RegisterOutputType(RuleGroupRuleNotificationSettingsOutput{})
+	pulumi.RegisterOutputType(RuleGroupRuleNotificationSettingsPtrOutput{})
 	pulumi.RegisterOutputType(SLOAlertingOutput{})
 	pulumi.RegisterOutputType(SLOAlertingArrayOutput{})
 	pulumi.RegisterOutputType(SLOAlertingAnnotationOutput{})

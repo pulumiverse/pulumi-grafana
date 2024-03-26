@@ -54,13 +54,14 @@ export interface GetFolderArgs {
  */
 export interface GetFolderResult {
     /**
-     * The numerical ID of the Grafana folder.
+     * The provider-assigned unique ID for this managed resource.
      */
-    readonly id: number;
+    readonly id: string;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
     readonly orgId?: string;
+    readonly parentFolderUid: string;
     /**
      * The name of the Grafana folder.
      */

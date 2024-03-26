@@ -51,6 +51,10 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? NoDataState;
         /// <summary>
+        /// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+        /// </summary>
+        public readonly Outputs.RuleGroupRuleNotificationSettings? NotificationSettings;
+        /// <summary>
         /// The unique identifier of the alert rule.
         /// </summary>
         public readonly string? Uid;
@@ -75,6 +79,8 @@ namespace Pulumiverse.Grafana.Outputs
 
             string? noDataState,
 
+            Outputs.RuleGroupRuleNotificationSettings? notificationSettings,
+
             string? uid)
         {
             Annotations = annotations;
@@ -86,6 +92,7 @@ namespace Pulumiverse.Grafana.Outputs
             Labels = labels;
             Name = name;
             NoDataState = noDataState;
+            NotificationSettings = notificationSettings;
             Uid = uid;
         }
     }
