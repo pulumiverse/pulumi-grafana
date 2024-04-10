@@ -20,4 +20,4 @@ jobs:
         with:
           kind: provider
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
