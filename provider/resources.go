@@ -81,6 +81,7 @@ func Provider() tfbridge.ProviderInfo {
 		Publisher:         "pulumiverse",
 		LogoURL:           "https://raw.githubusercontent.com/pulumiverse/pulumi-grafana/main/assets/grafana.png", // nolint[:lll]
 		PluginDownloadURL: "github://api.github.com/pulumiverse",
+		Version:           version.Version,
 		Description:       "A Pulumi package for creating and managing grafana.",
 		Keywords:          []string{"pulumi", "grafana", "pulumiverse"},
 		License:           "Apache-2.0",
