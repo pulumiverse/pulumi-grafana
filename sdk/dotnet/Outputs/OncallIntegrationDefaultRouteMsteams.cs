@@ -15,11 +15,11 @@ namespace Pulumiverse.Grafana.Outputs
     public sealed class OncallIntegrationDefaultRouteMsteams
     {
         /// <summary>
-        /// Enable notification in MS teams. Defaults to `true`.
+        /// Enable notification in MS teams.
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>
-        /// The ID of this resource.
+        /// MS teams channel id. Alerts will be directed to this channel in Microsoft teams.
         /// </summary>
         public readonly string? Id;
 

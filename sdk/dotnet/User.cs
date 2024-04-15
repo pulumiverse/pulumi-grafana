@@ -10,43 +10,6 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
-    /// 
-    /// This resource represents an instance-scoped resource and uses Grafana's admin APIs.
-    /// It does not work with API tokens or service accounts which are org-scoped.
-    /// You must use basic auth.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var staff = new Grafana.User("staff", new()
-    ///     {
-    ///         Email = "staff.name@example.com",
-    ///         IsAdmin = false,
-    ///         Login = "staff",
-    ///         Password = "my-password",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/user:User user_name {{user_id}}
-    /// ```
-    /// </summary>
     [GrafanaResourceType("grafana:index/user:User")]
     public partial class User : global::Pulumi.CustomResource
     {
@@ -57,7 +20,7 @@ namespace Pulumiverse.Grafana
         public Output<string> Email { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to make user an admin. Defaults to `false`.
+        /// Whether to make user an admin.
         /// </summary>
         [Output("isAdmin")]
         public Output<bool?> IsAdmin { get; private set; } = null!;
@@ -144,7 +107,7 @@ namespace Pulumiverse.Grafana
         public Input<string> Email { get; set; } = null!;
 
         /// <summary>
-        /// Whether to make user an admin. Defaults to `false`.
+        /// Whether to make user an admin.
         /// </summary>
         [Input("isAdmin")]
         public Input<bool>? IsAdmin { get; set; }
@@ -192,7 +155,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Email { get; set; }
 
         /// <summary>
-        /// Whether to make user an admin. Defaults to `false`.
+        /// Whether to make user an admin.
         /// </summary>
         [Input("isAdmin")]
         public Input<bool>? IsAdmin { get; set; }

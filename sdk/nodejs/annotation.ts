@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.Annotation("test", {text: "basic text"});
- * ```
- * <!--End PulumiCodeChooser -->
- */
 export class Annotation extends pulumi.CustomResource {
     /**
      * Get an existing Annotation resource's state with the given name, ID, and optional extra
@@ -48,7 +33,7 @@ export class Annotation extends pulumi.CustomResource {
     }
 
     /**
-     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
+     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
      *
      * @deprecated Use dashboardUid instead.
      */
@@ -127,7 +112,7 @@ export class Annotation extends pulumi.CustomResource {
  */
 export interface AnnotationState {
     /**
-     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
+     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
      *
      * @deprecated Use dashboardUid instead.
      */
@@ -167,7 +152,7 @@ export interface AnnotationState {
  */
 export interface AnnotationArgs {
     /**
-     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
+     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
      *
      * @deprecated Use dashboardUid instead.
      */

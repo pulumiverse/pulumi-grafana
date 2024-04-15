@@ -6,13 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Datasource for retrieving all SLOs.
- *
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
- * * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
- * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
- */
 export function getSlos(opts?: pulumi.InvokeOptions): Promise<GetSlosResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -28,18 +21,8 @@ export interface GetSlosResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Returns a list of all SLOs"
-     */
     readonly slos: outputs.GetSlosSlo[];
 }
-/**
- * Datasource for retrieving all SLOs.
- *
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
- * * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
- * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
- */
 export function getSlosOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetSlosResult> {
     return pulumi.output(getSlos(opts))
 }

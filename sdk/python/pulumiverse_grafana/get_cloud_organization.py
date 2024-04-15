@@ -49,9 +49,6 @@ class GetCloudOrganizationResult:
     @property
     @pulumi.getter
     def id(self) -> str:
-        """
-        The ID of this resource.
-        """
         return pulumi.get(self, "id")
 
     @property
@@ -93,19 +90,7 @@ def get_cloud_organization(id: Optional[str] = None,
                            slug: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudOrganizationResult:
     """
-    ## Example Usage
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-
-    test = grafana.get_cloud_organization(slug="my-org")
-    ```
-    <!--End PulumiCodeChooser -->
-
-
-    :param str id: The ID of this resource.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -127,18 +112,6 @@ def get_cloud_organization_output(id: Optional[pulumi.Input[Optional[str]]] = No
                                   slug: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudOrganizationResult]:
     """
-    ## Example Usage
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-
-    test = grafana.get_cloud_organization(slug="my-org")
-    ```
-    <!--End PulumiCodeChooser -->
-
-
-    :param str id: The ID of this resource.
+    Use this data source to access information about an existing resource.
     """
     ...

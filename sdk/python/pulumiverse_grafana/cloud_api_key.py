@@ -20,7 +20,8 @@ class CloudApiKeyArgs:
         """
         The set of arguments for constructing a CloudApiKey resource.
         :param pulumi.Input[str] cloud_org_slug: The slug of the organization to create the API key in. This is the same slug as the organization name in the URL.
-        :param pulumi.Input[str] role: Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+        :param pulumi.Input[str] role: Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+               https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
         :param pulumi.Input[str] name: Name of the API key.
         """
         pulumi.set(__self__, "cloud_org_slug", cloud_org_slug)
@@ -44,7 +45,8 @@ class CloudApiKeyArgs:
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
         """
-        Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+        Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+        https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
         """
         return pulumi.get(self, "role")
 
@@ -77,7 +79,8 @@ class _CloudApiKeyState:
         :param pulumi.Input[str] cloud_org_slug: The slug of the organization to create the API key in. This is the same slug as the organization name in the URL.
         :param pulumi.Input[str] key: The generated API key.
         :param pulumi.Input[str] name: Name of the API key.
-        :param pulumi.Input[str] role: Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+        :param pulumi.Input[str] role: Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+               https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
         """
         if cloud_org_slug is not None:
             pulumi.set(__self__, "cloud_org_slug", cloud_org_slug)
@@ -128,7 +131,8 @@ class _CloudApiKeyState:
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
         """
-        Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+        Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+        https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
         """
         return pulumi.get(self, "role")
 
@@ -147,41 +151,13 @@ class CloudApiKey(pulumi.CustomResource):
                  role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        This resource is deprecated and will be removed in a future release. Please use CloudAccessPolicy instead.
-
-        Manages a single API key on the Grafana Cloud portal (on the organization level)
-        * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#api-keys)
-
-        Required access policy scopes:
-
-        * api-keys:read
-        * api-keys:write
-        * api-keys:delete
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test = grafana.CloudApiKey("test",
-            cloud_org_slug="myorg",
-            role="Admin")
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/cloudApiKey:CloudApiKey name "{{ orgSlug }}:{{ apiKeyName }}"
-        ```
-
+        Create a CloudApiKey resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cloud_org_slug: The slug of the organization to create the API key in. This is the same slug as the organization name in the URL.
         :param pulumi.Input[str] name: Name of the API key.
-        :param pulumi.Input[str] role: Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+        :param pulumi.Input[str] role: Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+               https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
         """
         ...
     @overload
@@ -190,36 +166,7 @@ class CloudApiKey(pulumi.CustomResource):
                  args: CloudApiKeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource is deprecated and will be removed in a future release. Please use CloudAccessPolicy instead.
-
-        Manages a single API key on the Grafana Cloud portal (on the organization level)
-        * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#api-keys)
-
-        Required access policy scopes:
-
-        * api-keys:read
-        * api-keys:write
-        * api-keys:delete
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test = grafana.CloudApiKey("test",
-            cloud_org_slug="myorg",
-            role="Admin")
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/cloudApiKey:CloudApiKey name "{{ orgSlug }}:{{ apiKeyName }}"
-        ```
-
+        Create a CloudApiKey resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param CloudApiKeyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -281,7 +228,8 @@ class CloudApiKey(pulumi.CustomResource):
         :param pulumi.Input[str] cloud_org_slug: The slug of the organization to create the API key in. This is the same slug as the organization name in the URL.
         :param pulumi.Input[str] key: The generated API key.
         :param pulumi.Input[str] name: Name of the API key.
-        :param pulumi.Input[str] role: Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+        :param pulumi.Input[str] role: Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+               https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -321,7 +269,8 @@ class CloudApiKey(pulumi.CustomResource):
     @pulumi.getter
     def role(self) -> pulumi.Output[str]:
         """
-        Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+        Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+        https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
         """
         return pulumi.get(self, "role")
 

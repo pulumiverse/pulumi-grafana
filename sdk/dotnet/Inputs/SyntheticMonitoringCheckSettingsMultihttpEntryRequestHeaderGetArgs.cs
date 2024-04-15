@@ -20,7 +20,7 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The value of the assertion
+        /// Value of the header to send
         /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;

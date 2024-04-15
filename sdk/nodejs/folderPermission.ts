@@ -6,55 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Manages the entire set of permissions for a folder. Permissions that aren't specified when applying this resource will be removed.
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const team = new grafana.Team("team", {});
- * const user = new grafana.User("user", {
- *     email: "user.name@example.com",
- *     login: "user.name",
- *     password: "my-password",
- * });
- * const collection = new grafana.Folder("collection", {title: "Folder Title"});
- * const collectionPermission = new grafana.FolderPermission("collectionPermission", {
- *     folderUid: collection.uid,
- *     permissions: [
- *         {
- *             role: "Editor",
- *             permission: "Edit",
- *         },
- *         {
- *             teamId: team.id,
- *             permission: "View",
- *         },
- *         {
- *             userId: user.id,
- *             permission: "Admin",
- *         },
- *     ],
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
- * ```
- */
 export class FolderPermission extends pulumi.CustomResource {
     /**
      * Get an existing FolderPermission resource's state with the given name, ID, and optional extra

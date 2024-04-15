@@ -20,13 +20,13 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string> Permission { get; set; } = null!;
 
         /// <summary>
-        /// ID of the team to manage permissions for. Specify either this or `user_id`. Defaults to `0`.
+        /// ID of the team to manage permissions for. Specify either this or `user_id`.
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 
         /// <summary>
-        /// ID of the user or service account to manage permissions for. Specify either this or `team_id`. Defaults to `0`.
+        /// ID of the user or service account to manage permissions for. Specify either this or `team_id`.
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }

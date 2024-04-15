@@ -6,49 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/routes/)
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const exampleSlackChannel = grafana.getOnCallSlackChannel({
- *     name: "example_slack_channel",
- * });
- * const _default = new grafana.OncallEscalationChain("default", {});
- * const exampleIntegration = new grafana.OncallIntegration("exampleIntegration", {type: "grafana"});
- * const exampleRoute = new grafana.OncallRoute("exampleRoute", {
- *     integrationId: exampleIntegration.id,
- *     escalationChainId: _default.id,
- *     routingRegex: "us-(east|west)",
- *     position: 0,
- *     slack: {
- *         channelId: exampleSlackChannel.then(exampleSlackChannel => exampleSlackChannel.slackId),
- *         enabled: true,
- *     },
- *     telegram: {
- *         id: "ONCALLTELEGRAMID",
- *         enabled: true,
- *     },
- *     msteams: {
- *         id: "ONCALLMSTEAMSID",
- *         enabled: false,
- *     },
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/oncallRoute:OncallRoute route_name {{route_id}}
- * ```
- */
 export class OncallRoute extends pulumi.CustomResource {
     /**
      * Get an existing OncallRoute resource's state with the given name, ID, and optional extra
@@ -98,7 +55,7 @@ export class OncallRoute extends pulumi.CustomResource {
      */
     public readonly routingRegex!: pulumi.Output<string>;
     /**
-     * The type of route. Can be jinja2, regex Defaults to `regex`.
+     * The type of route. Can be jinja2, regex
      */
     public readonly routingType!: pulumi.Output<string | undefined>;
     /**
@@ -184,7 +141,7 @@ export interface OncallRouteState {
      */
     routingRegex?: pulumi.Input<string>;
     /**
-     * The type of route. Can be jinja2, regex Defaults to `regex`.
+     * The type of route. Can be jinja2, regex
      */
     routingType?: pulumi.Input<string>;
     /**
@@ -222,7 +179,7 @@ export interface OncallRouteArgs {
      */
     routingRegex: pulumi.Input<string>;
     /**
-     * The type of route. Can be jinja2, regex Defaults to `regex`.
+     * The type of route. Can be jinja2, regex
      */
     routingType?: pulumi.Input<string>;
     /**

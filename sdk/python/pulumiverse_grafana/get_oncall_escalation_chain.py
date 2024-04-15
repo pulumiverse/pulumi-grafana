@@ -40,9 +40,6 @@ class GetOncallEscalationChainResult:
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        The escalation chain name.
-        """
         return pulumi.get(self, "name")
 
 
@@ -59,21 +56,7 @@ class AwaitableGetOncallEscalationChainResult(GetOncallEscalationChainResult):
 def get_oncall_escalation_chain(name: Optional[str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallEscalationChainResult:
     """
-    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
-
-    ## Example Usage
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-
-    default = grafana.get_oncall_escalation_chain(name="default")
-    ```
-    <!--End PulumiCodeChooser -->
-
-
-    :param str name: The escalation chain name.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -89,20 +72,6 @@ def get_oncall_escalation_chain(name: Optional[str] = None,
 def get_oncall_escalation_chain_output(name: Optional[pulumi.Input[str]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallEscalationChainResult]:
     """
-    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
-
-    ## Example Usage
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-
-    default = grafana.get_oncall_escalation_chain(name="default")
-    ```
-    <!--End PulumiCodeChooser -->
-
-
-    :param str name: The escalation chain name.
+    Use this data source to access information about an existing resource.
     """
     ...

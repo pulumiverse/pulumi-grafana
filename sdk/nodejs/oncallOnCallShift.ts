@@ -4,15 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/on_call_shifts/)
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/oncallOnCallShift:OncallOnCallShift on_call_shift_name {{on_call_shift_id}}
- * ```
- */
 export class OncallOnCallShift extends pulumi.CustomResource {
     /**
      * Get an existing OncallOnCallShift resource's state with the given name, ID, and optional extra
@@ -46,7 +37,7 @@ export class OncallOnCallShift extends pulumi.CustomResource {
      */
     public readonly byDays!: pulumi.Output<string[] | undefined>;
     /**
-     * This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
+     * This parameter takes a list of days of the month. Valid values are 1 to 31 or -31 to -1
      */
     public readonly byMonthdays!: pulumi.Output<number[] | undefined>;
     /**
@@ -74,11 +65,12 @@ export class OncallOnCallShift extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The list of lists with on-call users (for rollingUsers event type)
+     * The list of lists with on-call users (for rolling_users event type)
      */
     public readonly rollingUsers!: pulumi.Output<string[][] | undefined>;
     /**
-     * The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+     * The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example
+     * "2020-09-05T08:00:00")
      */
     public readonly start!: pulumi.Output<string>;
     /**
@@ -86,19 +78,20 @@ export class OncallOnCallShift extends pulumi.CustomResource {
      */
     public readonly startRotationFromUserIndex!: pulumi.Output<number | undefined>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
      */
     public readonly teamId!: pulumi.Output<string | undefined>;
     /**
-     * The shift's timezone.  Overrides schedule's timezone.
+     * The shift's timezone. Overrides schedule's timezone.
      */
     public readonly timeZone!: pulumi.Output<string | undefined>;
     /**
-     * The shift's type. Can be rolling*users, recurrent*event, single_event
+     * The shift's type. Can be rolling_users, recurrent_event, single_event
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * The list of on-call users (for single*event and recurrent*event event type).
+     * The list of on-call users (for single_event and recurrent_event event type).
      */
     public readonly users!: pulumi.Output<string[] | undefined>;
     /**
@@ -177,7 +170,7 @@ export interface OncallOnCallShiftState {
      */
     byDays?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
+     * This parameter takes a list of days of the month. Valid values are 1 to 31 or -31 to -1
      */
     byMonthdays?: pulumi.Input<pulumi.Input<number>[]>;
     /**
@@ -205,11 +198,12 @@ export interface OncallOnCallShiftState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The list of lists with on-call users (for rollingUsers event type)
+     * The list of lists with on-call users (for rolling_users event type)
      */
     rollingUsers?: pulumi.Input<pulumi.Input<pulumi.Input<string>[]>[]>;
     /**
-     * The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+     * The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example
+     * "2020-09-05T08:00:00")
      */
     start?: pulumi.Input<string>;
     /**
@@ -217,19 +211,20 @@ export interface OncallOnCallShiftState {
      */
     startRotationFromUserIndex?: pulumi.Input<number>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
      */
     teamId?: pulumi.Input<string>;
     /**
-     * The shift's timezone.  Overrides schedule's timezone.
+     * The shift's timezone. Overrides schedule's timezone.
      */
     timeZone?: pulumi.Input<string>;
     /**
-     * The shift's type. Can be rolling*users, recurrent*event, single_event
+     * The shift's type. Can be rolling_users, recurrent_event, single_event
      */
     type?: pulumi.Input<string>;
     /**
-     * The list of on-call users (for single*event and recurrent*event event type).
+     * The list of on-call users (for single_event and recurrent_event event type).
      */
     users?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -247,7 +242,7 @@ export interface OncallOnCallShiftArgs {
      */
     byDays?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
+     * This parameter takes a list of days of the month. Valid values are 1 to 31 or -31 to -1
      */
     byMonthdays?: pulumi.Input<pulumi.Input<number>[]>;
     /**
@@ -275,11 +270,12 @@ export interface OncallOnCallShiftArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The list of lists with on-call users (for rollingUsers event type)
+     * The list of lists with on-call users (for rolling_users event type)
      */
     rollingUsers?: pulumi.Input<pulumi.Input<pulumi.Input<string>[]>[]>;
     /**
-     * The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+     * The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example
+     * "2020-09-05T08:00:00")
      */
     start: pulumi.Input<string>;
     /**
@@ -287,19 +283,20 @@ export interface OncallOnCallShiftArgs {
      */
     startRotationFromUserIndex?: pulumi.Input<number>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
      */
     teamId?: pulumi.Input<string>;
     /**
-     * The shift's timezone.  Overrides schedule's timezone.
+     * The shift's timezone. Overrides schedule's timezone.
      */
     timeZone?: pulumi.Input<string>;
     /**
-     * The shift's type. Can be rolling*users, recurrent*event, single_event
+     * The shift's type. Can be rolling_users, recurrent_event, single_event
      */
     type: pulumi.Input<string>;
     /**
-     * The list of on-call users (for single*event and recurrent*event event type).
+     * The list of on-call users (for single_event and recurrent_event event type).
      */
     users?: pulumi.Input<pulumi.Input<string>[]>;
     /**

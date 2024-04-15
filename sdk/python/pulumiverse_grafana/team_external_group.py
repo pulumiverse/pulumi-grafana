@@ -98,31 +98,7 @@ class TeamExternalGroup(pulumi.CustomResource):
                  team_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Equivalent to the the `team_sync` attribute of the `Team` resource. Use one or the other to configure a team's external groups syncing config.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        my_team = grafana.Team("myTeam")
-        test_team_group = grafana.TeamExternalGroup("test-team-group",
-            team_id=my_team.id,
-            groups=[
-                "test-group-1",
-                "test-group-2",
-            ])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup main {{team_id}}
-        ```
-
+        Create a TeamExternalGroup resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The team external groups list
@@ -135,31 +111,7 @@ class TeamExternalGroup(pulumi.CustomResource):
                  args: TeamExternalGroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Equivalent to the the `team_sync` attribute of the `Team` resource. Use one or the other to configure a team's external groups syncing config.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        my_team = grafana.Team("myTeam")
-        test_team_group = grafana.TeamExternalGroup("test-team-group",
-            team_id=my_team.id,
-            groups=[
-                "test-group-1",
-                "test-group-2",
-            ])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup main {{team_id}}
-        ```
-
+        Create a TeamExternalGroup resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param TeamExternalGroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

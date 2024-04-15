@@ -100,29 +100,7 @@ class SsoSettings(pulumi.CustomResource):
                  provider_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages Grafana SSO Settings for OAuth2. SAML support will be added soon.
-
-        * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/sso-settings/)
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        github_sso_settings = grafana.SsoSettings("githubSsoSettings",
-            oauth2_settings=grafana.SsoSettingsOauth2SettingsArgs(
-                allowed_organizations="organization1,organization2",
-                client_id="github_client_id",
-                client_secret="github_client_secret",
-                team_ids="12,50,123",
-            ),
-            provider_name="github")
-        ```
-        <!--End PulumiCodeChooser -->
-
+        Create a SsoSettings resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['SsoSettingsOauth2SettingsArgs']] oauth2_settings: The SSO settings set.
@@ -135,29 +113,7 @@ class SsoSettings(pulumi.CustomResource):
                  args: SsoSettingsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Grafana SSO Settings for OAuth2. SAML support will be added soon.
-
-        * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/sso-settings/)
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        github_sso_settings = grafana.SsoSettings("githubSsoSettings",
-            oauth2_settings=grafana.SsoSettingsOauth2SettingsArgs(
-                allowed_organizations="organization1,organization2",
-                client_id="github_client_id",
-                client_secret="github_client_secret",
-                team_ids="12,50,123",
-            ),
-            provider_name="github")
-        ```
-        <!--End PulumiCodeChooser -->
-
+        Create a SsoSettings resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param SsoSettingsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

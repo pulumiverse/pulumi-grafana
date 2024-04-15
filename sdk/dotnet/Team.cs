@@ -10,51 +10,6 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var viewer = new Grafana.User("viewer", new()
-    ///     {
-    ///         Email = "viewer@example.com",
-    ///         Login = "viewer",
-    ///         Password = "my-password",
-    ///     });
-    /// 
-    ///     var test_team = new Grafana.Team("test-team", new()
-    ///     {
-    ///         Email = "teamemail@example.com",
-    ///         Members = new[]
-    ///         {
-    ///             viewer.Email,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/team:Team team_name {{team_id}} # To use the default provider org
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/team:Team team_name {{org_id}}:{{team_id}} # When "org_id" is set on the resource
-    /// ```
-    /// </summary>
     [GrafanaResourceType("grafana:index/team:Team")]
     public partial class Team : global::Pulumi.CustomResource
     {

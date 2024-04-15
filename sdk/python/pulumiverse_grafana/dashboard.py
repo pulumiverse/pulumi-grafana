@@ -25,7 +25,8 @@ class DashboardArgs:
         :param pulumi.Input[str] folder: The id or UID of the folder to save the dashboard in.
         :param pulumi.Input[str] message: Set a commit message for the version history.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
+        :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same
+               dashboard uid.
         """
         pulumi.set(__self__, "config_json", config_json)
         if folder is not None:
@@ -89,7 +90,8 @@ class DashboardArgs:
     @pulumi.getter
     def overwrite(self) -> Optional[pulumi.Input[bool]]:
         """
-        Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
+        Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same
+        dashboard uid.
         """
         return pulumi.get(self, "overwrite")
 
@@ -117,10 +119,14 @@ class _DashboardState:
         :param pulumi.Input[str] folder: The id or UID of the folder to save the dashboard in.
         :param pulumi.Input[str] message: Set a commit message for the version history.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
-        :param pulumi.Input[str] uid: The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
+        :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same
+               dashboard uid.
+        :param pulumi.Input[str] uid: The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided
+               when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards
+               between multiple Grafana installs.
         :param pulumi.Input[str] url: The full URL of the dashboard.
-        :param pulumi.Input[int] version: Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your dashboard are not lost.
+        :param pulumi.Input[int] version: Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your
+               dashboard are not lost.
         """
         if config_json is not None:
             pulumi.set(__self__, "config_json", config_json)
@@ -205,7 +211,8 @@ class _DashboardState:
     @pulumi.getter
     def overwrite(self) -> Optional[pulumi.Input[bool]]:
         """
-        Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
+        Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same
+        dashboard uid.
         """
         return pulumi.get(self, "overwrite")
 
@@ -217,7 +224,9 @@ class _DashboardState:
     @pulumi.getter
     def uid(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
+        The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided
+        when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards
+        between multiple Grafana installs.
         """
         return pulumi.get(self, "uid")
 
@@ -241,7 +250,8 @@ class _DashboardState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[int]]:
         """
-        Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your dashboard are not lost.
+        Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your
+        dashboard are not lost.
         """
         return pulumi.get(self, "version")
 
@@ -262,48 +272,15 @@ class Dashboard(pulumi.CustomResource):
                  overwrite: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        Manages Grafana dashboards.
-
-        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import json
-        import pulumiverse_grafana as grafana
-
-        test_folder = grafana.Folder("testFolder",
-            title="My Folder",
-            uid="my-folder-uid")
-        test_dashboard = grafana.Dashboard("testDashboard",
-            folder=test_folder.uid,
-            config_json=json.dumps({
-                "title": "My Dashboard",
-                "uid": "my-dashboard-uid",
-            }))
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{dashboard_uid}} # To use the default provider org
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{org_id}}:{{dashboard_uid}} # When "org_id" is set on the resource
-        ```
-
+        Create a Dashboard resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] config_json: The complete dashboard model JSON.
         :param pulumi.Input[str] folder: The id or UID of the folder to save the dashboard in.
         :param pulumi.Input[str] message: Set a commit message for the version history.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
+        :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same
+               dashboard uid.
         """
         ...
     @overload
@@ -312,41 +289,7 @@ class Dashboard(pulumi.CustomResource):
                  args: DashboardArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Grafana dashboards.
-
-        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import json
-        import pulumiverse_grafana as grafana
-
-        test_folder = grafana.Folder("testFolder",
-            title="My Folder",
-            uid="my-folder-uid")
-        test_dashboard = grafana.Dashboard("testDashboard",
-            folder=test_folder.uid,
-            config_json=json.dumps({
-                "title": "My Dashboard",
-                "uid": "my-dashboard-uid",
-            }))
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{dashboard_uid}} # To use the default provider org
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/dashboard:Dashboard dashboard_name {{org_id}}:{{dashboard_uid}} # When "org_id" is set on the resource
-        ```
-
+        Create a Dashboard resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DashboardArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -418,10 +361,14 @@ class Dashboard(pulumi.CustomResource):
         :param pulumi.Input[str] folder: The id or UID of the folder to save the dashboard in.
         :param pulumi.Input[str] message: Set a commit message for the version history.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
-        :param pulumi.Input[str] uid: The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
+        :param pulumi.Input[bool] overwrite: Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same
+               dashboard uid.
+        :param pulumi.Input[str] uid: The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided
+               when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards
+               between multiple Grafana installs.
         :param pulumi.Input[str] url: The full URL of the dashboard.
-        :param pulumi.Input[int] version: Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your dashboard are not lost.
+        :param pulumi.Input[int] version: Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your
+               dashboard are not lost.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -482,7 +429,8 @@ class Dashboard(pulumi.CustomResource):
     @pulumi.getter
     def overwrite(self) -> pulumi.Output[Optional[bool]]:
         """
-        Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
+        Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same
+        dashboard uid.
         """
         return pulumi.get(self, "overwrite")
 
@@ -490,7 +438,9 @@ class Dashboard(pulumi.CustomResource):
     @pulumi.getter
     def uid(self) -> pulumi.Output[str]:
         """
-        The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
+        The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided
+        when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards
+        between multiple Grafana installs.
         """
         return pulumi.get(self, "uid")
 
@@ -506,7 +456,8 @@ class Dashboard(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[int]:
         """
-        Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your dashboard are not lost.
+        Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your
+        dashboard are not lost.
         """
         return pulumi.get(self, "version")
 

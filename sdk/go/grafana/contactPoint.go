@@ -11,57 +11,6 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Manages Grafana Alerting contact points.
-//
-// * [Official documentation](https://grafana.com/docs/grafana/next/alerting/fundamentals/contact-points/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#contact-points)
-//
-// This resource requires Grafana 9.1.0 or later.
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.NewContactPoint(ctx, "myContactPoint", &grafana.ContactPointArgs{
-//				Emails: grafana.ContactPointEmailArray{
-//					&grafana.ContactPointEmailArgs{
-//						Addresses: pulumi.StringArray{
-//							pulumi.String("one@company.org"),
-//							pulumi.String("two@company.org"),
-//						},
-//						DisableResolveMessage: pulumi.Bool(false),
-//						Message:               pulumi.String("{{ len .Alerts.Firing }} firing."),
-//						SingleEmail:           pulumi.Bool(true),
-//						Subject:               pulumi.String("{{ template \"default.title\" .}}"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/contactPoint:ContactPoint contact_point_name {{contact_point_name}}
-// ```
 type ContactPoint struct {
 	pulumi.CustomResourceState
 
@@ -81,7 +30,7 @@ type ContactPoint struct {
 	Kafkas ContactPointKafkaArrayOutput `pulumi:"kafkas"`
 	// A contact point that sends notifications to LINE.me.
 	Lines ContactPointLineArrayOutput `pulumi:"lines"`
-	// Name of the responder. Must be specified if username and id are empty.
+	// The name of the contact point.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// A contact point that sends notifications to Grafana On-Call.
 	Oncalls ContactPointOncallArrayOutput `pulumi:"oncalls"`
@@ -109,7 +58,8 @@ type ContactPoint struct {
 	Victorops ContactPointVictoropArrayOutput `pulumi:"victorops"`
 	// A contact point that sends notifications to Cisco Webex.
 	Webexes ContactPointWebexArrayOutput `pulumi:"webexes"`
-	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+	// https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 	Webhooks ContactPointWebhookArrayOutput `pulumi:"webhooks"`
 	// A contact point that sends notifications to WeCom.
 	Wecoms ContactPointWecomArrayOutput `pulumi:"wecoms"`
@@ -161,7 +111,7 @@ type contactPointState struct {
 	Kafkas []ContactPointKafka `pulumi:"kafkas"`
 	// A contact point that sends notifications to LINE.me.
 	Lines []ContactPointLine `pulumi:"lines"`
-	// Name of the responder. Must be specified if username and id are empty.
+	// The name of the contact point.
 	Name *string `pulumi:"name"`
 	// A contact point that sends notifications to Grafana On-Call.
 	Oncalls []ContactPointOncall `pulumi:"oncalls"`
@@ -189,7 +139,8 @@ type contactPointState struct {
 	Victorops []ContactPointVictorop `pulumi:"victorops"`
 	// A contact point that sends notifications to Cisco Webex.
 	Webexes []ContactPointWebex `pulumi:"webexes"`
-	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+	// https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 	Webhooks []ContactPointWebhook `pulumi:"webhooks"`
 	// A contact point that sends notifications to WeCom.
 	Wecoms []ContactPointWecom `pulumi:"wecoms"`
@@ -212,7 +163,7 @@ type ContactPointState struct {
 	Kafkas ContactPointKafkaArrayInput
 	// A contact point that sends notifications to LINE.me.
 	Lines ContactPointLineArrayInput
-	// Name of the responder. Must be specified if username and id are empty.
+	// The name of the contact point.
 	Name pulumi.StringPtrInput
 	// A contact point that sends notifications to Grafana On-Call.
 	Oncalls ContactPointOncallArrayInput
@@ -240,7 +191,8 @@ type ContactPointState struct {
 	Victorops ContactPointVictoropArrayInput
 	// A contact point that sends notifications to Cisco Webex.
 	Webexes ContactPointWebexArrayInput
-	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+	// https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 	Webhooks ContactPointWebhookArrayInput
 	// A contact point that sends notifications to WeCom.
 	Wecoms ContactPointWecomArrayInput
@@ -267,7 +219,7 @@ type contactPointArgs struct {
 	Kafkas []ContactPointKafka `pulumi:"kafkas"`
 	// A contact point that sends notifications to LINE.me.
 	Lines []ContactPointLine `pulumi:"lines"`
-	// Name of the responder. Must be specified if username and id are empty.
+	// The name of the contact point.
 	Name *string `pulumi:"name"`
 	// A contact point that sends notifications to Grafana On-Call.
 	Oncalls []ContactPointOncall `pulumi:"oncalls"`
@@ -295,7 +247,8 @@ type contactPointArgs struct {
 	Victorops []ContactPointVictorop `pulumi:"victorops"`
 	// A contact point that sends notifications to Cisco Webex.
 	Webexes []ContactPointWebex `pulumi:"webexes"`
-	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+	// https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 	Webhooks []ContactPointWebhook `pulumi:"webhooks"`
 	// A contact point that sends notifications to WeCom.
 	Wecoms []ContactPointWecom `pulumi:"wecoms"`
@@ -319,7 +272,7 @@ type ContactPointArgs struct {
 	Kafkas ContactPointKafkaArrayInput
 	// A contact point that sends notifications to LINE.me.
 	Lines ContactPointLineArrayInput
-	// Name of the responder. Must be specified if username and id are empty.
+	// The name of the contact point.
 	Name pulumi.StringPtrInput
 	// A contact point that sends notifications to Grafana On-Call.
 	Oncalls ContactPointOncallArrayInput
@@ -347,7 +300,8 @@ type ContactPointArgs struct {
 	Victorops ContactPointVictoropArrayInput
 	// A contact point that sends notifications to Cisco Webex.
 	Webexes ContactPointWebexArrayInput
-	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+	// https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 	Webhooks ContactPointWebhookArrayInput
 	// A contact point that sends notifications to WeCom.
 	Wecoms ContactPointWecomArrayInput
@@ -480,7 +434,7 @@ func (o ContactPointOutput) Lines() ContactPointLineArrayOutput {
 	return o.ApplyT(func(v *ContactPoint) ContactPointLineArrayOutput { return v.Lines }).(ContactPointLineArrayOutput)
 }
 
-// Name of the responder. Must be specified if username and id are empty.
+// The name of the contact point.
 func (o ContactPointOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContactPoint) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -550,7 +504,8 @@ func (o ContactPointOutput) Webexes() ContactPointWebexArrayOutput {
 	return o.ApplyT(func(v *ContactPoint) ContactPointWebexArrayOutput { return v.Webexes }).(ContactPointWebexArrayOutput)
 }
 
-// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+// https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 func (o ContactPointOutput) Webhooks() ContactPointWebhookArrayOutput {
 	return o.ApplyT(func(v *ContactPoint) ContactPointWebhookArrayOutput { return v.Webhooks }).(ContactPointWebhookArrayOutput)
 }

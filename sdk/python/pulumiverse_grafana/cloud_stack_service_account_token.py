@@ -168,32 +168,7 @@ class CloudStackServiceAccountToken(pulumi.CustomResource):
                  stack_slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages service account tokens of a Grafana Cloud stack using the Cloud API
-        This can be used to bootstrap a management service account token for a new stack
-
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
-
-        Required access policy scopes:
-
-        * stack-service-accounts:write
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        cloud_sa = grafana.CloudStackServiceAccount("cloudSa",
-            stack_slug="<your stack slug>",
-            role="Admin",
-            is_disabled=False)
-        foo = grafana.CloudStackServiceAccountToken("foo", service_account_id=cloud_sa.id)
-        pulumi.export("serviceAccountTokenFooKey", foo.key)
-        ```
-        <!--End PulumiCodeChooser -->
-
+        Create a CloudStackServiceAccountToken resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -204,32 +179,7 @@ class CloudStackServiceAccountToken(pulumi.CustomResource):
                  args: CloudStackServiceAccountTokenArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages service account tokens of a Grafana Cloud stack using the Cloud API
-        This can be used to bootstrap a management service account token for a new stack
-
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
-
-        Required access policy scopes:
-
-        * stack-service-accounts:write
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        cloud_sa = grafana.CloudStackServiceAccount("cloudSa",
-            stack_slug="<your stack slug>",
-            role="Admin",
-            is_disabled=False)
-        foo = grafana.CloudStackServiceAccountToken("foo", service_account_id=cloud_sa.id)
-        pulumi.export("serviceAccountTokenFooKey", foo.key)
-        ```
-        <!--End PulumiCodeChooser -->
-
+        Create a CloudStackServiceAccountToken resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param CloudStackServiceAccountTokenArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

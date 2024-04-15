@@ -6,40 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Manages Grafana Alerting contact points.
- *
- * * [Official documentation](https://grafana.com/docs/grafana/next/alerting/fundamentals/contact-points/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#contact-points)
- *
- * This resource requires Grafana 9.1.0 or later.
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const myContactPoint = new grafana.ContactPoint("myContactPoint", {emails: [{
- *     addresses: [
- *         "one@company.org",
- *         "two@company.org",
- *     ],
- *     disableResolveMessage: false,
- *     message: "{{ len .Alerts.Firing }} firing.",
- *     singleEmail: true,
- *     subject: "{{ template \"default.title\" .}}",
- * }]});
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/contactPoint:ContactPoint contact_point_name {{contact_point_name}}
- * ```
- */
 export class ContactPoint extends pulumi.CustomResource {
     /**
      * Get an existing ContactPoint resource's state with the given name, ID, and optional extra
@@ -101,7 +67,7 @@ export class ContactPoint extends pulumi.CustomResource {
      */
     public readonly lines!: pulumi.Output<outputs.ContactPointLine[] | undefined>;
     /**
-     * Name of the responder. Must be specified if username and id are empty.
+     * The name of the contact point.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -157,7 +123,8 @@ export class ContactPoint extends pulumi.CustomResource {
      */
     public readonly webexes!: pulumi.Output<outputs.ContactPointWebex[] | undefined>;
     /**
-     * A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+     * A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+     * https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
      */
     public readonly webhooks!: pulumi.Output<outputs.ContactPointWebhook[] | undefined>;
     /**
@@ -271,7 +238,7 @@ export interface ContactPointState {
      */
     lines?: pulumi.Input<pulumi.Input<inputs.ContactPointLine>[]>;
     /**
-     * Name of the responder. Must be specified if username and id are empty.
+     * The name of the contact point.
      */
     name?: pulumi.Input<string>;
     /**
@@ -327,7 +294,8 @@ export interface ContactPointState {
      */
     webexes?: pulumi.Input<pulumi.Input<inputs.ContactPointWebex>[]>;
     /**
-     * A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+     * A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+     * https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
      */
     webhooks?: pulumi.Input<pulumi.Input<inputs.ContactPointWebhook>[]>;
     /**
@@ -373,7 +341,7 @@ export interface ContactPointArgs {
      */
     lines?: pulumi.Input<pulumi.Input<inputs.ContactPointLine>[]>;
     /**
-     * Name of the responder. Must be specified if username and id are empty.
+     * The name of the contact point.
      */
     name?: pulumi.Input<string>;
     /**
@@ -429,7 +397,8 @@ export interface ContactPointArgs {
      */
     webexes?: pulumi.Input<pulumi.Input<inputs.ContactPointWebex>[]>;
     /**
-     * A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+     * A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+     * https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
      */
     webhooks?: pulumi.Input<pulumi.Input<inputs.ContactPointWebhook>[]>;
     /**

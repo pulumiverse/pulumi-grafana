@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Inputs
     public sealed class DataSourcePermissionPermissionGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
+        /// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+.
         /// </summary>
         [Input("builtInRole")]
         public Input<string>? BuiltInRole { get; set; }
@@ -26,13 +26,13 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string> Permission { get; set; } = null!;
 
         /// <summary>
-        /// ID of the team to manage permissions for. Defaults to `0`.
+        /// ID of the team to manage permissions for.
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 
         /// <summary>
-        /// ID of the user or service account to manage permissions for. Defaults to `0`.
+        /// ID of the user or service account to manage permissions for.
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }

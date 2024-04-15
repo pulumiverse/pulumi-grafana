@@ -10,98 +10,12 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// Manages Grafana public dashboards.
-    /// 
-    /// **Note:** This resource is available only with Grafana 10.2+.
-    /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-public/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/dashboard_public/)
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using System.Text.Json;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Optional (On-premise, not supported in Grafana Cloud): Create an organization
-    ///     var myOrg = new Grafana.Organization("myOrg");
-    /// 
-    ///     // Create resources (optional: within the organization)
-    ///     var myFolder = new Grafana.Folder("myFolder", new()
-    ///     {
-    ///         OrgId = myOrg.OrgId,
-    ///         Title = "test Folder",
-    ///     });
-    /// 
-    ///     var testDash = new Grafana.Dashboard("testDash", new()
-    ///     {
-    ///         OrgId = myOrg.OrgId,
-    ///         Folder = myFolder.Id,
-    ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///         {
-    ///             ["title"] = "My Terraform Dashboard",
-    ///             ["uid"] = "my-dashboard-uid",
-    ///         }),
-    ///     });
-    /// 
-    ///     var myPublicDashboard = new Grafana.DashboardPublic("myPublicDashboard", new()
-    ///     {
-    ///         OrgId = myOrg.OrgId,
-    ///         DashboardUid = testDash.Uid,
-    ///         Uid = "my-custom-public-uid",
-    ///         AccessToken = "e99e4275da6f410d83760eefa934d8d2",
-    ///         TimeSelectionEnabled = true,
-    ///         IsEnabled = true,
-    ///         AnnotationsEnabled = true,
-    ///         Share = "public",
-    ///     });
-    /// 
-    ///     // Optional (On-premise, not supported in Grafana Cloud): Create an organization
-    ///     var myOrg2 = new Grafana.Organization("myOrg2");
-    /// 
-    ///     var testDash2 = new Grafana.Dashboard("testDash2", new()
-    ///     {
-    ///         OrgId = myOrg2.OrgId,
-    ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///         {
-    ///             ["title"] = "My Terraform Dashboard2",
-    ///             ["uid"] = "my-dashboard-uid2",
-    ///         }),
-    ///     });
-    /// 
-    ///     var myPublicDashboard2 = new Grafana.DashboardPublic("myPublicDashboard2", new()
-    ///     {
-    ///         OrgId = myOrg2.OrgId,
-    ///         DashboardUid = testDash2.Uid,
-    ///         Share = "public",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {{dashboard_uid}}:{{public_dashboard_uid}} # To use the default provider org
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/dashboardPublic:DashboardPublic dashboard_name {org_id}}:{{dashboard_uid}}:{{public_dashboard_uid}} # When "org_id" is set on the resource
-    /// ```
-    /// </summary>
     [GrafanaResourceType("grafana:index/dashboardPublic:DashboardPublic")]
     public partial class DashboardPublic : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
+        /// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
+        /// provided when creating a public dashboard.
         /// </summary>
         [Output("accessToken")]
         public Output<string> AccessToken { get; private set; } = null!;
@@ -143,7 +57,8 @@ namespace Pulumiverse.Grafana
         public Output<bool?> TimeSelectionEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
+        /// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
+        /// dashboard.
         /// </summary>
         [Output("uid")]
         public Output<string> Uid { get; private set; } = null!;
@@ -196,7 +111,8 @@ namespace Pulumiverse.Grafana
     public sealed class DashboardPublicArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
+        /// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
+        /// provided when creating a public dashboard.
         /// </summary>
         [Input("accessToken")]
         public Input<string>? AccessToken { get; set; }
@@ -238,7 +154,8 @@ namespace Pulumiverse.Grafana
         public Input<bool>? TimeSelectionEnabled { get; set; }
 
         /// <summary>
-        /// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
+        /// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
+        /// dashboard.
         /// </summary>
         [Input("uid")]
         public Input<string>? Uid { get; set; }
@@ -252,7 +169,8 @@ namespace Pulumiverse.Grafana
     public sealed class DashboardPublicState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
+        /// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
+        /// provided when creating a public dashboard.
         /// </summary>
         [Input("accessToken")]
         public Input<string>? AccessToken { get; set; }
@@ -294,7 +212,8 @@ namespace Pulumiverse.Grafana
         public Input<bool>? TimeSelectionEnabled { get; set; }
 
         /// <summary>
-        /// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
+        /// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
+        /// dashboard.
         /// </summary>
         [Input("uid")]
         public Input<string>? Uid { get; set; }

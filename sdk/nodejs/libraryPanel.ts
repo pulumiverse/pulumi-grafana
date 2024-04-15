@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Manages Grafana library panels.
- *
- * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/library_element/)
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.LibraryPanel("test", {modelJson: JSON.stringify({
- *     gridPos: {
- *         x: 0,
- *         y: 0,
- *         h: 10,
- *         w: 10,
- *     },
- *     title: "panel",
- *     type: "text",
- *     version: 0,
- * })});
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/libraryPanel:LibraryPanel panel_name {{library_panel_slug}}
- * ```
- */
 export class LibraryPanel extends pulumi.CustomResource {
     /**
      * Get an existing LibraryPanel resource's state with the given name, ID, and optional extra
@@ -110,7 +77,9 @@ export class LibraryPanel extends pulumi.CustomResource {
      */
     public /*out*/ readonly type!: pulumi.Output<string>;
     /**
-     * The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
+     * The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs.
+     * It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for
+     * accessing library panels and when syncing library panels between multiple Grafana installs.
      */
     public readonly uid!: pulumi.Output<string>;
     /**
@@ -223,7 +192,9 @@ export interface LibraryPanelState {
      */
     type?: pulumi.Input<string>;
     /**
-     * The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
+     * The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs.
+     * It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for
+     * accessing library panels and when syncing library panels between multiple Grafana installs.
      */
     uid?: pulumi.Input<string>;
     /**
@@ -257,7 +228,9 @@ export interface LibraryPanelArgs {
      */
     orgId?: pulumi.Input<string>;
     /**
-     * The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
+     * The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs.
+     * It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for
+     * accessing library panels and when syncing library panels between multiple Grafana installs.
      */
     uid?: pulumi.Input<string>;
 }

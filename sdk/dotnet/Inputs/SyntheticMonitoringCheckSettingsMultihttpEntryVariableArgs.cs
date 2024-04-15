@@ -20,19 +20,19 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string>? Attribute { get; set; }
 
         /// <summary>
-        /// The expression of the assertion. Should start with $.
+        /// The expression to when finding the variable. Should start with $. Only use when type is JSON_PATH or REGEX
         /// </summary>
         [Input("expression")]
         public Input<string>? Expression { get; set; }
 
         /// <summary>
-        /// Name of the header to send
+        /// The name of the variable to extract
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+        /// The method of finding the variable value to extract. JSON_PATH, REGEX, CSS_SELECTOR
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

@@ -42,7 +42,7 @@ namespace Pulumiverse.Grafana.Inputs
         }
 
         /// <summary>
-        /// Disable target certificate validation. Defaults to `false`.
+        /// Disable target certificate validation.
         /// </summary>
         [Input("insecureSkipVerify")]
         public Input<bool>? InsecureSkipVerify { get; set; }

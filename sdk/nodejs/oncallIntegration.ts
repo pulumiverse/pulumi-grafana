@@ -6,16 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * * [Official documentation](https://grafana.com/docs/oncall/latest/integrations/)
- * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/oncallIntegration:OncallIntegration integration_name {{integration_id}}
- * ```
- */
 export class OncallIntegration extends pulumi.CustomResource {
     /**
      * Get an existing OncallIntegration resource's state with the given name, ID, and optional extra
@@ -57,7 +47,8 @@ export class OncallIntegration extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
      */
     public readonly teamId!: pulumi.Output<string | undefined>;
     /**
@@ -65,7 +56,9 @@ export class OncallIntegration extends pulumi.CustomResource {
      */
     public readonly templates!: pulumi.Output<outputs.OncallIntegrationTemplates | undefined>;
     /**
-     * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
+     * The type of integration. Can be grafana, grafana_alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog,
+     * pagerduty, pingdom, elastalert, amazon_sns, curler, sentry, formatted_webhook, heartbeat, demo, manual, stackdriver,
+     * uptimerobot, sentry_platform, zabbix, prtg, slack_channel, inbound_email, direct_paging, jira.
      */
     public readonly type!: pulumi.Output<string>;
 
@@ -125,7 +118,8 @@ export interface OncallIntegrationState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
      */
     teamId?: pulumi.Input<string>;
     /**
@@ -133,7 +127,9 @@ export interface OncallIntegrationState {
      */
     templates?: pulumi.Input<inputs.OncallIntegrationTemplates>;
     /**
-     * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
+     * The type of integration. Can be grafana, grafana_alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog,
+     * pagerduty, pingdom, elastalert, amazon_sns, curler, sentry, formatted_webhook, heartbeat, demo, manual, stackdriver,
+     * uptimerobot, sentry_platform, zabbix, prtg, slack_channel, inbound_email, direct_paging, jira.
      */
     type?: pulumi.Input<string>;
 }
@@ -151,7 +147,8 @@ export interface OncallIntegrationArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
      */
     teamId?: pulumi.Input<string>;
     /**
@@ -159,7 +156,9 @@ export interface OncallIntegrationArgs {
      */
     templates?: pulumi.Input<inputs.OncallIntegrationTemplates>;
     /**
-     * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
+     * The type of integration. Can be grafana, grafana_alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog,
+     * pagerduty, pingdom, elastalert, amazon_sns, curler, sentry, formatted_webhook, heartbeat, demo, manual, stackdriver,
+     * uptimerobot, sentry_platform, zabbix, prtg, slack_channel, inbound_email, direct_paging, jira.
      */
     type: pulumi.Input<string>;
 }

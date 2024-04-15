@@ -10,159 +10,11 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// Sets the global notification policy for Grafana.
-    /// 
-    /// !&gt; This resource manages the entire notification policy tree, and will overwrite any existing policies.
-    /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/manage-notifications/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/)
-    /// 
-    /// This resource requires Grafana 9.1.0 or later.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var aContactPoint = new Grafana.ContactPoint("aContactPoint", new()
-    ///     {
-    ///         Emails = new[]
-    ///         {
-    ///             new Grafana.Inputs.ContactPointEmailArgs
-    ///             {
-    ///                 Addresses = new[]
-    ///                 {
-    ///                     "one@company.org",
-    ///                     "two@company.org",
-    ///                 },
-    ///                 Message = "{{ len .Alerts.Firing }} firing.",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    ///     var aMuteTiming = new Grafana.MuteTiming("aMuteTiming", new()
-    ///     {
-    ///         Intervals = new[]
-    ///         {
-    ///             new Grafana.Inputs.MuteTimingIntervalArgs
-    ///             {
-    ///                 Weekdays = new[]
-    ///                 {
-    ///                     "monday",
-    ///                 },
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    ///     var myNotificationPolicy = new Grafana.NotificationPolicy("myNotificationPolicy", new()
-    ///     {
-    ///         GroupBies = new[]
-    ///         {
-    ///             "...",
-    ///         },
-    ///         ContactPoint = aContactPoint.Name,
-    ///         GroupWait = "45s",
-    ///         GroupInterval = "6m",
-    ///         RepeatInterval = "3h",
-    ///         Policies = new[]
-    ///         {
-    ///             new Grafana.Inputs.NotificationPolicyPolicyArgs
-    ///             {
-    ///                 Matchers = new[]
-    ///                 {
-    ///                     new Grafana.Inputs.NotificationPolicyPolicyMatcherArgs
-    ///                     {
-    ///                         Label = "mylabel",
-    ///                         Match = "=",
-    ///                         Value = "myvalue",
-    ///                     },
-    ///                     new Grafana.Inputs.NotificationPolicyPolicyMatcherArgs
-    ///                     {
-    ///                         Label = "alertname",
-    ///                         Match = "=",
-    ///                         Value = "CPU Usage",
-    ///                     },
-    ///                     new Grafana.Inputs.NotificationPolicyPolicyMatcherArgs
-    ///                     {
-    ///                         Label = "Name",
-    ///                         Match = "=~",
-    ///                         Value = "host.*|host-b.*",
-    ///                     },
-    ///                 },
-    ///                 ContactPoint = aContactPoint.Name,
-    ///                 Continue = true,
-    ///                 MuteTimings = new[]
-    ///                 {
-    ///                     aMuteTiming.Name,
-    ///                 },
-    ///                 GroupWait = "45s",
-    ///                 GroupInterval = "6m",
-    ///                 RepeatInterval = "3h",
-    ///                 Policies = new[]
-    ///                 {
-    ///                     new Grafana.Inputs.NotificationPolicyPolicyPolicyArgs
-    ///                     {
-    ///                         Matchers = new[]
-    ///                         {
-    ///                             new Grafana.Inputs.NotificationPolicyPolicyPolicyMatcherArgs
-    ///                             {
-    ///                                 Label = "sublabel",
-    ///                                 Match = "=",
-    ///                                 Value = "subvalue",
-    ///                             },
-    ///                         },
-    ///                         ContactPoint = aContactPoint.Name,
-    ///                         GroupBies = new[]
-    ///                         {
-    ///                             "...",
-    ///                         },
-    ///                     },
-    ///                 },
-    ///             },
-    ///             new Grafana.Inputs.NotificationPolicyPolicyArgs
-    ///             {
-    ///                 Matchers = new[]
-    ///                 {
-    ///                     new Grafana.Inputs.NotificationPolicyPolicyMatcherArgs
-    ///                     {
-    ///                         Label = "anotherlabel",
-    ///                         Match = "=~",
-    ///                         Value = "another value.*",
-    ///                     },
-    ///                 },
-    ///                 ContactPoint = aContactPoint.Name,
-    ///                 GroupBies = new[]
-    ///                 {
-    ///                     "...",
-    ///                 },
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// The policy is a singleton, so the ID is a constant "policy" value.
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/notificationPolicy:NotificationPolicy notification_policy_name "policy"
-    /// ```
-    /// </summary>
     [GrafanaResourceType("grafana:index/notificationPolicy:NotificationPolicy")]
     public partial class NotificationPolicy : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The contact point to route notifications that match this rule to.
+        /// The default contact point to route all unmatched notifications to.
         /// </summary>
         [Output("contactPoint")]
         public Output<string> ContactPoint { get; private set; } = null!;
@@ -174,7 +26,8 @@ namespace Pulumiverse.Grafana
         public Output<bool?> DisableProvenance { get; private set; } = null!;
 
         /// <summary>
-        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
+        /// effectively disabling grouping.
         /// </summary>
         [Output("groupBies")]
         public Output<ImmutableArray<string>> GroupBies { get; private set; } = null!;
@@ -257,7 +110,7 @@ namespace Pulumiverse.Grafana
     public sealed class NotificationPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The contact point to route notifications that match this rule to.
+        /// The default contact point to route all unmatched notifications to.
         /// </summary>
         [Input("contactPoint", required: true)]
         public Input<string> ContactPoint { get; set; } = null!;
@@ -272,7 +125,8 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _groupBies;
 
         /// <summary>
-        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
+        /// effectively disabling grouping.
         /// </summary>
         public InputList<string> GroupBies
         {
@@ -325,7 +179,7 @@ namespace Pulumiverse.Grafana
     public sealed class NotificationPolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The contact point to route notifications that match this rule to.
+        /// The default contact point to route all unmatched notifications to.
         /// </summary>
         [Input("contactPoint")]
         public Input<string>? ContactPoint { get; set; }
@@ -340,7 +194,8 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _groupBies;
 
         /// <summary>
-        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
+        /// effectively disabling grouping.
         /// </summary>
         public InputList<string> GroupBies
         {

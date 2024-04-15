@@ -50,9 +50,6 @@ class GetDashboardsResult:
     @property
     @pulumi.getter(name="folderIds")
     def folder_ids(self) -> Optional[Sequence[int]]:
-        """
-        Numerical IDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `[0]` for General folder), or leave blank to get all dashboards in all folders.
-        """
         return pulumi.get(self, "folder_ids")
 
     @property
@@ -66,25 +63,16 @@ class GetDashboardsResult:
     @property
     @pulumi.getter
     def limit(self) -> Optional[int]:
-        """
-        Maximum number of dashboard search results to return. Defaults to `5000`.
-        """
         return pulumi.get(self, "limit")
 
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[str]:
-        """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        """
         return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence[str]]:
-        """
-        List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
-        """
         return pulumi.get(self, "tags")
 
 
@@ -108,17 +96,7 @@ def get_dashboards(folder_ids: Optional[Sequence[int]] = None,
                    tags: Optional[Sequence[str]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDashboardsResult:
     """
-    Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
-
-    * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-    * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
-    * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
-
-
-    :param Sequence[int] folder_ids: Numerical IDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `[0]` for General folder), or leave blank to get all dashboards in all folders.
-    :param int limit: Maximum number of dashboard search results to return. Defaults to `5000`.
-    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-    :param Sequence[str] tags: List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['folderIds'] = folder_ids
@@ -144,16 +122,6 @@ def get_dashboards_output(folder_ids: Optional[pulumi.Input[Optional[Sequence[in
                           tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDashboardsResult]:
     """
-    Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
-
-    * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-    * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
-    * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
-
-
-    :param Sequence[int] folder_ids: Numerical IDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `[0]` for General folder), or leave blank to get all dashboards in all folders.
-    :param int limit: Maximum number of dashboard search results to return. Defaults to `5000`.
-    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-    :param Sequence[str] tags: List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
+    Use this data source to access information about an existing resource.
     """
     ...

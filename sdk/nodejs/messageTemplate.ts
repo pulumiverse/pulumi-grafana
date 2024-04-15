@@ -4,34 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Manages Grafana Alerting message templates.
- *
- * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/manage-notifications/template-notifications/create-notification-templates/)
- * * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#templates)
- *
- * This resource requires Grafana 9.1.0 or later.
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const myTemplate = new grafana.MessageTemplate("myTemplate", {template: `{{define "My Reusable Template" }}
- *  template content
- * {{ end }}
- * `});
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/messageTemplate:MessageTemplate message_template_name {{message_template_name}}
- * ```
- */
 export class MessageTemplate extends pulumi.CustomResource {
     /**
      * Get an existing MessageTemplate resource's state with the given name, ID, and optional extra

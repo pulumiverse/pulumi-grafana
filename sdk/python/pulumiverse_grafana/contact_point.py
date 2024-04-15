@@ -50,7 +50,7 @@ class ContactPointArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]] googlechats: A contact point that sends notifications to Google Chat.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]] lines: A contact point that sends notifications to LINE.me.
-        :param pulumi.Input[str] name: Name of the responder. Must be specified if username and id are empty.
+        :param pulumi.Input[str] name: The name of the contact point.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]] oncalls: A contact point that sends notifications to Grafana On-Call.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyArgs']]] opsgenies: A contact point that sends notifications to OpsGenie.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -64,7 +64,8 @@ class ContactPointArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointThreemaArgs']]] threemas: A contact point that sends notifications to Threema.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointVictoropArgs']]] victorops: A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointWebexArgs']]] webexes: A contact point that sends notifications to Cisco Webex.
-        :param pulumi.Input[Sequence[pulumi.Input['ContactPointWebhookArgs']]] webhooks: A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+        :param pulumi.Input[Sequence[pulumi.Input['ContactPointWebhookArgs']]] webhooks: A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+               https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointWecomArgs']]] wecoms: A contact point that sends notifications to WeCom.
         """
         if alertmanagers is not None:
@@ -216,7 +217,7 @@ class ContactPointArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the responder. Must be specified if username and id are empty.
+        The name of the contact point.
         """
         return pulumi.get(self, "name")
 
@@ -384,7 +385,8 @@ class ContactPointArgs:
     @pulumi.getter
     def webhooks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointWebhookArgs']]]]:
         """
-        A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+        A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+        https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
         """
         return pulumi.get(self, "webhooks")
 
@@ -442,7 +444,7 @@ class _ContactPointState:
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]] googlechats: A contact point that sends notifications to Google Chat.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]] lines: A contact point that sends notifications to LINE.me.
-        :param pulumi.Input[str] name: Name of the responder. Must be specified if username and id are empty.
+        :param pulumi.Input[str] name: The name of the contact point.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointOncallArgs']]] oncalls: A contact point that sends notifications to Grafana On-Call.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyArgs']]] opsgenies: A contact point that sends notifications to OpsGenie.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -456,7 +458,8 @@ class _ContactPointState:
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointThreemaArgs']]] threemas: A contact point that sends notifications to Threema.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointVictoropArgs']]] victorops: A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointWebexArgs']]] webexes: A contact point that sends notifications to Cisco Webex.
-        :param pulumi.Input[Sequence[pulumi.Input['ContactPointWebhookArgs']]] webhooks: A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+        :param pulumi.Input[Sequence[pulumi.Input['ContactPointWebhookArgs']]] webhooks: A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+               https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointWecomArgs']]] wecoms: A contact point that sends notifications to WeCom.
         """
         if alertmanagers is not None:
@@ -608,7 +611,7 @@ class _ContactPointState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the responder. Must be specified if username and id are empty.
+        The name of the contact point.
         """
         return pulumi.get(self, "name")
 
@@ -776,7 +779,8 @@ class _ContactPointState:
     @pulumi.getter
     def webhooks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointWebhookArgs']]]]:
         """
-        A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+        A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+        https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
         """
         return pulumi.get(self, "webhooks")
 
@@ -828,39 +832,7 @@ class ContactPoint(pulumi.CustomResource):
                  wecoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWecomArgs']]]]] = None,
                  __props__=None):
         """
-        Manages Grafana Alerting contact points.
-
-        * [Official documentation](https://grafana.com/docs/grafana/next/alerting/fundamentals/contact-points/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#contact-points)
-
-        This resource requires Grafana 9.1.0 or later.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        my_contact_point = grafana.ContactPoint("myContactPoint", emails=[grafana.ContactPointEmailArgs(
-            addresses=[
-                "one@company.org",
-                "two@company.org",
-            ],
-            disable_resolve_message=False,
-            message="{{ len .Alerts.Firing }} firing.",
-            single_email=True,
-            subject="{{ template \\"default.title\\" .}}",
-        )])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/contactPoint:ContactPoint contact_point_name {{contact_point_name}}
-        ```
-
+        Create a ContactPoint resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointAlertmanagerArgs']]]] alertmanagers: A contact point that sends notifications to other Alertmanager instances.
@@ -871,7 +843,7 @@ class ContactPoint(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]] googlechats: A contact point that sends notifications to Google Chat.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]] lines: A contact point that sends notifications to LINE.me.
-        :param pulumi.Input[str] name: Name of the responder. Must be specified if username and id are empty.
+        :param pulumi.Input[str] name: The name of the contact point.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]] oncalls: A contact point that sends notifications to Grafana On-Call.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]] opsgenies: A contact point that sends notifications to OpsGenie.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -885,7 +857,8 @@ class ContactPoint(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]] threemas: A contact point that sends notifications to Threema.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointVictoropArgs']]]] victorops: A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebexArgs']]]] webexes: A contact point that sends notifications to Cisco Webex.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebhookArgs']]]] webhooks: A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebhookArgs']]]] webhooks: A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+               https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWecomArgs']]]] wecoms: A contact point that sends notifications to WeCom.
         """
         ...
@@ -895,39 +868,7 @@ class ContactPoint(pulumi.CustomResource):
                  args: Optional[ContactPointArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Grafana Alerting contact points.
-
-        * [Official documentation](https://grafana.com/docs/grafana/next/alerting/fundamentals/contact-points/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#contact-points)
-
-        This resource requires Grafana 9.1.0 or later.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        my_contact_point = grafana.ContactPoint("myContactPoint", emails=[grafana.ContactPointEmailArgs(
-            addresses=[
-                "one@company.org",
-                "two@company.org",
-            ],
-            disable_resolve_message=False,
-            message="{{ len .Alerts.Firing }} firing.",
-            single_email=True,
-            subject="{{ template \\"default.title\\" .}}",
-        )])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/contactPoint:ContactPoint contact_point_name {{contact_point_name}}
-        ```
-
+        Create a ContactPoint resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param ContactPointArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1049,7 +990,7 @@ class ContactPoint(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]] googlechats: A contact point that sends notifications to Google Chat.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]] lines: A contact point that sends notifications to LINE.me.
-        :param pulumi.Input[str] name: Name of the responder. Must be specified if username and id are empty.
+        :param pulumi.Input[str] name: The name of the contact point.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]] oncalls: A contact point that sends notifications to Grafana On-Call.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]] opsgenies: A contact point that sends notifications to OpsGenie.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -1063,7 +1004,8 @@ class ContactPoint(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]] threemas: A contact point that sends notifications to Threema.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointVictoropArgs']]]] victorops: A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebexArgs']]]] webexes: A contact point that sends notifications to Cisco Webex.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebhookArgs']]]] webhooks: A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebhookArgs']]]] webhooks: A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+               https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWecomArgs']]]] wecoms: A contact point that sends notifications to WeCom.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1164,7 +1106,7 @@ class ContactPoint(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Name of the responder. Must be specified if username and id are empty.
+        The name of the contact point.
         """
         return pulumi.get(self, "name")
 
@@ -1276,7 +1218,8 @@ class ContactPoint(pulumi.CustomResource):
     @pulumi.getter
     def webhooks(self) -> pulumi.Output[Optional[Sequence['outputs.ContactPointWebhook']]]:
         """
-        A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+        A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+        https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
         """
         return pulumi.get(self, "webhooks")
 

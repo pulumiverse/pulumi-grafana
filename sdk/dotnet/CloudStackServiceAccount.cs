@@ -10,45 +10,11 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// Manages service accounts of a Grafana Cloud stack using the Cloud API
-    /// This can be used to bootstrap a management service account for a new stack
-    /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
-    /// 
-    /// Required access policy scopes:
-    /// 
-    /// * stacks:read
-    /// * stack-service-accounts:write
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var cloudSa = new Grafana.CloudStackServiceAccount("cloudSa", new()
-    ///     {
-    ///         IsDisabled = false,
-    ///         Role = "Admin",
-    ///         StackSlug = "&lt;your stack slug&gt;",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// </summary>
     [GrafanaResourceType("grafana:index/cloudStackServiceAccount:CloudStackServiceAccount")]
     public partial class CloudStackServiceAccount : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The disabled status for the service account. Defaults to `false`.
+        /// The disabled status for the service account.
         /// </summary>
         [Output("isDisabled")]
         public Output<bool?> IsDisabled { get; private set; } = null!;
@@ -116,7 +82,7 @@ namespace Pulumiverse.Grafana
     public sealed class CloudStackServiceAccountArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The disabled status for the service account. Defaults to `false`.
+        /// The disabled status for the service account.
         /// </summary>
         [Input("isDisabled")]
         public Input<bool>? IsDisabled { get; set; }
@@ -145,7 +111,7 @@ namespace Pulumiverse.Grafana
     public sealed class CloudStackServiceAccountState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The disabled status for the service account. Defaults to `false`.
+        /// The disabled status for the service account.
         /// </summary>
         [Input("isDisabled")]
         public Input<bool>? IsDisabled { get; set; }

@@ -27,7 +27,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? AllowedDomains;
         /// <summary>
-        /// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+        /// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed_groups, you must also configure groups_attribute_path.
         /// </summary>
         public readonly string? AllowedGroups;
         /// <summary>
@@ -39,7 +39,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? ApiUrl;
         /// <summary>
-        /// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+        /// It determines how client_id and client_secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
         /// </summary>
         public readonly string? AuthStyle;
         /// <summary>
@@ -59,7 +59,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? ClientSecret;
         /// <summary>
-        /// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+        /// Custom fields to configure for OAuth2 such as the [force_use_graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Custom;
         /// <summary>
@@ -83,11 +83,11 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly bool? EmptyScopes;
         /// <summary>
-        /// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+        /// Define whether this configuration is enabled for the specified provider.
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>
-        /// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+        /// JMESPath expression to use for user group lookup. If you configure allowed_groups, you must also configure groups_attribute_path.
         /// </summary>
         public readonly string? GroupsAttributePath;
         /// <summary>
@@ -127,7 +127,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly bool? SkipOrgRoleSync;
         /// <summary>
-        /// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+        /// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team_ids, you must also configure teams_url and team_ids_attribute_path.
         /// </summary>
         public readonly string? TeamIds;
         /// <summary>
@@ -135,7 +135,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? TeamIdsAttributePath;
         /// <summary>
-        /// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+        /// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams_url, you must also configure team_ids_attribute_path. Only applicable to Generic OAuth.
         /// </summary>
         public readonly string? TeamsUrl;
         /// <summary>

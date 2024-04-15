@@ -32,7 +32,7 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// The user name to use when making a call to the Kafka REST Proxy
+        /// User name of the responder. Must be specified if name and id are empty.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }

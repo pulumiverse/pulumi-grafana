@@ -19,23 +19,23 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Addresses;
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages.
         /// </summary>
         public readonly bool? DisableResolveMessage;
         /// <summary>
-        /// The templated content of the email. Defaults to ``.
+        /// The templated content of the email.
         /// </summary>
         public readonly string? Message;
         /// <summary>
-        /// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        /// Additional custom properties to attach to the notifier.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Settings;
         /// <summary>
-        /// Whether to send a single email CC'ing all addresses, rather than a separate email to each address. Defaults to `false`.
+        /// Whether to send a single email CC'ing all addresses, rather than a separate email to each address.
         /// </summary>
         public readonly bool? SingleEmail;
         /// <summary>
-        /// The templated subject line of the email. Defaults to ``.
+        /// The templated subject line of the email.
         /// </summary>
         public readonly string? Subject;
         /// <summary>

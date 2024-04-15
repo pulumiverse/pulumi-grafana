@@ -19,15 +19,15 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? Attribute;
         /// <summary>
-        /// The expression of the assertion. Should start with $.
+        /// The expression to when finding the variable. Should start with $. Only use when type is JSON_PATH or REGEX
         /// </summary>
         public readonly string? Expression;
         /// <summary>
-        /// Name of the header to send
+        /// The name of the variable to extract
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+        /// The method of finding the variable value to extract. JSON_PATH, REGEX, CSS_SELECTOR
         /// </summary>
         public readonly string Type;
 

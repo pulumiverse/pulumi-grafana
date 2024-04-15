@@ -12,79 +12,9 @@ namespace Pulumiverse.Grafana
 {
     public static class GetTeam
     {
-        /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// using Grafana = Pulumiverse.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = new Grafana.Team("test", new()
-        ///     {
-        ///         Email = "test-team-email@test.com",
-        ///         Preferences = new Grafana.Inputs.TeamPreferencesArgs
-        ///         {
-        ///             Theme = "dark",
-        ///             Timezone = "utc",
-        ///         },
-        ///     });
-        /// 
-        ///     var fromName = Grafana.GetTeam.Invoke(new()
-        ///     {
-        ///         Name = test.Name,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Task<GetTeamResult> InvokeAsync(GetTeamArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTeamResult>("grafana:index/getTeam:getTeam", args ?? new GetTeamArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// using Grafana = Pulumiverse.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = new Grafana.Team("test", new()
-        ///     {
-        ///         Email = "test-team-email@test.com",
-        ///         Preferences = new Grafana.Inputs.TeamPreferencesArgs
-        ///         {
-        ///             Theme = "dark",
-        ///             Timezone = "utc",
-        ///         },
-        ///     });
-        /// 
-        ///     var fromName = Grafana.GetTeam.Invoke(new()
-        ///     {
-        ///         Name = test.Name,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Output<GetTeamResult> Invoke(GetTeamInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTeamResult>("grafana:index/getTeam:getTeam", args ?? new GetTeamInvokeArgs(), options.WithDefaults());
     }

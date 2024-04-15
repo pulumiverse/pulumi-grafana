@@ -19,9 +19,6 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("escalationChainId")]
         public Input<string>? EscalationChainId { get; set; }
 
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
