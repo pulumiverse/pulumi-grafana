@@ -26,13 +26,13 @@ namespace Pulumiverse.Grafana.Inputs
         }
 
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages.
         /// </summary>
         [Input("disableResolveMessage")]
         public Input<bool>? DisableResolveMessage { get; set; }
 
         /// <summary>
-        /// The templated content of the email. Defaults to ``.
+        /// The templated content of the email.
         /// </summary>
         [Input("message")]
         public Input<string>? Message { get; set; }
@@ -41,7 +41,7 @@ namespace Pulumiverse.Grafana.Inputs
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        /// Additional custom properties to attach to the notifier.
         /// </summary>
         public InputMap<string> Settings
         {
@@ -54,13 +54,13 @@ namespace Pulumiverse.Grafana.Inputs
         }
 
         /// <summary>
-        /// Whether to send a single email CC'ing all addresses, rather than a separate email to each address. Defaults to `false`.
+        /// Whether to send a single email CC'ing all addresses, rather than a separate email to each address.
         /// </summary>
         [Input("singleEmail")]
         public Input<bool>? SingleEmail { get; set; }
 
         /// <summary>
-        /// The templated subject line of the email. Defaults to ``.
+        /// The templated subject line of the email.
         /// </summary>
         [Input("subject")]
         public Input<string>? Subject { get; set; }

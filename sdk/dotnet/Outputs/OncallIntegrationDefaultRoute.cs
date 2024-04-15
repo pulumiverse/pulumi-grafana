@@ -18,9 +18,6 @@ namespace Pulumiverse.Grafana.Outputs
         /// The ID of the escalation chain.
         /// </summary>
         public readonly string? EscalationChainId;
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         public readonly string? Id;
         /// <summary>
         /// MS teams-specific settings for a route.

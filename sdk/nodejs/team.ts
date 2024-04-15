@@ -6,39 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const viewer = new grafana.User("viewer", {
- *     email: "viewer@example.com",
- *     login: "viewer",
- *     password: "my-password",
- * });
- * const test_team = new grafana.Team("test-team", {
- *     email: "teamemail@example.com",
- *     members: [viewer.email],
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/team:Team team_name {{team_id}} # To use the default provider org
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/team:Team team_name {{org_id}}:{{team_id}} # When "org_id" is set on the resource
- * ```
- */
 export class Team extends pulumi.CustomResource {
     /**
      * Get an existing Team resource's state with the given name, ID, and optional extra

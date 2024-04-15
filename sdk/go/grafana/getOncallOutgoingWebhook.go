@@ -11,35 +11,6 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.LookupOncallOutgoingWebhook(ctx, &grafana.LookupOncallOutgoingWebhookArgs{
-//				Name: "example_outgoing_webhook",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
 func LookupOncallOutgoingWebhook(ctx *pulumi.Context, args *LookupOncallOutgoingWebhookArgs, opts ...pulumi.InvokeOption) (*LookupOncallOutgoingWebhookResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOncallOutgoingWebhookResult
@@ -52,15 +23,13 @@ func LookupOncallOutgoingWebhook(ctx *pulumi.Context, args *LookupOncallOutgoing
 
 // A collection of arguments for invoking getOncallOutgoingWebhook.
 type LookupOncallOutgoingWebhookArgs struct {
-	// The outgoing webhook name.
 	Name string `pulumi:"name"`
 }
 
 // A collection of values returned by getOncallOutgoingWebhook.
 type LookupOncallOutgoingWebhookResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// The outgoing webhook name.
+	Id   string `pulumi:"id"`
 	Name string `pulumi:"name"`
 }
 
@@ -79,7 +48,6 @@ func LookupOncallOutgoingWebhookOutput(ctx *pulumi.Context, args LookupOncallOut
 
 // A collection of arguments for invoking getOncallOutgoingWebhook.
 type LookupOncallOutgoingWebhookOutputArgs struct {
-	// The outgoing webhook name.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -107,7 +75,6 @@ func (o LookupOncallOutgoingWebhookResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOncallOutgoingWebhookResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The outgoing webhook name.
 func (o LookupOncallOutgoingWebhookResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOncallOutgoingWebhookResult) string { return v.Name }).(pulumi.StringOutput)
 }

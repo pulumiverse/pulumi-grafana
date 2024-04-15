@@ -27,15 +27,16 @@ class MachineLearningOutlierDetectorArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MachineLearningOutlierDetector resource.
-        :param pulumi.Input['MachineLearningOutlierDetectorAlgorithmArgs'] algorithm: The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        :param pulumi.Input['MachineLearningOutlierDetectorAlgorithmArgs'] algorithm: The algorithm to use and its configuration. See
+               https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] metric: The metric used to query the outlier detector results.
         :param pulumi.Input[Mapping[str, Any]] query_params: An object representing the query params to query Grafana with.
         :param pulumi.Input[int] datasource_id: The id of the datasource to query.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the outlier detector.
-        :param pulumi.Input[int] interval: The data interval in seconds to monitor. Defaults to `300`.
-        :param pulumi.Input[str] name: The name of the algorithm to use ('mad' or 'dbscan').
+        :param pulumi.Input[int] interval: The data interval in seconds to monitor.
+        :param pulumi.Input[str] name: The name of the outlier detector.
         """
         pulumi.set(__self__, "algorithm", algorithm)
         pulumi.set(__self__, "datasource_type", datasource_type)
@@ -56,7 +57,8 @@ class MachineLearningOutlierDetectorArgs:
     @pulumi.getter
     def algorithm(self) -> pulumi.Input['MachineLearningOutlierDetectorAlgorithmArgs']:
         """
-        The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        The algorithm to use and its configuration. See
+        https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         """
         return pulumi.get(self, "algorithm")
 
@@ -140,7 +142,7 @@ class MachineLearningOutlierDetectorArgs:
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[int]]:
         """
-        The data interval in seconds to monitor. Defaults to `300`.
+        The data interval in seconds to monitor.
         """
         return pulumi.get(self, "interval")
 
@@ -152,7 +154,7 @@ class MachineLearningOutlierDetectorArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the algorithm to use ('mad' or 'dbscan').
+        The name of the outlier detector.
         """
         return pulumi.get(self, "name")
 
@@ -175,14 +177,15 @@ class _MachineLearningOutlierDetectorState:
                  query_params: Optional[pulumi.Input[Mapping[str, Any]]] = None):
         """
         Input properties used for looking up and filtering MachineLearningOutlierDetector resources.
-        :param pulumi.Input['MachineLearningOutlierDetectorAlgorithmArgs'] algorithm: The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        :param pulumi.Input['MachineLearningOutlierDetectorAlgorithmArgs'] algorithm: The algorithm to use and its configuration. See
+               https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         :param pulumi.Input[int] datasource_id: The id of the datasource to query.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the outlier detector.
-        :param pulumi.Input[int] interval: The data interval in seconds to monitor. Defaults to `300`.
+        :param pulumi.Input[int] interval: The data interval in seconds to monitor.
         :param pulumi.Input[str] metric: The metric used to query the outlier detector results.
-        :param pulumi.Input[str] name: The name of the algorithm to use ('mad' or 'dbscan').
+        :param pulumi.Input[str] name: The name of the outlier detector.
         :param pulumi.Input[Mapping[str, Any]] query_params: An object representing the query params to query Grafana with.
         """
         if algorithm is not None:
@@ -208,7 +211,8 @@ class _MachineLearningOutlierDetectorState:
     @pulumi.getter
     def algorithm(self) -> Optional[pulumi.Input['MachineLearningOutlierDetectorAlgorithmArgs']]:
         """
-        The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        The algorithm to use and its configuration. See
+        https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         """
         return pulumi.get(self, "algorithm")
 
@@ -268,7 +272,7 @@ class _MachineLearningOutlierDetectorState:
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[int]]:
         """
-        The data interval in seconds to monitor. Defaults to `300`.
+        The data interval in seconds to monitor.
         """
         return pulumi.get(self, "interval")
 
@@ -292,7 +296,7 @@ class _MachineLearningOutlierDetectorState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the algorithm to use ('mad' or 'dbscan').
+        The name of the outlier detector.
         """
         return pulumi.get(self, "name")
 
@@ -329,22 +333,18 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
                  query_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  __props__=None):
         """
-        An outlier detector monitors the results of a query and reports when its values are outside normal bands.
-
-        The normal band is configured by choice of algorithm, its sensitivity and other configuration.
-
-        Visit https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for more details.
-
+        Create a MachineLearningOutlierDetector resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['MachineLearningOutlierDetectorAlgorithmArgs']] algorithm: The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        :param pulumi.Input[pulumi.InputType['MachineLearningOutlierDetectorAlgorithmArgs']] algorithm: The algorithm to use and its configuration. See
+               https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         :param pulumi.Input[int] datasource_id: The id of the datasource to query.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the outlier detector.
-        :param pulumi.Input[int] interval: The data interval in seconds to monitor. Defaults to `300`.
+        :param pulumi.Input[int] interval: The data interval in seconds to monitor.
         :param pulumi.Input[str] metric: The metric used to query the outlier detector results.
-        :param pulumi.Input[str] name: The name of the algorithm to use ('mad' or 'dbscan').
+        :param pulumi.Input[str] name: The name of the outlier detector.
         :param pulumi.Input[Mapping[str, Any]] query_params: An object representing the query params to query Grafana with.
         """
         ...
@@ -354,12 +354,7 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
                  args: MachineLearningOutlierDetectorArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        An outlier detector monitors the results of a query and reports when its values are outside normal bands.
-
-        The normal band is configured by choice of algorithm, its sensitivity and other configuration.
-
-        Visit https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for more details.
-
+        Create a MachineLearningOutlierDetector resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param MachineLearningOutlierDetectorArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -436,14 +431,15 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['MachineLearningOutlierDetectorAlgorithmArgs']] algorithm: The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        :param pulumi.Input[pulumi.InputType['MachineLearningOutlierDetectorAlgorithmArgs']] algorithm: The algorithm to use and its configuration. See
+               https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         :param pulumi.Input[int] datasource_id: The id of the datasource to query.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the outlier detector.
-        :param pulumi.Input[int] interval: The data interval in seconds to monitor. Defaults to `300`.
+        :param pulumi.Input[int] interval: The data interval in seconds to monitor.
         :param pulumi.Input[str] metric: The metric used to query the outlier detector results.
-        :param pulumi.Input[str] name: The name of the algorithm to use ('mad' or 'dbscan').
+        :param pulumi.Input[str] name: The name of the outlier detector.
         :param pulumi.Input[Mapping[str, Any]] query_params: An object representing the query params to query Grafana with.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -465,7 +461,8 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
     @pulumi.getter
     def algorithm(self) -> pulumi.Output['outputs.MachineLearningOutlierDetectorAlgorithm']:
         """
-        The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        The algorithm to use and its configuration. See
+        https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         """
         return pulumi.get(self, "algorithm")
 
@@ -505,7 +502,7 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
     @pulumi.getter
     def interval(self) -> pulumi.Output[Optional[int]]:
         """
-        The data interval in seconds to monitor. Defaults to `300`.
+        The data interval in seconds to monitor.
         """
         return pulumi.get(self, "interval")
 
@@ -521,7 +518,7 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the algorithm to use ('mad' or 'dbscan').
+        The name of the outlier detector.
         """
         return pulumi.get(self, "name")
 

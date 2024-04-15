@@ -11,53 +11,6 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
-//
-// This data source uses Grafana's admin APIs for reading users which
-// does not currently work with API Tokens. You must use basic auth.
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			test, err := grafana.NewUser(ctx, "test", &grafana.UserArgs{
-//				Email:    pulumi.String("test.datasource@example.com"),
-//				Login:    pulumi.String("test-datasource"),
-//				Password: pulumi.String("my-password"),
-//				IsAdmin:  pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = grafana.LookupUserOutput(ctx, grafana.GetUserOutputArgs{
-//				UserId: test.UserId,
-//			}, nil)
-//			_ = grafana.LookupUserOutput(ctx, grafana.GetUserOutputArgs{
-//				Email: test.Email,
-//			}, nil)
-//			_ = test.Login.ApplyT(func(login *string) (grafana.GetUserResult, error) {
-//				return grafana.LookupUserOutput(ctx, grafana.GetUserOutputArgs{
-//					Login: login,
-//				}, nil), nil
-//			}).(grafana.GetUserResultOutput)
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
 func LookupUser(ctx *pulumi.Context, args *LookupUserArgs, opts ...pulumi.InvokeOption) (*LookupUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupUserResult
@@ -70,28 +23,20 @@ func LookupUser(ctx *pulumi.Context, args *LookupUserArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getUser.
 type LookupUserArgs struct {
-	// The email address of the Grafana user. Defaults to ``.
-	Email *string `pulumi:"email"`
-	// The username for the Grafana user. Defaults to ``.
-	Login *string `pulumi:"login"`
-	// The numerical ID of the Grafana user. Defaults to `-1`.
-	UserId *int `pulumi:"userId"`
+	Email  *string `pulumi:"email"`
+	Login  *string `pulumi:"login"`
+	UserId *int    `pulumi:"userId"`
 }
 
 // A collection of values returned by getUser.
 type LookupUserResult struct {
-	// The email address of the Grafana user. Defaults to ``.
 	Email *string `pulumi:"email"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Whether the user is an admin.
-	IsAdmin bool `pulumi:"isAdmin"`
-	// The username for the Grafana user. Defaults to ``.
-	Login *string `pulumi:"login"`
-	// The display name for the Grafana user.
-	Name string `pulumi:"name"`
-	// The numerical ID of the Grafana user. Defaults to `-1`.
-	UserId *int `pulumi:"userId"`
+	Id      string  `pulumi:"id"`
+	IsAdmin bool    `pulumi:"isAdmin"`
+	Login   *string `pulumi:"login"`
+	Name    string  `pulumi:"name"`
+	UserId  *int    `pulumi:"userId"`
 }
 
 func LookupUserOutput(ctx *pulumi.Context, args LookupUserOutputArgs, opts ...pulumi.InvokeOption) LookupUserResultOutput {
@@ -109,12 +54,9 @@ func LookupUserOutput(ctx *pulumi.Context, args LookupUserOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getUser.
 type LookupUserOutputArgs struct {
-	// The email address of the Grafana user. Defaults to ``.
-	Email pulumi.StringPtrInput `pulumi:"email"`
-	// The username for the Grafana user. Defaults to ``.
-	Login pulumi.StringPtrInput `pulumi:"login"`
-	// The numerical ID of the Grafana user. Defaults to `-1`.
-	UserId pulumi.IntPtrInput `pulumi:"userId"`
+	Email  pulumi.StringPtrInput `pulumi:"email"`
+	Login  pulumi.StringPtrInput `pulumi:"login"`
+	UserId pulumi.IntPtrInput    `pulumi:"userId"`
 }
 
 func (LookupUserOutputArgs) ElementType() reflect.Type {
@@ -136,7 +78,6 @@ func (o LookupUserResultOutput) ToLookupUserResultOutputWithContext(ctx context.
 	return o
 }
 
-// The email address of the Grafana user. Defaults to “.
 func (o LookupUserResultOutput) Email() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupUserResult) *string { return v.Email }).(pulumi.StringPtrOutput)
 }
@@ -146,22 +87,18 @@ func (o LookupUserResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupUserResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Whether the user is an admin.
 func (o LookupUserResultOutput) IsAdmin() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupUserResult) bool { return v.IsAdmin }).(pulumi.BoolOutput)
 }
 
-// The username for the Grafana user. Defaults to “.
 func (o LookupUserResultOutput) Login() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupUserResult) *string { return v.Login }).(pulumi.StringPtrOutput)
 }
 
-// The display name for the Grafana user.
 func (o LookupUserResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupUserResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The numerical ID of the Grafana user. Defaults to `-1`.
 func (o LookupUserResultOutput) UserId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupUserResult) *int { return v.UserId }).(pulumi.IntPtrOutput)
 }

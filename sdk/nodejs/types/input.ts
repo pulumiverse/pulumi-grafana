@@ -34,11 +34,11 @@ export interface ContactPointAlertmanager {
      */
     basicAuthUser?: pulumi.Input<string>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -53,7 +53,7 @@ export interface ContactPointAlertmanager {
 
 export interface ContactPointDingding {
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -65,7 +65,7 @@ export interface ContactPointDingding {
      */
     messageType?: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -84,19 +84,19 @@ export interface ContactPointDingding {
 
 export interface ContactPointDiscord {
     /**
-     * The URL of a custom avatar image to use. Defaults to ``.
+     * The URL of a custom avatar image to use.
      */
     avatarUrl?: pulumi.Input<string>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
-     * The templated content of the message. Defaults to ``.
+     * The templated content of the message.
      */
     message?: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -112,7 +112,7 @@ export interface ContactPointDiscord {
      */
     url: pulumi.Input<string>;
     /**
-     * Whether to use the bot account's plain username instead of "Grafana." Defaults to `false`.
+     * Whether to use the bot account's plain username instead of "Grafana."
      */
     useDiscordUsername?: pulumi.Input<boolean>;
 }
@@ -123,23 +123,23 @@ export interface ContactPointEmail {
      */
     addresses: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
-     * The templated content of the email. Defaults to ``.
+     * The templated content of the email.
      */
     message?: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Whether to send a single email CC'ing all addresses, rather than a separate email to each address. Defaults to `false`.
+     * Whether to send a single email CC'ing all addresses, rather than a separate email to each address.
      */
     singleEmail?: pulumi.Input<boolean>;
     /**
-     * The templated subject line of the email. Defaults to ``.
+     * The templated subject line of the email.
      */
     subject?: pulumi.Input<string>;
     /**
@@ -150,7 +150,7 @@ export interface ContactPointEmail {
 
 export interface ContactPointGooglechat {
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -158,7 +158,7 @@ export interface ContactPointGooglechat {
      */
     message?: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -177,7 +177,7 @@ export interface ContactPointGooglechat {
 
 export interface ContactPointKafka {
     /**
-     * The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+     * The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3.
      */
     apiVersion?: pulumi.Input<string>;
     /**
@@ -193,7 +193,7 @@ export interface ContactPointKafka {
      */
     details?: pulumi.Input<string>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -205,7 +205,7 @@ export interface ContactPointKafka {
      */
     restProxyUrl: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -228,11 +228,11 @@ export interface ContactPointLine {
      */
     description?: pulumi.Input<string>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -267,7 +267,7 @@ export interface ContactPointOncall {
      */
     basicAuthUser?: pulumi.Input<string>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -283,7 +283,7 @@ export interface ContactPointOncall {
      */
     message?: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -314,7 +314,7 @@ export interface ContactPointOpsgeny {
      */
     description?: pulumi.Input<string>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -334,7 +334,7 @@ export interface ContactPointOpsgeny {
      */
     sendTagsAs?: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -361,7 +361,7 @@ export interface ContactPointOpsgenyResponder {
      */
     type: pulumi.Input<string>;
     /**
-     * The user name to use when making a call to the Kafka REST Proxy
+     * User name of the responder. Must be specified if name and id are empty.
      */
     username?: pulumi.Input<string>;
 }
@@ -388,7 +388,7 @@ export interface ContactPointPagerduty {
      */
     details?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -400,7 +400,7 @@ export interface ContactPointPagerduty {
      */
     integrationKey: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -431,7 +431,7 @@ export interface ContactPointPushover {
      */
     device?: pulumi.Input<string>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -459,7 +459,7 @@ export interface ContactPointPushover {
      */
     retry?: pulumi.Input<number>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -494,7 +494,7 @@ export interface ContactPointSensugo {
      */
     check?: pulumi.Input<string>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -514,7 +514,7 @@ export interface ContactPointSensugo {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -529,7 +529,7 @@ export interface ContactPointSensugo {
 
 export interface ContactPointSlack {
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -561,7 +561,7 @@ export interface ContactPointSlack {
      */
     recipient?: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -600,12 +600,12 @@ export interface ContactPointSn {
      */
     assumeRoleArn?: pulumi.Input<string>;
     /**
-     * The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+     * The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`.
      */
     authProvider?: pulumi.Input<string>;
     body?: pulumi.Input<string>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -613,7 +613,7 @@ export interface ContactPointSn {
      */
     externalId?: pulumi.Input<string>;
     /**
-     * The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+     * The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`.
      */
     messageFormat?: pulumi.Input<string>;
     /**
@@ -621,7 +621,7 @@ export interface ContactPointSn {
      */
     secretKey?: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     subject?: pulumi.Input<string>;
@@ -637,7 +637,7 @@ export interface ContactPointSn {
 
 export interface ContactPointTeam {
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -649,7 +649,7 @@ export interface ContactPointTeam {
      */
     sectionTitle?: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -676,7 +676,7 @@ export interface ContactPointTelegram {
      */
     disableNotifications?: pulumi.Input<boolean>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -696,7 +696,7 @@ export interface ContactPointTelegram {
      */
     protectContent?: pulumi.Input<boolean>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -719,7 +719,7 @@ export interface ContactPointThreema {
      */
     description?: pulumi.Input<string>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -731,7 +731,7 @@ export interface ContactPointThreema {
      */
     recipientId: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -750,7 +750,7 @@ export interface ContactPointVictorop {
      */
     description?: pulumi.Input<string>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -758,7 +758,7 @@ export interface ContactPointVictorop {
      */
     messageType?: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -781,7 +781,7 @@ export interface ContactPointWebex {
      */
     apiUrl?: pulumi.Input<string>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -793,7 +793,7 @@ export interface ContactPointWebex {
      */
     roomId?: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -824,7 +824,7 @@ export interface ContactPointWebhook {
      */
     basicAuthUser?: pulumi.Input<string>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -840,7 +840,7 @@ export interface ContactPointWebhook {
      */
     message?: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -867,7 +867,7 @@ export interface ContactPointWecom {
      */
     corpId?: pulumi.Input<string>;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
     /**
@@ -883,7 +883,7 @@ export interface ContactPointWecom {
      */
     secret?: pulumi.Input<string>;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -914,18 +914,18 @@ export interface DashboardPermissionPermission {
      */
     role?: pulumi.Input<string>;
     /**
-     * ID of the team to manage permissions for. Defaults to `0`.
+     * ID of the team to manage permissions for.
      */
     teamId?: pulumi.Input<string>;
     /**
-     * ID of the user or service account to manage permissions for. Defaults to `0`.
+     * ID of the user or service account to manage permissions for.
      */
     userId?: pulumi.Input<string>;
 }
 
 export interface DataSourcePermissionPermission {
     /**
-     * Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
+     * Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+.
      */
     builtInRole?: pulumi.Input<string>;
     /**
@@ -933,11 +933,11 @@ export interface DataSourcePermissionPermission {
      */
     permission: pulumi.Input<string>;
     /**
-     * ID of the team to manage permissions for. Defaults to `0`.
+     * ID of the team to manage permissions for.
      */
     teamId?: pulumi.Input<string>;
     /**
-     * ID of the user or service account to manage permissions for. Defaults to `0`.
+     * ID of the user or service account to manage permissions for.
      */
     userId?: pulumi.Input<string>;
 }
@@ -952,11 +952,11 @@ export interface FolderPermissionPermission {
      */
     role?: pulumi.Input<string>;
     /**
-     * ID of the team to manage permissions for. Defaults to `0`.
+     * ID of the team to manage permissions for.
      */
     teamId?: pulumi.Input<string>;
     /**
-     * ID of the user or service account to manage permissions for. Defaults to `0`.
+     * ID of the user or service account to manage permissions for.
      */
     userId?: pulumi.Input<string>;
 }
@@ -1247,9 +1247,6 @@ export interface OncallIntegrationDefaultRoute {
      * The ID of the escalation chain.
      */
     escalationChainId?: pulumi.Input<string>;
-    /**
-     * The ID of this resource.
-     */
     id?: pulumi.Input<string>;
     /**
      * MS teams-specific settings for a route.
@@ -1267,11 +1264,11 @@ export interface OncallIntegrationDefaultRoute {
 
 export interface OncallIntegrationDefaultRouteMsteams {
     /**
-     * Enable notification in MS teams. Defaults to `true`.
+     * Enable notification in MS teams.
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * The ID of this resource.
+     * MS teams channel id. Alerts will be directed to this channel in Microsoft teams.
      */
     id?: pulumi.Input<string>;
 }
@@ -1282,18 +1279,18 @@ export interface OncallIntegrationDefaultRouteSlack {
      */
     channelId?: pulumi.Input<string>;
     /**
-     * Enable notification in MS teams. Defaults to `true`.
+     * Enable notification in Slack.
      */
     enabled?: pulumi.Input<boolean>;
 }
 
 export interface OncallIntegrationDefaultRouteTelegram {
     /**
-     * Enable notification in MS teams. Defaults to `true`.
+     * Enable notification in Telegram.
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * The ID of this resource.
+     * Telegram channel id. Alerts will be directed to this channel in Telegram.
      */
     id?: pulumi.Input<string>;
 }
@@ -1432,7 +1429,7 @@ export interface OncallIntegrationTemplatesWeb {
 
 export interface OncallRouteMsteams {
     /**
-     * Enable notification in MS teams. Defaults to `true`.
+     * Enable notification in MS teams.
      */
     enabled?: pulumi.Input<boolean>;
     /**
@@ -1447,14 +1444,14 @@ export interface OncallRouteSlack {
      */
     channelId?: pulumi.Input<string>;
     /**
-     * Enable notification in Slack. Defaults to `true`.
+     * Enable notification in Slack.
      */
     enabled?: pulumi.Input<boolean>;
 }
 
 export interface OncallRouteTelegram {
     /**
-     * Enable notification in Telegram. Defaults to `true`.
+     * Enable notification in Telegram.
      */
     enabled?: pulumi.Input<boolean>;
     /**
@@ -1475,9 +1472,6 @@ export interface OncallScheduleSlack {
 }
 
 export interface PlaylistItem {
-    /**
-     * The ID of this resource.
-     */
     id?: pulumi.Input<string>;
     order: pulumi.Input<number>;
     title: pulumi.Input<string>;
@@ -1526,7 +1520,7 @@ export interface ReportSchedule {
      */
     frequency: pulumi.Input<string>;
     /**
-     * Send the report on the last day of the month Defaults to `false`.
+     * Send the report on the last day of the month
      */
     lastDayOfMonth?: pulumi.Input<boolean>;
     /**
@@ -1534,11 +1528,11 @@ export interface ReportSchedule {
      */
     startTime?: pulumi.Input<string>;
     /**
-     * Set the report time zone. Defaults to `GMT`.
+     * Set the report time zone.
      */
     timezone?: pulumi.Input<string>;
     /**
-     * Whether to send the report only on work days. Defaults to `false`.
+     * Whether to send the report only on work days.
      */
     workdaysOnly?: pulumi.Input<boolean>;
 }
@@ -1560,14 +1554,14 @@ export interface RolePermission {
      */
     action: pulumi.Input<string>;
     /**
-     * Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
+     * Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
      */
     scope?: pulumi.Input<string>;
 }
 
 export interface RuleGroupRule {
     /**
-     * Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+     * Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing.
      */
     annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -1579,19 +1573,19 @@ export interface RuleGroupRule {
      */
     datas: pulumi.Input<pulumi.Input<inputs.RuleGroupRuleData>[]>;
     /**
-     * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, and Alerting. Defaults to `Alerting`.
+     * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, and Alerting.
      */
     execErrState?: pulumi.Input<string>;
     /**
-     * The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
+     * The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
      */
     for?: pulumi.Input<string>;
     /**
-     * Sets whether the alert should be paused or not. Defaults to `false`.
+     * Sets whether the alert should be paused or not.
      */
     isPaused?: pulumi.Input<boolean>;
     /**
-     * Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
+     * Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -1599,7 +1593,7 @@ export interface RuleGroupRule {
      */
     name: pulumi.Input<string>;
     /**
-     * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting. Defaults to `NoData`.
+     * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting.
      */
     noDataState?: pulumi.Input<string>;
     /**
@@ -1622,7 +1616,7 @@ export interface RuleGroupRuleData {
      */
     model: pulumi.Input<string>;
     /**
-     * An optional identifier for the type of query being executed. Defaults to ``.
+     * An optional identifier for the type of query being executed.
      */
     queryType?: pulumi.Input<string>;
     /**
@@ -1699,7 +1693,7 @@ export interface SLOAlertingAnnotation {
 
 export interface SLOAlertingFastburn {
     /**
-     * Annotations will be attached to all alerts generated by any of these rules.
+     * Annotations to attach only to Fast Burn alerts.
      */
     annotations?: pulumi.Input<pulumi.Input<inputs.SLOAlertingFastburnAnnotation>[]>;
     /**
@@ -1725,11 +1719,11 @@ export interface SLOAlertingLabel {
 
 export interface SLOAlertingSlowburn {
     /**
-     * Annotations will be attached to all alerts generated by any of these rules.
+     * Annotations to attach only to Slow Burn alerts.
      */
     annotations?: pulumi.Input<pulumi.Input<inputs.SLOAlertingSlowburnAnnotation>[]>;
     /**
-     * Labels to attach only to Fast Burn alerts.
+     * Labels to attach only to Slow Burn alerts.
      */
     labels?: pulumi.Input<pulumi.Input<inputs.SLOAlertingSlowburnLabel>[]>;
 }
@@ -1785,7 +1779,7 @@ export interface SLOQueryFreeform {
 
 export interface SLOQueryRatio {
     /**
-     * Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+     * Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
      */
     groupByLabels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -1804,11 +1798,11 @@ export interface ServiceAccountPermissionPermission {
      */
     permission: pulumi.Input<string>;
     /**
-     * ID of the team to manage permissions for. Specify either this or `userId`. Defaults to `0`.
+     * ID of the team to manage permissions for. Specify either this or `userId`.
      */
     teamId?: pulumi.Input<string>;
     /**
-     * ID of the user or service account to manage permissions for. Specify either this or `teamId`. Defaults to `0`.
+     * ID of the user or service account to manage permissions for. Specify either this or `teamId`.
      */
     userId?: pulumi.Input<string>;
 }
@@ -1827,7 +1821,7 @@ export interface SsoSettingsOauth2Settings {
      */
     allowedDomains?: pulumi.Input<string>;
     /**
-     * List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+     * List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed_groups, you must also configure groups_attribute_path.
      */
     allowedGroups?: pulumi.Input<string>;
     /**
@@ -1839,7 +1833,7 @@ export interface SsoSettingsOauth2Settings {
      */
     apiUrl?: pulumi.Input<string>;
     /**
-     * It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+     * It determines how clientId and clientSecret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
      */
     authStyle?: pulumi.Input<string>;
     /**
@@ -1859,7 +1853,7 @@ export interface SsoSettingsOauth2Settings {
      */
     clientSecret?: pulumi.Input<string>;
     /**
-     * Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+     * Custom fields to configure for OAuth2 such as the [forceUseGraphApi](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
      */
     custom?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -1883,11 +1877,11 @@ export interface SsoSettingsOauth2Settings {
      */
     emptyScopes?: pulumi.Input<boolean>;
     /**
-     * Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+     * Define whether this configuration is enabled for the specified provider.
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+     * JMESPath expression to use for user group lookup. If you configure allowed_groups, you must also configure groups_attribute_path.
      */
     groupsAttributePath?: pulumi.Input<string>;
     /**
@@ -1927,7 +1921,7 @@ export interface SsoSettingsOauth2Settings {
      */
     skipOrgRoleSync?: pulumi.Input<boolean>;
     /**
-     * String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+     * String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team_ids, you must also configure teamsUrl and team_ids_attribute_path.
      */
     teamIds?: pulumi.Input<string>;
     /**
@@ -1935,7 +1929,7 @@ export interface SsoSettingsOauth2Settings {
      */
     teamIdsAttributePath?: pulumi.Input<string>;
     /**
-     * The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+     * The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams_url, you must also configure team_ids_attribute_path. Only applicable to Generic OAuth.
      */
     teamsUrl?: pulumi.Input<string>;
     /**
@@ -1997,23 +1991,23 @@ export interface SyntheticMonitoringCheckSettings {
 
 export interface SyntheticMonitoringCheckSettingsDns {
     /**
-     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
      */
     ipVersion?: pulumi.Input<string>;
     /**
-     * Port to target. Defaults to `53`.
+     * Port to target.
      */
     port?: pulumi.Input<number>;
     /**
-     * `TCP` or `UDP`. Defaults to `UDP`.
+     * `TCP` or `UDP`.
      */
     protocol?: pulumi.Input<string>;
     /**
-     * One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+     * One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`.
      */
     recordType?: pulumi.Input<string>;
     /**
-     * DNS server address to target. Defaults to `8.8.8.8`.
+     * DNS server address to target.
      */
     server?: pulumi.Input<string>;
     /**
@@ -2105,11 +2099,11 @@ export interface SyntheticMonitoringCheckSettingsHttp {
      */
     failIfHeaderNotMatchesRegexps?: pulumi.Input<pulumi.Input<inputs.SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexp>[]>;
     /**
-     * Fail if SSL is not present. Defaults to `false`.
+     * Fail if SSL is not present.
      */
     failIfNotSsl?: pulumi.Input<boolean>;
     /**
-     * Fail if SSL is present. Defaults to `false`.
+     * Fail if SSL is present.
      */
     failIfSsl?: pulumi.Input<boolean>;
     /**
@@ -2117,15 +2111,15 @@ export interface SyntheticMonitoringCheckSettingsHttp {
      */
     headers?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
      */
     ipVersion?: pulumi.Input<string>;
     /**
-     * Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+     * Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE`
      */
     method?: pulumi.Input<string>;
     /**
-     * Do not follow redirects. Defaults to `false`.
+     * Do not follow redirects.
      */
     noFollowRedirects?: pulumi.Input<boolean>;
     /**
@@ -2163,7 +2157,7 @@ export interface SyntheticMonitoringCheckSettingsHttpBasicAuth {
 
 export interface SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp {
     /**
-     * Allow header to be missing from responses. Defaults to `false`.
+     * Allow header to be missing from responses.
      */
     allowMissing?: pulumi.Input<boolean>;
     /**
@@ -2178,7 +2172,7 @@ export interface SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp {
 
 export interface SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexp {
     /**
-     * Allow header to be missing from responses. Defaults to `false`.
+     * Allow header to be missing from responses.
      */
     allowMissing?: pulumi.Input<boolean>;
     /**
@@ -2205,7 +2199,7 @@ export interface SyntheticMonitoringCheckSettingsHttpTlsConfig {
      */
     clientKey?: pulumi.Input<string>;
     /**
-     * Disable target certificate validation. Defaults to `false`.
+     * Disable target certificate validation.
      */
     insecureSkipVerify?: pulumi.Input<boolean>;
     /**
@@ -2235,7 +2229,7 @@ export interface SyntheticMonitoringCheckSettingsMultihttpEntry {
 
 export interface SyntheticMonitoringCheckSettingsMultihttpEntryAssertion {
     /**
-     * The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+     * The condition of the assertion: NOT_CONTAINS, EQUALS, STARTS_WITH, ENDS_WITH, TYPE_OF, CONTAINS
      */
     condition?: pulumi.Input<string>;
     /**
@@ -2243,11 +2237,11 @@ export interface SyntheticMonitoringCheckSettingsMultihttpEntryAssertion {
      */
     expression?: pulumi.Input<string>;
     /**
-     * The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+     * The subject of the assertion: RESPONSE_HEADERS, HTTP_STATUS_CODE, RESPONSE_BODY
      */
     subject?: pulumi.Input<string>;
     /**
-     * The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+     * The type of assertion to make: TEXT, JSON_PATH_VALUE, JSON_PATH_ASSERTION, REGEX_ASSERTION
      */
     type: pulumi.Input<string>;
     /**
@@ -2262,11 +2256,11 @@ export interface SyntheticMonitoringCheckSettingsMultihttpEntryRequest {
      */
     bodies?: pulumi.Input<pulumi.Input<inputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody>[]>;
     /**
-     * The HTTP headers set for the probe.
+     * The headers to send with the request
      */
     headers?: pulumi.Input<pulumi.Input<inputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader>[]>;
     /**
-     * Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+     * The HTTP method to use
      */
     method: pulumi.Input<string>;
     /**
@@ -2300,18 +2294,18 @@ export interface SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader {
      */
     name: pulumi.Input<string>;
     /**
-     * The value of the assertion
+     * Value of the header to send
      */
     value: pulumi.Input<string>;
 }
 
 export interface SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField {
     /**
-     * Name of the header to send
+     * Name of the query field to send
      */
     name: pulumi.Input<string>;
     /**
-     * The value of the assertion
+     * Value of the query field to send
      */
     value: pulumi.Input<string>;
 }
@@ -2322,30 +2316,30 @@ export interface SyntheticMonitoringCheckSettingsMultihttpEntryVariable {
      */
     attribute?: pulumi.Input<string>;
     /**
-     * The expression of the assertion. Should start with $.
+     * The expression to when finding the variable. Should start with $. Only use when type is JSON_PATH or REGEX
      */
     expression?: pulumi.Input<string>;
     /**
-     * Name of the header to send
+     * The name of the variable to extract
      */
     name?: pulumi.Input<string>;
     /**
-     * The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+     * The method of finding the variable value to extract. JSON_PATH, REGEX, CSS_SELECTOR
      */
     type: pulumi.Input<string>;
 }
 
 export interface SyntheticMonitoringCheckSettingsPing {
     /**
-     * Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+     * Set the DF-bit in the IP-header. Only works with ipV4.
      */
     dontFragment?: pulumi.Input<boolean>;
     /**
-     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
      */
     ipVersion?: pulumi.Input<string>;
     /**
-     * Payload size. Defaults to `0`.
+     * Payload size.
      */
     payloadSize?: pulumi.Input<number>;
     /**
@@ -2356,7 +2350,7 @@ export interface SyntheticMonitoringCheckSettingsPing {
 
 export interface SyntheticMonitoringCheckSettingsTcp {
     /**
-     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
      */
     ipVersion?: pulumi.Input<string>;
     /**
@@ -2368,7 +2362,7 @@ export interface SyntheticMonitoringCheckSettingsTcp {
      */
     sourceIpAddress?: pulumi.Input<string>;
     /**
-     * Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+     * Whether or not TLS is used when the connection is initiated.
      */
     tls?: pulumi.Input<boolean>;
     /**
@@ -2387,7 +2381,7 @@ export interface SyntheticMonitoringCheckSettingsTcpQueryResponse {
      */
     send: pulumi.Input<string>;
     /**
-     * Upgrade TCP connection to TLS. Defaults to `false`.
+     * Upgrade TCP connection to TLS.
      */
     startTls?: pulumi.Input<boolean>;
 }
@@ -2406,7 +2400,7 @@ export interface SyntheticMonitoringCheckSettingsTcpTlsConfig {
      */
     clientKey?: pulumi.Input<string>;
     /**
-     * Disable target certificate validation. Defaults to `false`.
+     * Disable target certificate validation.
      */
     insecureSkipVerify?: pulumi.Input<boolean>;
     /**
@@ -2417,15 +2411,15 @@ export interface SyntheticMonitoringCheckSettingsTcpTlsConfig {
 
 export interface SyntheticMonitoringCheckSettingsTraceroute {
     /**
-     * Maximum TTL for the trace Defaults to `64`.
+     * Maximum TTL for the trace
      */
     maxHops?: pulumi.Input<number>;
     /**
-     * Maximum number of hosts to travers that give no response Defaults to `15`.
+     * Maximum number of hosts to travers that give no response
      */
     maxUnknownHops?: pulumi.Input<number>;
     /**
-     * Reverse lookup hostnames from IP addresses Defaults to `true`.
+     * Reverse lookup hostnames from IP addresses
      */
     ptrLookup?: pulumi.Input<boolean>;
 }

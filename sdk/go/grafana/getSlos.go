@@ -11,11 +11,6 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Datasource for retrieving all SLOs.
-//
-// * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
-// * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
-// * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
 func GetSlos(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetSlosResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSlosResult
@@ -29,8 +24,7 @@ func GetSlos(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetSlosResult, 
 // A collection of values returned by getSlos.
 type GetSlosResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Returns a list of all SLOs"
+	Id   string       `pulumi:"id"`
 	Slos []GetSlosSlo `pulumi:"slos"`
 }
 
@@ -65,7 +59,6 @@ func (o GetSlosResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Returns a list of all SLOs"
 func (o GetSlosResultOutput) Slos() GetSlosSloArrayOutput {
 	return o.ApplyT(func(v GetSlosResult) []GetSlosSlo { return v.Slos }).(GetSlosSloArrayOutput)
 }

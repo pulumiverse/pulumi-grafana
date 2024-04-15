@@ -12,49 +12,6 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Equivalent to the the `teamSync` attribute of the `Team` resource. Use one or the other to configure a team's external groups syncing config.
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myTeam, err := grafana.NewTeam(ctx, "myTeam", nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewTeamExternalGroup(ctx, "test-team-group", &grafana.TeamExternalGroupArgs{
-//				TeamId: myTeam.ID(),
-//				Groups: pulumi.StringArray{
-//					pulumi.String("test-group-1"),
-//					pulumi.String("test-group-2"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup main {{team_id}}
-// ```
 type TeamExternalGroup struct {
 	pulumi.CustomResourceState
 

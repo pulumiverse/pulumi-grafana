@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.OrganizationPreference("test", {
- *     theme: "light",
- *     timezone: "utc",
- *     weekStart: "sunday",
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- */
 export class OrganizationPreference extends pulumi.CustomResource {
     /**
      * Get an existing OrganizationPreference resource's state with the given name, ID, and optional extra
@@ -52,7 +33,7 @@ export class OrganizationPreference extends pulumi.CustomResource {
     }
 
     /**
-     * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
+     * The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
      *
      * @deprecated Use `homeDashboardUid` instead.
      */
@@ -74,7 +55,8 @@ export class OrganizationPreference extends pulumi.CustomResource {
      */
     public readonly timezone!: pulumi.Output<string | undefined>;
     /**
-     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+     * default.
      */
     public readonly weekStart!: pulumi.Output<string | undefined>;
 
@@ -116,7 +98,7 @@ export class OrganizationPreference extends pulumi.CustomResource {
  */
 export interface OrganizationPreferenceState {
     /**
-     * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
+     * The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
      *
      * @deprecated Use `homeDashboardUid` instead.
      */
@@ -138,7 +120,8 @@ export interface OrganizationPreferenceState {
      */
     timezone?: pulumi.Input<string>;
     /**
-     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+     * default.
      */
     weekStart?: pulumi.Input<string>;
 }
@@ -148,7 +131,7 @@ export interface OrganizationPreferenceState {
  */
 export interface OrganizationPreferenceArgs {
     /**
-     * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
+     * The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
      *
      * @deprecated Use `homeDashboardUid` instead.
      */
@@ -170,7 +153,8 @@ export interface OrganizationPreferenceArgs {
      */
     timezone?: pulumi.Input<string>;
     /**
-     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+     * default.
      */
     weekStart?: pulumi.Input<string>;
 }

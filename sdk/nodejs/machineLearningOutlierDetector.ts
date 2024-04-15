@@ -6,13 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * An outlier detector monitors the results of a query and reports when its values are outside normal bands.
- *
- * The normal band is configured by choice of algorithm, its sensitivity and other configuration.
- *
- * Visit https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for more details.
- */
 export class MachineLearningOutlierDetector extends pulumi.CustomResource {
     /**
      * Get an existing MachineLearningOutlierDetector resource's state with the given name, ID, and optional extra
@@ -42,7 +35,8 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
     }
 
     /**
-     * The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+     * The algorithm to use and its configuration. See
+     * https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      */
     public readonly algorithm!: pulumi.Output<outputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
@@ -62,7 +56,7 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The data interval in seconds to monitor. Defaults to `300`.
+     * The data interval in seconds to monitor.
      */
     public readonly interval!: pulumi.Output<number | undefined>;
     /**
@@ -70,7 +64,7 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
      */
     public readonly metric!: pulumi.Output<string>;
     /**
-     * The name of the algorithm to use ('mad' or 'dbscan').
+     * The name of the outlier detector.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -134,7 +128,8 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
  */
 export interface MachineLearningOutlierDetectorState {
     /**
-     * The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+     * The algorithm to use and its configuration. See
+     * https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      */
     algorithm?: pulumi.Input<inputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
@@ -154,7 +149,7 @@ export interface MachineLearningOutlierDetectorState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The data interval in seconds to monitor. Defaults to `300`.
+     * The data interval in seconds to monitor.
      */
     interval?: pulumi.Input<number>;
     /**
@@ -162,7 +157,7 @@ export interface MachineLearningOutlierDetectorState {
      */
     metric?: pulumi.Input<string>;
     /**
-     * The name of the algorithm to use ('mad' or 'dbscan').
+     * The name of the outlier detector.
      */
     name?: pulumi.Input<string>;
     /**
@@ -176,7 +171,8 @@ export interface MachineLearningOutlierDetectorState {
  */
 export interface MachineLearningOutlierDetectorArgs {
     /**
-     * The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+     * The algorithm to use and its configuration. See
+     * https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      */
     algorithm: pulumi.Input<inputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
@@ -196,7 +192,7 @@ export interface MachineLearningOutlierDetectorArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The data interval in seconds to monitor. Defaults to `300`.
+     * The data interval in seconds to monitor.
      */
     interval?: pulumi.Input<number>;
     /**
@@ -204,7 +200,7 @@ export interface MachineLearningOutlierDetectorArgs {
      */
     metric: pulumi.Input<string>;
     /**
-     * The name of the algorithm to use ('mad' or 'dbscan').
+     * The name of the outlier detector.
      */
     name?: pulumi.Input<string>;
     /**

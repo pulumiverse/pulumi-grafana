@@ -180,52 +180,7 @@ class DashboardPermission(pulumi.CustomResource):
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DashboardPermissionPermissionArgs']]]]] = None,
                  __props__=None):
         """
-        Manages the entire set of permissions for a dashboard. Permissions that aren't specified when applying this resource will be removed.
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard_permissions/)
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import json
-        import pulumiverse_grafana as grafana
-
-        team = grafana.Team("team")
-        user = grafana.User("user",
-            email="user.name@example.com",
-            password="my-password",
-            login="user.name")
-        metrics = grafana.Dashboard("metrics", config_json=json.dumps({
-            "title": "My Dashboard",
-            "uid": "my-dashboard-uid",
-        }))
-        collection_permission = grafana.DashboardPermission("collectionPermission",
-            dashboard_uid=metrics.uid,
-            permissions=[
-                grafana.DashboardPermissionPermissionArgs(
-                    role="Editor",
-                    permission="Edit",
-                ),
-                grafana.DashboardPermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="View",
-                ),
-                grafana.DashboardPermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Admin",
-                ),
-            ])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/dashboardPermission:DashboardPermission dashboard_name {{dashboard_uid}}
-        ```
-
+        Create a DashboardPermission resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] dashboard_id: ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
@@ -240,52 +195,7 @@ class DashboardPermission(pulumi.CustomResource):
                  args: Optional[DashboardPermissionArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages the entire set of permissions for a dashboard. Permissions that aren't specified when applying this resource will be removed.
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard_permissions/)
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import json
-        import pulumiverse_grafana as grafana
-
-        team = grafana.Team("team")
-        user = grafana.User("user",
-            email="user.name@example.com",
-            password="my-password",
-            login="user.name")
-        metrics = grafana.Dashboard("metrics", config_json=json.dumps({
-            "title": "My Dashboard",
-            "uid": "my-dashboard-uid",
-        }))
-        collection_permission = grafana.DashboardPermission("collectionPermission",
-            dashboard_uid=metrics.uid,
-            permissions=[
-                grafana.DashboardPermissionPermissionArgs(
-                    role="Editor",
-                    permission="Edit",
-                ),
-                grafana.DashboardPermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="View",
-                ),
-                grafana.DashboardPermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Admin",
-                ),
-            ])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/dashboardPermission:DashboardPermission dashboard_name {{dashboard_uid}}
-        ```
-
+        Create a DashboardPermission resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DashboardPermissionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

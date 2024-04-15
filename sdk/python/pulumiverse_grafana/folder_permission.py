@@ -134,52 +134,7 @@ class FolderPermission(pulumi.CustomResource):
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FolderPermissionPermissionArgs']]]]] = None,
                  __props__=None):
         """
-        Manages the entire set of permissions for a folder. Permissions that aren't specified when applying this resource will be removed.
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        team = grafana.Team("team")
-        user = grafana.User("user",
-            email="user.name@example.com",
-            login="user.name",
-            password="my-password")
-        collection = grafana.Folder("collection", title="Folder Title")
-        collection_permission = grafana.FolderPermission("collectionPermission",
-            folder_uid=collection.uid,
-            permissions=[
-                grafana.FolderPermissionPermissionArgs(
-                    role="Editor",
-                    permission="Edit",
-                ),
-                grafana.FolderPermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="View",
-                ),
-                grafana.FolderPermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Admin",
-                ),
-            ])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
-        ```
-
+        Create a FolderPermission resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder.
@@ -193,52 +148,7 @@ class FolderPermission(pulumi.CustomResource):
                  args: FolderPermissionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages the entire set of permissions for a folder. Permissions that aren't specified when applying this resource will be removed.
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        team = grafana.Team("team")
-        user = grafana.User("user",
-            email="user.name@example.com",
-            login="user.name",
-            password="my-password")
-        collection = grafana.Folder("collection", title="Folder Title")
-        collection_permission = grafana.FolderPermission("collectionPermission",
-            folder_uid=collection.uid,
-            permissions=[
-                grafana.FolderPermissionPermissionArgs(
-                    role="Editor",
-                    permission="Edit",
-                ),
-                grafana.FolderPermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="View",
-                ),
-                grafana.FolderPermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Admin",
-                ),
-            ])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{folder_uid}} # To use the default provider org
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/folderPermission:FolderPermission my_folder {{org_id}}:{{folder_uid}} # When "org_id" is set on the resource
-        ```
-
+        Create a FolderPermission resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param FolderPermissionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

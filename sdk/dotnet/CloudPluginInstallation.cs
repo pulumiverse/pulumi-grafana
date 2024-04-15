@@ -10,45 +10,6 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// Manages Grafana Cloud Plugin Installations.
-    /// 
-    /// * [Plugin Catalog](https://grafana.com/grafana/plugins/)
-    /// 
-    /// Required access policy scopes:
-    /// 
-    /// * stack-plugins:read
-    /// * stack-plugins:write
-    /// * stack-plugins:delete
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Grafana.CloudPluginInstallation("test", new()
-    ///     {
-    ///         Slug = "some-plugin",
-    ///         StackSlug = "stackname",
-    ///         Version = "1.2.3",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/cloudPluginInstallation:CloudPluginInstallation name "{{ stackSlug }}:{{ pluginSlug }}"
-    /// ```
-    /// </summary>
     [GrafanaResourceType("grafana:index/cloudPluginInstallation:CloudPluginInstallation")]
     public partial class CloudPluginInstallation : global::Pulumi.CustomResource
     {

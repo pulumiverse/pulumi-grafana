@@ -4,12 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * **Note:** This data source is going to be deprecated, please use outgoing webhook data source instead.
- * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
- *
- * !> Deprecated: Use the `grafana.OncallOutgoingWebhook` data source instead.
- */
 export function getOncallAction(args: GetOncallActionArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallActionResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -22,9 +16,6 @@ export function getOncallAction(args: GetOncallActionArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getOncallAction.
  */
 export interface GetOncallActionArgs {
-    /**
-     * The action name.
-     */
     name: string;
 }
 
@@ -36,17 +27,8 @@ export interface GetOncallActionResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * The action name.
-     */
     readonly name: string;
 }
-/**
- * **Note:** This data source is going to be deprecated, please use outgoing webhook data source instead.
- * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
- *
- * !> Deprecated: Use the `grafana.OncallOutgoingWebhook` data source instead.
- */
 export function getOncallActionOutput(args: GetOncallActionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallActionResult> {
     return pulumi.output(args).apply((a: any) => getOncallAction(a, opts))
 }
@@ -55,8 +37,5 @@ export function getOncallActionOutput(args: GetOncallActionOutputArgs, opts?: pu
  * A collection of arguments for invoking getOncallAction.
  */
 export interface GetOncallActionOutputArgs {
-    /**
-     * The action name.
-     */
     name: pulumi.Input<string>;
 }

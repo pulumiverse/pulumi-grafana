@@ -11,9 +11,6 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// A holiday describes time periods where a time series is expected to behave differently to normal.
-//
-// To use a holiday in a job, use its id in the `holidays` attribute of a `MachineLearningJob`:
 type MachineLearningHoliday struct {
 	pulumi.CustomResourceState
 
@@ -25,7 +22,7 @@ type MachineLearningHoliday struct {
 	IcalTimezone pulumi.StringPtrOutput `pulumi:"icalTimezone"`
 	// A URL to an iCal file containing all occurrences of the holiday.
 	IcalUrl pulumi.StringPtrOutput `pulumi:"icalUrl"`
-	// The name of the custom period.
+	// The name of the holiday.
 	Name pulumi.StringOutput `pulumi:"name"`
 }
 
@@ -67,7 +64,7 @@ type machineLearningHolidayState struct {
 	IcalTimezone *string `pulumi:"icalTimezone"`
 	// A URL to an iCal file containing all occurrences of the holiday.
 	IcalUrl *string `pulumi:"icalUrl"`
-	// The name of the custom period.
+	// The name of the holiday.
 	Name *string `pulumi:"name"`
 }
 
@@ -80,7 +77,7 @@ type MachineLearningHolidayState struct {
 	IcalTimezone pulumi.StringPtrInput
 	// A URL to an iCal file containing all occurrences of the holiday.
 	IcalUrl pulumi.StringPtrInput
-	// The name of the custom period.
+	// The name of the holiday.
 	Name pulumi.StringPtrInput
 }
 
@@ -97,7 +94,7 @@ type machineLearningHolidayArgs struct {
 	IcalTimezone *string `pulumi:"icalTimezone"`
 	// A URL to an iCal file containing all occurrences of the holiday.
 	IcalUrl *string `pulumi:"icalUrl"`
-	// The name of the custom period.
+	// The name of the holiday.
 	Name *string `pulumi:"name"`
 }
 
@@ -111,7 +108,7 @@ type MachineLearningHolidayArgs struct {
 	IcalTimezone pulumi.StringPtrInput
 	// A URL to an iCal file containing all occurrences of the holiday.
 	IcalUrl pulumi.StringPtrInput
-	// The name of the custom period.
+	// The name of the holiday.
 	Name pulumi.StringPtrInput
 }
 
@@ -222,7 +219,7 @@ func (o MachineLearningHolidayOutput) IcalUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MachineLearningHoliday) pulumi.StringPtrOutput { return v.IcalUrl }).(pulumi.StringPtrOutput)
 }
 
-// The name of the custom period.
+// The name of the holiday.
 func (o MachineLearningHolidayOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MachineLearningHoliday) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

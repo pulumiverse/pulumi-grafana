@@ -6,31 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Manages Grafana SSO Settings for OAuth2. SAML support will be added soon.
- *
- * * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/sso-settings/)
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const githubSsoSettings = new grafana.SsoSettings("githubSsoSettings", {
- *     oauth2Settings: {
- *         allowedOrganizations: "organization1,organization2",
- *         clientId: "github_client_id",
- *         clientSecret: "github_client_secret",
- *         teamIds: "12,50,123",
- *     },
- *     providerName: "github",
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- */
 export class SsoSettings extends pulumi.CustomResource {
     /**
      * Get an existing SsoSettings resource's state with the given name, ID, and optional extra

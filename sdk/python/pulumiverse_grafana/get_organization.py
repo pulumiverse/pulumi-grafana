@@ -41,17 +41,11 @@ class GetOrganizationResult:
     @property
     @pulumi.getter
     def admins(self) -> Sequence[str]:
-        """
-        A list of email addresses corresponding to users given admin access to the organization.
-        """
         return pulumi.get(self, "admins")
 
     @property
     @pulumi.getter
     def editors(self) -> Sequence[str]:
-        """
-        A list of email addresses corresponding to users given editor access to the organization.
-        """
         return pulumi.get(self, "editors")
 
     @property
@@ -65,17 +59,11 @@ class GetOrganizationResult:
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        The name of the Organization.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def viewers(self) -> Sequence[str]:
-        """
-        A list of email addresses corresponding to users given viewer access to the organization.
-        """
         return pulumi.get(self, "viewers")
 
 
@@ -95,30 +83,7 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
 def get_organization(name: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationResult:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
-
-    ## Example Usage
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-    import pulumiverse_grafana as grafana
-
-    test = grafana.Organization("test",
-        admin_user="admin",
-        create_users=True,
-        viewers=[
-            "viewer-01@example.com",
-            "viewer-02@example.com",
-        ])
-    from_name = grafana.get_organization_output(name=test.name)
-    ```
-    <!--End PulumiCodeChooser -->
-
-
-    :param str name: The name of the Organization.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -137,29 +102,6 @@ def get_organization(name: Optional[str] = None,
 def get_organization_output(name: Optional[pulumi.Input[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationResult]:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
-
-    ## Example Usage
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-    import pulumiverse_grafana as grafana
-
-    test = grafana.Organization("test",
-        admin_user="admin",
-        create_users=True,
-        viewers=[
-            "viewer-01@example.com",
-            "viewer-02@example.com",
-        ])
-    from_name = grafana.get_organization_output(name=test.name)
-    ```
-    <!--End PulumiCodeChooser -->
-
-
-    :param str name: The name of the Organization.
+    Use this data source to access information about an existing resource.
     """
     ...

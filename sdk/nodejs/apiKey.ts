@@ -4,24 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const foo = new grafana.ApiKey("foo", {role: "Viewer"});
- * const bar = new grafana.ApiKey("bar", {
- *     role: "Admin",
- *     secondsToLive: 30,
- * });
- * export const apiKeyFooKeyOnly = foo.key;
- * export const apiKeyBar = bar;
- * ```
- * <!--End PulumiCodeChooser -->
- */
 export class ApiKey extends pulumi.CustomResource {
     /**
      * Get an existing ApiKey resource's state with the given name, ID, and optional extra

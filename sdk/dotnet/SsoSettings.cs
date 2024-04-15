@@ -10,39 +10,6 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// Manages Grafana SSO Settings for OAuth2. SAML support will be added soon.
-    /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/sso-settings/)
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var githubSsoSettings = new Grafana.SsoSettings("githubSsoSettings", new()
-    ///     {
-    ///         Oauth2Settings = new Grafana.Inputs.SsoSettingsOauth2SettingsArgs
-    ///         {
-    ///             AllowedOrganizations = "organization1,organization2",
-    ///             ClientId = "github_client_id",
-    ///             ClientSecret = "github_client_secret",
-    ///             TeamIds = "12,50,123",
-    ///         },
-    ///         ProviderName = "github",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// </summary>
     [GrafanaResourceType("grafana:index/ssoSettings:SsoSettings")]
     public partial class SsoSettings : global::Pulumi.CustomResource
     {

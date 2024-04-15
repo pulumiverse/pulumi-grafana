@@ -86,13 +86,13 @@ namespace Pulumiverse.Grafana.Inputs
         }
 
         /// <summary>
-        /// Fail if SSL is not present. Defaults to `false`.
+        /// Fail if SSL is not present.
         /// </summary>
         [Input("failIfNotSsl")]
         public Input<bool>? FailIfNotSsl { get; set; }
 
         /// <summary>
-        /// Fail if SSL is present. Defaults to `false`.
+        /// Fail if SSL is present.
         /// </summary>
         [Input("failIfSsl")]
         public Input<bool>? FailIfSsl { get; set; }
@@ -110,19 +110,19 @@ namespace Pulumiverse.Grafana.Inputs
         }
 
         /// <summary>
-        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
         /// </summary>
         [Input("ipVersion")]
         public Input<string>? IpVersion { get; set; }
 
         /// <summary>
-        /// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+        /// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE`
         /// </summary>
         [Input("method")]
         public Input<string>? Method { get; set; }
 
         /// <summary>
-        /// Do not follow redirects. Defaults to `false`.
+        /// Do not follow redirects.
         /// </summary>
         [Input("noFollowRedirects")]
         public Input<bool>? NoFollowRedirects { get; set; }

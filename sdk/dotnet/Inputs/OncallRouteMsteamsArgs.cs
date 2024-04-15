@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Inputs
     public sealed class OncallRouteMsteamsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable notification in MS teams. Defaults to `true`.
+        /// Enable notification in MS teams.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

@@ -134,56 +134,7 @@ class DataSourcePermission(pulumi.CustomResource):
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourcePermissionPermissionArgs']]]]] = None,
                  __props__=None):
         """
-        Manages the entire set of permissions for a datasource. Permissions that aren't specified when applying this resource will be removed.
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import json
-        import pulumiverse_grafana as grafana
-
-        team = grafana.Team("team")
-        foo = grafana.DataSource("foo",
-            type="cloudwatch",
-            json_data_encoded=json.dumps({
-                "defaultRegion": "us-east-1",
-                "authType": "keys",
-            }),
-            secure_json_data_encoded=json.dumps({
-                "accessKey": "123",
-                "secretKey": "456",
-            }))
-        user = grafana.User("user",
-            email="test-ds-permissions@example.com",
-            login="test-ds-permissions",
-            password="hunter2")
-        sa = grafana.ServiceAccount("sa", role="Viewer")
-        foo_permissions = grafana.DataSourcePermission("fooPermissions",
-            datasource_id=foo.id,
-            permissions=[
-                grafana.DataSourcePermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="Edit",
-                ),
-                grafana.DataSourcePermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Edit",
-                ),
-                grafana.DataSourcePermissionPermissionArgs(
-                    built_in_role="Viewer",
-                    permission="Query",
-                ),
-                grafana.DataSourcePermissionPermissionArgs(
-                    user_id=sa.id,
-                    permission="Query",
-                ),
-            ])
-        ```
-        <!--End PulumiCodeChooser -->
-
+        Create a DataSourcePermission resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] datasource_id: ID of the datasource to apply permissions to.
@@ -197,56 +148,7 @@ class DataSourcePermission(pulumi.CustomResource):
                  args: DataSourcePermissionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages the entire set of permissions for a datasource. Permissions that aren't specified when applying this resource will be removed.
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import json
-        import pulumiverse_grafana as grafana
-
-        team = grafana.Team("team")
-        foo = grafana.DataSource("foo",
-            type="cloudwatch",
-            json_data_encoded=json.dumps({
-                "defaultRegion": "us-east-1",
-                "authType": "keys",
-            }),
-            secure_json_data_encoded=json.dumps({
-                "accessKey": "123",
-                "secretKey": "456",
-            }))
-        user = grafana.User("user",
-            email="test-ds-permissions@example.com",
-            login="test-ds-permissions",
-            password="hunter2")
-        sa = grafana.ServiceAccount("sa", role="Viewer")
-        foo_permissions = grafana.DataSourcePermission("fooPermissions",
-            datasource_id=foo.id,
-            permissions=[
-                grafana.DataSourcePermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="Edit",
-                ),
-                grafana.DataSourcePermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Edit",
-                ),
-                grafana.DataSourcePermissionPermissionArgs(
-                    built_in_role="Viewer",
-                    permission="Query",
-                ),
-                grafana.DataSourcePermissionPermissionArgs(
-                    user_id=sa.id,
-                    permission="Query",
-                ),
-            ])
-        ```
-        <!--End PulumiCodeChooser -->
-
+        Create a DataSourcePermission resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DataSourcePermissionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

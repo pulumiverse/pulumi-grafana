@@ -41,9 +41,6 @@ class GetUsersResult:
     @property
     @pulumi.getter
     def users(self) -> Sequence['outputs.GetUsersUserResult']:
-        """
-        The Grafana instance's users.
-        """
         return pulumi.get(self, "users")
 
 
@@ -59,27 +56,7 @@ class AwaitableGetUsersResult(GetUsersResult):
 
 def get_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersResult:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
-
-    This data source uses Grafana's admin APIs for reading users which
-    does not currently work with API Tokens. You must use basic auth.
-
-    ## Example Usage
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-    import pulumiverse_grafana as grafana
-
-    test_all_users = grafana.User("testAllUsers",
-        email="all_users@example.com",
-        login="test-grafana-users",
-        password="my-password")
-    all_users = grafana.get_users()
-    ```
-    <!--End PulumiCodeChooser -->
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -93,26 +70,6 @@ def get_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersR
 @_utilities.lift_output_func(get_users)
 def get_users_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUsersResult]:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
-
-    This data source uses Grafana's admin APIs for reading users which
-    does not currently work with API Tokens. You must use basic auth.
-
-    ## Example Usage
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-    import pulumiverse_grafana as grafana
-
-    test_all_users = grafana.User("testAllUsers",
-        email="all_users@example.com",
-        login="test-grafana-users",
-        password="my-password")
-    all_users = grafana.get_users()
-    ```
-    <!--End PulumiCodeChooser -->
+    Use this data source to access information about an existing resource.
     """
     ...

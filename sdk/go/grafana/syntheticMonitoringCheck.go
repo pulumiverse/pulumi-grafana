@@ -12,637 +12,25 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Synthetic Monitoring checks are tests that run on selected probes at defined
-// intervals and report metrics and logs back to your Grafana Cloud account. The
-// target for checks can be a domain name, a server, or a website, depending on
-// what information you would like to gather about your endpoint. You can define
-// multiple checks for a single endpoint to check different capabilities.
-//
-// * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/checks/)
-//
-// ## Example Usage
-//
-// ### DNS Basic
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := grafana.GetSyntheticMonitoringProbes(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewSyntheticMonitoringCheck(ctx, "dns", &grafana.SyntheticMonitoringCheckArgs{
-//				Job:     pulumi.String("DNS Defaults"),
-//				Target:  pulumi.String("grafana.com"),
-//				Enabled: pulumi.Bool(false),
-//				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Atlanta),
-//				},
-//				Labels: pulumi.StringMap{
-//					"foo": pulumi.String("bar"),
-//				},
-//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
-//					Dns: nil,
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ### DNS Complex
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := grafana.GetSyntheticMonitoringProbes(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewSyntheticMonitoringCheck(ctx, "dns", &grafana.SyntheticMonitoringCheckArgs{
-//				Job:     pulumi.String("DNS Updated"),
-//				Target:  pulumi.String("grafana.net"),
-//				Enabled: pulumi.Bool(false),
-//				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Frankfurt),
-//					pulumi.Int(main.Probes.London),
-//				},
-//				Labels: pulumi.StringMap{
-//					"foo": pulumi.String("baz"),
-//				},
-//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
-//					Dns: &grafana.SyntheticMonitoringCheckSettingsDnsArgs{
-//						IpVersion:  pulumi.String("Any"),
-//						Server:     pulumi.String("8.8.4.4"),
-//						Port:       pulumi.Int(8600),
-//						RecordType: pulumi.String("CNAME"),
-//						Protocol:   pulumi.String("TCP"),
-//						ValidRCodes: pulumi.StringArray{
-//							pulumi.String("NOERROR"),
-//							pulumi.String("NOTAUTH"),
-//						},
-//						ValidateAnswerRrs: &grafana.SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs{
-//							FailIfMatchesRegexps: pulumi.StringArray{
-//								pulumi.String(".+-bad-stuff*"),
-//							},
-//							FailIfNotMatchesRegexps: pulumi.StringArray{
-//								pulumi.String(".+-good-stuff*"),
-//							},
-//						},
-//						ValidateAuthorityRrs: &grafana.SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgs{
-//							FailIfMatchesRegexps: pulumi.StringArray{
-//								pulumi.String(".+-bad-stuff*"),
-//							},
-//							FailIfNotMatchesRegexps: pulumi.StringArray{
-//								pulumi.String(".+-good-stuff*"),
-//							},
-//						},
-//						ValidateAdditionalRrs: grafana.SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArray{
-//							&grafana.SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs{
-//								FailIfMatchesRegexps: pulumi.StringArray{
-//									pulumi.String(".+-bad-stuff*"),
-//								},
-//								FailIfNotMatchesRegexps: pulumi.StringArray{
-//									pulumi.String(".+-good-stuff*"),
-//								},
-//							},
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ### HTTP Basic
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := grafana.GetSyntheticMonitoringProbes(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewSyntheticMonitoringCheck(ctx, "http", &grafana.SyntheticMonitoringCheckArgs{
-//				Job:     pulumi.String("HTTP Defaults"),
-//				Target:  pulumi.String("https://grafana.com"),
-//				Enabled: pulumi.Bool(false),
-//				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Atlanta),
-//				},
-//				Labels: pulumi.StringMap{
-//					"foo": pulumi.String("bar"),
-//				},
-//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
-//					Http: nil,
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ### HTTP Complex
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := grafana.GetSyntheticMonitoringProbes(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewSyntheticMonitoringCheck(ctx, "http", &grafana.SyntheticMonitoringCheckArgs{
-//				Job:     pulumi.String("HTTP Defaults"),
-//				Target:  pulumi.String("https://grafana.org"),
-//				Enabled: pulumi.Bool(false),
-//				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Bangalore),
-//					pulumi.Int(main.Probes.Mumbai),
-//				},
-//				Labels: pulumi.StringMap{
-//					"foo": pulumi.String("bar"),
-//				},
-//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
-//					Http: &grafana.SyntheticMonitoringCheckSettingsHttpArgs{
-//						IpVersion:                  pulumi.String("V6"),
-//						Method:                     pulumi.String("TRACE"),
-//						Body:                       pulumi.String("and spirit"),
-//						NoFollowRedirects:          pulumi.Bool(true),
-//						BearerToken:                pulumi.String("asdfjkl;"),
-//						ProxyUrl:                   pulumi.String("https://almost-there"),
-//						FailIfSsl:                  pulumi.Bool(true),
-//						FailIfNotSsl:               pulumi.Bool(true),
-//						CacheBustingQueryParamName: pulumi.String("pineapple"),
-//						TlsConfig: &grafana.SyntheticMonitoringCheckSettingsHttpTlsConfigArgs{
-//							ServerName: pulumi.String("grafana.org"),
-//							ClientCert: pulumi.String(`-----BEGIN CERTIFICATE-----
-//
-// MIIEljCCAn4CCQCKJPUQQxeO0zANBgkqhkiG9w0BAQsFADANMQswCQYDVQQGEwJT
-// RTAeFw0yMTA1MjkxOTIyNTdaFw0yNDAzMTgxOTIyNTdaMA0xCzAJBgNVBAYTAlNF
-// MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAnmbazDNUT0rSI4BpGZK+
-// 0AJ+9FDkIYWJUtRLJoxw8CF+AobMFploYA2L2Myt80cTA1w8FrewjC8qlqdnrPWr
-// h1ely2zsUljgi1/niH0ndjFzliL7UkinXQiAsTtYOrOQmzyd/o5PNdu7dz0m7stD
-// BN/Sz5TlXZnA1/eJbqV/kqMau6b1MaBx8SbRfUG9+cSmUobFJwuktDrPuwJhcEkl
-// iDmhEqu1GuZzmKvzPacLTVia1vSlmCTCu89NiHI8iGiiLtqNrapup7f8j5m3a3SL
-// a+vXhplFj2piNl7Nc0dfuVgtEliTI+qUL2/+4A7gzRWZpHy21/LxMMXmBhdJW9En
-// FWkev97VZLgb5TR3+qpSWmXcodjPy4dibvwsOMpdd+Q4AYulwvlDw5idRPVgGvk7
-// qq03+w9ppZ5Fugws9k2CD9F/75JX2mCbRpkuPe8XXZ7bqrMaQgQMLOrs68HuiiCk
-// FTklglq4DMKxnf/Y/T/MgIa9Q1o28YSevh6A7FnfPGARj2H2T4rToi+bC1Vf7qNB
-// Z18bDpz99tRUTbyiRUSBMWLCGhU6c4HAqUrfrkpperOKFBQ3i38a79838oFdXHBW
-// 6rx1t5cC3XwtEoUyeBKAygez8G1LDXbN3607MxVhAjhHKtPkYvuBfysSNU6JrR0z
-// UV1IURJANt2UMuKgSEkG/IMCAwEAATANBgkqhkiG9w0BAQsFAAOCAgEAcipMhp/w
-// yzfPy61faVAw9SPaMNRlnW9FCDC3N9CGOjo2knjXpObPzyzsJiUURTjrA9eFMpRA
-// e2Rgn2j+nvm2XdLAlC4Kh8jqv/wCL0X6BTQMdN5aOhXdSiXtpXOMvXYY/dQ4ebRZ
-// XeRCVWQD79JbV6/uyx0nCV3FVcU7L1P4UjxroefVr0soLPMirgxHmOxLnkoVgdcB
-// tqufP5kJx9CIeJXPx3QQsk1XfEtxtUvuw4ZaZkQnNUqvGl7V+AZpur5Eqfv3zBi8
-// QxxL7qGkARNssNWH2Ju+tqpM/UZRnjlFrDR4SXUgT0coTduBalUY6qHkciHmRpiP
-// tf3SgpDeiCSOV2iVFGdaR1mz3muWoAYWFstcWN3a3HjjVugIi23yLN8Gv8CNeoH4
-// prulinFCLrFgAh8SLAF8mOAZanT06LH8jOIFYrdUxH+ZeRBR0rLoFjUF+JB7UKD9
-// 5TA+B4EBzQ1tMbGFU1DX79MjAejq0IV0Nzq+GMfBvLHxEf4+Oz8nqhDXQcJ6TdtY
-// l3Lyw5zBvOL80SBK+Mr0UP7d9U3VXgbGHCYVJU6Ot1TwiGwahtWALRALA3TWeGkq
-// 7kyD1H+nm+9lfKhuyBRQnRGBVyze2lAp7oxwshJuhBwEXosXFxq1Cy6QhPN77r6N
-// vuhxvtppolNnyOgGxwG4zquqq2V5/+vKjKY=
-// -----END CERTIFICATE-----
-// `),
-//
-//						},
-//						Headers: pulumi.StringArray{
-//							pulumi.String("Content-Type: multipart/form-data; boundary=something"),
-//						},
-//						BasicAuth: &grafana.SyntheticMonitoringCheckSettingsHttpBasicAuthArgs{
-//							Username: pulumi.String("open"),
-//							Password: pulumi.String("sesame"),
-//						},
-//						ValidStatusCodes: pulumi.IntArray{
-//							pulumi.Int(200),
-//							pulumi.Int(201),
-//						},
-//						ValidHttpVersions: pulumi.StringArray{
-//							pulumi.String("HTTP/1.0"),
-//							pulumi.String("HTTP/1.1"),
-//							pulumi.String("HTTP/2.0"),
-//						},
-//						FailIfBodyMatchesRegexps: pulumi.StringArray{
-//							pulumi.String("*bad stuff*"),
-//						},
-//						FailIfBodyNotMatchesRegexps: pulumi.StringArray{
-//							pulumi.String("*good stuff*"),
-//						},
-//						FailIfHeaderMatchesRegexps: grafana.SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArray{
-//							&grafana.SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs{
-//								Header:       pulumi.String("Content-Type"),
-//								Regexp:       pulumi.String("application/soap*"),
-//								AllowMissing: pulumi.Bool(true),
-//							},
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ### Ping Basic
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := grafana.GetSyntheticMonitoringProbes(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewSyntheticMonitoringCheck(ctx, "ping", &grafana.SyntheticMonitoringCheckArgs{
-//				Job:     pulumi.String("Ping Defaults"),
-//				Target:  pulumi.String("grafana.com"),
-//				Enabled: pulumi.Bool(false),
-//				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Atlanta),
-//				},
-//				Labels: pulumi.StringMap{
-//					"foo": pulumi.String("bar"),
-//				},
-//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
-//					Ping: nil,
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ### Ping Complex
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := grafana.GetSyntheticMonitoringProbes(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewSyntheticMonitoringCheck(ctx, "ping", &grafana.SyntheticMonitoringCheckArgs{
-//				Job:     pulumi.String("Ping Updated"),
-//				Target:  pulumi.String("grafana.net"),
-//				Enabled: pulumi.Bool(false),
-//				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Frankfurt),
-//					pulumi.Int(main.Probes.London),
-//				},
-//				Labels: pulumi.StringMap{
-//					"foo": pulumi.String("baz"),
-//				},
-//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
-//					Ping: &grafana.SyntheticMonitoringCheckSettingsPingArgs{
-//						IpVersion:    pulumi.String("Any"),
-//						PayloadSize:  pulumi.Int(20),
-//						DontFragment: pulumi.Bool(true),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ### TCP Basic
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := grafana.GetSyntheticMonitoringProbes(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewSyntheticMonitoringCheck(ctx, "tcp", &grafana.SyntheticMonitoringCheckArgs{
-//				Job:     pulumi.String("TCP Defaults"),
-//				Target:  pulumi.String("grafana.com:80"),
-//				Enabled: pulumi.Bool(false),
-//				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Atlanta),
-//				},
-//				Labels: pulumi.StringMap{
-//					"foo": pulumi.String("bar"),
-//				},
-//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
-//					Tcp: nil,
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ### TCP Complex
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := grafana.GetSyntheticMonitoringProbes(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewSyntheticMonitoringCheck(ctx, "tcp", &grafana.SyntheticMonitoringCheckArgs{
-//				Job:     pulumi.String("TCP Defaults"),
-//				Target:  pulumi.String("grafana.com:443"),
-//				Enabled: pulumi.Bool(false),
-//				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Frankfurt),
-//					pulumi.Int(main.Probes.London),
-//				},
-//				Labels: pulumi.StringMap{
-//					"foo": pulumi.String("baz"),
-//				},
-//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
-//					Tcp: &grafana.SyntheticMonitoringCheckSettingsTcpArgs{
-//						IpVersion: pulumi.String("V6"),
-//						Tls:       pulumi.Bool(true),
-//						QueryResponses: grafana.SyntheticMonitoringCheckSettingsTcpQueryResponseArray{
-//							&grafana.SyntheticMonitoringCheckSettingsTcpQueryResponseArgs{
-//								Send:   pulumi.String("howdy"),
-//								Expect: pulumi.String("hi"),
-//							},
-//							&grafana.SyntheticMonitoringCheckSettingsTcpQueryResponseArgs{
-//								Send:     pulumi.String("like this"),
-//								Expect:   pulumi.String("like that"),
-//								StartTls: pulumi.Bool(true),
-//							},
-//						},
-//						TlsConfig: &grafana.SyntheticMonitoringCheckSettingsTcpTlsConfigArgs{
-//							ServerName: pulumi.String("grafana.com"),
-//							CaCert: pulumi.String(`-----BEGIN CERTIFICATE-----
-//
-// MIIEljCCAn4CCQCKJPUQQxeO0zANBgkqhkiG9w0BAQsFADANMQswCQYDVQQGEwJT
-// RTAeFw0yMTA1MjkxOTIyNTdaFw0yNDAzMTgxOTIyNTdaMA0xCzAJBgNVBAYTAlNF
-// MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAnmbazDNUT0rSI4BpGZK+
-// 0AJ+9FDkIYWJUtRLJoxw8CF+AobMFploYA2L2Myt80cTA1w8FrewjC8qlqdnrPWr
-// h1ely2zsUljgi1/niH0ndjFzliL7UkinXQiAsTtYOrOQmzyd/o5PNdu7dz0m7stD
-// BN/Sz5TlXZnA1/eJbqV/kqMau6b1MaBx8SbRfUG9+cSmUobFJwuktDrPuwJhcEkl
-// iDmhEqu1GuZzmKvzPacLTVia1vSlmCTCu89NiHI8iGiiLtqNrapup7f8j5m3a3SL
-// a+vXhplFj2piNl7Nc0dfuVgtEliTI+qUL2/+4A7gzRWZpHy21/LxMMXmBhdJW9En
-// FWkev97VZLgb5TR3+qpSWmXcodjPy4dibvwsOMpdd+Q4AYulwvlDw5idRPVgGvk7
-// qq03+w9ppZ5Fugws9k2CD9F/75JX2mCbRpkuPe8XXZ7bqrMaQgQMLOrs68HuiiCk
-// FTklglq4DMKxnf/Y/T/MgIa9Q1o28YSevh6A7FnfPGARj2H2T4rToi+bC1Vf7qNB
-// Z18bDpz99tRUTbyiRUSBMWLCGhU6c4HAqUrfrkpperOKFBQ3i38a79838oFdXHBW
-// 6rx1t5cC3XwtEoUyeBKAygez8G1LDXbN3607MxVhAjhHKtPkYvuBfysSNU6JrR0z
-// UV1IURJANt2UMuKgSEkG/IMCAwEAATANBgkqhkiG9w0BAQsFAAOCAgEAcipMhp/w
-// yzfPy61faVAw9SPaMNRlnW9FCDC3N9CGOjo2knjXpObPzyzsJiUURTjrA9eFMpRA
-// e2Rgn2j+nvm2XdLAlC4Kh8jqv/wCL0X6BTQMdN5aOhXdSiXtpXOMvXYY/dQ4ebRZ
-// XeRCVWQD79JbV6/uyx0nCV3FVcU7L1P4UjxroefVr0soLPMirgxHmOxLnkoVgdcB
-// tqufP5kJx9CIeJXPx3QQsk1XfEtxtUvuw4ZaZkQnNUqvGl7V+AZpur5Eqfv3zBi8
-// QxxL7qGkARNssNWH2Ju+tqpM/UZRnjlFrDR4SXUgT0coTduBalUY6qHkciHmRpiP
-// tf3SgpDeiCSOV2iVFGdaR1mz3muWoAYWFstcWN3a3HjjVugIi23yLN8Gv8CNeoH4
-// prulinFCLrFgAh8SLAF8mOAZanT06LH8jOIFYrdUxH+ZeRBR0rLoFjUF+JB7UKD9
-// 5TA+B4EBzQ1tMbGFU1DX79MjAejq0IV0Nzq+GMfBvLHxEf4+Oz8nqhDXQcJ6TdtY
-// l3Lyw5zBvOL80SBK+Mr0UP7d9U3VXgbGHCYVJU6Ot1TwiGwahtWALRALA3TWeGkq
-// 7kyD1H+nm+9lfKhuyBRQnRGBVyze2lAp7oxwshJuhBwEXosXFxq1Cy6QhPN77r6N
-// vuhxvtppolNnyOgGxwG4zquqq2V5/+vKjKY=
-// -----END CERTIFICATE-----
-// `),
-//
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ### Traceroute Basic
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := grafana.GetSyntheticMonitoringProbes(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewSyntheticMonitoringCheck(ctx, "traceroute", &grafana.SyntheticMonitoringCheckArgs{
-//				Job:       pulumi.String("Traceroute defaults"),
-//				Target:    pulumi.String("grafana.com"),
-//				Enabled:   pulumi.Bool(false),
-//				Frequency: pulumi.Int(120000),
-//				Timeout:   pulumi.Int(30000),
-//				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Atlanta),
-//				},
-//				Labels: pulumi.StringMap{
-//					"foo": pulumi.String("bar"),
-//				},
-//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
-//					Traceroute: nil,
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ### Traceroute Complex
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := grafana.GetSyntheticMonitoringProbes(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewSyntheticMonitoringCheck(ctx, "traceroute", &grafana.SyntheticMonitoringCheckArgs{
-//				Job:       pulumi.String("Traceroute complex"),
-//				Target:    pulumi.String("grafana.net"),
-//				Enabled:   pulumi.Bool(false),
-//				Frequency: pulumi.Int(120000),
-//				Timeout:   pulumi.Int(30000),
-//				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Frankfurt),
-//					pulumi.Int(main.Probes.London),
-//				},
-//				Labels: pulumi.StringMap{
-//					"foo": pulumi.String("baz"),
-//				},
-//				Settings: &grafana.SyntheticMonitoringCheckSettingsArgs{
-//					Traceroute: &grafana.SyntheticMonitoringCheckSettingsTracerouteArgs{
-//						MaxHops:        pulumi.Int(25),
-//						MaxUnknownHops: pulumi.Int(10),
-//						PtrLookup:      pulumi.Bool(false),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck check {{check-id}}
-// ```
 type SyntheticMonitoringCheck struct {
 	pulumi.CustomResourceState
 
-	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
+	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert
+	// levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).
 	AlertSensitivity pulumi.StringPtrOutput `pulumi:"alertSensitivity"`
-	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
+	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of
+	// metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each.
 	BasicMetricsOnly pulumi.BoolPtrOutput `pulumi:"basicMetricsOnly"`
-	// Whether to enable the check. Defaults to `true`.
+	// Whether to enable the check.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
-	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms). Defaults to `60000`.
+	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
+	// value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
 	Frequency pulumi.IntPtrOutput `pulumi:"frequency"`
 	// Name used for job label.
 	Job pulumi.StringOutput `pulumi:"job"`
-	// Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of the labels cannot be empty, and the maximum length is 32 bytes.
+	// Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per
+	// check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of
+	// the labels cannot be empty, and the maximum length is 32 bytes.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// List of probe location IDs where this target will be checked from.
 	Probes pulumi.IntArrayOutput `pulumi:"probes"`
@@ -652,7 +40,8 @@ type SyntheticMonitoringCheck struct {
 	Target pulumi.StringOutput `pulumi:"target"`
 	// The tenant ID of the check.
 	TenantId pulumi.IntOutput `pulumi:"tenantId"`
-	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms),
+	// and the maximum 10 seconds (10000 ms).
 	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 }
 
@@ -698,17 +87,22 @@ func GetSyntheticMonitoringCheck(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SyntheticMonitoringCheck resources.
 type syntheticMonitoringCheckState struct {
-	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
+	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert
+	// levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).
 	AlertSensitivity *string `pulumi:"alertSensitivity"`
-	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
+	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of
+	// metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each.
 	BasicMetricsOnly *bool `pulumi:"basicMetricsOnly"`
-	// Whether to enable the check. Defaults to `true`.
+	// Whether to enable the check.
 	Enabled *bool `pulumi:"enabled"`
-	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms). Defaults to `60000`.
+	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
+	// value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
 	Frequency *int `pulumi:"frequency"`
 	// Name used for job label.
 	Job *string `pulumi:"job"`
-	// Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of the labels cannot be empty, and the maximum length is 32 bytes.
+	// Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per
+	// check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of
+	// the labels cannot be empty, and the maximum length is 32 bytes.
 	Labels map[string]string `pulumi:"labels"`
 	// List of probe location IDs where this target will be checked from.
 	Probes []int `pulumi:"probes"`
@@ -718,22 +112,28 @@ type syntheticMonitoringCheckState struct {
 	Target *string `pulumi:"target"`
 	// The tenant ID of the check.
 	TenantId *int `pulumi:"tenantId"`
-	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms),
+	// and the maximum 10 seconds (10000 ms).
 	Timeout *int `pulumi:"timeout"`
 }
 
 type SyntheticMonitoringCheckState struct {
-	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
+	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert
+	// levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).
 	AlertSensitivity pulumi.StringPtrInput
-	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
+	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of
+	// metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each.
 	BasicMetricsOnly pulumi.BoolPtrInput
-	// Whether to enable the check. Defaults to `true`.
+	// Whether to enable the check.
 	Enabled pulumi.BoolPtrInput
-	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms). Defaults to `60000`.
+	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
+	// value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
 	Frequency pulumi.IntPtrInput
 	// Name used for job label.
 	Job pulumi.StringPtrInput
-	// Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of the labels cannot be empty, and the maximum length is 32 bytes.
+	// Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per
+	// check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of
+	// the labels cannot be empty, and the maximum length is 32 bytes.
 	Labels pulumi.StringMapInput
 	// List of probe location IDs where this target will be checked from.
 	Probes pulumi.IntArrayInput
@@ -743,7 +143,8 @@ type SyntheticMonitoringCheckState struct {
 	Target pulumi.StringPtrInput
 	// The tenant ID of the check.
 	TenantId pulumi.IntPtrInput
-	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms),
+	// and the maximum 10 seconds (10000 ms).
 	Timeout pulumi.IntPtrInput
 }
 
@@ -752,17 +153,22 @@ func (SyntheticMonitoringCheckState) ElementType() reflect.Type {
 }
 
 type syntheticMonitoringCheckArgs struct {
-	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
+	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert
+	// levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).
 	AlertSensitivity *string `pulumi:"alertSensitivity"`
-	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
+	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of
+	// metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each.
 	BasicMetricsOnly *bool `pulumi:"basicMetricsOnly"`
-	// Whether to enable the check. Defaults to `true`.
+	// Whether to enable the check.
 	Enabled *bool `pulumi:"enabled"`
-	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms). Defaults to `60000`.
+	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
+	// value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
 	Frequency *int `pulumi:"frequency"`
 	// Name used for job label.
 	Job string `pulumi:"job"`
-	// Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of the labels cannot be empty, and the maximum length is 32 bytes.
+	// Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per
+	// check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of
+	// the labels cannot be empty, and the maximum length is 32 bytes.
 	Labels map[string]string `pulumi:"labels"`
 	// List of probe location IDs where this target will be checked from.
 	Probes []int `pulumi:"probes"`
@@ -770,23 +176,29 @@ type syntheticMonitoringCheckArgs struct {
 	Settings SyntheticMonitoringCheckSettings `pulumi:"settings"`
 	// Hostname to ping.
 	Target string `pulumi:"target"`
-	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms),
+	// and the maximum 10 seconds (10000 ms).
 	Timeout *int `pulumi:"timeout"`
 }
 
 // The set of arguments for constructing a SyntheticMonitoringCheck resource.
 type SyntheticMonitoringCheckArgs struct {
-	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
+	// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert
+	// levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).
 	AlertSensitivity pulumi.StringPtrInput
-	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
+	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of
+	// metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each.
 	BasicMetricsOnly pulumi.BoolPtrInput
-	// Whether to enable the check. Defaults to `true`.
+	// Whether to enable the check.
 	Enabled pulumi.BoolPtrInput
-	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms). Defaults to `60000`.
+	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
+	// value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
 	Frequency pulumi.IntPtrInput
 	// Name used for job label.
 	Job pulumi.StringInput
-	// Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of the labels cannot be empty, and the maximum length is 32 bytes.
+	// Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per
+	// check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of
+	// the labels cannot be empty, and the maximum length is 32 bytes.
 	Labels pulumi.StringMapInput
 	// List of probe location IDs where this target will be checked from.
 	Probes pulumi.IntArrayInput
@@ -794,7 +206,8 @@ type SyntheticMonitoringCheckArgs struct {
 	Settings SyntheticMonitoringCheckSettingsInput
 	// Hostname to ping.
 	Target pulumi.StringInput
-	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms),
+	// and the maximum 10 seconds (10000 ms).
 	Timeout pulumi.IntPtrInput
 }
 
@@ -885,22 +298,25 @@ func (o SyntheticMonitoringCheckOutput) ToSyntheticMonitoringCheckOutputWithCont
 	return o
 }
 
-// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/). Defaults to `none`.
+// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert
+// levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).
 func (o SyntheticMonitoringCheckOutput) AlertSensitivity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheck) pulumi.StringPtrOutput { return v.AlertSensitivity }).(pulumi.StringPtrOutput)
 }
 
-// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
+// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of
+// metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each.
 func (o SyntheticMonitoringCheckOutput) BasicMetricsOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheck) pulumi.BoolPtrOutput { return v.BasicMetricsOnly }).(pulumi.BoolPtrOutput)
 }
 
-// Whether to enable the check. Defaults to `true`.
+// Whether to enable the check.
 func (o SyntheticMonitoringCheckOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheck) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms). Defaults to `60000`.
+// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
+// value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
 func (o SyntheticMonitoringCheckOutput) Frequency() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheck) pulumi.IntPtrOutput { return v.Frequency }).(pulumi.IntPtrOutput)
 }
@@ -910,7 +326,9 @@ func (o SyntheticMonitoringCheckOutput) Job() pulumi.StringOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheck) pulumi.StringOutput { return v.Job }).(pulumi.StringOutput)
 }
 
-// Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of the labels cannot be empty, and the maximum length is 32 bytes.
+// Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per
+// check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of
+// the labels cannot be empty, and the maximum length is 32 bytes.
 func (o SyntheticMonitoringCheckOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheck) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -935,7 +353,8 @@ func (o SyntheticMonitoringCheckOutput) TenantId() pulumi.IntOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheck) pulumi.IntOutput { return v.TenantId }).(pulumi.IntOutput)
 }
 
-// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms),
+// and the maximum 10 seconds (10000 ms).
 func (o SyntheticMonitoringCheckOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheck) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }

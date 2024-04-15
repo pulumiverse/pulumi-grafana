@@ -10,43 +10,6 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// Manages Grafana Alerting message templates.
-    /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/manage-notifications/template-notifications/create-notification-templates/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#templates)
-    /// 
-    /// This resource requires Grafana 9.1.0 or later.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var myTemplate = new Grafana.MessageTemplate("myTemplate", new()
-    ///     {
-    ///         Template = @"{{define ""My Reusable Template"" }}
-    ///  template content
-    /// {{ end }}
-    /// ",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/messageTemplate:MessageTemplate message_template_name {{message_template_name}}
-    /// ```
-    /// </summary>
     [GrafanaResourceType("grafana:index/messageTemplate:MessageTemplate")]
     public partial class MessageTemplate : global::Pulumi.CustomResource
     {

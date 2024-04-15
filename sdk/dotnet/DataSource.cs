@@ -10,136 +10,29 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/datasources/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/data_source/)
-    /// 
-    /// The required arguments for this resource vary depending on the type of data
-    /// source selected (via the 'type' argument).
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using System.Text.Json;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var arbitrary_data = new Grafana.DataSource("arbitrary-data", new()
-    ///     {
-    ///         Type = "stackdriver",
-    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///         {
-    ///             ["tokenUri"] = "https://oauth2.googleapis.com/token",
-    ///             ["authenticationType"] = "jwt",
-    ///             ["defaultProject"] = "default-project",
-    ///             ["clientEmail"] = "client-email@default-project.iam.gserviceaccount.com",
-    ///         }),
-    ///         SecureJsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///         {
-    ///             ["privateKey"] = @"-----BEGIN PRIVATE KEY-----
-    /// private-key
-    /// -----END PRIVATE KEY-----
-    /// ",
-    ///         }),
-    ///     });
-    /// 
-    ///     var influxdb = new Grafana.DataSource("influxdb", new()
-    ///     {
-    ///         Type = "influxdb",
-    ///         Url = "http://influxdb.example.net:8086/",
-    ///         BasicAuthEnabled = true,
-    ///         BasicAuthUsername = "username",
-    ///         DatabaseName = "dbname",
-    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///         {
-    ///             ["authType"] = "default",
-    ///             ["basicAuthPassword"] = "mypassword",
-    ///         }),
-    ///     });
-    /// 
-    ///     var cloudwatch = new Grafana.DataSource("cloudwatch", new()
-    ///     {
-    ///         Type = "cloudwatch",
-    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///         {
-    ///             ["defaultRegion"] = "us-east-1",
-    ///             ["authType"] = "keys",
-    ///         }),
-    ///         SecureJsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///         {
-    ///             ["accessKey"] = "123",
-    ///             ["secretKey"] = "456",
-    ///         }),
-    ///     });
-    /// 
-    ///     var prometheus = new Grafana.DataSource("prometheus", new()
-    ///     {
-    ///         Type = "prometheus",
-    ///         Url = "https://my-instances.com",
-    ///         BasicAuthEnabled = true,
-    ///         BasicAuthUsername = "username",
-    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///         {
-    ///             ["httpMethod"] = "POST",
-    ///             ["prometheusType"] = "Mimir",
-    ///             ["prometheusVersion"] = "2.4.0",
-    ///         }),
-    ///         SecureJsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///         {
-    ///             ["basicAuthPassword"] = "password",
-    ///         }),
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/dataSource:DataSource by_integer_id {{datasource_id}} # To use the default provider org
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/dataSource:DataSource by_uid {{datasource_uid}} # To use the default provider org
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/dataSource:DataSource by_integer_id {{org_id}}:{{datasource_id}} # When "org_id" is set on the resource
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/dataSource:DataSource by_uid {{org_id}}:{{datasource_uid}} # When "org_id" is set on the resource
-    /// ```
-    /// </summary>
     [GrafanaResourceType("grafana:index/dataSource:DataSource")]
     public partial class DataSource : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The method by which Grafana will access the data source: `proxy` or `direct`. Defaults to `proxy`.
+        /// The method by which Grafana will access the data source: `proxy` or `direct`.
         /// </summary>
         [Output("accessMode")]
         public Output<string?> AccessMode { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to enable basic auth for the data source. Defaults to `false`.
+        /// Whether to enable basic auth for the data source.
         /// </summary>
         [Output("basicAuthEnabled")]
         public Output<bool?> BasicAuthEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Basic auth username. Defaults to ``.
+        /// Basic auth username.
         /// </summary>
         [Output("basicAuthUsername")]
         public Output<string?> BasicAuthUsername { get; private set; } = null!;
 
         /// <summary>
-        /// (Required by some data source types) The name of the database to use on the selected data source server. Defaults to ``.
+        /// (Required by some data source types) The name of the database to use on the selected data source server.
         /// </summary>
         [Output("databaseName")]
         public Output<string?> DatabaseName { get; private set; } = null!;
@@ -151,13 +44,15 @@ namespace Pulumiverse.Grafana
         public Output<ImmutableDictionary<string, string>?> HttpHeaders { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
+        /// Whether to set the data source as default. This should only be `true` to a single data source.
         /// </summary>
         [Output("isDefault")]
         public Output<bool?> IsDefault { get; private set; } = null!;
 
         /// <summary>
-        /// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        /// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
+        /// source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
+        /// from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         [Output("jsonDataEncoded")]
         public Output<string?> JsonDataEncoded { get; private set; } = null!;
@@ -175,7 +70,9 @@ namespace Pulumiverse.Grafana
         public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
-        /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
+        /// to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
+        /// saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         [Output("secureJsonDataEncoded")]
         public Output<string?> SecureJsonDataEncoded { get; private set; } = null!;
@@ -199,7 +96,7 @@ namespace Pulumiverse.Grafana
         public Output<string?> Url { get; private set; } = null!;
 
         /// <summary>
-        /// (Required by some data source types) The username to use to authenticate to the data source. Defaults to ``.
+        /// (Required by some data source types) The username to use to authenticate to the data source.
         /// </summary>
         [Output("username")]
         public Output<string?> Username { get; private set; } = null!;
@@ -257,25 +154,25 @@ namespace Pulumiverse.Grafana
     public sealed class DataSourceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The method by which Grafana will access the data source: `proxy` or `direct`. Defaults to `proxy`.
+        /// The method by which Grafana will access the data source: `proxy` or `direct`.
         /// </summary>
         [Input("accessMode")]
         public Input<string>? AccessMode { get; set; }
 
         /// <summary>
-        /// Whether to enable basic auth for the data source. Defaults to `false`.
+        /// Whether to enable basic auth for the data source.
         /// </summary>
         [Input("basicAuthEnabled")]
         public Input<bool>? BasicAuthEnabled { get; set; }
 
         /// <summary>
-        /// Basic auth username. Defaults to ``.
+        /// Basic auth username.
         /// </summary>
         [Input("basicAuthUsername")]
         public Input<string>? BasicAuthUsername { get; set; }
 
         /// <summary>
-        /// (Required by some data source types) The name of the database to use on the selected data source server. Defaults to ``.
+        /// (Required by some data source types) The name of the database to use on the selected data source server.
         /// </summary>
         [Input("databaseName")]
         public Input<string>? DatabaseName { get; set; }
@@ -297,13 +194,15 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
+        /// Whether to set the data source as default. This should only be `true` to a single data source.
         /// </summary>
         [Input("isDefault")]
         public Input<bool>? IsDefault { get; set; }
 
         /// <summary>
-        /// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        /// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
+        /// source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
+        /// from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         [Input("jsonDataEncoded")]
         public Input<string>? JsonDataEncoded { get; set; }
@@ -324,7 +223,9 @@ namespace Pulumiverse.Grafana
         private Input<string>? _secureJsonDataEncoded;
 
         /// <summary>
-        /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
+        /// to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
+        /// saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         public Input<string>? SecureJsonDataEncoded
         {
@@ -355,7 +256,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// (Required by some data source types) The username to use to authenticate to the data source. Defaults to ``.
+        /// (Required by some data source types) The username to use to authenticate to the data source.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
@@ -369,25 +270,25 @@ namespace Pulumiverse.Grafana
     public sealed class DataSourceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The method by which Grafana will access the data source: `proxy` or `direct`. Defaults to `proxy`.
+        /// The method by which Grafana will access the data source: `proxy` or `direct`.
         /// </summary>
         [Input("accessMode")]
         public Input<string>? AccessMode { get; set; }
 
         /// <summary>
-        /// Whether to enable basic auth for the data source. Defaults to `false`.
+        /// Whether to enable basic auth for the data source.
         /// </summary>
         [Input("basicAuthEnabled")]
         public Input<bool>? BasicAuthEnabled { get; set; }
 
         /// <summary>
-        /// Basic auth username. Defaults to ``.
+        /// Basic auth username.
         /// </summary>
         [Input("basicAuthUsername")]
         public Input<string>? BasicAuthUsername { get; set; }
 
         /// <summary>
-        /// (Required by some data source types) The name of the database to use on the selected data source server. Defaults to ``.
+        /// (Required by some data source types) The name of the database to use on the selected data source server.
         /// </summary>
         [Input("databaseName")]
         public Input<string>? DatabaseName { get; set; }
@@ -409,13 +310,15 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
+        /// Whether to set the data source as default. This should only be `true` to a single data source.
         /// </summary>
         [Input("isDefault")]
         public Input<bool>? IsDefault { get; set; }
 
         /// <summary>
-        /// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        /// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
+        /// source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
+        /// from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         [Input("jsonDataEncoded")]
         public Input<string>? JsonDataEncoded { get; set; }
@@ -436,7 +339,9 @@ namespace Pulumiverse.Grafana
         private Input<string>? _secureJsonDataEncoded;
 
         /// <summary>
-        /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
+        /// to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
+        /// saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         public Input<string>? SecureJsonDataEncoded
         {
@@ -467,7 +372,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// (Required by some data source types) The username to use to authenticate to the data source. Defaults to ``.
+        /// (Required by some data source types) The username to use to authenticate to the data source.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }

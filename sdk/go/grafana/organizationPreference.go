@@ -11,42 +11,10 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.NewOrganizationPreference(ctx, "test", &grafana.OrganizationPreferenceArgs{
-//				Theme:     pulumi.String("light"),
-//				Timezone:  pulumi.String("utc"),
-//				WeekStart: pulumi.String("sunday"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
 type OrganizationPreference struct {
 	pulumi.CustomResourceState
 
-	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
+	// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
 	//
 	// Deprecated: Use `homeDashboardUid` instead.
 	HomeDashboardId pulumi.IntPtrOutput `pulumi:"homeDashboardId"`
@@ -58,7 +26,8 @@ type OrganizationPreference struct {
 	Theme pulumi.StringPtrOutput `pulumi:"theme"`
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
 	Timezone pulumi.StringPtrOutput `pulumi:"timezone"`
-	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+	// default.
 	WeekStart pulumi.StringPtrOutput `pulumi:"weekStart"`
 }
 
@@ -92,7 +61,7 @@ func GetOrganizationPreference(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OrganizationPreference resources.
 type organizationPreferenceState struct {
-	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
+	// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
 	//
 	// Deprecated: Use `homeDashboardUid` instead.
 	HomeDashboardId *int `pulumi:"homeDashboardId"`
@@ -104,12 +73,13 @@ type organizationPreferenceState struct {
 	Theme *string `pulumi:"theme"`
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
 	Timezone *string `pulumi:"timezone"`
-	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+	// default.
 	WeekStart *string `pulumi:"weekStart"`
 }
 
 type OrganizationPreferenceState struct {
-	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
+	// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
 	//
 	// Deprecated: Use `homeDashboardUid` instead.
 	HomeDashboardId pulumi.IntPtrInput
@@ -121,7 +91,8 @@ type OrganizationPreferenceState struct {
 	Theme pulumi.StringPtrInput
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
 	Timezone pulumi.StringPtrInput
-	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+	// default.
 	WeekStart pulumi.StringPtrInput
 }
 
@@ -130,7 +101,7 @@ func (OrganizationPreferenceState) ElementType() reflect.Type {
 }
 
 type organizationPreferenceArgs struct {
-	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
+	// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
 	//
 	// Deprecated: Use `homeDashboardUid` instead.
 	HomeDashboardId *int `pulumi:"homeDashboardId"`
@@ -142,13 +113,14 @@ type organizationPreferenceArgs struct {
 	Theme *string `pulumi:"theme"`
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
 	Timezone *string `pulumi:"timezone"`
-	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+	// default.
 	WeekStart *string `pulumi:"weekStart"`
 }
 
 // The set of arguments for constructing a OrganizationPreference resource.
 type OrganizationPreferenceArgs struct {
-	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
+	// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
 	//
 	// Deprecated: Use `homeDashboardUid` instead.
 	HomeDashboardId pulumi.IntPtrInput
@@ -160,7 +132,8 @@ type OrganizationPreferenceArgs struct {
 	Theme pulumi.StringPtrInput
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
 	Timezone pulumi.StringPtrInput
-	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+	// default.
 	WeekStart pulumi.StringPtrInput
 }
 
@@ -251,7 +224,7 @@ func (o OrganizationPreferenceOutput) ToOrganizationPreferenceOutputWithContext(
 	return o
 }
 
-// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
+// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
 //
 // Deprecated: Use `homeDashboardUid` instead.
 func (o OrganizationPreferenceOutput) HomeDashboardId() pulumi.IntPtrOutput {
@@ -278,7 +251,8 @@ func (o OrganizationPreferenceOutput) Timezone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OrganizationPreference) pulumi.StringPtrOutput { return v.Timezone }).(pulumi.StringPtrOutput)
 }
 
-// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to “.
+// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+// default.
 func (o OrganizationPreferenceOutput) WeekStart() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OrganizationPreference) pulumi.StringPtrOutput { return v.WeekStart }).(pulumi.StringPtrOutput)
 }

@@ -12,7 +12,6 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// A job defines the queries and model parameters for a machine learning task.
 type MachineLearningJob struct {
 	pulumi.CustomResourceState
 
@@ -28,9 +27,10 @@ type MachineLearningJob struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays pulumi.StringArrayOutput `pulumi:"holidays"`
-	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+	// for the full list of available hyperparameters.
 	HyperParams pulumi.MapOutput `pulumi:"hyperParams"`
-	// The data interval in seconds to train the data on. Defaults to `300`.
+	// The data interval in seconds to train the data on.
 	Interval pulumi.IntPtrOutput `pulumi:"interval"`
 	// The metric used to query the job results.
 	Metric pulumi.StringOutput `pulumi:"metric"`
@@ -38,7 +38,7 @@ type MachineLearningJob struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
 	QueryParams pulumi.MapOutput `pulumi:"queryParams"`
-	// The data interval in seconds to train the data on. Defaults to `7776000`.
+	// The data interval in seconds to train the data on.
 	TrainingWindow pulumi.IntPtrOutput `pulumi:"trainingWindow"`
 }
 
@@ -93,9 +93,10 @@ type machineLearningJobState struct {
 	Description *string `pulumi:"description"`
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays []string `pulumi:"holidays"`
-	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+	// for the full list of available hyperparameters.
 	HyperParams map[string]interface{} `pulumi:"hyperParams"`
-	// The data interval in seconds to train the data on. Defaults to `300`.
+	// The data interval in seconds to train the data on.
 	Interval *int `pulumi:"interval"`
 	// The metric used to query the job results.
 	Metric *string `pulumi:"metric"`
@@ -103,7 +104,7 @@ type machineLearningJobState struct {
 	Name *string `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
 	QueryParams map[string]interface{} `pulumi:"queryParams"`
-	// The data interval in seconds to train the data on. Defaults to `7776000`.
+	// The data interval in seconds to train the data on.
 	TrainingWindow *int `pulumi:"trainingWindow"`
 }
 
@@ -120,9 +121,10 @@ type MachineLearningJobState struct {
 	Description pulumi.StringPtrInput
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays pulumi.StringArrayInput
-	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+	// for the full list of available hyperparameters.
 	HyperParams pulumi.MapInput
-	// The data interval in seconds to train the data on. Defaults to `300`.
+	// The data interval in seconds to train the data on.
 	Interval pulumi.IntPtrInput
 	// The metric used to query the job results.
 	Metric pulumi.StringPtrInput
@@ -130,7 +132,7 @@ type MachineLearningJobState struct {
 	Name pulumi.StringPtrInput
 	// An object representing the query params to query Grafana with.
 	QueryParams pulumi.MapInput
-	// The data interval in seconds to train the data on. Defaults to `7776000`.
+	// The data interval in seconds to train the data on.
 	TrainingWindow pulumi.IntPtrInput
 }
 
@@ -151,9 +153,10 @@ type machineLearningJobArgs struct {
 	Description *string `pulumi:"description"`
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays []string `pulumi:"holidays"`
-	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+	// for the full list of available hyperparameters.
 	HyperParams map[string]interface{} `pulumi:"hyperParams"`
-	// The data interval in seconds to train the data on. Defaults to `300`.
+	// The data interval in seconds to train the data on.
 	Interval *int `pulumi:"interval"`
 	// The metric used to query the job results.
 	Metric string `pulumi:"metric"`
@@ -161,7 +164,7 @@ type machineLearningJobArgs struct {
 	Name *string `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
 	QueryParams map[string]interface{} `pulumi:"queryParams"`
-	// The data interval in seconds to train the data on. Defaults to `7776000`.
+	// The data interval in seconds to train the data on.
 	TrainingWindow *int `pulumi:"trainingWindow"`
 }
 
@@ -179,9 +182,10 @@ type MachineLearningJobArgs struct {
 	Description pulumi.StringPtrInput
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays pulumi.StringArrayInput
-	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+	// for the full list of available hyperparameters.
 	HyperParams pulumi.MapInput
-	// The data interval in seconds to train the data on. Defaults to `300`.
+	// The data interval in seconds to train the data on.
 	Interval pulumi.IntPtrInput
 	// The metric used to query the job results.
 	Metric pulumi.StringInput
@@ -189,7 +193,7 @@ type MachineLearningJobArgs struct {
 	Name pulumi.StringPtrInput
 	// An object representing the query params to query Grafana with.
 	QueryParams pulumi.MapInput
-	// The data interval in seconds to train the data on. Defaults to `7776000`.
+	// The data interval in seconds to train the data on.
 	TrainingWindow pulumi.IntPtrInput
 }
 
@@ -310,12 +314,13 @@ func (o MachineLearningJobOutput) Holidays() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *MachineLearningJob) pulumi.StringArrayOutput { return v.Holidays }).(pulumi.StringArrayOutput)
 }
 
-// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+// for the full list of available hyperparameters.
 func (o MachineLearningJobOutput) HyperParams() pulumi.MapOutput {
 	return o.ApplyT(func(v *MachineLearningJob) pulumi.MapOutput { return v.HyperParams }).(pulumi.MapOutput)
 }
 
-// The data interval in seconds to train the data on. Defaults to `300`.
+// The data interval in seconds to train the data on.
 func (o MachineLearningJobOutput) Interval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *MachineLearningJob) pulumi.IntPtrOutput { return v.Interval }).(pulumi.IntPtrOutput)
 }
@@ -335,7 +340,7 @@ func (o MachineLearningJobOutput) QueryParams() pulumi.MapOutput {
 	return o.ApplyT(func(v *MachineLearningJob) pulumi.MapOutput { return v.QueryParams }).(pulumi.MapOutput)
 }
 
-// The data interval in seconds to train the data on. Defaults to `7776000`.
+// The data interval in seconds to train the data on.
 func (o MachineLearningJobOutput) TrainingWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *MachineLearningJob) pulumi.IntPtrOutput { return v.TrainingWindow }).(pulumi.IntPtrOutput)
 }

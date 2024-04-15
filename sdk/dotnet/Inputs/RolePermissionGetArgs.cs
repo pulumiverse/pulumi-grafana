@@ -20,7 +20,7 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string> Action { get; set; } = null!;
 
         /// <summary>
-        /// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
+        /// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
         /// </summary>
         [Input("scope")]
         public Input<string>? Scope { get; set; }

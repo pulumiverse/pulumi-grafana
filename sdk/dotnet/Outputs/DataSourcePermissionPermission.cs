@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Outputs
     public sealed class DataSourcePermissionPermission
     {
         /// <summary>
-        /// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+. Defaults to ``.
+        /// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+.
         /// </summary>
         public readonly string? BuiltInRole;
         /// <summary>
@@ -23,11 +23,11 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string Permission;
         /// <summary>
-        /// ID of the team to manage permissions for. Defaults to `0`.
+        /// ID of the team to manage permissions for.
         /// </summary>
         public readonly string? TeamId;
         /// <summary>
-        /// ID of the user or service account to manage permissions for. Defaults to `0`.
+        /// ID of the user or service account to manage permissions for.
         /// </summary>
         public readonly string? UserId;
 

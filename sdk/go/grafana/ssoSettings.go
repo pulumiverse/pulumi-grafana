@@ -12,44 +12,6 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Manages Grafana SSO Settings for OAuth2. SAML support will be added soon.
-//
-// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/sso-settings/)
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.NewSsoSettings(ctx, "githubSsoSettings", &grafana.SsoSettingsArgs{
-//				Oauth2Settings: &grafana.SsoSettingsOauth2SettingsArgs{
-//					AllowedOrganizations: pulumi.String("organization1,organization2"),
-//					ClientId:             pulumi.String("github_client_id"),
-//					ClientSecret:         pulumi.String("github_client_secret"),
-//					TeamIds:              pulumi.String("12,50,123"),
-//				},
-//				ProviderName: pulumi.String("github"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
 type SsoSettings struct {
 	pulumi.CustomResourceState
 

@@ -14,13 +14,13 @@ namespace Pulumiverse.Grafana.Inputs
     public sealed class OncallIntegrationDefaultRouteTelegramGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable notification in MS teams. Defaults to `true`.
+        /// Enable notification in Telegram.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// The ID of this resource.
+        /// Telegram channel id. Alerts will be directed to this channel in Telegram.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }

@@ -40,9 +40,6 @@ class GetOncallOutgoingWebhookResult:
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        The outgoing webhook name.
-        """
         return pulumi.get(self, "name")
 
 
@@ -59,21 +56,7 @@ class AwaitableGetOncallOutgoingWebhookResult(GetOncallOutgoingWebhookResult):
 def get_oncall_outgoing_webhook(name: Optional[str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallOutgoingWebhookResult:
     """
-    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
-
-    ## Example Usage
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-
-    example_outgoing_webhook = grafana.get_oncall_outgoing_webhook(name="example_outgoing_webhook")
-    ```
-    <!--End PulumiCodeChooser -->
-
-
-    :param str name: The outgoing webhook name.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -89,20 +72,6 @@ def get_oncall_outgoing_webhook(name: Optional[str] = None,
 def get_oncall_outgoing_webhook_output(name: Optional[pulumi.Input[str]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallOutgoingWebhookResult]:
     """
-    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
-
-    ## Example Usage
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-
-    example_outgoing_webhook = grafana.get_oncall_outgoing_webhook(name="example_outgoing_webhook")
-    ```
-    <!--End PulumiCodeChooser -->
-
-
-    :param str name: The outgoing webhook name.
+    Use this data source to access information about an existing resource.
     """
     ...

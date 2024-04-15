@@ -27,7 +27,8 @@ class SyntheticMonitoringProbeArgs:
         :param pulumi.Input[str] region: Region of the probe.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs.
         :param pulumi.Input[str] name: Name of the probe.
-        :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
+        :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
+               to `true`.
         """
         pulumi.set(__self__, "latitude", latitude)
         pulumi.set(__self__, "longitude", longitude)
@@ -103,7 +104,8 @@ class SyntheticMonitoringProbeArgs:
     @pulumi.getter
     def public(self) -> Optional[pulumi.Input[bool]]:
         """
-        Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
+        Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
+        to `true`.
         """
         return pulumi.get(self, "public")
 
@@ -130,7 +132,8 @@ class _SyntheticMonitoringProbeState:
         :param pulumi.Input[float] latitude: Latitude coordinates.
         :param pulumi.Input[float] longitude: Longitude coordinates.
         :param pulumi.Input[str] name: Name of the probe.
-        :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
+        :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
+               to `true`.
         :param pulumi.Input[str] region: Region of the probe.
         :param pulumi.Input[int] tenant_id: The tenant ID of the probe.
         """
@@ -215,7 +218,8 @@ class _SyntheticMonitoringProbeState:
     @pulumi.getter
     def public(self) -> Optional[pulumi.Input[bool]]:
         """
-        Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
+        Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
+        to `true`.
         """
         return pulumi.get(self, "public")
 
@@ -261,47 +265,15 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Besides the public probes run by Grafana Labs, you can also install your
-        own private probes. These are only accessible to you and only write data to
-        your Grafana Cloud account. Private probes are instances of the open source
-        Grafana Synthetic Monitoring Agent.
-
-        * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/)
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        main = grafana.SyntheticMonitoringProbe("main",
-            labels={
-                "type": "mountain",
-            },
-            latitude=27.98606,
-            longitude=86.92262,
-            region="APAC")
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}:{{auth_token}}
-        ```
-
+        Create a SyntheticMonitoringProbe resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs.
         :param pulumi.Input[float] latitude: Latitude coordinates.
         :param pulumi.Input[float] longitude: Longitude coordinates.
         :param pulumi.Input[str] name: Name of the probe.
-        :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
+        :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
+               to `true`.
         :param pulumi.Input[str] region: Region of the probe.
         """
         ...
@@ -311,40 +283,7 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
                  args: SyntheticMonitoringProbeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Besides the public probes run by Grafana Labs, you can also install your
-        own private probes. These are only accessible to you and only write data to
-        your Grafana Cloud account. Private probes are instances of the open source
-        Grafana Synthetic Monitoring Agent.
-
-        * [Official documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/)
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        main = grafana.SyntheticMonitoringProbe("main",
-            labels={
-                "type": "mountain",
-            },
-            latitude=27.98606,
-            longitude=86.92262,
-            region="APAC")
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe probe {{probe-id}}:{{auth_token}}
-        ```
-
+        Create a SyntheticMonitoringProbe resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param SyntheticMonitoringProbeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -421,7 +360,8 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
         :param pulumi.Input[float] latitude: Latitude coordinates.
         :param pulumi.Input[float] longitude: Longitude coordinates.
         :param pulumi.Input[str] name: Name of the probe.
-        :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
+        :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
+               to `true`.
         :param pulumi.Input[str] region: Region of the probe.
         :param pulumi.Input[int] tenant_id: The tenant ID of the probe.
         """
@@ -483,7 +423,8 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
     @pulumi.getter
     def public(self) -> pulumi.Output[Optional[bool]]:
         """
-        Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
+        Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
+        to `true`.
         """
         return pulumi.get(self, "public")
 

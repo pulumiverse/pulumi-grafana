@@ -4,22 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- *
- * const default = grafana.getOncallEscalationChain({
- *     name: "default",
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- */
 export function getOncallEscalationChain(args: GetOncallEscalationChainArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallEscalationChainResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -32,9 +16,6 @@ export function getOncallEscalationChain(args: GetOncallEscalationChainArgs, opt
  * A collection of arguments for invoking getOncallEscalationChain.
  */
 export interface GetOncallEscalationChainArgs {
-    /**
-     * The escalation chain name.
-     */
     name: string;
 }
 
@@ -46,27 +27,8 @@ export interface GetOncallEscalationChainResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * The escalation chain name.
-     */
     readonly name: string;
 }
-/**
- * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- *
- * const default = grafana.getOncallEscalationChain({
- *     name: "default",
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- */
 export function getOncallEscalationChainOutput(args: GetOncallEscalationChainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallEscalationChainResult> {
     return pulumi.output(args).apply((a: any) => getOncallEscalationChain(a, opts))
 }
@@ -75,8 +37,5 @@ export function getOncallEscalationChainOutput(args: GetOncallEscalationChainOut
  * A collection of arguments for invoking getOncallEscalationChain.
  */
 export interface GetOncallEscalationChainOutputArgs {
-    /**
-     * The escalation chain name.
-     */
     name: pulumi.Input<string>;
 }

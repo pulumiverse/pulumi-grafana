@@ -4,20 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- *
- * const test = grafana.getCloudOrganization({
- *     slug: "my-org",
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- */
 export function getCloudOrganization(args?: GetCloudOrganizationArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudOrganizationResult> {
     args = args || {};
 
@@ -32,9 +18,6 @@ export function getCloudOrganization(args?: GetCloudOrganizationArgs, opts?: pul
  * A collection of arguments for invoking getCloudOrganization.
  */
 export interface GetCloudOrganizationArgs {
-    /**
-     * The ID of this resource.
-     */
     id?: string;
     slug?: string;
 }
@@ -44,29 +27,12 @@ export interface GetCloudOrganizationArgs {
  */
 export interface GetCloudOrganizationResult {
     readonly createdAt: string;
-    /**
-     * The ID of this resource.
-     */
     readonly id: string;
     readonly name: string;
     readonly slug: string;
     readonly updatedAt: string;
     readonly url: string;
 }
-/**
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- *
- * const test = grafana.getCloudOrganization({
- *     slug: "my-org",
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- */
 export function getCloudOrganizationOutput(args?: GetCloudOrganizationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudOrganizationResult> {
     return pulumi.output(args).apply((a: any) => getCloudOrganization(a, opts))
 }
@@ -75,9 +41,6 @@ export function getCloudOrganizationOutput(args?: GetCloudOrganizationOutputArgs
  * A collection of arguments for invoking getCloudOrganization.
  */
 export interface GetCloudOrganizationOutputArgs {
-    /**
-     * The ID of this resource.
-     */
     id?: pulumi.Input<string>;
     slug?: pulumi.Input<string>;
 }

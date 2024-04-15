@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Manages Grafana Cloud Plugin Installations.
- *
- * * [Plugin Catalog](https://grafana.com/grafana/plugins/)
- *
- * Required access policy scopes:
- *
- * * stack-plugins:read
- * * stack-plugins:write
- * * stack-plugins:delete
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.CloudPluginInstallation("test", {
- *     slug: "some-plugin",
- *     stackSlug: "stackname",
- *     version: "1.2.3",
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/cloudPluginInstallation:CloudPluginInstallation name "{{ stackSlug }}:{{ pluginSlug }}"
- * ```
- */
 export class CloudPluginInstallation extends pulumi.CustomResource {
     /**
      * Get an existing CloudPluginInstallation resource's state with the given name, ID, and optional extra

@@ -11,43 +11,6 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			test, err := grafana.NewTeam(ctx, "test", &grafana.TeamArgs{
-//				Email: pulumi.String("test-team-email@test.com"),
-//				Preferences: &grafana.TeamPreferencesArgs{
-//					Theme:    pulumi.String("dark"),
-//					Timezone: pulumi.String("utc"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = grafana.LookupTeamOutput(ctx, grafana.GetTeamOutputArgs{
-//				Name: test.Name,
-//			}, nil)
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
 func LookupTeam(ctx *pulumi.Context, args *LookupTeamArgs, opts ...pulumi.InvokeOption) (*LookupTeamResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTeamResult

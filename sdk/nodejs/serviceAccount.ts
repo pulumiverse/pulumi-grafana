@@ -4,26 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * **Note:** This resource is available only with Grafana 9.1+.
- *
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const admin = new grafana.ServiceAccount("admin", {
- *     isDisabled: false,
- *     role: "Admin",
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- */
 export class ServiceAccount extends pulumi.CustomResource {
     /**
      * Get an existing ServiceAccount resource's state with the given name, ID, and optional extra
@@ -53,7 +33,7 @@ export class ServiceAccount extends pulumi.CustomResource {
     }
 
     /**
-     * The disabled status for the service account. Defaults to `false`.
+     * The disabled status for the service account.
      */
     public readonly isDisabled!: pulumi.Output<boolean | undefined>;
     /**
@@ -103,7 +83,7 @@ export class ServiceAccount extends pulumi.CustomResource {
  */
 export interface ServiceAccountState {
     /**
-     * The disabled status for the service account. Defaults to `false`.
+     * The disabled status for the service account.
      */
     isDisabled?: pulumi.Input<boolean>;
     /**
@@ -125,7 +105,7 @@ export interface ServiceAccountState {
  */
 export interface ServiceAccountArgs {
     /**
-     * The disabled status for the service account. Defaults to `false`.
+     * The disabled status for the service account.
      */
     isDisabled?: pulumi.Input<boolean>;
     /**
