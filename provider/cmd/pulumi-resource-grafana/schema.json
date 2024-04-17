@@ -2448,7 +2448,7 @@
                 },
                 "execErrState": {
                     "type": "string",
-                    "description": "Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, and Alerting.\n"
+                    "description": "Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.\n"
                 },
                 "for": {
                     "type": "string",
@@ -2471,7 +2471,7 @@
                 },
                 "noDataState": {
                     "type": "string",
-                    "description": "Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting.\n"
+                    "description": "Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.\n"
                 },
                 "notificationSettings": {
                     "$ref": "#/types/grafana:index/RuleGroupRuleNotificationSettings:RuleGroupRuleNotificationSettings",
@@ -3024,6 +3024,133 @@
             "required": [
                 "clientId"
             ]
+        },
+        "grafana:index/SsoSettingsSamlSettings:SsoSettingsSamlSettings": {
+            "properties": {
+                "allowIdpInitiated": {
+                    "type": "boolean",
+                    "description": "Whether SAML IdP-initiated login is allowed.\n"
+                },
+                "allowSignUp": {
+                    "type": "boolean",
+                    "description": "Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.\n"
+                },
+                "allowedOrganizations": {
+                    "type": "string",
+                    "description": "List of comma- or space-separated organizations. User should be a member of at least one organization to log in.\n"
+                },
+                "assertionAttributeEmail": {
+                    "type": "string",
+                    "description": "Friendly name or name of the attribute within the SAML assertion to use as the user email.\n"
+                },
+                "assertionAttributeGroups": {
+                    "type": "string",
+                    "description": "Friendly name or name of the attribute within the SAML assertion to use as the user groups.\n"
+                },
+                "assertionAttributeLogin": {
+                    "type": "string",
+                    "description": "Friendly name or name of the attribute within the SAML assertion to use as the user login handle.\n"
+                },
+                "assertionAttributeName": {
+                    "type": "string",
+                    "description": "Friendly name or name of the attribute within the SAML assertion to use as the user name. Alternatively, this can be a template with variables that match the names of attributes within the SAML assertion.\n"
+                },
+                "assertionAttributeOrg": {
+                    "type": "string",
+                    "description": "Friendly name or name of the attribute within the SAML assertion to use as the user organization.\n"
+                },
+                "assertionAttributeRole": {
+                    "type": "string",
+                    "description": "Friendly name or name of the attribute within the SAML assertion to use as the user roles.\n"
+                },
+                "autoLogin": {
+                    "type": "boolean",
+                    "description": "Whether SAML auto login is enabled.\n"
+                },
+                "certificate": {
+                    "type": "string",
+                    "description": "Base64-encoded string for the SP X.509 certificate.\n",
+                    "secret": true
+                },
+                "certificatePath": {
+                    "type": "string",
+                    "description": "Path for the SP X.509 certificate.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Define whether this configuration is enabled for SAML.\n"
+                },
+                "idpMetadata": {
+                    "type": "string",
+                    "description": "Base64-encoded string for the IdP SAML metadata XML.\n"
+                },
+                "idpMetadataPath": {
+                    "type": "string",
+                    "description": "Path for the IdP SAML metadata XML.\n"
+                },
+                "idpMetadataUrl": {
+                    "type": "string",
+                    "description": "URL for the IdP SAML metadata XML.\n"
+                },
+                "maxIssueDelay": {
+                    "type": "string",
+                    "description": "Duration, since the IdP issued a response and the SP is allowed to process it. For example: 90s, 1h.\n"
+                },
+                "metadataValidDuration": {
+                    "type": "string",
+                    "description": "Duration, for how long the SP metadata is valid. For example: 48h, 5d.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name used to refer to the SAML authentication.\n"
+                },
+                "nameIdFormat": {
+                    "type": "string",
+                    "description": "The Name ID Format to request within the SAML assertion. Defaults to urn:oasis:names:tc:SAML:2.0:nameid-format:transient\n"
+                },
+                "orgMapping": {
+                    "type": "string",
+                    "description": "List of comma- or space-separated Organization:OrgId:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: Viewer, Editor or Admin.\n"
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "Base64-encoded string for the SP private key.\n",
+                    "secret": true
+                },
+                "privateKeyPath": {
+                    "type": "string",
+                    "description": "Path for the SP private key.\n"
+                },
+                "relayState": {
+                    "type": "string",
+                    "description": "Relay state for IdP-initiated login. Should match relay state configured in IdP.\n"
+                },
+                "roleValuesAdmin": {
+                    "type": "string",
+                    "description": "List of comma- or space-separated roles which will be mapped into the Admin role.\n"
+                },
+                "roleValuesEditor": {
+                    "type": "string",
+                    "description": "List of comma- or space-separated roles which will be mapped into the Editor role.\n"
+                },
+                "roleValuesGrafanaAdmin": {
+                    "type": "string",
+                    "description": "List of comma- or space-separated roles which will be mapped into the Grafana Admin (Super Admin) role.\n"
+                },
+                "roleValuesNone": {
+                    "type": "string",
+                    "description": "List of comma- or space-separated roles which will be mapped into the None role.\n"
+                },
+                "signatureAlgorithm": {
+                    "type": "string",
+                    "description": "Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.\n"
+                },
+                "singleLogout": {
+                    "type": "boolean",
+                    "description": "Whether SAML Single Logout is enabled.\n"
+                }
+            },
+            "type": "object"
         },
         "grafana:index/SyntheticMonitoringCheckSettings:SyntheticMonitoringCheckSettings": {
             "properties": {
@@ -4264,7 +4391,7 @@
             },
             "smUrl": {
                 "type": "string",
-                "description": "Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The\ncorrect value for each service region is cited in the [Synthetic Monitoring\ndocumentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).\nNote the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the\n`grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances\nmanaging SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for\neach provider ensures all providers interact with the same SM API.\n"
+                "description": "Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The\ncorrect value for each service region is cited in the [Synthetic Monitoring\ndocumentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/set-up/set-up-private-probes/#probe-api-server-url).\nNote the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the\n`grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances\nmanaging SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for\neach provider ensures all providers interact with the same SM API.\n"
             },
             "storeDashboardSha256": {
                 "type": "boolean",
@@ -4399,7 +4526,7 @@
             },
             "smUrl": {
                 "type": "string",
-                "description": "Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The\ncorrect value for each service region is cited in the [Synthetic Monitoring\ndocumentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).\nNote the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the\n`grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances\nmanaging SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for\neach provider ensures all providers interact with the same SM API.\n",
+                "description": "Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The\ncorrect value for each service region is cited in the [Synthetic Monitoring\ndocumentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/set-up/set-up-private-probes/#probe-api-server-url).\nNote the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the\n`grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances\nmanaging SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for\neach provider ensures all providers interact with the same SM API.\n",
                 "defaultInfo": {
                     "environment": [
                         "GRAFANA_SM_URL"
@@ -4983,6 +5110,77 @@
                 "type": "object"
             }
         },
+        "grafana:index/cloudOrgMember:CloudOrgMember": {
+            "properties": {
+                "org": {
+                    "type": "string",
+                    "description": "The slug or ID of the organization.\n"
+                },
+                "receiveBillingEmails": {
+                    "type": "boolean",
+                    "description": "Whether the user should receive billing emails.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The role to assign to the user in the organization.\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "Username or ID of the user to add to the org's members.\n"
+                }
+            },
+            "required": [
+                "org",
+                "receiveBillingEmails",
+                "role",
+                "user"
+            ],
+            "inputProperties": {
+                "org": {
+                    "type": "string",
+                    "description": "The slug or ID of the organization.\n"
+                },
+                "receiveBillingEmails": {
+                    "type": "boolean",
+                    "description": "Whether the user should receive billing emails.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The role to assign to the user in the organization.\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "Username or ID of the user to add to the org's members.\n"
+                }
+            },
+            "requiredInputs": [
+                "org",
+                "role",
+                "user"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering CloudOrgMember resources.\n",
+                "properties": {
+                    "org": {
+                        "type": "string",
+                        "description": "The slug or ID of the organization.\n"
+                    },
+                    "receiveBillingEmails": {
+                        "type": "boolean",
+                        "description": "Whether the user should receive billing emails.\n"
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "The role to assign to the user in the organization.\n"
+                    },
+                    "user": {
+                        "type": "string",
+                        "description": "Username or ID of the user to add to the org's members.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:index/cloudPluginInstallation:CloudPluginInstallation": {
             "properties": {
                 "slug": {
@@ -5523,6 +5721,7 @@
             },
             "required": [
                 "name",
+                "role",
                 "stackSlug"
             ],
             "inputProperties": {
@@ -5547,6 +5746,7 @@
                 }
             },
             "requiredInputs": [
+                "role",
                 "stackSlug"
             ],
             "stateInputs": {
@@ -6359,6 +6559,99 @@
                 "type": "object"
             }
         },
+        "grafana:index/dashboardPermissionItem:DashboardPermissionItem": {
+            "properties": {
+                "dashboardUid": {
+                    "type": "string",
+                    "description": "The UID of the dashboard.\n"
+                },
+                "orgId": {
+                    "type": "string",
+                    "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
+                },
+                "permission": {
+                    "type": "string",
+                    "description": "the permission to be assigned\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "the role onto which the permission is to be assigned\n"
+                },
+                "team": {
+                    "type": "string",
+                    "description": "the team onto which the permission is to be assigned\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "the user or service account onto which the permission is to be assigned\n"
+                }
+            },
+            "required": [
+                "dashboardUid",
+                "orgId",
+                "permission"
+            ],
+            "inputProperties": {
+                "dashboardUid": {
+                    "type": "string",
+                    "description": "The UID of the dashboard.\n"
+                },
+                "orgId": {
+                    "type": "string",
+                    "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
+                },
+                "permission": {
+                    "type": "string",
+                    "description": "the permission to be assigned\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "the role onto which the permission is to be assigned\n"
+                },
+                "team": {
+                    "type": "string",
+                    "description": "the team onto which the permission is to be assigned\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "the user or service account onto which the permission is to be assigned\n"
+                }
+            },
+            "requiredInputs": [
+                "dashboardUid",
+                "permission"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DashboardPermissionItem resources.\n",
+                "properties": {
+                    "dashboardUid": {
+                        "type": "string",
+                        "description": "The UID of the dashboard.\n"
+                    },
+                    "orgId": {
+                        "type": "string",
+                        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
+                    },
+                    "permission": {
+                        "type": "string",
+                        "description": "the permission to be assigned\n"
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "the role onto which the permission is to be assigned\n"
+                    },
+                    "team": {
+                        "type": "string",
+                        "description": "the team onto which the permission is to be assigned\n"
+                    },
+                    "user": {
+                        "type": "string",
+                        "description": "the user or service account onto which the permission is to be assigned\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:index/dashboardPublic:DashboardPublic": {
             "properties": {
                 "accessToken": {
@@ -6684,11 +6977,110 @@
                 "type": "object"
             }
         },
+        "grafana:index/dataSourceConfig:DataSourceConfig": {
+            "properties": {
+                "httpHeaders": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Custom HTTP headers\n",
+                    "secret": true
+                },
+                "jsonDataEncoded": {
+                    "type": "string",
+                    "description": "Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data\nsource. To figure out what options a datasource has available, see its docs or inspect the network data when saving it\nfrom the Grafana UI. Note that keys in this map are usually camelCased.\n"
+                },
+                "orgId": {
+                    "type": "string",
+                    "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
+                },
+                "secureJsonDataEncoded": {
+                    "type": "string",
+                    "description": "Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options\nto the data source. To figure out what options a datasource has available, see its docs or inspect the network data when\nsaving it from the Grafana UI. Note that keys in this map are usually camelCased.\n",
+                    "secret": true
+                },
+                "uid": {
+                    "type": "string",
+                    "description": "Unique identifier. If unset, this will be automatically generated.\n"
+                }
+            },
+            "required": [
+                "uid"
+            ],
+            "inputProperties": {
+                "httpHeaders": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Custom HTTP headers\n",
+                    "secret": true
+                },
+                "jsonDataEncoded": {
+                    "type": "string",
+                    "description": "Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data\nsource. To figure out what options a datasource has available, see its docs or inspect the network data when saving it\nfrom the Grafana UI. Note that keys in this map are usually camelCased.\n"
+                },
+                "orgId": {
+                    "type": "string",
+                    "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n",
+                    "willReplaceOnChanges": true
+                },
+                "secureJsonDataEncoded": {
+                    "type": "string",
+                    "description": "Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options\nto the data source. To figure out what options a datasource has available, see its docs or inspect the network data when\nsaving it from the Grafana UI. Note that keys in this map are usually camelCased.\n",
+                    "secret": true
+                },
+                "uid": {
+                    "type": "string",
+                    "description": "Unique identifier. If unset, this will be automatically generated.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DataSourceConfig resources.\n",
+                "properties": {
+                    "httpHeaders": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Custom HTTP headers\n",
+                        "secret": true
+                    },
+                    "jsonDataEncoded": {
+                        "type": "string",
+                        "description": "Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data\nsource. To figure out what options a datasource has available, see its docs or inspect the network data when saving it\nfrom the Grafana UI. Note that keys in this map are usually camelCased.\n"
+                    },
+                    "orgId": {
+                        "type": "string",
+                        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "secureJsonDataEncoded": {
+                        "type": "string",
+                        "description": "Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options\nto the data source. To figure out what options a datasource has available, see its docs or inspect the network data when\nsaving it from the Grafana UI. Note that keys in this map are usually camelCased.\n",
+                        "secret": true
+                    },
+                    "uid": {
+                        "type": "string",
+                        "description": "Unique identifier. If unset, this will be automatically generated.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:index/dataSourcePermission:DataSourcePermission": {
             "properties": {
                 "datasourceId": {
                     "type": "string",
-                    "description": "ID of the datasource to apply permissions to.\n"
+                    "description": "Deprecated: Use `datasource_uid` instead.\n",
+                    "deprecationMessage": "Use `datasource_uid` instead"
+                },
+                "datasourceUid": {
+                    "type": "string",
+                    "description": "UID of the datasource to apply permissions to.\n"
                 },
                 "orgId": {
                     "type": "string",
@@ -6702,13 +7094,16 @@
                     "description": "The permission items to add/update. Items that are omitted from the list will be removed.\n"
                 }
             },
-            "required": [
-                "datasourceId"
-            ],
             "inputProperties": {
                 "datasourceId": {
                     "type": "string",
-                    "description": "ID of the datasource to apply permissions to.\n",
+                    "description": "Deprecated: Use `datasource_uid` instead.\n",
+                    "deprecationMessage": "Use `datasource_uid` instead",
+                    "willReplaceOnChanges": true
+                },
+                "datasourceUid": {
+                    "type": "string",
+                    "description": "UID of the datasource to apply permissions to.\n",
                     "willReplaceOnChanges": true
                 },
                 "orgId": {
@@ -6724,15 +7119,18 @@
                     "description": "The permission items to add/update. Items that are omitted from the list will be removed.\n"
                 }
             },
-            "requiredInputs": [
-                "datasourceId"
-            ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering DataSourcePermission resources.\n",
                 "properties": {
                     "datasourceId": {
                         "type": "string",
-                        "description": "ID of the datasource to apply permissions to.\n",
+                        "description": "Deprecated: Use `datasource_uid` instead.\n",
+                        "deprecationMessage": "Use `datasource_uid` instead",
+                        "willReplaceOnChanges": true
+                    },
+                    "datasourceUid": {
+                        "type": "string",
+                        "description": "UID of the datasource to apply permissions to.\n",
                         "willReplaceOnChanges": true
                     },
                     "orgId": {
@@ -6746,6 +7144,99 @@
                             "$ref": "#/types/grafana:index/DataSourcePermissionPermission:DataSourcePermissionPermission"
                         },
                         "description": "The permission items to add/update. Items that are omitted from the list will be removed.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:index/dataSourcePermissionItem:DataSourcePermissionItem": {
+            "properties": {
+                "datasourceUid": {
+                    "type": "string",
+                    "description": "The UID of the datasource.\n"
+                },
+                "orgId": {
+                    "type": "string",
+                    "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
+                },
+                "permission": {
+                    "type": "string",
+                    "description": "the permission to be assigned\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "the role onto which the permission is to be assigned\n"
+                },
+                "team": {
+                    "type": "string",
+                    "description": "the team onto which the permission is to be assigned\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "the user or service account onto which the permission is to be assigned\n"
+                }
+            },
+            "required": [
+                "datasourceUid",
+                "orgId",
+                "permission"
+            ],
+            "inputProperties": {
+                "datasourceUid": {
+                    "type": "string",
+                    "description": "The UID of the datasource.\n"
+                },
+                "orgId": {
+                    "type": "string",
+                    "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
+                },
+                "permission": {
+                    "type": "string",
+                    "description": "the permission to be assigned\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "the role onto which the permission is to be assigned\n"
+                },
+                "team": {
+                    "type": "string",
+                    "description": "the team onto which the permission is to be assigned\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "the user or service account onto which the permission is to be assigned\n"
+                }
+            },
+            "requiredInputs": [
+                "datasourceUid",
+                "permission"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DataSourcePermissionItem resources.\n",
+                "properties": {
+                    "datasourceUid": {
+                        "type": "string",
+                        "description": "The UID of the datasource.\n"
+                    },
+                    "orgId": {
+                        "type": "string",
+                        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
+                    },
+                    "permission": {
+                        "type": "string",
+                        "description": "the permission to be assigned\n"
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "the role onto which the permission is to be assigned\n"
+                    },
+                    "team": {
+                        "type": "string",
+                        "description": "the team onto which the permission is to be assigned\n"
+                    },
+                    "user": {
+                        "type": "string",
+                        "description": "the user or service account onto which the permission is to be assigned\n"
                     }
                 },
                 "type": "object"
@@ -6912,6 +7403,99 @@
                 "type": "object"
             }
         },
+        "grafana:index/folderPermissionItem:FolderPermissionItem": {
+            "properties": {
+                "folderUid": {
+                    "type": "string",
+                    "description": "The UID of the folder.\n"
+                },
+                "orgId": {
+                    "type": "string",
+                    "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
+                },
+                "permission": {
+                    "type": "string",
+                    "description": "the permission to be assigned\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "the role onto which the permission is to be assigned\n"
+                },
+                "team": {
+                    "type": "string",
+                    "description": "the team onto which the permission is to be assigned\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "the user or service account onto which the permission is to be assigned\n"
+                }
+            },
+            "required": [
+                "folderUid",
+                "orgId",
+                "permission"
+            ],
+            "inputProperties": {
+                "folderUid": {
+                    "type": "string",
+                    "description": "The UID of the folder.\n"
+                },
+                "orgId": {
+                    "type": "string",
+                    "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
+                },
+                "permission": {
+                    "type": "string",
+                    "description": "the permission to be assigned\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "the role onto which the permission is to be assigned\n"
+                },
+                "team": {
+                    "type": "string",
+                    "description": "the team onto which the permission is to be assigned\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "the user or service account onto which the permission is to be assigned\n"
+                }
+            },
+            "requiredInputs": [
+                "folderUid",
+                "permission"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering FolderPermissionItem resources.\n",
+                "properties": {
+                    "folderUid": {
+                        "type": "string",
+                        "description": "The UID of the folder.\n"
+                    },
+                    "orgId": {
+                        "type": "string",
+                        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
+                    },
+                    "permission": {
+                        "type": "string",
+                        "description": "the permission to be assigned\n"
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "the role onto which the permission is to be assigned\n"
+                    },
+                    "team": {
+                        "type": "string",
+                        "description": "the team onto which the permission is to be assigned\n"
+                    },
+                    "user": {
+                        "type": "string",
+                        "description": "the user or service account onto which the permission is to be assigned\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:index/libraryPanel:LibraryPanel": {
             "properties": {
                 "created": {
@@ -6931,7 +7515,8 @@
                 },
                 "folderId": {
                     "type": "string",
-                    "description": "ID of the folder where the library panel is stored.\n"
+                    "description": "Deprecated. Use `folder_uid` instead\n",
+                    "deprecationMessage": "Use `folder_uid` instead"
                 },
                 "folderName": {
                     "type": "string",
@@ -6979,7 +7564,6 @@
                 "dashboardIds",
                 "description",
                 "folderName",
-                "folderUid",
                 "modelJson",
                 "name",
                 "panelId",
@@ -6991,7 +7575,12 @@
             "inputProperties": {
                 "folderId": {
                     "type": "string",
-                    "description": "ID of the folder where the library panel is stored.\n"
+                    "description": "Deprecated. Use `folder_uid` instead\n",
+                    "deprecationMessage": "Use `folder_uid` instead"
+                },
+                "folderUid": {
+                    "type": "string",
+                    "description": "Unique ID (UID) of the folder containing the library panel.\n"
                 },
                 "modelJson": {
                     "type": "string",
@@ -7034,7 +7623,8 @@
                     },
                     "folderId": {
                         "type": "string",
-                        "description": "ID of the folder where the library panel is stored.\n"
+                        "description": "Deprecated. Use `folder_uid` instead\n",
+                        "deprecationMessage": "Use `folder_uid` instead"
                     },
                     "folderName": {
                         "type": "string",
@@ -7176,7 +7766,8 @@
                 },
                 "datasourceId": {
                     "type": "integer",
-                    "description": "The id of the datasource to query.\n"
+                    "description": "The id of the datasource to query.\n",
+                    "deprecationMessage": "Use datasource_uid instead."
                 },
                 "datasourceType": {
                     "type": "string",
@@ -7244,7 +7835,8 @@
                 },
                 "datasourceId": {
                     "type": "integer",
-                    "description": "The id of the datasource to query.\n"
+                    "description": "The id of the datasource to query.\n",
+                    "deprecationMessage": "Use datasource_uid instead."
                 },
                 "datasourceType": {
                     "type": "string",
@@ -7313,7 +7905,8 @@
                     },
                     "datasourceId": {
                         "type": "integer",
-                        "description": "The id of the datasource to query.\n"
+                        "description": "The id of the datasource to query.\n",
+                        "deprecationMessage": "Use datasource_uid instead."
                     },
                     "datasourceType": {
                         "type": "string",
@@ -7376,7 +7969,8 @@
                 },
                 "datasourceId": {
                     "type": "integer",
-                    "description": "The id of the datasource to query.\n"
+                    "description": "The id of the datasource to query.\n",
+                    "deprecationMessage": "Use datasource_uid instead."
                 },
                 "datasourceType": {
                     "type": "string",
@@ -7424,7 +8018,8 @@
                 },
                 "datasourceId": {
                     "type": "integer",
-                    "description": "The id of the datasource to query.\n"
+                    "description": "The id of the datasource to query.\n",
+                    "deprecationMessage": "Use datasource_uid instead."
                 },
                 "datasourceType": {
                     "type": "string",
@@ -7473,7 +8068,8 @@
                     },
                     "datasourceId": {
                         "type": "integer",
-                        "description": "The id of the datasource to query.\n"
+                        "description": "The id of the datasource to query.\n",
+                        "deprecationMessage": "Use datasource_uid instead."
                     },
                     "datasourceType": {
                         "type": "string",
@@ -7585,6 +8181,10 @@
         },
         "grafana:index/muteTiming:MuteTiming": {
             "properties": {
+                "disableProvenance": {
+                    "type": "boolean",
+                    "description": "Allow modifying the mute timing from other sources than Terraform or the Grafana API.\n"
+                },
                 "intervals": {
                     "type": "array",
                     "items": {
@@ -7605,6 +8205,11 @@
                 "name"
             ],
             "inputProperties": {
+                "disableProvenance": {
+                    "type": "boolean",
+                    "description": "Allow modifying the mute timing from other sources than Terraform or the Grafana API.\n",
+                    "willReplaceOnChanges": true
+                },
                 "intervals": {
                     "type": "array",
                     "items": {
@@ -7626,6 +8231,11 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering MuteTiming resources.\n",
                 "properties": {
+                    "disableProvenance": {
+                        "type": "boolean",
+                        "description": "Allow modifying the mute timing from other sources than Terraform or the Grafana API.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "intervals": {
                         "type": "array",
                         "items": {
@@ -7787,7 +8397,7 @@
             "properties": {
                 "actionToTrigger": {
                     "type": "string",
-                    "description": "The ID of an Action for trigger_action type step.\n"
+                    "description": "The ID of an Action for trigger_webhook type step.\n"
                 },
                 "duration": {
                     "type": "integer",
@@ -7803,7 +8413,7 @@
                 },
                 "important": {
                     "type": "boolean",
-                    "description": "Will activate \"important\" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule\nand notify_user_group\n"
+                    "description": "Will activate \"important\" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule\nand notify_user_group,notify_team_members\n"
                 },
                 "notifyIfTimeFrom": {
                     "type": "string",
@@ -7816,6 +8426,10 @@
                 "notifyOnCallFromSchedule": {
                     "type": "string",
                     "description": "ID of a Schedule for notify_on_call_from_schedule type step.\n"
+                },
+                "notifyToTeamMembers": {
+                    "type": "string",
+                    "description": "The ID of a Team for a notify_team_members type step.\n"
                 },
                 "personsToNotifies": {
                     "type": "array",
@@ -7837,7 +8451,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,\ntrigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation\n"
+                    "description": "The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,\ntrigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,\nnotify_team_members\n"
                 }
             },
             "required": [
@@ -7847,7 +8461,7 @@
             "inputProperties": {
                 "actionToTrigger": {
                     "type": "string",
-                    "description": "The ID of an Action for trigger_action type step.\n"
+                    "description": "The ID of an Action for trigger_webhook type step.\n"
                 },
                 "duration": {
                     "type": "integer",
@@ -7864,7 +8478,7 @@
                 },
                 "important": {
                     "type": "boolean",
-                    "description": "Will activate \"important\" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule\nand notify_user_group\n"
+                    "description": "Will activate \"important\" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule\nand notify_user_group,notify_team_members\n"
                 },
                 "notifyIfTimeFrom": {
                     "type": "string",
@@ -7877,6 +8491,10 @@
                 "notifyOnCallFromSchedule": {
                     "type": "string",
                     "description": "ID of a Schedule for notify_on_call_from_schedule type step.\n"
+                },
+                "notifyToTeamMembers": {
+                    "type": "string",
+                    "description": "The ID of a Team for a notify_team_members type step.\n"
                 },
                 "personsToNotifies": {
                     "type": "array",
@@ -7898,7 +8516,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,\ntrigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation\n"
+                    "description": "The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,\ntrigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,\nnotify_team_members\n"
                 }
             },
             "requiredInputs": [
@@ -7910,7 +8528,7 @@
                 "properties": {
                     "actionToTrigger": {
                         "type": "string",
-                        "description": "The ID of an Action for trigger_action type step.\n"
+                        "description": "The ID of an Action for trigger_webhook type step.\n"
                     },
                     "duration": {
                         "type": "integer",
@@ -7927,7 +8545,7 @@
                     },
                     "important": {
                         "type": "boolean",
-                        "description": "Will activate \"important\" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule\nand notify_user_group\n"
+                        "description": "Will activate \"important\" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule\nand notify_user_group,notify_team_members\n"
                     },
                     "notifyIfTimeFrom": {
                         "type": "string",
@@ -7940,6 +8558,10 @@
                     "notifyOnCallFromSchedule": {
                         "type": "string",
                         "description": "ID of a Schedule for notify_on_call_from_schedule type step.\n"
+                    },
+                    "notifyToTeamMembers": {
+                        "type": "string",
+                        "description": "The ID of a Team for a notify_team_members type step.\n"
                     },
                     "personsToNotifies": {
                         "type": "array",
@@ -7961,7 +8583,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,\ntrigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation\n"
+                        "description": "The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,\ntrigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,\nnotify_team_members\n"
                     }
                 },
                 "type": "object"
@@ -10036,6 +10658,87 @@
                 "type": "object"
             }
         },
+        "grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem": {
+            "properties": {
+                "orgId": {
+                    "type": "string",
+                    "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
+                },
+                "permission": {
+                    "type": "string",
+                    "description": "the permission to be assigned\n"
+                },
+                "serviceAccountId": {
+                    "type": "string",
+                    "description": "The ID of the service account.\n"
+                },
+                "team": {
+                    "type": "string",
+                    "description": "the team onto which the permission is to be assigned\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "the user or service account onto which the permission is to be assigned\n"
+                }
+            },
+            "required": [
+                "orgId",
+                "permission",
+                "serviceAccountId"
+            ],
+            "inputProperties": {
+                "orgId": {
+                    "type": "string",
+                    "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
+                },
+                "permission": {
+                    "type": "string",
+                    "description": "the permission to be assigned\n"
+                },
+                "serviceAccountId": {
+                    "type": "string",
+                    "description": "The ID of the service account.\n"
+                },
+                "team": {
+                    "type": "string",
+                    "description": "the team onto which the permission is to be assigned\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "the user or service account onto which the permission is to be assigned\n"
+                }
+            },
+            "requiredInputs": [
+                "permission",
+                "serviceAccountId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ServiceAccountPermissionItem resources.\n",
+                "properties": {
+                    "orgId": {
+                        "type": "string",
+                        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
+                    },
+                    "permission": {
+                        "type": "string",
+                        "description": "the permission to be assigned\n"
+                    },
+                    "serviceAccountId": {
+                        "type": "string",
+                        "description": "The ID of the service account.\n"
+                    },
+                    "team": {
+                        "type": "string",
+                        "description": "the team onto which the permission is to be assigned\n"
+                    },
+                    "user": {
+                        "type": "string",
+                        "description": "the user or service account onto which the permission is to be assigned\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:index/serviceAccountToken:ServiceAccountToken": {
             "properties": {
                 "expiration": {
@@ -10130,29 +10833,35 @@
             "properties": {
                 "oauth2Settings": {
                     "$ref": "#/types/grafana:index/SsoSettingsOauth2Settings:SsoSettingsOauth2Settings",
-                    "description": "The SSO settings set.\n"
+                    "description": "The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.\n"
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth.\n"
+                    "description": "The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.\n"
+                },
+                "samlSettings": {
+                    "$ref": "#/types/grafana:index/SsoSettingsSamlSettings:SsoSettingsSamlSettings",
+                    "description": "The SAML settings set. Required for the saml provider.\n"
                 }
             },
             "required": [
-                "oauth2Settings",
                 "providerName"
             ],
             "inputProperties": {
                 "oauth2Settings": {
                     "$ref": "#/types/grafana:index/SsoSettingsOauth2Settings:SsoSettingsOauth2Settings",
-                    "description": "The SSO settings set.\n"
+                    "description": "The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.\n"
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth.\n"
+                    "description": "The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.\n"
+                },
+                "samlSettings": {
+                    "$ref": "#/types/grafana:index/SsoSettingsSamlSettings:SsoSettingsSamlSettings",
+                    "description": "The SAML settings set. Required for the saml provider.\n"
                 }
             },
             "requiredInputs": [
-                "oauth2Settings",
                 "providerName"
             ],
             "stateInputs": {
@@ -10160,11 +10869,15 @@
                 "properties": {
                     "oauth2Settings": {
                         "$ref": "#/types/grafana:index/SsoSettingsOauth2Settings:SsoSettingsOauth2Settings",
-                        "description": "The SSO settings set.\n"
+                        "description": "The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.\n"
                     },
                     "providerName": {
                         "type": "string",
-                        "description": "The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth.\n"
+                        "description": "The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.\n"
+                    },
+                    "samlSettings": {
+                        "$ref": "#/types/grafana:index/SsoSettingsSamlSettings:SsoSettingsSamlSettings",
+                        "description": "The SAML settings set. Required for the saml provider.\n"
                     }
                 },
                 "type": "object"
@@ -10174,7 +10887,7 @@
             "properties": {
                 "alertSensitivity": {
                     "type": "string",
-                    "description": "Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert\nlevels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).\n"
+                    "description": "Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert\nlevels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/configure-alerts/synthetic-monitoring-alerting/).\n"
                 },
                 "basicMetricsOnly": {
                     "type": "boolean",
@@ -10233,7 +10946,7 @@
             "inputProperties": {
                 "alertSensitivity": {
                     "type": "string",
-                    "description": "Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert\nlevels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).\n"
+                    "description": "Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert\nlevels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/configure-alerts/synthetic-monitoring-alerting/).\n"
                 },
                 "basicMetricsOnly": {
                     "type": "boolean",
@@ -10289,7 +11002,7 @@
                 "properties": {
                     "alertSensitivity": {
                         "type": "string",
-                        "description": "Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert\nlevels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).\n"
+                        "description": "Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert\nlevels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/configure-alerts/synthetic-monitoring-alerting/).\n"
                     },
                     "basicMetricsOnly": {
                         "type": "boolean",
@@ -10358,7 +11071,7 @@
                 },
                 "stackSmApiUrl": {
                     "type": "string",
-                    "description": "The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here:\nhttps://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping\nexists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is\ncomputed automatically and readable.\n"
+                    "description": "The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here:\nhttps://grafana.com/docs/grafana-cloud/monitor-public-endpoints/set-up/set-up-private-probes/#probe-api-server-url. A\nstatic mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region,\nthis field is computed automatically and readable.\n"
                 }
             },
             "required": [
@@ -10381,7 +11094,7 @@
                 },
                 "stackSmApiUrl": {
                     "type": "string",
-                    "description": "The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here:\nhttps://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping\nexists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is\ncomputed automatically and readable.\n",
+                    "description": "The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here:\nhttps://grafana.com/docs/grafana-cloud/monitor-public-endpoints/set-up/set-up-private-probes/#probe-api-server-url. A\nstatic mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region,\nthis field is computed automatically and readable.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -10409,7 +11122,7 @@
                     },
                     "stackSmApiUrl": {
                         "type": "string",
-                        "description": "The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here:\nhttps://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping\nexists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is\ncomputed automatically and readable.\n",
+                        "description": "The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here:\nhttps://grafana.com/docs/grafana-cloud/monitor-public-endpoints/set-up/set-up-private-probes/#probe-api-server-url. A\nstatic mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region,\nthis field is computed automatically and readable.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -11106,7 +11819,11 @@
                         "type": "integer"
                     },
                     "folder": {
-                        "type": "integer"
+                        "type": "integer",
+                        "deprecationMessage": "Use `folder_uid` instead"
+                    },
+                    "folderUid": {
+                        "type": "string"
                     },
                     "id": {
                         "type": "string",
@@ -11138,6 +11855,7 @@
                 "required": [
                     "configJson",
                     "folder",
+                    "folderUid",
                     "isStarred",
                     "slug",
                     "title",
@@ -11155,6 +11873,13 @@
                         "type": "array",
                         "items": {
                             "type": "integer"
+                        },
+                        "deprecationMessage": "Use `folder_uids` instead."
+                    },
+                    "folderUids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
                         }
                     },
                     "limit": {
@@ -11186,6 +11911,13 @@
                         "type": "array",
                         "items": {
                             "type": "integer"
+                        },
+                        "deprecationMessage": "Use `folder_uids` instead."
+                    },
+                    "folderUids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
                         }
                     },
                     "id": {
@@ -11217,7 +11949,8 @@
                 "description": "A collection of arguments for invoking getDataSource.\n",
                 "properties": {
                     "id": {
-                        "type": "string"
+                        "type": "string",
+                        "deprecationMessage": "Use `uid` instead of `id`"
                     },
                     "name": {
                         "type": "string"
@@ -11248,7 +11981,8 @@
                         "type": "string"
                     },
                     "id": {
-                        "type": "string"
+                        "type": "string",
+                        "deprecationMessage": "Use `uid` instead of `id`"
                     },
                     "isDefault": {
                         "type": "boolean"
@@ -11410,7 +12144,8 @@
                         "type": "string"
                     },
                     "folderId": {
-                        "type": "string"
+                        "type": "string",
+                        "deprecationMessage": "Use `folder_uid` instead"
                     },
                     "folderName": {
                         "type": "string"

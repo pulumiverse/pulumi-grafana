@@ -36,6 +36,9 @@
             "grafana_cloud_api_key": {
                 "current": "grafana:index/cloudApiKey:CloudApiKey"
             },
+            "grafana_cloud_org_member": {
+                "current": "grafana:index/cloudOrgMember:CloudOrgMember"
+            },
             "grafana_cloud_plugin_installation": {
                 "current": "grafana:index/cloudPluginInstallation:CloudPluginInstallation"
             },
@@ -144,11 +147,17 @@
                     }
                 }
             },
+            "grafana_dashboard_permission_item": {
+                "current": "grafana:index/dashboardPermissionItem:DashboardPermissionItem"
+            },
             "grafana_dashboard_public": {
                 "current": "grafana:index/dashboardPublic:DashboardPublic"
             },
             "grafana_data_source": {
                 "current": "grafana:index/dataSource:DataSource"
+            },
+            "grafana_data_source_config": {
+                "current": "grafana:index/dataSourceConfig:DataSourceConfig"
             },
             "grafana_data_source_permission": {
                 "current": "grafana:index/dataSourcePermission:DataSourcePermission",
@@ -157,6 +166,9 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "grafana_data_source_permission_item": {
+                "current": "grafana:index/dataSourcePermissionItem:DataSourcePermissionItem"
             },
             "grafana_folder": {
                 "current": "grafana:index/folder:Folder"
@@ -168,6 +180,9 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "grafana_folder_permission_item": {
+                "current": "grafana:index/folderPermissionItem:FolderPermissionItem"
             },
             "grafana_library_panel": {
                 "current": "grafana:index/libraryPanel:LibraryPanel",
@@ -552,6 +567,9 @@
                     }
                 }
             },
+            "grafana_service_account_permission_item": {
+                "current": "grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem"
+            },
             "grafana_service_account_token": {
                 "current": "grafana:index/serviceAccountToken:ServiceAccountToken"
             },
@@ -632,6 +650,9 @@
                 "current": "grafana:index/ssoSettings:SsoSettings",
                 "fields": {
                     "oauth2_settings": {
+                        "maxItemsOne": true
+                    },
+                    "saml_settings": {
                         "maxItemsOne": true
                     }
                 }
@@ -870,6 +891,9 @@
                     "folder_ids": {
                         "maxItemsOne": false
                     },
+                    "folder_uids": {
+                        "maxItemsOne": false
+                    },
                     "tags": {
                         "maxItemsOne": false
                     }
@@ -1095,6 +1119,7 @@
             "grafana:index/cloudAccessPolicy:CloudAccessPolicy": 0,
             "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken": 0,
             "grafana:index/cloudApiKey:CloudApiKey": 0,
+            "grafana:index/cloudOrgMember:CloudOrgMember": 1,
             "grafana:index/cloudPluginInstallation:CloudPluginInstallation": 0,
             "grafana:index/cloudStack:CloudStack": 0,
             "grafana:index/cloudStackApiKey:CloudStackApiKey": 0,
@@ -1103,11 +1128,15 @@
             "grafana:index/contactPoint:ContactPoint": 0,
             "grafana:index/dashboard:Dashboard": 0,
             "grafana:index/dashboardPermission:DashboardPermission": 0,
+            "grafana:index/dashboardPermissionItem:DashboardPermissionItem": 1,
             "grafana:index/dashboardPublic:DashboardPublic": 0,
             "grafana:index/dataSource:DataSource": 0,
+            "grafana:index/dataSourceConfig:DataSourceConfig": 0,
             "grafana:index/dataSourcePermission:DataSourcePermission": 0,
+            "grafana:index/dataSourcePermissionItem:DataSourcePermissionItem": 1,
             "grafana:index/folder:Folder": 0,
             "grafana:index/folderPermission:FolderPermission": 0,
+            "grafana:index/folderPermissionItem:FolderPermissionItem": 1,
             "grafana:index/libraryPanel:LibraryPanel": 0,
             "grafana:index/machineLearningHoliday:MachineLearningHoliday": 0,
             "grafana:index/machineLearningJob:MachineLearningJob": 0,
@@ -1132,6 +1161,7 @@
             "grafana:index/sLO:SLO": 0,
             "grafana:index/serviceAccount:ServiceAccount": 0,
             "grafana:index/serviceAccountPermission:ServiceAccountPermission": 0,
+            "grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem": 1,
             "grafana:index/serviceAccountToken:ServiceAccountToken": 0,
             "grafana:index/ssoSettings:SsoSettings": 0,
             "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck": 0,
