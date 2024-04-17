@@ -24,10 +24,19 @@ namespace Pulumiverse.Grafana
     {
         [Input("folderIds")]
         private List<int>? _folderIds;
+        [Obsolete(@"Use `folder_uids` instead.")]
         public List<int> FolderIds
         {
             get => _folderIds ?? (_folderIds = new List<int>());
             set => _folderIds = value;
+        }
+
+        [Input("folderUids")]
+        private List<string>? _folderUids;
+        public List<string> FolderUids
+        {
+            get => _folderUids ?? (_folderUids = new List<string>());
+            set => _folderUids = value;
         }
 
         [Input("limit")]
@@ -54,10 +63,19 @@ namespace Pulumiverse.Grafana
     {
         [Input("folderIds")]
         private InputList<int>? _folderIds;
+        [Obsolete(@"Use `folder_uids` instead.")]
         public InputList<int> FolderIds
         {
             get => _folderIds ?? (_folderIds = new InputList<int>());
             set => _folderIds = value;
+        }
+
+        [Input("folderUids")]
+        private InputList<string>? _folderUids;
+        public InputList<string> FolderUids
+        {
+            get => _folderUids ?? (_folderUids = new InputList<string>());
+            set => _folderUids = value;
         }
 
         [Input("limit")]
@@ -86,6 +104,7 @@ namespace Pulumiverse.Grafana
     {
         public readonly ImmutableArray<Outputs.GetDashboardsDashboardResult> Dashboards;
         public readonly ImmutableArray<int> FolderIds;
+        public readonly ImmutableArray<string> FolderUids;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -100,6 +119,8 @@ namespace Pulumiverse.Grafana
 
             ImmutableArray<int> folderIds,
 
+            ImmutableArray<string> folderUids,
+
             string id,
 
             int? limit,
@@ -110,6 +131,7 @@ namespace Pulumiverse.Grafana
         {
             Dashboards = dashboards;
             FolderIds = folderIds;
+            FolderUids = folderUids;
             Id = id;
             Limit = limit;
             OrgId = orgId;

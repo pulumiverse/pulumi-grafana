@@ -35,9 +35,15 @@ export class DataSourcePermission extends pulumi.CustomResource {
     }
 
     /**
-     * ID of the datasource to apply permissions to.
+     * Deprecated: Use `datasource_uid` instead.
+     *
+     * @deprecated Use `datasourceUid` instead
      */
-    public readonly datasourceId!: pulumi.Output<string>;
+    public readonly datasourceId!: pulumi.Output<string | undefined>;
+    /**
+     * UID of the datasource to apply permissions to.
+     */
+    public readonly datasourceUid!: pulumi.Output<string | undefined>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
@@ -54,21 +60,20 @@ export class DataSourcePermission extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: DataSourcePermissionArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: DataSourcePermissionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DataSourcePermissionArgs | DataSourcePermissionState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DataSourcePermissionState | undefined;
             resourceInputs["datasourceId"] = state ? state.datasourceId : undefined;
+            resourceInputs["datasourceUid"] = state ? state.datasourceUid : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["permissions"] = state ? state.permissions : undefined;
         } else {
             const args = argsOrState as DataSourcePermissionArgs | undefined;
-            if ((!args || args.datasourceId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'datasourceId'");
-            }
             resourceInputs["datasourceId"] = args ? args.datasourceId : undefined;
+            resourceInputs["datasourceUid"] = args ? args.datasourceUid : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["permissions"] = args ? args.permissions : undefined;
         }
@@ -82,9 +87,15 @@ export class DataSourcePermission extends pulumi.CustomResource {
  */
 export interface DataSourcePermissionState {
     /**
-     * ID of the datasource to apply permissions to.
+     * Deprecated: Use `datasource_uid` instead.
+     *
+     * @deprecated Use `datasourceUid` instead
      */
     datasourceId?: pulumi.Input<string>;
+    /**
+     * UID of the datasource to apply permissions to.
+     */
+    datasourceUid?: pulumi.Input<string>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
@@ -100,9 +111,15 @@ export interface DataSourcePermissionState {
  */
 export interface DataSourcePermissionArgs {
     /**
-     * ID of the datasource to apply permissions to.
+     * Deprecated: Use `datasource_uid` instead.
+     *
+     * @deprecated Use `datasourceUid` instead
      */
-    datasourceId: pulumi.Input<string>;
+    datasourceId?: pulumi.Input<string>;
+    /**
+     * UID of the datasource to apply permissions to.
+     */
+    datasourceUid?: pulumi.Input<string>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */

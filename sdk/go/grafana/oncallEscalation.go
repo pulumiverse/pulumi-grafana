@@ -15,7 +15,7 @@ import (
 type OncallEscalation struct {
 	pulumi.CustomResourceState
 
-	// The ID of an Action for trigger_action type step.
+	// The ID of an Action for trigger_webhook type step.
 	ActionToTrigger pulumi.StringPtrOutput `pulumi:"actionToTrigger"`
 	// The duration of delay for wait type step.
 	Duration pulumi.IntPtrOutput `pulumi:"duration"`
@@ -24,7 +24,7 @@ type OncallEscalation struct {
 	// The ID of a User Group for notify_user_group type step.
 	GroupToNotify pulumi.StringPtrOutput `pulumi:"groupToNotify"`
 	// Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-	// and notify_user_group
+	// and notify_user_group,notify_team_members
 	Important pulumi.BoolPtrOutput `pulumi:"important"`
 	// The beginning of the time interval for notify_if_time_from_to type step in UTC (for example 08:00:00Z).
 	NotifyIfTimeFrom pulumi.StringPtrOutput `pulumi:"notifyIfTimeFrom"`
@@ -32,6 +32,8 @@ type OncallEscalation struct {
 	NotifyIfTimeTo pulumi.StringPtrOutput `pulumi:"notifyIfTimeTo"`
 	// ID of a Schedule for notify_on_call_from_schedule type step.
 	NotifyOnCallFromSchedule pulumi.StringPtrOutput `pulumi:"notifyOnCallFromSchedule"`
+	// The ID of a Team for a notify_team_members type step.
+	NotifyToTeamMembers pulumi.StringPtrOutput `pulumi:"notifyToTeamMembers"`
 	// The list of ID's of users for notify_persons type step.
 	PersonsToNotifies pulumi.StringArrayOutput `pulumi:"personsToNotifies"`
 	// The list of ID's of users for notify_person_next_each_time type step.
@@ -39,7 +41,8 @@ type OncallEscalation struct {
 	// The position of the escalation step (starts from 0).
 	Position pulumi.IntOutput `pulumi:"position"`
 	// The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-	// trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+	// trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+	// notify_team_members
 	Type pulumi.StringPtrOutput `pulumi:"type"`
 }
 
@@ -79,7 +82,7 @@ func GetOncallEscalation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OncallEscalation resources.
 type oncallEscalationState struct {
-	// The ID of an Action for trigger_action type step.
+	// The ID of an Action for trigger_webhook type step.
 	ActionToTrigger *string `pulumi:"actionToTrigger"`
 	// The duration of delay for wait type step.
 	Duration *int `pulumi:"duration"`
@@ -88,7 +91,7 @@ type oncallEscalationState struct {
 	// The ID of a User Group for notify_user_group type step.
 	GroupToNotify *string `pulumi:"groupToNotify"`
 	// Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-	// and notify_user_group
+	// and notify_user_group,notify_team_members
 	Important *bool `pulumi:"important"`
 	// The beginning of the time interval for notify_if_time_from_to type step in UTC (for example 08:00:00Z).
 	NotifyIfTimeFrom *string `pulumi:"notifyIfTimeFrom"`
@@ -96,6 +99,8 @@ type oncallEscalationState struct {
 	NotifyIfTimeTo *string `pulumi:"notifyIfTimeTo"`
 	// ID of a Schedule for notify_on_call_from_schedule type step.
 	NotifyOnCallFromSchedule *string `pulumi:"notifyOnCallFromSchedule"`
+	// The ID of a Team for a notify_team_members type step.
+	NotifyToTeamMembers *string `pulumi:"notifyToTeamMembers"`
 	// The list of ID's of users for notify_persons type step.
 	PersonsToNotifies []string `pulumi:"personsToNotifies"`
 	// The list of ID's of users for notify_person_next_each_time type step.
@@ -103,12 +108,13 @@ type oncallEscalationState struct {
 	// The position of the escalation step (starts from 0).
 	Position *int `pulumi:"position"`
 	// The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-	// trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+	// trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+	// notify_team_members
 	Type *string `pulumi:"type"`
 }
 
 type OncallEscalationState struct {
-	// The ID of an Action for trigger_action type step.
+	// The ID of an Action for trigger_webhook type step.
 	ActionToTrigger pulumi.StringPtrInput
 	// The duration of delay for wait type step.
 	Duration pulumi.IntPtrInput
@@ -117,7 +123,7 @@ type OncallEscalationState struct {
 	// The ID of a User Group for notify_user_group type step.
 	GroupToNotify pulumi.StringPtrInput
 	// Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-	// and notify_user_group
+	// and notify_user_group,notify_team_members
 	Important pulumi.BoolPtrInput
 	// The beginning of the time interval for notify_if_time_from_to type step in UTC (for example 08:00:00Z).
 	NotifyIfTimeFrom pulumi.StringPtrInput
@@ -125,6 +131,8 @@ type OncallEscalationState struct {
 	NotifyIfTimeTo pulumi.StringPtrInput
 	// ID of a Schedule for notify_on_call_from_schedule type step.
 	NotifyOnCallFromSchedule pulumi.StringPtrInput
+	// The ID of a Team for a notify_team_members type step.
+	NotifyToTeamMembers pulumi.StringPtrInput
 	// The list of ID's of users for notify_persons type step.
 	PersonsToNotifies pulumi.StringArrayInput
 	// The list of ID's of users for notify_person_next_each_time type step.
@@ -132,7 +140,8 @@ type OncallEscalationState struct {
 	// The position of the escalation step (starts from 0).
 	Position pulumi.IntPtrInput
 	// The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-	// trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+	// trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+	// notify_team_members
 	Type pulumi.StringPtrInput
 }
 
@@ -141,7 +150,7 @@ func (OncallEscalationState) ElementType() reflect.Type {
 }
 
 type oncallEscalationArgs struct {
-	// The ID of an Action for trigger_action type step.
+	// The ID of an Action for trigger_webhook type step.
 	ActionToTrigger *string `pulumi:"actionToTrigger"`
 	// The duration of delay for wait type step.
 	Duration *int `pulumi:"duration"`
@@ -150,7 +159,7 @@ type oncallEscalationArgs struct {
 	// The ID of a User Group for notify_user_group type step.
 	GroupToNotify *string `pulumi:"groupToNotify"`
 	// Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-	// and notify_user_group
+	// and notify_user_group,notify_team_members
 	Important *bool `pulumi:"important"`
 	// The beginning of the time interval for notify_if_time_from_to type step in UTC (for example 08:00:00Z).
 	NotifyIfTimeFrom *string `pulumi:"notifyIfTimeFrom"`
@@ -158,6 +167,8 @@ type oncallEscalationArgs struct {
 	NotifyIfTimeTo *string `pulumi:"notifyIfTimeTo"`
 	// ID of a Schedule for notify_on_call_from_schedule type step.
 	NotifyOnCallFromSchedule *string `pulumi:"notifyOnCallFromSchedule"`
+	// The ID of a Team for a notify_team_members type step.
+	NotifyToTeamMembers *string `pulumi:"notifyToTeamMembers"`
 	// The list of ID's of users for notify_persons type step.
 	PersonsToNotifies []string `pulumi:"personsToNotifies"`
 	// The list of ID's of users for notify_person_next_each_time type step.
@@ -165,13 +176,14 @@ type oncallEscalationArgs struct {
 	// The position of the escalation step (starts from 0).
 	Position int `pulumi:"position"`
 	// The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-	// trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+	// trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+	// notify_team_members
 	Type *string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a OncallEscalation resource.
 type OncallEscalationArgs struct {
-	// The ID of an Action for trigger_action type step.
+	// The ID of an Action for trigger_webhook type step.
 	ActionToTrigger pulumi.StringPtrInput
 	// The duration of delay for wait type step.
 	Duration pulumi.IntPtrInput
@@ -180,7 +192,7 @@ type OncallEscalationArgs struct {
 	// The ID of a User Group for notify_user_group type step.
 	GroupToNotify pulumi.StringPtrInput
 	// Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-	// and notify_user_group
+	// and notify_user_group,notify_team_members
 	Important pulumi.BoolPtrInput
 	// The beginning of the time interval for notify_if_time_from_to type step in UTC (for example 08:00:00Z).
 	NotifyIfTimeFrom pulumi.StringPtrInput
@@ -188,6 +200,8 @@ type OncallEscalationArgs struct {
 	NotifyIfTimeTo pulumi.StringPtrInput
 	// ID of a Schedule for notify_on_call_from_schedule type step.
 	NotifyOnCallFromSchedule pulumi.StringPtrInput
+	// The ID of a Team for a notify_team_members type step.
+	NotifyToTeamMembers pulumi.StringPtrInput
 	// The list of ID's of users for notify_persons type step.
 	PersonsToNotifies pulumi.StringArrayInput
 	// The list of ID's of users for notify_person_next_each_time type step.
@@ -195,7 +209,8 @@ type OncallEscalationArgs struct {
 	// The position of the escalation step (starts from 0).
 	Position pulumi.IntInput
 	// The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-	// trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+	// trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+	// notify_team_members
 	Type pulumi.StringPtrInput
 }
 
@@ -286,7 +301,7 @@ func (o OncallEscalationOutput) ToOncallEscalationOutputWithContext(ctx context.
 	return o
 }
 
-// The ID of an Action for trigger_action type step.
+// The ID of an Action for trigger_webhook type step.
 func (o OncallEscalationOutput) ActionToTrigger() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallEscalation) pulumi.StringPtrOutput { return v.ActionToTrigger }).(pulumi.StringPtrOutput)
 }
@@ -307,7 +322,7 @@ func (o OncallEscalationOutput) GroupToNotify() pulumi.StringPtrOutput {
 }
 
 // Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-// and notify_user_group
+// and notify_user_group,notify_team_members
 func (o OncallEscalationOutput) Important() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OncallEscalation) pulumi.BoolPtrOutput { return v.Important }).(pulumi.BoolPtrOutput)
 }
@@ -327,6 +342,11 @@ func (o OncallEscalationOutput) NotifyOnCallFromSchedule() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v *OncallEscalation) pulumi.StringPtrOutput { return v.NotifyOnCallFromSchedule }).(pulumi.StringPtrOutput)
 }
 
+// The ID of a Team for a notify_team_members type step.
+func (o OncallEscalationOutput) NotifyToTeamMembers() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OncallEscalation) pulumi.StringPtrOutput { return v.NotifyToTeamMembers }).(pulumi.StringPtrOutput)
+}
+
 // The list of ID's of users for notify_persons type step.
 func (o OncallEscalationOutput) PersonsToNotifies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *OncallEscalation) pulumi.StringArrayOutput { return v.PersonsToNotifies }).(pulumi.StringArrayOutput)
@@ -343,7 +363,8 @@ func (o OncallEscalationOutput) Position() pulumi.IntOutput {
 }
 
 // The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-// trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+// trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+// notify_team_members
 func (o OncallEscalationOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallEscalation) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }

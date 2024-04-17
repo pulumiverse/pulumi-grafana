@@ -31,6 +31,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CloudAccessPolicyToken{}
 	case "grafana:index/cloudApiKey:CloudApiKey":
 		r = &CloudApiKey{}
+	case "grafana:index/cloudOrgMember:CloudOrgMember":
+		r = &CloudOrgMember{}
 	case "grafana:index/cloudPluginInstallation:CloudPluginInstallation":
 		r = &CloudPluginInstallation{}
 	case "grafana:index/cloudStack:CloudStack":
@@ -47,16 +49,24 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Dashboard{}
 	case "grafana:index/dashboardPermission:DashboardPermission":
 		r = &DashboardPermission{}
+	case "grafana:index/dashboardPermissionItem:DashboardPermissionItem":
+		r = &DashboardPermissionItem{}
 	case "grafana:index/dashboardPublic:DashboardPublic":
 		r = &DashboardPublic{}
 	case "grafana:index/dataSource:DataSource":
 		r = &DataSource{}
+	case "grafana:index/dataSourceConfig:DataSourceConfig":
+		r = &DataSourceConfig{}
 	case "grafana:index/dataSourcePermission:DataSourcePermission":
 		r = &DataSourcePermission{}
+	case "grafana:index/dataSourcePermissionItem:DataSourcePermissionItem":
+		r = &DataSourcePermissionItem{}
 	case "grafana:index/folder:Folder":
 		r = &Folder{}
 	case "grafana:index/folderPermission:FolderPermission":
 		r = &FolderPermission{}
+	case "grafana:index/folderPermissionItem:FolderPermissionItem":
+		r = &FolderPermissionItem{}
 	case "grafana:index/libraryPanel:LibraryPanel":
 		r = &LibraryPanel{}
 	case "grafana:index/machineLearningHoliday:MachineLearningHoliday":
@@ -105,6 +115,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ServiceAccount{}
 	case "grafana:index/serviceAccountPermission:ServiceAccountPermission":
 		r = &ServiceAccountPermission{}
+	case "grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem":
+		r = &ServiceAccountPermissionItem{}
 	case "grafana:index/serviceAccountToken:ServiceAccountToken":
 		r = &ServiceAccountToken{}
 	case "grafana:index/ssoSettings:SsoSettings":
@@ -179,6 +191,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"grafana",
+		"index/cloudOrgMember",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
 		"index/cloudPluginInstallation",
 		&module{version},
 	)
@@ -219,6 +236,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"grafana",
+		"index/dashboardPermissionItem",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
 		"index/dashboardPublic",
 		&module{version},
 	)
@@ -229,7 +251,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"grafana",
+		"index/dataSourceConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
 		"index/dataSourcePermission",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/dataSourcePermissionItem",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -240,6 +272,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"index/folderPermission",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/folderPermissionItem",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -360,6 +397,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"index/serviceAccountPermission",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/serviceAccountPermissionItem",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

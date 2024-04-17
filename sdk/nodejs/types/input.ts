@@ -1573,7 +1573,7 @@ export interface RuleGroupRule {
      */
     datas: pulumi.Input<pulumi.Input<inputs.RuleGroupRuleData>[]>;
     /**
-     * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, and Alerting.
+     * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
      */
     execErrState?: pulumi.Input<string>;
     /**
@@ -1593,7 +1593,7 @@ export interface RuleGroupRule {
      */
     name: pulumi.Input<string>;
     /**
-     * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting.
+     * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
      */
     noDataState?: pulumi.Input<string>;
     /**
@@ -1960,6 +1960,129 @@ export interface SsoSettingsOauth2Settings {
      * If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
      */
     useRefreshToken?: pulumi.Input<boolean>;
+}
+
+export interface SsoSettingsSamlSettings {
+    /**
+     * Whether SAML IdP-initiated login is allowed.
+     */
+    allowIdpInitiated?: pulumi.Input<boolean>;
+    /**
+     * Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
+     */
+    allowSignUp?: pulumi.Input<boolean>;
+    /**
+     * List of comma- or space-separated organizations. User should be a member of at least one organization to log in.
+     */
+    allowedOrganizations?: pulumi.Input<string>;
+    /**
+     * Friendly name or name of the attribute within the SAML assertion to use as the user email.
+     */
+    assertionAttributeEmail?: pulumi.Input<string>;
+    /**
+     * Friendly name or name of the attribute within the SAML assertion to use as the user groups.
+     */
+    assertionAttributeGroups?: pulumi.Input<string>;
+    /**
+     * Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
+     */
+    assertionAttributeLogin?: pulumi.Input<string>;
+    /**
+     * Friendly name or name of the attribute within the SAML assertion to use as the user name. Alternatively, this can be a template with variables that match the names of attributes within the SAML assertion.
+     */
+    assertionAttributeName?: pulumi.Input<string>;
+    /**
+     * Friendly name or name of the attribute within the SAML assertion to use as the user organization.
+     */
+    assertionAttributeOrg?: pulumi.Input<string>;
+    /**
+     * Friendly name or name of the attribute within the SAML assertion to use as the user roles.
+     */
+    assertionAttributeRole?: pulumi.Input<string>;
+    /**
+     * Whether SAML auto login is enabled.
+     */
+    autoLogin?: pulumi.Input<boolean>;
+    /**
+     * Base64-encoded string for the SP X.509 certificate.
+     */
+    certificate?: pulumi.Input<string>;
+    /**
+     * Path for the SP X.509 certificate.
+     */
+    certificatePath?: pulumi.Input<string>;
+    /**
+     * Define whether this configuration is enabled for SAML.
+     */
+    enabled?: pulumi.Input<boolean>;
+    /**
+     * Base64-encoded string for the IdP SAML metadata XML.
+     */
+    idpMetadata?: pulumi.Input<string>;
+    /**
+     * Path for the IdP SAML metadata XML.
+     */
+    idpMetadataPath?: pulumi.Input<string>;
+    /**
+     * URL for the IdP SAML metadata XML.
+     */
+    idpMetadataUrl?: pulumi.Input<string>;
+    /**
+     * Duration, since the IdP issued a response and the SP is allowed to process it. For example: 90s, 1h.
+     */
+    maxIssueDelay?: pulumi.Input<string>;
+    /**
+     * Duration, for how long the SP metadata is valid. For example: 48h, 5d.
+     */
+    metadataValidDuration?: pulumi.Input<string>;
+    /**
+     * Name used to refer to the SAML authentication.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The Name ID Format to request within the SAML assertion. Defaults to urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+     */
+    nameIdFormat?: pulumi.Input<string>;
+    /**
+     * List of comma- or space-separated Organization:OrgId:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: Viewer, Editor or Admin.
+     */
+    orgMapping?: pulumi.Input<string>;
+    /**
+     * Base64-encoded string for the SP private key.
+     */
+    privateKey?: pulumi.Input<string>;
+    /**
+     * Path for the SP private key.
+     */
+    privateKeyPath?: pulumi.Input<string>;
+    /**
+     * Relay state for IdP-initiated login. Should match relay state configured in IdP.
+     */
+    relayState?: pulumi.Input<string>;
+    /**
+     * List of comma- or space-separated roles which will be mapped into the Admin role.
+     */
+    roleValuesAdmin?: pulumi.Input<string>;
+    /**
+     * List of comma- or space-separated roles which will be mapped into the Editor role.
+     */
+    roleValuesEditor?: pulumi.Input<string>;
+    /**
+     * List of comma- or space-separated roles which will be mapped into the Grafana Admin (Super Admin) role.
+     */
+    roleValuesGrafanaAdmin?: pulumi.Input<string>;
+    /**
+     * List of comma- or space-separated roles which will be mapped into the None role.
+     */
+    roleValuesNone?: pulumi.Input<string>;
+    /**
+     * Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
+     */
+    signatureAlgorithm?: pulumi.Input<string>;
+    /**
+     * Whether SAML Single Logout is enabled.
+     */
+    singleLogout?: pulumi.Input<boolean>;
 }
 
 export interface SyntheticMonitoringCheckSettings {

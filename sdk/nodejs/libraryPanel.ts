@@ -45,7 +45,9 @@ export class LibraryPanel extends pulumi.CustomResource {
      */
     public /*out*/ readonly description!: pulumi.Output<string>;
     /**
-     * ID of the folder where the library panel is stored.
+     * Deprecated. Use `folder_uid` instead
+     *
+     * @deprecated Use `folderUid` instead
      */
     public readonly folderId!: pulumi.Output<string | undefined>;
     /**
@@ -55,7 +57,7 @@ export class LibraryPanel extends pulumi.CustomResource {
     /**
      * Unique ID (UID) of the folder containing the library panel.
      */
-    public /*out*/ readonly folderUid!: pulumi.Output<string>;
+    public readonly folderUid!: pulumi.Output<string | undefined>;
     /**
      * The JSON model for the library panel.
      */
@@ -124,6 +126,7 @@ export class LibraryPanel extends pulumi.CustomResource {
                 throw new Error("Missing required property 'modelJson'");
             }
             resourceInputs["folderId"] = args ? args.folderId : undefined;
+            resourceInputs["folderUid"] = args ? args.folderUid : undefined;
             resourceInputs["modelJson"] = args ? args.modelJson : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
@@ -132,7 +135,6 @@ export class LibraryPanel extends pulumi.CustomResource {
             resourceInputs["dashboardIds"] = undefined /*out*/;
             resourceInputs["description"] = undefined /*out*/;
             resourceInputs["folderName"] = undefined /*out*/;
-            resourceInputs["folderUid"] = undefined /*out*/;
             resourceInputs["panelId"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
             resourceInputs["updated"] = undefined /*out*/;
@@ -160,7 +162,9 @@ export interface LibraryPanelState {
      */
     description?: pulumi.Input<string>;
     /**
-     * ID of the folder where the library panel is stored.
+     * Deprecated. Use `folder_uid` instead
+     *
+     * @deprecated Use `folderUid` instead
      */
     folderId?: pulumi.Input<string>;
     /**
@@ -212,9 +216,15 @@ export interface LibraryPanelState {
  */
 export interface LibraryPanelArgs {
     /**
-     * ID of the folder where the library panel is stored.
+     * Deprecated. Use `folder_uid` instead
+     *
+     * @deprecated Use `folderUid` instead
      */
     folderId?: pulumi.Input<string>;
+    /**
+     * Unique ID (UID) of the folder containing the library panel.
+     */
+    folderUid?: pulumi.Input<string>;
     /**
      * The JSON model for the library panel.
      */

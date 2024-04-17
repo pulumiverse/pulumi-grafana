@@ -94,6 +94,7 @@ __all__ = [
     'SLOQueryRatio',
     'ServiceAccountPermissionPermission',
     'SsoSettingsOauth2Settings',
+    'SsoSettingsSamlSettings',
     'SyntheticMonitoringCheckSettings',
     'SyntheticMonitoringCheckSettingsDns',
     'SyntheticMonitoringCheckSettingsDnsValidateAdditionalRr',
@@ -5669,11 +5670,11 @@ class RuleGroupRule(dict):
         :param Sequence['RuleGroupRuleDataArgs'] datas: A sequence of stages that describe the contents of the rule.
         :param str name: The name of the alert rule.
         :param Mapping[str, str] annotations: Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing.
-        :param str exec_err_state: Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, and Alerting.
+        :param str exec_err_state: Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
         :param str for_: The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
         :param bool is_paused: Sets whether the alert should be paused or not.
         :param Mapping[str, str] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
-        :param str no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting.
+        :param str no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
         :param 'RuleGroupRuleNotificationSettingsArgs' notification_settings: Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
         :param str uid: The unique identifier of the alert rule.
         """
@@ -5733,7 +5734,7 @@ class RuleGroupRule(dict):
     @pulumi.getter(name="execErrState")
     def exec_err_state(self) -> Optional[str]:
         """
-        Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, and Alerting.
+        Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
         """
         return pulumi.get(self, "exec_err_state")
 
@@ -5765,7 +5766,7 @@ class RuleGroupRule(dict):
     @pulumi.getter(name="noDataState")
     def no_data_state(self) -> Optional[str]:
         """
-        Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting.
+        Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
         """
         return pulumi.get(self, "no_data_state")
 
@@ -7039,6 +7040,442 @@ class SsoSettingsOauth2Settings(dict):
         If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
         """
         return pulumi.get(self, "use_refresh_token")
+
+
+@pulumi.output_type
+class SsoSettingsSamlSettings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowIdpInitiated":
+            suggest = "allow_idp_initiated"
+        elif key == "allowSignUp":
+            suggest = "allow_sign_up"
+        elif key == "allowedOrganizations":
+            suggest = "allowed_organizations"
+        elif key == "assertionAttributeEmail":
+            suggest = "assertion_attribute_email"
+        elif key == "assertionAttributeGroups":
+            suggest = "assertion_attribute_groups"
+        elif key == "assertionAttributeLogin":
+            suggest = "assertion_attribute_login"
+        elif key == "assertionAttributeName":
+            suggest = "assertion_attribute_name"
+        elif key == "assertionAttributeOrg":
+            suggest = "assertion_attribute_org"
+        elif key == "assertionAttributeRole":
+            suggest = "assertion_attribute_role"
+        elif key == "autoLogin":
+            suggest = "auto_login"
+        elif key == "certificatePath":
+            suggest = "certificate_path"
+        elif key == "idpMetadata":
+            suggest = "idp_metadata"
+        elif key == "idpMetadataPath":
+            suggest = "idp_metadata_path"
+        elif key == "idpMetadataUrl":
+            suggest = "idp_metadata_url"
+        elif key == "maxIssueDelay":
+            suggest = "max_issue_delay"
+        elif key == "metadataValidDuration":
+            suggest = "metadata_valid_duration"
+        elif key == "nameIdFormat":
+            suggest = "name_id_format"
+        elif key == "orgMapping":
+            suggest = "org_mapping"
+        elif key == "privateKey":
+            suggest = "private_key"
+        elif key == "privateKeyPath":
+            suggest = "private_key_path"
+        elif key == "relayState":
+            suggest = "relay_state"
+        elif key == "roleValuesAdmin":
+            suggest = "role_values_admin"
+        elif key == "roleValuesEditor":
+            suggest = "role_values_editor"
+        elif key == "roleValuesGrafanaAdmin":
+            suggest = "role_values_grafana_admin"
+        elif key == "roleValuesNone":
+            suggest = "role_values_none"
+        elif key == "signatureAlgorithm":
+            suggest = "signature_algorithm"
+        elif key == "singleLogout":
+            suggest = "single_logout"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SsoSettingsSamlSettings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SsoSettingsSamlSettings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SsoSettingsSamlSettings.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 allow_idp_initiated: Optional[bool] = None,
+                 allow_sign_up: Optional[bool] = None,
+                 allowed_organizations: Optional[str] = None,
+                 assertion_attribute_email: Optional[str] = None,
+                 assertion_attribute_groups: Optional[str] = None,
+                 assertion_attribute_login: Optional[str] = None,
+                 assertion_attribute_name: Optional[str] = None,
+                 assertion_attribute_org: Optional[str] = None,
+                 assertion_attribute_role: Optional[str] = None,
+                 auto_login: Optional[bool] = None,
+                 certificate: Optional[str] = None,
+                 certificate_path: Optional[str] = None,
+                 enabled: Optional[bool] = None,
+                 idp_metadata: Optional[str] = None,
+                 idp_metadata_path: Optional[str] = None,
+                 idp_metadata_url: Optional[str] = None,
+                 max_issue_delay: Optional[str] = None,
+                 metadata_valid_duration: Optional[str] = None,
+                 name: Optional[str] = None,
+                 name_id_format: Optional[str] = None,
+                 org_mapping: Optional[str] = None,
+                 private_key: Optional[str] = None,
+                 private_key_path: Optional[str] = None,
+                 relay_state: Optional[str] = None,
+                 role_values_admin: Optional[str] = None,
+                 role_values_editor: Optional[str] = None,
+                 role_values_grafana_admin: Optional[str] = None,
+                 role_values_none: Optional[str] = None,
+                 signature_algorithm: Optional[str] = None,
+                 single_logout: Optional[bool] = None):
+        """
+        :param bool allow_idp_initiated: Whether SAML IdP-initiated login is allowed.
+        :param bool allow_sign_up: Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
+        :param str allowed_organizations: List of comma- or space-separated organizations. User should be a member of at least one organization to log in.
+        :param str assertion_attribute_email: Friendly name or name of the attribute within the SAML assertion to use as the user email.
+        :param str assertion_attribute_groups: Friendly name or name of the attribute within the SAML assertion to use as the user groups.
+        :param str assertion_attribute_login: Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
+        :param str assertion_attribute_name: Friendly name or name of the attribute within the SAML assertion to use as the user name. Alternatively, this can be a template with variables that match the names of attributes within the SAML assertion.
+        :param str assertion_attribute_org: Friendly name or name of the attribute within the SAML assertion to use as the user organization.
+        :param str assertion_attribute_role: Friendly name or name of the attribute within the SAML assertion to use as the user roles.
+        :param bool auto_login: Whether SAML auto login is enabled.
+        :param str certificate: Base64-encoded string for the SP X.509 certificate.
+        :param str certificate_path: Path for the SP X.509 certificate.
+        :param bool enabled: Define whether this configuration is enabled for SAML.
+        :param str idp_metadata: Base64-encoded string for the IdP SAML metadata XML.
+        :param str idp_metadata_path: Path for the IdP SAML metadata XML.
+        :param str idp_metadata_url: URL for the IdP SAML metadata XML.
+        :param str max_issue_delay: Duration, since the IdP issued a response and the SP is allowed to process it. For example: 90s, 1h.
+        :param str metadata_valid_duration: Duration, for how long the SP metadata is valid. For example: 48h, 5d.
+        :param str name: Name used to refer to the SAML authentication.
+        :param str name_id_format: The Name ID Format to request within the SAML assertion. Defaults to urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+        :param str org_mapping: List of comma- or space-separated Organization:OrgId:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: Viewer, Editor or Admin.
+        :param str private_key: Base64-encoded string for the SP private key.
+        :param str private_key_path: Path for the SP private key.
+        :param str relay_state: Relay state for IdP-initiated login. Should match relay state configured in IdP.
+        :param str role_values_admin: List of comma- or space-separated roles which will be mapped into the Admin role.
+        :param str role_values_editor: List of comma- or space-separated roles which will be mapped into the Editor role.
+        :param str role_values_grafana_admin: List of comma- or space-separated roles which will be mapped into the Grafana Admin (Super Admin) role.
+        :param str role_values_none: List of comma- or space-separated roles which will be mapped into the None role.
+        :param str signature_algorithm: Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
+        :param bool single_logout: Whether SAML Single Logout is enabled.
+        """
+        if allow_idp_initiated is not None:
+            pulumi.set(__self__, "allow_idp_initiated", allow_idp_initiated)
+        if allow_sign_up is not None:
+            pulumi.set(__self__, "allow_sign_up", allow_sign_up)
+        if allowed_organizations is not None:
+            pulumi.set(__self__, "allowed_organizations", allowed_organizations)
+        if assertion_attribute_email is not None:
+            pulumi.set(__self__, "assertion_attribute_email", assertion_attribute_email)
+        if assertion_attribute_groups is not None:
+            pulumi.set(__self__, "assertion_attribute_groups", assertion_attribute_groups)
+        if assertion_attribute_login is not None:
+            pulumi.set(__self__, "assertion_attribute_login", assertion_attribute_login)
+        if assertion_attribute_name is not None:
+            pulumi.set(__self__, "assertion_attribute_name", assertion_attribute_name)
+        if assertion_attribute_org is not None:
+            pulumi.set(__self__, "assertion_attribute_org", assertion_attribute_org)
+        if assertion_attribute_role is not None:
+            pulumi.set(__self__, "assertion_attribute_role", assertion_attribute_role)
+        if auto_login is not None:
+            pulumi.set(__self__, "auto_login", auto_login)
+        if certificate is not None:
+            pulumi.set(__self__, "certificate", certificate)
+        if certificate_path is not None:
+            pulumi.set(__self__, "certificate_path", certificate_path)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if idp_metadata is not None:
+            pulumi.set(__self__, "idp_metadata", idp_metadata)
+        if idp_metadata_path is not None:
+            pulumi.set(__self__, "idp_metadata_path", idp_metadata_path)
+        if idp_metadata_url is not None:
+            pulumi.set(__self__, "idp_metadata_url", idp_metadata_url)
+        if max_issue_delay is not None:
+            pulumi.set(__self__, "max_issue_delay", max_issue_delay)
+        if metadata_valid_duration is not None:
+            pulumi.set(__self__, "metadata_valid_duration", metadata_valid_duration)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if name_id_format is not None:
+            pulumi.set(__self__, "name_id_format", name_id_format)
+        if org_mapping is not None:
+            pulumi.set(__self__, "org_mapping", org_mapping)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_path is not None:
+            pulumi.set(__self__, "private_key_path", private_key_path)
+        if relay_state is not None:
+            pulumi.set(__self__, "relay_state", relay_state)
+        if role_values_admin is not None:
+            pulumi.set(__self__, "role_values_admin", role_values_admin)
+        if role_values_editor is not None:
+            pulumi.set(__self__, "role_values_editor", role_values_editor)
+        if role_values_grafana_admin is not None:
+            pulumi.set(__self__, "role_values_grafana_admin", role_values_grafana_admin)
+        if role_values_none is not None:
+            pulumi.set(__self__, "role_values_none", role_values_none)
+        if signature_algorithm is not None:
+            pulumi.set(__self__, "signature_algorithm", signature_algorithm)
+        if single_logout is not None:
+            pulumi.set(__self__, "single_logout", single_logout)
+
+    @property
+    @pulumi.getter(name="allowIdpInitiated")
+    def allow_idp_initiated(self) -> Optional[bool]:
+        """
+        Whether SAML IdP-initiated login is allowed.
+        """
+        return pulumi.get(self, "allow_idp_initiated")
+
+    @property
+    @pulumi.getter(name="allowSignUp")
+    def allow_sign_up(self) -> Optional[bool]:
+        """
+        Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
+        """
+        return pulumi.get(self, "allow_sign_up")
+
+    @property
+    @pulumi.getter(name="allowedOrganizations")
+    def allowed_organizations(self) -> Optional[str]:
+        """
+        List of comma- or space-separated organizations. User should be a member of at least one organization to log in.
+        """
+        return pulumi.get(self, "allowed_organizations")
+
+    @property
+    @pulumi.getter(name="assertionAttributeEmail")
+    def assertion_attribute_email(self) -> Optional[str]:
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user email.
+        """
+        return pulumi.get(self, "assertion_attribute_email")
+
+    @property
+    @pulumi.getter(name="assertionAttributeGroups")
+    def assertion_attribute_groups(self) -> Optional[str]:
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user groups.
+        """
+        return pulumi.get(self, "assertion_attribute_groups")
+
+    @property
+    @pulumi.getter(name="assertionAttributeLogin")
+    def assertion_attribute_login(self) -> Optional[str]:
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
+        """
+        return pulumi.get(self, "assertion_attribute_login")
+
+    @property
+    @pulumi.getter(name="assertionAttributeName")
+    def assertion_attribute_name(self) -> Optional[str]:
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user name. Alternatively, this can be a template with variables that match the names of attributes within the SAML assertion.
+        """
+        return pulumi.get(self, "assertion_attribute_name")
+
+    @property
+    @pulumi.getter(name="assertionAttributeOrg")
+    def assertion_attribute_org(self) -> Optional[str]:
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user organization.
+        """
+        return pulumi.get(self, "assertion_attribute_org")
+
+    @property
+    @pulumi.getter(name="assertionAttributeRole")
+    def assertion_attribute_role(self) -> Optional[str]:
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user roles.
+        """
+        return pulumi.get(self, "assertion_attribute_role")
+
+    @property
+    @pulumi.getter(name="autoLogin")
+    def auto_login(self) -> Optional[bool]:
+        """
+        Whether SAML auto login is enabled.
+        """
+        return pulumi.get(self, "auto_login")
+
+    @property
+    @pulumi.getter
+    def certificate(self) -> Optional[str]:
+        """
+        Base64-encoded string for the SP X.509 certificate.
+        """
+        return pulumi.get(self, "certificate")
+
+    @property
+    @pulumi.getter(name="certificatePath")
+    def certificate_path(self) -> Optional[str]:
+        """
+        Path for the SP X.509 certificate.
+        """
+        return pulumi.get(self, "certificate_path")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Define whether this configuration is enabled for SAML.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="idpMetadata")
+    def idp_metadata(self) -> Optional[str]:
+        """
+        Base64-encoded string for the IdP SAML metadata XML.
+        """
+        return pulumi.get(self, "idp_metadata")
+
+    @property
+    @pulumi.getter(name="idpMetadataPath")
+    def idp_metadata_path(self) -> Optional[str]:
+        """
+        Path for the IdP SAML metadata XML.
+        """
+        return pulumi.get(self, "idp_metadata_path")
+
+    @property
+    @pulumi.getter(name="idpMetadataUrl")
+    def idp_metadata_url(self) -> Optional[str]:
+        """
+        URL for the IdP SAML metadata XML.
+        """
+        return pulumi.get(self, "idp_metadata_url")
+
+    @property
+    @pulumi.getter(name="maxIssueDelay")
+    def max_issue_delay(self) -> Optional[str]:
+        """
+        Duration, since the IdP issued a response and the SP is allowed to process it. For example: 90s, 1h.
+        """
+        return pulumi.get(self, "max_issue_delay")
+
+    @property
+    @pulumi.getter(name="metadataValidDuration")
+    def metadata_valid_duration(self) -> Optional[str]:
+        """
+        Duration, for how long the SP metadata is valid. For example: 48h, 5d.
+        """
+        return pulumi.get(self, "metadata_valid_duration")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Name used to refer to the SAML authentication.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nameIdFormat")
+    def name_id_format(self) -> Optional[str]:
+        """
+        The Name ID Format to request within the SAML assertion. Defaults to urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+        """
+        return pulumi.get(self, "name_id_format")
+
+    @property
+    @pulumi.getter(name="orgMapping")
+    def org_mapping(self) -> Optional[str]:
+        """
+        List of comma- or space-separated Organization:OrgId:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: Viewer, Editor or Admin.
+        """
+        return pulumi.get(self, "org_mapping")
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[str]:
+        """
+        Base64-encoded string for the SP private key.
+        """
+        return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter(name="privateKeyPath")
+    def private_key_path(self) -> Optional[str]:
+        """
+        Path for the SP private key.
+        """
+        return pulumi.get(self, "private_key_path")
+
+    @property
+    @pulumi.getter(name="relayState")
+    def relay_state(self) -> Optional[str]:
+        """
+        Relay state for IdP-initiated login. Should match relay state configured in IdP.
+        """
+        return pulumi.get(self, "relay_state")
+
+    @property
+    @pulumi.getter(name="roleValuesAdmin")
+    def role_values_admin(self) -> Optional[str]:
+        """
+        List of comma- or space-separated roles which will be mapped into the Admin role.
+        """
+        return pulumi.get(self, "role_values_admin")
+
+    @property
+    @pulumi.getter(name="roleValuesEditor")
+    def role_values_editor(self) -> Optional[str]:
+        """
+        List of comma- or space-separated roles which will be mapped into the Editor role.
+        """
+        return pulumi.get(self, "role_values_editor")
+
+    @property
+    @pulumi.getter(name="roleValuesGrafanaAdmin")
+    def role_values_grafana_admin(self) -> Optional[str]:
+        """
+        List of comma- or space-separated roles which will be mapped into the Grafana Admin (Super Admin) role.
+        """
+        return pulumi.get(self, "role_values_grafana_admin")
+
+    @property
+    @pulumi.getter(name="roleValuesNone")
+    def role_values_none(self) -> Optional[str]:
+        """
+        List of comma- or space-separated roles which will be mapped into the None role.
+        """
+        return pulumi.get(self, "role_values_none")
+
+    @property
+    @pulumi.getter(name="signatureAlgorithm")
+    def signature_algorithm(self) -> Optional[str]:
+        """
+        Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
+        """
+        return pulumi.get(self, "signature_algorithm")
+
+    @property
+    @pulumi.getter(name="singleLogout")
+    def single_logout(self) -> Optional[bool]:
+        """
+        Whether SAML Single Logout is enabled.
+        """
+        return pulumi.get(self, "single_logout")
 
 
 @pulumi.output_type

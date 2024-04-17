@@ -33,7 +33,7 @@ export class OncallEscalation extends pulumi.CustomResource {
     }
 
     /**
-     * The ID of an Action for trigger_action type step.
+     * The ID of an Action for trigger_webhook type step.
      */
     public readonly actionToTrigger!: pulumi.Output<string | undefined>;
     /**
@@ -50,7 +50,7 @@ export class OncallEscalation extends pulumi.CustomResource {
     public readonly groupToNotify!: pulumi.Output<string | undefined>;
     /**
      * Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-     * and notify_user_group
+     * and notify_user_group,notify_team_members
      */
     public readonly important!: pulumi.Output<boolean | undefined>;
     /**
@@ -66,6 +66,10 @@ export class OncallEscalation extends pulumi.CustomResource {
      */
     public readonly notifyOnCallFromSchedule!: pulumi.Output<string | undefined>;
     /**
+     * The ID of a Team for a notify_team_members type step.
+     */
+    public readonly notifyToTeamMembers!: pulumi.Output<string | undefined>;
+    /**
      * The list of ID's of users for notify_persons type step.
      */
     public readonly personsToNotifies!: pulumi.Output<string[] | undefined>;
@@ -79,7 +83,8 @@ export class OncallEscalation extends pulumi.CustomResource {
     public readonly position!: pulumi.Output<number>;
     /**
      * The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-     * trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+     * trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+     * notify_team_members
      */
     public readonly type!: pulumi.Output<string | undefined>;
 
@@ -104,6 +109,7 @@ export class OncallEscalation extends pulumi.CustomResource {
             resourceInputs["notifyIfTimeFrom"] = state ? state.notifyIfTimeFrom : undefined;
             resourceInputs["notifyIfTimeTo"] = state ? state.notifyIfTimeTo : undefined;
             resourceInputs["notifyOnCallFromSchedule"] = state ? state.notifyOnCallFromSchedule : undefined;
+            resourceInputs["notifyToTeamMembers"] = state ? state.notifyToTeamMembers : undefined;
             resourceInputs["personsToNotifies"] = state ? state.personsToNotifies : undefined;
             resourceInputs["personsToNotifyNextEachTimes"] = state ? state.personsToNotifyNextEachTimes : undefined;
             resourceInputs["position"] = state ? state.position : undefined;
@@ -124,6 +130,7 @@ export class OncallEscalation extends pulumi.CustomResource {
             resourceInputs["notifyIfTimeFrom"] = args ? args.notifyIfTimeFrom : undefined;
             resourceInputs["notifyIfTimeTo"] = args ? args.notifyIfTimeTo : undefined;
             resourceInputs["notifyOnCallFromSchedule"] = args ? args.notifyOnCallFromSchedule : undefined;
+            resourceInputs["notifyToTeamMembers"] = args ? args.notifyToTeamMembers : undefined;
             resourceInputs["personsToNotifies"] = args ? args.personsToNotifies : undefined;
             resourceInputs["personsToNotifyNextEachTimes"] = args ? args.personsToNotifyNextEachTimes : undefined;
             resourceInputs["position"] = args ? args.position : undefined;
@@ -139,7 +146,7 @@ export class OncallEscalation extends pulumi.CustomResource {
  */
 export interface OncallEscalationState {
     /**
-     * The ID of an Action for trigger_action type step.
+     * The ID of an Action for trigger_webhook type step.
      */
     actionToTrigger?: pulumi.Input<string>;
     /**
@@ -156,7 +163,7 @@ export interface OncallEscalationState {
     groupToNotify?: pulumi.Input<string>;
     /**
      * Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-     * and notify_user_group
+     * and notify_user_group,notify_team_members
      */
     important?: pulumi.Input<boolean>;
     /**
@@ -172,6 +179,10 @@ export interface OncallEscalationState {
      */
     notifyOnCallFromSchedule?: pulumi.Input<string>;
     /**
+     * The ID of a Team for a notify_team_members type step.
+     */
+    notifyToTeamMembers?: pulumi.Input<string>;
+    /**
      * The list of ID's of users for notify_persons type step.
      */
     personsToNotifies?: pulumi.Input<pulumi.Input<string>[]>;
@@ -185,7 +196,8 @@ export interface OncallEscalationState {
     position?: pulumi.Input<number>;
     /**
      * The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-     * trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+     * trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+     * notify_team_members
      */
     type?: pulumi.Input<string>;
 }
@@ -195,7 +207,7 @@ export interface OncallEscalationState {
  */
 export interface OncallEscalationArgs {
     /**
-     * The ID of an Action for trigger_action type step.
+     * The ID of an Action for trigger_webhook type step.
      */
     actionToTrigger?: pulumi.Input<string>;
     /**
@@ -212,7 +224,7 @@ export interface OncallEscalationArgs {
     groupToNotify?: pulumi.Input<string>;
     /**
      * Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-     * and notify_user_group
+     * and notify_user_group,notify_team_members
      */
     important?: pulumi.Input<boolean>;
     /**
@@ -228,6 +240,10 @@ export interface OncallEscalationArgs {
      */
     notifyOnCallFromSchedule?: pulumi.Input<string>;
     /**
+     * The ID of a Team for a notify_team_members type step.
+     */
+    notifyToTeamMembers?: pulumi.Input<string>;
+    /**
      * The list of ID's of users for notify_persons type step.
      */
     personsToNotifies?: pulumi.Input<pulumi.Input<string>[]>;
@@ -241,7 +257,8 @@ export interface OncallEscalationArgs {
     position: pulumi.Input<number>;
     /**
      * The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-     * trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+     * trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+     * notify_team_members
      */
     type?: pulumi.Input<string>;
 }

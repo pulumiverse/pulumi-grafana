@@ -1819,7 +1819,7 @@ export interface RuleGroupRule {
      */
     datas: outputs.RuleGroupRuleData[];
     /**
-     * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, and Alerting.
+     * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
      */
     execErrState?: string;
     /**
@@ -1839,7 +1839,7 @@ export interface RuleGroupRule {
      */
     name: string;
     /**
-     * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting.
+     * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
      */
     noDataState?: string;
     /**
@@ -2206,6 +2206,129 @@ export interface SsoSettingsOauth2Settings {
      * If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
      */
     useRefreshToken?: boolean;
+}
+
+export interface SsoSettingsSamlSettings {
+    /**
+     * Whether SAML IdP-initiated login is allowed.
+     */
+    allowIdpInitiated?: boolean;
+    /**
+     * Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
+     */
+    allowSignUp?: boolean;
+    /**
+     * List of comma- or space-separated organizations. User should be a member of at least one organization to log in.
+     */
+    allowedOrganizations?: string;
+    /**
+     * Friendly name or name of the attribute within the SAML assertion to use as the user email.
+     */
+    assertionAttributeEmail?: string;
+    /**
+     * Friendly name or name of the attribute within the SAML assertion to use as the user groups.
+     */
+    assertionAttributeGroups?: string;
+    /**
+     * Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
+     */
+    assertionAttributeLogin?: string;
+    /**
+     * Friendly name or name of the attribute within the SAML assertion to use as the user name. Alternatively, this can be a template with variables that match the names of attributes within the SAML assertion.
+     */
+    assertionAttributeName?: string;
+    /**
+     * Friendly name or name of the attribute within the SAML assertion to use as the user organization.
+     */
+    assertionAttributeOrg?: string;
+    /**
+     * Friendly name or name of the attribute within the SAML assertion to use as the user roles.
+     */
+    assertionAttributeRole?: string;
+    /**
+     * Whether SAML auto login is enabled.
+     */
+    autoLogin?: boolean;
+    /**
+     * Base64-encoded string for the SP X.509 certificate.
+     */
+    certificate?: string;
+    /**
+     * Path for the SP X.509 certificate.
+     */
+    certificatePath?: string;
+    /**
+     * Define whether this configuration is enabled for SAML.
+     */
+    enabled?: boolean;
+    /**
+     * Base64-encoded string for the IdP SAML metadata XML.
+     */
+    idpMetadata?: string;
+    /**
+     * Path for the IdP SAML metadata XML.
+     */
+    idpMetadataPath?: string;
+    /**
+     * URL for the IdP SAML metadata XML.
+     */
+    idpMetadataUrl?: string;
+    /**
+     * Duration, since the IdP issued a response and the SP is allowed to process it. For example: 90s, 1h.
+     */
+    maxIssueDelay?: string;
+    /**
+     * Duration, for how long the SP metadata is valid. For example: 48h, 5d.
+     */
+    metadataValidDuration?: string;
+    /**
+     * Name used to refer to the SAML authentication.
+     */
+    name?: string;
+    /**
+     * The Name ID Format to request within the SAML assertion. Defaults to urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+     */
+    nameIdFormat?: string;
+    /**
+     * List of comma- or space-separated Organization:OrgId:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: Viewer, Editor or Admin.
+     */
+    orgMapping?: string;
+    /**
+     * Base64-encoded string for the SP private key.
+     */
+    privateKey?: string;
+    /**
+     * Path for the SP private key.
+     */
+    privateKeyPath?: string;
+    /**
+     * Relay state for IdP-initiated login. Should match relay state configured in IdP.
+     */
+    relayState?: string;
+    /**
+     * List of comma- or space-separated roles which will be mapped into the Admin role.
+     */
+    roleValuesAdmin?: string;
+    /**
+     * List of comma- or space-separated roles which will be mapped into the Editor role.
+     */
+    roleValuesEditor?: string;
+    /**
+     * List of comma- or space-separated roles which will be mapped into the Grafana Admin (Super Admin) role.
+     */
+    roleValuesGrafanaAdmin?: string;
+    /**
+     * List of comma- or space-separated roles which will be mapped into the None role.
+     */
+    roleValuesNone?: string;
+    /**
+     * Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
+     */
+    signatureAlgorithm?: string;
+    /**
+     * Whether SAML Single Logout is enabled.
+     */
+    singleLogout?: boolean;
 }
 
 export interface SyntheticMonitoringCheckSettings {

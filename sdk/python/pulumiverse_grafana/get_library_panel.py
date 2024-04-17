@@ -86,6 +86,9 @@ class GetLibraryPanelResult:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> str:
+        warnings.warn("""Use `folder_uid` instead""", DeprecationWarning)
+        pulumi.log.warn("""folder_id is deprecated: Use `folder_uid` instead""")
+
         return pulumi.get(self, "folder_id")
 
     @property
