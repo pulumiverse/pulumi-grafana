@@ -29,7 +29,7 @@ namespace Pulumiverse.Grafana
         /// The basic role of the service account in the organization.
         /// </summary>
         [Output("role")]
-        public Output<string?> Role { get; private set; } = null!;
+        public Output<string> Role { get; private set; } = null!;
 
         [Output("stackSlug")]
         public Output<string> StackSlug { get; private set; } = null!;
@@ -96,8 +96,8 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// The basic role of the service account in the organization.
         /// </summary>
-        [Input("role")]
-        public Input<string>? Role { get; set; }
+        [Input("role", required: true)]
+        public Input<string> Role { get; set; } = null!;
 
         [Input("stackSlug", required: true)]
         public Input<string> StackSlug { get; set; } = null!;

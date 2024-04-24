@@ -4000,7 +4000,7 @@ func (o ContactPointWecomArrayOutput) Index(i pulumi.IntInput) ContactPointWecom
 type DashboardPermissionPermission struct {
 	// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
 	Permission string `pulumi:"permission"`
-	// Manage permissions for `Viewer` or `Editor` roles.
+	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 	Role *string `pulumi:"role"`
 	// ID of the team to manage permissions for.
 	TeamId *string `pulumi:"teamId"`
@@ -4022,7 +4022,7 @@ type DashboardPermissionPermissionInput interface {
 type DashboardPermissionPermissionArgs struct {
 	// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
 	Permission pulumi.StringInput `pulumi:"permission"`
-	// Manage permissions for `Viewer` or `Editor` roles.
+	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 	Role pulumi.StringPtrInput `pulumi:"role"`
 	// ID of the team to manage permissions for.
 	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
@@ -4086,7 +4086,7 @@ func (o DashboardPermissionPermissionOutput) Permission() pulumi.StringOutput {
 	return o.ApplyT(func(v DashboardPermissionPermission) string { return v.Permission }).(pulumi.StringOutput)
 }
 
-// Manage permissions for `Viewer` or `Editor` roles.
+// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 func (o DashboardPermissionPermissionOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DashboardPermissionPermission) *string { return v.Role }).(pulumi.StringPtrOutput)
 }
@@ -4122,7 +4122,7 @@ func (o DashboardPermissionPermissionArrayOutput) Index(i pulumi.IntInput) Dashb
 }
 
 type DataSourcePermissionPermission struct {
-	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+.
+	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 	BuiltInRole *string `pulumi:"builtInRole"`
 	// Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
 	Permission string `pulumi:"permission"`
@@ -4144,7 +4144,7 @@ type DataSourcePermissionPermissionInput interface {
 }
 
 type DataSourcePermissionPermissionArgs struct {
-	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+.
+	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 	BuiltInRole pulumi.StringPtrInput `pulumi:"builtInRole"`
 	// Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
 	Permission pulumi.StringInput `pulumi:"permission"`
@@ -4205,7 +4205,7 @@ func (o DataSourcePermissionPermissionOutput) ToDataSourcePermissionPermissionOu
 	return o
 }
 
-// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+.
+// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 func (o DataSourcePermissionPermissionOutput) BuiltInRole() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DataSourcePermissionPermission) *string { return v.BuiltInRole }).(pulumi.StringPtrOutput)
 }
@@ -4248,7 +4248,7 @@ func (o DataSourcePermissionPermissionArrayOutput) Index(i pulumi.IntInput) Data
 type FolderPermissionPermission struct {
 	// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
 	Permission string `pulumi:"permission"`
-	// Manage permissions for `Viewer` or `Editor` roles.
+	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 	Role *string `pulumi:"role"`
 	// ID of the team to manage permissions for.
 	TeamId *string `pulumi:"teamId"`
@@ -4270,7 +4270,7 @@ type FolderPermissionPermissionInput interface {
 type FolderPermissionPermissionArgs struct {
 	// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
 	Permission pulumi.StringInput `pulumi:"permission"`
-	// Manage permissions for `Viewer` or `Editor` roles.
+	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 	Role pulumi.StringPtrInput `pulumi:"role"`
 	// ID of the team to manage permissions for.
 	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
@@ -4334,7 +4334,7 @@ func (o FolderPermissionPermissionOutput) Permission() pulumi.StringOutput {
 	return o.ApplyT(func(v FolderPermissionPermission) string { return v.Permission }).(pulumi.StringOutput)
 }
 
-// Manage permissions for `Viewer` or `Editor` roles.
+// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 func (o FolderPermissionPermissionOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FolderPermissionPermission) *string { return v.Role }).(pulumi.StringPtrOutput)
 }
@@ -5042,7 +5042,7 @@ func (o MuteTimingIntervalTimeArrayOutput) Index(i pulumi.IntInput) MuteTimingIn
 
 type NotificationPolicyPolicy struct {
 	// The contact point to route notifications that match this rule to.
-	ContactPoint string `pulumi:"contactPoint"`
+	ContactPoint *string `pulumi:"contactPoint"`
 	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
 	Continue *bool `pulumi:"continue"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
@@ -5074,7 +5074,7 @@ type NotificationPolicyPolicyInput interface {
 
 type NotificationPolicyPolicyArgs struct {
 	// The contact point to route notifications that match this rule to.
-	ContactPoint pulumi.StringInput `pulumi:"contactPoint"`
+	ContactPoint pulumi.StringPtrInput `pulumi:"contactPoint"`
 	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
 	Continue pulumi.BoolPtrInput `pulumi:"continue"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
@@ -5145,8 +5145,8 @@ func (o NotificationPolicyPolicyOutput) ToNotificationPolicyPolicyOutputWithCont
 }
 
 // The contact point to route notifications that match this rule to.
-func (o NotificationPolicyPolicyOutput) ContactPoint() pulumi.StringOutput {
-	return o.ApplyT(func(v NotificationPolicyPolicy) string { return v.ContactPoint }).(pulumi.StringOutput)
+func (o NotificationPolicyPolicyOutput) ContactPoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicy) *string { return v.ContactPoint }).(pulumi.StringPtrOutput)
 }
 
 // Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
@@ -5326,7 +5326,7 @@ func (o NotificationPolicyPolicyMatcherArrayOutput) Index(i pulumi.IntInput) Not
 
 type NotificationPolicyPolicyPolicy struct {
 	// The contact point to route notifications that match this rule to.
-	ContactPoint string `pulumi:"contactPoint"`
+	ContactPoint *string `pulumi:"contactPoint"`
 	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
 	Continue *bool `pulumi:"continue"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
@@ -5358,7 +5358,7 @@ type NotificationPolicyPolicyPolicyInput interface {
 
 type NotificationPolicyPolicyPolicyArgs struct {
 	// The contact point to route notifications that match this rule to.
-	ContactPoint pulumi.StringInput `pulumi:"contactPoint"`
+	ContactPoint pulumi.StringPtrInput `pulumi:"contactPoint"`
 	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
 	Continue pulumi.BoolPtrInput `pulumi:"continue"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
@@ -5429,8 +5429,8 @@ func (o NotificationPolicyPolicyPolicyOutput) ToNotificationPolicyPolicyPolicyOu
 }
 
 // The contact point to route notifications that match this rule to.
-func (o NotificationPolicyPolicyPolicyOutput) ContactPoint() pulumi.StringOutput {
-	return o.ApplyT(func(v NotificationPolicyPolicyPolicy) string { return v.ContactPoint }).(pulumi.StringOutput)
+func (o NotificationPolicyPolicyPolicyOutput) ContactPoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicy) *string { return v.ContactPoint }).(pulumi.StringPtrOutput)
 }
 
 // Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
@@ -5610,7 +5610,7 @@ func (o NotificationPolicyPolicyPolicyMatcherArrayOutput) Index(i pulumi.IntInpu
 
 type NotificationPolicyPolicyPolicyPolicy struct {
 	// The contact point to route notifications that match this rule to.
-	ContactPoint string `pulumi:"contactPoint"`
+	ContactPoint *string `pulumi:"contactPoint"`
 	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
 	Continue *bool `pulumi:"continue"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
@@ -5642,7 +5642,7 @@ type NotificationPolicyPolicyPolicyPolicyInput interface {
 
 type NotificationPolicyPolicyPolicyPolicyArgs struct {
 	// The contact point to route notifications that match this rule to.
-	ContactPoint pulumi.StringInput `pulumi:"contactPoint"`
+	ContactPoint pulumi.StringPtrInput `pulumi:"contactPoint"`
 	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
 	Continue pulumi.BoolPtrInput `pulumi:"continue"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
@@ -5713,8 +5713,8 @@ func (o NotificationPolicyPolicyPolicyPolicyOutput) ToNotificationPolicyPolicyPo
 }
 
 // The contact point to route notifications that match this rule to.
-func (o NotificationPolicyPolicyPolicyPolicyOutput) ContactPoint() pulumi.StringOutput {
-	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicy) string { return v.ContactPoint }).(pulumi.StringOutput)
+func (o NotificationPolicyPolicyPolicyPolicyOutput) ContactPoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicy) *string { return v.ContactPoint }).(pulumi.StringPtrOutput)
 }
 
 // Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
@@ -5898,7 +5898,7 @@ func (o NotificationPolicyPolicyPolicyPolicyMatcherArrayOutput) Index(i pulumi.I
 
 type NotificationPolicyPolicyPolicyPolicyPolicy struct {
 	// The contact point to route notifications that match this rule to.
-	ContactPoint string `pulumi:"contactPoint"`
+	ContactPoint *string `pulumi:"contactPoint"`
 	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
 	Continue *bool `pulumi:"continue"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
@@ -5928,7 +5928,7 @@ type NotificationPolicyPolicyPolicyPolicyPolicyInput interface {
 
 type NotificationPolicyPolicyPolicyPolicyPolicyArgs struct {
 	// The contact point to route notifications that match this rule to.
-	ContactPoint pulumi.StringInput `pulumi:"contactPoint"`
+	ContactPoint pulumi.StringPtrInput `pulumi:"contactPoint"`
 	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
 	Continue pulumi.BoolPtrInput `pulumi:"continue"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
@@ -5997,8 +5997,8 @@ func (o NotificationPolicyPolicyPolicyPolicyPolicyOutput) ToNotificationPolicyPo
 }
 
 // The contact point to route notifications that match this rule to.
-func (o NotificationPolicyPolicyPolicyPolicyPolicyOutput) ContactPoint() pulumi.StringOutput {
-	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicy) string { return v.ContactPoint }).(pulumi.StringOutput)
+func (o NotificationPolicyPolicyPolicyPolicyPolicyOutput) ContactPoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicy) *string { return v.ContactPoint }).(pulumi.StringPtrOutput)
 }
 
 // Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
@@ -9844,7 +9844,7 @@ type RuleGroupRule struct {
 	Condition string `pulumi:"condition"`
 	// A sequence of stages that describe the contents of the rule.
 	Datas []RuleGroupRuleData `pulumi:"datas"`
-	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, and Alerting.
+	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
 	ExecErrState *string `pulumi:"execErrState"`
 	// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
 	For *string `pulumi:"for"`
@@ -9854,7 +9854,7 @@ type RuleGroupRule struct {
 	Labels map[string]string `pulumi:"labels"`
 	// The name of the alert rule.
 	Name string `pulumi:"name"`
-	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting.
+	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
 	NoDataState *string `pulumi:"noDataState"`
 	// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
 	NotificationSettings *RuleGroupRuleNotificationSettings `pulumi:"notificationSettings"`
@@ -9880,7 +9880,7 @@ type RuleGroupRuleArgs struct {
 	Condition pulumi.StringInput `pulumi:"condition"`
 	// A sequence of stages that describe the contents of the rule.
 	Datas RuleGroupRuleDataArrayInput `pulumi:"datas"`
-	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, and Alerting.
+	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
 	ExecErrState pulumi.StringPtrInput `pulumi:"execErrState"`
 	// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
 	For pulumi.StringPtrInput `pulumi:"for"`
@@ -9890,7 +9890,7 @@ type RuleGroupRuleArgs struct {
 	Labels pulumi.StringMapInput `pulumi:"labels"`
 	// The name of the alert rule.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting.
+	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
 	NoDataState pulumi.StringPtrInput `pulumi:"noDataState"`
 	// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
 	NotificationSettings RuleGroupRuleNotificationSettingsPtrInput `pulumi:"notificationSettings"`
@@ -9964,7 +9964,7 @@ func (o RuleGroupRuleOutput) Datas() RuleGroupRuleDataArrayOutput {
 	return o.ApplyT(func(v RuleGroupRule) []RuleGroupRuleData { return v.Datas }).(RuleGroupRuleDataArrayOutput)
 }
 
-// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, and Alerting.
+// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
 func (o RuleGroupRuleOutput) ExecErrState() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RuleGroupRule) *string { return v.ExecErrState }).(pulumi.StringPtrOutput)
 }
@@ -9989,7 +9989,7 @@ func (o RuleGroupRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v RuleGroupRule) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting.
+// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
 func (o RuleGroupRuleOutput) NoDataState() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RuleGroupRule) *string { return v.NoDataState }).(pulumi.StringPtrOutput)
 }
@@ -12151,11 +12151,11 @@ func (o SLOQueryRatioPtrOutput) TotalMetric() pulumi.StringPtrOutput {
 }
 
 type ServiceAccountPermissionPermission struct {
-	// Permission to associate with item. Must be `Edit` or `Admin`.
+	// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
 	Permission string `pulumi:"permission"`
-	// ID of the team to manage permissions for. Specify either this or `userId`.
+	// ID of the team to manage permissions for.
 	TeamId *string `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Specify either this or `teamId`.
+	// ID of the user or service account to manage permissions for.
 	UserId *string `pulumi:"userId"`
 }
 
@@ -12171,11 +12171,11 @@ type ServiceAccountPermissionPermissionInput interface {
 }
 
 type ServiceAccountPermissionPermissionArgs struct {
-	// Permission to associate with item. Must be `Edit` or `Admin`.
+	// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
 	Permission pulumi.StringInput `pulumi:"permission"`
-	// ID of the team to manage permissions for. Specify either this or `userId`.
+	// ID of the team to manage permissions for.
 	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Specify either this or `teamId`.
+	// ID of the user or service account to manage permissions for.
 	UserId pulumi.StringPtrInput `pulumi:"userId"`
 }
 
@@ -12230,17 +12230,17 @@ func (o ServiceAccountPermissionPermissionOutput) ToServiceAccountPermissionPerm
 	return o
 }
 
-// Permission to associate with item. Must be `Edit` or `Admin`.
+// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
 func (o ServiceAccountPermissionPermissionOutput) Permission() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceAccountPermissionPermission) string { return v.Permission }).(pulumi.StringOutput)
 }
 
-// ID of the team to manage permissions for. Specify either this or `userId`.
+// ID of the team to manage permissions for.
 func (o ServiceAccountPermissionPermissionOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceAccountPermissionPermission) *string { return v.TeamId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the user or service account to manage permissions for. Specify either this or `teamId`.
+// ID of the user or service account to manage permissions for.
 func (o ServiceAccountPermissionPermissionOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceAccountPermissionPermission) *string { return v.UserId }).(pulumi.StringPtrOutput)
 }
@@ -13102,6 +13102,694 @@ func (o SsoSettingsOauth2SettingsPtrOutput) UseRefreshToken() pulumi.BoolPtrOutp
 			return nil
 		}
 		return v.UseRefreshToken
+	}).(pulumi.BoolPtrOutput)
+}
+
+type SsoSettingsSamlSettings struct {
+	// Whether SAML IdP-initiated login is allowed.
+	AllowIdpInitiated *bool `pulumi:"allowIdpInitiated"`
+	// Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
+	AllowSignUp *bool `pulumi:"allowSignUp"`
+	// List of comma- or space-separated organizations. User should be a member of at least one organization to log in.
+	AllowedOrganizations *string `pulumi:"allowedOrganizations"`
+	// Friendly name or name of the attribute within the SAML assertion to use as the user email.
+	AssertionAttributeEmail *string `pulumi:"assertionAttributeEmail"`
+	// Friendly name or name of the attribute within the SAML assertion to use as the user groups.
+	AssertionAttributeGroups *string `pulumi:"assertionAttributeGroups"`
+	// Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
+	AssertionAttributeLogin *string `pulumi:"assertionAttributeLogin"`
+	// Friendly name or name of the attribute within the SAML assertion to use as the user name. Alternatively, this can be a template with variables that match the names of attributes within the SAML assertion.
+	AssertionAttributeName *string `pulumi:"assertionAttributeName"`
+	// Friendly name or name of the attribute within the SAML assertion to use as the user organization.
+	AssertionAttributeOrg *string `pulumi:"assertionAttributeOrg"`
+	// Friendly name or name of the attribute within the SAML assertion to use as the user roles.
+	AssertionAttributeRole *string `pulumi:"assertionAttributeRole"`
+	// Whether SAML auto login is enabled.
+	AutoLogin *bool `pulumi:"autoLogin"`
+	// Base64-encoded string for the SP X.509 certificate.
+	Certificate *string `pulumi:"certificate"`
+	// Path for the SP X.509 certificate.
+	CertificatePath *string `pulumi:"certificatePath"`
+	// Define whether this configuration is enabled for SAML.
+	Enabled *bool `pulumi:"enabled"`
+	// Base64-encoded string for the IdP SAML metadata XML.
+	IdpMetadata *string `pulumi:"idpMetadata"`
+	// Path for the IdP SAML metadata XML.
+	IdpMetadataPath *string `pulumi:"idpMetadataPath"`
+	// URL for the IdP SAML metadata XML.
+	IdpMetadataUrl *string `pulumi:"idpMetadataUrl"`
+	// Duration, since the IdP issued a response and the SP is allowed to process it. For example: 90s, 1h.
+	MaxIssueDelay *string `pulumi:"maxIssueDelay"`
+	// Duration, for how long the SP metadata is valid. For example: 48h, 5d.
+	MetadataValidDuration *string `pulumi:"metadataValidDuration"`
+	// Name used to refer to the SAML authentication.
+	Name *string `pulumi:"name"`
+	// The Name ID Format to request within the SAML assertion. Defaults to urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+	NameIdFormat *string `pulumi:"nameIdFormat"`
+	// List of comma- or space-separated Organization:OrgId:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: Viewer, Editor or Admin.
+	OrgMapping *string `pulumi:"orgMapping"`
+	// Base64-encoded string for the SP private key.
+	PrivateKey *string `pulumi:"privateKey"`
+	// Path for the SP private key.
+	PrivateKeyPath *string `pulumi:"privateKeyPath"`
+	// Relay state for IdP-initiated login. Should match relay state configured in IdP.
+	RelayState *string `pulumi:"relayState"`
+	// List of comma- or space-separated roles which will be mapped into the Admin role.
+	RoleValuesAdmin *string `pulumi:"roleValuesAdmin"`
+	// List of comma- or space-separated roles which will be mapped into the Editor role.
+	RoleValuesEditor *string `pulumi:"roleValuesEditor"`
+	// List of comma- or space-separated roles which will be mapped into the Grafana Admin (Super Admin) role.
+	RoleValuesGrafanaAdmin *string `pulumi:"roleValuesGrafanaAdmin"`
+	// List of comma- or space-separated roles which will be mapped into the None role.
+	RoleValuesNone *string `pulumi:"roleValuesNone"`
+	// Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
+	SignatureAlgorithm *string `pulumi:"signatureAlgorithm"`
+	// Whether SAML Single Logout is enabled.
+	SingleLogout *bool `pulumi:"singleLogout"`
+}
+
+// SsoSettingsSamlSettingsInput is an input type that accepts SsoSettingsSamlSettingsArgs and SsoSettingsSamlSettingsOutput values.
+// You can construct a concrete instance of `SsoSettingsSamlSettingsInput` via:
+//
+//	SsoSettingsSamlSettingsArgs{...}
+type SsoSettingsSamlSettingsInput interface {
+	pulumi.Input
+
+	ToSsoSettingsSamlSettingsOutput() SsoSettingsSamlSettingsOutput
+	ToSsoSettingsSamlSettingsOutputWithContext(context.Context) SsoSettingsSamlSettingsOutput
+}
+
+type SsoSettingsSamlSettingsArgs struct {
+	// Whether SAML IdP-initiated login is allowed.
+	AllowIdpInitiated pulumi.BoolPtrInput `pulumi:"allowIdpInitiated"`
+	// Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
+	AllowSignUp pulumi.BoolPtrInput `pulumi:"allowSignUp"`
+	// List of comma- or space-separated organizations. User should be a member of at least one organization to log in.
+	AllowedOrganizations pulumi.StringPtrInput `pulumi:"allowedOrganizations"`
+	// Friendly name or name of the attribute within the SAML assertion to use as the user email.
+	AssertionAttributeEmail pulumi.StringPtrInput `pulumi:"assertionAttributeEmail"`
+	// Friendly name or name of the attribute within the SAML assertion to use as the user groups.
+	AssertionAttributeGroups pulumi.StringPtrInput `pulumi:"assertionAttributeGroups"`
+	// Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
+	AssertionAttributeLogin pulumi.StringPtrInput `pulumi:"assertionAttributeLogin"`
+	// Friendly name or name of the attribute within the SAML assertion to use as the user name. Alternatively, this can be a template with variables that match the names of attributes within the SAML assertion.
+	AssertionAttributeName pulumi.StringPtrInput `pulumi:"assertionAttributeName"`
+	// Friendly name or name of the attribute within the SAML assertion to use as the user organization.
+	AssertionAttributeOrg pulumi.StringPtrInput `pulumi:"assertionAttributeOrg"`
+	// Friendly name or name of the attribute within the SAML assertion to use as the user roles.
+	AssertionAttributeRole pulumi.StringPtrInput `pulumi:"assertionAttributeRole"`
+	// Whether SAML auto login is enabled.
+	AutoLogin pulumi.BoolPtrInput `pulumi:"autoLogin"`
+	// Base64-encoded string for the SP X.509 certificate.
+	Certificate pulumi.StringPtrInput `pulumi:"certificate"`
+	// Path for the SP X.509 certificate.
+	CertificatePath pulumi.StringPtrInput `pulumi:"certificatePath"`
+	// Define whether this configuration is enabled for SAML.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Base64-encoded string for the IdP SAML metadata XML.
+	IdpMetadata pulumi.StringPtrInput `pulumi:"idpMetadata"`
+	// Path for the IdP SAML metadata XML.
+	IdpMetadataPath pulumi.StringPtrInput `pulumi:"idpMetadataPath"`
+	// URL for the IdP SAML metadata XML.
+	IdpMetadataUrl pulumi.StringPtrInput `pulumi:"idpMetadataUrl"`
+	// Duration, since the IdP issued a response and the SP is allowed to process it. For example: 90s, 1h.
+	MaxIssueDelay pulumi.StringPtrInput `pulumi:"maxIssueDelay"`
+	// Duration, for how long the SP metadata is valid. For example: 48h, 5d.
+	MetadataValidDuration pulumi.StringPtrInput `pulumi:"metadataValidDuration"`
+	// Name used to refer to the SAML authentication.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The Name ID Format to request within the SAML assertion. Defaults to urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+	NameIdFormat pulumi.StringPtrInput `pulumi:"nameIdFormat"`
+	// List of comma- or space-separated Organization:OrgId:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: Viewer, Editor or Admin.
+	OrgMapping pulumi.StringPtrInput `pulumi:"orgMapping"`
+	// Base64-encoded string for the SP private key.
+	PrivateKey pulumi.StringPtrInput `pulumi:"privateKey"`
+	// Path for the SP private key.
+	PrivateKeyPath pulumi.StringPtrInput `pulumi:"privateKeyPath"`
+	// Relay state for IdP-initiated login. Should match relay state configured in IdP.
+	RelayState pulumi.StringPtrInput `pulumi:"relayState"`
+	// List of comma- or space-separated roles which will be mapped into the Admin role.
+	RoleValuesAdmin pulumi.StringPtrInput `pulumi:"roleValuesAdmin"`
+	// List of comma- or space-separated roles which will be mapped into the Editor role.
+	RoleValuesEditor pulumi.StringPtrInput `pulumi:"roleValuesEditor"`
+	// List of comma- or space-separated roles which will be mapped into the Grafana Admin (Super Admin) role.
+	RoleValuesGrafanaAdmin pulumi.StringPtrInput `pulumi:"roleValuesGrafanaAdmin"`
+	// List of comma- or space-separated roles which will be mapped into the None role.
+	RoleValuesNone pulumi.StringPtrInput `pulumi:"roleValuesNone"`
+	// Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
+	SignatureAlgorithm pulumi.StringPtrInput `pulumi:"signatureAlgorithm"`
+	// Whether SAML Single Logout is enabled.
+	SingleLogout pulumi.BoolPtrInput `pulumi:"singleLogout"`
+}
+
+func (SsoSettingsSamlSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsSamlSettings)(nil)).Elem()
+}
+
+func (i SsoSettingsSamlSettingsArgs) ToSsoSettingsSamlSettingsOutput() SsoSettingsSamlSettingsOutput {
+	return i.ToSsoSettingsSamlSettingsOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsSamlSettingsArgs) ToSsoSettingsSamlSettingsOutputWithContext(ctx context.Context) SsoSettingsSamlSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsSamlSettingsOutput)
+}
+
+func (i SsoSettingsSamlSettingsArgs) ToSsoSettingsSamlSettingsPtrOutput() SsoSettingsSamlSettingsPtrOutput {
+	return i.ToSsoSettingsSamlSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsSamlSettingsArgs) ToSsoSettingsSamlSettingsPtrOutputWithContext(ctx context.Context) SsoSettingsSamlSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsSamlSettingsOutput).ToSsoSettingsSamlSettingsPtrOutputWithContext(ctx)
+}
+
+// SsoSettingsSamlSettingsPtrInput is an input type that accepts SsoSettingsSamlSettingsArgs, SsoSettingsSamlSettingsPtr and SsoSettingsSamlSettingsPtrOutput values.
+// You can construct a concrete instance of `SsoSettingsSamlSettingsPtrInput` via:
+//
+//	        SsoSettingsSamlSettingsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SsoSettingsSamlSettingsPtrInput interface {
+	pulumi.Input
+
+	ToSsoSettingsSamlSettingsPtrOutput() SsoSettingsSamlSettingsPtrOutput
+	ToSsoSettingsSamlSettingsPtrOutputWithContext(context.Context) SsoSettingsSamlSettingsPtrOutput
+}
+
+type ssoSettingsSamlSettingsPtrType SsoSettingsSamlSettingsArgs
+
+func SsoSettingsSamlSettingsPtr(v *SsoSettingsSamlSettingsArgs) SsoSettingsSamlSettingsPtrInput {
+	return (*ssoSettingsSamlSettingsPtrType)(v)
+}
+
+func (*ssoSettingsSamlSettingsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SsoSettingsSamlSettings)(nil)).Elem()
+}
+
+func (i *ssoSettingsSamlSettingsPtrType) ToSsoSettingsSamlSettingsPtrOutput() SsoSettingsSamlSettingsPtrOutput {
+	return i.ToSsoSettingsSamlSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i *ssoSettingsSamlSettingsPtrType) ToSsoSettingsSamlSettingsPtrOutputWithContext(ctx context.Context) SsoSettingsSamlSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsSamlSettingsPtrOutput)
+}
+
+type SsoSettingsSamlSettingsOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsSamlSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsSamlSettings)(nil)).Elem()
+}
+
+func (o SsoSettingsSamlSettingsOutput) ToSsoSettingsSamlSettingsOutput() SsoSettingsSamlSettingsOutput {
+	return o
+}
+
+func (o SsoSettingsSamlSettingsOutput) ToSsoSettingsSamlSettingsOutputWithContext(ctx context.Context) SsoSettingsSamlSettingsOutput {
+	return o
+}
+
+func (o SsoSettingsSamlSettingsOutput) ToSsoSettingsSamlSettingsPtrOutput() SsoSettingsSamlSettingsPtrOutput {
+	return o.ToSsoSettingsSamlSettingsPtrOutputWithContext(context.Background())
+}
+
+func (o SsoSettingsSamlSettingsOutput) ToSsoSettingsSamlSettingsPtrOutputWithContext(ctx context.Context) SsoSettingsSamlSettingsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SsoSettingsSamlSettings) *SsoSettingsSamlSettings {
+		return &v
+	}).(SsoSettingsSamlSettingsPtrOutput)
+}
+
+// Whether SAML IdP-initiated login is allowed.
+func (o SsoSettingsSamlSettingsOutput) AllowIdpInitiated() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *bool { return v.AllowIdpInitiated }).(pulumi.BoolPtrOutput)
+}
+
+// Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
+func (o SsoSettingsSamlSettingsOutput) AllowSignUp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *bool { return v.AllowSignUp }).(pulumi.BoolPtrOutput)
+}
+
+// List of comma- or space-separated organizations. User should be a member of at least one organization to log in.
+func (o SsoSettingsSamlSettingsOutput) AllowedOrganizations() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.AllowedOrganizations }).(pulumi.StringPtrOutput)
+}
+
+// Friendly name or name of the attribute within the SAML assertion to use as the user email.
+func (o SsoSettingsSamlSettingsOutput) AssertionAttributeEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.AssertionAttributeEmail }).(pulumi.StringPtrOutput)
+}
+
+// Friendly name or name of the attribute within the SAML assertion to use as the user groups.
+func (o SsoSettingsSamlSettingsOutput) AssertionAttributeGroups() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.AssertionAttributeGroups }).(pulumi.StringPtrOutput)
+}
+
+// Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
+func (o SsoSettingsSamlSettingsOutput) AssertionAttributeLogin() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.AssertionAttributeLogin }).(pulumi.StringPtrOutput)
+}
+
+// Friendly name or name of the attribute within the SAML assertion to use as the user name. Alternatively, this can be a template with variables that match the names of attributes within the SAML assertion.
+func (o SsoSettingsSamlSettingsOutput) AssertionAttributeName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.AssertionAttributeName }).(pulumi.StringPtrOutput)
+}
+
+// Friendly name or name of the attribute within the SAML assertion to use as the user organization.
+func (o SsoSettingsSamlSettingsOutput) AssertionAttributeOrg() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.AssertionAttributeOrg }).(pulumi.StringPtrOutput)
+}
+
+// Friendly name or name of the attribute within the SAML assertion to use as the user roles.
+func (o SsoSettingsSamlSettingsOutput) AssertionAttributeRole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.AssertionAttributeRole }).(pulumi.StringPtrOutput)
+}
+
+// Whether SAML auto login is enabled.
+func (o SsoSettingsSamlSettingsOutput) AutoLogin() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *bool { return v.AutoLogin }).(pulumi.BoolPtrOutput)
+}
+
+// Base64-encoded string for the SP X.509 certificate.
+func (o SsoSettingsSamlSettingsOutput) Certificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.Certificate }).(pulumi.StringPtrOutput)
+}
+
+// Path for the SP X.509 certificate.
+func (o SsoSettingsSamlSettingsOutput) CertificatePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.CertificatePath }).(pulumi.StringPtrOutput)
+}
+
+// Define whether this configuration is enabled for SAML.
+func (o SsoSettingsSamlSettingsOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Base64-encoded string for the IdP SAML metadata XML.
+func (o SsoSettingsSamlSettingsOutput) IdpMetadata() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.IdpMetadata }).(pulumi.StringPtrOutput)
+}
+
+// Path for the IdP SAML metadata XML.
+func (o SsoSettingsSamlSettingsOutput) IdpMetadataPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.IdpMetadataPath }).(pulumi.StringPtrOutput)
+}
+
+// URL for the IdP SAML metadata XML.
+func (o SsoSettingsSamlSettingsOutput) IdpMetadataUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.IdpMetadataUrl }).(pulumi.StringPtrOutput)
+}
+
+// Duration, since the IdP issued a response and the SP is allowed to process it. For example: 90s, 1h.
+func (o SsoSettingsSamlSettingsOutput) MaxIssueDelay() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.MaxIssueDelay }).(pulumi.StringPtrOutput)
+}
+
+// Duration, for how long the SP metadata is valid. For example: 48h, 5d.
+func (o SsoSettingsSamlSettingsOutput) MetadataValidDuration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.MetadataValidDuration }).(pulumi.StringPtrOutput)
+}
+
+// Name used to refer to the SAML authentication.
+func (o SsoSettingsSamlSettingsOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The Name ID Format to request within the SAML assertion. Defaults to urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+func (o SsoSettingsSamlSettingsOutput) NameIdFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.NameIdFormat }).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated Organization:OrgId:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: Viewer, Editor or Admin.
+func (o SsoSettingsSamlSettingsOutput) OrgMapping() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.OrgMapping }).(pulumi.StringPtrOutput)
+}
+
+// Base64-encoded string for the SP private key.
+func (o SsoSettingsSamlSettingsOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.PrivateKey }).(pulumi.StringPtrOutput)
+}
+
+// Path for the SP private key.
+func (o SsoSettingsSamlSettingsOutput) PrivateKeyPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.PrivateKeyPath }).(pulumi.StringPtrOutput)
+}
+
+// Relay state for IdP-initiated login. Should match relay state configured in IdP.
+func (o SsoSettingsSamlSettingsOutput) RelayState() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.RelayState }).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated roles which will be mapped into the Admin role.
+func (o SsoSettingsSamlSettingsOutput) RoleValuesAdmin() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.RoleValuesAdmin }).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated roles which will be mapped into the Editor role.
+func (o SsoSettingsSamlSettingsOutput) RoleValuesEditor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.RoleValuesEditor }).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated roles which will be mapped into the Grafana Admin (Super Admin) role.
+func (o SsoSettingsSamlSettingsOutput) RoleValuesGrafanaAdmin() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.RoleValuesGrafanaAdmin }).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated roles which will be mapped into the None role.
+func (o SsoSettingsSamlSettingsOutput) RoleValuesNone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.RoleValuesNone }).(pulumi.StringPtrOutput)
+}
+
+// Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
+func (o SsoSettingsSamlSettingsOutput) SignatureAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.SignatureAlgorithm }).(pulumi.StringPtrOutput)
+}
+
+// Whether SAML Single Logout is enabled.
+func (o SsoSettingsSamlSettingsOutput) SingleLogout() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *bool { return v.SingleLogout }).(pulumi.BoolPtrOutput)
+}
+
+type SsoSettingsSamlSettingsPtrOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsSamlSettingsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SsoSettingsSamlSettings)(nil)).Elem()
+}
+
+func (o SsoSettingsSamlSettingsPtrOutput) ToSsoSettingsSamlSettingsPtrOutput() SsoSettingsSamlSettingsPtrOutput {
+	return o
+}
+
+func (o SsoSettingsSamlSettingsPtrOutput) ToSsoSettingsSamlSettingsPtrOutputWithContext(ctx context.Context) SsoSettingsSamlSettingsPtrOutput {
+	return o
+}
+
+func (o SsoSettingsSamlSettingsPtrOutput) Elem() SsoSettingsSamlSettingsOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) SsoSettingsSamlSettings {
+		if v != nil {
+			return *v
+		}
+		var ret SsoSettingsSamlSettings
+		return ret
+	}).(SsoSettingsSamlSettingsOutput)
+}
+
+// Whether SAML IdP-initiated login is allowed.
+func (o SsoSettingsSamlSettingsPtrOutput) AllowIdpInitiated() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowIdpInitiated
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
+func (o SsoSettingsSamlSettingsPtrOutput) AllowSignUp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowSignUp
+	}).(pulumi.BoolPtrOutput)
+}
+
+// List of comma- or space-separated organizations. User should be a member of at least one organization to log in.
+func (o SsoSettingsSamlSettingsPtrOutput) AllowedOrganizations() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AllowedOrganizations
+	}).(pulumi.StringPtrOutput)
+}
+
+// Friendly name or name of the attribute within the SAML assertion to use as the user email.
+func (o SsoSettingsSamlSettingsPtrOutput) AssertionAttributeEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AssertionAttributeEmail
+	}).(pulumi.StringPtrOutput)
+}
+
+// Friendly name or name of the attribute within the SAML assertion to use as the user groups.
+func (o SsoSettingsSamlSettingsPtrOutput) AssertionAttributeGroups() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AssertionAttributeGroups
+	}).(pulumi.StringPtrOutput)
+}
+
+// Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
+func (o SsoSettingsSamlSettingsPtrOutput) AssertionAttributeLogin() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AssertionAttributeLogin
+	}).(pulumi.StringPtrOutput)
+}
+
+// Friendly name or name of the attribute within the SAML assertion to use as the user name. Alternatively, this can be a template with variables that match the names of attributes within the SAML assertion.
+func (o SsoSettingsSamlSettingsPtrOutput) AssertionAttributeName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AssertionAttributeName
+	}).(pulumi.StringPtrOutput)
+}
+
+// Friendly name or name of the attribute within the SAML assertion to use as the user organization.
+func (o SsoSettingsSamlSettingsPtrOutput) AssertionAttributeOrg() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AssertionAttributeOrg
+	}).(pulumi.StringPtrOutput)
+}
+
+// Friendly name or name of the attribute within the SAML assertion to use as the user roles.
+func (o SsoSettingsSamlSettingsPtrOutput) AssertionAttributeRole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AssertionAttributeRole
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether SAML auto login is enabled.
+func (o SsoSettingsSamlSettingsPtrOutput) AutoLogin() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AutoLogin
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Base64-encoded string for the SP X.509 certificate.
+func (o SsoSettingsSamlSettingsPtrOutput) Certificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Certificate
+	}).(pulumi.StringPtrOutput)
+}
+
+// Path for the SP X.509 certificate.
+func (o SsoSettingsSamlSettingsPtrOutput) CertificatePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CertificatePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// Define whether this configuration is enabled for SAML.
+func (o SsoSettingsSamlSettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Base64-encoded string for the IdP SAML metadata XML.
+func (o SsoSettingsSamlSettingsPtrOutput) IdpMetadata() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IdpMetadata
+	}).(pulumi.StringPtrOutput)
+}
+
+// Path for the IdP SAML metadata XML.
+func (o SsoSettingsSamlSettingsPtrOutput) IdpMetadataPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IdpMetadataPath
+	}).(pulumi.StringPtrOutput)
+}
+
+// URL for the IdP SAML metadata XML.
+func (o SsoSettingsSamlSettingsPtrOutput) IdpMetadataUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IdpMetadataUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// Duration, since the IdP issued a response and the SP is allowed to process it. For example: 90s, 1h.
+func (o SsoSettingsSamlSettingsPtrOutput) MaxIssueDelay() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxIssueDelay
+	}).(pulumi.StringPtrOutput)
+}
+
+// Duration, for how long the SP metadata is valid. For example: 48h, 5d.
+func (o SsoSettingsSamlSettingsPtrOutput) MetadataValidDuration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MetadataValidDuration
+	}).(pulumi.StringPtrOutput)
+}
+
+// Name used to refer to the SAML authentication.
+func (o SsoSettingsSamlSettingsPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Name ID Format to request within the SAML assertion. Defaults to urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+func (o SsoSettingsSamlSettingsPtrOutput) NameIdFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NameIdFormat
+	}).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated Organization:OrgId:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: Viewer, Editor or Admin.
+func (o SsoSettingsSamlSettingsPtrOutput) OrgMapping() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OrgMapping
+	}).(pulumi.StringPtrOutput)
+}
+
+// Base64-encoded string for the SP private key.
+func (o SsoSettingsSamlSettingsPtrOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Path for the SP private key.
+func (o SsoSettingsSamlSettingsPtrOutput) PrivateKeyPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyPath
+	}).(pulumi.StringPtrOutput)
+}
+
+// Relay state for IdP-initiated login. Should match relay state configured in IdP.
+func (o SsoSettingsSamlSettingsPtrOutput) RelayState() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RelayState
+	}).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated roles which will be mapped into the Admin role.
+func (o SsoSettingsSamlSettingsPtrOutput) RoleValuesAdmin() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RoleValuesAdmin
+	}).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated roles which will be mapped into the Editor role.
+func (o SsoSettingsSamlSettingsPtrOutput) RoleValuesEditor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RoleValuesEditor
+	}).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated roles which will be mapped into the Grafana Admin (Super Admin) role.
+func (o SsoSettingsSamlSettingsPtrOutput) RoleValuesGrafanaAdmin() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RoleValuesGrafanaAdmin
+	}).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated roles which will be mapped into the None role.
+func (o SsoSettingsSamlSettingsPtrOutput) RoleValuesNone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RoleValuesNone
+	}).(pulumi.StringPtrOutput)
+}
+
+// Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
+func (o SsoSettingsSamlSettingsPtrOutput) SignatureAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SignatureAlgorithm
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether SAML Single Logout is enabled.
+func (o SsoSettingsSamlSettingsPtrOutput) SingleLogout() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SingleLogout
 	}).(pulumi.BoolPtrOutput)
 }
 
@@ -20155,6 +20843,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountPermissionPermissionArrayInput)(nil)).Elem(), ServiceAccountPermissionPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsOauth2SettingsInput)(nil)).Elem(), SsoSettingsOauth2SettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsOauth2SettingsPtrInput)(nil)).Elem(), SsoSettingsOauth2SettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsSamlSettingsInput)(nil)).Elem(), SsoSettingsSamlSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsSamlSettingsPtrInput)(nil)).Elem(), SsoSettingsSamlSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsPtrInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsDnsInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsDnsArgs{})
@@ -20414,6 +21104,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceAccountPermissionPermissionArrayOutput{})
 	pulumi.RegisterOutputType(SsoSettingsOauth2SettingsOutput{})
 	pulumi.RegisterOutputType(SsoSettingsOauth2SettingsPtrOutput{})
+	pulumi.RegisterOutputType(SsoSettingsSamlSettingsOutput{})
+	pulumi.RegisterOutputType(SsoSettingsSamlSettingsPtrOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsPtrOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsDnsOutput{})

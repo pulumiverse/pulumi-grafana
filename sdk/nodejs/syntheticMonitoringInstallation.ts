@@ -49,9 +49,9 @@ export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
     public readonly stackId!: pulumi.Output<string>;
     /**
      * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here:
-     * https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping
-     * exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is
-     * computed automatically and readable.
+     * https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/set-up/set-up-private-probes/#probe-api-server-url. A
+     * static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region,
+     * this field is computed automatically and readable.
      */
     public readonly stackSmApiUrl!: pulumi.Output<string>;
 
@@ -113,9 +113,9 @@ export interface SyntheticMonitoringInstallationState {
     stackId?: pulumi.Input<string>;
     /**
      * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here:
-     * https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping
-     * exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is
-     * computed automatically and readable.
+     * https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/set-up/set-up-private-probes/#probe-api-server-url. A
+     * static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region,
+     * this field is computed automatically and readable.
      */
     stackSmApiUrl?: pulumi.Input<string>;
 }
@@ -137,9 +137,9 @@ export interface SyntheticMonitoringInstallationArgs {
     stackId: pulumi.Input<string>;
     /**
      * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here:
-     * https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url. A static mapping
-     * exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is
-     * computed automatically and readable.
+     * https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/set-up/set-up-private-probes/#probe-api-server-url. A
+     * static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region,
+     * this field is computed automatically and readable.
      */
     stackSmApiUrl?: pulumi.Input<string>;
 }

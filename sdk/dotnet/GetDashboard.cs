@@ -61,6 +61,7 @@ namespace Pulumiverse.Grafana
         public readonly string ConfigJson;
         public readonly int? DashboardId;
         public readonly int Folder;
+        public readonly string FolderUid;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -81,6 +82,8 @@ namespace Pulumiverse.Grafana
 
             int folder,
 
+            string folderUid,
+
             string id,
 
             bool isStarred,
@@ -100,6 +103,7 @@ namespace Pulumiverse.Grafana
             ConfigJson = configJson;
             DashboardId = dashboardId;
             Folder = folder;
+            FolderUid = folderUid;
             Id = id;
             IsStarred = isStarred;
             OrgId = orgId;

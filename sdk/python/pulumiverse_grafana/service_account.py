@@ -14,25 +14,36 @@ __all__ = ['ServiceAccountArgs', 'ServiceAccount']
 @pulumi.input_type
 class ServiceAccountArgs:
     def __init__(__self__, *,
+                 role: pulumi.Input[str],
                  is_disabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 org_id: Optional[pulumi.Input[str]] = None,
-                 role: Optional[pulumi.Input[str]] = None):
+                 org_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ServiceAccount resource.
+        :param pulumi.Input[str] role: The basic role of the service account in the organization.
         :param pulumi.Input[bool] is_disabled: The disabled status for the service account.
         :param pulumi.Input[str] name: The name of the service account.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] role: The basic role of the service account in the organization.
         """
+        pulumi.set(__self__, "role", role)
         if is_disabled is not None:
             pulumi.set(__self__, "is_disabled", is_disabled)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
-        if role is not None:
-            pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        The basic role of the service account in the organization.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
 
     @property
     @pulumi.getter(name="isDisabled")
@@ -69,18 +80,6 @@ class ServiceAccountArgs:
     @org_id.setter
     def org_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "org_id", value)
-
-    @property
-    @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[str]]:
-        """
-        The basic role of the service account in the organization.
-        """
-        return pulumi.get(self, "role")
-
-    @role.setter
-    def role(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "role", value)
 
 
 @pulumi.input_type
@@ -178,7 +177,7 @@ class ServiceAccount(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[ServiceAccountArgs] = None,
+                 args: ServiceAccountArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a ServiceAccount resource with the given unique name, props, and options.
@@ -213,6 +212,8 @@ class ServiceAccount(pulumi.CustomResource):
             __props__.__dict__["is_disabled"] = is_disabled
             __props__.__dict__["name"] = name
             __props__.__dict__["org_id"] = org_id
+            if role is None and not opts.urn:
+                raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
         super(ServiceAccount, __self__).__init__(
             'grafana:index/serviceAccount:ServiceAccount',
@@ -276,7 +277,7 @@ class ServiceAccount(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def role(self) -> pulumi.Output[Optional[str]]:
+    def role(self) -> pulumi.Output[str]:
         """
         The basic role of the service account in the organization.
         """

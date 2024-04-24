@@ -20,6 +20,9 @@ export function getDataSource(args?: GetDataSourceArgs, opts?: pulumi.InvokeOpti
  * A collection of arguments for invoking getDataSource.
  */
 export interface GetDataSourceArgs {
+    /**
+     * @deprecated Use `uid` instead of `id`
+     */
     id?: string;
     name?: string;
     orgId?: string;
@@ -34,6 +37,9 @@ export interface GetDataSourceResult {
     readonly basicAuthEnabled: boolean;
     readonly basicAuthUsername: string;
     readonly databaseName: string;
+    /**
+     * @deprecated Use `uid` instead of `id`
+     */
     readonly id: string;
     readonly isDefault: boolean;
     readonly jsonDataEncoded: string;
@@ -52,6 +58,9 @@ export function getDataSourceOutput(args?: GetDataSourceOutputArgs, opts?: pulum
  * A collection of arguments for invoking getDataSource.
  */
 export interface GetDataSourceOutputArgs {
+    /**
+     * @deprecated Use `uid` instead of `id`
+     */
     id?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     orgId?: pulumi.Input<string>;

@@ -16,33 +16,26 @@ __all__ = ['SsoSettingsArgs', 'SsoSettings']
 @pulumi.input_type
 class SsoSettingsArgs:
     def __init__(__self__, *,
-                 oauth2_settings: pulumi.Input['SsoSettingsOauth2SettingsArgs'],
-                 provider_name: pulumi.Input[str]):
+                 provider_name: pulumi.Input[str],
+                 oauth2_settings: Optional[pulumi.Input['SsoSettingsOauth2SettingsArgs']] = None,
+                 saml_settings: Optional[pulumi.Input['SsoSettingsSamlSettingsArgs']] = None):
         """
         The set of arguments for constructing a SsoSettings resource.
-        :param pulumi.Input['SsoSettingsOauth2SettingsArgs'] oauth2_settings: The SSO settings set.
-        :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth.
+        :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+        :param pulumi.Input['SsoSettingsOauth2SettingsArgs'] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
+        :param pulumi.Input['SsoSettingsSamlSettingsArgs'] saml_settings: The SAML settings set. Required for the saml provider.
         """
-        pulumi.set(__self__, "oauth2_settings", oauth2_settings)
         pulumi.set(__self__, "provider_name", provider_name)
-
-    @property
-    @pulumi.getter(name="oauth2Settings")
-    def oauth2_settings(self) -> pulumi.Input['SsoSettingsOauth2SettingsArgs']:
-        """
-        The SSO settings set.
-        """
-        return pulumi.get(self, "oauth2_settings")
-
-    @oauth2_settings.setter
-    def oauth2_settings(self, value: pulumi.Input['SsoSettingsOauth2SettingsArgs']):
-        pulumi.set(self, "oauth2_settings", value)
+        if oauth2_settings is not None:
+            pulumi.set(__self__, "oauth2_settings", oauth2_settings)
+        if saml_settings is not None:
+            pulumi.set(__self__, "saml_settings", saml_settings)
 
     @property
     @pulumi.getter(name="providerName")
     def provider_name(self) -> pulumi.Input[str]:
         """
-        The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth.
+        The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
         """
         return pulumi.get(self, "provider_name")
 
@@ -50,27 +43,55 @@ class SsoSettingsArgs:
     def provider_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "provider_name", value)
 
+    @property
+    @pulumi.getter(name="oauth2Settings")
+    def oauth2_settings(self) -> Optional[pulumi.Input['SsoSettingsOauth2SettingsArgs']]:
+        """
+        The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
+        """
+        return pulumi.get(self, "oauth2_settings")
+
+    @oauth2_settings.setter
+    def oauth2_settings(self, value: Optional[pulumi.Input['SsoSettingsOauth2SettingsArgs']]):
+        pulumi.set(self, "oauth2_settings", value)
+
+    @property
+    @pulumi.getter(name="samlSettings")
+    def saml_settings(self) -> Optional[pulumi.Input['SsoSettingsSamlSettingsArgs']]:
+        """
+        The SAML settings set. Required for the saml provider.
+        """
+        return pulumi.get(self, "saml_settings")
+
+    @saml_settings.setter
+    def saml_settings(self, value: Optional[pulumi.Input['SsoSettingsSamlSettingsArgs']]):
+        pulumi.set(self, "saml_settings", value)
+
 
 @pulumi.input_type
 class _SsoSettingsState:
     def __init__(__self__, *,
                  oauth2_settings: Optional[pulumi.Input['SsoSettingsOauth2SettingsArgs']] = None,
-                 provider_name: Optional[pulumi.Input[str]] = None):
+                 provider_name: Optional[pulumi.Input[str]] = None,
+                 saml_settings: Optional[pulumi.Input['SsoSettingsSamlSettingsArgs']] = None):
         """
         Input properties used for looking up and filtering SsoSettings resources.
-        :param pulumi.Input['SsoSettingsOauth2SettingsArgs'] oauth2_settings: The SSO settings set.
-        :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth.
+        :param pulumi.Input['SsoSettingsOauth2SettingsArgs'] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
+        :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+        :param pulumi.Input['SsoSettingsSamlSettingsArgs'] saml_settings: The SAML settings set. Required for the saml provider.
         """
         if oauth2_settings is not None:
             pulumi.set(__self__, "oauth2_settings", oauth2_settings)
         if provider_name is not None:
             pulumi.set(__self__, "provider_name", provider_name)
+        if saml_settings is not None:
+            pulumi.set(__self__, "saml_settings", saml_settings)
 
     @property
     @pulumi.getter(name="oauth2Settings")
     def oauth2_settings(self) -> Optional[pulumi.Input['SsoSettingsOauth2SettingsArgs']]:
         """
-        The SSO settings set.
+        The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
         """
         return pulumi.get(self, "oauth2_settings")
 
@@ -82,13 +103,25 @@ class _SsoSettingsState:
     @pulumi.getter(name="providerName")
     def provider_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth.
+        The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
         """
         return pulumi.get(self, "provider_name")
 
     @provider_name.setter
     def provider_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "provider_name", value)
+
+    @property
+    @pulumi.getter(name="samlSettings")
+    def saml_settings(self) -> Optional[pulumi.Input['SsoSettingsSamlSettingsArgs']]:
+        """
+        The SAML settings set. Required for the saml provider.
+        """
+        return pulumi.get(self, "saml_settings")
+
+    @saml_settings.setter
+    def saml_settings(self, value: Optional[pulumi.Input['SsoSettingsSamlSettingsArgs']]):
+        pulumi.set(self, "saml_settings", value)
 
 
 class SsoSettings(pulumi.CustomResource):
@@ -98,13 +131,15 @@ class SsoSettings(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  oauth2_settings: Optional[pulumi.Input[pulumi.InputType['SsoSettingsOauth2SettingsArgs']]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
+                 saml_settings: Optional[pulumi.Input[pulumi.InputType['SsoSettingsSamlSettingsArgs']]] = None,
                  __props__=None):
         """
         Create a SsoSettings resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['SsoSettingsOauth2SettingsArgs']] oauth2_settings: The SSO settings set.
-        :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth.
+        :param pulumi.Input[pulumi.InputType['SsoSettingsOauth2SettingsArgs']] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
+        :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+        :param pulumi.Input[pulumi.InputType['SsoSettingsSamlSettingsArgs']] saml_settings: The SAML settings set. Required for the saml provider.
         """
         ...
     @overload
@@ -131,6 +166,7 @@ class SsoSettings(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  oauth2_settings: Optional[pulumi.Input[pulumi.InputType['SsoSettingsOauth2SettingsArgs']]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
+                 saml_settings: Optional[pulumi.Input[pulumi.InputType['SsoSettingsSamlSettingsArgs']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -140,12 +176,11 @@ class SsoSettings(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SsoSettingsArgs.__new__(SsoSettingsArgs)
 
-            if oauth2_settings is None and not opts.urn:
-                raise TypeError("Missing required property 'oauth2_settings'")
             __props__.__dict__["oauth2_settings"] = oauth2_settings
             if provider_name is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_name'")
             __props__.__dict__["provider_name"] = provider_name
+            __props__.__dict__["saml_settings"] = saml_settings
         super(SsoSettings, __self__).__init__(
             'grafana:index/ssoSettings:SsoSettings',
             resource_name,
@@ -157,7 +192,8 @@ class SsoSettings(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             oauth2_settings: Optional[pulumi.Input[pulumi.InputType['SsoSettingsOauth2SettingsArgs']]] = None,
-            provider_name: Optional[pulumi.Input[str]] = None) -> 'SsoSettings':
+            provider_name: Optional[pulumi.Input[str]] = None,
+            saml_settings: Optional[pulumi.Input[pulumi.InputType['SsoSettingsSamlSettingsArgs']]] = None) -> 'SsoSettings':
         """
         Get an existing SsoSettings resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -165,8 +201,9 @@ class SsoSettings(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['SsoSettingsOauth2SettingsArgs']] oauth2_settings: The SSO settings set.
-        :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth.
+        :param pulumi.Input[pulumi.InputType['SsoSettingsOauth2SettingsArgs']] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
+        :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+        :param pulumi.Input[pulumi.InputType['SsoSettingsSamlSettingsArgs']] saml_settings: The SAML settings set. Required for the saml provider.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -174,13 +211,14 @@ class SsoSettings(pulumi.CustomResource):
 
         __props__.__dict__["oauth2_settings"] = oauth2_settings
         __props__.__dict__["provider_name"] = provider_name
+        __props__.__dict__["saml_settings"] = saml_settings
         return SsoSettings(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="oauth2Settings")
-    def oauth2_settings(self) -> pulumi.Output['outputs.SsoSettingsOauth2Settings']:
+    def oauth2_settings(self) -> pulumi.Output[Optional['outputs.SsoSettingsOauth2Settings']]:
         """
-        The SSO settings set.
+        The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
         """
         return pulumi.get(self, "oauth2_settings")
 
@@ -188,7 +226,15 @@ class SsoSettings(pulumi.CustomResource):
     @pulumi.getter(name="providerName")
     def provider_name(self) -> pulumi.Output[str]:
         """
-        The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth.
+        The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
         """
         return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter(name="samlSettings")
+    def saml_settings(self) -> pulumi.Output[Optional['outputs.SsoSettingsSamlSettings']]:
+        """
+        The SAML settings set. Required for the saml provider.
+        """
+        return pulumi.get(self, "saml_settings")
 

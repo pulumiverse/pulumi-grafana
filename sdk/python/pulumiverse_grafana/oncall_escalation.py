@@ -23,6 +23,7 @@ class OncallEscalationArgs:
                  notify_if_time_from: Optional[pulumi.Input[str]] = None,
                  notify_if_time_to: Optional[pulumi.Input[str]] = None,
                  notify_on_call_from_schedule: Optional[pulumi.Input[str]] = None,
+                 notify_to_team_members: Optional[pulumi.Input[str]] = None,
                  persons_to_notifies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  persons_to_notify_next_each_times: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None):
@@ -30,18 +31,20 @@ class OncallEscalationArgs:
         The set of arguments for constructing a OncallEscalation resource.
         :param pulumi.Input[str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[int] position: The position of the escalation step (starts from 0).
-        :param pulumi.Input[str] action_to_trigger: The ID of an Action for trigger_action type step.
+        :param pulumi.Input[str] action_to_trigger: The ID of an Action for trigger_webhook type step.
         :param pulumi.Input[int] duration: The duration of delay for wait type step.
         :param pulumi.Input[str] group_to_notify: The ID of a User Group for notify_user_group type step.
         :param pulumi.Input[bool] important: Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-               and notify_user_group
+               and notify_user_group,notify_team_members
         :param pulumi.Input[str] notify_if_time_from: The beginning of the time interval for notify_if_time_from_to type step in UTC (for example 08:00:00Z).
         :param pulumi.Input[str] notify_if_time_to: The end of the time interval for notify_if_time_from_to type step in UTC (for example 18:00:00Z).
         :param pulumi.Input[str] notify_on_call_from_schedule: ID of a Schedule for notify_on_call_from_schedule type step.
+        :param pulumi.Input[str] notify_to_team_members: The ID of a Team for a notify_team_members type step.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] persons_to_notifies: The list of ID's of users for notify_persons type step.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] persons_to_notify_next_each_times: The list of ID's of users for notify_person_next_each_time type step.
         :param pulumi.Input[str] type: The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-               trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+               trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+               notify_team_members
         """
         pulumi.set(__self__, "escalation_chain_id", escalation_chain_id)
         pulumi.set(__self__, "position", position)
@@ -59,6 +62,8 @@ class OncallEscalationArgs:
             pulumi.set(__self__, "notify_if_time_to", notify_if_time_to)
         if notify_on_call_from_schedule is not None:
             pulumi.set(__self__, "notify_on_call_from_schedule", notify_on_call_from_schedule)
+        if notify_to_team_members is not None:
+            pulumi.set(__self__, "notify_to_team_members", notify_to_team_members)
         if persons_to_notifies is not None:
             pulumi.set(__self__, "persons_to_notifies", persons_to_notifies)
         if persons_to_notify_next_each_times is not None:
@@ -94,7 +99,7 @@ class OncallEscalationArgs:
     @pulumi.getter(name="actionToTrigger")
     def action_to_trigger(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of an Action for trigger_action type step.
+        The ID of an Action for trigger_webhook type step.
         """
         return pulumi.get(self, "action_to_trigger")
 
@@ -131,7 +136,7 @@ class OncallEscalationArgs:
     def important(self) -> Optional[pulumi.Input[bool]]:
         """
         Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-        and notify_user_group
+        and notify_user_group,notify_team_members
         """
         return pulumi.get(self, "important")
 
@@ -176,6 +181,18 @@ class OncallEscalationArgs:
         pulumi.set(self, "notify_on_call_from_schedule", value)
 
     @property
+    @pulumi.getter(name="notifyToTeamMembers")
+    def notify_to_team_members(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of a Team for a notify_team_members type step.
+        """
+        return pulumi.get(self, "notify_to_team_members")
+
+    @notify_to_team_members.setter
+    def notify_to_team_members(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "notify_to_team_members", value)
+
+    @property
     @pulumi.getter(name="personsToNotifies")
     def persons_to_notifies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -204,7 +221,8 @@ class OncallEscalationArgs:
     def type(self) -> Optional[pulumi.Input[str]]:
         """
         The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-        trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+        trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+        notify_team_members
         """
         return pulumi.get(self, "type")
 
@@ -224,26 +242,29 @@ class _OncallEscalationState:
                  notify_if_time_from: Optional[pulumi.Input[str]] = None,
                  notify_if_time_to: Optional[pulumi.Input[str]] = None,
                  notify_on_call_from_schedule: Optional[pulumi.Input[str]] = None,
+                 notify_to_team_members: Optional[pulumi.Input[str]] = None,
                  persons_to_notifies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  persons_to_notify_next_each_times: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  position: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering OncallEscalation resources.
-        :param pulumi.Input[str] action_to_trigger: The ID of an Action for trigger_action type step.
+        :param pulumi.Input[str] action_to_trigger: The ID of an Action for trigger_webhook type step.
         :param pulumi.Input[int] duration: The duration of delay for wait type step.
         :param pulumi.Input[str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[str] group_to_notify: The ID of a User Group for notify_user_group type step.
         :param pulumi.Input[bool] important: Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-               and notify_user_group
+               and notify_user_group,notify_team_members
         :param pulumi.Input[str] notify_if_time_from: The beginning of the time interval for notify_if_time_from_to type step in UTC (for example 08:00:00Z).
         :param pulumi.Input[str] notify_if_time_to: The end of the time interval for notify_if_time_from_to type step in UTC (for example 18:00:00Z).
         :param pulumi.Input[str] notify_on_call_from_schedule: ID of a Schedule for notify_on_call_from_schedule type step.
+        :param pulumi.Input[str] notify_to_team_members: The ID of a Team for a notify_team_members type step.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] persons_to_notifies: The list of ID's of users for notify_persons type step.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] persons_to_notify_next_each_times: The list of ID's of users for notify_person_next_each_time type step.
         :param pulumi.Input[int] position: The position of the escalation step (starts from 0).
         :param pulumi.Input[str] type: The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-               trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+               trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+               notify_team_members
         """
         if action_to_trigger is not None:
             pulumi.set(__self__, "action_to_trigger", action_to_trigger)
@@ -261,6 +282,8 @@ class _OncallEscalationState:
             pulumi.set(__self__, "notify_if_time_to", notify_if_time_to)
         if notify_on_call_from_schedule is not None:
             pulumi.set(__self__, "notify_on_call_from_schedule", notify_on_call_from_schedule)
+        if notify_to_team_members is not None:
+            pulumi.set(__self__, "notify_to_team_members", notify_to_team_members)
         if persons_to_notifies is not None:
             pulumi.set(__self__, "persons_to_notifies", persons_to_notifies)
         if persons_to_notify_next_each_times is not None:
@@ -274,7 +297,7 @@ class _OncallEscalationState:
     @pulumi.getter(name="actionToTrigger")
     def action_to_trigger(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of an Action for trigger_action type step.
+        The ID of an Action for trigger_webhook type step.
         """
         return pulumi.get(self, "action_to_trigger")
 
@@ -323,7 +346,7 @@ class _OncallEscalationState:
     def important(self) -> Optional[pulumi.Input[bool]]:
         """
         Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-        and notify_user_group
+        and notify_user_group,notify_team_members
         """
         return pulumi.get(self, "important")
 
@@ -368,6 +391,18 @@ class _OncallEscalationState:
         pulumi.set(self, "notify_on_call_from_schedule", value)
 
     @property
+    @pulumi.getter(name="notifyToTeamMembers")
+    def notify_to_team_members(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of a Team for a notify_team_members type step.
+        """
+        return pulumi.get(self, "notify_to_team_members")
+
+    @notify_to_team_members.setter
+    def notify_to_team_members(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "notify_to_team_members", value)
+
+    @property
     @pulumi.getter(name="personsToNotifies")
     def persons_to_notifies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -408,7 +443,8 @@ class _OncallEscalationState:
     def type(self) -> Optional[pulumi.Input[str]]:
         """
         The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-        trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+        trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+        notify_team_members
         """
         return pulumi.get(self, "type")
 
@@ -430,6 +466,7 @@ class OncallEscalation(pulumi.CustomResource):
                  notify_if_time_from: Optional[pulumi.Input[str]] = None,
                  notify_if_time_to: Optional[pulumi.Input[str]] = None,
                  notify_on_call_from_schedule: Optional[pulumi.Input[str]] = None,
+                 notify_to_team_members: Optional[pulumi.Input[str]] = None,
                  persons_to_notifies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  persons_to_notify_next_each_times: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  position: Optional[pulumi.Input[int]] = None,
@@ -439,20 +476,22 @@ class OncallEscalation(pulumi.CustomResource):
         Create a OncallEscalation resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] action_to_trigger: The ID of an Action for trigger_action type step.
+        :param pulumi.Input[str] action_to_trigger: The ID of an Action for trigger_webhook type step.
         :param pulumi.Input[int] duration: The duration of delay for wait type step.
         :param pulumi.Input[str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[str] group_to_notify: The ID of a User Group for notify_user_group type step.
         :param pulumi.Input[bool] important: Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-               and notify_user_group
+               and notify_user_group,notify_team_members
         :param pulumi.Input[str] notify_if_time_from: The beginning of the time interval for notify_if_time_from_to type step in UTC (for example 08:00:00Z).
         :param pulumi.Input[str] notify_if_time_to: The end of the time interval for notify_if_time_from_to type step in UTC (for example 18:00:00Z).
         :param pulumi.Input[str] notify_on_call_from_schedule: ID of a Schedule for notify_on_call_from_schedule type step.
+        :param pulumi.Input[str] notify_to_team_members: The ID of a Team for a notify_team_members type step.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] persons_to_notifies: The list of ID's of users for notify_persons type step.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] persons_to_notify_next_each_times: The list of ID's of users for notify_person_next_each_time type step.
         :param pulumi.Input[int] position: The position of the escalation step (starts from 0).
         :param pulumi.Input[str] type: The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-               trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+               trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+               notify_team_members
         """
         ...
     @overload
@@ -485,6 +524,7 @@ class OncallEscalation(pulumi.CustomResource):
                  notify_if_time_from: Optional[pulumi.Input[str]] = None,
                  notify_if_time_to: Optional[pulumi.Input[str]] = None,
                  notify_on_call_from_schedule: Optional[pulumi.Input[str]] = None,
+                 notify_to_team_members: Optional[pulumi.Input[str]] = None,
                  persons_to_notifies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  persons_to_notify_next_each_times: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  position: Optional[pulumi.Input[int]] = None,
@@ -508,6 +548,7 @@ class OncallEscalation(pulumi.CustomResource):
             __props__.__dict__["notify_if_time_from"] = notify_if_time_from
             __props__.__dict__["notify_if_time_to"] = notify_if_time_to
             __props__.__dict__["notify_on_call_from_schedule"] = notify_on_call_from_schedule
+            __props__.__dict__["notify_to_team_members"] = notify_to_team_members
             __props__.__dict__["persons_to_notifies"] = persons_to_notifies
             __props__.__dict__["persons_to_notify_next_each_times"] = persons_to_notify_next_each_times
             if position is None and not opts.urn:
@@ -532,6 +573,7 @@ class OncallEscalation(pulumi.CustomResource):
             notify_if_time_from: Optional[pulumi.Input[str]] = None,
             notify_if_time_to: Optional[pulumi.Input[str]] = None,
             notify_on_call_from_schedule: Optional[pulumi.Input[str]] = None,
+            notify_to_team_members: Optional[pulumi.Input[str]] = None,
             persons_to_notifies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             persons_to_notify_next_each_times: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             position: Optional[pulumi.Input[int]] = None,
@@ -543,20 +585,22 @@ class OncallEscalation(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] action_to_trigger: The ID of an Action for trigger_action type step.
+        :param pulumi.Input[str] action_to_trigger: The ID of an Action for trigger_webhook type step.
         :param pulumi.Input[int] duration: The duration of delay for wait type step.
         :param pulumi.Input[str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[str] group_to_notify: The ID of a User Group for notify_user_group type step.
         :param pulumi.Input[bool] important: Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-               and notify_user_group
+               and notify_user_group,notify_team_members
         :param pulumi.Input[str] notify_if_time_from: The beginning of the time interval for notify_if_time_from_to type step in UTC (for example 08:00:00Z).
         :param pulumi.Input[str] notify_if_time_to: The end of the time interval for notify_if_time_from_to type step in UTC (for example 18:00:00Z).
         :param pulumi.Input[str] notify_on_call_from_schedule: ID of a Schedule for notify_on_call_from_schedule type step.
+        :param pulumi.Input[str] notify_to_team_members: The ID of a Team for a notify_team_members type step.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] persons_to_notifies: The list of ID's of users for notify_persons type step.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] persons_to_notify_next_each_times: The list of ID's of users for notify_person_next_each_time type step.
         :param pulumi.Input[int] position: The position of the escalation step (starts from 0).
         :param pulumi.Input[str] type: The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-               trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+               trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+               notify_team_members
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -570,6 +614,7 @@ class OncallEscalation(pulumi.CustomResource):
         __props__.__dict__["notify_if_time_from"] = notify_if_time_from
         __props__.__dict__["notify_if_time_to"] = notify_if_time_to
         __props__.__dict__["notify_on_call_from_schedule"] = notify_on_call_from_schedule
+        __props__.__dict__["notify_to_team_members"] = notify_to_team_members
         __props__.__dict__["persons_to_notifies"] = persons_to_notifies
         __props__.__dict__["persons_to_notify_next_each_times"] = persons_to_notify_next_each_times
         __props__.__dict__["position"] = position
@@ -580,7 +625,7 @@ class OncallEscalation(pulumi.CustomResource):
     @pulumi.getter(name="actionToTrigger")
     def action_to_trigger(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of an Action for trigger_action type step.
+        The ID of an Action for trigger_webhook type step.
         """
         return pulumi.get(self, "action_to_trigger")
 
@@ -613,7 +658,7 @@ class OncallEscalation(pulumi.CustomResource):
     def important(self) -> pulumi.Output[Optional[bool]]:
         """
         Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-        and notify_user_group
+        and notify_user_group,notify_team_members
         """
         return pulumi.get(self, "important")
 
@@ -640,6 +685,14 @@ class OncallEscalation(pulumi.CustomResource):
         ID of a Schedule for notify_on_call_from_schedule type step.
         """
         return pulumi.get(self, "notify_on_call_from_schedule")
+
+    @property
+    @pulumi.getter(name="notifyToTeamMembers")
+    def notify_to_team_members(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ID of a Team for a notify_team_members type step.
+        """
+        return pulumi.get(self, "notify_to_team_members")
 
     @property
     @pulumi.getter(name="personsToNotifies")
@@ -670,7 +723,8 @@ class OncallEscalation(pulumi.CustomResource):
     def type(self) -> pulumi.Output[Optional[str]]:
         """
         The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-        trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+        trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+        notify_team_members
         """
         return pulumi.get(self, "type")
 
