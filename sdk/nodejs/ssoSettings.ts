@@ -35,13 +35,17 @@ export class SsoSettings extends pulumi.CustomResource {
     }
 
     /**
-     * The SSO settings set.
+     * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
      */
-    public readonly oauth2Settings!: pulumi.Output<outputs.SsoSettingsOauth2Settings>;
+    public readonly oauth2Settings!: pulumi.Output<outputs.SsoSettingsOauth2Settings | undefined>;
     /**
-     * The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth.
+     * The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
      */
     public readonly providerName!: pulumi.Output<string>;
+    /**
+     * The SAML settings set. Required for the saml provider.
+     */
+    public readonly samlSettings!: pulumi.Output<outputs.SsoSettingsSamlSettings | undefined>;
 
     /**
      * Create a SsoSettings resource with the given unique name, arguments, and options.
@@ -58,16 +62,15 @@ export class SsoSettings extends pulumi.CustomResource {
             const state = argsOrState as SsoSettingsState | undefined;
             resourceInputs["oauth2Settings"] = state ? state.oauth2Settings : undefined;
             resourceInputs["providerName"] = state ? state.providerName : undefined;
+            resourceInputs["samlSettings"] = state ? state.samlSettings : undefined;
         } else {
             const args = argsOrState as SsoSettingsArgs | undefined;
-            if ((!args || args.oauth2Settings === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'oauth2Settings'");
-            }
             if ((!args || args.providerName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
             resourceInputs["oauth2Settings"] = args ? args.oauth2Settings : undefined;
             resourceInputs["providerName"] = args ? args.providerName : undefined;
+            resourceInputs["samlSettings"] = args ? args.samlSettings : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SsoSettings.__pulumiType, name, resourceInputs, opts);
@@ -79,13 +82,17 @@ export class SsoSettings extends pulumi.CustomResource {
  */
 export interface SsoSettingsState {
     /**
-     * The SSO settings set.
+     * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
      */
     oauth2Settings?: pulumi.Input<inputs.SsoSettingsOauth2Settings>;
     /**
-     * The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth.
+     * The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
      */
     providerName?: pulumi.Input<string>;
+    /**
+     * The SAML settings set. Required for the saml provider.
+     */
+    samlSettings?: pulumi.Input<inputs.SsoSettingsSamlSettings>;
 }
 
 /**
@@ -93,11 +100,15 @@ export interface SsoSettingsState {
  */
 export interface SsoSettingsArgs {
     /**
-     * The SSO settings set.
+     * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
      */
-    oauth2Settings: pulumi.Input<inputs.SsoSettingsOauth2Settings>;
+    oauth2Settings?: pulumi.Input<inputs.SsoSettingsOauth2Settings>;
     /**
-     * The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth.
+     * The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
      */
     providerName: pulumi.Input<string>;
+    /**
+     * The SAML settings set. Required for the saml provider.
+     */
+    samlSettings?: pulumi.Input<inputs.SsoSettingsSamlSettings>;
 }

@@ -20,8 +20,8 @@ type CloudStackServiceAccount struct {
 	// The name of the service account.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The basic role of the service account in the organization.
-	Role      pulumi.StringPtrOutput `pulumi:"role"`
-	StackSlug pulumi.StringOutput    `pulumi:"stackSlug"`
+	Role      pulumi.StringOutput `pulumi:"role"`
+	StackSlug pulumi.StringOutput `pulumi:"stackSlug"`
 }
 
 // NewCloudStackServiceAccount registers a new resource with the given unique name, arguments, and options.
@@ -31,6 +31,9 @@ func NewCloudStackServiceAccount(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
 	if args.StackSlug == nil {
 		return nil, errors.New("invalid value for required argument 'StackSlug'")
 	}
@@ -86,8 +89,8 @@ type cloudStackServiceAccountArgs struct {
 	// The name of the service account.
 	Name *string `pulumi:"name"`
 	// The basic role of the service account in the organization.
-	Role      *string `pulumi:"role"`
-	StackSlug string  `pulumi:"stackSlug"`
+	Role      string `pulumi:"role"`
+	StackSlug string `pulumi:"stackSlug"`
 }
 
 // The set of arguments for constructing a CloudStackServiceAccount resource.
@@ -97,7 +100,7 @@ type CloudStackServiceAccountArgs struct {
 	// The name of the service account.
 	Name pulumi.StringPtrInput
 	// The basic role of the service account in the organization.
-	Role      pulumi.StringPtrInput
+	Role      pulumi.StringInput
 	StackSlug pulumi.StringInput
 }
 
@@ -199,8 +202,8 @@ func (o CloudStackServiceAccountOutput) Name() pulumi.StringOutput {
 }
 
 // The basic role of the service account in the organization.
-func (o CloudStackServiceAccountOutput) Role() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CloudStackServiceAccount) pulumi.StringPtrOutput { return v.Role }).(pulumi.StringPtrOutput)
+func (o CloudStackServiceAccountOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudStackServiceAccount) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
 }
 
 func (o CloudStackServiceAccountOutput) StackSlug() pulumi.StringOutput {

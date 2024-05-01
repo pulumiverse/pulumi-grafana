@@ -14,10 +14,16 @@ namespace Pulumiverse.Grafana
     public partial class DataSourcePermission : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// ID of the datasource to apply permissions to.
+        /// Deprecated: Use `datasource_uid` instead.
         /// </summary>
         [Output("datasourceId")]
         public Output<string> DatasourceId { get; private set; } = null!;
+
+        /// <summary>
+        /// UID of the datasource to apply permissions to.
+        /// </summary>
+        [Output("datasourceUid")]
+        public Output<string> DatasourceUid { get; private set; } = null!;
 
         /// <summary>
         /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -39,7 +45,7 @@ namespace Pulumiverse.Grafana
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public DataSourcePermission(string name, DataSourcePermissionArgs args, CustomResourceOptions? options = null)
+        public DataSourcePermission(string name, DataSourcePermissionArgs? args = null, CustomResourceOptions? options = null)
             : base("grafana:index/dataSourcePermission:DataSourcePermission", name, args ?? new DataSourcePermissionArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -79,10 +85,16 @@ namespace Pulumiverse.Grafana
     public sealed class DataSourcePermissionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the datasource to apply permissions to.
+        /// Deprecated: Use `datasource_uid` instead.
         /// </summary>
-        [Input("datasourceId", required: true)]
-        public Input<string> DatasourceId { get; set; } = null!;
+        [Input("datasourceId")]
+        public Input<string>? DatasourceId { get; set; }
+
+        /// <summary>
+        /// UID of the datasource to apply permissions to.
+        /// </summary>
+        [Input("datasourceUid")]
+        public Input<string>? DatasourceUid { get; set; }
 
         /// <summary>
         /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -111,10 +123,16 @@ namespace Pulumiverse.Grafana
     public sealed class DataSourcePermissionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the datasource to apply permissions to.
+        /// Deprecated: Use `datasource_uid` instead.
         /// </summary>
         [Input("datasourceId")]
         public Input<string>? DatasourceId { get; set; }
+
+        /// <summary>
+        /// UID of the datasource to apply permissions to.
+        /// </summary>
+        [Input("datasourceUid")]
+        public Input<string>? DatasourceUid { get; set; }
 
         /// <summary>
         /// The Organization ID. If not set, the Org ID defined in the provider block will be used.

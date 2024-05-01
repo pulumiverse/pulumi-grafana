@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana
     public partial class OncallEscalation : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The ID of an Action for trigger_action type step.
+        /// The ID of an Action for trigger_webhook type step.
         /// </summary>
         [Output("actionToTrigger")]
         public Output<string?> ActionToTrigger { get; private set; } = null!;
@@ -39,7 +39,7 @@ namespace Pulumiverse.Grafana
 
         /// <summary>
         /// Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-        /// and notify_user_group
+        /// and notify_user_group,notify_team_members
         /// </summary>
         [Output("important")]
         public Output<bool?> Important { get; private set; } = null!;
@@ -63,6 +63,12 @@ namespace Pulumiverse.Grafana
         public Output<string?> NotifyOnCallFromSchedule { get; private set; } = null!;
 
         /// <summary>
+        /// The ID of a Team for a notify_team_members type step.
+        /// </summary>
+        [Output("notifyToTeamMembers")]
+        public Output<string?> NotifyToTeamMembers { get; private set; } = null!;
+
+        /// <summary>
         /// The list of ID's of users for notify_persons type step.
         /// </summary>
         [Output("personsToNotifies")]
@@ -82,7 +88,8 @@ namespace Pulumiverse.Grafana
 
         /// <summary>
         /// The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-        /// trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+        /// trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+        /// notify_team_members
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
@@ -135,7 +142,7 @@ namespace Pulumiverse.Grafana
     public sealed class OncallEscalationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of an Action for trigger_action type step.
+        /// The ID of an Action for trigger_webhook type step.
         /// </summary>
         [Input("actionToTrigger")]
         public Input<string>? ActionToTrigger { get; set; }
@@ -160,7 +167,7 @@ namespace Pulumiverse.Grafana
 
         /// <summary>
         /// Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-        /// and notify_user_group
+        /// and notify_user_group,notify_team_members
         /// </summary>
         [Input("important")]
         public Input<bool>? Important { get; set; }
@@ -182,6 +189,12 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("notifyOnCallFromSchedule")]
         public Input<string>? NotifyOnCallFromSchedule { get; set; }
+
+        /// <summary>
+        /// The ID of a Team for a notify_team_members type step.
+        /// </summary>
+        [Input("notifyToTeamMembers")]
+        public Input<string>? NotifyToTeamMembers { get; set; }
 
         [Input("personsToNotifies")]
         private InputList<string>? _personsToNotifies;
@@ -215,7 +228,8 @@ namespace Pulumiverse.Grafana
 
         /// <summary>
         /// The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-        /// trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+        /// trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+        /// notify_team_members
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -229,7 +243,7 @@ namespace Pulumiverse.Grafana
     public sealed class OncallEscalationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of an Action for trigger_action type step.
+        /// The ID of an Action for trigger_webhook type step.
         /// </summary>
         [Input("actionToTrigger")]
         public Input<string>? ActionToTrigger { get; set; }
@@ -254,7 +268,7 @@ namespace Pulumiverse.Grafana
 
         /// <summary>
         /// Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-        /// and notify_user_group
+        /// and notify_user_group,notify_team_members
         /// </summary>
         [Input("important")]
         public Input<bool>? Important { get; set; }
@@ -276,6 +290,12 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("notifyOnCallFromSchedule")]
         public Input<string>? NotifyOnCallFromSchedule { get; set; }
+
+        /// <summary>
+        /// The ID of a Team for a notify_team_members type step.
+        /// </summary>
+        [Input("notifyToTeamMembers")]
+        public Input<string>? NotifyToTeamMembers { get; set; }
 
         [Input("personsToNotifies")]
         private InputList<string>? _personsToNotifies;
@@ -309,7 +329,8 @@ namespace Pulumiverse.Grafana
 
         /// <summary>
         /// The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-        /// trigger_action, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation
+        /// trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
+        /// notify_team_members
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

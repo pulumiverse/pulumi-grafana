@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana
     {
         /// <summary>
         /// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert
-        /// levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).
+        /// levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/configure-alerts/synthetic-monitoring-alerting/).
         /// </summary>
         [Output("alertSensitivity")]
         public Output<string?> AlertSensitivity { get; private set; } = null!;
@@ -134,7 +134,7 @@ namespace Pulumiverse.Grafana
     {
         /// <summary>
         /// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert
-        /// levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).
+        /// levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/configure-alerts/synthetic-monitoring-alerting/).
         /// </summary>
         [Input("alertSensitivity")]
         public Input<string>? AlertSensitivity { get; set; }
@@ -220,7 +220,7 @@ namespace Pulumiverse.Grafana
     {
         /// <summary>
         /// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert
-        /// levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).
+        /// levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/configure-alerts/synthetic-monitoring-alerting/).
         /// </summary>
         [Input("alertSensitivity")]
         public Input<string>? AlertSensitivity { get; set; }

@@ -33,9 +33,10 @@ type LookupLibraryPanelResult struct {
 	Created      string `pulumi:"created"`
 	DashboardIds []int  `pulumi:"dashboardIds"`
 	Description  string `pulumi:"description"`
-	FolderId     string `pulumi:"folderId"`
-	FolderName   string `pulumi:"folderName"`
-	FolderUid    string `pulumi:"folderUid"`
+	// Deprecated: Use `folderUid` instead
+	FolderId   string `pulumi:"folderId"`
+	FolderName string `pulumi:"folderName"`
+	FolderUid  string `pulumi:"folderUid"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	ModelJson string  `pulumi:"modelJson"`
@@ -99,6 +100,7 @@ func (o LookupLibraryPanelResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLibraryPanelResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Deprecated: Use `folderUid` instead
 func (o LookupLibraryPanelResultOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLibraryPanelResult) string { return v.FolderId }).(pulumi.StringOutput)
 }

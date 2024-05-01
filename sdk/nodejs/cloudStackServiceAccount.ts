@@ -43,7 +43,7 @@ export class CloudStackServiceAccount extends pulumi.CustomResource {
     /**
      * The basic role of the service account in the organization.
      */
-    public readonly role!: pulumi.Output<string | undefined>;
+    public readonly role!: pulumi.Output<string>;
     public readonly stackSlug!: pulumi.Output<string>;
 
     /**
@@ -65,6 +65,9 @@ export class CloudStackServiceAccount extends pulumi.CustomResource {
             resourceInputs["stackSlug"] = state ? state.stackSlug : undefined;
         } else {
             const args = argsOrState as CloudStackServiceAccountArgs | undefined;
+            if ((!args || args.role === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'role'");
+            }
             if ((!args || args.stackSlug === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'stackSlug'");
             }
@@ -112,6 +115,6 @@ export interface CloudStackServiceAccountArgs {
     /**
      * The basic role of the service account in the organization.
      */
-    role?: pulumi.Input<string>;
+    role: pulumi.Input<string>;
     stackSlug: pulumi.Input<string>;
 }

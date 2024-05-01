@@ -44,7 +44,7 @@ namespace Pulumiverse.Grafana.Inputs
         }
 
         /// <summary>
-        /// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, and Alerting.
+        /// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
         /// </summary>
         [Input("execErrState")]
         public Input<string>? ExecErrState { get; set; }
@@ -80,7 +80,7 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting.
+        /// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
         /// </summary>
         [Input("noDataState")]
         public Input<string>? NoDataState { get; set; }

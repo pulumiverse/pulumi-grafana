@@ -15,15 +15,15 @@ namespace Pulumiverse.Grafana.Outputs
     public sealed class ServiceAccountPermissionPermission
     {
         /// <summary>
-        /// Permission to associate with item. Must be `Edit` or `Admin`.
+        /// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
         /// </summary>
         public readonly string Permission;
         /// <summary>
-        /// ID of the team to manage permissions for. Specify either this or `user_id`.
+        /// ID of the team to manage permissions for.
         /// </summary>
         public readonly string? TeamId;
         /// <summary>
-        /// ID of the user or service account to manage permissions for. Specify either this or `team_id`.
+        /// ID of the user or service account to manage permissions for.
         /// </summary>
         public readonly string? UserId;
 

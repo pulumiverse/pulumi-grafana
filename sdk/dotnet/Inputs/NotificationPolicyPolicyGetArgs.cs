@@ -16,8 +16,8 @@ namespace Pulumiverse.Grafana.Inputs
         /// <summary>
         /// The contact point to route notifications that match this rule to.
         /// </summary>
-        [Input("contactPoint", required: true)]
-        public Input<string> ContactPoint { get; set; } = null!;
+        [Input("contactPoint")]
+        public Input<string>? ContactPoint { get; set; }
 
         /// <summary>
         /// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.

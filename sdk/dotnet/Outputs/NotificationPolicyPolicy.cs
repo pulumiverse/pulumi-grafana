@@ -17,7 +17,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// <summary>
         /// The contact point to route notifications that match this rule to.
         /// </summary>
-        public readonly string ContactPoint;
+        public readonly string? ContactPoint;
         /// <summary>
         /// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
         /// </summary>
@@ -53,7 +53,7 @@ namespace Pulumiverse.Grafana.Outputs
 
         [OutputConstructor]
         private NotificationPolicyPolicy(
-            string contactPoint,
+            string? contactPoint,
 
             bool? @continue,
 

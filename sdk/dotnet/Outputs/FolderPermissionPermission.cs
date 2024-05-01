@@ -19,7 +19,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string Permission;
         /// <summary>
-        /// Manage permissions for `Viewer` or `Editor` roles.
+        /// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
         /// </summary>
         public readonly string? Role;
         /// <summary>
