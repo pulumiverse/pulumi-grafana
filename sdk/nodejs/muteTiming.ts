@@ -35,6 +35,10 @@ export class MuteTiming extends pulumi.CustomResource {
     }
 
     /**
+     * Allow modifying the mute timing from other sources than Terraform or the Grafana API.
+     */
+    public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
+    /**
      * The time intervals at which to mute notifications. Use an empty block to mute all the time.
      */
     public readonly intervals!: pulumi.Output<outputs.MuteTimingInterval[] | undefined>;
@@ -60,11 +64,13 @@ export class MuteTiming extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MuteTimingState | undefined;
+            resourceInputs["disableProvenance"] = state ? state.disableProvenance : undefined;
             resourceInputs["intervals"] = state ? state.intervals : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
         } else {
             const args = argsOrState as MuteTimingArgs | undefined;
+            resourceInputs["disableProvenance"] = args ? args.disableProvenance : undefined;
             resourceInputs["intervals"] = args ? args.intervals : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
@@ -78,6 +84,10 @@ export class MuteTiming extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MuteTiming resources.
  */
 export interface MuteTimingState {
+    /**
+     * Allow modifying the mute timing from other sources than Terraform or the Grafana API.
+     */
+    disableProvenance?: pulumi.Input<boolean>;
     /**
      * The time intervals at which to mute notifications. Use an empty block to mute all the time.
      */
@@ -96,6 +106,10 @@ export interface MuteTimingState {
  * The set of arguments for constructing a MuteTiming resource.
  */
 export interface MuteTimingArgs {
+    /**
+     * Allow modifying the mute timing from other sources than Terraform or the Grafana API.
+     */
+    disableProvenance?: pulumi.Input<boolean>;
     /**
      * The time intervals at which to mute notifications. Use an empty block to mute all the time.
      */

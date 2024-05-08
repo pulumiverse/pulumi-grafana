@@ -23,16 +23,20 @@ func GetDashboards(ctx *pulumi.Context, args *GetDashboardsArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getDashboards.
 type GetDashboardsArgs struct {
-	FolderIds []int    `pulumi:"folderIds"`
-	Limit     *int     `pulumi:"limit"`
-	OrgId     *string  `pulumi:"orgId"`
-	Tags      []string `pulumi:"tags"`
+	// Deprecated: Use `folderUids` instead.
+	FolderIds  []int    `pulumi:"folderIds"`
+	FolderUids []string `pulumi:"folderUids"`
+	Limit      *int     `pulumi:"limit"`
+	OrgId      *string  `pulumi:"orgId"`
+	Tags       []string `pulumi:"tags"`
 }
 
 // A collection of values returned by getDashboards.
 type GetDashboardsResult struct {
 	Dashboards []GetDashboardsDashboard `pulumi:"dashboards"`
-	FolderIds  []int                    `pulumi:"folderIds"`
+	// Deprecated: Use `folderUids` instead.
+	FolderIds  []int    `pulumi:"folderIds"`
+	FolderUids []string `pulumi:"folderUids"`
 	// The provider-assigned unique ID for this managed resource.
 	Id    string   `pulumi:"id"`
 	Limit *int     `pulumi:"limit"`
@@ -55,10 +59,12 @@ func GetDashboardsOutput(ctx *pulumi.Context, args GetDashboardsOutputArgs, opts
 
 // A collection of arguments for invoking getDashboards.
 type GetDashboardsOutputArgs struct {
-	FolderIds pulumi.IntArrayInput    `pulumi:"folderIds"`
-	Limit     pulumi.IntPtrInput      `pulumi:"limit"`
-	OrgId     pulumi.StringPtrInput   `pulumi:"orgId"`
-	Tags      pulumi.StringArrayInput `pulumi:"tags"`
+	// Deprecated: Use `folderUids` instead.
+	FolderIds  pulumi.IntArrayInput    `pulumi:"folderIds"`
+	FolderUids pulumi.StringArrayInput `pulumi:"folderUids"`
+	Limit      pulumi.IntPtrInput      `pulumi:"limit"`
+	OrgId      pulumi.StringPtrInput   `pulumi:"orgId"`
+	Tags       pulumi.StringArrayInput `pulumi:"tags"`
 }
 
 func (GetDashboardsOutputArgs) ElementType() reflect.Type {
@@ -84,8 +90,13 @@ func (o GetDashboardsResultOutput) Dashboards() GetDashboardsDashboardArrayOutpu
 	return o.ApplyT(func(v GetDashboardsResult) []GetDashboardsDashboard { return v.Dashboards }).(GetDashboardsDashboardArrayOutput)
 }
 
+// Deprecated: Use `folderUids` instead.
 func (o GetDashboardsResultOutput) FolderIds() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v GetDashboardsResult) []int { return v.FolderIds }).(pulumi.IntArrayOutput)
+}
+
+func (o GetDashboardsResultOutput) FolderUids() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDashboardsResult) []string { return v.FolderUids }).(pulumi.StringArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

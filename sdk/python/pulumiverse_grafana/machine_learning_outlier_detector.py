@@ -43,6 +43,9 @@ class MachineLearningOutlierDetectorArgs:
         pulumi.set(__self__, "metric", metric)
         pulumi.set(__self__, "query_params", query_params)
         if datasource_id is not None:
+            warnings.warn("""Use datasource_uid instead.""", DeprecationWarning)
+            pulumi.log.warn("""datasource_id is deprecated: Use datasource_uid instead.""")
+        if datasource_id is not None:
             pulumi.set(__self__, "datasource_id", datasource_id)
         if datasource_uid is not None:
             pulumi.set(__self__, "datasource_uid", datasource_uid)
@@ -108,6 +111,9 @@ class MachineLearningOutlierDetectorArgs:
         """
         The id of the datasource to query.
         """
+        warnings.warn("""Use datasource_uid instead.""", DeprecationWarning)
+        pulumi.log.warn("""datasource_id is deprecated: Use datasource_uid instead.""")
+
         return pulumi.get(self, "datasource_id")
 
     @datasource_id.setter
@@ -191,6 +197,9 @@ class _MachineLearningOutlierDetectorState:
         if algorithm is not None:
             pulumi.set(__self__, "algorithm", algorithm)
         if datasource_id is not None:
+            warnings.warn("""Use datasource_uid instead.""", DeprecationWarning)
+            pulumi.log.warn("""datasource_id is deprecated: Use datasource_uid instead.""")
+        if datasource_id is not None:
             pulumi.set(__self__, "datasource_id", datasource_id)
         if datasource_type is not None:
             pulumi.set(__self__, "datasource_type", datasource_type)
@@ -226,6 +235,9 @@ class _MachineLearningOutlierDetectorState:
         """
         The id of the datasource to query.
         """
+        warnings.warn("""Use datasource_uid instead.""", DeprecationWarning)
+        pulumi.log.warn("""datasource_id is deprecated: Use datasource_uid instead.""")
+
         return pulumi.get(self, "datasource_id")
 
     @datasource_id.setter
@@ -472,6 +484,9 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
         """
         The id of the datasource to query.
         """
+        warnings.warn("""Use datasource_uid instead.""", DeprecationWarning)
+        pulumi.log.warn("""datasource_id is deprecated: Use datasource_uid instead.""")
+
         return pulumi.get(self, "datasource_id")
 
     @property

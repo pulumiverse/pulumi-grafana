@@ -31,6 +31,9 @@ export interface GetLibraryPanelResult {
     readonly created: string;
     readonly dashboardIds: number[];
     readonly description: string;
+    /**
+     * @deprecated Use `folderUid` instead
+     */
     readonly folderId: string;
     readonly folderName: string;
     readonly folderUid: string;

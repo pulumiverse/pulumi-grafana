@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Inputs
     public sealed class DataSourcePermissionPermissionGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+.
+        /// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
         /// </summary>
         [Input("builtInRole")]
         public Input<string>? BuiltInRole { get; set; }
