@@ -33,7 +33,7 @@ export class Annotation extends pulumi.CustomResource {
     }
 
     /**
-     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
      *
      * @deprecated Use dashboardUid instead.
      */
@@ -112,7 +112,7 @@ export class Annotation extends pulumi.CustomResource {
  */
 export interface AnnotationState {
     /**
-     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
      *
      * @deprecated Use dashboardUid instead.
      */
@@ -152,7 +152,7 @@ export interface AnnotationState {
  */
 export interface AnnotationArgs {
     /**
-     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
      *
      * @deprecated Use dashboardUid instead.
      */

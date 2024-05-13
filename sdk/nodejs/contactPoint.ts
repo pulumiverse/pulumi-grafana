@@ -42,9 +42,6 @@ export class ContactPoint extends pulumi.CustomResource {
      * A contact point that sends notifications to DingDing.
      */
     public readonly dingdings!: pulumi.Output<outputs.ContactPointDingding[] | undefined>;
-    /**
-     * Allow modifying the contact point from other sources than Terraform or the Grafana API.
-     */
     public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
     /**
      * A contact point that sends notifications as Discord messages
@@ -213,9 +210,6 @@ export interface ContactPointState {
      * A contact point that sends notifications to DingDing.
      */
     dingdings?: pulumi.Input<pulumi.Input<inputs.ContactPointDingding>[]>;
-    /**
-     * Allow modifying the contact point from other sources than Terraform or the Grafana API.
-     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * A contact point that sends notifications as Discord messages
@@ -316,9 +310,6 @@ export interface ContactPointArgs {
      * A contact point that sends notifications to DingDing.
      */
     dingdings?: pulumi.Input<pulumi.Input<inputs.ContactPointDingding>[]>;
-    /**
-     * Allow modifying the contact point from other sources than Terraform or the Grafana API.
-     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * A contact point that sends notifications as Discord messages
