@@ -4263,8 +4263,7 @@
                 "secret": true
             },
             "smUrl": {
-                "type": "string",
-                "description": "Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The\ncorrect value for each service region is cited in the [Synthetic Monitoring\ndocumentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).\nNote the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the\n`grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances\nmanaging SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for\neach provider ensures all providers interact with the same SM API.\n"
+                "type": "string"
             },
             "storeDashboardSha256": {
                 "type": "boolean",
@@ -4399,7 +4398,6 @@
             },
             "smUrl": {
                 "type": "string",
-                "description": "Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The\ncorrect value for each service region is cited in the [Synthetic Monitoring\ndocumentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).\nNote the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the\n`grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances\nmanaging SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for\neach provider ensures all providers interact with the same SM API.\n",
                 "defaultInfo": {
                     "environment": [
                         "GRAFANA_SM_URL"
@@ -5680,8 +5678,7 @@
                     "description": "A contact point that sends notifications to DingDing.\n"
                 },
                 "disableProvenance": {
-                    "type": "boolean",
-                    "description": "Allow modifying the contact point from other sources than Terraform or the Grafana API.\n"
+                    "type": "boolean"
                 },
                 "discords": {
                     "type": "array",
@@ -5845,7 +5842,6 @@
                 },
                 "disableProvenance": {
                     "type": "boolean",
-                    "description": "Allow modifying the contact point from other sources than Terraform or the Grafana API.\n",
                     "willReplaceOnChanges": true
                 },
                 "discords": {
@@ -6011,7 +6007,6 @@
                     },
                     "disableProvenance": {
                         "type": "boolean",
-                        "description": "Allow modifying the contact point from other sources than Terraform or the Grafana API.\n",
                         "willReplaceOnChanges": true
                     },
                     "discords": {
@@ -7513,8 +7508,7 @@
         "grafana:index/messageTemplate:MessageTemplate": {
             "properties": {
                 "disableProvenance": {
-                    "type": "boolean",
-                    "description": "Allow modifying the message template from other sources than Terraform or the Grafana API.\n"
+                    "type": "boolean"
                 },
                 "name": {
                     "type": "string",
@@ -7536,7 +7530,6 @@
             "inputProperties": {
                 "disableProvenance": {
                     "type": "boolean",
-                    "description": "Allow modifying the message template from other sources than Terraform or the Grafana API.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
@@ -7562,7 +7555,6 @@
                 "properties": {
                     "disableProvenance": {
                         "type": "boolean",
-                        "description": "Allow modifying the message template from other sources than Terraform or the Grafana API.\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
@@ -7654,8 +7646,7 @@
                     "description": "The default contact point to route all unmatched notifications to.\n"
                 },
                 "disableProvenance": {
-                    "type": "boolean",
-                    "description": "Allow modifying the notification policy from other sources than Terraform or the Grafana API.\n"
+                    "type": "boolean"
                 },
                 "groupBies": {
                     "type": "array",
@@ -7698,8 +7689,7 @@
                     "description": "The default contact point to route all unmatched notifications to.\n"
                 },
                 "disableProvenance": {
-                    "type": "boolean",
-                    "description": "Allow modifying the notification policy from other sources than Terraform or the Grafana API.\n"
+                    "type": "boolean"
                 },
                 "groupBies": {
                     "type": "array",
@@ -7745,8 +7735,7 @@
                         "description": "The default contact point to route all unmatched notifications to.\n"
                     },
                     "disableProvenance": {
-                        "type": "boolean",
-                        "description": "Allow modifying the notification policy from other sources than Terraform or the Grafana API.\n"
+                        "type": "boolean"
                     },
                     "groupBies": {
                         "type": "array",
@@ -7975,7 +7964,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana_oncall_team` datasource.\n"
+                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.\n"
                 }
             },
             "required": [
@@ -7988,7 +7977,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana_oncall_team` datasource.\n"
+                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.\n"
                 }
             },
             "stateInputs": {
@@ -8000,7 +7989,7 @@
                     },
                     "teamId": {
                         "type": "string",
-                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana_oncall_team` datasource.\n"
+                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.\n"
                     }
                 },
                 "type": "object"
@@ -8022,7 +8011,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana_oncall_team` datasource.\n"
+                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.\n"
                 },
                 "templates": {
                     "$ref": "#/types/grafana:index/OncallIntegrationTemplates:OncallIntegrationTemplates",
@@ -8050,7 +8039,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana_oncall_team` datasource.\n"
+                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.\n"
                 },
                 "templates": {
                     "$ref": "#/types/grafana:index/OncallIntegrationTemplates:OncallIntegrationTemplates",
@@ -8083,7 +8072,7 @@
                     },
                     "teamId": {
                         "type": "string",
-                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana_oncall_team` datasource.\n"
+                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.\n"
                     },
                     "templates": {
                         "$ref": "#/types/grafana:index/OncallIntegrationTemplates:OncallIntegrationTemplates",
@@ -8161,7 +8150,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana_oncall_team` datasource.\n"
+                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.\n"
                 },
                 "timeZone": {
                     "type": "string",
@@ -8251,7 +8240,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana_oncall_team` datasource.\n"
+                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.\n"
                 },
                 "timeZone": {
                     "type": "string",
@@ -8342,7 +8331,7 @@
                     },
                     "teamId": {
                         "type": "string",
-                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana_oncall_team` datasource.\n"
+                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.\n"
                     },
                     "timeZone": {
                         "type": "string",
@@ -8412,7 +8401,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana_oncall_team` datasource.\n"
+                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.\n"
                 },
                 "triggerTemplate": {
                     "type": "string",
@@ -8479,7 +8468,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana_oncall_team` datasource.\n"
+                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.\n"
                 },
                 "triggerTemplate": {
                     "type": "string",
@@ -8547,7 +8536,7 @@
                     },
                     "teamId": {
                         "type": "string",
-                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana_oncall_team` datasource.\n"
+                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.\n"
                     },
                     "triggerTemplate": {
                         "type": "string",
@@ -8722,7 +8711,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana_oncall_team` datasource.\n"
+                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.\n"
                 },
                 "timeZone": {
                     "type": "string",
@@ -8767,7 +8756,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana_oncall_team` datasource.\n"
+                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.\n"
                 },
                 "timeZone": {
                     "type": "string",
@@ -8814,7 +8803,7 @@
                     },
                     "teamId": {
                         "type": "string",
-                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana_oncall_team` datasource.\n"
+                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team\nwith OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.\n"
                     },
                     "timeZone": {
                         "type": "string",
@@ -8832,8 +8821,7 @@
         "grafana:index/organization:Organization": {
             "properties": {
                 "adminUser": {
-                    "type": "string",
-                    "description": "The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to\nadmin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and\nthis parameter keeps Terraform from removing it from organizations.\n"
+                    "type": "string"
                 },
                 "admins": {
                     "type": "array",
@@ -8882,8 +8870,7 @@
             ],
             "inputProperties": {
                 "adminUser": {
-                    "type": "string",
-                    "description": "The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to\nadmin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and\nthis parameter keeps Terraform from removing it from organizations.\n"
+                    "type": "string"
                 },
                 "admins": {
                     "type": "array",
@@ -8926,8 +8913,7 @@
                 "description": "Input properties used for looking up and filtering Organization resources.\n",
                 "properties": {
                     "adminUser": {
-                        "type": "string",
-                        "description": "The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to\nadmin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and\nthis parameter keeps Terraform from removing it from organizations.\n"
+                        "type": "string"
                     },
                     "admins": {
                         "type": "array",
@@ -9654,8 +9640,7 @@
         "grafana:index/ruleGroup:RuleGroup": {
             "properties": {
                 "disableProvenance": {
-                    "type": "boolean",
-                    "description": "Allow modifying the rule group from other sources than Terraform or the Grafana API.\n"
+                    "type": "boolean"
                 },
                 "folderUid": {
                     "type": "string",
@@ -9689,8 +9674,7 @@
             ],
             "inputProperties": {
                 "disableProvenance": {
-                    "type": "boolean",
-                    "description": "Allow modifying the rule group from other sources than Terraform or the Grafana API.\n"
+                    "type": "boolean"
                 },
                 "folderUid": {
                     "type": "string",
@@ -9728,8 +9712,7 @@
                 "description": "Input properties used for looking up and filtering RuleGroup resources.\n",
                 "properties": {
                     "disableProvenance": {
-                        "type": "boolean",
-                        "description": "Allow modifying the rule group from other sources than Terraform or the Grafana API.\n"
+                        "type": "boolean"
                     },
                     "folderUid": {
                         "type": "string",
@@ -10547,8 +10530,7 @@
                     "description": "An email address for the team.\n"
                 },
                 "ignoreExternallySyncedMembers": {
-                    "type": "boolean",
-                    "description": "Ignores team members that have been added to team by [Team\nSync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be\nprovisioned using [grafana_team_external_group\nresource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).\n"
+                    "type": "boolean"
                 },
                 "members": {
                     "type": "array",
@@ -10587,8 +10569,7 @@
                     "description": "An email address for the team.\n"
                 },
                 "ignoreExternallySyncedMembers": {
-                    "type": "boolean",
-                    "description": "Ignores team members that have been added to team by [Team\nSync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be\nprovisioned using [grafana_team_external_group\nresource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).\n"
+                    "type": "boolean"
                 },
                 "members": {
                     "type": "array",
@@ -10622,8 +10603,7 @@
                         "description": "An email address for the team.\n"
                     },
                     "ignoreExternallySyncedMembers": {
-                        "type": "boolean",
-                        "description": "Ignores team members that have been added to team by [Team\nSync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be\nprovisioned using [grafana_team_external_group\nresource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).\n"
+                        "type": "boolean"
                     },
                     "members": {
                         "type": "array",
