@@ -35,7 +35,7 @@ export class DashboardPermission extends pulumi.CustomResource {
     }
 
     /**
-     * ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
+     * ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
      *
      * @deprecated use `dashboardUid` instead
      */
@@ -87,7 +87,7 @@ export class DashboardPermission extends pulumi.CustomResource {
  */
 export interface DashboardPermissionState {
     /**
-     * ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
+     * ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
      *
      * @deprecated use `dashboardUid` instead
      */
@@ -111,7 +111,7 @@ export interface DashboardPermissionState {
  */
 export interface DashboardPermissionArgs {
     /**
-     * ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
+     * ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
      *
      * @deprecated use `dashboardUid` instead
      */

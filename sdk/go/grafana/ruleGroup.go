@@ -15,7 +15,6 @@ import (
 type RuleGroup struct {
 	pulumi.CustomResourceState
 
-	// Allow modifying the rule group from other sources than Terraform or the Grafana API.
 	DisableProvenance pulumi.BoolPtrOutput `pulumi:"disableProvenance"`
 	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringOutput `pulumi:"folderUid"`
@@ -69,7 +68,6 @@ func GetRuleGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RuleGroup resources.
 type ruleGroupState struct {
-	// Allow modifying the rule group from other sources than Terraform or the Grafana API.
 	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The UID of the folder that the group belongs to.
 	FolderUid *string `pulumi:"folderUid"`
@@ -85,7 +83,6 @@ type ruleGroupState struct {
 }
 
 type RuleGroupState struct {
-	// Allow modifying the rule group from other sources than Terraform or the Grafana API.
 	DisableProvenance pulumi.BoolPtrInput
 	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringPtrInput
@@ -105,7 +102,6 @@ func (RuleGroupState) ElementType() reflect.Type {
 }
 
 type ruleGroupArgs struct {
-	// Allow modifying the rule group from other sources than Terraform or the Grafana API.
 	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The UID of the folder that the group belongs to.
 	FolderUid string `pulumi:"folderUid"`
@@ -122,7 +118,6 @@ type ruleGroupArgs struct {
 
 // The set of arguments for constructing a RuleGroup resource.
 type RuleGroupArgs struct {
-	// Allow modifying the rule group from other sources than Terraform or the Grafana API.
 	DisableProvenance pulumi.BoolPtrInput
 	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringInput
@@ -224,7 +219,6 @@ func (o RuleGroupOutput) ToRuleGroupOutputWithContext(ctx context.Context) RuleG
 	return o
 }
 
-// Allow modifying the rule group from other sources than Terraform or the Grafana API.
 func (o RuleGroupOutput) DisableProvenance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RuleGroup) pulumi.BoolPtrOutput { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
 }

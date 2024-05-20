@@ -22,7 +22,7 @@ type OncallIntegration struct {
 	// The name of the service integration.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
 	// Jinja2 templates for Alert payload. An empty templates block will be ignored.
 	Templates OncallIntegrationTemplatesPtrOutput `pulumi:"templates"`
@@ -75,7 +75,7 @@ type oncallIntegrationState struct {
 	// The name of the service integration.
 	Name *string `pulumi:"name"`
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId *string `pulumi:"teamId"`
 	// Jinja2 templates for Alert payload. An empty templates block will be ignored.
 	Templates *OncallIntegrationTemplates `pulumi:"templates"`
@@ -93,7 +93,7 @@ type OncallIntegrationState struct {
 	// The name of the service integration.
 	Name pulumi.StringPtrInput
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId pulumi.StringPtrInput
 	// Jinja2 templates for Alert payload. An empty templates block will be ignored.
 	Templates OncallIntegrationTemplatesPtrInput
@@ -113,7 +113,7 @@ type oncallIntegrationArgs struct {
 	// The name of the service integration.
 	Name *string `pulumi:"name"`
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId *string `pulumi:"teamId"`
 	// Jinja2 templates for Alert payload. An empty templates block will be ignored.
 	Templates *OncallIntegrationTemplates `pulumi:"templates"`
@@ -130,7 +130,7 @@ type OncallIntegrationArgs struct {
 	// The name of the service integration.
 	Name pulumi.StringPtrInput
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId pulumi.StringPtrInput
 	// Jinja2 templates for Alert payload. An empty templates block will be ignored.
 	Templates OncallIntegrationTemplatesPtrInput
@@ -243,7 +243,7 @@ func (o OncallIntegrationOutput) Name() pulumi.StringOutput {
 }
 
 // The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 func (o OncallIntegrationOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallIntegration) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
 }

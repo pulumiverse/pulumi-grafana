@@ -13,9 +13,6 @@ namespace Pulumiverse.Grafana
     [GrafanaResourceType("grafana:index/ruleGroup:RuleGroup")]
     public partial class RuleGroup : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Allow modifying the rule group from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Output("disableProvenance")]
         public Output<bool?> DisableProvenance { get; private set; } = null!;
 
@@ -97,9 +94,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class RuleGroupArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Allow modifying the rule group from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 
@@ -148,9 +142,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class RuleGroupState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Allow modifying the rule group from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 

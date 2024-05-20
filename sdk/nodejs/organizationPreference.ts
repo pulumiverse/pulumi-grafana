@@ -33,7 +33,7 @@ export class OrganizationPreference extends pulumi.CustomResource {
     }
 
     /**
-     * The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
+     * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
      *
      * @deprecated Use `homeDashboardUid` instead.
      */
@@ -98,7 +98,7 @@ export class OrganizationPreference extends pulumi.CustomResource {
  */
 export interface OrganizationPreferenceState {
     /**
-     * The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
+     * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
      *
      * @deprecated Use `homeDashboardUid` instead.
      */
@@ -131,7 +131,7 @@ export interface OrganizationPreferenceState {
  */
 export interface OrganizationPreferenceArgs {
     /**
-     * The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
+     * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
      *
      * @deprecated Use `homeDashboardUid` instead.
      */

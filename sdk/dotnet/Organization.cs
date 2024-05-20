@@ -13,11 +13,6 @@ namespace Pulumiverse.Grafana
     [GrafanaResourceType("grafana:index/organization:Organization")]
     public partial class Organization : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-        /// admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-        /// this parameter keeps Terraform from removing it from organizations.
-        /// </summary>
         [Output("adminUser")]
         public Output<string?> AdminUser { get; private set; } = null!;
 
@@ -118,11 +113,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class OrganizationArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-        /// admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-        /// this parameter keeps Terraform from removing it from organizations.
-        /// </summary>
         [Input("adminUser")]
         public Input<string>? AdminUser { get; set; }
 
@@ -202,11 +192,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class OrganizationState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-        /// admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-        /// this parameter keeps Terraform from removing it from organizations.
-        /// </summary>
         [Input("adminUser")]
         public Input<string>? AdminUser { get; set; }
 
