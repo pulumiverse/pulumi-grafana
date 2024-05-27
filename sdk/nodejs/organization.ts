@@ -32,11 +32,6 @@ export class Organization extends pulumi.CustomResource {
         return obj['__pulumiType'] === Organization.__pulumiType;
     }
 
-    /**
-     * The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-     * admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-     * this parameter keeps Terraform from removing it from organizations.
-     */
     public readonly adminUser!: pulumi.Output<string | undefined>;
     /**
      * A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
@@ -116,11 +111,6 @@ export class Organization extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Organization resources.
  */
 export interface OrganizationState {
-    /**
-     * The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-     * admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-     * this parameter keeps Terraform from removing it from organizations.
-     */
     adminUser?: pulumi.Input<string>;
     /**
      * A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
@@ -164,11 +154,6 @@ export interface OrganizationState {
  * The set of arguments for constructing a Organization resource.
  */
 export interface OrganizationArgs {
-    /**
-     * The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-     * admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-     * this parameter keeps Terraform from removing it from organizations.
-     */
     adminUser?: pulumi.Input<string>;
     /**
      * A list of email addresses corresponding to users who should be given admin access to the organization. Note: users

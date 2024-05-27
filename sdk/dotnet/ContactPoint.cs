@@ -25,9 +25,6 @@ namespace Pulumiverse.Grafana
         [Output("dingdings")]
         public Output<ImmutableArray<Outputs.ContactPointDingding>> Dingdings { get; private set; } = null!;
 
-        /// <summary>
-        /// Allow modifying the contact point from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Output("disableProvenance")]
         public Output<bool?> DisableProvenance { get; private set; } = null!;
 
@@ -229,9 +226,6 @@ namespace Pulumiverse.Grafana
             set => _dingdings = value;
         }
 
-        /// <summary>
-        /// Allow modifying the contact point from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 
@@ -508,9 +502,6 @@ namespace Pulumiverse.Grafana
             set => _dingdings = value;
         }
 
-        /// <summary>
-        /// Allow modifying the contact point from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 

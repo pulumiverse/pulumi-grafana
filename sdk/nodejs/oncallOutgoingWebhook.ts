@@ -71,7 +71,7 @@ export class OncallOutgoingWebhook extends pulumi.CustomResource {
     public readonly password!: pulumi.Output<string | undefined>;
     /**
      * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+     * with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      */
     public readonly teamId!: pulumi.Output<string | undefined>;
     /**
@@ -189,7 +189,7 @@ export interface OncallOutgoingWebhookState {
     password?: pulumi.Input<string>;
     /**
      * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+     * with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      */
     teamId?: pulumi.Input<string>;
     /**
@@ -254,7 +254,7 @@ export interface OncallOutgoingWebhookArgs {
     password?: pulumi.Input<string>;
     /**
      * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+     * with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      */
     teamId?: pulumi.Input<string>;
     /**

@@ -34,9 +34,6 @@ export class RuleGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === RuleGroup.__pulumiType;
     }
 
-    /**
-     * Allow modifying the rule group from other sources than Terraform or the Grafana API.
-     */
     public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
     /**
      * The UID of the folder that the group belongs to.
@@ -106,9 +103,6 @@ export class RuleGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RuleGroup resources.
  */
 export interface RuleGroupState {
-    /**
-     * Allow modifying the rule group from other sources than Terraform or the Grafana API.
-     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * The UID of the folder that the group belongs to.
@@ -137,9 +131,6 @@ export interface RuleGroupState {
  * The set of arguments for constructing a RuleGroup resource.
  */
 export interface RuleGroupArgs {
-    /**
-     * Allow modifying the rule group from other sources than Terraform or the Grafana API.
-     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * The UID of the folder that the group belongs to.

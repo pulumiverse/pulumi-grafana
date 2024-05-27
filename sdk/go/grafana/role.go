@@ -35,7 +35,7 @@ type Role struct {
 	Permissions RolePermissionArrayOutput `pulumi:"permissions"`
 	// Unique identifier of the role. Used for assignments.
 	Uid pulumi.StringOutput `pulumi:"uid"`
-	// Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
+	// Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
 	Version pulumi.IntPtrOutput `pulumi:"version"`
 }
 
@@ -90,7 +90,7 @@ type roleState struct {
 	Permissions []RolePermission `pulumi:"permissions"`
 	// Unique identifier of the role. Used for assignments.
 	Uid *string `pulumi:"uid"`
-	// Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
+	// Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
 	Version *int `pulumi:"version"`
 }
 
@@ -116,7 +116,7 @@ type RoleState struct {
 	Permissions RolePermissionArrayInput
 	// Unique identifier of the role. Used for assignments.
 	Uid pulumi.StringPtrInput
-	// Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
+	// Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
 	Version pulumi.IntPtrInput
 }
 
@@ -146,7 +146,7 @@ type roleArgs struct {
 	Permissions []RolePermission `pulumi:"permissions"`
 	// Unique identifier of the role. Used for assignments.
 	Uid *string `pulumi:"uid"`
-	// Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
+	// Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
 	Version *int `pulumi:"version"`
 }
 
@@ -173,7 +173,7 @@ type RoleArgs struct {
 	Permissions RolePermissionArrayInput
 	// Unique identifier of the role. Used for assignments.
 	Uid pulumi.StringPtrInput
-	// Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
+	// Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
 	Version pulumi.IntPtrInput
 }
 
@@ -315,7 +315,7 @@ func (o RoleOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v *Role) pulumi.StringOutput { return v.Uid }).(pulumi.StringOutput)
 }
 
-// Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
+// Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
 func (o RoleOutput) Version() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Role) pulumi.IntPtrOutput { return v.Version }).(pulumi.IntPtrOutput)
 }

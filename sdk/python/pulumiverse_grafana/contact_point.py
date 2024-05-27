@@ -44,7 +44,6 @@ class ContactPointArgs:
         The set of arguments for constructing a ContactPoint resource.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointAlertmanagerArgs']]] alertmanagers: A contact point that sends notifications to other Alertmanager instances.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointDingdingArgs']]] dingdings: A contact point that sends notifications to DingDing.
-        :param pulumi.Input[bool] disable_provenance: Allow modifying the contact point from other sources than Terraform or the Grafana API.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointDiscordArgs']]] discords: A contact point that sends notifications as Discord messages
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointEmailArgs']]] emails: A contact point that sends notifications to an email address.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]] googlechats: A contact point that sends notifications to Google Chat.
@@ -144,9 +143,6 @@ class ContactPointArgs:
     @property
     @pulumi.getter(name="disableProvenance")
     def disable_provenance(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Allow modifying the contact point from other sources than Terraform or the Grafana API.
-        """
         return pulumi.get(self, "disable_provenance")
 
     @disable_provenance.setter
@@ -438,7 +434,6 @@ class _ContactPointState:
         Input properties used for looking up and filtering ContactPoint resources.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointAlertmanagerArgs']]] alertmanagers: A contact point that sends notifications to other Alertmanager instances.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointDingdingArgs']]] dingdings: A contact point that sends notifications to DingDing.
-        :param pulumi.Input[bool] disable_provenance: Allow modifying the contact point from other sources than Terraform or the Grafana API.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointDiscordArgs']]] discords: A contact point that sends notifications as Discord messages
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointEmailArgs']]] emails: A contact point that sends notifications to an email address.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]] googlechats: A contact point that sends notifications to Google Chat.
@@ -538,9 +533,6 @@ class _ContactPointState:
     @property
     @pulumi.getter(name="disableProvenance")
     def disable_provenance(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Allow modifying the contact point from other sources than Terraform or the Grafana API.
-        """
         return pulumi.get(self, "disable_provenance")
 
     @disable_provenance.setter
@@ -837,7 +829,6 @@ class ContactPoint(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointAlertmanagerArgs']]]] alertmanagers: A contact point that sends notifications to other Alertmanager instances.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDingdingArgs']]]] dingdings: A contact point that sends notifications to DingDing.
-        :param pulumi.Input[bool] disable_provenance: Allow modifying the contact point from other sources than Terraform or the Grafana API.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDiscordArgs']]]] discords: A contact point that sends notifications as Discord messages
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]] emails: A contact point that sends notifications to an email address.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]] googlechats: A contact point that sends notifications to Google Chat.
@@ -984,7 +975,6 @@ class ContactPoint(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointAlertmanagerArgs']]]] alertmanagers: A contact point that sends notifications to other Alertmanager instances.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDingdingArgs']]]] dingdings: A contact point that sends notifications to DingDing.
-        :param pulumi.Input[bool] disable_provenance: Allow modifying the contact point from other sources than Terraform or the Grafana API.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDiscordArgs']]]] discords: A contact point that sends notifications as Discord messages
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]] emails: A contact point that sends notifications to an email address.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]] googlechats: A contact point that sends notifications to Google Chat.
@@ -1057,9 +1047,6 @@ class ContactPoint(pulumi.CustomResource):
     @property
     @pulumi.getter(name="disableProvenance")
     def disable_provenance(self) -> pulumi.Output[Optional[bool]]:
-        """
-        Allow modifying the contact point from other sources than Terraform or the Grafana API.
-        """
         return pulumi.get(self, "disable_provenance")
 
     @property

@@ -15,7 +15,7 @@ import (
 type Annotation struct {
 	pulumi.CustomResourceState
 
-	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 	//
 	// Deprecated: Use dashboardUid instead.
 	DashboardId pulumi.IntPtrOutput `pulumi:"dashboardId"`
@@ -68,7 +68,7 @@ func GetAnnotation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Annotation resources.
 type annotationState struct {
-	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 	//
 	// Deprecated: Use dashboardUid instead.
 	DashboardId *int `pulumi:"dashboardId"`
@@ -89,7 +89,7 @@ type annotationState struct {
 }
 
 type AnnotationState struct {
-	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 	//
 	// Deprecated: Use dashboardUid instead.
 	DashboardId pulumi.IntPtrInput
@@ -114,7 +114,7 @@ func (AnnotationState) ElementType() reflect.Type {
 }
 
 type annotationArgs struct {
-	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 	//
 	// Deprecated: Use dashboardUid instead.
 	DashboardId *int `pulumi:"dashboardId"`
@@ -136,7 +136,7 @@ type annotationArgs struct {
 
 // The set of arguments for constructing a Annotation resource.
 type AnnotationArgs struct {
-	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 	//
 	// Deprecated: Use dashboardUid instead.
 	DashboardId pulumi.IntPtrInput
@@ -243,7 +243,7 @@ func (o AnnotationOutput) ToAnnotationOutputWithContext(ctx context.Context) Ann
 	return o
 }
 
-// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 //
 // Deprecated: Use dashboardUid instead.
 func (o AnnotationOutput) DashboardId() pulumi.IntPtrOutput {

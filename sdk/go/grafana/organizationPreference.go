@@ -14,7 +14,7 @@ import (
 type OrganizationPreference struct {
 	pulumi.CustomResourceState
 
-	// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
+	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
 	//
 	// Deprecated: Use `homeDashboardUid` instead.
 	HomeDashboardId pulumi.IntPtrOutput `pulumi:"homeDashboardId"`
@@ -61,7 +61,7 @@ func GetOrganizationPreference(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OrganizationPreference resources.
 type organizationPreferenceState struct {
-	// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
+	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
 	//
 	// Deprecated: Use `homeDashboardUid` instead.
 	HomeDashboardId *int `pulumi:"homeDashboardId"`
@@ -79,7 +79,7 @@ type organizationPreferenceState struct {
 }
 
 type OrganizationPreferenceState struct {
-	// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
+	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
 	//
 	// Deprecated: Use `homeDashboardUid` instead.
 	HomeDashboardId pulumi.IntPtrInput
@@ -101,7 +101,7 @@ func (OrganizationPreferenceState) ElementType() reflect.Type {
 }
 
 type organizationPreferenceArgs struct {
-	// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
+	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
 	//
 	// Deprecated: Use `homeDashboardUid` instead.
 	HomeDashboardId *int `pulumi:"homeDashboardId"`
@@ -120,7 +120,7 @@ type organizationPreferenceArgs struct {
 
 // The set of arguments for constructing a OrganizationPreference resource.
 type OrganizationPreferenceArgs struct {
-	// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
+	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
 	//
 	// Deprecated: Use `homeDashboardUid` instead.
 	HomeDashboardId pulumi.IntPtrInput
@@ -224,7 +224,7 @@ func (o OrganizationPreferenceOutput) ToOrganizationPreferenceOutputWithContext(
 	return o
 }
 
-// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
+// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
 //
 // Deprecated: Use `homeDashboardUid` instead.
 func (o OrganizationPreferenceOutput) HomeDashboardId() pulumi.IntPtrOutput {

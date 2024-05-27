@@ -35,7 +35,7 @@ type OncallOutgoingWebhook struct {
 	// The auth data of the webhook. Used for Basic authentication
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
 	// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
 	TriggerTemplate pulumi.StringPtrOutput `pulumi:"triggerTemplate"`
@@ -112,7 +112,7 @@ type oncallOutgoingWebhookState struct {
 	// The auth data of the webhook. Used for Basic authentication
 	Password *string `pulumi:"password"`
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId *string `pulumi:"teamId"`
 	// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
 	TriggerTemplate *string `pulumi:"triggerTemplate"`
@@ -146,7 +146,7 @@ type OncallOutgoingWebhookState struct {
 	// The auth data of the webhook. Used for Basic authentication
 	Password pulumi.StringPtrInput
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId pulumi.StringPtrInput
 	// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
 	TriggerTemplate pulumi.StringPtrInput
@@ -184,7 +184,7 @@ type oncallOutgoingWebhookArgs struct {
 	// The auth data of the webhook. Used for Basic authentication
 	Password *string `pulumi:"password"`
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId *string `pulumi:"teamId"`
 	// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
 	TriggerTemplate *string `pulumi:"triggerTemplate"`
@@ -219,7 +219,7 @@ type OncallOutgoingWebhookArgs struct {
 	// The auth data of the webhook. Used for Basic authentication
 	Password pulumi.StringPtrInput
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId pulumi.StringPtrInput
 	// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
 	TriggerTemplate pulumi.StringPtrInput
@@ -366,7 +366,7 @@ func (o OncallOutgoingWebhookOutput) Password() pulumi.StringPtrOutput {
 }
 
 // The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 func (o OncallOutgoingWebhookOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallOutgoingWebhook) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
 }
