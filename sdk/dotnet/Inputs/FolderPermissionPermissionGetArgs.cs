@@ -20,7 +20,7 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string> Permission { get; set; } = null!;
 
         /// <summary>
-        /// Manage permissions for `Viewer` or `Editor` roles.
+        /// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }

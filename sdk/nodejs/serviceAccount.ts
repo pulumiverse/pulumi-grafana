@@ -47,7 +47,7 @@ export class ServiceAccount extends pulumi.CustomResource {
     /**
      * The basic role of the service account in the organization.
      */
-    public readonly role!: pulumi.Output<string | undefined>;
+    public readonly role!: pulumi.Output<string>;
 
     /**
      * Create a ServiceAccount resource with the given unique name, arguments, and options.
@@ -56,7 +56,7 @@ export class ServiceAccount extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: ServiceAccountArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: ServiceAccountArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ServiceAccountArgs | ServiceAccountState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -68,6 +68,9 @@ export class ServiceAccount extends pulumi.CustomResource {
             resourceInputs["role"] = state ? state.role : undefined;
         } else {
             const args = argsOrState as ServiceAccountArgs | undefined;
+            if ((!args || args.role === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'role'");
+            }
             resourceInputs["isDisabled"] = args ? args.isDisabled : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
@@ -119,5 +122,5 @@ export interface ServiceAccountArgs {
     /**
      * The basic role of the service account in the organization.
      */
-    role?: pulumi.Input<string>;
+    role: pulumi.Input<string>;
 }

@@ -41,6 +41,8 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
     public readonly algorithm!: pulumi.Output<outputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
      * The id of the datasource to query.
+     *
+     * @deprecated Use datasourceUid instead.
      */
     public readonly datasourceId!: pulumi.Output<number | undefined>;
     /**
@@ -134,6 +136,8 @@ export interface MachineLearningOutlierDetectorState {
     algorithm?: pulumi.Input<inputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
      * The id of the datasource to query.
+     *
+     * @deprecated Use datasourceUid instead.
      */
     datasourceId?: pulumi.Input<number>;
     /**
@@ -177,6 +181,8 @@ export interface MachineLearningOutlierDetectorArgs {
     algorithm: pulumi.Input<inputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
      * The id of the datasource to query.
+     *
+     * @deprecated Use datasourceUid instead.
      */
     datasourceId?: pulumi.Input<number>;
     /**

@@ -41,7 +41,7 @@ type Provider struct {
 	SmAccessToken pulumi.StringPtrOutput `pulumi:"smAccessToken"`
 	// Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
 	// correct value for each service region is cited in the [Synthetic Monitoring
-	// documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).
+	// documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url).
 	// Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
 	// `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
 	// managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
@@ -214,7 +214,7 @@ type providerArgs struct {
 	SmAccessToken *string `pulumi:"smAccessToken"`
 	// Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
 	// correct value for each service region is cited in the [Synthetic Monitoring
-	// documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).
+	// documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url).
 	// Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
 	// `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
 	// managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
@@ -272,7 +272,7 @@ type ProviderArgs struct {
 	SmAccessToken pulumi.StringPtrInput
 	// Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
 	// correct value for each service region is cited in the [Synthetic Monitoring
-	// documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).
+	// documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url).
 	// Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
 	// `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
 	// managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
@@ -374,7 +374,7 @@ func (o ProviderOutput) SmAccessToken() pulumi.StringPtrOutput {
 
 // Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
 // correct value for each service region is cited in the [Synthetic Monitoring
-// documentation](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/private-probes/#probe-api-server-url).
+// documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url).
 // Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
 // `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
 // managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
@@ -21,16 +22,19 @@ type ServiceAccount struct {
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// The basic role of the service account in the organization.
-	Role pulumi.StringPtrOutput `pulumi:"role"`
+	Role pulumi.StringOutput `pulumi:"role"`
 }
 
 // NewServiceAccount registers a new resource with the given unique name, arguments, and options.
 func NewServiceAccount(ctx *pulumi.Context,
 	name string, args *ServiceAccountArgs, opts ...pulumi.ResourceOption) (*ServiceAccount, error) {
 	if args == nil {
-		args = &ServiceAccountArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ServiceAccount
 	err := ctx.RegisterResource("grafana:index/serviceAccount:ServiceAccount", name, args, &resource, opts...)
@@ -87,7 +91,7 @@ type serviceAccountArgs struct {
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
 	// The basic role of the service account in the organization.
-	Role *string `pulumi:"role"`
+	Role string `pulumi:"role"`
 }
 
 // The set of arguments for constructing a ServiceAccount resource.
@@ -99,7 +103,7 @@ type ServiceAccountArgs struct {
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
 	// The basic role of the service account in the organization.
-	Role pulumi.StringPtrInput
+	Role pulumi.StringInput
 }
 
 func (ServiceAccountArgs) ElementType() reflect.Type {
@@ -205,8 +209,8 @@ func (o ServiceAccountOutput) OrgId() pulumi.StringPtrOutput {
 }
 
 // The basic role of the service account in the organization.
-func (o ServiceAccountOutput) Role() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServiceAccount) pulumi.StringPtrOutput { return v.Role }).(pulumi.StringPtrOutput)
+func (o ServiceAccountOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceAccount) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
 }
 
 type ServiceAccountArrayOutput struct{ *pulumi.OutputState }

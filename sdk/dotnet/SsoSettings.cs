@@ -14,16 +14,22 @@ namespace Pulumiverse.Grafana
     public partial class SsoSettings : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The SSO settings set.
+        /// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
         /// </summary>
         [Output("oauth2Settings")]
-        public Output<Outputs.SsoSettingsOauth2Settings> Oauth2Settings { get; private set; } = null!;
+        public Output<Outputs.SsoSettingsOauth2Settings?> Oauth2Settings { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth.
+        /// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
         /// </summary>
         [Output("providerName")]
         public Output<string> ProviderName { get; private set; } = null!;
+
+        /// <summary>
+        /// The SAML settings set. Required for the saml provider.
+        /// </summary>
+        [Output("samlSettings")]
+        public Output<Outputs.SsoSettingsSamlSettings?> SamlSettings { get; private set; } = null!;
 
 
         /// <summary>
@@ -73,16 +79,22 @@ namespace Pulumiverse.Grafana
     public sealed class SsoSettingsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The SSO settings set.
+        /// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
         /// </summary>
-        [Input("oauth2Settings", required: true)]
-        public Input<Inputs.SsoSettingsOauth2SettingsArgs> Oauth2Settings { get; set; } = null!;
+        [Input("oauth2Settings")]
+        public Input<Inputs.SsoSettingsOauth2SettingsArgs>? Oauth2Settings { get; set; }
 
         /// <summary>
-        /// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth.
+        /// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
         /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
+
+        /// <summary>
+        /// The SAML settings set. Required for the saml provider.
+        /// </summary>
+        [Input("samlSettings")]
+        public Input<Inputs.SsoSettingsSamlSettingsArgs>? SamlSettings { get; set; }
 
         public SsoSettingsArgs()
         {
@@ -93,16 +105,22 @@ namespace Pulumiverse.Grafana
     public sealed class SsoSettingsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The SSO settings set.
+        /// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
         /// </summary>
         [Input("oauth2Settings")]
         public Input<Inputs.SsoSettingsOauth2SettingsGetArgs>? Oauth2Settings { get; set; }
 
         /// <summary>
-        /// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth.
+        /// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
         /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }
+
+        /// <summary>
+        /// The SAML settings set. Required for the saml provider.
+        /// </summary>
+        [Input("samlSettings")]
+        public Input<Inputs.SsoSettingsSamlSettingsGetArgs>? SamlSettings { get; set; }
 
         public SsoSettingsState()
         {

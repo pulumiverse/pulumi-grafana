@@ -30,6 +30,11 @@ export type CloudApiKey = import("./cloudApiKey").CloudApiKey;
 export const CloudApiKey: typeof import("./cloudApiKey").CloudApiKey = null as any;
 utilities.lazyLoad(exports, ["CloudApiKey"], () => require("./cloudApiKey"));
 
+export { CloudOrgMemberArgs, CloudOrgMemberState } from "./cloudOrgMember";
+export type CloudOrgMember = import("./cloudOrgMember").CloudOrgMember;
+export const CloudOrgMember: typeof import("./cloudOrgMember").CloudOrgMember = null as any;
+utilities.lazyLoad(exports, ["CloudOrgMember"], () => require("./cloudOrgMember"));
+
 export { CloudPluginInstallationArgs, CloudPluginInstallationState } from "./cloudPluginInstallation";
 export type CloudPluginInstallation = import("./cloudPluginInstallation").CloudPluginInstallation;
 export const CloudPluginInstallation: typeof import("./cloudPluginInstallation").CloudPluginInstallation = null as any;
@@ -70,6 +75,11 @@ export type DashboardPermission = import("./dashboardPermission").DashboardPermi
 export const DashboardPermission: typeof import("./dashboardPermission").DashboardPermission = null as any;
 utilities.lazyLoad(exports, ["DashboardPermission"], () => require("./dashboardPermission"));
 
+export { DashboardPermissionItemArgs, DashboardPermissionItemState } from "./dashboardPermissionItem";
+export type DashboardPermissionItem = import("./dashboardPermissionItem").DashboardPermissionItem;
+export const DashboardPermissionItem: typeof import("./dashboardPermissionItem").DashboardPermissionItem = null as any;
+utilities.lazyLoad(exports, ["DashboardPermissionItem"], () => require("./dashboardPermissionItem"));
+
 export { DashboardPublicArgs, DashboardPublicState } from "./dashboardPublic";
 export type DashboardPublic = import("./dashboardPublic").DashboardPublic;
 export const DashboardPublic: typeof import("./dashboardPublic").DashboardPublic = null as any;
@@ -80,10 +90,20 @@ export type DataSource = import("./dataSource").DataSource;
 export const DataSource: typeof import("./dataSource").DataSource = null as any;
 utilities.lazyLoad(exports, ["DataSource"], () => require("./dataSource"));
 
+export { DataSourceConfigArgs, DataSourceConfigState } from "./dataSourceConfig";
+export type DataSourceConfig = import("./dataSourceConfig").DataSourceConfig;
+export const DataSourceConfig: typeof import("./dataSourceConfig").DataSourceConfig = null as any;
+utilities.lazyLoad(exports, ["DataSourceConfig"], () => require("./dataSourceConfig"));
+
 export { DataSourcePermissionArgs, DataSourcePermissionState } from "./dataSourcePermission";
 export type DataSourcePermission = import("./dataSourcePermission").DataSourcePermission;
 export const DataSourcePermission: typeof import("./dataSourcePermission").DataSourcePermission = null as any;
 utilities.lazyLoad(exports, ["DataSourcePermission"], () => require("./dataSourcePermission"));
+
+export { DataSourcePermissionItemArgs, DataSourcePermissionItemState } from "./dataSourcePermissionItem";
+export type DataSourcePermissionItem = import("./dataSourcePermissionItem").DataSourcePermissionItem;
+export const DataSourcePermissionItem: typeof import("./dataSourcePermissionItem").DataSourcePermissionItem = null as any;
+utilities.lazyLoad(exports, ["DataSourcePermissionItem"], () => require("./dataSourcePermissionItem"));
 
 export { FolderArgs, FolderState } from "./folder";
 export type Folder = import("./folder").Folder;
@@ -94,6 +114,11 @@ export { FolderPermissionArgs, FolderPermissionState } from "./folderPermission"
 export type FolderPermission = import("./folderPermission").FolderPermission;
 export const FolderPermission: typeof import("./folderPermission").FolderPermission = null as any;
 utilities.lazyLoad(exports, ["FolderPermission"], () => require("./folderPermission"));
+
+export { FolderPermissionItemArgs, FolderPermissionItemState } from "./folderPermissionItem";
+export type FolderPermissionItem = import("./folderPermissionItem").FolderPermissionItem;
+export const FolderPermissionItem: typeof import("./folderPermissionItem").FolderPermissionItem = null as any;
+utilities.lazyLoad(exports, ["FolderPermissionItem"], () => require("./folderPermissionItem"));
 
 export { GetCloudIpsResult } from "./getCloudIps";
 export const getCloudIps: typeof import("./getCloudIps").getCloudIps = null as any;
@@ -154,6 +179,11 @@ export { GetOncallEscalationChainArgs, GetOncallEscalationChainResult, GetOncall
 export const getOncallEscalationChain: typeof import("./getOncallEscalationChain").getOncallEscalationChain = null as any;
 export const getOncallEscalationChainOutput: typeof import("./getOncallEscalationChain").getOncallEscalationChainOutput = null as any;
 utilities.lazyLoad(exports, ["getOncallEscalationChain","getOncallEscalationChainOutput"], () => require("./getOncallEscalationChain"));
+
+export { GetOncallIntegrationArgs, GetOncallIntegrationResult, GetOncallIntegrationOutputArgs } from "./getOncallIntegration";
+export const getOncallIntegration: typeof import("./getOncallIntegration").getOncallIntegration = null as any;
+export const getOncallIntegrationOutput: typeof import("./getOncallIntegration").getOncallIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getOncallIntegration","getOncallIntegrationOutput"], () => require("./getOncallIntegration"));
 
 export { GetOncallOutgoingWebhookArgs, GetOncallOutgoingWebhookResult, GetOncallOutgoingWebhookOutputArgs } from "./getOncallOutgoingWebhook";
 export const getOncallOutgoingWebhook: typeof import("./getOncallOutgoingWebhook").getOncallOutgoingWebhook = null as any;
@@ -335,6 +365,11 @@ export type RoleAssignment = import("./roleAssignment").RoleAssignment;
 export const RoleAssignment: typeof import("./roleAssignment").RoleAssignment = null as any;
 utilities.lazyLoad(exports, ["RoleAssignment"], () => require("./roleAssignment"));
 
+export { RoleAssignmentItemArgs, RoleAssignmentItemState } from "./roleAssignmentItem";
+export type RoleAssignmentItem = import("./roleAssignmentItem").RoleAssignmentItem;
+export const RoleAssignmentItem: typeof import("./roleAssignmentItem").RoleAssignmentItem = null as any;
+utilities.lazyLoad(exports, ["RoleAssignmentItem"], () => require("./roleAssignmentItem"));
+
 export { RuleGroupArgs, RuleGroupState } from "./ruleGroup";
 export type RuleGroup = import("./ruleGroup").RuleGroup;
 export const RuleGroup: typeof import("./ruleGroup").RuleGroup = null as any;
@@ -349,6 +384,11 @@ export { ServiceAccountPermissionArgs, ServiceAccountPermissionState } from "./s
 export type ServiceAccountPermission = import("./serviceAccountPermission").ServiceAccountPermission;
 export const ServiceAccountPermission: typeof import("./serviceAccountPermission").ServiceAccountPermission = null as any;
 utilities.lazyLoad(exports, ["ServiceAccountPermission"], () => require("./serviceAccountPermission"));
+
+export { ServiceAccountPermissionItemArgs, ServiceAccountPermissionItemState } from "./serviceAccountPermissionItem";
+export type ServiceAccountPermissionItem = import("./serviceAccountPermissionItem").ServiceAccountPermissionItem;
+export const ServiceAccountPermissionItem: typeof import("./serviceAccountPermissionItem").ServiceAccountPermissionItem = null as any;
+utilities.lazyLoad(exports, ["ServiceAccountPermissionItem"], () => require("./serviceAccountPermissionItem"));
 
 export { ServiceAccountTokenArgs, ServiceAccountTokenState } from "./serviceAccountToken";
 export type ServiceAccountToken = import("./serviceAccountToken").ServiceAccountToken;
@@ -419,6 +459,8 @@ const _module = {
                 return new CloudAccessPolicyToken(name, <any>undefined, { urn })
             case "grafana:index/cloudApiKey:CloudApiKey":
                 return new CloudApiKey(name, <any>undefined, { urn })
+            case "grafana:index/cloudOrgMember:CloudOrgMember":
+                return new CloudOrgMember(name, <any>undefined, { urn })
             case "grafana:index/cloudPluginInstallation:CloudPluginInstallation":
                 return new CloudPluginInstallation(name, <any>undefined, { urn })
             case "grafana:index/cloudStack:CloudStack":
@@ -435,16 +477,24 @@ const _module = {
                 return new Dashboard(name, <any>undefined, { urn })
             case "grafana:index/dashboardPermission:DashboardPermission":
                 return new DashboardPermission(name, <any>undefined, { urn })
+            case "grafana:index/dashboardPermissionItem:DashboardPermissionItem":
+                return new DashboardPermissionItem(name, <any>undefined, { urn })
             case "grafana:index/dashboardPublic:DashboardPublic":
                 return new DashboardPublic(name, <any>undefined, { urn })
             case "grafana:index/dataSource:DataSource":
                 return new DataSource(name, <any>undefined, { urn })
+            case "grafana:index/dataSourceConfig:DataSourceConfig":
+                return new DataSourceConfig(name, <any>undefined, { urn })
             case "grafana:index/dataSourcePermission:DataSourcePermission":
                 return new DataSourcePermission(name, <any>undefined, { urn })
+            case "grafana:index/dataSourcePermissionItem:DataSourcePermissionItem":
+                return new DataSourcePermissionItem(name, <any>undefined, { urn })
             case "grafana:index/folder:Folder":
                 return new Folder(name, <any>undefined, { urn })
             case "grafana:index/folderPermission:FolderPermission":
                 return new FolderPermission(name, <any>undefined, { urn })
+            case "grafana:index/folderPermissionItem:FolderPermissionItem":
+                return new FolderPermissionItem(name, <any>undefined, { urn })
             case "grafana:index/libraryPanel:LibraryPanel":
                 return new LibraryPanel(name, <any>undefined, { urn })
             case "grafana:index/machineLearningHoliday:MachineLearningHoliday":
@@ -485,6 +535,8 @@ const _module = {
                 return new Role(name, <any>undefined, { urn })
             case "grafana:index/roleAssignment:RoleAssignment":
                 return new RoleAssignment(name, <any>undefined, { urn })
+            case "grafana:index/roleAssignmentItem:RoleAssignmentItem":
+                return new RoleAssignmentItem(name, <any>undefined, { urn })
             case "grafana:index/ruleGroup:RuleGroup":
                 return new RuleGroup(name, <any>undefined, { urn })
             case "grafana:index/sLO:SLO":
@@ -493,6 +545,8 @@ const _module = {
                 return new ServiceAccount(name, <any>undefined, { urn })
             case "grafana:index/serviceAccountPermission:ServiceAccountPermission":
                 return new ServiceAccountPermission(name, <any>undefined, { urn })
+            case "grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem":
+                return new ServiceAccountPermissionItem(name, <any>undefined, { urn })
             case "grafana:index/serviceAccountToken:ServiceAccountToken":
                 return new ServiceAccountToken(name, <any>undefined, { urn })
             case "grafana:index/ssoSettings:SsoSettings":
@@ -519,6 +573,7 @@ pulumi.runtime.registerResourceModule("grafana", "index/apiKey", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/cloudAccessPolicy", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/cloudAccessPolicyToken", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/cloudApiKey", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/cloudOrgMember", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/cloudPluginInstallation", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/cloudStack", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/cloudStackApiKey", _module)
@@ -527,11 +582,15 @@ pulumi.runtime.registerResourceModule("grafana", "index/cloudStackServiceAccount
 pulumi.runtime.registerResourceModule("grafana", "index/contactPoint", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dashboard", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dashboardPermission", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/dashboardPermissionItem", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dashboardPublic", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dataSource", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/dataSourceConfig", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dataSourcePermission", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/dataSourcePermissionItem", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/folder", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/folderPermission", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/folderPermissionItem", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/libraryPanel", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/machineLearningHoliday", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/machineLearningJob", _module)
@@ -552,10 +611,12 @@ pulumi.runtime.registerResourceModule("grafana", "index/playlist", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/report", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/role", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/roleAssignment", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/roleAssignmentItem", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/ruleGroup", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/sLO", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/serviceAccount", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/serviceAccountPermission", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/serviceAccountPermissionItem", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/serviceAccountToken", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/ssoSettings", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/syntheticMonitoringCheck", _module)

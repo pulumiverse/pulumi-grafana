@@ -14,23 +14,34 @@ __all__ = ['CloudStackServiceAccountArgs', 'CloudStackServiceAccount']
 @pulumi.input_type
 class CloudStackServiceAccountArgs:
     def __init__(__self__, *,
+                 role: pulumi.Input[str],
                  stack_slug: pulumi.Input[str],
                  is_disabled: Optional[pulumi.Input[bool]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 role: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CloudStackServiceAccount resource.
+        :param pulumi.Input[str] role: The basic role of the service account in the organization.
         :param pulumi.Input[bool] is_disabled: The disabled status for the service account.
         :param pulumi.Input[str] name: The name of the service account.
-        :param pulumi.Input[str] role: The basic role of the service account in the organization.
         """
+        pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "stack_slug", stack_slug)
         if is_disabled is not None:
             pulumi.set(__self__, "is_disabled", is_disabled)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if role is not None:
-            pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        The basic role of the service account in the organization.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
 
     @property
     @pulumi.getter(name="stackSlug")
@@ -64,18 +75,6 @@ class CloudStackServiceAccountArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[str]]:
-        """
-        The basic role of the service account in the organization.
-        """
-        return pulumi.get(self, "role")
-
-    @role.setter
-    def role(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "role", value)
 
 
 @pulumi.input_type
@@ -202,6 +201,8 @@ class CloudStackServiceAccount(pulumi.CustomResource):
 
             __props__.__dict__["is_disabled"] = is_disabled
             __props__.__dict__["name"] = name
+            if role is None and not opts.urn:
+                raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
             if stack_slug is None and not opts.urn:
                 raise TypeError("Missing required property 'stack_slug'")
@@ -259,7 +260,7 @@ class CloudStackServiceAccount(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def role(self) -> pulumi.Output[Optional[str]]:
+    def role(self) -> pulumi.Output[str]:
         """
         The basic role of the service account in the organization.
         """

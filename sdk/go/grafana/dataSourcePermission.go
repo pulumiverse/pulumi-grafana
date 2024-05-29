@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
@@ -15,8 +14,12 @@ import (
 type DataSourcePermission struct {
 	pulumi.CustomResourceState
 
-	// ID of the datasource to apply permissions to.
+	// Deprecated: Use `datasource_uid` instead.
+	//
+	// Deprecated: Use `datasourceUid` instead
 	DatasourceId pulumi.StringOutput `pulumi:"datasourceId"`
+	// UID of the datasource to apply permissions to.
+	DatasourceUid pulumi.StringOutput `pulumi:"datasourceUid"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
@@ -27,12 +30,9 @@ type DataSourcePermission struct {
 func NewDataSourcePermission(ctx *pulumi.Context,
 	name string, args *DataSourcePermissionArgs, opts ...pulumi.ResourceOption) (*DataSourcePermission, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &DataSourcePermissionArgs{}
 	}
 
-	if args.DatasourceId == nil {
-		return nil, errors.New("invalid value for required argument 'DatasourceId'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DataSourcePermission
 	err := ctx.RegisterResource("grafana:index/dataSourcePermission:DataSourcePermission", name, args, &resource, opts...)
@@ -56,8 +56,12 @@ func GetDataSourcePermission(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DataSourcePermission resources.
 type dataSourcePermissionState struct {
-	// ID of the datasource to apply permissions to.
+	// Deprecated: Use `datasource_uid` instead.
+	//
+	// Deprecated: Use `datasourceUid` instead
 	DatasourceId *string `pulumi:"datasourceId"`
+	// UID of the datasource to apply permissions to.
+	DatasourceUid *string `pulumi:"datasourceUid"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
@@ -65,8 +69,12 @@ type dataSourcePermissionState struct {
 }
 
 type DataSourcePermissionState struct {
-	// ID of the datasource to apply permissions to.
+	// Deprecated: Use `datasource_uid` instead.
+	//
+	// Deprecated: Use `datasourceUid` instead
 	DatasourceId pulumi.StringPtrInput
+	// UID of the datasource to apply permissions to.
+	DatasourceUid pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
 	// The permission items to add/update. Items that are omitted from the list will be removed.
@@ -78,8 +86,12 @@ func (DataSourcePermissionState) ElementType() reflect.Type {
 }
 
 type dataSourcePermissionArgs struct {
-	// ID of the datasource to apply permissions to.
-	DatasourceId string `pulumi:"datasourceId"`
+	// Deprecated: Use `datasource_uid` instead.
+	//
+	// Deprecated: Use `datasourceUid` instead
+	DatasourceId *string `pulumi:"datasourceId"`
+	// UID of the datasource to apply permissions to.
+	DatasourceUid *string `pulumi:"datasourceUid"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
@@ -88,8 +100,12 @@ type dataSourcePermissionArgs struct {
 
 // The set of arguments for constructing a DataSourcePermission resource.
 type DataSourcePermissionArgs struct {
-	// ID of the datasource to apply permissions to.
-	DatasourceId pulumi.StringInput
+	// Deprecated: Use `datasource_uid` instead.
+	//
+	// Deprecated: Use `datasourceUid` instead
+	DatasourceId pulumi.StringPtrInput
+	// UID of the datasource to apply permissions to.
+	DatasourceUid pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
 	// The permission items to add/update. Items that are omitted from the list will be removed.
@@ -183,9 +199,16 @@ func (o DataSourcePermissionOutput) ToDataSourcePermissionOutputWithContext(ctx 
 	return o
 }
 
-// ID of the datasource to apply permissions to.
+// Deprecated: Use `datasource_uid` instead.
+//
+// Deprecated: Use `datasourceUid` instead
 func (o DataSourcePermissionOutput) DatasourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DataSourcePermission) pulumi.StringOutput { return v.DatasourceId }).(pulumi.StringOutput)
+}
+
+// UID of the datasource to apply permissions to.
+func (o DataSourcePermissionOutput) DatasourceUid() pulumi.StringOutput {
+	return o.ApplyT(func(v *DataSourcePermission) pulumi.StringOutput { return v.DatasourceUid }).(pulumi.StringOutput)
 }
 
 // The Organization ID. If not set, the Org ID defined in the provider block will be used.

@@ -85,6 +85,9 @@ class GetDataSourceResult:
     @property
     @pulumi.getter
     def id(self) -> str:
+        warnings.warn("""Use `uid` instead of `id`""", DeprecationWarning)
+        pulumi.log.warn("""id is deprecated: Use `uid` instead of `id`""")
+
         return pulumi.get(self, "id")
 
     @property
