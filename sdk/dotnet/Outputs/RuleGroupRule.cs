@@ -27,7 +27,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.RuleGroupRuleData> Datas;
         /// <summary>
-        /// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, and Alerting.
+        /// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
         /// </summary>
         public readonly string? ExecErrState;
         /// <summary>
@@ -47,7 +47,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting.
+        /// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
         /// </summary>
         public readonly string? NoDataState;
         /// <summary>

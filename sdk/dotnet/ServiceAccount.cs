@@ -35,7 +35,7 @@ namespace Pulumiverse.Grafana
         /// The basic role of the service account in the organization.
         /// </summary>
         [Output("role")]
-        public Output<string?> Role { get; private set; } = null!;
+        public Output<string> Role { get; private set; } = null!;
 
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Pulumiverse.Grafana
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public ServiceAccount(string name, ServiceAccountArgs? args = null, CustomResourceOptions? options = null)
+        public ServiceAccount(string name, ServiceAccountArgs args, CustomResourceOptions? options = null)
             : base("grafana:index/serviceAccount:ServiceAccount", name, args ?? new ServiceAccountArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -105,8 +105,8 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// The basic role of the service account in the organization.
         /// </summary>
-        [Input("role")]
-        public Input<string>? Role { get; set; }
+        [Input("role", required: true)]
+        public Input<string> Role { get; set; } = null!;
 
         public ServiceAccountArgs()
         {

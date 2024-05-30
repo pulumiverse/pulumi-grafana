@@ -35,7 +35,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? AllowedOrganizations;
         /// <summary>
-        /// The user information endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        /// The user information endpoint of your OAuth2 provider. Required for okta and generic_oauth providers.
         /// </summary>
         public readonly string? ApiUrl;
         /// <summary>

@@ -38,6 +38,8 @@ export class MachineLearningJob extends pulumi.CustomResource {
     public readonly customLabels!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * The id of the datasource to query.
+     *
+     * @deprecated Use datasourceUid instead.
      */
     public readonly datasourceId!: pulumi.Output<number | undefined>;
     /**
@@ -146,6 +148,8 @@ export interface MachineLearningJobState {
     customLabels?: pulumi.Input<{[key: string]: any}>;
     /**
      * The id of the datasource to query.
+     *
+     * @deprecated Use datasourceUid instead.
      */
     datasourceId?: pulumi.Input<number>;
     /**
@@ -201,6 +205,8 @@ export interface MachineLearningJobArgs {
     customLabels?: pulumi.Input<{[key: string]: any}>;
     /**
      * The id of the datasource to query.
+     *
+     * @deprecated Use datasourceUid instead.
      */
     datasourceId?: pulumi.Input<number>;
     /**

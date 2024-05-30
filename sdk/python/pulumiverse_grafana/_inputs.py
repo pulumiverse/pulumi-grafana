@@ -93,6 +93,7 @@ __all__ = [
     'SLOQueryRatioArgs',
     'ServiceAccountPermissionPermissionArgs',
     'SsoSettingsOauth2SettingsArgs',
+    'SsoSettingsSamlSettingsArgs',
     'SyntheticMonitoringCheckSettingsArgs',
     'SyntheticMonitoringCheckSettingsDnsArgs',
     'SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs',
@@ -3601,7 +3602,7 @@ class DashboardPermissionPermissionArgs:
                  user_id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] permission: Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
-        :param pulumi.Input[str] role: Manage permissions for `Viewer` or `Editor` roles.
+        :param pulumi.Input[str] role: Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
         :param pulumi.Input[str] team_id: ID of the team to manage permissions for.
         :param pulumi.Input[str] user_id: ID of the user or service account to manage permissions for.
         """
@@ -3629,7 +3630,7 @@ class DashboardPermissionPermissionArgs:
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
         """
-        Manage permissions for `Viewer` or `Editor` roles.
+        Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
         """
         return pulumi.get(self, "role")
 
@@ -3671,7 +3672,7 @@ class DataSourcePermissionPermissionArgs:
                  user_id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] permission: Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
-        :param pulumi.Input[str] built_in_role: Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+.
+        :param pulumi.Input[str] built_in_role: Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
         :param pulumi.Input[str] team_id: ID of the team to manage permissions for.
         :param pulumi.Input[str] user_id: ID of the user or service account to manage permissions for.
         """
@@ -3699,7 +3700,7 @@ class DataSourcePermissionPermissionArgs:
     @pulumi.getter(name="builtInRole")
     def built_in_role(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`. Can only be set from Grafana v9.2.3+.
+        Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
         """
         return pulumi.get(self, "built_in_role")
 
@@ -3741,7 +3742,7 @@ class FolderPermissionPermissionArgs:
                  user_id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] permission: Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
-        :param pulumi.Input[str] role: Manage permissions for `Viewer` or `Editor` roles.
+        :param pulumi.Input[str] role: Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
         :param pulumi.Input[str] team_id: ID of the team to manage permissions for.
         :param pulumi.Input[str] user_id: ID of the user or service account to manage permissions for.
         """
@@ -3769,7 +3770,7 @@ class FolderPermissionPermissionArgs:
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
         """
-        Manage permissions for `Viewer` or `Editor` roles.
+        Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
         """
         return pulumi.get(self, "role")
 
@@ -4065,7 +4066,7 @@ class MuteTimingIntervalTimeArgs:
 @pulumi.input_type
 class NotificationPolicyPolicyArgs:
     def __init__(__self__, *,
-                 contact_point: pulumi.Input[str],
+                 contact_point: Optional[pulumi.Input[str]] = None,
                  continue_: Optional[pulumi.Input[bool]] = None,
                  group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  group_interval: Optional[pulumi.Input[str]] = None,
@@ -4085,7 +4086,8 @@ class NotificationPolicyPolicyArgs:
         :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyArgs']]] policies: Routing rules for specific label sets.
         :param pulumi.Input[str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
-        pulumi.set(__self__, "contact_point", contact_point)
+        if contact_point is not None:
+            pulumi.set(__self__, "contact_point", contact_point)
         if continue_ is not None:
             pulumi.set(__self__, "continue_", continue_)
         if group_bies is not None:
@@ -4105,14 +4107,14 @@ class NotificationPolicyPolicyArgs:
 
     @property
     @pulumi.getter(name="contactPoint")
-    def contact_point(self) -> pulumi.Input[str]:
+    def contact_point(self) -> Optional[pulumi.Input[str]]:
         """
         The contact point to route notifications that match this rule to.
         """
         return pulumi.get(self, "contact_point")
 
     @contact_point.setter
-    def contact_point(self, value: pulumi.Input[str]):
+    def contact_point(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "contact_point", value)
 
     @property
@@ -4267,7 +4269,7 @@ class NotificationPolicyPolicyMatcherArgs:
 @pulumi.input_type
 class NotificationPolicyPolicyPolicyArgs:
     def __init__(__self__, *,
-                 contact_point: pulumi.Input[str],
+                 contact_point: Optional[pulumi.Input[str]] = None,
                  continue_: Optional[pulumi.Input[bool]] = None,
                  group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  group_interval: Optional[pulumi.Input[str]] = None,
@@ -4287,7 +4289,8 @@ class NotificationPolicyPolicyPolicyArgs:
         :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyArgs']]] policies: Routing rules for specific label sets.
         :param pulumi.Input[str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
-        pulumi.set(__self__, "contact_point", contact_point)
+        if contact_point is not None:
+            pulumi.set(__self__, "contact_point", contact_point)
         if continue_ is not None:
             pulumi.set(__self__, "continue_", continue_)
         if group_bies is not None:
@@ -4307,14 +4310,14 @@ class NotificationPolicyPolicyPolicyArgs:
 
     @property
     @pulumi.getter(name="contactPoint")
-    def contact_point(self) -> pulumi.Input[str]:
+    def contact_point(self) -> Optional[pulumi.Input[str]]:
         """
         The contact point to route notifications that match this rule to.
         """
         return pulumi.get(self, "contact_point")
 
     @contact_point.setter
-    def contact_point(self, value: pulumi.Input[str]):
+    def contact_point(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "contact_point", value)
 
     @property
@@ -4469,7 +4472,7 @@ class NotificationPolicyPolicyPolicyMatcherArgs:
 @pulumi.input_type
 class NotificationPolicyPolicyPolicyPolicyArgs:
     def __init__(__self__, *,
-                 contact_point: pulumi.Input[str],
+                 contact_point: Optional[pulumi.Input[str]] = None,
                  continue_: Optional[pulumi.Input[bool]] = None,
                  group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  group_interval: Optional[pulumi.Input[str]] = None,
@@ -4489,7 +4492,8 @@ class NotificationPolicyPolicyPolicyPolicyArgs:
         :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyArgs']]] policies: Routing rules for specific label sets.
         :param pulumi.Input[str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
-        pulumi.set(__self__, "contact_point", contact_point)
+        if contact_point is not None:
+            pulumi.set(__self__, "contact_point", contact_point)
         if continue_ is not None:
             pulumi.set(__self__, "continue_", continue_)
         if group_bies is not None:
@@ -4509,14 +4513,14 @@ class NotificationPolicyPolicyPolicyPolicyArgs:
 
     @property
     @pulumi.getter(name="contactPoint")
-    def contact_point(self) -> pulumi.Input[str]:
+    def contact_point(self) -> Optional[pulumi.Input[str]]:
         """
         The contact point to route notifications that match this rule to.
         """
         return pulumi.get(self, "contact_point")
 
     @contact_point.setter
-    def contact_point(self, value: pulumi.Input[str]):
+    def contact_point(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "contact_point", value)
 
     @property
@@ -4671,8 +4675,8 @@ class NotificationPolicyPolicyPolicyPolicyMatcherArgs:
 @pulumi.input_type
 class NotificationPolicyPolicyPolicyPolicyPolicyArgs:
     def __init__(__self__, *,
-                 contact_point: pulumi.Input[str],
                  group_bies: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 contact_point: Optional[pulumi.Input[str]] = None,
                  continue_: Optional[pulumi.Input[bool]] = None,
                  group_interval: Optional[pulumi.Input[str]] = None,
                  group_wait: Optional[pulumi.Input[str]] = None,
@@ -4680,8 +4684,8 @@ class NotificationPolicyPolicyPolicyPolicyPolicyArgs:
                  mute_timings: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  repeat_interval: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] contact_point: The contact point to route notifications that match this rule to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        :param pulumi.Input[str] contact_point: The contact point to route notifications that match this rule to.
         :param pulumi.Input[bool] continue_: Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
@@ -4689,8 +4693,9 @@ class NotificationPolicyPolicyPolicyPolicyPolicyArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] mute_timings: A list of mute timing names to apply to alerts that match this policy.
         :param pulumi.Input[str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
-        pulumi.set(__self__, "contact_point", contact_point)
         pulumi.set(__self__, "group_bies", group_bies)
+        if contact_point is not None:
+            pulumi.set(__self__, "contact_point", contact_point)
         if continue_ is not None:
             pulumi.set(__self__, "continue_", continue_)
         if group_interval is not None:
@@ -4705,18 +4710,6 @@ class NotificationPolicyPolicyPolicyPolicyPolicyArgs:
             pulumi.set(__self__, "repeat_interval", repeat_interval)
 
     @property
-    @pulumi.getter(name="contactPoint")
-    def contact_point(self) -> pulumi.Input[str]:
-        """
-        The contact point to route notifications that match this rule to.
-        """
-        return pulumi.get(self, "contact_point")
-
-    @contact_point.setter
-    def contact_point(self, value: pulumi.Input[str]):
-        pulumi.set(self, "contact_point", value)
-
-    @property
     @pulumi.getter(name="groupBies")
     def group_bies(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
@@ -4727,6 +4720,18 @@ class NotificationPolicyPolicyPolicyPolicyPolicyArgs:
     @group_bies.setter
     def group_bies(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "group_bies", value)
+
+    @property
+    @pulumi.getter(name="contactPoint")
+    def contact_point(self) -> Optional[pulumi.Input[str]]:
+        """
+        The contact point to route notifications that match this rule to.
+        """
+        return pulumi.get(self, "contact_point")
+
+    @contact_point.setter
+    def contact_point(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "contact_point", value)
 
     @property
     @pulumi.getter(name="continue")
@@ -6069,11 +6074,11 @@ class RuleGroupRuleArgs:
         :param pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleDataArgs']]] datas: A sequence of stages that describe the contents of the rule.
         :param pulumi.Input[str] name: The name of the alert rule.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing.
-        :param pulumi.Input[str] exec_err_state: Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, and Alerting.
+        :param pulumi.Input[str] exec_err_state: Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
         :param pulumi.Input[str] for_: The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
         :param pulumi.Input[bool] is_paused: Sets whether the alert should be paused or not.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
-        :param pulumi.Input[str] no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting.
+        :param pulumi.Input[str] no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
         :param pulumi.Input['RuleGroupRuleNotificationSettingsArgs'] notification_settings: Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
         :param pulumi.Input[str] uid: The unique identifier of the alert rule.
         """
@@ -6149,7 +6154,7 @@ class RuleGroupRuleArgs:
     @pulumi.getter(name="execErrState")
     def exec_err_state(self) -> Optional[pulumi.Input[str]]:
         """
-        Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, and Alerting.
+        Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
         """
         return pulumi.get(self, "exec_err_state")
 
@@ -6197,7 +6202,7 @@ class RuleGroupRuleArgs:
     @pulumi.getter(name="noDataState")
     def no_data_state(self) -> Optional[pulumi.Input[str]]:
         """
-        Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, and Alerting.
+        Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
         """
         return pulumi.get(self, "no_data_state")
 
@@ -6978,9 +6983,9 @@ class ServiceAccountPermissionPermissionArgs:
                  team_id: Optional[pulumi.Input[str]] = None,
                  user_id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] permission: Permission to associate with item. Must be `Edit` or `Admin`.
-        :param pulumi.Input[str] team_id: ID of the team to manage permissions for. Specify either this or `user_id`.
-        :param pulumi.Input[str] user_id: ID of the user or service account to manage permissions for. Specify either this or `team_id`.
+        :param pulumi.Input[str] permission: Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+        :param pulumi.Input[str] team_id: ID of the team to manage permissions for.
+        :param pulumi.Input[str] user_id: ID of the user or service account to manage permissions for.
         """
         pulumi.set(__self__, "permission", permission)
         if team_id is not None:
@@ -6992,7 +6997,7 @@ class ServiceAccountPermissionPermissionArgs:
     @pulumi.getter
     def permission(self) -> pulumi.Input[str]:
         """
-        Permission to associate with item. Must be `Edit` or `Admin`.
+        Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
         """
         return pulumi.get(self, "permission")
 
@@ -7004,7 +7009,7 @@ class ServiceAccountPermissionPermissionArgs:
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the team to manage permissions for. Specify either this or `user_id`.
+        ID of the team to manage permissions for.
         """
         return pulumi.get(self, "team_id")
 
@@ -7016,7 +7021,7 @@ class ServiceAccountPermissionPermissionArgs:
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the user or service account to manage permissions for. Specify either this or `team_id`.
+        ID of the user or service account to manage permissions for.
         """
         return pulumi.get(self, "user_id")
 
@@ -7073,7 +7078,7 @@ class SsoSettingsOauth2SettingsArgs:
         :param pulumi.Input[str] allowed_domains: List of comma- or space-separated domains. The user should belong to at least one domain to log in.
         :param pulumi.Input[str] allowed_groups: List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed_groups, you must also configure groups_attribute_path.
         :param pulumi.Input[str] allowed_organizations: List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
-        :param pulumi.Input[str] api_url: The user information endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        :param pulumi.Input[str] api_url: The user information endpoint of your OAuth2 provider. Required for okta and generic_oauth providers.
         :param pulumi.Input[str] auth_style: It determines how client_id and client_secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
         :param pulumi.Input[str] auth_url: The authorization endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
         :param pulumi.Input[bool] auto_login: Log in automatically, skipping the login screen.
@@ -7258,7 +7263,7 @@ class SsoSettingsOauth2SettingsArgs:
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The user information endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        The user information endpoint of your OAuth2 provider. Required for okta and generic_oauth providers.
         """
         return pulumi.get(self, "api_url")
 
@@ -7637,6 +7642,509 @@ class SsoSettingsOauth2SettingsArgs:
     @use_refresh_token.setter
     def use_refresh_token(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "use_refresh_token", value)
+
+
+@pulumi.input_type
+class SsoSettingsSamlSettingsArgs:
+    def __init__(__self__, *,
+                 allow_idp_initiated: Optional[pulumi.Input[bool]] = None,
+                 allow_sign_up: Optional[pulumi.Input[bool]] = None,
+                 allowed_organizations: Optional[pulumi.Input[str]] = None,
+                 assertion_attribute_email: Optional[pulumi.Input[str]] = None,
+                 assertion_attribute_groups: Optional[pulumi.Input[str]] = None,
+                 assertion_attribute_login: Optional[pulumi.Input[str]] = None,
+                 assertion_attribute_name: Optional[pulumi.Input[str]] = None,
+                 assertion_attribute_org: Optional[pulumi.Input[str]] = None,
+                 assertion_attribute_role: Optional[pulumi.Input[str]] = None,
+                 auto_login: Optional[pulumi.Input[bool]] = None,
+                 certificate: Optional[pulumi.Input[str]] = None,
+                 certificate_path: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 idp_metadata: Optional[pulumi.Input[str]] = None,
+                 idp_metadata_path: Optional[pulumi.Input[str]] = None,
+                 idp_metadata_url: Optional[pulumi.Input[str]] = None,
+                 max_issue_delay: Optional[pulumi.Input[str]] = None,
+                 metadata_valid_duration: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 name_id_format: Optional[pulumi.Input[str]] = None,
+                 org_mapping: Optional[pulumi.Input[str]] = None,
+                 private_key: Optional[pulumi.Input[str]] = None,
+                 private_key_path: Optional[pulumi.Input[str]] = None,
+                 relay_state: Optional[pulumi.Input[str]] = None,
+                 role_values_admin: Optional[pulumi.Input[str]] = None,
+                 role_values_editor: Optional[pulumi.Input[str]] = None,
+                 role_values_grafana_admin: Optional[pulumi.Input[str]] = None,
+                 role_values_none: Optional[pulumi.Input[str]] = None,
+                 signature_algorithm: Optional[pulumi.Input[str]] = None,
+                 single_logout: Optional[pulumi.Input[bool]] = None,
+                 skip_org_role_sync: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] allow_idp_initiated: Whether SAML IdP-initiated login is allowed.
+        :param pulumi.Input[bool] allow_sign_up: Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
+        :param pulumi.Input[str] allowed_organizations: List of comma- or space-separated organizations. User should be a member of at least one organization to log in.
+        :param pulumi.Input[str] assertion_attribute_email: Friendly name or name of the attribute within the SAML assertion to use as the user email.
+        :param pulumi.Input[str] assertion_attribute_groups: Friendly name or name of the attribute within the SAML assertion to use as the user groups.
+        :param pulumi.Input[str] assertion_attribute_login: Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
+        :param pulumi.Input[str] assertion_attribute_name: Friendly name or name of the attribute within the SAML assertion to use as the user name. Alternatively, this can be a template with variables that match the names of attributes within the SAML assertion.
+        :param pulumi.Input[str] assertion_attribute_org: Friendly name or name of the attribute within the SAML assertion to use as the user organization.
+        :param pulumi.Input[str] assertion_attribute_role: Friendly name or name of the attribute within the SAML assertion to use as the user roles.
+        :param pulumi.Input[bool] auto_login: Whether SAML auto login is enabled.
+        :param pulumi.Input[str] certificate: Base64-encoded string for the SP X.509 certificate.
+        :param pulumi.Input[str] certificate_path: Path for the SP X.509 certificate.
+        :param pulumi.Input[bool] enabled: Define whether this configuration is enabled for SAML.
+        :param pulumi.Input[str] idp_metadata: Base64-encoded string for the IdP SAML metadata XML.
+        :param pulumi.Input[str] idp_metadata_path: Path for the IdP SAML metadata XML.
+        :param pulumi.Input[str] idp_metadata_url: URL for the IdP SAML metadata XML.
+        :param pulumi.Input[str] max_issue_delay: Duration, since the IdP issued a response and the SP is allowed to process it. For example: 90s, 1h.
+        :param pulumi.Input[str] metadata_valid_duration: Duration, for how long the SP metadata is valid. For example: 48h, 5d.
+        :param pulumi.Input[str] name: Name used to refer to the SAML authentication.
+        :param pulumi.Input[str] name_id_format: The Name ID Format to request within the SAML assertion. Defaults to urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+        :param pulumi.Input[str] org_mapping: List of comma- or space-separated Organization:OrgId:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: Viewer, Editor or Admin.
+        :param pulumi.Input[str] private_key: Base64-encoded string for the SP private key.
+        :param pulumi.Input[str] private_key_path: Path for the SP private key.
+        :param pulumi.Input[str] relay_state: Relay state for IdP-initiated login. Should match relay state configured in IdP.
+        :param pulumi.Input[str] role_values_admin: List of comma- or space-separated roles which will be mapped into the Admin role.
+        :param pulumi.Input[str] role_values_editor: List of comma- or space-separated roles which will be mapped into the Editor role.
+        :param pulumi.Input[str] role_values_grafana_admin: List of comma- or space-separated roles which will be mapped into the Grafana Admin (Super Admin) role.
+        :param pulumi.Input[str] role_values_none: List of comma- or space-separated roles which will be mapped into the None role.
+        :param pulumi.Input[str] signature_algorithm: Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
+        :param pulumi.Input[bool] single_logout: Whether SAML Single Logout is enabled.
+        :param pulumi.Input[bool] skip_org_role_sync: Prevent synchronizing users’ organization roles from your IdP.
+        """
+        if allow_idp_initiated is not None:
+            pulumi.set(__self__, "allow_idp_initiated", allow_idp_initiated)
+        if allow_sign_up is not None:
+            pulumi.set(__self__, "allow_sign_up", allow_sign_up)
+        if allowed_organizations is not None:
+            pulumi.set(__self__, "allowed_organizations", allowed_organizations)
+        if assertion_attribute_email is not None:
+            pulumi.set(__self__, "assertion_attribute_email", assertion_attribute_email)
+        if assertion_attribute_groups is not None:
+            pulumi.set(__self__, "assertion_attribute_groups", assertion_attribute_groups)
+        if assertion_attribute_login is not None:
+            pulumi.set(__self__, "assertion_attribute_login", assertion_attribute_login)
+        if assertion_attribute_name is not None:
+            pulumi.set(__self__, "assertion_attribute_name", assertion_attribute_name)
+        if assertion_attribute_org is not None:
+            pulumi.set(__self__, "assertion_attribute_org", assertion_attribute_org)
+        if assertion_attribute_role is not None:
+            pulumi.set(__self__, "assertion_attribute_role", assertion_attribute_role)
+        if auto_login is not None:
+            pulumi.set(__self__, "auto_login", auto_login)
+        if certificate is not None:
+            pulumi.set(__self__, "certificate", certificate)
+        if certificate_path is not None:
+            pulumi.set(__self__, "certificate_path", certificate_path)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if idp_metadata is not None:
+            pulumi.set(__self__, "idp_metadata", idp_metadata)
+        if idp_metadata_path is not None:
+            pulumi.set(__self__, "idp_metadata_path", idp_metadata_path)
+        if idp_metadata_url is not None:
+            pulumi.set(__self__, "idp_metadata_url", idp_metadata_url)
+        if max_issue_delay is not None:
+            pulumi.set(__self__, "max_issue_delay", max_issue_delay)
+        if metadata_valid_duration is not None:
+            pulumi.set(__self__, "metadata_valid_duration", metadata_valid_duration)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if name_id_format is not None:
+            pulumi.set(__self__, "name_id_format", name_id_format)
+        if org_mapping is not None:
+            pulumi.set(__self__, "org_mapping", org_mapping)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_path is not None:
+            pulumi.set(__self__, "private_key_path", private_key_path)
+        if relay_state is not None:
+            pulumi.set(__self__, "relay_state", relay_state)
+        if role_values_admin is not None:
+            pulumi.set(__self__, "role_values_admin", role_values_admin)
+        if role_values_editor is not None:
+            pulumi.set(__self__, "role_values_editor", role_values_editor)
+        if role_values_grafana_admin is not None:
+            pulumi.set(__self__, "role_values_grafana_admin", role_values_grafana_admin)
+        if role_values_none is not None:
+            pulumi.set(__self__, "role_values_none", role_values_none)
+        if signature_algorithm is not None:
+            pulumi.set(__self__, "signature_algorithm", signature_algorithm)
+        if single_logout is not None:
+            pulumi.set(__self__, "single_logout", single_logout)
+        if skip_org_role_sync is not None:
+            pulumi.set(__self__, "skip_org_role_sync", skip_org_role_sync)
+
+    @property
+    @pulumi.getter(name="allowIdpInitiated")
+    def allow_idp_initiated(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether SAML IdP-initiated login is allowed.
+        """
+        return pulumi.get(self, "allow_idp_initiated")
+
+    @allow_idp_initiated.setter
+    def allow_idp_initiated(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_idp_initiated", value)
+
+    @property
+    @pulumi.getter(name="allowSignUp")
+    def allow_sign_up(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
+        """
+        return pulumi.get(self, "allow_sign_up")
+
+    @allow_sign_up.setter
+    def allow_sign_up(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_sign_up", value)
+
+    @property
+    @pulumi.getter(name="allowedOrganizations")
+    def allowed_organizations(self) -> Optional[pulumi.Input[str]]:
+        """
+        List of comma- or space-separated organizations. User should be a member of at least one organization to log in.
+        """
+        return pulumi.get(self, "allowed_organizations")
+
+    @allowed_organizations.setter
+    def allowed_organizations(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "allowed_organizations", value)
+
+    @property
+    @pulumi.getter(name="assertionAttributeEmail")
+    def assertion_attribute_email(self) -> Optional[pulumi.Input[str]]:
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user email.
+        """
+        return pulumi.get(self, "assertion_attribute_email")
+
+    @assertion_attribute_email.setter
+    def assertion_attribute_email(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "assertion_attribute_email", value)
+
+    @property
+    @pulumi.getter(name="assertionAttributeGroups")
+    def assertion_attribute_groups(self) -> Optional[pulumi.Input[str]]:
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user groups.
+        """
+        return pulumi.get(self, "assertion_attribute_groups")
+
+    @assertion_attribute_groups.setter
+    def assertion_attribute_groups(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "assertion_attribute_groups", value)
+
+    @property
+    @pulumi.getter(name="assertionAttributeLogin")
+    def assertion_attribute_login(self) -> Optional[pulumi.Input[str]]:
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
+        """
+        return pulumi.get(self, "assertion_attribute_login")
+
+    @assertion_attribute_login.setter
+    def assertion_attribute_login(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "assertion_attribute_login", value)
+
+    @property
+    @pulumi.getter(name="assertionAttributeName")
+    def assertion_attribute_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user name. Alternatively, this can be a template with variables that match the names of attributes within the SAML assertion.
+        """
+        return pulumi.get(self, "assertion_attribute_name")
+
+    @assertion_attribute_name.setter
+    def assertion_attribute_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "assertion_attribute_name", value)
+
+    @property
+    @pulumi.getter(name="assertionAttributeOrg")
+    def assertion_attribute_org(self) -> Optional[pulumi.Input[str]]:
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user organization.
+        """
+        return pulumi.get(self, "assertion_attribute_org")
+
+    @assertion_attribute_org.setter
+    def assertion_attribute_org(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "assertion_attribute_org", value)
+
+    @property
+    @pulumi.getter(name="assertionAttributeRole")
+    def assertion_attribute_role(self) -> Optional[pulumi.Input[str]]:
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user roles.
+        """
+        return pulumi.get(self, "assertion_attribute_role")
+
+    @assertion_attribute_role.setter
+    def assertion_attribute_role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "assertion_attribute_role", value)
+
+    @property
+    @pulumi.getter(name="autoLogin")
+    def auto_login(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether SAML auto login is enabled.
+        """
+        return pulumi.get(self, "auto_login")
+
+    @auto_login.setter
+    def auto_login(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_login", value)
+
+    @property
+    @pulumi.getter
+    def certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        Base64-encoded string for the SP X.509 certificate.
+        """
+        return pulumi.get(self, "certificate")
+
+    @certificate.setter
+    def certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate", value)
+
+    @property
+    @pulumi.getter(name="certificatePath")
+    def certificate_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path for the SP X.509 certificate.
+        """
+        return pulumi.get(self, "certificate_path")
+
+    @certificate_path.setter
+    def certificate_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate_path", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Define whether this configuration is enabled for SAML.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="idpMetadata")
+    def idp_metadata(self) -> Optional[pulumi.Input[str]]:
+        """
+        Base64-encoded string for the IdP SAML metadata XML.
+        """
+        return pulumi.get(self, "idp_metadata")
+
+    @idp_metadata.setter
+    def idp_metadata(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "idp_metadata", value)
+
+    @property
+    @pulumi.getter(name="idpMetadataPath")
+    def idp_metadata_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path for the IdP SAML metadata XML.
+        """
+        return pulumi.get(self, "idp_metadata_path")
+
+    @idp_metadata_path.setter
+    def idp_metadata_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "idp_metadata_path", value)
+
+    @property
+    @pulumi.getter(name="idpMetadataUrl")
+    def idp_metadata_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL for the IdP SAML metadata XML.
+        """
+        return pulumi.get(self, "idp_metadata_url")
+
+    @idp_metadata_url.setter
+    def idp_metadata_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "idp_metadata_url", value)
+
+    @property
+    @pulumi.getter(name="maxIssueDelay")
+    def max_issue_delay(self) -> Optional[pulumi.Input[str]]:
+        """
+        Duration, since the IdP issued a response and the SP is allowed to process it. For example: 90s, 1h.
+        """
+        return pulumi.get(self, "max_issue_delay")
+
+    @max_issue_delay.setter
+    def max_issue_delay(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "max_issue_delay", value)
+
+    @property
+    @pulumi.getter(name="metadataValidDuration")
+    def metadata_valid_duration(self) -> Optional[pulumi.Input[str]]:
+        """
+        Duration, for how long the SP metadata is valid. For example: 48h, 5d.
+        """
+        return pulumi.get(self, "metadata_valid_duration")
+
+    @metadata_valid_duration.setter
+    def metadata_valid_duration(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "metadata_valid_duration", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name used to refer to the SAML authentication.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="nameIdFormat")
+    def name_id_format(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Name ID Format to request within the SAML assertion. Defaults to urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+        """
+        return pulumi.get(self, "name_id_format")
+
+    @name_id_format.setter
+    def name_id_format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name_id_format", value)
+
+    @property
+    @pulumi.getter(name="orgMapping")
+    def org_mapping(self) -> Optional[pulumi.Input[str]]:
+        """
+        List of comma- or space-separated Organization:OrgId:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: Viewer, Editor or Admin.
+        """
+        return pulumi.get(self, "org_mapping")
+
+    @org_mapping.setter
+    def org_mapping(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_mapping", value)
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Base64-encoded string for the SP private key.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter(name="privateKeyPath")
+    def private_key_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path for the SP private key.
+        """
+        return pulumi.get(self, "private_key_path")
+
+    @private_key_path.setter
+    def private_key_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key_path", value)
+
+    @property
+    @pulumi.getter(name="relayState")
+    def relay_state(self) -> Optional[pulumi.Input[str]]:
+        """
+        Relay state for IdP-initiated login. Should match relay state configured in IdP.
+        """
+        return pulumi.get(self, "relay_state")
+
+    @relay_state.setter
+    def relay_state(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "relay_state", value)
+
+    @property
+    @pulumi.getter(name="roleValuesAdmin")
+    def role_values_admin(self) -> Optional[pulumi.Input[str]]:
+        """
+        List of comma- or space-separated roles which will be mapped into the Admin role.
+        """
+        return pulumi.get(self, "role_values_admin")
+
+    @role_values_admin.setter
+    def role_values_admin(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_values_admin", value)
+
+    @property
+    @pulumi.getter(name="roleValuesEditor")
+    def role_values_editor(self) -> Optional[pulumi.Input[str]]:
+        """
+        List of comma- or space-separated roles which will be mapped into the Editor role.
+        """
+        return pulumi.get(self, "role_values_editor")
+
+    @role_values_editor.setter
+    def role_values_editor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_values_editor", value)
+
+    @property
+    @pulumi.getter(name="roleValuesGrafanaAdmin")
+    def role_values_grafana_admin(self) -> Optional[pulumi.Input[str]]:
+        """
+        List of comma- or space-separated roles which will be mapped into the Grafana Admin (Super Admin) role.
+        """
+        return pulumi.get(self, "role_values_grafana_admin")
+
+    @role_values_grafana_admin.setter
+    def role_values_grafana_admin(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_values_grafana_admin", value)
+
+    @property
+    @pulumi.getter(name="roleValuesNone")
+    def role_values_none(self) -> Optional[pulumi.Input[str]]:
+        """
+        List of comma- or space-separated roles which will be mapped into the None role.
+        """
+        return pulumi.get(self, "role_values_none")
+
+    @role_values_none.setter
+    def role_values_none(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_values_none", value)
+
+    @property
+    @pulumi.getter(name="signatureAlgorithm")
+    def signature_algorithm(self) -> Optional[pulumi.Input[str]]:
+        """
+        Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
+        """
+        return pulumi.get(self, "signature_algorithm")
+
+    @signature_algorithm.setter
+    def signature_algorithm(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "signature_algorithm", value)
+
+    @property
+    @pulumi.getter(name="singleLogout")
+    def single_logout(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether SAML Single Logout is enabled.
+        """
+        return pulumi.get(self, "single_logout")
+
+    @single_logout.setter
+    def single_logout(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "single_logout", value)
+
+    @property
+    @pulumi.getter(name="skipOrgRoleSync")
+    def skip_org_role_sync(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Prevent synchronizing users’ organization roles from your IdP.
+        """
+        return pulumi.get(self, "skip_org_role_sync")
+
+    @skip_org_role_sync.setter
+    def skip_org_role_sync(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_org_role_sync", value)
 
 
 @pulumi.input_type

@@ -32,7 +32,7 @@ type OncallSchedule struct {
 	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
 	// The schedule's time zone.
 	TimeZone pulumi.StringPtrOutput `pulumi:"timeZone"`
-	// The schedule's type.
+	// The schedule's type. Valid values are `ical`, `calendar`.
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -86,7 +86,7 @@ type oncallScheduleState struct {
 	TeamId *string `pulumi:"teamId"`
 	// The schedule's time zone.
 	TimeZone *string `pulumi:"timeZone"`
-	// The schedule's type.
+	// The schedule's type. Valid values are `ical`, `calendar`.
 	Type *string `pulumi:"type"`
 }
 
@@ -108,7 +108,7 @@ type OncallScheduleState struct {
 	TeamId pulumi.StringPtrInput
 	// The schedule's time zone.
 	TimeZone pulumi.StringPtrInput
-	// The schedule's type.
+	// The schedule's type. Valid values are `ical`, `calendar`.
 	Type pulumi.StringPtrInput
 }
 
@@ -134,7 +134,7 @@ type oncallScheduleArgs struct {
 	TeamId *string `pulumi:"teamId"`
 	// The schedule's time zone.
 	TimeZone *string `pulumi:"timeZone"`
-	// The schedule's type.
+	// The schedule's type. Valid values are `ical`, `calendar`.
 	Type string `pulumi:"type"`
 }
 
@@ -157,7 +157,7 @@ type OncallScheduleArgs struct {
 	TeamId pulumi.StringPtrInput
 	// The schedule's time zone.
 	TimeZone pulumi.StringPtrInput
-	// The schedule's type.
+	// The schedule's type. Valid values are `ical`, `calendar`.
 	Type pulumi.StringInput
 }
 
@@ -289,7 +289,7 @@ func (o OncallScheduleOutput) TimeZone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallSchedule) pulumi.StringPtrOutput { return v.TimeZone }).(pulumi.StringPtrOutput)
 }
 
-// The schedule's type.
+// The schedule's type. Valid values are `ical`, `calendar`.
 func (o OncallScheduleOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *OncallSchedule) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

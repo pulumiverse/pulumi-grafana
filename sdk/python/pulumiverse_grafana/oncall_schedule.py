@@ -27,7 +27,7 @@ class OncallScheduleArgs:
                  time_zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a OncallSchedule resource.
-        :param pulumi.Input[str] type: The schedule's type.
+        :param pulumi.Input[str] type: The schedule's type. Valid values are `ical`, `calendar`.
         :param pulumi.Input[bool] enable_web_overrides: Enable overrides via web UI (it will ignore ical_url_overrides).
         :param pulumi.Input[str] ical_url_overrides: The URL of external iCal calendar which override primary events.
         :param pulumi.Input[str] ical_url_primary: The URL of the external calendar iCal file.
@@ -60,7 +60,7 @@ class OncallScheduleArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The schedule's type.
+        The schedule's type. Valid values are `ical`, `calendar`.
         """
         return pulumi.get(self, "type")
 
@@ -189,7 +189,7 @@ class _OncallScheduleState:
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
                with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
         :param pulumi.Input[str] time_zone: The schedule's time zone.
-        :param pulumi.Input[str] type: The schedule's type.
+        :param pulumi.Input[str] type: The schedule's type. Valid values are `ical`, `calendar`.
         """
         if enable_web_overrides is not None:
             pulumi.set(__self__, "enable_web_overrides", enable_web_overrides)
@@ -311,7 +311,7 @@ class _OncallScheduleState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The schedule's type.
+        The schedule's type. Valid values are `ical`, `calendar`.
         """
         return pulumi.get(self, "type")
 
@@ -348,7 +348,7 @@ class OncallSchedule(pulumi.CustomResource):
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
                with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
         :param pulumi.Input[str] time_zone: The schedule's time zone.
-        :param pulumi.Input[str] type: The schedule's type.
+        :param pulumi.Input[str] type: The schedule's type. Valid values are `ical`, `calendar`.
         """
         ...
     @overload
@@ -437,7 +437,7 @@ class OncallSchedule(pulumi.CustomResource):
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
                with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
         :param pulumi.Input[str] time_zone: The schedule's time zone.
-        :param pulumi.Input[str] type: The schedule's type.
+        :param pulumi.Input[str] type: The schedule's type. Valid values are `ical`, `calendar`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -523,7 +523,7 @@ class OncallSchedule(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The schedule's type.
+        The schedule's type. Valid values are `ical`, `calendar`.
         """
         return pulumi.get(self, "type")
 

@@ -18,6 +18,8 @@ type MachineLearningJob struct {
 	// An object representing the custom labels added on the forecast.
 	CustomLabels pulumi.MapOutput `pulumi:"customLabels"`
 	// The id of the datasource to query.
+	//
+	// Deprecated: Use datasourceUid instead.
 	DatasourceId pulumi.IntPtrOutput `pulumi:"datasourceId"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType pulumi.StringOutput `pulumi:"datasourceType"`
@@ -84,6 +86,8 @@ type machineLearningJobState struct {
 	// An object representing the custom labels added on the forecast.
 	CustomLabels map[string]interface{} `pulumi:"customLabels"`
 	// The id of the datasource to query.
+	//
+	// Deprecated: Use datasourceUid instead.
 	DatasourceId *int `pulumi:"datasourceId"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType *string `pulumi:"datasourceType"`
@@ -112,6 +116,8 @@ type MachineLearningJobState struct {
 	// An object representing the custom labels added on the forecast.
 	CustomLabels pulumi.MapInput
 	// The id of the datasource to query.
+	//
+	// Deprecated: Use datasourceUid instead.
 	DatasourceId pulumi.IntPtrInput
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType pulumi.StringPtrInput
@@ -144,6 +150,8 @@ type machineLearningJobArgs struct {
 	// An object representing the custom labels added on the forecast.
 	CustomLabels map[string]interface{} `pulumi:"customLabels"`
 	// The id of the datasource to query.
+	//
+	// Deprecated: Use datasourceUid instead.
 	DatasourceId *int `pulumi:"datasourceId"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType string `pulumi:"datasourceType"`
@@ -173,6 +181,8 @@ type MachineLearningJobArgs struct {
 	// An object representing the custom labels added on the forecast.
 	CustomLabels pulumi.MapInput
 	// The id of the datasource to query.
+	//
+	// Deprecated: Use datasourceUid instead.
 	DatasourceId pulumi.IntPtrInput
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType pulumi.StringInput
@@ -290,6 +300,8 @@ func (o MachineLearningJobOutput) CustomLabels() pulumi.MapOutput {
 }
 
 // The id of the datasource to query.
+//
+// Deprecated: Use datasourceUid instead.
 func (o MachineLearningJobOutput) DatasourceId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *MachineLearningJob) pulumi.IntPtrOutput { return v.DatasourceId }).(pulumi.IntPtrOutput)
 }

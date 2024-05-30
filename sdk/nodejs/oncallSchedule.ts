@@ -68,7 +68,7 @@ export class OncallSchedule extends pulumi.CustomResource {
      */
     public readonly timeZone!: pulumi.Output<string | undefined>;
     /**
-     * The schedule's type.
+     * The schedule's type. Valid values are `ical`, `calendar`.
      */
     public readonly type!: pulumi.Output<string>;
 
@@ -152,7 +152,7 @@ export interface OncallScheduleState {
      */
     timeZone?: pulumi.Input<string>;
     /**
-     * The schedule's type.
+     * The schedule's type. Valid values are `ical`, `calendar`.
      */
     type?: pulumi.Input<string>;
 }
@@ -195,7 +195,7 @@ export interface OncallScheduleArgs {
      */
     timeZone?: pulumi.Input<string>;
     /**
-     * The schedule's type.
+     * The schedule's type. Valid values are `ical`, `calendar`.
      */
     type: pulumi.Input<string>;
 }

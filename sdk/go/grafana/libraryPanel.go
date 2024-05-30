@@ -21,12 +21,14 @@ type LibraryPanel struct {
 	DashboardIds pulumi.IntArrayOutput `pulumi:"dashboardIds"`
 	// Description of the library panel.
 	Description pulumi.StringOutput `pulumi:"description"`
-	// ID of the folder where the library panel is stored.
+	// Deprecated. Use `folder_uid` instead
+	//
+	// Deprecated: Use `folderUid` instead
 	FolderId pulumi.StringPtrOutput `pulumi:"folderId"`
 	// Name of the folder containing the library panel.
 	FolderName pulumi.StringOutput `pulumi:"folderName"`
 	// Unique ID (UID) of the folder containing the library panel.
-	FolderUid pulumi.StringOutput `pulumi:"folderUid"`
+	FolderUid pulumi.StringPtrOutput `pulumi:"folderUid"`
 	// The JSON model for the library panel.
 	ModelJson pulumi.StringOutput `pulumi:"modelJson"`
 	// Name of the library panel.
@@ -86,7 +88,9 @@ type libraryPanelState struct {
 	DashboardIds []int `pulumi:"dashboardIds"`
 	// Description of the library panel.
 	Description *string `pulumi:"description"`
-	// ID of the folder where the library panel is stored.
+	// Deprecated. Use `folder_uid` instead
+	//
+	// Deprecated: Use `folderUid` instead
 	FolderId *string `pulumi:"folderId"`
 	// Name of the folder containing the library panel.
 	FolderName *string `pulumi:"folderName"`
@@ -119,7 +123,9 @@ type LibraryPanelState struct {
 	DashboardIds pulumi.IntArrayInput
 	// Description of the library panel.
 	Description pulumi.StringPtrInput
-	// ID of the folder where the library panel is stored.
+	// Deprecated. Use `folder_uid` instead
+	//
+	// Deprecated: Use `folderUid` instead
 	FolderId pulumi.StringPtrInput
 	// Name of the folder containing the library panel.
 	FolderName pulumi.StringPtrInput
@@ -150,8 +156,12 @@ func (LibraryPanelState) ElementType() reflect.Type {
 }
 
 type libraryPanelArgs struct {
-	// ID of the folder where the library panel is stored.
+	// Deprecated. Use `folder_uid` instead
+	//
+	// Deprecated: Use `folderUid` instead
 	FolderId *string `pulumi:"folderId"`
+	// Unique ID (UID) of the folder containing the library panel.
+	FolderUid *string `pulumi:"folderUid"`
 	// The JSON model for the library panel.
 	ModelJson string `pulumi:"modelJson"`
 	// Name of the library panel.
@@ -166,8 +176,12 @@ type libraryPanelArgs struct {
 
 // The set of arguments for constructing a LibraryPanel resource.
 type LibraryPanelArgs struct {
-	// ID of the folder where the library panel is stored.
+	// Deprecated. Use `folder_uid` instead
+	//
+	// Deprecated: Use `folderUid` instead
 	FolderId pulumi.StringPtrInput
+	// Unique ID (UID) of the folder containing the library panel.
+	FolderUid pulumi.StringPtrInput
 	// The JSON model for the library panel.
 	ModelJson pulumi.StringInput
 	// Name of the library panel.
@@ -282,7 +296,9 @@ func (o LibraryPanelOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *LibraryPanel) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// ID of the folder where the library panel is stored.
+// Deprecated. Use `folder_uid` instead
+//
+// Deprecated: Use `folderUid` instead
 func (o LibraryPanelOutput) FolderId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LibraryPanel) pulumi.StringPtrOutput { return v.FolderId }).(pulumi.StringPtrOutput)
 }
@@ -293,8 +309,8 @@ func (o LibraryPanelOutput) FolderName() pulumi.StringOutput {
 }
 
 // Unique ID (UID) of the folder containing the library panel.
-func (o LibraryPanelOutput) FolderUid() pulumi.StringOutput {
-	return o.ApplyT(func(v *LibraryPanel) pulumi.StringOutput { return v.FolderUid }).(pulumi.StringOutput)
+func (o LibraryPanelOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LibraryPanel) pulumi.StringPtrOutput { return v.FolderUid }).(pulumi.StringPtrOutput)
 }
 
 // The JSON model for the library panel.

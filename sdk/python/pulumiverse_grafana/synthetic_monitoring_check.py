@@ -33,7 +33,7 @@ class SyntheticMonitoringCheckArgs:
         :param pulumi.Input['SyntheticMonitoringCheckSettingsArgs'] settings: Check settings. Should contain exactly one nested block.
         :param pulumi.Input[str] target: Hostname to ping.
         :param pulumi.Input[str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert
-               levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).
+               levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/).
         :param pulumi.Input[bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of
                metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each.
         :param pulumi.Input[bool] enabled: Whether to enable the check.
@@ -115,7 +115,7 @@ class SyntheticMonitoringCheckArgs:
     def alert_sensitivity(self) -> Optional[pulumi.Input[str]]:
         """
         Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert
-        levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).
+        levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/).
         """
         return pulumi.get(self, "alert_sensitivity")
 
@@ -206,7 +206,7 @@ class _SyntheticMonitoringCheckState:
         """
         Input properties used for looking up and filtering SyntheticMonitoringCheck resources.
         :param pulumi.Input[str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert
-               levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).
+               levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/).
         :param pulumi.Input[bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of
                metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each.
         :param pulumi.Input[bool] enabled: Whether to enable the check.
@@ -251,7 +251,7 @@ class _SyntheticMonitoringCheckState:
     def alert_sensitivity(self) -> Optional[pulumi.Input[str]]:
         """
         Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert
-        levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).
+        levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/).
         """
         return pulumi.get(self, "alert_sensitivity")
 
@@ -406,7 +406,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert
-               levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).
+               levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/).
         :param pulumi.Input[bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of
                metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each.
         :param pulumi.Input[bool] enabled: Whether to enable the check.
@@ -512,7 +512,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert
-               levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).
+               levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/).
         :param pulumi.Input[bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of
                metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each.
         :param pulumi.Input[bool] enabled: Whether to enable the check.
@@ -551,7 +551,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
     def alert_sensitivity(self) -> pulumi.Output[Optional[str]]:
         """
         Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert
-        levels](https://grafana.com/docs/grafana-cloud/monitor-public-endpoints/synthetic-monitoring-alerting/).
+        levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/).
         """
         return pulumi.get(self, "alert_sensitivity")
 

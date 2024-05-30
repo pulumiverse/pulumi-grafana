@@ -44,7 +44,7 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string>? AllowedOrganizations { get; set; }
 
         /// <summary>
-        /// The user information endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        /// The user information endpoint of your OAuth2 provider. Required for okta and generic_oauth providers.
         /// </summary>
         [Input("apiUrl")]
         public Input<string>? ApiUrl { get; set; }

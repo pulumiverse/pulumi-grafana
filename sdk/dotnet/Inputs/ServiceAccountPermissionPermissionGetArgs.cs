@@ -14,19 +14,19 @@ namespace Pulumiverse.Grafana.Inputs
     public sealed class ServiceAccountPermissionPermissionGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Permission to associate with item. Must be `Edit` or `Admin`.
+        /// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
         /// </summary>
         [Input("permission", required: true)]
         public Input<string> Permission { get; set; } = null!;
 
         /// <summary>
-        /// ID of the team to manage permissions for. Specify either this or `user_id`.
+        /// ID of the team to manage permissions for.
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 
         /// <summary>
-        /// ID of the user or service account to manage permissions for. Specify either this or `team_id`.
+        /// ID of the user or service account to manage permissions for.
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }

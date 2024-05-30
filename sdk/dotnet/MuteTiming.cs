@@ -14,6 +14,12 @@ namespace Pulumiverse.Grafana
     public partial class MuteTiming : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Allow modifying the mute timing from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Output("disableProvenance")]
+        public Output<bool?> DisableProvenance { get; private set; } = null!;
+
+        /// <summary>
         /// The time intervals at which to mute notifications. Use an empty block to mute all the time.
         /// </summary>
         [Output("intervals")]
@@ -78,6 +84,12 @@ namespace Pulumiverse.Grafana
 
     public sealed class MuteTimingArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allow modifying the mute timing from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Input("disableProvenance")]
+        public Input<bool>? DisableProvenance { get; set; }
+
         [Input("intervals")]
         private InputList<Inputs.MuteTimingIntervalArgs>? _intervals;
 
@@ -110,6 +122,12 @@ namespace Pulumiverse.Grafana
 
     public sealed class MuteTimingState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allow modifying the mute timing from other sources than Terraform or the Grafana API.
+        /// </summary>
+        [Input("disableProvenance")]
+        public Input<bool>? DisableProvenance { get; set; }
+
         [Input("intervals")]
         private InputList<Inputs.MuteTimingIntervalGetArgs>? _intervals;
 
