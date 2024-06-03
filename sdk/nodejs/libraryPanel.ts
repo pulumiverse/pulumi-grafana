@@ -45,7 +45,7 @@ export class LibraryPanel extends pulumi.CustomResource {
      */
     public /*out*/ readonly description!: pulumi.Output<string>;
     /**
-     * Deprecated. Use `folder_uid` instead
+     * Deprecated. Use `folderUid` instead
      *
      * @deprecated Use `folderUid` instead
      */
@@ -162,7 +162,7 @@ export interface LibraryPanelState {
      */
     description?: pulumi.Input<string>;
     /**
-     * Deprecated. Use `folder_uid` instead
+     * Deprecated. Use `folderUid` instead
      *
      * @deprecated Use `folderUid` instead
      */
@@ -216,7 +216,7 @@ export interface LibraryPanelState {
  */
 export interface LibraryPanelArgs {
     /**
-     * Deprecated. Use `folder_uid` instead
+     * Deprecated. Use `folderUid` instead
      *
      * @deprecated Use `folderUid` instead
      */

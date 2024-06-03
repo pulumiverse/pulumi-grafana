@@ -35,7 +35,7 @@ export class SsoSettings extends pulumi.CustomResource {
     }
 
     /**
-     * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
+     * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
      */
     public readonly oauth2Settings!: pulumi.Output<outputs.SsoSettingsOauth2Settings | undefined>;
     /**
@@ -82,7 +82,7 @@ export class SsoSettings extends pulumi.CustomResource {
  */
 export interface SsoSettingsState {
     /**
-     * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
+     * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
      */
     oauth2Settings?: pulumi.Input<inputs.SsoSettingsOauth2Settings>;
     /**
@@ -100,7 +100,7 @@ export interface SsoSettingsState {
  */
 export interface SsoSettingsArgs {
     /**
-     * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
+     * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
      */
     oauth2Settings?: pulumi.Input<inputs.SsoSettingsOauth2Settings>;
     /**

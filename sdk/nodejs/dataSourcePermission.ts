@@ -35,7 +35,7 @@ export class DataSourcePermission extends pulumi.CustomResource {
     }
 
     /**
-     * Deprecated: Use `datasource_uid` instead.
+     * Deprecated: Use `datasourceUid` instead.
      *
      * @deprecated Use `datasourceUid` instead
      */
@@ -87,7 +87,7 @@ export class DataSourcePermission extends pulumi.CustomResource {
  */
 export interface DataSourcePermissionState {
     /**
-     * Deprecated: Use `datasource_uid` instead.
+     * Deprecated: Use `datasourceUid` instead.
      *
      * @deprecated Use `datasourceUid` instead
      */
@@ -111,7 +111,7 @@ export interface DataSourcePermissionState {
  */
 export interface DataSourcePermissionArgs {
     /**
-     * Deprecated: Use `datasource_uid` instead.
+     * Deprecated: Use `datasourceUid` instead.
      *
      * @deprecated Use `datasourceUid` instead
      */

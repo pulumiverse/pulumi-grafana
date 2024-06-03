@@ -60,7 +60,7 @@ export class OncallSchedule extends pulumi.CustomResource {
     public readonly slack!: pulumi.Output<outputs.OncallScheduleSlack | undefined>;
     /**
      * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+     * with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      */
     public readonly teamId!: pulumi.Output<string | undefined>;
     /**
@@ -144,7 +144,7 @@ export interface OncallScheduleState {
     slack?: pulumi.Input<inputs.OncallScheduleSlack>;
     /**
      * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+     * with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      */
     teamId?: pulumi.Input<string>;
     /**
@@ -187,7 +187,7 @@ export interface OncallScheduleArgs {
     slack?: pulumi.Input<inputs.OncallScheduleSlack>;
     /**
      * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+     * with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      */
     teamId?: pulumi.Input<string>;
     /**

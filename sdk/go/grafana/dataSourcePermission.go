@@ -14,7 +14,7 @@ import (
 type DataSourcePermission struct {
 	pulumi.CustomResourceState
 
-	// Deprecated: Use `datasource_uid` instead.
+	// Deprecated: Use `datasourceUid` instead.
 	//
 	// Deprecated: Use `datasourceUid` instead
 	DatasourceId pulumi.StringOutput `pulumi:"datasourceId"`
@@ -56,7 +56,7 @@ func GetDataSourcePermission(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DataSourcePermission resources.
 type dataSourcePermissionState struct {
-	// Deprecated: Use `datasource_uid` instead.
+	// Deprecated: Use `datasourceUid` instead.
 	//
 	// Deprecated: Use `datasourceUid` instead
 	DatasourceId *string `pulumi:"datasourceId"`
@@ -69,7 +69,7 @@ type dataSourcePermissionState struct {
 }
 
 type DataSourcePermissionState struct {
-	// Deprecated: Use `datasource_uid` instead.
+	// Deprecated: Use `datasourceUid` instead.
 	//
 	// Deprecated: Use `datasourceUid` instead
 	DatasourceId pulumi.StringPtrInput
@@ -86,7 +86,7 @@ func (DataSourcePermissionState) ElementType() reflect.Type {
 }
 
 type dataSourcePermissionArgs struct {
-	// Deprecated: Use `datasource_uid` instead.
+	// Deprecated: Use `datasourceUid` instead.
 	//
 	// Deprecated: Use `datasourceUid` instead
 	DatasourceId *string `pulumi:"datasourceId"`
@@ -100,7 +100,7 @@ type dataSourcePermissionArgs struct {
 
 // The set of arguments for constructing a DataSourcePermission resource.
 type DataSourcePermissionArgs struct {
-	// Deprecated: Use `datasource_uid` instead.
+	// Deprecated: Use `datasourceUid` instead.
 	//
 	// Deprecated: Use `datasourceUid` instead
 	DatasourceId pulumi.StringPtrInput
@@ -199,7 +199,7 @@ func (o DataSourcePermissionOutput) ToDataSourcePermissionOutputWithContext(ctx 
 	return o
 }
 
-// Deprecated: Use `datasource_uid` instead.
+// Deprecated: Use `datasourceUid` instead.
 //
 // Deprecated: Use `datasourceUid` instead
 func (o DataSourcePermissionOutput) DatasourceId() pulumi.StringOutput {

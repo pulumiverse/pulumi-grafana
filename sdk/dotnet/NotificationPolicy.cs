@@ -19,9 +19,6 @@ namespace Pulumiverse.Grafana
         [Output("contactPoint")]
         public Output<string> ContactPoint { get; private set; } = null!;
 
-        /// <summary>
-        /// Allow modifying the notification policy from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Output("disableProvenance")]
         public Output<bool?> DisableProvenance { get; private set; } = null!;
 
@@ -115,9 +112,6 @@ namespace Pulumiverse.Grafana
         [Input("contactPoint", required: true)]
         public Input<string> ContactPoint { get; set; } = null!;
 
-        /// <summary>
-        /// Allow modifying the notification policy from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 
@@ -184,9 +178,6 @@ namespace Pulumiverse.Grafana
         [Input("contactPoint")]
         public Input<string>? ContactPoint { get; set; }
 
-        /// <summary>
-        /// Allow modifying the notification policy from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 

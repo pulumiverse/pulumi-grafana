@@ -27,7 +27,7 @@ type Provider struct {
 	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
 	// variable.
 	CloudAccessPolicyToken pulumi.StringPtrOutput `pulumi:"cloudAccessPolicyToken"`
-	// Deprecated: Use `cloud_access_policy_token` instead.
+	// Deprecated: Use `cloudAccessPolicyToken` instead.
 	//
 	// Deprecated: Use `cloudAccessPolicyToken` instead.
 	CloudApiKey pulumi.StringPtrOutput `pulumi:"cloudApiKey"`
@@ -39,14 +39,7 @@ type Provider struct {
 	OncallUrl pulumi.StringPtrOutput `pulumi:"oncallUrl"`
 	// A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
 	SmAccessToken pulumi.StringPtrOutput `pulumi:"smAccessToken"`
-	// Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
-	// correct value for each service region is cited in the [Synthetic Monitoring
-	// documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url).
-	// Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
-	// `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
-	// managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
-	// each provider ensures all providers interact with the same SM API.
-	SmUrl pulumi.StringPtrOutput `pulumi:"smUrl"`
+	SmUrl         pulumi.StringPtrOutput `pulumi:"smUrl"`
 	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
 	// set via the `GRAFANA_TLS_CERT` environment variable.
 	TlsCert pulumi.StringPtrOutput `pulumi:"tlsCert"`
@@ -185,7 +178,7 @@ type providerArgs struct {
 	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
 	// variable.
 	CloudAccessPolicyToken *string `pulumi:"cloudAccessPolicyToken"`
-	// Deprecated: Use `cloud_access_policy_token` instead.
+	// Deprecated: Use `cloudAccessPolicyToken` instead.
 	//
 	// Deprecated: Use `cloudAccessPolicyToken` instead.
 	CloudApiKey *string `pulumi:"cloudApiKey"`
@@ -197,7 +190,7 @@ type providerArgs struct {
 	OncallAccessToken *string `pulumi:"oncallAccessToken"`
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
 	OncallUrl *string `pulumi:"oncallUrl"`
-	// Deprecated: Use the `org_id` attributes on resources instead.
+	// Deprecated: Use the `orgId` attributes on resources instead.
 	//
 	// Deprecated: Use the `orgId` attributes on resources instead.
 	OrgId *int `pulumi:"orgId"`
@@ -212,14 +205,7 @@ type providerArgs struct {
 	RetryWait *int `pulumi:"retryWait"`
 	// A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
 	SmAccessToken *string `pulumi:"smAccessToken"`
-	// Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
-	// correct value for each service region is cited in the [Synthetic Monitoring
-	// documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url).
-	// Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
-	// `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
-	// managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
-	// each provider ensures all providers interact with the same SM API.
-	SmUrl *string `pulumi:"smUrl"`
+	SmUrl         *string `pulumi:"smUrl"`
 	// Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
 	StoreDashboardSha256 *bool `pulumi:"storeDashboardSha256"`
 	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
@@ -243,7 +229,7 @@ type ProviderArgs struct {
 	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
 	// variable.
 	CloudAccessPolicyToken pulumi.StringPtrInput
-	// Deprecated: Use `cloud_access_policy_token` instead.
+	// Deprecated: Use `cloudAccessPolicyToken` instead.
 	//
 	// Deprecated: Use `cloudAccessPolicyToken` instead.
 	CloudApiKey pulumi.StringPtrInput
@@ -255,7 +241,7 @@ type ProviderArgs struct {
 	OncallAccessToken pulumi.StringPtrInput
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
 	OncallUrl pulumi.StringPtrInput
-	// Deprecated: Use the `org_id` attributes on resources instead.
+	// Deprecated: Use the `orgId` attributes on resources instead.
 	//
 	// Deprecated: Use the `orgId` attributes on resources instead.
 	OrgId pulumi.IntPtrInput
@@ -270,14 +256,7 @@ type ProviderArgs struct {
 	RetryWait pulumi.IntPtrInput
 	// A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
 	SmAccessToken pulumi.StringPtrInput
-	// Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
-	// correct value for each service region is cited in the [Synthetic Monitoring
-	// documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url).
-	// Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
-	// `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
-	// managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
-	// each provider ensures all providers interact with the same SM API.
-	SmUrl pulumi.StringPtrInput
+	SmUrl         pulumi.StringPtrInput
 	// Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
 	StoreDashboardSha256 pulumi.BoolPtrInput
 	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
@@ -345,7 +324,7 @@ func (o ProviderOutput) CloudAccessPolicyToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CloudAccessPolicyToken }).(pulumi.StringPtrOutput)
 }
 
-// Deprecated: Use `cloud_access_policy_token` instead.
+// Deprecated: Use `cloudAccessPolicyToken` instead.
 //
 // Deprecated: Use `cloudAccessPolicyToken` instead.
 func (o ProviderOutput) CloudApiKey() pulumi.StringPtrOutput {
@@ -372,13 +351,6 @@ func (o ProviderOutput) SmAccessToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.SmAccessToken }).(pulumi.StringPtrOutput)
 }
 
-// Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The
-// correct value for each service region is cited in the [Synthetic Monitoring
-// documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url).
-// Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the
-// `grafana_cloud_stack` resource. Also note that when a Terraform configuration contains multiple provider instances
-// managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for
-// each provider ensures all providers interact with the same SM API.
 func (o ProviderOutput) SmUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.SmUrl }).(pulumi.StringPtrOutput)
 }

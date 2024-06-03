@@ -38,7 +38,7 @@ export class OncallEscalationChain extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     /**
      * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+     * with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      */
     public readonly teamId!: pulumi.Output<string | undefined>;
 
@@ -77,7 +77,7 @@ export interface OncallEscalationChainState {
     name?: pulumi.Input<string>;
     /**
      * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+     * with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      */
     teamId?: pulumi.Input<string>;
 }
@@ -92,7 +92,7 @@ export interface OncallEscalationChainArgs {
     name?: pulumi.Input<string>;
     /**
      * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+     * with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      */
     teamId?: pulumi.Input<string>;
 }

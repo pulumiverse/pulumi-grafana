@@ -35,7 +35,7 @@ class OncallScheduleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] shifts: The list of ID's of on-call shifts.
         :param pulumi.Input['OncallScheduleSlackArgs'] slack: The Slack-specific settings for a schedule.
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-               with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+               with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         :param pulumi.Input[str] time_zone: The schedule's time zone.
         """
         pulumi.set(__self__, "type", type)
@@ -145,7 +145,7 @@ class OncallScheduleArgs:
     def team_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-        with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+        with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         """
         return pulumi.get(self, "team_id")
 
@@ -187,7 +187,7 @@ class _OncallScheduleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] shifts: The list of ID's of on-call shifts.
         :param pulumi.Input['OncallScheduleSlackArgs'] slack: The Slack-specific settings for a schedule.
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-               with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+               with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         :param pulumi.Input[str] time_zone: The schedule's time zone.
         :param pulumi.Input[str] type: The schedule's type. Valid values are `ical`, `calendar`.
         """
@@ -287,7 +287,7 @@ class _OncallScheduleState:
     def team_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-        with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+        with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         """
         return pulumi.get(self, "team_id")
 
@@ -346,7 +346,7 @@ class OncallSchedule(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] shifts: The list of ID's of on-call shifts.
         :param pulumi.Input[pulumi.InputType['OncallScheduleSlackArgs']] slack: The Slack-specific settings for a schedule.
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-               with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+               with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         :param pulumi.Input[str] time_zone: The schedule's time zone.
         :param pulumi.Input[str] type: The schedule's type. Valid values are `ical`, `calendar`.
         """
@@ -435,7 +435,7 @@ class OncallSchedule(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] shifts: The list of ID's of on-call shifts.
         :param pulumi.Input[pulumi.InputType['OncallScheduleSlackArgs']] slack: The Slack-specific settings for a schedule.
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-               with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+               with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         :param pulumi.Input[str] time_zone: The schedule's time zone.
         :param pulumi.Input[str] type: The schedule's type. Valid values are `ical`, `calendar`.
         """
@@ -507,7 +507,7 @@ class OncallSchedule(pulumi.CustomResource):
     def team_id(self) -> pulumi.Output[Optional[str]]:
         """
         The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-        with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+        with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         """
         return pulumi.get(self, "team_id")
 

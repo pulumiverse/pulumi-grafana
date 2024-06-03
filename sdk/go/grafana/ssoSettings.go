@@ -15,7 +15,7 @@ import (
 type SsoSettings struct {
 	pulumi.CustomResourceState
 
-	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
+	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
 	Oauth2Settings SsoSettingsOauth2SettingsPtrOutput `pulumi:"oauth2Settings"`
 	// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
@@ -56,7 +56,7 @@ func GetSsoSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SsoSettings resources.
 type ssoSettingsState struct {
-	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
+	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
 	Oauth2Settings *SsoSettingsOauth2Settings `pulumi:"oauth2Settings"`
 	// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
 	ProviderName *string `pulumi:"providerName"`
@@ -65,7 +65,7 @@ type ssoSettingsState struct {
 }
 
 type SsoSettingsState struct {
-	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
+	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
 	Oauth2Settings SsoSettingsOauth2SettingsPtrInput
 	// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
 	ProviderName pulumi.StringPtrInput
@@ -78,7 +78,7 @@ func (SsoSettingsState) ElementType() reflect.Type {
 }
 
 type ssoSettingsArgs struct {
-	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
+	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
 	Oauth2Settings *SsoSettingsOauth2Settings `pulumi:"oauth2Settings"`
 	// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
 	ProviderName string `pulumi:"providerName"`
@@ -88,7 +88,7 @@ type ssoSettingsArgs struct {
 
 // The set of arguments for constructing a SsoSettings resource.
 type SsoSettingsArgs struct {
-	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
+	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
 	Oauth2Settings SsoSettingsOauth2SettingsPtrInput
 	// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
 	ProviderName pulumi.StringInput
@@ -183,7 +183,7 @@ func (o SsoSettingsOutput) ToSsoSettingsOutputWithContext(ctx context.Context) S
 	return o
 }
 
-// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
+// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
 func (o SsoSettingsOutput) Oauth2Settings() SsoSettingsOauth2SettingsPtrOutput {
 	return o.ApplyT(func(v *SsoSettings) SsoSettingsOauth2SettingsPtrOutput { return v.Oauth2Settings }).(SsoSettingsOauth2SettingsPtrOutput)
 }

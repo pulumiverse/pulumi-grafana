@@ -76,7 +76,7 @@ export class Role extends pulumi.CustomResource {
      */
     public readonly uid!: pulumi.Output<string>;
     /**
-     * Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
+     * Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
      */
     public readonly version!: pulumi.Output<number | undefined>;
 
@@ -169,7 +169,7 @@ export interface RoleState {
      */
     uid?: pulumi.Input<string>;
     /**
-     * Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
+     * Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
      */
     version?: pulumi.Input<number>;
 }
@@ -220,7 +220,7 @@ export interface RoleArgs {
      */
     uid?: pulumi.Input<string>;
     /**
-     * Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
+     * Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
      */
     version?: pulumi.Input<number>;
 }

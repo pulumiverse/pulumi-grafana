@@ -13,9 +13,6 @@ namespace Pulumiverse.Grafana
     [GrafanaResourceType("grafana:index/muteTiming:MuteTiming")]
     public partial class MuteTiming : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Allow modifying the mute timing from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Output("disableProvenance")]
         public Output<bool?> DisableProvenance { get; private set; } = null!;
 
@@ -84,9 +81,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class MuteTimingArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Allow modifying the mute timing from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 
@@ -122,9 +116,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class MuteTimingState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Allow modifying the mute timing from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 

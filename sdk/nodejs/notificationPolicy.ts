@@ -38,9 +38,6 @@ export class NotificationPolicy extends pulumi.CustomResource {
      * The default contact point to route all unmatched notifications to.
      */
     public readonly contactPoint!: pulumi.Output<string>;
-    /**
-     * Allow modifying the notification policy from other sources than Terraform or the Grafana API.
-     */
     public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
     /**
      * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
@@ -119,9 +116,6 @@ export interface NotificationPolicyState {
      * The default contact point to route all unmatched notifications to.
      */
     contactPoint?: pulumi.Input<string>;
-    /**
-     * Allow modifying the notification policy from other sources than Terraform or the Grafana API.
-     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
@@ -158,9 +152,6 @@ export interface NotificationPolicyArgs {
      * The default contact point to route all unmatched notifications to.
      */
     contactPoint: pulumi.Input<string>;
-    /**
-     * Allow modifying the notification policy from other sources than Terraform or the Grafana API.
-     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,

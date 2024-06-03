@@ -21,7 +21,7 @@ type LibraryPanel struct {
 	DashboardIds pulumi.IntArrayOutput `pulumi:"dashboardIds"`
 	// Description of the library panel.
 	Description pulumi.StringOutput `pulumi:"description"`
-	// Deprecated. Use `folder_uid` instead
+	// Deprecated. Use `folderUid` instead
 	//
 	// Deprecated: Use `folderUid` instead
 	FolderId pulumi.StringPtrOutput `pulumi:"folderId"`
@@ -88,7 +88,7 @@ type libraryPanelState struct {
 	DashboardIds []int `pulumi:"dashboardIds"`
 	// Description of the library panel.
 	Description *string `pulumi:"description"`
-	// Deprecated. Use `folder_uid` instead
+	// Deprecated. Use `folderUid` instead
 	//
 	// Deprecated: Use `folderUid` instead
 	FolderId *string `pulumi:"folderId"`
@@ -123,7 +123,7 @@ type LibraryPanelState struct {
 	DashboardIds pulumi.IntArrayInput
 	// Description of the library panel.
 	Description pulumi.StringPtrInput
-	// Deprecated. Use `folder_uid` instead
+	// Deprecated. Use `folderUid` instead
 	//
 	// Deprecated: Use `folderUid` instead
 	FolderId pulumi.StringPtrInput
@@ -156,7 +156,7 @@ func (LibraryPanelState) ElementType() reflect.Type {
 }
 
 type libraryPanelArgs struct {
-	// Deprecated. Use `folder_uid` instead
+	// Deprecated. Use `folderUid` instead
 	//
 	// Deprecated: Use `folderUid` instead
 	FolderId *string `pulumi:"folderId"`
@@ -176,7 +176,7 @@ type libraryPanelArgs struct {
 
 // The set of arguments for constructing a LibraryPanel resource.
 type LibraryPanelArgs struct {
-	// Deprecated. Use `folder_uid` instead
+	// Deprecated. Use `folderUid` instead
 	//
 	// Deprecated: Use `folderUid` instead
 	FolderId pulumi.StringPtrInput
@@ -296,7 +296,7 @@ func (o LibraryPanelOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *LibraryPanel) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// Deprecated. Use `folder_uid` instead
+// Deprecated. Use `folderUid` instead
 //
 // Deprecated: Use `folderUid` instead
 func (o LibraryPanelOutput) FolderId() pulumi.StringPtrOutput {
