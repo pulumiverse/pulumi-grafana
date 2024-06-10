@@ -15,7 +15,7 @@ import (
 type Report struct {
 	pulumi.CustomResourceState
 
-	// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 	//
 	// Deprecated: Use dashboards instead
 	DashboardId pulumi.IntOutput `pulumi:"dashboardId"`
@@ -89,7 +89,7 @@ func GetReport(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Report resources.
 type reportState struct {
-	// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 	//
 	// Deprecated: Use dashboards instead
 	DashboardId *int `pulumi:"dashboardId"`
@@ -128,7 +128,7 @@ type reportState struct {
 }
 
 type ReportState struct {
-	// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 	//
 	// Deprecated: Use dashboards instead
 	DashboardId pulumi.IntPtrInput
@@ -171,7 +171,7 @@ func (ReportState) ElementType() reflect.Type {
 }
 
 type reportArgs struct {
-	// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 	//
 	// Deprecated: Use dashboards instead
 	DashboardId *int `pulumi:"dashboardId"`
@@ -211,7 +211,7 @@ type reportArgs struct {
 
 // The set of arguments for constructing a Report resource.
 type ReportArgs struct {
-	// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 	//
 	// Deprecated: Use dashboards instead
 	DashboardId pulumi.IntPtrInput
@@ -336,7 +336,7 @@ func (o ReportOutput) ToReportOutputWithContext(ctx context.Context) ReportOutpu
 	return o
 }
 
-// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 //
 // Deprecated: Use dashboards instead
 func (o ReportOutput) DashboardId() pulumi.IntOutput {

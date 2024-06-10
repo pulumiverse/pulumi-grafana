@@ -35,7 +35,7 @@ export class Report extends pulumi.CustomResource {
     }
 
     /**
-     * Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+     * Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
      *
      * @deprecated Use dashboards instead
      */
@@ -163,7 +163,7 @@ export class Report extends pulumi.CustomResource {
  */
 export interface ReportState {
     /**
-     * Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+     * Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
      *
      * @deprecated Use dashboards instead
      */
@@ -235,7 +235,7 @@ export interface ReportState {
  */
 export interface ReportArgs {
     /**
-     * Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+     * Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
      *
      * @deprecated Use dashboards instead
      */

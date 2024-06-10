@@ -65,7 +65,7 @@ export class OncallOnCallShift extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The list of lists with on-call users (for rolling_users event type)
+     * The list of lists with on-call users (for rollingUsers event type)
      */
     public readonly rollingUsers!: pulumi.Output<string[][] | undefined>;
     /**
@@ -79,7 +79,7 @@ export class OncallOnCallShift extends pulumi.CustomResource {
     public readonly startRotationFromUserIndex!: pulumi.Output<number | undefined>;
     /**
      * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+     * with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      */
     public readonly teamId!: pulumi.Output<string | undefined>;
     /**
@@ -91,7 +91,7 @@ export class OncallOnCallShift extends pulumi.CustomResource {
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * The list of on-call users (for single_event and recurrent_event event type).
+     * The list of on-call users (for singleEvent and recurrentEvent event type).
      */
     public readonly users!: pulumi.Output<string[] | undefined>;
     /**
@@ -198,7 +198,7 @@ export interface OncallOnCallShiftState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The list of lists with on-call users (for rolling_users event type)
+     * The list of lists with on-call users (for rollingUsers event type)
      */
     rollingUsers?: pulumi.Input<pulumi.Input<pulumi.Input<string>[]>[]>;
     /**
@@ -212,7 +212,7 @@ export interface OncallOnCallShiftState {
     startRotationFromUserIndex?: pulumi.Input<number>;
     /**
      * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+     * with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      */
     teamId?: pulumi.Input<string>;
     /**
@@ -224,7 +224,7 @@ export interface OncallOnCallShiftState {
      */
     type?: pulumi.Input<string>;
     /**
-     * The list of on-call users (for single_event and recurrent_event event type).
+     * The list of on-call users (for singleEvent and recurrentEvent event type).
      */
     users?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -270,7 +270,7 @@ export interface OncallOnCallShiftArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The list of lists with on-call users (for rolling_users event type)
+     * The list of lists with on-call users (for rollingUsers event type)
      */
     rollingUsers?: pulumi.Input<pulumi.Input<pulumi.Input<string>[]>[]>;
     /**
@@ -284,7 +284,7 @@ export interface OncallOnCallShiftArgs {
     startRotationFromUserIndex?: pulumi.Input<number>;
     /**
      * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+     * with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      */
     teamId?: pulumi.Input<string>;
     /**
@@ -296,7 +296,7 @@ export interface OncallOnCallShiftArgs {
      */
     type: pulumi.Input<string>;
     /**
-     * The list of on-call users (for single_event and recurrent_event event type).
+     * The list of on-call users (for singleEvent and recurrentEvent event type).
      */
     users?: pulumi.Input<pulumi.Input<string>[]>;
     /**

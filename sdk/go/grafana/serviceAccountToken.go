@@ -24,8 +24,8 @@ type ServiceAccountToken struct {
 	// The name of the service account token.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-	// is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-	// never expire.
+	// is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
+	// expire.
 	SecondsToLive pulumi.IntPtrOutput `pulumi:"secondsToLive"`
 	// The ID of the service account to which the token belongs.
 	ServiceAccountId pulumi.StringOutput `pulumi:"serviceAccountId"`
@@ -77,8 +77,8 @@ type serviceAccountTokenState struct {
 	// The name of the service account token.
 	Name *string `pulumi:"name"`
 	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-	// is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-	// never expire.
+	// is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
+	// expire.
 	SecondsToLive *int `pulumi:"secondsToLive"`
 	// The ID of the service account to which the token belongs.
 	ServiceAccountId *string `pulumi:"serviceAccountId"`
@@ -94,8 +94,8 @@ type ServiceAccountTokenState struct {
 	// The name of the service account token.
 	Name pulumi.StringPtrInput
 	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-	// is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-	// never expire.
+	// is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
+	// expire.
 	SecondsToLive pulumi.IntPtrInput
 	// The ID of the service account to which the token belongs.
 	ServiceAccountId pulumi.StringPtrInput
@@ -109,8 +109,8 @@ type serviceAccountTokenArgs struct {
 	// The name of the service account token.
 	Name *string `pulumi:"name"`
 	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-	// is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-	// never expire.
+	// is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
+	// expire.
 	SecondsToLive *int `pulumi:"secondsToLive"`
 	// The ID of the service account to which the token belongs.
 	ServiceAccountId string `pulumi:"serviceAccountId"`
@@ -121,8 +121,8 @@ type ServiceAccountTokenArgs struct {
 	// The name of the service account token.
 	Name pulumi.StringPtrInput
 	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-	// is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-	// never expire.
+	// is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
+	// expire.
 	SecondsToLive pulumi.IntPtrInput
 	// The ID of the service account to which the token belongs.
 	ServiceAccountId pulumi.StringInput
@@ -236,8 +236,8 @@ func (o ServiceAccountTokenOutput) Name() pulumi.StringOutput {
 }
 
 // The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-// is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-// never expire.
+// is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
+// expire.
 func (o ServiceAccountTokenOutput) SecondsToLive() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ServiceAccountToken) pulumi.IntPtrOutput { return v.SecondsToLive }).(pulumi.IntPtrOutput)
 }

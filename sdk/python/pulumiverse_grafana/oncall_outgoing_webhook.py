@@ -42,7 +42,7 @@ class OncallOutgoingWebhookArgs:
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-               with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+               with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         :param pulumi.Input[str] trigger_template: A template used to dynamically determine whether the webhook should execute based on the content of the payload.
         :param pulumi.Input[str] trigger_type: The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
                group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
@@ -202,7 +202,7 @@ class OncallOutgoingWebhookArgs:
     def team_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-        with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+        with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         """
         return pulumi.get(self, "team_id")
 
@@ -278,7 +278,7 @@ class _OncallOutgoingWebhookState:
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-               with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+               with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         :param pulumi.Input[str] trigger_template: A template used to dynamically determine whether the webhook should execute based on the content of the payload.
         :param pulumi.Input[str] trigger_type: The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
                group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
@@ -428,7 +428,7 @@ class _OncallOutgoingWebhookState:
     def team_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-        with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+        with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         """
         return pulumi.get(self, "team_id")
 
@@ -521,7 +521,7 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-               with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+               with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         :param pulumi.Input[str] trigger_template: A template used to dynamically determine whether the webhook should execute based on the content of the payload.
         :param pulumi.Input[str] trigger_type: The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
                group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
@@ -634,7 +634,7 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-               with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+               with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         :param pulumi.Input[str] trigger_template: A template used to dynamically determine whether the webhook should execute based on the content of the payload.
         :param pulumi.Input[str] trigger_type: The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
                group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
@@ -739,7 +739,7 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
     def team_id(self) -> pulumi.Output[Optional[str]]:
         """
         The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-        with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+        with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         """
         return pulumi.get(self, "team_id")
 

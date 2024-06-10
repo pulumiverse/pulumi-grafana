@@ -28,7 +28,7 @@ type OncallSchedule struct {
 	// The Slack-specific settings for a schedule.
 	Slack OncallScheduleSlackPtrOutput `pulumi:"slack"`
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
 	// The schedule's time zone.
 	TimeZone pulumi.StringPtrOutput `pulumi:"timeZone"`
@@ -82,7 +82,7 @@ type oncallScheduleState struct {
 	// The Slack-specific settings for a schedule.
 	Slack *OncallScheduleSlack `pulumi:"slack"`
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId *string `pulumi:"teamId"`
 	// The schedule's time zone.
 	TimeZone *string `pulumi:"timeZone"`
@@ -104,7 +104,7 @@ type OncallScheduleState struct {
 	// The Slack-specific settings for a schedule.
 	Slack OncallScheduleSlackPtrInput
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId pulumi.StringPtrInput
 	// The schedule's time zone.
 	TimeZone pulumi.StringPtrInput
@@ -130,7 +130,7 @@ type oncallScheduleArgs struct {
 	// The Slack-specific settings for a schedule.
 	Slack *OncallScheduleSlack `pulumi:"slack"`
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId *string `pulumi:"teamId"`
 	// The schedule's time zone.
 	TimeZone *string `pulumi:"timeZone"`
@@ -153,7 +153,7 @@ type OncallScheduleArgs struct {
 	// The Slack-specific settings for a schedule.
 	Slack OncallScheduleSlackPtrInput
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId pulumi.StringPtrInput
 	// The schedule's time zone.
 	TimeZone pulumi.StringPtrInput
@@ -279,7 +279,7 @@ func (o OncallScheduleOutput) Slack() OncallScheduleSlackPtrOutput {
 }
 
 // The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+// with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 func (o OncallScheduleOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallSchedule) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
 }
