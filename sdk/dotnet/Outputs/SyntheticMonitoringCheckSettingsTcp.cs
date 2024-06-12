@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Outputs
     public sealed class SyntheticMonitoringCheckSettingsTcp
     {
         /// <summary>
-        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
+        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
         /// </summary>
         public readonly string? IpVersion;
         /// <summary>
@@ -27,7 +27,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? SourceIpAddress;
         /// <summary>
-        /// Whether or not TLS is used when the connection is initiated.
+        /// Whether or not TLS is used when the connection is initiated. Defaults to `false`.
         /// </summary>
         public readonly bool? Tls;
         /// <summary>

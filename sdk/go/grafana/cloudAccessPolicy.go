@@ -12,6 +12,79 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
+// * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-an-access-policy)
+//
+// Required access policy scopes:
+//
+// * accesspolicies:read
+// * accesspolicies:write
+// * accesspolicies:delete
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			current, err := grafana.GetCloudOrganization(ctx, &grafana.GetCloudOrganizationArgs{
+//				Slug: pulumi.StringRef("<your org slug>"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			testCloudAccessPolicy, err := grafana.NewCloudAccessPolicy(ctx, "testCloudAccessPolicy", &grafana.CloudAccessPolicyArgs{
+//				Region:      pulumi.String("us"),
+//				DisplayName: pulumi.String("My Policy"),
+//				Scopes: pulumi.StringArray{
+//					pulumi.String("metrics:read"),
+//					pulumi.String("logs:read"),
+//				},
+//				Realms: grafana.CloudAccessPolicyRealmArray{
+//					&grafana.CloudAccessPolicyRealmArgs{
+//						Type:       pulumi.String("org"),
+//						Identifier: pulumi.String(current.Id),
+//						LabelPolicies: grafana.CloudAccessPolicyRealmLabelPolicyArray{
+//							&grafana.CloudAccessPolicyRealmLabelPolicyArgs{
+//								Selector: pulumi.String("{namespace=\"default\"}"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = grafana.NewCloudAccessPolicyToken(ctx, "testCloudAccessPolicyToken", &grafana.CloudAccessPolicyTokenArgs{
+//				Region:         pulumi.String("us"),
+//				AccessPolicyId: testCloudAccessPolicy.PolicyId,
+//				DisplayName:    pulumi.String("My Policy Token"),
+//				ExpiresAt:      pulumi.String("2023-01-01T00:00:00Z"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy name "{{ region }}:{{ policyId }}"
+// ```
 type CloudAccessPolicy struct {
 	pulumi.CustomResourceState
 
@@ -24,12 +97,9 @@ type CloudAccessPolicy struct {
 	// ID of the access policy.
 	PolicyId pulumi.StringOutput               `pulumi:"policyId"`
 	Realms   CloudAccessPolicyRealmArrayOutput `pulumi:"realms"`
-	// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of
-	// available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+	// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Scopes of the access policy. See
-	// https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for
-	// possible values.
+	// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
 	Scopes pulumi.StringArrayOutput `pulumi:"scopes"`
 	// Last update date of the access policy.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
@@ -83,12 +153,9 @@ type cloudAccessPolicyState struct {
 	// ID of the access policy.
 	PolicyId *string                  `pulumi:"policyId"`
 	Realms   []CloudAccessPolicyRealm `pulumi:"realms"`
-	// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of
-	// available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+	// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	Region *string `pulumi:"region"`
-	// Scopes of the access policy. See
-	// https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for
-	// possible values.
+	// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
 	Scopes []string `pulumi:"scopes"`
 	// Last update date of the access policy.
 	UpdatedAt *string `pulumi:"updatedAt"`
@@ -104,12 +171,9 @@ type CloudAccessPolicyState struct {
 	// ID of the access policy.
 	PolicyId pulumi.StringPtrInput
 	Realms   CloudAccessPolicyRealmArrayInput
-	// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of
-	// available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+	// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	Region pulumi.StringPtrInput
-	// Scopes of the access policy. See
-	// https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for
-	// possible values.
+	// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
 	Scopes pulumi.StringArrayInput
 	// Last update date of the access policy.
 	UpdatedAt pulumi.StringPtrInput
@@ -125,12 +189,9 @@ type cloudAccessPolicyArgs struct {
 	// Name of the access policy.
 	Name   *string                  `pulumi:"name"`
 	Realms []CloudAccessPolicyRealm `pulumi:"realms"`
-	// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of
-	// available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+	// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	Region string `pulumi:"region"`
-	// Scopes of the access policy. See
-	// https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for
-	// possible values.
+	// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
 	Scopes []string `pulumi:"scopes"`
 }
 
@@ -141,12 +202,9 @@ type CloudAccessPolicyArgs struct {
 	// Name of the access policy.
 	Name   pulumi.StringPtrInput
 	Realms CloudAccessPolicyRealmArrayInput
-	// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of
-	// available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+	// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	Region pulumi.StringInput
-	// Scopes of the access policy. See
-	// https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for
-	// possible values.
+	// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
 	Scopes pulumi.StringArrayInput
 }
 
@@ -261,15 +319,12 @@ func (o CloudAccessPolicyOutput) Realms() CloudAccessPolicyRealmArrayOutput {
 	return o.ApplyT(func(v *CloudAccessPolicy) CloudAccessPolicyRealmArrayOutput { return v.Realms }).(CloudAccessPolicyRealmArrayOutput)
 }
 
-// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of
-// available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 func (o CloudAccessPolicyOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudAccessPolicy) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Scopes of the access policy. See
-// https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for
-// possible values.
+// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
 func (o CloudAccessPolicyOutput) Scopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *CloudAccessPolicy) pulumi.StringArrayOutput { return v.Scopes }).(pulumi.StringArrayOutput)
 }

@@ -168,7 +168,56 @@ class MuteTiming(pulumi.CustomResource):
                  org_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a MuteTiming resource with the given unique name, props, and options.
+        Manages Grafana Alerting mute timings.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/mute-timings/)
+        * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#mute-timings)
+
+        This resource requires Grafana 9.1.0 or later.
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        my_mute_timing = grafana.MuteTiming("myMuteTiming", intervals=[grafana.MuteTimingIntervalArgs(
+            days_of_months=[
+                "1:7",
+                "-1",
+            ],
+            location="America/New_York",
+            months=[
+                "1:3",
+                "december",
+            ],
+            times=[grafana.MuteTimingIntervalTimeArgs(
+                end="14:17",
+                start="04:56",
+            )],
+            weekdays=[
+                "monday",
+                "tuesday:thursday",
+            ],
+            years=[
+                "2030",
+                "2025:2026",
+            ],
+        )])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/muteTiming:MuteTiming name "{{ name }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/muteTiming:MuteTiming name "{{ orgID }}:{{ name }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] disable_provenance: Allow modifying the mute timing from other sources than Terraform or the Grafana API.
@@ -183,7 +232,56 @@ class MuteTiming(pulumi.CustomResource):
                  args: Optional[MuteTimingArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a MuteTiming resource with the given unique name, props, and options.
+        Manages Grafana Alerting mute timings.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/mute-timings/)
+        * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#mute-timings)
+
+        This resource requires Grafana 9.1.0 or later.
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        my_mute_timing = grafana.MuteTiming("myMuteTiming", intervals=[grafana.MuteTimingIntervalArgs(
+            days_of_months=[
+                "1:7",
+                "-1",
+            ],
+            location="America/New_York",
+            months=[
+                "1:3",
+                "december",
+            ],
+            times=[grafana.MuteTimingIntervalTimeArgs(
+                end="14:17",
+                start="04:56",
+            )],
+            weekdays=[
+                "monday",
+                "tuesday:thursday",
+            ],
+            years=[
+                "2030",
+                "2025:2026",
+            ],
+        )])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/muteTiming:MuteTiming name "{{ name }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/muteTiming:MuteTiming name "{{ orgID }}:{{ name }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param MuteTimingArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

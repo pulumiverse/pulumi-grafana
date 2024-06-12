@@ -12,6 +12,75 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages a single permission item for a service account. Conflicts with the "ServiceAccountPermission" resource which manages the entire set of permissions for a service account.
+// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := grafana.NewServiceAccount(ctx, "test", &grafana.ServiceAccountArgs{
+//				Role:       pulumi.String("Editor"),
+//				IsDisabled: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			team, err := grafana.NewTeam(ctx, "team", nil)
+//			if err != nil {
+//				return err
+//			}
+//			user, err := grafana.NewUser(ctx, "user", &grafana.UserArgs{
+//				Email:    pulumi.String("user.name@example.com"),
+//				Login:    pulumi.String("user.name"),
+//				Password: pulumi.String("my-password"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = grafana.NewServiceAccountPermissionItem(ctx, "onTeam", &grafana.ServiceAccountPermissionItemArgs{
+//				ServiceAccountId: test.ID(),
+//				Team:             team.ID(),
+//				Permission:       pulumi.String("Admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = grafana.NewServiceAccountPermissionItem(ctx, "onUser", &grafana.ServiceAccountPermissionItemArgs{
+//				ServiceAccountId: test.ID(),
+//				User:             user.ID(),
+//				Permission:       pulumi.String("Admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ orgID }}:{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+// ```
 type ServiceAccountPermissionItem struct {
 	pulumi.CustomResourceState
 

@@ -10,6 +10,71 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// Manages a single permission item for a folder. Conflicts with the "grafana.FolderPermission" resource which manages the entire set of permissions for a folder.
+    /// 		* [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+    /// 		* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var team = new Grafana.Team("team");
+    /// 
+    ///     var user = new Grafana.User("user", new()
+    ///     {
+    ///         Email = "user.name@example.com",
+    ///         Login = "user.name",
+    ///         Password = "my-password",
+    ///     });
+    /// 
+    ///     var collection = new Grafana.Folder("collection", new()
+    ///     {
+    ///         Title = "Folder Title",
+    ///     });
+    /// 
+    ///     var onRole = new Grafana.FolderPermissionItem("onRole", new()
+    ///     {
+    ///         FolderUid = collection.Uid,
+    ///         Role = "Viewer",
+    ///         Permission = "Edit",
+    ///     });
+    /// 
+    ///     var onTeam = new Grafana.FolderPermissionItem("onTeam", new()
+    ///     {
+    ///         FolderUid = collection.Uid,
+    ///         Team = team.Id,
+    ///         Permission = "View",
+    ///     });
+    /// 
+    ///     var onUser = new Grafana.FolderPermissionItem("onUser", new()
+    ///     {
+    ///         FolderUid = collection.Uid,
+    ///         User = user.Id,
+    ///         Permission = "Admin",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ orgID }}:{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+    /// ```
+    /// </summary>
     [GrafanaResourceType("grafana:index/folderPermissionItem:FolderPermissionItem")]
     public partial class FolderPermissionItem : global::Pulumi.CustomResource
     {

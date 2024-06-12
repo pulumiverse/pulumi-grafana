@@ -230,7 +230,61 @@ class DataSourcePermissionItem(pulumi.CustomResource):
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DataSourcePermissionItem resource with the given unique name, props, and options.
+        Manages a single permission item for a datasource. Conflicts with the "DataSourcePermission" resource which manages the entire set of permissions for a datasource.
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        team_team = grafana.Team("teamTeam")
+        foo = grafana.DataSource("foo",
+            type="cloudwatch",
+            json_data_encoded=json.dumps({
+                "defaultRegion": "us-east-1",
+                "authType": "keys",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "accessKey": "123",
+                "secretKey": "456",
+            }))
+        user_user = grafana.User("userUser",
+            email="test-ds-permissions@example.com",
+            login="test-ds-permissions",
+            password="hunter2")
+        sa = grafana.ServiceAccount("sa", role="Viewer")
+        team_data_source_permission_item = grafana.DataSourcePermissionItem("teamDataSourcePermissionItem",
+            datasource_uid=foo.uid,
+            team=team_team.id,
+            permission="Edit")
+        user_data_source_permission_item = grafana.DataSourcePermissionItem("userDataSourcePermissionItem",
+            datasource_uid=foo.uid,
+            user=user_user.id,
+            permission="Edit")
+        role = grafana.DataSourcePermissionItem("role",
+            datasource_uid=foo.uid,
+            role="Viewer",
+            permission="Query")
+        service_account = grafana.DataSourcePermissionItem("serviceAccount",
+            datasource_uid=foo.uid,
+            user=sa.id,
+            permission="Query")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/dataSourcePermissionItem:DataSourcePermissionItem name "{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/dataSourcePermissionItem:DataSourcePermissionItem name "{{ orgID }}:{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] datasource_uid: The UID of the datasource.
@@ -247,7 +301,61 @@ class DataSourcePermissionItem(pulumi.CustomResource):
                  args: DataSourcePermissionItemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DataSourcePermissionItem resource with the given unique name, props, and options.
+        Manages a single permission item for a datasource. Conflicts with the "DataSourcePermission" resource which manages the entire set of permissions for a datasource.
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        team_team = grafana.Team("teamTeam")
+        foo = grafana.DataSource("foo",
+            type="cloudwatch",
+            json_data_encoded=json.dumps({
+                "defaultRegion": "us-east-1",
+                "authType": "keys",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "accessKey": "123",
+                "secretKey": "456",
+            }))
+        user_user = grafana.User("userUser",
+            email="test-ds-permissions@example.com",
+            login="test-ds-permissions",
+            password="hunter2")
+        sa = grafana.ServiceAccount("sa", role="Viewer")
+        team_data_source_permission_item = grafana.DataSourcePermissionItem("teamDataSourcePermissionItem",
+            datasource_uid=foo.uid,
+            team=team_team.id,
+            permission="Edit")
+        user_data_source_permission_item = grafana.DataSourcePermissionItem("userDataSourcePermissionItem",
+            datasource_uid=foo.uid,
+            user=user_user.id,
+            permission="Edit")
+        role = grafana.DataSourcePermissionItem("role",
+            datasource_uid=foo.uid,
+            role="Viewer",
+            permission="Query")
+        service_account = grafana.DataSourcePermissionItem("serviceAccount",
+            datasource_uid=foo.uid,
+            user=sa.id,
+            permission="Query")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/dataSourcePermissionItem:DataSourcePermissionItem name "{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/dataSourcePermissionItem:DataSourcePermissionItem name "{{ orgID }}:{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param DataSourcePermissionItemArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -12,11 +12,120 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages Grafana public dashboards.
+//
+// **Note:** This resource is available only with Grafana 10.2+.
+//
+// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-public/)
+// * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/dashboard_public/)
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Optional (On-premise, not supported in Grafana Cloud): Create an organization
+//			myOrg, err := grafana.NewOrganization(ctx, "myOrg", nil)
+//			if err != nil {
+//				return err
+//			}
+//			// Create resources (optional: within the organization)
+//			myFolder, err := grafana.NewFolder(ctx, "myFolder", &grafana.FolderArgs{
+//				OrgId: myOrg.OrgId,
+//				Title: pulumi.String("test Folder"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"title": "My Terraform Dashboard",
+//				"uid":   "my-dashboard-uid",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			testDash, err := grafana.NewDashboard(ctx, "testDash", &grafana.DashboardArgs{
+//				OrgId:      myOrg.OrgId,
+//				Folder:     myFolder.ID(),
+//				ConfigJson: pulumi.String(json0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = grafana.NewDashboardPublic(ctx, "myPublicDashboard", &grafana.DashboardPublicArgs{
+//				OrgId:                myOrg.OrgId,
+//				DashboardUid:         testDash.Uid,
+//				Uid:                  pulumi.String("my-custom-public-uid"),
+//				AccessToken:          pulumi.String("e99e4275da6f410d83760eefa934d8d2"),
+//				TimeSelectionEnabled: pulumi.Bool(true),
+//				IsEnabled:            pulumi.Bool(true),
+//				AnnotationsEnabled:   pulumi.Bool(true),
+//				Share:                pulumi.String("public"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Optional (On-premise, not supported in Grafana Cloud): Create an organization
+//			myOrg2, err := grafana.NewOrganization(ctx, "myOrg2", nil)
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//				"title": "My Terraform Dashboard2",
+//				"uid":   "my-dashboard-uid2",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json1 := string(tmpJSON1)
+//			testDash2, err := grafana.NewDashboard(ctx, "testDash2", &grafana.DashboardArgs{
+//				OrgId:      myOrg2.OrgId,
+//				ConfigJson: pulumi.String(json1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = grafana.NewDashboardPublic(ctx, "myPublicDashboard2", &grafana.DashboardPublicArgs{
+//				OrgId:        myOrg2.OrgId,
+//				DashboardUid: testDash2.Uid,
+//				Share:        pulumi.String("public"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/dashboardPublic:DashboardPublic name "{{ dashboardUID }}:{{ publicDashboardUID }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/dashboardPublic:DashboardPublic name "{{ orgID }}:{{ dashboardUID }}:{{ publicDashboardUID }}"
+// ```
 type DashboardPublic struct {
 	pulumi.CustomResourceState
 
-	// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
-	// provided when creating a public dashboard.
+	// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
 	AccessToken pulumi.StringOutput `pulumi:"accessToken"`
 	// Set to `true` to show annotations. The default value is `false`.
 	AnnotationsEnabled pulumi.BoolPtrOutput `pulumi:"annotationsEnabled"`
@@ -30,8 +139,7 @@ type DashboardPublic struct {
 	Share pulumi.StringPtrOutput `pulumi:"share"`
 	// Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
 	TimeSelectionEnabled pulumi.BoolPtrOutput `pulumi:"timeSelectionEnabled"`
-	// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
-	// dashboard.
+	// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
 	Uid pulumi.StringOutput `pulumi:"uid"`
 }
 
@@ -68,8 +176,7 @@ func GetDashboardPublic(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DashboardPublic resources.
 type dashboardPublicState struct {
-	// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
-	// provided when creating a public dashboard.
+	// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
 	AccessToken *string `pulumi:"accessToken"`
 	// Set to `true` to show annotations. The default value is `false`.
 	AnnotationsEnabled *bool `pulumi:"annotationsEnabled"`
@@ -83,14 +190,12 @@ type dashboardPublicState struct {
 	Share *string `pulumi:"share"`
 	// Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
 	TimeSelectionEnabled *bool `pulumi:"timeSelectionEnabled"`
-	// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
-	// dashboard.
+	// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
 	Uid *string `pulumi:"uid"`
 }
 
 type DashboardPublicState struct {
-	// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
-	// provided when creating a public dashboard.
+	// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
 	AccessToken pulumi.StringPtrInput
 	// Set to `true` to show annotations. The default value is `false`.
 	AnnotationsEnabled pulumi.BoolPtrInput
@@ -104,8 +209,7 @@ type DashboardPublicState struct {
 	Share pulumi.StringPtrInput
 	// Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
 	TimeSelectionEnabled pulumi.BoolPtrInput
-	// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
-	// dashboard.
+	// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
 	Uid pulumi.StringPtrInput
 }
 
@@ -114,8 +218,7 @@ func (DashboardPublicState) ElementType() reflect.Type {
 }
 
 type dashboardPublicArgs struct {
-	// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
-	// provided when creating a public dashboard.
+	// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
 	AccessToken *string `pulumi:"accessToken"`
 	// Set to `true` to show annotations. The default value is `false`.
 	AnnotationsEnabled *bool `pulumi:"annotationsEnabled"`
@@ -129,15 +232,13 @@ type dashboardPublicArgs struct {
 	Share *string `pulumi:"share"`
 	// Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
 	TimeSelectionEnabled *bool `pulumi:"timeSelectionEnabled"`
-	// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
-	// dashboard.
+	// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
 	Uid *string `pulumi:"uid"`
 }
 
 // The set of arguments for constructing a DashboardPublic resource.
 type DashboardPublicArgs struct {
-	// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
-	// provided when creating a public dashboard.
+	// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
 	AccessToken pulumi.StringPtrInput
 	// Set to `true` to show annotations. The default value is `false`.
 	AnnotationsEnabled pulumi.BoolPtrInput
@@ -151,8 +252,7 @@ type DashboardPublicArgs struct {
 	Share pulumi.StringPtrInput
 	// Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
 	TimeSelectionEnabled pulumi.BoolPtrInput
-	// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
-	// dashboard.
+	// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
 	Uid pulumi.StringPtrInput
 }
 
@@ -243,8 +343,7 @@ func (o DashboardPublicOutput) ToDashboardPublicOutputWithContext(ctx context.Co
 	return o
 }
 
-// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
-// provided when creating a public dashboard.
+// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
 func (o DashboardPublicOutput) AccessToken() pulumi.StringOutput {
 	return o.ApplyT(func(v *DashboardPublic) pulumi.StringOutput { return v.AccessToken }).(pulumi.StringOutput)
 }
@@ -279,8 +378,7 @@ func (o DashboardPublicOutput) TimeSelectionEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DashboardPublic) pulumi.BoolPtrOutput { return v.TimeSelectionEnabled }).(pulumi.BoolPtrOutput)
 }
 
-// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
-// dashboard.
+// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
 func (o DashboardPublicOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v *DashboardPublic) pulumi.StringOutput { return v.Uid }).(pulumi.StringOutput)
 }

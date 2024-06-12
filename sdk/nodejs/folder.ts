@@ -4,6 +4,43 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const testFolderFolder = new grafana.Folder("testFolderFolder", {title: "Terraform Test Folder"});
+ * const testFolderDashboard = new grafana.Dashboard("testFolderDashboard", {
+ *     folder: testFolderFolder.id,
+ *     configJson: `{
+ *   "title": "Dashboard in folder",
+ *   "uid": "dashboard-in-folder"
+ * }
+ * `,
+ * });
+ * const testFolderWithUid = new grafana.Folder("testFolderWithUid", {
+ *     uid: "test-folder-uid",
+ *     title: "Terraform Test Folder With UID",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/folder:Folder name "{{ uid }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/folder:Folder name "{{ orgID }}:{{ uid }}"
+ * ```
+ */
 export class Folder extends pulumi.CustomResource {
     /**
      * Get an existing Folder resource's state with the given name, ID, and optional extra
@@ -37,12 +74,11 @@ export class Folder extends pulumi.CustomResource {
      */
     public readonly orgId!: pulumi.Output<string | undefined>;
     /**
-     * The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
-     * folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+     * The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
      */
     public readonly parentFolderUid!: pulumi.Output<string | undefined>;
     /**
-     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
+     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
      */
     public readonly preventDestroyIfNotEmpty!: pulumi.Output<boolean | undefined>;
     /**
@@ -103,12 +139,11 @@ export interface FolderState {
      */
     orgId?: pulumi.Input<string>;
     /**
-     * The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
-     * folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+     * The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
      */
     parentFolderUid?: pulumi.Input<string>;
     /**
-     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
+     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
      */
     preventDestroyIfNotEmpty?: pulumi.Input<boolean>;
     /**
@@ -134,12 +169,11 @@ export interface FolderArgs {
      */
     orgId?: pulumi.Input<string>;
     /**
-     * The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
-     * folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+     * The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
      */
     parentFolderUid?: pulumi.Input<string>;
     /**
-     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
+     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
      */
     preventDestroyIfNotEmpty?: pulumi.Input<boolean>;
     /**

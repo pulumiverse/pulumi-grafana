@@ -19,11 +19,11 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody> Bodies;
         /// <summary>
-        /// The headers to send with the request
+        /// The HTTP headers set for the probe.
         /// </summary>
         public readonly ImmutableArray<Outputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader> Headers;
         /// <summary>
-        /// The HTTP method to use
+        /// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
         /// </summary>
         public readonly string Method;
         /// <summary>

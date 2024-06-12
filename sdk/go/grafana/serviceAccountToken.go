@@ -12,6 +12,53 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// **Note:** This resource is available only with Grafana 9.1+.
+//
+// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := grafana.NewServiceAccount(ctx, "test", &grafana.ServiceAccountArgs{
+//				Role: pulumi.String("Viewer"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			foo, err := grafana.NewServiceAccountToken(ctx, "foo", &grafana.ServiceAccountTokenArgs{
+//				ServiceAccountId: test.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			bar, err := grafana.NewServiceAccountToken(ctx, "bar", &grafana.ServiceAccountTokenArgs{
+//				ServiceAccountId: test.ID(),
+//				SecondsToLive:    pulumi.Int(30),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("serviceAccountTokenFooKeyOnly", foo.Key)
+//			ctx.Export("serviceAccountTokenBar", bar)
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 type ServiceAccountToken struct {
 	pulumi.CustomResourceState
 
@@ -23,9 +70,7 @@ type ServiceAccountToken struct {
 	Key pulumi.StringOutput `pulumi:"key"`
 	// The name of the service account token.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-	// is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-	// never expire.
+	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
 	SecondsToLive pulumi.IntPtrOutput `pulumi:"secondsToLive"`
 	// The ID of the service account to which the token belongs.
 	ServiceAccountId pulumi.StringOutput `pulumi:"serviceAccountId"`
@@ -76,9 +121,7 @@ type serviceAccountTokenState struct {
 	Key *string `pulumi:"key"`
 	// The name of the service account token.
 	Name *string `pulumi:"name"`
-	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-	// is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-	// never expire.
+	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
 	SecondsToLive *int `pulumi:"secondsToLive"`
 	// The ID of the service account to which the token belongs.
 	ServiceAccountId *string `pulumi:"serviceAccountId"`
@@ -93,9 +136,7 @@ type ServiceAccountTokenState struct {
 	Key pulumi.StringPtrInput
 	// The name of the service account token.
 	Name pulumi.StringPtrInput
-	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-	// is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-	// never expire.
+	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
 	SecondsToLive pulumi.IntPtrInput
 	// The ID of the service account to which the token belongs.
 	ServiceAccountId pulumi.StringPtrInput
@@ -108,9 +149,7 @@ func (ServiceAccountTokenState) ElementType() reflect.Type {
 type serviceAccountTokenArgs struct {
 	// The name of the service account token.
 	Name *string `pulumi:"name"`
-	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-	// is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-	// never expire.
+	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
 	SecondsToLive *int `pulumi:"secondsToLive"`
 	// The ID of the service account to which the token belongs.
 	ServiceAccountId string `pulumi:"serviceAccountId"`
@@ -120,9 +159,7 @@ type serviceAccountTokenArgs struct {
 type ServiceAccountTokenArgs struct {
 	// The name of the service account token.
 	Name pulumi.StringPtrInput
-	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-	// is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-	// never expire.
+	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
 	SecondsToLive pulumi.IntPtrInput
 	// The ID of the service account to which the token belongs.
 	ServiceAccountId pulumi.StringInput
@@ -235,9 +272,7 @@ func (o ServiceAccountTokenOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServiceAccountToken) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-// is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-// never expire.
+// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
 func (o ServiceAccountTokenOutput) SecondsToLive() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ServiceAccountToken) pulumi.IntPtrOutput { return v.SecondsToLive }).(pulumi.IntPtrOutput)
 }

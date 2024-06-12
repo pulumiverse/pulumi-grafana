@@ -12,9 +12,51 @@ namespace Pulumiverse.Grafana
 {
     public static class GetCloudOrganization
     {
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Grafana.GetCloudOrganization.Invoke(new()
+        ///     {
+        ///         Slug = "my-org",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// </summary>
         public static Task<GetCloudOrganizationResult> InvokeAsync(GetCloudOrganizationArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudOrganizationResult>("grafana:index/getCloudOrganization:getCloudOrganization", args ?? new GetCloudOrganizationArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Grafana.GetCloudOrganization.Invoke(new()
+        ///     {
+        ///         Slug = "my-org",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// </summary>
         public static Output<GetCloudOrganizationResult> Invoke(GetCloudOrganizationInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudOrganizationResult>("grafana:index/getCloudOrganization:getCloudOrganization", args ?? new GetCloudOrganizationInvokeArgs(), options.WithDefaults());
     }
@@ -22,6 +64,9 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetCloudOrganizationArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
@@ -36,6 +81,9 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetCloudOrganizationInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
@@ -53,6 +101,9 @@ namespace Pulumiverse.Grafana
     public sealed class GetCloudOrganizationResult
     {
         public readonly string CreatedAt;
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         public readonly string Id;
         public readonly string Name;
         public readonly string Slug;

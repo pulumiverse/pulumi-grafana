@@ -10,6 +10,92 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// Manages a single permission item for a datasource. Conflicts with the "grafana.DataSourcePermission" resource which manages the entire set of permissions for a datasource.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var teamTeam = new Grafana.Team("teamTeam");
+    /// 
+    ///     var foo = new Grafana.DataSource("foo", new()
+    ///     {
+    ///         Type = "cloudwatch",
+    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["defaultRegion"] = "us-east-1",
+    ///             ["authType"] = "keys",
+    ///         }),
+    ///         SecureJsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["accessKey"] = "123",
+    ///             ["secretKey"] = "456",
+    ///         }),
+    ///     });
+    /// 
+    ///     var userUser = new Grafana.User("userUser", new()
+    ///     {
+    ///         Email = "test-ds-permissions@example.com",
+    ///         Login = "test-ds-permissions",
+    ///         Password = "hunter2",
+    ///     });
+    /// 
+    ///     var sa = new Grafana.ServiceAccount("sa", new()
+    ///     {
+    ///         Role = "Viewer",
+    ///     });
+    /// 
+    ///     var teamDataSourcePermissionItem = new Grafana.DataSourcePermissionItem("teamDataSourcePermissionItem", new()
+    ///     {
+    ///         DatasourceUid = foo.Uid,
+    ///         Team = teamTeam.Id,
+    ///         Permission = "Edit",
+    ///     });
+    /// 
+    ///     var userDataSourcePermissionItem = new Grafana.DataSourcePermissionItem("userDataSourcePermissionItem", new()
+    ///     {
+    ///         DatasourceUid = foo.Uid,
+    ///         User = userUser.Id,
+    ///         Permission = "Edit",
+    ///     });
+    /// 
+    ///     var role = new Grafana.DataSourcePermissionItem("role", new()
+    ///     {
+    ///         DatasourceUid = foo.Uid,
+    ///         Role = "Viewer",
+    ///         Permission = "Query",
+    ///     });
+    /// 
+    ///     var serviceAccount = new Grafana.DataSourcePermissionItem("serviceAccount", new()
+    ///     {
+    ///         DatasourceUid = foo.Uid,
+    ///         User = sa.Id,
+    ///         Permission = "Query",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/dataSourcePermissionItem:DataSourcePermissionItem name "{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/dataSourcePermissionItem:DataSourcePermissionItem name "{{ orgID }}:{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+    /// ```
+    /// </summary>
     [GrafanaResourceType("grafana:index/dataSourcePermissionItem:DataSourcePermissionItem")]
     public partial class DataSourcePermissionItem : global::Pulumi.CustomResource
     {

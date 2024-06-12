@@ -12,10 +12,56 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages service accounts of a Grafana Cloud stack using the Cloud API
+// This can be used to bootstrap a management service account for a new stack
+//
+// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+//
+// Required access policy scopes:
+//
+// * stacks:read
+// * stack-service-accounts:write
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := grafana.NewCloudStackServiceAccount(ctx, "cloudSa", &grafana.CloudStackServiceAccountArgs{
+//				IsDisabled: pulumi.Bool(false),
+//				Role:       pulumi.String("Admin"),
+//				StackSlug:  pulumi.String("<your stack slug>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/cloudStackServiceAccount:CloudStackServiceAccount name "{{ stackSlug }}:{{ serviceAccountID }}"
+// ```
 type CloudStackServiceAccount struct {
 	pulumi.CustomResourceState
 
-	// The disabled status for the service account.
+	// The disabled status for the service account. Defaults to `false`.
 	IsDisabled pulumi.BoolPtrOutput `pulumi:"isDisabled"`
 	// The name of the service account.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -60,7 +106,7 @@ func GetCloudStackServiceAccount(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CloudStackServiceAccount resources.
 type cloudStackServiceAccountState struct {
-	// The disabled status for the service account.
+	// The disabled status for the service account. Defaults to `false`.
 	IsDisabled *bool `pulumi:"isDisabled"`
 	// The name of the service account.
 	Name *string `pulumi:"name"`
@@ -70,7 +116,7 @@ type cloudStackServiceAccountState struct {
 }
 
 type CloudStackServiceAccountState struct {
-	// The disabled status for the service account.
+	// The disabled status for the service account. Defaults to `false`.
 	IsDisabled pulumi.BoolPtrInput
 	// The name of the service account.
 	Name pulumi.StringPtrInput
@@ -84,7 +130,7 @@ func (CloudStackServiceAccountState) ElementType() reflect.Type {
 }
 
 type cloudStackServiceAccountArgs struct {
-	// The disabled status for the service account.
+	// The disabled status for the service account. Defaults to `false`.
 	IsDisabled *bool `pulumi:"isDisabled"`
 	// The name of the service account.
 	Name *string `pulumi:"name"`
@@ -95,7 +141,7 @@ type cloudStackServiceAccountArgs struct {
 
 // The set of arguments for constructing a CloudStackServiceAccount resource.
 type CloudStackServiceAccountArgs struct {
-	// The disabled status for the service account.
+	// The disabled status for the service account. Defaults to `false`.
 	IsDisabled pulumi.BoolPtrInput
 	// The name of the service account.
 	Name pulumi.StringPtrInput
@@ -191,7 +237,7 @@ func (o CloudStackServiceAccountOutput) ToCloudStackServiceAccountOutputWithCont
 	return o
 }
 
-// The disabled status for the service account.
+// The disabled status for the service account. Defaults to `false`.
 func (o CloudStackServiceAccountOutput) IsDisabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CloudStackServiceAccount) pulumi.BoolPtrOutput { return v.IsDisabled }).(pulumi.BoolPtrOutput)
 }

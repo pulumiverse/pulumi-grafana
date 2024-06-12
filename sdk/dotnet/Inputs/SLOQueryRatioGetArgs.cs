@@ -17,7 +17,7 @@ namespace Pulumiverse.Grafana.Inputs
         private InputList<string>? _groupByLabels;
 
         /// <summary>
-        /// Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
+        /// Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         /// </summary>
         public InputList<string> GroupByLabels
         {

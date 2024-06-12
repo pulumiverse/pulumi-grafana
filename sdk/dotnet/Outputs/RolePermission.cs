@@ -19,7 +19,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string Action;
         /// <summary>
-        /// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+        /// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
         /// </summary>
         public readonly string? Scope;
 

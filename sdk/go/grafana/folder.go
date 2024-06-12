@@ -12,15 +12,68 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testFolderFolder, err := grafana.NewFolder(ctx, "testFolderFolder", &grafana.FolderArgs{
+//				Title: pulumi.String("Terraform Test Folder"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = grafana.NewDashboard(ctx, "testFolderDashboard", &grafana.DashboardArgs{
+//				Folder:     testFolderFolder.ID(),
+//				ConfigJson: pulumi.String("{\n  \"title\": \"Dashboard in folder\",\n  \"uid\": \"dashboard-in-folder\"\n}\n"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = grafana.NewFolder(ctx, "testFolderWithUid", &grafana.FolderArgs{
+//				Uid:   pulumi.String("test-folder-uid"),
+//				Title: pulumi.String("Terraform Test Folder With UID"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/folder:Folder name "{{ uid }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/folder:Folder name "{{ orgID }}:{{ uid }}"
+// ```
 type Folder struct {
 	pulumi.CustomResourceState
 
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
-	// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
-	// folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+	// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
 	ParentFolderUid pulumi.StringPtrOutput `pulumi:"parentFolderUid"`
-	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
+	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
 	PreventDestroyIfNotEmpty pulumi.BoolPtrOutput `pulumi:"preventDestroyIfNotEmpty"`
 	// The title of the folder.
 	Title pulumi.StringOutput `pulumi:"title"`
@@ -65,10 +118,9 @@ func GetFolder(ctx *pulumi.Context,
 type folderState struct {
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
-	// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
-	// folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+	// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
 	ParentFolderUid *string `pulumi:"parentFolderUid"`
-	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
+	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
 	PreventDestroyIfNotEmpty *bool `pulumi:"preventDestroyIfNotEmpty"`
 	// The title of the folder.
 	Title *string `pulumi:"title"`
@@ -81,10 +133,9 @@ type folderState struct {
 type FolderState struct {
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
-	// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
-	// folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+	// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
 	ParentFolderUid pulumi.StringPtrInput
-	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
+	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
 	PreventDestroyIfNotEmpty pulumi.BoolPtrInput
 	// The title of the folder.
 	Title pulumi.StringPtrInput
@@ -101,10 +152,9 @@ func (FolderState) ElementType() reflect.Type {
 type folderArgs struct {
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
-	// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
-	// folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+	// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
 	ParentFolderUid *string `pulumi:"parentFolderUid"`
-	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
+	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
 	PreventDestroyIfNotEmpty *bool `pulumi:"preventDestroyIfNotEmpty"`
 	// The title of the folder.
 	Title string `pulumi:"title"`
@@ -116,10 +166,9 @@ type folderArgs struct {
 type FolderArgs struct {
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
-	// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
-	// folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+	// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
 	ParentFolderUid pulumi.StringPtrInput
-	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
+	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
 	PreventDestroyIfNotEmpty pulumi.BoolPtrInput
 	// The title of the folder.
 	Title pulumi.StringInput
@@ -219,13 +268,12 @@ func (o FolderOutput) OrgId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Folder) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
-// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
-// folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
 func (o FolderOutput) ParentFolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Folder) pulumi.StringPtrOutput { return v.ParentFolderUid }).(pulumi.StringPtrOutput)
 }
 
-// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
+// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
 func (o FolderOutput) PreventDestroyIfNotEmpty() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Folder) pulumi.BoolPtrOutput { return v.PreventDestroyIfNotEmpty }).(pulumi.BoolPtrOutput)
 }

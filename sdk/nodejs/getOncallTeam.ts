@@ -4,6 +4,20 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const exampleTeam = grafana.getOncallTeam({
+ *     name: "example_team",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ */
 export function getOncallTeam(args: GetOncallTeamArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallTeamResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -16,6 +30,9 @@ export function getOncallTeam(args: GetOncallTeamArgs, opts?: pulumi.InvokeOptio
  * A collection of arguments for invoking getOncallTeam.
  */
 export interface GetOncallTeamArgs {
+    /**
+     * The team name.
+     */
     name: string;
 }
 
@@ -29,8 +46,25 @@ export interface GetOncallTeamResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The team name.
+     */
     readonly name: string;
 }
+/**
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const exampleTeam = grafana.getOncallTeam({
+ *     name: "example_team",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ */
 export function getOncallTeamOutput(args: GetOncallTeamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallTeamResult> {
     return pulumi.output(args).apply((a: any) => getOncallTeam(a, opts))
 }
@@ -39,5 +73,8 @@ export function getOncallTeamOutput(args: GetOncallTeamOutputArgs, opts?: pulumi
  * A collection of arguments for invoking getOncallTeam.
  */
 export interface GetOncallTeamOutputArgs {
+    /**
+     * The team name.
+     */
     name: pulumi.Input<string>;
 }

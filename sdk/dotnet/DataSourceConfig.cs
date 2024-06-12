@@ -10,6 +10,90 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/datasources/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/data_source/)
+    /// 
+    /// The required arguments for this resource vary depending on the type of data
+    /// source selected (via the 'type' argument).
+    /// 
+    /// Use this resource for configuring multiple datasources, when that configuration (`json_data_encoded` field) requires circular references like in the example below.
+    /// 
+    /// &gt; When using the `grafana.DataSourceConfig` resource, the corresponding `grafana.DataSource` resources must have the `json_data_encoded` and `http_headers` fields ignored. Otherwise, an infinite update loop will occur. See the example below.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var lokiDataSource = new Grafana.DataSource("lokiDataSource", new()
+    ///     {
+    ///         Type = "loki",
+    ///         Url = "http://localhost:3100",
+    ///     });
+    /// 
+    ///     var tempoDataSource = new Grafana.DataSource("tempoDataSource", new()
+    ///     {
+    ///         Type = "tempo",
+    ///         Url = "http://localhost:3200",
+    ///     });
+    /// 
+    ///     var lokiDataSourceConfig = new Grafana.DataSourceConfig("lokiDataSourceConfig", new()
+    ///     {
+    ///         Uid = lokiDataSource.Uid,
+    ///         JsonDataEncoded = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["derivedFields"] = new[]
+    ///             {
+    ///                 new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["datasourceUid"] = tempoDataSource.Uid,
+    ///                     ["matcherRegex"] = "[tT]race_?[iI][dD]\"?[:=]\"?(\\w+)",
+    ///                     ["matcherType"] = "regex",
+    ///                     ["name"] = "traceID",
+    ///                     ["url"] = "${__value.raw}",
+    ///                 },
+    ///             },
+    ///         })),
+    ///     });
+    /// 
+    ///     var tempoDataSourceConfig = new Grafana.DataSourceConfig("tempoDataSourceConfig", new()
+    ///     {
+    ///         Uid = tempoDataSource.Uid,
+    ///         JsonDataEncoded = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["tracesToLogsV2"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["customQuery"] = true,
+    ///                 ["datasourceUid"] = lokiDataSource.Uid,
+    ///                 ["filterBySpanID"] = false,
+    ///                 ["filterByTraceID"] = false,
+    ///                 ["query"] = "|=\"${__trace.traceId}\" | json",
+    ///             },
+    ///         })),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/dataSourceConfig:DataSourceConfig name "{{ uid }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/dataSourceConfig:DataSourceConfig name "{{ orgID }}:{{ uid }}"
+    /// ```
+    /// </summary>
     [GrafanaResourceType("grafana:index/dataSourceConfig:DataSourceConfig")]
     public partial class DataSourceConfig : global::Pulumi.CustomResource
     {
@@ -20,9 +104,7 @@ namespace Pulumiverse.Grafana
         public Output<ImmutableDictionary<string, string>?> HttpHeaders { get; private set; } = null!;
 
         /// <summary>
-        /// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
-        /// source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
-        /// from the Grafana UI. Note that keys in this map are usually camelCased.
+        /// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         [Output("jsonDataEncoded")]
         public Output<string?> JsonDataEncoded { get; private set; } = null!;
@@ -34,9 +116,7 @@ namespace Pulumiverse.Grafana
         public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
-        /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
-        /// to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
-        /// saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         [Output("secureJsonDataEncoded")]
         public Output<string?> SecureJsonDataEncoded { get; private set; } = null!;
@@ -116,9 +196,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
-        /// source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
-        /// from the Grafana UI. Note that keys in this map are usually camelCased.
+        /// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         [Input("jsonDataEncoded")]
         public Input<string>? JsonDataEncoded { get; set; }
@@ -133,9 +211,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _secureJsonDataEncoded;
 
         /// <summary>
-        /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
-        /// to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
-        /// saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         public Input<string>? SecureJsonDataEncoded
         {
@@ -178,9 +254,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
-        /// source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
-        /// from the Grafana UI. Note that keys in this map are usually camelCased.
+        /// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         [Input("jsonDataEncoded")]
         public Input<string>? JsonDataEncoded { get; set; }
@@ -195,9 +269,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _secureJsonDataEncoded;
 
         /// <summary>
-        /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
-        /// to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
-        /// saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         public Input<string>? SecureJsonDataEncoded
         {

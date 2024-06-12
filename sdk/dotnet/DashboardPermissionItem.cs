@@ -10,6 +10,74 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// Manages a single permission item for a dashboard. Conflicts with the "grafana.DashboardPermission" resource which manages the entire set of permissions for a dashboard.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var teamTeam = new Grafana.Team("teamTeam");
+    /// 
+    ///     var userUser = new Grafana.User("userUser", new()
+    ///     {
+    ///         Email = "user.name@example.com",
+    ///         Password = "my-password",
+    ///         Login = "user.name",
+    ///     });
+    /// 
+    ///     var dashboard = new Grafana.Dashboard("dashboard", new()
+    ///     {
+    ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["title"] = "My Dashboard",
+    ///             ["uid"] = "my-dashboard-uid",
+    ///         }),
+    ///     });
+    /// 
+    ///     var role = new Grafana.DashboardPermissionItem("role", new()
+    ///     {
+    ///         DashboardUid = dashboard.Uid,
+    ///         Role = "Viewer",
+    ///         Permission = "View",
+    ///     });
+    /// 
+    ///     var userDashboardPermissionItem = new Grafana.DashboardPermissionItem("userDashboardPermissionItem", new()
+    ///     {
+    ///         DashboardUid = dashboard.Uid,
+    ///         User = userUser.Id,
+    ///         Permission = "Admin",
+    ///     });
+    /// 
+    ///     var teamDashboardPermissionItem = new Grafana.DashboardPermissionItem("teamDashboardPermissionItem", new()
+    ///     {
+    ///         DashboardUid = dashboard.Uid,
+    ///         Team = teamTeam.Id,
+    ///         Permission = "Edit",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/dashboardPermissionItem:DashboardPermissionItem name "{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/dashboardPermissionItem:DashboardPermissionItem name "{{ orgID }}:{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+    /// ```
+    /// </summary>
     [GrafanaResourceType("grafana:index/dashboardPermissionItem:DashboardPermissionItem")]
     public partial class DashboardPermissionItem : global::Pulumi.CustomResource
     {

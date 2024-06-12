@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Manages the membership of a user in an organization.
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/cloudOrgMember:CloudOrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
+ * ```
+ */
 export class CloudOrgMember extends pulumi.CustomResource {
     /**
      * Get an existing CloudOrgMember resource's state with the given name, ID, and optional extra

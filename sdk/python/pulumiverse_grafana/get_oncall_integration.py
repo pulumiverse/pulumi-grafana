@@ -32,11 +32,17 @@ class GetOncallIntegrationResult:
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        The integration ID.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The integration name.
+        """
         return pulumi.get(self, "name")
 
 
@@ -53,7 +59,21 @@ class AwaitableGetOncallIntegrationResult(GetOncallIntegrationResult):
 def get_oncall_integration(id: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallIntegrationResult:
     """
-    Use this data source to access information about an existing resource.
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    example_integration = grafana.get_oncall_integration(id="CEXAMPLEID123")
+    ```
+    <!--End PulumiCodeChooser -->
+
+
+    :param str id: The integration ID.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -69,6 +89,20 @@ def get_oncall_integration(id: Optional[str] = None,
 def get_oncall_integration_output(id: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallIntegrationResult]:
     """
-    Use this data source to access information about an existing resource.
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    example_integration = grafana.get_oncall_integration(id="CEXAMPLEID123")
+    ```
+    <!--End PulumiCodeChooser -->
+
+
+    :param str id: The integration ID.
     """
     ...

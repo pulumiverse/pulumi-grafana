@@ -47,6 +47,9 @@ class GetOrganizationPreferencesResult:
     @property
     @pulumi.getter(name="homeDashboardId")
     def home_dashboard_id(self) -> int:
+        """
+        The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
+        """
         warnings.warn("""Use `home_dashboard_uid` instead.""", DeprecationWarning)
         pulumi.log.warn("""home_dashboard_id is deprecated: Use `home_dashboard_uid` instead.""")
 
@@ -55,6 +58,9 @@ class GetOrganizationPreferencesResult:
     @property
     @pulumi.getter(name="homeDashboardUid")
     def home_dashboard_uid(self) -> str:
+        """
+        The Organization home dashboard UID. This is only available in Grafana 9.0+.
+        """
         return pulumi.get(self, "home_dashboard_uid")
 
     @property
@@ -68,21 +74,33 @@ class GetOrganizationPreferencesResult:
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[str]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
         return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter
     def theme(self) -> str:
+        """
+        The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+        """
         return pulumi.get(self, "theme")
 
     @property
     @pulumi.getter
     def timezone(self) -> str:
+        """
+        The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+        """
         return pulumi.get(self, "timezone")
 
     @property
     @pulumi.getter(name="weekStart")
     def week_start(self) -> str:
+        """
+        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
+        """
         return pulumi.get(self, "week_start")
 
 
@@ -104,7 +122,22 @@ class AwaitableGetOrganizationPreferencesResult(GetOrganizationPreferencesResult
 def get_organization_preferences(org_id: Optional[str] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationPreferencesResult:
     """
-    Use this data source to access information about an existing resource.
+    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    test = grafana.get_organization_preferences()
+    ```
+    <!--End PulumiCodeChooser -->
+
+
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
     __args__ = dict()
     __args__['orgId'] = org_id
@@ -125,6 +158,21 @@ def get_organization_preferences(org_id: Optional[str] = None,
 def get_organization_preferences_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationPreferencesResult]:
     """
-    Use this data source to access information about an existing resource.
+    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    test = grafana.get_organization_preferences()
+    ```
+    <!--End PulumiCodeChooser -->
+
+
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
     ...

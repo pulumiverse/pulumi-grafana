@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Outputs
     public sealed class SyntheticMonitoringCheckSettingsMultihttpEntryAssertion
     {
         /// <summary>
-        /// The condition of the assertion: NOT_CONTAINS, EQUALS, STARTS_WITH, ENDS_WITH, TYPE_OF, CONTAINS
+        /// The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
         /// </summary>
         public readonly string? Condition;
         /// <summary>
@@ -23,11 +23,11 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? Expression;
         /// <summary>
-        /// The subject of the assertion: RESPONSE_HEADERS, HTTP_STATUS_CODE, RESPONSE_BODY
+        /// The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
         /// </summary>
         public readonly string? Subject;
         /// <summary>
-        /// The type of assertion to make: TEXT, JSON_PATH_VALUE, JSON_PATH_ASSERTION, REGEX_ASSERTION
+        /// The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
         /// </summary>
         public readonly string Type;
         /// <summary>

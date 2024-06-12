@@ -230,7 +230,48 @@ class FolderPermissionItem(pulumi.CustomResource):
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a FolderPermissionItem resource with the given unique name, props, and options.
+        Manages a single permission item for a folder. Conflicts with the "FolderPermission" resource which manages the entire set of permissions for a folder.
+        		* [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+        		* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        team = grafana.Team("team")
+        user = grafana.User("user",
+            email="user.name@example.com",
+            login="user.name",
+            password="my-password")
+        collection = grafana.Folder("collection", title="Folder Title")
+        on_role = grafana.FolderPermissionItem("onRole",
+            folder_uid=collection.uid,
+            role="Viewer",
+            permission="Edit")
+        on_team = grafana.FolderPermissionItem("onTeam",
+            folder_uid=collection.uid,
+            team=team.id,
+            permission="View")
+        on_user = grafana.FolderPermissionItem("onUser",
+            folder_uid=collection.uid,
+            user=user.id,
+            permission="Admin")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ orgID }}:{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder.
@@ -247,7 +288,48 @@ class FolderPermissionItem(pulumi.CustomResource):
                  args: FolderPermissionItemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a FolderPermissionItem resource with the given unique name, props, and options.
+        Manages a single permission item for a folder. Conflicts with the "FolderPermission" resource which manages the entire set of permissions for a folder.
+        		* [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+        		* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        team = grafana.Team("team")
+        user = grafana.User("user",
+            email="user.name@example.com",
+            login="user.name",
+            password="my-password")
+        collection = grafana.Folder("collection", title="Folder Title")
+        on_role = grafana.FolderPermissionItem("onRole",
+            folder_uid=collection.uid,
+            role="Viewer",
+            permission="Edit")
+        on_team = grafana.FolderPermissionItem("onTeam",
+            folder_uid=collection.uid,
+            team=team.id,
+            permission="View")
+        on_user = grafana.FolderPermissionItem("onUser",
+            folder_uid=collection.uid,
+            user=user.id,
+            permission="Admin")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ orgID }}:{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param FolderPermissionItemArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

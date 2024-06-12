@@ -12,6 +12,55 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Besides the public probes run by Grafana Labs, you can also install your
+// own private probes. These are only accessible to you and only write data to
+// your Grafana Cloud account. Private probes are instances of the open source
+// Grafana Synthetic Monitoring Agent.
+//
+// * [Official documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/)
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := grafana.NewSyntheticMonitoringProbe(ctx, "main", &grafana.SyntheticMonitoringProbeArgs{
+//				Labels: pulumi.StringMap{
+//					"type": pulumi.String("mountain"),
+//				},
+//				Latitude:  pulumi.Float64(27.98606),
+//				Longitude: pulumi.Float64(86.92262),
+//				Region:    pulumi.String("APAC"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe name "{{ id }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe name "{{ id }}:{{ authToken }}"
+// ```
 type SyntheticMonitoringProbe struct {
 	pulumi.CustomResourceState
 
@@ -25,8 +74,7 @@ type SyntheticMonitoringProbe struct {
 	Longitude pulumi.Float64Output `pulumi:"longitude"`
 	// Name of the probe.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-	// to `true`.
+	// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
 	Public pulumi.BoolPtrOutput `pulumi:"public"`
 	// Region of the probe.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -87,8 +135,7 @@ type syntheticMonitoringProbeState struct {
 	Longitude *float64 `pulumi:"longitude"`
 	// Name of the probe.
 	Name *string `pulumi:"name"`
-	// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-	// to `true`.
+	// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
 	Public *bool `pulumi:"public"`
 	// Region of the probe.
 	Region *string `pulumi:"region"`
@@ -107,8 +154,7 @@ type SyntheticMonitoringProbeState struct {
 	Longitude pulumi.Float64PtrInput
 	// Name of the probe.
 	Name pulumi.StringPtrInput
-	// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-	// to `true`.
+	// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
 	Public pulumi.BoolPtrInput
 	// Region of the probe.
 	Region pulumi.StringPtrInput
@@ -129,8 +175,7 @@ type syntheticMonitoringProbeArgs struct {
 	Longitude float64 `pulumi:"longitude"`
 	// Name of the probe.
 	Name *string `pulumi:"name"`
-	// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-	// to `true`.
+	// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
 	Public *bool `pulumi:"public"`
 	// Region of the probe.
 	Region string `pulumi:"region"`
@@ -146,8 +191,7 @@ type SyntheticMonitoringProbeArgs struct {
 	Longitude pulumi.Float64Input
 	// Name of the probe.
 	Name pulumi.StringPtrInput
-	// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-	// to `true`.
+	// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
 	Public pulumi.BoolPtrInput
 	// Region of the probe.
 	Region pulumi.StringInput
@@ -265,8 +309,7 @@ func (o SyntheticMonitoringProbeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringProbe) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-// to `true`.
+// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
 func (o SyntheticMonitoringProbeOutput) Public() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringProbe) pulumi.BoolPtrOutput { return v.Public }).(pulumi.BoolPtrOutput)
 }

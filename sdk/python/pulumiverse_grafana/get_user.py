@@ -44,6 +44,9 @@ class GetUserResult:
     @property
     @pulumi.getter
     def email(self) -> Optional[str]:
+        """
+        The email address of the Grafana user. Defaults to ``.
+        """
         return pulumi.get(self, "email")
 
     @property
@@ -57,21 +60,33 @@ class GetUserResult:
     @property
     @pulumi.getter(name="isAdmin")
     def is_admin(self) -> bool:
+        """
+        Whether the user is an admin.
+        """
         return pulumi.get(self, "is_admin")
 
     @property
     @pulumi.getter
     def login(self) -> Optional[str]:
+        """
+        The username for the Grafana user. Defaults to ``.
+        """
         return pulumi.get(self, "login")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The display name for the Grafana user.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[int]:
+        """
+        The numerical ID of the Grafana user. Defaults to `-1`.
+        """
         return pulumi.get(self, "user_id")
 
 
@@ -94,7 +109,35 @@ def get_user(email: Optional[str] = None,
              user_id: Optional[int] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUserResult:
     """
-    Use this data source to access information about an existing resource.
+    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
+
+    This data source uses Grafana's admin APIs for reading users which
+    does not currently work with API Tokens. You must use basic auth.
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+    import pulumiverse_grafana as grafana
+
+    test = grafana.User("test",
+        email="test.datasource@example.com",
+        login="test-datasource",
+        password="my-password",
+        is_admin=True)
+    from_id = grafana.get_user_output(user_id=test.user_id)
+    from_email = grafana.get_user_output(email=test.email)
+    from_login = test.login.apply(lambda login: grafana.get_user_output(login=login))
+    ```
+    <!--End PulumiCodeChooser -->
+
+
+    :param str email: The email address of the Grafana user. Defaults to ``.
+    :param str login: The username for the Grafana user. Defaults to ``.
+    :param int user_id: The numerical ID of the Grafana user. Defaults to `-1`.
     """
     __args__ = dict()
     __args__['email'] = email
@@ -118,6 +161,34 @@ def get_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
                     user_id: Optional[pulumi.Input[Optional[int]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUserResult]:
     """
-    Use this data source to access information about an existing resource.
+    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
+
+    This data source uses Grafana's admin APIs for reading users which
+    does not currently work with API Tokens. You must use basic auth.
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+    import pulumiverse_grafana as grafana
+
+    test = grafana.User("test",
+        email="test.datasource@example.com",
+        login="test-datasource",
+        password="my-password",
+        is_admin=True)
+    from_id = grafana.get_user_output(user_id=test.user_id)
+    from_email = grafana.get_user_output(email=test.email)
+    from_login = test.login.apply(lambda login: grafana.get_user_output(login=login))
+    ```
+    <!--End PulumiCodeChooser -->
+
+
+    :param str email: The email address of the Grafana user. Defaults to ``.
+    :param str login: The username for the Grafana user. Defaults to ``.
+    :param int user_id: The numerical ID of the Grafana user. Defaults to `-1`.
     """
     ...

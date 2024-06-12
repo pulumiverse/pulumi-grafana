@@ -10,6 +10,77 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
+    /// * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-a-token)
+    /// 
+    /// Required access policy scopes:
+    /// 
+    /// * accesspolicies:read
+    /// * accesspolicies:write
+    /// * accesspolicies:delete
+    /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumi.Grafana;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var current = Grafana.GetCloudOrganization.Invoke(new()
+    ///     {
+    ///         Slug = "&lt;your org slug&gt;",
+    ///     });
+    /// 
+    ///     var testCloudAccessPolicy = new Grafana.CloudAccessPolicy("testCloudAccessPolicy", new()
+    ///     {
+    ///         Region = "us",
+    ///         DisplayName = "My Policy",
+    ///         Scopes = new[]
+    ///         {
+    ///             "metrics:read",
+    ///             "logs:read",
+    ///         },
+    ///         Realms = new[]
+    ///         {
+    ///             new Grafana.Inputs.CloudAccessPolicyRealmArgs
+    ///             {
+    ///                 Type = "org",
+    ///                 Identifier = current.Apply(getCloudOrganizationResult =&gt; getCloudOrganizationResult.Id),
+    ///                 LabelPolicies = new[]
+    ///                 {
+    ///                     new Grafana.Inputs.CloudAccessPolicyRealmLabelPolicyArgs
+    ///                     {
+    ///                         Selector = "{namespace=\"default\"}",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var testCloudAccessPolicyToken = new Grafana.CloudAccessPolicyToken("testCloudAccessPolicyToken", new()
+    ///     {
+    ///         Region = "us",
+    ///         AccessPolicyId = testCloudAccessPolicy.PolicyId,
+    ///         DisplayName = "My Policy Token",
+    ///         ExpiresAt = "2023-01-01T00:00:00Z",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken name "{{ region }}:{{ tokenId }}"
+    /// ```
+    /// </summary>
     [GrafanaResourceType("grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken")]
     public partial class CloudAccessPolicyToken : global::Pulumi.CustomResource
     {
@@ -44,9 +115,7 @@ namespace Pulumiverse.Grafana
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the
-        /// list of available regions:
-        /// https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        /// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -136,9 +205,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the
-        /// list of available regions:
-        /// https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        /// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
@@ -182,9 +249,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the
-        /// list of available regions:
-        /// https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        /// Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

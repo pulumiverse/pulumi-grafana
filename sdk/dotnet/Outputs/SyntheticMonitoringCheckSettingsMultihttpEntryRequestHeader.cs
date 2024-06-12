@@ -19,7 +19,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Value of the header to send
+        /// The value of the assertion
         /// </summary>
         public readonly string Value;
 

@@ -4,6 +4,67 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a single permission item for a datasource. Conflicts with the "grafana.DataSourcePermission" resource which manages the entire set of permissions for a datasource.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const teamTeam = new grafana.Team("teamTeam", {});
+ * const foo = new grafana.DataSource("foo", {
+ *     type: "cloudwatch",
+ *     jsonDataEncoded: JSON.stringify({
+ *         defaultRegion: "us-east-1",
+ *         authType: "keys",
+ *     }),
+ *     secureJsonDataEncoded: JSON.stringify({
+ *         accessKey: "123",
+ *         secretKey: "456",
+ *     }),
+ * });
+ * const userUser = new grafana.User("userUser", {
+ *     email: "test-ds-permissions@example.com",
+ *     login: "test-ds-permissions",
+ *     password: "hunter2",
+ * });
+ * const sa = new grafana.ServiceAccount("sa", {role: "Viewer"});
+ * const teamDataSourcePermissionItem = new grafana.DataSourcePermissionItem("teamDataSourcePermissionItem", {
+ *     datasourceUid: foo.uid,
+ *     team: teamTeam.id,
+ *     permission: "Edit",
+ * });
+ * const userDataSourcePermissionItem = new grafana.DataSourcePermissionItem("userDataSourcePermissionItem", {
+ *     datasourceUid: foo.uid,
+ *     user: userUser.id,
+ *     permission: "Edit",
+ * });
+ * const role = new grafana.DataSourcePermissionItem("role", {
+ *     datasourceUid: foo.uid,
+ *     role: "Viewer",
+ *     permission: "Query",
+ * });
+ * const serviceAccount = new grafana.DataSourcePermissionItem("serviceAccount", {
+ *     datasourceUid: foo.uid,
+ *     user: sa.id,
+ *     permission: "Query",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/dataSourcePermissionItem:DataSourcePermissionItem name "{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/dataSourcePermissionItem:DataSourcePermissionItem name "{{ orgID }}:{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+ * ```
+ */
 export class DataSourcePermissionItem extends pulumi.CustomResource {
     /**
      * Get an existing DataSourcePermissionItem resource's state with the given name, ID, and optional extra

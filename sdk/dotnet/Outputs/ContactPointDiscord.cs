@@ -15,19 +15,19 @@ namespace Pulumiverse.Grafana.Outputs
     public sealed class ContactPointDiscord
     {
         /// <summary>
-        /// The URL of a custom avatar image to use.
+        /// The URL of a custom avatar image to use. Defaults to ``.
         /// </summary>
         public readonly string? AvatarUrl;
         /// <summary>
-        /// Whether to disable sending resolve messages.
+        /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
         public readonly bool? DisableResolveMessage;
         /// <summary>
-        /// The templated content of the message.
+        /// The templated content of the message. Defaults to ``.
         /// </summary>
         public readonly string? Message;
         /// <summary>
-        /// Additional custom properties to attach to the notifier.
+        /// Additional custom properties to attach to the notifier. Defaults to `map[]`.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Settings;
         /// <summary>
@@ -43,7 +43,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string Url;
         /// <summary>
-        /// Whether to use the bot account's plain username instead of "Grafana."
+        /// Whether to use the bot account's plain username instead of "Grafana." Defaults to `false`.
         /// </summary>
         public readonly bool? UseDiscordUsername;
 

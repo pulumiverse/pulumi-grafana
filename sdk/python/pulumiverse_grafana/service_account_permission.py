@@ -134,7 +134,52 @@ class ServiceAccountPermission(pulumi.CustomResource):
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ServiceAccountPermission resource with the given unique name, props, and options.
+        Manages the entire set of permissions for a service account. Permissions that aren't specified when applying this resource will be removed.
+
+        **Note:** This resource is available from Grafana 9.2.4 onwards.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.ServiceAccount("test",
+            role="Editor",
+            is_disabled=False)
+        test_team = grafana.Team("testTeam")
+        test_user = grafana.User("testUser",
+            email="tf_user@test.com",
+            login="tf_user@test.com",
+            password="password")
+        test_permissions = grafana.ServiceAccountPermission("testPermissions",
+            service_account_id=test.id,
+            permissions=[
+                grafana.ServiceAccountPermissionPermissionArgs(
+                    user_id=test_user.id,
+                    permission="Edit",
+                ),
+                grafana.ServiceAccountPermissionPermissionArgs(
+                    team_id=test_team.id,
+                    permission="Admin",
+                ),
+            ])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/serviceAccountPermission:ServiceAccountPermission name "{{ serviceAccountID }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/serviceAccountPermission:ServiceAccountPermission name "{{ orgID }}:{{ serviceAccountID }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -148,7 +193,52 @@ class ServiceAccountPermission(pulumi.CustomResource):
                  args: ServiceAccountPermissionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ServiceAccountPermission resource with the given unique name, props, and options.
+        Manages the entire set of permissions for a service account. Permissions that aren't specified when applying this resource will be removed.
+
+        **Note:** This resource is available from Grafana 9.2.4 onwards.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.ServiceAccount("test",
+            role="Editor",
+            is_disabled=False)
+        test_team = grafana.Team("testTeam")
+        test_user = grafana.User("testUser",
+            email="tf_user@test.com",
+            login="tf_user@test.com",
+            password="password")
+        test_permissions = grafana.ServiceAccountPermission("testPermissions",
+            service_account_id=test.id,
+            permissions=[
+                grafana.ServiceAccountPermissionPermissionArgs(
+                    user_id=test_user.id,
+                    permission="Edit",
+                ),
+                grafana.ServiceAccountPermissionPermissionArgs(
+                    team_id=test_team.id,
+                    permission="Admin",
+                ),
+            ])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/serviceAccountPermission:ServiceAccountPermission name "{{ serviceAccountID }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/serviceAccountPermission:ServiceAccountPermission name "{{ orgID }}:{{ serviceAccountID }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param ServiceAccountPermissionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -11,10 +11,112 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages the entire set of permissions for a datasource. Permissions that aren't specified when applying this resource will be removed.
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			team, err := grafana.NewTeam(ctx, "team", nil)
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"defaultRegion": "us-east-1",
+//				"authType":      "keys",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//				"accessKey": "123",
+//				"secretKey": "456",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json1 := string(tmpJSON1)
+//			foo, err := grafana.NewDataSource(ctx, "foo", &grafana.DataSourceArgs{
+//				Type:                  pulumi.String("cloudwatch"),
+//				JsonDataEncoded:       pulumi.String(json0),
+//				SecureJsonDataEncoded: pulumi.String(json1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			user, err := grafana.NewUser(ctx, "user", &grafana.UserArgs{
+//				Email:    pulumi.String("test-ds-permissions@example.com"),
+//				Login:    pulumi.String("test-ds-permissions"),
+//				Password: pulumi.String("hunter2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			sa, err := grafana.NewServiceAccount(ctx, "sa", &grafana.ServiceAccountArgs{
+//				Role: pulumi.String("Viewer"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = grafana.NewDataSourcePermission(ctx, "fooPermissions", &grafana.DataSourcePermissionArgs{
+//				DatasourceUid: foo.Uid,
+//				Permissions: grafana.DataSourcePermissionPermissionArray{
+//					&grafana.DataSourcePermissionPermissionArgs{
+//						TeamId:     team.ID(),
+//						Permission: pulumi.String("Edit"),
+//					},
+//					&grafana.DataSourcePermissionPermissionArgs{
+//						UserId:     user.ID(),
+//						Permission: pulumi.String("Edit"),
+//					},
+//					&grafana.DataSourcePermissionPermissionArgs{
+//						BuiltInRole: pulumi.String("Viewer"),
+//						Permission:  pulumi.String("Query"),
+//					},
+//					&grafana.DataSourcePermissionPermissionArgs{
+//						UserId:     sa.ID(),
+//						Permission: pulumi.String("Query"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/dataSourcePermission:DataSourcePermission name "{{ datasourceID }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/dataSourcePermission:DataSourcePermission name "{{ orgID }}:{{ datasourceID }}"
+// ```
 type DataSourcePermission struct {
 	pulumi.CustomResourceState
 
-	// Deprecated: Use `datasource_uid` instead.
+	// Deprecated: Use `datasourceUid` instead.
 	//
 	// Deprecated: Use `datasourceUid` instead
 	DatasourceId pulumi.StringOutput `pulumi:"datasourceId"`
@@ -56,7 +158,7 @@ func GetDataSourcePermission(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DataSourcePermission resources.
 type dataSourcePermissionState struct {
-	// Deprecated: Use `datasource_uid` instead.
+	// Deprecated: Use `datasourceUid` instead.
 	//
 	// Deprecated: Use `datasourceUid` instead
 	DatasourceId *string `pulumi:"datasourceId"`
@@ -69,7 +171,7 @@ type dataSourcePermissionState struct {
 }
 
 type DataSourcePermissionState struct {
-	// Deprecated: Use `datasource_uid` instead.
+	// Deprecated: Use `datasourceUid` instead.
 	//
 	// Deprecated: Use `datasourceUid` instead
 	DatasourceId pulumi.StringPtrInput
@@ -86,7 +188,7 @@ func (DataSourcePermissionState) ElementType() reflect.Type {
 }
 
 type dataSourcePermissionArgs struct {
-	// Deprecated: Use `datasource_uid` instead.
+	// Deprecated: Use `datasourceUid` instead.
 	//
 	// Deprecated: Use `datasourceUid` instead
 	DatasourceId *string `pulumi:"datasourceId"`
@@ -100,7 +202,7 @@ type dataSourcePermissionArgs struct {
 
 // The set of arguments for constructing a DataSourcePermission resource.
 type DataSourcePermissionArgs struct {
-	// Deprecated: Use `datasource_uid` instead.
+	// Deprecated: Use `datasourceUid` instead.
 	//
 	// Deprecated: Use `datasourceUid` instead
 	DatasourceId pulumi.StringPtrInput
@@ -199,7 +301,7 @@ func (o DataSourcePermissionOutput) ToDataSourcePermissionOutputWithContext(ctx 
 	return o
 }
 
-// Deprecated: Use `datasource_uid` instead.
+// Deprecated: Use `datasourceUid` instead.
 //
 // Deprecated: Use `datasourceUid` instead
 func (o DataSourcePermissionOutput) DatasourceId() pulumi.StringOutput {

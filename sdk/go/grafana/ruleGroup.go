@@ -12,6 +12,146 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages Grafana Alerting rule groups.
+//
+// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
+//
+// This resource requires Grafana 9.1.0 or later.
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			ruleFolder, err := grafana.NewFolder(ctx, "ruleFolder", &grafana.FolderArgs{
+//				Title: pulumi.String("My Alert Rule Folder"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"hide":          false,
+//				"intervalMs":    1000,
+//				"maxDataPoints": 43200,
+//				"refId":         "A",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			_, err = grafana.NewRuleGroup(ctx, "myAlertRule", &grafana.RuleGroupArgs{
+//				FolderUid:       ruleFolder.Uid,
+//				IntervalSeconds: pulumi.Int(240),
+//				OrgId:           pulumi.String("1"),
+//				Rules: grafana.RuleGroupRuleArray{
+//					&grafana.RuleGroupRuleArgs{
+//						Name:         pulumi.String("My Alert Rule 1"),
+//						For:          pulumi.String("2m"),
+//						Condition:    pulumi.String("B"),
+//						NoDataState:  pulumi.String("NoData"),
+//						ExecErrState: pulumi.String("Alerting"),
+//						Annotations: pulumi.StringMap{
+//							"a": pulumi.String("b"),
+//							"c": pulumi.String("d"),
+//						},
+//						Labels: pulumi.StringMap{
+//							"e": pulumi.String("f"),
+//							"g": pulumi.String("h"),
+//						},
+//						IsPaused: pulumi.Bool(false),
+//						Datas: grafana.RuleGroupRuleDataArray{
+//							&grafana.RuleGroupRuleDataArgs{
+//								RefId:     pulumi.String("A"),
+//								QueryType: pulumi.String(""),
+//								RelativeTimeRange: &grafana.RuleGroupRuleDataRelativeTimeRangeArgs{
+//									From: pulumi.Int(600),
+//									To:   pulumi.Int(0),
+//								},
+//								DatasourceUid: pulumi.String("PD8C576611E62080A"),
+//								Model:         pulumi.String(json0),
+//							},
+//							&grafana.RuleGroupRuleDataArgs{
+//								RefId:     pulumi.String("B"),
+//								QueryType: pulumi.String(""),
+//								RelativeTimeRange: &grafana.RuleGroupRuleDataRelativeTimeRangeArgs{
+//									From: pulumi.Int(0),
+//									To:   pulumi.Int(0),
+//								},
+//								DatasourceUid: pulumi.String("-100"),
+//								Model: pulumi.String(`{
+//	    "conditions": [
+//	        {
+//	        "evaluator": {
+//	            "params": [
+//	            3
+//	            ],
+//	            "type": "gt"
+//	        },
+//	        "operator": {
+//	            "type": "and"
+//	        },
+//	        "query": {
+//	            "params": [
+//	            "A"
+//	            ]
+//	        },
+//	        "reducer": {
+//	            "params": [],
+//	            "type": "last"
+//	        },
+//	        "type": "query"
+//	        }
+//	    ],
+//	    "datasource": {
+//	        "type": "__expr__",
+//	        "uid": "-100"
+//	    },
+//	    "hide": false,
+//	    "intervalMs": 1000,
+//	    "maxDataPoints": 43200,
+//	    "refId": "B",
+//	    "type": "classic_conditions"
+//	}
+//
+// `),
+//
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/ruleGroup:RuleGroup name "{{ folderUID }}:{{ title }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/ruleGroup:RuleGroup name "{{ orgID }}:{{ folderUID }}:{{ title }}"
+// ```
 type RuleGroup struct {
 	pulumi.CustomResourceState
 
@@ -19,10 +159,9 @@ type RuleGroup struct {
 	DisableProvenance pulumi.BoolPtrOutput `pulumi:"disableProvenance"`
 	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringOutput `pulumi:"folderUid"`
-	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are
-	// evaluated sequentially.
+	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds pulumi.IntOutput `pulumi:"intervalSeconds"`
-	// The name of the rule group.
+	// The name of the alert rule.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
@@ -73,10 +212,9 @@ type ruleGroupState struct {
 	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The UID of the folder that the group belongs to.
 	FolderUid *string `pulumi:"folderUid"`
-	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are
-	// evaluated sequentially.
+	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds *int `pulumi:"intervalSeconds"`
-	// The name of the rule group.
+	// The name of the alert rule.
 	Name *string `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
@@ -89,10 +227,9 @@ type RuleGroupState struct {
 	DisableProvenance pulumi.BoolPtrInput
 	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringPtrInput
-	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are
-	// evaluated sequentially.
+	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds pulumi.IntPtrInput
-	// The name of the rule group.
+	// The name of the alert rule.
 	Name pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
@@ -109,10 +246,9 @@ type ruleGroupArgs struct {
 	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The UID of the folder that the group belongs to.
 	FolderUid string `pulumi:"folderUid"`
-	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are
-	// evaluated sequentially.
+	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds int `pulumi:"intervalSeconds"`
-	// The name of the rule group.
+	// The name of the alert rule.
 	Name *string `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
@@ -126,10 +262,9 @@ type RuleGroupArgs struct {
 	DisableProvenance pulumi.BoolPtrInput
 	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringInput
-	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are
-	// evaluated sequentially.
+	// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 	IntervalSeconds pulumi.IntInput
-	// The name of the rule group.
+	// The name of the alert rule.
 	Name pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
@@ -234,13 +369,12 @@ func (o RuleGroupOutput) FolderUid() pulumi.StringOutput {
 	return o.ApplyT(func(v *RuleGroup) pulumi.StringOutput { return v.FolderUid }).(pulumi.StringOutput)
 }
 
-// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are
-// evaluated sequentially.
+// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
 func (o RuleGroupOutput) IntervalSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *RuleGroup) pulumi.IntOutput { return v.IntervalSeconds }).(pulumi.IntOutput)
 }
 
-// The name of the rule group.
+// The name of the alert rule.
 func (o RuleGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *RuleGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

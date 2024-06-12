@@ -4,6 +4,53 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a single permission item for a folder. Conflicts with the "grafana.FolderPermission" resource which manages the entire set of permissions for a folder.
+ * 		* [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+ * 		* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const team = new grafana.Team("team", {});
+ * const user = new grafana.User("user", {
+ *     email: "user.name@example.com",
+ *     login: "user.name",
+ *     password: "my-password",
+ * });
+ * const collection = new grafana.Folder("collection", {title: "Folder Title"});
+ * const onRole = new grafana.FolderPermissionItem("onRole", {
+ *     folderUid: collection.uid,
+ *     role: "Viewer",
+ *     permission: "Edit",
+ * });
+ * const onTeam = new grafana.FolderPermissionItem("onTeam", {
+ *     folderUid: collection.uid,
+ *     team: team.id,
+ *     permission: "View",
+ * });
+ * const onUser = new grafana.FolderPermissionItem("onUser", {
+ *     folderUid: collection.uid,
+ *     user: user.id,
+ *     permission: "Admin",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ orgID }}:{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+ * ```
+ */
 export class FolderPermissionItem extends pulumi.CustomResource {
     /**
      * Get an existing FolderPermissionItem resource's state with the given name, ID, and optional extra

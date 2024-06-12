@@ -40,6 +40,9 @@ class GetOncallActionResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The action name.
+        """
         return pulumi.get(self, "name")
 
 
@@ -56,7 +59,13 @@ class AwaitableGetOncallActionResult(GetOncallActionResult):
 def get_oncall_action(name: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallActionResult:
     """
-    Use this data source to access information about an existing resource.
+    **Note:** This data source is going to be deprecated, please use outgoing webhook data source instead.
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
+
+    !> Deprecated: Use the `OncallOutgoingWebhook` data source instead.
+
+
+    :param str name: The action name.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -72,6 +81,12 @@ def get_oncall_action(name: Optional[str] = None,
 def get_oncall_action_output(name: Optional[pulumi.Input[str]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallActionResult]:
     """
-    Use this data source to access information about an existing resource.
+    **Note:** This data source is going to be deprecated, please use outgoing webhook data source instead.
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
+
+    !> Deprecated: Use the `OncallOutgoingWebhook` data source instead.
+
+
+    :param str name: The action name.
     """
     ...

@@ -197,7 +197,45 @@ class ServiceAccountPermissionItem(pulumi.CustomResource):
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ServiceAccountPermissionItem resource with the given unique name, props, and options.
+        Manages a single permission item for a service account. Conflicts with the "ServiceAccountPermission" resource which manages the entire set of permissions for a service account.
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.ServiceAccount("test",
+            role="Editor",
+            is_disabled=False)
+        team = grafana.Team("team")
+        user = grafana.User("user",
+            email="user.name@example.com",
+            login="user.name",
+            password="my-password")
+        on_team = grafana.ServiceAccountPermissionItem("onTeam",
+            service_account_id=test.id,
+            team=team.id,
+            permission="Admin")
+        on_user = grafana.ServiceAccountPermissionItem("onUser",
+            service_account_id=test.id,
+            user=user.id,
+            permission="Admin")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ orgID }}:{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -213,7 +251,45 @@ class ServiceAccountPermissionItem(pulumi.CustomResource):
                  args: ServiceAccountPermissionItemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ServiceAccountPermissionItem resource with the given unique name, props, and options.
+        Manages a single permission item for a service account. Conflicts with the "ServiceAccountPermission" resource which manages the entire set of permissions for a service account.
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.ServiceAccount("test",
+            role="Editor",
+            is_disabled=False)
+        team = grafana.Team("team")
+        user = grafana.User("user",
+            email="user.name@example.com",
+            login="user.name",
+            password="my-password")
+        on_team = grafana.ServiceAccountPermissionItem("onTeam",
+            service_account_id=test.id,
+            team=team.id,
+            permission="Admin")
+        on_user = grafana.ServiceAccountPermissionItem("onUser",
+            service_account_id=test.id,
+            user=user.id,
+            permission="Admin")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ orgID }}:{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param ServiceAccountPermissionItemArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -6,6 +6,98 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Sets the global notification policy for Grafana.
+ *
+ * !> This resource manages the entire notification policy tree, and will overwrite any existing policies.
+ *
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/manage-notifications/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/)
+ *
+ * This resource requires Grafana 9.1.0 or later.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const aContactPoint = new grafana.ContactPoint("aContactPoint", {emails: [{
+ *     addresses: [
+ *         "one@company.org",
+ *         "two@company.org",
+ *     ],
+ *     message: "{{ len .Alerts.Firing }} firing.",
+ * }]});
+ * const aMuteTiming = new grafana.MuteTiming("aMuteTiming", {intervals: [{
+ *     weekdays: ["monday"],
+ * }]});
+ * const myNotificationPolicy = new grafana.NotificationPolicy("myNotificationPolicy", {
+ *     groupBies: ["..."],
+ *     contactPoint: aContactPoint.name,
+ *     groupWait: "45s",
+ *     groupInterval: "6m",
+ *     repeatInterval: "3h",
+ *     policies: [
+ *         {
+ *             matchers: [
+ *                 {
+ *                     label: "mylabel",
+ *                     match: "=",
+ *                     value: "myvalue",
+ *                 },
+ *                 {
+ *                     label: "alertname",
+ *                     match: "=",
+ *                     value: "CPU Usage",
+ *                 },
+ *                 {
+ *                     label: "Name",
+ *                     match: "=~",
+ *                     value: "host.*|host-b.*",
+ *                 },
+ *             ],
+ *             contactPoint: aContactPoint.name,
+ *             "continue": true,
+ *             muteTimings: [aMuteTiming.name],
+ *             groupWait: "45s",
+ *             groupInterval: "6m",
+ *             repeatInterval: "3h",
+ *             policies: [{
+ *                 matchers: [{
+ *                     label: "sublabel",
+ *                     match: "=",
+ *                     value: "subvalue",
+ *                 }],
+ *                 contactPoint: aContactPoint.name,
+ *                 groupBies: ["..."],
+ *             }],
+ *         },
+ *         {
+ *             matchers: [{
+ *                 label: "anotherlabel",
+ *                 match: "=~",
+ *                 value: "another value.*",
+ *             }],
+ *             contactPoint: aContactPoint.name,
+ *             groupBies: ["..."],
+ *         },
+ *     ],
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/notificationPolicy:NotificationPolicy name "{{ anyString }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/notificationPolicy:NotificationPolicy name "{{ orgID }}:{{ anyString }}"
+ * ```
+ */
 export class NotificationPolicy extends pulumi.CustomResource {
     /**
      * Get an existing NotificationPolicy resource's state with the given name, ID, and optional extra
@@ -35,7 +127,7 @@ export class NotificationPolicy extends pulumi.CustomResource {
     }
 
     /**
-     * The default contact point to route all unmatched notifications to.
+     * The contact point to route notifications that match this rule to.
      */
     public readonly contactPoint!: pulumi.Output<string>;
     /**
@@ -43,8 +135,7 @@ export class NotificationPolicy extends pulumi.CustomResource {
      */
     public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
-     * effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      */
     public readonly groupBies!: pulumi.Output<string[]>;
     /**
@@ -116,7 +207,7 @@ export class NotificationPolicy extends pulumi.CustomResource {
  */
 export interface NotificationPolicyState {
     /**
-     * The default contact point to route all unmatched notifications to.
+     * The contact point to route notifications that match this rule to.
      */
     contactPoint?: pulumi.Input<string>;
     /**
@@ -124,8 +215,7 @@ export interface NotificationPolicyState {
      */
     disableProvenance?: pulumi.Input<boolean>;
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
-     * effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      */
     groupBies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -155,7 +245,7 @@ export interface NotificationPolicyState {
  */
 export interface NotificationPolicyArgs {
     /**
-     * The default contact point to route all unmatched notifications to.
+     * The contact point to route notifications that match this rule to.
      */
     contactPoint: pulumi.Input<string>;
     /**
@@ -163,8 +253,7 @@ export interface NotificationPolicyArgs {
      */
     disableProvenance?: pulumi.Input<boolean>;
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
-     * effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
      */
     groupBies: pulumi.Input<pulumi.Input<string>[]>;
     /**

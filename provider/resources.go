@@ -75,19 +75,20 @@ func Provider() tfbridge.ProviderInfo {
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:                 p,
-		Name:              "grafana",
-		DisplayName:       "Grafana",
-		Publisher:         "pulumiverse",
-		LogoURL:           "https://raw.githubusercontent.com/pulumiverse/pulumi-grafana/main/assets/grafana.png", // nolint[:lll]
-		PluginDownloadURL: "github://api.github.com/pulumiverse",
-		Version:           version.Version,
-		Description:       "A Pulumi package for creating and managing grafana.",
-		Keywords:          []string{"pulumi", "grafana", "pulumiverse"},
-		License:           "Apache-2.0",
-		Homepage:          "https://grafana.com",
-		Repository:        "https://github.com/pulumiverse/pulumi-grafana",
-		GitHubOrg:         "grafana",
+		P:                       p,
+		Name:                    "grafana",
+		DisplayName:             "Grafana",
+		Publisher:               "pulumiverse",
+		LogoURL:                 "https://raw.githubusercontent.com/pulumiverse/pulumi-grafana/main/assets/grafana.png", // nolint[:lll]
+		PluginDownloadURL:       "github://api.github.com/pulumiverse",
+		Version:                 version.Version,
+		Description:             "A Pulumi package for creating and managing grafana.",
+		Keywords:                []string{"pulumi", "grafana", "pulumiverse"},
+		License:                 "Apache-2.0",
+		Homepage:                "https://grafana.com",
+		Repository:              "https://github.com/pulumiverse/pulumi-grafana",
+		GitHubOrg:               "grafana",
+		TFProviderModuleVersion: "v2",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"url": {
 				Type: "string",

@@ -11,6 +11,33 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Data source for retrieving all probes.
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := grafana.GetSyntheticMonitoringProbes(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func GetSyntheticMonitoringProbes(ctx *pulumi.Context, args *GetSyntheticMonitoringProbesArgs, opts ...pulumi.InvokeOption) (*GetSyntheticMonitoringProbesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSyntheticMonitoringProbesResult
@@ -23,14 +50,17 @@ func GetSyntheticMonitoringProbes(ctx *pulumi.Context, args *GetSyntheticMonitor
 
 // A collection of arguments for invoking getSyntheticMonitoringProbes.
 type GetSyntheticMonitoringProbesArgs struct {
+	// If true, only probes that are not deprecated will be returned. Defaults to `true`.
 	FilterDeprecated *bool `pulumi:"filterDeprecated"`
 }
 
 // A collection of values returned by getSyntheticMonitoringProbes.
 type GetSyntheticMonitoringProbesResult struct {
+	// If true, only probes that are not deprecated will be returned. Defaults to `true`.
 	FilterDeprecated *bool `pulumi:"filterDeprecated"`
 	// The provider-assigned unique ID for this managed resource.
-	Id     string         `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Map of probes with their names as keys and IDs as values.
 	Probes map[string]int `pulumi:"probes"`
 }
 
@@ -49,6 +79,7 @@ func GetSyntheticMonitoringProbesOutput(ctx *pulumi.Context, args GetSyntheticMo
 
 // A collection of arguments for invoking getSyntheticMonitoringProbes.
 type GetSyntheticMonitoringProbesOutputArgs struct {
+	// If true, only probes that are not deprecated will be returned. Defaults to `true`.
 	FilterDeprecated pulumi.BoolPtrInput `pulumi:"filterDeprecated"`
 }
 
@@ -71,6 +102,7 @@ func (o GetSyntheticMonitoringProbesResultOutput) ToGetSyntheticMonitoringProbes
 	return o
 }
 
+// If true, only probes that are not deprecated will be returned. Defaults to `true`.
 func (o GetSyntheticMonitoringProbesResultOutput) FilterDeprecated() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetSyntheticMonitoringProbesResult) *bool { return v.FilterDeprecated }).(pulumi.BoolPtrOutput)
 }
@@ -80,6 +112,7 @@ func (o GetSyntheticMonitoringProbesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSyntheticMonitoringProbesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Map of probes with their names as keys and IDs as values.
 func (o GetSyntheticMonitoringProbesResultOutput) Probes() pulumi.IntMapOutput {
 	return o.ApplyT(func(v GetSyntheticMonitoringProbesResult) map[string]int { return v.Probes }).(pulumi.IntMapOutput)
 }

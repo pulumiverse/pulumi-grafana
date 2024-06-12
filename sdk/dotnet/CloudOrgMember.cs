@@ -10,6 +10,15 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// Manages the membership of a user in an organization.
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/cloudOrgMember:CloudOrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
+    /// ```
+    /// </summary>
     [GrafanaResourceType("grafana:index/cloudOrgMember:CloudOrgMember")]
     public partial class CloudOrgMember : global::Pulumi.CustomResource
     {

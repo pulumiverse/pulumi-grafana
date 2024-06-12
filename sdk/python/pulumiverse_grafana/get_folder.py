@@ -52,26 +52,41 @@ class GetFolderResult:
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[str]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
         return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter(name="parentFolderUid")
     def parent_folder_uid(self) -> str:
+        """
+        The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+        """
         return pulumi.get(self, "parent_folder_uid")
 
     @property
     @pulumi.getter
     def title(self) -> str:
+        """
+        The title of the folder.
+        """
         return pulumi.get(self, "title")
 
     @property
     @pulumi.getter
     def uid(self) -> str:
+        """
+        Unique identifier.
+        """
         return pulumi.get(self, "uid")
 
     @property
     @pulumi.getter
     def url(self) -> str:
+        """
+        The full URL of the folder.
+        """
         return pulumi.get(self, "url")
 
 
@@ -93,7 +108,27 @@ def get_folder(org_id: Optional[str] = None,
                title: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFolderResult:
     """
-    Use this data source to access information about an existing resource.
+    * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+    import pulumiverse_grafana as grafana
+
+    test = grafana.Folder("test",
+        title="test-folder",
+        uid="test-ds-folder-uid")
+    from_title = grafana.get_folder_output(title=test.title)
+    ```
+    <!--End PulumiCodeChooser -->
+
+
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+    :param str title: The title of the folder.
     """
     __args__ = dict()
     __args__['orgId'] = org_id
@@ -115,6 +150,26 @@ def get_folder_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
                       title: Optional[pulumi.Input[str]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFolderResult]:
     """
-    Use this data source to access information about an existing resource.
+    * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+    import pulumiverse_grafana as grafana
+
+    test = grafana.Folder("test",
+        title="test-folder",
+        uid="test-ds-folder-uid")
+    from_title = grafana.get_folder_output(title=test.title)
+    ```
+    <!--End PulumiCodeChooser -->
+
+
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+    :param str title: The title of the folder.
     """
     ...

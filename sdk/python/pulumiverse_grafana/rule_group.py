@@ -25,11 +25,10 @@ class RuleGroupArgs:
         """
         The set of arguments for constructing a RuleGroup resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
-        :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are
-               evaluated sequentially.
+        :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleArgs']]] rules: The rules within the group.
         :param pulumi.Input[bool] disable_provenance: Allow modifying the rule group from other sources than Terraform or the Grafana API.
-        :param pulumi.Input[str] name: The name of the rule group.
+        :param pulumi.Input[str] name: The name of the alert rule.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         pulumi.set(__self__, "folder_uid", folder_uid)
@@ -58,8 +57,7 @@ class RuleGroupArgs:
     @pulumi.getter(name="intervalSeconds")
     def interval_seconds(self) -> pulumi.Input[int]:
         """
-        The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are
-        evaluated sequentially.
+        The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         """
         return pulumi.get(self, "interval_seconds")
 
@@ -95,7 +93,7 @@ class RuleGroupArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the rule group.
+        The name of the alert rule.
         """
         return pulumi.get(self, "name")
 
@@ -129,9 +127,8 @@ class _RuleGroupState:
         Input properties used for looking up and filtering RuleGroup resources.
         :param pulumi.Input[bool] disable_provenance: Allow modifying the rule group from other sources than Terraform or the Grafana API.
         :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
-        :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are
-               evaluated sequentially.
-        :param pulumi.Input[str] name: The name of the rule group.
+        :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
+        :param pulumi.Input[str] name: The name of the alert rule.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleArgs']]] rules: The rules within the group.
         """
@@ -176,8 +173,7 @@ class _RuleGroupState:
     @pulumi.getter(name="intervalSeconds")
     def interval_seconds(self) -> Optional[pulumi.Input[int]]:
         """
-        The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are
-        evaluated sequentially.
+        The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         """
         return pulumi.get(self, "interval_seconds")
 
@@ -189,7 +185,7 @@ class _RuleGroupState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the rule group.
+        The name of the alert rule.
         """
         return pulumi.get(self, "name")
 
@@ -235,14 +231,122 @@ class RuleGroup(pulumi.CustomResource):
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]]] = None,
                  __props__=None):
         """
-        Create a RuleGroup resource with the given unique name, props, and options.
+        Manages Grafana Alerting rule groups.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
+
+        This resource requires Grafana 9.1.0 or later.
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        rule_folder = grafana.Folder("ruleFolder", title="My Alert Rule Folder")
+        my_alert_rule = grafana.RuleGroup("myAlertRule",
+            folder_uid=rule_folder.uid,
+            interval_seconds=240,
+            org_id="1",
+            rules=[grafana.RuleGroupRuleArgs(
+                name="My Alert Rule 1",
+                for_="2m",
+                condition="B",
+                no_data_state="NoData",
+                exec_err_state="Alerting",
+                annotations={
+                    "a": "b",
+                    "c": "d",
+                },
+                labels={
+                    "e": "f",
+                    "g": "h",
+                },
+                is_paused=False,
+                datas=[
+                    grafana.RuleGroupRuleDataArgs(
+                        ref_id="A",
+                        query_type="",
+                        relative_time_range=grafana.RuleGroupRuleDataRelativeTimeRangeArgs(
+                            from_=600,
+                            to=0,
+                        ),
+                        datasource_uid="PD8C576611E62080A",
+                        model=json.dumps({
+                            "hide": False,
+                            "intervalMs": 1000,
+                            "maxDataPoints": 43200,
+                            "refId": "A",
+                        }),
+                    ),
+                    grafana.RuleGroupRuleDataArgs(
+                        ref_id="B",
+                        query_type="",
+                        relative_time_range=grafana.RuleGroupRuleDataRelativeTimeRangeArgs(
+                            from_=0,
+                            to=0,
+                        ),
+                        datasource_uid="-100",
+                        model=\"\"\"{
+            "conditions": [
+                {
+                "evaluator": {
+                    "params": [
+                    3
+                    ],
+                    "type": "gt"
+                },
+                "operator": {
+                    "type": "and"
+                },
+                "query": {
+                    "params": [
+                    "A"
+                    ]
+                },
+                "reducer": {
+                    "params": [],
+                    "type": "last"
+                },
+                "type": "query"
+                }
+            ],
+            "datasource": {
+                "type": "__expr__",
+                "uid": "-100"
+            },
+            "hide": false,
+            "intervalMs": 1000,
+            "maxDataPoints": 43200,
+            "refId": "B",
+            "type": "classic_conditions"
+        }
+        \"\"\",
+                    ),
+                ],
+            )])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/ruleGroup:RuleGroup name "{{ folderUID }}:{{ title }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/ruleGroup:RuleGroup name "{{ orgID }}:{{ folderUID }}:{{ title }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] disable_provenance: Allow modifying the rule group from other sources than Terraform or the Grafana API.
         :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
-        :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are
-               evaluated sequentially.
-        :param pulumi.Input[str] name: The name of the rule group.
+        :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
+        :param pulumi.Input[str] name: The name of the alert rule.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]] rules: The rules within the group.
         """
@@ -253,7 +357,116 @@ class RuleGroup(pulumi.CustomResource):
                  args: RuleGroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a RuleGroup resource with the given unique name, props, and options.
+        Manages Grafana Alerting rule groups.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
+
+        This resource requires Grafana 9.1.0 or later.
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        rule_folder = grafana.Folder("ruleFolder", title="My Alert Rule Folder")
+        my_alert_rule = grafana.RuleGroup("myAlertRule",
+            folder_uid=rule_folder.uid,
+            interval_seconds=240,
+            org_id="1",
+            rules=[grafana.RuleGroupRuleArgs(
+                name="My Alert Rule 1",
+                for_="2m",
+                condition="B",
+                no_data_state="NoData",
+                exec_err_state="Alerting",
+                annotations={
+                    "a": "b",
+                    "c": "d",
+                },
+                labels={
+                    "e": "f",
+                    "g": "h",
+                },
+                is_paused=False,
+                datas=[
+                    grafana.RuleGroupRuleDataArgs(
+                        ref_id="A",
+                        query_type="",
+                        relative_time_range=grafana.RuleGroupRuleDataRelativeTimeRangeArgs(
+                            from_=600,
+                            to=0,
+                        ),
+                        datasource_uid="PD8C576611E62080A",
+                        model=json.dumps({
+                            "hide": False,
+                            "intervalMs": 1000,
+                            "maxDataPoints": 43200,
+                            "refId": "A",
+                        }),
+                    ),
+                    grafana.RuleGroupRuleDataArgs(
+                        ref_id="B",
+                        query_type="",
+                        relative_time_range=grafana.RuleGroupRuleDataRelativeTimeRangeArgs(
+                            from_=0,
+                            to=0,
+                        ),
+                        datasource_uid="-100",
+                        model=\"\"\"{
+            "conditions": [
+                {
+                "evaluator": {
+                    "params": [
+                    3
+                    ],
+                    "type": "gt"
+                },
+                "operator": {
+                    "type": "and"
+                },
+                "query": {
+                    "params": [
+                    "A"
+                    ]
+                },
+                "reducer": {
+                    "params": [],
+                    "type": "last"
+                },
+                "type": "query"
+                }
+            ],
+            "datasource": {
+                "type": "__expr__",
+                "uid": "-100"
+            },
+            "hide": false,
+            "intervalMs": 1000,
+            "maxDataPoints": 43200,
+            "refId": "B",
+            "type": "classic_conditions"
+        }
+        \"\"\",
+                    ),
+                ],
+            )])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/ruleGroup:RuleGroup name "{{ folderUID }}:{{ title }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/ruleGroup:RuleGroup name "{{ orgID }}:{{ folderUID }}:{{ title }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param RuleGroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -321,9 +534,8 @@ class RuleGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] disable_provenance: Allow modifying the rule group from other sources than Terraform or the Grafana API.
         :param pulumi.Input[str] folder_uid: The UID of the folder that the group belongs to.
-        :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are
-               evaluated sequentially.
-        :param pulumi.Input[str] name: The name of the rule group.
+        :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
+        :param pulumi.Input[str] name: The name of the alert rule.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]] rules: The rules within the group.
         """
@@ -359,8 +571,7 @@ class RuleGroup(pulumi.CustomResource):
     @pulumi.getter(name="intervalSeconds")
     def interval_seconds(self) -> pulumi.Output[int]:
         """
-        The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are
-        evaluated sequentially.
+        The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         """
         return pulumi.get(self, "interval_seconds")
 
@@ -368,7 +579,7 @@ class RuleGroup(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the rule group.
+        The name of the alert rule.
         """
         return pulumi.get(self, "name")
 

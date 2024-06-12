@@ -23,7 +23,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? Device;
         /// <summary>
-        /// Whether to disable sending resolve messages.
+        /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
         public readonly bool? DisableResolveMessage;
         /// <summary>
@@ -51,7 +51,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly int? Retry;
         /// <summary>
-        /// Additional custom properties to attach to the notifier.
+        /// Additional custom properties to attach to the notifier. Defaults to `map[]`.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Settings;
         /// <summary>

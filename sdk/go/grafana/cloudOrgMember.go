@@ -12,6 +12,13 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages the membership of a user in an organization.
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/cloudOrgMember:CloudOrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
+// ```
 type CloudOrgMember struct {
 	pulumi.CustomResourceState
 

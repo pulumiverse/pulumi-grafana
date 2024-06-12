@@ -19,8 +19,7 @@ class OncallEscalationChainArgs:
         """
         The set of arguments for constructing a OncallEscalationChain resource.
         :param pulumi.Input[str] name: The name of the escalation chain.
-        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-               with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -43,8 +42,7 @@ class OncallEscalationChainArgs:
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-        with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         """
         return pulumi.get(self, "team_id")
 
@@ -61,8 +59,7 @@ class _OncallEscalationChainState:
         """
         Input properties used for looking up and filtering OncallEscalationChain resources.
         :param pulumi.Input[str] name: The name of the escalation chain.
-        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-               with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -85,8 +82,7 @@ class _OncallEscalationChainState:
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-        with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         """
         return pulumi.get(self, "team_id")
 
@@ -104,12 +100,29 @@ class OncallEscalationChain(pulumi.CustomResource):
                  team_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a OncallEscalationChain resource with the given unique name, props, and options.
+        * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        default = grafana.OncallEscalationChain("default", opts=pulumi.ResourceOptions(provider=grafana["oncall"]))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/oncallEscalationChain:OncallEscalationChain name "{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the escalation chain.
-        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-               with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         """
         ...
     @overload
@@ -118,7 +131,25 @@ class OncallEscalationChain(pulumi.CustomResource):
                  args: Optional[OncallEscalationChainArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a OncallEscalationChain resource with the given unique name, props, and options.
+        * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        default = grafana.OncallEscalationChain("default", opts=pulumi.ResourceOptions(provider=grafana["oncall"]))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/oncallEscalationChain:OncallEscalationChain name "{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param OncallEscalationChainArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -167,8 +198,7 @@ class OncallEscalationChain(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the escalation chain.
-        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-               with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -190,8 +220,7 @@ class OncallEscalationChain(pulumi.CustomResource):
     @pulumi.getter(name="teamId")
     def team_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-        with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
         """
         return pulumi.get(self, "team_id")
 

@@ -14,13 +14,13 @@ namespace Pulumiverse.Grafana.Inputs
     public sealed class SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the query field to send
+        /// Name of the header to send
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Value of the query field to send
+        /// The value of the assertion
         /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;

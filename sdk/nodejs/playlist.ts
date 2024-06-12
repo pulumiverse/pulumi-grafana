@@ -6,6 +6,47 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = new grafana.Playlist("test", {
+ *     interval: "5m",
+ *     items: [
+ *         {
+ *             order: 2,
+ *             title: "Terraform Dashboard By Tag",
+ *             type: "dashboard_by_tag",
+ *             value: "terraform",
+ *         },
+ *         {
+ *             order: 1,
+ *             title: "Terraform Dashboard By ID",
+ *             type: "dashboard_by_id",
+ *             value: "3",
+ *         },
+ *     ],
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/playlist:Playlist name "{{ uid }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/playlist:Playlist name "{{ orgID }}:{{ uid }}"
+ * ```
+ */
 export class Playlist extends pulumi.CustomResource {
     /**
      * Get an existing Playlist resource's state with the given name, ID, and optional extra

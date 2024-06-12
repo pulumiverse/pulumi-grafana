@@ -6,6 +6,58 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Manages the entire set of permissions for a dashboard. Permissions that aren't specified when applying this resource will be removed.
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard_permissions/)
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const team = new grafana.Team("team", {});
+ * const user = new grafana.User("user", {
+ *     email: "user.name@example.com",
+ *     password: "my-password",
+ *     login: "user.name",
+ * });
+ * const metrics = new grafana.Dashboard("metrics", {configJson: JSON.stringify({
+ *     title: "My Dashboard",
+ *     uid: "my-dashboard-uid",
+ * })});
+ * const collectionPermission = new grafana.DashboardPermission("collectionPermission", {
+ *     dashboardUid: metrics.uid,
+ *     permissions: [
+ *         {
+ *             role: "Editor",
+ *             permission: "Edit",
+ *         },
+ *         {
+ *             teamId: team.id,
+ *             permission: "View",
+ *         },
+ *         {
+ *             userId: user.id,
+ *             permission: "Admin",
+ *         },
+ *     ],
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/dashboardPermission:DashboardPermission name "{{ dashboardUID }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/dashboardPermission:DashboardPermission name "{{ orgID }}:{{ dashboardUID }}"
+ * ```
+ */
 export class DashboardPermission extends pulumi.CustomResource {
     /**
      * Get an existing DashboardPermission resource's state with the given name, ID, and optional extra
@@ -35,7 +87,7 @@ export class DashboardPermission extends pulumi.CustomResource {
     }
 
     /**
-     * ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
+     * ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
      *
      * @deprecated use `dashboardUid` instead
      */
@@ -87,7 +139,7 @@ export class DashboardPermission extends pulumi.CustomResource {
  */
 export interface DashboardPermissionState {
     /**
-     * ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
+     * ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
      *
      * @deprecated use `dashboardUid` instead
      */
@@ -111,7 +163,7 @@ export interface DashboardPermissionState {
  */
 export interface DashboardPermissionArgs {
     /**
-     * ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
+     * ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
      *
      * @deprecated use `dashboardUid` instead
      */

@@ -6,6 +6,49 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const exampleSlackChannel = grafana.getOnCallSlackChannel({
+ *     name: "example_slack_channel",
+ * });
+ * const exampleUserGroup = grafana.getOncallUserGroup({
+ *     slackHandle: "example_slack_handle",
+ * });
+ * // ICal based schedule
+ * const exampleScheduleOncallSchedule = new grafana.OncallSchedule("exampleScheduleOncallSchedule", {
+ *     type: "ical",
+ *     icalUrlPrimary: "https://example.com/example_ical.ics",
+ *     icalUrlOverrides: "https://example.com/example_overrides_ical.ics",
+ *     slack: {
+ *         channelId: exampleSlackChannel.then(exampleSlackChannel => exampleSlackChannel.slackId),
+ *         userGroupId: exampleUserGroup.then(exampleUserGroup => exampleUserGroup.slackId),
+ *     },
+ * });
+ * // Shift based schedule
+ * const exampleScheduleIndex_oncallScheduleOncallSchedule = new grafana.OncallSchedule("exampleScheduleIndex/oncallScheduleOncallSchedule", {
+ *     type: "calendar",
+ *     timeZone: "America/New_York",
+ *     shifts: [],
+ *     icalUrlOverrides: "https://example.com/example_overrides_ical.ics",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/oncallSchedule:OncallSchedule name "{{ id }}"
+ * ```
+ */
 export class OncallSchedule extends pulumi.CustomResource {
     /**
      * Get an existing OncallSchedule resource's state with the given name, ID, and optional extra
@@ -35,7 +78,7 @@ export class OncallSchedule extends pulumi.CustomResource {
     }
 
     /**
-     * Enable overrides via web UI (it will ignore ical_url_overrides).
+     * Enable overrides via web UI (it will ignore ical*url*overrides).
      */
     public readonly enableWebOverrides!: pulumi.Output<boolean | undefined>;
     /**
@@ -59,8 +102,7 @@ export class OncallSchedule extends pulumi.CustomResource {
      */
     public readonly slack!: pulumi.Output<outputs.OncallScheduleSlack | undefined>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      */
     public readonly teamId!: pulumi.Output<string | undefined>;
     /**
@@ -119,7 +161,7 @@ export class OncallSchedule extends pulumi.CustomResource {
  */
 export interface OncallScheduleState {
     /**
-     * Enable overrides via web UI (it will ignore ical_url_overrides).
+     * Enable overrides via web UI (it will ignore ical*url*overrides).
      */
     enableWebOverrides?: pulumi.Input<boolean>;
     /**
@@ -143,8 +185,7 @@ export interface OncallScheduleState {
      */
     slack?: pulumi.Input<inputs.OncallScheduleSlack>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      */
     teamId?: pulumi.Input<string>;
     /**
@@ -162,7 +203,7 @@ export interface OncallScheduleState {
  */
 export interface OncallScheduleArgs {
     /**
-     * Enable overrides via web UI (it will ignore ical_url_overrides).
+     * Enable overrides via web UI (it will ignore ical*url*overrides).
      */
     enableWebOverrides?: pulumi.Input<boolean>;
     /**
@@ -186,8 +227,7 @@ export interface OncallScheduleArgs {
      */
     slack?: pulumi.Input<inputs.OncallScheduleSlack>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
      */
     teamId?: pulumi.Input<string>;
     /**

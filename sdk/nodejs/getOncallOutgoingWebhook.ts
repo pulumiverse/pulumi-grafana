@@ -4,6 +4,22 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const exampleOutgoingWebhook = grafana.getOncallOutgoingWebhook({
+ *     name: "example_outgoing_webhook",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ */
 export function getOncallOutgoingWebhook(args: GetOncallOutgoingWebhookArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallOutgoingWebhookResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -16,6 +32,9 @@ export function getOncallOutgoingWebhook(args: GetOncallOutgoingWebhookArgs, opt
  * A collection of arguments for invoking getOncallOutgoingWebhook.
  */
 export interface GetOncallOutgoingWebhookArgs {
+    /**
+     * The outgoing webhook name.
+     */
     name: string;
 }
 
@@ -27,8 +46,27 @@ export interface GetOncallOutgoingWebhookResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The outgoing webhook name.
+     */
     readonly name: string;
 }
+/**
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const exampleOutgoingWebhook = grafana.getOncallOutgoingWebhook({
+ *     name: "example_outgoing_webhook",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ */
 export function getOncallOutgoingWebhookOutput(args: GetOncallOutgoingWebhookOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallOutgoingWebhookResult> {
     return pulumi.output(args).apply((a: any) => getOncallOutgoingWebhook(a, opts))
 }
@@ -37,5 +75,8 @@ export function getOncallOutgoingWebhookOutput(args: GetOncallOutgoingWebhookOut
  * A collection of arguments for invoking getOncallOutgoingWebhook.
  */
 export interface GetOncallOutgoingWebhookOutputArgs {
+    /**
+     * The outgoing webhook name.
+     */
     name: pulumi.Input<string>;
 }
