@@ -35,7 +35,7 @@ namespace Pulumiverse.Grafana
 
         /// <summary>
         /// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-        /// value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+        /// value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
         /// </summary>
         [Output("frequency")]
         public Output<int?> Frequency { get; private set; } = null!;
@@ -154,7 +154,7 @@ namespace Pulumiverse.Grafana
 
         /// <summary>
         /// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-        /// value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+        /// value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
         /// </summary>
         [Input("frequency")]
         public Input<int>? Frequency { get; set; }
@@ -240,7 +240,7 @@ namespace Pulumiverse.Grafana
 
         /// <summary>
         /// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-        /// value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+        /// value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
         /// </summary>
         [Input("frequency")]
         public Input<int>? Frequency { get; set; }

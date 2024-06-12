@@ -38,7 +38,7 @@ class SyntheticMonitoringCheckArgs:
                metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each.
         :param pulumi.Input[bool] enabled: Whether to enable the check.
         :param pulumi.Input[int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-               value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+               value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per
                check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of
                the labels cannot be empty, and the maximum length is 32 bytes.
@@ -153,7 +153,7 @@ class SyntheticMonitoringCheckArgs:
     def frequency(self) -> Optional[pulumi.Input[int]]:
         """
         How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-        value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+        value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
         """
         return pulumi.get(self, "frequency")
 
@@ -211,7 +211,7 @@ class _SyntheticMonitoringCheckState:
                metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each.
         :param pulumi.Input[bool] enabled: Whether to enable the check.
         :param pulumi.Input[int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-               value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+               value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
         :param pulumi.Input[str] job: Name used for job label.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per
                check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of
@@ -289,7 +289,7 @@ class _SyntheticMonitoringCheckState:
     def frequency(self) -> Optional[pulumi.Input[int]]:
         """
         How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-        value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+        value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
         """
         return pulumi.get(self, "frequency")
 
@@ -411,7 +411,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each.
         :param pulumi.Input[bool] enabled: Whether to enable the check.
         :param pulumi.Input[int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-               value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+               value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
         :param pulumi.Input[str] job: Name used for job label.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per
                check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of
@@ -517,7 +517,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each.
         :param pulumi.Input[bool] enabled: Whether to enable the check.
         :param pulumi.Input[int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-               value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+               value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
         :param pulumi.Input[str] job: Name used for job label.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per
                check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of
@@ -577,7 +577,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
     def frequency(self) -> pulumi.Output[Optional[int]]:
         """
         How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-        value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+        value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
         """
         return pulumi.get(self, "frequency")
 

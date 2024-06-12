@@ -86,7 +86,7 @@ export class OncallEscalation extends pulumi.CustomResource {
      * trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
      * notify_team_members
      */
-    public readonly type!: pulumi.Output<string | undefined>;
+    public readonly type!: pulumi.Output<string>;
 
     /**
      * Create a OncallEscalation resource with the given unique name, arguments, and options.
@@ -121,6 +121,9 @@ export class OncallEscalation extends pulumi.CustomResource {
             }
             if ((!args || args.position === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'position'");
+            }
+            if ((!args || args.type === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'type'");
             }
             resourceInputs["actionToTrigger"] = args ? args.actionToTrigger : undefined;
             resourceInputs["duration"] = args ? args.duration : undefined;
@@ -260,5 +263,5 @@ export interface OncallEscalationArgs {
      * trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
      * notify_team_members
      */
-    type?: pulumi.Input<string>;
+    type: pulumi.Input<string>;
 }

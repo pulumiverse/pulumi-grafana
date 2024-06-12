@@ -24,7 +24,7 @@ type SyntheticMonitoringCheck struct {
 	// Whether to enable the check.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-	// value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+	// value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
 	Frequency pulumi.IntPtrOutput `pulumi:"frequency"`
 	// Name used for job label.
 	Job pulumi.StringOutput `pulumi:"job"`
@@ -96,7 +96,7 @@ type syntheticMonitoringCheckState struct {
 	// Whether to enable the check.
 	Enabled *bool `pulumi:"enabled"`
 	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-	// value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+	// value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
 	Frequency *int `pulumi:"frequency"`
 	// Name used for job label.
 	Job *string `pulumi:"job"`
@@ -127,7 +127,7 @@ type SyntheticMonitoringCheckState struct {
 	// Whether to enable the check.
 	Enabled pulumi.BoolPtrInput
 	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-	// value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+	// value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
 	Frequency pulumi.IntPtrInput
 	// Name used for job label.
 	Job pulumi.StringPtrInput
@@ -162,7 +162,7 @@ type syntheticMonitoringCheckArgs struct {
 	// Whether to enable the check.
 	Enabled *bool `pulumi:"enabled"`
 	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-	// value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+	// value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
 	Frequency *int `pulumi:"frequency"`
 	// Name used for job label.
 	Job string `pulumi:"job"`
@@ -192,7 +192,7 @@ type SyntheticMonitoringCheckArgs struct {
 	// Whether to enable the check.
 	Enabled pulumi.BoolPtrInput
 	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-	// value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+	// value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
 	Frequency pulumi.IntPtrInput
 	// Name used for job label.
 	Job pulumi.StringInput
@@ -316,7 +316,7 @@ func (o SyntheticMonitoringCheckOutput) Enabled() pulumi.BoolPtrOutput {
 }
 
 // How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-// value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+// value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
 func (o SyntheticMonitoringCheckOutput) Frequency() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheck) pulumi.IntPtrOutput { return v.Frequency }).(pulumi.IntPtrOutput)
 }

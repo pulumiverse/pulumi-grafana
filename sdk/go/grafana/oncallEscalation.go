@@ -43,7 +43,7 @@ type OncallEscalation struct {
 	// The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
 	// trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
 	// notify_team_members
-	Type pulumi.StringPtrOutput `pulumi:"type"`
+	Type pulumi.StringOutput `pulumi:"type"`
 }
 
 // NewOncallEscalation registers a new resource with the given unique name, arguments, and options.
@@ -58,6 +58,9 @@ func NewOncallEscalation(ctx *pulumi.Context,
 	}
 	if args.Position == nil {
 		return nil, errors.New("invalid value for required argument 'Position'")
+	}
+	if args.Type == nil {
+		return nil, errors.New("invalid value for required argument 'Type'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource OncallEscalation
@@ -178,7 +181,7 @@ type oncallEscalationArgs struct {
 	// The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
 	// trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
 	// notify_team_members
-	Type *string `pulumi:"type"`
+	Type string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a OncallEscalation resource.
@@ -211,7 +214,7 @@ type OncallEscalationArgs struct {
 	// The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
 	// trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
 	// notify_team_members
-	Type pulumi.StringPtrInput
+	Type pulumi.StringInput
 }
 
 func (OncallEscalationArgs) ElementType() reflect.Type {
@@ -365,8 +368,8 @@ func (o OncallEscalationOutput) Position() pulumi.IntOutput {
 // The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
 // trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
 // notify_team_members
-func (o OncallEscalationOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *OncallEscalation) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
+func (o OncallEscalationOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *OncallEscalation) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 type OncallEscalationArrayOutput struct{ *pulumi.OutputState }

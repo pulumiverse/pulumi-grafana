@@ -92,7 +92,7 @@ namespace Pulumiverse.Grafana
         /// notify_team_members
         /// </summary>
         [Output("type")]
-        public Output<string?> Type { get; private set; } = null!;
+        public Output<string> Type { get; private set; } = null!;
 
 
         /// <summary>
@@ -231,8 +231,8 @@ namespace Pulumiverse.Grafana
         /// trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
         /// notify_team_members
         /// </summary>
-        [Input("type")]
-        public Input<string>? Type { get; set; }
+        [Input("type", required: true)]
+        public Input<string> Type { get; set; } = null!;
 
         public OncallEscalationArgs()
         {

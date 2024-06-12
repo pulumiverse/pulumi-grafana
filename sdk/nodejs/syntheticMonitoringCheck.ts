@@ -50,7 +50,7 @@ export class SyntheticMonitoringCheck extends pulumi.CustomResource {
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     /**
      * How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-     * value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+     * value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
      */
     public readonly frequency!: pulumi.Output<number | undefined>;
     /**
@@ -160,7 +160,7 @@ export interface SyntheticMonitoringCheckState {
     enabled?: pulumi.Input<boolean>;
     /**
      * How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-     * value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+     * value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
      */
     frequency?: pulumi.Input<number>;
     /**
@@ -216,7 +216,7 @@ export interface SyntheticMonitoringCheckArgs {
     enabled?: pulumi.Input<boolean>;
     /**
      * How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable
-     * value is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).
+     * value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).
      */
     frequency?: pulumi.Input<number>;
     /**
