@@ -8454,7 +8454,8 @@
             },
             "required": [
                 "escalationChainId",
-                "position"
+                "position",
+                "type"
             ],
             "inputProperties": {
                 "actionToTrigger": {
@@ -8519,7 +8520,8 @@
             },
             "requiredInputs": [
                 "escalationChainId",
-                "position"
+                "position",
+                "type"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering OncallEscalation resources.\n",
@@ -10980,7 +10982,7 @@
                 },
                 "frequency": {
                     "type": "integer",
-                    "description": "How often the check runs in milliseconds (the value is not truly a \"frequency\" but a \"period\"). The minimum acceptable\nvalue is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).\n"
+                    "description": "How often the check runs in milliseconds (the value is not truly a \"frequency\" but a \"period\"). The minimum acceptable\nvalue is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).\n"
                 },
                 "job": {
                     "type": "string",
@@ -11039,7 +11041,7 @@
                 },
                 "frequency": {
                     "type": "integer",
-                    "description": "How often the check runs in milliseconds (the value is not truly a \"frequency\" but a \"period\"). The minimum acceptable\nvalue is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).\n"
+                    "description": "How often the check runs in milliseconds (the value is not truly a \"frequency\" but a \"period\"). The minimum acceptable\nvalue is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).\n"
                 },
                 "job": {
                     "type": "string",
@@ -11095,7 +11097,7 @@
                     },
                     "frequency": {
                         "type": "integer",
-                        "description": "How often the check runs in milliseconds (the value is not truly a \"frequency\" but a \"period\"). The minimum acceptable\nvalue is 1 second (1000 ms), and the maximum is 120 seconds (120000 ms).\n"
+                        "description": "How often the check runs in milliseconds (the value is not truly a \"frequency\" but a \"period\"). The minimum acceptable\nvalue is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms).\n"
                     },
                     "job": {
                         "type": "string",
