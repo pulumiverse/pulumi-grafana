@@ -4,6 +4,38 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
+ * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+ * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = new grafana.Dashboard("test", {configJson: JSON.stringify({
+ *     id: 12345,
+ *     uid: "test-ds-dashboard-uid",
+ *     title: "Production Overview",
+ *     tags: ["templated"],
+ *     timezone: "browser",
+ *     schemaVersion: 16,
+ *     version: 0,
+ *     refresh: "25s",
+ * })});
+ * const fromId = grafana.getDashboardOutput({
+ *     dashboardId: test.dashboardId,
+ * });
+ * const fromUid = grafana.getDashboard({
+ *     uid: "test-ds-dashboard-uid",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ */
 export function getDashboard(args?: GetDashboardArgs, opts?: pulumi.InvokeOptions): Promise<GetDashboardResult> {
     args = args || {};
 
@@ -19,8 +51,17 @@ export function getDashboard(args?: GetDashboardArgs, opts?: pulumi.InvokeOption
  * A collection of arguments for invoking getDashboard.
  */
 export interface GetDashboardArgs {
+    /**
+     * The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
+     */
     dashboardId?: number;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
     orgId?: string;
+    /**
+     * The uid of the Grafana dashboard. Specify either this or `dashboardId`. Defaults to ``.
+     */
     uid?: string;
 }
 
@@ -28,25 +69,89 @@ export interface GetDashboardArgs {
  * A collection of values returned by getDashboard.
  */
 export interface GetDashboardResult {
+    /**
+     * The complete dashboard model JSON.
+     */
     readonly configJson: string;
+    /**
+     * The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
+     */
     readonly dashboardId?: number;
     /**
+     * Deprecated. Use `folderUid` instead
+     *
      * @deprecated Use `folderUid` instead
      */
     readonly folder: number;
+    /**
+     * The UID of the folder where the Grafana dashboard is found.
+     */
     readonly folderUid: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Whether or not the Grafana dashboard is starred. Starred Dashboards will show up on your own Home Dashboard by default, and are a convenient way to mark Dashboards that you’re interested in.
+     */
     readonly isStarred: boolean;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
     readonly orgId?: string;
+    /**
+     * URL slug of the dashboard (deprecated).
+     */
     readonly slug: string;
+    /**
+     * The title of the Grafana dashboard.
+     */
     readonly title: string;
+    /**
+     * The uid of the Grafana dashboard. Specify either this or `dashboardId`. Defaults to ``.
+     */
     readonly uid?: string;
+    /**
+     * The full URL of the dashboard.
+     */
     readonly url: string;
+    /**
+     * The numerical version of the Grafana dashboard.
+     */
     readonly version: number;
 }
+/**
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
+ * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+ * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = new grafana.Dashboard("test", {configJson: JSON.stringify({
+ *     id: 12345,
+ *     uid: "test-ds-dashboard-uid",
+ *     title: "Production Overview",
+ *     tags: ["templated"],
+ *     timezone: "browser",
+ *     schemaVersion: 16,
+ *     version: 0,
+ *     refresh: "25s",
+ * })});
+ * const fromId = grafana.getDashboardOutput({
+ *     dashboardId: test.dashboardId,
+ * });
+ * const fromUid = grafana.getDashboard({
+ *     uid: "test-ds-dashboard-uid",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ */
 export function getDashboardOutput(args?: GetDashboardOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDashboardResult> {
     return pulumi.output(args).apply((a: any) => getDashboard(a, opts))
 }
@@ -55,7 +160,16 @@ export function getDashboardOutput(args?: GetDashboardOutputArgs, opts?: pulumi.
  * A collection of arguments for invoking getDashboard.
  */
 export interface GetDashboardOutputArgs {
+    /**
+     * The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
+     */
     dashboardId?: pulumi.Input<number>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
     orgId?: pulumi.Input<string>;
+    /**
+     * The uid of the Grafana dashboard. Specify either this or `dashboardId`. Defaults to ``.
+     */
     uid?: pulumi.Input<string>;
 }

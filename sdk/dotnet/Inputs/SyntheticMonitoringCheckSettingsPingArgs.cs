@@ -14,19 +14,19 @@ namespace Pulumiverse.Grafana.Inputs
     public sealed class SyntheticMonitoringCheckSettingsPingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Set the DF-bit in the IP-header. Only works with ipV4.
+        /// Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
         /// </summary>
         [Input("dontFragment")]
         public Input<bool>? DontFragment { get; set; }
 
         /// <summary>
-        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
+        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
         /// </summary>
         [Input("ipVersion")]
         public Input<string>? IpVersion { get; set; }
 
         /// <summary>
-        /// Payload size.
+        /// Payload size. Defaults to `0`.
         /// </summary>
         [Input("payloadSize")]
         public Input<int>? PayloadSize { get; set; }

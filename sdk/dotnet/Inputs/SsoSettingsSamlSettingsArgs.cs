@@ -96,7 +96,7 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string>? CertificatePath { get; set; }
 
         /// <summary>
-        /// Define whether this configuration is enabled for SAML.
+        /// Define whether this configuration is enabled for SAML. Defaults to `true`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

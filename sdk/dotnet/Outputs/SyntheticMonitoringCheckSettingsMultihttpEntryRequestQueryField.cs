@@ -15,11 +15,11 @@ namespace Pulumiverse.Grafana.Outputs
     public sealed class SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField
     {
         /// <summary>
-        /// Name of the query field to send
+        /// Name of the header to send
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Value of the query field to send
+        /// The value of the assertion
         /// </summary>
         public readonly string Value;
 

@@ -12,10 +12,65 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// **Note:** This resource is available only with Grafana Enterprise 7.+.
+//
+// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-reports/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/reporting/)
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testDashboard, err := grafana.NewDashboard(ctx, "testDashboard", &grafana.DashboardArgs{
+//				ConfigJson: pulumi.String("{\n  \"uid\": \"report-dashboard\",\n  \"title\": \"report-dashboard\"\n}\n"),
+//				Message:    pulumi.String("inital commit."),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = grafana.NewReport(ctx, "testReport", &grafana.ReportArgs{
+//				DashboardUid: testDashboard.Uid,
+//				Recipients: pulumi.StringArray{
+//					pulumi.String("some@email.com"),
+//				},
+//				Schedule: &grafana.ReportScheduleArgs{
+//					Frequency: pulumi.String("hourly"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/report:Report name "{{ id }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/report:Report name "{{ orgID }}:{{ id }}"
+// ```
 type Report struct {
 	pulumi.CustomResourceState
 
-	// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 	//
 	// Deprecated: Use dashboards instead
 	DashboardId pulumi.IntOutput `pulumi:"dashboardId"`
@@ -27,11 +82,11 @@ type Report struct {
 	Dashboards ReportDashboardArrayOutput `pulumi:"dashboards"`
 	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
 	Formats pulumi.StringArrayOutput `pulumi:"formats"`
-	// Whether to include a link to the dashboard in the report.
+	// Whether to include a link to the dashboard in the report. Defaults to `true`.
 	IncludeDashboardLink pulumi.BoolPtrOutput `pulumi:"includeDashboardLink"`
-	// Whether to include a CSV file of table panel data.
+	// Whether to include a CSV file of table panel data. Defaults to `false`.
 	IncludeTableCsv pulumi.BoolPtrOutput `pulumi:"includeTableCsv"`
-	// Layout of the report. Allowed values: `simple`, `grid`.
+	// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
 	Layout pulumi.StringPtrOutput `pulumi:"layout"`
 	// Message to be sent in the report.
 	Message pulumi.StringPtrOutput `pulumi:"message"`
@@ -39,7 +94,7 @@ type Report struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
-	// Orientation of the report. Allowed values: `landscape`, `portrait`.
+	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 	Orientation pulumi.StringPtrOutput `pulumi:"orientation"`
 	// List of recipients of the report.
 	Recipients pulumi.StringArrayOutput `pulumi:"recipients"`
@@ -89,7 +144,7 @@ func GetReport(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Report resources.
 type reportState struct {
-	// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 	//
 	// Deprecated: Use dashboards instead
 	DashboardId *int `pulumi:"dashboardId"`
@@ -101,11 +156,11 @@ type reportState struct {
 	Dashboards []ReportDashboard `pulumi:"dashboards"`
 	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
 	Formats []string `pulumi:"formats"`
-	// Whether to include a link to the dashboard in the report.
+	// Whether to include a link to the dashboard in the report. Defaults to `true`.
 	IncludeDashboardLink *bool `pulumi:"includeDashboardLink"`
-	// Whether to include a CSV file of table panel data.
+	// Whether to include a CSV file of table panel data. Defaults to `false`.
 	IncludeTableCsv *bool `pulumi:"includeTableCsv"`
-	// Layout of the report. Allowed values: `simple`, `grid`.
+	// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
 	Layout *string `pulumi:"layout"`
 	// Message to be sent in the report.
 	Message *string `pulumi:"message"`
@@ -113,7 +168,7 @@ type reportState struct {
 	Name *string `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
-	// Orientation of the report. Allowed values: `landscape`, `portrait`.
+	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 	Orientation *string `pulumi:"orientation"`
 	// List of recipients of the report.
 	Recipients []string `pulumi:"recipients"`
@@ -128,7 +183,7 @@ type reportState struct {
 }
 
 type ReportState struct {
-	// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 	//
 	// Deprecated: Use dashboards instead
 	DashboardId pulumi.IntPtrInput
@@ -140,11 +195,11 @@ type ReportState struct {
 	Dashboards ReportDashboardArrayInput
 	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
 	Formats pulumi.StringArrayInput
-	// Whether to include a link to the dashboard in the report.
+	// Whether to include a link to the dashboard in the report. Defaults to `true`.
 	IncludeDashboardLink pulumi.BoolPtrInput
-	// Whether to include a CSV file of table panel data.
+	// Whether to include a CSV file of table panel data. Defaults to `false`.
 	IncludeTableCsv pulumi.BoolPtrInput
-	// Layout of the report. Allowed values: `simple`, `grid`.
+	// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
 	Layout pulumi.StringPtrInput
 	// Message to be sent in the report.
 	Message pulumi.StringPtrInput
@@ -152,7 +207,7 @@ type ReportState struct {
 	Name pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
-	// Orientation of the report. Allowed values: `landscape`, `portrait`.
+	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 	Orientation pulumi.StringPtrInput
 	// List of recipients of the report.
 	Recipients pulumi.StringArrayInput
@@ -171,7 +226,7 @@ func (ReportState) ElementType() reflect.Type {
 }
 
 type reportArgs struct {
-	// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 	//
 	// Deprecated: Use dashboards instead
 	DashboardId *int `pulumi:"dashboardId"`
@@ -183,11 +238,11 @@ type reportArgs struct {
 	Dashboards []ReportDashboard `pulumi:"dashboards"`
 	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
 	Formats []string `pulumi:"formats"`
-	// Whether to include a link to the dashboard in the report.
+	// Whether to include a link to the dashboard in the report. Defaults to `true`.
 	IncludeDashboardLink *bool `pulumi:"includeDashboardLink"`
-	// Whether to include a CSV file of table panel data.
+	// Whether to include a CSV file of table panel data. Defaults to `false`.
 	IncludeTableCsv *bool `pulumi:"includeTableCsv"`
-	// Layout of the report. Allowed values: `simple`, `grid`.
+	// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
 	Layout *string `pulumi:"layout"`
 	// Message to be sent in the report.
 	Message *string `pulumi:"message"`
@@ -195,7 +250,7 @@ type reportArgs struct {
 	Name *string `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
-	// Orientation of the report. Allowed values: `landscape`, `portrait`.
+	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 	Orientation *string `pulumi:"orientation"`
 	// List of recipients of the report.
 	Recipients []string `pulumi:"recipients"`
@@ -211,7 +266,7 @@ type reportArgs struct {
 
 // The set of arguments for constructing a Report resource.
 type ReportArgs struct {
-	// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+	// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 	//
 	// Deprecated: Use dashboards instead
 	DashboardId pulumi.IntPtrInput
@@ -223,11 +278,11 @@ type ReportArgs struct {
 	Dashboards ReportDashboardArrayInput
 	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
 	Formats pulumi.StringArrayInput
-	// Whether to include a link to the dashboard in the report.
+	// Whether to include a link to the dashboard in the report. Defaults to `true`.
 	IncludeDashboardLink pulumi.BoolPtrInput
-	// Whether to include a CSV file of table panel data.
+	// Whether to include a CSV file of table panel data. Defaults to `false`.
 	IncludeTableCsv pulumi.BoolPtrInput
-	// Layout of the report. Allowed values: `simple`, `grid`.
+	// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
 	Layout pulumi.StringPtrInput
 	// Message to be sent in the report.
 	Message pulumi.StringPtrInput
@@ -235,7 +290,7 @@ type ReportArgs struct {
 	Name pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
-	// Orientation of the report. Allowed values: `landscape`, `portrait`.
+	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 	Orientation pulumi.StringPtrInput
 	// List of recipients of the report.
 	Recipients pulumi.StringArrayInput
@@ -336,7 +391,7 @@ func (o ReportOutput) ToReportOutputWithContext(ctx context.Context) ReportOutpu
 	return o
 }
 
-// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
+// Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
 //
 // Deprecated: Use dashboards instead
 func (o ReportOutput) DashboardId() pulumi.IntOutput {
@@ -360,17 +415,17 @@ func (o ReportOutput) Formats() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Report) pulumi.StringArrayOutput { return v.Formats }).(pulumi.StringArrayOutput)
 }
 
-// Whether to include a link to the dashboard in the report.
+// Whether to include a link to the dashboard in the report. Defaults to `true`.
 func (o ReportOutput) IncludeDashboardLink() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Report) pulumi.BoolPtrOutput { return v.IncludeDashboardLink }).(pulumi.BoolPtrOutput)
 }
 
-// Whether to include a CSV file of table panel data.
+// Whether to include a CSV file of table panel data. Defaults to `false`.
 func (o ReportOutput) IncludeTableCsv() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Report) pulumi.BoolPtrOutput { return v.IncludeTableCsv }).(pulumi.BoolPtrOutput)
 }
 
-// Layout of the report. Allowed values: `simple`, `grid`.
+// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
 func (o ReportOutput) Layout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Report) pulumi.StringPtrOutput { return v.Layout }).(pulumi.StringPtrOutput)
 }
@@ -390,7 +445,7 @@ func (o ReportOutput) OrgId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Report) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
-// Orientation of the report. Allowed values: `landscape`, `portrait`.
+// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
 func (o ReportOutput) Orientation() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Report) pulumi.StringPtrOutput { return v.Orientation }).(pulumi.StringPtrOutput)
 }

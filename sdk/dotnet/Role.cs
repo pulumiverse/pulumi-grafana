@@ -10,12 +10,68 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// **Note:** This resource is available only with Grafana Enterprise 8.+.
+    /// 
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var superUser = new Grafana.Role("superUser", new()
+    ///     {
+    ///         Description = "My Super User description",
+    ///         Global = true,
+    ///         Permissions = new[]
+    ///         {
+    ///             new Grafana.Inputs.RolePermissionArgs
+    ///             {
+    ///                 Action = "org.users:add",
+    ///                 Scope = "users:*",
+    ///             },
+    ///             new Grafana.Inputs.RolePermissionArgs
+    ///             {
+    ///                 Action = "org.users:write",
+    ///                 Scope = "users:*",
+    ///             },
+    ///             new Grafana.Inputs.RolePermissionArgs
+    ///             {
+    ///                 Action = "org.users:read",
+    ///                 Scope = "users:*",
+    ///             },
+    ///         },
+    ///         Uid = "superuseruid",
+    ///         Version = 1,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/role:Role name "{{ uid }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/role:Role name "{{ orgID }}:{{ uid }}"
+    /// ```
+    /// </summary>
     [GrafanaResourceType("grafana:index/role:Role")]
     public partial class Role : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
-        /// `version` should be set.
+        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
         /// </summary>
         [Output("autoIncrementVersion")]
         public Output<bool?> AutoIncrementVersion { get; private set; } = null!;
@@ -33,7 +89,7 @@ namespace Pulumiverse.Grafana
         public Output<string?> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// Boolean to state whether the role is available across all organizations or not.
+        /// Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
         /// </summary>
         [Output("global")]
         public Output<bool?> Global { get; private set; } = null!;
@@ -45,7 +101,7 @@ namespace Pulumiverse.Grafana
         public Output<string?> Group { get; private set; } = null!;
 
         /// <summary>
-        /// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
+        /// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
         /// </summary>
         [Output("hidden")]
         public Output<bool?> Hidden { get; private set; } = null!;
@@ -128,8 +184,7 @@ namespace Pulumiverse.Grafana
     public sealed class RoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
-        /// `version` should be set.
+        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
         /// </summary>
         [Input("autoIncrementVersion")]
         public Input<bool>? AutoIncrementVersion { get; set; }
@@ -147,7 +202,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// Boolean to state whether the role is available across all organizations or not.
+        /// Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
         /// </summary>
         [Input("global")]
         public Input<bool>? Global { get; set; }
@@ -159,7 +214,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Group { get; set; }
 
         /// <summary>
-        /// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
+        /// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
         /// </summary>
         [Input("hidden")]
         public Input<bool>? Hidden { get; set; }
@@ -209,8 +264,7 @@ namespace Pulumiverse.Grafana
     public sealed class RoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
-        /// `version` should be set.
+        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
         /// </summary>
         [Input("autoIncrementVersion")]
         public Input<bool>? AutoIncrementVersion { get; set; }
@@ -228,7 +282,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// Boolean to state whether the role is available across all organizations or not.
+        /// Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
         /// </summary>
         [Input("global")]
         public Input<bool>? Global { get; set; }
@@ -240,7 +294,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Group { get; set; }
 
         /// <summary>
-        /// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
+        /// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
         /// </summary>
         [Input("hidden")]
         public Input<bool>? Hidden { get; set; }

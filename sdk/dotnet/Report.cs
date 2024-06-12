@@ -10,6 +10,60 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// **Note:** This resource is available only with Grafana Enterprise 7.+.
+    /// 
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-reports/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/reporting/)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testDashboard = new Grafana.Dashboard("testDashboard", new()
+    ///     {
+    ///         ConfigJson = @"{
+    ///   ""uid"": ""report-dashboard"",
+    ///   ""title"": ""report-dashboard""
+    /// }
+    /// ",
+    ///         Message = "inital commit.",
+    ///     });
+    /// 
+    ///     var testReport = new Grafana.Report("testReport", new()
+    ///     {
+    ///         DashboardUid = testDashboard.Uid,
+    ///         Recipients = new[]
+    ///         {
+    ///             "some@email.com",
+    ///         },
+    ///         Schedule = new Grafana.Inputs.ReportScheduleArgs
+    ///         {
+    ///             Frequency = "hourly",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/report:Report name "{{ id }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/report:Report name "{{ orgID }}:{{ id }}"
+    /// ```
+    /// </summary>
     [GrafanaResourceType("grafana:index/report:Report")]
     public partial class Report : global::Pulumi.CustomResource
     {
@@ -38,19 +92,19 @@ namespace Pulumiverse.Grafana
         public Output<ImmutableArray<string>> Formats { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to include a link to the dashboard in the report.
+        /// Whether to include a link to the dashboard in the report. Defaults to `true`.
         /// </summary>
         [Output("includeDashboardLink")]
         public Output<bool?> IncludeDashboardLink { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to include a CSV file of table panel data.
+        /// Whether to include a CSV file of table panel data. Defaults to `false`.
         /// </summary>
         [Output("includeTableCsv")]
         public Output<bool?> IncludeTableCsv { get; private set; } = null!;
 
         /// <summary>
-        /// Layout of the report. Allowed values: `simple`, `grid`.
+        /// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         /// </summary>
         [Output("layout")]
         public Output<string?> Layout { get; private set; } = null!;
@@ -74,7 +128,7 @@ namespace Pulumiverse.Grafana
         public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
-        /// Orientation of the report. Allowed values: `landscape`, `portrait`.
+        /// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         /// </summary>
         [Output("orientation")]
         public Output<string?> Orientation { get; private set; } = null!;
@@ -187,19 +241,19 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// Whether to include a link to the dashboard in the report.
+        /// Whether to include a link to the dashboard in the report. Defaults to `true`.
         /// </summary>
         [Input("includeDashboardLink")]
         public Input<bool>? IncludeDashboardLink { get; set; }
 
         /// <summary>
-        /// Whether to include a CSV file of table panel data.
+        /// Whether to include a CSV file of table panel data. Defaults to `false`.
         /// </summary>
         [Input("includeTableCsv")]
         public Input<bool>? IncludeTableCsv { get; set; }
 
         /// <summary>
-        /// Layout of the report. Allowed values: `simple`, `grid`.
+        /// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         /// </summary>
         [Input("layout")]
         public Input<string>? Layout { get; set; }
@@ -223,7 +277,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// Orientation of the report. Allowed values: `landscape`, `portrait`.
+        /// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         /// </summary>
         [Input("orientation")]
         public Input<string>? Orientation { get; set; }
@@ -303,19 +357,19 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// Whether to include a link to the dashboard in the report.
+        /// Whether to include a link to the dashboard in the report. Defaults to `true`.
         /// </summary>
         [Input("includeDashboardLink")]
         public Input<bool>? IncludeDashboardLink { get; set; }
 
         /// <summary>
-        /// Whether to include a CSV file of table panel data.
+        /// Whether to include a CSV file of table panel data. Defaults to `false`.
         /// </summary>
         [Input("includeTableCsv")]
         public Input<bool>? IncludeTableCsv { get; set; }
 
         /// <summary>
-        /// Layout of the report. Allowed values: `simple`, `grid`.
+        /// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         /// </summary>
         [Input("layout")]
         public Input<string>? Layout { get; set; }
@@ -339,7 +393,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// Orientation of the report. Allowed values: `landscape`, `portrait`.
+        /// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         /// </summary>
         [Input("orientation")]
         public Input<string>? Orientation { get; set; }

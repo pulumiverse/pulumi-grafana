@@ -4,6 +4,54 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a single permission item for a dashboard. Conflicts with the "grafana.DashboardPermission" resource which manages the entire set of permissions for a dashboard.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const teamTeam = new grafana.Team("teamTeam", {});
+ * const userUser = new grafana.User("userUser", {
+ *     email: "user.name@example.com",
+ *     password: "my-password",
+ *     login: "user.name",
+ * });
+ * const dashboard = new grafana.Dashboard("dashboard", {configJson: JSON.stringify({
+ *     title: "My Dashboard",
+ *     uid: "my-dashboard-uid",
+ * })});
+ * const role = new grafana.DashboardPermissionItem("role", {
+ *     dashboardUid: dashboard.uid,
+ *     role: "Viewer",
+ *     permission: "View",
+ * });
+ * const userDashboardPermissionItem = new grafana.DashboardPermissionItem("userDashboardPermissionItem", {
+ *     dashboardUid: dashboard.uid,
+ *     user: userUser.id,
+ *     permission: "Admin",
+ * });
+ * const teamDashboardPermissionItem = new grafana.DashboardPermissionItem("teamDashboardPermissionItem", {
+ *     dashboardUid: dashboard.uid,
+ *     team: teamTeam.id,
+ *     permission: "Edit",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/dashboardPermissionItem:DashboardPermissionItem name "{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/dashboardPermissionItem:DashboardPermissionItem name "{{ orgID }}:{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+ * ```
+ */
 export class DashboardPermissionItem extends pulumi.CustomResource {
     /**
      * Get an existing DashboardPermissionItem resource's state with the given name, ID, and optional extra

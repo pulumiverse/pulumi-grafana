@@ -12,10 +12,53 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// **Note:** This resource is available only with Grafana 9.1+.
+//
+// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := grafana.NewServiceAccount(ctx, "admin", &grafana.ServiceAccountArgs{
+//				IsDisabled: pulumi.Bool(false),
+//				Role:       pulumi.String("Admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/serviceAccount:ServiceAccount name "{{ id }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/serviceAccount:ServiceAccount name "{{ orgID }}:{{ id }}"
+// ```
 type ServiceAccount struct {
 	pulumi.CustomResourceState
 
-	// The disabled status for the service account.
+	// The disabled status for the service account. Defaults to `false`.
 	IsDisabled pulumi.BoolPtrOutput `pulumi:"isDisabled"`
 	// The name of the service account.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -58,7 +101,7 @@ func GetServiceAccount(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServiceAccount resources.
 type serviceAccountState struct {
-	// The disabled status for the service account.
+	// The disabled status for the service account. Defaults to `false`.
 	IsDisabled *bool `pulumi:"isDisabled"`
 	// The name of the service account.
 	Name *string `pulumi:"name"`
@@ -69,7 +112,7 @@ type serviceAccountState struct {
 }
 
 type ServiceAccountState struct {
-	// The disabled status for the service account.
+	// The disabled status for the service account. Defaults to `false`.
 	IsDisabled pulumi.BoolPtrInput
 	// The name of the service account.
 	Name pulumi.StringPtrInput
@@ -84,7 +127,7 @@ func (ServiceAccountState) ElementType() reflect.Type {
 }
 
 type serviceAccountArgs struct {
-	// The disabled status for the service account.
+	// The disabled status for the service account. Defaults to `false`.
 	IsDisabled *bool `pulumi:"isDisabled"`
 	// The name of the service account.
 	Name *string `pulumi:"name"`
@@ -96,7 +139,7 @@ type serviceAccountArgs struct {
 
 // The set of arguments for constructing a ServiceAccount resource.
 type ServiceAccountArgs struct {
-	// The disabled status for the service account.
+	// The disabled status for the service account. Defaults to `false`.
 	IsDisabled pulumi.BoolPtrInput
 	// The name of the service account.
 	Name pulumi.StringPtrInput
@@ -193,7 +236,7 @@ func (o ServiceAccountOutput) ToServiceAccountOutputWithContext(ctx context.Cont
 	return o
 }
 
-// The disabled status for the service account.
+// The disabled status for the service account. Defaults to `false`.
 func (o ServiceAccountOutput) IsDisabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceAccount) pulumi.BoolPtrOutput { return v.IsDisabled }).(pulumi.BoolPtrOutput)
 }

@@ -4,6 +4,50 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a single permission item for a service account. Conflicts with the "grafana.ServiceAccountPermission" resource which manages the entire set of permissions for a service account.
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = new grafana.ServiceAccount("test", {
+ *     role: "Editor",
+ *     isDisabled: false,
+ * });
+ * const team = new grafana.Team("team", {});
+ * const user = new grafana.User("user", {
+ *     email: "user.name@example.com",
+ *     login: "user.name",
+ *     password: "my-password",
+ * });
+ * const onTeam = new grafana.ServiceAccountPermissionItem("onTeam", {
+ *     serviceAccountId: test.id,
+ *     team: team.id,
+ *     permission: "Admin",
+ * });
+ * const onUser = new grafana.ServiceAccountPermissionItem("onUser", {
+ *     serviceAccountId: test.id,
+ *     user: user.id,
+ *     permission: "Admin",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ orgID }}:{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+ * ```
+ */
 export class ServiceAccountPermissionItem extends pulumi.CustomResource {
     /**
      * Get an existing ServiceAccountPermissionItem resource's state with the given name, ID, and optional extra

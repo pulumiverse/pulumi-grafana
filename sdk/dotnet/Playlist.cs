@@ -10,6 +10,57 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Grafana.Playlist("test", new()
+    ///     {
+    ///         Interval = "5m",
+    ///         Items = new[]
+    ///         {
+    ///             new Grafana.Inputs.PlaylistItemArgs
+    ///             {
+    ///                 Order = 2,
+    ///                 Title = "Terraform Dashboard By Tag",
+    ///                 Type = "dashboard_by_tag",
+    ///                 Value = "terraform",
+    ///             },
+    ///             new Grafana.Inputs.PlaylistItemArgs
+    ///             {
+    ///                 Order = 1,
+    ///                 Title = "Terraform Dashboard By ID",
+    ///                 Type = "dashboard_by_id",
+    ///                 Value = "3",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/playlist:Playlist name "{{ uid }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/playlist:Playlist name "{{ orgID }}:{{ uid }}"
+    /// ```
+    /// </summary>
     [GrafanaResourceType("grafana:index/playlist:Playlist")]
     public partial class Playlist : global::Pulumi.CustomResource
     {

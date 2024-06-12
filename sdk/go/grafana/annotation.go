@@ -12,10 +12,50 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := grafana.NewAnnotation(ctx, "test", &grafana.AnnotationArgs{
+//				Text: pulumi.String("basic text"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/annotation:Annotation name "{{ id }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/annotation:Annotation name "{{ orgID }}:{{ id }}"
+// ```
 type Annotation struct {
 	pulumi.CustomResourceState
 
-	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 	//
 	// Deprecated: Use dashboardUid instead.
 	DashboardId pulumi.IntPtrOutput `pulumi:"dashboardId"`
@@ -68,7 +108,7 @@ func GetAnnotation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Annotation resources.
 type annotationState struct {
-	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 	//
 	// Deprecated: Use dashboardUid instead.
 	DashboardId *int `pulumi:"dashboardId"`
@@ -89,7 +129,7 @@ type annotationState struct {
 }
 
 type AnnotationState struct {
-	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 	//
 	// Deprecated: Use dashboardUid instead.
 	DashboardId pulumi.IntPtrInput
@@ -114,7 +154,7 @@ func (AnnotationState) ElementType() reflect.Type {
 }
 
 type annotationArgs struct {
-	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 	//
 	// Deprecated: Use dashboardUid instead.
 	DashboardId *int `pulumi:"dashboardId"`
@@ -136,7 +176,7 @@ type annotationArgs struct {
 
 // The set of arguments for constructing a Annotation resource.
 type AnnotationArgs struct {
-	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+	// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 	//
 	// Deprecated: Use dashboardUid instead.
 	DashboardId pulumi.IntPtrInput
@@ -243,7 +283,7 @@ func (o AnnotationOutput) ToAnnotationOutputWithContext(ctx context.Context) Ann
 	return o
 }
 
-// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
+// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
 //
 // Deprecated: Use dashboardUid instead.
 func (o AnnotationOutput) DashboardId() pulumi.IntPtrOutput {

@@ -56,6 +56,9 @@ class GetOncallTeamResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The team name.
+        """
         return pulumi.get(self, "name")
 
 
@@ -74,7 +77,19 @@ class AwaitableGetOncallTeamResult(GetOncallTeamResult):
 def get_oncall_team(name: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallTeamResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    example_team = grafana.get_oncall_team(name="example_team")
+    ```
+    <!--End PulumiCodeChooser -->
+
+
+    :param str name: The team name.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -92,6 +107,18 @@ def get_oncall_team(name: Optional[str] = None,
 def get_oncall_team_output(name: Optional[pulumi.Input[str]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallTeamResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    example_team = grafana.get_oncall_team(name="example_team")
+    ```
+    <!--End PulumiCodeChooser -->
+
+
+    :param str name: The team name.
     """
     ...

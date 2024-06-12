@@ -198,7 +198,51 @@ class RoleAssignmentItem(pulumi.CustomResource):
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a RoleAssignmentItem resource with the given unique name, props, and options.
+        Manages a single assignment for a role. Conflicts with the "RoleAssignment" resource which manages the entire set of assignments for a role.
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test_role = grafana.Role("testRole",
+            uid="testrole",
+            version=1,
+            global_=True,
+            permissions=[grafana.RolePermissionArgs(
+                action="org.users:add",
+                scope="users:*",
+            )])
+        test_team = grafana.Team("testTeam")
+        test_user = grafana.User("testUser",
+            email="terraform_user@test.com",
+            login="terraform_user@test.com",
+            password="password")
+        test_sa = grafana.ServiceAccount("testSa", role="Viewer")
+        user = grafana.RoleAssignmentItem("user",
+            role_uid=test_role.uid,
+            user_id=test_user.id)
+        team = grafana.RoleAssignmentItem("team",
+            role_uid=test_role.uid,
+            team_id=test_team.id)
+        service_account = grafana.RoleAssignmentItem("serviceAccount",
+            role_uid=test_role.uid,
+            service_account_id=test_sa.id)
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/roleAssignmentItem:RoleAssignmentItem name "{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/roleAssignmentItem:RoleAssignmentItem name "{{ orgID }}:{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -214,7 +258,51 @@ class RoleAssignmentItem(pulumi.CustomResource):
                  args: RoleAssignmentItemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a RoleAssignmentItem resource with the given unique name, props, and options.
+        Manages a single assignment for a role. Conflicts with the "RoleAssignment" resource which manages the entire set of assignments for a role.
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test_role = grafana.Role("testRole",
+            uid="testrole",
+            version=1,
+            global_=True,
+            permissions=[grafana.RolePermissionArgs(
+                action="org.users:add",
+                scope="users:*",
+            )])
+        test_team = grafana.Team("testTeam")
+        test_user = grafana.User("testUser",
+            email="terraform_user@test.com",
+            login="terraform_user@test.com",
+            password="password")
+        test_sa = grafana.ServiceAccount("testSa", role="Viewer")
+        user = grafana.RoleAssignmentItem("user",
+            role_uid=test_role.uid,
+            user_id=test_user.id)
+        team = grafana.RoleAssignmentItem("team",
+            role_uid=test_role.uid,
+            team_id=test_team.id)
+        service_account = grafana.RoleAssignmentItem("serviceAccount",
+            role_uid=test_role.uid,
+            service_account_id=test_sa.id)
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/roleAssignmentItem:RoleAssignmentItem name "{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/roleAssignmentItem:RoleAssignmentItem name "{{ orgID }}:{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param RoleAssignmentItemArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -27,7 +27,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? ClientKey;
         /// <summary>
-        /// Disable target certificate validation.
+        /// Disable target certificate validation. Defaults to `false`.
         /// </summary>
         public readonly bool? InsecureSkipVerify;
         /// <summary>

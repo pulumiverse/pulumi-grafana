@@ -12,9 +12,51 @@ namespace Pulumiverse.Grafana
 {
     public static class GetOncallTeam
     {
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleTeam = Grafana.GetOncallTeam.Invoke(new()
+        ///     {
+        ///         Name = "example_team",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// </summary>
         public static Task<GetOncallTeamResult> InvokeAsync(GetOncallTeamArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallTeamResult>("grafana:index/getOncallTeam:getOncallTeam", args ?? new GetOncallTeamArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleTeam = Grafana.GetOncallTeam.Invoke(new()
+        ///     {
+        ///         Name = "example_team",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// </summary>
         public static Output<GetOncallTeamResult> Invoke(GetOncallTeamInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOncallTeamResult>("grafana:index/getOncallTeam:getOncallTeam", args ?? new GetOncallTeamInvokeArgs(), options.WithDefaults());
     }
@@ -22,6 +64,9 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetOncallTeamArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The team name.
+        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
@@ -33,6 +78,9 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetOncallTeamInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The team name.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -52,6 +100,9 @@ namespace Pulumiverse.Grafana
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The team name.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

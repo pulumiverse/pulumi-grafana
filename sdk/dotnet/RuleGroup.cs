@@ -10,6 +10,141 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// Manages Grafana Alerting rule groups.
+    /// 
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
+    /// 
+    /// This resource requires Grafana 9.1.0 or later.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var ruleFolder = new Grafana.Folder("ruleFolder", new()
+    ///     {
+    ///         Title = "My Alert Rule Folder",
+    ///     });
+    /// 
+    ///     var myAlertRule = new Grafana.RuleGroup("myAlertRule", new()
+    ///     {
+    ///         FolderUid = ruleFolder.Uid,
+    ///         IntervalSeconds = 240,
+    ///         OrgId = "1",
+    ///         Rules = new[]
+    ///         {
+    ///             new Grafana.Inputs.RuleGroupRuleArgs
+    ///             {
+    ///                 Name = "My Alert Rule 1",
+    ///                 For = "2m",
+    ///                 Condition = "B",
+    ///                 NoDataState = "NoData",
+    ///                 ExecErrState = "Alerting",
+    ///                 Annotations = 
+    ///                 {
+    ///                     { "a", "b" },
+    ///                     { "c", "d" },
+    ///                 },
+    ///                 Labels = 
+    ///                 {
+    ///                     { "e", "f" },
+    ///                     { "g", "h" },
+    ///                 },
+    ///                 IsPaused = false,
+    ///                 Datas = new[]
+    ///                 {
+    ///                     new Grafana.Inputs.RuleGroupRuleDataArgs
+    ///                     {
+    ///                         RefId = "A",
+    ///                         QueryType = "",
+    ///                         RelativeTimeRange = new Grafana.Inputs.RuleGroupRuleDataRelativeTimeRangeArgs
+    ///                         {
+    ///                             From = 600,
+    ///                             To = 0,
+    ///                         },
+    ///                         DatasourceUid = "PD8C576611E62080A",
+    ///                         Model = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                         {
+    ///                             ["hide"] = false,
+    ///                             ["intervalMs"] = 1000,
+    ///                             ["maxDataPoints"] = 43200,
+    ///                             ["refId"] = "A",
+    ///                         }),
+    ///                     },
+    ///                     new Grafana.Inputs.RuleGroupRuleDataArgs
+    ///                     {
+    ///                         RefId = "B",
+    ///                         QueryType = "",
+    ///                         RelativeTimeRange = new Grafana.Inputs.RuleGroupRuleDataRelativeTimeRangeArgs
+    ///                         {
+    ///                             From = 0,
+    ///                             To = 0,
+    ///                         },
+    ///                         DatasourceUid = "-100",
+    ///                         Model = @"{
+    ///     ""conditions"": [
+    ///         {
+    ///         ""evaluator"": {
+    ///             ""params"": [
+    ///             3
+    ///             ],
+    ///             ""type"": ""gt""
+    ///         },
+    ///         ""operator"": {
+    ///             ""type"": ""and""
+    ///         },
+    ///         ""query"": {
+    ///             ""params"": [
+    ///             ""A""
+    ///             ]
+    ///         },
+    ///         ""reducer"": {
+    ///             ""params"": [],
+    ///             ""type"": ""last""
+    ///         },
+    ///         ""type"": ""query""
+    ///         }
+    ///     ],
+    ///     ""datasource"": {
+    ///         ""type"": ""__expr__"",
+    ///         ""uid"": ""-100""
+    ///     },
+    ///     ""hide"": false,
+    ///     ""intervalMs"": 1000,
+    ///     ""maxDataPoints"": 43200,
+    ///     ""refId"": ""B"",
+    ///     ""type"": ""classic_conditions""
+    /// }
+    /// ",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/ruleGroup:RuleGroup name "{{ folderUID }}:{{ title }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/ruleGroup:RuleGroup name "{{ orgID }}:{{ folderUID }}:{{ title }}"
+    /// ```
+    /// </summary>
     [GrafanaResourceType("grafana:index/ruleGroup:RuleGroup")]
     public partial class RuleGroup : global::Pulumi.CustomResource
     {
@@ -26,14 +161,13 @@ namespace Pulumiverse.Grafana
         public Output<string> FolderUid { get; private set; } = null!;
 
         /// <summary>
-        /// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are
-        /// evaluated sequentially.
+        /// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         /// </summary>
         [Output("intervalSeconds")]
         public Output<int> IntervalSeconds { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the rule group.
+        /// The name of the alert rule.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -110,14 +244,13 @@ namespace Pulumiverse.Grafana
         public Input<string> FolderUid { get; set; } = null!;
 
         /// <summary>
-        /// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are
-        /// evaluated sequentially.
+        /// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         /// </summary>
         [Input("intervalSeconds", required: true)]
         public Input<int> IntervalSeconds { get; set; } = null!;
 
         /// <summary>
-        /// The name of the rule group.
+        /// The name of the alert rule.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -161,14 +294,13 @@ namespace Pulumiverse.Grafana
         public Input<string>? FolderUid { get; set; }
 
         /// <summary>
-        /// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are
-        /// evaluated sequentially.
+        /// The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         /// </summary>
         [Input("intervalSeconds")]
         public Input<int>? IntervalSeconds { get; set; }
 
         /// <summary>
-        /// The name of the rule group.
+        /// The name of the alert rule.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

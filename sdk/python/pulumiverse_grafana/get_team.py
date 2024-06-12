@@ -122,7 +122,26 @@ def get_team(name: Optional[str] = None,
              read_team_sync: Optional[bool] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTeamResult:
     """
-    Use this data source to access information about an existing resource.
+    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+    import pulumiverse_grafana as grafana
+
+    test = grafana.Team("test",
+        email="test-team-email@test.com",
+        preferences=grafana.TeamPreferencesArgs(
+            theme="dark",
+            timezone="utc",
+        ))
+    from_name = grafana.get_team_output(name=test.name)
+    ```
+    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     __args__['name'] = name
@@ -149,6 +168,25 @@ def get_team_output(name: Optional[pulumi.Input[str]] = None,
                     read_team_sync: Optional[pulumi.Input[Optional[bool]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTeamResult]:
     """
-    Use this data source to access information about an existing resource.
+    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+    import pulumiverse_grafana as grafana
+
+    test = grafana.Team("test",
+        email="test-team-email@test.com",
+        preferences=grafana.TeamPreferencesArgs(
+            theme="dark",
+            timezone="utc",
+        ))
+    from_name = grafana.get_team_output(name=test.name)
+    ```
+    <!--End PulumiCodeChooser -->
     """
     ...

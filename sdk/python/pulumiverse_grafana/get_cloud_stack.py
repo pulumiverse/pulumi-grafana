@@ -140,26 +140,41 @@ class GetCloudStackResult:
     @property
     @pulumi.getter(name="alertmanagerName")
     def alertmanager_name(self) -> str:
+        """
+        Name of the Alertmanager instance configured for this stack.
+        """
         return pulumi.get(self, "alertmanager_name")
 
     @property
     @pulumi.getter(name="alertmanagerStatus")
     def alertmanager_status(self) -> str:
+        """
+        Status of the Alertmanager instance configured for this stack.
+        """
         return pulumi.get(self, "alertmanager_status")
 
     @property
     @pulumi.getter(name="alertmanagerUrl")
     def alertmanager_url(self) -> str:
+        """
+        Base URL of the Alertmanager instance configured for this stack.
+        """
         return pulumi.get(self, "alertmanager_url")
 
     @property
     @pulumi.getter(name="alertmanagerUserId")
     def alertmanager_user_id(self) -> int:
+        """
+        User ID of the Alertmanager instance configured for this stack.
+        """
         return pulumi.get(self, "alertmanager_user_id")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of stack.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -185,11 +200,17 @@ class GetCloudStackResult:
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        The stack id assigned to this stack by Grafana.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -215,26 +236,41 @@ class GetCloudStackResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> int:
+        """
+        Organization id to assign to this stack.
+        """
         return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter(name="orgName")
     def org_name(self) -> str:
+        """
+        Organization name to assign to this stack.
+        """
         return pulumi.get(self, "org_name")
 
     @property
     @pulumi.getter(name="orgSlug")
     def org_slug(self) -> str:
+        """
+        Organization slug to assign to this stack.
+        """
         return pulumi.get(self, "org_slug")
 
     @property
     @pulumi.getter(name="otlpUrl")
     def otlp_url(self) -> str:
+        """
+        Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        """
         return pulumi.get(self, "otlp_url")
 
     @property
@@ -260,46 +296,74 @@ class GetCloudStackResult:
     @property
     @pulumi.getter(name="prometheusName")
     def prometheus_name(self) -> str:
+        """
+        Prometheus name for this instance.
+        """
         return pulumi.get(self, "prometheus_name")
 
     @property
     @pulumi.getter(name="prometheusRemoteEndpoint")
     def prometheus_remote_endpoint(self) -> str:
+        """
+        Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
+        """
         return pulumi.get(self, "prometheus_remote_endpoint")
 
     @property
     @pulumi.getter(name="prometheusRemoteWriteEndpoint")
     def prometheus_remote_write_endpoint(self) -> str:
+        """
+        Use this URL to send prometheus metrics to Grafana cloud
+        """
         return pulumi.get(self, "prometheus_remote_write_endpoint")
 
     @property
     @pulumi.getter(name="prometheusStatus")
     def prometheus_status(self) -> str:
+        """
+        Prometheus status for this instance.
+        """
         return pulumi.get(self, "prometheus_status")
 
     @property
     @pulumi.getter(name="prometheusUrl")
     def prometheus_url(self) -> str:
+        """
+        Prometheus url for this instance.
+        """
         return pulumi.get(self, "prometheus_url")
 
     @property
     @pulumi.getter(name="prometheusUserId")
     def prometheus_user_id(self) -> int:
+        """
+        Prometheus user ID. Used for e.g. remote_write.
+        """
         return pulumi.get(self, "prometheus_user_id")
 
     @property
     @pulumi.getter(name="regionSlug")
     def region_slug(self) -> str:
+        """
+        The region this stack is deployed to.
+        """
         return pulumi.get(self, "region_slug")
 
     @property
     @pulumi.getter
     def slug(self) -> str:
+        """
+        Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
+        available at “https://\\n\\n.grafana.net".
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Status of the stack.
+        """
         return pulumi.get(self, "status")
 
     @property
@@ -315,6 +379,9 @@ class GetCloudStackResult:
     @property
     @pulumi.getter(name="tracesUrl")
     def traces_url(self) -> str:
+        """
+        Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+        """
         return pulumi.get(self, "traces_url")
 
     @property
@@ -325,6 +392,9 @@ class GetCloudStackResult:
     @property
     @pulumi.getter
     def url(self) -> str:
+        """
+        Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
+        """
         return pulumi.get(self, "url")
 
 
@@ -377,7 +447,11 @@ class AwaitableGetCloudStackResult(GetCloudStackResult):
 def get_cloud_stack(slug: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudStackResult:
     """
-    Use this data source to access information about an existing resource.
+    Data source for Grafana Stack
+
+
+    :param str slug: Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
+           available at “https://\\n\\n.grafana.net".
     """
     __args__ = dict()
     __args__['slug'] = slug
@@ -429,6 +503,10 @@ def get_cloud_stack(slug: Optional[str] = None,
 def get_cloud_stack_output(slug: Optional[pulumi.Input[str]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudStackResult]:
     """
-    Use this data source to access information about an existing resource.
+    Data source for Grafana Stack
+
+
+    :param str slug: Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
+           available at “https://\\n\\n.grafana.net".
     """
     ...

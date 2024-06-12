@@ -33,7 +33,7 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string> Frequency { get; set; } = null!;
 
         /// <summary>
-        /// Send the report on the last day of the month
+        /// Send the report on the last day of the month Defaults to `false`.
         /// </summary>
         [Input("lastDayOfMonth")]
         public Input<bool>? LastDayOfMonth { get; set; }
@@ -45,13 +45,13 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string>? StartTime { get; set; }
 
         /// <summary>
-        /// Set the report time zone.
+        /// Set the report time zone. Defaults to `GMT`.
         /// </summary>
         [Input("timezone")]
         public Input<string>? Timezone { get; set; }
 
         /// <summary>
-        /// Whether to send the report only on work days.
+        /// Whether to send the report only on work days. Defaults to `false`.
         /// </summary>
         [Input("workdaysOnly")]
         public Input<bool>? WorkdaysOnly { get; set; }

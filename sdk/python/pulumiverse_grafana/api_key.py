@@ -165,7 +165,22 @@ class ApiKey(pulumi.CustomResource):
                  seconds_to_live: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Create a ApiKey resource with the given unique name, props, and options.
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        foo = grafana.ApiKey("foo", role="Viewer")
+        bar = grafana.ApiKey("bar",
+            role="Admin",
+            seconds_to_live=30)
+        pulumi.export("apiKeyFooKeyOnly", foo.key)
+        pulumi.export("apiKeyBar", bar)
+        ```
+        <!--End PulumiCodeChooser -->
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -177,7 +192,22 @@ class ApiKey(pulumi.CustomResource):
                  args: ApiKeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ApiKey resource with the given unique name, props, and options.
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        foo = grafana.ApiKey("foo", role="Viewer")
+        bar = grafana.ApiKey("bar",
+            role="Admin",
+            seconds_to_live=30)
+        pulumi.export("apiKeyFooKeyOnly", foo.key)
+        pulumi.export("apiKeyBar", bar)
+        ```
+        <!--End PulumiCodeChooser -->
+
         :param str resource_name: The name of the resource.
         :param ApiKeyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

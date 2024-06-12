@@ -6,6 +6,17 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * A holiday describes time periods where a time series is expected to behave differently to normal.
+ *
+ * To use a holiday in a job, use its id in the `holidays` attribute of a `grafana.MachineLearningJob`:
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/machineLearningHoliday:MachineLearningHoliday name "{{ id }}"
+ * ```
+ */
 export class MachineLearningHoliday extends pulumi.CustomResource {
     /**
      * Get an existing MachineLearningHoliday resource's state with the given name, ID, and optional extra
@@ -51,7 +62,7 @@ export class MachineLearningHoliday extends pulumi.CustomResource {
      */
     public readonly icalUrl!: pulumi.Output<string | undefined>;
     /**
-     * The name of the holiday.
+     * The name of the custom period.
      */
     public readonly name!: pulumi.Output<string>;
 
@@ -107,7 +118,7 @@ export interface MachineLearningHolidayState {
      */
     icalUrl?: pulumi.Input<string>;
     /**
-     * The name of the holiday.
+     * The name of the custom period.
      */
     name?: pulumi.Input<string>;
 }
@@ -133,7 +144,7 @@ export interface MachineLearningHolidayArgs {
      */
     icalUrl?: pulumi.Input<string>;
     /**
-     * The name of the holiday.
+     * The name of the custom period.
      */
     name?: pulumi.Input<string>;
 }

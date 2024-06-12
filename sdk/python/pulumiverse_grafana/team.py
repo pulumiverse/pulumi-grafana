@@ -299,7 +299,36 @@ class Team(pulumi.CustomResource):
                  team_sync: Optional[pulumi.Input[pulumi.InputType['TeamTeamSyncArgs']]] = None,
                  __props__=None):
         """
-        Create a Team resource with the given unique name, props, and options.
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        viewer = grafana.User("viewer",
+            email="viewer@example.com",
+            login="viewer",
+            password="my-password")
+        test_team = grafana.Team("test-team",
+            email="teamemail@example.com",
+            members=[viewer.email])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/team:Team name "{{ id }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/team:Team name "{{ orgID }}:{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] email: An email address for the team.
@@ -322,7 +351,36 @@ class Team(pulumi.CustomResource):
                  args: Optional[TeamArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Team resource with the given unique name, props, and options.
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        viewer = grafana.User("viewer",
+            email="viewer@example.com",
+            login="viewer",
+            password="my-password")
+        test_team = grafana.Team("test-team",
+            email="teamemail@example.com",
+            members=[viewer.email])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/team:Team name "{{ id }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/team:Team name "{{ orgID }}:{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param TeamArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

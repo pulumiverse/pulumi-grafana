@@ -4,6 +4,73 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Manages Grafana public dashboards.
+ *
+ * **Note:** This resource is available only with Grafana 10.2+.
+ *
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-public/)
+ * * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/dashboard_public/)
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * // Optional (On-premise, not supported in Grafana Cloud): Create an organization
+ * const myOrg = new grafana.Organization("myOrg", {});
+ * // Create resources (optional: within the organization)
+ * const myFolder = new grafana.Folder("myFolder", {
+ *     orgId: myOrg.orgId,
+ *     title: "test Folder",
+ * });
+ * const testDash = new grafana.Dashboard("testDash", {
+ *     orgId: myOrg.orgId,
+ *     folder: myFolder.id,
+ *     configJson: JSON.stringify({
+ *         title: "My Terraform Dashboard",
+ *         uid: "my-dashboard-uid",
+ *     }),
+ * });
+ * const myPublicDashboard = new grafana.DashboardPublic("myPublicDashboard", {
+ *     orgId: myOrg.orgId,
+ *     dashboardUid: testDash.uid,
+ *     uid: "my-custom-public-uid",
+ *     accessToken: "e99e4275da6f410d83760eefa934d8d2",
+ *     timeSelectionEnabled: true,
+ *     isEnabled: true,
+ *     annotationsEnabled: true,
+ *     share: "public",
+ * });
+ * // Optional (On-premise, not supported in Grafana Cloud): Create an organization
+ * const myOrg2 = new grafana.Organization("myOrg2", {});
+ * const testDash2 = new grafana.Dashboard("testDash2", {
+ *     orgId: myOrg2.orgId,
+ *     configJson: JSON.stringify({
+ *         title: "My Terraform Dashboard2",
+ *         uid: "my-dashboard-uid2",
+ *     }),
+ * });
+ * const myPublicDashboard2 = new grafana.DashboardPublic("myPublicDashboard2", {
+ *     orgId: myOrg2.orgId,
+ *     dashboardUid: testDash2.uid,
+ *     share: "public",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/dashboardPublic:DashboardPublic name "{{ dashboardUID }}:{{ publicDashboardUID }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/dashboardPublic:DashboardPublic name "{{ orgID }}:{{ dashboardUID }}:{{ publicDashboardUID }}"
+ * ```
+ */
 export class DashboardPublic extends pulumi.CustomResource {
     /**
      * Get an existing DashboardPublic resource's state with the given name, ID, and optional extra
@@ -33,8 +100,7 @@ export class DashboardPublic extends pulumi.CustomResource {
     }
 
     /**
-     * A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
-     * provided when creating a public dashboard.
+     * A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
      */
     public readonly accessToken!: pulumi.Output<string>;
     /**
@@ -62,8 +128,7 @@ export class DashboardPublic extends pulumi.CustomResource {
      */
     public readonly timeSelectionEnabled!: pulumi.Output<boolean | undefined>;
     /**
-     * The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
-     * dashboard.
+     * The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
      */
     public readonly uid!: pulumi.Output<string>;
 
@@ -112,8 +177,7 @@ export class DashboardPublic extends pulumi.CustomResource {
  */
 export interface DashboardPublicState {
     /**
-     * A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
-     * provided when creating a public dashboard.
+     * A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
      */
     accessToken?: pulumi.Input<string>;
     /**
@@ -141,8 +205,7 @@ export interface DashboardPublicState {
      */
     timeSelectionEnabled?: pulumi.Input<boolean>;
     /**
-     * The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
-     * dashboard.
+     * The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
      */
     uid?: pulumi.Input<string>;
 }
@@ -152,8 +215,7 @@ export interface DashboardPublicState {
  */
 export interface DashboardPublicArgs {
     /**
-     * A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
-     * provided when creating a public dashboard.
+     * A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
      */
     accessToken?: pulumi.Input<string>;
     /**
@@ -181,8 +243,7 @@ export interface DashboardPublicArgs {
      */
     timeSelectionEnabled?: pulumi.Input<boolean>;
     /**
-     * The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
-     * dashboard.
+     * The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
      */
     uid?: pulumi.Input<string>;
 }

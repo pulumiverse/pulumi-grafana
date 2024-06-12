@@ -11,6 +11,45 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
+//
+// This data source uses Grafana's admin APIs for reading users which
+// does not currently work with API Tokens. You must use basic auth.
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := grafana.NewUser(ctx, "testAllUsers", &grafana.UserArgs{
+//				Email:    pulumi.String("all_users@example.com"),
+//				Login:    pulumi.String("test-grafana-users"),
+//				Password: pulumi.String("my-password"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = grafana.GetUsers(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func GetUsers(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetUsersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetUsersResult
@@ -24,7 +63,8 @@ func GetUsers(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetUsersResult
 // A collection of values returned by getUsers.
 type GetUsersResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id    string         `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// The Grafana instance's users.
 	Users []GetUsersUser `pulumi:"users"`
 }
 
@@ -59,6 +99,7 @@ func (o GetUsersResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUsersResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The Grafana instance's users.
 func (o GetUsersResultOutput) Users() GetUsersUserArrayOutput {
 	return o.ApplyT(func(v GetUsersResult) []GetUsersUser { return v.Users }).(GetUsersUserArrayOutput)
 }

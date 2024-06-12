@@ -39,13 +39,13 @@ class ReportArgs:
         :param pulumi.Input[str] dashboard_uid: Dashboard to be sent in the report.
         :param pulumi.Input[Sequence[pulumi.Input['ReportDashboardArgs']]] dashboards: List of dashboards to render into the report
         :param pulumi.Input[Sequence[pulumi.Input[str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
-        :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report.
-        :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data.
-        :param pulumi.Input[str] layout: Layout of the report. Allowed values: `simple`, `grid`.
+        :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
+        :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
+        :param pulumi.Input[str] layout: Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         :param pulumi.Input[str] message: Message to be sent in the report.
         :param pulumi.Input[str] name: Name of the report.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`.
+        :param pulumi.Input[str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         :param pulumi.Input[str] reply_to: Reply-to email address of the report.
         :param pulumi.Input['ReportTimeRangeArgs'] time_range: Time range of the report.
         """
@@ -169,7 +169,7 @@ class ReportArgs:
     @pulumi.getter(name="includeDashboardLink")
     def include_dashboard_link(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to include a link to the dashboard in the report.
+        Whether to include a link to the dashboard in the report. Defaults to `true`.
         """
         return pulumi.get(self, "include_dashboard_link")
 
@@ -181,7 +181,7 @@ class ReportArgs:
     @pulumi.getter(name="includeTableCsv")
     def include_table_csv(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to include a CSV file of table panel data.
+        Whether to include a CSV file of table panel data. Defaults to `false`.
         """
         return pulumi.get(self, "include_table_csv")
 
@@ -193,7 +193,7 @@ class ReportArgs:
     @pulumi.getter
     def layout(self) -> Optional[pulumi.Input[str]]:
         """
-        Layout of the report. Allowed values: `simple`, `grid`.
+        Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         """
         return pulumi.get(self, "layout")
 
@@ -241,7 +241,7 @@ class ReportArgs:
     @pulumi.getter
     def orientation(self) -> Optional[pulumi.Input[str]]:
         """
-        Orientation of the report. Allowed values: `landscape`, `portrait`.
+        Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         """
         return pulumi.get(self, "orientation")
 
@@ -301,13 +301,13 @@ class _ReportState:
         :param pulumi.Input[str] dashboard_uid: Dashboard to be sent in the report.
         :param pulumi.Input[Sequence[pulumi.Input['ReportDashboardArgs']]] dashboards: List of dashboards to render into the report
         :param pulumi.Input[Sequence[pulumi.Input[str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
-        :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report.
-        :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data.
-        :param pulumi.Input[str] layout: Layout of the report. Allowed values: `simple`, `grid`.
+        :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
+        :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
+        :param pulumi.Input[str] layout: Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         :param pulumi.Input[str] message: Message to be sent in the report.
         :param pulumi.Input[str] name: Name of the report.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`.
+        :param pulumi.Input[str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] recipients: List of recipients of the report.
         :param pulumi.Input[str] reply_to: Reply-to email address of the report.
         :param pulumi.Input['ReportScheduleArgs'] schedule: Schedule of the report.
@@ -411,7 +411,7 @@ class _ReportState:
     @pulumi.getter(name="includeDashboardLink")
     def include_dashboard_link(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to include a link to the dashboard in the report.
+        Whether to include a link to the dashboard in the report. Defaults to `true`.
         """
         return pulumi.get(self, "include_dashboard_link")
 
@@ -423,7 +423,7 @@ class _ReportState:
     @pulumi.getter(name="includeTableCsv")
     def include_table_csv(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to include a CSV file of table panel data.
+        Whether to include a CSV file of table panel data. Defaults to `false`.
         """
         return pulumi.get(self, "include_table_csv")
 
@@ -435,7 +435,7 @@ class _ReportState:
     @pulumi.getter
     def layout(self) -> Optional[pulumi.Input[str]]:
         """
-        Layout of the report. Allowed values: `simple`, `grid`.
+        Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         """
         return pulumi.get(self, "layout")
 
@@ -483,7 +483,7 @@ class _ReportState:
     @pulumi.getter
     def orientation(self) -> Optional[pulumi.Input[str]]:
         """
-        Orientation of the report. Allowed values: `landscape`, `portrait`.
+        Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         """
         return pulumi.get(self, "orientation")
 
@@ -565,20 +565,57 @@ class Report(pulumi.CustomResource):
                  time_range: Optional[pulumi.Input[pulumi.InputType['ReportTimeRangeArgs']]] = None,
                  __props__=None):
         """
-        Create a Report resource with the given unique name, props, and options.
+        **Note:** This resource is available only with Grafana Enterprise 7.+.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-reports/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/reporting/)
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test_dashboard = grafana.Dashboard("testDashboard",
+            config_json=\"\"\"{
+          "uid": "report-dashboard",
+          "title": "report-dashboard"
+        }
+        \"\"\",
+            message="inital commit.")
+        test_report = grafana.Report("testReport",
+            dashboard_uid=test_dashboard.uid,
+            recipients=["some@email.com"],
+            schedule=grafana.ReportScheduleArgs(
+                frequency="hourly",
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/report:Report name "{{ id }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/report:Report name "{{ orgID }}:{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] dashboard_id: Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
         :param pulumi.Input[str] dashboard_uid: Dashboard to be sent in the report.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDashboardArgs']]]] dashboards: List of dashboards to render into the report
         :param pulumi.Input[Sequence[pulumi.Input[str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
-        :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report.
-        :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data.
-        :param pulumi.Input[str] layout: Layout of the report. Allowed values: `simple`, `grid`.
+        :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
+        :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
+        :param pulumi.Input[str] layout: Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         :param pulumi.Input[str] message: Message to be sent in the report.
         :param pulumi.Input[str] name: Name of the report.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`.
+        :param pulumi.Input[str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] recipients: List of recipients of the report.
         :param pulumi.Input[str] reply_to: Reply-to email address of the report.
         :param pulumi.Input[pulumi.InputType['ReportScheduleArgs']] schedule: Schedule of the report.
@@ -591,7 +628,44 @@ class Report(pulumi.CustomResource):
                  args: ReportArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Report resource with the given unique name, props, and options.
+        **Note:** This resource is available only with Grafana Enterprise 7.+.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-reports/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/reporting/)
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test_dashboard = grafana.Dashboard("testDashboard",
+            config_json=\"\"\"{
+          "uid": "report-dashboard",
+          "title": "report-dashboard"
+        }
+        \"\"\",
+            message="inital commit.")
+        test_report = grafana.Report("testReport",
+            dashboard_uid=test_dashboard.uid,
+            recipients=["some@email.com"],
+            schedule=grafana.ReportScheduleArgs(
+                frequency="hourly",
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/report:Report name "{{ id }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/report:Report name "{{ orgID }}:{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param ReportArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -686,13 +760,13 @@ class Report(pulumi.CustomResource):
         :param pulumi.Input[str] dashboard_uid: Dashboard to be sent in the report.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDashboardArgs']]]] dashboards: List of dashboards to render into the report
         :param pulumi.Input[Sequence[pulumi.Input[str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
-        :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report.
-        :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data.
-        :param pulumi.Input[str] layout: Layout of the report. Allowed values: `simple`, `grid`.
+        :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
+        :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
+        :param pulumi.Input[str] layout: Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         :param pulumi.Input[str] message: Message to be sent in the report.
         :param pulumi.Input[str] name: Name of the report.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`.
+        :param pulumi.Input[str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] recipients: List of recipients of the report.
         :param pulumi.Input[str] reply_to: Reply-to email address of the report.
         :param pulumi.Input[pulumi.InputType['ReportScheduleArgs']] schedule: Schedule of the report.
@@ -761,7 +835,7 @@ class Report(pulumi.CustomResource):
     @pulumi.getter(name="includeDashboardLink")
     def include_dashboard_link(self) -> pulumi.Output[Optional[bool]]:
         """
-        Whether to include a link to the dashboard in the report.
+        Whether to include a link to the dashboard in the report. Defaults to `true`.
         """
         return pulumi.get(self, "include_dashboard_link")
 
@@ -769,7 +843,7 @@ class Report(pulumi.CustomResource):
     @pulumi.getter(name="includeTableCsv")
     def include_table_csv(self) -> pulumi.Output[Optional[bool]]:
         """
-        Whether to include a CSV file of table panel data.
+        Whether to include a CSV file of table panel data. Defaults to `false`.
         """
         return pulumi.get(self, "include_table_csv")
 
@@ -777,7 +851,7 @@ class Report(pulumi.CustomResource):
     @pulumi.getter
     def layout(self) -> pulumi.Output[Optional[str]]:
         """
-        Layout of the report. Allowed values: `simple`, `grid`.
+        Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
         """
         return pulumi.get(self, "layout")
 
@@ -809,7 +883,7 @@ class Report(pulumi.CustomResource):
     @pulumi.getter
     def orientation(self) -> pulumi.Output[Optional[str]]:
         """
-        Orientation of the report. Allowed values: `landscape`, `portrait`.
+        Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         """
         return pulumi.get(self, "orientation")
 

@@ -12,6 +12,89 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages the entire set of assignments for a role. Assignments that aren't specified when applying this resource will be removed.
+// **Note:** This resource is available only with Grafana Enterprise 9.2+.
+// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testRole, err := grafana.NewRole(ctx, "testRole", &grafana.RoleArgs{
+//				Uid:     pulumi.String("testrole"),
+//				Version: pulumi.Int(1),
+//				Global:  pulumi.Bool(true),
+//				Permissions: grafana.RolePermissionArray{
+//					&grafana.RolePermissionArgs{
+//						Action: pulumi.String("org.users:add"),
+//						Scope:  pulumi.String("users:*"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testTeam, err := grafana.NewTeam(ctx, "testTeam", nil)
+//			if err != nil {
+//				return err
+//			}
+//			testUser, err := grafana.NewUser(ctx, "testUser", &grafana.UserArgs{
+//				Email:    pulumi.String("terraform_user@test.com"),
+//				Login:    pulumi.String("terraform_user@test.com"),
+//				Password: pulumi.String("password"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testSa, err := grafana.NewServiceAccount(ctx, "testSa", &grafana.ServiceAccountArgs{
+//				Role: pulumi.String("Viewer"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = grafana.NewRoleAssignment(ctx, "test", &grafana.RoleAssignmentArgs{
+//				RoleUid: testRole.Uid,
+//				Users: pulumi.IntArray{
+//					testUser.ID(),
+//				},
+//				Teams: pulumi.StringArray{
+//					testTeam.ID(),
+//				},
+//				ServiceAccounts: pulumi.StringArray{
+//					testSa.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/roleAssignment:RoleAssignment name "{{ roleUID }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/roleAssignment:RoleAssignment name "{{ orgID }}:{{ roleUID }}"
+// ```
 type RoleAssignment struct {
 	pulumi.CustomResourceState
 

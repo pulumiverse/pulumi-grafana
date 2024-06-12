@@ -10,6 +10,55 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
+    /// 
+    /// This resource represents an instance-scoped resource and uses Grafana's admin APIs.
+    /// It does not work with API tokens or service accounts which are org-scoped.
+    /// You must use basic auth.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Grafana.Organization("test", new()
+    ///     {
+    ///         AdminUser = "admin",
+    ///         Admins = new[]
+    ///         {
+    ///             "admin@example.com",
+    ///         },
+    ///         CreateUsers = true,
+    ///         Editors = new[]
+    ///         {
+    ///             "editor-01@example.com",
+    ///             "editor-02@example.com",
+    ///         },
+    ///         Viewers = new[]
+    ///         {
+    ///             "viewer-01@example.com",
+    ///             "viewer-02@example.com",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/organization:Organization name "{{ id }}"
+    /// ```
+    /// </summary>
     [GrafanaResourceType("grafana:index/organization:Organization")]
     public partial class Organization : global::Pulumi.CustomResource
     {
@@ -22,24 +71,29 @@ namespace Pulumiverse.Grafana
         public Output<string?> AdminUser { get; private set; } = null!;
 
         /// <summary>
-        /// A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
-        /// specified here must already exist in Grafana unless 'create_users' is set to true.
+        /// A list of email addresses corresponding to users who should be given admin
+        /// access to the organization. Note: users specified here must already exist in
+        /// Grafana unless 'create_users' is set to true.
         /// </summary>
         [Output("admins")]
         public Output<ImmutableArray<string>> Admins { get; private set; } = null!;
 
         /// <summary>
-        /// Whether or not to create Grafana users specified in the organization's membership if they don't already exist in
-        /// Grafana. If unspecified, this parameter defaults to true, creating placeholder users with the name, login, and email set
-        /// to the email of the user, and a random password. Setting this option to false will cause an error to be thrown for any
-        /// users that do not already exist in Grafana.
+        /// Whether or not to create Grafana users specified in the organization's
+        /// membership if they don't already exist in Grafana. If unspecified, this
+        /// parameter defaults to true, creating placeholder users with the name, login,
+        /// and email set to the email of the user, and a random password. Setting this
+        /// option to false will cause an error to be thrown for any users that do not
+        /// already exist in Grafana.
+        /// Defaults to `true`.
         /// </summary>
         [Output("createUsers")]
         public Output<bool?> CreateUsers { get; private set; } = null!;
 
         /// <summary>
-        /// A list of email addresses corresponding to users who should be given editor access to the organization. Note: users
-        /// specified here must already exist in Grafana unless 'create_users' is set to true.
+        /// A list of email addresses corresponding to users who should be given editor
+        /// access to the organization. Note: users specified here must already exist in
+        /// Grafana unless 'create_users' is set to true.
         /// </summary>
         [Output("editors")]
         public Output<ImmutableArray<string>> Editors { get; private set; } = null!;
@@ -57,16 +111,17 @@ namespace Pulumiverse.Grafana
         public Output<int> OrgId { get; private set; } = null!;
 
         /// <summary>
-        /// A list of email addresses corresponding to users who should be given none access to the organization. Note: users
-        /// specified here must already exist in Grafana, unless 'create_users' is set to true. This feature is only available in
-        /// Grafana 10.2+.
+        /// A list of email addresses corresponding to users who should be given none access to the organization.
+        /// Note: users specified here must already exist in Grafana, unless 'create_users' is
+        /// set to true. This feature is only available in Grafana 10.2+.
         /// </summary>
         [Output("usersWithoutAccesses")]
         public Output<ImmutableArray<string>> UsersWithoutAccesses { get; private set; } = null!;
 
         /// <summary>
-        /// A list of email addresses corresponding to users who should be given viewer access to the organization. Note: users
-        /// specified here must already exist in Grafana unless 'create_users' is set to true.
+        /// A list of email addresses corresponding to users who should be given viewer
+        /// access to the organization. Note: users specified here must already exist in
+        /// Grafana unless 'create_users' is set to true.
         /// </summary>
         [Output("viewers")]
         public Output<ImmutableArray<string>> Viewers { get; private set; } = null!;
@@ -130,8 +185,9 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _admins;
 
         /// <summary>
-        /// A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
-        /// specified here must already exist in Grafana unless 'create_users' is set to true.
+        /// A list of email addresses corresponding to users who should be given admin
+        /// access to the organization. Note: users specified here must already exist in
+        /// Grafana unless 'create_users' is set to true.
         /// </summary>
         public InputList<string> Admins
         {
@@ -140,10 +196,13 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// Whether or not to create Grafana users specified in the organization's membership if they don't already exist in
-        /// Grafana. If unspecified, this parameter defaults to true, creating placeholder users with the name, login, and email set
-        /// to the email of the user, and a random password. Setting this option to false will cause an error to be thrown for any
-        /// users that do not already exist in Grafana.
+        /// Whether or not to create Grafana users specified in the organization's
+        /// membership if they don't already exist in Grafana. If unspecified, this
+        /// parameter defaults to true, creating placeholder users with the name, login,
+        /// and email set to the email of the user, and a random password. Setting this
+        /// option to false will cause an error to be thrown for any users that do not
+        /// already exist in Grafana.
+        /// Defaults to `true`.
         /// </summary>
         [Input("createUsers")]
         public Input<bool>? CreateUsers { get; set; }
@@ -152,8 +211,9 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _editors;
 
         /// <summary>
-        /// A list of email addresses corresponding to users who should be given editor access to the organization. Note: users
-        /// specified here must already exist in Grafana unless 'create_users' is set to true.
+        /// A list of email addresses corresponding to users who should be given editor
+        /// access to the organization. Note: users specified here must already exist in
+        /// Grafana unless 'create_users' is set to true.
         /// </summary>
         public InputList<string> Editors
         {
@@ -171,9 +231,9 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _usersWithoutAccesses;
 
         /// <summary>
-        /// A list of email addresses corresponding to users who should be given none access to the organization. Note: users
-        /// specified here must already exist in Grafana, unless 'create_users' is set to true. This feature is only available in
-        /// Grafana 10.2+.
+        /// A list of email addresses corresponding to users who should be given none access to the organization.
+        /// Note: users specified here must already exist in Grafana, unless 'create_users' is
+        /// set to true. This feature is only available in Grafana 10.2+.
         /// </summary>
         public InputList<string> UsersWithoutAccesses
         {
@@ -185,8 +245,9 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _viewers;
 
         /// <summary>
-        /// A list of email addresses corresponding to users who should be given viewer access to the organization. Note: users
-        /// specified here must already exist in Grafana unless 'create_users' is set to true.
+        /// A list of email addresses corresponding to users who should be given viewer
+        /// access to the organization. Note: users specified here must already exist in
+        /// Grafana unless 'create_users' is set to true.
         /// </summary>
         public InputList<string> Viewers
         {
@@ -214,8 +275,9 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _admins;
 
         /// <summary>
-        /// A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
-        /// specified here must already exist in Grafana unless 'create_users' is set to true.
+        /// A list of email addresses corresponding to users who should be given admin
+        /// access to the organization. Note: users specified here must already exist in
+        /// Grafana unless 'create_users' is set to true.
         /// </summary>
         public InputList<string> Admins
         {
@@ -224,10 +286,13 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// Whether or not to create Grafana users specified in the organization's membership if they don't already exist in
-        /// Grafana. If unspecified, this parameter defaults to true, creating placeholder users with the name, login, and email set
-        /// to the email of the user, and a random password. Setting this option to false will cause an error to be thrown for any
-        /// users that do not already exist in Grafana.
+        /// Whether or not to create Grafana users specified in the organization's
+        /// membership if they don't already exist in Grafana. If unspecified, this
+        /// parameter defaults to true, creating placeholder users with the name, login,
+        /// and email set to the email of the user, and a random password. Setting this
+        /// option to false will cause an error to be thrown for any users that do not
+        /// already exist in Grafana.
+        /// Defaults to `true`.
         /// </summary>
         [Input("createUsers")]
         public Input<bool>? CreateUsers { get; set; }
@@ -236,8 +301,9 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _editors;
 
         /// <summary>
-        /// A list of email addresses corresponding to users who should be given editor access to the organization. Note: users
-        /// specified here must already exist in Grafana unless 'create_users' is set to true.
+        /// A list of email addresses corresponding to users who should be given editor
+        /// access to the organization. Note: users specified here must already exist in
+        /// Grafana unless 'create_users' is set to true.
         /// </summary>
         public InputList<string> Editors
         {
@@ -261,9 +327,9 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _usersWithoutAccesses;
 
         /// <summary>
-        /// A list of email addresses corresponding to users who should be given none access to the organization. Note: users
-        /// specified here must already exist in Grafana, unless 'create_users' is set to true. This feature is only available in
-        /// Grafana 10.2+.
+        /// A list of email addresses corresponding to users who should be given none access to the organization.
+        /// Note: users specified here must already exist in Grafana, unless 'create_users' is
+        /// set to true. This feature is only available in Grafana 10.2+.
         /// </summary>
         public InputList<string> UsersWithoutAccesses
         {
@@ -275,8 +341,9 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _viewers;
 
         /// <summary>
-        /// A list of email addresses corresponding to users who should be given viewer access to the organization. Note: users
-        /// specified here must already exist in Grafana unless 'create_users' is set to true.
+        /// A list of email addresses corresponding to users who should be given viewer
+        /// access to the organization. Note: users specified here must already exist in
+        /// Grafana unless 'create_users' is set to true.
         /// </summary>
         public InputList<string> Viewers
         {

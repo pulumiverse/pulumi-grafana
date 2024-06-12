@@ -11,10 +11,93 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages the entire set of permissions for a dashboard. Permissions that aren't specified when applying this resource will be removed.
+// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard_permissions/)
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			team, err := grafana.NewTeam(ctx, "team", nil)
+//			if err != nil {
+//				return err
+//			}
+//			user, err := grafana.NewUser(ctx, "user", &grafana.UserArgs{
+//				Email:    pulumi.String("user.name@example.com"),
+//				Password: pulumi.String("my-password"),
+//				Login:    pulumi.String("user.name"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"title": "My Dashboard",
+//				"uid":   "my-dashboard-uid",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			metrics, err := grafana.NewDashboard(ctx, "metrics", &grafana.DashboardArgs{
+//				ConfigJson: pulumi.String(json0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = grafana.NewDashboardPermission(ctx, "collectionPermission", &grafana.DashboardPermissionArgs{
+//				DashboardUid: metrics.Uid,
+//				Permissions: grafana.DashboardPermissionPermissionArray{
+//					&grafana.DashboardPermissionPermissionArgs{
+//						Role:       pulumi.String("Editor"),
+//						Permission: pulumi.String("Edit"),
+//					},
+//					&grafana.DashboardPermissionPermissionArgs{
+//						TeamId:     team.ID(),
+//						Permission: pulumi.String("View"),
+//					},
+//					&grafana.DashboardPermissionPermissionArgs{
+//						UserId:     user.ID(),
+//						Permission: pulumi.String("Admin"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/dashboardPermission:DashboardPermission name "{{ dashboardUID }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/dashboardPermission:DashboardPermission name "{{ orgID }}:{{ dashboardUID }}"
+// ```
 type DashboardPermission struct {
 	pulumi.CustomResourceState
 
-	// ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
+	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
 	//
 	// Deprecated: use `dashboardUid` instead
 	DashboardId pulumi.IntOutput `pulumi:"dashboardId"`
@@ -56,7 +139,7 @@ func GetDashboardPermission(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DashboardPermission resources.
 type dashboardPermissionState struct {
-	// ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
+	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
 	//
 	// Deprecated: use `dashboardUid` instead
 	DashboardId *int `pulumi:"dashboardId"`
@@ -69,7 +152,7 @@ type dashboardPermissionState struct {
 }
 
 type DashboardPermissionState struct {
-	// ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
+	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
 	//
 	// Deprecated: use `dashboardUid` instead
 	DashboardId pulumi.IntPtrInput
@@ -86,7 +169,7 @@ func (DashboardPermissionState) ElementType() reflect.Type {
 }
 
 type dashboardPermissionArgs struct {
-	// ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
+	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
 	//
 	// Deprecated: use `dashboardUid` instead
 	DashboardId *int `pulumi:"dashboardId"`
@@ -100,7 +183,7 @@ type dashboardPermissionArgs struct {
 
 // The set of arguments for constructing a DashboardPermission resource.
 type DashboardPermissionArgs struct {
-	// ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
+	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
 	//
 	// Deprecated: use `dashboardUid` instead
 	DashboardId pulumi.IntPtrInput
@@ -199,7 +282,7 @@ func (o DashboardPermissionOutput) ToDashboardPermissionOutputWithContext(ctx co
 	return o
 }
 
-// ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
+// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
 //
 // Deprecated: use `dashboardUid` instead
 func (o DashboardPermissionOutput) DashboardId() pulumi.IntOutput {

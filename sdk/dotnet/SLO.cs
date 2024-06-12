@@ -10,13 +10,30 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// Resource manages Grafana SLOs.
+    /// 
+    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
+    /// * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
+    /// * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/sLO:SLO name "{{ uuid }}"
+    /// ```
+    /// </summary>
     [GrafanaResourceType("grafana:index/sLO:SLO")]
     public partial class SLO : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
-        /// generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
-        /// when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
+        /// Configures the alerting rules that will be generated for each
+        /// 			time window associated with the SLO. Grafana SLOs can generate
+        /// 			alerts when the short-term error budget burn is very high, the
+        /// 			long-term error budget burn rate is high, or when the remaining
+        /// 			error budget is below a certain threshold. Annotations and Labels support templating.
         /// </summary>
         [Output("alertings")]
         public Output<ImmutableArray<Outputs.SLOAlerting>> Alertings { get; private set; } = null!;
@@ -34,9 +51,7 @@ namespace Pulumiverse.Grafana
         public Output<Outputs.SLODestinationDatasource?> DestinationDatasource { get; private set; } = null!;
 
         /// <summary>
-        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
-        /// SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
-        /// "^[a-zA-Z_][a-zA-Z0-9_]*$"
+        /// Labels to attach only to Fast Burn alerts.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableArray<Outputs.SLOLabel>> Labels { get; private set; } = null!;
@@ -48,14 +63,13 @@ namespace Pulumiverse.Grafana
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
-        /// each time window based on the SLO burn rate or remaining error budget.
+        /// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
         /// </summary>
         [Output("objectives")]
         public Output<ImmutableArray<Outputs.SLOObjective>> Objectives { get; private set; } = null!;
 
         /// <summary>
-        /// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        /// Freeform Query Field
         /// </summary>
         [Output("queries")]
         public Output<ImmutableArray<Outputs.SLOQuery>> Queries { get; private set; } = null!;
@@ -111,9 +125,11 @@ namespace Pulumiverse.Grafana
         private InputList<Inputs.SLOAlertingArgs>? _alertings;
 
         /// <summary>
-        /// Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
-        /// generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
-        /// when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
+        /// Configures the alerting rules that will be generated for each
+        /// 			time window associated with the SLO. Grafana SLOs can generate
+        /// 			alerts when the short-term error budget burn is very high, the
+        /// 			long-term error budget burn rate is high, or when the remaining
+        /// 			error budget is below a certain threshold. Annotations and Labels support templating.
         /// </summary>
         public InputList<Inputs.SLOAlertingArgs> Alertings
         {
@@ -137,9 +153,7 @@ namespace Pulumiverse.Grafana
         private InputList<Inputs.SLOLabelArgs>? _labels;
 
         /// <summary>
-        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
-        /// SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
-        /// "^[a-zA-Z_][a-zA-Z0-9_]*$"
+        /// Labels to attach only to Fast Burn alerts.
         /// </summary>
         public InputList<Inputs.SLOLabelArgs> Labels
         {
@@ -157,8 +171,7 @@ namespace Pulumiverse.Grafana
         private InputList<Inputs.SLOObjectiveArgs>? _objectives;
 
         /// <summary>
-        /// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
-        /// each time window based on the SLO burn rate or remaining error budget.
+        /// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
         /// </summary>
         public InputList<Inputs.SLOObjectiveArgs> Objectives
         {
@@ -170,7 +183,7 @@ namespace Pulumiverse.Grafana
         private InputList<Inputs.SLOQueryArgs>? _queries;
 
         /// <summary>
-        /// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        /// Freeform Query Field
         /// </summary>
         public InputList<Inputs.SLOQueryArgs> Queries
         {
@@ -190,9 +203,11 @@ namespace Pulumiverse.Grafana
         private InputList<Inputs.SLOAlertingGetArgs>? _alertings;
 
         /// <summary>
-        /// Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
-        /// generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
-        /// when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
+        /// Configures the alerting rules that will be generated for each
+        /// 			time window associated with the SLO. Grafana SLOs can generate
+        /// 			alerts when the short-term error budget burn is very high, the
+        /// 			long-term error budget burn rate is high, or when the remaining
+        /// 			error budget is below a certain threshold. Annotations and Labels support templating.
         /// </summary>
         public InputList<Inputs.SLOAlertingGetArgs> Alertings
         {
@@ -216,9 +231,7 @@ namespace Pulumiverse.Grafana
         private InputList<Inputs.SLOLabelGetArgs>? _labels;
 
         /// <summary>
-        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
-        /// SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
-        /// "^[a-zA-Z_][a-zA-Z0-9_]*$"
+        /// Labels to attach only to Fast Burn alerts.
         /// </summary>
         public InputList<Inputs.SLOLabelGetArgs> Labels
         {
@@ -236,8 +249,7 @@ namespace Pulumiverse.Grafana
         private InputList<Inputs.SLOObjectiveGetArgs>? _objectives;
 
         /// <summary>
-        /// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
-        /// each time window based on the SLO burn rate or remaining error budget.
+        /// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
         /// </summary>
         public InputList<Inputs.SLOObjectiveGetArgs> Objectives
         {
@@ -249,7 +261,7 @@ namespace Pulumiverse.Grafana
         private InputList<Inputs.SLOQueryGetArgs>? _queries;
 
         /// <summary>
-        /// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        /// Freeform Query Field
         /// </summary>
         public InputList<Inputs.SLOQueryGetArgs> Queries
         {

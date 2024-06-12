@@ -35,6 +35,9 @@ class GetSyntheticMonitoringProbesResult:
     @property
     @pulumi.getter(name="filterDeprecated")
     def filter_deprecated(self) -> Optional[bool]:
+        """
+        If true, only probes that are not deprecated will be returned. Defaults to `true`.
+        """
         return pulumi.get(self, "filter_deprecated")
 
     @property
@@ -48,6 +51,9 @@ class GetSyntheticMonitoringProbesResult:
     @property
     @pulumi.getter
     def probes(self) -> Mapping[str, int]:
+        """
+        Map of probes with their names as keys and IDs as values.
+        """
         return pulumi.get(self, "probes")
 
 
@@ -65,7 +71,21 @@ class AwaitableGetSyntheticMonitoringProbesResult(GetSyntheticMonitoringProbesRe
 def get_synthetic_monitoring_probes(filter_deprecated: Optional[bool] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSyntheticMonitoringProbesResult:
     """
-    Use this data source to access information about an existing resource.
+    Data source for retrieving all probes.
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    main = grafana.get_synthetic_monitoring_probes()
+    ```
+    <!--End PulumiCodeChooser -->
+
+
+    :param bool filter_deprecated: If true, only probes that are not deprecated will be returned. Defaults to `true`.
     """
     __args__ = dict()
     __args__['filterDeprecated'] = filter_deprecated
@@ -82,6 +102,20 @@ def get_synthetic_monitoring_probes(filter_deprecated: Optional[bool] = None,
 def get_synthetic_monitoring_probes_output(filter_deprecated: Optional[pulumi.Input[Optional[bool]]] = None,
                                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSyntheticMonitoringProbesResult]:
     """
-    Use this data source to access information about an existing resource.
+    Data source for retrieving all probes.
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    main = grafana.get_synthetic_monitoring_probes()
+    ```
+    <!--End PulumiCodeChooser -->
+
+
+    :param bool filter_deprecated: If true, only probes that are not deprecated will be returned. Defaults to `true`.
     """
     ...

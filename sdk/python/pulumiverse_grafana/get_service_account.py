@@ -49,21 +49,33 @@ class GetServiceAccountResult:
     @property
     @pulumi.getter(name="isDisabled")
     def is_disabled(self) -> bool:
+        """
+        The disabled status for the service account.
+        """
         return pulumi.get(self, "is_disabled")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the Service Account.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[str]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
         return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter
     def role(self) -> str:
+        """
+        The basic role of the service account in the organization.
+        """
         return pulumi.get(self, "role")
 
 
@@ -84,7 +96,12 @@ def get_service_account(name: Optional[str] = None,
                         org_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceAccountResult:
     """
-    Use this data source to access information about an existing resource.
+    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
+            * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+
+
+    :param str name: The name of the Service Account.
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -105,6 +122,11 @@ def get_service_account_output(name: Optional[pulumi.Input[str]] = None,
                                org_id: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceAccountResult]:
     """
-    Use this data source to access information about an existing resource.
+    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
+            * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+
+
+    :param str name: The name of the Service Account.
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
     ...

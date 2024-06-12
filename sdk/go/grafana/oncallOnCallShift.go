@@ -12,12 +12,19 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/on_call_shifts/)
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/oncallOnCallShift:OncallOnCallShift name "{{ id }}"
+// ```
 type OncallOnCallShift struct {
 	pulumi.CustomResourceState
 
 	// This parameter takes a list of days in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
 	ByDays pulumi.StringArrayOutput `pulumi:"byDays"`
-	// This parameter takes a list of days of the month. Valid values are 1 to 31 or -31 to -1
+	// This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
 	ByMonthdays pulumi.IntArrayOutput `pulumi:"byMonthdays"`
 	// This parameter takes a list of months. Valid values are 1 to 12
 	ByMonths pulumi.IntArrayOutput `pulumi:"byMonths"`
@@ -31,21 +38,19 @@ type OncallOnCallShift struct {
 	Level pulumi.IntPtrOutput `pulumi:"level"`
 	// The shift's name.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The list of lists with on-call users (for rolling_users event type)
+	// The list of lists with on-call users (for rollingUsers event type)
 	RollingUsers pulumi.StringArrayArrayOutput `pulumi:"rollingUsers"`
-	// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example
-	// "2020-09-05T08:00:00")
+	// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
 	Start pulumi.StringOutput `pulumi:"start"`
 	// The index of the list of users in rolling_users, from which on-call rotation starts.
 	StartRotationFromUserIndex pulumi.IntPtrOutput `pulumi:"startRotationFromUserIndex"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
-	// The shift's timezone. Overrides schedule's timezone.
+	// The shift's timezone.  Overrides schedule's timezone.
 	TimeZone pulumi.StringPtrOutput `pulumi:"timeZone"`
-	// The shift's type. Can be rolling_users, recurrent_event, single_event
+	// The shift's type. Can be rolling*users, recurrent*event, single_event
 	Type pulumi.StringOutput `pulumi:"type"`
-	// The list of on-call users (for single_event and recurrent_event event type).
+	// The list of on-call users (for single*event and recurrent*event event type).
 	Users pulumi.StringArrayOutput `pulumi:"users"`
 	// Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
 	WeekStart pulumi.StringPtrOutput `pulumi:"weekStart"`
@@ -92,7 +97,7 @@ func GetOncallOnCallShift(ctx *pulumi.Context,
 type oncallOnCallShiftState struct {
 	// This parameter takes a list of days in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
 	ByDays []string `pulumi:"byDays"`
-	// This parameter takes a list of days of the month. Valid values are 1 to 31 or -31 to -1
+	// This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
 	ByMonthdays []int `pulumi:"byMonthdays"`
 	// This parameter takes a list of months. Valid values are 1 to 12
 	ByMonths []int `pulumi:"byMonths"`
@@ -106,21 +111,19 @@ type oncallOnCallShiftState struct {
 	Level *int `pulumi:"level"`
 	// The shift's name.
 	Name *string `pulumi:"name"`
-	// The list of lists with on-call users (for rolling_users event type)
+	// The list of lists with on-call users (for rollingUsers event type)
 	RollingUsers [][]string `pulumi:"rollingUsers"`
-	// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example
-	// "2020-09-05T08:00:00")
+	// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
 	Start *string `pulumi:"start"`
 	// The index of the list of users in rolling_users, from which on-call rotation starts.
 	StartRotationFromUserIndex *int `pulumi:"startRotationFromUserIndex"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId *string `pulumi:"teamId"`
-	// The shift's timezone. Overrides schedule's timezone.
+	// The shift's timezone.  Overrides schedule's timezone.
 	TimeZone *string `pulumi:"timeZone"`
-	// The shift's type. Can be rolling_users, recurrent_event, single_event
+	// The shift's type. Can be rolling*users, recurrent*event, single_event
 	Type *string `pulumi:"type"`
-	// The list of on-call users (for single_event and recurrent_event event type).
+	// The list of on-call users (for single*event and recurrent*event event type).
 	Users []string `pulumi:"users"`
 	// Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
 	WeekStart *string `pulumi:"weekStart"`
@@ -129,7 +132,7 @@ type oncallOnCallShiftState struct {
 type OncallOnCallShiftState struct {
 	// This parameter takes a list of days in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
 	ByDays pulumi.StringArrayInput
-	// This parameter takes a list of days of the month. Valid values are 1 to 31 or -31 to -1
+	// This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
 	ByMonthdays pulumi.IntArrayInput
 	// This parameter takes a list of months. Valid values are 1 to 12
 	ByMonths pulumi.IntArrayInput
@@ -143,21 +146,19 @@ type OncallOnCallShiftState struct {
 	Level pulumi.IntPtrInput
 	// The shift's name.
 	Name pulumi.StringPtrInput
-	// The list of lists with on-call users (for rolling_users event type)
+	// The list of lists with on-call users (for rollingUsers event type)
 	RollingUsers pulumi.StringArrayArrayInput
-	// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example
-	// "2020-09-05T08:00:00")
+	// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
 	Start pulumi.StringPtrInput
 	// The index of the list of users in rolling_users, from which on-call rotation starts.
 	StartRotationFromUserIndex pulumi.IntPtrInput
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId pulumi.StringPtrInput
-	// The shift's timezone. Overrides schedule's timezone.
+	// The shift's timezone.  Overrides schedule's timezone.
 	TimeZone pulumi.StringPtrInput
-	// The shift's type. Can be rolling_users, recurrent_event, single_event
+	// The shift's type. Can be rolling*users, recurrent*event, single_event
 	Type pulumi.StringPtrInput
-	// The list of on-call users (for single_event and recurrent_event event type).
+	// The list of on-call users (for single*event and recurrent*event event type).
 	Users pulumi.StringArrayInput
 	// Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
 	WeekStart pulumi.StringPtrInput
@@ -170,7 +171,7 @@ func (OncallOnCallShiftState) ElementType() reflect.Type {
 type oncallOnCallShiftArgs struct {
 	// This parameter takes a list of days in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
 	ByDays []string `pulumi:"byDays"`
-	// This parameter takes a list of days of the month. Valid values are 1 to 31 or -31 to -1
+	// This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
 	ByMonthdays []int `pulumi:"byMonthdays"`
 	// This parameter takes a list of months. Valid values are 1 to 12
 	ByMonths []int `pulumi:"byMonths"`
@@ -184,21 +185,19 @@ type oncallOnCallShiftArgs struct {
 	Level *int `pulumi:"level"`
 	// The shift's name.
 	Name *string `pulumi:"name"`
-	// The list of lists with on-call users (for rolling_users event type)
+	// The list of lists with on-call users (for rollingUsers event type)
 	RollingUsers [][]string `pulumi:"rollingUsers"`
-	// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example
-	// "2020-09-05T08:00:00")
+	// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
 	Start string `pulumi:"start"`
 	// The index of the list of users in rolling_users, from which on-call rotation starts.
 	StartRotationFromUserIndex *int `pulumi:"startRotationFromUserIndex"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId *string `pulumi:"teamId"`
-	// The shift's timezone. Overrides schedule's timezone.
+	// The shift's timezone.  Overrides schedule's timezone.
 	TimeZone *string `pulumi:"timeZone"`
-	// The shift's type. Can be rolling_users, recurrent_event, single_event
+	// The shift's type. Can be rolling*users, recurrent*event, single_event
 	Type string `pulumi:"type"`
-	// The list of on-call users (for single_event and recurrent_event event type).
+	// The list of on-call users (for single*event and recurrent*event event type).
 	Users []string `pulumi:"users"`
 	// Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
 	WeekStart *string `pulumi:"weekStart"`
@@ -208,7 +207,7 @@ type oncallOnCallShiftArgs struct {
 type OncallOnCallShiftArgs struct {
 	// This parameter takes a list of days in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
 	ByDays pulumi.StringArrayInput
-	// This parameter takes a list of days of the month. Valid values are 1 to 31 or -31 to -1
+	// This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
 	ByMonthdays pulumi.IntArrayInput
 	// This parameter takes a list of months. Valid values are 1 to 12
 	ByMonths pulumi.IntArrayInput
@@ -222,21 +221,19 @@ type OncallOnCallShiftArgs struct {
 	Level pulumi.IntPtrInput
 	// The shift's name.
 	Name pulumi.StringPtrInput
-	// The list of lists with on-call users (for rolling_users event type)
+	// The list of lists with on-call users (for rollingUsers event type)
 	RollingUsers pulumi.StringArrayArrayInput
-	// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example
-	// "2020-09-05T08:00:00")
+	// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
 	Start pulumi.StringInput
 	// The index of the list of users in rolling_users, from which on-call rotation starts.
 	StartRotationFromUserIndex pulumi.IntPtrInput
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 	TeamId pulumi.StringPtrInput
-	// The shift's timezone. Overrides schedule's timezone.
+	// The shift's timezone.  Overrides schedule's timezone.
 	TimeZone pulumi.StringPtrInput
-	// The shift's type. Can be rolling_users, recurrent_event, single_event
+	// The shift's type. Can be rolling*users, recurrent*event, single_event
 	Type pulumi.StringInput
-	// The list of on-call users (for single_event and recurrent_event event type).
+	// The list of on-call users (for single*event and recurrent*event event type).
 	Users pulumi.StringArrayInput
 	// Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
 	WeekStart pulumi.StringPtrInput
@@ -334,7 +331,7 @@ func (o OncallOnCallShiftOutput) ByDays() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *OncallOnCallShift) pulumi.StringArrayOutput { return v.ByDays }).(pulumi.StringArrayOutput)
 }
 
-// This parameter takes a list of days of the month. Valid values are 1 to 31 or -31 to -1
+// This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
 func (o OncallOnCallShiftOutput) ByMonthdays() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v *OncallOnCallShift) pulumi.IntArrayOutput { return v.ByMonthdays }).(pulumi.IntArrayOutput)
 }
@@ -369,13 +366,12 @@ func (o OncallOnCallShiftOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *OncallOnCallShift) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The list of lists with on-call users (for rolling_users event type)
+// The list of lists with on-call users (for rollingUsers event type)
 func (o OncallOnCallShiftOutput) RollingUsers() pulumi.StringArrayArrayOutput {
 	return o.ApplyT(func(v *OncallOnCallShift) pulumi.StringArrayArrayOutput { return v.RollingUsers }).(pulumi.StringArrayArrayOutput)
 }
 
-// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example
-// "2020-09-05T08:00:00")
+// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
 func (o OncallOnCallShiftOutput) Start() pulumi.StringOutput {
 	return o.ApplyT(func(v *OncallOnCallShift) pulumi.StringOutput { return v.Start }).(pulumi.StringOutput)
 }
@@ -385,23 +381,22 @@ func (o OncallOnCallShiftOutput) StartRotationFromUserIndex() pulumi.IntPtrOutpu
 	return o.ApplyT(func(v *OncallOnCallShift) pulumi.IntPtrOutput { return v.StartRotationFromUserIndex }).(pulumi.IntPtrOutput)
 }
 
-// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-// with OnCall). You can then get the ID using the `grafana_oncall_team` datasource.
+// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `getOncallTeam` datasource.
 func (o OncallOnCallShiftOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallOnCallShift) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
 }
 
-// The shift's timezone. Overrides schedule's timezone.
+// The shift's timezone.  Overrides schedule's timezone.
 func (o OncallOnCallShiftOutput) TimeZone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallOnCallShift) pulumi.StringPtrOutput { return v.TimeZone }).(pulumi.StringPtrOutput)
 }
 
-// The shift's type. Can be rolling_users, recurrent_event, single_event
+// The shift's type. Can be rolling*users, recurrent*event, single_event
 func (o OncallOnCallShiftOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *OncallOnCallShift) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// The list of on-call users (for single_event and recurrent_event event type).
+// The list of on-call users (for single*event and recurrent*event event type).
 func (o OncallOnCallShiftOutput) Users() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *OncallOnCallShift) pulumi.StringArrayOutput { return v.Users }).(pulumi.StringArrayOutput)
 }

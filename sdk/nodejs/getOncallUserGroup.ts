@@ -4,6 +4,22 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const exampleUserGroup = grafana.getOncallUserGroup({
+ *     slackHandle: "example_slack_handle",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ */
 export function getOncallUserGroup(args: GetOncallUserGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallUserGroupResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -30,6 +46,22 @@ export interface GetOncallUserGroupResult {
     readonly slackHandle: string;
     readonly slackId: string;
 }
+/**
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const exampleUserGroup = grafana.getOncallUserGroup({
+ *     slackHandle: "example_slack_handle",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ */
 export function getOncallUserGroupOutput(args: GetOncallUserGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallUserGroupResult> {
     return pulumi.output(args).apply((a: any) => getOncallUserGroup(a, opts))
 }

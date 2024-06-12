@@ -10,6 +10,38 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Grafana.OrganizationPreference("test", new()
+    ///     {
+    ///         Theme = "light",
+    ///         Timezone = "utc",
+    ///         WeekStart = "sunday",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/organizationPreference:OrganizationPreference name "{{ orgID }}"
+    /// ```
+    /// </summary>
     [GrafanaResourceType("grafana:index/organizationPreference:OrganizationPreference")]
     public partial class OrganizationPreference : global::Pulumi.CustomResource
     {
@@ -44,8 +76,7 @@ namespace Pulumiverse.Grafana
         public Output<string?> Timezone { get; private set; } = null!;
 
         /// <summary>
-        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-        /// default.
+        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         /// </summary>
         [Output("weekStart")]
         public Output<string?> WeekStart { get; private set; } = null!;
@@ -128,8 +159,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Timezone { get; set; }
 
         /// <summary>
-        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-        /// default.
+        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         /// </summary>
         [Input("weekStart")]
         public Input<string>? WeekStart { get; set; }
@@ -173,8 +203,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Timezone { get; set; }
 
         /// <summary>
-        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-        /// default.
+        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         /// </summary>
         [Input("weekStart")]
         public Input<string>? WeekStart { get; set; }

@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Outputs
     public sealed class OncallIntegrationDefaultRouteTelegram
     {
         /// <summary>
-        /// Enable notification in Telegram.
+        /// Enable notification in MS teams. Defaults to `true`.
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>

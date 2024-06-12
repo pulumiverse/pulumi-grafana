@@ -163,7 +163,14 @@ class CloudOrgMember(pulumi.CustomResource):
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a CloudOrgMember resource with the given unique name, props, and options.
+        Manages the membership of a user in an organization.
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/cloudOrgMember:CloudOrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org: The slug or ID of the organization.
@@ -178,7 +185,14 @@ class CloudOrgMember(pulumi.CustomResource):
                  args: CloudOrgMemberArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a CloudOrgMember resource with the given unique name, props, and options.
+        Manages the membership of a user in an organization.
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/cloudOrgMember:CloudOrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param CloudOrgMemberArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

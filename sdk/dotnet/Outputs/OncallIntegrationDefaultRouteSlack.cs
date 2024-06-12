@@ -19,7 +19,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? ChannelId;
         /// <summary>
-        /// Enable notification in Slack.
+        /// Enable notification in MS teams. Defaults to `true`.
         /// </summary>
         public readonly bool? Enabled;
 

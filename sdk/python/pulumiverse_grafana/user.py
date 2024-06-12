@@ -23,7 +23,7 @@ class UserArgs:
         The set of arguments for constructing a User resource.
         :param pulumi.Input[str] email: The email address of the Grafana user.
         :param pulumi.Input[str] password: The password for the Grafana user.
-        :param pulumi.Input[bool] is_admin: Whether to make user an admin.
+        :param pulumi.Input[bool] is_admin: Whether to make user an admin. Defaults to `false`.
         :param pulumi.Input[str] login: The username for the Grafana user.
         :param pulumi.Input[str] name: The display name for the Grafana user.
         """
@@ -64,7 +64,7 @@ class UserArgs:
     @pulumi.getter(name="isAdmin")
     def is_admin(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to make user an admin.
+        Whether to make user an admin. Defaults to `false`.
         """
         return pulumi.get(self, "is_admin")
 
@@ -109,7 +109,7 @@ class _UserState:
         """
         Input properties used for looking up and filtering User resources.
         :param pulumi.Input[str] email: The email address of the Grafana user.
-        :param pulumi.Input[bool] is_admin: Whether to make user an admin.
+        :param pulumi.Input[bool] is_admin: Whether to make user an admin. Defaults to `false`.
         :param pulumi.Input[str] login: The username for the Grafana user.
         :param pulumi.Input[str] name: The display name for the Grafana user.
         :param pulumi.Input[str] password: The password for the Grafana user.
@@ -144,7 +144,7 @@ class _UserState:
     @pulumi.getter(name="isAdmin")
     def is_admin(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to make user an admin.
+        Whether to make user an admin. Defaults to `false`.
         """
         return pulumi.get(self, "is_admin")
 
@@ -213,11 +213,38 @@ class User(pulumi.CustomResource):
                  password: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a User resource with the given unique name, props, and options.
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
+
+        This resource represents an instance-scoped resource and uses Grafana's admin APIs.
+        It does not work with API tokens or service accounts which are org-scoped.
+        You must use basic auth.
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        staff = grafana.User("staff",
+            email="staff.name@example.com",
+            is_admin=False,
+            login="staff",
+            password="my-password")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/user:User name "{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] email: The email address of the Grafana user.
-        :param pulumi.Input[bool] is_admin: Whether to make user an admin.
+        :param pulumi.Input[bool] is_admin: Whether to make user an admin. Defaults to `false`.
         :param pulumi.Input[str] login: The username for the Grafana user.
         :param pulumi.Input[str] name: The display name for the Grafana user.
         :param pulumi.Input[str] password: The password for the Grafana user.
@@ -229,7 +256,34 @@ class User(pulumi.CustomResource):
                  args: UserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a User resource with the given unique name, props, and options.
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
+
+        This resource represents an instance-scoped resource and uses Grafana's admin APIs.
+        It does not work with API tokens or service accounts which are org-scoped.
+        You must use basic auth.
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        staff = grafana.User("staff",
+            email="staff.name@example.com",
+            is_admin=False,
+            login="staff",
+            password="my-password")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/user:User name "{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param UserArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -295,7 +349,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] email: The email address of the Grafana user.
-        :param pulumi.Input[bool] is_admin: Whether to make user an admin.
+        :param pulumi.Input[bool] is_admin: Whether to make user an admin. Defaults to `false`.
         :param pulumi.Input[str] login: The username for the Grafana user.
         :param pulumi.Input[str] name: The display name for the Grafana user.
         :param pulumi.Input[str] password: The password for the Grafana user.
@@ -325,7 +379,7 @@ class User(pulumi.CustomResource):
     @pulumi.getter(name="isAdmin")
     def is_admin(self) -> pulumi.Output[Optional[bool]]:
         """
-        Whether to make user an admin.
+        Whether to make user an admin. Defaults to `false`.
         """
         return pulumi.get(self, "is_admin")
 

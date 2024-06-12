@@ -11,6 +11,35 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := grafana.LookupOncallEscalationChain(ctx, &grafana.LookupOncallEscalationChainArgs{
+//				Name: "default",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func LookupOncallEscalationChain(ctx *pulumi.Context, args *LookupOncallEscalationChainArgs, opts ...pulumi.InvokeOption) (*LookupOncallEscalationChainResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOncallEscalationChainResult
@@ -23,13 +52,15 @@ func LookupOncallEscalationChain(ctx *pulumi.Context, args *LookupOncallEscalati
 
 // A collection of arguments for invoking getOncallEscalationChain.
 type LookupOncallEscalationChainArgs struct {
+	// The escalation chain name.
 	Name string `pulumi:"name"`
 }
 
 // A collection of values returned by getOncallEscalationChain.
 type LookupOncallEscalationChainResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id   string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// The escalation chain name.
 	Name string `pulumi:"name"`
 }
 
@@ -48,6 +79,7 @@ func LookupOncallEscalationChainOutput(ctx *pulumi.Context, args LookupOncallEsc
 
 // A collection of arguments for invoking getOncallEscalationChain.
 type LookupOncallEscalationChainOutputArgs struct {
+	// The escalation chain name.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -75,6 +107,7 @@ func (o LookupOncallEscalationChainResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOncallEscalationChainResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The escalation chain name.
 func (o LookupOncallEscalationChainResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOncallEscalationChainResult) string { return v.Name }).(pulumi.StringOutput)
 }

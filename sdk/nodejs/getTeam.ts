@@ -6,6 +6,31 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = new grafana.Team("test", {
+ *     email: "test-team-email@test.com",
+ *     preferences: {
+ *         theme: "dark",
+ *         timezone: "utc",
+ *     },
+ * });
+ * const fromName = grafana.getTeamOutput({
+ *     name: test.name,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ */
 export function getTeam(args: GetTeamArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -42,6 +67,31 @@ export interface GetTeamResult {
     readonly teamId: number;
     readonly teamSyncs: outputs.GetTeamTeamSync[];
 }
+/**
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = new grafana.Team("test", {
+ *     email: "test-team-email@test.com",
+ *     preferences: {
+ *         theme: "dark",
+ *         timezone: "utc",
+ *     },
+ * });
+ * const fromName = grafana.getTeamOutput({
+ *     name: test.name,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ */
 export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamResult> {
     return pulumi.output(args).apply((a: any) => getTeam(a, opts))
 }

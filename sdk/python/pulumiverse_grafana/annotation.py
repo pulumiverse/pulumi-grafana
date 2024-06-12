@@ -309,7 +309,30 @@ class Annotation(pulumi.CustomResource):
                  time_end: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Annotation resource with the given unique name, props, and options.
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.Annotation("test", text="basic text")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/annotation:Annotation name "{{ id }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/annotation:Annotation name "{{ orgID }}:{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] dashboard_id: The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
@@ -328,7 +351,30 @@ class Annotation(pulumi.CustomResource):
                  args: AnnotationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Annotation resource with the given unique name, props, and options.
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.Annotation("test", text="basic text")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/annotation:Annotation name "{{ id }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/annotation:Annotation name "{{ orgID }}:{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param AnnotationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

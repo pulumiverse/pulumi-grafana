@@ -14,19 +14,19 @@ namespace Pulumiverse.Grafana.Inputs
     public sealed class ContactPointDiscordGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The URL of a custom avatar image to use.
+        /// The URL of a custom avatar image to use. Defaults to ``.
         /// </summary>
         [Input("avatarUrl")]
         public Input<string>? AvatarUrl { get; set; }
 
         /// <summary>
-        /// Whether to disable sending resolve messages.
+        /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
         [Input("disableResolveMessage")]
         public Input<bool>? DisableResolveMessage { get; set; }
 
         /// <summary>
-        /// The templated content of the message.
+        /// The templated content of the message. Defaults to ``.
         /// </summary>
         [Input("message")]
         public Input<string>? Message { get; set; }
@@ -35,7 +35,7 @@ namespace Pulumiverse.Grafana.Inputs
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Additional custom properties to attach to the notifier.
+        /// Additional custom properties to attach to the notifier. Defaults to `map[]`.
         /// </summary>
         public InputMap<string> Settings
         {
@@ -76,7 +76,7 @@ namespace Pulumiverse.Grafana.Inputs
         }
 
         /// <summary>
-        /// Whether to use the bot account's plain username instead of "Grafana."
+        /// Whether to use the bot account's plain username instead of "Grafana." Defaults to `false`.
         /// </summary>
         [Input("useDiscordUsername")]
         public Input<bool>? UseDiscordUsername { get; set; }

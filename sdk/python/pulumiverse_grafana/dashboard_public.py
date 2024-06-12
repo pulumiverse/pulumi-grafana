@@ -25,15 +25,13 @@ class DashboardPublicArgs:
         """
         The set of arguments for constructing a DashboardPublic resource.
         :param pulumi.Input[str] dashboard_uid: The unique identifier of the original dashboard.
-        :param pulumi.Input[str] access_token: A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
-               provided when creating a public dashboard.
+        :param pulumi.Input[str] access_token: A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
         :param pulumi.Input[bool] annotations_enabled: Set to `true` to show annotations. The default value is `false`.
         :param pulumi.Input[bool] is_enabled: Set to `true` to enable the public dashboard. The default value is `false`.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] share: Set the share mode. The default value is `public`.
         :param pulumi.Input[bool] time_selection_enabled: Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
-        :param pulumi.Input[str] uid: The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
-               dashboard.
+        :param pulumi.Input[str] uid: The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
         """
         pulumi.set(__self__, "dashboard_uid", dashboard_uid)
         if access_token is not None:
@@ -67,8 +65,7 @@ class DashboardPublicArgs:
     @pulumi.getter(name="accessToken")
     def access_token(self) -> Optional[pulumi.Input[str]]:
         """
-        A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
-        provided when creating a public dashboard.
+        A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
         """
         return pulumi.get(self, "access_token")
 
@@ -140,8 +137,7 @@ class DashboardPublicArgs:
     @pulumi.getter
     def uid(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
-        dashboard.
+        The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
         """
         return pulumi.get(self, "uid")
 
@@ -163,16 +159,14 @@ class _DashboardPublicState:
                  uid: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DashboardPublic resources.
-        :param pulumi.Input[str] access_token: A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
-               provided when creating a public dashboard.
+        :param pulumi.Input[str] access_token: A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
         :param pulumi.Input[bool] annotations_enabled: Set to `true` to show annotations. The default value is `false`.
         :param pulumi.Input[str] dashboard_uid: The unique identifier of the original dashboard.
         :param pulumi.Input[bool] is_enabled: Set to `true` to enable the public dashboard. The default value is `false`.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] share: Set the share mode. The default value is `public`.
         :param pulumi.Input[bool] time_selection_enabled: Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
-        :param pulumi.Input[str] uid: The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
-               dashboard.
+        :param pulumi.Input[str] uid: The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
         """
         if access_token is not None:
             pulumi.set(__self__, "access_token", access_token)
@@ -195,8 +189,7 @@ class _DashboardPublicState:
     @pulumi.getter(name="accessToken")
     def access_token(self) -> Optional[pulumi.Input[str]]:
         """
-        A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
-        provided when creating a public dashboard.
+        A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
         """
         return pulumi.get(self, "access_token")
 
@@ -280,8 +273,7 @@ class _DashboardPublicState:
     @pulumi.getter
     def uid(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
-        dashboard.
+        The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
         """
         return pulumi.get(self, "uid")
 
@@ -305,19 +297,78 @@ class DashboardPublic(pulumi.CustomResource):
                  uid: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DashboardPublic resource with the given unique name, props, and options.
+        Manages Grafana public dashboards.
+
+        **Note:** This resource is available only with Grafana 10.2+.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-public/)
+        * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/dashboard_public/)
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        # Optional (On-premise, not supported in Grafana Cloud): Create an organization
+        my_org = grafana.Organization("myOrg")
+        # Create resources (optional: within the organization)
+        my_folder = grafana.Folder("myFolder",
+            org_id=my_org.org_id,
+            title="test Folder")
+        test_dash = grafana.Dashboard("testDash",
+            org_id=my_org.org_id,
+            folder=my_folder.id,
+            config_json=json.dumps({
+                "title": "My Terraform Dashboard",
+                "uid": "my-dashboard-uid",
+            }))
+        my_public_dashboard = grafana.DashboardPublic("myPublicDashboard",
+            org_id=my_org.org_id,
+            dashboard_uid=test_dash.uid,
+            uid="my-custom-public-uid",
+            access_token="e99e4275da6f410d83760eefa934d8d2",
+            time_selection_enabled=True,
+            is_enabled=True,
+            annotations_enabled=True,
+            share="public")
+        # Optional (On-premise, not supported in Grafana Cloud): Create an organization
+        my_org2 = grafana.Organization("myOrg2")
+        test_dash2 = grafana.Dashboard("testDash2",
+            org_id=my_org2.org_id,
+            config_json=json.dumps({
+                "title": "My Terraform Dashboard2",
+                "uid": "my-dashboard-uid2",
+            }))
+        my_public_dashboard2 = grafana.DashboardPublic("myPublicDashboard2",
+            org_id=my_org2.org_id,
+            dashboard_uid=test_dash2.uid,
+            share="public")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/dashboardPublic:DashboardPublic name "{{ dashboardUID }}:{{ publicDashboardUID }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/dashboardPublic:DashboardPublic name "{{ orgID }}:{{ dashboardUID }}:{{ publicDashboardUID }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] access_token: A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
-               provided when creating a public dashboard.
+        :param pulumi.Input[str] access_token: A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
         :param pulumi.Input[bool] annotations_enabled: Set to `true` to show annotations. The default value is `false`.
         :param pulumi.Input[str] dashboard_uid: The unique identifier of the original dashboard.
         :param pulumi.Input[bool] is_enabled: Set to `true` to enable the public dashboard. The default value is `false`.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] share: Set the share mode. The default value is `public`.
         :param pulumi.Input[bool] time_selection_enabled: Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
-        :param pulumi.Input[str] uid: The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
-               dashboard.
+        :param pulumi.Input[str] uid: The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
         """
         ...
     @overload
@@ -326,7 +377,68 @@ class DashboardPublic(pulumi.CustomResource):
                  args: DashboardPublicArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DashboardPublic resource with the given unique name, props, and options.
+        Manages Grafana public dashboards.
+
+        **Note:** This resource is available only with Grafana 10.2+.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-public/)
+        * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/dashboard_public/)
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        # Optional (On-premise, not supported in Grafana Cloud): Create an organization
+        my_org = grafana.Organization("myOrg")
+        # Create resources (optional: within the organization)
+        my_folder = grafana.Folder("myFolder",
+            org_id=my_org.org_id,
+            title="test Folder")
+        test_dash = grafana.Dashboard("testDash",
+            org_id=my_org.org_id,
+            folder=my_folder.id,
+            config_json=json.dumps({
+                "title": "My Terraform Dashboard",
+                "uid": "my-dashboard-uid",
+            }))
+        my_public_dashboard = grafana.DashboardPublic("myPublicDashboard",
+            org_id=my_org.org_id,
+            dashboard_uid=test_dash.uid,
+            uid="my-custom-public-uid",
+            access_token="e99e4275da6f410d83760eefa934d8d2",
+            time_selection_enabled=True,
+            is_enabled=True,
+            annotations_enabled=True,
+            share="public")
+        # Optional (On-premise, not supported in Grafana Cloud): Create an organization
+        my_org2 = grafana.Organization("myOrg2")
+        test_dash2 = grafana.Dashboard("testDash2",
+            org_id=my_org2.org_id,
+            config_json=json.dumps({
+                "title": "My Terraform Dashboard2",
+                "uid": "my-dashboard-uid2",
+            }))
+        my_public_dashboard2 = grafana.DashboardPublic("myPublicDashboard2",
+            org_id=my_org2.org_id,
+            dashboard_uid=test_dash2.uid,
+            share="public")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/dashboardPublic:DashboardPublic name "{{ dashboardUID }}:{{ publicDashboardUID }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/dashboardPublic:DashboardPublic name "{{ orgID }}:{{ dashboardUID }}:{{ publicDashboardUID }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param DashboardPublicArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -394,16 +506,14 @@ class DashboardPublic(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] access_token: A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
-               provided when creating a public dashboard.
+        :param pulumi.Input[str] access_token: A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
         :param pulumi.Input[bool] annotations_enabled: Set to `true` to show annotations. The default value is `false`.
         :param pulumi.Input[str] dashboard_uid: The unique identifier of the original dashboard.
         :param pulumi.Input[bool] is_enabled: Set to `true` to enable the public dashboard. The default value is `false`.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] share: Set the share mode. The default value is `public`.
         :param pulumi.Input[bool] time_selection_enabled: Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
-        :param pulumi.Input[str] uid: The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
-               dashboard.
+        :param pulumi.Input[str] uid: The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -423,8 +533,7 @@ class DashboardPublic(pulumi.CustomResource):
     @pulumi.getter(name="accessToken")
     def access_token(self) -> pulumi.Output[str]:
         """
-        A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not
-        provided when creating a public dashboard.
+        A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
         """
         return pulumi.get(self, "access_token")
 
@@ -480,8 +589,7 @@ class DashboardPublic(pulumi.CustomResource):
     @pulumi.getter
     def uid(self) -> pulumi.Output[str]:
         """
-        The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public
-        dashboard.
+        The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
         """
         return pulumi.get(self, "uid")
 
