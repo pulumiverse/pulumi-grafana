@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupSyntheticMonitoringProbe(ctx *pulumi.Context, args *LookupSyntheticMonitoringProbeArgs, opts ...pulumi.InvokeOption) (*LookupSyntheticMonitoringProbeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSyntheticMonitoringProbeResult

@@ -7,7 +7,6 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -20,7 +19,6 @@ import * as utilities from "./utilities";
  * export const apiKeyFooKeyOnly = foo.key;
  * export const apiKeyBar = bar;
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class ApiKey extends pulumi.CustomResource {
     /**

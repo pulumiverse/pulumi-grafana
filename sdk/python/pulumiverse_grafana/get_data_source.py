@@ -195,7 +195,6 @@ def get_data_source(id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import json
@@ -220,7 +219,6 @@ def get_data_source(id: Optional[str] = None,
     from_id = grafana.get_data_source_output(id=prometheus.id)
     from_uid = grafana.get_data_source_output(uid=prometheus.uid)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: Deprecated: Use `uid` instead of `id`
@@ -261,7 +259,6 @@ def get_data_source_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import json
@@ -286,7 +283,6 @@ def get_data_source_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     from_id = grafana.get_data_source_output(id=prometheus.id)
     from_uid = grafana.get_data_source_output(uid=prometheus.uid)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: Deprecated: Use `uid` instead of `id`

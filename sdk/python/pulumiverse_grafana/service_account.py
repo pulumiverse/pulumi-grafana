@@ -172,7 +172,6 @@ class ServiceAccount(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -181,7 +180,6 @@ class ServiceAccount(pulumi.CustomResource):
             is_disabled=False,
             role="Admin")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -214,7 +212,6 @@ class ServiceAccount(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -223,7 +220,6 @@ class ServiceAccount(pulumi.CustomResource):
             is_disabled=False,
             role="Admin")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

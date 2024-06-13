@@ -234,7 +234,6 @@ class DataSourcePermissionItem(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -273,7 +272,6 @@ class DataSourcePermissionItem(pulumi.CustomResource):
             user=sa.id,
             permission="Query")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -305,7 +303,6 @@ class DataSourcePermissionItem(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -344,7 +341,6 @@ class DataSourcePermissionItem(pulumi.CustomResource):
             user=sa.id,
             permission="Query")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

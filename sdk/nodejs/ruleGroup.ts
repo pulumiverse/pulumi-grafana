@@ -16,7 +16,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -105,7 +104,6 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -145,9 +143,6 @@ export class RuleGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === RuleGroup.__pulumiType;
     }
 
-    /**
-     * Allow modifying the rule group from other sources than Terraform or the Grafana API.
-     */
     public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
     /**
      * The UID of the folder that the group belongs to.
@@ -158,7 +153,7 @@ export class RuleGroup extends pulumi.CustomResource {
      */
     public readonly intervalSeconds!: pulumi.Output<number>;
     /**
-     * The name of the alert rule.
+     * The name of the rule group.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -216,9 +211,6 @@ export class RuleGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RuleGroup resources.
  */
 export interface RuleGroupState {
-    /**
-     * Allow modifying the rule group from other sources than Terraform or the Grafana API.
-     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * The UID of the folder that the group belongs to.
@@ -229,7 +221,7 @@ export interface RuleGroupState {
      */
     intervalSeconds?: pulumi.Input<number>;
     /**
-     * The name of the alert rule.
+     * The name of the rule group.
      */
     name?: pulumi.Input<string>;
     /**
@@ -246,9 +238,6 @@ export interface RuleGroupState {
  * The set of arguments for constructing a RuleGroup resource.
  */
 export interface RuleGroupArgs {
-    /**
-     * Allow modifying the rule group from other sources than Terraform or the Grafana API.
-     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * The UID of the folder that the group belongs to.
@@ -259,7 +248,7 @@ export interface RuleGroupArgs {
      */
     intervalSeconds: pulumi.Input<number>;
     /**
-     * The name of the alert rule.
+     * The name of the rule group.
      */
     name?: pulumi.Input<string>;
     /**

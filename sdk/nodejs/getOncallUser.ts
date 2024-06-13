@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     username: "alex",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOncallUser(args: GetOncallUserArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallUserResult> {
 
@@ -64,7 +62,6 @@ export interface GetOncallUserResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -73,7 +70,6 @@ export interface GetOncallUserResult {
  *     username: "alex",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOncallUserOutput(args: GetOncallUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallUserResult> {
     return pulumi.output(args).apply((a: any) => getOncallUser(a, opts))

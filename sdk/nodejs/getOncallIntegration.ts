@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     id: "CEXAMPLEID123",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOncallIntegration(args: GetOncallIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallIntegrationResult> {
 
@@ -56,7 +54,6 @@ export interface GetOncallIntegrationResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -65,7 +62,6 @@ export interface GetOncallIntegrationResult {
  *     id: "CEXAMPLEID123",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOncallIntegrationOutput(args: GetOncallIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallIntegrationResult> {
     return pulumi.output(args).apply((a: any) => getOncallIntegration(a, opts))

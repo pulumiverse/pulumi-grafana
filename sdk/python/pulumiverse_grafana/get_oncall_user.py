@@ -87,14 +87,12 @@ def get_oncall_user(username: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     alex = grafana.get_oncall_user(username="alex")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str username: The username of the user.
@@ -119,14 +117,12 @@ def get_oncall_user_output(username: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     alex = grafana.get_oncall_user(username="alex")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str username: The username of the user.

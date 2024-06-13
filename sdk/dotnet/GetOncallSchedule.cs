@@ -18,7 +18,6 @@ namespace Pulumiverse.Grafana
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,7 +33,6 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetOncallScheduleResult> InvokeAsync(GetOncallScheduleArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallScheduleResult>("grafana:index/getOncallSchedule:getOncallSchedule", args ?? new GetOncallScheduleArgs(), options.WithDefaults());
@@ -45,7 +43,6 @@ namespace Pulumiverse.Grafana
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -61,7 +58,6 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetOncallScheduleResult> Invoke(GetOncallScheduleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOncallScheduleResult>("grafana:index/getOncallSchedule:getOncallSchedule", args ?? new GetOncallScheduleInvokeArgs(), options.WithDefaults());

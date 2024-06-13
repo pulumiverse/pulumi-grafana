@@ -306,7 +306,6 @@ class DashboardPublic(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -347,7 +346,6 @@ class DashboardPublic(pulumi.CustomResource):
             dashboard_uid=test_dash2.uid,
             share="public")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -386,7 +384,6 @@ class DashboardPublic(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -427,7 +424,6 @@ class DashboardPublic(pulumi.CustomResource):
             dashboard_uid=test_dash2.uid,
             share="public")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,7 +37,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetOrganizationPreferences(ctx *pulumi.Context, args *GetOrganizationPreferencesArgs, opts ...pulumi.InvokeOption) (*GetOrganizationPreferencesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOrganizationPreferencesResult

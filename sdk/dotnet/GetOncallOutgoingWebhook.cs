@@ -17,7 +17,6 @@ namespace Pulumiverse.Grafana
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -33,7 +32,6 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetOncallOutgoingWebhookResult> InvokeAsync(GetOncallOutgoingWebhookArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallOutgoingWebhookResult>("grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook", args ?? new GetOncallOutgoingWebhookArgs(), options.WithDefaults());
@@ -43,7 +41,6 @@ namespace Pulumiverse.Grafana
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -59,7 +56,6 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetOncallOutgoingWebhookResult> Invoke(GetOncallOutgoingWebhookInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOncallOutgoingWebhookResult>("grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook", args ?? new GetOncallOutgoingWebhookInvokeArgs(), options.WithDefaults());

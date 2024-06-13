@@ -49,7 +49,7 @@ namespace Pulumiverse.Grafana
         public Output<string?> IcalUrl { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the custom period.
+        /// The name of the holiday.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -132,7 +132,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? IcalUrl { get; set; }
 
         /// <summary>
-        /// The name of the custom period.
+        /// The name of the holiday.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -176,7 +176,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? IcalUrl { get; set; }
 
         /// <summary>
-        /// The name of the custom period.
+        /// The name of the holiday.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

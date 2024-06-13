@@ -27,14 +27,14 @@ class SLOArgs:
         The set of arguments for constructing a SLO resource.
         :param pulumi.Input[str] description: Description is a free-text field that can provide more context to an SLO.
         :param pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
-        :param pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]] queries: Freeform Query Field
+        :param pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]] alertings: Configures the alerting rules that will be generated for each
                			time window associated with the SLO. Grafana SLOs can generate
                			alerts when the short-term error budget burn is very high, the
                			long-term error budget burn rate is high, or when the remaining
                			error budget is below a certain threshold. Annotations and Labels support templating.
         :param pulumi.Input['SLODestinationDatasourceArgs'] destination_datasource: Destination Datasource sets the datasource defined for an SLO
-        :param pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]] labels: Labels to attach only to Fast Burn alerts.
+        :param pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
         """
         pulumi.set(__self__, "description", description)
@@ -77,7 +77,7 @@ class SLOArgs:
     @pulumi.getter
     def queries(self) -> pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]]:
         """
-        Freeform Query Field
+        Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
         return pulumi.get(self, "queries")
 
@@ -117,7 +117,7 @@ class SLOArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]]]:
         """
-        Labels to attach only to Fast Burn alerts.
+        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         """
         return pulumi.get(self, "labels")
 
@@ -157,10 +157,10 @@ class _SLOState:
                			error budget is below a certain threshold. Annotations and Labels support templating.
         :param pulumi.Input[str] description: Description is a free-text field that can provide more context to an SLO.
         :param pulumi.Input['SLODestinationDatasourceArgs'] destination_datasource: Destination Datasource sets the datasource defined for an SLO
-        :param pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]] labels: Labels to attach only to Fast Burn alerts.
+        :param pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
         :param pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
-        :param pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]] queries: Freeform Query Field
+        :param pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
         if alertings is not None:
             pulumi.set(__self__, "alertings", alertings)
@@ -221,7 +221,7 @@ class _SLOState:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]]]:
         """
-        Labels to attach only to Fast Burn alerts.
+        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         """
         return pulumi.get(self, "labels")
 
@@ -257,7 +257,7 @@ class _SLOState:
     @pulumi.getter
     def queries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]]]:
         """
-        Freeform Query Field
+        Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
         return pulumi.get(self, "queries")
 
@@ -303,10 +303,10 @@ class SLO(pulumi.CustomResource):
                			error budget is below a certain threshold. Annotations and Labels support templating.
         :param pulumi.Input[str] description: Description is a free-text field that can provide more context to an SLO.
         :param pulumi.Input[pulumi.InputType['SLODestinationDatasourceArgs']] destination_datasource: Destination Datasource sets the datasource defined for an SLO
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]] labels: Labels to attach only to Fast Burn alerts.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOQueryArgs']]]] queries: Freeform Query Field
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOQueryArgs']]]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
         ...
     @overload
@@ -404,10 +404,10 @@ class SLO(pulumi.CustomResource):
                			error budget is below a certain threshold. Annotations and Labels support templating.
         :param pulumi.Input[str] description: Description is a free-text field that can provide more context to an SLO.
         :param pulumi.Input[pulumi.InputType['SLODestinationDatasourceArgs']] destination_datasource: Destination Datasource sets the datasource defined for an SLO
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]] labels: Labels to attach only to Fast Burn alerts.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOQueryArgs']]]] queries: Freeform Query Field
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOQueryArgs']]]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -454,7 +454,7 @@ class SLO(pulumi.CustomResource):
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Sequence['outputs.SLOLabel']]]:
         """
-        Labels to attach only to Fast Burn alerts.
+        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         """
         return pulumi.get(self, "labels")
 
@@ -478,7 +478,7 @@ class SLO(pulumi.CustomResource):
     @pulumi.getter
     def queries(self) -> pulumi.Output[Sequence['outputs.SLOQuery']]:
         """
-        Freeform Query Field
+        Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
         return pulumi.get(self, "queries")
 

@@ -167,7 +167,6 @@ class ApiKey(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -179,7 +178,6 @@ class ApiKey(pulumi.CustomResource):
         pulumi.export("apiKeyFooKeyOnly", foo.key)
         pulumi.export("apiKeyBar", bar)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -194,7 +192,6 @@ class ApiKey(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -206,7 +203,6 @@ class ApiKey(pulumi.CustomResource):
         pulumi.export("apiKeyFooKeyOnly", foo.key)
         pulumi.export("apiKeyBar", bar)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param ApiKeyArgs args: The arguments to use to populate this resource's properties.

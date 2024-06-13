@@ -390,7 +390,6 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
 
         ### DNS Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -409,11 +408,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 dns=grafana.SyntheticMonitoringCheckSettingsDnsArgs(),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### DNS Complex
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -457,11 +454,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### HTTP Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -480,11 +475,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 http=grafana.SyntheticMonitoringCheckSettingsHttpArgs(),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### HTTP Complex
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -568,11 +561,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Ping Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -591,11 +582,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ping=grafana.SyntheticMonitoringCheckSettingsPingArgs(),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Ping Complex
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -621,11 +610,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### TCP Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -644,11 +631,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 tcp=grafana.SyntheticMonitoringCheckSettingsTcpArgs(),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### TCP Complex
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -715,11 +700,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Traceroute Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -740,11 +723,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 traceroute=grafana.SyntheticMonitoringCheckSettingsTracerouteArgs(),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Traceroute Complex
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -772,7 +753,6 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -812,7 +792,6 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
 
         ### DNS Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -831,11 +810,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 dns=grafana.SyntheticMonitoringCheckSettingsDnsArgs(),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### DNS Complex
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -879,11 +856,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### HTTP Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -902,11 +877,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 http=grafana.SyntheticMonitoringCheckSettingsHttpArgs(),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### HTTP Complex
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -990,11 +963,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Ping Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -1013,11 +984,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ping=grafana.SyntheticMonitoringCheckSettingsPingArgs(),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Ping Complex
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -1043,11 +1012,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### TCP Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -1066,11 +1033,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 tcp=grafana.SyntheticMonitoringCheckSettingsTcpArgs(),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### TCP Complex
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -1137,11 +1102,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Traceroute Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -1162,11 +1125,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 traceroute=grafana.SyntheticMonitoringCheckSettingsTracerouteArgs(),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Traceroute Complex
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -1194,7 +1155,6 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

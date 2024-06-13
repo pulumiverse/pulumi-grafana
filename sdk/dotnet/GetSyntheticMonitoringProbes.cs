@@ -17,7 +17,6 @@ namespace Pulumiverse.Grafana
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -30,7 +29,6 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetSyntheticMonitoringProbesResult> InvokeAsync(GetSyntheticMonitoringProbesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSyntheticMonitoringProbesResult>("grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes", args ?? new GetSyntheticMonitoringProbesArgs(), options.WithDefaults());
@@ -40,7 +38,6 @@ namespace Pulumiverse.Grafana
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -53,7 +50,6 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetSyntheticMonitoringProbesResult> Invoke(GetSyntheticMonitoringProbesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSyntheticMonitoringProbesResult>("grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes", args ?? new GetSyntheticMonitoringProbesInvokeArgs(), options.WithDefaults());

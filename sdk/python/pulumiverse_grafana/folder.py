@@ -219,7 +219,6 @@ class Folder(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -236,7 +235,6 @@ class Folder(pulumi.CustomResource):
             uid="test-folder-uid",
             title="Terraform Test Folder With UID")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -268,7 +266,6 @@ class Folder(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -285,7 +282,6 @@ class Folder(pulumi.CustomResource):
             uid="test-folder-uid",
             title="Terraform Test Folder With UID")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

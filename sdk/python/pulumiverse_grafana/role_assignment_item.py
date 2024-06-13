@@ -202,7 +202,6 @@ class RoleAssignmentItem(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -231,7 +230,6 @@ class RoleAssignmentItem(pulumi.CustomResource):
             role_uid=test_role.uid,
             service_account_id=test_sa.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -262,7 +260,6 @@ class RoleAssignmentItem(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -291,7 +288,6 @@ class RoleAssignmentItem(pulumi.CustomResource):
             role_uid=test_role.uid,
             service_account_id=test_sa.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

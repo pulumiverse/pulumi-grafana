@@ -572,7 +572,6 @@ class Report(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -591,7 +590,6 @@ class Report(pulumi.CustomResource):
                 frequency="hourly",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -635,7 +633,6 @@ class Report(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -654,7 +651,6 @@ class Report(pulumi.CustomResource):
                 frequency="hourly",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

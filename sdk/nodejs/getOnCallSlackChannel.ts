@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     name: "example_slack_channel",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOnCallSlackChannel(args: GetOnCallSlackChannelArgs, opts?: pulumi.InvokeOptions): Promise<GetOnCallSlackChannelResult> {
 
@@ -60,7 +58,6 @@ export interface GetOnCallSlackChannelResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -69,7 +66,6 @@ export interface GetOnCallSlackChannelResult {
  *     name: "example_slack_channel",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOnCallSlackChannelOutput(args: GetOnCallSlackChannelOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOnCallSlackChannelResult> {
     return pulumi.output(args).apply((a: any) => getOnCallSlackChannel(a, opts))

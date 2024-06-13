@@ -18,7 +18,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -86,7 +85,6 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -127,15 +125,12 @@ export class NotificationPolicy extends pulumi.CustomResource {
     }
 
     /**
-     * The contact point to route notifications that match this rule to.
+     * The default contact point to route all unmatched notifications to.
      */
     public readonly contactPoint!: pulumi.Output<string>;
-    /**
-     * Allow modifying the notification policy from other sources than Terraform or the Grafana API.
-     */
     public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
      */
     public readonly groupBies!: pulumi.Output<string[]>;
     /**
@@ -207,15 +202,12 @@ export class NotificationPolicy extends pulumi.CustomResource {
  */
 export interface NotificationPolicyState {
     /**
-     * The contact point to route notifications that match this rule to.
+     * The default contact point to route all unmatched notifications to.
      */
     contactPoint?: pulumi.Input<string>;
-    /**
-     * Allow modifying the notification policy from other sources than Terraform or the Grafana API.
-     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
      */
     groupBies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -245,15 +237,12 @@ export interface NotificationPolicyState {
  */
 export interface NotificationPolicyArgs {
     /**
-     * The contact point to route notifications that match this rule to.
+     * The default contact point to route all unmatched notifications to.
      */
     contactPoint: pulumi.Input<string>;
-    /**
-     * Allow modifying the notification policy from other sources than Terraform or the Grafana API.
-     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
      */
     groupBies: pulumi.Input<pulumi.Input<string>[]>;
     /**

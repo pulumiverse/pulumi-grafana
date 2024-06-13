@@ -236,7 +236,6 @@ class FolderPermissionItem(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -260,7 +259,6 @@ class FolderPermissionItem(pulumi.CustomResource):
             user=user.id,
             permission="Admin")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -294,7 +292,6 @@ class FolderPermissionItem(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -318,7 +315,6 @@ class FolderPermissionItem(pulumi.CustomResource):
             user=user.id,
             permission="Admin")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

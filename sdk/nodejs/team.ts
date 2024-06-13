@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -27,7 +26,6 @@ import * as utilities from "./utilities";
  *     members: [viewer.email],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -71,12 +69,6 @@ export class Team extends pulumi.CustomResource {
      * An email address for the team.
      */
     public readonly email!: pulumi.Output<string | undefined>;
-    /**
-     * Ignores team members that have been added to team by [Team
-     * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-     * provisioned using [grafana_team_external_group
-     * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
-     */
     public readonly ignoreExternallySyncedMembers!: pulumi.Output<boolean | undefined>;
     /**
      * A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
@@ -148,12 +140,6 @@ export interface TeamState {
      * An email address for the team.
      */
     email?: pulumi.Input<string>;
-    /**
-     * Ignores team members that have been added to team by [Team
-     * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-     * provisioned using [grafana_team_external_group
-     * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
-     */
     ignoreExternallySyncedMembers?: pulumi.Input<boolean>;
     /**
      * A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
@@ -189,12 +175,6 @@ export interface TeamArgs {
      * An email address for the team.
      */
     email?: pulumi.Input<string>;
-    /**
-     * Ignores team members that have been added to team by [Team
-     * Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-     * provisioned using [grafana_team_external_group
-     * resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
-     */
     ignoreExternallySyncedMembers?: pulumi.Input<boolean>;
     /**
      * A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here

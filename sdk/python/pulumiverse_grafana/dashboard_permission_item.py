@@ -234,7 +234,6 @@ class DashboardPermissionItem(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -262,7 +261,6 @@ class DashboardPermissionItem(pulumi.CustomResource):
             team=team_team.id,
             permission="Edit")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -294,7 +292,6 @@ class DashboardPermissionItem(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -322,7 +319,6 @@ class DashboardPermissionItem(pulumi.CustomResource):
             team=team_team.id,
             permission="Edit")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

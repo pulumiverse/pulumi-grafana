@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,7 +36,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetSyntheticMonitoringProbes(ctx *pulumi.Context, args *GetSyntheticMonitoringProbesArgs, opts ...pulumi.InvokeOption) (*GetSyntheticMonitoringProbesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSyntheticMonitoringProbesResult

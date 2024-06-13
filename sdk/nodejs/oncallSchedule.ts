@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -41,7 +40,6 @@ import * as utilities from "./utilities";
  *     icalUrlOverrides: "https://example.com/example_overrides_ical.ics",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

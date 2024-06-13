@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     name: "example_outgoing_webhook",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOncallOutgoingWebhook(args: GetOncallOutgoingWebhookArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallOutgoingWebhookResult> {
 
@@ -56,7 +54,6 @@ export interface GetOncallOutgoingWebhookResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -65,7 +62,6 @@ export interface GetOncallOutgoingWebhookResult {
  *     name: "example_outgoing_webhook",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOncallOutgoingWebhookOutput(args: GetOncallOutgoingWebhookOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallOutgoingWebhookResult> {
     return pulumi.output(args).apply((a: any) => getOncallOutgoingWebhook(a, opts))

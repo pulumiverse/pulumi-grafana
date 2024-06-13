@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     slackHandle: "example_slack_handle",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOncallUserGroup(args: GetOncallUserGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallUserGroupResult> {
 
@@ -51,7 +49,6 @@ export interface GetOncallUserGroupResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -60,7 +57,6 @@ export interface GetOncallUserGroupResult {
  *     slackHandle: "example_slack_handle",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOncallUserGroupOutput(args: GetOncallUserGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallUserGroupResult> {
     return pulumi.output(args).apply((a: any) => getOncallUserGroup(a, opts))

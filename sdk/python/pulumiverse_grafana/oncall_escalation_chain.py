@@ -104,14 +104,12 @@ class OncallEscalationChain(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
 
         default = grafana.OncallEscalationChain("default", opts=pulumi.ResourceOptions(provider=grafana["oncall"]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -135,14 +133,12 @@ class OncallEscalationChain(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
 
         default = grafana.OncallEscalationChain("default", opts=pulumi.ResourceOptions(provider=grafana["oncall"]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

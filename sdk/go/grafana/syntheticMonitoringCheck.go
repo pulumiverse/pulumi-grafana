@@ -24,7 +24,6 @@ import (
 //
 // ### DNS Basic
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -63,11 +62,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### DNS Complex
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -143,11 +140,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### HTTP Basic
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -186,11 +181,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### HTTP Complex
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -302,11 +295,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Ping Basic
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -345,11 +336,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Ping Complex
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -393,11 +382,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### TCP Basic
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -436,11 +423,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### TCP Complex
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -527,11 +512,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Traceroute Basic
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -572,11 +555,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Traceroute Complex
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -622,7 +603,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

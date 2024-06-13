@@ -15,7 +15,6 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -31,7 +30,6 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetCloudOrganizationResult> InvokeAsync(GetCloudOrganizationArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudOrganizationResult>("grafana:index/getCloudOrganization:getCloudOrganization", args ?? new GetCloudOrganizationArgs(), options.WithDefaults());
@@ -39,7 +37,6 @@ namespace Pulumiverse.Grafana
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -55,7 +52,6 @@ namespace Pulumiverse.Grafana
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetCloudOrganizationResult> Invoke(GetCloudOrganizationInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudOrganizationResult>("grafana:index/getCloudOrganization:getCloudOrganization", args ?? new GetCloudOrganizationInvokeArgs(), options.WithDefaults());

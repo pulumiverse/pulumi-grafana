@@ -7,7 +7,6 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -16,7 +15,6 @@ import * as utilities from "./utilities";
  *     slug: "my-org",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCloudOrganization(args?: GetCloudOrganizationArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudOrganizationResult> {
     args = args || {};
@@ -56,7 +54,6 @@ export interface GetCloudOrganizationResult {
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -65,7 +62,6 @@ export interface GetCloudOrganizationResult {
  *     slug: "my-org",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCloudOrganizationOutput(args?: GetCloudOrganizationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudOrganizationResult> {
     return pulumi.output(args).apply((a: any) => getCloudOrganization(a, opts))

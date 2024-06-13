@@ -175,7 +175,6 @@ def get_role(name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
@@ -203,7 +202,6 @@ def get_role(name: Optional[str] = None,
         ])
     from_name = grafana.get_role_output(name=test.name)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: Name of the role
@@ -238,7 +236,6 @@ def get_role_output(name: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
@@ -266,7 +263,6 @@ def get_role_output(name: Optional[pulumi.Input[str]] = None,
         ])
     from_name = grafana.get_role_output(name=test.name)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: Name of the role

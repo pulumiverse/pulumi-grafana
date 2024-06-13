@@ -75,14 +75,12 @@ def get_on_call_slack_channel(name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     example_slack_channel = grafana.get_on_call_slack_channel(name="example_slack_channel")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The Slack channel name.
@@ -106,14 +104,12 @@ def get_on_call_slack_channel_output(name: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     example_slack_channel = grafana.get_on_call_slack_channel(name="example_slack_channel")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The Slack channel name.

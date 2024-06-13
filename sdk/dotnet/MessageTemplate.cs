@@ -20,7 +20,6 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -39,7 +38,6 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -54,9 +52,6 @@ namespace Pulumiverse.Grafana
     [GrafanaResourceType("grafana:index/messageTemplate:MessageTemplate")]
     public partial class MessageTemplate : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Allow modifying the message template from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Output("disableProvenance")]
         public Output<bool?> DisableProvenance { get; private set; } = null!;
 
@@ -125,9 +120,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class MessageTemplateArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Allow modifying the message template from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 
@@ -157,9 +149,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class MessageTemplateState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Allow modifying the message template from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 

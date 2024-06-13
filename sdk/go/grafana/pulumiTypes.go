@@ -1687,7 +1687,7 @@ type ContactPointOpsgenyResponder struct {
 	Name *string `pulumi:"name"`
 	// Type of the responder. Supported: team, teams, user, escalation, schedule or a template that is expanded to one of these values.
 	Type string `pulumi:"type"`
-	// The user name to use when making a call to the Kafka REST Proxy
+	// User name of the responder. Must be specified if name and id are empty.
 	Username *string `pulumi:"username"`
 }
 
@@ -1709,7 +1709,7 @@ type ContactPointOpsgenyResponderArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Type of the responder. Supported: team, teams, user, escalation, schedule or a template that is expanded to one of these values.
 	Type pulumi.StringInput `pulumi:"type"`
-	// The user name to use when making a call to the Kafka REST Proxy
+	// User name of the responder. Must be specified if name and id are empty.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 }
 
@@ -1779,7 +1779,7 @@ func (o ContactPointOpsgenyResponderOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v ContactPointOpsgenyResponder) string { return v.Type }).(pulumi.StringOutput)
 }
 
-// The user name to use when making a call to the Kafka REST Proxy
+// User name of the responder. Must be specified if name and id are empty.
 func (o ContactPointOpsgenyResponderOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointOpsgenyResponder) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
@@ -6541,7 +6541,7 @@ func (o OncallIntegrationDefaultRouteMsteamsPtrOutput) Id() pulumi.StringPtrOutp
 type OncallIntegrationDefaultRouteSlack struct {
 	// Slack channel id. Alerts will be directed to this channel in Slack.
 	ChannelId *string `pulumi:"channelId"`
-	// Enable notification in MS teams. Defaults to `true`.
+	// Enable notification in Slack. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
 }
 
@@ -6559,7 +6559,7 @@ type OncallIntegrationDefaultRouteSlackInput interface {
 type OncallIntegrationDefaultRouteSlackArgs struct {
 	// Slack channel id. Alerts will be directed to this channel in Slack.
 	ChannelId pulumi.StringPtrInput `pulumi:"channelId"`
-	// Enable notification in MS teams. Defaults to `true`.
+	// Enable notification in Slack. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 }
 
@@ -6645,7 +6645,7 @@ func (o OncallIntegrationDefaultRouteSlackOutput) ChannelId() pulumi.StringPtrOu
 	return o.ApplyT(func(v OncallIntegrationDefaultRouteSlack) *string { return v.ChannelId }).(pulumi.StringPtrOutput)
 }
 
-// Enable notification in MS teams. Defaults to `true`.
+// Enable notification in Slack. Defaults to `true`.
 func (o OncallIntegrationDefaultRouteSlackOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v OncallIntegrationDefaultRouteSlack) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -6684,7 +6684,7 @@ func (o OncallIntegrationDefaultRouteSlackPtrOutput) ChannelId() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable notification in MS teams. Defaults to `true`.
+// Enable notification in Slack. Defaults to `true`.
 func (o OncallIntegrationDefaultRouteSlackPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OncallIntegrationDefaultRouteSlack) *bool {
 		if v == nil {
@@ -6695,7 +6695,7 @@ func (o OncallIntegrationDefaultRouteSlackPtrOutput) Enabled() pulumi.BoolPtrOut
 }
 
 type OncallIntegrationDefaultRouteTelegram struct {
-	// Enable notification in MS teams. Defaults to `true`.
+	// Enable notification in Telegram. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
 	// Telegram channel id. Alerts will be directed to this channel in Telegram.
 	Id *string `pulumi:"id"`
@@ -6713,7 +6713,7 @@ type OncallIntegrationDefaultRouteTelegramInput interface {
 }
 
 type OncallIntegrationDefaultRouteTelegramArgs struct {
-	// Enable notification in MS teams. Defaults to `true`.
+	// Enable notification in Telegram. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Telegram channel id. Alerts will be directed to this channel in Telegram.
 	Id pulumi.StringPtrInput `pulumi:"id"`
@@ -6796,7 +6796,7 @@ func (o OncallIntegrationDefaultRouteTelegramOutput) ToOncallIntegrationDefaultR
 	}).(OncallIntegrationDefaultRouteTelegramPtrOutput)
 }
 
-// Enable notification in MS teams. Defaults to `true`.
+// Enable notification in Telegram. Defaults to `true`.
 func (o OncallIntegrationDefaultRouteTelegramOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v OncallIntegrationDefaultRouteTelegram) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -6830,7 +6830,7 @@ func (o OncallIntegrationDefaultRouteTelegramPtrOutput) Elem() OncallIntegration
 	}).(OncallIntegrationDefaultRouteTelegramOutput)
 }
 
-// Enable notification in MS teams. Defaults to `true`.
+// Enable notification in Telegram. Defaults to `true`.
 func (o OncallIntegrationDefaultRouteTelegramPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OncallIntegrationDefaultRouteTelegram) *bool {
 		if v == nil {
@@ -10675,7 +10675,7 @@ func (o SLOAlertingAnnotationArrayOutput) Index(i pulumi.IntInput) SLOAlertingAn
 }
 
 type SLOAlertingFastburn struct {
-	// Annotations will be attached to all alerts generated by any of these rules.
+	// Annotations to attach only to Fast Burn alerts.
 	Annotations []SLOAlertingFastburnAnnotation `pulumi:"annotations"`
 	// Labels to attach only to Fast Burn alerts.
 	Labels []SLOAlertingFastburnLabel `pulumi:"labels"`
@@ -10693,7 +10693,7 @@ type SLOAlertingFastburnInput interface {
 }
 
 type SLOAlertingFastburnArgs struct {
-	// Annotations will be attached to all alerts generated by any of these rules.
+	// Annotations to attach only to Fast Burn alerts.
 	Annotations SLOAlertingFastburnAnnotationArrayInput `pulumi:"annotations"`
 	// Labels to attach only to Fast Burn alerts.
 	Labels SLOAlertingFastburnLabelArrayInput `pulumi:"labels"`
@@ -10750,7 +10750,7 @@ func (o SLOAlertingFastburnOutput) ToSLOAlertingFastburnOutputWithContext(ctx co
 	return o
 }
 
-// Annotations will be attached to all alerts generated by any of these rules.
+// Annotations to attach only to Fast Burn alerts.
 func (o SLOAlertingFastburnOutput) Annotations() SLOAlertingFastburnAnnotationArrayOutput {
 	return o.ApplyT(func(v SLOAlertingFastburn) []SLOAlertingFastburnAnnotation { return v.Annotations }).(SLOAlertingFastburnAnnotationArrayOutput)
 }
@@ -11081,9 +11081,9 @@ func (o SLOAlertingLabelArrayOutput) Index(i pulumi.IntInput) SLOAlertingLabelOu
 }
 
 type SLOAlertingSlowburn struct {
-	// Annotations will be attached to all alerts generated by any of these rules.
+	// Annotations to attach only to Slow Burn alerts.
 	Annotations []SLOAlertingSlowburnAnnotation `pulumi:"annotations"`
-	// Labels to attach only to Fast Burn alerts.
+	// Labels to attach only to Slow Burn alerts.
 	Labels []SLOAlertingSlowburnLabel `pulumi:"labels"`
 }
 
@@ -11099,9 +11099,9 @@ type SLOAlertingSlowburnInput interface {
 }
 
 type SLOAlertingSlowburnArgs struct {
-	// Annotations will be attached to all alerts generated by any of these rules.
+	// Annotations to attach only to Slow Burn alerts.
 	Annotations SLOAlertingSlowburnAnnotationArrayInput `pulumi:"annotations"`
-	// Labels to attach only to Fast Burn alerts.
+	// Labels to attach only to Slow Burn alerts.
 	Labels SLOAlertingSlowburnLabelArrayInput `pulumi:"labels"`
 }
 
@@ -11156,12 +11156,12 @@ func (o SLOAlertingSlowburnOutput) ToSLOAlertingSlowburnOutputWithContext(ctx co
 	return o
 }
 
-// Annotations will be attached to all alerts generated by any of these rules.
+// Annotations to attach only to Slow Burn alerts.
 func (o SLOAlertingSlowburnOutput) Annotations() SLOAlertingSlowburnAnnotationArrayOutput {
 	return o.ApplyT(func(v SLOAlertingSlowburn) []SLOAlertingSlowburnAnnotation { return v.Annotations }).(SLOAlertingSlowburnAnnotationArrayOutput)
 }
 
-// Labels to attach only to Fast Burn alerts.
+// Labels to attach only to Slow Burn alerts.
 func (o SLOAlertingSlowburnOutput) Labels() SLOAlertingSlowburnLabelArrayOutput {
 	return o.ApplyT(func(v SLOAlertingSlowburn) []SLOAlertingSlowburnLabel { return v.Labels }).(SLOAlertingSlowburnLabelArrayOutput)
 }
@@ -16268,9 +16268,9 @@ func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArrayOutput) Inde
 type SyntheticMonitoringCheckSettingsMultihttpEntryRequest struct {
 	// The body of the HTTP request used in probe.
 	Bodies []SyntheticMonitoringCheckSettingsMultihttpEntryRequestBody `pulumi:"bodies"`
-	// The HTTP headers set for the probe.
+	// The headers to send with the request
 	Headers []SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader `pulumi:"headers"`
-	// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+	// The HTTP method to use
 	Method string `pulumi:"method"`
 	// Query fields to send with the request
 	QueryFields []SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField `pulumi:"queryFields"`
@@ -16292,9 +16292,9 @@ type SyntheticMonitoringCheckSettingsMultihttpEntryRequestInput interface {
 type SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs struct {
 	// The body of the HTTP request used in probe.
 	Bodies SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayInput `pulumi:"bodies"`
-	// The HTTP headers set for the probe.
+	// The headers to send with the request
 	Headers SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayInput `pulumi:"headers"`
-	// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+	// The HTTP method to use
 	Method pulumi.StringInput `pulumi:"method"`
 	// Query fields to send with the request
 	QueryFields SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayInput `pulumi:"queryFields"`
@@ -16386,14 +16386,14 @@ func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput) Bodies() Sy
 	}).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput)
 }
 
-// The HTTP headers set for the probe.
+// The headers to send with the request
 func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput) Headers() SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequest) []SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader {
 		return v.Headers
 	}).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput)
 }
 
-// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+// The HTTP method to use
 func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestOutput) Method() pulumi.StringOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequest) string { return v.Method }).(pulumi.StringOutput)
 }
@@ -16444,7 +16444,7 @@ func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput) Bodies()
 	}).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput)
 }
 
-// The HTTP headers set for the probe.
+// The headers to send with the request
 func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput) Headers() SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsMultihttpEntryRequest) []SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader {
 		if v == nil {
@@ -16454,7 +16454,7 @@ func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput) Headers(
 	}).(SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput)
 }
 
-// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+// The HTTP method to use
 func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestPtrOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsMultihttpEntryRequest) *string {
 		if v == nil {
@@ -16602,7 +16602,7 @@ func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArrayOutput) In
 type SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader struct {
 	// Name of the header to send
 	Name string `pulumi:"name"`
-	// The value of the assertion
+	// Value of the header to send
 	Value string `pulumi:"value"`
 }
 
@@ -16620,7 +16620,7 @@ type SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderInput interface 
 type SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs struct {
 	// Name of the header to send
 	Name pulumi.StringInput `pulumi:"name"`
-	// The value of the assertion
+	// Value of the header to send
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -16680,7 +16680,7 @@ func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput) Name(
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The value of the assertion
+// Value of the header to send
 func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeader) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -16706,9 +16706,9 @@ func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArrayOutput) 
 }
 
 type SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField struct {
-	// Name of the header to send
+	// Name of the query field to send
 	Name string `pulumi:"name"`
-	// The value of the assertion
+	// Value of the query field to send
 	Value string `pulumi:"value"`
 }
 
@@ -16724,9 +16724,9 @@ type SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldInput interf
 }
 
 type SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs struct {
-	// Name of the header to send
+	// Name of the query field to send
 	Name pulumi.StringInput `pulumi:"name"`
-	// The value of the assertion
+	// Value of the query field to send
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -16781,12 +16781,12 @@ func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput) T
 	return o
 }
 
-// Name of the header to send
+// Name of the query field to send
 func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The value of the assertion
+// Value of the query field to send
 func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryField) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -16814,11 +16814,11 @@ func (o SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArrayOutp
 type SyntheticMonitoringCheckSettingsMultihttpEntryVariable struct {
 	// The attribute to use when finding the variable value. Only used when type is CSS_SELECTOR
 	Attribute *string `pulumi:"attribute"`
-	// The expression of the assertion. Should start with $.
+	// The expression to when finding the variable. Should start with $. Only use when type is JSON_PATH or REGEX
 	Expression *string `pulumi:"expression"`
-	// Name of the header to send
+	// The name of the variable to extract
 	Name *string `pulumi:"name"`
-	// The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+	// The method of finding the variable value to extract. JSON*PATH, REGEX, CSS*SELECTOR
 	Type string `pulumi:"type"`
 }
 
@@ -16836,11 +16836,11 @@ type SyntheticMonitoringCheckSettingsMultihttpEntryVariableInput interface {
 type SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs struct {
 	// The attribute to use when finding the variable value. Only used when type is CSS_SELECTOR
 	Attribute pulumi.StringPtrInput `pulumi:"attribute"`
-	// The expression of the assertion. Should start with $.
+	// The expression to when finding the variable. Should start with $. Only use when type is JSON_PATH or REGEX
 	Expression pulumi.StringPtrInput `pulumi:"expression"`
-	// Name of the header to send
+	// The name of the variable to extract
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+	// The method of finding the variable value to extract. JSON*PATH, REGEX, CSS*SELECTOR
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -16900,17 +16900,17 @@ func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput) Attribute(
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryVariable) *string { return v.Attribute }).(pulumi.StringPtrOutput)
 }
 
-// The expression of the assertion. Should start with $.
+// The expression to when finding the variable. Should start with $. Only use when type is JSON_PATH or REGEX
 func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput) Expression() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryVariable) *string { return v.Expression }).(pulumi.StringPtrOutput)
 }
 
-// Name of the header to send
+// The name of the variable to extract
 func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryVariable) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+// The method of finding the variable value to extract. JSON*PATH, REGEX, CSS*SELECTOR
 func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryVariable) string { return v.Type }).(pulumi.StringOutput)
 }

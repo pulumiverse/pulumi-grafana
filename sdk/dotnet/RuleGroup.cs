@@ -20,7 +20,6 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -133,7 +132,6 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -148,9 +146,6 @@ namespace Pulumiverse.Grafana
     [GrafanaResourceType("grafana:index/ruleGroup:RuleGroup")]
     public partial class RuleGroup : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Allow modifying the rule group from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Output("disableProvenance")]
         public Output<bool?> DisableProvenance { get; private set; } = null!;
 
@@ -167,7 +162,7 @@ namespace Pulumiverse.Grafana
         public Output<int> IntervalSeconds { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the alert rule.
+        /// The name of the rule group.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -231,9 +226,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class RuleGroupArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Allow modifying the rule group from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 
@@ -250,7 +242,7 @@ namespace Pulumiverse.Grafana
         public Input<int> IntervalSeconds { get; set; } = null!;
 
         /// <summary>
-        /// The name of the alert rule.
+        /// The name of the rule group.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -281,9 +273,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class RuleGroupState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Allow modifying the rule group from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 
@@ -300,7 +289,7 @@ namespace Pulumiverse.Grafana
         public Input<int>? IntervalSeconds { get; set; }
 
         /// <summary>
-        /// The name of the alert rule.
+        /// The name of the rule group.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

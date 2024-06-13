@@ -102,7 +102,6 @@ class TeamExternalGroup(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -115,7 +114,6 @@ class TeamExternalGroup(pulumi.CustomResource):
                 "test-group-2",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -143,7 +141,6 @@ class TeamExternalGroup(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -156,7 +153,6 @@ class TeamExternalGroup(pulumi.CustomResource):
                 "test-group-2",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -9,14 +9,12 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
  * const test = grafana.getCloudIps({});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCloudIps(opts?: pulumi.InvokeOptions): Promise<GetCloudIpsResult> {
 
@@ -59,14 +57,12 @@ export interface GetCloudIpsResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
  * const test = grafana.getCloudIps({});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCloudIpsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudIpsResult> {
     return pulumi.output(getCloudIps(opts))

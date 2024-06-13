@@ -23,9 +23,6 @@ class OrganizationArgs:
                  viewers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Organization resource.
-        :param pulumi.Input[str] admin_user: The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-               admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-               this parameter keeps Terraform from removing it from organizations.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] admins: A list of email addresses corresponding to users who should be given admin
                access to the organization. Note: users specified here must already exist in
                Grafana unless 'create_users' is set to true.
@@ -65,11 +62,6 @@ class OrganizationArgs:
     @property
     @pulumi.getter(name="adminUser")
     def admin_user(self) -> Optional[pulumi.Input[str]]:
-        """
-        The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-        admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-        this parameter keeps Terraform from removing it from organizations.
-        """
         return pulumi.get(self, "admin_user")
 
     @admin_user.setter
@@ -176,9 +168,6 @@ class _OrganizationState:
                  viewers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Organization resources.
-        :param pulumi.Input[str] admin_user: The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-               admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-               this parameter keeps Terraform from removing it from organizations.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] admins: A list of email addresses corresponding to users who should be given admin
                access to the organization. Note: users specified here must already exist in
                Grafana unless 'create_users' is set to true.
@@ -221,11 +210,6 @@ class _OrganizationState:
     @property
     @pulumi.getter(name="adminUser")
     def admin_user(self) -> Optional[pulumi.Input[str]]:
-        """
-        The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-        admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-        this parameter keeps Terraform from removing it from organizations.
-        """
         return pulumi.get(self, "admin_user")
 
     @admin_user.setter
@@ -354,7 +338,6 @@ class Organization(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -372,7 +355,6 @@ class Organization(pulumi.CustomResource):
                 "viewer-02@example.com",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -382,9 +364,6 @@ class Organization(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] admin_user: The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-               admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-               this parameter keeps Terraform from removing it from organizations.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] admins: A list of email addresses corresponding to users who should be given admin
                access to the organization. Note: users specified here must already exist in
                Grafana unless 'create_users' is set to true.
@@ -422,7 +401,6 @@ class Organization(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -440,7 +418,6 @@ class Organization(pulumi.CustomResource):
                 "viewer-02@example.com",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -512,9 +489,6 @@ class Organization(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] admin_user: The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-               admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-               this parameter keeps Terraform from removing it from organizations.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] admins: A list of email addresses corresponding to users who should be given admin
                access to the organization. Note: users specified here must already exist in
                Grafana unless 'create_users' is set to true.
@@ -554,11 +528,6 @@ class Organization(pulumi.CustomResource):
     @property
     @pulumi.getter(name="adminUser")
     def admin_user(self) -> pulumi.Output[Optional[str]]:
-        """
-        The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-        admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-        this parameter keeps Terraform from removing it from organizations.
-        """
         return pulumi.get(self, "admin_user")
 
     @property

@@ -249,7 +249,6 @@ class OrganizationPreference(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -259,7 +258,6 @@ class OrganizationPreference(pulumi.CustomResource):
             timezone="utc",
             week_start="sunday")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -288,7 +286,6 @@ class OrganizationPreference(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -298,7 +295,6 @@ class OrganizationPreference(pulumi.CustomResource):
             timezone="utc",
             week_start="sunday")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

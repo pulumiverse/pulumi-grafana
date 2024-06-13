@@ -20,7 +20,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -56,7 +55,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -66,9 +64,6 @@ import (
 type Organization struct {
 	pulumi.CustomResourceState
 
-	// The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-	// admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-	// this parameter keeps Terraform from removing it from organizations.
 	AdminUser pulumi.StringPtrOutput `pulumi:"adminUser"`
 	// A list of email addresses corresponding to users who should be given admin
 	// access to the organization. Note: users specified here must already exist in
@@ -130,9 +125,6 @@ func GetOrganization(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Organization resources.
 type organizationState struct {
-	// The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-	// admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-	// this parameter keeps Terraform from removing it from organizations.
 	AdminUser *string `pulumi:"adminUser"`
 	// A list of email addresses corresponding to users who should be given admin
 	// access to the organization. Note: users specified here must already exist in
@@ -165,9 +157,6 @@ type organizationState struct {
 }
 
 type OrganizationState struct {
-	// The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-	// admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-	// this parameter keeps Terraform from removing it from organizations.
 	AdminUser pulumi.StringPtrInput
 	// A list of email addresses corresponding to users who should be given admin
 	// access to the organization. Note: users specified here must already exist in
@@ -204,9 +193,6 @@ func (OrganizationState) ElementType() reflect.Type {
 }
 
 type organizationArgs struct {
-	// The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-	// admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-	// this parameter keeps Terraform from removing it from organizations.
 	AdminUser *string `pulumi:"adminUser"`
 	// A list of email addresses corresponding to users who should be given admin
 	// access to the organization. Note: users specified here must already exist in
@@ -238,9 +224,6 @@ type organizationArgs struct {
 
 // The set of arguments for constructing a Organization resource.
 type OrganizationArgs struct {
-	// The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-	// admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-	// this parameter keeps Terraform from removing it from organizations.
 	AdminUser pulumi.StringPtrInput
 	// A list of email addresses corresponding to users who should be given admin
 	// access to the organization. Note: users specified here must already exist in
@@ -357,9 +340,6 @@ func (o OrganizationOutput) ToOrganizationOutputWithContext(ctx context.Context)
 	return o
 }
 
-// The login name of the configured default admin user for the Grafana installation. If unset, this value defaults to
-// admin, the Grafana default. Grafana adds the default admin user to all organizations automatically upon creation, and
-// this parameter keeps Terraform from removing it from organizations.
 func (o OrganizationOutput) AdminUser() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringPtrOutput { return v.AdminUser }).(pulumi.StringPtrOutput)
 }

@@ -141,7 +141,6 @@ class SsoSettings(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -190,7 +189,6 @@ class SsoSettings(pulumi.CustomResource):
                 signature_algorithm="rsa-sha256",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -222,7 +220,6 @@ class SsoSettings(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -271,7 +268,6 @@ class SsoSettings(pulumi.CustomResource):
                 signature_algorithm="rsa-sha256",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

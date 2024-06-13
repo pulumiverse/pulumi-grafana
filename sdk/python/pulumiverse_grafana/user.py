@@ -222,7 +222,6 @@ class User(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -233,7 +232,6 @@ class User(pulumi.CustomResource):
             login="staff",
             password="my-password")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -265,7 +263,6 @@ class User(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -276,7 +273,6 @@ class User(pulumi.CustomResource):
             login="staff",
             password="my-password")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

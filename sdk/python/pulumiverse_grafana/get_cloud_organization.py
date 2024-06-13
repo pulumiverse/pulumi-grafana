@@ -95,14 +95,12 @@ def get_cloud_organization(id: Optional[str] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     test = grafana.get_cloud_organization(slug="my-org")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of this resource.
@@ -129,14 +127,12 @@ def get_cloud_organization_output(id: Optional[pulumi.Input[Optional[str]]] = No
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     test = grafana.get_cloud_organization(slug="my-org")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of this resource.

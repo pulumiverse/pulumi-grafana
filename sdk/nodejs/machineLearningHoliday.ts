@@ -62,7 +62,7 @@ export class MachineLearningHoliday extends pulumi.CustomResource {
      */
     public readonly icalUrl!: pulumi.Output<string | undefined>;
     /**
-     * The name of the custom period.
+     * The name of the holiday.
      */
     public readonly name!: pulumi.Output<string>;
 
@@ -118,7 +118,7 @@ export interface MachineLearningHolidayState {
      */
     icalUrl?: pulumi.Input<string>;
     /**
-     * The name of the custom period.
+     * The name of the holiday.
      */
     name?: pulumi.Input<string>;
 }
@@ -144,7 +144,7 @@ export interface MachineLearningHolidayArgs {
      */
     icalUrl?: pulumi.Input<string>;
     /**
-     * The name of the custom period.
+     * The name of the holiday.
      */
     name?: pulumi.Input<string>;
 }

@@ -743,7 +743,6 @@ class CloudStack(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -753,7 +752,6 @@ class CloudStack(pulumi.CustomResource):
             region_slug="eu",
             slug="gcloudstacktest")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -789,7 +787,6 @@ class CloudStack(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -799,7 +796,6 @@ class CloudStack(pulumi.CustomResource):
             region_slug="eu",
             slug="gcloudstacktest")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

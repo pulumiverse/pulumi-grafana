@@ -21,7 +21,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,7 +44,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -59,7 +57,6 @@ import (
 type MessageTemplate struct {
 	pulumi.CustomResourceState
 
-	// Allow modifying the message template from other sources than Terraform or the Grafana API.
 	DisableProvenance pulumi.BoolPtrOutput `pulumi:"disableProvenance"`
 	// The name of the message template.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -102,7 +99,6 @@ func GetMessageTemplate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MessageTemplate resources.
 type messageTemplateState struct {
-	// Allow modifying the message template from other sources than Terraform or the Grafana API.
 	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The name of the message template.
 	Name *string `pulumi:"name"`
@@ -113,7 +109,6 @@ type messageTemplateState struct {
 }
 
 type MessageTemplateState struct {
-	// Allow modifying the message template from other sources than Terraform or the Grafana API.
 	DisableProvenance pulumi.BoolPtrInput
 	// The name of the message template.
 	Name pulumi.StringPtrInput
@@ -128,7 +123,6 @@ func (MessageTemplateState) ElementType() reflect.Type {
 }
 
 type messageTemplateArgs struct {
-	// Allow modifying the message template from other sources than Terraform or the Grafana API.
 	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The name of the message template.
 	Name *string `pulumi:"name"`
@@ -140,7 +134,6 @@ type messageTemplateArgs struct {
 
 // The set of arguments for constructing a MessageTemplate resource.
 type MessageTemplateArgs struct {
-	// Allow modifying the message template from other sources than Terraform or the Grafana API.
 	DisableProvenance pulumi.BoolPtrInput
 	// The name of the message template.
 	Name pulumi.StringPtrInput
@@ -237,7 +230,6 @@ func (o MessageTemplateOutput) ToMessageTemplateOutputWithContext(ctx context.Co
 	return o
 }
 
-// Allow modifying the message template from other sources than Terraform or the Grafana API.
 func (o MessageTemplateOutput) DisableProvenance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *MessageTemplate) pulumi.BoolPtrOutput { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
 }

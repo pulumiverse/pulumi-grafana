@@ -20,7 +20,6 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -50,7 +49,6 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -77,9 +75,6 @@ namespace Pulumiverse.Grafana
         [Output("dingdings")]
         public Output<ImmutableArray<Outputs.ContactPointDingding>> Dingdings { get; private set; } = null!;
 
-        /// <summary>
-        /// Allow modifying the contact point from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Output("disableProvenance")]
         public Output<bool?> DisableProvenance { get; private set; } = null!;
 
@@ -114,7 +109,7 @@ namespace Pulumiverse.Grafana
         public Output<ImmutableArray<Outputs.ContactPointLine>> Lines { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the responder. Must be specified if username and id are empty.
+        /// The name of the contact point.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -280,9 +275,6 @@ namespace Pulumiverse.Grafana
             set => _dingdings = value;
         }
 
-        /// <summary>
-        /// Allow modifying the contact point from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 
@@ -347,7 +339,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// Name of the responder. Must be specified if username and id are empty.
+        /// The name of the contact point.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -558,9 +550,6 @@ namespace Pulumiverse.Grafana
             set => _dingdings = value;
         }
 
-        /// <summary>
-        /// Allow modifying the contact point from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 
@@ -625,7 +614,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// Name of the responder. Must be specified if username and id are empty.
+        /// The name of the contact point.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

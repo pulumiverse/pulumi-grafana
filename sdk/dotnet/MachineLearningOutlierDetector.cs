@@ -69,7 +69,7 @@ namespace Pulumiverse.Grafana
         public Output<string> Metric { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the algorithm to use ('mad' or 'dbscan').
+        /// The name of the outlier detector.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -170,7 +170,7 @@ namespace Pulumiverse.Grafana
         public Input<string> Metric { get; set; } = null!;
 
         /// <summary>
-        /// The name of the algorithm to use ('mad' or 'dbscan').
+        /// The name of the outlier detector.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -238,7 +238,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Metric { get; set; }
 
         /// <summary>
-        /// The name of the algorithm to use ('mad' or 'dbscan').
+        /// The name of the outlier detector.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

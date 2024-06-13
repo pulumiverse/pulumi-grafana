@@ -190,7 +190,6 @@ def get_dashboard(dashboard_id: Optional[int] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import json
@@ -210,7 +209,6 @@ def get_dashboard(dashboard_id: Optional[int] = None,
     from_id = grafana.get_dashboard_output(dashboard_id=test.dashboard_id)
     from_uid = grafana.get_dashboard(uid="test-ds-dashboard-uid")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param int dashboard_id: The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
@@ -251,7 +249,6 @@ def get_dashboard_output(dashboard_id: Optional[pulumi.Input[Optional[int]]] = N
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import json
@@ -271,7 +268,6 @@ def get_dashboard_output(dashboard_id: Optional[pulumi.Input[Optional[int]]] = N
     from_id = grafana.get_dashboard_output(dashboard_id=test.dashboard_id)
     from_uid = grafana.get_dashboard(uid="test-ds-dashboard-uid")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param int dashboard_id: The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
