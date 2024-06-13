@@ -8,10 +8,93 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Enterprise
 {
-    [Obsolete(@"grafana.index/datasourcepermissionitem.DataSourcePermissionItem has been deprecated in favor of grafana.enterprise/datasourcepermissionitem.DataSourcePermissionItem")]
-    [GrafanaResourceType("grafana:index/dataSourcePermissionItem:DataSourcePermissionItem")]
+    /// <summary>
+    /// Manages a single permission item for a datasource. Conflicts with the "grafana.enterprise.DataSourcePermission" resource which manages the entire set of permissions for a datasource.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var teamTeam = new Grafana.Team("teamTeam");
+    /// 
+    ///     var foo = new Grafana.DataSource("foo", new()
+    ///     {
+    ///         Type = "cloudwatch",
+    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["defaultRegion"] = "us-east-1",
+    ///             ["authType"] = "keys",
+    ///         }),
+    ///         SecureJsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["accessKey"] = "123",
+    ///             ["secretKey"] = "456",
+    ///         }),
+    ///     });
+    /// 
+    ///     var userUser = new Grafana.User("userUser", new()
+    ///     {
+    ///         Email = "test-ds-permissions@example.com",
+    ///         Login = "test-ds-permissions",
+    ///         Password = "hunter2",
+    ///     });
+    /// 
+    ///     var sa = new Grafana.ServiceAccount("sa", new()
+    ///     {
+    ///         Role = "Viewer",
+    ///     });
+    /// 
+    ///     var teamDataSourcePermissionItem = new Grafana.Enterprise.DataSourcePermissionItem("teamDataSourcePermissionItem", new()
+    ///     {
+    ///         DatasourceUid = foo.Uid,
+    ///         Team = teamTeam.Id,
+    ///         Permission = "Edit",
+    ///     });
+    /// 
+    ///     var userDataSourcePermissionItem = new Grafana.Enterprise.DataSourcePermissionItem("userDataSourcePermissionItem", new()
+    ///     {
+    ///         DatasourceUid = foo.Uid,
+    ///         User = userUser.Id,
+    ///         Permission = "Edit",
+    ///     });
+    /// 
+    ///     var role = new Grafana.Enterprise.DataSourcePermissionItem("role", new()
+    ///     {
+    ///         DatasourceUid = foo.Uid,
+    ///         Role = "Viewer",
+    ///         Permission = "Query",
+    ///     });
+    /// 
+    ///     var serviceAccount = new Grafana.Enterprise.DataSourcePermissionItem("serviceAccount", new()
+    ///     {
+    ///         DatasourceUid = foo.Uid,
+    ///         User = sa.Id,
+    ///         Permission = "Query",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem name "{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem name "{{ orgID }}:{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+    /// ```
+    /// </summary>
+    [GrafanaResourceType("grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem")]
     public partial class DataSourcePermissionItem : global::Pulumi.CustomResource
     {
         /// <summary>
@@ -59,12 +142,12 @@ namespace Pulumiverse.Grafana
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public DataSourcePermissionItem(string name, DataSourcePermissionItemArgs args, CustomResourceOptions? options = null)
-            : base("grafana:index/dataSourcePermissionItem:DataSourcePermissionItem", name, args ?? new DataSourcePermissionItemArgs(), MakeResourceOptions(options, ""))
+            : base("grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem", name, args ?? new DataSourcePermissionItemArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private DataSourcePermissionItem(string name, Input<string> id, DataSourcePermissionItemState? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/dataSourcePermissionItem:DataSourcePermissionItem", name, state, MakeResourceOptions(options, id))
+            : base("grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem", name, state, MakeResourceOptions(options, id))
         {
         }
 

@@ -35,6 +35,11 @@ export const getStack: typeof import("./getStack").getStack = null as any;
 export const getStackOutput: typeof import("./getStack").getStackOutput = null as any;
 utilities.lazyLoad(exports, ["getStack","getStackOutput"], () => require("./getStack"));
 
+export { OrgMemberArgs, OrgMemberState } from "./orgMember";
+export type OrgMember = import("./orgMember").OrgMember;
+export const OrgMember: typeof import("./orgMember").OrgMember = null as any;
+utilities.lazyLoad(exports, ["OrgMember"], () => require("./orgMember"));
+
 export { PluginInstallationArgs, PluginInstallationState } from "./pluginInstallation";
 export type PluginInstallation = import("./pluginInstallation").PluginInstallation;
 export const PluginInstallation: typeof import("./pluginInstallation").PluginInstallation = null as any;
@@ -71,6 +76,8 @@ const _module = {
                 return new AccessPolicyToken(name, <any>undefined, { urn })
             case "grafana:cloud/apiKey:ApiKey":
                 return new ApiKey(name, <any>undefined, { urn })
+            case "grafana:cloud/orgMember:OrgMember":
+                return new OrgMember(name, <any>undefined, { urn })
             case "grafana:cloud/pluginInstallation:PluginInstallation":
                 return new PluginInstallation(name, <any>undefined, { urn })
             case "grafana:cloud/stack:Stack":
@@ -89,6 +96,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("grafana", "cloud/accessPolicy", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/accessPolicyToken", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/apiKey", _module)
+pulumi.runtime.registerResourceModule("grafana", "cloud/orgMember", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/pluginInstallation", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stack", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stackApiKey", _module)

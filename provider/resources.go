@@ -260,14 +260,14 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			// "grafana_cloud_org_member": {
-			// 	Tok: grafanaResource(cloudMod, "OrgMember"),
-			// 	Aliases: []tfbridge.AliasInfo{
-			// 		{
-			// 			Type: grafanaResourceAlias(grafanaMod, "CloudOrgMember"),
-			// 		},
-			// 	},
-			// },
+			"grafana_cloud_org_member": {
+				Tok: grafanaResource(cloudMod, "OrgMember"),
+				Aliases: []tfbridge.AliasInfo{
+					{
+						Type: grafanaResourceAlias(grafanaMod, "CloudOrgMember"),
+					},
+				},
+			},
 			"grafana_cloud_plugin_installation": {
 				Tok: grafanaResource(cloudMod, "PluginInstallation"),
 				Aliases: []tfbridge.AliasInfo{
@@ -318,14 +318,14 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			// "grafana_data_source_permission_item": {
-			// 	Tok: grafanaResource(enterpriseMod, "DataSourcePermissionItem"),
-			// 	Aliases: []tfbridge.AliasInfo{
-			// 		{
-			// 			Type: grafanaResourceAlias(grafanaMod, "DataSourcePermissionItem"),
-			// 		},
-			// 	},
-			// },
+			"grafana_data_source_permission_item": {
+				Tok: grafanaResource(enterpriseMod, "DataSourcePermissionItem"),
+				Aliases: []tfbridge.AliasInfo{
+					{
+						Type: grafanaResourceAlias(grafanaMod, "DataSourcePermissionItem"),
+					},
+				},
+			},
 			"grafana_report": {
 				Tok: grafanaResource(enterpriseMod, "Report"),
 				Aliases: []tfbridge.AliasInfo{
@@ -350,14 +350,14 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			// "grafana_role_assignment_item": {
-			// 	Tok: grafanaResource(enterpriseMod, "RoleAssignmentItem"),
-			// 	Aliases: []tfbridge.AliasInfo{
-			// 		{
-			// 			Type: grafanaResourceAlias(grafanaMod, "RoleAssignmentItem"),
-			// 		},
-			// 	},
-			// },
+			"grafana_role_assignment_item": {
+				Tok: grafanaResource(enterpriseMod, "RoleAssignmentItem"),
+				Aliases: []tfbridge.AliasInfo{
+					{
+						Type: grafanaResourceAlias(grafanaMod, "RoleAssignmentItem"),
+					},
+				},
+			},
 			"grafana_team_external_group": {
 				Tok: grafanaResource(enterpriseMod, "TeamExternalGroup"),
 				Aliases: []tfbridge.AliasInfo{

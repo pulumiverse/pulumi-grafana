@@ -8,11 +8,19 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Cloud
 {
-    [Obsolete(@"grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember")]
-    [GrafanaResourceType("grafana:index/cloudOrgMember:CloudOrgMember")]
-    public partial class CloudOrgMember : global::Pulumi.CustomResource
+    /// <summary>
+    /// Manages the membership of a user in an organization.
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:cloud/orgMember:OrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
+    /// ```
+    /// </summary>
+    [GrafanaResourceType("grafana:cloud/orgMember:OrgMember")]
+    public partial class OrgMember : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The slug or ID of the organization.
@@ -40,19 +48,19 @@ namespace Pulumiverse.Grafana
 
 
         /// <summary>
-        /// Create a CloudOrgMember resource with the given unique name, arguments, and options.
+        /// Create a OrgMember resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public CloudOrgMember(string name, CloudOrgMemberArgs args, CustomResourceOptions? options = null)
-            : base("grafana:index/cloudOrgMember:CloudOrgMember", name, args ?? new CloudOrgMemberArgs(), MakeResourceOptions(options, ""))
+        public OrgMember(string name, OrgMemberArgs args, CustomResourceOptions? options = null)
+            : base("grafana:cloud/orgMember:OrgMember", name, args ?? new OrgMemberArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private CloudOrgMember(string name, Input<string> id, CloudOrgMemberState? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/cloudOrgMember:CloudOrgMember", name, state, MakeResourceOptions(options, id))
+        private OrgMember(string name, Input<string> id, OrgMemberState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:cloud/orgMember:OrgMember", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -73,7 +81,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing CloudOrgMember resource's state with the given name, ID, and optional extra
+        /// Get an existing OrgMember resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -81,13 +89,13 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static CloudOrgMember Get(string name, Input<string> id, CloudOrgMemberState? state = null, CustomResourceOptions? options = null)
+        public static OrgMember Get(string name, Input<string> id, OrgMemberState? state = null, CustomResourceOptions? options = null)
         {
-            return new CloudOrgMember(name, id, state, options);
+            return new OrgMember(name, id, state, options);
         }
     }
 
-    public sealed class CloudOrgMemberArgs : global::Pulumi.ResourceArgs
+    public sealed class OrgMemberArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The slug or ID of the organization.
@@ -113,13 +121,13 @@ namespace Pulumiverse.Grafana
         [Input("user", required: true)]
         public Input<string> User { get; set; } = null!;
 
-        public CloudOrgMemberArgs()
+        public OrgMemberArgs()
         {
         }
-        public static new CloudOrgMemberArgs Empty => new CloudOrgMemberArgs();
+        public static new OrgMemberArgs Empty => new OrgMemberArgs();
     }
 
-    public sealed class CloudOrgMemberState : global::Pulumi.ResourceArgs
+    public sealed class OrgMemberState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The slug or ID of the organization.
@@ -145,9 +153,9 @@ namespace Pulumiverse.Grafana
         [Input("user")]
         public Input<string>? User { get; set; }
 
-        public CloudOrgMemberState()
+        public OrgMemberState()
         {
         }
-        public static new CloudOrgMemberState Empty => new CloudOrgMemberState();
+        public static new OrgMemberState Empty => new OrgMemberState();
     }
 }

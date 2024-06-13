@@ -23,12 +23,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "grafana:enterprise/dataSourcePermission:DataSourcePermission":
 		r = &DataSourcePermission{}
+	case "grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem":
+		r = &DataSourcePermissionItem{}
 	case "grafana:enterprise/report:Report":
 		r = &Report{}
 	case "grafana:enterprise/role:Role":
 		r = &Role{}
 	case "grafana:enterprise/roleAssignment:RoleAssignment":
 		r = &RoleAssignment{}
+	case "grafana:enterprise/roleAssignmentItem:RoleAssignmentItem":
+		r = &RoleAssignmentItem{}
 	case "grafana:enterprise/teamExternalGroup:TeamExternalGroup":
 		r = &TeamExternalGroup{}
 	default:
@@ -51,6 +55,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"grafana",
+		"enterprise/dataSourcePermissionItem",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
 		"enterprise/report",
 		&module{version},
 	)
@@ -62,6 +71,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"enterprise/roleAssignment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"enterprise/roleAssignmentItem",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

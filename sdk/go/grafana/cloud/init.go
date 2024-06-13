@@ -27,6 +27,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AccessPolicyToken{}
 	case "grafana:cloud/apiKey:ApiKey":
 		r = &ApiKey{}
+	case "grafana:cloud/orgMember:OrgMember":
+		r = &OrgMember{}
 	case "grafana:cloud/pluginInstallation:PluginInstallation":
 		r = &PluginInstallation{}
 	case "grafana:cloud/stack:Stack":
@@ -63,6 +65,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"cloud/apiKey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"cloud/orgMember",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

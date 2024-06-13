@@ -2,10 +2,56 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
- * @deprecated grafana.index/roleassignmentitem.RoleAssignmentItem has been deprecated in favor of grafana.enterprise/roleassignmentitem.RoleAssignmentItem
+ * Manages a single assignment for a role. Conflicts with the "grafana.enterprise.RoleAssignment" resource which manages the entire set of assignments for a role.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const testRole = new grafana.enterprise.Role("testRole", {
+ *     uid: "testrole",
+ *     version: 1,
+ *     global: true,
+ *     permissions: [{
+ *         action: "org.users:add",
+ *         scope: "users:*",
+ *     }],
+ * });
+ * const testTeam = new grafana.Team("testTeam", {});
+ * const testUser = new grafana.User("testUser", {
+ *     email: "terraform_user@test.com",
+ *     login: "terraform_user@test.com",
+ *     password: "password",
+ * });
+ * const testSa = new grafana.ServiceAccount("testSa", {role: "Viewer"});
+ * const user = new grafana.enterprise.RoleAssignmentItem("user", {
+ *     roleUid: testRole.uid,
+ *     userId: testUser.id,
+ * });
+ * const team = new grafana.enterprise.RoleAssignmentItem("team", {
+ *     roleUid: testRole.uid,
+ *     teamId: testTeam.id,
+ * });
+ * const serviceAccount = new grafana.enterprise.RoleAssignmentItem("serviceAccount", {
+ *     roleUid: testRole.uid,
+ *     serviceAccountId: testSa.id,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:enterprise/roleAssignmentItem:RoleAssignmentItem name "{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:enterprise/roleAssignmentItem:RoleAssignmentItem name "{{ orgID }}:{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+ * ```
  */
 export class RoleAssignmentItem extends pulumi.CustomResource {
     /**
@@ -18,12 +64,11 @@ export class RoleAssignmentItem extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RoleAssignmentItemState, opts?: pulumi.CustomResourceOptions): RoleAssignmentItem {
-        pulumi.log.warn("RoleAssignmentItem is deprecated: grafana.index/roleassignmentitem.RoleAssignmentItem has been deprecated in favor of grafana.enterprise/roleassignmentitem.RoleAssignmentItem")
         return new RoleAssignmentItem(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/roleAssignmentItem:RoleAssignmentItem';
+    public static readonly __pulumiType = 'grafana:enterprise/roleAssignmentItem:RoleAssignmentItem';
 
     /**
      * Returns true if the given object is an instance of RoleAssignmentItem.  This is designed to work even
@@ -64,11 +109,8 @@ export class RoleAssignmentItem extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    /** @deprecated grafana.index/roleassignmentitem.RoleAssignmentItem has been deprecated in favor of grafana.enterprise/roleassignmentitem.RoleAssignmentItem */
     constructor(name: string, args: RoleAssignmentItemArgs, opts?: pulumi.CustomResourceOptions)
-    /** @deprecated grafana.index/roleassignmentitem.RoleAssignmentItem has been deprecated in favor of grafana.enterprise/roleassignmentitem.RoleAssignmentItem */
     constructor(name: string, argsOrState?: RoleAssignmentItemArgs | RoleAssignmentItemState, opts?: pulumi.CustomResourceOptions) {
-        pulumi.log.warn("RoleAssignmentItem is deprecated: grafana.index/roleassignmentitem.RoleAssignmentItem has been deprecated in favor of grafana.enterprise/roleassignmentitem.RoleAssignmentItem")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

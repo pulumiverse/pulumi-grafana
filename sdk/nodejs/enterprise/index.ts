@@ -10,6 +10,11 @@ export type DataSourcePermission = import("./dataSourcePermission").DataSourcePe
 export const DataSourcePermission: typeof import("./dataSourcePermission").DataSourcePermission = null as any;
 utilities.lazyLoad(exports, ["DataSourcePermission"], () => require("./dataSourcePermission"));
 
+export { DataSourcePermissionItemArgs, DataSourcePermissionItemState } from "./dataSourcePermissionItem";
+export type DataSourcePermissionItem = import("./dataSourcePermissionItem").DataSourcePermissionItem;
+export const DataSourcePermissionItem: typeof import("./dataSourcePermissionItem").DataSourcePermissionItem = null as any;
+utilities.lazyLoad(exports, ["DataSourcePermissionItem"], () => require("./dataSourcePermissionItem"));
+
 export { GetRoleArgs, GetRoleResult, GetRoleOutputArgs } from "./getRole";
 export const getRole: typeof import("./getRole").getRole = null as any;
 export const getRoleOutput: typeof import("./getRole").getRoleOutput = null as any;
@@ -30,6 +35,11 @@ export type RoleAssignment = import("./roleAssignment").RoleAssignment;
 export const RoleAssignment: typeof import("./roleAssignment").RoleAssignment = null as any;
 utilities.lazyLoad(exports, ["RoleAssignment"], () => require("./roleAssignment"));
 
+export { RoleAssignmentItemArgs, RoleAssignmentItemState } from "./roleAssignmentItem";
+export type RoleAssignmentItem = import("./roleAssignmentItem").RoleAssignmentItem;
+export const RoleAssignmentItem: typeof import("./roleAssignmentItem").RoleAssignmentItem = null as any;
+utilities.lazyLoad(exports, ["RoleAssignmentItem"], () => require("./roleAssignmentItem"));
+
 export { TeamExternalGroupArgs, TeamExternalGroupState } from "./teamExternalGroup";
 export type TeamExternalGroup = import("./teamExternalGroup").TeamExternalGroup;
 export const TeamExternalGroup: typeof import("./teamExternalGroup").TeamExternalGroup = null as any;
@@ -42,12 +52,16 @@ const _module = {
         switch (type) {
             case "grafana:enterprise/dataSourcePermission:DataSourcePermission":
                 return new DataSourcePermission(name, <any>undefined, { urn })
+            case "grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem":
+                return new DataSourcePermissionItem(name, <any>undefined, { urn })
             case "grafana:enterprise/report:Report":
                 return new Report(name, <any>undefined, { urn })
             case "grafana:enterprise/role:Role":
                 return new Role(name, <any>undefined, { urn })
             case "grafana:enterprise/roleAssignment:RoleAssignment":
                 return new RoleAssignment(name, <any>undefined, { urn })
+            case "grafana:enterprise/roleAssignmentItem:RoleAssignmentItem":
+                return new RoleAssignmentItem(name, <any>undefined, { urn })
             case "grafana:enterprise/teamExternalGroup:TeamExternalGroup":
                 return new TeamExternalGroup(name, <any>undefined, { urn })
             default:
@@ -56,7 +70,9 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("grafana", "enterprise/dataSourcePermission", _module)
+pulumi.runtime.registerResourceModule("grafana", "enterprise/dataSourcePermissionItem", _module)
 pulumi.runtime.registerResourceModule("grafana", "enterprise/report", _module)
 pulumi.runtime.registerResourceModule("grafana", "enterprise/role", _module)
 pulumi.runtime.registerResourceModule("grafana", "enterprise/roleAssignment", _module)
+pulumi.runtime.registerResourceModule("grafana", "enterprise/roleAssignmentItem", _module)
 pulumi.runtime.registerResourceModule("grafana", "enterprise/teamExternalGroup", _module)

@@ -58,7 +58,14 @@
                 ]
             },
             "grafana_cloud_org_member": {
-                "current": "grafana:index/cloudOrgMember:CloudOrgMember"
+                "current": "grafana:cloud/orgMember:OrgMember",
+                "past": [
+                    {
+                        "name": "grafana:index/cloudOrgMember:CloudOrgMember",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_cloud_plugin_installation": {
                 "current": "grafana:cloud/pluginInstallation:PluginInstallation",
@@ -238,7 +245,14 @@
                 }
             },
             "grafana_data_source_permission_item": {
-                "current": "grafana:index/dataSourcePermissionItem:DataSourcePermissionItem"
+                "current": "grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem",
+                "past": [
+                    {
+                        "name": "grafana:index/dataSourcePermissionItem:DataSourcePermissionItem",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_folder": {
                 "current": "grafana:index/folder:Folder"
@@ -711,7 +725,14 @@
                 }
             },
             "grafana_role_assignment_item": {
-                "current": "grafana:index/roleAssignmentItem:RoleAssignmentItem"
+                "current": "grafana:enterprise/roleAssignmentItem:RoleAssignmentItem",
+                "past": [
+                    {
+                        "name": "grafana:index/roleAssignmentItem:RoleAssignmentItem",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_rule_group": {
                 "current": "grafana:alerting/ruleGroup:RuleGroup",
@@ -1452,6 +1473,11 @@
                     "grafana:index/cloudApiKey:CloudApiKey"
                 ]
             },
+            "grafana_cloud_org_member": {
+                "aliases": [
+                    "grafana:index/cloudOrgMember:CloudOrgMember"
+                ]
+            },
             "grafana_cloud_plugin_installation": {
                 "aliases": [
                     "grafana:index/cloudPluginInstallation:CloudPluginInstallation"
@@ -1485,6 +1511,11 @@
             "grafana_data_source_permission": {
                 "aliases": [
                     "grafana:index/dataSourcePermission:DataSourcePermission"
+                ]
+            },
+            "grafana_data_source_permission_item": {
+                "aliases": [
+                    "grafana:index/dataSourcePermissionItem:DataSourcePermissionItem"
                 ]
             },
             "grafana_machine_learning_holiday": {
@@ -1570,6 +1601,11 @@
             "grafana_role_assignment": {
                 "aliases": [
                     "grafana:index/roleAssignment:RoleAssignment"
+                ]
+            },
+            "grafana_role_assignment_item": {
+                "aliases": [
+                    "grafana:index/roleAssignmentItem:RoleAssignmentItem"
                 ]
             },
             "grafana_rule_group": {
@@ -1700,15 +1736,18 @@
             "grafana:cloud/accessPolicy:AccessPolicy": 0,
             "grafana:cloud/accessPolicyToken:AccessPolicyToken": 0,
             "grafana:cloud/apiKey:ApiKey": 0,
+            "grafana:cloud/orgMember:OrgMember": 1,
             "grafana:cloud/pluginInstallation:PluginInstallation": 0,
             "grafana:cloud/stack:Stack": 0,
             "grafana:cloud/stackApiKey:StackApiKey": 0,
             "grafana:cloud/stackServiceAccount:StackServiceAccount": 0,
             "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken": 0,
             "grafana:enterprise/dataSourcePermission:DataSourcePermission": 0,
+            "grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem": 1,
             "grafana:enterprise/report:Report": 0,
             "grafana:enterprise/role:Role": 0,
             "grafana:enterprise/roleAssignment:RoleAssignment": 0,
+            "grafana:enterprise/roleAssignmentItem:RoleAssignmentItem": 1,
             "grafana:enterprise/teamExternalGroup:TeamExternalGroup": 0,
             "grafana:index/annotation:Annotation": 0,
             "grafana:index/apiKey:ApiKey": 0,

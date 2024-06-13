@@ -192,6 +192,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "cloud/orgMember",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/orgMember:OrgMember": "OrgMember"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "cloud/pluginInstallation",
   "fqn": "pulumiverse_grafana.cloud",
   "classes": {
@@ -240,6 +248,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "enterprise/dataSourcePermissionItem",
+  "fqn": "pulumiverse_grafana.enterprise",
+  "classes": {
+   "grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem": "DataSourcePermissionItem"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "enterprise/report",
   "fqn": "pulumiverse_grafana.enterprise",
   "classes": {
@@ -260,6 +276,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.enterprise",
   "classes": {
    "grafana:enterprise/roleAssignment:RoleAssignment": "RoleAssignment"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "enterprise/roleAssignmentItem",
+  "fqn": "pulumiverse_grafana.enterprise",
+  "classes": {
+   "grafana:enterprise/roleAssignmentItem:RoleAssignmentItem": "RoleAssignmentItem"
   }
  },
  {

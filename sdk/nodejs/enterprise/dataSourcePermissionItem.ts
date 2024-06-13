@@ -2,10 +2,66 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
- * @deprecated grafana.index/datasourcepermissionitem.DataSourcePermissionItem has been deprecated in favor of grafana.enterprise/datasourcepermissionitem.DataSourcePermissionItem
+ * Manages a single permission item for a datasource. Conflicts with the "grafana.enterprise.DataSourcePermission" resource which manages the entire set of permissions for a datasource.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const teamTeam = new grafana.Team("teamTeam", {});
+ * const foo = new grafana.DataSource("foo", {
+ *     type: "cloudwatch",
+ *     jsonDataEncoded: JSON.stringify({
+ *         defaultRegion: "us-east-1",
+ *         authType: "keys",
+ *     }),
+ *     secureJsonDataEncoded: JSON.stringify({
+ *         accessKey: "123",
+ *         secretKey: "456",
+ *     }),
+ * });
+ * const userUser = new grafana.User("userUser", {
+ *     email: "test-ds-permissions@example.com",
+ *     login: "test-ds-permissions",
+ *     password: "hunter2",
+ * });
+ * const sa = new grafana.ServiceAccount("sa", {role: "Viewer"});
+ * const teamDataSourcePermissionItem = new grafana.enterprise.DataSourcePermissionItem("teamDataSourcePermissionItem", {
+ *     datasourceUid: foo.uid,
+ *     team: teamTeam.id,
+ *     permission: "Edit",
+ * });
+ * const userDataSourcePermissionItem = new grafana.enterprise.DataSourcePermissionItem("userDataSourcePermissionItem", {
+ *     datasourceUid: foo.uid,
+ *     user: userUser.id,
+ *     permission: "Edit",
+ * });
+ * const role = new grafana.enterprise.DataSourcePermissionItem("role", {
+ *     datasourceUid: foo.uid,
+ *     role: "Viewer",
+ *     permission: "Query",
+ * });
+ * const serviceAccount = new grafana.enterprise.DataSourcePermissionItem("serviceAccount", {
+ *     datasourceUid: foo.uid,
+ *     user: sa.id,
+ *     permission: "Query",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem name "{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem name "{{ orgID }}:{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+ * ```
  */
 export class DataSourcePermissionItem extends pulumi.CustomResource {
     /**
@@ -18,12 +74,11 @@ export class DataSourcePermissionItem extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DataSourcePermissionItemState, opts?: pulumi.CustomResourceOptions): DataSourcePermissionItem {
-        pulumi.log.warn("DataSourcePermissionItem is deprecated: grafana.index/datasourcepermissionitem.DataSourcePermissionItem has been deprecated in favor of grafana.enterprise/datasourcepermissionitem.DataSourcePermissionItem")
         return new DataSourcePermissionItem(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/dataSourcePermissionItem:DataSourcePermissionItem';
+    public static readonly __pulumiType = 'grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem';
 
     /**
      * Returns true if the given object is an instance of DataSourcePermissionItem.  This is designed to work even
@@ -68,11 +123,8 @@ export class DataSourcePermissionItem extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    /** @deprecated grafana.index/datasourcepermissionitem.DataSourcePermissionItem has been deprecated in favor of grafana.enterprise/datasourcepermissionitem.DataSourcePermissionItem */
     constructor(name: string, args: DataSourcePermissionItemArgs, opts?: pulumi.CustomResourceOptions)
-    /** @deprecated grafana.index/datasourcepermissionitem.DataSourcePermissionItem has been deprecated in favor of grafana.enterprise/datasourcepermissionitem.DataSourcePermissionItem */
     constructor(name: string, argsOrState?: DataSourcePermissionItemArgs | DataSourcePermissionItemState, opts?: pulumi.CustomResourceOptions) {
-        pulumi.log.warn("DataSourcePermissionItem is deprecated: grafana.index/datasourcepermissionitem.DataSourcePermissionItem has been deprecated in favor of grafana.enterprise/datasourcepermissionitem.DataSourcePermissionItem")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

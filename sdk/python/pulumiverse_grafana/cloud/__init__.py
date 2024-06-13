@@ -11,6 +11,7 @@ from .api_key import *
 from .get_ips import *
 from .get_organization import *
 from .get_stack import *
+from .org_member import *
 from .plugin_installation import *
 from .stack import *
 from .stack_api_key import *

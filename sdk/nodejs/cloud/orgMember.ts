@@ -2,14 +2,20 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
- * @deprecated grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember
+ * Manages the membership of a user in an organization.
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:cloud/orgMember:OrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
+ * ```
  */
-export class CloudOrgMember extends pulumi.CustomResource {
+export class OrgMember extends pulumi.CustomResource {
     /**
-     * Get an existing CloudOrgMember resource's state with the given name, ID, and optional extra
+     * Get an existing OrgMember resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -17,23 +23,22 @@ export class CloudOrgMember extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: CloudOrgMemberState, opts?: pulumi.CustomResourceOptions): CloudOrgMember {
-        pulumi.log.warn("CloudOrgMember is deprecated: grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember")
-        return new CloudOrgMember(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: OrgMemberState, opts?: pulumi.CustomResourceOptions): OrgMember {
+        return new OrgMember(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/cloudOrgMember:CloudOrgMember';
+    public static readonly __pulumiType = 'grafana:cloud/orgMember:OrgMember';
 
     /**
-     * Returns true if the given object is an instance of CloudOrgMember.  This is designed to work even
+     * Returns true if the given object is an instance of OrgMember.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is CloudOrgMember {
+    public static isInstance(obj: any): obj is OrgMember {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === CloudOrgMember.__pulumiType;
+        return obj['__pulumiType'] === OrgMember.__pulumiType;
     }
 
     /**
@@ -54,27 +59,24 @@ export class CloudOrgMember extends pulumi.CustomResource {
     public readonly user!: pulumi.Output<string>;
 
     /**
-     * Create a CloudOrgMember resource with the given unique name, arguments, and options.
+     * Create a OrgMember resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    /** @deprecated grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember */
-    constructor(name: string, args: CloudOrgMemberArgs, opts?: pulumi.CustomResourceOptions)
-    /** @deprecated grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember */
-    constructor(name: string, argsOrState?: CloudOrgMemberArgs | CloudOrgMemberState, opts?: pulumi.CustomResourceOptions) {
-        pulumi.log.warn("CloudOrgMember is deprecated: grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember")
+    constructor(name: string, args: OrgMemberArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: OrgMemberArgs | OrgMemberState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as CloudOrgMemberState | undefined;
+            const state = argsOrState as OrgMemberState | undefined;
             resourceInputs["org"] = state ? state.org : undefined;
             resourceInputs["receiveBillingEmails"] = state ? state.receiveBillingEmails : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
             resourceInputs["user"] = state ? state.user : undefined;
         } else {
-            const args = argsOrState as CloudOrgMemberArgs | undefined;
+            const args = argsOrState as OrgMemberArgs | undefined;
             if ((!args || args.org === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'org'");
             }
@@ -92,14 +94,14 @@ export class CloudOrgMember extends pulumi.CustomResource {
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/cloudOrgMember:CloudOrgMember" }] };
         opts = pulumi.mergeOptions(opts, aliasOpts);
-        super(CloudOrgMember.__pulumiType, name, resourceInputs, opts);
+        super(OrgMember.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering CloudOrgMember resources.
+ * Input properties used for looking up and filtering OrgMember resources.
  */
-export interface CloudOrgMemberState {
+export interface OrgMemberState {
     /**
      * The slug or ID of the organization.
      */
@@ -119,9 +121,9 @@ export interface CloudOrgMemberState {
 }
 
 /**
- * The set of arguments for constructing a CloudOrgMember resource.
+ * The set of arguments for constructing a OrgMember resource.
  */
-export interface CloudOrgMemberArgs {
+export interface OrgMemberArgs {
     /**
      * The slug or ID of the organization.
      */

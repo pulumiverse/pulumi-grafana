@@ -7,19 +7,19 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities
+from .. import _utilities
 
-__all__ = ['CloudOrgMemberArgs', 'CloudOrgMember']
+__all__ = ['OrgMemberArgs', 'OrgMember']
 
 @pulumi.input_type
-class CloudOrgMemberArgs:
+class OrgMemberArgs:
     def __init__(__self__, *,
                  org: pulumi.Input[str],
                  role: pulumi.Input[str],
                  user: pulumi.Input[str],
                  receive_billing_emails: Optional[pulumi.Input[bool]] = None):
         """
-        The set of arguments for constructing a CloudOrgMember resource.
+        The set of arguments for constructing a OrgMember resource.
         :param pulumi.Input[str] org: The slug or ID of the organization.
         :param pulumi.Input[str] role: The role to assign to the user in the organization.
         :param pulumi.Input[str] user: Username or ID of the user to add to the org's members.
@@ -81,14 +81,14 @@ class CloudOrgMemberArgs:
 
 
 @pulumi.input_type
-class _CloudOrgMemberState:
+class _OrgMemberState:
     def __init__(__self__, *,
                  org: Optional[pulumi.Input[str]] = None,
                  receive_billing_emails: Optional[pulumi.Input[bool]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering CloudOrgMember resources.
+        Input properties used for looking up and filtering OrgMember resources.
         :param pulumi.Input[str] org: The slug or ID of the organization.
         :param pulumi.Input[bool] receive_billing_emails: Whether the user should receive billing emails.
         :param pulumi.Input[str] role: The role to assign to the user in the organization.
@@ -152,12 +152,7 @@ class _CloudOrgMemberState:
         pulumi.set(self, "user", value)
 
 
-warnings.warn("""grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember""", DeprecationWarning)
-
-
-class CloudOrgMember(pulumi.CustomResource):
-    warnings.warn("""grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember""", DeprecationWarning)
-
+class OrgMember(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -168,7 +163,14 @@ class CloudOrgMember(pulumi.CustomResource):
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a CloudOrgMember resource with the given unique name, props, and options.
+        Manages the membership of a user in an organization.
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:cloud/orgMember:OrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org: The slug or ID of the organization.
@@ -180,17 +182,24 @@ class CloudOrgMember(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: CloudOrgMemberArgs,
+                 args: OrgMemberArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a CloudOrgMember resource with the given unique name, props, and options.
+        Manages the membership of a user in an organization.
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:cloud/orgMember:OrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
+        ```
+
         :param str resource_name: The name of the resource.
-        :param CloudOrgMemberArgs args: The arguments to use to populate this resource's properties.
+        :param OrgMemberArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(CloudOrgMemberArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(OrgMemberArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -204,14 +213,13 @@ class CloudOrgMember(pulumi.CustomResource):
                  role: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
-        pulumi.log.warn("""CloudOrgMember is deprecated: grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = CloudOrgMemberArgs.__new__(CloudOrgMemberArgs)
+            __props__ = OrgMemberArgs.__new__(OrgMemberArgs)
 
             if org is None and not opts.urn:
                 raise TypeError("Missing required property 'org'")
@@ -225,8 +233,8 @@ class CloudOrgMember(pulumi.CustomResource):
             __props__.__dict__["user"] = user
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/cloudOrgMember:CloudOrgMember")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
-        super(CloudOrgMember, __self__).__init__(
-            'grafana:index/cloudOrgMember:CloudOrgMember',
+        super(OrgMember, __self__).__init__(
+            'grafana:cloud/orgMember:OrgMember',
             resource_name,
             __props__,
             opts)
@@ -238,9 +246,9 @@ class CloudOrgMember(pulumi.CustomResource):
             org: Optional[pulumi.Input[str]] = None,
             receive_billing_emails: Optional[pulumi.Input[bool]] = None,
             role: Optional[pulumi.Input[str]] = None,
-            user: Optional[pulumi.Input[str]] = None) -> 'CloudOrgMember':
+            user: Optional[pulumi.Input[str]] = None) -> 'OrgMember':
         """
-        Get an existing CloudOrgMember resource's state with the given name, id, and optional extra
+        Get an existing OrgMember resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -253,13 +261,13 @@ class CloudOrgMember(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _CloudOrgMemberState.__new__(_CloudOrgMemberState)
+        __props__ = _OrgMemberState.__new__(_OrgMemberState)
 
         __props__.__dict__["org"] = org
         __props__.__dict__["receive_billing_emails"] = receive_billing_emails
         __props__.__dict__["role"] = role
         __props__.__dict__["user"] = user
-        return CloudOrgMember(resource_name, opts=opts, __props__=__props__)
+        return OrgMember(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
