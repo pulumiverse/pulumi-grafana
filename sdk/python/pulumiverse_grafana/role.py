@@ -406,7 +406,6 @@ class Role(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -431,7 +430,6 @@ class Role(pulumi.CustomResource):
             uid="superuseruid",
             version=1)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -471,7 +469,6 @@ class Role(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -496,7 +493,6 @@ class Role(pulumi.CustomResource):
             uid="superuseruid",
             version=1)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

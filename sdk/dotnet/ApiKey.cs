@@ -13,7 +13,6 @@ namespace Pulumiverse.Grafana
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -40,7 +39,6 @@ namespace Pulumiverse.Grafana
     ///     };
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [GrafanaResourceType("grafana:index/apiKey:ApiKey")]
     public partial class ApiKey : global::Pulumi.CustomResource

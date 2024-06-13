@@ -27,7 +27,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string Type;
         /// <summary>
-        /// The user name to use when making a call to the Kafka REST Proxy
+        /// User name of the responder. Must be specified if name and id are empty.
         /// </summary>
         public readonly string? Username;
 

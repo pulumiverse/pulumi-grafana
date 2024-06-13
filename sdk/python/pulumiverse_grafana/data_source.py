@@ -503,7 +503,6 @@ class DataSource(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -557,7 +556,6 @@ class DataSource(pulumi.CustomResource):
                 "basicAuthPassword": "password",
             }))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -601,7 +599,6 @@ class DataSource(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -655,7 +652,6 @@ class DataSource(pulumi.CustomResource):
                 "basicAuthPassword": "password",
             }))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

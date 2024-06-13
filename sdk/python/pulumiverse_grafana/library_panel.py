@@ -378,7 +378,6 @@ class LibraryPanel(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -396,7 +395,6 @@ class LibraryPanel(pulumi.CustomResource):
             "version": 0,
         }))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -431,7 +429,6 @@ class LibraryPanel(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -449,7 +446,6 @@ class LibraryPanel(pulumi.CustomResource):
             "version": 0,
         }))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

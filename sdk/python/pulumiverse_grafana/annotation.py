@@ -314,14 +314,12 @@ class Annotation(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
 
         test = grafana.Annotation("test", text="basic text")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -356,14 +354,12 @@ class Annotation(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
 
         test = grafana.Annotation("test", text="basic text")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

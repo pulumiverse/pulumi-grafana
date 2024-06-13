@@ -10,14 +10,12 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.Annotation("test", {text: "basic text"});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

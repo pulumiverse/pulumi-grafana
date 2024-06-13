@@ -29,7 +29,7 @@ namespace Pulumiverse.Grafana.Inputs
         private InputList<Inputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderGetArgs>? _headers;
 
         /// <summary>
-        /// The HTTP headers set for the probe.
+        /// The headers to send with the request
         /// </summary>
         public InputList<Inputs.SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderGetArgs> Headers
         {
@@ -38,7 +38,7 @@ namespace Pulumiverse.Grafana.Inputs
         }
 
         /// <summary>
-        /// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+        /// The HTTP method to use
         /// </summary>
         [Input("method", required: true)]
         public Input<string> Method { get; set; } = null!;

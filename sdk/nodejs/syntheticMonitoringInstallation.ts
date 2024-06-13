@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -71,7 +70,6 @@ import * as utilities from "./utilities";
  * });
  * const main = grafana.getSyntheticMonitoringProbes({});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
     /**

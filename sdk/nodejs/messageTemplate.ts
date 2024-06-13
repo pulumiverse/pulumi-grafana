@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -24,7 +23,6 @@ import * as utilities from "./utilities";
  * {{ end }}
  * `});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -64,9 +62,6 @@ export class MessageTemplate extends pulumi.CustomResource {
         return obj['__pulumiType'] === MessageTemplate.__pulumiType;
     }
 
-    /**
-     * Allow modifying the message template from other sources than Terraform or the Grafana API.
-     */
     public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
     /**
      * The name of the message template.
@@ -117,9 +112,6 @@ export class MessageTemplate extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MessageTemplate resources.
  */
 export interface MessageTemplateState {
-    /**
-     * Allow modifying the message template from other sources than Terraform or the Grafana API.
-     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * The name of the message template.
@@ -139,9 +131,6 @@ export interface MessageTemplateState {
  * The set of arguments for constructing a MessageTemplate resource.
  */
 export interface MessageTemplateArgs {
-    /**
-     * Allow modifying the message template from other sources than Terraform or the Grafana API.
-     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * The name of the message template.

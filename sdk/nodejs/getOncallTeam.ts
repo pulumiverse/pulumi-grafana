@@ -7,7 +7,6 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -16,7 +15,6 @@ import * as utilities from "./utilities";
  *     name: "example_team",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOncallTeam(args: GetOncallTeamArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallTeamResult> {
 
@@ -54,7 +52,6 @@ export interface GetOncallTeamResult {
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -63,7 +60,6 @@ export interface GetOncallTeamResult {
  *     name: "example_team",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOncallTeamOutput(args: GetOncallTeamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallTeamResult> {
     return pulumi.output(args).apply((a: any) => getOncallTeam(a, opts))

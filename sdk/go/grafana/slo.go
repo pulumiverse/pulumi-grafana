@@ -38,13 +38,13 @@ type SLO struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasource SLODestinationDatasourcePtrOutput `pulumi:"destinationDatasource"`
-	// Labels to attach only to Fast Burn alerts.
+	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 	Labels SLOLabelArrayOutput `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
 	Objectives SLOObjectiveArrayOutput `pulumi:"objectives"`
-	// Freeform Query Field
+	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries SLOQueryArrayOutput `pulumi:"queries"`
 }
 
@@ -97,13 +97,13 @@ type sloState struct {
 	Description *string `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasource *SLODestinationDatasource `pulumi:"destinationDatasource"`
-	// Labels to attach only to Fast Burn alerts.
+	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 	Labels []SLOLabel `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name *string `pulumi:"name"`
 	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
 	Objectives []SLOObjective `pulumi:"objectives"`
-	// Freeform Query Field
+	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries []SLOQuery `pulumi:"queries"`
 }
 
@@ -118,13 +118,13 @@ type SLOState struct {
 	Description pulumi.StringPtrInput
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasource SLODestinationDatasourcePtrInput
-	// Labels to attach only to Fast Burn alerts.
+	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 	Labels SLOLabelArrayInput
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name pulumi.StringPtrInput
 	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
 	Objectives SLOObjectiveArrayInput
-	// Freeform Query Field
+	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries SLOQueryArrayInput
 }
 
@@ -143,13 +143,13 @@ type sloArgs struct {
 	Description string `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasource *SLODestinationDatasource `pulumi:"destinationDatasource"`
-	// Labels to attach only to Fast Burn alerts.
+	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 	Labels []SLOLabel `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name *string `pulumi:"name"`
 	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
 	Objectives []SLOObjective `pulumi:"objectives"`
-	// Freeform Query Field
+	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries []SLOQuery `pulumi:"queries"`
 }
 
@@ -165,13 +165,13 @@ type SLOArgs struct {
 	Description pulumi.StringInput
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasource SLODestinationDatasourcePtrInput
-	// Labels to attach only to Fast Burn alerts.
+	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 	Labels SLOLabelArrayInput
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name pulumi.StringPtrInput
 	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
 	Objectives SLOObjectiveArrayInput
-	// Freeform Query Field
+	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries SLOQueryArrayInput
 }
 
@@ -282,7 +282,7 @@ func (o SLOOutput) DestinationDatasource() SLODestinationDatasourcePtrOutput {
 	return o.ApplyT(func(v *SLO) SLODestinationDatasourcePtrOutput { return v.DestinationDatasource }).(SLODestinationDatasourcePtrOutput)
 }
 
-// Labels to attach only to Fast Burn alerts.
+// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 func (o SLOOutput) Labels() SLOLabelArrayOutput {
 	return o.ApplyT(func(v *SLO) SLOLabelArrayOutput { return v.Labels }).(SLOLabelArrayOutput)
 }
@@ -297,7 +297,7 @@ func (o SLOOutput) Objectives() SLOObjectiveArrayOutput {
 	return o.ApplyT(func(v *SLO) SLOObjectiveArrayOutput { return v.Objectives }).(SLOObjectiveArrayOutput)
 }
 
-// Freeform Query Field
+// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 func (o SLOOutput) Queries() SLOQueryArrayOutput {
 	return o.ApplyT(func(v *SLO) SLOQueryArrayOutput { return v.Queries }).(SLOQueryArrayOutput)
 }

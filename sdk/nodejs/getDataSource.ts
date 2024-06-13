@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -40,7 +39,6 @@ import * as utilities from "./utilities";
  *     uid: prometheus.uid,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDataSource(args?: GetDataSourceArgs, opts?: pulumi.InvokeOptions): Promise<GetDataSourceResult> {
     args = args || {};
@@ -130,7 +128,6 @@ export interface GetDataSourceResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
@@ -161,7 +158,6 @@ export interface GetDataSourceResult {
  *     uid: prometheus.uid,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDataSourceOutput(args?: GetDataSourceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDataSourceResult> {
     return pulumi.output(args).apply((a: any) => getDataSource(a, opts))

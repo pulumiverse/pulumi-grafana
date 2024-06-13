@@ -16,7 +16,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
@@ -32,7 +31,6 @@ import * as utilities from "./utilities";
  *     subject: "{{ template \"default.title\" .}}",
  * }]});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -80,9 +78,6 @@ export class ContactPoint extends pulumi.CustomResource {
      * A contact point that sends notifications to DingDing.
      */
     public readonly dingdings!: pulumi.Output<outputs.ContactPointDingding[] | undefined>;
-    /**
-     * Allow modifying the contact point from other sources than Terraform or the Grafana API.
-     */
     public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
     /**
      * A contact point that sends notifications as Discord messages
@@ -105,7 +100,7 @@ export class ContactPoint extends pulumi.CustomResource {
      */
     public readonly lines!: pulumi.Output<outputs.ContactPointLine[] | undefined>;
     /**
-     * Name of the responder. Must be specified if username and id are empty.
+     * The name of the contact point.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -250,9 +245,6 @@ export interface ContactPointState {
      * A contact point that sends notifications to DingDing.
      */
     dingdings?: pulumi.Input<pulumi.Input<inputs.ContactPointDingding>[]>;
-    /**
-     * Allow modifying the contact point from other sources than Terraform or the Grafana API.
-     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * A contact point that sends notifications as Discord messages
@@ -275,7 +267,7 @@ export interface ContactPointState {
      */
     lines?: pulumi.Input<pulumi.Input<inputs.ContactPointLine>[]>;
     /**
-     * Name of the responder. Must be specified if username and id are empty.
+     * The name of the contact point.
      */
     name?: pulumi.Input<string>;
     /**
@@ -352,9 +344,6 @@ export interface ContactPointArgs {
      * A contact point that sends notifications to DingDing.
      */
     dingdings?: pulumi.Input<pulumi.Input<inputs.ContactPointDingding>[]>;
-    /**
-     * Allow modifying the contact point from other sources than Terraform or the Grafana API.
-     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * A contact point that sends notifications as Discord messages
@@ -377,7 +366,7 @@ export interface ContactPointArgs {
      */
     lines?: pulumi.Input<pulumi.Input<inputs.ContactPointLine>[]>;
     /**
-     * Name of the responder. Must be specified if username and id are empty.
+     * The name of the contact point.
      */
     name?: pulumi.Input<string>;
     /**

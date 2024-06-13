@@ -79,14 +79,12 @@ def get_oncall_team(name: Optional[str] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     example_team = grafana.get_oncall_team(name="example_team")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The team name.
@@ -109,14 +107,12 @@ def get_oncall_team_output(name: Optional[pulumi.Input[str]] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     example_team = grafana.get_oncall_team(name="example_team")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The team name.

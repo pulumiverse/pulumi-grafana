@@ -142,7 +142,6 @@ class CloudPluginInstallation(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -152,7 +151,6 @@ class CloudPluginInstallation(pulumi.CustomResource):
             stack_slug="stackname",
             version="1.2.3")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -185,7 +183,6 @@ class CloudPluginInstallation(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -195,7 +192,6 @@ class CloudPluginInstallation(pulumi.CustomResource):
             stack_slug="stackname",
             version="1.2.3")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

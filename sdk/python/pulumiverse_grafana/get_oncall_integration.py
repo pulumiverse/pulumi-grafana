@@ -63,14 +63,12 @@ def get_oncall_integration(id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     example_integration = grafana.get_oncall_integration(id="CEXAMPLEID123")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The integration ID.
@@ -93,14 +91,12 @@ def get_oncall_integration_output(id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     example_integration = grafana.get_oncall_integration(id="CEXAMPLEID123")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The integration ID.

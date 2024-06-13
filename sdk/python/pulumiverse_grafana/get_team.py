@@ -127,7 +127,6 @@ def get_team(name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
@@ -141,7 +140,6 @@ def get_team(name: Optional[str] = None,
         ))
     from_name = grafana.get_team_output(name=test.name)
     ```
-    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     __args__['name'] = name
@@ -173,7 +171,6 @@ def get_team_output(name: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
@@ -187,6 +184,5 @@ def get_team_output(name: Optional[pulumi.Input[str]] = None,
         ))
     from_name = grafana.get_team_output(name=test.name)
     ```
-    <!--End PulumiCodeChooser -->
     """
     ...

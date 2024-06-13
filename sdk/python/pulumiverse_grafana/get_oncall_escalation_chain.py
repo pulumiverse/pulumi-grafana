@@ -63,14 +63,12 @@ def get_oncall_escalation_chain(name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     default = grafana.get_oncall_escalation_chain(name="default")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The escalation chain name.
@@ -93,14 +91,12 @@ def get_oncall_escalation_chain_output(name: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
 
     default = grafana.get_oncall_escalation_chain(name="default")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The escalation chain name.

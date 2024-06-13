@@ -22,7 +22,6 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -148,7 +147,6 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -164,19 +162,16 @@ namespace Pulumiverse.Grafana
     public partial class NotificationPolicy : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The contact point to route notifications that match this rule to.
+        /// The default contact point to route all unmatched notifications to.
         /// </summary>
         [Output("contactPoint")]
         public Output<string> ContactPoint { get; private set; } = null!;
 
-        /// <summary>
-        /// Allow modifying the notification policy from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Output("disableProvenance")]
         public Output<bool?> DisableProvenance { get; private set; } = null!;
 
         /// <summary>
-        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
         /// </summary>
         [Output("groupBies")]
         public Output<ImmutableArray<string>> GroupBies { get; private set; } = null!;
@@ -259,14 +254,11 @@ namespace Pulumiverse.Grafana
     public sealed class NotificationPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The contact point to route notifications that match this rule to.
+        /// The default contact point to route all unmatched notifications to.
         /// </summary>
         [Input("contactPoint", required: true)]
         public Input<string> ContactPoint { get; set; } = null!;
 
-        /// <summary>
-        /// Allow modifying the notification policy from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 
@@ -274,7 +266,7 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _groupBies;
 
         /// <summary>
-        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
         /// </summary>
         public InputList<string> GroupBies
         {
@@ -327,14 +319,11 @@ namespace Pulumiverse.Grafana
     public sealed class NotificationPolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The contact point to route notifications that match this rule to.
+        /// The default contact point to route all unmatched notifications to.
         /// </summary>
         [Input("contactPoint")]
         public Input<string>? ContactPoint { get; set; }
 
-        /// <summary>
-        /// Allow modifying the notification policy from other sources than Terraform or the Grafana API.
-        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 
@@ -342,7 +331,7 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _groupBies;
 
         /// <summary>
-        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
         /// </summary>
         public InputList<string> GroupBies
         {

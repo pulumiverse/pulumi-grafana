@@ -117,7 +117,6 @@ def get_user(email: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
@@ -132,7 +131,6 @@ def get_user(email: Optional[str] = None,
     from_email = grafana.get_user_output(email=test.email)
     from_login = test.login.apply(lambda login: grafana.get_user_output(login=login))
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str email: The email address of the Grafana user. Defaults to ``.
@@ -169,7 +167,6 @@ def get_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
@@ -184,7 +181,6 @@ def get_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
     from_email = grafana.get_user_output(email=test.email)
     from_login = test.login.apply(lambda login: grafana.get_user_output(login=login))
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str email: The email address of the Grafana user. Defaults to ``.

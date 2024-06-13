@@ -249,7 +249,6 @@ class CloudAccessPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -276,7 +275,6 @@ class CloudAccessPolicy(pulumi.CustomResource):
             display_name="My Policy Token",
             expires_at="2023-01-01T00:00:00Z")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -309,7 +307,6 @@ class CloudAccessPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_grafana as grafana
@@ -336,7 +333,6 @@ class CloudAccessPolicy(pulumi.CustomResource):
             display_name="My Policy Token",
             expires_at="2023-01-01T00:00:00Z")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

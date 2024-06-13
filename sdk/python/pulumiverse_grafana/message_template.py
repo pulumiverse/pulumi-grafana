@@ -21,7 +21,6 @@ class MessageTemplateArgs:
         """
         The set of arguments for constructing a MessageTemplate resource.
         :param pulumi.Input[str] template: The content of the message template.
-        :param pulumi.Input[bool] disable_provenance: Allow modifying the message template from other sources than Terraform or the Grafana API.
         :param pulumi.Input[str] name: The name of the message template.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
@@ -48,9 +47,6 @@ class MessageTemplateArgs:
     @property
     @pulumi.getter(name="disableProvenance")
     def disable_provenance(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Allow modifying the message template from other sources than Terraform or the Grafana API.
-        """
         return pulumi.get(self, "disable_provenance")
 
     @disable_provenance.setter
@@ -91,7 +87,6 @@ class _MessageTemplateState:
                  template: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MessageTemplate resources.
-        :param pulumi.Input[bool] disable_provenance: Allow modifying the message template from other sources than Terraform or the Grafana API.
         :param pulumi.Input[str] name: The name of the message template.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] template: The content of the message template.
@@ -108,9 +103,6 @@ class _MessageTemplateState:
     @property
     @pulumi.getter(name="disableProvenance")
     def disable_provenance(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Allow modifying the message template from other sources than Terraform or the Grafana API.
-        """
         return pulumi.get(self, "disable_provenance")
 
     @disable_provenance.setter
@@ -174,7 +166,6 @@ class MessageTemplate(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -184,7 +175,6 @@ class MessageTemplate(pulumi.CustomResource):
         {{ end }}
         \"\"\")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -198,7 +188,6 @@ class MessageTemplate(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] disable_provenance: Allow modifying the message template from other sources than Terraform or the Grafana API.
         :param pulumi.Input[str] name: The name of the message template.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] template: The content of the message template.
@@ -219,7 +208,6 @@ class MessageTemplate(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -229,7 +217,6 @@ class MessageTemplate(pulumi.CustomResource):
         {{ end }}
         \"\"\")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -296,7 +283,6 @@ class MessageTemplate(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] disable_provenance: Allow modifying the message template from other sources than Terraform or the Grafana API.
         :param pulumi.Input[str] name: The name of the message template.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] template: The content of the message template.
@@ -314,9 +300,6 @@ class MessageTemplate(pulumi.CustomResource):
     @property
     @pulumi.getter(name="disableProvenance")
     def disable_provenance(self) -> pulumi.Output[Optional[bool]]:
-        """
-        Allow modifying the message template from other sources than Terraform or the Grafana API.
-        """
         return pulumi.get(self, "disable_provenance")
 
     @property

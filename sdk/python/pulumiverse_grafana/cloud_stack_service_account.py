@@ -169,7 +169,6 @@ class CloudStackServiceAccount(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -179,7 +178,6 @@ class CloudStackServiceAccount(pulumi.CustomResource):
             role="Admin",
             stack_slug="<your stack slug>")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -213,7 +211,6 @@ class CloudStackServiceAccount(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -223,7 +220,6 @@ class CloudStackServiceAccount(pulumi.CustomResource):
             role="Admin",
             stack_slug="<your stack slug>")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -16,7 +16,6 @@ namespace Pulumiverse.Grafana
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -43,7 +42,6 @@ namespace Pulumiverse.Grafana
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -64,12 +62,6 @@ namespace Pulumiverse.Grafana
         [Output("email")]
         public Output<string?> Email { get; private set; } = null!;
 
-        /// <summary>
-        /// Ignores team members that have been added to team by [Team
-        /// Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-        /// provisioned using [grafana_team_external_group
-        /// resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
-        /// </summary>
         [Output("ignoreExternallySyncedMembers")]
         public Output<bool?> IgnoreExternallySyncedMembers { get; private set; } = null!;
 
@@ -162,12 +154,6 @@ namespace Pulumiverse.Grafana
         [Input("email")]
         public Input<string>? Email { get; set; }
 
-        /// <summary>
-        /// Ignores team members that have been added to team by [Team
-        /// Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-        /// provisioned using [grafana_team_external_group
-        /// resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
-        /// </summary>
         [Input("ignoreExternallySyncedMembers")]
         public Input<bool>? IgnoreExternallySyncedMembers { get; set; }
 
@@ -221,12 +207,6 @@ namespace Pulumiverse.Grafana
         [Input("email")]
         public Input<string>? Email { get; set; }
 
-        /// <summary>
-        /// Ignores team members that have been added to team by [Team
-        /// Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be
-        /// provisioned using [grafana_team_external_group
-        /// resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
-        /// </summary>
         [Input("ignoreExternallySyncedMembers")]
         public Input<bool>? IgnoreExternallySyncedMembers { get; set; }
 

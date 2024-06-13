@@ -202,7 +202,6 @@ class ServiceAccountPermissionItem(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -224,7 +223,6 @@ class ServiceAccountPermissionItem(pulumi.CustomResource):
             user=user.id,
             permission="Admin")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -256,7 +254,6 @@ class ServiceAccountPermissionItem(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -278,7 +275,6 @@ class ServiceAccountPermissionItem(pulumi.CustomResource):
             user=user.id,
             permission="Admin")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

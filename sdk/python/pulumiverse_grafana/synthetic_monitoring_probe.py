@@ -270,7 +270,6 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -283,7 +282,6 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
             longitude=86.92262,
             region="APAC")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -320,7 +318,6 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -333,7 +330,6 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
             longitude=86.92262,
             region="APAC")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

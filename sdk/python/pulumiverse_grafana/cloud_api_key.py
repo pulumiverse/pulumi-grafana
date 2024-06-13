@@ -160,7 +160,6 @@ class CloudApiKey(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -169,7 +168,6 @@ class CloudApiKey(pulumi.CustomResource):
             cloud_org_slug="myorg",
             role="Admin")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -203,7 +201,6 @@ class CloudApiKey(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
@@ -212,7 +209,6 @@ class CloudApiKey(pulumi.CustomResource):
             cloud_org_slug="myorg",
             role="Admin")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

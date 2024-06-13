@@ -113,7 +113,6 @@ def get_folder(org_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
@@ -124,7 +123,6 @@ def get_folder(org_id: Optional[str] = None,
         uid="test-ds-folder-uid")
     from_title = grafana.get_folder_output(title=test.title)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -155,7 +153,6 @@ def get_folder_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_grafana as grafana
@@ -166,7 +163,6 @@ def get_folder_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
         uid="test-ds-folder-uid")
     from_title = grafana.get_folder_output(title=test.title)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
