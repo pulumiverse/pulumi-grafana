@@ -32,7 +32,7 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The method of finding the variable value to extract. JSON*PATH, REGEX, CSS*SELECTOR
+        /// The method of finding the variable value to extract. JSON_PATH, REGEX, CSS_SELECTOR
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

@@ -7,94 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Sets the global notification policy for Grafana.
- *
- * !> This resource manages the entire notification policy tree, and will overwrite any existing policies.
- *
- * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/manage-notifications/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/)
- *
- * This resource requires Grafana 9.1.0 or later.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const aContactPoint = new grafana.ContactPoint("aContactPoint", {emails: [{
- *     addresses: [
- *         "one@company.org",
- *         "two@company.org",
- *     ],
- *     message: "{{ len .Alerts.Firing }} firing.",
- * }]});
- * const aMuteTiming = new grafana.MuteTiming("aMuteTiming", {intervals: [{
- *     weekdays: ["monday"],
- * }]});
- * const myNotificationPolicy = new grafana.NotificationPolicy("myNotificationPolicy", {
- *     groupBies: ["..."],
- *     contactPoint: aContactPoint.name,
- *     groupWait: "45s",
- *     groupInterval: "6m",
- *     repeatInterval: "3h",
- *     policies: [
- *         {
- *             matchers: [
- *                 {
- *                     label: "mylabel",
- *                     match: "=",
- *                     value: "myvalue",
- *                 },
- *                 {
- *                     label: "alertname",
- *                     match: "=",
- *                     value: "CPU Usage",
- *                 },
- *                 {
- *                     label: "Name",
- *                     match: "=~",
- *                     value: "host.*|host-b.*",
- *                 },
- *             ],
- *             contactPoint: aContactPoint.name,
- *             "continue": true,
- *             muteTimings: [aMuteTiming.name],
- *             groupWait: "45s",
- *             groupInterval: "6m",
- *             repeatInterval: "3h",
- *             policies: [{
- *                 matchers: [{
- *                     label: "sublabel",
- *                     match: "=",
- *                     value: "subvalue",
- *                 }],
- *                 contactPoint: aContactPoint.name,
- *                 groupBies: ["..."],
- *             }],
- *         },
- *         {
- *             matchers: [{
- *                 label: "anotherlabel",
- *                 match: "=~",
- *                 value: "another value.*",
- *             }],
- *             contactPoint: aContactPoint.name,
- *             groupBies: ["..."],
- *         },
- *     ],
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/notificationPolicy:NotificationPolicy name "{{ anyString }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/notificationPolicy:NotificationPolicy name "{{ orgID }}:{{ anyString }}"
- * ```
+ * @deprecated grafana.index/notificationpolicy.NotificationPolicy has been deprecated in favor of grafana.alerting/notificationpolicy.NotificationPolicy
  */
 export class NotificationPolicy extends pulumi.CustomResource {
     /**
@@ -107,6 +20,7 @@ export class NotificationPolicy extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: NotificationPolicyState, opts?: pulumi.CustomResourceOptions): NotificationPolicy {
+        pulumi.log.warn("NotificationPolicy is deprecated: grafana.index/notificationpolicy.NotificationPolicy has been deprecated in favor of grafana.alerting/notificationpolicy.NotificationPolicy")
         return new NotificationPolicy(name, <any>state, { ...opts, id: id });
     }
 
@@ -130,7 +44,8 @@ export class NotificationPolicy extends pulumi.CustomResource {
     public readonly contactPoint!: pulumi.Output<string>;
     public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
+     * effectively disabling grouping.
      */
     public readonly groupBies!: pulumi.Output<string[]>;
     /**
@@ -161,8 +76,11 @@ export class NotificationPolicy extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/notificationpolicy.NotificationPolicy has been deprecated in favor of grafana.alerting/notificationpolicy.NotificationPolicy */
     constructor(name: string, args: NotificationPolicyArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/notificationpolicy.NotificationPolicy has been deprecated in favor of grafana.alerting/notificationpolicy.NotificationPolicy */
     constructor(name: string, argsOrState?: NotificationPolicyArgs | NotificationPolicyState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("NotificationPolicy is deprecated: grafana.index/notificationpolicy.NotificationPolicy has been deprecated in favor of grafana.alerting/notificationpolicy.NotificationPolicy")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -193,6 +111,8 @@ export class NotificationPolicy extends pulumi.CustomResource {
             resourceInputs["repeatInterval"] = args ? args.repeatInterval : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/notificationPolicy:NotificationPolicy" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(NotificationPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -207,7 +127,8 @@ export interface NotificationPolicyState {
     contactPoint?: pulumi.Input<string>;
     disableProvenance?: pulumi.Input<boolean>;
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
+     * effectively disabling grouping.
      */
     groupBies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -242,7 +163,8 @@ export interface NotificationPolicyArgs {
     contactPoint: pulumi.Input<string>;
     disableProvenance?: pulumi.Input<boolean>;
     /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
+     * effectively disabling grouping.
      */
     groupBies: pulumi.Input<pulumi.Input<string>[]>;
     /**

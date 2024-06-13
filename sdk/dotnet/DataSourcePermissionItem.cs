@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana
 {
     /// <summary>
-    /// Manages a single permission item for a datasource. Conflicts with the "grafana.DataSourcePermission" resource which manages the entire set of permissions for a datasource.
+    /// Manages a single permission item for a datasource. Conflicts with the "grafana.enterprise.DataSourcePermission" resource which manages the entire set of permissions for a datasource.
     /// 
     /// ## Example Usage
     /// 

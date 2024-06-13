@@ -7,15 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * A holiday describes time periods where a time series is expected to behave differently to normal.
- *
- * To use a holiday in a job, use its id in the `holidays` attribute of a `grafana.MachineLearningJob`:
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/machineLearningHoliday:MachineLearningHoliday name "{{ id }}"
- * ```
+ * @deprecated grafana.index/machinelearningholiday.MachineLearningHoliday has been deprecated in favor of grafana.machinelearning/holiday.Holiday
  */
 export class MachineLearningHoliday extends pulumi.CustomResource {
     /**
@@ -28,6 +20,7 @@ export class MachineLearningHoliday extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MachineLearningHolidayState, opts?: pulumi.CustomResourceOptions): MachineLearningHoliday {
+        pulumi.log.warn("MachineLearningHoliday is deprecated: grafana.index/machinelearningholiday.MachineLearningHoliday has been deprecated in favor of grafana.machinelearning/holiday.Holiday")
         return new MachineLearningHoliday(name, <any>state, { ...opts, id: id });
     }
 
@@ -73,8 +66,11 @@ export class MachineLearningHoliday extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/machinelearningholiday.MachineLearningHoliday has been deprecated in favor of grafana.machinelearning/holiday.Holiday */
     constructor(name: string, args?: MachineLearningHolidayArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/machinelearningholiday.MachineLearningHoliday has been deprecated in favor of grafana.machinelearning/holiday.Holiday */
     constructor(name: string, argsOrState?: MachineLearningHolidayArgs | MachineLearningHolidayState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("MachineLearningHoliday is deprecated: grafana.index/machinelearningholiday.MachineLearningHoliday has been deprecated in favor of grafana.machinelearning/holiday.Holiday")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -93,6 +89,8 @@ export class MachineLearningHoliday extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/machineLearningHoliday:MachineLearningHoliday" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(MachineLearningHoliday.__pulumiType, name, resourceInputs, opts);
     }
 }

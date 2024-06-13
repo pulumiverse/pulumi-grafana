@@ -10,15 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// A job defines the queries and model parameters for a machine learning task.
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/machineLearningJob:MachineLearningJob name "{{ id }}"
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/machinelearningjob.MachineLearningJob has been deprecated in favor of grafana.machinelearning/job.Job")]
     [GrafanaResourceType("grafana:index/machineLearningJob:MachineLearningJob")]
     public partial class MachineLearningJob : global::Pulumi.CustomResource
     {
@@ -59,13 +51,14 @@ namespace Pulumiverse.Grafana
         public Output<ImmutableArray<string>> Holidays { get; private set; } = null!;
 
         /// <summary>
-        /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+        /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+        /// for the full list of available hyperparameters.
         /// </summary>
         [Output("hyperParams")]
         public Output<ImmutableDictionary<string, object>?> HyperParams { get; private set; } = null!;
 
         /// <summary>
-        /// The data interval in seconds to train the data on. Defaults to `300`.
+        /// The data interval in seconds to train the data on.
         /// </summary>
         [Output("interval")]
         public Output<int?> Interval { get; private set; } = null!;
@@ -89,7 +82,7 @@ namespace Pulumiverse.Grafana
         public Output<ImmutableDictionary<string, object>> QueryParams { get; private set; } = null!;
 
         /// <summary>
-        /// The data interval in seconds to train the data on. Defaults to `7776000`.
+        /// The data interval in seconds to train the data on.
         /// </summary>
         [Output("trainingWindow")]
         public Output<int?> TrainingWindow { get; private set; } = null!;
@@ -118,6 +111,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/machineLearningJob:MachineLearningJob" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -193,7 +190,8 @@ namespace Pulumiverse.Grafana
         private InputMap<object>? _hyperParams;
 
         /// <summary>
-        /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+        /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+        /// for the full list of available hyperparameters.
         /// </summary>
         public InputMap<object> HyperParams
         {
@@ -202,7 +200,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The data interval in seconds to train the data on. Defaults to `300`.
+        /// The data interval in seconds to train the data on.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }
@@ -232,7 +230,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The data interval in seconds to train the data on. Defaults to `7776000`.
+        /// The data interval in seconds to train the data on.
         /// </summary>
         [Input("trainingWindow")]
         public Input<int>? TrainingWindow { get; set; }
@@ -297,7 +295,8 @@ namespace Pulumiverse.Grafana
         private InputMap<object>? _hyperParams;
 
         /// <summary>
-        /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+        /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+        /// for the full list of available hyperparameters.
         /// </summary>
         public InputMap<object> HyperParams
         {
@@ -306,7 +305,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The data interval in seconds to train the data on. Defaults to `300`.
+        /// The data interval in seconds to train the data on.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }
@@ -336,7 +335,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The data interval in seconds to train the data on. Defaults to `7776000`.
+        /// The data interval in seconds to train the data on.
         /// </summary>
         [Input("trainingWindow")]
         public Input<int>? TrainingWindow { get; set; }

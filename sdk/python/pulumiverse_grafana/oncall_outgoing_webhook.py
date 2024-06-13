@@ -35,14 +35,17 @@ class OncallOutgoingWebhookArgs:
         :param pulumi.Input[str] data: The data of the webhook.
         :param pulumi.Input[bool] forward_whole_payload: Toggle to send the entire webhook payload instead of using the values in the Data field.
         :param pulumi.Input[str] headers: Headers to add to the outgoing webhook request.
-        :param pulumi.Input[str] http_method: The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_filters: Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        :param pulumi.Input[str] http_method: The HTTP method used in the request made by the outgoing webhook.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_filters: Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
+               selected the outgoing webhook will trigger for any integration.
         :param pulumi.Input[bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
-        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+               with OnCall). You can then get the ID using the `on_call_get_team` datasource.
         :param pulumi.Input[str] trigger_template: A template used to dynamically determine whether the webhook should execute based on the content of the payload.
-        :param pulumi.Input[str] trigger_type: The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        :param pulumi.Input[str] trigger_type: The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
+               group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
         :param pulumi.Input[str] user: Username to use when making the outgoing webhook request.
         """
         pulumi.set(__self__, "url", url)
@@ -137,7 +140,7 @@ class OncallOutgoingWebhookArgs:
     @pulumi.getter(name="httpMethod")
     def http_method(self) -> Optional[pulumi.Input[str]]:
         """
-        The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+        The HTTP method used in the request made by the outgoing webhook.
         """
         return pulumi.get(self, "http_method")
 
@@ -149,7 +152,8 @@ class OncallOutgoingWebhookArgs:
     @pulumi.getter(name="integrationFilters")
     def integration_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
+        selected the outgoing webhook will trigger for any integration.
         """
         return pulumi.get(self, "integration_filters")
 
@@ -197,7 +201,8 @@ class OncallOutgoingWebhookArgs:
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+        with OnCall). You can then get the ID using the `on_call_get_team` datasource.
         """
         return pulumi.get(self, "team_id")
 
@@ -221,7 +226,8 @@ class OncallOutgoingWebhookArgs:
     @pulumi.getter(name="triggerType")
     def trigger_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
+        group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
         """
         return pulumi.get(self, "trigger_type")
 
@@ -265,14 +271,17 @@ class _OncallOutgoingWebhookState:
         :param pulumi.Input[str] data: The data of the webhook.
         :param pulumi.Input[bool] forward_whole_payload: Toggle to send the entire webhook payload instead of using the values in the Data field.
         :param pulumi.Input[str] headers: Headers to add to the outgoing webhook request.
-        :param pulumi.Input[str] http_method: The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_filters: Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        :param pulumi.Input[str] http_method: The HTTP method used in the request made by the outgoing webhook.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_filters: Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
+               selected the outgoing webhook will trigger for any integration.
         :param pulumi.Input[bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
-        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+               with OnCall). You can then get the ID using the `on_call_get_team` datasource.
         :param pulumi.Input[str] trigger_template: A template used to dynamically determine whether the webhook should execute based on the content of the payload.
-        :param pulumi.Input[str] trigger_type: The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        :param pulumi.Input[str] trigger_type: The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
+               group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
         :param pulumi.Input[str] url: The webhook URL.
         :param pulumi.Input[str] user: Username to use when making the outgoing webhook request.
         """
@@ -357,7 +366,7 @@ class _OncallOutgoingWebhookState:
     @pulumi.getter(name="httpMethod")
     def http_method(self) -> Optional[pulumi.Input[str]]:
         """
-        The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+        The HTTP method used in the request made by the outgoing webhook.
         """
         return pulumi.get(self, "http_method")
 
@@ -369,7 +378,8 @@ class _OncallOutgoingWebhookState:
     @pulumi.getter(name="integrationFilters")
     def integration_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
+        selected the outgoing webhook will trigger for any integration.
         """
         return pulumi.get(self, "integration_filters")
 
@@ -417,7 +427,8 @@ class _OncallOutgoingWebhookState:
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+        with OnCall). You can then get the ID using the `on_call_get_team` datasource.
         """
         return pulumi.get(self, "team_id")
 
@@ -441,7 +452,8 @@ class _OncallOutgoingWebhookState:
     @pulumi.getter(name="triggerType")
     def trigger_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
+        group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
         """
         return pulumi.get(self, "trigger_type")
 
@@ -474,7 +486,12 @@ class _OncallOutgoingWebhookState:
         pulumi.set(self, "user", value)
 
 
+warnings.warn("""grafana.index/oncalloutgoingwebhook.OncallOutgoingWebhook has been deprecated in favor of grafana.oncall/outgoingwebhook.OutgoingWebhook""", DeprecationWarning)
+
+
 class OncallOutgoingWebhook(pulumi.CustomResource):
+    warnings.warn("""grafana.index/oncalloutgoingwebhook.OncallOutgoingWebhook has been deprecated in favor of grafana.oncall/outgoingwebhook.OutgoingWebhook""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -495,38 +512,24 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test_acc_outgoing_webhook = grafana.OncallOutgoingWebhook("test-acc-outgoingWebhook", url="https://example.com/",
-        opts=pulumi.ResourceOptions(provider=grafana["oncall"]))
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook name "{{ id }}"
-        ```
-
+        Create a OncallOutgoingWebhook resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] authorization_header: The auth data of the webhook. Used in Authorization header instead of user/password auth.
         :param pulumi.Input[str] data: The data of the webhook.
         :param pulumi.Input[bool] forward_whole_payload: Toggle to send the entire webhook payload instead of using the values in the Data field.
         :param pulumi.Input[str] headers: Headers to add to the outgoing webhook request.
-        :param pulumi.Input[str] http_method: The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_filters: Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        :param pulumi.Input[str] http_method: The HTTP method used in the request made by the outgoing webhook.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_filters: Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
+               selected the outgoing webhook will trigger for any integration.
         :param pulumi.Input[bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
-        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+               with OnCall). You can then get the ID using the `on_call_get_team` datasource.
         :param pulumi.Input[str] trigger_template: A template used to dynamically determine whether the webhook should execute based on the content of the payload.
-        :param pulumi.Input[str] trigger_type: The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        :param pulumi.Input[str] trigger_type: The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
+               group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
         :param pulumi.Input[str] url: The webhook URL.
         :param pulumi.Input[str] user: Username to use when making the outgoing webhook request.
         """
@@ -537,24 +540,7 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
                  args: OncallOutgoingWebhookArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test_acc_outgoing_webhook = grafana.OncallOutgoingWebhook("test-acc-outgoingWebhook", url="https://example.com/",
-        opts=pulumi.ResourceOptions(provider=grafana["oncall"]))
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook name "{{ id }}"
-        ```
-
+        Create a OncallOutgoingWebhook resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param OncallOutgoingWebhookArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -585,6 +571,7 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
                  url: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""OncallOutgoingWebhook is deprecated: grafana.index/oncalloutgoingwebhook.OncallOutgoingWebhook has been deprecated in favor of grafana.oncall/outgoingwebhook.OutgoingWebhook""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -609,6 +596,8 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
                 raise TypeError("Missing required property 'url'")
             __props__.__dict__["url"] = url
             __props__.__dict__["user"] = user
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["authorizationHeader", "password"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(OncallOutgoingWebhook, __self__).__init__(
@@ -646,14 +635,17 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
         :param pulumi.Input[str] data: The data of the webhook.
         :param pulumi.Input[bool] forward_whole_payload: Toggle to send the entire webhook payload instead of using the values in the Data field.
         :param pulumi.Input[str] headers: Headers to add to the outgoing webhook request.
-        :param pulumi.Input[str] http_method: The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_filters: Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        :param pulumi.Input[str] http_method: The HTTP method used in the request made by the outgoing webhook.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_filters: Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
+               selected the outgoing webhook will trigger for any integration.
         :param pulumi.Input[bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
-        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+               with OnCall). You can then get the ID using the `on_call_get_team` datasource.
         :param pulumi.Input[str] trigger_template: A template used to dynamically determine whether the webhook should execute based on the content of the payload.
-        :param pulumi.Input[str] trigger_type: The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        :param pulumi.Input[str] trigger_type: The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
+               group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
         :param pulumi.Input[str] url: The webhook URL.
         :param pulumi.Input[str] user: Username to use when making the outgoing webhook request.
         """
@@ -713,7 +705,7 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
     @pulumi.getter(name="httpMethod")
     def http_method(self) -> pulumi.Output[Optional[str]]:
         """
-        The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+        The HTTP method used in the request made by the outgoing webhook.
         """
         return pulumi.get(self, "http_method")
 
@@ -721,7 +713,8 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
     @pulumi.getter(name="integrationFilters")
     def integration_filters(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
+        selected the outgoing webhook will trigger for any integration.
         """
         return pulumi.get(self, "integration_filters")
 
@@ -753,7 +746,8 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
     @pulumi.getter(name="teamId")
     def team_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `get_oncall_team` datasource.
+        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+        with OnCall). You can then get the ID using the `on_call_get_team` datasource.
         """
         return pulumi.get(self, "team_id")
 
@@ -769,7 +763,8 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
     @pulumi.getter(name="triggerType")
     def trigger_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
+        group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
         """
         return pulumi.get(self, "trigger_type")
 

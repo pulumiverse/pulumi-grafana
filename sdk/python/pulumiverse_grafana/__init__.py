@@ -72,6 +72,7 @@ from .oncall_route import *
 from .oncall_schedule import *
 from .organization import *
 from .organization_preference import *
+from .organization_preferences import *
 from .playlist import *
 from .provider import *
 from .report import *
@@ -96,14 +97,179 @@ from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
+    import pulumiverse_grafana.alerting as __alerting
+    alerting = __alerting
+    import pulumiverse_grafana.cloud as __cloud
+    cloud = __cloud
     import pulumiverse_grafana.config as __config
     config = __config
+    import pulumiverse_grafana.enterprise as __enterprise
+    enterprise = __enterprise
+    import pulumiverse_grafana.machinelearning as __machinelearning
+    machinelearning = __machinelearning
+    import pulumiverse_grafana.oncall as __oncall
+    oncall = __oncall
+    import pulumiverse_grafana.slo as __slo
+    slo = __slo
+    import pulumiverse_grafana.syntheticmonitoring as __syntheticmonitoring
+    syntheticmonitoring = __syntheticmonitoring
 else:
+    alerting = _utilities.lazy_import('pulumiverse_grafana.alerting')
+    cloud = _utilities.lazy_import('pulumiverse_grafana.cloud')
     config = _utilities.lazy_import('pulumiverse_grafana.config')
+    enterprise = _utilities.lazy_import('pulumiverse_grafana.enterprise')
+    machinelearning = _utilities.lazy_import('pulumiverse_grafana.machinelearning')
+    oncall = _utilities.lazy_import('pulumiverse_grafana.oncall')
+    slo = _utilities.lazy_import('pulumiverse_grafana.slo')
+    syntheticmonitoring = _utilities.lazy_import('pulumiverse_grafana.syntheticmonitoring')
 
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "grafana",
+  "mod": "alerting/contactPoint",
+  "fqn": "pulumiverse_grafana.alerting",
+  "classes": {
+   "grafana:alerting/contactPoint:ContactPoint": "ContactPoint"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/messageTemplate",
+  "fqn": "pulumiverse_grafana.alerting",
+  "classes": {
+   "grafana:alerting/messageTemplate:MessageTemplate": "MessageTemplate"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/muteTiming",
+  "fqn": "pulumiverse_grafana.alerting",
+  "classes": {
+   "grafana:alerting/muteTiming:MuteTiming": "MuteTiming"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/notificationPolicy",
+  "fqn": "pulumiverse_grafana.alerting",
+  "classes": {
+   "grafana:alerting/notificationPolicy:NotificationPolicy": "NotificationPolicy"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/ruleGroup",
+  "fqn": "pulumiverse_grafana.alerting",
+  "classes": {
+   "grafana:alerting/ruleGroup:RuleGroup": "RuleGroup"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloud/accessPolicy",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/accessPolicy:AccessPolicy": "AccessPolicy"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloud/accessPolicyToken",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/accessPolicyToken:AccessPolicyToken": "AccessPolicyToken"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloud/apiKey",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/apiKey:ApiKey": "ApiKey"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloud/pluginInstallation",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/pluginInstallation:PluginInstallation": "PluginInstallation"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloud/stack",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/stack:Stack": "Stack"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloud/stackApiKey",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/stackApiKey:StackApiKey": "StackApiKey"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloud/stackServiceAccount",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/stackServiceAccount:StackServiceAccount": "StackServiceAccount"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloud/stackServiceAccountToken",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken": "StackServiceAccountToken"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "enterprise/dataSourcePermission",
+  "fqn": "pulumiverse_grafana.enterprise",
+  "classes": {
+   "grafana:enterprise/dataSourcePermission:DataSourcePermission": "DataSourcePermission"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "enterprise/report",
+  "fqn": "pulumiverse_grafana.enterprise",
+  "classes": {
+   "grafana:enterprise/report:Report": "Report"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "enterprise/role",
+  "fqn": "pulumiverse_grafana.enterprise",
+  "classes": {
+   "grafana:enterprise/role:Role": "Role"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "enterprise/roleAssignment",
+  "fqn": "pulumiverse_grafana.enterprise",
+  "classes": {
+   "grafana:enterprise/roleAssignment:RoleAssignment": "RoleAssignment"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "enterprise/teamExternalGroup",
+  "fqn": "pulumiverse_grafana.enterprise",
+  "classes": {
+   "grafana:enterprise/teamExternalGroup:TeamExternalGroup": "TeamExternalGroup"
+  }
+ },
  {
   "pkg": "grafana",
   "mod": "index/annotation",
@@ -418,6 +584,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "index/organizationPreferences",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/organizationPreferences:OrganizationPreferences": "OrganizationPreferences"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "index/playlist",
   "fqn": "pulumiverse_grafana",
   "classes": {
@@ -558,6 +732,118 @@ _utilities.register(
   "fqn": "pulumiverse_grafana",
   "classes": {
    "grafana:index/user:User": "User"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "machineLearning/holiday",
+  "fqn": "pulumiverse_grafana.machinelearning",
+  "classes": {
+   "grafana:machineLearning/holiday:Holiday": "Holiday"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "machineLearning/job",
+  "fqn": "pulumiverse_grafana.machinelearning",
+  "classes": {
+   "grafana:machineLearning/job:Job": "Job"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "machineLearning/outlierDetector",
+  "fqn": "pulumiverse_grafana.machinelearning",
+  "classes": {
+   "grafana:machineLearning/outlierDetector:OutlierDetector": "OutlierDetector"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "onCall/escalation",
+  "fqn": "pulumiverse_grafana.oncall",
+  "classes": {
+   "grafana:onCall/escalation:Escalation": "Escalation"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "onCall/escalationChain",
+  "fqn": "pulumiverse_grafana.oncall",
+  "classes": {
+   "grafana:onCall/escalationChain:EscalationChain": "EscalationChain"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "onCall/integration",
+  "fqn": "pulumiverse_grafana.oncall",
+  "classes": {
+   "grafana:onCall/integration:Integration": "Integration"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "onCall/onCallShift",
+  "fqn": "pulumiverse_grafana.oncall",
+  "classes": {
+   "grafana:onCall/onCallShift:OnCallShift": "OnCallShift"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "onCall/outgoingWebhook",
+  "fqn": "pulumiverse_grafana.oncall",
+  "classes": {
+   "grafana:onCall/outgoingWebhook:OutgoingWebhook": "OutgoingWebhook"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "onCall/route",
+  "fqn": "pulumiverse_grafana.oncall",
+  "classes": {
+   "grafana:onCall/route:Route": "Route"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "onCall/schedule",
+  "fqn": "pulumiverse_grafana.oncall",
+  "classes": {
+   "grafana:onCall/schedule:Schedule": "Schedule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "slo/sLO",
+  "fqn": "pulumiverse_grafana.slo",
+  "classes": {
+   "grafana:slo/sLO:SLO": "SLO"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "syntheticMonitoring/check",
+  "fqn": "pulumiverse_grafana.syntheticmonitoring",
+  "classes": {
+   "grafana:syntheticMonitoring/check:Check": "Check"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "syntheticMonitoring/installation",
+  "fqn": "pulumiverse_grafana.syntheticmonitoring",
+  "classes": {
+   "grafana:syntheticMonitoring/installation:Installation": "Installation"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "syntheticMonitoring/probe",
+  "fqn": "pulumiverse_grafana.syntheticmonitoring",
+  "classes": {
+   "grafana:syntheticMonitoring/probe:Probe": "Probe"
   }
  }
 ]

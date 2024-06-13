@@ -11,59 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Manages Grafana Alerting contact points.
-//
-// * [Official documentation](https://grafana.com/docs/grafana/next/alerting/fundamentals/notifications/contact-points/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#contact-points)
-//
-// This resource requires Grafana 9.1.0 or later.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.NewContactPoint(ctx, "myContactPoint", &grafana.ContactPointArgs{
-//				Emails: grafana.ContactPointEmailArray{
-//					&grafana.ContactPointEmailArgs{
-//						Addresses: pulumi.StringArray{
-//							pulumi.String("one@company.org"),
-//							pulumi.String("two@company.org"),
-//						},
-//						DisableResolveMessage: pulumi.Bool(false),
-//						Message:               pulumi.String("{{ len .Alerts.Firing }} firing."),
-//						SingleEmail:           pulumi.Bool(true),
-//						Subject:               pulumi.String("{{ template \"default.title\" .}}"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/contactPoint:ContactPoint name "{{ name }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:index/contactPoint:ContactPoint name "{{ orgID }}:{{ name }}"
-// ```
+// Deprecated: grafana.index/contactpoint.ContactPoint has been deprecated in favor of grafana.alerting/contactpoint.ContactPoint
 type ContactPoint struct {
 	pulumi.CustomResourceState
 
@@ -110,7 +58,8 @@ type ContactPoint struct {
 	Victorops ContactPointVictoropArrayOutput `pulumi:"victorops"`
 	// A contact point that sends notifications to Cisco Webex.
 	Webexes ContactPointWebexArrayOutput `pulumi:"webexes"`
-	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+	// https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 	Webhooks ContactPointWebhookArrayOutput `pulumi:"webhooks"`
 	// A contact point that sends notifications to WeCom.
 	Wecoms ContactPointWecomArrayOutput `pulumi:"wecoms"`
@@ -123,6 +72,12 @@ func NewContactPoint(ctx *pulumi.Context,
 		args = &ContactPointArgs{}
 	}
 
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/contactPoint:ContactPoint"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ContactPoint
 	err := ctx.RegisterResource("grafana:index/contactPoint:ContactPoint", name, args, &resource, opts...)
@@ -189,7 +144,8 @@ type contactPointState struct {
 	Victorops []ContactPointVictorop `pulumi:"victorops"`
 	// A contact point that sends notifications to Cisco Webex.
 	Webexes []ContactPointWebex `pulumi:"webexes"`
-	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+	// https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 	Webhooks []ContactPointWebhook `pulumi:"webhooks"`
 	// A contact point that sends notifications to WeCom.
 	Wecoms []ContactPointWecom `pulumi:"wecoms"`
@@ -239,7 +195,8 @@ type ContactPointState struct {
 	Victorops ContactPointVictoropArrayInput
 	// A contact point that sends notifications to Cisco Webex.
 	Webexes ContactPointWebexArrayInput
-	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+	// https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 	Webhooks ContactPointWebhookArrayInput
 	// A contact point that sends notifications to WeCom.
 	Wecoms ContactPointWecomArrayInput
@@ -293,7 +250,8 @@ type contactPointArgs struct {
 	Victorops []ContactPointVictorop `pulumi:"victorops"`
 	// A contact point that sends notifications to Cisco Webex.
 	Webexes []ContactPointWebex `pulumi:"webexes"`
-	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+	// https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 	Webhooks []ContactPointWebhook `pulumi:"webhooks"`
 	// A contact point that sends notifications to WeCom.
 	Wecoms []ContactPointWecom `pulumi:"wecoms"`
@@ -344,7 +302,8 @@ type ContactPointArgs struct {
 	Victorops ContactPointVictoropArrayInput
 	// A contact point that sends notifications to Cisco Webex.
 	Webexes ContactPointWebexArrayInput
-	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+	// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+	// https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 	Webhooks ContactPointWebhookArrayInput
 	// A contact point that sends notifications to WeCom.
 	Wecoms ContactPointWecomArrayInput
@@ -546,7 +505,8 @@ func (o ContactPointOutput) Webexes() ContactPointWebexArrayOutput {
 	return o.ApplyT(func(v *ContactPoint) ContactPointWebexArrayOutput { return v.Webexes }).(ContactPointWebexArrayOutput)
 }
 
-// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
+// https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 func (o ContactPointOutput) Webhooks() ContactPointWebhookArrayOutput {
 	return o.ApplyT(func(v *ContactPoint) ContactPointWebhookArrayOutput { return v.Webhooks }).(ContactPointWebhookArrayOutput)
 }

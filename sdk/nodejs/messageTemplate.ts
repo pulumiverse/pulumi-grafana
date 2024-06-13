@@ -5,34 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manages Grafana Alerting message templates.
- *
- * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/template-notifications/create-notification-templates/)
- * * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#templates)
- *
- * This resource requires Grafana 9.1.0 or later.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const myTemplate = new grafana.MessageTemplate("myTemplate", {template: `{{define "My Reusable Template" }}
- *  template content
- * {{ end }}
- * `});
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/messageTemplate:MessageTemplate name "{{ name }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/messageTemplate:MessageTemplate name "{{ orgID }}:{{ name }}"
- * ```
+ * @deprecated grafana.index/messagetemplate.MessageTemplate has been deprecated in favor of grafana.alerting/messagetemplate.MessageTemplate
  */
 export class MessageTemplate extends pulumi.CustomResource {
     /**
@@ -45,6 +18,7 @@ export class MessageTemplate extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MessageTemplateState, opts?: pulumi.CustomResourceOptions): MessageTemplate {
+        pulumi.log.warn("MessageTemplate is deprecated: grafana.index/messagetemplate.MessageTemplate has been deprecated in favor of grafana.alerting/messagetemplate.MessageTemplate")
         return new MessageTemplate(name, <any>state, { ...opts, id: id });
     }
 
@@ -83,8 +57,11 @@ export class MessageTemplate extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/messagetemplate.MessageTemplate has been deprecated in favor of grafana.alerting/messagetemplate.MessageTemplate */
     constructor(name: string, args: MessageTemplateArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/messagetemplate.MessageTemplate has been deprecated in favor of grafana.alerting/messagetemplate.MessageTemplate */
     constructor(name: string, argsOrState?: MessageTemplateArgs | MessageTemplateState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("MessageTemplate is deprecated: grafana.index/messagetemplate.MessageTemplate has been deprecated in favor of grafana.alerting/messagetemplate.MessageTemplate")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -104,6 +81,8 @@ export class MessageTemplate extends pulumi.CustomResource {
             resourceInputs["template"] = args ? args.template : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/messageTemplate:MessageTemplate" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(MessageTemplate.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -157,7 +157,12 @@ class _CloudStackServiceAccountTokenState:
         pulumi.set(self, "stack_slug", value)
 
 
+warnings.warn("""grafana.index/cloudstackserviceaccounttoken.CloudStackServiceAccountToken has been deprecated in favor of grafana.cloud/stackserviceaccounttoken.StackServiceAccountToken""", DeprecationWarning)
+
+
 class CloudStackServiceAccountToken(pulumi.CustomResource):
+    warnings.warn("""grafana.index/cloudstackserviceaccounttoken.CloudStackServiceAccountToken has been deprecated in favor of grafana.cloud/stackserviceaccounttoken.StackServiceAccountToken""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -168,30 +173,7 @@ class CloudStackServiceAccountToken(pulumi.CustomResource):
                  stack_slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages service account tokens of a Grafana Cloud stack using the Cloud API
-        This can be used to bootstrap a management service account token for a new stack
-
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
-
-        Required access policy scopes:
-
-        * stack-service-accounts:write
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        cloud_sa = grafana.CloudStackServiceAccount("cloudSa",
-            stack_slug="<your stack slug>",
-            role="Admin",
-            is_disabled=False)
-        foo = grafana.CloudStackServiceAccountToken("foo", service_account_id=cloud_sa.id)
-        pulumi.export("serviceAccountTokenFooKey", foo.key)
-        ```
-
+        Create a CloudStackServiceAccountToken resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -202,30 +184,7 @@ class CloudStackServiceAccountToken(pulumi.CustomResource):
                  args: CloudStackServiceAccountTokenArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages service account tokens of a Grafana Cloud stack using the Cloud API
-        This can be used to bootstrap a management service account token for a new stack
-
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
-
-        Required access policy scopes:
-
-        * stack-service-accounts:write
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        cloud_sa = grafana.CloudStackServiceAccount("cloudSa",
-            stack_slug="<your stack slug>",
-            role="Admin",
-            is_disabled=False)
-        foo = grafana.CloudStackServiceAccountToken("foo", service_account_id=cloud_sa.id)
-        pulumi.export("serviceAccountTokenFooKey", foo.key)
-        ```
-
+        Create a CloudStackServiceAccountToken resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param CloudStackServiceAccountTokenArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -246,6 +205,7 @@ class CloudStackServiceAccountToken(pulumi.CustomResource):
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  stack_slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""CloudStackServiceAccountToken is deprecated: grafana.index/cloudstackserviceaccounttoken.CloudStackServiceAccountToken has been deprecated in favor of grafana.cloud/stackserviceaccounttoken.StackServiceAccountToken""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -265,6 +225,8 @@ class CloudStackServiceAccountToken(pulumi.CustomResource):
             __props__.__dict__["expiration"] = None
             __props__.__dict__["has_expired"] = None
             __props__.__dict__["key"] = None
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["key"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(CloudStackServiceAccountToken, __self__).__init__(

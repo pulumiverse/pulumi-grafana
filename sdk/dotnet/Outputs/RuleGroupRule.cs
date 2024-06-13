@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Outputs
     public sealed class RuleGroupRule
     {
         /// <summary>
-        /// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+        /// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Annotations;
         /// <summary>
@@ -27,19 +27,19 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.RuleGroupRuleData> Datas;
         /// <summary>
-        /// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+        /// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
         /// </summary>
         public readonly string? ExecErrState;
         /// <summary>
-        /// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
+        /// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
         /// </summary>
         public readonly string? For;
         /// <summary>
-        /// Sets whether the alert should be paused or not. Defaults to `false`.
+        /// Sets whether the alert should be paused or not.
         /// </summary>
         public readonly bool? IsPaused;
         /// <summary>
-        /// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
+        /// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
         /// <summary>
@@ -47,7 +47,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+        /// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
         /// </summary>
         public readonly string? NoDataState;
         /// <summary>

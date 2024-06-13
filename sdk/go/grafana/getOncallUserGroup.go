@@ -11,33 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.GetOncallUserGroup(ctx, &grafana.GetOncallUserGroupArgs{
-//				SlackHandle: "example_slack_handle",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
+// Deprecated: grafana.index/getoncallusergroup.getOncallUserGroup has been deprecated in favor of grafana.oncall/getusergroup.getUserGroup
 func GetOncallUserGroup(ctx *pulumi.Context, args *GetOncallUserGroupArgs, opts ...pulumi.InvokeOption) (*GetOncallUserGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOncallUserGroupResult

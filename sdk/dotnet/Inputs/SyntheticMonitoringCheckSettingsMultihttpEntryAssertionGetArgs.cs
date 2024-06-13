@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Inputs
     public sealed class SyntheticMonitoringCheckSettingsMultihttpEntryAssertionGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+        /// The condition of the assertion: NOT_CONTAINS, EQUALS, STARTS_WITH, ENDS_WITH, TYPE_OF, CONTAINS
         /// </summary>
         [Input("condition")]
         public Input<string>? Condition { get; set; }
@@ -26,13 +26,13 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string>? Expression { get; set; }
 
         /// <summary>
-        /// The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+        /// The subject of the assertion: RESPONSE_HEADERS, HTTP_STATUS_CODE, RESPONSE_BODY
         /// </summary>
         [Input("subject")]
         public Input<string>? Subject { get; set; }
 
         /// <summary>
-        /// The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+        /// The type of assertion to make: TEXT, JSON_PATH_VALUE, JSON_PATH_ASSERTION, REGEX_ASSERTION
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Inputs
     public sealed class ContactPointSlackGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages.
         /// </summary>
         [Input("disableResolveMessage")]
         public Input<bool>? DisableResolveMessage { get; set; }
@@ -65,7 +65,7 @@ namespace Pulumiverse.Grafana.Inputs
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        /// Additional custom properties to attach to the notifier.
         /// </summary>
         public InputMap<string> Settings
         {

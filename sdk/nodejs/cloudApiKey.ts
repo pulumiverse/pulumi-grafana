@@ -5,34 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * This resource is deprecated and will be removed in a future release. Please use grafana.CloudAccessPolicy instead.
- *
- * Manages a single API key on the Grafana Cloud portal (on the organization level)
- * * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#api-keys)
- *
- * Required access policy scopes:
- *
- * * api-keys:read
- * * api-keys:write
- * * api-keys:delete
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.CloudApiKey("test", {
- *     cloudOrgSlug: "myorg",
- *     role: "Admin",
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/cloudApiKey:CloudApiKey name "{{ orgSlug }}:{{ apiKeyName }}"
- * ```
+ * @deprecated grafana.index/cloudapikey.CloudApiKey has been deprecated in favor of grafana.cloud/apikey.ApiKey
  */
 export class CloudApiKey extends pulumi.CustomResource {
     /**
@@ -45,6 +18,7 @@ export class CloudApiKey extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: CloudApiKeyState, opts?: pulumi.CustomResourceOptions): CloudApiKey {
+        pulumi.log.warn("CloudApiKey is deprecated: grafana.index/cloudapikey.CloudApiKey has been deprecated in favor of grafana.cloud/apikey.ApiKey")
         return new CloudApiKey(name, <any>state, { ...opts, id: id });
     }
 
@@ -75,7 +49,8 @@ export class CloudApiKey extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+     * Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+     * https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
      */
     public readonly role!: pulumi.Output<string>;
 
@@ -86,8 +61,11 @@ export class CloudApiKey extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/cloudapikey.CloudApiKey has been deprecated in favor of grafana.cloud/apikey.ApiKey */
     constructor(name: string, args: CloudApiKeyArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/cloudapikey.CloudApiKey has been deprecated in favor of grafana.cloud/apikey.ApiKey */
     constructor(name: string, argsOrState?: CloudApiKeyArgs | CloudApiKeyState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("CloudApiKey is deprecated: grafana.index/cloudapikey.CloudApiKey has been deprecated in favor of grafana.cloud/apikey.ApiKey")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -110,6 +88,8 @@ export class CloudApiKey extends pulumi.CustomResource {
             resourceInputs["key"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/cloudApiKey:CloudApiKey" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["key"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(CloudApiKey.__pulumiType, name, resourceInputs, opts);
@@ -133,7 +113,8 @@ export interface CloudApiKeyState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+     * Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+     * https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
      */
     role?: pulumi.Input<string>;
 }
@@ -151,7 +132,8 @@ export interface CloudApiKeyArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+     * Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+     * https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
      */
     role: pulumi.Input<string>;
 }

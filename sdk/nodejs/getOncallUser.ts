@@ -4,21 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- *
- * const alex = grafana.getOncallUser({
- *     username: "alex",
- * });
- * ```
- */
+/** @deprecated grafana.index/getoncalluser.getOncallUser has been deprecated in favor of grafana.oncall/getuser.getUser */
 export function getOncallUser(args: GetOncallUserArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallUserResult> {
+    pulumi.log.warn("getOncallUser is deprecated: grafana.index/getoncalluser.getOncallUser has been deprecated in favor of grafana.oncall/getuser.getUser")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOncallUser:getOncallUser", {
@@ -30,9 +18,6 @@ export function getOncallUser(args: GetOncallUserArgs, opts?: pulumi.InvokeOptio
  * A collection of arguments for invoking getOncallUser.
  */
 export interface GetOncallUserArgs {
-    /**
-     * The username of the user.
-     */
     username: string;
 }
 
@@ -40,37 +25,15 @@ export interface GetOncallUserArgs {
  * A collection of values returned by getOncallUser.
  */
 export interface GetOncallUserResult {
-    /**
-     * The email of the user.
-     */
     readonly email: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * The role of the user.
-     */
     readonly role: string;
-    /**
-     * The username of the user.
-     */
     readonly username: string;
 }
-/**
- * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- *
- * const alex = grafana.getOncallUser({
- *     username: "alex",
- * });
- * ```
- */
+/** @deprecated grafana.index/getoncalluser.getOncallUser has been deprecated in favor of grafana.oncall/getuser.getUser */
 export function getOncallUserOutput(args: GetOncallUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallUserResult> {
     return pulumi.output(args).apply((a: any) => getOncallUser(a, opts))
 }
@@ -79,8 +42,5 @@ export function getOncallUserOutput(args: GetOncallUserOutputArgs, opts?: pulumi
  * A collection of arguments for invoking getOncallUser.
  */
 export interface GetOncallUserOutputArgs {
-    /**
-     * The username of the user.
-     */
     username: pulumi.Input<string>;
 }

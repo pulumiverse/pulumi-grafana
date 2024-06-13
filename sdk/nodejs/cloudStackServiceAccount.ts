@@ -5,35 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manages service accounts of a Grafana Cloud stack using the Cloud API
- * This can be used to bootstrap a management service account for a new stack
- *
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
- *
- * Required access policy scopes:
- *
- * * stacks:read
- * * stack-service-accounts:write
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const cloudSa = new grafana.CloudStackServiceAccount("cloudSa", {
- *     isDisabled: false,
- *     role: "Admin",
- *     stackSlug: "<your stack slug>",
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/cloudStackServiceAccount:CloudStackServiceAccount name "{{ stackSlug }}:{{ serviceAccountID }}"
- * ```
+ * @deprecated grafana.index/cloudstackserviceaccount.CloudStackServiceAccount has been deprecated in favor of grafana.cloud/stackserviceaccount.StackServiceAccount
  */
 export class CloudStackServiceAccount extends pulumi.CustomResource {
     /**
@@ -46,6 +18,7 @@ export class CloudStackServiceAccount extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: CloudStackServiceAccountState, opts?: pulumi.CustomResourceOptions): CloudStackServiceAccount {
+        pulumi.log.warn("CloudStackServiceAccount is deprecated: grafana.index/cloudstackserviceaccount.CloudStackServiceAccount has been deprecated in favor of grafana.cloud/stackserviceaccount.StackServiceAccount")
         return new CloudStackServiceAccount(name, <any>state, { ...opts, id: id });
     }
 
@@ -64,7 +37,7 @@ export class CloudStackServiceAccount extends pulumi.CustomResource {
     }
 
     /**
-     * The disabled status for the service account. Defaults to `false`.
+     * The disabled status for the service account.
      */
     public readonly isDisabled!: pulumi.Output<boolean | undefined>;
     /**
@@ -84,8 +57,11 @@ export class CloudStackServiceAccount extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/cloudstackserviceaccount.CloudStackServiceAccount has been deprecated in favor of grafana.cloud/stackserviceaccount.StackServiceAccount */
     constructor(name: string, args: CloudStackServiceAccountArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/cloudstackserviceaccount.CloudStackServiceAccount has been deprecated in favor of grafana.cloud/stackserviceaccount.StackServiceAccount */
     constructor(name: string, argsOrState?: CloudStackServiceAccountArgs | CloudStackServiceAccountState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("CloudStackServiceAccount is deprecated: grafana.index/cloudstackserviceaccount.CloudStackServiceAccount has been deprecated in favor of grafana.cloud/stackserviceaccount.StackServiceAccount")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -108,6 +84,8 @@ export class CloudStackServiceAccount extends pulumi.CustomResource {
             resourceInputs["stackSlug"] = args ? args.stackSlug : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/cloudStackServiceAccount:CloudStackServiceAccount" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(CloudStackServiceAccount.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -117,7 +95,7 @@ export class CloudStackServiceAccount extends pulumi.CustomResource {
  */
 export interface CloudStackServiceAccountState {
     /**
-     * The disabled status for the service account. Defaults to `false`.
+     * The disabled status for the service account.
      */
     isDisabled?: pulumi.Input<boolean>;
     /**
@@ -136,7 +114,7 @@ export interface CloudStackServiceAccountState {
  */
 export interface CloudStackServiceAccountArgs {
     /**
-     * The disabled status for the service account. Defaults to `false`.
+     * The disabled status for the service account.
      */
     isDisabled?: pulumi.Input<boolean>;
     /**

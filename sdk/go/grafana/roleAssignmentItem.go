@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Manages a single assignment for a role. Conflicts with the "RoleAssignment" resource which manages the entire set of assignments for a role.
+// Manages a single assignment for a role. Conflicts with the "enterprise.RoleAssignment" resource which manages the entire set of assignments for a role.
 //
 // ## Example Usage
 //
@@ -23,17 +23,18 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/enterprise"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testRole, err := grafana.NewRole(ctx, "testRole", &grafana.RoleArgs{
+//			testRole, err := enterprise.NewRole(ctx, "testRole", &enterprise.RoleArgs{
 //				Uid:     pulumi.String("testrole"),
 //				Version: pulumi.Int(1),
 //				Global:  pulumi.Bool(true),
-//				Permissions: grafana.RolePermissionArray{
-//					&grafana.RolePermissionArgs{
+//				Permissions: enterprise.RolePermissionArray{
+//					&enterprise.RolePermissionArgs{
 //						Action: pulumi.String("org.users:add"),
 //						Scope:  pulumi.String("users:*"),
 //					},

@@ -7,19 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Resource manages Grafana SLOs.
- *
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
- * * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
- * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
- *
- * ## Example Usage
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/sLO:SLO name "{{ uuid }}"
- * ```
+ * @deprecated grafana.index/slo.SLO has been deprecated in favor of grafana.slo/slo.SLO
  */
 export class SLO extends pulumi.CustomResource {
     /**
@@ -32,6 +20,7 @@ export class SLO extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SLOState, opts?: pulumi.CustomResourceOptions): SLO {
+        pulumi.log.warn("SLO is deprecated: grafana.index/slo.SLO has been deprecated in favor of grafana.slo/slo.SLO")
         return new SLO(name, <any>state, { ...opts, id: id });
     }
 
@@ -50,11 +39,9 @@ export class SLO extends pulumi.CustomResource {
     }
 
     /**
-     * Configures the alerting rules that will be generated for each
-     * 			time window associated with the SLO. Grafana SLOs can generate
-     * 			alerts when the short-term error budget burn is very high, the
-     * 			long-term error budget burn rate is high, or when the remaining
-     * 			error budget is below a certain threshold. Annotations and Labels support templating.
+     * Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
+     * generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
+     * when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
      */
     public readonly alertings!: pulumi.Output<outputs.SLOAlerting[] | undefined>;
     /**
@@ -66,7 +53,9 @@ export class SLO extends pulumi.CustomResource {
      */
     public readonly destinationDatasource!: pulumi.Output<outputs.SLODestinationDatasource | undefined>;
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
+     * SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
+     * "^[a-zA-Z_][a-zA-Z0-9_]*$"
      */
     public readonly labels!: pulumi.Output<outputs.SLOLabel[] | undefined>;
     /**
@@ -74,7 +63,8 @@ export class SLO extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+     * Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
+     * each time window based on the SLO burn rate or remaining error budget.
      */
     public readonly objectives!: pulumi.Output<outputs.SLOObjective[]>;
     /**
@@ -89,8 +79,11 @@ export class SLO extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/slo.SLO has been deprecated in favor of grafana.slo/slo.SLO */
     constructor(name: string, args: SLOArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/slo.SLO has been deprecated in favor of grafana.slo/slo.SLO */
     constructor(name: string, argsOrState?: SLOArgs | SLOState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("SLO is deprecated: grafana.index/slo.SLO has been deprecated in favor of grafana.slo/slo.SLO")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -122,6 +115,8 @@ export class SLO extends pulumi.CustomResource {
             resourceInputs["queries"] = args ? args.queries : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/sLO:SLO" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(SLO.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -131,11 +126,9 @@ export class SLO extends pulumi.CustomResource {
  */
 export interface SLOState {
     /**
-     * Configures the alerting rules that will be generated for each
-     * 			time window associated with the SLO. Grafana SLOs can generate
-     * 			alerts when the short-term error budget burn is very high, the
-     * 			long-term error budget burn rate is high, or when the remaining
-     * 			error budget is below a certain threshold. Annotations and Labels support templating.
+     * Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
+     * generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
+     * when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
      */
     alertings?: pulumi.Input<pulumi.Input<inputs.SLOAlerting>[]>;
     /**
@@ -147,7 +140,9 @@ export interface SLOState {
      */
     destinationDatasource?: pulumi.Input<inputs.SLODestinationDatasource>;
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
+     * SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
+     * "^[a-zA-Z_][a-zA-Z0-9_]*$"
      */
     labels?: pulumi.Input<pulumi.Input<inputs.SLOLabel>[]>;
     /**
@@ -155,7 +150,8 @@ export interface SLOState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+     * Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
+     * each time window based on the SLO burn rate or remaining error budget.
      */
     objectives?: pulumi.Input<pulumi.Input<inputs.SLOObjective>[]>;
     /**
@@ -169,11 +165,9 @@ export interface SLOState {
  */
 export interface SLOArgs {
     /**
-     * Configures the alerting rules that will be generated for each
-     * 			time window associated with the SLO. Grafana SLOs can generate
-     * 			alerts when the short-term error budget burn is very high, the
-     * 			long-term error budget burn rate is high, or when the remaining
-     * 			error budget is below a certain threshold. Annotations and Labels support templating.
+     * Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
+     * generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
+     * when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
      */
     alertings?: pulumi.Input<pulumi.Input<inputs.SLOAlerting>[]>;
     /**
@@ -185,7 +179,9 @@ export interface SLOArgs {
      */
     destinationDatasource?: pulumi.Input<inputs.SLODestinationDatasource>;
     /**
-     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+     * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
+     * SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
+     * "^[a-zA-Z_][a-zA-Z0-9_]*$"
      */
     labels?: pulumi.Input<pulumi.Input<inputs.SLOLabel>[]>;
     /**
@@ -193,7 +189,8 @@ export interface SLOArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+     * Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
+     * each time window based on the SLO burn rate or remaining error budget.
      */
     objectives: pulumi.Input<pulumi.Input<inputs.SLOObjective>[]>;
     /**

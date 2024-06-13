@@ -5,34 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manages Grafana Cloud Plugin Installations.
- *
- * * [Plugin Catalog](https://grafana.com/grafana/plugins/)
- *
- * Required access policy scopes:
- *
- * * stack-plugins:read
- * * stack-plugins:write
- * * stack-plugins:delete
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.CloudPluginInstallation("test", {
- *     slug: "some-plugin",
- *     stackSlug: "stackname",
- *     version: "1.2.3",
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/cloudPluginInstallation:CloudPluginInstallation name "{{ stackSlug }}:{{ pluginSlug }}"
- * ```
+ * @deprecated grafana.index/cloudplugininstallation.CloudPluginInstallation has been deprecated in favor of grafana.cloud/plugininstallation.PluginInstallation
  */
 export class CloudPluginInstallation extends pulumi.CustomResource {
     /**
@@ -45,6 +18,7 @@ export class CloudPluginInstallation extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: CloudPluginInstallationState, opts?: pulumi.CustomResourceOptions): CloudPluginInstallation {
+        pulumi.log.warn("CloudPluginInstallation is deprecated: grafana.index/cloudplugininstallation.CloudPluginInstallation has been deprecated in favor of grafana.cloud/plugininstallation.PluginInstallation")
         return new CloudPluginInstallation(name, <any>state, { ...opts, id: id });
     }
 
@@ -82,8 +56,11 @@ export class CloudPluginInstallation extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/cloudplugininstallation.CloudPluginInstallation has been deprecated in favor of grafana.cloud/plugininstallation.PluginInstallation */
     constructor(name: string, args: CloudPluginInstallationArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/cloudplugininstallation.CloudPluginInstallation has been deprecated in favor of grafana.cloud/plugininstallation.PluginInstallation */
     constructor(name: string, argsOrState?: CloudPluginInstallationArgs | CloudPluginInstallationState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("CloudPluginInstallation is deprecated: grafana.index/cloudplugininstallation.CloudPluginInstallation has been deprecated in favor of grafana.cloud/plugininstallation.PluginInstallation")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -107,6 +84,8 @@ export class CloudPluginInstallation extends pulumi.CustomResource {
             resourceInputs["version"] = args ? args.version : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/cloudPluginInstallation:CloudPluginInstallation" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(CloudPluginInstallation.__pulumiType, name, resourceInputs, opts);
     }
 }

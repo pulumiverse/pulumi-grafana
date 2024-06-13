@@ -17,6 +17,8 @@ __all__ = [
     'get_slos_output',
 ]
 
+warnings.warn("""grafana.index/getslos.getSlos has been deprecated in favor of grafana.slo/getslos.getSlos""", DeprecationWarning)
+
 @pulumi.output_type
 class GetSlosResult:
     """
@@ -41,9 +43,6 @@ class GetSlosResult:
     @property
     @pulumi.getter
     def slos(self) -> Sequence['outputs.GetSlosSloResult']:
-        """
-        Returns a list of all SLOs"
-        """
         return pulumi.get(self, "slos")
 
 
@@ -59,12 +58,9 @@ class AwaitableGetSlosResult(GetSlosResult):
 
 def get_slos(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSlosResult:
     """
-    Datasource for retrieving all SLOs.
-
-    * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
-    * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
-    * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_slos is deprecated: grafana.index/getslos.getSlos has been deprecated in favor of grafana.slo/getslos.getSlos""")
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('grafana:index/getSlos:getSlos', __args__, opts=opts, typ=GetSlosResult).value
@@ -77,10 +73,7 @@ def get_slos(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSlosRes
 @_utilities.lift_output_func(get_slos)
 def get_slos_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSlosResult]:
     """
-    Datasource for retrieving all SLOs.
-
-    * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
-    * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
-    * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_slos is deprecated: grafana.index/getslos.getSlos has been deprecated in favor of grafana.slo/getslos.getSlos""")
     ...

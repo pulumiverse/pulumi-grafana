@@ -83,8 +83,9 @@ lint_provider:: provider # lint the provider code
 	cd provider && golangci-lint run -c ../.golangci.yml
 
 cleanup:: # cleans up the temporary directory
-	rm -r $(WORKING_DIR)/bin
+	rm -rf $(WORKING_DIR)/bin
 	rm -f provider/cmd/${PROVIDER}/schema.go
+	rm -f provider/cmd/${PROVIDER}/schema-embed.json
 
 help::
 	@grep '^[^.#]\+:\s\+.*#' Makefile | \

@@ -23,7 +23,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string Model;
         /// <summary>
-        /// An optional identifier for the type of query being executed. Defaults to ``.
+        /// An optional identifier for the type of query being executed.
         /// </summary>
         public readonly string? QueryType;
         /// <summary>

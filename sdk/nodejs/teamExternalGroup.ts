@@ -5,33 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Equivalent to the the `teamSync` attribute of the `grafana.Team` resource. Use one or the other to configure a team's external groups syncing config.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const myTeam = new grafana.Team("myTeam", {});
- * const test_team_group = new grafana.TeamExternalGroup("test-team-group", {
- *     teamId: myTeam.id,
- *     groups: [
- *         "test-group-1",
- *         "test-group-2",
- *     ],
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup name "{{ teamID }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup name "{{ orgID }}:{{ teamID }}"
- * ```
+ * @deprecated grafana.index/teamexternalgroup.TeamExternalGroup has been deprecated in favor of grafana.enterprise/teamexternalgroup.TeamExternalGroup
  */
 export class TeamExternalGroup extends pulumi.CustomResource {
     /**
@@ -44,6 +18,7 @@ export class TeamExternalGroup extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: TeamExternalGroupState, opts?: pulumi.CustomResourceOptions): TeamExternalGroup {
+        pulumi.log.warn("TeamExternalGroup is deprecated: grafana.index/teamexternalgroup.TeamExternalGroup has been deprecated in favor of grafana.enterprise/teamexternalgroup.TeamExternalGroup")
         return new TeamExternalGroup(name, <any>state, { ...opts, id: id });
     }
 
@@ -77,8 +52,11 @@ export class TeamExternalGroup extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/teamexternalgroup.TeamExternalGroup has been deprecated in favor of grafana.enterprise/teamexternalgroup.TeamExternalGroup */
     constructor(name: string, args: TeamExternalGroupArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/teamexternalgroup.TeamExternalGroup has been deprecated in favor of grafana.enterprise/teamexternalgroup.TeamExternalGroup */
     constructor(name: string, argsOrState?: TeamExternalGroupArgs | TeamExternalGroupState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("TeamExternalGroup is deprecated: grafana.index/teamexternalgroup.TeamExternalGroup has been deprecated in favor of grafana.enterprise/teamexternalgroup.TeamExternalGroup")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -97,6 +75,8 @@ export class TeamExternalGroup extends pulumi.CustomResource {
             resourceInputs["teamId"] = args ? args.teamId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/teamExternalGroup:TeamExternalGroup" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(TeamExternalGroup.__pulumiType, name, resourceInputs, opts);
     }
 }

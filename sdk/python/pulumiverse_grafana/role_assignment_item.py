@@ -198,7 +198,7 @@ class RoleAssignmentItem(pulumi.CustomResource):
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages a single assignment for a role. Conflicts with the "RoleAssignment" resource which manages the entire set of assignments for a role.
+        Manages a single assignment for a role. Conflicts with the "enterprise.RoleAssignment" resource which manages the entire set of assignments for a role.
 
         ## Example Usage
 
@@ -206,11 +206,11 @@ class RoleAssignmentItem(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        test_role = grafana.Role("testRole",
+        test_role = grafana.enterprise.Role("testRole",
             uid="testrole",
             version=1,
             global_=True,
-            permissions=[grafana.RolePermissionArgs(
+            permissions=[grafana.enterprise.RolePermissionArgs(
                 action="org.users:add",
                 scope="users:*",
             )])
@@ -256,7 +256,7 @@ class RoleAssignmentItem(pulumi.CustomResource):
                  args: RoleAssignmentItemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a single assignment for a role. Conflicts with the "RoleAssignment" resource which manages the entire set of assignments for a role.
+        Manages a single assignment for a role. Conflicts with the "enterprise.RoleAssignment" resource which manages the entire set of assignments for a role.
 
         ## Example Usage
 
@@ -264,11 +264,11 @@ class RoleAssignmentItem(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        test_role = grafana.Role("testRole",
+        test_role = grafana.enterprise.Role("testRole",
             uid="testrole",
             version=1,
             global_=True,
-            permissions=[grafana.RolePermissionArgs(
+            permissions=[grafana.enterprise.RolePermissionArgs(
                 action="org.users:add",
                 scope="users:*",
             )])

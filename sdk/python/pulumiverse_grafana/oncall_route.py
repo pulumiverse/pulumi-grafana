@@ -31,7 +31,7 @@ class OncallRouteArgs:
         :param pulumi.Input[int] position: The position of the route (starts from 0).
         :param pulumi.Input[str] routing_regex: Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
         :param pulumi.Input['OncallRouteMsteamsArgs'] msteams: MS teams-specific settings for a route.
-        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex Defaults to `regex`.
+        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex
         :param pulumi.Input['OncallRouteSlackArgs'] slack: Slack-specific settings for a route.
         :param pulumi.Input['OncallRouteTelegramArgs'] telegram: Telegram-specific settings for a route.
         """
@@ -112,7 +112,7 @@ class OncallRouteArgs:
     @pulumi.getter(name="routingType")
     def routing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of route. Can be jinja2, regex Defaults to `regex`.
+        The type of route. Can be jinja2, regex
         """
         return pulumi.get(self, "routing_type")
 
@@ -163,7 +163,7 @@ class _OncallRouteState:
         :param pulumi.Input['OncallRouteMsteamsArgs'] msteams: MS teams-specific settings for a route.
         :param pulumi.Input[int] position: The position of the route (starts from 0).
         :param pulumi.Input[str] routing_regex: Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
-        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex Defaults to `regex`.
+        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex
         :param pulumi.Input['OncallRouteSlackArgs'] slack: Slack-specific settings for a route.
         :param pulumi.Input['OncallRouteTelegramArgs'] telegram: Telegram-specific settings for a route.
         """
@@ -248,7 +248,7 @@ class _OncallRouteState:
     @pulumi.getter(name="routingType")
     def routing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of route. Can be jinja2, regex Defaults to `regex`.
+        The type of route. Can be jinja2, regex
         """
         return pulumi.get(self, "routing_type")
 
@@ -281,7 +281,12 @@ class _OncallRouteState:
         pulumi.set(self, "telegram", value)
 
 
+warnings.warn("""grafana.index/oncallroute.OncallRoute has been deprecated in favor of grafana.oncall/route.Route""", DeprecationWarning)
+
+
 class OncallRoute(pulumi.CustomResource):
+    warnings.warn("""grafana.index/oncallroute.OncallRoute has been deprecated in favor of grafana.oncall/route.Route""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -296,45 +301,7 @@ class OncallRoute(pulumi.CustomResource):
                  telegram: Optional[pulumi.Input[pulumi.InputType['OncallRouteTelegramArgs']]] = None,
                  __props__=None):
         """
-        * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/routes/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_grafana as grafana
-        import pulumiverse_grafana as grafana
-
-        example_slack_channel = grafana.get_on_call_slack_channel(name="example_slack_channel")
-        default = grafana.OncallEscalationChain("default")
-        example_integration = grafana.OncallIntegration("exampleIntegration",
-            type="grafana",
-            default_route=grafana.OncallIntegrationDefaultRouteArgs())
-        example_route = grafana.OncallRoute("exampleRoute",
-            integration_id=example_integration.id,
-            escalation_chain_id=default.id,
-            routing_regex="us-(east|west)",
-            position=0,
-            slack=grafana.OncallRouteSlackArgs(
-                channel_id=example_slack_channel.slack_id,
-                enabled=True,
-            ),
-            telegram=grafana.OncallRouteTelegramArgs(
-                id="ONCALLTELEGRAMID",
-                enabled=True,
-            ),
-            msteams=grafana.OncallRouteMsteamsArgs(
-                id="ONCALLMSTEAMSID",
-                enabled=False,
-            ))
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/oncallRoute:OncallRoute name "{{ id }}"
-        ```
-
+        Create a OncallRoute resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] escalation_chain_id: The ID of the escalation chain.
@@ -342,7 +309,7 @@ class OncallRoute(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['OncallRouteMsteamsArgs']] msteams: MS teams-specific settings for a route.
         :param pulumi.Input[int] position: The position of the route (starts from 0).
         :param pulumi.Input[str] routing_regex: Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
-        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex Defaults to `regex`.
+        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex
         :param pulumi.Input[pulumi.InputType['OncallRouteSlackArgs']] slack: Slack-specific settings for a route.
         :param pulumi.Input[pulumi.InputType['OncallRouteTelegramArgs']] telegram: Telegram-specific settings for a route.
         """
@@ -353,45 +320,7 @@ class OncallRoute(pulumi.CustomResource):
                  args: OncallRouteArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/routes/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_grafana as grafana
-        import pulumiverse_grafana as grafana
-
-        example_slack_channel = grafana.get_on_call_slack_channel(name="example_slack_channel")
-        default = grafana.OncallEscalationChain("default")
-        example_integration = grafana.OncallIntegration("exampleIntegration",
-            type="grafana",
-            default_route=grafana.OncallIntegrationDefaultRouteArgs())
-        example_route = grafana.OncallRoute("exampleRoute",
-            integration_id=example_integration.id,
-            escalation_chain_id=default.id,
-            routing_regex="us-(east|west)",
-            position=0,
-            slack=grafana.OncallRouteSlackArgs(
-                channel_id=example_slack_channel.slack_id,
-                enabled=True,
-            ),
-            telegram=grafana.OncallRouteTelegramArgs(
-                id="ONCALLTELEGRAMID",
-                enabled=True,
-            ),
-            msteams=grafana.OncallRouteMsteamsArgs(
-                id="ONCALLMSTEAMSID",
-                enabled=False,
-            ))
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/oncallRoute:OncallRoute name "{{ id }}"
-        ```
-
+        Create a OncallRoute resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param OncallRouteArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -416,6 +345,7 @@ class OncallRoute(pulumi.CustomResource):
                  slack: Optional[pulumi.Input[pulumi.InputType['OncallRouteSlackArgs']]] = None,
                  telegram: Optional[pulumi.Input[pulumi.InputType['OncallRouteTelegramArgs']]] = None,
                  __props__=None):
+        pulumi.log.warn("""OncallRoute is deprecated: grafana.index/oncallroute.OncallRoute has been deprecated in favor of grafana.oncall/route.Route""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -440,6 +370,8 @@ class OncallRoute(pulumi.CustomResource):
             __props__.__dict__["routing_type"] = routing_type
             __props__.__dict__["slack"] = slack
             __props__.__dict__["telegram"] = telegram
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/oncallRoute:OncallRoute")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(OncallRoute, __self__).__init__(
             'grafana:index/oncallRoute:OncallRoute',
             resource_name,
@@ -470,7 +402,7 @@ class OncallRoute(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['OncallRouteMsteamsArgs']] msteams: MS teams-specific settings for a route.
         :param pulumi.Input[int] position: The position of the route (starts from 0).
         :param pulumi.Input[str] routing_regex: Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
-        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex Defaults to `regex`.
+        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex
         :param pulumi.Input[pulumi.InputType['OncallRouteSlackArgs']] slack: Slack-specific settings for a route.
         :param pulumi.Input[pulumi.InputType['OncallRouteTelegramArgs']] telegram: Telegram-specific settings for a route.
         """
@@ -532,7 +464,7 @@ class OncallRoute(pulumi.CustomResource):
     @pulumi.getter(name="routingType")
     def routing_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The type of route. Can be jinja2, regex Defaults to `regex`.
+        The type of route. Can be jinja2, regex
         """
         return pulumi.get(self, "routing_type")
 

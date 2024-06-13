@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana
 {
     /// <summary>
-    /// Manages a single assignment for a role. Conflicts with the "grafana.RoleAssignment" resource which manages the entire set of assignments for a role.
+    /// Manages a single assignment for a role. Conflicts with the "grafana.enterprise.RoleAssignment" resource which manages the entire set of assignments for a role.
     /// 
     /// ## Example Usage
     /// 
@@ -23,14 +23,14 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testRole = new Grafana.Role("testRole", new()
+    ///     var testRole = new Grafana.Enterprise.Role("testRole", new()
     ///     {
     ///         Uid = "testrole",
     ///         Version = 1,
     ///         Global = true,
     ///         Permissions = new[]
     ///         {
-    ///             new Grafana.Inputs.RolePermissionArgs
+    ///             new Grafana.Enterprise.Inputs.RolePermissionArgs
     ///             {
     ///                 Action = "org.users:add",
     ///                 Scope = "users:*",

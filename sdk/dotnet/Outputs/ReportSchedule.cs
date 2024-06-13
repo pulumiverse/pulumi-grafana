@@ -28,7 +28,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string Frequency;
         /// <summary>
-        /// Send the report on the last day of the month Defaults to `false`.
+        /// Send the report on the last day of the month
         /// </summary>
         public readonly bool? LastDayOfMonth;
         /// <summary>
@@ -36,11 +36,11 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? StartTime;
         /// <summary>
-        /// Set the report time zone. Defaults to `GMT`.
+        /// Set the report time zone.
         /// </summary>
         public readonly string? Timezone;
         /// <summary>
-        /// Whether to send the report only on work days. Defaults to `false`.
+        /// Whether to send the report only on work days.
         /// </summary>
         public readonly bool? WorkdaysOnly;
 

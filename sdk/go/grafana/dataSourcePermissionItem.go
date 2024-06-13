@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Manages a single permission item for a datasource. Conflicts with the "DataSourcePermission" resource which manages the entire set of permissions for a datasource.
+// Manages a single permission item for a datasource. Conflicts with the "enterprise.DataSourcePermission" resource which manages the entire set of permissions for a datasource.
 //
 // ## Example Usage
 //

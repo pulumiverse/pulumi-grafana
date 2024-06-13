@@ -10,53 +10,12 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    [Obsolete(@"grafana.index/getoncallescalationchain.getOncallEscalationChain has been deprecated in favor of grafana.oncall/getescalationchain.getEscalationChain")]
     public static class GetOncallEscalationChain
     {
-        /// <summary>
-        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var @default = Grafana.GetOncallEscalationChain.Invoke(new()
-        ///     {
-        ///         Name = "default",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Task<GetOncallEscalationChainResult> InvokeAsync(GetOncallEscalationChainArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallEscalationChainResult>("grafana:index/getOncallEscalationChain:getOncallEscalationChain", args ?? new GetOncallEscalationChainArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var @default = Grafana.GetOncallEscalationChain.Invoke(new()
-        ///     {
-        ///         Name = "default",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Output<GetOncallEscalationChainResult> Invoke(GetOncallEscalationChainInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOncallEscalationChainResult>("grafana:index/getOncallEscalationChain:getOncallEscalationChain", args ?? new GetOncallEscalationChainInvokeArgs(), options.WithDefaults());
     }
@@ -64,9 +23,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetOncallEscalationChainArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The escalation chain name.
-        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
@@ -78,9 +34,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetOncallEscalationChainInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The escalation chain name.
-        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -98,9 +51,6 @@ namespace Pulumiverse.Grafana
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// The escalation chain name.
-        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

@@ -26,15 +26,16 @@ class SLOArgs:
         """
         The set of arguments for constructing a SLO resource.
         :param pulumi.Input[str] description: Description is a free-text field that can provide more context to an SLO.
-        :param pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+        :param pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
+               each time window based on the SLO burn rate or remaining error budget.
         :param pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
-        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]] alertings: Configures the alerting rules that will be generated for each
-               			time window associated with the SLO. Grafana SLOs can generate
-               			alerts when the short-term error budget burn is very high, the
-               			long-term error budget burn rate is high, or when the remaining
-               			error budget is below a certain threshold. Annotations and Labels support templating.
+        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]] alertings: Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
+               generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
+               when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
         :param pulumi.Input['SLODestinationDatasourceArgs'] destination_datasource: Destination Datasource sets the datasource defined for an SLO
-        :param pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        :param pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
+               SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
+               "^[a-zA-Z_][a-zA-Z0-9_]*$"
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
         """
         pulumi.set(__self__, "description", description)
@@ -65,7 +66,8 @@ class SLOArgs:
     @pulumi.getter
     def objectives(self) -> pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]]:
         """
-        Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+        Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
+        each time window based on the SLO burn rate or remaining error budget.
         """
         return pulumi.get(self, "objectives")
 
@@ -89,11 +91,9 @@ class SLOArgs:
     @pulumi.getter
     def alertings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]]]:
         """
-        Configures the alerting rules that will be generated for each
-        			time window associated with the SLO. Grafana SLOs can generate
-        			alerts when the short-term error budget burn is very high, the
-        			long-term error budget burn rate is high, or when the remaining
-        			error budget is below a certain threshold. Annotations and Labels support templating.
+        Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
+        generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
+        when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
         """
         return pulumi.get(self, "alertings")
 
@@ -117,7 +117,9 @@ class SLOArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]]]:
         """
-        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
+        SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
+        "^[a-zA-Z_][a-zA-Z0-9_]*$"
         """
         return pulumi.get(self, "labels")
 
@@ -150,16 +152,17 @@ class _SLOState:
                  queries: Optional[pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]]] = None):
         """
         Input properties used for looking up and filtering SLO resources.
-        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]] alertings: Configures the alerting rules that will be generated for each
-               			time window associated with the SLO. Grafana SLOs can generate
-               			alerts when the short-term error budget burn is very high, the
-               			long-term error budget burn rate is high, or when the remaining
-               			error budget is below a certain threshold. Annotations and Labels support templating.
+        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]] alertings: Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
+               generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
+               when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
         :param pulumi.Input[str] description: Description is a free-text field that can provide more context to an SLO.
         :param pulumi.Input['SLODestinationDatasourceArgs'] destination_datasource: Destination Datasource sets the datasource defined for an SLO
-        :param pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        :param pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
+               SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
+               "^[a-zA-Z_][a-zA-Z0-9_]*$"
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
-        :param pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+        :param pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
+               each time window based on the SLO burn rate or remaining error budget.
         :param pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
         if alertings is not None:
@@ -181,11 +184,9 @@ class _SLOState:
     @pulumi.getter
     def alertings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]]]:
         """
-        Configures the alerting rules that will be generated for each
-        			time window associated with the SLO. Grafana SLOs can generate
-        			alerts when the short-term error budget burn is very high, the
-        			long-term error budget burn rate is high, or when the remaining
-        			error budget is below a certain threshold. Annotations and Labels support templating.
+        Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
+        generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
+        when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
         """
         return pulumi.get(self, "alertings")
 
@@ -221,7 +222,9 @@ class _SLOState:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]]]:
         """
-        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
+        SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
+        "^[a-zA-Z_][a-zA-Z0-9_]*$"
         """
         return pulumi.get(self, "labels")
 
@@ -245,7 +248,8 @@ class _SLOState:
     @pulumi.getter
     def objectives(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]]]:
         """
-        Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+        Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
+        each time window based on the SLO burn rate or remaining error budget.
         """
         return pulumi.get(self, "objectives")
 
@@ -266,7 +270,12 @@ class _SLOState:
         pulumi.set(self, "queries", value)
 
 
+warnings.warn("""grafana.index/slo.SLO has been deprecated in favor of grafana.slo/slo.SLO""", DeprecationWarning)
+
+
 class SLO(pulumi.CustomResource):
+    warnings.warn("""grafana.index/slo.SLO has been deprecated in favor of grafana.slo/slo.SLO""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -280,32 +289,20 @@ class SLO(pulumi.CustomResource):
                  queries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOQueryArgs']]]]] = None,
                  __props__=None):
         """
-        Resource manages Grafana SLOs.
-
-        * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
-        * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
-        * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
-
-        ## Example Usage
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/sLO:SLO name "{{ uuid }}"
-        ```
-
+        Create a SLO resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOAlertingArgs']]]] alertings: Configures the alerting rules that will be generated for each
-               			time window associated with the SLO. Grafana SLOs can generate
-               			alerts when the short-term error budget burn is very high, the
-               			long-term error budget burn rate is high, or when the remaining
-               			error budget is below a certain threshold. Annotations and Labels support templating.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOAlertingArgs']]]] alertings: Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
+               generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
+               when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
         :param pulumi.Input[str] description: Description is a free-text field that can provide more context to an SLO.
         :param pulumi.Input[pulumi.InputType['SLODestinationDatasourceArgs']] destination_datasource: Destination Datasource sets the datasource defined for an SLO
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
+               SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
+               "^[a-zA-Z_][a-zA-Z0-9_]*$"
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
+               each time window based on the SLO burn rate or remaining error budget.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOQueryArgs']]]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
         ...
@@ -315,20 +312,7 @@ class SLO(pulumi.CustomResource):
                  args: SLOArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Resource manages Grafana SLOs.
-
-        * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
-        * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
-        * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
-
-        ## Example Usage
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/sLO:SLO name "{{ uuid }}"
-        ```
-
+        Create a SLO resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param SLOArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -352,6 +336,7 @@ class SLO(pulumi.CustomResource):
                  objectives: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]]] = None,
                  queries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOQueryArgs']]]]] = None,
                  __props__=None):
+        pulumi.log.warn("""SLO is deprecated: grafana.index/slo.SLO has been deprecated in favor of grafana.slo/slo.SLO""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -373,6 +358,8 @@ class SLO(pulumi.CustomResource):
             if queries is None and not opts.urn:
                 raise TypeError("Missing required property 'queries'")
             __props__.__dict__["queries"] = queries
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/sLO:SLO")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(SLO, __self__).__init__(
             'grafana:index/sLO:SLO',
             resource_name,
@@ -397,16 +384,17 @@ class SLO(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOAlertingArgs']]]] alertings: Configures the alerting rules that will be generated for each
-               			time window associated with the SLO. Grafana SLOs can generate
-               			alerts when the short-term error budget burn is very high, the
-               			long-term error budget burn rate is high, or when the remaining
-               			error budget is below a certain threshold. Annotations and Labels support templating.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOAlertingArgs']]]] alertings: Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
+               generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
+               when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
         :param pulumi.Input[str] description: Description is a free-text field that can provide more context to an SLO.
         :param pulumi.Input[pulumi.InputType['SLODestinationDatasourceArgs']] destination_datasource: Destination Datasource sets the datasource defined for an SLO
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
+               SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
+               "^[a-zA-Z_][a-zA-Z0-9_]*$"
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
+               each time window based on the SLO burn rate or remaining error budget.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOQueryArgs']]]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -426,11 +414,9 @@ class SLO(pulumi.CustomResource):
     @pulumi.getter
     def alertings(self) -> pulumi.Output[Optional[Sequence['outputs.SLOAlerting']]]:
         """
-        Configures the alerting rules that will be generated for each
-        			time window associated with the SLO. Grafana SLOs can generate
-        			alerts when the short-term error budget burn is very high, the
-        			long-term error budget burn rate is high, or when the remaining
-        			error budget is below a certain threshold. Annotations and Labels support templating.
+        Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
+        generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
+        when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
         """
         return pulumi.get(self, "alertings")
 
@@ -454,7 +440,9 @@ class SLO(pulumi.CustomResource):
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Sequence['outputs.SLOLabel']]]:
         """
-        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
+        SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
+        "^[a-zA-Z_][a-zA-Z0-9_]*$"
         """
         return pulumi.get(self, "labels")
 
@@ -470,7 +458,8 @@ class SLO(pulumi.CustomResource):
     @pulumi.getter
     def objectives(self) -> pulumi.Output[Sequence['outputs.SLOObjective']]:
         """
-        Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+        Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
+        each time window based on the SLO burn rate or remaining error budget.
         """
         return pulumi.get(self, "objectives")
 

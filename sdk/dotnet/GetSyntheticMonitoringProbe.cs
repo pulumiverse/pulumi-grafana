@@ -10,53 +10,12 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    [Obsolete(@"grafana.index/getsyntheticmonitoringprobe.getSyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/getprobe.getProbe")]
     public static class GetSyntheticMonitoringProbe
     {
-        /// <summary>
-        /// Data source for retrieving a single probe by name.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var atlanta = Grafana.GetSyntheticMonitoringProbe.Invoke(new()
-        ///     {
-        ///         Name = "Atlanta",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Task<GetSyntheticMonitoringProbeResult> InvokeAsync(GetSyntheticMonitoringProbeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSyntheticMonitoringProbeResult>("grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe", args ?? new GetSyntheticMonitoringProbeArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// Data source for retrieving a single probe by name.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var atlanta = Grafana.GetSyntheticMonitoringProbe.Invoke(new()
-        ///     {
-        ///         Name = "Atlanta",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Output<GetSyntheticMonitoringProbeResult> Invoke(GetSyntheticMonitoringProbeInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSyntheticMonitoringProbeResult>("grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe", args ?? new GetSyntheticMonitoringProbeInvokeArgs(), options.WithDefaults());
     }
@@ -64,9 +23,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetSyntheticMonitoringProbeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Name of the probe.
-        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
@@ -78,9 +34,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetSyntheticMonitoringProbeInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Name of the probe.
-        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -94,37 +47,13 @@ namespace Pulumiverse.Grafana
     [OutputType]
     public sealed class GetSyntheticMonitoringProbeResult
     {
-        /// <summary>
-        /// The ID of the probe.
-        /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// Custom labels to be included with collected metrics and logs.
-        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
-        /// <summary>
-        /// Latitude coordinates.
-        /// </summary>
         public readonly double Latitude;
-        /// <summary>
-        /// Longitude coordinates.
-        /// </summary>
         public readonly double Longitude;
-        /// <summary>
-        /// Name of the probe.
-        /// </summary>
         public readonly string Name;
-        /// <summary>
-        /// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`.
-        /// </summary>
         public readonly bool Public;
-        /// <summary>
-        /// Region of the probe.
-        /// </summary>
         public readonly string Region;
-        /// <summary>
-        /// The tenant ID of the probe.
-        /// </summary>
         public readonly int TenantId;
 
         [OutputConstructor]

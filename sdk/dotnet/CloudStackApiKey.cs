@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    [Obsolete(@"grafana.index/cloudstackapikey.CloudStackApiKey has been deprecated in favor of grafana.cloud/stackapikey.StackApiKey")]
     [GrafanaResourceType("grafana:index/cloudStackApiKey:CloudStackApiKey")]
     public partial class CloudStackApiKey : global::Pulumi.CustomResource
     {
@@ -55,6 +56,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/cloudStackApiKey:CloudStackApiKey" },
+                },
                 AdditionalSecretOutputs =
                 {
                     "key",

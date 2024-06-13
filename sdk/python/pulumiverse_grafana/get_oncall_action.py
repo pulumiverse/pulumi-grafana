@@ -16,6 +16,8 @@ __all__ = [
     'get_oncall_action_output',
 ]
 
+warnings.warn("""grafana.index/getoncallaction.getOncallAction has been deprecated in favor of grafana.oncall/getaction.getAction""", DeprecationWarning)
+
 @pulumi.output_type
 class GetOncallActionResult:
     """
@@ -40,9 +42,6 @@ class GetOncallActionResult:
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        The action name.
-        """
         return pulumi.get(self, "name")
 
 
@@ -59,14 +58,9 @@ class AwaitableGetOncallActionResult(GetOncallActionResult):
 def get_oncall_action(name: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallActionResult:
     """
-    **Note:** This data source is going to be deprecated, please use outgoing webhook data source instead.
-    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
-
-    !> Deprecated: Use the `OncallOutgoingWebhook` data source instead.
-
-
-    :param str name: The action name.
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_oncall_action is deprecated: grafana.index/getoncallaction.getOncallAction has been deprecated in favor of grafana.oncall/getaction.getAction""")
     __args__ = dict()
     __args__['name'] = name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -81,12 +75,7 @@ def get_oncall_action(name: Optional[str] = None,
 def get_oncall_action_output(name: Optional[pulumi.Input[str]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallActionResult]:
     """
-    **Note:** This data source is going to be deprecated, please use outgoing webhook data source instead.
-    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
-
-    !> Deprecated: Use the `OncallOutgoingWebhook` data source instead.
-
-
-    :param str name: The action name.
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_oncall_action is deprecated: grafana.index/getoncallaction.getOncallAction has been deprecated in favor of grafana.oncall/getaction.getAction""")
     ...

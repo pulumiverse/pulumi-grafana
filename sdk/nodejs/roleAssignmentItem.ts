@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manages a single assignment for a role. Conflicts with the "grafana.RoleAssignment" resource which manages the entire set of assignments for a role.
+ * Manages a single assignment for a role. Conflicts with the "grafana.enterprise.RoleAssignment" resource which manages the entire set of assignments for a role.
  *
  * ## Example Usage
  *
@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const testRole = new grafana.Role("testRole", {
+ * const testRole = new grafana.enterprise.Role("testRole", {
  *     uid: "testrole",
  *     version: 1,
  *     global: true,

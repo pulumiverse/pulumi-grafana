@@ -11,42 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.NewOrganizationPreference(ctx, "test", &grafana.OrganizationPreferenceArgs{
-//				Theme:     pulumi.String("light"),
-//				Timezone:  pulumi.String("utc"),
-//				WeekStart: pulumi.String("sunday"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/organizationPreference:OrganizationPreference name "{{ orgID }}"
-// ```
+// Deprecated: grafana.index/organizationpreference.OrganizationPreference has been deprecated in favor of grafana.index/organizationpreferences.OrganizationPreferences
 type OrganizationPreference struct {
 	pulumi.CustomResourceState
 
@@ -62,7 +27,8 @@ type OrganizationPreference struct {
 	Theme pulumi.StringPtrOutput `pulumi:"theme"`
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
 	Timezone pulumi.StringPtrOutput `pulumi:"timezone"`
-	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+	// default.
 	WeekStart pulumi.StringPtrOutput `pulumi:"weekStart"`
 }
 
@@ -108,7 +74,8 @@ type organizationPreferenceState struct {
 	Theme *string `pulumi:"theme"`
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
 	Timezone *string `pulumi:"timezone"`
-	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+	// default.
 	WeekStart *string `pulumi:"weekStart"`
 }
 
@@ -125,7 +92,8 @@ type OrganizationPreferenceState struct {
 	Theme pulumi.StringPtrInput
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
 	Timezone pulumi.StringPtrInput
-	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+	// default.
 	WeekStart pulumi.StringPtrInput
 }
 
@@ -146,7 +114,8 @@ type organizationPreferenceArgs struct {
 	Theme *string `pulumi:"theme"`
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
 	Timezone *string `pulumi:"timezone"`
-	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+	// default.
 	WeekStart *string `pulumi:"weekStart"`
 }
 
@@ -164,7 +133,8 @@ type OrganizationPreferenceArgs struct {
 	Theme pulumi.StringPtrInput
 	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
 	Timezone pulumi.StringPtrInput
-	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+	// default.
 	WeekStart pulumi.StringPtrInput
 }
 
@@ -282,7 +252,8 @@ func (o OrganizationPreferenceOutput) Timezone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OrganizationPreference) pulumi.StringPtrOutput { return v.Timezone }).(pulumi.StringPtrOutput)
 }
 
-// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to “.
+// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+// default.
 func (o OrganizationPreferenceOutput) WeekStart() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OrganizationPreference) pulumi.StringPtrOutput { return v.WeekStart }).(pulumi.StringPtrOutput)
 }

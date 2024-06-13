@@ -169,7 +169,12 @@ class _DataSourcePermissionState:
         pulumi.set(self, "permissions", value)
 
 
+warnings.warn("""grafana.index/datasourcepermission.DataSourcePermission has been deprecated in favor of grafana.enterprise/datasourcepermission.DataSourcePermission""", DeprecationWarning)
+
+
 class DataSourcePermission(pulumi.CustomResource):
+    warnings.warn("""grafana.index/datasourcepermission.DataSourcePermission has been deprecated in favor of grafana.enterprise/datasourcepermission.DataSourcePermission""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -180,64 +185,7 @@ class DataSourcePermission(pulumi.CustomResource):
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourcePermissionPermissionArgs']]]]] = None,
                  __props__=None):
         """
-        Manages the entire set of permissions for a datasource. Permissions that aren't specified when applying this resource will be removed.
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import json
-        import pulumiverse_grafana as grafana
-
-        team = grafana.Team("team")
-        foo = grafana.DataSource("foo",
-            type="cloudwatch",
-            json_data_encoded=json.dumps({
-                "defaultRegion": "us-east-1",
-                "authType": "keys",
-            }),
-            secure_json_data_encoded=json.dumps({
-                "accessKey": "123",
-                "secretKey": "456",
-            }))
-        user = grafana.User("user",
-            email="test-ds-permissions@example.com",
-            login="test-ds-permissions",
-            password="hunter2")
-        sa = grafana.ServiceAccount("sa", role="Viewer")
-        foo_permissions = grafana.DataSourcePermission("fooPermissions",
-            datasource_uid=foo.uid,
-            permissions=[
-                grafana.DataSourcePermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="Edit",
-                ),
-                grafana.DataSourcePermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Edit",
-                ),
-                grafana.DataSourcePermissionPermissionArgs(
-                    built_in_role="Viewer",
-                    permission="Query",
-                ),
-                grafana.DataSourcePermissionPermissionArgs(
-                    user_id=sa.id,
-                    permission="Query",
-                ),
-            ])
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/dataSourcePermission:DataSourcePermission name "{{ datasourceID }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/dataSourcePermission:DataSourcePermission name "{{ orgID }}:{{ datasourceID }}"
-        ```
-
+        Create a DataSourcePermission resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] datasource_id: Deprecated: Use `datasource_uid` instead.
@@ -252,64 +200,7 @@ class DataSourcePermission(pulumi.CustomResource):
                  args: Optional[DataSourcePermissionArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages the entire set of permissions for a datasource. Permissions that aren't specified when applying this resource will be removed.
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import json
-        import pulumiverse_grafana as grafana
-
-        team = grafana.Team("team")
-        foo = grafana.DataSource("foo",
-            type="cloudwatch",
-            json_data_encoded=json.dumps({
-                "defaultRegion": "us-east-1",
-                "authType": "keys",
-            }),
-            secure_json_data_encoded=json.dumps({
-                "accessKey": "123",
-                "secretKey": "456",
-            }))
-        user = grafana.User("user",
-            email="test-ds-permissions@example.com",
-            login="test-ds-permissions",
-            password="hunter2")
-        sa = grafana.ServiceAccount("sa", role="Viewer")
-        foo_permissions = grafana.DataSourcePermission("fooPermissions",
-            datasource_uid=foo.uid,
-            permissions=[
-                grafana.DataSourcePermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="Edit",
-                ),
-                grafana.DataSourcePermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Edit",
-                ),
-                grafana.DataSourcePermissionPermissionArgs(
-                    built_in_role="Viewer",
-                    permission="Query",
-                ),
-                grafana.DataSourcePermissionPermissionArgs(
-                    user_id=sa.id,
-                    permission="Query",
-                ),
-            ])
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/dataSourcePermission:DataSourcePermission name "{{ datasourceID }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/dataSourcePermission:DataSourcePermission name "{{ orgID }}:{{ datasourceID }}"
-        ```
-
+        Create a DataSourcePermission resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DataSourcePermissionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -330,6 +221,7 @@ class DataSourcePermission(pulumi.CustomResource):
                  org_id: Optional[pulumi.Input[str]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourcePermissionPermissionArgs']]]]] = None,
                  __props__=None):
+        pulumi.log.warn("""DataSourcePermission is deprecated: grafana.index/datasourcepermission.DataSourcePermission has been deprecated in favor of grafana.enterprise/datasourcepermission.DataSourcePermission""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -342,6 +234,8 @@ class DataSourcePermission(pulumi.CustomResource):
             __props__.__dict__["datasource_uid"] = datasource_uid
             __props__.__dict__["org_id"] = org_id
             __props__.__dict__["permissions"] = permissions
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/dataSourcePermission:DataSourcePermission")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(DataSourcePermission, __self__).__init__(
             'grafana:index/dataSourcePermission:DataSourcePermission',
             resource_name,

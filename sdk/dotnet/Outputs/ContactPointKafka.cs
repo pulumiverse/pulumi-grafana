@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Outputs
     public sealed class ContactPointKafka
     {
         /// <summary>
-        /// The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+        /// The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3.
         /// </summary>
         public readonly string? ApiVersion;
         /// <summary>
@@ -31,7 +31,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? Details;
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages.
         /// </summary>
         public readonly bool? DisableResolveMessage;
         /// <summary>
@@ -43,7 +43,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string RestProxyUrl;
         /// <summary>
-        /// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        /// Additional custom properties to attach to the notifier.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Settings;
         /// <summary>

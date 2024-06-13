@@ -10,45 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// Manages Grafana Alerting message templates.
-    /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/template-notifications/create-notification-templates/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#templates)
-    /// 
-    /// This resource requires Grafana 9.1.0 or later.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var myTemplate = new Grafana.MessageTemplate("myTemplate", new()
-    ///     {
-    ///         Template = @"{{define ""My Reusable Template"" }}
-    ///  template content
-    /// {{ end }}
-    /// ",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/messageTemplate:MessageTemplate name "{{ name }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/messageTemplate:MessageTemplate name "{{ orgID }}:{{ name }}"
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/messagetemplate.MessageTemplate has been deprecated in favor of grafana.alerting/messagetemplate.MessageTemplate")]
     [GrafanaResourceType("grafana:index/messageTemplate:MessageTemplate")]
     public partial class MessageTemplate : global::Pulumi.CustomResource
     {
@@ -97,6 +59,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/messageTemplate:MessageTemplate" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

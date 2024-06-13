@@ -13,7 +13,14 @@
                 "current": "grafana:index/apiKey:ApiKey"
             },
             "grafana_cloud_access_policy": {
-                "current": "grafana:index/cloudAccessPolicy:CloudAccessPolicy",
+                "current": "grafana:cloud/accessPolicy:AccessPolicy",
+                "past": [
+                    {
+                        "name": "grafana:index/cloudAccessPolicy:CloudAccessPolicy",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "realm": {
                         "maxItemsOne": false,
@@ -31,31 +38,87 @@
                 }
             },
             "grafana_cloud_access_policy_token": {
-                "current": "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken"
+                "current": "grafana:cloud/accessPolicyToken:AccessPolicyToken",
+                "past": [
+                    {
+                        "name": "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_cloud_api_key": {
-                "current": "grafana:index/cloudApiKey:CloudApiKey"
+                "current": "grafana:cloud/apiKey:ApiKey",
+                "past": [
+                    {
+                        "name": "grafana:index/cloudApiKey:CloudApiKey",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_cloud_org_member": {
                 "current": "grafana:index/cloudOrgMember:CloudOrgMember"
             },
             "grafana_cloud_plugin_installation": {
-                "current": "grafana:index/cloudPluginInstallation:CloudPluginInstallation"
+                "current": "grafana:cloud/pluginInstallation:PluginInstallation",
+                "past": [
+                    {
+                        "name": "grafana:index/cloudPluginInstallation:CloudPluginInstallation",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_cloud_stack": {
-                "current": "grafana:index/cloudStack:CloudStack"
+                "current": "grafana:cloud/stack:Stack",
+                "past": [
+                    {
+                        "name": "grafana:index/cloudStack:CloudStack",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_cloud_stack_api_key": {
-                "current": "grafana:index/cloudStackApiKey:CloudStackApiKey"
+                "current": "grafana:cloud/stackApiKey:StackApiKey",
+                "past": [
+                    {
+                        "name": "grafana:index/cloudStackApiKey:CloudStackApiKey",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_cloud_stack_service_account": {
-                "current": "grafana:index/cloudStackServiceAccount:CloudStackServiceAccount"
+                "current": "grafana:cloud/stackServiceAccount:StackServiceAccount",
+                "past": [
+                    {
+                        "name": "grafana:index/cloudStackServiceAccount:CloudStackServiceAccount",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_cloud_stack_service_account_token": {
-                "current": "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken"
+                "current": "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken",
+                "past": [
+                    {
+                        "name": "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_contact_point": {
-                "current": "grafana:index/contactPoint:ContactPoint",
+                "current": "grafana:alerting/contactPoint:ContactPoint",
+                "past": [
+                    {
+                        "name": "grafana:index/contactPoint:ContactPoint",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "alertmanager": {
                         "maxItemsOne": false
@@ -160,7 +223,14 @@
                 "current": "grafana:index/dataSourceConfig:DataSourceConfig"
             },
             "grafana_data_source_permission": {
-                "current": "grafana:index/dataSourcePermission:DataSourcePermission",
+                "current": "grafana:enterprise/dataSourcePermission:DataSourcePermission",
+                "past": [
+                    {
+                        "name": "grafana:index/dataSourcePermission:DataSourcePermission",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "permissions": {
                         "maxItemsOne": false
@@ -193,7 +263,14 @@
                 }
             },
             "grafana_machine_learning_holiday": {
-                "current": "grafana:index/machineLearningHoliday:MachineLearningHoliday",
+                "current": "grafana:machineLearning/holiday:Holiday",
+                "past": [
+                    {
+                        "name": "grafana:index/machineLearningHoliday:MachineLearningHoliday",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "custom_periods": {
                         "maxItemsOne": false
@@ -201,7 +278,14 @@
                 }
             },
             "grafana_machine_learning_job": {
-                "current": "grafana:index/machineLearningJob:MachineLearningJob",
+                "current": "grafana:machineLearning/job:Job",
+                "past": [
+                    {
+                        "name": "grafana:index/machineLearningJob:MachineLearningJob",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "holidays": {
                         "maxItemsOne": false
@@ -209,7 +293,14 @@
                 }
             },
             "grafana_machine_learning_outlier_detector": {
-                "current": "grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector",
+                "current": "grafana:machineLearning/outlierDetector:OutlierDetector",
+                "past": [
+                    {
+                        "name": "grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "algorithm": {
                         "maxItemsOne": true,
@@ -224,10 +315,24 @@
                 }
             },
             "grafana_message_template": {
-                "current": "grafana:index/messageTemplate:MessageTemplate"
+                "current": "grafana:alerting/messageTemplate:MessageTemplate",
+                "past": [
+                    {
+                        "name": "grafana:index/messageTemplate:MessageTemplate",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_mute_timing": {
-                "current": "grafana:index/muteTiming:MuteTiming",
+                "current": "grafana:alerting/muteTiming:MuteTiming",
+                "past": [
+                    {
+                        "name": "grafana:index/muteTiming:MuteTiming",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "intervals": {
                         "maxItemsOne": false,
@@ -254,7 +359,14 @@
                 }
             },
             "grafana_notification_policy": {
-                "current": "grafana:index/notificationPolicy:NotificationPolicy",
+                "current": "grafana:alerting/notificationPolicy:NotificationPolicy",
+                "past": [
+                    {
+                        "name": "grafana:index/notificationPolicy:NotificationPolicy",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "group_by": {
                         "maxItemsOne": false
@@ -326,7 +438,14 @@
                 }
             },
             "grafana_oncall_escalation": {
-                "current": "grafana:index/oncallEscalation:OncallEscalation",
+                "current": "grafana:onCall/escalation:Escalation",
+                "past": [
+                    {
+                        "name": "grafana:index/oncallEscalation:OncallEscalation",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "persons_to_notify": {
                         "maxItemsOne": false
@@ -337,10 +456,24 @@
                 }
             },
             "grafana_oncall_escalation_chain": {
-                "current": "grafana:index/oncallEscalationChain:OncallEscalationChain"
+                "current": "grafana:onCall/escalationChain:EscalationChain",
+                "past": [
+                    {
+                        "name": "grafana:index/oncallEscalationChain:OncallEscalationChain",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_oncall_integration": {
-                "current": "grafana:index/oncallIntegration:OncallIntegration",
+                "current": "grafana:onCall/integration:Integration",
+                "past": [
+                    {
+                        "name": "grafana:index/oncallIntegration:OncallIntegration",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "default_route": {
                         "maxItemsOne": true,
@@ -389,7 +522,14 @@
                 }
             },
             "grafana_oncall_on_call_shift": {
-                "current": "grafana:index/oncallOnCallShift:OncallOnCallShift",
+                "current": "grafana:onCall/onCallShift:OnCallShift",
+                "past": [
+                    {
+                        "name": "grafana:index/oncallOnCallShift:OncallOnCallShift",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "by_day": {
                         "maxItemsOne": false
@@ -412,7 +552,14 @@
                 }
             },
             "grafana_oncall_outgoing_webhook": {
-                "current": "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook",
+                "current": "grafana:onCall/outgoingWebhook:OutgoingWebhook",
+                "past": [
+                    {
+                        "name": "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "integration_filter": {
                         "maxItemsOne": false
@@ -420,7 +567,14 @@
                 }
             },
             "grafana_oncall_route": {
-                "current": "grafana:index/oncallRoute:OncallRoute",
+                "current": "grafana:onCall/route:Route",
+                "past": [
+                    {
+                        "name": "grafana:index/oncallRoute:OncallRoute",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "msteams": {
                         "maxItemsOne": true
@@ -434,7 +588,14 @@
                 }
             },
             "grafana_oncall_schedule": {
-                "current": "grafana:index/oncallSchedule:OncallSchedule",
+                "current": "grafana:onCall/schedule:Schedule",
+                "past": [
+                    {
+                        "name": "grafana:index/oncallSchedule:OncallSchedule",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "shifts": {
                         "maxItemsOne": false
@@ -462,7 +623,14 @@
                 }
             },
             "grafana_organization_preferences": {
-                "current": "grafana:index/organizationPreference:OrganizationPreference"
+                "current": "grafana:index/organizationPreferences:OrganizationPreferences",
+                "past": [
+                    {
+                        "name": "grafana:index/organizationPreference:OrganizationPreference",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_playlist": {
                 "current": "grafana:index/playlist:Playlist",
@@ -473,7 +641,14 @@
                 }
             },
             "grafana_report": {
-                "current": "grafana:index/report:Report",
+                "current": "grafana:enterprise/report:Report",
+                "past": [
+                    {
+                        "name": "grafana:index/report:Report",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "dashboards": {
                         "maxItemsOne": false,
@@ -500,7 +675,14 @@
                 }
             },
             "grafana_role": {
-                "current": "grafana:index/role:Role",
+                "current": "grafana:enterprise/role:Role",
+                "past": [
+                    {
+                        "name": "grafana:index/role:Role",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "permissions": {
                         "maxItemsOne": false
@@ -508,7 +690,14 @@
                 }
             },
             "grafana_role_assignment": {
-                "current": "grafana:index/roleAssignment:RoleAssignment",
+                "current": "grafana:enterprise/roleAssignment:RoleAssignment",
+                "past": [
+                    {
+                        "name": "grafana:index/roleAssignment:RoleAssignment",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "service_accounts": {
                         "maxItemsOne": false
@@ -525,7 +714,14 @@
                 "current": "grafana:index/roleAssignmentItem:RoleAssignmentItem"
             },
             "grafana_rule_group": {
-                "current": "grafana:index/ruleGroup:RuleGroup",
+                "current": "grafana:alerting/ruleGroup:RuleGroup",
+                "past": [
+                    {
+                        "name": "grafana:index/ruleGroup:RuleGroup",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "rule": {
                         "maxItemsOne": false,
@@ -577,7 +773,14 @@
                 "current": "grafana:index/serviceAccountToken:ServiceAccountToken"
             },
             "grafana_slo": {
-                "current": "grafana:index/sLO:SLO",
+                "current": "grafana:slo/sLO:SLO",
+                "past": [
+                    {
+                        "name": "grafana:index/sLO:SLO",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "alerting": {
                         "maxItemsOne": false,
@@ -661,7 +864,14 @@
                 }
             },
             "grafana_synthetic_monitoring_check": {
-                "current": "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck",
+                "current": "grafana:syntheticMonitoring/check:Check",
+                "past": [
+                    {
+                        "name": "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "probes": {
                         "maxItemsOne": false
@@ -817,10 +1027,24 @@
                 }
             },
             "grafana_synthetic_monitoring_installation": {
-                "current": "grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation"
+                "current": "grafana:syntheticMonitoring/installation:Installation",
+                "past": [
+                    {
+                        "name": "grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_synthetic_monitoring_probe": {
-                "current": "grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe"
+                "current": "grafana:syntheticMonitoring/probe:Probe",
+                "past": [
+                    {
+                        "name": "grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_team": {
                 "current": "grafana:index/team:Team",
@@ -844,7 +1068,14 @@
                 }
             },
             "grafana_team_external_group": {
-                "current": "grafana:index/teamExternalGroup:TeamExternalGroup",
+                "current": "grafana:enterprise/teamExternalGroup:TeamExternalGroup",
+                "past": [
+                    {
+                        "name": "grafana:index/teamExternalGroup:TeamExternalGroup",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "groups": {
                         "maxItemsOne": false
@@ -857,7 +1088,14 @@
         },
         "datasources": {
             "grafana_cloud_ips": {
-                "current": "grafana:index/getCloudIps:getCloudIps",
+                "current": "grafana:cloud/getIps:getIps",
+                "past": [
+                    {
+                        "name": "grafana:index/getCloudIps:getCloudIps",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "hosted_alerts": {
                         "maxItemsOne": false
@@ -877,10 +1115,24 @@
                 }
             },
             "grafana_cloud_organization": {
-                "current": "grafana:index/getCloudOrganization:getCloudOrganization"
+                "current": "grafana:cloud/getOrganization:getOrganization",
+                "past": [
+                    {
+                        "name": "grafana:index/getCloudOrganization:getCloudOrganization",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_cloud_stack": {
-                "current": "grafana:index/getCloudStack:getCloudStack"
+                "current": "grafana:cloud/getStack:getStack",
+                "past": [
+                    {
+                        "name": "grafana:index/getCloudStack:getCloudStack",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_dashboard": {
                 "current": "grafana:index/getDashboard:getDashboard"
@@ -925,31 +1177,87 @@
                 }
             },
             "grafana_oncall_action": {
-                "current": "grafana:index/getOncallAction:getOncallAction"
+                "current": "grafana:onCall/getAction:getAction",
+                "past": [
+                    {
+                        "name": "grafana:index/getOncallAction:getOncallAction",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_oncall_escalation_chain": {
-                "current": "grafana:index/getOncallEscalationChain:getOncallEscalationChain"
+                "current": "grafana:onCall/getEscalationChain:getEscalationChain",
+                "past": [
+                    {
+                        "name": "grafana:index/getOncallEscalationChain:getOncallEscalationChain",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_oncall_integration": {
                 "current": "grafana:index/getOncallIntegration:getOncallIntegration"
             },
             "grafana_oncall_outgoing_webhook": {
-                "current": "grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook"
+                "current": "grafana:onCall/getOutgoingWebhook:getOutgoingWebhook",
+                "past": [
+                    {
+                        "name": "grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_oncall_schedule": {
-                "current": "grafana:index/getOncallSchedule:getOncallSchedule"
+                "current": "grafana:onCall/getSchedule:getSchedule",
+                "past": [
+                    {
+                        "name": "grafana:index/getOncallSchedule:getOncallSchedule",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_oncall_slack_channel": {
-                "current": "grafana:index/getOnCallSlackChannel:getOnCallSlackChannel"
+                "current": "grafana:onCall/getSlackChannel:getSlackChannel",
+                "past": [
+                    {
+                        "name": "grafana:index/getOnCallSlackChannel:getOnCallSlackChannel",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_oncall_team": {
-                "current": "grafana:index/getOncallTeam:getOncallTeam"
+                "current": "grafana:onCall/getTeam:getTeam",
+                "past": [
+                    {
+                        "name": "grafana:index/getOncallTeam:getOncallTeam",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_oncall_user": {
-                "current": "grafana:index/getOncallUser:getOncallUser"
+                "current": "grafana:onCall/getUser:getUser",
+                "past": [
+                    {
+                        "name": "grafana:index/getOncallUser:getOncallUser",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_oncall_user_group": {
-                "current": "grafana:index/getOncallUserGroup:getOncallUserGroup"
+                "current": "grafana:onCall/getUserGroup:getUserGroup",
+                "past": [
+                    {
+                        "name": "grafana:index/getOncallUserGroup:getOncallUserGroup",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_organization": {
                 "current": "grafana:index/getOrganization:getOrganization",
@@ -969,7 +1277,14 @@
                 "current": "grafana:index/getOrganizationPreferences:getOrganizationPreferences"
             },
             "grafana_role": {
-                "current": "grafana:index/getRole:getRole",
+                "current": "grafana:enterprise/getRole:getRole",
+                "past": [
+                    {
+                        "name": "grafana:index/getRole:getRole",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "permissions": {
                         "maxItemsOne": false
@@ -980,7 +1295,14 @@
                 "current": "grafana:index/getServiceAccount:getServiceAccount"
             },
             "grafana_slos": {
-                "current": "grafana:index/getSlos:getSlos",
+                "current": "grafana:slo/getSlos:getSlos",
+                "past": [
+                    {
+                        "name": "grafana:index/getSlos:getSlos",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "slos": {
                         "maxItemsOne": false,
@@ -1060,10 +1382,24 @@
                 }
             },
             "grafana_synthetic_monitoring_probe": {
-                "current": "grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe"
+                "current": "grafana:syntheticMonitoring/getProbe:getProbe",
+                "past": [
+                    {
+                        "name": "grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_synthetic_monitoring_probes": {
-                "current": "grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes"
+                "current": "grafana:syntheticMonitoring/getProbes:getProbes",
+                "past": [
+                    {
+                        "name": "grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_team": {
                 "current": "grafana:index/getTeam:getTeam",
@@ -1101,25 +1437,279 @@
     },
     "auto-settings": {
         "resources": {
+            "grafana_cloud_access_policy": {
+                "aliases": [
+                    "grafana:index/cloudAccessPolicy:CloudAccessPolicy"
+                ]
+            },
+            "grafana_cloud_access_policy_token": {
+                "aliases": [
+                    "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken"
+                ]
+            },
+            "grafana_cloud_api_key": {
+                "aliases": [
+                    "grafana:index/cloudApiKey:CloudApiKey"
+                ]
+            },
+            "grafana_cloud_plugin_installation": {
+                "aliases": [
+                    "grafana:index/cloudPluginInstallation:CloudPluginInstallation"
+                ]
+            },
+            "grafana_cloud_stack": {
+                "aliases": [
+                    "grafana:index/cloudStack:CloudStack"
+                ]
+            },
+            "grafana_cloud_stack_api_key": {
+                "aliases": [
+                    "grafana:index/cloudStackApiKey:CloudStackApiKey"
+                ]
+            },
+            "grafana_cloud_stack_service_account": {
+                "aliases": [
+                    "grafana:index/cloudStackServiceAccount:CloudStackServiceAccount"
+                ]
+            },
+            "grafana_cloud_stack_service_account_token": {
+                "aliases": [
+                    "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken"
+                ]
+            },
+            "grafana_contact_point": {
+                "aliases": [
+                    "grafana:index/contactPoint:ContactPoint"
+                ]
+            },
+            "grafana_data_source_permission": {
+                "aliases": [
+                    "grafana:index/dataSourcePermission:DataSourcePermission"
+                ]
+            },
+            "grafana_machine_learning_holiday": {
+                "aliases": [
+                    "grafana:index/machineLearningHoliday:MachineLearningHoliday"
+                ]
+            },
+            "grafana_machine_learning_job": {
+                "aliases": [
+                    "grafana:index/machineLearningJob:MachineLearningJob"
+                ]
+            },
+            "grafana_machine_learning_outlier_detector": {
+                "aliases": [
+                    "grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector"
+                ]
+            },
+            "grafana_message_template": {
+                "aliases": [
+                    "grafana:index/messageTemplate:MessageTemplate"
+                ]
+            },
+            "grafana_mute_timing": {
+                "aliases": [
+                    "grafana:index/muteTiming:MuteTiming"
+                ]
+            },
+            "grafana_notification_policy": {
+                "aliases": [
+                    "grafana:index/notificationPolicy:NotificationPolicy"
+                ]
+            },
+            "grafana_oncall_escalation": {
+                "aliases": [
+                    "grafana:index/oncallEscalation:OncallEscalation"
+                ]
+            },
+            "grafana_oncall_escalation_chain": {
+                "aliases": [
+                    "grafana:index/oncallEscalationChain:OncallEscalationChain"
+                ]
+            },
+            "grafana_oncall_integration": {
+                "aliases": [
+                    "grafana:index/oncallIntegration:OncallIntegration"
+                ]
+            },
+            "grafana_oncall_on_call_shift": {
+                "aliases": [
+                    "grafana:index/oncallOnCallShift:OncallOnCallShift"
+                ]
+            },
+            "grafana_oncall_outgoing_webhook": {
+                "aliases": [
+                    "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook"
+                ]
+            },
+            "grafana_oncall_route": {
+                "aliases": [
+                    "grafana:index/oncallRoute:OncallRoute"
+                ]
+            },
+            "grafana_oncall_schedule": {
+                "aliases": [
+                    "grafana:index/oncallSchedule:OncallSchedule"
+                ]
+            },
+            "grafana_organization_preferences": {
+                "aliases": [
+                    "grafana:index/organizationPreference:OrganizationPreference"
+                ]
+            },
+            "grafana_report": {
+                "aliases": [
+                    "grafana:index/report:Report"
+                ]
+            },
+            "grafana_role": {
+                "aliases": [
+                    "grafana:index/role:Role"
+                ]
+            },
+            "grafana_role_assignment": {
+                "aliases": [
+                    "grafana:index/roleAssignment:RoleAssignment"
+                ]
+            },
+            "grafana_rule_group": {
+                "aliases": [
+                    "grafana:index/ruleGroup:RuleGroup"
+                ]
+            },
             "grafana_slo": {
+                "aliases": [
+                    "grafana:index/sLO:SLO"
+                ],
                 "maxItemsOneOverrides": {
                     "alerting": false,
                     "alerting.$.fastburn": false,
                     "alerting.$.slowburn": false
                 }
+            },
+            "grafana_synthetic_monitoring_check": {
+                "aliases": [
+                    "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck"
+                ]
+            },
+            "grafana_synthetic_monitoring_installation": {
+                "aliases": [
+                    "grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation"
+                ]
+            },
+            "grafana_synthetic_monitoring_probe": {
+                "aliases": [
+                    "grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe"
+                ]
+            },
+            "grafana_team_external_group": {
+                "aliases": [
+                    "grafana:index/teamExternalGroup:TeamExternalGroup"
+                ]
             }
         },
         "datasources": {
+            "grafana_cloud_ips": {
+                "renames": [
+                    "grafana:index/getCloudIps:getCloudIps"
+                ]
+            },
+            "grafana_cloud_organization": {
+                "renames": [
+                    "grafana:index/getCloudOrganization:getCloudOrganization"
+                ]
+            },
+            "grafana_cloud_stack": {
+                "renames": [
+                    "grafana:index/getCloudStack:getCloudStack"
+                ]
+            },
+            "grafana_oncall_action": {
+                "renames": [
+                    "grafana:index/getOncallAction:getOncallAction"
+                ]
+            },
+            "grafana_oncall_escalation_chain": {
+                "renames": [
+                    "grafana:index/getOncallEscalationChain:getOncallEscalationChain"
+                ]
+            },
+            "grafana_oncall_outgoing_webhook": {
+                "renames": [
+                    "grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook"
+                ]
+            },
+            "grafana_oncall_schedule": {
+                "renames": [
+                    "grafana:index/getOncallSchedule:getOncallSchedule"
+                ]
+            },
+            "grafana_oncall_slack_channel": {
+                "renames": [
+                    "grafana:index/getOnCallSlackChannel:getOnCallSlackChannel"
+                ]
+            },
+            "grafana_oncall_team": {
+                "renames": [
+                    "grafana:index/getOncallTeam:getOncallTeam"
+                ]
+            },
+            "grafana_oncall_user": {
+                "renames": [
+                    "grafana:index/getOncallUser:getOncallUser"
+                ]
+            },
+            "grafana_oncall_user_group": {
+                "renames": [
+                    "grafana:index/getOncallUserGroup:getOncallUserGroup"
+                ]
+            },
+            "grafana_role": {
+                "renames": [
+                    "grafana:index/getRole:getRole"
+                ]
+            },
             "grafana_slos": {
+                "renames": [
+                    "grafana:index/getSlos:getSlos"
+                ],
                 "maxItemsOneOverrides": {
                     "slos.$.alerting.$.fastburn": false,
                     "slos.$.alerting.$.slowburn": false
                 }
+            },
+            "grafana_synthetic_monitoring_probe": {
+                "renames": [
+                    "grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe"
+                ]
+            },
+            "grafana_synthetic_monitoring_probes": {
+                "renames": [
+                    "grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes"
+                ]
             }
         }
     },
     "mux": {
         "resources": {
+            "grafana:alerting/contactPoint:ContactPoint": 0,
+            "grafana:alerting/messageTemplate:MessageTemplate": 0,
+            "grafana:alerting/muteTiming:MuteTiming": 0,
+            "grafana:alerting/notificationPolicy:NotificationPolicy": 0,
+            "grafana:alerting/ruleGroup:RuleGroup": 0,
+            "grafana:cloud/accessPolicy:AccessPolicy": 0,
+            "grafana:cloud/accessPolicyToken:AccessPolicyToken": 0,
+            "grafana:cloud/apiKey:ApiKey": 0,
+            "grafana:cloud/pluginInstallation:PluginInstallation": 0,
+            "grafana:cloud/stack:Stack": 0,
+            "grafana:cloud/stackApiKey:StackApiKey": 0,
+            "grafana:cloud/stackServiceAccount:StackServiceAccount": 0,
+            "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken": 0,
+            "grafana:enterprise/dataSourcePermission:DataSourcePermission": 0,
+            "grafana:enterprise/report:Report": 0,
+            "grafana:enterprise/role:Role": 0,
+            "grafana:enterprise/roleAssignment:RoleAssignment": 0,
+            "grafana:enterprise/teamExternalGroup:TeamExternalGroup": 0,
             "grafana:index/annotation:Annotation": 0,
             "grafana:index/apiKey:ApiKey": 0,
             "grafana:index/cloudAccessPolicy:CloudAccessPolicy": 0,
@@ -1159,6 +1749,7 @@
             "grafana:index/oncallSchedule:OncallSchedule": 0,
             "grafana:index/organization:Organization": 0,
             "grafana:index/organizationPreference:OrganizationPreference": 0,
+            "grafana:index/organizationPreferences:OrganizationPreferences": 0,
             "grafana:index/playlist:Playlist": 0,
             "grafana:index/report:Report": 0,
             "grafana:index/role:Role": 0,
@@ -1176,9 +1767,27 @@
             "grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe": 0,
             "grafana:index/team:Team": 0,
             "grafana:index/teamExternalGroup:TeamExternalGroup": 0,
-            "grafana:index/user:User": 0
+            "grafana:index/user:User": 0,
+            "grafana:machineLearning/holiday:Holiday": 0,
+            "grafana:machineLearning/job:Job": 0,
+            "grafana:machineLearning/outlierDetector:OutlierDetector": 0,
+            "grafana:onCall/escalation:Escalation": 0,
+            "grafana:onCall/escalationChain:EscalationChain": 0,
+            "grafana:onCall/integration:Integration": 0,
+            "grafana:onCall/onCallShift:OnCallShift": 0,
+            "grafana:onCall/outgoingWebhook:OutgoingWebhook": 0,
+            "grafana:onCall/route:Route": 0,
+            "grafana:onCall/schedule:Schedule": 0,
+            "grafana:slo/sLO:SLO": 0,
+            "grafana:syntheticMonitoring/check:Check": 0,
+            "grafana:syntheticMonitoring/installation:Installation": 0,
+            "grafana:syntheticMonitoring/probe:Probe": 0
         },
         "functions": {
+            "grafana:cloud/getIps:getIps": 0,
+            "grafana:cloud/getOrganization:getOrganization": 0,
+            "grafana:cloud/getStack:getStack": 0,
+            "grafana:enterprise/getRole:getRole": 0,
             "grafana:index/getCloudIps:getCloudIps": 0,
             "grafana:index/getCloudOrganization:getCloudOrganization": 0,
             "grafana:index/getCloudStack:getCloudStack": 0,
@@ -1206,7 +1815,18 @@
             "grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes": 0,
             "grafana:index/getTeam:getTeam": 0,
             "grafana:index/getUser:getUser": 0,
-            "grafana:index/getUsers:getUsers": 0
+            "grafana:index/getUsers:getUsers": 0,
+            "grafana:onCall/getAction:getAction": 0,
+            "grafana:onCall/getEscalationChain:getEscalationChain": 0,
+            "grafana:onCall/getOutgoingWebhook:getOutgoingWebhook": 0,
+            "grafana:onCall/getSchedule:getSchedule": 0,
+            "grafana:onCall/getSlackChannel:getSlackChannel": 0,
+            "grafana:onCall/getTeam:getTeam": 0,
+            "grafana:onCall/getUser:getUser": 0,
+            "grafana:onCall/getUserGroup:getUserGroup": 0,
+            "grafana:slo/getSlos:getSlos": 0,
+            "grafana:syntheticMonitoring/getProbe:getProbe": 0,
+            "grafana:syntheticMonitoring/getProbes:getProbes": 0
         }
     },
     "renames": {

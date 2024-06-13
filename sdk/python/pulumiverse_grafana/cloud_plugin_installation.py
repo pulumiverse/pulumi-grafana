@@ -120,7 +120,12 @@ class _CloudPluginInstallationState:
         pulumi.set(self, "version", value)
 
 
+warnings.warn("""grafana.index/cloudplugininstallation.CloudPluginInstallation has been deprecated in favor of grafana.cloud/plugininstallation.PluginInstallation""", DeprecationWarning)
+
+
 class CloudPluginInstallation(pulumi.CustomResource):
+    warnings.warn("""grafana.index/cloudplugininstallation.CloudPluginInstallation has been deprecated in favor of grafana.cloud/plugininstallation.PluginInstallation""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -130,34 +135,7 @@ class CloudPluginInstallation(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages Grafana Cloud Plugin Installations.
-
-        * [Plugin Catalog](https://grafana.com/grafana/plugins/)
-
-        Required access policy scopes:
-
-        * stack-plugins:read
-        * stack-plugins:write
-        * stack-plugins:delete
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test = grafana.CloudPluginInstallation("test",
-            slug="some-plugin",
-            stack_slug="stackname",
-            version="1.2.3")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/cloudPluginInstallation:CloudPluginInstallation name "{{ stackSlug }}:{{ pluginSlug }}"
-        ```
-
+        Create a CloudPluginInstallation resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] slug: Slug of the plugin to be installed.
@@ -171,34 +149,7 @@ class CloudPluginInstallation(pulumi.CustomResource):
                  args: CloudPluginInstallationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Grafana Cloud Plugin Installations.
-
-        * [Plugin Catalog](https://grafana.com/grafana/plugins/)
-
-        Required access policy scopes:
-
-        * stack-plugins:read
-        * stack-plugins:write
-        * stack-plugins:delete
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test = grafana.CloudPluginInstallation("test",
-            slug="some-plugin",
-            stack_slug="stackname",
-            version="1.2.3")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/cloudPluginInstallation:CloudPluginInstallation name "{{ stackSlug }}:{{ pluginSlug }}"
-        ```
-
+        Create a CloudPluginInstallation resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param CloudPluginInstallationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -218,6 +169,7 @@ class CloudPluginInstallation(pulumi.CustomResource):
                  stack_slug: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""CloudPluginInstallation is deprecated: grafana.index/cloudplugininstallation.CloudPluginInstallation has been deprecated in favor of grafana.cloud/plugininstallation.PluginInstallation""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -235,6 +187,8 @@ class CloudPluginInstallation(pulumi.CustomResource):
             if version is None and not opts.urn:
                 raise TypeError("Missing required property 'version'")
             __props__.__dict__["version"] = version
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/cloudPluginInstallation:CloudPluginInstallation")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(CloudPluginInstallation, __self__).__init__(
             'grafana:index/cloudPluginInstallation:CloudPluginInstallation',
             resource_name,

@@ -34,11 +34,11 @@ export interface ContactPointAlertmanager {
      */
     basicAuthUser?: string;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -53,7 +53,7 @@ export interface ContactPointAlertmanager {
 
 export interface ContactPointDingding {
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -65,7 +65,7 @@ export interface ContactPointDingding {
      */
     messageType?: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -84,19 +84,19 @@ export interface ContactPointDingding {
 
 export interface ContactPointDiscord {
     /**
-     * The URL of a custom avatar image to use. Defaults to ``.
+     * The URL of a custom avatar image to use.
      */
     avatarUrl?: string;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
-     * The templated content of the message. Defaults to ``.
+     * The templated content of the message.
      */
     message?: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -112,7 +112,7 @@ export interface ContactPointDiscord {
      */
     url: string;
     /**
-     * Whether to use the bot account's plain username instead of "Grafana." Defaults to `false`.
+     * Whether to use the bot account's plain username instead of "Grafana."
      */
     useDiscordUsername?: boolean;
 }
@@ -123,23 +123,23 @@ export interface ContactPointEmail {
      */
     addresses: string[];
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
-     * The templated content of the email. Defaults to ``.
+     * The templated content of the email.
      */
     message?: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
-     * Whether to send a single email CC'ing all addresses, rather than a separate email to each address. Defaults to `false`.
+     * Whether to send a single email CC'ing all addresses, rather than a separate email to each address.
      */
     singleEmail?: boolean;
     /**
-     * The templated subject line of the email. Defaults to ``.
+     * The templated subject line of the email.
      */
     subject?: string;
     /**
@@ -150,7 +150,7 @@ export interface ContactPointEmail {
 
 export interface ContactPointGooglechat {
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -158,7 +158,7 @@ export interface ContactPointGooglechat {
      */
     message?: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -177,7 +177,7 @@ export interface ContactPointGooglechat {
 
 export interface ContactPointKafka {
     /**
-     * The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+     * The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3.
      */
     apiVersion?: string;
     /**
@@ -193,7 +193,7 @@ export interface ContactPointKafka {
      */
     details?: string;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -205,7 +205,7 @@ export interface ContactPointKafka {
      */
     restProxyUrl: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -228,11 +228,11 @@ export interface ContactPointLine {
      */
     description?: string;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -267,7 +267,7 @@ export interface ContactPointOncall {
      */
     basicAuthUser?: string;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -283,7 +283,7 @@ export interface ContactPointOncall {
      */
     message?: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -314,7 +314,7 @@ export interface ContactPointOpsgeny {
      */
     description?: string;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -334,7 +334,7 @@ export interface ContactPointOpsgeny {
      */
     sendTagsAs?: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -388,7 +388,7 @@ export interface ContactPointPagerduty {
      */
     details?: {[key: string]: string};
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -400,7 +400,7 @@ export interface ContactPointPagerduty {
      */
     integrationKey: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -431,7 +431,7 @@ export interface ContactPointPushover {
      */
     device?: string;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -459,7 +459,7 @@ export interface ContactPointPushover {
      */
     retry?: number;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -494,7 +494,7 @@ export interface ContactPointSensugo {
      */
     check?: string;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -514,7 +514,7 @@ export interface ContactPointSensugo {
      */
     namespace?: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -529,7 +529,7 @@ export interface ContactPointSensugo {
 
 export interface ContactPointSlack {
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -561,7 +561,7 @@ export interface ContactPointSlack {
      */
     recipient?: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -600,12 +600,12 @@ export interface ContactPointSn {
      */
     assumeRoleArn?: string;
     /**
-     * The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+     * The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`.
      */
     authProvider?: string;
     body?: string;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -613,7 +613,7 @@ export interface ContactPointSn {
      */
     externalId?: string;
     /**
-     * The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+     * The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`.
      */
     messageFormat?: string;
     /**
@@ -621,7 +621,7 @@ export interface ContactPointSn {
      */
     secretKey?: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     subject?: string;
@@ -637,7 +637,7 @@ export interface ContactPointSn {
 
 export interface ContactPointTeam {
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -649,7 +649,7 @@ export interface ContactPointTeam {
      */
     sectionTitle?: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -676,7 +676,7 @@ export interface ContactPointTelegram {
      */
     disableNotifications?: boolean;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -696,7 +696,7 @@ export interface ContactPointTelegram {
      */
     protectContent?: boolean;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -719,7 +719,7 @@ export interface ContactPointThreema {
      */
     description?: string;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -731,7 +731,7 @@ export interface ContactPointThreema {
      */
     recipientId: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -750,7 +750,7 @@ export interface ContactPointVictorop {
      */
     description?: string;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -758,7 +758,7 @@ export interface ContactPointVictorop {
      */
     messageType?: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -781,7 +781,7 @@ export interface ContactPointWebex {
      */
     apiUrl?: string;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -793,7 +793,7 @@ export interface ContactPointWebex {
      */
     roomId?: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -824,7 +824,7 @@ export interface ContactPointWebhook {
      */
     basicAuthUser?: string;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -840,7 +840,7 @@ export interface ContactPointWebhook {
      */
     message?: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -867,7 +867,7 @@ export interface ContactPointWecom {
      */
     corpId?: string;
     /**
-     * Whether to disable sending resolve messages. Defaults to `false`.
+     * Whether to disable sending resolve messages.
      */
     disableResolveMessage?: boolean;
     /**
@@ -883,7 +883,7 @@ export interface ContactPointWecom {
      */
     secret?: string;
     /**
-     * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+     * Additional custom properties to attach to the notifier.
      */
     settings?: {[key: string]: string};
     /**
@@ -933,11 +933,11 @@ export interface DataSourcePermissionPermission {
      */
     permission: string;
     /**
-     * ID of the team to manage permissions for. Defaults to `0`.
+     * ID of the team to manage permissions for.
      */
     teamId?: string;
     /**
-     * ID of the user or service account to manage permissions for. Defaults to `0`.
+     * ID of the user or service account to manage permissions for.
      */
     userId?: string;
 }
@@ -1044,7 +1044,7 @@ export interface GetSlosSloAlerting {
     /**
      * Alerting Rules generated for Fast Burn alerts
      */
-    fastburns?: outputs.GetSlosSloAlertingFastburn[];
+    fastburn?: outputs.GetSlosSloAlertingFastburn;
     /**
      * Labels will be attached to all alerts generated by any of these rules.
      */
@@ -1052,7 +1052,7 @@ export interface GetSlosSloAlerting {
     /**
      * Alerting Rules generated for Slow Burn alerts
      */
-    slowburns?: outputs.GetSlosSloAlertingSlowburn[];
+    slowburn?: outputs.GetSlosSloAlertingSlowburn;
 }
 
 export interface GetSlosSloAlertingAnnotation {
@@ -1510,7 +1510,7 @@ export interface OncallIntegrationDefaultRoute {
 
 export interface OncallIntegrationDefaultRouteMsteams {
     /**
-     * Enable notification in MS teams. Defaults to `true`.
+     * Enable notification in MS teams.
      */
     enabled?: boolean;
     /**
@@ -1525,14 +1525,14 @@ export interface OncallIntegrationDefaultRouteSlack {
      */
     channelId?: string;
     /**
-     * Enable notification in Slack. Defaults to `true`.
+     * Enable notification in Slack.
      */
     enabled?: boolean;
 }
 
 export interface OncallIntegrationDefaultRouteTelegram {
     /**
-     * Enable notification in Telegram. Defaults to `true`.
+     * Enable notification in Telegram.
      */
     enabled?: boolean;
     /**
@@ -1675,7 +1675,7 @@ export interface OncallIntegrationTemplatesWeb {
 
 export interface OncallRouteMsteams {
     /**
-     * Enable notification in MS teams. Defaults to `true`.
+     * Enable notification in MS teams.
      */
     enabled?: boolean;
     /**
@@ -1690,14 +1690,14 @@ export interface OncallRouteSlack {
      */
     channelId?: string;
     /**
-     * Enable notification in Slack. Defaults to `true`.
+     * Enable notification in Slack.
      */
     enabled?: boolean;
 }
 
 export interface OncallRouteTelegram {
     /**
-     * Enable notification in Telegram. Defaults to `true`.
+     * Enable notification in Telegram.
      */
     enabled?: boolean;
     /**
@@ -1766,7 +1766,7 @@ export interface ReportSchedule {
      */
     frequency: string;
     /**
-     * Send the report on the last day of the month Defaults to `false`.
+     * Send the report on the last day of the month
      */
     lastDayOfMonth?: boolean;
     /**
@@ -1774,11 +1774,11 @@ export interface ReportSchedule {
      */
     startTime?: string;
     /**
-     * Set the report time zone. Defaults to `GMT`.
+     * Set the report time zone.
      */
     timezone?: string;
     /**
-     * Whether to send the report only on work days. Defaults to `false`.
+     * Whether to send the report only on work days.
      */
     workdaysOnly?: boolean;
 }
@@ -1800,14 +1800,14 @@ export interface RolePermission {
      */
     action: string;
     /**
-     * Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
+     * Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
      */
     scope?: string;
 }
 
 export interface RuleGroupRule {
     /**
-     * Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+     * Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing.
      */
     annotations?: {[key: string]: string};
     /**
@@ -1819,19 +1819,19 @@ export interface RuleGroupRule {
      */
     datas: outputs.RuleGroupRuleData[];
     /**
-     * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+     * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
      */
     execErrState?: string;
     /**
-     * The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
+     * The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
      */
     for?: string;
     /**
-     * Sets whether the alert should be paused or not. Defaults to `false`.
+     * Sets whether the alert should be paused or not.
      */
     isPaused?: boolean;
     /**
-     * Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
+     * Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
      */
     labels?: {[key: string]: string};
     /**
@@ -1839,7 +1839,7 @@ export interface RuleGroupRule {
      */
     name: string;
     /**
-     * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+     * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
      */
     noDataState?: string;
     /**
@@ -1862,7 +1862,7 @@ export interface RuleGroupRuleData {
      */
     model: string;
     /**
-     * An optional identifier for the type of query being executed. Defaults to ``.
+     * An optional identifier for the type of query being executed.
      */
     queryType?: string;
     /**
@@ -2025,7 +2025,7 @@ export interface SLOQueryFreeform {
 
 export interface SLOQueryRatio {
     /**
-     * Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+     * Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
      */
     groupByLabels?: string[];
     /**
@@ -2364,23 +2364,23 @@ export interface SyntheticMonitoringCheckSettings {
 
 export interface SyntheticMonitoringCheckSettingsDns {
     /**
-     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
      */
     ipVersion?: string;
     /**
-     * Port to target. Defaults to `53`.
+     * Port to target.
      */
     port?: number;
     /**
-     * `TCP` or `UDP`. Defaults to `UDP`.
+     * `TCP` or `UDP`.
      */
     protocol?: string;
     /**
-     * One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+     * One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`.
      */
     recordType?: string;
     /**
-     * DNS server address to target. Defaults to `8.8.8.8`.
+     * DNS server address to target.
      */
     server?: string;
     /**
@@ -2472,11 +2472,11 @@ export interface SyntheticMonitoringCheckSettingsHttp {
      */
     failIfHeaderNotMatchesRegexps?: outputs.SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexp[];
     /**
-     * Fail if SSL is not present. Defaults to `false`.
+     * Fail if SSL is not present.
      */
     failIfNotSsl?: boolean;
     /**
-     * Fail if SSL is present. Defaults to `false`.
+     * Fail if SSL is present.
      */
     failIfSsl?: boolean;
     /**
@@ -2484,15 +2484,15 @@ export interface SyntheticMonitoringCheckSettingsHttp {
      */
     headers?: string[];
     /**
-     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
      */
     ipVersion?: string;
     /**
-     * Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+     * Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE`
      */
     method?: string;
     /**
-     * Do not follow redirects. Defaults to `false`.
+     * Do not follow redirects.
      */
     noFollowRedirects?: boolean;
     /**
@@ -2530,7 +2530,7 @@ export interface SyntheticMonitoringCheckSettingsHttpBasicAuth {
 
 export interface SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp {
     /**
-     * Allow header to be missing from responses. Defaults to `false`.
+     * Allow header to be missing from responses.
      */
     allowMissing?: boolean;
     /**
@@ -2545,7 +2545,7 @@ export interface SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp {
 
 export interface SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexp {
     /**
-     * Allow header to be missing from responses. Defaults to `false`.
+     * Allow header to be missing from responses.
      */
     allowMissing?: boolean;
     /**
@@ -2572,7 +2572,7 @@ export interface SyntheticMonitoringCheckSettingsHttpTlsConfig {
      */
     clientKey?: string;
     /**
-     * Disable target certificate validation. Defaults to `false`.
+     * Disable target certificate validation.
      */
     insecureSkipVerify?: boolean;
     /**
@@ -2602,7 +2602,7 @@ export interface SyntheticMonitoringCheckSettingsMultihttpEntry {
 
 export interface SyntheticMonitoringCheckSettingsMultihttpEntryAssertion {
     /**
-     * The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+     * The condition of the assertion: NOT_CONTAINS, EQUALS, STARTS_WITH, ENDS_WITH, TYPE_OF, CONTAINS
      */
     condition?: string;
     /**
@@ -2610,11 +2610,11 @@ export interface SyntheticMonitoringCheckSettingsMultihttpEntryAssertion {
      */
     expression?: string;
     /**
-     * The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+     * The subject of the assertion: RESPONSE_HEADERS, HTTP_STATUS_CODE, RESPONSE_BODY
      */
     subject?: string;
     /**
-     * The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+     * The type of assertion to make: TEXT, JSON_PATH_VALUE, JSON_PATH_ASSERTION, REGEX_ASSERTION
      */
     type: string;
     /**
@@ -2697,22 +2697,22 @@ export interface SyntheticMonitoringCheckSettingsMultihttpEntryVariable {
      */
     name?: string;
     /**
-     * The method of finding the variable value to extract. JSON*PATH, REGEX, CSS*SELECTOR
+     * The method of finding the variable value to extract. JSON_PATH, REGEX, CSS_SELECTOR
      */
     type: string;
 }
 
 export interface SyntheticMonitoringCheckSettingsPing {
     /**
-     * Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+     * Set the DF-bit in the IP-header. Only works with ipV4.
      */
     dontFragment?: boolean;
     /**
-     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
      */
     ipVersion?: string;
     /**
-     * Payload size. Defaults to `0`.
+     * Payload size.
      */
     payloadSize?: number;
     /**
@@ -2723,7 +2723,7 @@ export interface SyntheticMonitoringCheckSettingsPing {
 
 export interface SyntheticMonitoringCheckSettingsTcp {
     /**
-     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+     * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
      */
     ipVersion?: string;
     /**
@@ -2735,7 +2735,7 @@ export interface SyntheticMonitoringCheckSettingsTcp {
      */
     sourceIpAddress?: string;
     /**
-     * Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+     * Whether or not TLS is used when the connection is initiated.
      */
     tls?: boolean;
     /**
@@ -2754,7 +2754,7 @@ export interface SyntheticMonitoringCheckSettingsTcpQueryResponse {
      */
     send: string;
     /**
-     * Upgrade TCP connection to TLS. Defaults to `false`.
+     * Upgrade TCP connection to TLS.
      */
     startTls?: boolean;
 }
@@ -2773,7 +2773,7 @@ export interface SyntheticMonitoringCheckSettingsTcpTlsConfig {
      */
     clientKey?: string;
     /**
-     * Disable target certificate validation. Defaults to `false`.
+     * Disable target certificate validation.
      */
     insecureSkipVerify?: boolean;
     /**
@@ -2784,15 +2784,15 @@ export interface SyntheticMonitoringCheckSettingsTcpTlsConfig {
 
 export interface SyntheticMonitoringCheckSettingsTraceroute {
     /**
-     * Maximum TTL for the trace Defaults to `64`.
+     * Maximum TTL for the trace
      */
     maxHops?: number;
     /**
-     * Maximum number of hosts to travers that give no response Defaults to `15`.
+     * Maximum number of hosts to travers that give no response
      */
     maxUnknownHops?: number;
     /**
-     * Reverse lookup hostnames from IP addresses Defaults to `true`.
+     * Reverse lookup hostnames from IP addresses
      */
     ptrLookup?: boolean;
 }
@@ -2820,3 +2820,2401 @@ export interface TeamTeamSync {
     groups?: string[];
 }
 
+export namespace alerting {
+    export interface ContactPointAlertmanager {
+        /**
+         * The password component of the basic auth credentials to use.
+         */
+        basicAuthPassword?: string;
+        /**
+         * The username component of the basic auth credentials to use.
+         */
+        basicAuthUser?: string;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+        /**
+         * The URL of the Alertmanager instance.
+         */
+        url: string;
+    }
+
+    export interface ContactPointDingding {
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * The templated content of the message.
+         */
+        message?: string;
+        /**
+         * The format of message to send - either 'link' or 'actionCard'
+         */
+        messageType?: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * The templated title of the message.
+         */
+        title?: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+        /**
+         * The DingDing webhook URL.
+         */
+        url: string;
+    }
+
+    export interface ContactPointDiscord {
+        /**
+         * The URL of a custom avatar image to use. Defaults to ``.
+         */
+        avatarUrl?: string;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * The templated content of the message. Defaults to ``.
+         */
+        message?: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * The templated content of the title.
+         */
+        title?: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+        /**
+         * The discord webhook URL.
+         */
+        url: string;
+        /**
+         * Whether to use the bot account's plain username instead of "Grafana." Defaults to `false`.
+         */
+        useDiscordUsername?: boolean;
+    }
+
+    export interface ContactPointEmail {
+        /**
+         * The addresses to send emails to.
+         */
+        addresses: string[];
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * The templated content of the email. Defaults to ``.
+         */
+        message?: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * Whether to send a single email CC'ing all addresses, rather than a separate email to each address. Defaults to `false`.
+         */
+        singleEmail?: boolean;
+        /**
+         * The templated subject line of the email. Defaults to ``.
+         */
+        subject?: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+    }
+
+    export interface ContactPointGooglechat {
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * The templated content of the message.
+         */
+        message?: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * The templated content of the title.
+         */
+        title?: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+        /**
+         * The Google Chat webhook URL.
+         */
+        url: string;
+    }
+
+    export interface ContactPointKafka {
+        /**
+         * The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+         */
+        apiVersion?: string;
+        /**
+         * The Id of cluster to use when contacting the Kafka REST Server. Required apiVersion to be 'v3'
+         */
+        clusterId?: string;
+        /**
+         * The templated description of the Kafka message.
+         */
+        description?: string;
+        /**
+         * The templated details to include with the message.
+         */
+        details?: string;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * The password to use when making a call to the Kafka REST Proxy
+         */
+        password?: string;
+        /**
+         * The URL of the Kafka REST proxy to send requests to.
+         */
+        restProxyUrl: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * The name of the Kafka topic to publish to.
+         */
+        topic: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+        /**
+         * The user name to use when making a call to the Kafka REST Proxy
+         */
+        username?: string;
+    }
+
+    export interface ContactPointLine {
+        /**
+         * The templated description of the message.
+         */
+        description?: string;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * The templated title of the message.
+         */
+        title?: string;
+        /**
+         * The bearer token used to authorize the client.
+         */
+        token: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+    }
+
+    export interface ContactPointOncall {
+        /**
+         * Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.
+         */
+        authorizationCredentials?: string;
+        /**
+         * Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.
+         */
+        authorizationScheme?: string;
+        /**
+         * The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+         */
+        basicAuthPassword?: string;
+        /**
+         * The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+         */
+        basicAuthUser?: string;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * The HTTP method to use in the request. Defaults to `POST`.
+         */
+        httpMethod?: string;
+        /**
+         * The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
+         */
+        maxAlerts?: number;
+        /**
+         * Custom message. You can use template variables.
+         */
+        message?: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * Templated title of the message.
+         */
+        title?: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+        /**
+         * The URL to send webhook requests to.
+         */
+        url: string;
+    }
+
+    export interface ContactPointOpsgeny {
+        /**
+         * The OpsGenie API key to use.
+         */
+        apiKey: string;
+        /**
+         * Whether to auto-close alerts in OpsGenie when they resolve in the Alertmanager.
+         */
+        autoClose?: boolean;
+        /**
+         * A templated high-level description to use for the alert.
+         */
+        description?: string;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * The templated content of the message.
+         */
+        message?: string;
+        /**
+         * Whether to allow the alert priority to be configured via the value of the `ogPriority` annotation on the alert.
+         */
+        overridePriority?: boolean;
+        /**
+         * Teams, users, escalations and schedules that the alert will be routed to send notifications. If the API Key belongs to a team integration, this field will be overwritten with the owner team. This feature is available from Grafana 10.3+.
+         */
+        responders?: outputs.alerting.ContactPointOpsgenyResponder[];
+        /**
+         * Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.
+         */
+        sendTagsAs?: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+        /**
+         * Allows customization of the OpsGenie API URL.
+         */
+        url?: string;
+    }
+
+    export interface ContactPointOpsgenyResponder {
+        /**
+         * ID of the responder. Must be specified if name and username are empty.
+         */
+        id?: string;
+        /**
+         * Name of the responder. Must be specified if username and id are empty.
+         */
+        name?: string;
+        /**
+         * Type of the responder. Supported: team, teams, user, escalation, schedule or a template that is expanded to one of these values.
+         */
+        type: string;
+        /**
+         * User name of the responder. Must be specified if name and id are empty.
+         */
+        username?: string;
+    }
+
+    export interface ContactPointPagerduty {
+        /**
+         * The class or type of event, for example `ping failure`.
+         */
+        class?: string;
+        /**
+         * The name of the monitoring client that is triggering this event.
+         */
+        client?: string;
+        /**
+         * The URL of the monitoring client that is triggering this event.
+         */
+        clientUrl?: string;
+        /**
+         * The component being affected by the event.
+         */
+        component?: string;
+        /**
+         * A set of arbitrary key/value pairs that provide further detail about the incident.
+         */
+        details?: {[key: string]: string};
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * The group to which the provided component belongs to.
+         */
+        group?: string;
+        /**
+         * The PagerDuty API key.
+         */
+        integrationKey: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * The PagerDuty event severity level. Default is `critical`.
+         */
+        severity?: string;
+        /**
+         * The unique location of the affected system.
+         */
+        source?: string;
+        /**
+         * The templated summary message of the event.
+         */
+        summary?: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+    }
+
+    export interface ContactPointPushover {
+        /**
+         * The Pushover API token.
+         */
+        apiToken: string;
+        /**
+         * Comma-separated list of devices to which the event is associated.
+         */
+        device?: string;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * How many seconds for which the notification will continue to be retried by Pushover.
+         */
+        expire?: number;
+        /**
+         * The templated notification message content.
+         */
+        message?: string;
+        /**
+         * The priority level of the resolved event.
+         */
+        okPriority?: number;
+        /**
+         * The sound associated with the resolved notification.
+         */
+        okSound?: string;
+        /**
+         * The priority level of the event.
+         */
+        priority?: number;
+        /**
+         * How often, in seconds, the Pushover servers will send the same notification to the user.
+         */
+        retry?: number;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * The sound associated with the notification.
+         */
+        sound?: string;
+        /**
+         * The templated title of the message.
+         */
+        title?: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+        /**
+         * Whether to send images in the notification or not. Default is true. Requires Grafana to be configured to send images in notifications.
+         */
+        uploadImage?: boolean;
+        /**
+         * The Pushover user key.
+         */
+        userKey: string;
+    }
+
+    export interface ContactPointSensugo {
+        /**
+         * The SensuGo API key.
+         */
+        apiKey: string;
+        /**
+         * The SensuGo check to which the event should be routed.
+         */
+        check?: string;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * The entity being monitored.
+         */
+        entity?: string;
+        /**
+         * A custom handler to execute in addition to the check.
+         */
+        handler?: string;
+        /**
+         * Templated message content describing the alert.
+         */
+        message?: string;
+        /**
+         * The namespace in which the check resides.
+         */
+        namespace?: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+        /**
+         * The SensuGo URL to send requests to.
+         */
+        url: string;
+    }
+
+    export interface ContactPointSlack {
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * Use this to override the Slack API endpoint URL to send requests to.
+         */
+        endpointUrl?: string;
+        /**
+         * The name of a Slack workspace emoji to use as the bot icon.
+         */
+        iconEmoji?: string;
+        /**
+         * A URL of an image to use as the bot icon.
+         */
+        iconUrl?: string;
+        /**
+         * Describes how to ping the slack channel that messages are being sent to. Options are `here` for an @here ping, `channel` for @channel, or empty for no ping.
+         */
+        mentionChannel?: string;
+        /**
+         * Comma-separated list of groups to mention in the message.
+         */
+        mentionGroups?: string;
+        /**
+         * Comma-separated list of users to mention in the message.
+         */
+        mentionUsers?: string;
+        /**
+         * Channel, private group, or IM channel (can be an encoded ID or a name) to send messages to.
+         */
+        recipient?: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * Templated content of the message.
+         */
+        text?: string;
+        /**
+         * Templated title of the message.
+         */
+        title?: string;
+        /**
+         * A Slack API token,for sending messages directly without the webhook method.
+         */
+        token?: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+        /**
+         * A Slack webhook URL,for sending messages via the webhook method.
+         */
+        url?: string;
+        /**
+         * Username for the bot to use.
+         */
+        username?: string;
+    }
+
+    export interface ContactPointSn {
+        /**
+         * AWS access key ID used to authenticate with Amazon SNS.
+         */
+        accessKey?: string;
+        /**
+         * The Amazon Resource Name (ARN) of the role to assume to send notifications to Amazon SNS.
+         */
+        assumeRoleArn?: string;
+        /**
+         * The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+         */
+        authProvider?: string;
+        body?: string;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * The external ID to use when assuming the role.
+         */
+        externalId?: string;
+        /**
+         * The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+         */
+        messageFormat?: string;
+        /**
+         * AWS secret access key used to authenticate with Amazon SNS.
+         */
+        secretKey?: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        subject?: string;
+        /**
+         * The Amazon SNS topic to send notifications to.
+         */
+        topic: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+    }
+
+    export interface ContactPointTeam {
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * The templated message content to send.
+         */
+        message?: string;
+        /**
+         * The templated subtitle for each message section.
+         */
+        sectionTitle?: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * The templated title of the message.
+         */
+        title?: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+        /**
+         * A Teams webhook URL.
+         */
+        url: string;
+    }
+
+    export interface ContactPointTelegram {
+        /**
+         * The chat ID to send messages to.
+         */
+        chatId: string;
+        /**
+         * When set users will receive a notification with no sound.
+         */
+        disableNotifications?: boolean;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * When set it disables link previews for links in the message.
+         */
+        disableWebPagePreview?: boolean;
+        /**
+         * The templated content of the message.
+         */
+        message?: string;
+        /**
+         * Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
+         */
+        parseMode?: string;
+        /**
+         * When set it protects the contents of the message from forwarding and saving.
+         */
+        protectContent?: boolean;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * The Telegram bot token.
+         */
+        token: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+    }
+
+    export interface ContactPointThreema {
+        /**
+         * The Threema API key.
+         */
+        apiSecret: string;
+        /**
+         * The templated description of the message.
+         */
+        description?: string;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * The Threema gateway ID.
+         */
+        gatewayId: string;
+        /**
+         * The ID of the recipient of the message.
+         */
+        recipientId: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * The templated title of the message.
+         */
+        title?: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+    }
+
+    export interface ContactPointVictorop {
+        /**
+         * Templated description of the message.
+         */
+        description?: string;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * The VictorOps alert state - typically either `CRITICAL` or `RECOVERY`.
+         */
+        messageType?: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * Templated title to display.
+         */
+        title?: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+        /**
+         * The VictorOps webhook URL.
+         */
+        url: string;
+    }
+
+    export interface ContactPointWebex {
+        /**
+         * The URL to send webhook requests to.
+         */
+        apiUrl?: string;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * The templated title of the message to send.
+         */
+        message?: string;
+        /**
+         * ID of the Webex Teams room where to send the messages.
+         */
+        roomId?: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * The bearer token used to authorize the client.
+         */
+        token?: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+    }
+
+    export interface ContactPointWebhook {
+        /**
+         * Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.
+         */
+        authorizationCredentials?: string;
+        /**
+         * Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.
+         */
+        authorizationScheme?: string;
+        /**
+         * The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+         */
+        basicAuthPassword?: string;
+        /**
+         * The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+         */
+        basicAuthUser?: string;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * The HTTP method to use in the request. Defaults to `POST`.
+         */
+        httpMethod?: string;
+        /**
+         * The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
+         */
+        maxAlerts?: number;
+        /**
+         * Custom message. You can use template variables.
+         */
+        message?: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * Templated title of the message.
+         */
+        title?: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+        /**
+         * The URL to send webhook requests to.
+         */
+        url: string;
+    }
+
+    export interface ContactPointWecom {
+        /**
+         * Agent ID added to the request payload when using APIAPP.
+         */
+        agentId?: string;
+        /**
+         * Corp ID used to get token when using APIAPP.
+         */
+        corpId?: string;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * The templated content of the message to send.
+         */
+        message?: string;
+        /**
+         * The type of them message. Supported: markdown, text. Default: text.
+         */
+        msgType?: string;
+        /**
+         * The secret key required to obtain access token when using APIAPP. See https://work.weixin.qq.com/wework_admin/frame#apps to create APIAPP.
+         */
+        secret?: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * The templated title of the message to send.
+         */
+        title?: string;
+        /**
+         * The ID of user that should receive the message. Multiple entries should be separated by '|'. Default: @all.
+         */
+        toUser?: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+        /**
+         * The WeCom webhook URL. Required if using GroupRobot.
+         */
+        url?: string;
+    }
+
+    export interface MuteTimingInterval {
+        /**
+         * An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
+         */
+        daysOfMonths?: string[];
+        /**
+         * Provides the time zone for the time interval. Must be a location in the IANA time zone database, e.g "America/New_York"
+         */
+        location?: string;
+        /**
+         * An inclusive range of months, either numerical or full calendar month, e.g. "1:3", "december", or "may:august".
+         */
+        months?: string[];
+        /**
+         * The time ranges, represented in minutes, during which to mute in a given day.
+         */
+        times?: outputs.alerting.MuteTimingIntervalTime[];
+        /**
+         * An inclusive range of weekdays, e.g. "monday" or "tuesday:thursday".
+         */
+        weekdays?: string[];
+        /**
+         * A positive inclusive range of years, e.g. "2030" or "2025:2026".
+         */
+        years?: string[];
+    }
+
+    export interface MuteTimingIntervalTime {
+        /**
+         * The time, in hh:mm format, of when the interval should end exclusively.
+         */
+        end: string;
+        /**
+         * The time, in hh:mm format, of when the interval should begin inclusively.
+         */
+        start: string;
+    }
+
+    export interface NotificationPolicyPolicy {
+        /**
+         * The contact point to route notifications that match this rule to.
+         */
+        contactPoint?: string;
+        /**
+         * Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+         */
+        continue?: boolean;
+        /**
+         * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+         */
+        groupBies?: string[];
+        /**
+         * Minimum time interval between two notifications for the same group. Default is 5 minutes.
+         */
+        groupInterval?: string;
+        /**
+         * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+         */
+        groupWait?: string;
+        /**
+         * Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+         */
+        matchers?: outputs.alerting.NotificationPolicyPolicyMatcher[];
+        /**
+         * A list of mute timing names to apply to alerts that match this policy.
+         */
+        muteTimings?: string[];
+        /**
+         * Routing rules for specific label sets.
+         */
+        policies?: outputs.alerting.NotificationPolicyPolicyPolicy[];
+        /**
+         * Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+         */
+        repeatInterval?: string;
+    }
+
+    export interface NotificationPolicyPolicyMatcher {
+        /**
+         * The name of the label to match against.
+         */
+        label: string;
+        /**
+         * The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+         */
+        match: string;
+        /**
+         * The label value to match against.
+         */
+        value: string;
+    }
+
+    export interface NotificationPolicyPolicyPolicy {
+        /**
+         * The contact point to route notifications that match this rule to.
+         */
+        contactPoint?: string;
+        /**
+         * Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+         */
+        continue?: boolean;
+        /**
+         * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+         */
+        groupBies?: string[];
+        /**
+         * Minimum time interval between two notifications for the same group. Default is 5 minutes.
+         */
+        groupInterval?: string;
+        /**
+         * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+         */
+        groupWait?: string;
+        /**
+         * Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+         */
+        matchers?: outputs.alerting.NotificationPolicyPolicyPolicyMatcher[];
+        /**
+         * A list of mute timing names to apply to alerts that match this policy.
+         */
+        muteTimings?: string[];
+        /**
+         * Routing rules for specific label sets.
+         */
+        policies?: outputs.alerting.NotificationPolicyPolicyPolicyPolicy[];
+        /**
+         * Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+         */
+        repeatInterval?: string;
+    }
+
+    export interface NotificationPolicyPolicyPolicyMatcher {
+        /**
+         * The name of the label to match against.
+         */
+        label: string;
+        /**
+         * The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+         */
+        match: string;
+        /**
+         * The label value to match against.
+         */
+        value: string;
+    }
+
+    export interface NotificationPolicyPolicyPolicyPolicy {
+        /**
+         * The contact point to route notifications that match this rule to.
+         */
+        contactPoint?: string;
+        /**
+         * Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+         */
+        continue?: boolean;
+        /**
+         * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+         */
+        groupBies?: string[];
+        /**
+         * Minimum time interval between two notifications for the same group. Default is 5 minutes.
+         */
+        groupInterval?: string;
+        /**
+         * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+         */
+        groupWait?: string;
+        /**
+         * Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+         */
+        matchers?: outputs.alerting.NotificationPolicyPolicyPolicyPolicyMatcher[];
+        /**
+         * A list of mute timing names to apply to alerts that match this policy.
+         */
+        muteTimings?: string[];
+        /**
+         * Routing rules for specific label sets.
+         */
+        policies?: outputs.alerting.NotificationPolicyPolicyPolicyPolicyPolicy[];
+        /**
+         * Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+         */
+        repeatInterval?: string;
+    }
+
+    export interface NotificationPolicyPolicyPolicyPolicyMatcher {
+        /**
+         * The name of the label to match against.
+         */
+        label: string;
+        /**
+         * The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+         */
+        match: string;
+        /**
+         * The label value to match against.
+         */
+        value: string;
+    }
+
+    export interface NotificationPolicyPolicyPolicyPolicyPolicy {
+        /**
+         * The contact point to route notifications that match this rule to.
+         */
+        contactPoint?: string;
+        /**
+         * Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+         */
+        continue?: boolean;
+        /**
+         * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+         */
+        groupBies: string[];
+        /**
+         * Minimum time interval between two notifications for the same group. Default is 5 minutes.
+         */
+        groupInterval?: string;
+        /**
+         * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+         */
+        groupWait?: string;
+        /**
+         * Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+         */
+        matchers?: outputs.alerting.NotificationPolicyPolicyPolicyPolicyPolicyMatcher[];
+        /**
+         * A list of mute timing names to apply to alerts that match this policy.
+         */
+        muteTimings?: string[];
+        /**
+         * Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+         */
+        repeatInterval?: string;
+    }
+
+    export interface NotificationPolicyPolicyPolicyPolicyPolicyMatcher {
+        /**
+         * The name of the label to match against.
+         */
+        label: string;
+        /**
+         * The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+         */
+        match: string;
+        /**
+         * The label value to match against.
+         */
+        value: string;
+    }
+
+    export interface RuleGroupRule {
+        /**
+         * Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+         */
+        annotations?: {[key: string]: string};
+        /**
+         * The `refId` of the query node in the `data` field to use as the alert condition.
+         */
+        condition: string;
+        /**
+         * A sequence of stages that describe the contents of the rule.
+         */
+        datas: outputs.alerting.RuleGroupRuleData[];
+        /**
+         * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+         */
+        execErrState?: string;
+        /**
+         * The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
+         */
+        for?: string;
+        /**
+         * Sets whether the alert should be paused or not. Defaults to `false`.
+         */
+        isPaused?: boolean;
+        /**
+         * Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
+         */
+        labels?: {[key: string]: string};
+        /**
+         * The name of the alert rule.
+         */
+        name: string;
+        /**
+         * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+         */
+        noDataState?: string;
+        /**
+         * Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+         */
+        notificationSettings?: outputs.alerting.RuleGroupRuleNotificationSettings;
+        /**
+         * The unique identifier of the alert rule.
+         */
+        uid: string;
+    }
+
+    export interface RuleGroupRuleData {
+        /**
+         * The UID of the datasource being queried, or "-100" if this stage is an expression stage.
+         */
+        datasourceUid: string;
+        /**
+         * Custom JSON data to send to the specified datasource when querying.
+         */
+        model: string;
+        /**
+         * An optional identifier for the type of query being executed. Defaults to ``.
+         */
+        queryType?: string;
+        /**
+         * A unique string to identify this query stage within a rule.
+         */
+        refId: string;
+        /**
+         * The time range, relative to when the query is executed, across which to query.
+         */
+        relativeTimeRange: outputs.alerting.RuleGroupRuleDataRelativeTimeRange;
+    }
+
+    export interface RuleGroupRuleDataRelativeTimeRange {
+        /**
+         * The number of seconds in the past, relative to when the rule is evaluated, at which the time range begins.
+         */
+        from: number;
+        /**
+         * The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
+         */
+        to: number;
+    }
+
+    export interface RuleGroupRuleNotificationSettings {
+        /**
+         * The contact point to route notifications that match this rule to.
+         */
+        contactPoint: string;
+        /**
+         * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
+         */
+        groupBies?: string[];
+        /**
+         * Minimum time interval between two notifications for the same group. Default is 5 minutes.
+         */
+        groupInterval?: string;
+        /**
+         * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+         */
+        groupWait?: string;
+        /**
+         * A list of mute timing names to apply to alerts that match this policy.
+         */
+        muteTimings?: string[];
+        /**
+         * Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+         */
+        repeatInterval?: string;
+    }
+
+}
+
+export namespace cloud {
+    export interface AccessPolicyRealm {
+        /**
+         * The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
+         */
+        identifier: string;
+        labelPolicies?: outputs.cloud.AccessPolicyRealmLabelPolicy[];
+        /**
+         * Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.
+         */
+        type: string;
+    }
+
+    export interface AccessPolicyRealmLabelPolicy {
+        /**
+         * The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
+         */
+        selector: string;
+    }
+
+}
+
+export namespace enterprise {
+    export interface DataSourcePermissionPermission {
+        /**
+         * Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
+         */
+        builtInRole?: string;
+        /**
+         * Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
+         */
+        permission: string;
+        /**
+         * ID of the team to manage permissions for. Defaults to `0`.
+         */
+        teamId?: string;
+        /**
+         * ID of the user or service account to manage permissions for. Defaults to `0`.
+         */
+        userId?: string;
+    }
+
+    export interface GetRolePermission {
+        /**
+         * Specific action users granted with the role will be allowed to perform (for example: `users:read`)
+         */
+        action: string;
+        /**
+         * Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
+         */
+        scope?: string;
+    }
+
+    export interface ReportDashboard {
+        /**
+         * Add report variables to the dashboard. Values should be separated by commas.
+         */
+        reportVariables?: {[key: string]: any};
+        /**
+         * Time range of the report.
+         */
+        timeRange?: outputs.enterprise.ReportDashboardTimeRange;
+        /**
+         * Dashboard uid.
+         */
+        uid: string;
+    }
+
+    export interface ReportDashboardTimeRange {
+        /**
+         * Start of the time range.
+         */
+        from?: string;
+        /**
+         * End of the time range.
+         */
+        to?: string;
+    }
+
+    export interface ReportSchedule {
+        /**
+         * Custom interval of the report.
+         * **Note:** This field is only available when frequency is set to `custom`.
+         */
+        customInterval?: string;
+        /**
+         * End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
+         */
+        endTime?: string;
+        /**
+         * Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
+         */
+        frequency: string;
+        /**
+         * Send the report on the last day of the month Defaults to `false`.
+         */
+        lastDayOfMonth?: boolean;
+        /**
+         * Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
+         */
+        startTime?: string;
+        /**
+         * Set the report time zone. Defaults to `GMT`.
+         */
+        timezone?: string;
+        /**
+         * Whether to send the report only on work days. Defaults to `false`.
+         */
+        workdaysOnly?: boolean;
+    }
+
+    export interface ReportTimeRange {
+        /**
+         * Start of the time range.
+         */
+        from?: string;
+        /**
+         * End of the time range.
+         */
+        to?: string;
+    }
+
+    export interface RolePermission {
+        /**
+         * Specific action users granted with the role will be allowed to perform (for example: `users:read`)
+         */
+        action: string;
+        /**
+         * Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
+         */
+        scope?: string;
+    }
+
+}
+
+export namespace machineLearning {
+    export interface HolidayCustomPeriod {
+        endTime: string;
+        /**
+         * The name of the custom period.
+         */
+        name?: string;
+        startTime: string;
+    }
+
+    export interface OutlierDetectorAlgorithm {
+        /**
+         * For DBSCAN only, specify the configuration map
+         */
+        config?: outputs.machineLearning.OutlierDetectorAlgorithmConfig;
+        /**
+         * The name of the algorithm to use ('mad' or 'dbscan').
+         */
+        name: string;
+        /**
+         * Specify the sensitivity of the detector (in range [0,1]).
+         */
+        sensitivity: number;
+    }
+
+    export interface OutlierDetectorAlgorithmConfig {
+        /**
+         * Specify the epsilon parameter (positive float)
+         */
+        epsilon: number;
+    }
+
+}
+
+export namespace onCall {
+    export interface IntegrationDefaultRoute {
+        /**
+         * The ID of the escalation chain.
+         */
+        escalationChainId?: string;
+        id: string;
+        /**
+         * MS teams-specific settings for a route.
+         */
+        msteams?: outputs.onCall.IntegrationDefaultRouteMsteams;
+        /**
+         * Slack-specific settings for a route.
+         */
+        slack?: outputs.onCall.IntegrationDefaultRouteSlack;
+        /**
+         * Telegram-specific settings for a route.
+         */
+        telegram?: outputs.onCall.IntegrationDefaultRouteTelegram;
+    }
+
+    export interface IntegrationDefaultRouteMsteams {
+        /**
+         * Enable notification in MS teams. Defaults to `true`.
+         */
+        enabled?: boolean;
+        /**
+         * MS teams channel id. Alerts will be directed to this channel in Microsoft teams.
+         */
+        id?: string;
+    }
+
+    export interface IntegrationDefaultRouteSlack {
+        /**
+         * Slack channel id. Alerts will be directed to this channel in Slack.
+         */
+        channelId?: string;
+        /**
+         * Enable notification in Slack. Defaults to `true`.
+         */
+        enabled?: boolean;
+    }
+
+    export interface IntegrationDefaultRouteTelegram {
+        /**
+         * Enable notification in Telegram. Defaults to `true`.
+         */
+        enabled?: boolean;
+        /**
+         * Telegram channel id. Alerts will be directed to this channel in Telegram.
+         */
+        id?: string;
+    }
+
+    export interface IntegrationTemplates {
+        /**
+         * Template for sending a signal to acknowledge the Incident.
+         */
+        acknowledgeSignal?: string;
+        /**
+         * Templates for Email.
+         */
+        email?: outputs.onCall.IntegrationTemplatesEmail;
+        /**
+         * Template for the key by which alerts are grouped.
+         */
+        groupingKey?: string;
+        /**
+         * Templates for Microsoft Teams.
+         */
+        microsoftTeams?: outputs.onCall.IntegrationTemplatesMicrosoftTeams;
+        /**
+         * Templates for Phone Call.
+         */
+        phoneCall?: outputs.onCall.IntegrationTemplatesPhoneCall;
+        /**
+         * Template for sending a signal to resolve the Incident.
+         */
+        resolveSignal?: string;
+        /**
+         * Templates for Slack.
+         */
+        slack?: outputs.onCall.IntegrationTemplatesSlack;
+        /**
+         * Templates for SMS.
+         */
+        sms?: outputs.onCall.IntegrationTemplatesSms;
+        /**
+         * Template for a source link.
+         */
+        sourceLink?: string;
+        /**
+         * Templates for Telegram.
+         */
+        telegram?: outputs.onCall.IntegrationTemplatesTelegram;
+        /**
+         * Templates for Web.
+         */
+        web?: outputs.onCall.IntegrationTemplatesWeb;
+    }
+
+    export interface IntegrationTemplatesEmail {
+        /**
+         * Template for Alert message.
+         */
+        message?: string;
+        /**
+         * Template for Alert title.
+         */
+        title?: string;
+    }
+
+    export interface IntegrationTemplatesMicrosoftTeams {
+        /**
+         * Template for Alert image url.
+         */
+        imageUrl?: string;
+        /**
+         * Template for Alert message.
+         */
+        message?: string;
+        /**
+         * Template for Alert title.
+         */
+        title?: string;
+    }
+
+    export interface IntegrationTemplatesPhoneCall {
+        /**
+         * Template for Alert title.
+         */
+        title?: string;
+    }
+
+    export interface IntegrationTemplatesSlack {
+        /**
+         * Template for Alert image url.
+         */
+        imageUrl?: string;
+        /**
+         * Template for Alert message.
+         */
+        message?: string;
+        /**
+         * Template for Alert title.
+         */
+        title?: string;
+    }
+
+    export interface IntegrationTemplatesSms {
+        /**
+         * Template for Alert title.
+         */
+        title?: string;
+    }
+
+    export interface IntegrationTemplatesTelegram {
+        /**
+         * Template for Alert image url.
+         */
+        imageUrl?: string;
+        /**
+         * Template for Alert message.
+         */
+        message?: string;
+        /**
+         * Template for Alert title.
+         */
+        title?: string;
+    }
+
+    export interface IntegrationTemplatesWeb {
+        /**
+         * Template for Alert image url.
+         */
+        imageUrl?: string;
+        /**
+         * Template for Alert message.
+         */
+        message?: string;
+        /**
+         * Template for Alert title.
+         */
+        title?: string;
+    }
+
+    export interface RouteMsteams {
+        /**
+         * Enable notification in MS teams. Defaults to `true`.
+         */
+        enabled?: boolean;
+        /**
+         * MS teams channel id. Alerts will be directed to this channel in Microsoft teams.
+         */
+        id?: string;
+    }
+
+    export interface RouteSlack {
+        /**
+         * Slack channel id. Alerts will be directed to this channel in Slack.
+         */
+        channelId?: string;
+        /**
+         * Enable notification in Slack. Defaults to `true`.
+         */
+        enabled?: boolean;
+    }
+
+    export interface RouteTelegram {
+        /**
+         * Enable notification in Telegram. Defaults to `true`.
+         */
+        enabled?: boolean;
+        /**
+         * Telegram channel id. Alerts will be directed to this channel in Telegram.
+         */
+        id?: string;
+    }
+
+    export interface ScheduleSlack {
+        /**
+         * Slack channel id. Reminder about schedule shifts will be directed to this channel in Slack.
+         */
+        channelId?: string;
+        /**
+         * Slack user group id. Members of user group will be updated when on-call users change.
+         */
+        userGroupId?: string;
+    }
+
+}
+
+export namespace slo {
+    export interface GetSlosSlo {
+        /**
+         * Configures the alerting rules that will be generated for each
+         * 				time window associated with the SLO. Grafana SLOs can generate
+         * 				alerts when the short-term error budget burn is very high, the
+         * 				long-term error budget burn rate is high, or when the remaining
+         * 				error budget is below a certain threshold. Annotations and Labels support templating.
+         */
+        alertings: outputs.slo.GetSlosSloAlerting[];
+        /**
+         * Description is a free-text field that can provide more context to an SLO.
+         */
+        description: string;
+        /**
+         * Destination Datasource sets the datasource defined for an SLO
+         */
+        destinationDatasources: outputs.slo.GetSlosSloDestinationDatasource[];
+        /**
+         * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
+         */
+        labels: outputs.slo.GetSlosSloLabel[];
+        /**
+         * Name should be a short description of your indicator. Consider names like "API Availability"
+         */
+        name: string;
+        /**
+         * Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+         */
+        objectives: outputs.slo.GetSlosSloObjective[];
+        /**
+         * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+         */
+        queries: outputs.slo.GetSlosSloQuery[];
+        /**
+         * A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.
+         */
+        uuid: string;
+    }
+
+    export interface GetSlosSloAlerting {
+        /**
+         * Annotations will be attached to all alerts generated by any of these rules.
+         */
+        annotations?: outputs.slo.GetSlosSloAlertingAnnotation[];
+        /**
+         * Alerting Rules generated for Fast Burn alerts
+         */
+        fastburns?: outputs.slo.GetSlosSloAlertingFastburn[];
+        /**
+         * Labels will be attached to all alerts generated by any of these rules.
+         */
+        labels?: outputs.slo.GetSlosSloAlertingLabel[];
+        /**
+         * Alerting Rules generated for Slow Burn alerts
+         */
+        slowburns?: outputs.slo.GetSlosSloAlertingSlowburn[];
+    }
+
+    export interface GetSlosSloAlertingAnnotation {
+        key: string;
+        value: string;
+    }
+
+    export interface GetSlosSloAlertingFastburn {
+        /**
+         * Annotations to attach only to Fast Burn alerts.
+         */
+        annotations?: outputs.slo.GetSlosSloAlertingFastburnAnnotation[];
+        /**
+         * Labels to attach only to Fast Burn alerts.
+         */
+        labels?: outputs.slo.GetSlosSloAlertingFastburnLabel[];
+    }
+
+    export interface GetSlosSloAlertingFastburnAnnotation {
+        key: string;
+        value: string;
+    }
+
+    export interface GetSlosSloAlertingFastburnLabel {
+        key: string;
+        value: string;
+    }
+
+    export interface GetSlosSloAlertingLabel {
+        key: string;
+        value: string;
+    }
+
+    export interface GetSlosSloAlertingSlowburn {
+        /**
+         * Annotations to attach only to Slow Burn alerts.
+         */
+        annotations?: outputs.slo.GetSlosSloAlertingSlowburnAnnotation[];
+        /**
+         * Labels to attach only to Slow Burn alerts.
+         */
+        labels?: outputs.slo.GetSlosSloAlertingSlowburnLabel[];
+    }
+
+    export interface GetSlosSloAlertingSlowburnAnnotation {
+        key: string;
+        value: string;
+    }
+
+    export interface GetSlosSloAlertingSlowburnLabel {
+        key: string;
+        value: string;
+    }
+
+    export interface GetSlosSloDestinationDatasource {
+        /**
+         * UID for the Mimir Datasource
+         */
+        uid?: string;
+    }
+
+    export interface GetSlosSloLabel {
+        key: string;
+        value: string;
+    }
+
+    export interface GetSlosSloObjective {
+        /**
+         * Value between 0 and 1. If the value of the query is above the objective, the SLO is met.
+         */
+        value: number;
+        /**
+         * A Prometheus-parsable time duration string like 24h, 60m. This is the time window the objective is measured over.
+         */
+        window: string;
+    }
+
+    export interface GetSlosSloQuery {
+        freeform?: outputs.slo.GetSlosSloQueryFreeform;
+        ratio?: outputs.slo.GetSlosSloQueryRatio;
+        /**
+         * Query type must be one of: "freeform", "query", "ratio", or "threshold"
+         */
+        type: string;
+    }
+
+    export interface GetSlosSloQueryFreeform {
+        /**
+         * Freeform Query Field
+         */
+        query: string;
+    }
+
+    export interface GetSlosSloQueryRatio {
+        /**
+         * Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
+         */
+        groupByLabels?: string[];
+        /**
+         * Counter metric for success events (numerator)
+         */
+        successMetric: string;
+        /**
+         * Metric for total events (denominator)
+         */
+        totalMetric: string;
+    }
+
+    export interface SLOAlerting {
+        /**
+         * Annotations will be attached to all alerts generated by any of these rules.
+         */
+        annotations?: outputs.slo.SLOAlertingAnnotation[];
+        /**
+         * Alerting Rules generated for Fast Burn alerts
+         */
+        fastburns?: outputs.slo.SLOAlertingFastburn[];
+        /**
+         * Labels will be attached to all alerts generated by any of these rules.
+         */
+        labels?: outputs.slo.SLOAlertingLabel[];
+        /**
+         * Alerting Rules generated for Slow Burn alerts
+         */
+        slowburns?: outputs.slo.SLOAlertingSlowburn[];
+    }
+
+    export interface SLOAlertingAnnotation {
+        key: string;
+        value: string;
+    }
+
+    export interface SLOAlertingFastburn {
+        /**
+         * Annotations to attach only to Fast Burn alerts.
+         */
+        annotations?: outputs.slo.SLOAlertingFastburnAnnotation[];
+        /**
+         * Labels to attach only to Fast Burn alerts.
+         */
+        labels?: outputs.slo.SLOAlertingFastburnLabel[];
+    }
+
+    export interface SLOAlertingFastburnAnnotation {
+        key: string;
+        value: string;
+    }
+
+    export interface SLOAlertingFastburnLabel {
+        key: string;
+        value: string;
+    }
+
+    export interface SLOAlertingLabel {
+        key: string;
+        value: string;
+    }
+
+    export interface SLOAlertingSlowburn {
+        /**
+         * Annotations to attach only to Slow Burn alerts.
+         */
+        annotations?: outputs.slo.SLOAlertingSlowburnAnnotation[];
+        /**
+         * Labels to attach only to Slow Burn alerts.
+         */
+        labels?: outputs.slo.SLOAlertingSlowburnLabel[];
+    }
+
+    export interface SLOAlertingSlowburnAnnotation {
+        key: string;
+        value: string;
+    }
+
+    export interface SLOAlertingSlowburnLabel {
+        key: string;
+        value: string;
+    }
+
+    export interface SLODestinationDatasource {
+        /**
+         * UID for the Mimir Datasource
+         */
+        uid?: string;
+    }
+
+    export interface SLOLabel {
+        key: string;
+        value: string;
+    }
+
+    export interface SLOObjective {
+        /**
+         * Value between 0 and 1. If the value of the query is above the objective, the SLO is met.
+         */
+        value: number;
+        /**
+         * A Prometheus-parsable time duration string like 24h, 60m. This is the time window the objective is measured over.
+         */
+        window: string;
+    }
+
+    export interface SLOQuery {
+        freeform?: outputs.slo.SLOQueryFreeform;
+        ratio?: outputs.slo.SLOQueryRatio;
+        /**
+         * Query type must be one of: "freeform", "query", "ratio", or "threshold"
+         */
+        type: string;
+    }
+
+    export interface SLOQueryFreeform {
+        /**
+         * Freeform Query Field
+         */
+        query: string;
+    }
+
+    export interface SLOQueryRatio {
+        /**
+         * Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+         */
+        groupByLabels?: string[];
+        /**
+         * Counter metric for success events (numerator)
+         */
+        successMetric: string;
+        /**
+         * Metric for total events (denominator)
+         */
+        totalMetric: string;
+    }
+
+}
+
+export namespace syntheticMonitoring {
+    export interface CheckSettings {
+        /**
+         * Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
+         */
+        dns?: outputs.syntheticMonitoring.CheckSettingsDns;
+        /**
+         * Settings for HTTP check. The target must be a URL (http or https).
+         */
+        http?: outputs.syntheticMonitoring.CheckSettingsHttp;
+        /**
+         * Settings for MultiHTTP check. The target must be a URL (http or https)
+         */
+        multihttp?: outputs.syntheticMonitoring.CheckSettingsMultihttp;
+        /**
+         * Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
+         */
+        ping?: outputs.syntheticMonitoring.CheckSettingsPing;
+        /**
+         * Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
+         */
+        tcp?: outputs.syntheticMonitoring.CheckSettingsTcp;
+        /**
+         * Settings for traceroute check. The target must be a valid hostname or IP address
+         */
+        traceroute?: outputs.syntheticMonitoring.CheckSettingsTraceroute;
+    }
+
+    export interface CheckSettingsDns {
+        /**
+         * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+         */
+        ipVersion?: string;
+        /**
+         * Port to target. Defaults to `53`.
+         */
+        port?: number;
+        /**
+         * `TCP` or `UDP`. Defaults to `UDP`.
+         */
+        protocol?: string;
+        /**
+         * One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+         */
+        recordType?: string;
+        /**
+         * DNS server address to target. Defaults to `8.8.8.8`.
+         */
+        server?: string;
+        /**
+         * Source IP address.
+         */
+        sourceIpAddress?: string;
+        /**
+         * List of valid response codes. Options include `NOERROR`, `BADALG`, `BADMODE`, `BADKEY`, `BADCOOKIE`, `BADNAME`, `BADSIG`, `BADTIME`, `BADTRUNC`, `BADVERS`, `FORMERR`, `NOTIMP`, `NOTAUTH`, `NOTZONE`, `NXDOMAIN`, `NXRRSET`, `REFUSED`, `SERVFAIL`, `YXDOMAIN`, `YXRRSET`.
+         */
+        validRCodes?: string[];
+        /**
+         * Validate additional matches.
+         */
+        validateAdditionalRrs?: outputs.syntheticMonitoring.CheckSettingsDnsValidateAdditionalRr[];
+        /**
+         * Validate response answer.
+         */
+        validateAnswerRrs?: outputs.syntheticMonitoring.CheckSettingsDnsValidateAnswerRrs;
+        /**
+         * Validate response authority.
+         */
+        validateAuthorityRrs?: outputs.syntheticMonitoring.CheckSettingsDnsValidateAuthorityRrs;
+    }
+
+    export interface CheckSettingsDnsValidateAdditionalRr {
+        /**
+         * Fail if value matches regex.
+         */
+        failIfMatchesRegexps?: string[];
+        /**
+         * Fail if value does not match regex.
+         */
+        failIfNotMatchesRegexps?: string[];
+    }
+
+    export interface CheckSettingsDnsValidateAnswerRrs {
+        /**
+         * Fail if value matches regex.
+         */
+        failIfMatchesRegexps?: string[];
+        /**
+         * Fail if value does not match regex.
+         */
+        failIfNotMatchesRegexps?: string[];
+    }
+
+    export interface CheckSettingsDnsValidateAuthorityRrs {
+        /**
+         * Fail if value matches regex.
+         */
+        failIfMatchesRegexps?: string[];
+        /**
+         * Fail if value does not match regex.
+         */
+        failIfNotMatchesRegexps?: string[];
+    }
+
+    export interface CheckSettingsHttp {
+        /**
+         * Basic auth settings.
+         */
+        basicAuth?: outputs.syntheticMonitoring.CheckSettingsHttpBasicAuth;
+        /**
+         * Token for use with bearer authorization header.
+         */
+        bearerToken?: string;
+        /**
+         * The body of the HTTP request used in probe.
+         */
+        body?: string;
+        /**
+         * The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
+         */
+        cacheBustingQueryParamName?: string;
+        /**
+         * List of regexes. If any match the response body, the check will fail.
+         */
+        failIfBodyMatchesRegexps?: string[];
+        /**
+         * List of regexes. If any do not match the response body, the check will fail.
+         */
+        failIfBodyNotMatchesRegexps?: string[];
+        /**
+         * Check fails if headers match.
+         */
+        failIfHeaderMatchesRegexps?: outputs.syntheticMonitoring.CheckSettingsHttpFailIfHeaderMatchesRegexp[];
+        /**
+         * Check fails if headers do not match.
+         */
+        failIfHeaderNotMatchesRegexps?: outputs.syntheticMonitoring.CheckSettingsHttpFailIfHeaderNotMatchesRegexp[];
+        /**
+         * Fail if SSL is not present. Defaults to `false`.
+         */
+        failIfNotSsl?: boolean;
+        /**
+         * Fail if SSL is present. Defaults to `false`.
+         */
+        failIfSsl?: boolean;
+        /**
+         * The HTTP headers set for the probe.
+         */
+        headers?: string[];
+        /**
+         * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+         */
+        ipVersion?: string;
+        /**
+         * Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+         */
+        method?: string;
+        /**
+         * Do not follow redirects. Defaults to `false`.
+         */
+        noFollowRedirects?: boolean;
+        /**
+         * The HTTP headers sent to the proxy URL
+         */
+        proxyConnectHeaders?: string[];
+        /**
+         * Proxy URL.
+         */
+        proxyUrl?: string;
+        /**
+         * TLS config.
+         */
+        tlsConfig?: outputs.syntheticMonitoring.CheckSettingsHttpTlsConfig;
+        /**
+         * List of valid HTTP versions. Options include `HTTP/1.0`, `HTTP/1.1`, `HTTP/2.0`
+         */
+        validHttpVersions?: string[];
+        /**
+         * Accepted status codes. If unset, defaults to 2xx.
+         */
+        validStatusCodes?: number[];
+    }
+
+    export interface CheckSettingsHttpBasicAuth {
+        /**
+         * Basic auth password.
+         */
+        password: string;
+        /**
+         * Basic auth username.
+         */
+        username: string;
+    }
+
+    export interface CheckSettingsHttpFailIfHeaderMatchesRegexp {
+        /**
+         * Allow header to be missing from responses. Defaults to `false`.
+         */
+        allowMissing?: boolean;
+        /**
+         * Header name.
+         */
+        header: string;
+        /**
+         * Regex that header value should match.
+         */
+        regexp: string;
+    }
+
+    export interface CheckSettingsHttpFailIfHeaderNotMatchesRegexp {
+        /**
+         * Allow header to be missing from responses. Defaults to `false`.
+         */
+        allowMissing?: boolean;
+        /**
+         * Header name.
+         */
+        header: string;
+        /**
+         * Regex that header value should match.
+         */
+        regexp: string;
+    }
+
+    export interface CheckSettingsHttpTlsConfig {
+        /**
+         * CA certificate in PEM format.
+         */
+        caCert?: string;
+        /**
+         * Client certificate in PEM format.
+         */
+        clientCert?: string;
+        /**
+         * Client key in PEM format.
+         */
+        clientKey?: string;
+        /**
+         * Disable target certificate validation. Defaults to `false`.
+         */
+        insecureSkipVerify?: boolean;
+        /**
+         * Used to verify the hostname for the targets.
+         */
+        serverName?: string;
+    }
+
+    export interface CheckSettingsMultihttp {
+        entries?: outputs.syntheticMonitoring.CheckSettingsMultihttpEntry[];
+    }
+
+    export interface CheckSettingsMultihttpEntry {
+        /**
+         * Assertions to make on the request response
+         */
+        assertions?: outputs.syntheticMonitoring.CheckSettingsMultihttpEntryAssertion[];
+        /**
+         * An individual MultiHTTP request
+         */
+        request?: outputs.syntheticMonitoring.CheckSettingsMultihttpEntryRequest;
+        /**
+         * Variables to extract from the request response
+         */
+        variables?: outputs.syntheticMonitoring.CheckSettingsMultihttpEntryVariable[];
+    }
+
+    export interface CheckSettingsMultihttpEntryAssertion {
+        /**
+         * The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+         */
+        condition?: string;
+        /**
+         * The expression of the assertion. Should start with $.
+         */
+        expression?: string;
+        /**
+         * The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+         */
+        subject?: string;
+        /**
+         * The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+         */
+        type: string;
+        /**
+         * The value of the assertion
+         */
+        value?: string;
+    }
+
+    export interface CheckSettingsMultihttpEntryRequest {
+        /**
+         * The body of the HTTP request used in probe.
+         */
+        bodies?: outputs.syntheticMonitoring.CheckSettingsMultihttpEntryRequestBody[];
+        /**
+         * The headers to send with the request
+         */
+        headers?: outputs.syntheticMonitoring.CheckSettingsMultihttpEntryRequestHeader[];
+        /**
+         * The HTTP method to use
+         */
+        method: string;
+        /**
+         * Query fields to send with the request
+         */
+        queryFields?: outputs.syntheticMonitoring.CheckSettingsMultihttpEntryRequestQueryField[];
+        /**
+         * The URL for the request
+         */
+        url: string;
+    }
+
+    export interface CheckSettingsMultihttpEntryRequestBody {
+        /**
+         * The content encoding of the body
+         */
+        contentEncoding?: string;
+        /**
+         * The content type of the body
+         */
+        contentType?: string;
+        /**
+         * The body payload
+         */
+        payload?: string;
+    }
+
+    export interface CheckSettingsMultihttpEntryRequestHeader {
+        /**
+         * Name of the header to send
+         */
+        name: string;
+        /**
+         * Value of the header to send
+         */
+        value: string;
+    }
+
+    export interface CheckSettingsMultihttpEntryRequestQueryField {
+        /**
+         * Name of the query field to send
+         */
+        name: string;
+        /**
+         * Value of the query field to send
+         */
+        value: string;
+    }
+
+    export interface CheckSettingsMultihttpEntryVariable {
+        /**
+         * The attribute to use when finding the variable value. Only used when type is CSS_SELECTOR
+         */
+        attribute?: string;
+        /**
+         * The expression to when finding the variable. Should start with $. Only use when type is JSON_PATH or REGEX
+         */
+        expression?: string;
+        /**
+         * The name of the variable to extract
+         */
+        name?: string;
+        /**
+         * The method of finding the variable value to extract. JSON*PATH, REGEX, CSS*SELECTOR
+         */
+        type: string;
+    }
+
+    export interface CheckSettingsPing {
+        /**
+         * Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+         */
+        dontFragment?: boolean;
+        /**
+         * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+         */
+        ipVersion?: string;
+        /**
+         * Payload size. Defaults to `0`.
+         */
+        payloadSize?: number;
+        /**
+         * Source IP address.
+         */
+        sourceIpAddress?: string;
+    }
+
+    export interface CheckSettingsTcp {
+        /**
+         * Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+         */
+        ipVersion?: string;
+        /**
+         * The query sent in the TCP probe and the expected associated response.
+         */
+        queryResponses?: outputs.syntheticMonitoring.CheckSettingsTcpQueryResponse[];
+        /**
+         * Source IP address.
+         */
+        sourceIpAddress?: string;
+        /**
+         * Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+         */
+        tls?: boolean;
+        /**
+         * TLS config.
+         */
+        tlsConfig?: outputs.syntheticMonitoring.CheckSettingsTcpTlsConfig;
+    }
+
+    export interface CheckSettingsTcpQueryResponse {
+        /**
+         * Response to expect.
+         */
+        expect: string;
+        /**
+         * Data to send.
+         */
+        send: string;
+        /**
+         * Upgrade TCP connection to TLS. Defaults to `false`.
+         */
+        startTls?: boolean;
+    }
+
+    export interface CheckSettingsTcpTlsConfig {
+        /**
+         * CA certificate in PEM format.
+         */
+        caCert?: string;
+        /**
+         * Client certificate in PEM format.
+         */
+        clientCert?: string;
+        /**
+         * Client key in PEM format.
+         */
+        clientKey?: string;
+        /**
+         * Disable target certificate validation. Defaults to `false`.
+         */
+        insecureSkipVerify?: boolean;
+        /**
+         * Used to verify the hostname for the targets.
+         */
+        serverName?: string;
+    }
+
+    export interface CheckSettingsTraceroute {
+        /**
+         * Maximum TTL for the trace Defaults to `64`.
+         */
+        maxHops?: number;
+        /**
+         * Maximum number of hosts to travers that give no response Defaults to `15`.
+         */
+        maxUnknownHops?: number;
+        /**
+         * Reverse lookup hostnames from IP addresses Defaults to `true`.
+         */
+        ptrLookup?: boolean;
+    }
+
+}

@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.GetOrganizationPreferences(ctx, nil, nil)
+//			_, err := grafana.LookupOrganizationPreferences(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -37,9 +37,9 @@ import (
 //	}
 //
 // ```
-func GetOrganizationPreferences(ctx *pulumi.Context, args *GetOrganizationPreferencesArgs, opts ...pulumi.InvokeOption) (*GetOrganizationPreferencesResult, error) {
+func LookupOrganizationPreferences(ctx *pulumi.Context, args *LookupOrganizationPreferencesArgs, opts ...pulumi.InvokeOption) (*LookupOrganizationPreferencesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetOrganizationPreferencesResult
+	var rv LookupOrganizationPreferencesResult
 	err := ctx.Invoke("grafana:index/getOrganizationPreferences:getOrganizationPreferences", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -48,13 +48,13 @@ func GetOrganizationPreferences(ctx *pulumi.Context, args *GetOrganizationPrefer
 }
 
 // A collection of arguments for invoking getOrganizationPreferences.
-type GetOrganizationPreferencesArgs struct {
+type LookupOrganizationPreferencesArgs struct {
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
 }
 
 // A collection of values returned by getOrganizationPreferences.
-type GetOrganizationPreferencesResult struct {
+type LookupOrganizationPreferencesResult struct {
 	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
 	//
 	// Deprecated: Use `homeDashboardUid` instead.
@@ -73,81 +73,81 @@ type GetOrganizationPreferencesResult struct {
 	WeekStart string `pulumi:"weekStart"`
 }
 
-func GetOrganizationPreferencesOutput(ctx *pulumi.Context, args GetOrganizationPreferencesOutputArgs, opts ...pulumi.InvokeOption) GetOrganizationPreferencesResultOutput {
+func LookupOrganizationPreferencesOutput(ctx *pulumi.Context, args LookupOrganizationPreferencesOutputArgs, opts ...pulumi.InvokeOption) LookupOrganizationPreferencesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetOrganizationPreferencesResult, error) {
-			args := v.(GetOrganizationPreferencesArgs)
-			r, err := GetOrganizationPreferences(ctx, &args, opts...)
-			var s GetOrganizationPreferencesResult
+		ApplyT(func(v interface{}) (LookupOrganizationPreferencesResult, error) {
+			args := v.(LookupOrganizationPreferencesArgs)
+			r, err := LookupOrganizationPreferences(ctx, &args, opts...)
+			var s LookupOrganizationPreferencesResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(GetOrganizationPreferencesResultOutput)
+		}).(LookupOrganizationPreferencesResultOutput)
 }
 
 // A collection of arguments for invoking getOrganizationPreferences.
-type GetOrganizationPreferencesOutputArgs struct {
+type LookupOrganizationPreferencesOutputArgs struct {
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
 }
 
-func (GetOrganizationPreferencesOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetOrganizationPreferencesArgs)(nil)).Elem()
+func (LookupOrganizationPreferencesOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupOrganizationPreferencesArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getOrganizationPreferences.
-type GetOrganizationPreferencesResultOutput struct{ *pulumi.OutputState }
+type LookupOrganizationPreferencesResultOutput struct{ *pulumi.OutputState }
 
-func (GetOrganizationPreferencesResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetOrganizationPreferencesResult)(nil)).Elem()
+func (LookupOrganizationPreferencesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupOrganizationPreferencesResult)(nil)).Elem()
 }
 
-func (o GetOrganizationPreferencesResultOutput) ToGetOrganizationPreferencesResultOutput() GetOrganizationPreferencesResultOutput {
+func (o LookupOrganizationPreferencesResultOutput) ToLookupOrganizationPreferencesResultOutput() LookupOrganizationPreferencesResultOutput {
 	return o
 }
 
-func (o GetOrganizationPreferencesResultOutput) ToGetOrganizationPreferencesResultOutputWithContext(ctx context.Context) GetOrganizationPreferencesResultOutput {
+func (o LookupOrganizationPreferencesResultOutput) ToLookupOrganizationPreferencesResultOutputWithContext(ctx context.Context) LookupOrganizationPreferencesResultOutput {
 	return o
 }
 
 // The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
 //
 // Deprecated: Use `homeDashboardUid` instead.
-func (o GetOrganizationPreferencesResultOutput) HomeDashboardId() pulumi.IntOutput {
-	return o.ApplyT(func(v GetOrganizationPreferencesResult) int { return v.HomeDashboardId }).(pulumi.IntOutput)
+func (o LookupOrganizationPreferencesResultOutput) HomeDashboardId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupOrganizationPreferencesResult) int { return v.HomeDashboardId }).(pulumi.IntOutput)
 }
 
 // The Organization home dashboard UID. This is only available in Grafana 9.0+.
-func (o GetOrganizationPreferencesResultOutput) HomeDashboardUid() pulumi.StringOutput {
-	return o.ApplyT(func(v GetOrganizationPreferencesResult) string { return v.HomeDashboardUid }).(pulumi.StringOutput)
+func (o LookupOrganizationPreferencesResultOutput) HomeDashboardUid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationPreferencesResult) string { return v.HomeDashboardUid }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o GetOrganizationPreferencesResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetOrganizationPreferencesResult) string { return v.Id }).(pulumi.StringOutput)
+func (o LookupOrganizationPreferencesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationPreferencesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The Organization ID. If not set, the Org ID defined in the provider block will be used.
-func (o GetOrganizationPreferencesResultOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetOrganizationPreferencesResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
+func (o LookupOrganizationPreferencesResultOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupOrganizationPreferencesResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
 // The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
-func (o GetOrganizationPreferencesResultOutput) Theme() pulumi.StringOutput {
-	return o.ApplyT(func(v GetOrganizationPreferencesResult) string { return v.Theme }).(pulumi.StringOutput)
+func (o LookupOrganizationPreferencesResultOutput) Theme() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationPreferencesResult) string { return v.Theme }).(pulumi.StringOutput)
 }
 
 // The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
-func (o GetOrganizationPreferencesResultOutput) Timezone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetOrganizationPreferencesResult) string { return v.Timezone }).(pulumi.StringOutput)
+func (o LookupOrganizationPreferencesResultOutput) Timezone() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationPreferencesResult) string { return v.Timezone }).(pulumi.StringOutput)
 }
 
 // The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
-func (o GetOrganizationPreferencesResultOutput) WeekStart() pulumi.StringOutput {
-	return o.ApplyT(func(v GetOrganizationPreferencesResult) string { return v.WeekStart }).(pulumi.StringOutput)
+func (o LookupOrganizationPreferencesResultOutput) WeekStart() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationPreferencesResult) string { return v.WeekStart }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetOrganizationPreferencesResultOutput{})
+	pulumi.RegisterOutputType(LookupOrganizationPreferencesResultOutput{})
 }

@@ -230,7 +230,7 @@ class DataSourcePermissionItem(pulumi.CustomResource):
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages a single permission item for a datasource. Conflicts with the "DataSourcePermission" resource which manages the entire set of permissions for a datasource.
+        Manages a single permission item for a datasource. Conflicts with the "enterprise.DataSourcePermission" resource which manages the entire set of permissions for a datasource.
 
         ## Example Usage
 
@@ -299,7 +299,7 @@ class DataSourcePermissionItem(pulumi.CustomResource):
                  args: DataSourcePermissionItemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a single permission item for a datasource. Conflicts with the "DataSourcePermission" resource which manages the entire set of permissions for a datasource.
+        Manages a single permission item for a datasource. Conflicts with the "enterprise.DataSourcePermission" resource which manages the entire set of permissions for a datasource.
 
         ## Example Usage
 

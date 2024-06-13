@@ -4,21 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- *
- * const exampleUserGroup = grafana.getOncallUserGroup({
- *     slackHandle: "example_slack_handle",
- * });
- * ```
- */
+/** @deprecated grafana.index/getoncallusergroup.getOncallUserGroup has been deprecated in favor of grafana.oncall/getusergroup.getUserGroup */
 export function getOncallUserGroup(args: GetOncallUserGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallUserGroupResult> {
+    pulumi.log.warn("getOncallUserGroup is deprecated: grafana.index/getoncallusergroup.getOncallUserGroup has been deprecated in favor of grafana.oncall/getusergroup.getUserGroup")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOncallUserGroup:getOncallUserGroup", {
@@ -44,20 +32,7 @@ export interface GetOncallUserGroupResult {
     readonly slackHandle: string;
     readonly slackId: string;
 }
-/**
- * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- *
- * const exampleUserGroup = grafana.getOncallUserGroup({
- *     slackHandle: "example_slack_handle",
- * });
- * ```
- */
+/** @deprecated grafana.index/getoncallusergroup.getOncallUserGroup has been deprecated in favor of grafana.oncall/getusergroup.getUserGroup */
 export function getOncallUserGroupOutput(args: GetOncallUserGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallUserGroupResult> {
     return pulumi.output(args).apply((a: any) => getOncallUserGroup(a, opts))
 }

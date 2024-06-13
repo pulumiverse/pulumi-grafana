@@ -340,6 +340,11 @@ export type OrganizationPreference = import("./organizationPreference").Organiza
 export const OrganizationPreference: typeof import("./organizationPreference").OrganizationPreference = null as any;
 utilities.lazyLoad(exports, ["OrganizationPreference"], () => require("./organizationPreference"));
 
+export { OrganizationPreferencesArgs, OrganizationPreferencesState } from "./organizationPreferences";
+export type OrganizationPreferences = import("./organizationPreferences").OrganizationPreferences;
+export const OrganizationPreferences: typeof import("./organizationPreferences").OrganizationPreferences = null as any;
+utilities.lazyLoad(exports, ["OrganizationPreferences"], () => require("./organizationPreferences"));
+
 export { PlaylistArgs, PlaylistState } from "./playlist";
 export type Playlist = import("./playlist").Playlist;
 export const Playlist: typeof import("./playlist").Playlist = null as any;
@@ -437,11 +442,25 @@ utilities.lazyLoad(exports, ["User"], () => require("./user"));
 
 
 // Export sub-modules:
+import * as alerting from "./alerting";
+import * as cloud from "./cloud";
 import * as config from "./config";
+import * as enterprise from "./enterprise";
+import * as machinelearning from "./machinelearning";
+import * as oncall from "./oncall";
+import * as slo from "./slo";
+import * as syntheticmonitoring from "./syntheticmonitoring";
 import * as types from "./types";
 
 export {
+    alerting,
+    cloud,
     config,
+    enterprise,
+    machinelearning,
+    oncall,
+    slo,
+    syntheticmonitoring,
     types,
 };
 
@@ -527,6 +546,8 @@ const _module = {
                 return new Organization(name, <any>undefined, { urn })
             case "grafana:index/organizationPreference:OrganizationPreference":
                 return new OrganizationPreference(name, <any>undefined, { urn })
+            case "grafana:index/organizationPreferences:OrganizationPreferences":
+                return new OrganizationPreferences(name, <any>undefined, { urn })
             case "grafana:index/playlist:Playlist":
                 return new Playlist(name, <any>undefined, { urn })
             case "grafana:index/report:Report":
@@ -607,6 +628,7 @@ pulumi.runtime.registerResourceModule("grafana", "index/oncallRoute", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/oncallSchedule", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/organization", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/organizationPreference", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/organizationPreferences", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/playlist", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/report", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/role", _module)

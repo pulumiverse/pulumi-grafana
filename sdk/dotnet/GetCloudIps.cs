@@ -10,47 +10,12 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    [Obsolete(@"grafana.index/getcloudips.getCloudIps has been deprecated in favor of grafana.cloud/getips.getIps")]
     public static class GetCloudIps
     {
-        /// <summary>
-        /// Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Grafana.GetCloudIps.Invoke();
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Task<GetCloudIpsResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudIpsResult>("grafana:index/getCloudIps:getCloudIps", InvokeArgs.Empty, options.WithDefaults());
 
-        /// <summary>
-        /// Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Grafana.GetCloudIps.Invoke();
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Output<GetCloudIpsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudIpsResult>("grafana:index/getCloudIps:getCloudIps", InvokeArgs.Empty, options.WithDefaults());
     }
@@ -59,25 +24,10 @@ namespace Pulumiverse.Grafana
     [OutputType]
     public sealed class GetCloudIpsResult
     {
-        /// <summary>
-        /// Set of IP addresses that are used for hosted alerts.
-        /// </summary>
         public readonly ImmutableArray<string> HostedAlerts;
-        /// <summary>
-        /// Set of IP addresses that are used for hosted Grafana.
-        /// </summary>
         public readonly ImmutableArray<string> HostedGrafanas;
-        /// <summary>
-        /// Set of IP addresses that are used for hosted logs.
-        /// </summary>
         public readonly ImmutableArray<string> HostedLogs;
-        /// <summary>
-        /// Set of IP addresses that are used for hosted metrics.
-        /// </summary>
         public readonly ImmutableArray<string> HostedMetrics;
-        /// <summary>
-        /// Set of IP addresses that are used for hosted traces.
-        /// </summary>
         public readonly ImmutableArray<string> HostedTraces;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.

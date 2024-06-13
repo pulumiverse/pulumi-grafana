@@ -11,34 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// * [Official documentation](https://grafana.com/docs/oncall/latest/manage/on-call-schedules/)
-// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.LookupOncallSchedule(ctx, &grafana.LookupOncallScheduleArgs{
-//				Name: "example_schedule",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
+// Deprecated: grafana.index/getoncallschedule.getOncallSchedule has been deprecated in favor of grafana.oncall/getschedule.getSchedule
 func LookupOncallSchedule(ctx *pulumi.Context, args *LookupOncallScheduleArgs, opts ...pulumi.InvokeOption) (*LookupOncallScheduleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOncallScheduleResult
@@ -51,17 +24,14 @@ func LookupOncallSchedule(ctx *pulumi.Context, args *LookupOncallScheduleArgs, o
 
 // A collection of arguments for invoking getOncallSchedule.
 type LookupOncallScheduleArgs struct {
-	// The schedule name.
 	Name string `pulumi:"name"`
 }
 
 // A collection of values returned by getOncallSchedule.
 type LookupOncallScheduleResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// The schedule name.
+	Id   string `pulumi:"id"`
 	Name string `pulumi:"name"`
-	// The schedule type.
 	Type string `pulumi:"type"`
 }
 
@@ -80,7 +50,6 @@ func LookupOncallScheduleOutput(ctx *pulumi.Context, args LookupOncallScheduleOu
 
 // A collection of arguments for invoking getOncallSchedule.
 type LookupOncallScheduleOutputArgs struct {
-	// The schedule name.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -108,12 +77,10 @@ func (o LookupOncallScheduleResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOncallScheduleResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The schedule name.
 func (o LookupOncallScheduleResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOncallScheduleResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The schedule type.
 func (o LookupOncallScheduleResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOncallScheduleResult) string { return v.Type }).(pulumi.StringOutput)
 }

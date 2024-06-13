@@ -12,50 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Manages service account tokens of a Grafana Cloud stack using the Cloud API
-// This can be used to bootstrap a management service account token for a new stack
-//
-// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
-//
-// Required access policy scopes:
-//
-// * stack-service-accounts:write
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			cloudSa, err := grafana.NewCloudStackServiceAccount(ctx, "cloudSa", &grafana.CloudStackServiceAccountArgs{
-//				StackSlug:  pulumi.String("<your stack slug>"),
-//				Role:       pulumi.String("Admin"),
-//				IsDisabled: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			foo, err := grafana.NewCloudStackServiceAccountToken(ctx, "foo", &grafana.CloudStackServiceAccountTokenArgs{
-//				ServiceAccountId: cloudSa.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("serviceAccountTokenFooKey", foo.Key)
-//			return nil
-//		})
-//	}
-//
-// ```
+// Deprecated: grafana.index/cloudstackserviceaccounttoken.CloudStackServiceAccountToken has been deprecated in favor of grafana.cloud/stackserviceaccounttoken.StackServiceAccountToken
 type CloudStackServiceAccountToken struct {
 	pulumi.CustomResourceState
 
@@ -81,6 +38,12 @@ func NewCloudStackServiceAccountToken(ctx *pulumi.Context,
 	if args.StackSlug == nil {
 		return nil, errors.New("invalid value for required argument 'StackSlug'")
 	}
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken"),
+		},
+	})
+	opts = append(opts, aliases)
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"key",
 	})

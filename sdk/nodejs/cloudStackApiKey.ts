@@ -4,6 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * @deprecated grafana.index/cloudstackapikey.CloudStackApiKey has been deprecated in favor of grafana.cloud/stackapikey.StackApiKey
+ */
 export class CloudStackApiKey extends pulumi.CustomResource {
     /**
      * Get an existing CloudStackApiKey resource's state with the given name, ID, and optional extra
@@ -15,6 +18,7 @@ export class CloudStackApiKey extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: CloudStackApiKeyState, opts?: pulumi.CustomResourceOptions): CloudStackApiKey {
+        pulumi.log.warn("CloudStackApiKey is deprecated: grafana.index/cloudstackapikey.CloudStackApiKey has been deprecated in favor of grafana.cloud/stackapikey.StackApiKey")
         return new CloudStackApiKey(name, <any>state, { ...opts, id: id });
     }
 
@@ -46,8 +50,11 @@ export class CloudStackApiKey extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/cloudstackapikey.CloudStackApiKey has been deprecated in favor of grafana.cloud/stackapikey.StackApiKey */
     constructor(name: string, args: CloudStackApiKeyArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/cloudstackapikey.CloudStackApiKey has been deprecated in favor of grafana.cloud/stackapikey.StackApiKey */
     constructor(name: string, argsOrState?: CloudStackApiKeyArgs | CloudStackApiKeyState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("CloudStackApiKey is deprecated: grafana.index/cloudstackapikey.CloudStackApiKey has been deprecated in favor of grafana.cloud/stackapikey.StackApiKey")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -74,6 +81,8 @@ export class CloudStackApiKey extends pulumi.CustomResource {
             resourceInputs["key"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/cloudStackApiKey:CloudStackApiKey" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["key"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(CloudStackApiKey.__pulumiType, name, resourceInputs, opts);

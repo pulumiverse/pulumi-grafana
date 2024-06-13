@@ -10,66 +10,12 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var exampleSlackChannel = Grafana.GetOnCallSlackChannel.Invoke(new()
-    ///     {
-    ///         Name = "example_slack_channel",
-    ///     });
-    /// 
-    ///     var exampleUserGroup = Grafana.GetOncallUserGroup.Invoke(new()
-    ///     {
-    ///         SlackHandle = "example_slack_handle",
-    ///     });
-    /// 
-    ///     // ICal based schedule
-    ///     var exampleScheduleOncallSchedule = new Grafana.OncallSchedule("exampleScheduleOncallSchedule", new()
-    ///     {
-    ///         Type = "ical",
-    ///         IcalUrlPrimary = "https://example.com/example_ical.ics",
-    ///         IcalUrlOverrides = "https://example.com/example_overrides_ical.ics",
-    ///         Slack = new Grafana.Inputs.OncallScheduleSlackArgs
-    ///         {
-    ///             ChannelId = exampleSlackChannel.Apply(getOnCallSlackChannelResult =&gt; getOnCallSlackChannelResult.SlackId),
-    ///             UserGroupId = exampleUserGroup.Apply(getOncallUserGroupResult =&gt; getOncallUserGroupResult.SlackId),
-    ///         },
-    ///     });
-    /// 
-    ///     // Shift based schedule
-    ///     var exampleScheduleIndex_oncallScheduleOncallSchedule = new Grafana.OncallSchedule("exampleScheduleIndex/oncallScheduleOncallSchedule", new()
-    ///     {
-    ///         Type = "calendar",
-    ///         TimeZone = "America/New_York",
-    ///         Shifts = new[] {},
-    ///         IcalUrlOverrides = "https://example.com/example_overrides_ical.ics",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/oncallSchedule:OncallSchedule name "{{ id }}"
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/oncallschedule.OncallSchedule has been deprecated in favor of grafana.oncall/schedule.Schedule")]
     [GrafanaResourceType("grafana:index/oncallSchedule:OncallSchedule")]
     public partial class OncallSchedule : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Enable overrides via web UI (it will ignore ical*url*overrides).
+        /// Enable overrides via web UI (it will ignore ical_url_overrides).
         /// </summary>
         [Output("enableWebOverrides")]
         public Output<bool?> EnableWebOverrides { get; private set; } = null!;
@@ -105,7 +51,8 @@ namespace Pulumiverse.Grafana
         public Output<Outputs.OncallScheduleSlack?> Slack { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+        /// with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
         /// </summary>
         [Output("teamId")]
         public Output<string?> TeamId { get; private set; } = null!;
@@ -146,6 +93,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/oncallSchedule:OncallSchedule" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -170,7 +121,7 @@ namespace Pulumiverse.Grafana
     public sealed class OncallScheduleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable overrides via web UI (it will ignore ical*url*overrides).
+        /// Enable overrides via web UI (it will ignore ical_url_overrides).
         /// </summary>
         [Input("enableWebOverrides")]
         public Input<bool>? EnableWebOverrides { get; set; }
@@ -212,7 +163,8 @@ namespace Pulumiverse.Grafana
         public Input<Inputs.OncallScheduleSlackArgs>? Slack { get; set; }
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+        /// with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
@@ -238,7 +190,7 @@ namespace Pulumiverse.Grafana
     public sealed class OncallScheduleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable overrides via web UI (it will ignore ical*url*overrides).
+        /// Enable overrides via web UI (it will ignore ical_url_overrides).
         /// </summary>
         [Input("enableWebOverrides")]
         public Input<bool>? EnableWebOverrides { get; set; }
@@ -280,7 +232,8 @@ namespace Pulumiverse.Grafana
         public Input<Inputs.OncallScheduleSlackGetArgs>? Slack { get; set; }
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+        /// with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }

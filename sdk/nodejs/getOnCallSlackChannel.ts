@@ -4,21 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- *
- * const exampleSlackChannel = grafana.getOnCallSlackChannel({
- *     name: "example_slack_channel",
- * });
- * ```
- */
+/** @deprecated grafana.index/getoncallslackchannel.getOnCallSlackChannel has been deprecated in favor of grafana.oncall/getslackchannel.getSlackChannel */
 export function getOnCallSlackChannel(args: GetOnCallSlackChannelArgs, opts?: pulumi.InvokeOptions): Promise<GetOnCallSlackChannelResult> {
+    pulumi.log.warn("getOnCallSlackChannel is deprecated: grafana.index/getoncallslackchannel.getOnCallSlackChannel has been deprecated in favor of grafana.oncall/getslackchannel.getSlackChannel")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOnCallSlackChannel:getOnCallSlackChannel", {
@@ -30,9 +18,6 @@ export function getOnCallSlackChannel(args: GetOnCallSlackChannelArgs, opts?: pu
  * A collection of arguments for invoking getOnCallSlackChannel.
  */
 export interface GetOnCallSlackChannelArgs {
-    /**
-     * The Slack channel name.
-     */
     name: string;
 }
 
@@ -44,29 +29,10 @@ export interface GetOnCallSlackChannelResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * The Slack channel name.
-     */
     readonly name: string;
-    /**
-     * The Slack ID of the channel.
-     */
     readonly slackId: string;
 }
-/**
- * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- *
- * const exampleSlackChannel = grafana.getOnCallSlackChannel({
- *     name: "example_slack_channel",
- * });
- * ```
- */
+/** @deprecated grafana.index/getoncallslackchannel.getOnCallSlackChannel has been deprecated in favor of grafana.oncall/getslackchannel.getSlackChannel */
 export function getOnCallSlackChannelOutput(args: GetOnCallSlackChannelOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOnCallSlackChannelResult> {
     return pulumi.output(args).apply((a: any) => getOnCallSlackChannel(a, opts))
 }
@@ -75,8 +41,5 @@ export function getOnCallSlackChannelOutput(args: GetOnCallSlackChannelOutputArg
  * A collection of arguments for invoking getOnCallSlackChannel.
  */
 export interface GetOnCallSlackChannelOutputArgs {
-    /**
-     * The Slack channel name.
-     */
     name: pulumi.Input<string>;
 }

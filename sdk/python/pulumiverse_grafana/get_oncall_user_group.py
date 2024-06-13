@@ -16,6 +16,8 @@ __all__ = [
     'get_oncall_user_group_output',
 ]
 
+warnings.warn("""grafana.index/getoncallusergroup.getOncallUserGroup has been deprecated in favor of grafana.oncall/getusergroup.getUserGroup""", DeprecationWarning)
+
 @pulumi.output_type
 class GetOncallUserGroupResult:
     """
@@ -65,17 +67,9 @@ class AwaitableGetOncallUserGroupResult(GetOncallUserGroupResult):
 def get_oncall_user_group(slack_handle: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallUserGroupResult:
     """
-    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-
-    example_user_group = grafana.get_oncall_user_group(slack_handle="example_slack_handle")
-    ```
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_oncall_user_group is deprecated: grafana.index/getoncallusergroup.getOncallUserGroup has been deprecated in favor of grafana.oncall/getusergroup.getUserGroup""")
     __args__ = dict()
     __args__['slackHandle'] = slack_handle
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -91,15 +85,7 @@ def get_oncall_user_group(slack_handle: Optional[str] = None,
 def get_oncall_user_group_output(slack_handle: Optional[pulumi.Input[str]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallUserGroupResult]:
     """
-    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-
-    example_user_group = grafana.get_oncall_user_group(slack_handle="example_slack_handle")
-    ```
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_oncall_user_group is deprecated: grafana.index/getoncallusergroup.getOncallUserGroup has been deprecated in favor of grafana.oncall/getusergroup.getUserGroup""")
     ...

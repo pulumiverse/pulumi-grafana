@@ -10,43 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// This resource is deprecated and will be removed in a future release. Please use grafana.CloudAccessPolicy instead.
-    /// 
-    /// Manages a single API key on the Grafana Cloud portal (on the organization level)
-    /// * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#api-keys)
-    /// 
-    /// Required access policy scopes:
-    /// 
-    /// * api-keys:read
-    /// * api-keys:write
-    /// * api-keys:delete
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Grafana.CloudApiKey("test", new()
-    ///     {
-    ///         CloudOrgSlug = "myorg",
-    ///         Role = "Admin",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/cloudApiKey:CloudApiKey name "{{ orgSlug }}:{{ apiKeyName }}"
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/cloudapikey.CloudApiKey has been deprecated in favor of grafana.cloud/apikey.ApiKey")]
     [GrafanaResourceType("grafana:index/cloudApiKey:CloudApiKey")]
     public partial class CloudApiKey : global::Pulumi.CustomResource
     {
@@ -69,7 +33,8 @@ namespace Pulumiverse.Grafana
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+        /// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+        /// https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
         /// </summary>
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
@@ -98,6 +63,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/cloudApiKey:CloudApiKey" },
+                },
                 AdditionalSecretOutputs =
                 {
                     "key",
@@ -138,7 +107,8 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+        /// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+        /// https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
         /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
@@ -180,7 +150,8 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+        /// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+        /// https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }

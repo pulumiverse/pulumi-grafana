@@ -12,6 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Deprecated: grafana.index/cloudstackapikey.CloudStackApiKey has been deprecated in favor of grafana.cloud/stackapikey.StackApiKey
 type CloudStackApiKey struct {
 	pulumi.CustomResourceState
 
@@ -36,6 +37,12 @@ func NewCloudStackApiKey(ctx *pulumi.Context,
 	if args.StackSlug == nil {
 		return nil, errors.New("invalid value for required argument 'StackSlug'")
 	}
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/cloudStackApiKey:CloudStackApiKey"),
+		},
+	})
+	opts = append(opts, aliases)
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"key",
 	})

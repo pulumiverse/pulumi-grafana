@@ -5,53 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
- * * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-a-token)
- *
- * Required access policy scopes:
- *
- * * accesspolicies:read
- * * accesspolicies:write
- * * accesspolicies:delete
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const current = grafana.getCloudOrganization({
- *     slug: "<your org slug>",
- * });
- * const testCloudAccessPolicy = new grafana.CloudAccessPolicy("testCloudAccessPolicy", {
- *     region: "us",
- *     displayName: "My Policy",
- *     scopes: [
- *         "metrics:read",
- *         "logs:read",
- *     ],
- *     realms: [{
- *         type: "org",
- *         identifier: current.then(current => current.id),
- *         labelPolicies: [{
- *             selector: "{namespace=\"default\"}",
- *         }],
- *     }],
- * });
- * const testCloudAccessPolicyToken = new grafana.CloudAccessPolicyToken("testCloudAccessPolicyToken", {
- *     region: "us",
- *     accessPolicyId: testCloudAccessPolicy.policyId,
- *     displayName: "My Policy Token",
- *     expiresAt: "2023-01-01T00:00:00Z",
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken name "{{ region }}:{{ tokenId }}"
- * ```
+ * @deprecated grafana.index/cloudaccesspolicytoken.CloudAccessPolicyToken has been deprecated in favor of grafana.cloud/accesspolicytoken.AccessPolicyToken
  */
 export class CloudAccessPolicyToken extends pulumi.CustomResource {
     /**
@@ -64,6 +18,7 @@ export class CloudAccessPolicyToken extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: CloudAccessPolicyTokenState, opts?: pulumi.CustomResourceOptions): CloudAccessPolicyToken {
+        pulumi.log.warn("CloudAccessPolicyToken is deprecated: grafana.index/cloudaccesspolicytoken.CloudAccessPolicyToken has been deprecated in favor of grafana.cloud/accesspolicytoken.AccessPolicyToken")
         return new CloudAccessPolicyToken(name, <any>state, { ...opts, id: id });
     }
 
@@ -102,7 +57,9 @@ export class CloudAccessPolicyToken extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+     * Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the
+     * list of available regions:
+     * https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
     public readonly region!: pulumi.Output<string>;
     public /*out*/ readonly token!: pulumi.Output<string>;
@@ -118,8 +75,11 @@ export class CloudAccessPolicyToken extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/cloudaccesspolicytoken.CloudAccessPolicyToken has been deprecated in favor of grafana.cloud/accesspolicytoken.AccessPolicyToken */
     constructor(name: string, args: CloudAccessPolicyTokenArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/cloudaccesspolicytoken.CloudAccessPolicyToken has been deprecated in favor of grafana.cloud/accesspolicytoken.AccessPolicyToken */
     constructor(name: string, argsOrState?: CloudAccessPolicyTokenArgs | CloudAccessPolicyTokenState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("CloudAccessPolicyToken is deprecated: grafana.index/cloudaccesspolicytoken.CloudAccessPolicyToken has been deprecated in favor of grafana.cloud/accesspolicytoken.AccessPolicyToken")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -150,6 +110,8 @@ export class CloudAccessPolicyToken extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["token"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(CloudAccessPolicyToken.__pulumiType, name, resourceInputs, opts);
@@ -181,7 +143,9 @@ export interface CloudAccessPolicyTokenState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+     * Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the
+     * list of available regions:
+     * https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
     region?: pulumi.Input<string>;
     token?: pulumi.Input<string>;
@@ -212,7 +176,9 @@ export interface CloudAccessPolicyTokenArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+     * Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the
+     * list of available regions:
+     * https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
     region: pulumi.Input<string>;
 }
