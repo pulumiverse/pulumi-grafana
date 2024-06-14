@@ -7,17 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * An outlier detector monitors the results of a query and reports when its values are outside normal bands.
- *
- * The normal band is configured by choice of algorithm, its sensitivity and other configuration.
- *
- * Visit https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for more details.
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector name "{{ id }}"
- * ```
+ * @deprecated grafana.index/machinelearningoutlierdetector.MachineLearningOutlierDetector has been deprecated in favor of grafana.machinelearning/outlierdetector.OutlierDetector
  */
 export class MachineLearningOutlierDetector extends pulumi.CustomResource {
     /**
@@ -30,6 +20,7 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MachineLearningOutlierDetectorState, opts?: pulumi.CustomResourceOptions): MachineLearningOutlierDetector {
+        pulumi.log.warn("MachineLearningOutlierDetector is deprecated: grafana.index/machinelearningoutlierdetector.MachineLearningOutlierDetector has been deprecated in favor of grafana.machinelearning/outlierdetector.OutlierDetector")
         return new MachineLearningOutlierDetector(name, <any>state, { ...opts, id: id });
     }
 
@@ -48,7 +39,8 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
     }
 
     /**
-     * The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+     * The algorithm to use and its configuration. See
+     * https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      */
     public readonly algorithm!: pulumi.Output<outputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
@@ -70,7 +62,7 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The data interval in seconds to monitor. Defaults to `300`.
+     * The data interval in seconds to monitor.
      */
     public readonly interval!: pulumi.Output<number | undefined>;
     /**
@@ -93,8 +85,11 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/machinelearningoutlierdetector.MachineLearningOutlierDetector has been deprecated in favor of grafana.machinelearning/outlierdetector.OutlierDetector */
     constructor(name: string, args: MachineLearningOutlierDetectorArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/machinelearningoutlierdetector.MachineLearningOutlierDetector has been deprecated in favor of grafana.machinelearning/outlierdetector.OutlierDetector */
     constructor(name: string, argsOrState?: MachineLearningOutlierDetectorArgs | MachineLearningOutlierDetectorState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("MachineLearningOutlierDetector is deprecated: grafana.index/machinelearningoutlierdetector.MachineLearningOutlierDetector has been deprecated in favor of grafana.machinelearning/outlierdetector.OutlierDetector")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -133,6 +128,8 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
             resourceInputs["queryParams"] = args ? args.queryParams : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(MachineLearningOutlierDetector.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -142,7 +139,8 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
  */
 export interface MachineLearningOutlierDetectorState {
     /**
-     * The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+     * The algorithm to use and its configuration. See
+     * https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      */
     algorithm?: pulumi.Input<inputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
@@ -164,7 +162,7 @@ export interface MachineLearningOutlierDetectorState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The data interval in seconds to monitor. Defaults to `300`.
+     * The data interval in seconds to monitor.
      */
     interval?: pulumi.Input<number>;
     /**
@@ -186,7 +184,8 @@ export interface MachineLearningOutlierDetectorState {
  */
 export interface MachineLearningOutlierDetectorArgs {
     /**
-     * The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+     * The algorithm to use and its configuration. See
+     * https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      */
     algorithm: pulumi.Input<inputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
@@ -208,7 +207,7 @@ export interface MachineLearningOutlierDetectorArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The data interval in seconds to monitor. Defaults to `300`.
+     * The data interval in seconds to monitor.
      */
     interval?: pulumi.Input<number>;
     /**

@@ -12,146 +12,15 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Sets the global notification policy for Grafana.
-//
-// !> This resource manages the entire notification policy tree, and will overwrite any existing policies.
-//
-// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/manage-notifications/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/)
-//
-// This resource requires Grafana 9.1.0 or later.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			aContactPoint, err := grafana.NewContactPoint(ctx, "aContactPoint", &grafana.ContactPointArgs{
-//				Emails: grafana.ContactPointEmailArray{
-//					&grafana.ContactPointEmailArgs{
-//						Addresses: pulumi.StringArray{
-//							pulumi.String("one@company.org"),
-//							pulumi.String("two@company.org"),
-//						},
-//						Message: pulumi.String("{{ len .Alerts.Firing }} firing."),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			aMuteTiming, err := grafana.NewMuteTiming(ctx, "aMuteTiming", &grafana.MuteTimingArgs{
-//				Intervals: grafana.MuteTimingIntervalArray{
-//					&grafana.MuteTimingIntervalArgs{
-//						Weekdays: pulumi.StringArray{
-//							pulumi.String("monday"),
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewNotificationPolicy(ctx, "myNotificationPolicy", &grafana.NotificationPolicyArgs{
-//				GroupBies: pulumi.StringArray{
-//					pulumi.String("..."),
-//				},
-//				ContactPoint:   aContactPoint.Name,
-//				GroupWait:      pulumi.String("45s"),
-//				GroupInterval:  pulumi.String("6m"),
-//				RepeatInterval: pulumi.String("3h"),
-//				Policies: grafana.NotificationPolicyPolicyArray{
-//					&grafana.NotificationPolicyPolicyArgs{
-//						Matchers: grafana.NotificationPolicyPolicyMatcherArray{
-//							&grafana.NotificationPolicyPolicyMatcherArgs{
-//								Label: pulumi.String("mylabel"),
-//								Match: pulumi.String("="),
-//								Value: pulumi.String("myvalue"),
-//							},
-//							&grafana.NotificationPolicyPolicyMatcherArgs{
-//								Label: pulumi.String("alertname"),
-//								Match: pulumi.String("="),
-//								Value: pulumi.String("CPU Usage"),
-//							},
-//							&grafana.NotificationPolicyPolicyMatcherArgs{
-//								Label: pulumi.String("Name"),
-//								Match: pulumi.String("=~"),
-//								Value: pulumi.String("host.*|host-b.*"),
-//							},
-//						},
-//						ContactPoint: aContactPoint.Name,
-//						Continue:     pulumi.Bool(true),
-//						MuteTimings: pulumi.StringArray{
-//							aMuteTiming.Name,
-//						},
-//						GroupWait:      pulumi.String("45s"),
-//						GroupInterval:  pulumi.String("6m"),
-//						RepeatInterval: pulumi.String("3h"),
-//						Policies: grafana.NotificationPolicyPolicyPolicyArray{
-//							&grafana.NotificationPolicyPolicyPolicyArgs{
-//								Matchers: grafana.NotificationPolicyPolicyPolicyMatcherArray{
-//									&grafana.NotificationPolicyPolicyPolicyMatcherArgs{
-//										Label: pulumi.String("sublabel"),
-//										Match: pulumi.String("="),
-//										Value: pulumi.String("subvalue"),
-//									},
-//								},
-//								ContactPoint: aContactPoint.Name,
-//								GroupBies: pulumi.StringArray{
-//									pulumi.String("..."),
-//								},
-//							},
-//						},
-//					},
-//					&grafana.NotificationPolicyPolicyArgs{
-//						Matchers: grafana.NotificationPolicyPolicyMatcherArray{
-//							&grafana.NotificationPolicyPolicyMatcherArgs{
-//								Label: pulumi.String("anotherlabel"),
-//								Match: pulumi.String("=~"),
-//								Value: pulumi.String("another value.*"),
-//							},
-//						},
-//						ContactPoint: aContactPoint.Name,
-//						GroupBies: pulumi.StringArray{
-//							pulumi.String("..."),
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/notificationPolicy:NotificationPolicy name "{{ anyString }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:index/notificationPolicy:NotificationPolicy name "{{ orgID }}:{{ anyString }}"
-// ```
+// Deprecated: grafana.index/notificationpolicy.NotificationPolicy has been deprecated in favor of grafana.alerting/notificationpolicy.NotificationPolicy
 type NotificationPolicy struct {
 	pulumi.CustomResourceState
 
 	// The default contact point to route all unmatched notifications to.
 	ContactPoint      pulumi.StringOutput  `pulumi:"contactPoint"`
 	DisableProvenance pulumi.BoolPtrOutput `pulumi:"disableProvenance"`
-	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
+	// effectively disabling grouping.
 	GroupBies pulumi.StringArrayOutput `pulumi:"groupBies"`
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
 	GroupInterval pulumi.StringPtrOutput `pulumi:"groupInterval"`
@@ -178,6 +47,12 @@ func NewNotificationPolicy(ctx *pulumi.Context,
 	if args.GroupBies == nil {
 		return nil, errors.New("invalid value for required argument 'GroupBies'")
 	}
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/notificationPolicy:NotificationPolicy"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource NotificationPolicy
 	err := ctx.RegisterResource("grafana:index/notificationPolicy:NotificationPolicy", name, args, &resource, opts...)
@@ -204,7 +79,8 @@ type notificationPolicyState struct {
 	// The default contact point to route all unmatched notifications to.
 	ContactPoint      *string `pulumi:"contactPoint"`
 	DisableProvenance *bool   `pulumi:"disableProvenance"`
-	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
+	// effectively disabling grouping.
 	GroupBies []string `pulumi:"groupBies"`
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
 	GroupInterval *string `pulumi:"groupInterval"`
@@ -222,7 +98,8 @@ type NotificationPolicyState struct {
 	// The default contact point to route all unmatched notifications to.
 	ContactPoint      pulumi.StringPtrInput
 	DisableProvenance pulumi.BoolPtrInput
-	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
+	// effectively disabling grouping.
 	GroupBies pulumi.StringArrayInput
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
 	GroupInterval pulumi.StringPtrInput
@@ -244,7 +121,8 @@ type notificationPolicyArgs struct {
 	// The default contact point to route all unmatched notifications to.
 	ContactPoint      string `pulumi:"contactPoint"`
 	DisableProvenance *bool  `pulumi:"disableProvenance"`
-	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
+	// effectively disabling grouping.
 	GroupBies []string `pulumi:"groupBies"`
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
 	GroupInterval *string `pulumi:"groupInterval"`
@@ -263,7 +141,8 @@ type NotificationPolicyArgs struct {
 	// The default contact point to route all unmatched notifications to.
 	ContactPoint      pulumi.StringInput
 	DisableProvenance pulumi.BoolPtrInput
-	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
+	// effectively disabling grouping.
 	GroupBies pulumi.StringArrayInput
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
 	GroupInterval pulumi.StringPtrInput
@@ -373,7 +252,8 @@ func (o NotificationPolicyOutput) DisableProvenance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *NotificationPolicy) pulumi.BoolPtrOutput { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
 }
 
-// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
+// effectively disabling grouping.
 func (o NotificationPolicyOutput) GroupBies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *NotificationPolicy) pulumi.StringArrayOutput { return v.GroupBies }).(pulumi.StringArrayOutput)
 }

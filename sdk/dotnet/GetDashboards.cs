@@ -10,25 +10,12 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    [Obsolete(@"grafana.index/getdashboards.getDashboards has been deprecated in favor of grafana.oss/getdashboards.getDashboards")]
     public static class GetDashboards
     {
-        /// <summary>
-        /// Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
-        /// 
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-        /// * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
-        /// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
-        /// </summary>
         public static Task<GetDashboardsResult> InvokeAsync(GetDashboardsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDashboardsResult>("grafana:index/getDashboards:getDashboards", args ?? new GetDashboardsArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
-        /// 
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-        /// * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
-        /// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
-        /// </summary>
         public static Output<GetDashboardsResult> Invoke(GetDashboardsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDashboardsResult>("grafana:index/getDashboards:getDashboards", args ?? new GetDashboardsInvokeArgs(), options.WithDefaults());
     }
@@ -38,10 +25,6 @@ namespace Pulumiverse.Grafana
     {
         [Input("folderIds")]
         private List<int>? _folderIds;
-
-        /// <summary>
-        /// Deprecated, use `folder_uids` instead.
-        /// </summary>
         [Obsolete(@"Use `folder_uids` instead.")]
         public List<int> FolderIds
         {
@@ -51,34 +34,20 @@ namespace Pulumiverse.Grafana
 
         [Input("folderUids")]
         private List<string>? _folderUids;
-
-        /// <summary>
-        /// UIDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `["General"]` for General folder), or leave blank to get all dashboards in all folders.
-        /// </summary>
         public List<string> FolderUids
         {
             get => _folderUids ?? (_folderUids = new List<string>());
             set => _folderUids = value;
         }
 
-        /// <summary>
-        /// Maximum number of dashboard search results to return. Defaults to `5000`.
-        /// </summary>
         [Input("limit")]
         public int? Limit { get; set; }
 
-        /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        /// </summary>
         [Input("orgId")]
         public string? OrgId { get; set; }
 
         [Input("tags")]
         private List<string>? _tags;
-
-        /// <summary>
-        /// List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
-        /// </summary>
         public List<string> Tags
         {
             get => _tags ?? (_tags = new List<string>());
@@ -95,10 +64,6 @@ namespace Pulumiverse.Grafana
     {
         [Input("folderIds")]
         private InputList<int>? _folderIds;
-
-        /// <summary>
-        /// Deprecated, use `folder_uids` instead.
-        /// </summary>
         [Obsolete(@"Use `folder_uids` instead.")]
         public InputList<int> FolderIds
         {
@@ -108,34 +73,20 @@ namespace Pulumiverse.Grafana
 
         [Input("folderUids")]
         private InputList<string>? _folderUids;
-
-        /// <summary>
-        /// UIDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `["General"]` for General folder), or leave blank to get all dashboards in all folders.
-        /// </summary>
         public InputList<string> FolderUids
         {
             get => _folderUids ?? (_folderUids = new InputList<string>());
             set => _folderUids = value;
         }
 
-        /// <summary>
-        /// Maximum number of dashboard search results to return. Defaults to `5000`.
-        /// </summary>
         [Input("limit")]
         public Input<int>? Limit { get; set; }
 
-        /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
-
-        /// <summary>
-        /// List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
-        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());
@@ -153,29 +104,14 @@ namespace Pulumiverse.Grafana
     public sealed class GetDashboardsResult
     {
         public readonly ImmutableArray<Outputs.GetDashboardsDashboardResult> Dashboards;
-        /// <summary>
-        /// Deprecated, use `folder_uids` instead.
-        /// </summary>
         public readonly ImmutableArray<int> FolderIds;
-        /// <summary>
-        /// UIDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `["General"]` for General folder), or leave blank to get all dashboards in all folders.
-        /// </summary>
         public readonly ImmutableArray<string> FolderUids;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// Maximum number of dashboard search results to return. Defaults to `5000`.
-        /// </summary>
         public readonly int? Limit;
-        /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        /// </summary>
         public readonly string? OrgId;
-        /// <summary>
-        /// List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
-        /// </summary>
         public readonly ImmutableArray<string> Tags;
 
         [OutputConstructor]

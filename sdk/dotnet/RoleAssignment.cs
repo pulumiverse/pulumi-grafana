@@ -10,81 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// Manages the entire set of assignments for a role. Assignments that aren't specified when applying this resource will be removed.
-    /// **Note:** This resource is available only with Grafana Enterprise 9.2+.
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var testRole = new Grafana.Role("testRole", new()
-    ///     {
-    ///         Uid = "testrole",
-    ///         Version = 1,
-    ///         Global = true,
-    ///         Permissions = new[]
-    ///         {
-    ///             new Grafana.Inputs.RolePermissionArgs
-    ///             {
-    ///                 Action = "org.users:add",
-    ///                 Scope = "users:*",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    ///     var testTeam = new Grafana.Team("testTeam");
-    /// 
-    ///     var testUser = new Grafana.User("testUser", new()
-    ///     {
-    ///         Email = "terraform_user@test.com",
-    ///         Login = "terraform_user@test.com",
-    ///         Password = "password",
-    ///     });
-    /// 
-    ///     var testSa = new Grafana.ServiceAccount("testSa", new()
-    ///     {
-    ///         Role = "Viewer",
-    ///     });
-    /// 
-    ///     var test = new Grafana.RoleAssignment("test", new()
-    ///     {
-    ///         RoleUid = testRole.Uid,
-    ///         Users = new[]
-    ///         {
-    ///             testUser.Id,
-    ///         },
-    ///         Teams = new[]
-    ///         {
-    ///             testTeam.Id,
-    ///         },
-    ///         ServiceAccounts = new[]
-    ///         {
-    ///             testSa.Id,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/roleAssignment:RoleAssignment name "{{ roleUID }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/roleAssignment:RoleAssignment name "{{ orgID }}:{{ roleUID }}"
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/roleassignment.RoleAssignment has been deprecated in favor of grafana.enterprise/roleassignment.RoleAssignment")]
     [GrafanaResourceType("grafana:index/roleAssignment:RoleAssignment")]
     public partial class RoleAssignment : global::Pulumi.CustomResource
     {
@@ -142,6 +68,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/roleAssignment:RoleAssignment" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

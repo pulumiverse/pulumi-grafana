@@ -12,113 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Manages a single permission item for a datasource. Conflicts with the "DataSourcePermission" resource which manages the entire set of permissions for a datasource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"encoding/json"
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			teamTeam, err := grafana.NewTeam(ctx, "teamTeam", nil)
-//			if err != nil {
-//				return err
-//			}
-//			tmpJSON0, err := json.Marshal(map[string]interface{}{
-//				"defaultRegion": "us-east-1",
-//				"authType":      "keys",
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json0 := string(tmpJSON0)
-//			tmpJSON1, err := json.Marshal(map[string]interface{}{
-//				"accessKey": "123",
-//				"secretKey": "456",
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json1 := string(tmpJSON1)
-//			foo, err := grafana.NewDataSource(ctx, "foo", &grafana.DataSourceArgs{
-//				Type:                  pulumi.String("cloudwatch"),
-//				JsonDataEncoded:       pulumi.String(json0),
-//				SecureJsonDataEncoded: pulumi.String(json1),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			userUser, err := grafana.NewUser(ctx, "userUser", &grafana.UserArgs{
-//				Email:    pulumi.String("test-ds-permissions@example.com"),
-//				Login:    pulumi.String("test-ds-permissions"),
-//				Password: pulumi.String("hunter2"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			sa, err := grafana.NewServiceAccount(ctx, "sa", &grafana.ServiceAccountArgs{
-//				Role: pulumi.String("Viewer"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewDataSourcePermissionItem(ctx, "teamDataSourcePermissionItem", &grafana.DataSourcePermissionItemArgs{
-//				DatasourceUid: foo.Uid,
-//				Team:          teamTeam.ID(),
-//				Permission:    pulumi.String("Edit"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewDataSourcePermissionItem(ctx, "userDataSourcePermissionItem", &grafana.DataSourcePermissionItemArgs{
-//				DatasourceUid: foo.Uid,
-//				User:          userUser.ID(),
-//				Permission:    pulumi.String("Edit"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewDataSourcePermissionItem(ctx, "role", &grafana.DataSourcePermissionItemArgs{
-//				DatasourceUid: foo.Uid,
-//				Role:          pulumi.String("Viewer"),
-//				Permission:    pulumi.String("Query"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewDataSourcePermissionItem(ctx, "serviceAccount", &grafana.DataSourcePermissionItemArgs{
-//				DatasourceUid: foo.Uid,
-//				User:          sa.ID(),
-//				Permission:    pulumi.String("Query"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/dataSourcePermissionItem:DataSourcePermissionItem name "{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:index/dataSourcePermissionItem:DataSourcePermissionItem name "{{ orgID }}:{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-// ```
+// Deprecated: grafana.index/datasourcepermissionitem.DataSourcePermissionItem has been deprecated in favor of grafana.enterprise/datasourcepermissionitem.DataSourcePermissionItem
 type DataSourcePermissionItem struct {
 	pulumi.CustomResourceState
 
@@ -149,6 +43,12 @@ func NewDataSourcePermissionItem(ctx *pulumi.Context,
 	if args.Permission == nil {
 		return nil, errors.New("invalid value for required argument 'Permission'")
 	}
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/dataSourcePermissionItem:DataSourcePermissionItem"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DataSourcePermissionItem
 	err := ctx.RegisterResource("grafana:index/dataSourcePermissionItem:DataSourcePermissionItem", name, args, &resource, opts...)

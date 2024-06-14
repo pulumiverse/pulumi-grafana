@@ -10,23 +10,12 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    [Obsolete(@"grafana.index/getoncallaction.getOncallAction has been deprecated in favor of grafana.oncall/getaction.getAction")]
     public static class GetOncallAction
     {
-        /// <summary>
-        /// **Note:** This data source is going to be deprecated, please use outgoing webhook data source instead.
-        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
-        /// 
-        /// !&gt; Deprecated: Use the `grafana.OncallOutgoingWebhook` data source instead.
-        /// </summary>
         public static Task<GetOncallActionResult> InvokeAsync(GetOncallActionArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallActionResult>("grafana:index/getOncallAction:getOncallAction", args ?? new GetOncallActionArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// **Note:** This data source is going to be deprecated, please use outgoing webhook data source instead.
-        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
-        /// 
-        /// !&gt; Deprecated: Use the `grafana.OncallOutgoingWebhook` data source instead.
-        /// </summary>
         public static Output<GetOncallActionResult> Invoke(GetOncallActionInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOncallActionResult>("grafana:index/getOncallAction:getOncallAction", args ?? new GetOncallActionInvokeArgs(), options.WithDefaults());
     }
@@ -34,9 +23,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetOncallActionArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The action name.
-        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
@@ -48,9 +34,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetOncallActionInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The action name.
-        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -68,9 +51,6 @@ namespace Pulumiverse.Grafana
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// The action name.
-        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

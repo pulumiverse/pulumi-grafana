@@ -7,51 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Manages the entire set of permissions for a folder. Permissions that aren't specified when applying this resource will be removed.
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const team = new grafana.Team("team", {});
- * const user = new grafana.User("user", {
- *     email: "user.name@example.com",
- *     login: "user.name",
- *     password: "my-password",
- * });
- * const collection = new grafana.Folder("collection", {title: "Folder Title"});
- * const collectionPermission = new grafana.FolderPermission("collectionPermission", {
- *     folderUid: collection.uid,
- *     permissions: [
- *         {
- *             role: "Editor",
- *             permission: "Edit",
- *         },
- *         {
- *             teamId: team.id,
- *             permission: "View",
- *         },
- *         {
- *             userId: user.id,
- *             permission: "Admin",
- *         },
- *     ],
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/folderPermission:FolderPermission name "{{ folderUID }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/folderPermission:FolderPermission name "{{ orgID }}:{{ folderUID }}"
- * ```
+ * @deprecated grafana.index/folderpermission.FolderPermission has been deprecated in favor of grafana.oss/folderpermission.FolderPermission
  */
 export class FolderPermission extends pulumi.CustomResource {
     /**
@@ -64,6 +20,7 @@ export class FolderPermission extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: FolderPermissionState, opts?: pulumi.CustomResourceOptions): FolderPermission {
+        pulumi.log.warn("FolderPermission is deprecated: grafana.index/folderpermission.FolderPermission has been deprecated in favor of grafana.oss/folderpermission.FolderPermission")
         return new FolderPermission(name, <any>state, { ...opts, id: id });
     }
 
@@ -101,8 +58,11 @@ export class FolderPermission extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/folderpermission.FolderPermission has been deprecated in favor of grafana.oss/folderpermission.FolderPermission */
     constructor(name: string, args: FolderPermissionArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/folderpermission.FolderPermission has been deprecated in favor of grafana.oss/folderpermission.FolderPermission */
     constructor(name: string, argsOrState?: FolderPermissionArgs | FolderPermissionState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("FolderPermission is deprecated: grafana.index/folderpermission.FolderPermission has been deprecated in favor of grafana.oss/folderpermission.FolderPermission")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -120,6 +80,8 @@ export class FolderPermission extends pulumi.CustomResource {
             resourceInputs["permissions"] = args ? args.permissions : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/folderPermission:FolderPermission" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(FolderPermission.__pulumiType, name, resourceInputs, opts);
     }
 }

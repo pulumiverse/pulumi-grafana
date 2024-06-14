@@ -10,115 +10,12 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    [Obsolete(@"grafana.index/getrole.getRole has been deprecated in favor of grafana.enterprise/getrole.getRole")]
     public static class GetRole
     {
-        /// <summary>
-        /// **Note:** This resource is available only with Grafana Enterprise 8.+.
-        /// 
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// using Grafana = Pulumiverse.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = new Grafana.Role("test", new()
-        ///     {
-        ///         Description = "test-role description",
-        ///         Uid = "test-ds-role-uid",
-        ///         Version = 1,
-        ///         Global = true,
-        ///         Hidden = false,
-        ///         Permissions = new[]
-        ///         {
-        ///             new Grafana.Inputs.RolePermissionArgs
-        ///             {
-        ///                 Action = "org.users:add",
-        ///                 Scope = "users:*",
-        ///             },
-        ///             new Grafana.Inputs.RolePermissionArgs
-        ///             {
-        ///                 Action = "org.users:write",
-        ///                 Scope = "users:*",
-        ///             },
-        ///             new Grafana.Inputs.RolePermissionArgs
-        ///             {
-        ///                 Action = "org.users:read",
-        ///                 Scope = "users:*",
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        ///     var fromName = Grafana.GetRole.Invoke(new()
-        ///     {
-        ///         Name = test.Name,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Task<GetRoleResult> InvokeAsync(GetRoleArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRoleResult>("grafana:index/getRole:getRole", args ?? new GetRoleArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// **Note:** This resource is available only with Grafana Enterprise 8.+.
-        /// 
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// using Grafana = Pulumiverse.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = new Grafana.Role("test", new()
-        ///     {
-        ///         Description = "test-role description",
-        ///         Uid = "test-ds-role-uid",
-        ///         Version = 1,
-        ///         Global = true,
-        ///         Hidden = false,
-        ///         Permissions = new[]
-        ///         {
-        ///             new Grafana.Inputs.RolePermissionArgs
-        ///             {
-        ///                 Action = "org.users:add",
-        ///                 Scope = "users:*",
-        ///             },
-        ///             new Grafana.Inputs.RolePermissionArgs
-        ///             {
-        ///                 Action = "org.users:write",
-        ///                 Scope = "users:*",
-        ///             },
-        ///             new Grafana.Inputs.RolePermissionArgs
-        ///             {
-        ///                 Action = "org.users:read",
-        ///                 Scope = "users:*",
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        ///     var fromName = Grafana.GetRole.Invoke(new()
-        ///     {
-        ///         Name = test.Name,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Output<GetRoleResult> Invoke(GetRoleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRoleResult>("grafana:index/getRole:getRole", args ?? new GetRoleInvokeArgs(), options.WithDefaults());
     }
@@ -126,9 +23,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetRoleArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Name of the role
-        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
@@ -140,9 +34,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetRoleInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Name of the role
-        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -156,49 +47,19 @@ namespace Pulumiverse.Grafana
     [OutputType]
     public sealed class GetRoleResult
     {
-        /// <summary>
-        /// Description of the role.
-        /// </summary>
         public readonly string Description;
-        /// <summary>
-        /// Display name of the role. Available with Grafana 8.5+.
-        /// </summary>
         public readonly string DisplayName;
-        /// <summary>
-        /// Boolean to state whether the role is available across all organizations or not.
-        /// </summary>
         public readonly bool Global;
-        /// <summary>
-        /// Group of the role. Available with Grafana 8.5+.
-        /// </summary>
         public readonly string Group;
-        /// <summary>
-        /// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
-        /// </summary>
         public readonly bool Hidden;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// Name of the role
-        /// </summary>
         public readonly string Name;
-        /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        /// </summary>
         public readonly string OrgId;
-        /// <summary>
-        /// Specific set of actions granted by the role.
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetRolePermissionResult> Permissions;
-        /// <summary>
-        /// Unique identifier of the role. Used for assignments.
-        /// </summary>
         public readonly string Uid;
-        /// <summary>
-        /// Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
-        /// </summary>
         public readonly int Version;
 
         [OutputConstructor]

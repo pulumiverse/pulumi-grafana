@@ -12,48 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Manages Grafana Alerting message templates.
-//
-// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/template-notifications/create-notification-templates/)
-// * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#templates)
-//
-// This resource requires Grafana 9.1.0 or later.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.NewMessageTemplate(ctx, "myTemplate", &grafana.MessageTemplateArgs{
-//				Template: pulumi.String("{{define \"My Reusable Template\" }}\n template content\n{{ end }}\n"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/messageTemplate:MessageTemplate name "{{ name }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:index/messageTemplate:MessageTemplate name "{{ orgID }}:{{ name }}"
-// ```
+// Deprecated: grafana.index/messagetemplate.MessageTemplate has been deprecated in favor of grafana.alerting/messagetemplate.MessageTemplate
 type MessageTemplate struct {
 	pulumi.CustomResourceState
 
@@ -76,6 +35,12 @@ func NewMessageTemplate(ctx *pulumi.Context,
 	if args.Template == nil {
 		return nil, errors.New("invalid value for required argument 'Template'")
 	}
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/messageTemplate:MessageTemplate"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MessageTemplate
 	err := ctx.RegisterResource("grafana:index/messageTemplate:MessageTemplate", name, args, &resource, opts...)

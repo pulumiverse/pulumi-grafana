@@ -5,38 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Besides the public probes run by Grafana Labs, you can also install your
- * own private probes. These are only accessible to you and only write data to
- * your Grafana Cloud account. Private probes are instances of the open source
- * Grafana Synthetic Monitoring Agent.
- *
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const main = new grafana.SyntheticMonitoringProbe("main", {
- *     labels: {
- *         type: "mountain",
- *     },
- *     latitude: 27.98606,
- *     longitude: 86.92262,
- *     region: "APAC",
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe name "{{ id }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe name "{{ id }}:{{ authToken }}"
- * ```
+ * @deprecated grafana.index/syntheticmonitoringprobe.SyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/probe.Probe
  */
 export class SyntheticMonitoringProbe extends pulumi.CustomResource {
     /**
@@ -49,6 +18,7 @@ export class SyntheticMonitoringProbe extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SyntheticMonitoringProbeState, opts?: pulumi.CustomResourceOptions): SyntheticMonitoringProbe {
+        pulumi.log.warn("SyntheticMonitoringProbe is deprecated: grafana.index/syntheticmonitoringprobe.SyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/probe.Probe")
         return new SyntheticMonitoringProbe(name, <any>state, { ...opts, id: id });
     }
 
@@ -87,7 +57,8 @@ export class SyntheticMonitoringProbe extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
+     * Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
+     * to `true`.
      */
     public readonly public!: pulumi.Output<boolean | undefined>;
     /**
@@ -106,8 +77,11 @@ export class SyntheticMonitoringProbe extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/syntheticmonitoringprobe.SyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/probe.Probe */
     constructor(name: string, args: SyntheticMonitoringProbeArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/syntheticmonitoringprobe.SyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/probe.Probe */
     constructor(name: string, argsOrState?: SyntheticMonitoringProbeArgs | SyntheticMonitoringProbeState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("SyntheticMonitoringProbe is deprecated: grafana.index/syntheticmonitoringprobe.SyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/probe.Probe")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -141,6 +115,8 @@ export class SyntheticMonitoringProbe extends pulumi.CustomResource {
             resourceInputs["tenantId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["authToken"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(SyntheticMonitoringProbe.__pulumiType, name, resourceInputs, opts);
@@ -172,7 +148,8 @@ export interface SyntheticMonitoringProbeState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
+     * Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
+     * to `true`.
      */
     public?: pulumi.Input<boolean>;
     /**
@@ -206,7 +183,8 @@ export interface SyntheticMonitoringProbeArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
+     * Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
+     * to `true`.
      */
     public?: pulumi.Input<boolean>;
     /**

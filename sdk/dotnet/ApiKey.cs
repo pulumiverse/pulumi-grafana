@@ -10,36 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var foo = new Grafana.ApiKey("foo", new()
-    ///     {
-    ///         Role = "Viewer",
-    ///     });
-    /// 
-    ///     var bar = new Grafana.ApiKey("bar", new()
-    ///     {
-    ///         Role = "Admin",
-    ///         SecondsToLive = 30,
-    ///     });
-    /// 
-    ///     return new Dictionary&lt;string, object?&gt;
-    ///     {
-    ///         ["apiKeyFooKeyOnly"] = foo.Key,
-    ///         ["apiKeyBar"] = bar,
-    ///     };
-    /// });
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/apikey.ApiKey has been deprecated in favor of grafana.oss/apikey.ApiKey")]
     [GrafanaResourceType("grafana:index/apiKey:ApiKey")]
     public partial class ApiKey : global::Pulumi.CustomResource
     {
@@ -88,6 +59,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/apiKey:ApiKey" },
+                },
                 AdditionalSecretOutputs =
                 {
                     "key",

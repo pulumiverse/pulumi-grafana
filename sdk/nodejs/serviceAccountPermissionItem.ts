@@ -5,46 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manages a single permission item for a service account. Conflicts with the "grafana.ServiceAccountPermission" resource which manages the entire set of permissions for a service account.
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.ServiceAccount("test", {
- *     role: "Editor",
- *     isDisabled: false,
- * });
- * const team = new grafana.Team("team", {});
- * const user = new grafana.User("user", {
- *     email: "user.name@example.com",
- *     login: "user.name",
- *     password: "my-password",
- * });
- * const onTeam = new grafana.ServiceAccountPermissionItem("onTeam", {
- *     serviceAccountId: test.id,
- *     team: team.id,
- *     permission: "Admin",
- * });
- * const onUser = new grafana.ServiceAccountPermissionItem("onUser", {
- *     serviceAccountId: test.id,
- *     user: user.id,
- *     permission: "Admin",
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ orgID }}:{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
- * ```
+ * @deprecated grafana.index/serviceaccountpermissionitem.ServiceAccountPermissionItem has been deprecated in favor of grafana.oss/serviceaccountpermissionitem.ServiceAccountPermissionItem
  */
 export class ServiceAccountPermissionItem extends pulumi.CustomResource {
     /**
@@ -57,6 +18,7 @@ export class ServiceAccountPermissionItem extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ServiceAccountPermissionItemState, opts?: pulumi.CustomResourceOptions): ServiceAccountPermissionItem {
+        pulumi.log.warn("ServiceAccountPermissionItem is deprecated: grafana.index/serviceaccountpermissionitem.ServiceAccountPermissionItem has been deprecated in favor of grafana.oss/serviceaccountpermissionitem.ServiceAccountPermissionItem")
         return new ServiceAccountPermissionItem(name, <any>state, { ...opts, id: id });
     }
 
@@ -102,8 +64,11 @@ export class ServiceAccountPermissionItem extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/serviceaccountpermissionitem.ServiceAccountPermissionItem has been deprecated in favor of grafana.oss/serviceaccountpermissionitem.ServiceAccountPermissionItem */
     constructor(name: string, args: ServiceAccountPermissionItemArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/serviceaccountpermissionitem.ServiceAccountPermissionItem has been deprecated in favor of grafana.oss/serviceaccountpermissionitem.ServiceAccountPermissionItem */
     constructor(name: string, argsOrState?: ServiceAccountPermissionItemArgs | ServiceAccountPermissionItemState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ServiceAccountPermissionItem is deprecated: grafana.index/serviceaccountpermissionitem.ServiceAccountPermissionItem has been deprecated in favor of grafana.oss/serviceaccountpermissionitem.ServiceAccountPermissionItem")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -128,6 +93,8 @@ export class ServiceAccountPermissionItem extends pulumi.CustomResource {
             resourceInputs["user"] = args ? args.user : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(ServiceAccountPermissionItem.__pulumiType, name, resourceInputs, opts);
     }
 }

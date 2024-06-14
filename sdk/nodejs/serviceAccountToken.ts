@@ -5,26 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * **Note:** This resource is available only with Grafana 9.1+.
- *
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.ServiceAccount("test", {role: "Viewer"});
- * const foo = new grafana.ServiceAccountToken("foo", {serviceAccountId: test.id});
- * const bar = new grafana.ServiceAccountToken("bar", {
- *     serviceAccountId: test.id,
- *     secondsToLive: 30,
- * });
- * export const serviceAccountTokenFooKeyOnly = foo.key;
- * export const serviceAccountTokenBar = bar;
- * ```
+ * @deprecated grafana.index/serviceaccounttoken.ServiceAccountToken has been deprecated in favor of grafana.oss/serviceaccounttoken.ServiceAccountToken
  */
 export class ServiceAccountToken extends pulumi.CustomResource {
     /**
@@ -37,6 +18,7 @@ export class ServiceAccountToken extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ServiceAccountTokenState, opts?: pulumi.CustomResourceOptions): ServiceAccountToken {
+        pulumi.log.warn("ServiceAccountToken is deprecated: grafana.index/serviceaccounttoken.ServiceAccountToken has been deprecated in favor of grafana.oss/serviceaccounttoken.ServiceAccountToken")
         return new ServiceAccountToken(name, <any>state, { ...opts, id: id });
     }
 
@@ -71,7 +53,9 @@ export class ServiceAccountToken extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
+     * The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
+     * is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
+     * expire.
      */
     public readonly secondsToLive!: pulumi.Output<number | undefined>;
     /**
@@ -86,8 +70,11 @@ export class ServiceAccountToken extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/serviceaccounttoken.ServiceAccountToken has been deprecated in favor of grafana.oss/serviceaccounttoken.ServiceAccountToken */
     constructor(name: string, args: ServiceAccountTokenArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/serviceaccounttoken.ServiceAccountToken has been deprecated in favor of grafana.oss/serviceaccounttoken.ServiceAccountToken */
     constructor(name: string, argsOrState?: ServiceAccountTokenArgs | ServiceAccountTokenState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ServiceAccountToken is deprecated: grafana.index/serviceaccounttoken.ServiceAccountToken has been deprecated in favor of grafana.oss/serviceaccounttoken.ServiceAccountToken")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -111,6 +98,8 @@ export class ServiceAccountToken extends pulumi.CustomResource {
             resourceInputs["key"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/serviceAccountToken:ServiceAccountToken" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["key"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(ServiceAccountToken.__pulumiType, name, resourceInputs, opts);
@@ -138,7 +127,9 @@ export interface ServiceAccountTokenState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
+     * The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
+     * is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
+     * expire.
      */
     secondsToLive?: pulumi.Input<number>;
     /**
@@ -156,7 +147,9 @@ export interface ServiceAccountTokenArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
+     * The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
+     * is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
+     * expire.
      */
     secondsToLive?: pulumi.Input<number>;
     /**

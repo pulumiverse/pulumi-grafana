@@ -10,55 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Grafana.Playlist("test", new()
-    ///     {
-    ///         Interval = "5m",
-    ///         Items = new[]
-    ///         {
-    ///             new Grafana.Inputs.PlaylistItemArgs
-    ///             {
-    ///                 Order = 2,
-    ///                 Title = "Terraform Dashboard By Tag",
-    ///                 Type = "dashboard_by_tag",
-    ///                 Value = "terraform",
-    ///             },
-    ///             new Grafana.Inputs.PlaylistItemArgs
-    ///             {
-    ///                 Order = 1,
-    ///                 Title = "Terraform Dashboard By ID",
-    ///                 Type = "dashboard_by_id",
-    ///                 Value = "3",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/playlist:Playlist name "{{ uid }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/playlist:Playlist name "{{ orgID }}:{{ uid }}"
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/playlist.Playlist has been deprecated in favor of grafana.oss/playlist.Playlist")]
     [GrafanaResourceType("grafana:index/playlist:Playlist")]
     public partial class Playlist : global::Pulumi.CustomResource
     {
@@ -104,6 +56,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/playlist:Playlist" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

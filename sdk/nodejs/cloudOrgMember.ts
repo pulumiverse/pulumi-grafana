@@ -5,13 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manages the membership of a user in an organization.
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/cloudOrgMember:CloudOrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
- * ```
+ * @deprecated grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember
  */
 export class CloudOrgMember extends pulumi.CustomResource {
     /**
@@ -24,6 +18,7 @@ export class CloudOrgMember extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: CloudOrgMemberState, opts?: pulumi.CustomResourceOptions): CloudOrgMember {
+        pulumi.log.warn("CloudOrgMember is deprecated: grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember")
         return new CloudOrgMember(name, <any>state, { ...opts, id: id });
     }
 
@@ -65,8 +60,11 @@ export class CloudOrgMember extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember */
     constructor(name: string, args: CloudOrgMemberArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember */
     constructor(name: string, argsOrState?: CloudOrgMemberArgs | CloudOrgMemberState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("CloudOrgMember is deprecated: grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -92,6 +90,8 @@ export class CloudOrgMember extends pulumi.CustomResource {
             resourceInputs["user"] = args ? args.user : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/cloudOrgMember:CloudOrgMember" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(CloudOrgMember.__pulumiType, name, resourceInputs, opts);
     }
 }

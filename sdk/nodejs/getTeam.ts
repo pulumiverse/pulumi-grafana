@@ -6,30 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.Team("test", {
- *     email: "test-team-email@test.com",
- *     preferences: {
- *         theme: "dark",
- *         timezone: "utc",
- *     },
- * });
- * const fromName = grafana.getTeamOutput({
- *     name: test.name,
- * });
- * ```
- */
+/** @deprecated grafana.index/getteam.getTeam has been deprecated in favor of grafana.oss/getteam.getTeam */
 export function getTeam(args: GetTeamArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamResult> {
+    pulumi.log.warn("getTeam is deprecated: grafana.index/getteam.getTeam has been deprecated in favor of grafana.oss/getteam.getTeam")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getTeam:getTeam", {
@@ -65,29 +44,7 @@ export interface GetTeamResult {
     readonly teamId: number;
     readonly teamSyncs: outputs.GetTeamTeamSync[];
 }
-/**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.Team("test", {
- *     email: "test-team-email@test.com",
- *     preferences: {
- *         theme: "dark",
- *         timezone: "utc",
- *     },
- * });
- * const fromName = grafana.getTeamOutput({
- *     name: test.name,
- * });
- * ```
- */
+/** @deprecated grafana.index/getteam.getTeam has been deprecated in favor of grafana.oss/getteam.getTeam */
 export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamResult> {
     return pulumi.output(args).apply((a: any) => getTeam(a, opts))
 }

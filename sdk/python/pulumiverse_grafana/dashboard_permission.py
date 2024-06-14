@@ -169,7 +169,12 @@ class _DashboardPermissionState:
         pulumi.set(self, "permissions", value)
 
 
+warnings.warn("""grafana.index/dashboardpermission.DashboardPermission has been deprecated in favor of grafana.oss/dashboardpermission.DashboardPermission""", DeprecationWarning)
+
+
 class DashboardPermission(pulumi.CustomResource):
+    warnings.warn("""grafana.index/dashboardpermission.DashboardPermission has been deprecated in favor of grafana.oss/dashboardpermission.DashboardPermission""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -180,54 +185,7 @@ class DashboardPermission(pulumi.CustomResource):
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DashboardPermissionPermissionArgs']]]]] = None,
                  __props__=None):
         """
-        Manages the entire set of permissions for a dashboard. Permissions that aren't specified when applying this resource will be removed.
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard_permissions/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import json
-        import pulumiverse_grafana as grafana
-
-        team = grafana.Team("team")
-        user = grafana.User("user",
-            email="user.name@example.com",
-            password="my-password",
-            login="user.name")
-        metrics = grafana.Dashboard("metrics", config_json=json.dumps({
-            "title": "My Dashboard",
-            "uid": "my-dashboard-uid",
-        }))
-        collection_permission = grafana.DashboardPermission("collectionPermission",
-            dashboard_uid=metrics.uid,
-            permissions=[
-                grafana.DashboardPermissionPermissionArgs(
-                    role="Editor",
-                    permission="Edit",
-                ),
-                grafana.DashboardPermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="View",
-                ),
-                grafana.DashboardPermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Admin",
-                ),
-            ])
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/dashboardPermission:DashboardPermission name "{{ dashboardUID }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/dashboardPermission:DashboardPermission name "{{ orgID }}:{{ dashboardUID }}"
-        ```
-
+        Create a DashboardPermission resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] dashboard_id: ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
@@ -242,54 +200,7 @@ class DashboardPermission(pulumi.CustomResource):
                  args: Optional[DashboardPermissionArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages the entire set of permissions for a dashboard. Permissions that aren't specified when applying this resource will be removed.
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard_permissions/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import json
-        import pulumiverse_grafana as grafana
-
-        team = grafana.Team("team")
-        user = grafana.User("user",
-            email="user.name@example.com",
-            password="my-password",
-            login="user.name")
-        metrics = grafana.Dashboard("metrics", config_json=json.dumps({
-            "title": "My Dashboard",
-            "uid": "my-dashboard-uid",
-        }))
-        collection_permission = grafana.DashboardPermission("collectionPermission",
-            dashboard_uid=metrics.uid,
-            permissions=[
-                grafana.DashboardPermissionPermissionArgs(
-                    role="Editor",
-                    permission="Edit",
-                ),
-                grafana.DashboardPermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="View",
-                ),
-                grafana.DashboardPermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Admin",
-                ),
-            ])
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/dashboardPermission:DashboardPermission name "{{ dashboardUID }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/dashboardPermission:DashboardPermission name "{{ orgID }}:{{ dashboardUID }}"
-        ```
-
+        Create a DashboardPermission resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DashboardPermissionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -310,6 +221,7 @@ class DashboardPermission(pulumi.CustomResource):
                  org_id: Optional[pulumi.Input[str]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DashboardPermissionPermissionArgs']]]]] = None,
                  __props__=None):
+        pulumi.log.warn("""DashboardPermission is deprecated: grafana.index/dashboardpermission.DashboardPermission has been deprecated in favor of grafana.oss/dashboardpermission.DashboardPermission""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -322,6 +234,8 @@ class DashboardPermission(pulumi.CustomResource):
             __props__.__dict__["dashboard_uid"] = dashboard_uid
             __props__.__dict__["org_id"] = org_id
             __props__.__dict__["permissions"] = permissions
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/dashboardPermission:DashboardPermission")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(DashboardPermission, __self__).__init__(
             'grafana:index/dashboardPermission:DashboardPermission',
             resource_name,

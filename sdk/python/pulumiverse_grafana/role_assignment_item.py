@@ -186,7 +186,12 @@ class _RoleAssignmentItemState:
         pulumi.set(self, "user_id", value)
 
 
+warnings.warn("""grafana.index/roleassignmentitem.RoleAssignmentItem has been deprecated in favor of grafana.enterprise/roleassignmentitem.RoleAssignmentItem""", DeprecationWarning)
+
+
 class RoleAssignmentItem(pulumi.CustomResource):
+    warnings.warn("""grafana.index/roleassignmentitem.RoleAssignmentItem has been deprecated in favor of grafana.enterprise/roleassignmentitem.RoleAssignmentItem""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -198,49 +203,7 @@ class RoleAssignmentItem(pulumi.CustomResource):
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages a single assignment for a role. Conflicts with the "RoleAssignment" resource which manages the entire set of assignments for a role.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test_role = grafana.Role("testRole",
-            uid="testrole",
-            version=1,
-            global_=True,
-            permissions=[grafana.RolePermissionArgs(
-                action="org.users:add",
-                scope="users:*",
-            )])
-        test_team = grafana.Team("testTeam")
-        test_user = grafana.User("testUser",
-            email="terraform_user@test.com",
-            login="terraform_user@test.com",
-            password="password")
-        test_sa = grafana.ServiceAccount("testSa", role="Viewer")
-        user = grafana.RoleAssignmentItem("user",
-            role_uid=test_role.uid,
-            user_id=test_user.id)
-        team = grafana.RoleAssignmentItem("team",
-            role_uid=test_role.uid,
-            team_id=test_team.id)
-        service_account = grafana.RoleAssignmentItem("serviceAccount",
-            role_uid=test_role.uid,
-            service_account_id=test_sa.id)
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/roleAssignmentItem:RoleAssignmentItem name "{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/roleAssignmentItem:RoleAssignmentItem name "{{ orgID }}:{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
-        ```
-
+        Create a RoleAssignmentItem resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -256,49 +219,7 @@ class RoleAssignmentItem(pulumi.CustomResource):
                  args: RoleAssignmentItemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a single assignment for a role. Conflicts with the "RoleAssignment" resource which manages the entire set of assignments for a role.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test_role = grafana.Role("testRole",
-            uid="testrole",
-            version=1,
-            global_=True,
-            permissions=[grafana.RolePermissionArgs(
-                action="org.users:add",
-                scope="users:*",
-            )])
-        test_team = grafana.Team("testTeam")
-        test_user = grafana.User("testUser",
-            email="terraform_user@test.com",
-            login="terraform_user@test.com",
-            password="password")
-        test_sa = grafana.ServiceAccount("testSa", role="Viewer")
-        user = grafana.RoleAssignmentItem("user",
-            role_uid=test_role.uid,
-            user_id=test_user.id)
-        team = grafana.RoleAssignmentItem("team",
-            role_uid=test_role.uid,
-            team_id=test_team.id)
-        service_account = grafana.RoleAssignmentItem("serviceAccount",
-            role_uid=test_role.uid,
-            service_account_id=test_sa.id)
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/roleAssignmentItem:RoleAssignmentItem name "{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/roleAssignmentItem:RoleAssignmentItem name "{{ orgID }}:{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
-        ```
-
+        Create a RoleAssignmentItem resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param RoleAssignmentItemArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -320,6 +241,7 @@ class RoleAssignmentItem(pulumi.CustomResource):
                  team_id: Optional[pulumi.Input[str]] = None,
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""RoleAssignmentItem is deprecated: grafana.index/roleassignmentitem.RoleAssignmentItem has been deprecated in favor of grafana.enterprise/roleassignmentitem.RoleAssignmentItem""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -335,6 +257,8 @@ class RoleAssignmentItem(pulumi.CustomResource):
             __props__.__dict__["service_account_id"] = service_account_id
             __props__.__dict__["team_id"] = team_id
             __props__.__dict__["user_id"] = user_id
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/roleAssignmentItem:RoleAssignmentItem")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(RoleAssignmentItem, __self__).__init__(
             'grafana:index/roleAssignmentItem:RoleAssignmentItem',
             resource_name,

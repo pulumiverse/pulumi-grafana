@@ -5,27 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.Annotation("test", {text: "basic text"});
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/annotation:Annotation name "{{ id }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/annotation:Annotation name "{{ orgID }}:{{ id }}"
- * ```
+ * @deprecated grafana.index/annotation.Annotation has been deprecated in favor of grafana.oss/annotation.Annotation
  */
 export class Annotation extends pulumi.CustomResource {
     /**
@@ -38,6 +18,7 @@ export class Annotation extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AnnotationState, opts?: pulumi.CustomResourceOptions): Annotation {
+        pulumi.log.warn("Annotation is deprecated: grafana.index/annotation.Annotation has been deprecated in favor of grafana.oss/annotation.Annotation")
         return new Annotation(name, <any>state, { ...opts, id: id });
     }
 
@@ -97,8 +78,11 @@ export class Annotation extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/annotation.Annotation has been deprecated in favor of grafana.oss/annotation.Annotation */
     constructor(name: string, args: AnnotationArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/annotation.Annotation has been deprecated in favor of grafana.oss/annotation.Annotation */
     constructor(name: string, argsOrState?: AnnotationArgs | AnnotationState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("Annotation is deprecated: grafana.index/annotation.Annotation has been deprecated in favor of grafana.oss/annotation.Annotation")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -126,6 +110,8 @@ export class Annotation extends pulumi.CustomResource {
             resourceInputs["timeEnd"] = args ? args.timeEnd : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/annotation:Annotation" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Annotation.__pulumiType, name, resourceInputs, opts);
     }
 }

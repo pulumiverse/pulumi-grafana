@@ -7,45 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const exampleSlackChannel = grafana.getOnCallSlackChannel({
- *     name: "example_slack_channel",
- * });
- * const exampleUserGroup = grafana.getOncallUserGroup({
- *     slackHandle: "example_slack_handle",
- * });
- * // ICal based schedule
- * const exampleScheduleOncallSchedule = new grafana.OncallSchedule("exampleScheduleOncallSchedule", {
- *     type: "ical",
- *     icalUrlPrimary: "https://example.com/example_ical.ics",
- *     icalUrlOverrides: "https://example.com/example_overrides_ical.ics",
- *     slack: {
- *         channelId: exampleSlackChannel.then(exampleSlackChannel => exampleSlackChannel.slackId),
- *         userGroupId: exampleUserGroup.then(exampleUserGroup => exampleUserGroup.slackId),
- *     },
- * });
- * // Shift based schedule
- * const exampleScheduleIndex_oncallScheduleOncallSchedule = new grafana.OncallSchedule("exampleScheduleIndex/oncallScheduleOncallSchedule", {
- *     type: "calendar",
- *     timeZone: "America/New_York",
- *     shifts: [],
- *     icalUrlOverrides: "https://example.com/example_overrides_ical.ics",
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/oncallSchedule:OncallSchedule name "{{ id }}"
- * ```
+ * @deprecated grafana.index/oncallschedule.OncallSchedule has been deprecated in favor of grafana.oncall/schedule.Schedule
  */
 export class OncallSchedule extends pulumi.CustomResource {
     /**
@@ -58,6 +20,7 @@ export class OncallSchedule extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: OncallScheduleState, opts?: pulumi.CustomResourceOptions): OncallSchedule {
+        pulumi.log.warn("OncallSchedule is deprecated: grafana.index/oncallschedule.OncallSchedule has been deprecated in favor of grafana.oncall/schedule.Schedule")
         return new OncallSchedule(name, <any>state, { ...opts, id: id });
     }
 
@@ -76,7 +39,7 @@ export class OncallSchedule extends pulumi.CustomResource {
     }
 
     /**
-     * Enable overrides via web UI (it will ignore ical*url*overrides).
+     * Enable overrides via web UI (it will ignore ical_url_overrides).
      */
     public readonly enableWebOverrides!: pulumi.Output<boolean | undefined>;
     /**
@@ -100,7 +63,8 @@ export class OncallSchedule extends pulumi.CustomResource {
      */
     public readonly slack!: pulumi.Output<outputs.OncallScheduleSlack | undefined>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+     * with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
      */
     public readonly teamId!: pulumi.Output<string | undefined>;
     /**
@@ -119,8 +83,11 @@ export class OncallSchedule extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/oncallschedule.OncallSchedule has been deprecated in favor of grafana.oncall/schedule.Schedule */
     constructor(name: string, args: OncallScheduleArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/oncallschedule.OncallSchedule has been deprecated in favor of grafana.oncall/schedule.Schedule */
     constructor(name: string, argsOrState?: OncallScheduleArgs | OncallScheduleState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("OncallSchedule is deprecated: grafana.index/oncallschedule.OncallSchedule has been deprecated in favor of grafana.oncall/schedule.Schedule")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -150,6 +117,8 @@ export class OncallSchedule extends pulumi.CustomResource {
             resourceInputs["type"] = args ? args.type : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/oncallSchedule:OncallSchedule" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(OncallSchedule.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -159,7 +128,7 @@ export class OncallSchedule extends pulumi.CustomResource {
  */
 export interface OncallScheduleState {
     /**
-     * Enable overrides via web UI (it will ignore ical*url*overrides).
+     * Enable overrides via web UI (it will ignore ical_url_overrides).
      */
     enableWebOverrides?: pulumi.Input<boolean>;
     /**
@@ -183,7 +152,8 @@ export interface OncallScheduleState {
      */
     slack?: pulumi.Input<inputs.OncallScheduleSlack>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+     * with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
      */
     teamId?: pulumi.Input<string>;
     /**
@@ -201,7 +171,7 @@ export interface OncallScheduleState {
  */
 export interface OncallScheduleArgs {
     /**
-     * Enable overrides via web UI (it will ignore ical*url*overrides).
+     * Enable overrides via web UI (it will ignore ical_url_overrides).
      */
     enableWebOverrides?: pulumi.Input<boolean>;
     /**
@@ -225,7 +195,8 @@ export interface OncallScheduleArgs {
      */
     slack?: pulumi.Input<inputs.OncallScheduleSlack>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+     * with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
      */
     teamId?: pulumi.Input<string>;
     /**

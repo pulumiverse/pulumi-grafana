@@ -10,44 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// Equivalent to the the `team_sync` attribute of the `grafana.Team` resource. Use one or the other to configure a team's external groups syncing config.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var myTeam = new Grafana.Team("myTeam");
-    /// 
-    ///     var test_team_group = new Grafana.TeamExternalGroup("test-team-group", new()
-    ///     {
-    ///         TeamId = myTeam.Id,
-    ///         Groups = new[]
-    ///         {
-    ///             "test-group-1",
-    ///             "test-group-2",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup name "{{ teamID }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup name "{{ orgID }}:{{ teamID }}"
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/teamexternalgroup.TeamExternalGroup has been deprecated in favor of grafana.enterprise/teamexternalgroup.TeamExternalGroup")]
     [GrafanaResourceType("grafana:index/teamExternalGroup:TeamExternalGroup")]
     public partial class TeamExternalGroup : global::Pulumi.CustomResource
     {
@@ -87,6 +50,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/teamExternalGroup:TeamExternalGroup" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

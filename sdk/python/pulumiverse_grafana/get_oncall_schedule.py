@@ -16,6 +16,8 @@ __all__ = [
     'get_oncall_schedule_output',
 ]
 
+warnings.warn("""grafana.index/getoncallschedule.getOncallSchedule has been deprecated in favor of grafana.oncall/getschedule.getSchedule""", DeprecationWarning)
+
 @pulumi.output_type
 class GetOncallScheduleResult:
     """
@@ -43,17 +45,11 @@ class GetOncallScheduleResult:
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        The schedule name.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def type(self) -> str:
-        """
-        The schedule type.
-        """
         return pulumi.get(self, "type")
 
 
@@ -71,21 +67,9 @@ class AwaitableGetOncallScheduleResult(GetOncallScheduleResult):
 def get_oncall_schedule(name: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallScheduleResult:
     """
-    * [Official documentation](https://grafana.com/docs/oncall/latest/manage/on-call-schedules/)
-    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-
-    schedule = grafana.get_oncall_schedule(name="example_schedule")
-    ```
-
-
-    :param str name: The schedule name.
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_oncall_schedule is deprecated: grafana.index/getoncallschedule.getOncallSchedule has been deprecated in favor of grafana.oncall/getschedule.getSchedule""")
     __args__ = dict()
     __args__['name'] = name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -101,19 +85,7 @@ def get_oncall_schedule(name: Optional[str] = None,
 def get_oncall_schedule_output(name: Optional[pulumi.Input[str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallScheduleResult]:
     """
-    * [Official documentation](https://grafana.com/docs/oncall/latest/manage/on-call-schedules/)
-    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-
-    schedule = grafana.get_oncall_schedule(name="example_schedule")
-    ```
-
-
-    :param str name: The schedule name.
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_oncall_schedule is deprecated: grafana.index/getoncallschedule.getOncallSchedule has been deprecated in favor of grafana.oncall/getschedule.getSchedule""")
     ...

@@ -227,9 +227,9 @@ type ContactPointAlertmanager struct {
 	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
 	// The username component of the basic auth credentials to use.
 	BasicAuthUser *string `pulumi:"basicAuthUser"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// The UID of the contact point.
 	Uid *string `pulumi:"uid"`
@@ -253,9 +253,9 @@ type ContactPointAlertmanagerArgs struct {
 	BasicAuthPassword pulumi.StringPtrInput `pulumi:"basicAuthPassword"`
 	// The username component of the basic auth credentials to use.
 	BasicAuthUser pulumi.StringPtrInput `pulumi:"basicAuthUser"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The UID of the contact point.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
@@ -324,12 +324,12 @@ func (o ContactPointAlertmanagerOutput) BasicAuthUser() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointAlertmanager) *string { return v.BasicAuthUser }).(pulumi.StringPtrOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointAlertmanagerOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointAlertmanager) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointAlertmanagerOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointAlertmanager) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -365,13 +365,13 @@ func (o ContactPointAlertmanagerArrayOutput) Index(i pulumi.IntInput) ContactPoi
 }
 
 type ContactPointDingding struct {
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// The templated content of the message.
 	Message *string `pulumi:"message"`
 	// The format of message to send - either 'link' or 'actionCard'
 	MessageType *string `pulumi:"messageType"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// The templated title of the message.
 	Title *string `pulumi:"title"`
@@ -393,13 +393,13 @@ type ContactPointDingdingInput interface {
 }
 
 type ContactPointDingdingArgs struct {
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// The templated content of the message.
 	Message pulumi.StringPtrInput `pulumi:"message"`
 	// The format of message to send - either 'link' or 'actionCard'
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The templated title of the message.
 	Title pulumi.StringPtrInput `pulumi:"title"`
@@ -460,7 +460,7 @@ func (o ContactPointDingdingOutput) ToContactPointDingdingOutputWithContext(ctx 
 	return o
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointDingdingOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointDingding) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -475,7 +475,7 @@ func (o ContactPointDingdingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointDingding) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointDingdingOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointDingding) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -516,13 +516,13 @@ func (o ContactPointDingdingArrayOutput) Index(i pulumi.IntInput) ContactPointDi
 }
 
 type ContactPointDiscord struct {
-	// The URL of a custom avatar image to use. Defaults to ``.
+	// The URL of a custom avatar image to use.
 	AvatarUrl *string `pulumi:"avatarUrl"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
-	// The templated content of the message. Defaults to ``.
+	// The templated content of the message.
 	Message *string `pulumi:"message"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// The templated content of the title.
 	Title *string `pulumi:"title"`
@@ -530,7 +530,7 @@ type ContactPointDiscord struct {
 	Uid *string `pulumi:"uid"`
 	// The discord webhook URL.
 	Url string `pulumi:"url"`
-	// Whether to use the bot account's plain username instead of "Grafana." Defaults to `false`.
+	// Whether to use the bot account's plain username instead of "Grafana."
 	UseDiscordUsername *bool `pulumi:"useDiscordUsername"`
 }
 
@@ -546,13 +546,13 @@ type ContactPointDiscordInput interface {
 }
 
 type ContactPointDiscordArgs struct {
-	// The URL of a custom avatar image to use. Defaults to ``.
+	// The URL of a custom avatar image to use.
 	AvatarUrl pulumi.StringPtrInput `pulumi:"avatarUrl"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
-	// The templated content of the message. Defaults to ``.
+	// The templated content of the message.
 	Message pulumi.StringPtrInput `pulumi:"message"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The templated content of the title.
 	Title pulumi.StringPtrInput `pulumi:"title"`
@@ -560,7 +560,7 @@ type ContactPointDiscordArgs struct {
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
 	// The discord webhook URL.
 	Url pulumi.StringInput `pulumi:"url"`
-	// Whether to use the bot account's plain username instead of "Grafana." Defaults to `false`.
+	// Whether to use the bot account's plain username instead of "Grafana."
 	UseDiscordUsername pulumi.BoolPtrInput `pulumi:"useDiscordUsername"`
 }
 
@@ -615,22 +615,22 @@ func (o ContactPointDiscordOutput) ToContactPointDiscordOutputWithContext(ctx co
 	return o
 }
 
-// The URL of a custom avatar image to use. Defaults to “.
+// The URL of a custom avatar image to use.
 func (o ContactPointDiscordOutput) AvatarUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointDiscord) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointDiscordOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointDiscord) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
 
-// The templated content of the message. Defaults to “.
+// The templated content of the message.
 func (o ContactPointDiscordOutput) Message() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointDiscord) *string { return v.Message }).(pulumi.StringPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointDiscordOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointDiscord) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -650,7 +650,7 @@ func (o ContactPointDiscordOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v ContactPointDiscord) string { return v.Url }).(pulumi.StringOutput)
 }
 
-// Whether to use the bot account's plain username instead of "Grafana." Defaults to `false`.
+// Whether to use the bot account's plain username instead of "Grafana."
 func (o ContactPointDiscordOutput) UseDiscordUsername() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointDiscord) *bool { return v.UseDiscordUsername }).(pulumi.BoolPtrOutput)
 }
@@ -678,15 +678,15 @@ func (o ContactPointDiscordArrayOutput) Index(i pulumi.IntInput) ContactPointDis
 type ContactPointEmail struct {
 	// The addresses to send emails to.
 	Addresses []string `pulumi:"addresses"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
-	// The templated content of the email. Defaults to ``.
+	// The templated content of the email.
 	Message *string `pulumi:"message"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
-	// Whether to send a single email CC'ing all addresses, rather than a separate email to each address. Defaults to `false`.
+	// Whether to send a single email CC'ing all addresses, rather than a separate email to each address.
 	SingleEmail *bool `pulumi:"singleEmail"`
-	// The templated subject line of the email. Defaults to ``.
+	// The templated subject line of the email.
 	Subject *string `pulumi:"subject"`
 	// The UID of the contact point.
 	Uid *string `pulumi:"uid"`
@@ -706,15 +706,15 @@ type ContactPointEmailInput interface {
 type ContactPointEmailArgs struct {
 	// The addresses to send emails to.
 	Addresses pulumi.StringArrayInput `pulumi:"addresses"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
-	// The templated content of the email. Defaults to ``.
+	// The templated content of the email.
 	Message pulumi.StringPtrInput `pulumi:"message"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
-	// Whether to send a single email CC'ing all addresses, rather than a separate email to each address. Defaults to `false`.
+	// Whether to send a single email CC'ing all addresses, rather than a separate email to each address.
 	SingleEmail pulumi.BoolPtrInput `pulumi:"singleEmail"`
-	// The templated subject line of the email. Defaults to ``.
+	// The templated subject line of the email.
 	Subject pulumi.StringPtrInput `pulumi:"subject"`
 	// The UID of the contact point.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
@@ -776,27 +776,27 @@ func (o ContactPointEmailOutput) Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ContactPointEmail) []string { return v.Addresses }).(pulumi.StringArrayOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointEmailOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointEmail) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
 
-// The templated content of the email. Defaults to “.
+// The templated content of the email.
 func (o ContactPointEmailOutput) Message() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointEmail) *string { return v.Message }).(pulumi.StringPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointEmailOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointEmail) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
 
-// Whether to send a single email CC'ing all addresses, rather than a separate email to each address. Defaults to `false`.
+// Whether to send a single email CC'ing all addresses, rather than a separate email to each address.
 func (o ContactPointEmailOutput) SingleEmail() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointEmail) *bool { return v.SingleEmail }).(pulumi.BoolPtrOutput)
 }
 
-// The templated subject line of the email. Defaults to “.
+// The templated subject line of the email.
 func (o ContactPointEmailOutput) Subject() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointEmail) *string { return v.Subject }).(pulumi.StringPtrOutput)
 }
@@ -827,11 +827,11 @@ func (o ContactPointEmailArrayOutput) Index(i pulumi.IntInput) ContactPointEmail
 }
 
 type ContactPointGooglechat struct {
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// The templated content of the message.
 	Message *string `pulumi:"message"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// The templated content of the title.
 	Title *string `pulumi:"title"`
@@ -853,11 +853,11 @@ type ContactPointGooglechatInput interface {
 }
 
 type ContactPointGooglechatArgs struct {
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// The templated content of the message.
 	Message pulumi.StringPtrInput `pulumi:"message"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The templated content of the title.
 	Title pulumi.StringPtrInput `pulumi:"title"`
@@ -918,7 +918,7 @@ func (o ContactPointGooglechatOutput) ToContactPointGooglechatOutputWithContext(
 	return o
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointGooglechatOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointGooglechat) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -928,7 +928,7 @@ func (o ContactPointGooglechatOutput) Message() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointGooglechat) *string { return v.Message }).(pulumi.StringPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointGooglechatOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointGooglechat) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -969,7 +969,7 @@ func (o ContactPointGooglechatArrayOutput) Index(i pulumi.IntInput) ContactPoint
 }
 
 type ContactPointKafka struct {
-	// The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+	// The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3.
 	ApiVersion *string `pulumi:"apiVersion"`
 	// The Id of cluster to use when contacting the Kafka REST Server. Required apiVersion to be 'v3'
 	ClusterId *string `pulumi:"clusterId"`
@@ -977,13 +977,13 @@ type ContactPointKafka struct {
 	Description *string `pulumi:"description"`
 	// The templated details to include with the message.
 	Details *string `pulumi:"details"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// The password to use when making a call to the Kafka REST Proxy
 	Password *string `pulumi:"password"`
 	// The URL of the Kafka REST proxy to send requests to.
 	RestProxyUrl string `pulumi:"restProxyUrl"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// The name of the Kafka topic to publish to.
 	Topic string `pulumi:"topic"`
@@ -1005,7 +1005,7 @@ type ContactPointKafkaInput interface {
 }
 
 type ContactPointKafkaArgs struct {
-	// The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+	// The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3.
 	ApiVersion pulumi.StringPtrInput `pulumi:"apiVersion"`
 	// The Id of cluster to use when contacting the Kafka REST Server. Required apiVersion to be 'v3'
 	ClusterId pulumi.StringPtrInput `pulumi:"clusterId"`
@@ -1013,13 +1013,13 @@ type ContactPointKafkaArgs struct {
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// The templated details to include with the message.
 	Details pulumi.StringPtrInput `pulumi:"details"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// The password to use when making a call to the Kafka REST Proxy
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// The URL of the Kafka REST proxy to send requests to.
 	RestProxyUrl pulumi.StringInput `pulumi:"restProxyUrl"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The name of the Kafka topic to publish to.
 	Topic pulumi.StringInput `pulumi:"topic"`
@@ -1080,7 +1080,7 @@ func (o ContactPointKafkaOutput) ToContactPointKafkaOutputWithContext(ctx contex
 	return o
 }
 
-// The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+// The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3.
 func (o ContactPointKafkaOutput) ApiVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointKafka) *string { return v.ApiVersion }).(pulumi.StringPtrOutput)
 }
@@ -1100,7 +1100,7 @@ func (o ContactPointKafkaOutput) Details() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointKafka) *string { return v.Details }).(pulumi.StringPtrOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointKafkaOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointKafka) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -1115,7 +1115,7 @@ func (o ContactPointKafkaOutput) RestProxyUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v ContactPointKafka) string { return v.RestProxyUrl }).(pulumi.StringOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointKafkaOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointKafka) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -1158,9 +1158,9 @@ func (o ContactPointKafkaArrayOutput) Index(i pulumi.IntInput) ContactPointKafka
 type ContactPointLine struct {
 	// The templated description of the message.
 	Description *string `pulumi:"description"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// The templated title of the message.
 	Title *string `pulumi:"title"`
@@ -1184,9 +1184,9 @@ type ContactPointLineInput interface {
 type ContactPointLineArgs struct {
 	// The templated description of the message.
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The templated title of the message.
 	Title pulumi.StringPtrInput `pulumi:"title"`
@@ -1252,12 +1252,12 @@ func (o ContactPointLineOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointLine) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointLineOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointLine) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointLineOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointLine) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -1306,7 +1306,7 @@ type ContactPointOncall struct {
 	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
 	// The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
 	BasicAuthUser *string `pulumi:"basicAuthUser"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// The HTTP method to use in the request. Defaults to `POST`.
 	HttpMethod *string `pulumi:"httpMethod"`
@@ -1314,7 +1314,7 @@ type ContactPointOncall struct {
 	MaxAlerts *int `pulumi:"maxAlerts"`
 	// Custom message. You can use template variables.
 	Message *string `pulumi:"message"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// Templated title of the message.
 	Title *string `pulumi:"title"`
@@ -1344,7 +1344,7 @@ type ContactPointOncallArgs struct {
 	BasicAuthPassword pulumi.StringPtrInput `pulumi:"basicAuthPassword"`
 	// The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
 	BasicAuthUser pulumi.StringPtrInput `pulumi:"basicAuthUser"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// The HTTP method to use in the request. Defaults to `POST`.
 	HttpMethod pulumi.StringPtrInput `pulumi:"httpMethod"`
@@ -1352,7 +1352,7 @@ type ContactPointOncallArgs struct {
 	MaxAlerts pulumi.IntPtrInput `pulumi:"maxAlerts"`
 	// Custom message. You can use template variables.
 	Message pulumi.StringPtrInput `pulumi:"message"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// Templated title of the message.
 	Title pulumi.StringPtrInput `pulumi:"title"`
@@ -1433,7 +1433,7 @@ func (o ContactPointOncallOutput) BasicAuthUser() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointOncall) *string { return v.BasicAuthUser }).(pulumi.StringPtrOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointOncallOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointOncall) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -1453,7 +1453,7 @@ func (o ContactPointOncallOutput) Message() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointOncall) *string { return v.Message }).(pulumi.StringPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointOncallOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointOncall) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -1500,7 +1500,7 @@ type ContactPointOpsgeny struct {
 	AutoClose *bool `pulumi:"autoClose"`
 	// A templated high-level description to use for the alert.
 	Description *string `pulumi:"description"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// The templated content of the message.
 	Message *string `pulumi:"message"`
@@ -1510,7 +1510,7 @@ type ContactPointOpsgeny struct {
 	Responders []ContactPointOpsgenyResponder `pulumi:"responders"`
 	// Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.
 	SendTagsAs *string `pulumi:"sendTagsAs"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// The UID of the contact point.
 	Uid *string `pulumi:"uid"`
@@ -1536,7 +1536,7 @@ type ContactPointOpsgenyArgs struct {
 	AutoClose pulumi.BoolPtrInput `pulumi:"autoClose"`
 	// A templated high-level description to use for the alert.
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// The templated content of the message.
 	Message pulumi.StringPtrInput `pulumi:"message"`
@@ -1546,7 +1546,7 @@ type ContactPointOpsgenyArgs struct {
 	Responders ContactPointOpsgenyResponderArrayInput `pulumi:"responders"`
 	// Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.
 	SendTagsAs pulumi.StringPtrInput `pulumi:"sendTagsAs"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The UID of the contact point.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
@@ -1620,7 +1620,7 @@ func (o ContactPointOpsgenyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointOpsgeny) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointOpsgenyOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointOpsgeny) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -1645,7 +1645,7 @@ func (o ContactPointOpsgenyOutput) SendTagsAs() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointOpsgeny) *string { return v.SendTagsAs }).(pulumi.StringPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointOpsgenyOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointOpsgeny) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -1815,13 +1815,13 @@ type ContactPointPagerduty struct {
 	Component *string `pulumi:"component"`
 	// A set of arbitrary key/value pairs that provide further detail about the incident.
 	Details map[string]string `pulumi:"details"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// The group to which the provided component belongs to.
 	Group *string `pulumi:"group"`
 	// The PagerDuty API key.
 	IntegrationKey string `pulumi:"integrationKey"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// The PagerDuty event severity level. Default is `critical`.
 	Severity *string `pulumi:"severity"`
@@ -1855,13 +1855,13 @@ type ContactPointPagerdutyArgs struct {
 	Component pulumi.StringPtrInput `pulumi:"component"`
 	// A set of arbitrary key/value pairs that provide further detail about the incident.
 	Details pulumi.StringMapInput `pulumi:"details"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// The group to which the provided component belongs to.
 	Group pulumi.StringPtrInput `pulumi:"group"`
 	// The PagerDuty API key.
 	IntegrationKey pulumi.StringInput `pulumi:"integrationKey"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The PagerDuty event severity level. Default is `critical`.
 	Severity pulumi.StringPtrInput `pulumi:"severity"`
@@ -1949,7 +1949,7 @@ func (o ContactPointPagerdutyOutput) Details() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointPagerduty) map[string]string { return v.Details }).(pulumi.StringMapOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointPagerdutyOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointPagerduty) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -1964,7 +1964,7 @@ func (o ContactPointPagerdutyOutput) IntegrationKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ContactPointPagerduty) string { return v.IntegrationKey }).(pulumi.StringOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointPagerdutyOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointPagerduty) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -2014,7 +2014,7 @@ type ContactPointPushover struct {
 	ApiToken string `pulumi:"apiToken"`
 	// Comma-separated list of devices to which the event is associated.
 	Device *string `pulumi:"device"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// How many seconds for which the notification will continue to be retried by Pushover.
 	Expire *int `pulumi:"expire"`
@@ -2028,7 +2028,7 @@ type ContactPointPushover struct {
 	Priority *int `pulumi:"priority"`
 	// How often, in seconds, the Pushover servers will send the same notification to the user.
 	Retry *int `pulumi:"retry"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// The sound associated with the notification.
 	Sound *string `pulumi:"sound"`
@@ -2058,7 +2058,7 @@ type ContactPointPushoverArgs struct {
 	ApiToken pulumi.StringInput `pulumi:"apiToken"`
 	// Comma-separated list of devices to which the event is associated.
 	Device pulumi.StringPtrInput `pulumi:"device"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// How many seconds for which the notification will continue to be retried by Pushover.
 	Expire pulumi.IntPtrInput `pulumi:"expire"`
@@ -2072,7 +2072,7 @@ type ContactPointPushoverArgs struct {
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
 	// How often, in seconds, the Pushover servers will send the same notification to the user.
 	Retry pulumi.IntPtrInput `pulumi:"retry"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The sound associated with the notification.
 	Sound pulumi.StringPtrInput `pulumi:"sound"`
@@ -2147,7 +2147,7 @@ func (o ContactPointPushoverOutput) Device() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointPushover) *string { return v.Device }).(pulumi.StringPtrOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointPushoverOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointPushover) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -2182,7 +2182,7 @@ func (o ContactPointPushoverOutput) Retry() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ContactPointPushover) *int { return v.Retry }).(pulumi.IntPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointPushoverOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointPushover) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -2237,7 +2237,7 @@ type ContactPointSensugo struct {
 	ApiKey string `pulumi:"apiKey"`
 	// The SensuGo check to which the event should be routed.
 	Check *string `pulumi:"check"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// The entity being monitored.
 	Entity *string `pulumi:"entity"`
@@ -2247,7 +2247,7 @@ type ContactPointSensugo struct {
 	Message *string `pulumi:"message"`
 	// The namespace in which the check resides.
 	Namespace *string `pulumi:"namespace"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// The UID of the contact point.
 	Uid *string `pulumi:"uid"`
@@ -2271,7 +2271,7 @@ type ContactPointSensugoArgs struct {
 	ApiKey pulumi.StringInput `pulumi:"apiKey"`
 	// The SensuGo check to which the event should be routed.
 	Check pulumi.StringPtrInput `pulumi:"check"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// The entity being monitored.
 	Entity pulumi.StringPtrInput `pulumi:"entity"`
@@ -2281,7 +2281,7 @@ type ContactPointSensugoArgs struct {
 	Message pulumi.StringPtrInput `pulumi:"message"`
 	// The namespace in which the check resides.
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The UID of the contact point.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
@@ -2350,7 +2350,7 @@ func (o ContactPointSensugoOutput) Check() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointSensugo) *string { return v.Check }).(pulumi.StringPtrOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointSensugoOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointSensugo) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -2375,7 +2375,7 @@ func (o ContactPointSensugoOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointSensugo) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointSensugoOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointSensugo) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -2411,7 +2411,7 @@ func (o ContactPointSensugoArrayOutput) Index(i pulumi.IntInput) ContactPointSen
 }
 
 type ContactPointSlack struct {
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// Use this to override the Slack API endpoint URL to send requests to.
 	EndpointUrl *string `pulumi:"endpointUrl"`
@@ -2427,7 +2427,7 @@ type ContactPointSlack struct {
 	MentionUsers *string `pulumi:"mentionUsers"`
 	// Channel, private group, or IM channel (can be an encoded ID or a name) to send messages to.
 	Recipient *string `pulumi:"recipient"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// Templated content of the message.
 	Text *string `pulumi:"text"`
@@ -2455,7 +2455,7 @@ type ContactPointSlackInput interface {
 }
 
 type ContactPointSlackArgs struct {
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// Use this to override the Slack API endpoint URL to send requests to.
 	EndpointUrl pulumi.StringPtrInput `pulumi:"endpointUrl"`
@@ -2471,7 +2471,7 @@ type ContactPointSlackArgs struct {
 	MentionUsers pulumi.StringPtrInput `pulumi:"mentionUsers"`
 	// Channel, private group, or IM channel (can be an encoded ID or a name) to send messages to.
 	Recipient pulumi.StringPtrInput `pulumi:"recipient"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// Templated content of the message.
 	Text pulumi.StringPtrInput `pulumi:"text"`
@@ -2538,7 +2538,7 @@ func (o ContactPointSlackOutput) ToContactPointSlackOutputWithContext(ctx contex
 	return o
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointSlackOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointSlack) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -2578,7 +2578,7 @@ func (o ContactPointSlackOutput) Recipient() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointSlack) *string { return v.Recipient }).(pulumi.StringPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointSlackOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointSlack) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -2638,18 +2638,18 @@ type ContactPointSn struct {
 	AccessKey *string `pulumi:"accessKey"`
 	// The Amazon Resource Name (ARN) of the role to assume to send notifications to Amazon SNS.
 	AssumeRoleArn *string `pulumi:"assumeRoleArn"`
-	// The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+	// The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`.
 	AuthProvider *string `pulumi:"authProvider"`
 	Body         *string `pulumi:"body"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// The external ID to use when assuming the role.
 	ExternalId *string `pulumi:"externalId"`
-	// The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+	// The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`.
 	MessageFormat *string `pulumi:"messageFormat"`
 	// AWS secret access key used to authenticate with Amazon SNS.
 	SecretKey *string `pulumi:"secretKey"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	Subject  *string           `pulumi:"subject"`
 	// The Amazon SNS topic to send notifications to.
@@ -2674,18 +2674,18 @@ type ContactPointSnArgs struct {
 	AccessKey pulumi.StringPtrInput `pulumi:"accessKey"`
 	// The Amazon Resource Name (ARN) of the role to assume to send notifications to Amazon SNS.
 	AssumeRoleArn pulumi.StringPtrInput `pulumi:"assumeRoleArn"`
-	// The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+	// The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`.
 	AuthProvider pulumi.StringPtrInput `pulumi:"authProvider"`
 	Body         pulumi.StringPtrInput `pulumi:"body"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// The external ID to use when assuming the role.
 	ExternalId pulumi.StringPtrInput `pulumi:"externalId"`
-	// The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+	// The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`.
 	MessageFormat pulumi.StringPtrInput `pulumi:"messageFormat"`
 	// AWS secret access key used to authenticate with Amazon SNS.
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	Subject  pulumi.StringPtrInput `pulumi:"subject"`
 	// The Amazon SNS topic to send notifications to.
@@ -2755,7 +2755,7 @@ func (o ContactPointSnOutput) AssumeRoleArn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointSn) *string { return v.AssumeRoleArn }).(pulumi.StringPtrOutput)
 }
 
-// The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+// The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`.
 func (o ContactPointSnOutput) AuthProvider() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointSn) *string { return v.AuthProvider }).(pulumi.StringPtrOutput)
 }
@@ -2764,7 +2764,7 @@ func (o ContactPointSnOutput) Body() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointSn) *string { return v.Body }).(pulumi.StringPtrOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointSnOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointSn) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -2774,7 +2774,7 @@ func (o ContactPointSnOutput) ExternalId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointSn) *string { return v.ExternalId }).(pulumi.StringPtrOutput)
 }
 
-// The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+// The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`.
 func (o ContactPointSnOutput) MessageFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointSn) *string { return v.MessageFormat }).(pulumi.StringPtrOutput)
 }
@@ -2784,7 +2784,7 @@ func (o ContactPointSnOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointSn) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointSnOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointSn) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -2824,13 +2824,13 @@ func (o ContactPointSnArrayOutput) Index(i pulumi.IntInput) ContactPointSnOutput
 }
 
 type ContactPointTeam struct {
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// The templated message content to send.
 	Message *string `pulumi:"message"`
 	// The templated subtitle for each message section.
 	SectionTitle *string `pulumi:"sectionTitle"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// The templated title of the message.
 	Title *string `pulumi:"title"`
@@ -2852,13 +2852,13 @@ type ContactPointTeamInput interface {
 }
 
 type ContactPointTeamArgs struct {
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// The templated message content to send.
 	Message pulumi.StringPtrInput `pulumi:"message"`
 	// The templated subtitle for each message section.
 	SectionTitle pulumi.StringPtrInput `pulumi:"sectionTitle"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The templated title of the message.
 	Title pulumi.StringPtrInput `pulumi:"title"`
@@ -2919,7 +2919,7 @@ func (o ContactPointTeamOutput) ToContactPointTeamOutputWithContext(ctx context.
 	return o
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointTeamOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointTeam) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -2934,7 +2934,7 @@ func (o ContactPointTeamOutput) SectionTitle() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointTeam) *string { return v.SectionTitle }).(pulumi.StringPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointTeamOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointTeam) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -2979,7 +2979,7 @@ type ContactPointTelegram struct {
 	ChatId string `pulumi:"chatId"`
 	// When set users will receive a notification with no sound.
 	DisableNotifications *bool `pulumi:"disableNotifications"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// When set it disables link previews for links in the message.
 	DisableWebPagePreview *bool `pulumi:"disableWebPagePreview"`
@@ -2989,7 +2989,7 @@ type ContactPointTelegram struct {
 	ParseMode *string `pulumi:"parseMode"`
 	// When set it protects the contents of the message from forwarding and saving.
 	ProtectContent *bool `pulumi:"protectContent"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// The Telegram bot token.
 	Token string `pulumi:"token"`
@@ -3013,7 +3013,7 @@ type ContactPointTelegramArgs struct {
 	ChatId pulumi.StringInput `pulumi:"chatId"`
 	// When set users will receive a notification with no sound.
 	DisableNotifications pulumi.BoolPtrInput `pulumi:"disableNotifications"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// When set it disables link previews for links in the message.
 	DisableWebPagePreview pulumi.BoolPtrInput `pulumi:"disableWebPagePreview"`
@@ -3023,7 +3023,7 @@ type ContactPointTelegramArgs struct {
 	ParseMode pulumi.StringPtrInput `pulumi:"parseMode"`
 	// When set it protects the contents of the message from forwarding and saving.
 	ProtectContent pulumi.BoolPtrInput `pulumi:"protectContent"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The Telegram bot token.
 	Token pulumi.StringInput `pulumi:"token"`
@@ -3092,7 +3092,7 @@ func (o ContactPointTelegramOutput) DisableNotifications() pulumi.BoolPtrOutput 
 	return o.ApplyT(func(v ContactPointTelegram) *bool { return v.DisableNotifications }).(pulumi.BoolPtrOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointTelegramOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointTelegram) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -3117,7 +3117,7 @@ func (o ContactPointTelegramOutput) ProtectContent() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointTelegram) *bool { return v.ProtectContent }).(pulumi.BoolPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointTelegramOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointTelegram) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -3157,13 +3157,13 @@ type ContactPointThreema struct {
 	ApiSecret string `pulumi:"apiSecret"`
 	// The templated description of the message.
 	Description *string `pulumi:"description"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// The Threema gateway ID.
 	GatewayId string `pulumi:"gatewayId"`
 	// The ID of the recipient of the message.
 	RecipientId string `pulumi:"recipientId"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// The templated title of the message.
 	Title *string `pulumi:"title"`
@@ -3187,13 +3187,13 @@ type ContactPointThreemaArgs struct {
 	ApiSecret pulumi.StringInput `pulumi:"apiSecret"`
 	// The templated description of the message.
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// The Threema gateway ID.
 	GatewayId pulumi.StringInput `pulumi:"gatewayId"`
 	// The ID of the recipient of the message.
 	RecipientId pulumi.StringInput `pulumi:"recipientId"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The templated title of the message.
 	Title pulumi.StringPtrInput `pulumi:"title"`
@@ -3262,7 +3262,7 @@ func (o ContactPointThreemaOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointThreema) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointThreemaOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointThreema) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -3277,7 +3277,7 @@ func (o ContactPointThreemaOutput) RecipientId() pulumi.StringOutput {
 	return o.ApplyT(func(v ContactPointThreema) string { return v.RecipientId }).(pulumi.StringOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointThreemaOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointThreema) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -3315,11 +3315,11 @@ func (o ContactPointThreemaArrayOutput) Index(i pulumi.IntInput) ContactPointThr
 type ContactPointVictorop struct {
 	// Templated description of the message.
 	Description *string `pulumi:"description"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// The VictorOps alert state - typically either `CRITICAL` or `RECOVERY`.
 	MessageType *string `pulumi:"messageType"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// Templated title to display.
 	Title *string `pulumi:"title"`
@@ -3343,11 +3343,11 @@ type ContactPointVictoropInput interface {
 type ContactPointVictoropArgs struct {
 	// Templated description of the message.
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// The VictorOps alert state - typically either `CRITICAL` or `RECOVERY`.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// Templated title to display.
 	Title pulumi.StringPtrInput `pulumi:"title"`
@@ -3413,7 +3413,7 @@ func (o ContactPointVictoropOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointVictorop) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointVictoropOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointVictorop) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -3423,7 +3423,7 @@ func (o ContactPointVictoropOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointVictorop) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointVictoropOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointVictorop) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -3466,13 +3466,13 @@ func (o ContactPointVictoropArrayOutput) Index(i pulumi.IntInput) ContactPointVi
 type ContactPointWebex struct {
 	// The URL to send webhook requests to.
 	ApiUrl *string `pulumi:"apiUrl"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// The templated title of the message to send.
 	Message *string `pulumi:"message"`
 	// ID of the Webex Teams room where to send the messages.
 	RoomId *string `pulumi:"roomId"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// The bearer token used to authorize the client.
 	Token *string `pulumi:"token"`
@@ -3494,13 +3494,13 @@ type ContactPointWebexInput interface {
 type ContactPointWebexArgs struct {
 	// The URL to send webhook requests to.
 	ApiUrl pulumi.StringPtrInput `pulumi:"apiUrl"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// The templated title of the message to send.
 	Message pulumi.StringPtrInput `pulumi:"message"`
 	// ID of the Webex Teams room where to send the messages.
 	RoomId pulumi.StringPtrInput `pulumi:"roomId"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The bearer token used to authorize the client.
 	Token pulumi.StringPtrInput `pulumi:"token"`
@@ -3564,7 +3564,7 @@ func (o ContactPointWebexOutput) ApiUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointWebex) *string { return v.ApiUrl }).(pulumi.StringPtrOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointWebexOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointWebex) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -3579,7 +3579,7 @@ func (o ContactPointWebexOutput) RoomId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointWebex) *string { return v.RoomId }).(pulumi.StringPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointWebexOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointWebex) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -3623,7 +3623,7 @@ type ContactPointWebhook struct {
 	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
 	// The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
 	BasicAuthUser *string `pulumi:"basicAuthUser"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// The HTTP method to use in the request. Defaults to `POST`.
 	HttpMethod *string `pulumi:"httpMethod"`
@@ -3631,7 +3631,7 @@ type ContactPointWebhook struct {
 	MaxAlerts *int `pulumi:"maxAlerts"`
 	// Custom message. You can use template variables.
 	Message *string `pulumi:"message"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// Templated title of the message.
 	Title *string `pulumi:"title"`
@@ -3661,7 +3661,7 @@ type ContactPointWebhookArgs struct {
 	BasicAuthPassword pulumi.StringPtrInput `pulumi:"basicAuthPassword"`
 	// The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
 	BasicAuthUser pulumi.StringPtrInput `pulumi:"basicAuthUser"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// The HTTP method to use in the request. Defaults to `POST`.
 	HttpMethod pulumi.StringPtrInput `pulumi:"httpMethod"`
@@ -3669,7 +3669,7 @@ type ContactPointWebhookArgs struct {
 	MaxAlerts pulumi.IntPtrInput `pulumi:"maxAlerts"`
 	// Custom message. You can use template variables.
 	Message pulumi.StringPtrInput `pulumi:"message"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// Templated title of the message.
 	Title pulumi.StringPtrInput `pulumi:"title"`
@@ -3750,7 +3750,7 @@ func (o ContactPointWebhookOutput) BasicAuthUser() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointWebhook) *string { return v.BasicAuthUser }).(pulumi.StringPtrOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointWebhookOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointWebhook) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -3770,7 +3770,7 @@ func (o ContactPointWebhookOutput) Message() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointWebhook) *string { return v.Message }).(pulumi.StringPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointWebhookOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointWebhook) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -3815,7 +3815,7 @@ type ContactPointWecom struct {
 	AgentId *string `pulumi:"agentId"`
 	// Corp ID used to get token when using APIAPP.
 	CorpId *string `pulumi:"corpId"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// The templated content of the message to send.
 	Message *string `pulumi:"message"`
@@ -3823,7 +3823,7 @@ type ContactPointWecom struct {
 	MsgType *string `pulumi:"msgType"`
 	// The secret key required to obtain access token when using APIAPP. See https://work.weixin.qq.com/wework_admin/frame#apps to create APIAPP.
 	Secret *string `pulumi:"secret"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings map[string]string `pulumi:"settings"`
 	// The templated title of the message to send.
 	Title *string `pulumi:"title"`
@@ -3851,7 +3851,7 @@ type ContactPointWecomArgs struct {
 	AgentId pulumi.StringPtrInput `pulumi:"agentId"`
 	// Corp ID used to get token when using APIAPP.
 	CorpId pulumi.StringPtrInput `pulumi:"corpId"`
-	// Whether to disable sending resolve messages. Defaults to `false`.
+	// Whether to disable sending resolve messages.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// The templated content of the message to send.
 	Message pulumi.StringPtrInput `pulumi:"message"`
@@ -3859,7 +3859,7 @@ type ContactPointWecomArgs struct {
 	MsgType pulumi.StringPtrInput `pulumi:"msgType"`
 	// The secret key required to obtain access token when using APIAPP. See https://work.weixin.qq.com/wework_admin/frame#apps to create APIAPP.
 	Secret pulumi.StringPtrInput `pulumi:"secret"`
-	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	// Additional custom properties to attach to the notifier.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The templated title of the message to send.
 	Title pulumi.StringPtrInput `pulumi:"title"`
@@ -3932,7 +3932,7 @@ func (o ContactPointWecomOutput) CorpId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointWecom) *string { return v.CorpId }).(pulumi.StringPtrOutput)
 }
 
-// Whether to disable sending resolve messages. Defaults to `false`.
+// Whether to disable sending resolve messages.
 func (o ContactPointWecomOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointWecom) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
@@ -3952,7 +3952,7 @@ func (o ContactPointWecomOutput) Secret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointWecom) *string { return v.Secret }).(pulumi.StringPtrOutput)
 }
 
-// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+// Additional custom properties to attach to the notifier.
 func (o ContactPointWecomOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ContactPointWecom) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -4002,9 +4002,9 @@ type DashboardPermissionPermission struct {
 	Permission string `pulumi:"permission"`
 	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 	Role *string `pulumi:"role"`
-	// ID of the team to manage permissions for. Defaults to `0`.
+	// ID of the team to manage permissions for.
 	TeamId *string `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Defaults to `0`.
+	// ID of the user or service account to manage permissions for.
 	UserId *string `pulumi:"userId"`
 }
 
@@ -4024,9 +4024,9 @@ type DashboardPermissionPermissionArgs struct {
 	Permission pulumi.StringInput `pulumi:"permission"`
 	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 	Role pulumi.StringPtrInput `pulumi:"role"`
-	// ID of the team to manage permissions for. Defaults to `0`.
+	// ID of the team to manage permissions for.
 	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Defaults to `0`.
+	// ID of the user or service account to manage permissions for.
 	UserId pulumi.StringPtrInput `pulumi:"userId"`
 }
 
@@ -4091,12 +4091,12 @@ func (o DashboardPermissionPermissionOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DashboardPermissionPermission) *string { return v.Role }).(pulumi.StringPtrOutput)
 }
 
-// ID of the team to manage permissions for. Defaults to `0`.
+// ID of the team to manage permissions for.
 func (o DashboardPermissionPermissionOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DashboardPermissionPermission) *string { return v.TeamId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the user or service account to manage permissions for. Defaults to `0`.
+// ID of the user or service account to manage permissions for.
 func (o DashboardPermissionPermissionOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DashboardPermissionPermission) *string { return v.UserId }).(pulumi.StringPtrOutput)
 }
@@ -4126,9 +4126,9 @@ type DataSourcePermissionPermission struct {
 	BuiltInRole *string `pulumi:"builtInRole"`
 	// Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
 	Permission string `pulumi:"permission"`
-	// ID of the team to manage permissions for. Defaults to `0`.
+	// ID of the team to manage permissions for.
 	TeamId *string `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Defaults to `0`.
+	// ID of the user or service account to manage permissions for.
 	UserId *string `pulumi:"userId"`
 }
 
@@ -4148,9 +4148,9 @@ type DataSourcePermissionPermissionArgs struct {
 	BuiltInRole pulumi.StringPtrInput `pulumi:"builtInRole"`
 	// Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
 	Permission pulumi.StringInput `pulumi:"permission"`
-	// ID of the team to manage permissions for. Defaults to `0`.
+	// ID of the team to manage permissions for.
 	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Defaults to `0`.
+	// ID of the user or service account to manage permissions for.
 	UserId pulumi.StringPtrInput `pulumi:"userId"`
 }
 
@@ -4215,12 +4215,12 @@ func (o DataSourcePermissionPermissionOutput) Permission() pulumi.StringOutput {
 	return o.ApplyT(func(v DataSourcePermissionPermission) string { return v.Permission }).(pulumi.StringOutput)
 }
 
-// ID of the team to manage permissions for. Defaults to `0`.
+// ID of the team to manage permissions for.
 func (o DataSourcePermissionPermissionOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DataSourcePermissionPermission) *string { return v.TeamId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the user or service account to manage permissions for. Defaults to `0`.
+// ID of the user or service account to manage permissions for.
 func (o DataSourcePermissionPermissionOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DataSourcePermissionPermission) *string { return v.UserId }).(pulumi.StringPtrOutput)
 }
@@ -4250,9 +4250,9 @@ type FolderPermissionPermission struct {
 	Permission string `pulumi:"permission"`
 	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 	Role *string `pulumi:"role"`
-	// ID of the team to manage permissions for. Defaults to `0`.
+	// ID of the team to manage permissions for.
 	TeamId *string `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Defaults to `0`.
+	// ID of the user or service account to manage permissions for.
 	UserId *string `pulumi:"userId"`
 }
 
@@ -4272,9 +4272,9 @@ type FolderPermissionPermissionArgs struct {
 	Permission pulumi.StringInput `pulumi:"permission"`
 	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 	Role pulumi.StringPtrInput `pulumi:"role"`
-	// ID of the team to manage permissions for. Defaults to `0`.
+	// ID of the team to manage permissions for.
 	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Defaults to `0`.
+	// ID of the user or service account to manage permissions for.
 	UserId pulumi.StringPtrInput `pulumi:"userId"`
 }
 
@@ -4339,12 +4339,12 @@ func (o FolderPermissionPermissionOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FolderPermissionPermission) *string { return v.Role }).(pulumi.StringPtrOutput)
 }
 
-// ID of the team to manage permissions for. Defaults to `0`.
+// ID of the team to manage permissions for.
 func (o FolderPermissionPermissionOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FolderPermissionPermission) *string { return v.TeamId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the user or service account to manage permissions for. Defaults to `0`.
+// ID of the user or service account to manage permissions for.
 func (o FolderPermissionPermissionOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FolderPermissionPermission) *string { return v.UserId }).(pulumi.StringPtrOutput)
 }
@@ -6383,7 +6383,7 @@ func (o OncallIntegrationDefaultRoutePtrOutput) Telegram() OncallIntegrationDefa
 }
 
 type OncallIntegrationDefaultRouteMsteams struct {
-	// Enable notification in MS teams. Defaults to `true`.
+	// Enable notification in MS teams.
 	Enabled *bool `pulumi:"enabled"`
 	// MS teams channel id. Alerts will be directed to this channel in Microsoft teams.
 	Id *string `pulumi:"id"`
@@ -6401,7 +6401,7 @@ type OncallIntegrationDefaultRouteMsteamsInput interface {
 }
 
 type OncallIntegrationDefaultRouteMsteamsArgs struct {
-	// Enable notification in MS teams. Defaults to `true`.
+	// Enable notification in MS teams.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// MS teams channel id. Alerts will be directed to this channel in Microsoft teams.
 	Id pulumi.StringPtrInput `pulumi:"id"`
@@ -6484,7 +6484,7 @@ func (o OncallIntegrationDefaultRouteMsteamsOutput) ToOncallIntegrationDefaultRo
 	}).(OncallIntegrationDefaultRouteMsteamsPtrOutput)
 }
 
-// Enable notification in MS teams. Defaults to `true`.
+// Enable notification in MS teams.
 func (o OncallIntegrationDefaultRouteMsteamsOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v OncallIntegrationDefaultRouteMsteams) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -6518,7 +6518,7 @@ func (o OncallIntegrationDefaultRouteMsteamsPtrOutput) Elem() OncallIntegrationD
 	}).(OncallIntegrationDefaultRouteMsteamsOutput)
 }
 
-// Enable notification in MS teams. Defaults to `true`.
+// Enable notification in MS teams.
 func (o OncallIntegrationDefaultRouteMsteamsPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OncallIntegrationDefaultRouteMsteams) *bool {
 		if v == nil {
@@ -6541,7 +6541,7 @@ func (o OncallIntegrationDefaultRouteMsteamsPtrOutput) Id() pulumi.StringPtrOutp
 type OncallIntegrationDefaultRouteSlack struct {
 	// Slack channel id. Alerts will be directed to this channel in Slack.
 	ChannelId *string `pulumi:"channelId"`
-	// Enable notification in Slack. Defaults to `true`.
+	// Enable notification in Slack.
 	Enabled *bool `pulumi:"enabled"`
 }
 
@@ -6559,7 +6559,7 @@ type OncallIntegrationDefaultRouteSlackInput interface {
 type OncallIntegrationDefaultRouteSlackArgs struct {
 	// Slack channel id. Alerts will be directed to this channel in Slack.
 	ChannelId pulumi.StringPtrInput `pulumi:"channelId"`
-	// Enable notification in Slack. Defaults to `true`.
+	// Enable notification in Slack.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 }
 
@@ -6645,7 +6645,7 @@ func (o OncallIntegrationDefaultRouteSlackOutput) ChannelId() pulumi.StringPtrOu
 	return o.ApplyT(func(v OncallIntegrationDefaultRouteSlack) *string { return v.ChannelId }).(pulumi.StringPtrOutput)
 }
 
-// Enable notification in Slack. Defaults to `true`.
+// Enable notification in Slack.
 func (o OncallIntegrationDefaultRouteSlackOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v OncallIntegrationDefaultRouteSlack) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -6684,7 +6684,7 @@ func (o OncallIntegrationDefaultRouteSlackPtrOutput) ChannelId() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable notification in Slack. Defaults to `true`.
+// Enable notification in Slack.
 func (o OncallIntegrationDefaultRouteSlackPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OncallIntegrationDefaultRouteSlack) *bool {
 		if v == nil {
@@ -6695,7 +6695,7 @@ func (o OncallIntegrationDefaultRouteSlackPtrOutput) Enabled() pulumi.BoolPtrOut
 }
 
 type OncallIntegrationDefaultRouteTelegram struct {
-	// Enable notification in Telegram. Defaults to `true`.
+	// Enable notification in Telegram.
 	Enabled *bool `pulumi:"enabled"`
 	// Telegram channel id. Alerts will be directed to this channel in Telegram.
 	Id *string `pulumi:"id"`
@@ -6713,7 +6713,7 @@ type OncallIntegrationDefaultRouteTelegramInput interface {
 }
 
 type OncallIntegrationDefaultRouteTelegramArgs struct {
-	// Enable notification in Telegram. Defaults to `true`.
+	// Enable notification in Telegram.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Telegram channel id. Alerts will be directed to this channel in Telegram.
 	Id pulumi.StringPtrInput `pulumi:"id"`
@@ -6796,7 +6796,7 @@ func (o OncallIntegrationDefaultRouteTelegramOutput) ToOncallIntegrationDefaultR
 	}).(OncallIntegrationDefaultRouteTelegramPtrOutput)
 }
 
-// Enable notification in Telegram. Defaults to `true`.
+// Enable notification in Telegram.
 func (o OncallIntegrationDefaultRouteTelegramOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v OncallIntegrationDefaultRouteTelegram) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -6830,7 +6830,7 @@ func (o OncallIntegrationDefaultRouteTelegramPtrOutput) Elem() OncallIntegration
 	}).(OncallIntegrationDefaultRouteTelegramOutput)
 }
 
-// Enable notification in Telegram. Defaults to `true`.
+// Enable notification in Telegram.
 func (o OncallIntegrationDefaultRouteTelegramPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OncallIntegrationDefaultRouteTelegram) *bool {
 		if v == nil {
@@ -8308,7 +8308,7 @@ func (o OncallIntegrationTemplatesWebPtrOutput) Title() pulumi.StringPtrOutput {
 }
 
 type OncallRouteMsteams struct {
-	// Enable notification in MS teams. Defaults to `true`.
+	// Enable notification in MS teams.
 	Enabled *bool `pulumi:"enabled"`
 	// MS teams channel id. Alerts will be directed to this channel in Microsoft teams.
 	Id *string `pulumi:"id"`
@@ -8326,7 +8326,7 @@ type OncallRouteMsteamsInput interface {
 }
 
 type OncallRouteMsteamsArgs struct {
-	// Enable notification in MS teams. Defaults to `true`.
+	// Enable notification in MS teams.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// MS teams channel id. Alerts will be directed to this channel in Microsoft teams.
 	Id pulumi.StringPtrInput `pulumi:"id"`
@@ -8409,7 +8409,7 @@ func (o OncallRouteMsteamsOutput) ToOncallRouteMsteamsPtrOutputWithContext(ctx c
 	}).(OncallRouteMsteamsPtrOutput)
 }
 
-// Enable notification in MS teams. Defaults to `true`.
+// Enable notification in MS teams.
 func (o OncallRouteMsteamsOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v OncallRouteMsteams) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -8443,7 +8443,7 @@ func (o OncallRouteMsteamsPtrOutput) Elem() OncallRouteMsteamsOutput {
 	}).(OncallRouteMsteamsOutput)
 }
 
-// Enable notification in MS teams. Defaults to `true`.
+// Enable notification in MS teams.
 func (o OncallRouteMsteamsPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OncallRouteMsteams) *bool {
 		if v == nil {
@@ -8466,7 +8466,7 @@ func (o OncallRouteMsteamsPtrOutput) Id() pulumi.StringPtrOutput {
 type OncallRouteSlack struct {
 	// Slack channel id. Alerts will be directed to this channel in Slack.
 	ChannelId *string `pulumi:"channelId"`
-	// Enable notification in Slack. Defaults to `true`.
+	// Enable notification in Slack.
 	Enabled *bool `pulumi:"enabled"`
 }
 
@@ -8484,7 +8484,7 @@ type OncallRouteSlackInput interface {
 type OncallRouteSlackArgs struct {
 	// Slack channel id. Alerts will be directed to this channel in Slack.
 	ChannelId pulumi.StringPtrInput `pulumi:"channelId"`
-	// Enable notification in Slack. Defaults to `true`.
+	// Enable notification in Slack.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 }
 
@@ -8570,7 +8570,7 @@ func (o OncallRouteSlackOutput) ChannelId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OncallRouteSlack) *string { return v.ChannelId }).(pulumi.StringPtrOutput)
 }
 
-// Enable notification in Slack. Defaults to `true`.
+// Enable notification in Slack.
 func (o OncallRouteSlackOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v OncallRouteSlack) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -8609,7 +8609,7 @@ func (o OncallRouteSlackPtrOutput) ChannelId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable notification in Slack. Defaults to `true`.
+// Enable notification in Slack.
 func (o OncallRouteSlackPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OncallRouteSlack) *bool {
 		if v == nil {
@@ -8620,7 +8620,7 @@ func (o OncallRouteSlackPtrOutput) Enabled() pulumi.BoolPtrOutput {
 }
 
 type OncallRouteTelegram struct {
-	// Enable notification in Telegram. Defaults to `true`.
+	// Enable notification in Telegram.
 	Enabled *bool `pulumi:"enabled"`
 	// Telegram channel id. Alerts will be directed to this channel in Telegram.
 	Id *string `pulumi:"id"`
@@ -8638,7 +8638,7 @@ type OncallRouteTelegramInput interface {
 }
 
 type OncallRouteTelegramArgs struct {
-	// Enable notification in Telegram. Defaults to `true`.
+	// Enable notification in Telegram.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Telegram channel id. Alerts will be directed to this channel in Telegram.
 	Id pulumi.StringPtrInput `pulumi:"id"`
@@ -8721,7 +8721,7 @@ func (o OncallRouteTelegramOutput) ToOncallRouteTelegramPtrOutputWithContext(ctx
 	}).(OncallRouteTelegramPtrOutput)
 }
 
-// Enable notification in Telegram. Defaults to `true`.
+// Enable notification in Telegram.
 func (o OncallRouteTelegramOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v OncallRouteTelegram) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -8755,7 +8755,7 @@ func (o OncallRouteTelegramPtrOutput) Elem() OncallRouteTelegramOutput {
 	}).(OncallRouteTelegramOutput)
 }
 
-// Enable notification in Telegram. Defaults to `true`.
+// Enable notification in Telegram.
 func (o OncallRouteTelegramPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OncallRouteTelegram) *bool {
 		if v == nil {
@@ -9328,13 +9328,13 @@ type ReportSchedule struct {
 	EndTime *string `pulumi:"endTime"`
 	// Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
 	Frequency string `pulumi:"frequency"`
-	// Send the report on the last day of the month Defaults to `false`.
+	// Send the report on the last day of the month
 	LastDayOfMonth *bool `pulumi:"lastDayOfMonth"`
 	// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 	StartTime *string `pulumi:"startTime"`
-	// Set the report time zone. Defaults to `GMT`.
+	// Set the report time zone.
 	Timezone *string `pulumi:"timezone"`
-	// Whether to send the report only on work days. Defaults to `false`.
+	// Whether to send the report only on work days.
 	WorkdaysOnly *bool `pulumi:"workdaysOnly"`
 }
 
@@ -9357,13 +9357,13 @@ type ReportScheduleArgs struct {
 	EndTime pulumi.StringPtrInput `pulumi:"endTime"`
 	// Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
 	Frequency pulumi.StringInput `pulumi:"frequency"`
-	// Send the report on the last day of the month Defaults to `false`.
+	// Send the report on the last day of the month
 	LastDayOfMonth pulumi.BoolPtrInput `pulumi:"lastDayOfMonth"`
 	// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 	StartTime pulumi.StringPtrInput `pulumi:"startTime"`
-	// Set the report time zone. Defaults to `GMT`.
+	// Set the report time zone.
 	Timezone pulumi.StringPtrInput `pulumi:"timezone"`
-	// Whether to send the report only on work days. Defaults to `false`.
+	// Whether to send the report only on work days.
 	WorkdaysOnly pulumi.BoolPtrInput `pulumi:"workdaysOnly"`
 }
 
@@ -9460,7 +9460,7 @@ func (o ReportScheduleOutput) Frequency() pulumi.StringOutput {
 	return o.ApplyT(func(v ReportSchedule) string { return v.Frequency }).(pulumi.StringOutput)
 }
 
-// Send the report on the last day of the month Defaults to `false`.
+// Send the report on the last day of the month
 func (o ReportScheduleOutput) LastDayOfMonth() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *bool { return v.LastDayOfMonth }).(pulumi.BoolPtrOutput)
 }
@@ -9470,12 +9470,12 @@ func (o ReportScheduleOutput) StartTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *string { return v.StartTime }).(pulumi.StringPtrOutput)
 }
 
-// Set the report time zone. Defaults to `GMT`.
+// Set the report time zone.
 func (o ReportScheduleOutput) Timezone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *string { return v.Timezone }).(pulumi.StringPtrOutput)
 }
 
-// Whether to send the report only on work days. Defaults to `false`.
+// Whether to send the report only on work days.
 func (o ReportScheduleOutput) WorkdaysOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *bool { return v.WorkdaysOnly }).(pulumi.BoolPtrOutput)
 }
@@ -9535,7 +9535,7 @@ func (o ReportSchedulePtrOutput) Frequency() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Send the report on the last day of the month Defaults to `false`.
+// Send the report on the last day of the month
 func (o ReportSchedulePtrOutput) LastDayOfMonth() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ReportSchedule) *bool {
 		if v == nil {
@@ -9555,7 +9555,7 @@ func (o ReportSchedulePtrOutput) StartTime() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Set the report time zone. Defaults to `GMT`.
+// Set the report time zone.
 func (o ReportSchedulePtrOutput) Timezone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ReportSchedule) *string {
 		if v == nil {
@@ -9565,7 +9565,7 @@ func (o ReportSchedulePtrOutput) Timezone() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Whether to send the report only on work days. Defaults to `false`.
+// Whether to send the report only on work days.
 func (o ReportSchedulePtrOutput) WorkdaysOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ReportSchedule) *bool {
 		if v == nil {
@@ -9734,7 +9734,7 @@ func (o ReportTimeRangePtrOutput) To() pulumi.StringPtrOutput {
 type RolePermission struct {
 	// Specific action users granted with the role will be allowed to perform (for example: `users:read`)
 	Action string `pulumi:"action"`
-	// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
+	// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
 	Scope *string `pulumi:"scope"`
 }
 
@@ -9752,7 +9752,7 @@ type RolePermissionInput interface {
 type RolePermissionArgs struct {
 	// Specific action users granted with the role will be allowed to perform (for example: `users:read`)
 	Action pulumi.StringInput `pulumi:"action"`
-	// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
+	// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
 	Scope pulumi.StringPtrInput `pulumi:"scope"`
 }
 
@@ -9812,7 +9812,7 @@ func (o RolePermissionOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v RolePermission) string { return v.Action }).(pulumi.StringOutput)
 }
 
-// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to “.
+// Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`)
 func (o RolePermissionOutput) Scope() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RolePermission) *string { return v.Scope }).(pulumi.StringPtrOutput)
 }
@@ -9838,23 +9838,23 @@ func (o RolePermissionArrayOutput) Index(i pulumi.IntInput) RolePermissionOutput
 }
 
 type RuleGroupRule struct {
-	// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+	// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing.
 	Annotations map[string]string `pulumi:"annotations"`
 	// The `refId` of the query node in the `data` field to use as the alert condition.
 	Condition string `pulumi:"condition"`
 	// A sequence of stages that describe the contents of the rule.
 	Datas []RuleGroupRuleData `pulumi:"datas"`
-	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
 	ExecErrState *string `pulumi:"execErrState"`
-	// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
+	// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
 	For *string `pulumi:"for"`
-	// Sets whether the alert should be paused or not. Defaults to `false`.
+	// Sets whether the alert should be paused or not.
 	IsPaused *bool `pulumi:"isPaused"`
-	// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
+	// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
 	Labels map[string]string `pulumi:"labels"`
 	// The name of the alert rule.
 	Name string `pulumi:"name"`
-	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
 	NoDataState *string `pulumi:"noDataState"`
 	// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
 	NotificationSettings *RuleGroupRuleNotificationSettings `pulumi:"notificationSettings"`
@@ -9874,23 +9874,23 @@ type RuleGroupRuleInput interface {
 }
 
 type RuleGroupRuleArgs struct {
-	// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+	// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing.
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The `refId` of the query node in the `data` field to use as the alert condition.
 	Condition pulumi.StringInput `pulumi:"condition"`
 	// A sequence of stages that describe the contents of the rule.
 	Datas RuleGroupRuleDataArrayInput `pulumi:"datas"`
-	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
 	ExecErrState pulumi.StringPtrInput `pulumi:"execErrState"`
-	// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
+	// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
 	For pulumi.StringPtrInput `pulumi:"for"`
-	// Sets whether the alert should be paused or not. Defaults to `false`.
+	// Sets whether the alert should be paused or not.
 	IsPaused pulumi.BoolPtrInput `pulumi:"isPaused"`
-	// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
+	// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
 	Labels pulumi.StringMapInput `pulumi:"labels"`
 	// The name of the alert rule.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
 	NoDataState pulumi.StringPtrInput `pulumi:"noDataState"`
 	// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
 	NotificationSettings RuleGroupRuleNotificationSettingsPtrInput `pulumi:"notificationSettings"`
@@ -9949,7 +9949,7 @@ func (o RuleGroupRuleOutput) ToRuleGroupRuleOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing.
 func (o RuleGroupRuleOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v RuleGroupRule) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
 }
@@ -9964,22 +9964,22 @@ func (o RuleGroupRuleOutput) Datas() RuleGroupRuleDataArrayOutput {
 	return o.ApplyT(func(v RuleGroupRule) []RuleGroupRuleData { return v.Datas }).(RuleGroupRuleDataArrayOutput)
 }
 
-// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
 func (o RuleGroupRuleOutput) ExecErrState() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RuleGroupRule) *string { return v.ExecErrState }).(pulumi.StringPtrOutput)
 }
 
-// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
+// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
 func (o RuleGroupRuleOutput) For() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RuleGroupRule) *string { return v.For }).(pulumi.StringPtrOutput)
 }
 
-// Sets whether the alert should be paused or not. Defaults to `false`.
+// Sets whether the alert should be paused or not.
 func (o RuleGroupRuleOutput) IsPaused() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v RuleGroupRule) *bool { return v.IsPaused }).(pulumi.BoolPtrOutput)
 }
 
-// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
+// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
 func (o RuleGroupRuleOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v RuleGroupRule) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -9989,7 +9989,7 @@ func (o RuleGroupRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v RuleGroupRule) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
 func (o RuleGroupRuleOutput) NoDataState() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RuleGroupRule) *string { return v.NoDataState }).(pulumi.StringPtrOutput)
 }
@@ -10029,7 +10029,7 @@ type RuleGroupRuleData struct {
 	DatasourceUid string `pulumi:"datasourceUid"`
 	// Custom JSON data to send to the specified datasource when querying.
 	Model string `pulumi:"model"`
-	// An optional identifier for the type of query being executed. Defaults to ``.
+	// An optional identifier for the type of query being executed.
 	QueryType *string `pulumi:"queryType"`
 	// A unique string to identify this query stage within a rule.
 	RefId string `pulumi:"refId"`
@@ -10053,7 +10053,7 @@ type RuleGroupRuleDataArgs struct {
 	DatasourceUid pulumi.StringInput `pulumi:"datasourceUid"`
 	// Custom JSON data to send to the specified datasource when querying.
 	Model pulumi.StringInput `pulumi:"model"`
-	// An optional identifier for the type of query being executed. Defaults to ``.
+	// An optional identifier for the type of query being executed.
 	QueryType pulumi.StringPtrInput `pulumi:"queryType"`
 	// A unique string to identify this query stage within a rule.
 	RefId pulumi.StringInput `pulumi:"refId"`
@@ -10122,7 +10122,7 @@ func (o RuleGroupRuleDataOutput) Model() pulumi.StringOutput {
 	return o.ApplyT(func(v RuleGroupRuleData) string { return v.Model }).(pulumi.StringOutput)
 }
 
-// An optional identifier for the type of query being executed. Defaults to “.
+// An optional identifier for the type of query being executed.
 func (o RuleGroupRuleDataOutput) QueryType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RuleGroupRuleData) *string { return v.QueryType }).(pulumi.StringPtrOutput)
 }
@@ -11976,7 +11976,7 @@ func (o SLOQueryFreeformPtrOutput) Query() pulumi.StringPtrOutput {
 }
 
 type SLOQueryRatio struct {
-	// Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+	// Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
 	GroupByLabels []string `pulumi:"groupByLabels"`
 	// Counter metric for success events (numerator)
 	SuccessMetric string `pulumi:"successMetric"`
@@ -11996,7 +11996,7 @@ type SLOQueryRatioInput interface {
 }
 
 type SLOQueryRatioArgs struct {
-	// Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+	// Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
 	GroupByLabels pulumi.StringArrayInput `pulumi:"groupByLabels"`
 	// Counter metric for success events (numerator)
 	SuccessMetric pulumi.StringInput `pulumi:"successMetric"`
@@ -12081,7 +12081,7 @@ func (o SLOQueryRatioOutput) ToSLOQueryRatioPtrOutputWithContext(ctx context.Con
 	}).(SLOQueryRatioPtrOutput)
 }
 
-// Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+// Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
 func (o SLOQueryRatioOutput) GroupByLabels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SLOQueryRatio) []string { return v.GroupByLabels }).(pulumi.StringArrayOutput)
 }
@@ -12120,7 +12120,7 @@ func (o SLOQueryRatioPtrOutput) Elem() SLOQueryRatioOutput {
 	}).(SLOQueryRatioOutput)
 }
 
-// Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+// Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
 func (o SLOQueryRatioPtrOutput) GroupByLabels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SLOQueryRatio) []string {
 		if v == nil {
@@ -12153,9 +12153,9 @@ func (o SLOQueryRatioPtrOutput) TotalMetric() pulumi.StringPtrOutput {
 type ServiceAccountPermissionPermission struct {
 	// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
 	Permission string `pulumi:"permission"`
-	// ID of the team to manage permissions for. Defaults to `0`.
+	// ID of the team to manage permissions for.
 	TeamId *string `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Defaults to `0`.
+	// ID of the user or service account to manage permissions for.
 	UserId *string `pulumi:"userId"`
 }
 
@@ -12173,9 +12173,9 @@ type ServiceAccountPermissionPermissionInput interface {
 type ServiceAccountPermissionPermissionArgs struct {
 	// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
 	Permission pulumi.StringInput `pulumi:"permission"`
-	// ID of the team to manage permissions for. Defaults to `0`.
+	// ID of the team to manage permissions for.
 	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Defaults to `0`.
+	// ID of the user or service account to manage permissions for.
 	UserId pulumi.StringPtrInput `pulumi:"userId"`
 }
 
@@ -12235,12 +12235,12 @@ func (o ServiceAccountPermissionPermissionOutput) Permission() pulumi.StringOutp
 	return o.ApplyT(func(v ServiceAccountPermissionPermission) string { return v.Permission }).(pulumi.StringOutput)
 }
 
-// ID of the team to manage permissions for. Defaults to `0`.
+// ID of the team to manage permissions for.
 func (o ServiceAccountPermissionPermissionOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceAccountPermissionPermission) *string { return v.TeamId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the user or service account to manage permissions for. Defaults to `0`.
+// ID of the user or service account to manage permissions for.
 func (o ServiceAccountPermissionPermissionOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceAccountPermissionPermission) *string { return v.UserId }).(pulumi.StringPtrOutput)
 }
@@ -12272,13 +12272,13 @@ type SsoSettingsOauth2Settings struct {
 	AllowSignUp *bool `pulumi:"allowSignUp"`
 	// List of comma- or space-separated domains. The user should belong to at least one domain to log in.
 	AllowedDomains *string `pulumi:"allowedDomains"`
-	// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+	// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed_groups, you must also configure groups_attribute_path.
 	AllowedGroups *string `pulumi:"allowedGroups"`
 	// List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
 	AllowedOrganizations *string `pulumi:"allowedOrganizations"`
 	// The user information endpoint of your OAuth2 provider. Required for okta and genericOauth providers.
 	ApiUrl *string `pulumi:"apiUrl"`
-	// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+	// It determines how clientId and clientSecret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
 	AuthStyle *string `pulumi:"authStyle"`
 	// The authorization endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
 	AuthUrl *string `pulumi:"authUrl"`
@@ -12288,7 +12288,7 @@ type SsoSettingsOauth2Settings struct {
 	ClientId string `pulumi:"clientId"`
 	// The client secret of your OAuth2 app.
 	ClientSecret *string `pulumi:"clientSecret"`
-	// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+	// Custom fields to configure for OAuth2 such as the [forceUseGraphApi](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
 	Custom map[string]string `pulumi:"custom"`
 	// Define allowed groups.
 	DefineAllowedGroups *bool `pulumi:"defineAllowedGroups"`
@@ -12300,9 +12300,9 @@ type SsoSettingsOauth2Settings struct {
 	EmailAttributePath *string `pulumi:"emailAttributePath"`
 	// If enabled, no scopes will be sent to the OAuth2 provider.
 	EmptyScopes *bool `pulumi:"emptyScopes"`
-	// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+	// Define whether this configuration is enabled for the specified provider.
 	Enabled *bool `pulumi:"enabled"`
-	// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+	// JMESPath expression to use for user group lookup. If you configure allowed_groups, you must also configure groups_attribute_path.
 	GroupsAttributePath *string `pulumi:"groupsAttributePath"`
 	// The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
 	IdTokenAttributeName *string `pulumi:"idTokenAttributeName"`
@@ -12322,11 +12322,11 @@ type SsoSettingsOauth2Settings struct {
 	SignoutRedirectUrl *string `pulumi:"signoutRedirectUrl"`
 	// Prevent synchronizing users’ organization roles from your IdP.
 	SkipOrgRoleSync *bool `pulumi:"skipOrgRoleSync"`
-	// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+	// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team_ids, you must also configure teamsUrl and team_ids_attribute_path.
 	TeamIds *string `pulumi:"teamIds"`
 	// The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teamsUrl endpoint. Only applicable to Generic OAuth.
 	TeamIdsAttributePath *string `pulumi:"teamIdsAttributePath"`
-	// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+	// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams_url, you must also configure team_ids_attribute_path. Only applicable to Generic OAuth.
 	TeamsUrl *string `pulumi:"teamsUrl"`
 	// The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
 	TlsClientCa *string `pulumi:"tlsClientCa"`
@@ -12362,13 +12362,13 @@ type SsoSettingsOauth2SettingsArgs struct {
 	AllowSignUp pulumi.BoolPtrInput `pulumi:"allowSignUp"`
 	// List of comma- or space-separated domains. The user should belong to at least one domain to log in.
 	AllowedDomains pulumi.StringPtrInput `pulumi:"allowedDomains"`
-	// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+	// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed_groups, you must also configure groups_attribute_path.
 	AllowedGroups pulumi.StringPtrInput `pulumi:"allowedGroups"`
 	// List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
 	AllowedOrganizations pulumi.StringPtrInput `pulumi:"allowedOrganizations"`
 	// The user information endpoint of your OAuth2 provider. Required for okta and genericOauth providers.
 	ApiUrl pulumi.StringPtrInput `pulumi:"apiUrl"`
-	// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+	// It determines how clientId and clientSecret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
 	AuthStyle pulumi.StringPtrInput `pulumi:"authStyle"`
 	// The authorization endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
 	AuthUrl pulumi.StringPtrInput `pulumi:"authUrl"`
@@ -12378,7 +12378,7 @@ type SsoSettingsOauth2SettingsArgs struct {
 	ClientId pulumi.StringInput `pulumi:"clientId"`
 	// The client secret of your OAuth2 app.
 	ClientSecret pulumi.StringPtrInput `pulumi:"clientSecret"`
-	// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+	// Custom fields to configure for OAuth2 such as the [forceUseGraphApi](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
 	Custom pulumi.StringMapInput `pulumi:"custom"`
 	// Define allowed groups.
 	DefineAllowedGroups pulumi.BoolPtrInput `pulumi:"defineAllowedGroups"`
@@ -12390,9 +12390,9 @@ type SsoSettingsOauth2SettingsArgs struct {
 	EmailAttributePath pulumi.StringPtrInput `pulumi:"emailAttributePath"`
 	// If enabled, no scopes will be sent to the OAuth2 provider.
 	EmptyScopes pulumi.BoolPtrInput `pulumi:"emptyScopes"`
-	// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+	// Define whether this configuration is enabled for the specified provider.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+	// JMESPath expression to use for user group lookup. If you configure allowed_groups, you must also configure groups_attribute_path.
 	GroupsAttributePath pulumi.StringPtrInput `pulumi:"groupsAttributePath"`
 	// The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
 	IdTokenAttributeName pulumi.StringPtrInput `pulumi:"idTokenAttributeName"`
@@ -12412,11 +12412,11 @@ type SsoSettingsOauth2SettingsArgs struct {
 	SignoutRedirectUrl pulumi.StringPtrInput `pulumi:"signoutRedirectUrl"`
 	// Prevent synchronizing users’ organization roles from your IdP.
 	SkipOrgRoleSync pulumi.BoolPtrInput `pulumi:"skipOrgRoleSync"`
-	// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+	// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team_ids, you must also configure teamsUrl and team_ids_attribute_path.
 	TeamIds pulumi.StringPtrInput `pulumi:"teamIds"`
 	// The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teamsUrl endpoint. Only applicable to Generic OAuth.
 	TeamIdsAttributePath pulumi.StringPtrInput `pulumi:"teamIdsAttributePath"`
-	// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+	// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams_url, you must also configure team_ids_attribute_path. Only applicable to Generic OAuth.
 	TeamsUrl pulumi.StringPtrInput `pulumi:"teamsUrl"`
 	// The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
 	TlsClientCa pulumi.StringPtrInput `pulumi:"tlsClientCa"`
@@ -12526,7 +12526,7 @@ func (o SsoSettingsOauth2SettingsOutput) AllowedDomains() pulumi.StringPtrOutput
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.AllowedDomains }).(pulumi.StringPtrOutput)
 }
 
-// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed_groups, you must also configure groups_attribute_path.
 func (o SsoSettingsOauth2SettingsOutput) AllowedGroups() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.AllowedGroups }).(pulumi.StringPtrOutput)
 }
@@ -12541,7 +12541,7 @@ func (o SsoSettingsOauth2SettingsOutput) ApiUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.ApiUrl }).(pulumi.StringPtrOutput)
 }
 
-// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+// It determines how clientId and clientSecret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
 func (o SsoSettingsOauth2SettingsOutput) AuthStyle() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.AuthStyle }).(pulumi.StringPtrOutput)
 }
@@ -12566,7 +12566,7 @@ func (o SsoSettingsOauth2SettingsOutput) ClientSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
 }
 
-// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+// Custom fields to configure for OAuth2 such as the [forceUseGraphApi](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
 func (o SsoSettingsOauth2SettingsOutput) Custom() pulumi.StringMapOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) map[string]string { return v.Custom }).(pulumi.StringMapOutput)
 }
@@ -12596,12 +12596,12 @@ func (o SsoSettingsOauth2SettingsOutput) EmptyScopes() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.EmptyScopes }).(pulumi.BoolPtrOutput)
 }
 
-// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+// Define whether this configuration is enabled for the specified provider.
 func (o SsoSettingsOauth2SettingsOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+// JMESPath expression to use for user group lookup. If you configure allowed_groups, you must also configure groups_attribute_path.
 func (o SsoSettingsOauth2SettingsOutput) GroupsAttributePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.GroupsAttributePath }).(pulumi.StringPtrOutput)
 }
@@ -12651,7 +12651,7 @@ func (o SsoSettingsOauth2SettingsOutput) SkipOrgRoleSync() pulumi.BoolPtrOutput 
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.SkipOrgRoleSync }).(pulumi.BoolPtrOutput)
 }
 
-// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team_ids, you must also configure teamsUrl and team_ids_attribute_path.
 func (o SsoSettingsOauth2SettingsOutput) TeamIds() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TeamIds }).(pulumi.StringPtrOutput)
 }
@@ -12661,7 +12661,7 @@ func (o SsoSettingsOauth2SettingsOutput) TeamIdsAttributePath() pulumi.StringPtr
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TeamIdsAttributePath }).(pulumi.StringPtrOutput)
 }
 
-// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams_url, you must also configure team_ids_attribute_path. Only applicable to Generic OAuth.
 func (o SsoSettingsOauth2SettingsOutput) TeamsUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TeamsUrl }).(pulumi.StringPtrOutput)
 }
@@ -12755,7 +12755,7 @@ func (o SsoSettingsOauth2SettingsPtrOutput) AllowedDomains() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed_groups, you must also configure groups_attribute_path.
 func (o SsoSettingsOauth2SettingsPtrOutput) AllowedGroups() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
 		if v == nil {
@@ -12785,7 +12785,7 @@ func (o SsoSettingsOauth2SettingsPtrOutput) ApiUrl() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+// It determines how clientId and clientSecret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
 func (o SsoSettingsOauth2SettingsPtrOutput) AuthStyle() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
 		if v == nil {
@@ -12835,7 +12835,7 @@ func (o SsoSettingsOauth2SettingsPtrOutput) ClientSecret() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+// Custom fields to configure for OAuth2 such as the [forceUseGraphApi](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
 func (o SsoSettingsOauth2SettingsPtrOutput) Custom() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *SsoSettingsOauth2Settings) map[string]string {
 		if v == nil {
@@ -12895,7 +12895,7 @@ func (o SsoSettingsOauth2SettingsPtrOutput) EmptyScopes() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+// Define whether this configuration is enabled for the specified provider.
 func (o SsoSettingsOauth2SettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
 		if v == nil {
@@ -12905,7 +12905,7 @@ func (o SsoSettingsOauth2SettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+// JMESPath expression to use for user group lookup. If you configure allowed_groups, you must also configure groups_attribute_path.
 func (o SsoSettingsOauth2SettingsPtrOutput) GroupsAttributePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
 		if v == nil {
@@ -13005,7 +13005,7 @@ func (o SsoSettingsOauth2SettingsPtrOutput) SkipOrgRoleSync() pulumi.BoolPtrOutp
 	}).(pulumi.BoolPtrOutput)
 }
 
-// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team_ids, you must also configure teamsUrl and team_ids_attribute_path.
 func (o SsoSettingsOauth2SettingsPtrOutput) TeamIds() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
 		if v == nil {
@@ -13025,7 +13025,7 @@ func (o SsoSettingsOauth2SettingsPtrOutput) TeamIdsAttributePath() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams_url, you must also configure team_ids_attribute_path. Only applicable to Generic OAuth.
 func (o SsoSettingsOauth2SettingsPtrOutput) TeamsUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
 		if v == nil {
@@ -13130,7 +13130,7 @@ type SsoSettingsSamlSettings struct {
 	Certificate *string `pulumi:"certificate"`
 	// Path for the SP X.509 certificate.
 	CertificatePath *string `pulumi:"certificatePath"`
-	// Define whether this configuration is enabled for SAML. Defaults to `true`.
+	// Define whether this configuration is enabled for SAML.
 	Enabled *bool `pulumi:"enabled"`
 	// Base64-encoded string for the IdP SAML metadata XML.
 	IdpMetadata *string `pulumi:"idpMetadata"`
@@ -13206,7 +13206,7 @@ type SsoSettingsSamlSettingsArgs struct {
 	Certificate pulumi.StringPtrInput `pulumi:"certificate"`
 	// Path for the SP X.509 certificate.
 	CertificatePath pulumi.StringPtrInput `pulumi:"certificatePath"`
-	// Define whether this configuration is enabled for SAML. Defaults to `true`.
+	// Define whether this configuration is enabled for SAML.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Base64-encoded string for the IdP SAML metadata XML.
 	IdpMetadata pulumi.StringPtrInput `pulumi:"idpMetadata"`
@@ -13383,7 +13383,7 @@ func (o SsoSettingsSamlSettingsOutput) CertificatePath() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.CertificatePath }).(pulumi.StringPtrOutput)
 }
 
-// Define whether this configuration is enabled for SAML. Defaults to `true`.
+// Define whether this configuration is enabled for SAML.
 func (o SsoSettingsSamlSettingsOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SsoSettingsSamlSettings) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -13622,7 +13622,7 @@ func (o SsoSettingsSamlSettingsPtrOutput) CertificatePath() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// Define whether this configuration is enabled for SAML. Defaults to `true`.
+// Define whether this configuration is enabled for SAML.
 func (o SsoSettingsSamlSettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsSamlSettings) *bool {
 		if v == nil {
@@ -14049,15 +14049,15 @@ func (o SyntheticMonitoringCheckSettingsPtrOutput) Traceroute() SyntheticMonitor
 }
 
 type SyntheticMonitoringCheckSettingsDns struct {
-	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 	IpVersion *string `pulumi:"ipVersion"`
-	// Port to target. Defaults to `53`.
+	// Port to target.
 	Port *int `pulumi:"port"`
-	// `TCP` or `UDP`. Defaults to `UDP`.
+	// `TCP` or `UDP`.
 	Protocol *string `pulumi:"protocol"`
-	// One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+	// One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`.
 	RecordType *string `pulumi:"recordType"`
-	// DNS server address to target. Defaults to `8.8.8.8`.
+	// DNS server address to target.
 	Server *string `pulumi:"server"`
 	// Source IP address.
 	SourceIpAddress *string `pulumi:"sourceIpAddress"`
@@ -14083,15 +14083,15 @@ type SyntheticMonitoringCheckSettingsDnsInput interface {
 }
 
 type SyntheticMonitoringCheckSettingsDnsArgs struct {
-	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 	IpVersion pulumi.StringPtrInput `pulumi:"ipVersion"`
-	// Port to target. Defaults to `53`.
+	// Port to target.
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// `TCP` or `UDP`. Defaults to `UDP`.
+	// `TCP` or `UDP`.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
-	// One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+	// One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`.
 	RecordType pulumi.StringPtrInput `pulumi:"recordType"`
-	// DNS server address to target. Defaults to `8.8.8.8`.
+	// DNS server address to target.
 	Server pulumi.StringPtrInput `pulumi:"server"`
 	// Source IP address.
 	SourceIpAddress pulumi.StringPtrInput `pulumi:"sourceIpAddress"`
@@ -14182,27 +14182,27 @@ func (o SyntheticMonitoringCheckSettingsDnsOutput) ToSyntheticMonitoringCheckSet
 	}).(SyntheticMonitoringCheckSettingsDnsPtrOutput)
 }
 
-// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 func (o SyntheticMonitoringCheckSettingsDnsOutput) IpVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsDns) *string { return v.IpVersion }).(pulumi.StringPtrOutput)
 }
 
-// Port to target. Defaults to `53`.
+// Port to target.
 func (o SyntheticMonitoringCheckSettingsDnsOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsDns) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// `TCP` or `UDP`. Defaults to `UDP`.
+// `TCP` or `UDP`.
 func (o SyntheticMonitoringCheckSettingsDnsOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsDns) *string { return v.Protocol }).(pulumi.StringPtrOutput)
 }
 
-// One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+// One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`.
 func (o SyntheticMonitoringCheckSettingsDnsOutput) RecordType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsDns) *string { return v.RecordType }).(pulumi.StringPtrOutput)
 }
 
-// DNS server address to target. Defaults to `8.8.8.8`.
+// DNS server address to target.
 func (o SyntheticMonitoringCheckSettingsDnsOutput) Server() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsDns) *string { return v.Server }).(pulumi.StringPtrOutput)
 }
@@ -14262,7 +14262,7 @@ func (o SyntheticMonitoringCheckSettingsDnsPtrOutput) Elem() SyntheticMonitoring
 	}).(SyntheticMonitoringCheckSettingsDnsOutput)
 }
 
-// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 func (o SyntheticMonitoringCheckSettingsDnsPtrOutput) IpVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsDns) *string {
 		if v == nil {
@@ -14272,7 +14272,7 @@ func (o SyntheticMonitoringCheckSettingsDnsPtrOutput) IpVersion() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
-// Port to target. Defaults to `53`.
+// Port to target.
 func (o SyntheticMonitoringCheckSettingsDnsPtrOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsDns) *int {
 		if v == nil {
@@ -14282,7 +14282,7 @@ func (o SyntheticMonitoringCheckSettingsDnsPtrOutput) Port() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
-// `TCP` or `UDP`. Defaults to `UDP`.
+// `TCP` or `UDP`.
 func (o SyntheticMonitoringCheckSettingsDnsPtrOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsDns) *string {
 		if v == nil {
@@ -14292,7 +14292,7 @@ func (o SyntheticMonitoringCheckSettingsDnsPtrOutput) Protocol() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+// One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`.
 func (o SyntheticMonitoringCheckSettingsDnsPtrOutput) RecordType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsDns) *string {
 		if v == nil {
@@ -14302,7 +14302,7 @@ func (o SyntheticMonitoringCheckSettingsDnsPtrOutput) RecordType() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// DNS server address to target. Defaults to `8.8.8.8`.
+// DNS server address to target.
 func (o SyntheticMonitoringCheckSettingsDnsPtrOutput) Server() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsDns) *string {
 		if v == nil {
@@ -14807,17 +14807,17 @@ type SyntheticMonitoringCheckSettingsHttp struct {
 	FailIfHeaderMatchesRegexps []SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp `pulumi:"failIfHeaderMatchesRegexps"`
 	// Check fails if headers do not match.
 	FailIfHeaderNotMatchesRegexps []SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexp `pulumi:"failIfHeaderNotMatchesRegexps"`
-	// Fail if SSL is not present. Defaults to `false`.
+	// Fail if SSL is not present.
 	FailIfNotSsl *bool `pulumi:"failIfNotSsl"`
-	// Fail if SSL is present. Defaults to `false`.
+	// Fail if SSL is present.
 	FailIfSsl *bool `pulumi:"failIfSsl"`
 	// The HTTP headers set for the probe.
 	Headers []string `pulumi:"headers"`
-	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 	IpVersion *string `pulumi:"ipVersion"`
-	// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+	// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE`
 	Method *string `pulumi:"method"`
-	// Do not follow redirects. Defaults to `false`.
+	// Do not follow redirects.
 	NoFollowRedirects *bool `pulumi:"noFollowRedirects"`
 	// The HTTP headers sent to the proxy URL
 	ProxyConnectHeaders []string `pulumi:"proxyConnectHeaders"`
@@ -14859,17 +14859,17 @@ type SyntheticMonitoringCheckSettingsHttpArgs struct {
 	FailIfHeaderMatchesRegexps SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArrayInput `pulumi:"failIfHeaderMatchesRegexps"`
 	// Check fails if headers do not match.
 	FailIfHeaderNotMatchesRegexps SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArrayInput `pulumi:"failIfHeaderNotMatchesRegexps"`
-	// Fail if SSL is not present. Defaults to `false`.
+	// Fail if SSL is not present.
 	FailIfNotSsl pulumi.BoolPtrInput `pulumi:"failIfNotSsl"`
-	// Fail if SSL is present. Defaults to `false`.
+	// Fail if SSL is present.
 	FailIfSsl pulumi.BoolPtrInput `pulumi:"failIfSsl"`
 	// The HTTP headers set for the probe.
 	Headers pulumi.StringArrayInput `pulumi:"headers"`
-	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 	IpVersion pulumi.StringPtrInput `pulumi:"ipVersion"`
-	// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+	// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE`
 	Method pulumi.StringPtrInput `pulumi:"method"`
-	// Do not follow redirects. Defaults to `false`.
+	// Do not follow redirects.
 	NoFollowRedirects pulumi.BoolPtrInput `pulumi:"noFollowRedirects"`
 	// The HTTP headers sent to the proxy URL
 	ProxyConnectHeaders pulumi.StringArrayInput `pulumi:"proxyConnectHeaders"`
@@ -15006,12 +15006,12 @@ func (o SyntheticMonitoringCheckSettingsHttpOutput) FailIfHeaderNotMatchesRegexp
 	}).(SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArrayOutput)
 }
 
-// Fail if SSL is not present. Defaults to `false`.
+// Fail if SSL is not present.
 func (o SyntheticMonitoringCheckSettingsHttpOutput) FailIfNotSsl() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsHttp) *bool { return v.FailIfNotSsl }).(pulumi.BoolPtrOutput)
 }
 
-// Fail if SSL is present. Defaults to `false`.
+// Fail if SSL is present.
 func (o SyntheticMonitoringCheckSettingsHttpOutput) FailIfSsl() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsHttp) *bool { return v.FailIfSsl }).(pulumi.BoolPtrOutput)
 }
@@ -15021,17 +15021,17 @@ func (o SyntheticMonitoringCheckSettingsHttpOutput) Headers() pulumi.StringArray
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsHttp) []string { return v.Headers }).(pulumi.StringArrayOutput)
 }
 
-// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 func (o SyntheticMonitoringCheckSettingsHttpOutput) IpVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsHttp) *string { return v.IpVersion }).(pulumi.StringPtrOutput)
 }
 
-// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE`
 func (o SyntheticMonitoringCheckSettingsHttpOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsHttp) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
-// Do not follow redirects. Defaults to `false`.
+// Do not follow redirects.
 func (o SyntheticMonitoringCheckSettingsHttpOutput) NoFollowRedirects() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsHttp) *bool { return v.NoFollowRedirects }).(pulumi.BoolPtrOutput)
 }
@@ -15167,7 +15167,7 @@ func (o SyntheticMonitoringCheckSettingsHttpPtrOutput) FailIfHeaderNotMatchesReg
 	}).(SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArrayOutput)
 }
 
-// Fail if SSL is not present. Defaults to `false`.
+// Fail if SSL is not present.
 func (o SyntheticMonitoringCheckSettingsHttpPtrOutput) FailIfNotSsl() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsHttp) *bool {
 		if v == nil {
@@ -15177,7 +15177,7 @@ func (o SyntheticMonitoringCheckSettingsHttpPtrOutput) FailIfNotSsl() pulumi.Boo
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Fail if SSL is present. Defaults to `false`.
+// Fail if SSL is present.
 func (o SyntheticMonitoringCheckSettingsHttpPtrOutput) FailIfSsl() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsHttp) *bool {
 		if v == nil {
@@ -15197,7 +15197,7 @@ func (o SyntheticMonitoringCheckSettingsHttpPtrOutput) Headers() pulumi.StringAr
 	}).(pulumi.StringArrayOutput)
 }
 
-// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 func (o SyntheticMonitoringCheckSettingsHttpPtrOutput) IpVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsHttp) *string {
 		if v == nil {
@@ -15207,7 +15207,7 @@ func (o SyntheticMonitoringCheckSettingsHttpPtrOutput) IpVersion() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE`
 func (o SyntheticMonitoringCheckSettingsHttpPtrOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsHttp) *string {
 		if v == nil {
@@ -15217,7 +15217,7 @@ func (o SyntheticMonitoringCheckSettingsHttpPtrOutput) Method() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// Do not follow redirects. Defaults to `false`.
+// Do not follow redirects.
 func (o SyntheticMonitoringCheckSettingsHttpPtrOutput) NoFollowRedirects() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsHttp) *bool {
 		if v == nil {
@@ -15434,7 +15434,7 @@ func (o SyntheticMonitoringCheckSettingsHttpBasicAuthPtrOutput) Username() pulum
 }
 
 type SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp struct {
-	// Allow header to be missing from responses. Defaults to `false`.
+	// Allow header to be missing from responses.
 	AllowMissing *bool `pulumi:"allowMissing"`
 	// Header name.
 	Header string `pulumi:"header"`
@@ -15454,7 +15454,7 @@ type SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpInput interfac
 }
 
 type SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs struct {
-	// Allow header to be missing from responses. Defaults to `false`.
+	// Allow header to be missing from responses.
 	AllowMissing pulumi.BoolPtrInput `pulumi:"allowMissing"`
 	// Header name.
 	Header pulumi.StringInput `pulumi:"header"`
@@ -15513,7 +15513,7 @@ func (o SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpOutput) ToS
 	return o
 }
 
-// Allow header to be missing from responses. Defaults to `false`.
+// Allow header to be missing from responses.
 func (o SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpOutput) AllowMissing() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp) *bool { return v.AllowMissing }).(pulumi.BoolPtrOutput)
 }
@@ -15549,7 +15549,7 @@ func (o SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArrayOutput
 }
 
 type SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexp struct {
-	// Allow header to be missing from responses. Defaults to `false`.
+	// Allow header to be missing from responses.
 	AllowMissing *bool `pulumi:"allowMissing"`
 	// Header name.
 	Header string `pulumi:"header"`
@@ -15569,7 +15569,7 @@ type SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpInput inter
 }
 
 type SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArgs struct {
-	// Allow header to be missing from responses. Defaults to `false`.
+	// Allow header to be missing from responses.
 	AllowMissing pulumi.BoolPtrInput `pulumi:"allowMissing"`
 	// Header name.
 	Header pulumi.StringInput `pulumi:"header"`
@@ -15628,7 +15628,7 @@ func (o SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpOutput) 
 	return o
 }
 
-// Allow header to be missing from responses. Defaults to `false`.
+// Allow header to be missing from responses.
 func (o SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpOutput) AllowMissing() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexp) *bool { return v.AllowMissing }).(pulumi.BoolPtrOutput)
 }
@@ -15670,7 +15670,7 @@ type SyntheticMonitoringCheckSettingsHttpTlsConfig struct {
 	ClientCert *string `pulumi:"clientCert"`
 	// Client key in PEM format.
 	ClientKey *string `pulumi:"clientKey"`
-	// Disable target certificate validation. Defaults to `false`.
+	// Disable target certificate validation.
 	InsecureSkipVerify *bool `pulumi:"insecureSkipVerify"`
 	// Used to verify the hostname for the targets.
 	ServerName *string `pulumi:"serverName"`
@@ -15694,7 +15694,7 @@ type SyntheticMonitoringCheckSettingsHttpTlsConfigArgs struct {
 	ClientCert pulumi.StringPtrInput `pulumi:"clientCert"`
 	// Client key in PEM format.
 	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
-	// Disable target certificate validation. Defaults to `false`.
+	// Disable target certificate validation.
 	InsecureSkipVerify pulumi.BoolPtrInput `pulumi:"insecureSkipVerify"`
 	// Used to verify the hostname for the targets.
 	ServerName pulumi.StringPtrInput `pulumi:"serverName"`
@@ -15792,7 +15792,7 @@ func (o SyntheticMonitoringCheckSettingsHttpTlsConfigOutput) ClientKey() pulumi.
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsHttpTlsConfig) *string { return v.ClientKey }).(pulumi.StringPtrOutput)
 }
 
-// Disable target certificate validation. Defaults to `false`.
+// Disable target certificate validation.
 func (o SyntheticMonitoringCheckSettingsHttpTlsConfigOutput) InsecureSkipVerify() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsHttpTlsConfig) *bool { return v.InsecureSkipVerify }).(pulumi.BoolPtrOutput)
 }
@@ -15856,7 +15856,7 @@ func (o SyntheticMonitoringCheckSettingsHttpTlsConfigPtrOutput) ClientKey() pulu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Disable target certificate validation. Defaults to `false`.
+// Disable target certificate validation.
 func (o SyntheticMonitoringCheckSettingsHttpTlsConfigPtrOutput) InsecureSkipVerify() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsHttpTlsConfig) *bool {
 		if v == nil {
@@ -16133,13 +16133,13 @@ func (o SyntheticMonitoringCheckSettingsMultihttpEntryArrayOutput) Index(i pulum
 }
 
 type SyntheticMonitoringCheckSettingsMultihttpEntryAssertion struct {
-	// The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+	// The condition of the assertion: NOT_CONTAINS, EQUALS, STARTS_WITH, ENDS_WITH, TYPE_OF, CONTAINS
 	Condition *string `pulumi:"condition"`
 	// The expression of the assertion. Should start with $.
 	Expression *string `pulumi:"expression"`
-	// The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+	// The subject of the assertion: RESPONSE_HEADERS, HTTP_STATUS_CODE, RESPONSE_BODY
 	Subject *string `pulumi:"subject"`
-	// The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+	// The type of assertion to make: TEXT, JSON_PATH_VALUE, JSON_PATH_ASSERTION, REGEX_ASSERTION
 	Type string `pulumi:"type"`
 	// The value of the assertion
 	Value *string `pulumi:"value"`
@@ -16157,13 +16157,13 @@ type SyntheticMonitoringCheckSettingsMultihttpEntryAssertionInput interface {
 }
 
 type SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs struct {
-	// The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+	// The condition of the assertion: NOT_CONTAINS, EQUALS, STARTS_WITH, ENDS_WITH, TYPE_OF, CONTAINS
 	Condition pulumi.StringPtrInput `pulumi:"condition"`
 	// The expression of the assertion. Should start with $.
 	Expression pulumi.StringPtrInput `pulumi:"expression"`
-	// The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+	// The subject of the assertion: RESPONSE_HEADERS, HTTP_STATUS_CODE, RESPONSE_BODY
 	Subject pulumi.StringPtrInput `pulumi:"subject"`
-	// The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+	// The type of assertion to make: TEXT, JSON_PATH_VALUE, JSON_PATH_ASSERTION, REGEX_ASSERTION
 	Type pulumi.StringInput `pulumi:"type"`
 	// The value of the assertion
 	Value pulumi.StringPtrInput `pulumi:"value"`
@@ -16220,7 +16220,7 @@ func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput) ToSynthet
 	return o
 }
 
-// The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+// The condition of the assertion: NOT_CONTAINS, EQUALS, STARTS_WITH, ENDS_WITH, TYPE_OF, CONTAINS
 func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput) Condition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryAssertion) *string { return v.Condition }).(pulumi.StringPtrOutput)
 }
@@ -16230,12 +16230,12 @@ func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput) Expressio
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryAssertion) *string { return v.Expression }).(pulumi.StringPtrOutput)
 }
 
-// The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+// The subject of the assertion: RESPONSE_HEADERS, HTTP_STATUS_CODE, RESPONSE_BODY
 func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput) Subject() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryAssertion) *string { return v.Subject }).(pulumi.StringPtrOutput)
 }
 
-// The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+// The type of assertion to make: TEXT, JSON_PATH_VALUE, JSON_PATH_ASSERTION, REGEX_ASSERTION
 func (o SyntheticMonitoringCheckSettingsMultihttpEntryAssertionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryAssertion) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -16818,7 +16818,7 @@ type SyntheticMonitoringCheckSettingsMultihttpEntryVariable struct {
 	Expression *string `pulumi:"expression"`
 	// The name of the variable to extract
 	Name *string `pulumi:"name"`
-	// The method of finding the variable value to extract. JSON*PATH, REGEX, CSS*SELECTOR
+	// The method of finding the variable value to extract. JSON_PATH, REGEX, CSS_SELECTOR
 	Type string `pulumi:"type"`
 }
 
@@ -16840,7 +16840,7 @@ type SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs struct {
 	Expression pulumi.StringPtrInput `pulumi:"expression"`
 	// The name of the variable to extract
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The method of finding the variable value to extract. JSON*PATH, REGEX, CSS*SELECTOR
+	// The method of finding the variable value to extract. JSON_PATH, REGEX, CSS_SELECTOR
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -16910,7 +16910,7 @@ func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput) Name() pul
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryVariable) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The method of finding the variable value to extract. JSON*PATH, REGEX, CSS*SELECTOR
+// The method of finding the variable value to extract. JSON_PATH, REGEX, CSS_SELECTOR
 func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsMultihttpEntryVariable) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -16936,11 +16936,11 @@ func (o SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput) Index
 }
 
 type SyntheticMonitoringCheckSettingsPing struct {
-	// Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+	// Set the DF-bit in the IP-header. Only works with ipV4.
 	DontFragment *bool `pulumi:"dontFragment"`
-	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 	IpVersion *string `pulumi:"ipVersion"`
-	// Payload size. Defaults to `0`.
+	// Payload size.
 	PayloadSize *int `pulumi:"payloadSize"`
 	// Source IP address.
 	SourceIpAddress *string `pulumi:"sourceIpAddress"`
@@ -16958,11 +16958,11 @@ type SyntheticMonitoringCheckSettingsPingInput interface {
 }
 
 type SyntheticMonitoringCheckSettingsPingArgs struct {
-	// Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+	// Set the DF-bit in the IP-header. Only works with ipV4.
 	DontFragment pulumi.BoolPtrInput `pulumi:"dontFragment"`
-	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 	IpVersion pulumi.StringPtrInput `pulumi:"ipVersion"`
-	// Payload size. Defaults to `0`.
+	// Payload size.
 	PayloadSize pulumi.IntPtrInput `pulumi:"payloadSize"`
 	// Source IP address.
 	SourceIpAddress pulumi.StringPtrInput `pulumi:"sourceIpAddress"`
@@ -17045,17 +17045,17 @@ func (o SyntheticMonitoringCheckSettingsPingOutput) ToSyntheticMonitoringCheckSe
 	}).(SyntheticMonitoringCheckSettingsPingPtrOutput)
 }
 
-// Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+// Set the DF-bit in the IP-header. Only works with ipV4.
 func (o SyntheticMonitoringCheckSettingsPingOutput) DontFragment() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsPing) *bool { return v.DontFragment }).(pulumi.BoolPtrOutput)
 }
 
-// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 func (o SyntheticMonitoringCheckSettingsPingOutput) IpVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsPing) *string { return v.IpVersion }).(pulumi.StringPtrOutput)
 }
 
-// Payload size. Defaults to `0`.
+// Payload size.
 func (o SyntheticMonitoringCheckSettingsPingOutput) PayloadSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsPing) *int { return v.PayloadSize }).(pulumi.IntPtrOutput)
 }
@@ -17089,7 +17089,7 @@ func (o SyntheticMonitoringCheckSettingsPingPtrOutput) Elem() SyntheticMonitorin
 	}).(SyntheticMonitoringCheckSettingsPingOutput)
 }
 
-// Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+// Set the DF-bit in the IP-header. Only works with ipV4.
 func (o SyntheticMonitoringCheckSettingsPingPtrOutput) DontFragment() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsPing) *bool {
 		if v == nil {
@@ -17099,7 +17099,7 @@ func (o SyntheticMonitoringCheckSettingsPingPtrOutput) DontFragment() pulumi.Boo
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 func (o SyntheticMonitoringCheckSettingsPingPtrOutput) IpVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsPing) *string {
 		if v == nil {
@@ -17109,7 +17109,7 @@ func (o SyntheticMonitoringCheckSettingsPingPtrOutput) IpVersion() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// Payload size. Defaults to `0`.
+// Payload size.
 func (o SyntheticMonitoringCheckSettingsPingPtrOutput) PayloadSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsPing) *int {
 		if v == nil {
@@ -17130,13 +17130,13 @@ func (o SyntheticMonitoringCheckSettingsPingPtrOutput) SourceIpAddress() pulumi.
 }
 
 type SyntheticMonitoringCheckSettingsTcp struct {
-	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 	IpVersion *string `pulumi:"ipVersion"`
 	// The query sent in the TCP probe and the expected associated response.
 	QueryResponses []SyntheticMonitoringCheckSettingsTcpQueryResponse `pulumi:"queryResponses"`
 	// Source IP address.
 	SourceIpAddress *string `pulumi:"sourceIpAddress"`
-	// Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+	// Whether or not TLS is used when the connection is initiated.
 	Tls *bool `pulumi:"tls"`
 	// TLS config.
 	TlsConfig *SyntheticMonitoringCheckSettingsTcpTlsConfig `pulumi:"tlsConfig"`
@@ -17154,13 +17154,13 @@ type SyntheticMonitoringCheckSettingsTcpInput interface {
 }
 
 type SyntheticMonitoringCheckSettingsTcpArgs struct {
-	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 	IpVersion pulumi.StringPtrInput `pulumi:"ipVersion"`
 	// The query sent in the TCP probe and the expected associated response.
 	QueryResponses SyntheticMonitoringCheckSettingsTcpQueryResponseArrayInput `pulumi:"queryResponses"`
 	// Source IP address.
 	SourceIpAddress pulumi.StringPtrInput `pulumi:"sourceIpAddress"`
-	// Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+	// Whether or not TLS is used when the connection is initiated.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
 	// TLS config.
 	TlsConfig SyntheticMonitoringCheckSettingsTcpTlsConfigPtrInput `pulumi:"tlsConfig"`
@@ -17243,7 +17243,7 @@ func (o SyntheticMonitoringCheckSettingsTcpOutput) ToSyntheticMonitoringCheckSet
 	}).(SyntheticMonitoringCheckSettingsTcpPtrOutput)
 }
 
-// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 func (o SyntheticMonitoringCheckSettingsTcpOutput) IpVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsTcp) *string { return v.IpVersion }).(pulumi.StringPtrOutput)
 }
@@ -17260,7 +17260,7 @@ func (o SyntheticMonitoringCheckSettingsTcpOutput) SourceIpAddress() pulumi.Stri
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsTcp) *string { return v.SourceIpAddress }).(pulumi.StringPtrOutput)
 }
 
-// Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+// Whether or not TLS is used when the connection is initiated.
 func (o SyntheticMonitoringCheckSettingsTcpOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsTcp) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
@@ -17296,7 +17296,7 @@ func (o SyntheticMonitoringCheckSettingsTcpPtrOutput) Elem() SyntheticMonitoring
 	}).(SyntheticMonitoringCheckSettingsTcpOutput)
 }
 
-// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 func (o SyntheticMonitoringCheckSettingsTcpPtrOutput) IpVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsTcp) *string {
 		if v == nil {
@@ -17326,7 +17326,7 @@ func (o SyntheticMonitoringCheckSettingsTcpPtrOutput) SourceIpAddress() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
-// Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+// Whether or not TLS is used when the connection is initiated.
 func (o SyntheticMonitoringCheckSettingsTcpPtrOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsTcp) *bool {
 		if v == nil {
@@ -17351,7 +17351,7 @@ type SyntheticMonitoringCheckSettingsTcpQueryResponse struct {
 	Expect string `pulumi:"expect"`
 	// Data to send.
 	Send string `pulumi:"send"`
-	// Upgrade TCP connection to TLS. Defaults to `false`.
+	// Upgrade TCP connection to TLS.
 	StartTls *bool `pulumi:"startTls"`
 }
 
@@ -17371,7 +17371,7 @@ type SyntheticMonitoringCheckSettingsTcpQueryResponseArgs struct {
 	Expect pulumi.StringInput `pulumi:"expect"`
 	// Data to send.
 	Send pulumi.StringInput `pulumi:"send"`
-	// Upgrade TCP connection to TLS. Defaults to `false`.
+	// Upgrade TCP connection to TLS.
 	StartTls pulumi.BoolPtrInput `pulumi:"startTls"`
 }
 
@@ -17436,7 +17436,7 @@ func (o SyntheticMonitoringCheckSettingsTcpQueryResponseOutput) Send() pulumi.St
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsTcpQueryResponse) string { return v.Send }).(pulumi.StringOutput)
 }
 
-// Upgrade TCP connection to TLS. Defaults to `false`.
+// Upgrade TCP connection to TLS.
 func (o SyntheticMonitoringCheckSettingsTcpQueryResponseOutput) StartTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsTcpQueryResponse) *bool { return v.StartTls }).(pulumi.BoolPtrOutput)
 }
@@ -17468,7 +17468,7 @@ type SyntheticMonitoringCheckSettingsTcpTlsConfig struct {
 	ClientCert *string `pulumi:"clientCert"`
 	// Client key in PEM format.
 	ClientKey *string `pulumi:"clientKey"`
-	// Disable target certificate validation. Defaults to `false`.
+	// Disable target certificate validation.
 	InsecureSkipVerify *bool `pulumi:"insecureSkipVerify"`
 	// Used to verify the hostname for the targets.
 	ServerName *string `pulumi:"serverName"`
@@ -17492,7 +17492,7 @@ type SyntheticMonitoringCheckSettingsTcpTlsConfigArgs struct {
 	ClientCert pulumi.StringPtrInput `pulumi:"clientCert"`
 	// Client key in PEM format.
 	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
-	// Disable target certificate validation. Defaults to `false`.
+	// Disable target certificate validation.
 	InsecureSkipVerify pulumi.BoolPtrInput `pulumi:"insecureSkipVerify"`
 	// Used to verify the hostname for the targets.
 	ServerName pulumi.StringPtrInput `pulumi:"serverName"`
@@ -17590,7 +17590,7 @@ func (o SyntheticMonitoringCheckSettingsTcpTlsConfigOutput) ClientKey() pulumi.S
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsTcpTlsConfig) *string { return v.ClientKey }).(pulumi.StringPtrOutput)
 }
 
-// Disable target certificate validation. Defaults to `false`.
+// Disable target certificate validation.
 func (o SyntheticMonitoringCheckSettingsTcpTlsConfigOutput) InsecureSkipVerify() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsTcpTlsConfig) *bool { return v.InsecureSkipVerify }).(pulumi.BoolPtrOutput)
 }
@@ -17654,7 +17654,7 @@ func (o SyntheticMonitoringCheckSettingsTcpTlsConfigPtrOutput) ClientKey() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-// Disable target certificate validation. Defaults to `false`.
+// Disable target certificate validation.
 func (o SyntheticMonitoringCheckSettingsTcpTlsConfigPtrOutput) InsecureSkipVerify() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsTcpTlsConfig) *bool {
 		if v == nil {
@@ -17675,11 +17675,11 @@ func (o SyntheticMonitoringCheckSettingsTcpTlsConfigPtrOutput) ServerName() pulu
 }
 
 type SyntheticMonitoringCheckSettingsTraceroute struct {
-	// Maximum TTL for the trace Defaults to `64`.
+	// Maximum TTL for the trace
 	MaxHops *int `pulumi:"maxHops"`
-	// Maximum number of hosts to travers that give no response Defaults to `15`.
+	// Maximum number of hosts to travers that give no response
 	MaxUnknownHops *int `pulumi:"maxUnknownHops"`
-	// Reverse lookup hostnames from IP addresses Defaults to `true`.
+	// Reverse lookup hostnames from IP addresses
 	PtrLookup *bool `pulumi:"ptrLookup"`
 }
 
@@ -17695,11 +17695,11 @@ type SyntheticMonitoringCheckSettingsTracerouteInput interface {
 }
 
 type SyntheticMonitoringCheckSettingsTracerouteArgs struct {
-	// Maximum TTL for the trace Defaults to `64`.
+	// Maximum TTL for the trace
 	MaxHops pulumi.IntPtrInput `pulumi:"maxHops"`
-	// Maximum number of hosts to travers that give no response Defaults to `15`.
+	// Maximum number of hosts to travers that give no response
 	MaxUnknownHops pulumi.IntPtrInput `pulumi:"maxUnknownHops"`
-	// Reverse lookup hostnames from IP addresses Defaults to `true`.
+	// Reverse lookup hostnames from IP addresses
 	PtrLookup pulumi.BoolPtrInput `pulumi:"ptrLookup"`
 }
 
@@ -17780,17 +17780,17 @@ func (o SyntheticMonitoringCheckSettingsTracerouteOutput) ToSyntheticMonitoringC
 	}).(SyntheticMonitoringCheckSettingsTraceroutePtrOutput)
 }
 
-// Maximum TTL for the trace Defaults to `64`.
+// Maximum TTL for the trace
 func (o SyntheticMonitoringCheckSettingsTracerouteOutput) MaxHops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsTraceroute) *int { return v.MaxHops }).(pulumi.IntPtrOutput)
 }
 
-// Maximum number of hosts to travers that give no response Defaults to `15`.
+// Maximum number of hosts to travers that give no response
 func (o SyntheticMonitoringCheckSettingsTracerouteOutput) MaxUnknownHops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsTraceroute) *int { return v.MaxUnknownHops }).(pulumi.IntPtrOutput)
 }
 
-// Reverse lookup hostnames from IP addresses Defaults to `true`.
+// Reverse lookup hostnames from IP addresses
 func (o SyntheticMonitoringCheckSettingsTracerouteOutput) PtrLookup() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsTraceroute) *bool { return v.PtrLookup }).(pulumi.BoolPtrOutput)
 }
@@ -17819,7 +17819,7 @@ func (o SyntheticMonitoringCheckSettingsTraceroutePtrOutput) Elem() SyntheticMon
 	}).(SyntheticMonitoringCheckSettingsTracerouteOutput)
 }
 
-// Maximum TTL for the trace Defaults to `64`.
+// Maximum TTL for the trace
 func (o SyntheticMonitoringCheckSettingsTraceroutePtrOutput) MaxHops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsTraceroute) *int {
 		if v == nil {
@@ -17829,7 +17829,7 @@ func (o SyntheticMonitoringCheckSettingsTraceroutePtrOutput) MaxHops() pulumi.In
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum number of hosts to travers that give no response Defaults to `15`.
+// Maximum number of hosts to travers that give no response
 func (o SyntheticMonitoringCheckSettingsTraceroutePtrOutput) MaxUnknownHops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsTraceroute) *int {
 		if v == nil {
@@ -17839,7 +17839,7 @@ func (o SyntheticMonitoringCheckSettingsTraceroutePtrOutput) MaxUnknownHops() pu
 	}).(pulumi.IntPtrOutput)
 }
 
-// Reverse lookup hostnames from IP addresses Defaults to `true`.
+// Reverse lookup hostnames from IP addresses
 func (o SyntheticMonitoringCheckSettingsTraceroutePtrOutput) PtrLookup() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsTraceroute) *bool {
 		if v == nil {
@@ -18689,11 +18689,11 @@ type GetSlosSloAlerting struct {
 	// Annotations will be attached to all alerts generated by any of these rules.
 	Annotations []GetSlosSloAlertingAnnotation `pulumi:"annotations"`
 	// Alerting Rules generated for Fast Burn alerts
-	Fastburns []GetSlosSloAlertingFastburn `pulumi:"fastburns"`
+	Fastburn *GetSlosSloAlertingFastburn `pulumi:"fastburn"`
 	// Labels will be attached to all alerts generated by any of these rules.
 	Labels []GetSlosSloAlertingLabel `pulumi:"labels"`
 	// Alerting Rules generated for Slow Burn alerts
-	Slowburns []GetSlosSloAlertingSlowburn `pulumi:"slowburns"`
+	Slowburn *GetSlosSloAlertingSlowburn `pulumi:"slowburn"`
 }
 
 // GetSlosSloAlertingInput is an input type that accepts GetSlosSloAlertingArgs and GetSlosSloAlertingOutput values.
@@ -18711,11 +18711,11 @@ type GetSlosSloAlertingArgs struct {
 	// Annotations will be attached to all alerts generated by any of these rules.
 	Annotations GetSlosSloAlertingAnnotationArrayInput `pulumi:"annotations"`
 	// Alerting Rules generated for Fast Burn alerts
-	Fastburns GetSlosSloAlertingFastburnArrayInput `pulumi:"fastburns"`
+	Fastburn GetSlosSloAlertingFastburnPtrInput `pulumi:"fastburn"`
 	// Labels will be attached to all alerts generated by any of these rules.
 	Labels GetSlosSloAlertingLabelArrayInput `pulumi:"labels"`
 	// Alerting Rules generated for Slow Burn alerts
-	Slowburns GetSlosSloAlertingSlowburnArrayInput `pulumi:"slowburns"`
+	Slowburn GetSlosSloAlertingSlowburnPtrInput `pulumi:"slowburn"`
 }
 
 func (GetSlosSloAlertingArgs) ElementType() reflect.Type {
@@ -18775,8 +18775,8 @@ func (o GetSlosSloAlertingOutput) Annotations() GetSlosSloAlertingAnnotationArra
 }
 
 // Alerting Rules generated for Fast Burn alerts
-func (o GetSlosSloAlertingOutput) Fastburns() GetSlosSloAlertingFastburnArrayOutput {
-	return o.ApplyT(func(v GetSlosSloAlerting) []GetSlosSloAlertingFastburn { return v.Fastburns }).(GetSlosSloAlertingFastburnArrayOutput)
+func (o GetSlosSloAlertingOutput) Fastburn() GetSlosSloAlertingFastburnPtrOutput {
+	return o.ApplyT(func(v GetSlosSloAlerting) *GetSlosSloAlertingFastburn { return v.Fastburn }).(GetSlosSloAlertingFastburnPtrOutput)
 }
 
 // Labels will be attached to all alerts generated by any of these rules.
@@ -18785,8 +18785,8 @@ func (o GetSlosSloAlertingOutput) Labels() GetSlosSloAlertingLabelArrayOutput {
 }
 
 // Alerting Rules generated for Slow Burn alerts
-func (o GetSlosSloAlertingOutput) Slowburns() GetSlosSloAlertingSlowburnArrayOutput {
-	return o.ApplyT(func(v GetSlosSloAlerting) []GetSlosSloAlertingSlowburn { return v.Slowburns }).(GetSlosSloAlertingSlowburnArrayOutput)
+func (o GetSlosSloAlertingOutput) Slowburn() GetSlosSloAlertingSlowburnPtrOutput {
+	return o.ApplyT(func(v GetSlosSloAlerting) *GetSlosSloAlertingSlowburn { return v.Slowburn }).(GetSlosSloAlertingSlowburnPtrOutput)
 }
 
 type GetSlosSloAlertingArrayOutput struct{ *pulumi.OutputState }
@@ -18946,29 +18946,45 @@ func (i GetSlosSloAlertingFastburnArgs) ToGetSlosSloAlertingFastburnOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingFastburnOutput)
 }
 
-// GetSlosSloAlertingFastburnArrayInput is an input type that accepts GetSlosSloAlertingFastburnArray and GetSlosSloAlertingFastburnArrayOutput values.
-// You can construct a concrete instance of `GetSlosSloAlertingFastburnArrayInput` via:
+func (i GetSlosSloAlertingFastburnArgs) ToGetSlosSloAlertingFastburnPtrOutput() GetSlosSloAlertingFastburnPtrOutput {
+	return i.ToGetSlosSloAlertingFastburnPtrOutputWithContext(context.Background())
+}
+
+func (i GetSlosSloAlertingFastburnArgs) ToGetSlosSloAlertingFastburnPtrOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingFastburnOutput).ToGetSlosSloAlertingFastburnPtrOutputWithContext(ctx)
+}
+
+// GetSlosSloAlertingFastburnPtrInput is an input type that accepts GetSlosSloAlertingFastburnArgs, GetSlosSloAlertingFastburnPtr and GetSlosSloAlertingFastburnPtrOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingFastburnPtrInput` via:
 //
-//	GetSlosSloAlertingFastburnArray{ GetSlosSloAlertingFastburnArgs{...} }
-type GetSlosSloAlertingFastburnArrayInput interface {
+//	        GetSlosSloAlertingFastburnArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetSlosSloAlertingFastburnPtrInput interface {
 	pulumi.Input
 
-	ToGetSlosSloAlertingFastburnArrayOutput() GetSlosSloAlertingFastburnArrayOutput
-	ToGetSlosSloAlertingFastburnArrayOutputWithContext(context.Context) GetSlosSloAlertingFastburnArrayOutput
+	ToGetSlosSloAlertingFastburnPtrOutput() GetSlosSloAlertingFastburnPtrOutput
+	ToGetSlosSloAlertingFastburnPtrOutputWithContext(context.Context) GetSlosSloAlertingFastburnPtrOutput
 }
 
-type GetSlosSloAlertingFastburnArray []GetSlosSloAlertingFastburnInput
+type getSlosSloAlertingFastburnPtrType GetSlosSloAlertingFastburnArgs
 
-func (GetSlosSloAlertingFastburnArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetSlosSloAlertingFastburn)(nil)).Elem()
+func GetSlosSloAlertingFastburnPtr(v *GetSlosSloAlertingFastburnArgs) GetSlosSloAlertingFastburnPtrInput {
+	return (*getSlosSloAlertingFastburnPtrType)(v)
 }
 
-func (i GetSlosSloAlertingFastburnArray) ToGetSlosSloAlertingFastburnArrayOutput() GetSlosSloAlertingFastburnArrayOutput {
-	return i.ToGetSlosSloAlertingFastburnArrayOutputWithContext(context.Background())
+func (*getSlosSloAlertingFastburnPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetSlosSloAlertingFastburn)(nil)).Elem()
 }
 
-func (i GetSlosSloAlertingFastburnArray) ToGetSlosSloAlertingFastburnArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingFastburnArrayOutput)
+func (i *getSlosSloAlertingFastburnPtrType) ToGetSlosSloAlertingFastburnPtrOutput() GetSlosSloAlertingFastburnPtrOutput {
+	return i.ToGetSlosSloAlertingFastburnPtrOutputWithContext(context.Background())
+}
+
+func (i *getSlosSloAlertingFastburnPtrType) ToGetSlosSloAlertingFastburnPtrOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingFastburnPtrOutput)
 }
 
 type GetSlosSloAlertingFastburnOutput struct{ *pulumi.OutputState }
@@ -18985,6 +19001,16 @@ func (o GetSlosSloAlertingFastburnOutput) ToGetSlosSloAlertingFastburnOutputWith
 	return o
 }
 
+func (o GetSlosSloAlertingFastburnOutput) ToGetSlosSloAlertingFastburnPtrOutput() GetSlosSloAlertingFastburnPtrOutput {
+	return o.ToGetSlosSloAlertingFastburnPtrOutputWithContext(context.Background())
+}
+
+func (o GetSlosSloAlertingFastburnOutput) ToGetSlosSloAlertingFastburnPtrOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetSlosSloAlertingFastburn) *GetSlosSloAlertingFastburn {
+		return &v
+	}).(GetSlosSloAlertingFastburnPtrOutput)
+}
+
 // Annotations to attach only to Fast Burn alerts.
 func (o GetSlosSloAlertingFastburnOutput) Annotations() GetSlosSloAlertingFastburnAnnotationArrayOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburn) []GetSlosSloAlertingFastburnAnnotation { return v.Annotations }).(GetSlosSloAlertingFastburnAnnotationArrayOutput)
@@ -18995,24 +19021,48 @@ func (o GetSlosSloAlertingFastburnOutput) Labels() GetSlosSloAlertingFastburnLab
 	return o.ApplyT(func(v GetSlosSloAlertingFastburn) []GetSlosSloAlertingFastburnLabel { return v.Labels }).(GetSlosSloAlertingFastburnLabelArrayOutput)
 }
 
-type GetSlosSloAlertingFastburnArrayOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingFastburnPtrOutput struct{ *pulumi.OutputState }
 
-func (GetSlosSloAlertingFastburnArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetSlosSloAlertingFastburn)(nil)).Elem()
+func (GetSlosSloAlertingFastburnPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetSlosSloAlertingFastburn)(nil)).Elem()
 }
 
-func (o GetSlosSloAlertingFastburnArrayOutput) ToGetSlosSloAlertingFastburnArrayOutput() GetSlosSloAlertingFastburnArrayOutput {
+func (o GetSlosSloAlertingFastburnPtrOutput) ToGetSlosSloAlertingFastburnPtrOutput() GetSlosSloAlertingFastburnPtrOutput {
 	return o
 }
 
-func (o GetSlosSloAlertingFastburnArrayOutput) ToGetSlosSloAlertingFastburnArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnArrayOutput {
+func (o GetSlosSloAlertingFastburnPtrOutput) ToGetSlosSloAlertingFastburnPtrOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnPtrOutput {
 	return o
 }
 
-func (o GetSlosSloAlertingFastburnArrayOutput) Index(i pulumi.IntInput) GetSlosSloAlertingFastburnOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloAlertingFastburn {
-		return vs[0].([]GetSlosSloAlertingFastburn)[vs[1].(int)]
+func (o GetSlosSloAlertingFastburnPtrOutput) Elem() GetSlosSloAlertingFastburnOutput {
+	return o.ApplyT(func(v *GetSlosSloAlertingFastburn) GetSlosSloAlertingFastburn {
+		if v != nil {
+			return *v
+		}
+		var ret GetSlosSloAlertingFastburn
+		return ret
 	}).(GetSlosSloAlertingFastburnOutput)
+}
+
+// Annotations to attach only to Fast Burn alerts.
+func (o GetSlosSloAlertingFastburnPtrOutput) Annotations() GetSlosSloAlertingFastburnAnnotationArrayOutput {
+	return o.ApplyT(func(v *GetSlosSloAlertingFastburn) []GetSlosSloAlertingFastburnAnnotation {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(GetSlosSloAlertingFastburnAnnotationArrayOutput)
+}
+
+// Labels to attach only to Fast Burn alerts.
+func (o GetSlosSloAlertingFastburnPtrOutput) Labels() GetSlosSloAlertingFastburnLabelArrayOutput {
+	return o.ApplyT(func(v *GetSlosSloAlertingFastburn) []GetSlosSloAlertingFastburnLabel {
+		if v == nil {
+			return nil
+		}
+		return v.Labels
+	}).(GetSlosSloAlertingFastburnLabelArrayOutput)
 }
 
 type GetSlosSloAlertingFastburnAnnotation struct {
@@ -19352,29 +19402,45 @@ func (i GetSlosSloAlertingSlowburnArgs) ToGetSlosSloAlertingSlowburnOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingSlowburnOutput)
 }
 
-// GetSlosSloAlertingSlowburnArrayInput is an input type that accepts GetSlosSloAlertingSlowburnArray and GetSlosSloAlertingSlowburnArrayOutput values.
-// You can construct a concrete instance of `GetSlosSloAlertingSlowburnArrayInput` via:
+func (i GetSlosSloAlertingSlowburnArgs) ToGetSlosSloAlertingSlowburnPtrOutput() GetSlosSloAlertingSlowburnPtrOutput {
+	return i.ToGetSlosSloAlertingSlowburnPtrOutputWithContext(context.Background())
+}
+
+func (i GetSlosSloAlertingSlowburnArgs) ToGetSlosSloAlertingSlowburnPtrOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingSlowburnOutput).ToGetSlosSloAlertingSlowburnPtrOutputWithContext(ctx)
+}
+
+// GetSlosSloAlertingSlowburnPtrInput is an input type that accepts GetSlosSloAlertingSlowburnArgs, GetSlosSloAlertingSlowburnPtr and GetSlosSloAlertingSlowburnPtrOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingSlowburnPtrInput` via:
 //
-//	GetSlosSloAlertingSlowburnArray{ GetSlosSloAlertingSlowburnArgs{...} }
-type GetSlosSloAlertingSlowburnArrayInput interface {
+//	        GetSlosSloAlertingSlowburnArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetSlosSloAlertingSlowburnPtrInput interface {
 	pulumi.Input
 
-	ToGetSlosSloAlertingSlowburnArrayOutput() GetSlosSloAlertingSlowburnArrayOutput
-	ToGetSlosSloAlertingSlowburnArrayOutputWithContext(context.Context) GetSlosSloAlertingSlowburnArrayOutput
+	ToGetSlosSloAlertingSlowburnPtrOutput() GetSlosSloAlertingSlowburnPtrOutput
+	ToGetSlosSloAlertingSlowburnPtrOutputWithContext(context.Context) GetSlosSloAlertingSlowburnPtrOutput
 }
 
-type GetSlosSloAlertingSlowburnArray []GetSlosSloAlertingSlowburnInput
+type getSlosSloAlertingSlowburnPtrType GetSlosSloAlertingSlowburnArgs
 
-func (GetSlosSloAlertingSlowburnArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetSlosSloAlertingSlowburn)(nil)).Elem()
+func GetSlosSloAlertingSlowburnPtr(v *GetSlosSloAlertingSlowburnArgs) GetSlosSloAlertingSlowburnPtrInput {
+	return (*getSlosSloAlertingSlowburnPtrType)(v)
 }
 
-func (i GetSlosSloAlertingSlowburnArray) ToGetSlosSloAlertingSlowburnArrayOutput() GetSlosSloAlertingSlowburnArrayOutput {
-	return i.ToGetSlosSloAlertingSlowburnArrayOutputWithContext(context.Background())
+func (*getSlosSloAlertingSlowburnPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetSlosSloAlertingSlowburn)(nil)).Elem()
 }
 
-func (i GetSlosSloAlertingSlowburnArray) ToGetSlosSloAlertingSlowburnArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingSlowburnArrayOutput)
+func (i *getSlosSloAlertingSlowburnPtrType) ToGetSlosSloAlertingSlowburnPtrOutput() GetSlosSloAlertingSlowburnPtrOutput {
+	return i.ToGetSlosSloAlertingSlowburnPtrOutputWithContext(context.Background())
+}
+
+func (i *getSlosSloAlertingSlowburnPtrType) ToGetSlosSloAlertingSlowburnPtrOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingSlowburnPtrOutput)
 }
 
 type GetSlosSloAlertingSlowburnOutput struct{ *pulumi.OutputState }
@@ -19391,6 +19457,16 @@ func (o GetSlosSloAlertingSlowburnOutput) ToGetSlosSloAlertingSlowburnOutputWith
 	return o
 }
 
+func (o GetSlosSloAlertingSlowburnOutput) ToGetSlosSloAlertingSlowburnPtrOutput() GetSlosSloAlertingSlowburnPtrOutput {
+	return o.ToGetSlosSloAlertingSlowburnPtrOutputWithContext(context.Background())
+}
+
+func (o GetSlosSloAlertingSlowburnOutput) ToGetSlosSloAlertingSlowburnPtrOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetSlosSloAlertingSlowburn) *GetSlosSloAlertingSlowburn {
+		return &v
+	}).(GetSlosSloAlertingSlowburnPtrOutput)
+}
+
 // Annotations to attach only to Slow Burn alerts.
 func (o GetSlosSloAlertingSlowburnOutput) Annotations() GetSlosSloAlertingSlowburnAnnotationArrayOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburn) []GetSlosSloAlertingSlowburnAnnotation { return v.Annotations }).(GetSlosSloAlertingSlowburnAnnotationArrayOutput)
@@ -19401,24 +19477,48 @@ func (o GetSlosSloAlertingSlowburnOutput) Labels() GetSlosSloAlertingSlowburnLab
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburn) []GetSlosSloAlertingSlowburnLabel { return v.Labels }).(GetSlosSloAlertingSlowburnLabelArrayOutput)
 }
 
-type GetSlosSloAlertingSlowburnArrayOutput struct{ *pulumi.OutputState }
+type GetSlosSloAlertingSlowburnPtrOutput struct{ *pulumi.OutputState }
 
-func (GetSlosSloAlertingSlowburnArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetSlosSloAlertingSlowburn)(nil)).Elem()
+func (GetSlosSloAlertingSlowburnPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetSlosSloAlertingSlowburn)(nil)).Elem()
 }
 
-func (o GetSlosSloAlertingSlowburnArrayOutput) ToGetSlosSloAlertingSlowburnArrayOutput() GetSlosSloAlertingSlowburnArrayOutput {
+func (o GetSlosSloAlertingSlowburnPtrOutput) ToGetSlosSloAlertingSlowburnPtrOutput() GetSlosSloAlertingSlowburnPtrOutput {
 	return o
 }
 
-func (o GetSlosSloAlertingSlowburnArrayOutput) ToGetSlosSloAlertingSlowburnArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnArrayOutput {
+func (o GetSlosSloAlertingSlowburnPtrOutput) ToGetSlosSloAlertingSlowburnPtrOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnPtrOutput {
 	return o
 }
 
-func (o GetSlosSloAlertingSlowburnArrayOutput) Index(i pulumi.IntInput) GetSlosSloAlertingSlowburnOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloAlertingSlowburn {
-		return vs[0].([]GetSlosSloAlertingSlowburn)[vs[1].(int)]
+func (o GetSlosSloAlertingSlowburnPtrOutput) Elem() GetSlosSloAlertingSlowburnOutput {
+	return o.ApplyT(func(v *GetSlosSloAlertingSlowburn) GetSlosSloAlertingSlowburn {
+		if v != nil {
+			return *v
+		}
+		var ret GetSlosSloAlertingSlowburn
+		return ret
 	}).(GetSlosSloAlertingSlowburnOutput)
+}
+
+// Annotations to attach only to Slow Burn alerts.
+func (o GetSlosSloAlertingSlowburnPtrOutput) Annotations() GetSlosSloAlertingSlowburnAnnotationArrayOutput {
+	return o.ApplyT(func(v *GetSlosSloAlertingSlowburn) []GetSlosSloAlertingSlowburnAnnotation {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(GetSlosSloAlertingSlowburnAnnotationArrayOutput)
+}
+
+// Labels to attach only to Slow Burn alerts.
+func (o GetSlosSloAlertingSlowburnPtrOutput) Labels() GetSlosSloAlertingSlowburnLabelArrayOutput {
+	return o.ApplyT(func(v *GetSlosSloAlertingSlowburn) []GetSlosSloAlertingSlowburnLabel {
+		if v == nil {
+			return nil
+		}
+		return v.Labels
+	}).(GetSlosSloAlertingSlowburnLabelArrayOutput)
 }
 
 type GetSlosSloAlertingSlowburnAnnotation struct {
@@ -20927,7 +21027,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingAnnotationInput)(nil)).Elem(), GetSlosSloAlertingAnnotationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingAnnotationArrayInput)(nil)).Elem(), GetSlosSloAlertingAnnotationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnInput)(nil)).Elem(), GetSlosSloAlertingFastburnArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnArrayInput)(nil)).Elem(), GetSlosSloAlertingFastburnArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnPtrInput)(nil)).Elem(), GetSlosSloAlertingFastburnArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnAnnotationInput)(nil)).Elem(), GetSlosSloAlertingFastburnAnnotationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnAnnotationArrayInput)(nil)).Elem(), GetSlosSloAlertingFastburnAnnotationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnLabelInput)(nil)).Elem(), GetSlosSloAlertingFastburnLabelArgs{})
@@ -20935,7 +21035,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingLabelInput)(nil)).Elem(), GetSlosSloAlertingLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingLabelArrayInput)(nil)).Elem(), GetSlosSloAlertingLabelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnInput)(nil)).Elem(), GetSlosSloAlertingSlowburnArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnArrayInput)(nil)).Elem(), GetSlosSloAlertingSlowburnArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnPtrInput)(nil)).Elem(), GetSlosSloAlertingSlowburnArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnAnnotationInput)(nil)).Elem(), GetSlosSloAlertingSlowburnAnnotationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnAnnotationArrayInput)(nil)).Elem(), GetSlosSloAlertingSlowburnAnnotationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnLabelInput)(nil)).Elem(), GetSlosSloAlertingSlowburnLabelArgs{})
@@ -21188,7 +21288,7 @@ func init() {
 	pulumi.RegisterOutputType(GetSlosSloAlertingAnnotationOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingAnnotationArrayOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnOutput{})
-	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnPtrOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnAnnotationOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnAnnotationArrayOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnLabelOutput{})
@@ -21196,7 +21296,7 @@ func init() {
 	pulumi.RegisterOutputType(GetSlosSloAlertingLabelOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingLabelArrayOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnOutput{})
-	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnPtrOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnAnnotationOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnAnnotationArrayOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnLabelOutput{})

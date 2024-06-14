@@ -12,13 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Manages the membership of a user in an organization.
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/cloudOrgMember:CloudOrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
-// ```
+// Deprecated: grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember
 type CloudOrgMember struct {
 	pulumi.CustomResourceState
 
@@ -48,6 +42,12 @@ func NewCloudOrgMember(ctx *pulumi.Context,
 	if args.User == nil {
 		return nil, errors.New("invalid value for required argument 'User'")
 	}
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/cloudOrgMember:CloudOrgMember"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CloudOrgMember
 	err := ctx.RegisterResource("grafana:index/cloudOrgMember:CloudOrgMember", name, args, &resource, opts...)

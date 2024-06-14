@@ -10,24 +10,13 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// An outlier detector monitors the results of a query and reports when its values are outside normal bands.
-    /// 
-    /// The normal band is configured by choice of algorithm, its sensitivity and other configuration.
-    /// 
-    /// Visit https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for more details.
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector name "{{ id }}"
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/machinelearningoutlierdetector.MachineLearningOutlierDetector has been deprecated in favor of grafana.machinelearning/outlierdetector.OutlierDetector")]
     [GrafanaResourceType("grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector")]
     public partial class MachineLearningOutlierDetector : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        /// The algorithm to use and its configuration. See
+        /// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         /// </summary>
         [Output("algorithm")]
         public Output<Outputs.MachineLearningOutlierDetectorAlgorithm> Algorithm { get; private set; } = null!;
@@ -57,7 +46,7 @@ namespace Pulumiverse.Grafana
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The data interval in seconds to monitor. Defaults to `300`.
+        /// The data interval in seconds to monitor.
         /// </summary>
         [Output("interval")]
         public Output<int?> Interval { get; private set; } = null!;
@@ -104,6 +93,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -128,7 +121,8 @@ namespace Pulumiverse.Grafana
     public sealed class MachineLearningOutlierDetectorArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        /// The algorithm to use and its configuration. See
+        /// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         /// </summary>
         [Input("algorithm", required: true)]
         public Input<Inputs.MachineLearningOutlierDetectorAlgorithmArgs> Algorithm { get; set; } = null!;
@@ -158,7 +152,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The data interval in seconds to monitor. Defaults to `300`.
+        /// The data interval in seconds to monitor.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }
@@ -196,7 +190,8 @@ namespace Pulumiverse.Grafana
     public sealed class MachineLearningOutlierDetectorState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        /// The algorithm to use and its configuration. See
+        /// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         /// </summary>
         [Input("algorithm")]
         public Input<Inputs.MachineLearningOutlierDetectorAlgorithmGetArgs>? Algorithm { get; set; }
@@ -226,7 +221,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The data interval in seconds to monitor. Defaults to `300`.
+        /// The data interval in seconds to monitor.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }

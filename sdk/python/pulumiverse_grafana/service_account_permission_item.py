@@ -185,7 +185,12 @@ class _ServiceAccountPermissionItemState:
         pulumi.set(self, "user", value)
 
 
+warnings.warn("""grafana.index/serviceaccountpermissionitem.ServiceAccountPermissionItem has been deprecated in favor of grafana.oss/serviceaccountpermissionitem.ServiceAccountPermissionItem""", DeprecationWarning)
+
+
 class ServiceAccountPermissionItem(pulumi.CustomResource):
+    warnings.warn("""grafana.index/serviceaccountpermissionitem.ServiceAccountPermissionItem has been deprecated in favor of grafana.oss/serviceaccountpermissionitem.ServiceAccountPermissionItem""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -197,43 +202,7 @@ class ServiceAccountPermissionItem(pulumi.CustomResource):
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages a single permission item for a service account. Conflicts with the "ServiceAccountPermission" resource which manages the entire set of permissions for a service account.
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test = grafana.ServiceAccount("test",
-            role="Editor",
-            is_disabled=False)
-        team = grafana.Team("team")
-        user = grafana.User("user",
-            email="user.name@example.com",
-            login="user.name",
-            password="my-password")
-        on_team = grafana.ServiceAccountPermissionItem("onTeam",
-            service_account_id=test.id,
-            team=team.id,
-            permission="Admin")
-        on_user = grafana.ServiceAccountPermissionItem("onUser",
-            service_account_id=test.id,
-            user=user.id,
-            permission="Admin")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ orgID }}:{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-        ```
-
+        Create a ServiceAccountPermissionItem resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -249,43 +218,7 @@ class ServiceAccountPermissionItem(pulumi.CustomResource):
                  args: ServiceAccountPermissionItemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a single permission item for a service account. Conflicts with the "ServiceAccountPermission" resource which manages the entire set of permissions for a service account.
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test = grafana.ServiceAccount("test",
-            role="Editor",
-            is_disabled=False)
-        team = grafana.Team("team")
-        user = grafana.User("user",
-            email="user.name@example.com",
-            login="user.name",
-            password="my-password")
-        on_team = grafana.ServiceAccountPermissionItem("onTeam",
-            service_account_id=test.id,
-            team=team.id,
-            permission="Admin")
-        on_user = grafana.ServiceAccountPermissionItem("onUser",
-            service_account_id=test.id,
-            user=user.id,
-            permission="Admin")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ orgID }}:{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-        ```
-
+        Create a ServiceAccountPermissionItem resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param ServiceAccountPermissionItemArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -307,6 +240,7 @@ class ServiceAccountPermissionItem(pulumi.CustomResource):
                  team: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""ServiceAccountPermissionItem is deprecated: grafana.index/serviceaccountpermissionitem.ServiceAccountPermissionItem has been deprecated in favor of grafana.oss/serviceaccountpermissionitem.ServiceAccountPermissionItem""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -324,6 +258,8 @@ class ServiceAccountPermissionItem(pulumi.CustomResource):
             __props__.__dict__["service_account_id"] = service_account_id
             __props__.__dict__["team"] = team
             __props__.__dict__["user"] = user
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(ServiceAccountPermissionItem, __self__).__init__(
             'grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem',
             resource_name,

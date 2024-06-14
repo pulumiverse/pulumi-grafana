@@ -15,15 +15,15 @@ namespace Pulumiverse.Grafana.Outputs
     public sealed class SyntheticMonitoringCheckSettingsTraceroute
     {
         /// <summary>
-        /// Maximum TTL for the trace Defaults to `64`.
+        /// Maximum TTL for the trace
         /// </summary>
         public readonly int? MaxHops;
         /// <summary>
-        /// Maximum number of hosts to travers that give no response Defaults to `15`.
+        /// Maximum number of hosts to travers that give no response
         /// </summary>
         public readonly int? MaxUnknownHops;
         /// <summary>
-        /// Reverse lookup hostnames from IP addresses Defaults to `true`.
+        /// Reverse lookup hostnames from IP addresses
         /// </summary>
         public readonly bool? PtrLookup;
 

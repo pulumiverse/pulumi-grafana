@@ -15,23 +15,23 @@ namespace Pulumiverse.Grafana.Outputs
     public sealed class SyntheticMonitoringCheckSettingsDns
     {
         /// <summary>
-        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
         /// </summary>
         public readonly string? IpVersion;
         /// <summary>
-        /// Port to target. Defaults to `53`.
+        /// Port to target.
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// `TCP` or `UDP`. Defaults to `UDP`.
+        /// `TCP` or `UDP`.
         /// </summary>
         public readonly string? Protocol;
         /// <summary>
-        /// One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+        /// One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`.
         /// </summary>
         public readonly string? RecordType;
         /// <summary>
-        /// DNS server address to target. Defaults to `8.8.8.8`.
+        /// DNS server address to target.
         /// </summary>
         public readonly string? Server;
         /// <summary>

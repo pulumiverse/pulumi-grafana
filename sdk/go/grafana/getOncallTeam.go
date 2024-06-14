@@ -11,31 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.GetOncallTeam(ctx, &grafana.GetOncallTeamArgs{
-//				Name: "example_team",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
+// Deprecated: grafana.index/getoncallteam.getOncallTeam has been deprecated in favor of grafana.oncall/getteam.getTeam
 func GetOncallTeam(ctx *pulumi.Context, args *GetOncallTeamArgs, opts ...pulumi.InvokeOption) (*GetOncallTeamResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOncallTeamResult
@@ -48,7 +24,6 @@ func GetOncallTeam(ctx *pulumi.Context, args *GetOncallTeamArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getOncallTeam.
 type GetOncallTeamArgs struct {
-	// The team name.
 	Name string `pulumi:"name"`
 }
 
@@ -57,8 +32,7 @@ type GetOncallTeamResult struct {
 	AvatarUrl string `pulumi:"avatarUrl"`
 	Email     string `pulumi:"email"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// The team name.
+	Id   string `pulumi:"id"`
 	Name string `pulumi:"name"`
 }
 
@@ -77,7 +51,6 @@ func GetOncallTeamOutput(ctx *pulumi.Context, args GetOncallTeamOutputArgs, opts
 
 // A collection of arguments for invoking getOncallTeam.
 type GetOncallTeamOutputArgs struct {
-	// The team name.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -113,7 +86,6 @@ func (o GetOncallTeamResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOncallTeamResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The team name.
 func (o GetOncallTeamResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOncallTeamResult) string { return v.Name }).(pulumi.StringOutput)
 }

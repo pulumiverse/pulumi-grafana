@@ -5,49 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manages a single permission item for a folder. Conflicts with the "grafana.FolderPermission" resource which manages the entire set of permissions for a folder.
- * 		* [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
- * 		* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const team = new grafana.Team("team", {});
- * const user = new grafana.User("user", {
- *     email: "user.name@example.com",
- *     login: "user.name",
- *     password: "my-password",
- * });
- * const collection = new grafana.Folder("collection", {title: "Folder Title"});
- * const onRole = new grafana.FolderPermissionItem("onRole", {
- *     folderUid: collection.uid,
- *     role: "Viewer",
- *     permission: "Edit",
- * });
- * const onTeam = new grafana.FolderPermissionItem("onTeam", {
- *     folderUid: collection.uid,
- *     team: team.id,
- *     permission: "View",
- * });
- * const onUser = new grafana.FolderPermissionItem("onUser", {
- *     folderUid: collection.uid,
- *     user: user.id,
- *     permission: "Admin",
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ orgID }}:{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
- * ```
+ * @deprecated grafana.index/folderpermissionitem.FolderPermissionItem has been deprecated in favor of grafana.oss/folderpermissionitem.FolderPermissionItem
  */
 export class FolderPermissionItem extends pulumi.CustomResource {
     /**
@@ -60,6 +18,7 @@ export class FolderPermissionItem extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: FolderPermissionItemState, opts?: pulumi.CustomResourceOptions): FolderPermissionItem {
+        pulumi.log.warn("FolderPermissionItem is deprecated: grafana.index/folderpermissionitem.FolderPermissionItem has been deprecated in favor of grafana.oss/folderpermissionitem.FolderPermissionItem")
         return new FolderPermissionItem(name, <any>state, { ...opts, id: id });
     }
 
@@ -109,8 +68,11 @@ export class FolderPermissionItem extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/folderpermissionitem.FolderPermissionItem has been deprecated in favor of grafana.oss/folderpermissionitem.FolderPermissionItem */
     constructor(name: string, args: FolderPermissionItemArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/folderpermissionitem.FolderPermissionItem has been deprecated in favor of grafana.oss/folderpermissionitem.FolderPermissionItem */
     constructor(name: string, argsOrState?: FolderPermissionItemArgs | FolderPermissionItemState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("FolderPermissionItem is deprecated: grafana.index/folderpermissionitem.FolderPermissionItem has been deprecated in favor of grafana.oss/folderpermissionitem.FolderPermissionItem")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -137,6 +99,8 @@ export class FolderPermissionItem extends pulumi.CustomResource {
             resourceInputs["user"] = args ? args.user : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/folderPermissionItem:FolderPermissionItem" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(FolderPermissionItem.__pulumiType, name, resourceInputs, opts);
     }
 }

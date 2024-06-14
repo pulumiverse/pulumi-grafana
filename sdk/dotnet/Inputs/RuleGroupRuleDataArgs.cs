@@ -26,7 +26,7 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string> Model { get; set; } = null!;
 
         /// <summary>
-        /// An optional identifier for the type of query being executed. Defaults to ``.
+        /// An optional identifier for the type of query being executed.
         /// </summary>
         [Input("queryType")]
         public Input<string>? QueryType { get; set; }

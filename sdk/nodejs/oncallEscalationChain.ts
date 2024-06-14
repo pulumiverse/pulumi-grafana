@@ -5,24 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const _default = new grafana.OncallEscalationChain("default", {}, {
- *     provider: grafana.oncall,
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/oncallEscalationChain:OncallEscalationChain name "{{ id }}"
- * ```
+ * @deprecated grafana.index/oncallescalationchain.OncallEscalationChain has been deprecated in favor of grafana.oncall/escalationchain.EscalationChain
  */
 export class OncallEscalationChain extends pulumi.CustomResource {
     /**
@@ -35,6 +18,7 @@ export class OncallEscalationChain extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: OncallEscalationChainState, opts?: pulumi.CustomResourceOptions): OncallEscalationChain {
+        pulumi.log.warn("OncallEscalationChain is deprecated: grafana.index/oncallescalationchain.OncallEscalationChain has been deprecated in favor of grafana.oncall/escalationchain.EscalationChain")
         return new OncallEscalationChain(name, <any>state, { ...opts, id: id });
     }
 
@@ -57,7 +41,8 @@ export class OncallEscalationChain extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+     * with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
      */
     public readonly teamId!: pulumi.Output<string | undefined>;
 
@@ -68,8 +53,11 @@ export class OncallEscalationChain extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/oncallescalationchain.OncallEscalationChain has been deprecated in favor of grafana.oncall/escalationchain.EscalationChain */
     constructor(name: string, args?: OncallEscalationChainArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/oncallescalationchain.OncallEscalationChain has been deprecated in favor of grafana.oncall/escalationchain.EscalationChain */
     constructor(name: string, argsOrState?: OncallEscalationChainArgs | OncallEscalationChainState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("OncallEscalationChain is deprecated: grafana.index/oncallescalationchain.OncallEscalationChain has been deprecated in favor of grafana.oncall/escalationchain.EscalationChain")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -82,6 +70,8 @@ export class OncallEscalationChain extends pulumi.CustomResource {
             resourceInputs["teamId"] = args ? args.teamId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/oncallEscalationChain:OncallEscalationChain" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(OncallEscalationChain.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -95,7 +85,8 @@ export interface OncallEscalationChainState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+     * with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
      */
     teamId?: pulumi.Input<string>;
 }
@@ -109,7 +100,8 @@ export interface OncallEscalationChainArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+     * with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
      */
     teamId?: pulumi.Input<string>;
 }

@@ -12,51 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Equivalent to the the `teamSync` attribute of the `Team` resource. Use one or the other to configure a team's external groups syncing config.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myTeam, err := grafana.NewTeam(ctx, "myTeam", nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewTeamExternalGroup(ctx, "test-team-group", &grafana.TeamExternalGroupArgs{
-//				TeamId: myTeam.ID(),
-//				Groups: pulumi.StringArray{
-//					pulumi.String("test-group-1"),
-//					pulumi.String("test-group-2"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup name "{{ teamID }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup name "{{ orgID }}:{{ teamID }}"
-// ```
+// Deprecated: grafana.index/teamexternalgroup.TeamExternalGroup has been deprecated in favor of grafana.enterprise/teamexternalgroup.TeamExternalGroup
 type TeamExternalGroup struct {
 	pulumi.CustomResourceState
 
@@ -79,6 +35,12 @@ func NewTeamExternalGroup(ctx *pulumi.Context,
 	if args.TeamId == nil {
 		return nil, errors.New("invalid value for required argument 'TeamId'")
 	}
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/teamExternalGroup:TeamExternalGroup"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource TeamExternalGroup
 	err := ctx.RegisterResource("grafana:index/teamExternalGroup:TeamExternalGroup", name, args, &resource, opts...)

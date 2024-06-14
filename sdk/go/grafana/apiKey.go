@@ -12,40 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			foo, err := grafana.NewApiKey(ctx, "foo", &grafana.ApiKeyArgs{
-//				Role: pulumi.String("Viewer"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			bar, err := grafana.NewApiKey(ctx, "bar", &grafana.ApiKeyArgs{
-//				Role:          pulumi.String("Admin"),
-//				SecondsToLive: pulumi.Int(30),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("apiKeyFooKeyOnly", foo.Key)
-//			ctx.Export("apiKeyBar", bar)
-//			return nil
-//		})
-//	}
-//
-// ```
+// Deprecated: grafana.index/apikey.ApiKey has been deprecated in favor of grafana.oss/apikey.ApiKey
 type ApiKey struct {
 	pulumi.CustomResourceState
 
@@ -68,6 +35,12 @@ func NewApiKey(ctx *pulumi.Context,
 	if args.Role == nil {
 		return nil, errors.New("invalid value for required argument 'Role'")
 	}
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/apiKey:ApiKey"),
+		},
+	})
+	opts = append(opts, aliases)
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"key",
 	})

@@ -17,6 +17,8 @@ __all__ = [
     'get_role_output',
 ]
 
+warnings.warn("""grafana.index/getrole.getRole has been deprecated in favor of grafana.enterprise/getrole.getRole""", DeprecationWarning)
+
 @pulumi.output_type
 class GetRoleResult:
     """
@@ -60,41 +62,26 @@ class GetRoleResult:
     @property
     @pulumi.getter
     def description(self) -> str:
-        """
-        Description of the role.
-        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> str:
-        """
-        Display name of the role. Available with Grafana 8.5+.
-        """
         return pulumi.get(self, "display_name")
 
     @property
     @pulumi.getter(name="global")
     def global_(self) -> bool:
-        """
-        Boolean to state whether the role is available across all organizations or not.
-        """
         return pulumi.get(self, "global_")
 
     @property
     @pulumi.getter
     def group(self) -> str:
-        """
-        Group of the role. Available with Grafana 8.5+.
-        """
         return pulumi.get(self, "group")
 
     @property
     @pulumi.getter
     def hidden(self) -> bool:
-        """
-        Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
-        """
         return pulumi.get(self, "hidden")
 
     @property
@@ -108,41 +95,26 @@ class GetRoleResult:
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        Name of the role
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> str:
-        """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        """
         return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter
     def permissions(self) -> Sequence['outputs.GetRolePermissionResult']:
-        """
-        Specific set of actions granted by the role.
-        """
         return pulumi.get(self, "permissions")
 
     @property
     @pulumi.getter
     def uid(self) -> str:
-        """
-        Unique identifier of the role. Used for assignments.
-        """
         return pulumi.get(self, "uid")
 
     @property
     @pulumi.getter
     def version(self) -> int:
-        """
-        Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
-        """
         return pulumi.get(self, "version")
 
 
@@ -168,44 +140,9 @@ class AwaitableGetRoleResult(GetRoleResult):
 def get_role(name: Optional[str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRoleResult:
     """
-    **Note:** This resource is available only with Grafana Enterprise 8.+.
-
-    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-    import pulumiverse_grafana as grafana
-
-    test = grafana.Role("test",
-        description="test-role description",
-        uid="test-ds-role-uid",
-        version=1,
-        global_=True,
-        hidden=False,
-        permissions=[
-            grafana.RolePermissionArgs(
-                action="org.users:add",
-                scope="users:*",
-            ),
-            grafana.RolePermissionArgs(
-                action="org.users:write",
-                scope="users:*",
-            ),
-            grafana.RolePermissionArgs(
-                action="org.users:read",
-                scope="users:*",
-            ),
-        ])
-    from_name = grafana.get_role_output(name=test.name)
-    ```
-
-
-    :param str name: Name of the role
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_role is deprecated: grafana.index/getrole.getRole has been deprecated in favor of grafana.enterprise/getrole.getRole""")
     __args__ = dict()
     __args__['name'] = name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -229,42 +166,7 @@ def get_role(name: Optional[str] = None,
 def get_role_output(name: Optional[pulumi.Input[str]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRoleResult]:
     """
-    **Note:** This resource is available only with Grafana Enterprise 8.+.
-
-    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-    import pulumiverse_grafana as grafana
-
-    test = grafana.Role("test",
-        description="test-role description",
-        uid="test-ds-role-uid",
-        version=1,
-        global_=True,
-        hidden=False,
-        permissions=[
-            grafana.RolePermissionArgs(
-                action="org.users:add",
-                scope="users:*",
-            ),
-            grafana.RolePermissionArgs(
-                action="org.users:write",
-                scope="users:*",
-            ),
-            grafana.RolePermissionArgs(
-                action="org.users:read",
-                scope="users:*",
-            ),
-        ])
-    from_name = grafana.get_role_output(name=test.name)
-    ```
-
-
-    :param str name: Name of the role
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_role is deprecated: grafana.index/getrole.getRole has been deprecated in favor of grafana.enterprise/getrole.getRole""")
     ...

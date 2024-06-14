@@ -10,36 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test_acc_outgoingWebhook = new Grafana.OncallOutgoingWebhook("test-acc-outgoingWebhook", new()
-    ///     {
-    ///         Url = "https://example.com/",
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         Provider = grafana.Oncall,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook name "{{ id }}"
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/oncalloutgoingwebhook.OncallOutgoingWebhook has been deprecated in favor of grafana.oncall/outgoingwebhook.OutgoingWebhook")]
     [GrafanaResourceType("grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook")]
     public partial class OncallOutgoingWebhook : global::Pulumi.CustomResource
     {
@@ -68,13 +39,14 @@ namespace Pulumiverse.Grafana
         public Output<string?> Headers { get; private set; } = null!;
 
         /// <summary>
-        /// The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+        /// The HTTP method used in the request made by the outgoing webhook.
         /// </summary>
         [Output("httpMethod")]
         public Output<string?> HttpMethod { get; private set; } = null!;
 
         /// <summary>
-        /// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        /// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
+        /// selected the outgoing webhook will trigger for any integration.
         /// </summary>
         [Output("integrationFilters")]
         public Output<ImmutableArray<string>> IntegrationFilters { get; private set; } = null!;
@@ -98,7 +70,8 @@ namespace Pulumiverse.Grafana
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+        /// with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
         /// </summary>
         [Output("teamId")]
         public Output<string?> TeamId { get; private set; } = null!;
@@ -110,7 +83,8 @@ namespace Pulumiverse.Grafana
         public Output<string?> TriggerTemplate { get; private set; } = null!;
 
         /// <summary>
-        /// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        /// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
+        /// group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
         /// </summary>
         [Output("triggerType")]
         public Output<string?> TriggerType { get; private set; } = null!;
@@ -151,6 +125,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook" },
+                },
                 AdditionalSecretOutputs =
                 {
                     "authorizationHeader",
@@ -214,7 +192,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Headers { get; set; }
 
         /// <summary>
-        /// The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+        /// The HTTP method used in the request made by the outgoing webhook.
         /// </summary>
         [Input("httpMethod")]
         public Input<string>? HttpMethod { get; set; }
@@ -223,7 +201,8 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _integrationFilters;
 
         /// <summary>
-        /// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        /// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
+        /// selected the outgoing webhook will trigger for any integration.
         /// </summary>
         public InputList<string> IntegrationFilters
         {
@@ -260,7 +239,8 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+        /// with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
@@ -272,7 +252,8 @@ namespace Pulumiverse.Grafana
         public Input<string>? TriggerTemplate { get; set; }
 
         /// <summary>
-        /// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        /// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
+        /// group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
         /// </summary>
         [Input("triggerType")]
         public Input<string>? TriggerType { get; set; }
@@ -332,7 +313,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Headers { get; set; }
 
         /// <summary>
-        /// The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
+        /// The HTTP method used in the request made by the outgoing webhook.
         /// </summary>
         [Input("httpMethod")]
         public Input<string>? HttpMethod { get; set; }
@@ -341,7 +322,8 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _integrationFilters;
 
         /// <summary>
-        /// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
+        /// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
+        /// selected the outgoing webhook will trigger for any integration.
         /// </summary>
         public InputList<string> IntegrationFilters
         {
@@ -378,7 +360,8 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.getOncallTeam` datasource.
+        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
+        /// with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
@@ -390,7 +373,8 @@ namespace Pulumiverse.Grafana
         public Input<string>? TriggerTemplate { get; set; }
 
         /// <summary>
-        /// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        /// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
+        /// group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
         /// </summary>
         [Input("triggerType")]
         public Input<string>? TriggerType { get; set; }

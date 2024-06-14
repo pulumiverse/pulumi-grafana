@@ -7,53 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Manages Grafana Alerting mute timings.
- *
- * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/mute-timings/)
- * * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#mute-timings)
- *
- * This resource requires Grafana 9.1.0 or later.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const myMuteTiming = new grafana.MuteTiming("myMuteTiming", {intervals: [{
- *     daysOfMonths: [
- *         "1:7",
- *         "-1",
- *     ],
- *     location: "America/New_York",
- *     months: [
- *         "1:3",
- *         "december",
- *     ],
- *     times: [{
- *         end: "14:17",
- *         start: "04:56",
- *     }],
- *     weekdays: [
- *         "monday",
- *         "tuesday:thursday",
- *     ],
- *     years: [
- *         "2030",
- *         "2025:2026",
- *     ],
- * }]});
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/muteTiming:MuteTiming name "{{ name }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/muteTiming:MuteTiming name "{{ orgID }}:{{ name }}"
- * ```
+ * @deprecated grafana.index/mutetiming.MuteTiming has been deprecated in favor of grafana.alerting/mutetiming.MuteTiming
  */
 export class MuteTiming extends pulumi.CustomResource {
     /**
@@ -66,6 +20,7 @@ export class MuteTiming extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MuteTimingState, opts?: pulumi.CustomResourceOptions): MuteTiming {
+        pulumi.log.warn("MuteTiming is deprecated: grafana.index/mutetiming.MuteTiming has been deprecated in favor of grafana.alerting/mutetiming.MuteTiming")
         return new MuteTiming(name, <any>state, { ...opts, id: id });
     }
 
@@ -104,8 +59,11 @@ export class MuteTiming extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/mutetiming.MuteTiming has been deprecated in favor of grafana.alerting/mutetiming.MuteTiming */
     constructor(name: string, args?: MuteTimingArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/mutetiming.MuteTiming has been deprecated in favor of grafana.alerting/mutetiming.MuteTiming */
     constructor(name: string, argsOrState?: MuteTimingArgs | MuteTimingState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("MuteTiming is deprecated: grafana.index/mutetiming.MuteTiming has been deprecated in favor of grafana.alerting/mutetiming.MuteTiming")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -122,6 +80,8 @@ export class MuteTiming extends pulumi.CustomResource {
             resourceInputs["orgId"] = args ? args.orgId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/muteTiming:MuteTiming" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(MuteTiming.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -5,32 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
- *
- * This resource represents an instance-scoped resource and uses Grafana's admin APIs.
- * It does not work with API tokens or service accounts which are org-scoped.
- * You must use basic auth.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const staff = new grafana.User("staff", {
- *     email: "staff.name@example.com",
- *     isAdmin: false,
- *     login: "staff",
- *     password: "my-password",
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/user:User name "{{ id }}"
- * ```
+ * @deprecated grafana.index/user.User has been deprecated in favor of grafana.oss/user.User
  */
 export class User extends pulumi.CustomResource {
     /**
@@ -43,6 +18,7 @@ export class User extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: UserState, opts?: pulumi.CustomResourceOptions): User {
+        pulumi.log.warn("User is deprecated: grafana.index/user.User has been deprecated in favor of grafana.oss/user.User")
         return new User(name, <any>state, { ...opts, id: id });
     }
 
@@ -65,7 +41,7 @@ export class User extends pulumi.CustomResource {
      */
     public readonly email!: pulumi.Output<string>;
     /**
-     * Whether to make user an admin. Defaults to `false`.
+     * Whether to make user an admin.
      */
     public readonly isAdmin!: pulumi.Output<boolean | undefined>;
     /**
@@ -92,8 +68,11 @@ export class User extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/user.User has been deprecated in favor of grafana.oss/user.User */
     constructor(name: string, args: UserArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/user.User has been deprecated in favor of grafana.oss/user.User */
     constructor(name: string, argsOrState?: UserArgs | UserState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("User is deprecated: grafana.index/user.User has been deprecated in favor of grafana.oss/user.User")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -120,6 +99,8 @@ export class User extends pulumi.CustomResource {
             resourceInputs["userId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/user:User" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["password"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(User.__pulumiType, name, resourceInputs, opts);
@@ -135,7 +116,7 @@ export interface UserState {
      */
     email?: pulumi.Input<string>;
     /**
-     * Whether to make user an admin. Defaults to `false`.
+     * Whether to make user an admin.
      */
     isAdmin?: pulumi.Input<boolean>;
     /**
@@ -165,7 +146,7 @@ export interface UserArgs {
      */
     email: pulumi.Input<string>;
     /**
-     * Whether to make user an admin. Defaults to `false`.
+     * Whether to make user an admin.
      */
     isAdmin?: pulumi.Input<boolean>;
     /**

@@ -12,76 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Manages the entire set of permissions for a service account. Permissions that aren't specified when applying this resource will be removed.
-//
-// **Note:** This resource is available from Grafana 9.2.4 onwards.
-//
-// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			test, err := grafana.NewServiceAccount(ctx, "test", &grafana.ServiceAccountArgs{
-//				Role:       pulumi.String("Editor"),
-//				IsDisabled: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			testTeam, err := grafana.NewTeam(ctx, "testTeam", nil)
-//			if err != nil {
-//				return err
-//			}
-//			testUser, err := grafana.NewUser(ctx, "testUser", &grafana.UserArgs{
-//				Email:    pulumi.String("tf_user@test.com"),
-//				Login:    pulumi.String("tf_user@test.com"),
-//				Password: pulumi.String("password"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewServiceAccountPermission(ctx, "testPermissions", &grafana.ServiceAccountPermissionArgs{
-//				ServiceAccountId: test.ID(),
-//				Permissions: grafana.ServiceAccountPermissionPermissionArray{
-//					&grafana.ServiceAccountPermissionPermissionArgs{
-//						UserId:     testUser.ID(),
-//						Permission: pulumi.String("Edit"),
-//					},
-//					&grafana.ServiceAccountPermissionPermissionArgs{
-//						TeamId:     testTeam.ID(),
-//						Permission: pulumi.String("Admin"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/serviceAccountPermission:ServiceAccountPermission name "{{ serviceAccountID }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:index/serviceAccountPermission:ServiceAccountPermission name "{{ orgID }}:{{ serviceAccountID }}"
-// ```
+// Deprecated: grafana.index/serviceaccountpermission.ServiceAccountPermission has been deprecated in favor of grafana.oss/serviceaccountpermission.ServiceAccountPermission
 type ServiceAccountPermission struct {
 	pulumi.CustomResourceState
 
@@ -103,6 +34,12 @@ func NewServiceAccountPermission(ctx *pulumi.Context,
 	if args.ServiceAccountId == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceAccountId'")
 	}
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/serviceAccountPermission:ServiceAccountPermission"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ServiceAccountPermission
 	err := ctx.RegisterResource("grafana:index/serviceAccountPermission:ServiceAccountPermission", name, args, &resource, opts...)

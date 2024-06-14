@@ -7,43 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.Playlist("test", {
- *     interval: "5m",
- *     items: [
- *         {
- *             order: 2,
- *             title: "Terraform Dashboard By Tag",
- *             type: "dashboard_by_tag",
- *             value: "terraform",
- *         },
- *         {
- *             order: 1,
- *             title: "Terraform Dashboard By ID",
- *             type: "dashboard_by_id",
- *             value: "3",
- *         },
- *     ],
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/playlist:Playlist name "{{ uid }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/playlist:Playlist name "{{ orgID }}:{{ uid }}"
- * ```
+ * @deprecated grafana.index/playlist.Playlist has been deprecated in favor of grafana.oss/playlist.Playlist
  */
 export class Playlist extends pulumi.CustomResource {
     /**
@@ -56,6 +20,7 @@ export class Playlist extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: PlaylistState, opts?: pulumi.CustomResourceOptions): Playlist {
+        pulumi.log.warn("Playlist is deprecated: grafana.index/playlist.Playlist has been deprecated in favor of grafana.oss/playlist.Playlist")
         return new Playlist(name, <any>state, { ...opts, id: id });
     }
 
@@ -91,8 +56,11 @@ export class Playlist extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/playlist.Playlist has been deprecated in favor of grafana.oss/playlist.Playlist */
     constructor(name: string, args: PlaylistArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/playlist.Playlist has been deprecated in favor of grafana.oss/playlist.Playlist */
     constructor(name: string, argsOrState?: PlaylistArgs | PlaylistState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("Playlist is deprecated: grafana.index/playlist.Playlist has been deprecated in favor of grafana.oss/playlist.Playlist")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -115,6 +83,8 @@ export class Playlist extends pulumi.CustomResource {
             resourceInputs["orgId"] = args ? args.orgId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/playlist:Playlist" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Playlist.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -12,49 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// This resource is deprecated and will be removed in a future release. Please use CloudAccessPolicy instead.
-//
-// Manages a single API key on the Grafana Cloud portal (on the organization level)
-// * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#api-keys)
-//
-// Required access policy scopes:
-//
-// * api-keys:read
-// * api-keys:write
-// * api-keys:delete
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.NewCloudApiKey(ctx, "test", &grafana.CloudApiKeyArgs{
-//				CloudOrgSlug: pulumi.String("myorg"),
-//				Role:         pulumi.String("Admin"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/cloudApiKey:CloudApiKey name "{{ orgSlug }}:{{ apiKeyName }}"
-// ```
+// Deprecated: grafana.index/cloudapikey.CloudApiKey has been deprecated in favor of grafana.cloud/apikey.ApiKey
 type CloudApiKey struct {
 	pulumi.CustomResourceState
 
@@ -64,7 +22,8 @@ type CloudApiKey struct {
 	Key pulumi.StringOutput `pulumi:"key"`
 	// Name of the API key.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+	// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+	// https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
 	Role pulumi.StringOutput `pulumi:"role"`
 }
 
@@ -81,6 +40,12 @@ func NewCloudApiKey(ctx *pulumi.Context,
 	if args.Role == nil {
 		return nil, errors.New("invalid value for required argument 'Role'")
 	}
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/cloudApiKey:CloudApiKey"),
+		},
+	})
+	opts = append(opts, aliases)
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"key",
 	})
@@ -114,7 +79,8 @@ type cloudApiKeyState struct {
 	Key *string `pulumi:"key"`
 	// Name of the API key.
 	Name *string `pulumi:"name"`
-	// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+	// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+	// https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
 	Role *string `pulumi:"role"`
 }
 
@@ -125,7 +91,8 @@ type CloudApiKeyState struct {
 	Key pulumi.StringPtrInput
 	// Name of the API key.
 	Name pulumi.StringPtrInput
-	// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+	// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+	// https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
 	Role pulumi.StringPtrInput
 }
 
@@ -138,7 +105,8 @@ type cloudApiKeyArgs struct {
 	CloudOrgSlug string `pulumi:"cloudOrgSlug"`
 	// Name of the API key.
 	Name *string `pulumi:"name"`
-	// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+	// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+	// https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
 	Role string `pulumi:"role"`
 }
 
@@ -148,7 +116,8 @@ type CloudApiKeyArgs struct {
 	CloudOrgSlug pulumi.StringInput
 	// Name of the API key.
 	Name pulumi.StringPtrInput
-	// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+	// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+	// https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
 	Role pulumi.StringInput
 }
 
@@ -254,7 +223,8 @@ func (o CloudApiKeyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudApiKey) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
+// Role of the API key. Should be one of [Viewer Editor Admin MetricsPublisher PluginPublisher]. See
+// https://grafana.com/docs/grafana-cloud/api/#create-api-key for details.
 func (o CloudApiKeyOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudApiKey) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
 }

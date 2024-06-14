@@ -12,49 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Manages Grafana Cloud Plugin Installations.
-//
-// * [Plugin Catalog](https://grafana.com/grafana/plugins/)
-//
-// Required access policy scopes:
-//
-// * stack-plugins:read
-// * stack-plugins:write
-// * stack-plugins:delete
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.NewCloudPluginInstallation(ctx, "test", &grafana.CloudPluginInstallationArgs{
-//				Slug:      pulumi.String("some-plugin"),
-//				StackSlug: pulumi.String("stackname"),
-//				Version:   pulumi.String("1.2.3"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/cloudPluginInstallation:CloudPluginInstallation name "{{ stackSlug }}:{{ pluginSlug }}"
-// ```
+// Deprecated: grafana.index/cloudplugininstallation.CloudPluginInstallation has been deprecated in favor of grafana.cloud/plugininstallation.PluginInstallation
 type CloudPluginInstallation struct {
 	pulumi.CustomResourceState
 
@@ -82,6 +40,12 @@ func NewCloudPluginInstallation(ctx *pulumi.Context,
 	if args.Version == nil {
 		return nil, errors.New("invalid value for required argument 'Version'")
 	}
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/cloudPluginInstallation:CloudPluginInstallation"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CloudPluginInstallation
 	err := ctx.RegisterResource("grafana:index/cloudPluginInstallation:CloudPluginInstallation", name, args, &resource, opts...)

@@ -10,17 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// A holiday describes time periods where a time series is expected to behave differently to normal.
-    /// 
-    /// To use a holiday in a job, use its id in the `holidays` attribute of a `grafana.MachineLearningJob`:
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/machineLearningHoliday:MachineLearningHoliday name "{{ id }}"
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/machinelearningholiday.MachineLearningHoliday has been deprecated in favor of grafana.machinelearning/holiday.Holiday")]
     [GrafanaResourceType("grafana:index/machineLearningHoliday:MachineLearningHoliday")]
     public partial class MachineLearningHoliday : global::Pulumi.CustomResource
     {
@@ -78,6 +68,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/machineLearningHoliday:MachineLearningHoliday" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

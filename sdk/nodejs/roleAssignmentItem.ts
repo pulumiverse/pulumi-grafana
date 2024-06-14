@@ -5,53 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manages a single assignment for a role. Conflicts with the "grafana.RoleAssignment" resource which manages the entire set of assignments for a role.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const testRole = new grafana.Role("testRole", {
- *     uid: "testrole",
- *     version: 1,
- *     global: true,
- *     permissions: [{
- *         action: "org.users:add",
- *         scope: "users:*",
- *     }],
- * });
- * const testTeam = new grafana.Team("testTeam", {});
- * const testUser = new grafana.User("testUser", {
- *     email: "terraform_user@test.com",
- *     login: "terraform_user@test.com",
- *     password: "password",
- * });
- * const testSa = new grafana.ServiceAccount("testSa", {role: "Viewer"});
- * const user = new grafana.RoleAssignmentItem("user", {
- *     roleUid: testRole.uid,
- *     userId: testUser.id,
- * });
- * const team = new grafana.RoleAssignmentItem("team", {
- *     roleUid: testRole.uid,
- *     teamId: testTeam.id,
- * });
- * const serviceAccount = new grafana.RoleAssignmentItem("serviceAccount", {
- *     roleUid: testRole.uid,
- *     serviceAccountId: testSa.id,
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/roleAssignmentItem:RoleAssignmentItem name "{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/roleAssignmentItem:RoleAssignmentItem name "{{ orgID }}:{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
- * ```
+ * @deprecated grafana.index/roleassignmentitem.RoleAssignmentItem has been deprecated in favor of grafana.enterprise/roleassignmentitem.RoleAssignmentItem
  */
 export class RoleAssignmentItem extends pulumi.CustomResource {
     /**
@@ -64,6 +18,7 @@ export class RoleAssignmentItem extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RoleAssignmentItemState, opts?: pulumi.CustomResourceOptions): RoleAssignmentItem {
+        pulumi.log.warn("RoleAssignmentItem is deprecated: grafana.index/roleassignmentitem.RoleAssignmentItem has been deprecated in favor of grafana.enterprise/roleassignmentitem.RoleAssignmentItem")
         return new RoleAssignmentItem(name, <any>state, { ...opts, id: id });
     }
 
@@ -109,8 +64,11 @@ export class RoleAssignmentItem extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/roleassignmentitem.RoleAssignmentItem has been deprecated in favor of grafana.enterprise/roleassignmentitem.RoleAssignmentItem */
     constructor(name: string, args: RoleAssignmentItemArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/roleassignmentitem.RoleAssignmentItem has been deprecated in favor of grafana.enterprise/roleassignmentitem.RoleAssignmentItem */
     constructor(name: string, argsOrState?: RoleAssignmentItemArgs | RoleAssignmentItemState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("RoleAssignmentItem is deprecated: grafana.index/roleassignmentitem.RoleAssignmentItem has been deprecated in favor of grafana.enterprise/roleassignmentitem.RoleAssignmentItem")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -132,6 +90,8 @@ export class RoleAssignmentItem extends pulumi.CustomResource {
             resourceInputs["userId"] = args ? args.userId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/roleAssignmentItem:RoleAssignmentItem" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(RoleAssignmentItem.__pulumiType, name, resourceInputs, opts);
     }
 }

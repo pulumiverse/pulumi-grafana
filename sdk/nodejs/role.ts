@@ -7,48 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * **Note:** This resource is available only with Grafana Enterprise 8.+.
- *
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const superUser = new grafana.Role("superUser", {
- *     description: "My Super User description",
- *     global: true,
- *     permissions: [
- *         {
- *             action: "org.users:add",
- *             scope: "users:*",
- *         },
- *         {
- *             action: "org.users:write",
- *             scope: "users:*",
- *         },
- *         {
- *             action: "org.users:read",
- *             scope: "users:*",
- *         },
- *     ],
- *     uid: "superuseruid",
- *     version: 1,
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/role:Role name "{{ uid }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/role:Role name "{{ orgID }}:{{ uid }}"
- * ```
+ * @deprecated grafana.index/role.Role has been deprecated in favor of grafana.enterprise/role.Role
  */
 export class Role extends pulumi.CustomResource {
     /**
@@ -61,6 +20,7 @@ export class Role extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RoleState, opts?: pulumi.CustomResourceOptions): Role {
+        pulumi.log.warn("Role is deprecated: grafana.index/role.Role has been deprecated in favor of grafana.enterprise/role.Role")
         return new Role(name, <any>state, { ...opts, id: id });
     }
 
@@ -79,7 +39,8 @@ export class Role extends pulumi.CustomResource {
     }
 
     /**
-     * Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+     * Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
+     * `version` should be set.
      */
     public readonly autoIncrementVersion!: pulumi.Output<boolean | undefined>;
     /**
@@ -91,7 +52,7 @@ export class Role extends pulumi.CustomResource {
      */
     public readonly displayName!: pulumi.Output<string | undefined>;
     /**
-     * Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
+     * Boolean to state whether the role is available across all organizations or not.
      */
     public readonly global!: pulumi.Output<boolean | undefined>;
     /**
@@ -99,7 +60,7 @@ export class Role extends pulumi.CustomResource {
      */
     public readonly group!: pulumi.Output<string | undefined>;
     /**
-     * Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
+     * Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
      */
     public readonly hidden!: pulumi.Output<boolean | undefined>;
     /**
@@ -130,8 +91,11 @@ export class Role extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/role.Role has been deprecated in favor of grafana.enterprise/role.Role */
     constructor(name: string, args?: RoleArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/role.Role has been deprecated in favor of grafana.enterprise/role.Role */
     constructor(name: string, argsOrState?: RoleArgs | RoleState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("Role is deprecated: grafana.index/role.Role has been deprecated in favor of grafana.enterprise/role.Role")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -162,6 +126,8 @@ export class Role extends pulumi.CustomResource {
             resourceInputs["version"] = args ? args.version : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/role:Role" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Role.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -171,7 +137,8 @@ export class Role extends pulumi.CustomResource {
  */
 export interface RoleState {
     /**
-     * Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+     * Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
+     * `version` should be set.
      */
     autoIncrementVersion?: pulumi.Input<boolean>;
     /**
@@ -183,7 +150,7 @@ export interface RoleState {
      */
     displayName?: pulumi.Input<string>;
     /**
-     * Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
+     * Boolean to state whether the role is available across all organizations or not.
      */
     global?: pulumi.Input<boolean>;
     /**
@@ -191,7 +158,7 @@ export interface RoleState {
      */
     group?: pulumi.Input<string>;
     /**
-     * Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
+     * Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
      */
     hidden?: pulumi.Input<boolean>;
     /**
@@ -221,7 +188,8 @@ export interface RoleState {
  */
 export interface RoleArgs {
     /**
-     * Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+     * Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
+     * `version` should be set.
      */
     autoIncrementVersion?: pulumi.Input<boolean>;
     /**
@@ -233,7 +201,7 @@ export interface RoleArgs {
      */
     displayName?: pulumi.Input<string>;
     /**
-     * Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
+     * Boolean to state whether the role is available across all organizations or not.
      */
     global?: pulumi.Input<boolean>;
     /**
@@ -241,7 +209,7 @@ export interface RoleArgs {
      */
     group?: pulumi.Input<string>;
     /**
-     * Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
+     * Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
      */
     hidden?: pulumi.Input<boolean>;
     /**

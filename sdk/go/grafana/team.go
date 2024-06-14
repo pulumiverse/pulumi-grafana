@@ -11,55 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			viewer, err := grafana.NewUser(ctx, "viewer", &grafana.UserArgs{
-//				Email:    pulumi.String("viewer@example.com"),
-//				Login:    pulumi.String("viewer"),
-//				Password: pulumi.String("my-password"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewTeam(ctx, "test-team", &grafana.TeamArgs{
-//				Email: pulumi.String("teamemail@example.com"),
-//				Members: pulumi.StringArray{
-//					viewer.Email,
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/team:Team name "{{ id }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:index/team:Team name "{{ orgID }}:{{ id }}"
-// ```
+// Deprecated: grafana.index/team.Team has been deprecated in favor of grafana.oss/team.Team
 type Team struct {
 	pulumi.CustomResourceState
 
@@ -89,6 +41,12 @@ func NewTeam(ctx *pulumi.Context,
 		args = &TeamArgs{}
 	}
 
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/team:Team"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Team
 	err := ctx.RegisterResource("grafana:index/team:Team", name, args, &resource, opts...)

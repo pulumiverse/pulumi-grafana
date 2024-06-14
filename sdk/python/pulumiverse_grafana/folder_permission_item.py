@@ -217,7 +217,12 @@ class _FolderPermissionItemState:
         pulumi.set(self, "user", value)
 
 
+warnings.warn("""grafana.index/folderpermissionitem.FolderPermissionItem has been deprecated in favor of grafana.oss/folderpermissionitem.FolderPermissionItem""", DeprecationWarning)
+
+
 class FolderPermissionItem(pulumi.CustomResource):
+    warnings.warn("""grafana.index/folderpermissionitem.FolderPermissionItem has been deprecated in favor of grafana.oss/folderpermissionitem.FolderPermissionItem""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -230,46 +235,7 @@ class FolderPermissionItem(pulumi.CustomResource):
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages a single permission item for a folder. Conflicts with the "FolderPermission" resource which manages the entire set of permissions for a folder.
-        		* [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-        		* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        team = grafana.Team("team")
-        user = grafana.User("user",
-            email="user.name@example.com",
-            login="user.name",
-            password="my-password")
-        collection = grafana.Folder("collection", title="Folder Title")
-        on_role = grafana.FolderPermissionItem("onRole",
-            folder_uid=collection.uid,
-            role="Viewer",
-            permission="Edit")
-        on_team = grafana.FolderPermissionItem("onTeam",
-            folder_uid=collection.uid,
-            team=team.id,
-            permission="View")
-        on_user = grafana.FolderPermissionItem("onUser",
-            folder_uid=collection.uid,
-            user=user.id,
-            permission="Admin")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ orgID }}:{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-        ```
-
+        Create a FolderPermissionItem resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder.
@@ -286,46 +252,7 @@ class FolderPermissionItem(pulumi.CustomResource):
                  args: FolderPermissionItemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a single permission item for a folder. Conflicts with the "FolderPermission" resource which manages the entire set of permissions for a folder.
-        		* [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-        		* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        team = grafana.Team("team")
-        user = grafana.User("user",
-            email="user.name@example.com",
-            login="user.name",
-            password="my-password")
-        collection = grafana.Folder("collection", title="Folder Title")
-        on_role = grafana.FolderPermissionItem("onRole",
-            folder_uid=collection.uid,
-            role="Viewer",
-            permission="Edit")
-        on_team = grafana.FolderPermissionItem("onTeam",
-            folder_uid=collection.uid,
-            team=team.id,
-            permission="View")
-        on_user = grafana.FolderPermissionItem("onUser",
-            folder_uid=collection.uid,
-            user=user.id,
-            permission="Admin")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ orgID }}:{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-        ```
-
+        Create a FolderPermissionItem resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param FolderPermissionItemArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -348,6 +275,7 @@ class FolderPermissionItem(pulumi.CustomResource):
                  team: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""FolderPermissionItem is deprecated: grafana.index/folderpermissionitem.FolderPermissionItem has been deprecated in favor of grafana.oss/folderpermissionitem.FolderPermissionItem""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -366,6 +294,8 @@ class FolderPermissionItem(pulumi.CustomResource):
             __props__.__dict__["role"] = role
             __props__.__dict__["team"] = team
             __props__.__dict__["user"] = user
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/folderPermissionItem:FolderPermissionItem")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(FolderPermissionItem, __self__).__init__(
             'grafana:index/folderPermissionItem:FolderPermissionItem',
             resource_name,

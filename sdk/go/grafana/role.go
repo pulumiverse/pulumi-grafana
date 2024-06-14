@@ -11,77 +11,22 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// **Note:** This resource is available only with Grafana Enterprise 8.+.
-//
-// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.NewRole(ctx, "superUser", &grafana.RoleArgs{
-//				Description: pulumi.String("My Super User description"),
-//				Global:      pulumi.Bool(true),
-//				Permissions: grafana.RolePermissionArray{
-//					&grafana.RolePermissionArgs{
-//						Action: pulumi.String("org.users:add"),
-//						Scope:  pulumi.String("users:*"),
-//					},
-//					&grafana.RolePermissionArgs{
-//						Action: pulumi.String("org.users:write"),
-//						Scope:  pulumi.String("users:*"),
-//					},
-//					&grafana.RolePermissionArgs{
-//						Action: pulumi.String("org.users:read"),
-//						Scope:  pulumi.String("users:*"),
-//					},
-//				},
-//				Uid:     pulumi.String("superuseruid"),
-//				Version: pulumi.Int(1),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/role:Role name "{{ uid }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:index/role:Role name "{{ orgID }}:{{ uid }}"
-// ```
+// Deprecated: grafana.index/role.Role has been deprecated in favor of grafana.enterprise/role.Role
 type Role struct {
 	pulumi.CustomResourceState
 
-	// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+	// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
+	// `version` should be set.
 	AutoIncrementVersion pulumi.BoolPtrOutput `pulumi:"autoIncrementVersion"`
 	// Description of the role.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Display name of the role. Available with Grafana 8.5+.
 	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
-	// Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
+	// Boolean to state whether the role is available across all organizations or not.
 	Global pulumi.BoolPtrOutput `pulumi:"global"`
 	// Group of the role. Available with Grafana 8.5+.
 	Group pulumi.StringPtrOutput `pulumi:"group"`
-	// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
+	// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
 	Hidden pulumi.BoolPtrOutput `pulumi:"hidden"`
 	// Name of the role
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -102,6 +47,12 @@ func NewRole(ctx *pulumi.Context,
 		args = &RoleArgs{}
 	}
 
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/role:Role"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Role
 	err := ctx.RegisterResource("grafana:index/role:Role", name, args, &resource, opts...)
@@ -125,17 +76,18 @@ func GetRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Role resources.
 type roleState struct {
-	// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+	// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
+	// `version` should be set.
 	AutoIncrementVersion *bool `pulumi:"autoIncrementVersion"`
 	// Description of the role.
 	Description *string `pulumi:"description"`
 	// Display name of the role. Available with Grafana 8.5+.
 	DisplayName *string `pulumi:"displayName"`
-	// Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
+	// Boolean to state whether the role is available across all organizations or not.
 	Global *bool `pulumi:"global"`
 	// Group of the role. Available with Grafana 8.5+.
 	Group *string `pulumi:"group"`
-	// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
+	// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
 	Hidden *bool `pulumi:"hidden"`
 	// Name of the role
 	Name *string `pulumi:"name"`
@@ -150,17 +102,18 @@ type roleState struct {
 }
 
 type RoleState struct {
-	// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+	// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
+	// `version` should be set.
 	AutoIncrementVersion pulumi.BoolPtrInput
 	// Description of the role.
 	Description pulumi.StringPtrInput
 	// Display name of the role. Available with Grafana 8.5+.
 	DisplayName pulumi.StringPtrInput
-	// Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
+	// Boolean to state whether the role is available across all organizations or not.
 	Global pulumi.BoolPtrInput
 	// Group of the role. Available with Grafana 8.5+.
 	Group pulumi.StringPtrInput
-	// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
+	// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
 	Hidden pulumi.BoolPtrInput
 	// Name of the role
 	Name pulumi.StringPtrInput
@@ -179,17 +132,18 @@ func (RoleState) ElementType() reflect.Type {
 }
 
 type roleArgs struct {
-	// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+	// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
+	// `version` should be set.
 	AutoIncrementVersion *bool `pulumi:"autoIncrementVersion"`
 	// Description of the role.
 	Description *string `pulumi:"description"`
 	// Display name of the role. Available with Grafana 8.5+.
 	DisplayName *string `pulumi:"displayName"`
-	// Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
+	// Boolean to state whether the role is available across all organizations or not.
 	Global *bool `pulumi:"global"`
 	// Group of the role. Available with Grafana 8.5+.
 	Group *string `pulumi:"group"`
-	// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
+	// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
 	Hidden *bool `pulumi:"hidden"`
 	// Name of the role
 	Name *string `pulumi:"name"`
@@ -205,17 +159,18 @@ type roleArgs struct {
 
 // The set of arguments for constructing a Role resource.
 type RoleArgs struct {
-	// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+	// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
+	// `version` should be set.
 	AutoIncrementVersion pulumi.BoolPtrInput
 	// Description of the role.
 	Description pulumi.StringPtrInput
 	// Display name of the role. Available with Grafana 8.5+.
 	DisplayName pulumi.StringPtrInput
-	// Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
+	// Boolean to state whether the role is available across all organizations or not.
 	Global pulumi.BoolPtrInput
 	// Group of the role. Available with Grafana 8.5+.
 	Group pulumi.StringPtrInput
-	// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
+	// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
 	Hidden pulumi.BoolPtrInput
 	// Name of the role
 	Name pulumi.StringPtrInput
@@ -316,7 +271,8 @@ func (o RoleOutput) ToRoleOutputWithContext(ctx context.Context) RoleOutput {
 	return o
 }
 
-// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
+// `version` should be set.
 func (o RoleOutput) AutoIncrementVersion() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Role) pulumi.BoolPtrOutput { return v.AutoIncrementVersion }).(pulumi.BoolPtrOutput)
 }
@@ -331,7 +287,7 @@ func (o RoleOutput) DisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Role) pulumi.StringPtrOutput { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
 
-// Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
+// Boolean to state whether the role is available across all organizations or not.
 func (o RoleOutput) Global() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Role) pulumi.BoolPtrOutput { return v.Global }).(pulumi.BoolPtrOutput)
 }
@@ -341,7 +297,7 @@ func (o RoleOutput) Group() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Role) pulumi.StringPtrOutput { return v.Group }).(pulumi.StringPtrOutput)
 }
 
-// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
+// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
 func (o RoleOutput) Hidden() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Role) pulumi.BoolPtrOutput { return v.Hidden }).(pulumi.BoolPtrOutput)
 }

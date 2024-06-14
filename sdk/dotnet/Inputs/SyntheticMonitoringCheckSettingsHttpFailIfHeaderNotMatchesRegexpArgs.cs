@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Inputs
     public sealed class SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Allow header to be missing from responses. Defaults to `false`.
+        /// Allow header to be missing from responses.
         /// </summary>
         [Input("allowMissing")]
         public Input<bool>? AllowMissing { get; set; }

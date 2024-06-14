@@ -12,37 +12,26 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Resource manages Grafana SLOs.
-//
-// * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
-// * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
-// * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
-//
-// ## Example Usage
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/sLO:SLO name "{{ uuid }}"
-// ```
+// Deprecated: grafana.index/slo.SLO has been deprecated in favor of grafana.slo/slo.SLO
 type SLO struct {
 	pulumi.CustomResourceState
 
-	// Configures the alerting rules that will be generated for each
-	// 			time window associated with the SLO. Grafana SLOs can generate
-	// 			alerts when the short-term error budget burn is very high, the
-	// 			long-term error budget burn rate is high, or when the remaining
-	// 			error budget is below a certain threshold. Annotations and Labels support templating.
+	// Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
+	// generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
+	// when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
 	Alertings SLOAlertingArrayOutput `pulumi:"alertings"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasource SLODestinationDatasourcePtrOutput `pulumi:"destinationDatasource"`
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
+	// SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
+	// "^[a-zA-Z_][a-zA-Z0-9_]*$"
 	Labels SLOLabelArrayOutput `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
+	// each time window based on the SLO burn rate or remaining error budget.
 	Objectives SLOObjectiveArrayOutput `pulumi:"objectives"`
 	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries SLOQueryArrayOutput `pulumi:"queries"`
@@ -64,6 +53,12 @@ func NewSLO(ctx *pulumi.Context,
 	if args.Queries == nil {
 		return nil, errors.New("invalid value for required argument 'Queries'")
 	}
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/sLO:SLO"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SLO
 	err := ctx.RegisterResource("grafana:index/sLO:SLO", name, args, &resource, opts...)
@@ -87,42 +82,44 @@ func GetSLO(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SLO resources.
 type sloState struct {
-	// Configures the alerting rules that will be generated for each
-	// 			time window associated with the SLO. Grafana SLOs can generate
-	// 			alerts when the short-term error budget burn is very high, the
-	// 			long-term error budget burn rate is high, or when the remaining
-	// 			error budget is below a certain threshold. Annotations and Labels support templating.
+	// Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
+	// generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
+	// when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
 	Alertings []SLOAlerting `pulumi:"alertings"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description *string `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasource *SLODestinationDatasource `pulumi:"destinationDatasource"`
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
+	// SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
+	// "^[a-zA-Z_][a-zA-Z0-9_]*$"
 	Labels []SLOLabel `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name *string `pulumi:"name"`
-	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
+	// each time window based on the SLO burn rate or remaining error budget.
 	Objectives []SLOObjective `pulumi:"objectives"`
 	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries []SLOQuery `pulumi:"queries"`
 }
 
 type SLOState struct {
-	// Configures the alerting rules that will be generated for each
-	// 			time window associated with the SLO. Grafana SLOs can generate
-	// 			alerts when the short-term error budget burn is very high, the
-	// 			long-term error budget burn rate is high, or when the remaining
-	// 			error budget is below a certain threshold. Annotations and Labels support templating.
+	// Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
+	// generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
+	// when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
 	Alertings SLOAlertingArrayInput
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringPtrInput
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasource SLODestinationDatasourcePtrInput
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
+	// SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
+	// "^[a-zA-Z_][a-zA-Z0-9_]*$"
 	Labels SLOLabelArrayInput
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name pulumi.StringPtrInput
-	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
+	// each time window based on the SLO burn rate or remaining error budget.
 	Objectives SLOObjectiveArrayInput
 	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries SLOQueryArrayInput
@@ -133,21 +130,22 @@ func (SLOState) ElementType() reflect.Type {
 }
 
 type sloArgs struct {
-	// Configures the alerting rules that will be generated for each
-	// 			time window associated with the SLO. Grafana SLOs can generate
-	// 			alerts when the short-term error budget burn is very high, the
-	// 			long-term error budget burn rate is high, or when the remaining
-	// 			error budget is below a certain threshold. Annotations and Labels support templating.
+	// Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
+	// generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
+	// when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
 	Alertings []SLOAlerting `pulumi:"alertings"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description string `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasource *SLODestinationDatasource `pulumi:"destinationDatasource"`
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
+	// SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
+	// "^[a-zA-Z_][a-zA-Z0-9_]*$"
 	Labels []SLOLabel `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name *string `pulumi:"name"`
-	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
+	// each time window based on the SLO burn rate or remaining error budget.
 	Objectives []SLOObjective `pulumi:"objectives"`
 	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries []SLOQuery `pulumi:"queries"`
@@ -155,21 +153,22 @@ type sloArgs struct {
 
 // The set of arguments for constructing a SLO resource.
 type SLOArgs struct {
-	// Configures the alerting rules that will be generated for each
-	// 			time window associated with the SLO. Grafana SLOs can generate
-	// 			alerts when the short-term error budget burn is very high, the
-	// 			long-term error budget burn rate is high, or when the remaining
-	// 			error budget is below a certain threshold. Annotations and Labels support templating.
+	// Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
+	// generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
+	// when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
 	Alertings SLOAlertingArrayInput
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringInput
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasource SLODestinationDatasourcePtrInput
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
+	// SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
+	// "^[a-zA-Z_][a-zA-Z0-9_]*$"
 	Labels SLOLabelArrayInput
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name pulumi.StringPtrInput
-	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
+	// each time window based on the SLO burn rate or remaining error budget.
 	Objectives SLOObjectiveArrayInput
 	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries SLOQueryArrayInput
@@ -262,12 +261,9 @@ func (o SLOOutput) ToSLOOutputWithContext(ctx context.Context) SLOOutput {
 	return o
 }
 
-// Configures the alerting rules that will be generated for each
-//
-//	time window associated with the SLO. Grafana SLOs can generate
-//	alerts when the short-term error budget burn is very high, the
-//	long-term error budget burn rate is high, or when the remaining
-//	error budget is below a certain threshold. Annotations and Labels support templating.
+// Configures the alerting rules that will be generated for each time window associated with the SLO. Grafana SLOs can
+// generate alerts when the short-term error budget burn is very high, the long-term error budget burn rate is high, or
+// when the remaining error budget is below a certain threshold. Annotations and Labels support templating.
 func (o SLOOutput) Alertings() SLOAlertingArrayOutput {
 	return o.ApplyT(func(v *SLO) SLOAlertingArrayOutput { return v.Alertings }).(SLOAlertingArrayOutput)
 }
@@ -282,7 +278,9 @@ func (o SLOOutput) DestinationDatasource() SLODestinationDatasourcePtrOutput {
 	return o.ApplyT(func(v *SLO) SLODestinationDatasourcePtrOutput { return v.DestinationDatasource }).(SLODestinationDatasourcePtrOutput)
 }
 
-// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
+// SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
+// "^[a-zA-Z_][a-zA-Z0-9_]*$"
 func (o SLOOutput) Labels() SLOLabelArrayOutput {
 	return o.ApplyT(func(v *SLO) SLOLabelArrayOutput { return v.Labels }).(SLOLabelArrayOutput)
 }
@@ -292,7 +290,8 @@ func (o SLOOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SLO) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for
+// each time window based on the SLO burn rate or remaining error budget.
 func (o SLOOutput) Objectives() SLOObjectiveArrayOutput {
 	return o.ApplyT(func(v *SLO) SLOObjectiveArrayOutput { return v.Objectives }).(SLOObjectiveArrayOutput)
 }

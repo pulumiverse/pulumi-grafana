@@ -10,25 +10,12 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    [Obsolete(@"grafana.index/getslos.getSlos has been deprecated in favor of grafana.slo/getslos.getSlos")]
     public static class GetSlos
     {
-        /// <summary>
-        /// Datasource for retrieving all SLOs.
-        /// 		
-        /// * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
-        /// * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
-        /// * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
-        /// </summary>
         public static Task<GetSlosResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSlosResult>("grafana:index/getSlos:getSlos", InvokeArgs.Empty, options.WithDefaults());
 
-        /// <summary>
-        /// Datasource for retrieving all SLOs.
-        /// 		
-        /// * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
-        /// * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
-        /// * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
-        /// </summary>
         public static Output<GetSlosResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSlosResult>("grafana:index/getSlos:getSlos", InvokeArgs.Empty, options.WithDefaults());
     }
@@ -41,9 +28,6 @@ namespace Pulumiverse.Grafana
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// Returns a list of all SLOs"
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloResult> Slos;
 
         [OutputConstructor]

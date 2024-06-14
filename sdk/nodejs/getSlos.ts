@@ -6,14 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Datasource for retrieving all SLOs.
- *
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
- * * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
- * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
- */
+/** @deprecated grafana.index/getslos.getSlos has been deprecated in favor of grafana.slo/getslos.getSlos */
 export function getSlos(opts?: pulumi.InvokeOptions): Promise<GetSlosResult> {
+    pulumi.log.warn("getSlos is deprecated: grafana.index/getslos.getSlos has been deprecated in favor of grafana.slo/getslos.getSlos")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getSlos:getSlos", {
@@ -28,18 +23,9 @@ export interface GetSlosResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Returns a list of all SLOs"
-     */
     readonly slos: outputs.GetSlosSlo[];
 }
-/**
- * Datasource for retrieving all SLOs.
- *
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
- * * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
- * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
- */
+/** @deprecated grafana.index/getslos.getSlos has been deprecated in favor of grafana.slo/getslos.getSlos */
 export function getSlosOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetSlosResult> {
     return pulumi.output(getSlos(opts))
 }

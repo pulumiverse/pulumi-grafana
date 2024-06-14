@@ -10,54 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var testFolderFolder = new Grafana.Folder("testFolderFolder", new()
-    ///     {
-    ///         Title = "Terraform Test Folder",
-    ///     });
-    /// 
-    ///     var testFolderDashboard = new Grafana.Dashboard("testFolderDashboard", new()
-    ///     {
-    ///         Folder = testFolderFolder.Id,
-    ///         ConfigJson = @"{
-    ///   ""title"": ""Dashboard in folder"",
-    ///   ""uid"": ""dashboard-in-folder""
-    /// }
-    /// ",
-    ///     });
-    /// 
-    ///     var testFolderWithUid = new Grafana.Folder("testFolderWithUid", new()
-    ///     {
-    ///         Uid = "test-folder-uid",
-    ///         Title = "Terraform Test Folder With UID",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/folder:Folder name "{{ uid }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/folder:Folder name "{{ orgID }}:{{ uid }}"
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/folder.Folder has been deprecated in favor of grafana.oss/folder.Folder")]
     [GrafanaResourceType("grafana:index/folder:Folder")]
     public partial class Folder : global::Pulumi.CustomResource
     {
@@ -68,13 +21,14 @@ namespace Pulumiverse.Grafana
         public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
-        /// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+        /// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
+        /// folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
         /// </summary>
         [Output("parentFolderUid")]
         public Output<string?> ParentFolderUid { get; private set; } = null!;
 
         /// <summary>
-        /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+        /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
         /// </summary>
         [Output("preventDestroyIfNotEmpty")]
         public Output<bool?> PreventDestroyIfNotEmpty { get; private set; } = null!;
@@ -121,6 +75,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/folder:Folder" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -151,13 +109,14 @@ namespace Pulumiverse.Grafana
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+        /// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
+        /// folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
         /// </summary>
         [Input("parentFolderUid")]
         public Input<string>? ParentFolderUid { get; set; }
 
         /// <summary>
-        /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+        /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
         /// </summary>
         [Input("preventDestroyIfNotEmpty")]
         public Input<bool>? PreventDestroyIfNotEmpty { get; set; }
@@ -189,13 +148,14 @@ namespace Pulumiverse.Grafana
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+        /// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
+        /// folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
         /// </summary>
         [Input("parentFolderUid")]
         public Input<string>? ParentFolderUid { get; set; }
 
         /// <summary>
-        /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+        /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
         /// </summary>
         [Input("preventDestroyIfNotEmpty")]
         public Input<bool>? PreventDestroyIfNotEmpty { get; set; }

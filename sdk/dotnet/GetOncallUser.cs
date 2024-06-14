@@ -10,53 +10,12 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    [Obsolete(@"grafana.index/getoncalluser.getOncallUser has been deprecated in favor of grafana.oncall/getuser.getUser")]
     public static class GetOncallUser
     {
-        /// <summary>
-        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var alex = Grafana.GetOncallUser.Invoke(new()
-        ///     {
-        ///         Username = "alex",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Task<GetOncallUserResult> InvokeAsync(GetOncallUserArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallUserResult>("grafana:index/getOncallUser:getOncallUser", args ?? new GetOncallUserArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var alex = Grafana.GetOncallUser.Invoke(new()
-        ///     {
-        ///         Username = "alex",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Output<GetOncallUserResult> Invoke(GetOncallUserInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOncallUserResult>("grafana:index/getOncallUser:getOncallUser", args ?? new GetOncallUserInvokeArgs(), options.WithDefaults());
     }
@@ -64,9 +23,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetOncallUserArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The username of the user.
-        /// </summary>
         [Input("username", required: true)]
         public string Username { get; set; } = null!;
 
@@ -78,9 +34,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetOncallUserInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The username of the user.
-        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
@@ -94,21 +47,12 @@ namespace Pulumiverse.Grafana
     [OutputType]
     public sealed class GetOncallUserResult
     {
-        /// <summary>
-        /// The email of the user.
-        /// </summary>
         public readonly string Email;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// The role of the user.
-        /// </summary>
         public readonly string Role;
-        /// <summary>
-        /// The username of the user.
-        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]

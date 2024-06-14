@@ -10,46 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// Manages service account tokens of a Grafana Cloud stack using the Cloud API
-    /// This can be used to bootstrap a management service account token for a new stack
-    /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
-    /// 
-    /// Required access policy scopes:
-    /// 
-    /// * stack-service-accounts:write
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var cloudSa = new Grafana.CloudStackServiceAccount("cloudSa", new()
-    ///     {
-    ///         StackSlug = "&lt;your stack slug&gt;",
-    ///         Role = "Admin",
-    ///         IsDisabled = false,
-    ///     });
-    /// 
-    ///     var foo = new Grafana.CloudStackServiceAccountToken("foo", new()
-    ///     {
-    ///         ServiceAccountId = cloudSa.Id,
-    ///     });
-    /// 
-    ///     return new Dictionary&lt;string, object?&gt;
-    ///     {
-    ///         ["serviceAccountTokenFooKey"] = foo.Key,
-    ///     };
-    /// });
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/cloudstackserviceaccounttoken.CloudStackServiceAccountToken has been deprecated in favor of grafana.cloud/stackserviceaccounttoken.StackServiceAccountToken")]
     [GrafanaResourceType("grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken")]
     public partial class CloudStackServiceAccountToken : global::Pulumi.CustomResource
     {
@@ -98,6 +59,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken" },
+                },
                 AdditionalSecretOutputs =
                 {
                     "key",

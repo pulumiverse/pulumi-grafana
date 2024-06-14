@@ -22,7 +22,9 @@ class CloudAccessPolicyTokenArgs:
         """
         The set of arguments for constructing a CloudAccessPolicyToken resource.
         :param pulumi.Input[str] access_policy_id: ID of the access policy for which to create a token.
-        :param pulumi.Input[str] region: Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        :param pulumi.Input[str] region: Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the
+               list of available regions:
+               https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         :param pulumi.Input[str] display_name: Display name of the access policy token. Defaults to the name.
         :param pulumi.Input[str] expires_at: Expiration date of the access policy token. Does not expire by default.
         :param pulumi.Input[str] name: Name of the access policy token.
@@ -52,7 +54,9 @@ class CloudAccessPolicyTokenArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[str]:
         """
-        Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the
+        list of available regions:
+        https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         """
         return pulumi.get(self, "region")
 
@@ -115,7 +119,9 @@ class _CloudAccessPolicyTokenState:
         :param pulumi.Input[str] display_name: Display name of the access policy token. Defaults to the name.
         :param pulumi.Input[str] expires_at: Expiration date of the access policy token. Does not expire by default.
         :param pulumi.Input[str] name: Name of the access policy token.
-        :param pulumi.Input[str] region: Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        :param pulumi.Input[str] region: Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the
+               list of available regions:
+               https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         :param pulumi.Input[str] updated_at: Last update date of the access policy token.
         """
         if access_policy_id is not None:
@@ -199,7 +205,9 @@ class _CloudAccessPolicyTokenState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the
+        list of available regions:
+        https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         """
         return pulumi.get(self, "region")
 
@@ -229,7 +237,12 @@ class _CloudAccessPolicyTokenState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""grafana.index/cloudaccesspolicytoken.CloudAccessPolicyToken has been deprecated in favor of grafana.cloud/accesspolicytoken.AccessPolicyToken""", DeprecationWarning)
+
+
 class CloudAccessPolicyToken(pulumi.CustomResource):
+    warnings.warn("""grafana.index/cloudaccesspolicytoken.CloudAccessPolicyToken has been deprecated in favor of grafana.cloud/accesspolicytoken.AccessPolicyToken""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -241,57 +254,16 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
-        * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-a-token)
-
-        Required access policy scopes:
-
-        * accesspolicies:read
-        * accesspolicies:write
-        * accesspolicies:delete
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_grafana as grafana
-        import pulumiverse_grafana as grafana
-
-        current = grafana.get_cloud_organization(slug="<your org slug>")
-        test_cloud_access_policy = grafana.CloudAccessPolicy("testCloudAccessPolicy",
-            region="us",
-            display_name="My Policy",
-            scopes=[
-                "metrics:read",
-                "logs:read",
-            ],
-            realms=[grafana.CloudAccessPolicyRealmArgs(
-                type="org",
-                identifier=current.id,
-                label_policies=[grafana.CloudAccessPolicyRealmLabelPolicyArgs(
-                    selector="{namespace=\\"default\\"}",
-                )],
-            )])
-        test_cloud_access_policy_token = grafana.CloudAccessPolicyToken("testCloudAccessPolicyToken",
-            region="us",
-            access_policy_id=test_cloud_access_policy.policy_id,
-            display_name="My Policy Token",
-            expires_at="2023-01-01T00:00:00Z")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken name "{{ region }}:{{ tokenId }}"
-        ```
-
+        Create a CloudAccessPolicyToken resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_policy_id: ID of the access policy for which to create a token.
         :param pulumi.Input[str] display_name: Display name of the access policy token. Defaults to the name.
         :param pulumi.Input[str] expires_at: Expiration date of the access policy token. Does not expire by default.
         :param pulumi.Input[str] name: Name of the access policy token.
-        :param pulumi.Input[str] region: Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        :param pulumi.Input[str] region: Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the
+               list of available regions:
+               https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         """
         ...
     @overload
@@ -300,50 +272,7 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
                  args: CloudAccessPolicyTokenArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
-        * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-a-token)
-
-        Required access policy scopes:
-
-        * accesspolicies:read
-        * accesspolicies:write
-        * accesspolicies:delete
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_grafana as grafana
-        import pulumiverse_grafana as grafana
-
-        current = grafana.get_cloud_organization(slug="<your org slug>")
-        test_cloud_access_policy = grafana.CloudAccessPolicy("testCloudAccessPolicy",
-            region="us",
-            display_name="My Policy",
-            scopes=[
-                "metrics:read",
-                "logs:read",
-            ],
-            realms=[grafana.CloudAccessPolicyRealmArgs(
-                type="org",
-                identifier=current.id,
-                label_policies=[grafana.CloudAccessPolicyRealmLabelPolicyArgs(
-                    selector="{namespace=\\"default\\"}",
-                )],
-            )])
-        test_cloud_access_policy_token = grafana.CloudAccessPolicyToken("testCloudAccessPolicyToken",
-            region="us",
-            access_policy_id=test_cloud_access_policy.policy_id,
-            display_name="My Policy Token",
-            expires_at="2023-01-01T00:00:00Z")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken name "{{ region }}:{{ tokenId }}"
-        ```
-
+        Create a CloudAccessPolicyToken resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param CloudAccessPolicyTokenArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -365,6 +294,7 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""CloudAccessPolicyToken is deprecated: grafana.index/cloudaccesspolicytoken.CloudAccessPolicyToken has been deprecated in favor of grafana.cloud/accesspolicytoken.AccessPolicyToken""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -385,6 +315,8 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["token"] = None
             __props__.__dict__["updated_at"] = None
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(CloudAccessPolicyToken, __self__).__init__(
@@ -417,7 +349,9 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
         :param pulumi.Input[str] display_name: Display name of the access policy token. Defaults to the name.
         :param pulumi.Input[str] expires_at: Expiration date of the access policy token. Does not expire by default.
         :param pulumi.Input[str] name: Name of the access policy token.
-        :param pulumi.Input[str] region: Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        :param pulumi.Input[str] region: Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the
+               list of available regions:
+               https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         :param pulumi.Input[str] updated_at: Last update date of the access policy token.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -478,7 +412,9 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the
+        list of available regions:
+        https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         """
         return pulumi.get(self, "region")
 

@@ -5,32 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#stacks/)
- *
- * Required access policy scopes:
- *
- * * stacks:read
- * * stacks:write
- * * stacks:delete
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.CloudStack("test", {
- *     description: "Test Grafana Cloud Stack",
- *     regionSlug: "eu",
- *     slug: "gcloudstacktest",
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/cloudStack:CloudStack name "{{ stackSlugOrID }}"
- * ```
+ * @deprecated grafana.index/cloudstack.CloudStack has been deprecated in favor of grafana.cloud/stack.Stack
  */
 export class CloudStack extends pulumi.CustomResource {
     /**
@@ -43,6 +18,7 @@ export class CloudStack extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: CloudStackState, opts?: pulumi.CustomResourceOptions): CloudStack {
+        pulumi.log.warn("CloudStack is deprecated: grafana.index/cloudstack.CloudStack has been deprecated in favor of grafana.cloud/stack.Stack")
         return new CloudStack(name, <any>state, { ...opts, id: id });
     }
 
@@ -85,7 +61,8 @@ export class CloudStack extends pulumi.CustomResource {
     public /*out*/ readonly graphiteUrl!: pulumi.Output<string>;
     public /*out*/ readonly graphiteUserId!: pulumi.Output<number>;
     /**
-     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and
+     * stacks cannot have more than 10 labels.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     public /*out*/ readonly logsName!: pulumi.Output<string>;
@@ -109,7 +86,8 @@ export class CloudStack extends pulumi.CustomResource {
      */
     public /*out*/ readonly orgSlug!: pulumi.Output<string>;
     /**
-     * Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+     * Base URL of the OTLP instance configured for this stack. See
+     * https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
      */
     public /*out*/ readonly otlpUrl!: pulumi.Output<string>;
     public /*out*/ readonly profilesName!: pulumi.Output<string>;
@@ -141,11 +119,14 @@ export class CloudStack extends pulumi.CustomResource {
      */
     public /*out*/ readonly prometheusUserId!: pulumi.Output<number>;
     /**
-     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired
+     * region. Use the region list API to get the list of available regions:
+     * https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
     public readonly regionSlug!: pulumi.Output<string | undefined>;
     /**
-     * Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
+     * Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance
+     * available at `https://<stack_slug>.grafana.net`.
      */
     public readonly slug!: pulumi.Output<string>;
     /**
@@ -155,7 +136,8 @@ export class CloudStack extends pulumi.CustomResource {
     public /*out*/ readonly tracesName!: pulumi.Output<string>;
     public /*out*/ readonly tracesStatus!: pulumi.Output<string>;
     /**
-     * Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+     * Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append
+     * `/tempo` to the URL.
      */
     public /*out*/ readonly tracesUrl!: pulumi.Output<string>;
     public /*out*/ readonly tracesUserId!: pulumi.Output<number>;
@@ -164,11 +146,12 @@ export class CloudStack extends pulumi.CustomResource {
      */
     public readonly url!: pulumi.Output<string | undefined>;
     /**
-     * Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
+     * Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana
+     * instance).
      */
     public readonly waitForReadiness!: pulumi.Output<boolean | undefined>;
     /**
-     * How long to wait for readiness (if enabled). Defaults to `5m0s`.
+     * How long to wait for readiness (if enabled).
      */
     public readonly waitForReadinessTimeout!: pulumi.Output<string | undefined>;
 
@@ -179,8 +162,11 @@ export class CloudStack extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/cloudstack.CloudStack has been deprecated in favor of grafana.cloud/stack.Stack */
     constructor(name: string, args: CloudStackArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/cloudstack.CloudStack has been deprecated in favor of grafana.cloud/stack.Stack */
     constructor(name: string, argsOrState?: CloudStackArgs | CloudStackState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("CloudStack is deprecated: grafana.index/cloudstack.CloudStack has been deprecated in favor of grafana.cloud/stack.Stack")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -270,6 +256,8 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["tracesUserId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/cloudStack:CloudStack" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(CloudStack.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -303,7 +291,8 @@ export interface CloudStackState {
     graphiteUrl?: pulumi.Input<string>;
     graphiteUserId?: pulumi.Input<number>;
     /**
-     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and
+     * stacks cannot have more than 10 labels.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     logsName?: pulumi.Input<string>;
@@ -327,7 +316,8 @@ export interface CloudStackState {
      */
     orgSlug?: pulumi.Input<string>;
     /**
-     * Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+     * Base URL of the OTLP instance configured for this stack. See
+     * https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
      */
     otlpUrl?: pulumi.Input<string>;
     profilesName?: pulumi.Input<string>;
@@ -359,11 +349,14 @@ export interface CloudStackState {
      */
     prometheusUserId?: pulumi.Input<number>;
     /**
-     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired
+     * region. Use the region list API to get the list of available regions:
+     * https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
     regionSlug?: pulumi.Input<string>;
     /**
-     * Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
+     * Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance
+     * available at `https://<stack_slug>.grafana.net`.
      */
     slug?: pulumi.Input<string>;
     /**
@@ -373,7 +366,8 @@ export interface CloudStackState {
     tracesName?: pulumi.Input<string>;
     tracesStatus?: pulumi.Input<string>;
     /**
-     * Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
+     * Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append
+     * `/tempo` to the URL.
      */
     tracesUrl?: pulumi.Input<string>;
     tracesUserId?: pulumi.Input<number>;
@@ -382,11 +376,12 @@ export interface CloudStackState {
      */
     url?: pulumi.Input<string>;
     /**
-     * Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
+     * Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana
+     * instance).
      */
     waitForReadiness?: pulumi.Input<boolean>;
     /**
-     * How long to wait for readiness (if enabled). Defaults to `5m0s`.
+     * How long to wait for readiness (if enabled).
      */
     waitForReadinessTimeout?: pulumi.Input<string>;
 }
@@ -400,7 +395,8 @@ export interface CloudStackArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and
+     * stacks cannot have more than 10 labels.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -408,11 +404,14 @@ export interface CloudStackArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+     * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired
+     * region. Use the region list API to get the list of available regions:
+     * https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
     regionSlug?: pulumi.Input<string>;
     /**
-     * Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
+     * Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance
+     * available at `https://<stack_slug>.grafana.net`.
      */
     slug: pulumi.Input<string>;
     /**
@@ -420,11 +419,12 @@ export interface CloudStackArgs {
      */
     url?: pulumi.Input<string>;
     /**
-     * Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
+     * Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana
+     * instance).
      */
     waitForReadiness?: pulumi.Input<boolean>;
     /**
-     * How long to wait for readiness (if enabled). Defaults to `5m0s`.
+     * How long to wait for readiness (if enabled).
      */
     waitForReadinessTimeout?: pulumi.Input<string>;
 }

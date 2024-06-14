@@ -5,50 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manages the entire set of assignments for a role. Assignments that aren't specified when applying this resource will be removed.
- * **Note:** This resource is available only with Grafana Enterprise 9.2+.
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const testRole = new grafana.Role("testRole", {
- *     uid: "testrole",
- *     version: 1,
- *     global: true,
- *     permissions: [{
- *         action: "org.users:add",
- *         scope: "users:*",
- *     }],
- * });
- * const testTeam = new grafana.Team("testTeam", {});
- * const testUser = new grafana.User("testUser", {
- *     email: "terraform_user@test.com",
- *     login: "terraform_user@test.com",
- *     password: "password",
- * });
- * const testSa = new grafana.ServiceAccount("testSa", {role: "Viewer"});
- * const test = new grafana.RoleAssignment("test", {
- *     roleUid: testRole.uid,
- *     users: [testUser.id],
- *     teams: [testTeam.id],
- *     serviceAccounts: [testSa.id],
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/roleAssignment:RoleAssignment name "{{ roleUID }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/roleAssignment:RoleAssignment name "{{ orgID }}:{{ roleUID }}"
- * ```
+ * @deprecated grafana.index/roleassignment.RoleAssignment has been deprecated in favor of grafana.enterprise/roleassignment.RoleAssignment
  */
 export class RoleAssignment extends pulumi.CustomResource {
     /**
@@ -61,6 +18,7 @@ export class RoleAssignment extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RoleAssignmentState, opts?: pulumi.CustomResourceOptions): RoleAssignment {
+        pulumi.log.warn("RoleAssignment is deprecated: grafana.index/roleassignment.RoleAssignment has been deprecated in favor of grafana.enterprise/roleassignment.RoleAssignment")
         return new RoleAssignment(name, <any>state, { ...opts, id: id });
     }
 
@@ -106,8 +64,11 @@ export class RoleAssignment extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/roleassignment.RoleAssignment has been deprecated in favor of grafana.enterprise/roleassignment.RoleAssignment */
     constructor(name: string, args: RoleAssignmentArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/roleassignment.RoleAssignment has been deprecated in favor of grafana.enterprise/roleassignment.RoleAssignment */
     constructor(name: string, argsOrState?: RoleAssignmentArgs | RoleAssignmentState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("RoleAssignment is deprecated: grafana.index/roleassignment.RoleAssignment has been deprecated in favor of grafana.enterprise/roleassignment.RoleAssignment")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -129,6 +90,8 @@ export class RoleAssignment extends pulumi.CustomResource {
             resourceInputs["users"] = args ? args.users : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/roleAssignment:RoleAssignment" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(RoleAssignment.__pulumiType, name, resourceInputs, opts);
     }
 }

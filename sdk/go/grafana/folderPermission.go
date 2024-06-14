@@ -12,77 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Manages the entire set of permissions for a folder. Permissions that aren't specified when applying this resource will be removed.
-// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			team, err := grafana.NewTeam(ctx, "team", nil)
-//			if err != nil {
-//				return err
-//			}
-//			user, err := grafana.NewUser(ctx, "user", &grafana.UserArgs{
-//				Email:    pulumi.String("user.name@example.com"),
-//				Login:    pulumi.String("user.name"),
-//				Password: pulumi.String("my-password"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			collection, err := grafana.NewFolder(ctx, "collection", &grafana.FolderArgs{
-//				Title: pulumi.String("Folder Title"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = grafana.NewFolderPermission(ctx, "collectionPermission", &grafana.FolderPermissionArgs{
-//				FolderUid: collection.Uid,
-//				Permissions: grafana.FolderPermissionPermissionArray{
-//					&grafana.FolderPermissionPermissionArgs{
-//						Role:       pulumi.String("Editor"),
-//						Permission: pulumi.String("Edit"),
-//					},
-//					&grafana.FolderPermissionPermissionArgs{
-//						TeamId:     team.ID(),
-//						Permission: pulumi.String("View"),
-//					},
-//					&grafana.FolderPermissionPermissionArgs{
-//						UserId:     user.ID(),
-//						Permission: pulumi.String("Admin"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/folderPermission:FolderPermission name "{{ folderUID }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:index/folderPermission:FolderPermission name "{{ orgID }}:{{ folderUID }}"
-// ```
+// Deprecated: grafana.index/folderpermission.FolderPermission has been deprecated in favor of grafana.oss/folderpermission.FolderPermission
 type FolderPermission struct {
 	pulumi.CustomResourceState
 
@@ -104,6 +34,12 @@ func NewFolderPermission(ctx *pulumi.Context,
 	if args.FolderUid == nil {
 		return nil, errors.New("invalid value for required argument 'FolderUid'")
 	}
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/folderPermission:FolderPermission"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FolderPermission
 	err := ctx.RegisterResource("grafana:index/folderPermission:FolderPermission", name, args, &resource, opts...)

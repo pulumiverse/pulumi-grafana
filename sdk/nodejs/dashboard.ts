@@ -5,39 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manages Grafana dashboards.
- *
- * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const testFolder = new grafana.Folder("testFolder", {
- *     title: "My Folder",
- *     uid: "my-folder-uid",
- * });
- * const testDashboard = new grafana.Dashboard("testDashboard", {
- *     folder: testFolder.uid,
- *     configJson: JSON.stringify({
- *         title: "My Dashboard",
- *         uid: "my-dashboard-uid",
- *     }),
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/dashboard:Dashboard name "{{ uid }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/dashboard:Dashboard name "{{ orgID }}:{{ uid }}"
- * ```
+ * @deprecated grafana.index/dashboard.Dashboard has been deprecated in favor of grafana.oss/dashboard.Dashboard
  */
 export class Dashboard extends pulumi.CustomResource {
     /**
@@ -50,6 +18,7 @@ export class Dashboard extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DashboardState, opts?: pulumi.CustomResourceOptions): Dashboard {
+        pulumi.log.warn("Dashboard is deprecated: grafana.index/dashboard.Dashboard has been deprecated in favor of grafana.oss/dashboard.Dashboard")
         return new Dashboard(name, <any>state, { ...opts, id: id });
     }
 
@@ -88,11 +57,14 @@ export class Dashboard extends pulumi.CustomResource {
      */
     public readonly orgId!: pulumi.Output<string | undefined>;
     /**
-     * Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
+     * Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same
+     * dashboard uid.
      */
     public readonly overwrite!: pulumi.Output<boolean | undefined>;
     /**
-     * The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
+     * The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided
+     * when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards
+     * between multiple Grafana installs.
      */
     public /*out*/ readonly uid!: pulumi.Output<string>;
     /**
@@ -100,7 +72,8 @@ export class Dashboard extends pulumi.CustomResource {
      */
     public /*out*/ readonly url!: pulumi.Output<string>;
     /**
-     * Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your dashboard are not lost.
+     * Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your
+     * dashboard are not lost.
      */
     public /*out*/ readonly version!: pulumi.Output<number>;
 
@@ -111,8 +84,11 @@ export class Dashboard extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/dashboard.Dashboard has been deprecated in favor of grafana.oss/dashboard.Dashboard */
     constructor(name: string, args: DashboardArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/dashboard.Dashboard has been deprecated in favor of grafana.oss/dashboard.Dashboard */
     constructor(name: string, argsOrState?: DashboardArgs | DashboardState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("Dashboard is deprecated: grafana.index/dashboard.Dashboard has been deprecated in favor of grafana.oss/dashboard.Dashboard")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -142,6 +118,8 @@ export class Dashboard extends pulumi.CustomResource {
             resourceInputs["version"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/dashboard:Dashboard" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Dashboard.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -171,11 +149,14 @@ export interface DashboardState {
      */
     orgId?: pulumi.Input<string>;
     /**
-     * Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
+     * Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same
+     * dashboard uid.
      */
     overwrite?: pulumi.Input<boolean>;
     /**
-     * The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
+     * The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided
+     * when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards
+     * between multiple Grafana installs.
      */
     uid?: pulumi.Input<string>;
     /**
@@ -183,7 +164,8 @@ export interface DashboardState {
      */
     url?: pulumi.Input<string>;
     /**
-     * Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your dashboard are not lost.
+     * Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your
+     * dashboard are not lost.
      */
     version?: pulumi.Input<number>;
 }
@@ -209,7 +191,8 @@ export interface DashboardArgs {
      */
     orgId?: pulumi.Input<string>;
     /**
-     * Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
+     * Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same
+     * dashboard uid.
      */
     overwrite?: pulumi.Input<boolean>;
 }

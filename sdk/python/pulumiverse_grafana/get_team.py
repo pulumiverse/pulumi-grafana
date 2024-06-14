@@ -17,6 +17,8 @@ __all__ = [
     'get_team_output',
 ]
 
+warnings.warn("""grafana.index/getteam.getTeam has been deprecated in favor of grafana.oss/getteam.getTeam""", DeprecationWarning)
+
 @pulumi.output_type
 class GetTeamResult:
     """
@@ -122,25 +124,9 @@ def get_team(name: Optional[str] = None,
              read_team_sync: Optional[bool] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTeamResult:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-    import pulumiverse_grafana as grafana
-
-    test = grafana.Team("test",
-        email="test-team-email@test.com",
-        preferences=grafana.TeamPreferencesArgs(
-            theme="dark",
-            timezone="utc",
-        ))
-    from_name = grafana.get_team_output(name=test.name)
-    ```
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_team is deprecated: grafana.index/getteam.getTeam has been deprecated in favor of grafana.oss/getteam.getTeam""")
     __args__ = dict()
     __args__['name'] = name
     __args__['orgId'] = org_id
@@ -166,23 +152,7 @@ def get_team_output(name: Optional[pulumi.Input[str]] = None,
                     read_team_sync: Optional[pulumi.Input[Optional[bool]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTeamResult]:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-    import pulumiverse_grafana as grafana
-
-    test = grafana.Team("test",
-        email="test-team-email@test.com",
-        preferences=grafana.TeamPreferencesArgs(
-            theme="dark",
-            timezone="utc",
-        ))
-    from_name = grafana.get_team_output(name=test.name)
-    ```
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_team is deprecated: grafana.index/getteam.getTeam has been deprecated in favor of grafana.oss/getteam.getTeam""")
     ...

@@ -89,7 +89,12 @@ class _TeamExternalGroupState:
         pulumi.set(self, "team_id", value)
 
 
+warnings.warn("""grafana.index/teamexternalgroup.TeamExternalGroup has been deprecated in favor of grafana.enterprise/teamexternalgroup.TeamExternalGroup""", DeprecationWarning)
+
+
 class TeamExternalGroup(pulumi.CustomResource):
+    warnings.warn("""grafana.index/teamexternalgroup.TeamExternalGroup has been deprecated in favor of grafana.enterprise/teamexternalgroup.TeamExternalGroup""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -98,33 +103,7 @@ class TeamExternalGroup(pulumi.CustomResource):
                  team_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Equivalent to the the `team_sync` attribute of the `Team` resource. Use one or the other to configure a team's external groups syncing config.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        my_team = grafana.Team("myTeam")
-        test_team_group = grafana.TeamExternalGroup("test-team-group",
-            team_id=my_team.id,
-            groups=[
-                "test-group-1",
-                "test-group-2",
-            ])
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup name "{{ teamID }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup name "{{ orgID }}:{{ teamID }}"
-        ```
-
+        Create a TeamExternalGroup resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The team external groups list
@@ -137,33 +116,7 @@ class TeamExternalGroup(pulumi.CustomResource):
                  args: TeamExternalGroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Equivalent to the the `team_sync` attribute of the `Team` resource. Use one or the other to configure a team's external groups syncing config.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        my_team = grafana.Team("myTeam")
-        test_team_group = grafana.TeamExternalGroup("test-team-group",
-            team_id=my_team.id,
-            groups=[
-                "test-group-1",
-                "test-group-2",
-            ])
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup name "{{ teamID }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup name "{{ orgID }}:{{ teamID }}"
-        ```
-
+        Create a TeamExternalGroup resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param TeamExternalGroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -182,6 +135,7 @@ class TeamExternalGroup(pulumi.CustomResource):
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""TeamExternalGroup is deprecated: grafana.index/teamexternalgroup.TeamExternalGroup has been deprecated in favor of grafana.enterprise/teamexternalgroup.TeamExternalGroup""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -196,6 +150,8 @@ class TeamExternalGroup(pulumi.CustomResource):
             if team_id is None and not opts.urn:
                 raise TypeError("Missing required property 'team_id'")
             __props__.__dict__["team_id"] = team_id
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/teamExternalGroup:TeamExternalGroup")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(TeamExternalGroup, __self__).__init__(
             'grafana:index/teamExternalGroup:TeamExternalGroup',
             resource_name,
