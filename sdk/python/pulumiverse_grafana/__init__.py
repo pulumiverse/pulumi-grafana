@@ -71,7 +71,6 @@ from .oncall_outgoing_webhook import *
 from .oncall_route import *
 from .oncall_schedule import *
 from .organization import *
-from .organization_preference import *
 from .organization_preferences import *
 from .playlist import *
 from .provider import *
@@ -109,6 +108,8 @@ if typing.TYPE_CHECKING:
     machinelearning = __machinelearning
     import pulumiverse_grafana.oncall as __oncall
     oncall = __oncall
+    import pulumiverse_grafana.oss as __oss
+    oss = __oss
     import pulumiverse_grafana.slo as __slo
     slo = __slo
     import pulumiverse_grafana.syntheticmonitoring as __syntheticmonitoring
@@ -120,6 +121,7 @@ else:
     enterprise = _utilities.lazy_import('pulumiverse_grafana.enterprise')
     machinelearning = _utilities.lazy_import('pulumiverse_grafana.machinelearning')
     oncall = _utilities.lazy_import('pulumiverse_grafana.oncall')
+    oss = _utilities.lazy_import('pulumiverse_grafana.oss')
     slo = _utilities.lazy_import('pulumiverse_grafana.slo')
     syntheticmonitoring = _utilities.lazy_import('pulumiverse_grafana.syntheticmonitoring')
 
@@ -600,14 +602,6 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
-  "mod": "index/organizationPreference",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/organizationPreference:OrganizationPreference": "OrganizationPreference"
-  }
- },
- {
-  "pkg": "grafana",
   "mod": "index/organizationPreferences",
   "fqn": "pulumiverse_grafana",
   "classes": {
@@ -836,6 +830,182 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.oncall",
   "classes": {
    "grafana:onCall/schedule:Schedule": "Schedule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/annotation",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/annotation:Annotation": "Annotation"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/apiKey",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/apiKey:ApiKey": "ApiKey"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/dashboard",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/dashboard:Dashboard": "Dashboard"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/dashboardPermission",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/dashboardPermission:DashboardPermission": "DashboardPermission"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/dashboardPermissionItem",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/dashboardPermissionItem:DashboardPermissionItem": "DashboardPermissionItem"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/dashboardPublic",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/dashboardPublic:DashboardPublic": "DashboardPublic"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/dataSource",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/dataSource:DataSource": "DataSource"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/dataSourceConfig",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/dataSourceConfig:DataSourceConfig": "DataSourceConfig"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/folder",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/folder:Folder": "Folder"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/folderPermission",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/folderPermission:FolderPermission": "FolderPermission"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/folderPermissionItem",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/folderPermissionItem:FolderPermissionItem": "FolderPermissionItem"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/libraryPanel",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/libraryPanel:LibraryPanel": "LibraryPanel"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/organization",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/organization:Organization": "Organization"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/organizationPreferences",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/organizationPreferences:OrganizationPreferences": "OrganizationPreferences"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/playlist",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/playlist:Playlist": "Playlist"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/serviceAccount",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/serviceAccount:ServiceAccount": "ServiceAccount"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/serviceAccountPermission",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/serviceAccountPermission:ServiceAccountPermission": "ServiceAccountPermission"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/serviceAccountPermissionItem",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/serviceAccountPermissionItem:ServiceAccountPermissionItem": "ServiceAccountPermissionItem"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/serviceAccountToken",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/serviceAccountToken:ServiceAccountToken": "ServiceAccountToken"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/ssoSettings",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/ssoSettings:SsoSettings": "SsoSettings"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/team",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/team:Team": "Team"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/user",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/user:User": "User"
   }
  },
  {

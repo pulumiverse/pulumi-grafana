@@ -4002,9 +4002,9 @@ type DashboardPermissionPermission struct {
 	Permission string `pulumi:"permission"`
 	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 	Role *string `pulumi:"role"`
-	// ID of the team to manage permissions for. Defaults to `0`.
+	// ID of the team to manage permissions for.
 	TeamId *string `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Defaults to `0`.
+	// ID of the user or service account to manage permissions for.
 	UserId *string `pulumi:"userId"`
 }
 
@@ -4024,9 +4024,9 @@ type DashboardPermissionPermissionArgs struct {
 	Permission pulumi.StringInput `pulumi:"permission"`
 	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 	Role pulumi.StringPtrInput `pulumi:"role"`
-	// ID of the team to manage permissions for. Defaults to `0`.
+	// ID of the team to manage permissions for.
 	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Defaults to `0`.
+	// ID of the user or service account to manage permissions for.
 	UserId pulumi.StringPtrInput `pulumi:"userId"`
 }
 
@@ -4091,12 +4091,12 @@ func (o DashboardPermissionPermissionOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DashboardPermissionPermission) *string { return v.Role }).(pulumi.StringPtrOutput)
 }
 
-// ID of the team to manage permissions for. Defaults to `0`.
+// ID of the team to manage permissions for.
 func (o DashboardPermissionPermissionOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DashboardPermissionPermission) *string { return v.TeamId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the user or service account to manage permissions for. Defaults to `0`.
+// ID of the user or service account to manage permissions for.
 func (o DashboardPermissionPermissionOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DashboardPermissionPermission) *string { return v.UserId }).(pulumi.StringPtrOutput)
 }
@@ -4250,9 +4250,9 @@ type FolderPermissionPermission struct {
 	Permission string `pulumi:"permission"`
 	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 	Role *string `pulumi:"role"`
-	// ID of the team to manage permissions for. Defaults to `0`.
+	// ID of the team to manage permissions for.
 	TeamId *string `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Defaults to `0`.
+	// ID of the user or service account to manage permissions for.
 	UserId *string `pulumi:"userId"`
 }
 
@@ -4272,9 +4272,9 @@ type FolderPermissionPermissionArgs struct {
 	Permission pulumi.StringInput `pulumi:"permission"`
 	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 	Role pulumi.StringPtrInput `pulumi:"role"`
-	// ID of the team to manage permissions for. Defaults to `0`.
+	// ID of the team to manage permissions for.
 	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Defaults to `0`.
+	// ID of the user or service account to manage permissions for.
 	UserId pulumi.StringPtrInput `pulumi:"userId"`
 }
 
@@ -4339,12 +4339,12 @@ func (o FolderPermissionPermissionOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FolderPermissionPermission) *string { return v.Role }).(pulumi.StringPtrOutput)
 }
 
-// ID of the team to manage permissions for. Defaults to `0`.
+// ID of the team to manage permissions for.
 func (o FolderPermissionPermissionOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FolderPermissionPermission) *string { return v.TeamId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the user or service account to manage permissions for. Defaults to `0`.
+// ID of the user or service account to manage permissions for.
 func (o FolderPermissionPermissionOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FolderPermissionPermission) *string { return v.UserId }).(pulumi.StringPtrOutput)
 }
@@ -12153,9 +12153,9 @@ func (o SLOQueryRatioPtrOutput) TotalMetric() pulumi.StringPtrOutput {
 type ServiceAccountPermissionPermission struct {
 	// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
 	Permission string `pulumi:"permission"`
-	// ID of the team to manage permissions for. Defaults to `0`.
+	// ID of the team to manage permissions for.
 	TeamId *string `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Defaults to `0`.
+	// ID of the user or service account to manage permissions for.
 	UserId *string `pulumi:"userId"`
 }
 
@@ -12173,9 +12173,9 @@ type ServiceAccountPermissionPermissionInput interface {
 type ServiceAccountPermissionPermissionArgs struct {
 	// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
 	Permission pulumi.StringInput `pulumi:"permission"`
-	// ID of the team to manage permissions for. Defaults to `0`.
+	// ID of the team to manage permissions for.
 	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Defaults to `0`.
+	// ID of the user or service account to manage permissions for.
 	UserId pulumi.StringPtrInput `pulumi:"userId"`
 }
 
@@ -12235,12 +12235,12 @@ func (o ServiceAccountPermissionPermissionOutput) Permission() pulumi.StringOutp
 	return o.ApplyT(func(v ServiceAccountPermissionPermission) string { return v.Permission }).(pulumi.StringOutput)
 }
 
-// ID of the team to manage permissions for. Defaults to `0`.
+// ID of the team to manage permissions for.
 func (o ServiceAccountPermissionPermissionOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceAccountPermissionPermission) *string { return v.TeamId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the user or service account to manage permissions for. Defaults to `0`.
+// ID of the user or service account to manage permissions for.
 func (o ServiceAccountPermissionPermissionOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceAccountPermissionPermission) *string { return v.UserId }).(pulumi.StringPtrOutput)
 }
@@ -12272,13 +12272,13 @@ type SsoSettingsOauth2Settings struct {
 	AllowSignUp *bool `pulumi:"allowSignUp"`
 	// List of comma- or space-separated domains. The user should belong to at least one domain to log in.
 	AllowedDomains *string `pulumi:"allowedDomains"`
-	// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+	// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed_groups, you must also configure groups_attribute_path.
 	AllowedGroups *string `pulumi:"allowedGroups"`
 	// List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
 	AllowedOrganizations *string `pulumi:"allowedOrganizations"`
 	// The user information endpoint of your OAuth2 provider. Required for okta and genericOauth providers.
 	ApiUrl *string `pulumi:"apiUrl"`
-	// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+	// It determines how clientId and clientSecret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
 	AuthStyle *string `pulumi:"authStyle"`
 	// The authorization endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
 	AuthUrl *string `pulumi:"authUrl"`
@@ -12288,7 +12288,7 @@ type SsoSettingsOauth2Settings struct {
 	ClientId string `pulumi:"clientId"`
 	// The client secret of your OAuth2 app.
 	ClientSecret *string `pulumi:"clientSecret"`
-	// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+	// Custom fields to configure for OAuth2 such as the [forceUseGraphApi](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
 	Custom map[string]string `pulumi:"custom"`
 	// Define allowed groups.
 	DefineAllowedGroups *bool `pulumi:"defineAllowedGroups"`
@@ -12300,9 +12300,9 @@ type SsoSettingsOauth2Settings struct {
 	EmailAttributePath *string `pulumi:"emailAttributePath"`
 	// If enabled, no scopes will be sent to the OAuth2 provider.
 	EmptyScopes *bool `pulumi:"emptyScopes"`
-	// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+	// Define whether this configuration is enabled for the specified provider.
 	Enabled *bool `pulumi:"enabled"`
-	// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+	// JMESPath expression to use for user group lookup. If you configure allowed_groups, you must also configure groups_attribute_path.
 	GroupsAttributePath *string `pulumi:"groupsAttributePath"`
 	// The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
 	IdTokenAttributeName *string `pulumi:"idTokenAttributeName"`
@@ -12322,11 +12322,11 @@ type SsoSettingsOauth2Settings struct {
 	SignoutRedirectUrl *string `pulumi:"signoutRedirectUrl"`
 	// Prevent synchronizing users’ organization roles from your IdP.
 	SkipOrgRoleSync *bool `pulumi:"skipOrgRoleSync"`
-	// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+	// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team_ids, you must also configure teamsUrl and team_ids_attribute_path.
 	TeamIds *string `pulumi:"teamIds"`
 	// The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teamsUrl endpoint. Only applicable to Generic OAuth.
 	TeamIdsAttributePath *string `pulumi:"teamIdsAttributePath"`
-	// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+	// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams_url, you must also configure team_ids_attribute_path. Only applicable to Generic OAuth.
 	TeamsUrl *string `pulumi:"teamsUrl"`
 	// The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
 	TlsClientCa *string `pulumi:"tlsClientCa"`
@@ -12362,13 +12362,13 @@ type SsoSettingsOauth2SettingsArgs struct {
 	AllowSignUp pulumi.BoolPtrInput `pulumi:"allowSignUp"`
 	// List of comma- or space-separated domains. The user should belong to at least one domain to log in.
 	AllowedDomains pulumi.StringPtrInput `pulumi:"allowedDomains"`
-	// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+	// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed_groups, you must also configure groups_attribute_path.
 	AllowedGroups pulumi.StringPtrInput `pulumi:"allowedGroups"`
 	// List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
 	AllowedOrganizations pulumi.StringPtrInput `pulumi:"allowedOrganizations"`
 	// The user information endpoint of your OAuth2 provider. Required for okta and genericOauth providers.
 	ApiUrl pulumi.StringPtrInput `pulumi:"apiUrl"`
-	// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+	// It determines how clientId and clientSecret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
 	AuthStyle pulumi.StringPtrInput `pulumi:"authStyle"`
 	// The authorization endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
 	AuthUrl pulumi.StringPtrInput `pulumi:"authUrl"`
@@ -12378,7 +12378,7 @@ type SsoSettingsOauth2SettingsArgs struct {
 	ClientId pulumi.StringInput `pulumi:"clientId"`
 	// The client secret of your OAuth2 app.
 	ClientSecret pulumi.StringPtrInput `pulumi:"clientSecret"`
-	// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+	// Custom fields to configure for OAuth2 such as the [forceUseGraphApi](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
 	Custom pulumi.StringMapInput `pulumi:"custom"`
 	// Define allowed groups.
 	DefineAllowedGroups pulumi.BoolPtrInput `pulumi:"defineAllowedGroups"`
@@ -12390,9 +12390,9 @@ type SsoSettingsOauth2SettingsArgs struct {
 	EmailAttributePath pulumi.StringPtrInput `pulumi:"emailAttributePath"`
 	// If enabled, no scopes will be sent to the OAuth2 provider.
 	EmptyScopes pulumi.BoolPtrInput `pulumi:"emptyScopes"`
-	// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+	// Define whether this configuration is enabled for the specified provider.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+	// JMESPath expression to use for user group lookup. If you configure allowed_groups, you must also configure groups_attribute_path.
 	GroupsAttributePath pulumi.StringPtrInput `pulumi:"groupsAttributePath"`
 	// The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
 	IdTokenAttributeName pulumi.StringPtrInput `pulumi:"idTokenAttributeName"`
@@ -12412,11 +12412,11 @@ type SsoSettingsOauth2SettingsArgs struct {
 	SignoutRedirectUrl pulumi.StringPtrInput `pulumi:"signoutRedirectUrl"`
 	// Prevent synchronizing users’ organization roles from your IdP.
 	SkipOrgRoleSync pulumi.BoolPtrInput `pulumi:"skipOrgRoleSync"`
-	// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+	// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team_ids, you must also configure teamsUrl and team_ids_attribute_path.
 	TeamIds pulumi.StringPtrInput `pulumi:"teamIds"`
 	// The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teamsUrl endpoint. Only applicable to Generic OAuth.
 	TeamIdsAttributePath pulumi.StringPtrInput `pulumi:"teamIdsAttributePath"`
-	// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+	// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams_url, you must also configure team_ids_attribute_path. Only applicable to Generic OAuth.
 	TeamsUrl pulumi.StringPtrInput `pulumi:"teamsUrl"`
 	// The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
 	TlsClientCa pulumi.StringPtrInput `pulumi:"tlsClientCa"`
@@ -12526,7 +12526,7 @@ func (o SsoSettingsOauth2SettingsOutput) AllowedDomains() pulumi.StringPtrOutput
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.AllowedDomains }).(pulumi.StringPtrOutput)
 }
 
-// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed_groups, you must also configure groups_attribute_path.
 func (o SsoSettingsOauth2SettingsOutput) AllowedGroups() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.AllowedGroups }).(pulumi.StringPtrOutput)
 }
@@ -12541,7 +12541,7 @@ func (o SsoSettingsOauth2SettingsOutput) ApiUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.ApiUrl }).(pulumi.StringPtrOutput)
 }
 
-// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+// It determines how clientId and clientSecret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
 func (o SsoSettingsOauth2SettingsOutput) AuthStyle() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.AuthStyle }).(pulumi.StringPtrOutput)
 }
@@ -12566,7 +12566,7 @@ func (o SsoSettingsOauth2SettingsOutput) ClientSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
 }
 
-// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+// Custom fields to configure for OAuth2 such as the [forceUseGraphApi](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
 func (o SsoSettingsOauth2SettingsOutput) Custom() pulumi.StringMapOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) map[string]string { return v.Custom }).(pulumi.StringMapOutput)
 }
@@ -12596,12 +12596,12 @@ func (o SsoSettingsOauth2SettingsOutput) EmptyScopes() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.EmptyScopes }).(pulumi.BoolPtrOutput)
 }
 
-// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+// Define whether this configuration is enabled for the specified provider.
 func (o SsoSettingsOauth2SettingsOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+// JMESPath expression to use for user group lookup. If you configure allowed_groups, you must also configure groups_attribute_path.
 func (o SsoSettingsOauth2SettingsOutput) GroupsAttributePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.GroupsAttributePath }).(pulumi.StringPtrOutput)
 }
@@ -12651,7 +12651,7 @@ func (o SsoSettingsOauth2SettingsOutput) SkipOrgRoleSync() pulumi.BoolPtrOutput 
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *bool { return v.SkipOrgRoleSync }).(pulumi.BoolPtrOutput)
 }
 
-// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team_ids, you must also configure teamsUrl and team_ids_attribute_path.
 func (o SsoSettingsOauth2SettingsOutput) TeamIds() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TeamIds }).(pulumi.StringPtrOutput)
 }
@@ -12661,7 +12661,7 @@ func (o SsoSettingsOauth2SettingsOutput) TeamIdsAttributePath() pulumi.StringPtr
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TeamIdsAttributePath }).(pulumi.StringPtrOutput)
 }
 
-// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams_url, you must also configure team_ids_attribute_path. Only applicable to Generic OAuth.
 func (o SsoSettingsOauth2SettingsOutput) TeamsUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.TeamsUrl }).(pulumi.StringPtrOutput)
 }
@@ -12755,7 +12755,7 @@ func (o SsoSettingsOauth2SettingsPtrOutput) AllowedDomains() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+// List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed_groups, you must also configure groups_attribute_path.
 func (o SsoSettingsOauth2SettingsPtrOutput) AllowedGroups() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
 		if v == nil {
@@ -12785,7 +12785,7 @@ func (o SsoSettingsOauth2SettingsPtrOutput) ApiUrl() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+// It determines how clientId and clientSecret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
 func (o SsoSettingsOauth2SettingsPtrOutput) AuthStyle() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
 		if v == nil {
@@ -12835,7 +12835,7 @@ func (o SsoSettingsOauth2SettingsPtrOutput) ClientSecret() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+// Custom fields to configure for OAuth2 such as the [forceUseGraphApi](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
 func (o SsoSettingsOauth2SettingsPtrOutput) Custom() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *SsoSettingsOauth2Settings) map[string]string {
 		if v == nil {
@@ -12895,7 +12895,7 @@ func (o SsoSettingsOauth2SettingsPtrOutput) EmptyScopes() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+// Define whether this configuration is enabled for the specified provider.
 func (o SsoSettingsOauth2SettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *bool {
 		if v == nil {
@@ -12905,7 +12905,7 @@ func (o SsoSettingsOauth2SettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+// JMESPath expression to use for user group lookup. If you configure allowed_groups, you must also configure groups_attribute_path.
 func (o SsoSettingsOauth2SettingsPtrOutput) GroupsAttributePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
 		if v == nil {
@@ -13005,7 +13005,7 @@ func (o SsoSettingsOauth2SettingsPtrOutput) SkipOrgRoleSync() pulumi.BoolPtrOutp
 	}).(pulumi.BoolPtrOutput)
 }
 
-// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+// String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team_ids, you must also configure teamsUrl and team_ids_attribute_path.
 func (o SsoSettingsOauth2SettingsPtrOutput) TeamIds() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
 		if v == nil {
@@ -13025,7 +13025,7 @@ func (o SsoSettingsOauth2SettingsPtrOutput) TeamIdsAttributePath() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+// The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams_url, you must also configure team_ids_attribute_path. Only applicable to Generic OAuth.
 func (o SsoSettingsOauth2SettingsPtrOutput) TeamsUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
 		if v == nil {
@@ -13130,7 +13130,7 @@ type SsoSettingsSamlSettings struct {
 	Certificate *string `pulumi:"certificate"`
 	// Path for the SP X.509 certificate.
 	CertificatePath *string `pulumi:"certificatePath"`
-	// Define whether this configuration is enabled for SAML. Defaults to `true`.
+	// Define whether this configuration is enabled for SAML.
 	Enabled *bool `pulumi:"enabled"`
 	// Base64-encoded string for the IdP SAML metadata XML.
 	IdpMetadata *string `pulumi:"idpMetadata"`
@@ -13206,7 +13206,7 @@ type SsoSettingsSamlSettingsArgs struct {
 	Certificate pulumi.StringPtrInput `pulumi:"certificate"`
 	// Path for the SP X.509 certificate.
 	CertificatePath pulumi.StringPtrInput `pulumi:"certificatePath"`
-	// Define whether this configuration is enabled for SAML. Defaults to `true`.
+	// Define whether this configuration is enabled for SAML.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Base64-encoded string for the IdP SAML metadata XML.
 	IdpMetadata pulumi.StringPtrInput `pulumi:"idpMetadata"`
@@ -13383,7 +13383,7 @@ func (o SsoSettingsSamlSettingsOutput) CertificatePath() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.CertificatePath }).(pulumi.StringPtrOutput)
 }
 
-// Define whether this configuration is enabled for SAML. Defaults to `true`.
+// Define whether this configuration is enabled for SAML.
 func (o SsoSettingsSamlSettingsOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SsoSettingsSamlSettings) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -13622,7 +13622,7 @@ func (o SsoSettingsSamlSettingsPtrOutput) CertificatePath() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// Define whether this configuration is enabled for SAML. Defaults to `true`.
+// Define whether this configuration is enabled for SAML.
 func (o SsoSettingsSamlSettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsSamlSettings) *bool {
 		if v == nil {

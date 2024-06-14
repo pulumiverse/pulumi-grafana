@@ -294,7 +294,12 @@ class _AnnotationState:
         pulumi.set(self, "time_end", value)
 
 
+warnings.warn("""grafana.index/annotation.Annotation has been deprecated in favor of grafana.oss/annotation.Annotation""", DeprecationWarning)
+
+
 class Annotation(pulumi.CustomResource):
+    warnings.warn("""grafana.index/annotation.Annotation has been deprecated in favor of grafana.oss/annotation.Annotation""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -309,28 +314,7 @@ class Annotation(pulumi.CustomResource):
                  time_end: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test = grafana.Annotation("test", text="basic text")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/annotation:Annotation name "{{ id }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/annotation:Annotation name "{{ orgID }}:{{ id }}"
-        ```
-
+        Create a Annotation resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] dashboard_id: The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
@@ -349,28 +333,7 @@ class Annotation(pulumi.CustomResource):
                  args: AnnotationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test = grafana.Annotation("test", text="basic text")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/annotation:Annotation name "{{ id }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/annotation:Annotation name "{{ orgID }}:{{ id }}"
-        ```
-
+        Create a Annotation resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param AnnotationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -395,6 +358,7 @@ class Annotation(pulumi.CustomResource):
                  time: Optional[pulumi.Input[str]] = None,
                  time_end: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""Annotation is deprecated: grafana.index/annotation.Annotation has been deprecated in favor of grafana.oss/annotation.Annotation""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -413,6 +377,8 @@ class Annotation(pulumi.CustomResource):
             __props__.__dict__["text"] = text
             __props__.__dict__["time"] = time
             __props__.__dict__["time_end"] = time_end
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/annotation:Annotation")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Annotation, __self__).__init__(
             'grafana:index/annotation:Annotation',
             resource_name,

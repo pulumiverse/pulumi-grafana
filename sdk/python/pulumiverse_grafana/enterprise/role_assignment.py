@@ -217,12 +217,12 @@ class RoleAssignment(pulumi.CustomResource):
                 action="org.users:add",
                 scope="users:*",
             )])
-        test_team = grafana.Team("testTeam")
-        test_user = grafana.User("testUser",
+        test_team = grafana.oss.Team("testTeam")
+        test_user = grafana.oss.User("testUser",
             email="terraform_user@test.com",
             login="terraform_user@test.com",
             password="password")
-        test_sa = grafana.ServiceAccount("testSa", role="Viewer")
+        test_sa = grafana.oss.ServiceAccount("testSa", role="Viewer")
         test = grafana.enterprise.RoleAssignment("test",
             role_uid=test_role.uid,
             users=[test_user.id],
@@ -274,12 +274,12 @@ class RoleAssignment(pulumi.CustomResource):
                 action="org.users:add",
                 scope="users:*",
             )])
-        test_team = grafana.Team("testTeam")
-        test_user = grafana.User("testUser",
+        test_team = grafana.oss.Team("testTeam")
+        test_user = grafana.oss.User("testUser",
             email="terraform_user@test.com",
             login="terraform_user@test.com",
             password="password")
-        test_sa = grafana.ServiceAccount("testSa", role="Viewer")
+        test_sa = grafana.oss.ServiceAccount("testSa", role="Viewer")
         test = grafana.enterprise.RoleAssignment("test",
             role_uid=test_role.uid,
             users=[test_user.id],

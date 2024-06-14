@@ -2,14 +2,34 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
- * @deprecated grafana.index/organizationpreference.OrganizationPreference has been deprecated in favor of grafana.index/organizationpreferences.OrganizationPreferences
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = new grafana.oss.OrganizationPreferences("test", {
+ *     theme: "light",
+ *     timezone: "utc",
+ *     weekStart: "sunday",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:oss/organizationPreferences:OrganizationPreferences name "{{ orgID }}"
+ * ```
  */
-export class OrganizationPreference extends pulumi.CustomResource {
+export class OrganizationPreferences extends pulumi.CustomResource {
     /**
-     * Get an existing OrganizationPreference resource's state with the given name, ID, and optional extra
+     * Get an existing OrganizationPreferences resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -17,23 +37,22 @@ export class OrganizationPreference extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: OrganizationPreferenceState, opts?: pulumi.CustomResourceOptions): OrganizationPreference {
-        pulumi.log.warn("OrganizationPreference is deprecated: grafana.index/organizationpreference.OrganizationPreference has been deprecated in favor of grafana.index/organizationpreferences.OrganizationPreferences")
-        return new OrganizationPreference(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: OrganizationPreferencesState, opts?: pulumi.CustomResourceOptions): OrganizationPreferences {
+        return new OrganizationPreferences(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/organizationPreference:OrganizationPreference';
+    public static readonly __pulumiType = 'grafana:oss/organizationPreferences:OrganizationPreferences';
 
     /**
-     * Returns true if the given object is an instance of OrganizationPreference.  This is designed to work even
+     * Returns true if the given object is an instance of OrganizationPreferences.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is OrganizationPreference {
+    public static isInstance(obj: any): obj is OrganizationPreferences {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === OrganizationPreference.__pulumiType;
+        return obj['__pulumiType'] === OrganizationPreferences.__pulumiType;
     }
 
     /**
@@ -59,27 +78,23 @@ export class OrganizationPreference extends pulumi.CustomResource {
      */
     public readonly timezone!: pulumi.Output<string | undefined>;
     /**
-     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-     * default.
+     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
      */
     public readonly weekStart!: pulumi.Output<string | undefined>;
 
     /**
-     * Create a OrganizationPreference resource with the given unique name, arguments, and options.
+     * Create a OrganizationPreferences resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    /** @deprecated grafana.index/organizationpreference.OrganizationPreference has been deprecated in favor of grafana.index/organizationpreferences.OrganizationPreferences */
-    constructor(name: string, args?: OrganizationPreferenceArgs, opts?: pulumi.CustomResourceOptions)
-    /** @deprecated grafana.index/organizationpreference.OrganizationPreference has been deprecated in favor of grafana.index/organizationpreferences.OrganizationPreferences */
-    constructor(name: string, argsOrState?: OrganizationPreferenceArgs | OrganizationPreferenceState, opts?: pulumi.CustomResourceOptions) {
-        pulumi.log.warn("OrganizationPreference is deprecated: grafana.index/organizationpreference.OrganizationPreference has been deprecated in favor of grafana.index/organizationpreferences.OrganizationPreferences")
+    constructor(name: string, args?: OrganizationPreferencesArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: OrganizationPreferencesArgs | OrganizationPreferencesState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as OrganizationPreferenceState | undefined;
+            const state = argsOrState as OrganizationPreferencesState | undefined;
             resourceInputs["homeDashboardId"] = state ? state.homeDashboardId : undefined;
             resourceInputs["homeDashboardUid"] = state ? state.homeDashboardUid : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
@@ -87,7 +102,7 @@ export class OrganizationPreference extends pulumi.CustomResource {
             resourceInputs["timezone"] = state ? state.timezone : undefined;
             resourceInputs["weekStart"] = state ? state.weekStart : undefined;
         } else {
-            const args = argsOrState as OrganizationPreferenceArgs | undefined;
+            const args = argsOrState as OrganizationPreferencesArgs | undefined;
             resourceInputs["homeDashboardId"] = args ? args.homeDashboardId : undefined;
             resourceInputs["homeDashboardUid"] = args ? args.homeDashboardUid : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
@@ -96,14 +111,16 @@ export class OrganizationPreference extends pulumi.CustomResource {
             resourceInputs["weekStart"] = args ? args.weekStart : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(OrganizationPreference.__pulumiType, name, resourceInputs, opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/organizationPreferences:OrganizationPreferences" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
+        super(OrganizationPreferences.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering OrganizationPreference resources.
+ * Input properties used for looking up and filtering OrganizationPreferences resources.
  */
-export interface OrganizationPreferenceState {
+export interface OrganizationPreferencesState {
     /**
      * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
      *
@@ -127,16 +144,15 @@ export interface OrganizationPreferenceState {
      */
     timezone?: pulumi.Input<string>;
     /**
-     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-     * default.
+     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
      */
     weekStart?: pulumi.Input<string>;
 }
 
 /**
- * The set of arguments for constructing a OrganizationPreference resource.
+ * The set of arguments for constructing a OrganizationPreferences resource.
  */
-export interface OrganizationPreferenceArgs {
+export interface OrganizationPreferencesArgs {
     /**
      * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
      *
@@ -160,8 +176,7 @@ export interface OrganizationPreferenceArgs {
      */
     timezone?: pulumi.Input<string>;
     /**
-     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-     * default.
+     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
      */
     weekStart?: pulumi.Input<string>;
 }

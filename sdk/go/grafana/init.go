@@ -97,8 +97,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &OncallSchedule{}
 	case "grafana:index/organization:Organization":
 		r = &Organization{}
-	case "grafana:index/organizationPreference:OrganizationPreference":
-		r = &OrganizationPreference{}
 	case "grafana:index/organizationPreferences:OrganizationPreferences":
 		r = &OrganizationPreferences{}
 	case "grafana:index/playlist:Playlist":
@@ -356,11 +354,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"index/organization",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"grafana",
-		"index/organizationPreference",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

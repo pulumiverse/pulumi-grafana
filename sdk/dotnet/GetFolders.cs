@@ -10,75 +10,12 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    [Obsolete(@"grafana.index/getfolders.getFolders has been deprecated in favor of grafana.oss/getfolders.getFolders")]
     public static class GetFolders
     {
-        /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// using Grafana = Pulumiverse.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testA = new Grafana.Folder("testA", new()
-        ///     {
-        ///         Title = "test-folder-a",
-        ///         Uid = "test-ds-folder-uid-a",
-        ///     });
-        /// 
-        ///     var testB = new Grafana.Folder("testB", new()
-        ///     {
-        ///         Title = "test-folder-b",
-        ///         Uid = "test-ds-folder-uid-b",
-        ///     });
-        /// 
-        ///     var test = Grafana.GetFolders.Invoke();
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Task<GetFoldersResult> InvokeAsync(GetFoldersArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFoldersResult>("grafana:index/getFolders:getFolders", args ?? new GetFoldersArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// using Grafana = Pulumiverse.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testA = new Grafana.Folder("testA", new()
-        ///     {
-        ///         Title = "test-folder-a",
-        ///         Uid = "test-ds-folder-uid-a",
-        ///     });
-        /// 
-        ///     var testB = new Grafana.Folder("testB", new()
-        ///     {
-        ///         Title = "test-folder-b",
-        ///         Uid = "test-ds-folder-uid-b",
-        ///     });
-        /// 
-        ///     var test = Grafana.GetFolders.Invoke();
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Output<GetFoldersResult> Invoke(GetFoldersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFoldersResult>("grafana:index/getFolders:getFolders", args ?? new GetFoldersInvokeArgs(), options.WithDefaults());
     }
@@ -86,9 +23,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetFoldersArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        /// </summary>
         [Input("orgId")]
         public string? OrgId { get; set; }
 
@@ -100,9 +34,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetFoldersInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
 
@@ -116,17 +47,11 @@ namespace Pulumiverse.Grafana
     [OutputType]
     public sealed class GetFoldersResult
     {
-        /// <summary>
-        /// The Grafana instance's folders.
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetFoldersFolderResult> Folders;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        /// </summary>
         public readonly string? OrgId;
 
         [OutputConstructor]

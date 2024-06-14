@@ -25,8 +25,8 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/enterprise"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
 //
 // )
 //
@@ -46,11 +46,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testTeam, err := grafana.NewTeam(ctx, "testTeam", nil)
+//			testTeam, err := oss.NewTeam(ctx, "testTeam", nil)
 //			if err != nil {
 //				return err
 //			}
-//			testUser, err := grafana.NewUser(ctx, "testUser", &grafana.UserArgs{
+//			testUser, err := oss.NewUser(ctx, "testUser", &oss.UserArgs{
 //				Email:    pulumi.String("terraform_user@test.com"),
 //				Login:    pulumi.String("terraform_user@test.com"),
 //				Password: pulumi.String("password"),
@@ -58,7 +58,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testSa, err := grafana.NewServiceAccount(ctx, "testSa", &grafana.ServiceAccountArgs{
+//			testSa, err := oss.NewServiceAccount(ctx, "testSa", &oss.ServiceAccountArgs{
 //				Role: pulumi.String("Viewer"),
 //			})
 //			if err != nil {

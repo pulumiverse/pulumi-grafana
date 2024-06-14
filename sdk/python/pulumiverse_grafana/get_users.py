@@ -17,6 +17,8 @@ __all__ = [
     'get_users_output',
 ]
 
+warnings.warn("""grafana.index/getusers.getUsers has been deprecated in favor of grafana.oss/getusers.getUsers""", DeprecationWarning)
+
 @pulumi.output_type
 class GetUsersResult:
     """
@@ -41,9 +43,6 @@ class GetUsersResult:
     @property
     @pulumi.getter
     def users(self) -> Sequence['outputs.GetUsersUserResult']:
-        """
-        The Grafana instance's users.
-        """
         return pulumi.get(self, "users")
 
 
@@ -59,26 +58,9 @@ class AwaitableGetUsersResult(GetUsersResult):
 
 def get_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersResult:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
-
-    This data source uses Grafana's admin APIs for reading users which
-    does not currently work with API Tokens. You must use basic auth.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-    import pulumiverse_grafana as grafana
-
-    test_all_users = grafana.User("testAllUsers",
-        email="all_users@example.com",
-        login="test-grafana-users",
-        password="my-password")
-    all_users = grafana.get_users()
-    ```
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_users is deprecated: grafana.index/getusers.getUsers has been deprecated in favor of grafana.oss/getusers.getUsers""")
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('grafana:index/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult).value
@@ -91,24 +73,7 @@ def get_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersR
 @_utilities.lift_output_func(get_users)
 def get_users_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUsersResult]:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
-
-    This data source uses Grafana's admin APIs for reading users which
-    does not currently work with API Tokens. You must use basic auth.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-    import pulumiverse_grafana as grafana
-
-    test_all_users = grafana.User("testAllUsers",
-        email="all_users@example.com",
-        login="test-grafana-users",
-        password="my-password")
-    all_users = grafana.get_users()
-    ```
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_users is deprecated: grafana.index/getusers.getUsers has been deprecated in favor of grafana.oss/getusers.getUsers""")
     ...

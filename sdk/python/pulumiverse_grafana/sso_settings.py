@@ -22,7 +22,7 @@ class SsoSettingsArgs:
         """
         The set of arguments for constructing a SsoSettings resource.
         :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
-        :param pulumi.Input['SsoSettingsOauth2SettingsArgs'] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
+        :param pulumi.Input['SsoSettingsOauth2SettingsArgs'] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
         :param pulumi.Input['SsoSettingsSamlSettingsArgs'] saml_settings: The SAML settings set. Required for the saml provider.
         """
         pulumi.set(__self__, "provider_name", provider_name)
@@ -47,7 +47,7 @@ class SsoSettingsArgs:
     @pulumi.getter(name="oauth2Settings")
     def oauth2_settings(self) -> Optional[pulumi.Input['SsoSettingsOauth2SettingsArgs']]:
         """
-        The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
+        The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
         """
         return pulumi.get(self, "oauth2_settings")
 
@@ -76,7 +76,7 @@ class _SsoSettingsState:
                  saml_settings: Optional[pulumi.Input['SsoSettingsSamlSettingsArgs']] = None):
         """
         Input properties used for looking up and filtering SsoSettings resources.
-        :param pulumi.Input['SsoSettingsOauth2SettingsArgs'] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
+        :param pulumi.Input['SsoSettingsOauth2SettingsArgs'] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
         :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
         :param pulumi.Input['SsoSettingsSamlSettingsArgs'] saml_settings: The SAML settings set. Required for the saml provider.
         """
@@ -91,7 +91,7 @@ class _SsoSettingsState:
     @pulumi.getter(name="oauth2Settings")
     def oauth2_settings(self) -> Optional[pulumi.Input['SsoSettingsOauth2SettingsArgs']]:
         """
-        The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
+        The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
         """
         return pulumi.get(self, "oauth2_settings")
 
@@ -124,7 +124,12 @@ class _SsoSettingsState:
         pulumi.set(self, "saml_settings", value)
 
 
+warnings.warn("""grafana.index/ssosettings.SsoSettings has been deprecated in favor of grafana.oss/ssosettings.SsoSettings""", DeprecationWarning)
+
+
 class SsoSettings(pulumi.CustomResource):
+    warnings.warn("""grafana.index/ssosettings.SsoSettings has been deprecated in favor of grafana.oss/ssosettings.SsoSettings""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -134,75 +139,10 @@ class SsoSettings(pulumi.CustomResource):
                  saml_settings: Optional[pulumi.Input[pulumi.InputType['SsoSettingsSamlSettingsArgs']]] = None,
                  __props__=None):
         """
-        Manages Grafana SSO Settings for OAuth2 and SAML. Support for SAML is currently in preview, it will be available in Grafana Enterprise starting with v11.1.
-
-        * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/sso-settings/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        # Configure SSO for GitHub using OAuth2
-        github_sso_settings = grafana.SsoSettings("githubSsoSettings",
-            oauth2_settings=grafana.SsoSettingsOauth2SettingsArgs(
-                allow_sign_up=True,
-                allowed_domains="mycompany.com mycompany.org",
-                allowed_organizations="[\\"My Organization\\", \\"Octocats\\"]",
-                auto_login=False,
-                client_id="<your GitHub app client id>",
-                client_secret="<your GitHub app client secret>",
-                name="Github",
-                scopes="user:email,read:org",
-                team_ids="150,300",
-            ),
-            provider_name="github")
-        # Configure SSO using generic OAuth2
-        generic_sso_settings = grafana.SsoSettings("genericSsoSettings",
-            oauth2_settings=grafana.SsoSettingsOauth2SettingsArgs(
-                allow_sign_up=True,
-                api_url="https://<domain>/userinfo",
-                auth_url="https://<domain>/authorize",
-                auto_login=False,
-                client_id="<client id>",
-                client_secret="<client secret>",
-                name="Auth0",
-                scopes="openid profile email offline_access",
-                token_url="https://<domain>/oauth/token",
-                use_pkce=True,
-                use_refresh_token=True,
-            ),
-            provider_name="generic_oauth")
-        # Configure SSO using SAML
-        saml_sso_settings = grafana.SsoSettings("samlSsoSettings",
-            provider_name="saml",
-            saml_settings=grafana.SsoSettingsSamlSettingsArgs(
-                allow_sign_up=True,
-                assertion_attribute_email="email",
-                assertion_attribute_login="login",
-                certificate_path="devenv/docker/blocks/auth/saml-enterprise/cert.crt",
-                idp_metadata_url="https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml",
-                name_id_format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
-                private_key_path="devenv/docker/blocks/auth/saml-enterprise/key.pem",
-                signature_algorithm="rsa-sha256",
-            ))
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/ssoSettings:SsoSettings name "{{ provider }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/ssoSettings:SsoSettings name "{{ orgID }}:{{ provider }}"
-        ```
-
+        Create a SsoSettings resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['SsoSettingsOauth2SettingsArgs']] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
+        :param pulumi.Input[pulumi.InputType['SsoSettingsOauth2SettingsArgs']] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
         :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
         :param pulumi.Input[pulumi.InputType['SsoSettingsSamlSettingsArgs']] saml_settings: The SAML settings set. Required for the saml provider.
         """
@@ -213,72 +153,7 @@ class SsoSettings(pulumi.CustomResource):
                  args: SsoSettingsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Grafana SSO Settings for OAuth2 and SAML. Support for SAML is currently in preview, it will be available in Grafana Enterprise starting with v11.1.
-
-        * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/sso-settings/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        # Configure SSO for GitHub using OAuth2
-        github_sso_settings = grafana.SsoSettings("githubSsoSettings",
-            oauth2_settings=grafana.SsoSettingsOauth2SettingsArgs(
-                allow_sign_up=True,
-                allowed_domains="mycompany.com mycompany.org",
-                allowed_organizations="[\\"My Organization\\", \\"Octocats\\"]",
-                auto_login=False,
-                client_id="<your GitHub app client id>",
-                client_secret="<your GitHub app client secret>",
-                name="Github",
-                scopes="user:email,read:org",
-                team_ids="150,300",
-            ),
-            provider_name="github")
-        # Configure SSO using generic OAuth2
-        generic_sso_settings = grafana.SsoSettings("genericSsoSettings",
-            oauth2_settings=grafana.SsoSettingsOauth2SettingsArgs(
-                allow_sign_up=True,
-                api_url="https://<domain>/userinfo",
-                auth_url="https://<domain>/authorize",
-                auto_login=False,
-                client_id="<client id>",
-                client_secret="<client secret>",
-                name="Auth0",
-                scopes="openid profile email offline_access",
-                token_url="https://<domain>/oauth/token",
-                use_pkce=True,
-                use_refresh_token=True,
-            ),
-            provider_name="generic_oauth")
-        # Configure SSO using SAML
-        saml_sso_settings = grafana.SsoSettings("samlSsoSettings",
-            provider_name="saml",
-            saml_settings=grafana.SsoSettingsSamlSettingsArgs(
-                allow_sign_up=True,
-                assertion_attribute_email="email",
-                assertion_attribute_login="login",
-                certificate_path="devenv/docker/blocks/auth/saml-enterprise/cert.crt",
-                idp_metadata_url="https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml",
-                name_id_format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
-                private_key_path="devenv/docker/blocks/auth/saml-enterprise/key.pem",
-                signature_algorithm="rsa-sha256",
-            ))
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/ssoSettings:SsoSettings name "{{ provider }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/ssoSettings:SsoSettings name "{{ orgID }}:{{ provider }}"
-        ```
-
+        Create a SsoSettings resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param SsoSettingsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -298,6 +173,7 @@ class SsoSettings(pulumi.CustomResource):
                  provider_name: Optional[pulumi.Input[str]] = None,
                  saml_settings: Optional[pulumi.Input[pulumi.InputType['SsoSettingsSamlSettingsArgs']]] = None,
                  __props__=None):
+        pulumi.log.warn("""SsoSettings is deprecated: grafana.index/ssosettings.SsoSettings has been deprecated in favor of grafana.oss/ssosettings.SsoSettings""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -311,6 +187,8 @@ class SsoSettings(pulumi.CustomResource):
                 raise TypeError("Missing required property 'provider_name'")
             __props__.__dict__["provider_name"] = provider_name
             __props__.__dict__["saml_settings"] = saml_settings
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/ssoSettings:SsoSettings")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(SsoSettings, __self__).__init__(
             'grafana:index/ssoSettings:SsoSettings',
             resource_name,
@@ -331,7 +209,7 @@ class SsoSettings(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['SsoSettingsOauth2SettingsArgs']] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
+        :param pulumi.Input[pulumi.InputType['SsoSettingsOauth2SettingsArgs']] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
         :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
         :param pulumi.Input[pulumi.InputType['SsoSettingsSamlSettingsArgs']] saml_settings: The SAML settings set. Required for the saml provider.
         """
@@ -348,7 +226,7 @@ class SsoSettings(pulumi.CustomResource):
     @pulumi.getter(name="oauth2Settings")
     def oauth2_settings(self) -> pulumi.Output[Optional['outputs.SsoSettingsOauth2Settings']]:
         """
-        The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
+        The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic_oauth providers.
         """
         return pulumi.get(self, "oauth2_settings")
 

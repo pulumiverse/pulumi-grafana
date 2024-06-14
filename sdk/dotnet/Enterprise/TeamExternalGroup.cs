@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Enterprise
 {
     /// <summary>
-    /// Equivalent to the the `team_sync` attribute of the `grafana.Team` resource. Use one or the other to configure a team's external groups syncing config.
+    /// Equivalent to the the `team_sync` attribute of the `grafana.oss.Team` resource. Use one or the other to configure a team's external groups syncing config.
     /// 
     /// ## Example Usage
     /// 
@@ -23,7 +23,7 @@ namespace Pulumiverse.Grafana.Enterprise
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myTeam = new Grafana.Team("myTeam");
+    ///     var myTeam = new Grafana.Oss.Team("myTeam");
     /// 
     ///     var test_team_group = new Grafana.Enterprise.TeamExternalGroup("test-team-group", new()
     ///     {

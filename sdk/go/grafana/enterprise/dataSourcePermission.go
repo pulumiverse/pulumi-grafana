@@ -24,14 +24,14 @@ import (
 //	"encoding/json"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/enterprise"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			team, err := grafana.NewTeam(ctx, "team", nil)
+//			team, err := oss.NewTeam(ctx, "team", nil)
 //			if err != nil {
 //				return err
 //			}
@@ -51,7 +51,7 @@ import (
 //				return err
 //			}
 //			json1 := string(tmpJSON1)
-//			foo, err := grafana.NewDataSource(ctx, "foo", &grafana.DataSourceArgs{
+//			foo, err := oss.NewDataSource(ctx, "foo", &oss.DataSourceArgs{
 //				Type:                  pulumi.String("cloudwatch"),
 //				JsonDataEncoded:       pulumi.String(json0),
 //				SecureJsonDataEncoded: pulumi.String(json1),
@@ -59,7 +59,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			user, err := grafana.NewUser(ctx, "user", &grafana.UserArgs{
+//			user, err := oss.NewUser(ctx, "user", &oss.UserArgs{
 //				Email:    pulumi.String("test-ds-permissions@example.com"),
 //				Login:    pulumi.String("test-ds-permissions"),
 //				Password: pulumi.String("hunter2"),
@@ -67,7 +67,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			sa, err := grafana.NewServiceAccount(ctx, "sa", &grafana.ServiceAccountArgs{
+//			sa, err := oss.NewServiceAccount(ctx, "sa", &oss.ServiceAccountArgs{
 //				Role: pulumi.String("Viewer"),
 //			})
 //			if err != nil {

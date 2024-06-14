@@ -19,11 +19,11 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string Permission;
         /// <summary>
-        /// ID of the team to manage permissions for. Defaults to `0`.
+        /// ID of the team to manage permissions for.
         /// </summary>
         public readonly string? TeamId;
         /// <summary>
-        /// ID of the user or service account to manage permissions for. Defaults to `0`.
+        /// ID of the user or service account to manage permissions for.
         /// </summary>
         public readonly string? UserId;
 

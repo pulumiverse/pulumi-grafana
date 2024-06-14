@@ -13,8 +13,8 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const teamTeam = new grafana.Team("teamTeam", {});
- * const foo = new grafana.DataSource("foo", {
+ * const teamTeam = new grafana.oss.Team("teamTeam", {});
+ * const foo = new grafana.oss.DataSource("foo", {
  *     type: "cloudwatch",
  *     jsonDataEncoded: JSON.stringify({
  *         defaultRegion: "us-east-1",
@@ -25,12 +25,12 @@ import * as utilities from "../utilities";
  *         secretKey: "456",
  *     }),
  * });
- * const userUser = new grafana.User("userUser", {
+ * const userUser = new grafana.oss.User("userUser", {
  *     email: "test-ds-permissions@example.com",
  *     login: "test-ds-permissions",
  *     password: "hunter2",
  * });
- * const sa = new grafana.ServiceAccount("sa", {role: "Viewer"});
+ * const sa = new grafana.oss.ServiceAccount("sa", {role: "Viewer"});
  * const teamDataSourcePermissionItem = new grafana.enterprise.DataSourcePermissionItem("teamDataSourcePermissionItem", {
  *     datasourceUid: foo.uid,
  *     team: teamTeam.id,

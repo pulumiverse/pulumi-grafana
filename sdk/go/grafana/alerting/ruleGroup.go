@@ -29,14 +29,14 @@ import (
 //	"encoding/json"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/alerting"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			ruleFolder, err := grafana.NewFolder(ctx, "ruleFolder", &grafana.FolderArgs{
+//			ruleFolder, err := oss.NewFolder(ctx, "ruleFolder", &oss.FolderArgs{
 //				Title: pulumi.String("My Alert Rule Folder"),
 //			})
 //			if err != nil {

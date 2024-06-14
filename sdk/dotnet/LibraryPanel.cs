@@ -10,53 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// Manages Grafana library panels.
-    /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/library_element/)
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using System.Text.Json;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Grafana.LibraryPanel("test", new()
-    ///     {
-    ///         ModelJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///         {
-    ///             ["gridPos"] = new Dictionary&lt;string, object?&gt;
-    ///             {
-    ///                 ["x"] = 0,
-    ///                 ["y"] = 0,
-    ///                 ["h"] = 10,
-    ///                 ["w"] = 10,
-    ///             },
-    ///             ["title"] = "panel",
-    ///             ["type"] = "text",
-    ///             ["version"] = 0,
-    ///         }),
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/libraryPanel:LibraryPanel name "{{ uid }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/libraryPanel:LibraryPanel name "{{ orgID }}:{{ uid }}"
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/librarypanel.LibraryPanel has been deprecated in favor of grafana.oss/librarypanel.LibraryPanel")]
     [GrafanaResourceType("grafana:index/libraryPanel:LibraryPanel")]
     public partial class LibraryPanel : global::Pulumi.CustomResource
     {
@@ -127,7 +81,9 @@ namespace Pulumiverse.Grafana
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
+        /// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs.
+        /// It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for
+        /// accessing library panels and when syncing library panels between multiple Grafana installs.
         /// </summary>
         [Output("uid")]
         public Output<string> Uid { get; private set; } = null!;
@@ -168,6 +124,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/libraryPanel:LibraryPanel" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -222,7 +182,9 @@ namespace Pulumiverse.Grafana
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
+        /// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs.
+        /// It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for
+        /// accessing library panels and when syncing library panels between multiple Grafana installs.
         /// </summary>
         [Input("uid")]
         public Input<string>? Uid { get; set; }
@@ -308,7 +270,9 @@ namespace Pulumiverse.Grafana
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
+        /// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs.
+        /// It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for
+        /// accessing library panels and when syncing library panels between multiple Grafana installs.
         /// </summary>
         [Input("uid")]
         public Input<string>? Uid { get; set; }

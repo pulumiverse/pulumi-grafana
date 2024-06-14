@@ -26,7 +26,7 @@ namespace Pulumiverse.Grafana.Enterprise
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testDashboard = new Grafana.Dashboard("testDashboard", new()
+    ///     var testDashboard = new Grafana.Oss.Dashboard("testDashboard", new()
     ///     {
     ///         ConfigJson = @"{
     ///   ""uid"": ""report-dashboard"",

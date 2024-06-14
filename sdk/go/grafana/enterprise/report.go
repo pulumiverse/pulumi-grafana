@@ -25,14 +25,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/enterprise"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testDashboard, err := grafana.NewDashboard(ctx, "testDashboard", &grafana.DashboardArgs{
+//			testDashboard, err := oss.NewDashboard(ctx, "testDashboard", &oss.DashboardArgs{
 //				ConfigJson: pulumi.String("{\n  \"uid\": \"report-dashboard\",\n  \"title\": \"report-dashboard\"\n}\n"),
 //				Message:    pulumi.String("inital commit."),
 //			})

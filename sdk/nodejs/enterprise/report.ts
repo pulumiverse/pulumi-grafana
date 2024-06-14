@@ -18,7 +18,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const testDashboard = new grafana.Dashboard("testDashboard", {
+ * const testDashboard = new grafana.oss.Dashboard("testDashboard", {
  *     configJson: `{
  *   "uid": "report-dashboard",
  *   "title": "report-dashboard"

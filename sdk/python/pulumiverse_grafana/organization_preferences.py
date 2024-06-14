@@ -27,7 +27,8 @@ class OrganizationPreferencesArgs:
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         :param pulumi.Input[str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
-        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+               default.
         """
         if home_dashboard_id is not None:
             warnings.warn("""Use `home_dashboard_uid` instead.""", DeprecationWarning)
@@ -112,7 +113,8 @@ class OrganizationPreferencesArgs:
     @pulumi.getter(name="weekStart")
     def week_start(self) -> Optional[pulumi.Input[str]]:
         """
-        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+        default.
         """
         return pulumi.get(self, "week_start")
 
@@ -137,7 +139,8 @@ class _OrganizationPreferencesState:
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         :param pulumi.Input[str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
-        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+               default.
         """
         if home_dashboard_id is not None:
             warnings.warn("""Use `home_dashboard_uid` instead.""", DeprecationWarning)
@@ -222,7 +225,8 @@ class _OrganizationPreferencesState:
     @pulumi.getter(name="weekStart")
     def week_start(self) -> Optional[pulumi.Input[str]]:
         """
-        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+        default.
         """
         return pulumi.get(self, "week_start")
 
@@ -231,7 +235,12 @@ class _OrganizationPreferencesState:
         pulumi.set(self, "week_start", value)
 
 
+warnings.warn("""grafana.index/organizationpreferences.OrganizationPreferences has been deprecated in favor of grafana.oss/organizationpreferences.OrganizationPreferences""", DeprecationWarning)
+
+
 class OrganizationPreferences(pulumi.CustomResource):
+    warnings.warn("""grafana.index/organizationpreferences.OrganizationPreferences has been deprecated in favor of grafana.oss/organizationpreferences.OrganizationPreferences""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -244,27 +253,7 @@ class OrganizationPreferences(pulumi.CustomResource):
                  week_start: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test = grafana.OrganizationPreferences("test",
-            theme="light",
-            timezone="utc",
-            week_start="sunday")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/organizationPreferences:OrganizationPreferences name "{{ orgID }}"
-        ```
-
+        Create a OrganizationPreferences resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
@@ -272,7 +261,8 @@ class OrganizationPreferences(pulumi.CustomResource):
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         :param pulumi.Input[str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
-        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+               default.
         """
         ...
     @overload
@@ -281,27 +271,7 @@ class OrganizationPreferences(pulumi.CustomResource):
                  args: Optional[OrganizationPreferencesArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test = grafana.OrganizationPreferences("test",
-            theme="light",
-            timezone="utc",
-            week_start="sunday")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/organizationPreferences:OrganizationPreferences name "{{ orgID }}"
-        ```
-
+        Create a OrganizationPreferences resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param OrganizationPreferencesArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -324,6 +294,7 @@ class OrganizationPreferences(pulumi.CustomResource):
                  timezone: Optional[pulumi.Input[str]] = None,
                  week_start: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""OrganizationPreferences is deprecated: grafana.index/organizationpreferences.OrganizationPreferences has been deprecated in favor of grafana.oss/organizationpreferences.OrganizationPreferences""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -338,7 +309,7 @@ class OrganizationPreferences(pulumi.CustomResource):
             __props__.__dict__["theme"] = theme
             __props__.__dict__["timezone"] = timezone
             __props__.__dict__["week_start"] = week_start
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/organizationPreference:OrganizationPreference")])
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/organizationPreferences:OrganizationPreferences")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(OrganizationPreferences, __self__).__init__(
             'grafana:index/organizationPreferences:OrganizationPreferences',
@@ -368,7 +339,8 @@ class OrganizationPreferences(pulumi.CustomResource):
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         :param pulumi.Input[str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
-        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+               default.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -429,7 +401,8 @@ class OrganizationPreferences(pulumi.CustomResource):
     @pulumi.getter(name="weekStart")
     def week_start(self) -> pulumi.Output[Optional[str]]:
         """
-        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+        default.
         """
         return pulumi.get(self, "week_start")
 

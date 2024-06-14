@@ -335,11 +335,6 @@ export type Organization = import("./organization").Organization;
 export const Organization: typeof import("./organization").Organization = null as any;
 utilities.lazyLoad(exports, ["Organization"], () => require("./organization"));
 
-export { OrganizationPreferenceArgs, OrganizationPreferenceState } from "./organizationPreference";
-export type OrganizationPreference = import("./organizationPreference").OrganizationPreference;
-export const OrganizationPreference: typeof import("./organizationPreference").OrganizationPreference = null as any;
-utilities.lazyLoad(exports, ["OrganizationPreference"], () => require("./organizationPreference"));
-
 export { OrganizationPreferencesArgs, OrganizationPreferencesState } from "./organizationPreferences";
 export type OrganizationPreferences = import("./organizationPreferences").OrganizationPreferences;
 export const OrganizationPreferences: typeof import("./organizationPreferences").OrganizationPreferences = null as any;
@@ -448,6 +443,7 @@ import * as config from "./config";
 import * as enterprise from "./enterprise";
 import * as machinelearning from "./machinelearning";
 import * as oncall from "./oncall";
+import * as oss from "./oss";
 import * as slo from "./slo";
 import * as syntheticmonitoring from "./syntheticmonitoring";
 import * as types from "./types";
@@ -459,6 +455,7 @@ export {
     enterprise,
     machinelearning,
     oncall,
+    oss,
     slo,
     syntheticmonitoring,
     types,
@@ -544,8 +541,6 @@ const _module = {
                 return new OncallSchedule(name, <any>undefined, { urn })
             case "grafana:index/organization:Organization":
                 return new Organization(name, <any>undefined, { urn })
-            case "grafana:index/organizationPreference:OrganizationPreference":
-                return new OrganizationPreference(name, <any>undefined, { urn })
             case "grafana:index/organizationPreferences:OrganizationPreferences":
                 return new OrganizationPreferences(name, <any>undefined, { urn })
             case "grafana:index/playlist:Playlist":
@@ -627,7 +622,6 @@ pulumi.runtime.registerResourceModule("grafana", "index/oncallOutgoingWebhook", 
 pulumi.runtime.registerResourceModule("grafana", "index/oncallRoute", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/oncallSchedule", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/organization", _module)
-pulumi.runtime.registerResourceModule("grafana", "index/organizationPreference", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/organizationPreferences", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/playlist", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/report", _module)

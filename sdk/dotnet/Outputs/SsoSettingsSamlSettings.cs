@@ -63,7 +63,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? CertificatePath;
         /// <summary>
-        /// Define whether this configuration is enabled for SAML. Defaults to `true`.
+        /// Define whether this configuration is enabled for SAML.
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>

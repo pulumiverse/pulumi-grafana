@@ -11,87 +11,32 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
-//
-// This resource represents an instance-scoped resource and uses Grafana's admin APIs.
-// It does not work with API tokens or service accounts which are org-scoped.
-// You must use basic auth.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.NewOrganization(ctx, "test", &grafana.OrganizationArgs{
-//				AdminUser: pulumi.String("admin"),
-//				Admins: pulumi.StringArray{
-//					pulumi.String("admin@example.com"),
-//				},
-//				CreateUsers: pulumi.Bool(true),
-//				Editors: pulumi.StringArray{
-//					pulumi.String("editor-01@example.com"),
-//					pulumi.String("editor-02@example.com"),
-//				},
-//				Viewers: pulumi.StringArray{
-//					pulumi.String("viewer-01@example.com"),
-//					pulumi.String("viewer-02@example.com"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Import
-//
-// ```sh
-// $ pulumi import grafana:index/organization:Organization name "{{ id }}"
-// ```
+// Deprecated: grafana.index/organization.Organization has been deprecated in favor of grafana.oss/organization.Organization
 type Organization struct {
 	pulumi.CustomResourceState
 
 	AdminUser pulumi.StringPtrOutput `pulumi:"adminUser"`
-	// A list of email addresses corresponding to users who should be given admin
-	// access to the organization. Note: users specified here must already exist in
-	// Grafana unless 'create_users' is set to true.
+	// A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
+	// specified here must already exist in Grafana unless 'create_users' is set to true.
 	Admins pulumi.StringArrayOutput `pulumi:"admins"`
-	// Whether or not to create Grafana users specified in the organization's
-	// membership if they don't already exist in Grafana. If unspecified, this
-	// parameter defaults to true, creating placeholder users with the name, login,
-	// and email set to the email of the user, and a random password. Setting this
-	// option to false will cause an error to be thrown for any users that do not
-	// already exist in Grafana.
-	// Defaults to `true`.
+	// Whether or not to create Grafana users specified in the organization's membership if they don't already exist in
+	// Grafana. If unspecified, this parameter defaults to true, creating placeholder users with the name, login, and email set
+	// to the email of the user, and a random password. Setting this option to false will cause an error to be thrown for any
+	// users that do not already exist in Grafana.
 	CreateUsers pulumi.BoolPtrOutput `pulumi:"createUsers"`
-	// A list of email addresses corresponding to users who should be given editor
-	// access to the organization. Note: users specified here must already exist in
-	// Grafana unless 'create_users' is set to true.
+	// A list of email addresses corresponding to users who should be given editor access to the organization. Note: users
+	// specified here must already exist in Grafana unless 'create_users' is set to true.
 	Editors pulumi.StringArrayOutput `pulumi:"editors"`
 	// The display name for the Grafana organization created.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization id assigned to this organization by Grafana.
 	OrgId pulumi.IntOutput `pulumi:"orgId"`
-	// A list of email addresses corresponding to users who should be given none access to the organization.
-	// Note: users specified here must already exist in Grafana, unless 'create_users' is
-	// set to true. This feature is only available in Grafana 10.2+.
+	// A list of email addresses corresponding to users who should be given none access to the organization. Note: users
+	// specified here must already exist in Grafana, unless 'create_users' is set to true. This feature is only available in
+	// Grafana 10.2+.
 	UsersWithoutAccesses pulumi.StringArrayOutput `pulumi:"usersWithoutAccesses"`
-	// A list of email addresses corresponding to users who should be given viewer
-	// access to the organization. Note: users specified here must already exist in
-	// Grafana unless 'create_users' is set to true.
+	// A list of email addresses corresponding to users who should be given viewer access to the organization. Note: users
+	// specified here must already exist in Grafana unless 'create_users' is set to true.
 	Viewers pulumi.StringArrayOutput `pulumi:"viewers"`
 }
 
@@ -102,6 +47,12 @@ func NewOrganization(ctx *pulumi.Context,
 		args = &OrganizationArgs{}
 	}
 
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:index/organization:Organization"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Organization
 	err := ctx.RegisterResource("grafana:index/organization:Organization", name, args, &resource, opts...)
@@ -126,65 +77,53 @@ func GetOrganization(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Organization resources.
 type organizationState struct {
 	AdminUser *string `pulumi:"adminUser"`
-	// A list of email addresses corresponding to users who should be given admin
-	// access to the organization. Note: users specified here must already exist in
-	// Grafana unless 'create_users' is set to true.
+	// A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
+	// specified here must already exist in Grafana unless 'create_users' is set to true.
 	Admins []string `pulumi:"admins"`
-	// Whether or not to create Grafana users specified in the organization's
-	// membership if they don't already exist in Grafana. If unspecified, this
-	// parameter defaults to true, creating placeholder users with the name, login,
-	// and email set to the email of the user, and a random password. Setting this
-	// option to false will cause an error to be thrown for any users that do not
-	// already exist in Grafana.
-	// Defaults to `true`.
+	// Whether or not to create Grafana users specified in the organization's membership if they don't already exist in
+	// Grafana. If unspecified, this parameter defaults to true, creating placeholder users with the name, login, and email set
+	// to the email of the user, and a random password. Setting this option to false will cause an error to be thrown for any
+	// users that do not already exist in Grafana.
 	CreateUsers *bool `pulumi:"createUsers"`
-	// A list of email addresses corresponding to users who should be given editor
-	// access to the organization. Note: users specified here must already exist in
-	// Grafana unless 'create_users' is set to true.
+	// A list of email addresses corresponding to users who should be given editor access to the organization. Note: users
+	// specified here must already exist in Grafana unless 'create_users' is set to true.
 	Editors []string `pulumi:"editors"`
 	// The display name for the Grafana organization created.
 	Name *string `pulumi:"name"`
 	// The organization id assigned to this organization by Grafana.
 	OrgId *int `pulumi:"orgId"`
-	// A list of email addresses corresponding to users who should be given none access to the organization.
-	// Note: users specified here must already exist in Grafana, unless 'create_users' is
-	// set to true. This feature is only available in Grafana 10.2+.
+	// A list of email addresses corresponding to users who should be given none access to the organization. Note: users
+	// specified here must already exist in Grafana, unless 'create_users' is set to true. This feature is only available in
+	// Grafana 10.2+.
 	UsersWithoutAccesses []string `pulumi:"usersWithoutAccesses"`
-	// A list of email addresses corresponding to users who should be given viewer
-	// access to the organization. Note: users specified here must already exist in
-	// Grafana unless 'create_users' is set to true.
+	// A list of email addresses corresponding to users who should be given viewer access to the organization. Note: users
+	// specified here must already exist in Grafana unless 'create_users' is set to true.
 	Viewers []string `pulumi:"viewers"`
 }
 
 type OrganizationState struct {
 	AdminUser pulumi.StringPtrInput
-	// A list of email addresses corresponding to users who should be given admin
-	// access to the organization. Note: users specified here must already exist in
-	// Grafana unless 'create_users' is set to true.
+	// A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
+	// specified here must already exist in Grafana unless 'create_users' is set to true.
 	Admins pulumi.StringArrayInput
-	// Whether or not to create Grafana users specified in the organization's
-	// membership if they don't already exist in Grafana. If unspecified, this
-	// parameter defaults to true, creating placeholder users with the name, login,
-	// and email set to the email of the user, and a random password. Setting this
-	// option to false will cause an error to be thrown for any users that do not
-	// already exist in Grafana.
-	// Defaults to `true`.
+	// Whether or not to create Grafana users specified in the organization's membership if they don't already exist in
+	// Grafana. If unspecified, this parameter defaults to true, creating placeholder users with the name, login, and email set
+	// to the email of the user, and a random password. Setting this option to false will cause an error to be thrown for any
+	// users that do not already exist in Grafana.
 	CreateUsers pulumi.BoolPtrInput
-	// A list of email addresses corresponding to users who should be given editor
-	// access to the organization. Note: users specified here must already exist in
-	// Grafana unless 'create_users' is set to true.
+	// A list of email addresses corresponding to users who should be given editor access to the organization. Note: users
+	// specified here must already exist in Grafana unless 'create_users' is set to true.
 	Editors pulumi.StringArrayInput
 	// The display name for the Grafana organization created.
 	Name pulumi.StringPtrInput
 	// The organization id assigned to this organization by Grafana.
 	OrgId pulumi.IntPtrInput
-	// A list of email addresses corresponding to users who should be given none access to the organization.
-	// Note: users specified here must already exist in Grafana, unless 'create_users' is
-	// set to true. This feature is only available in Grafana 10.2+.
+	// A list of email addresses corresponding to users who should be given none access to the organization. Note: users
+	// specified here must already exist in Grafana, unless 'create_users' is set to true. This feature is only available in
+	// Grafana 10.2+.
 	UsersWithoutAccesses pulumi.StringArrayInput
-	// A list of email addresses corresponding to users who should be given viewer
-	// access to the organization. Note: users specified here must already exist in
-	// Grafana unless 'create_users' is set to true.
+	// A list of email addresses corresponding to users who should be given viewer access to the organization. Note: users
+	// specified here must already exist in Grafana unless 'create_users' is set to true.
 	Viewers pulumi.StringArrayInput
 }
 
@@ -194,62 +133,50 @@ func (OrganizationState) ElementType() reflect.Type {
 
 type organizationArgs struct {
 	AdminUser *string `pulumi:"adminUser"`
-	// A list of email addresses corresponding to users who should be given admin
-	// access to the organization. Note: users specified here must already exist in
-	// Grafana unless 'create_users' is set to true.
+	// A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
+	// specified here must already exist in Grafana unless 'create_users' is set to true.
 	Admins []string `pulumi:"admins"`
-	// Whether or not to create Grafana users specified in the organization's
-	// membership if they don't already exist in Grafana. If unspecified, this
-	// parameter defaults to true, creating placeholder users with the name, login,
-	// and email set to the email of the user, and a random password. Setting this
-	// option to false will cause an error to be thrown for any users that do not
-	// already exist in Grafana.
-	// Defaults to `true`.
+	// Whether or not to create Grafana users specified in the organization's membership if they don't already exist in
+	// Grafana. If unspecified, this parameter defaults to true, creating placeholder users with the name, login, and email set
+	// to the email of the user, and a random password. Setting this option to false will cause an error to be thrown for any
+	// users that do not already exist in Grafana.
 	CreateUsers *bool `pulumi:"createUsers"`
-	// A list of email addresses corresponding to users who should be given editor
-	// access to the organization. Note: users specified here must already exist in
-	// Grafana unless 'create_users' is set to true.
+	// A list of email addresses corresponding to users who should be given editor access to the organization. Note: users
+	// specified here must already exist in Grafana unless 'create_users' is set to true.
 	Editors []string `pulumi:"editors"`
 	// The display name for the Grafana organization created.
 	Name *string `pulumi:"name"`
-	// A list of email addresses corresponding to users who should be given none access to the organization.
-	// Note: users specified here must already exist in Grafana, unless 'create_users' is
-	// set to true. This feature is only available in Grafana 10.2+.
+	// A list of email addresses corresponding to users who should be given none access to the organization. Note: users
+	// specified here must already exist in Grafana, unless 'create_users' is set to true. This feature is only available in
+	// Grafana 10.2+.
 	UsersWithoutAccesses []string `pulumi:"usersWithoutAccesses"`
-	// A list of email addresses corresponding to users who should be given viewer
-	// access to the organization. Note: users specified here must already exist in
-	// Grafana unless 'create_users' is set to true.
+	// A list of email addresses corresponding to users who should be given viewer access to the organization. Note: users
+	// specified here must already exist in Grafana unless 'create_users' is set to true.
 	Viewers []string `pulumi:"viewers"`
 }
 
 // The set of arguments for constructing a Organization resource.
 type OrganizationArgs struct {
 	AdminUser pulumi.StringPtrInput
-	// A list of email addresses corresponding to users who should be given admin
-	// access to the organization. Note: users specified here must already exist in
-	// Grafana unless 'create_users' is set to true.
+	// A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
+	// specified here must already exist in Grafana unless 'create_users' is set to true.
 	Admins pulumi.StringArrayInput
-	// Whether or not to create Grafana users specified in the organization's
-	// membership if they don't already exist in Grafana. If unspecified, this
-	// parameter defaults to true, creating placeholder users with the name, login,
-	// and email set to the email of the user, and a random password. Setting this
-	// option to false will cause an error to be thrown for any users that do not
-	// already exist in Grafana.
-	// Defaults to `true`.
+	// Whether or not to create Grafana users specified in the organization's membership if they don't already exist in
+	// Grafana. If unspecified, this parameter defaults to true, creating placeholder users with the name, login, and email set
+	// to the email of the user, and a random password. Setting this option to false will cause an error to be thrown for any
+	// users that do not already exist in Grafana.
 	CreateUsers pulumi.BoolPtrInput
-	// A list of email addresses corresponding to users who should be given editor
-	// access to the organization. Note: users specified here must already exist in
-	// Grafana unless 'create_users' is set to true.
+	// A list of email addresses corresponding to users who should be given editor access to the organization. Note: users
+	// specified here must already exist in Grafana unless 'create_users' is set to true.
 	Editors pulumi.StringArrayInput
 	// The display name for the Grafana organization created.
 	Name pulumi.StringPtrInput
-	// A list of email addresses corresponding to users who should be given none access to the organization.
-	// Note: users specified here must already exist in Grafana, unless 'create_users' is
-	// set to true. This feature is only available in Grafana 10.2+.
+	// A list of email addresses corresponding to users who should be given none access to the organization. Note: users
+	// specified here must already exist in Grafana, unless 'create_users' is set to true. This feature is only available in
+	// Grafana 10.2+.
 	UsersWithoutAccesses pulumi.StringArrayInput
-	// A list of email addresses corresponding to users who should be given viewer
-	// access to the organization. Note: users specified here must already exist in
-	// Grafana unless 'create_users' is set to true.
+	// A list of email addresses corresponding to users who should be given viewer access to the organization. Note: users
+	// specified here must already exist in Grafana unless 'create_users' is set to true.
 	Viewers pulumi.StringArrayInput
 }
 
@@ -344,27 +271,22 @@ func (o OrganizationOutput) AdminUser() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringPtrOutput { return v.AdminUser }).(pulumi.StringPtrOutput)
 }
 
-// A list of email addresses corresponding to users who should be given admin
-// access to the organization. Note: users specified here must already exist in
-// Grafana unless 'create_users' is set to true.
+// A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
+// specified here must already exist in Grafana unless 'create_users' is set to true.
 func (o OrganizationOutput) Admins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringArrayOutput { return v.Admins }).(pulumi.StringArrayOutput)
 }
 
-// Whether or not to create Grafana users specified in the organization's
-// membership if they don't already exist in Grafana. If unspecified, this
-// parameter defaults to true, creating placeholder users with the name, login,
-// and email set to the email of the user, and a random password. Setting this
-// option to false will cause an error to be thrown for any users that do not
-// already exist in Grafana.
-// Defaults to `true`.
+// Whether or not to create Grafana users specified in the organization's membership if they don't already exist in
+// Grafana. If unspecified, this parameter defaults to true, creating placeholder users with the name, login, and email set
+// to the email of the user, and a random password. Setting this option to false will cause an error to be thrown for any
+// users that do not already exist in Grafana.
 func (o OrganizationOutput) CreateUsers() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Organization) pulumi.BoolPtrOutput { return v.CreateUsers }).(pulumi.BoolPtrOutput)
 }
 
-// A list of email addresses corresponding to users who should be given editor
-// access to the organization. Note: users specified here must already exist in
-// Grafana unless 'create_users' is set to true.
+// A list of email addresses corresponding to users who should be given editor access to the organization. Note: users
+// specified here must already exist in Grafana unless 'create_users' is set to true.
 func (o OrganizationOutput) Editors() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringArrayOutput { return v.Editors }).(pulumi.StringArrayOutput)
 }
@@ -379,16 +301,15 @@ func (o OrganizationOutput) OrgId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Organization) pulumi.IntOutput { return v.OrgId }).(pulumi.IntOutput)
 }
 
-// A list of email addresses corresponding to users who should be given none access to the organization.
-// Note: users specified here must already exist in Grafana, unless 'create_users' is
-// set to true. This feature is only available in Grafana 10.2+.
+// A list of email addresses corresponding to users who should be given none access to the organization. Note: users
+// specified here must already exist in Grafana, unless 'create_users' is set to true. This feature is only available in
+// Grafana 10.2+.
 func (o OrganizationOutput) UsersWithoutAccesses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringArrayOutput { return v.UsersWithoutAccesses }).(pulumi.StringArrayOutput)
 }
 
-// A list of email addresses corresponding to users who should be given viewer
-// access to the organization. Note: users specified here must already exist in
-// Grafana unless 'create_users' is set to true.
+// A list of email addresses corresponding to users who should be given viewer access to the organization. Note: users
+// specified here must already exist in Grafana unless 'create_users' is set to true.
 func (o OrganizationOutput) Viewers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringArrayOutput { return v.Viewers }).(pulumi.StringArrayOutput)
 }

@@ -22,13 +22,13 @@ import * as utilities from "../utilities";
  *         scope: "users:*",
  *     }],
  * });
- * const testTeam = new grafana.Team("testTeam", {});
- * const testUser = new grafana.User("testUser", {
+ * const testTeam = new grafana.oss.Team("testTeam", {});
+ * const testUser = new grafana.oss.User("testUser", {
  *     email: "terraform_user@test.com",
  *     login: "terraform_user@test.com",
  *     password: "password",
  * });
- * const testSa = new grafana.ServiceAccount("testSa", {role: "Viewer"});
+ * const testSa = new grafana.oss.ServiceAccount("testSa", {role: "Viewer"});
  * const user = new grafana.enterprise.RoleAssignmentItem("user", {
  *     roleUid: testRole.uid,
  *     userId: testUser.id,

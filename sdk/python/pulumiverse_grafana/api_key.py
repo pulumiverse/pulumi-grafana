@@ -154,7 +154,12 @@ class _ApiKeyState:
         pulumi.set(self, "seconds_to_live", value)
 
 
+warnings.warn("""grafana.index/apikey.ApiKey has been deprecated in favor of grafana.oss/apikey.ApiKey""", DeprecationWarning)
+
+
 class ApiKey(pulumi.CustomResource):
+    warnings.warn("""grafana.index/apikey.ApiKey has been deprecated in favor of grafana.oss/apikey.ApiKey""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -165,20 +170,7 @@ class ApiKey(pulumi.CustomResource):
                  seconds_to_live: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        foo = grafana.ApiKey("foo", role="Viewer")
-        bar = grafana.ApiKey("bar",
-            role="Admin",
-            seconds_to_live=30)
-        pulumi.export("apiKeyFooKeyOnly", foo.key)
-        pulumi.export("apiKeyBar", bar)
-        ```
-
+        Create a ApiKey resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -190,20 +182,7 @@ class ApiKey(pulumi.CustomResource):
                  args: ApiKeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        foo = grafana.ApiKey("foo", role="Viewer")
-        bar = grafana.ApiKey("bar",
-            role="Admin",
-            seconds_to_live=30)
-        pulumi.export("apiKeyFooKeyOnly", foo.key)
-        pulumi.export("apiKeyBar", bar)
-        ```
-
+        Create a ApiKey resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param ApiKeyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -224,6 +203,7 @@ class ApiKey(pulumi.CustomResource):
                  role: Optional[pulumi.Input[str]] = None,
                  seconds_to_live: Optional[pulumi.Input[int]] = None,
                  __props__=None):
+        pulumi.log.warn("""ApiKey is deprecated: grafana.index/apikey.ApiKey has been deprecated in favor of grafana.oss/apikey.ApiKey""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -240,6 +220,8 @@ class ApiKey(pulumi.CustomResource):
             __props__.__dict__["seconds_to_live"] = seconds_to_live
             __props__.__dict__["expiration"] = None
             __props__.__dict__["key"] = None
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/apiKey:ApiKey")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["key"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(ApiKey, __self__).__init__(

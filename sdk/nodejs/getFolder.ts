@@ -4,27 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.Folder("test", {
- *     title: "test-folder",
- *     uid: "test-ds-folder-uid",
- * });
- * const fromTitle = grafana.getFolderOutput({
- *     title: test.title,
- * });
- * ```
- */
+/** @deprecated grafana.index/getfolder.getFolder has been deprecated in favor of grafana.oss/getfolder.getFolder */
 export function getFolder(args: GetFolderArgs, opts?: pulumi.InvokeOptions): Promise<GetFolderResult> {
+    pulumi.log.warn("getFolder is deprecated: grafana.index/getfolder.getFolder has been deprecated in favor of grafana.oss/getfolder.getFolder")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getFolder:getFolder", {
@@ -37,13 +19,7 @@ export function getFolder(args: GetFolderArgs, opts?: pulumi.InvokeOptions): Pro
  * A collection of arguments for invoking getFolder.
  */
 export interface GetFolderArgs {
-    /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
-     */
     orgId?: string;
-    /**
-     * The title of the folder.
-     */
     title: string;
 }
 
@@ -55,47 +31,13 @@ export interface GetFolderResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
-     */
     readonly orgId?: string;
-    /**
-     * The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
-     */
     readonly parentFolderUid: string;
-    /**
-     * The title of the folder.
-     */
     readonly title: string;
-    /**
-     * Unique identifier.
-     */
     readonly uid: string;
-    /**
-     * The full URL of the folder.
-     */
     readonly url: string;
 }
-/**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.Folder("test", {
- *     title: "test-folder",
- *     uid: "test-ds-folder-uid",
- * });
- * const fromTitle = grafana.getFolderOutput({
- *     title: test.title,
- * });
- * ```
- */
+/** @deprecated grafana.index/getfolder.getFolder has been deprecated in favor of grafana.oss/getfolder.getFolder */
 export function getFolderOutput(args: GetFolderOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFolderResult> {
     return pulumi.output(args).apply((a: any) => getFolder(a, opts))
 }
@@ -104,12 +46,6 @@ export function getFolderOutput(args: GetFolderOutputArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getFolder.
  */
 export interface GetFolderOutputArgs {
-    /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
-     */
     orgId?: pulumi.Input<string>;
-    /**
-     * The title of the folder.
-     */
     title: pulumi.Input<string>;
 }

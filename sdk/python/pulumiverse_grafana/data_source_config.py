@@ -22,9 +22,13 @@ class DataSourceConfigArgs:
         """
         The set of arguments for constructing a DataSourceConfig resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] http_headers: Custom HTTP headers
-        :param pulumi.Input[str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        :param pulumi.Input[str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
+               source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
+               from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        :param pulumi.Input[str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
+               to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
+               saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[str] uid: Unique identifier. If unset, this will be automatically generated.
         """
         if http_headers is not None:
@@ -54,7 +58,9 @@ class DataSourceConfigArgs:
     @pulumi.getter(name="jsonDataEncoded")
     def json_data_encoded(self) -> Optional[pulumi.Input[str]]:
         """
-        Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
+        source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
+        from the Grafana UI. Note that keys in this map are usually camelCased.
         """
         return pulumi.get(self, "json_data_encoded")
 
@@ -78,7 +84,9 @@ class DataSourceConfigArgs:
     @pulumi.getter(name="secureJsonDataEncoded")
     def secure_json_data_encoded(self) -> Optional[pulumi.Input[str]]:
         """
-        Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
+        to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
+        saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         """
         return pulumi.get(self, "secure_json_data_encoded")
 
@@ -110,9 +118,13 @@ class _DataSourceConfigState:
         """
         Input properties used for looking up and filtering DataSourceConfig resources.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] http_headers: Custom HTTP headers
-        :param pulumi.Input[str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        :param pulumi.Input[str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
+               source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
+               from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        :param pulumi.Input[str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
+               to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
+               saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[str] uid: Unique identifier. If unset, this will be automatically generated.
         """
         if http_headers is not None:
@@ -142,7 +154,9 @@ class _DataSourceConfigState:
     @pulumi.getter(name="jsonDataEncoded")
     def json_data_encoded(self) -> Optional[pulumi.Input[str]]:
         """
-        Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
+        source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
+        from the Grafana UI. Note that keys in this map are usually camelCased.
         """
         return pulumi.get(self, "json_data_encoded")
 
@@ -166,7 +180,9 @@ class _DataSourceConfigState:
     @pulumi.getter(name="secureJsonDataEncoded")
     def secure_json_data_encoded(self) -> Optional[pulumi.Input[str]]:
         """
-        Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
+        to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
+        saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         """
         return pulumi.get(self, "secure_json_data_encoded")
 
@@ -187,7 +203,12 @@ class _DataSourceConfigState:
         pulumi.set(self, "uid", value)
 
 
+warnings.warn("""grafana.index/datasourceconfig.DataSourceConfig has been deprecated in favor of grafana.oss/datasourceconfig.DataSourceConfig""", DeprecationWarning)
+
+
 class DataSourceConfig(pulumi.CustomResource):
+    warnings.warn("""grafana.index/datasourceconfig.DataSourceConfig has been deprecated in favor of grafana.oss/datasourceconfig.DataSourceConfig""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -199,69 +220,17 @@ class DataSourceConfig(pulumi.CustomResource):
                  uid: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/datasources/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/data_source/)
-
-        The required arguments for this resource vary depending on the type of data
-        source selected (via the 'type' argument).
-
-        Use this resource for configuring multiple datasources, when that configuration (`json_data_encoded` field) requires circular references like in the example below.
-
-        > When using the `DataSourceConfig` resource, the corresponding `DataSource` resources must have the `json_data_encoded` and `http_headers` fields ignored. Otherwise, an infinite update loop will occur. See the example below.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import json
-        import pulumiverse_grafana as grafana
-
-        loki_data_source = grafana.DataSource("lokiDataSource",
-            type="loki",
-            url="http://localhost:3100")
-        tempo_data_source = grafana.DataSource("tempoDataSource",
-            type="tempo",
-            url="http://localhost:3200")
-        loki_data_source_config = grafana.DataSourceConfig("lokiDataSourceConfig",
-            uid=loki_data_source.uid,
-            json_data_encoded=pulumi.Output.json_dumps({
-                "derivedFields": [{
-                    "datasourceUid": tempo_data_source.uid,
-                    "matcherRegex": "[tT]race_?[iI][dD]\\"?[:=]\\"?(\\\\w+)",
-                    "matcherType": "regex",
-                    "name": "traceID",
-                    "url": "${__value.raw}",
-                }],
-            }))
-        tempo_data_source_config = grafana.DataSourceConfig("tempoDataSourceConfig",
-            uid=tempo_data_source.uid,
-            json_data_encoded=pulumi.Output.json_dumps({
-                "tracesToLogsV2": {
-                    "customQuery": True,
-                    "datasourceUid": loki_data_source.uid,
-                    "filterBySpanID": False,
-                    "filterByTraceID": False,
-                    "query": "|=\\"${__trace.traceId}\\" | json",
-                },
-            }))
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/dataSourceConfig:DataSourceConfig name "{{ uid }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/dataSourceConfig:DataSourceConfig name "{{ orgID }}:{{ uid }}"
-        ```
-
+        Create a DataSourceConfig resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] http_headers: Custom HTTP headers
-        :param pulumi.Input[str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        :param pulumi.Input[str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
+               source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
+               from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        :param pulumi.Input[str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
+               to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
+               saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[str] uid: Unique identifier. If unset, this will be automatically generated.
         """
         ...
@@ -271,63 +240,7 @@ class DataSourceConfig(pulumi.CustomResource):
                  args: Optional[DataSourceConfigArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/datasources/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/data_source/)
-
-        The required arguments for this resource vary depending on the type of data
-        source selected (via the 'type' argument).
-
-        Use this resource for configuring multiple datasources, when that configuration (`json_data_encoded` field) requires circular references like in the example below.
-
-        > When using the `DataSourceConfig` resource, the corresponding `DataSource` resources must have the `json_data_encoded` and `http_headers` fields ignored. Otherwise, an infinite update loop will occur. See the example below.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import json
-        import pulumiverse_grafana as grafana
-
-        loki_data_source = grafana.DataSource("lokiDataSource",
-            type="loki",
-            url="http://localhost:3100")
-        tempo_data_source = grafana.DataSource("tempoDataSource",
-            type="tempo",
-            url="http://localhost:3200")
-        loki_data_source_config = grafana.DataSourceConfig("lokiDataSourceConfig",
-            uid=loki_data_source.uid,
-            json_data_encoded=pulumi.Output.json_dumps({
-                "derivedFields": [{
-                    "datasourceUid": tempo_data_source.uid,
-                    "matcherRegex": "[tT]race_?[iI][dD]\\"?[:=]\\"?(\\\\w+)",
-                    "matcherType": "regex",
-                    "name": "traceID",
-                    "url": "${__value.raw}",
-                }],
-            }))
-        tempo_data_source_config = grafana.DataSourceConfig("tempoDataSourceConfig",
-            uid=tempo_data_source.uid,
-            json_data_encoded=pulumi.Output.json_dumps({
-                "tracesToLogsV2": {
-                    "customQuery": True,
-                    "datasourceUid": loki_data_source.uid,
-                    "filterBySpanID": False,
-                    "filterByTraceID": False,
-                    "query": "|=\\"${__trace.traceId}\\" | json",
-                },
-            }))
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/dataSourceConfig:DataSourceConfig name "{{ uid }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/dataSourceConfig:DataSourceConfig name "{{ orgID }}:{{ uid }}"
-        ```
-
+        Create a DataSourceConfig resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DataSourceConfigArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -349,6 +262,7 @@ class DataSourceConfig(pulumi.CustomResource):
                  secure_json_data_encoded: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""DataSourceConfig is deprecated: grafana.index/datasourceconfig.DataSourceConfig has been deprecated in favor of grafana.oss/datasourceconfig.DataSourceConfig""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -362,6 +276,8 @@ class DataSourceConfig(pulumi.CustomResource):
             __props__.__dict__["org_id"] = org_id
             __props__.__dict__["secure_json_data_encoded"] = None if secure_json_data_encoded is None else pulumi.Output.secret(secure_json_data_encoded)
             __props__.__dict__["uid"] = uid
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/dataSourceConfig:DataSourceConfig")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["httpHeaders", "secureJsonDataEncoded"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(DataSourceConfig, __self__).__init__(
@@ -387,9 +303,13 @@ class DataSourceConfig(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] http_headers: Custom HTTP headers
-        :param pulumi.Input[str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        :param pulumi.Input[str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
+               source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
+               from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        :param pulumi.Input[str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
+               to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
+               saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[str] uid: Unique identifier. If unset, this will be automatically generated.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -415,7 +335,9 @@ class DataSourceConfig(pulumi.CustomResource):
     @pulumi.getter(name="jsonDataEncoded")
     def json_data_encoded(self) -> pulumi.Output[Optional[str]]:
         """
-        Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
+        source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
+        from the Grafana UI. Note that keys in this map are usually camelCased.
         """
         return pulumi.get(self, "json_data_encoded")
 
@@ -431,7 +353,9 @@ class DataSourceConfig(pulumi.CustomResource):
     @pulumi.getter(name="secureJsonDataEncoded")
     def secure_json_data_encoded(self) -> pulumi.Output[Optional[str]]:
         """
-        Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
+        to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
+        saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         """
         return pulumi.get(self, "secure_json_data_encoded")
 

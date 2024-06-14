@@ -38,16 +38,16 @@ namespace Pulumiverse.Grafana.Enterprise
     ///         },
     ///     });
     /// 
-    ///     var testTeam = new Grafana.Team("testTeam");
+    ///     var testTeam = new Grafana.Oss.Team("testTeam");
     /// 
-    ///     var testUser = new Grafana.User("testUser", new()
+    ///     var testUser = new Grafana.Oss.User("testUser", new()
     ///     {
     ///         Email = "terraform_user@test.com",
     ///         Login = "terraform_user@test.com",
     ///         Password = "password",
     ///     });
     /// 
-    ///     var testSa = new Grafana.ServiceAccount("testSa", new()
+    ///     var testSa = new Grafana.Oss.ServiceAccount("testSa", new()
     ///     {
     ///         Role = "Viewer",
     ///     });

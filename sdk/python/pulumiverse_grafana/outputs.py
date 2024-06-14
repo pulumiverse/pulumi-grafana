@@ -3307,8 +3307,8 @@ class DashboardPermissionPermission(dict):
         """
         :param str permission: Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
         :param str role: Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
-        :param str team_id: ID of the team to manage permissions for. Defaults to `0`.
-        :param str user_id: ID of the user or service account to manage permissions for. Defaults to `0`.
+        :param str team_id: ID of the team to manage permissions for.
+        :param str user_id: ID of the user or service account to manage permissions for.
         """
         pulumi.set(__self__, "permission", permission)
         if role is not None:
@@ -3338,7 +3338,7 @@ class DashboardPermissionPermission(dict):
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[str]:
         """
-        ID of the team to manage permissions for. Defaults to `0`.
+        ID of the team to manage permissions for.
         """
         return pulumi.get(self, "team_id")
 
@@ -3346,7 +3346,7 @@ class DashboardPermissionPermission(dict):
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[str]:
         """
-        ID of the user or service account to manage permissions for. Defaults to `0`.
+        ID of the user or service account to manage permissions for.
         """
         return pulumi.get(self, "user_id")
 
@@ -3455,8 +3455,8 @@ class FolderPermissionPermission(dict):
         """
         :param str permission: Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
         :param str role: Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
-        :param str team_id: ID of the team to manage permissions for. Defaults to `0`.
-        :param str user_id: ID of the user or service account to manage permissions for. Defaults to `0`.
+        :param str team_id: ID of the team to manage permissions for.
+        :param str user_id: ID of the user or service account to manage permissions for.
         """
         pulumi.set(__self__, "permission", permission)
         if role is not None:
@@ -3486,7 +3486,7 @@ class FolderPermissionPermission(dict):
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[str]:
         """
-        ID of the team to manage permissions for. Defaults to `0`.
+        ID of the team to manage permissions for.
         """
         return pulumi.get(self, "team_id")
 
@@ -3494,7 +3494,7 @@ class FolderPermissionPermission(dict):
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[str]:
         """
-        ID of the user or service account to manage permissions for. Defaults to `0`.
+        ID of the user or service account to manage permissions for.
         """
         return pulumi.get(self, "user_id")
 
@@ -6467,8 +6467,8 @@ class ServiceAccountPermissionPermission(dict):
                  user_id: Optional[str] = None):
         """
         :param str permission: Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
-        :param str team_id: ID of the team to manage permissions for. Defaults to `0`.
-        :param str user_id: ID of the user or service account to manage permissions for. Defaults to `0`.
+        :param str team_id: ID of the team to manage permissions for.
+        :param str user_id: ID of the user or service account to manage permissions for.
         """
         pulumi.set(__self__, "permission", permission)
         if team_id is not None:
@@ -6488,7 +6488,7 @@ class ServiceAccountPermissionPermission(dict):
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[str]:
         """
-        ID of the team to manage permissions for. Defaults to `0`.
+        ID of the team to manage permissions for.
         """
         return pulumi.get(self, "team_id")
 
@@ -6496,7 +6496,7 @@ class ServiceAccountPermissionPermission(dict):
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[str]:
         """
-        ID of the user or service account to manage permissions for. Defaults to `0`.
+        ID of the user or service account to manage permissions for.
         """
         return pulumi.get(self, "user_id")
 
@@ -6630,21 +6630,21 @@ class SsoSettingsOauth2Settings(dict):
         :param bool allow_assign_grafana_admin: If enabled, it will automatically sync the Grafana server administrator role.
         :param bool allow_sign_up: If not enabled, only existing Grafana users can log in using OAuth.
         :param str allowed_domains: List of comma- or space-separated domains. The user should belong to at least one domain to log in.
-        :param str allowed_groups: List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+        :param str allowed_groups: List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed_groups, you must also configure groups_attribute_path.
         :param str allowed_organizations: List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
         :param str api_url: The user information endpoint of your OAuth2 provider. Required for okta and generic_oauth providers.
-        :param str auth_style: It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+        :param str auth_style: It determines how client_id and client_secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
         :param str auth_url: The authorization endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
         :param bool auto_login: Log in automatically, skipping the login screen.
         :param str client_secret: The client secret of your OAuth2 app.
-        :param Mapping[str, str] custom: Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+        :param Mapping[str, str] custom: Custom fields to configure for OAuth2 such as the [force_use_graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
         :param bool define_allowed_groups: Define allowed groups.
         :param bool define_allowed_teams_ids: Define allowed teams ids.
         :param str email_attribute_name: Name of the key to use for user email lookup within the attributes map of OAuth2 ID token. Only applicable to Generic OAuth.
         :param str email_attribute_path: JMESPath expression to use for user email lookup from the user information. Only applicable to Generic OAuth.
         :param bool empty_scopes: If enabled, no scopes will be sent to the OAuth2 provider.
-        :param bool enabled: Define whether this configuration is enabled for the specified provider. Defaults to `true`.
-        :param str groups_attribute_path: JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+        :param bool enabled: Define whether this configuration is enabled for the specified provider.
+        :param str groups_attribute_path: JMESPath expression to use for user group lookup. If you configure allowed_groups, you must also configure groups_attribute_path.
         :param str id_token_attribute_name: The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
         :param str login_attribute_path: JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
         :param str name: Helpful if you use more than one identity providers or SSO protocols.
@@ -6654,9 +6654,9 @@ class SsoSettingsOauth2Settings(dict):
         :param str scopes: List of comma- or space-separated OAuth2 scopes.
         :param str signout_redirect_url: The URL to redirect the user to after signing out from Grafana.
         :param bool skip_org_role_sync: Prevent synchronizing users’ organization roles from your IdP.
-        :param str team_ids: String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+        :param str team_ids: String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team_ids, you must also configure teams_url and team_ids_attribute_path.
         :param str team_ids_attribute_path: The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teams_url endpoint. Only applicable to Generic OAuth.
-        :param str teams_url: The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+        :param str teams_url: The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams_url, you must also configure team_ids_attribute_path. Only applicable to Generic OAuth.
         :param str tls_client_ca: The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
         :param str tls_client_cert: The path to the certificate. Is not applicable on Grafana Cloud.
         :param str tls_client_key: The path to the key. Is not applicable on Grafana Cloud.
@@ -6777,7 +6777,7 @@ class SsoSettingsOauth2Settings(dict):
     @pulumi.getter(name="allowedGroups")
     def allowed_groups(self) -> Optional[str]:
         """
-        List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+        List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed_groups, you must also configure groups_attribute_path.
         """
         return pulumi.get(self, "allowed_groups")
 
@@ -6801,7 +6801,7 @@ class SsoSettingsOauth2Settings(dict):
     @pulumi.getter(name="authStyle")
     def auth_style(self) -> Optional[str]:
         """
-        It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+        It determines how client_id and client_secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
         """
         return pulumi.get(self, "auth_style")
 
@@ -6833,7 +6833,7 @@ class SsoSettingsOauth2Settings(dict):
     @pulumi.getter
     def custom(self) -> Optional[Mapping[str, str]]:
         """
-        Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+        Custom fields to configure for OAuth2 such as the [force_use_graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
         """
         return pulumi.get(self, "custom")
 
@@ -6881,7 +6881,7 @@ class SsoSettingsOauth2Settings(dict):
     @pulumi.getter
     def enabled(self) -> Optional[bool]:
         """
-        Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+        Define whether this configuration is enabled for the specified provider.
         """
         return pulumi.get(self, "enabled")
 
@@ -6889,7 +6889,7 @@ class SsoSettingsOauth2Settings(dict):
     @pulumi.getter(name="groupsAttributePath")
     def groups_attribute_path(self) -> Optional[str]:
         """
-        JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+        JMESPath expression to use for user group lookup. If you configure allowed_groups, you must also configure groups_attribute_path.
         """
         return pulumi.get(self, "groups_attribute_path")
 
@@ -6969,7 +6969,7 @@ class SsoSettingsOauth2Settings(dict):
     @pulumi.getter(name="teamIds")
     def team_ids(self) -> Optional[str]:
         """
-        String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+        String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team_ids, you must also configure teams_url and team_ids_attribute_path.
         """
         return pulumi.get(self, "team_ids")
 
@@ -6985,7 +6985,7 @@ class SsoSettingsOauth2Settings(dict):
     @pulumi.getter(name="teamsUrl")
     def teams_url(self) -> Optional[str]:
         """
-        The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+        The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams_url, you must also configure team_ids_attribute_path. Only applicable to Generic OAuth.
         """
         return pulumi.get(self, "teams_url")
 
@@ -7164,7 +7164,7 @@ class SsoSettingsSamlSettings(dict):
         :param bool auto_login: Whether SAML auto login is enabled.
         :param str certificate: Base64-encoded string for the SP X.509 certificate.
         :param str certificate_path: Path for the SP X.509 certificate.
-        :param bool enabled: Define whether this configuration is enabled for SAML. Defaults to `true`.
+        :param bool enabled: Define whether this configuration is enabled for SAML.
         :param str idp_metadata: Base64-encoded string for the IdP SAML metadata XML.
         :param str idp_metadata_path: Path for the IdP SAML metadata XML.
         :param str idp_metadata_url: URL for the IdP SAML metadata XML.
@@ -7347,7 +7347,7 @@ class SsoSettingsSamlSettings(dict):
     @pulumi.getter
     def enabled(self) -> Optional[bool]:
         """
-        Define whether this configuration is enabled for SAML. Defaults to `true`.
+        Define whether this configuration is enabled for SAML.
         """
         return pulumi.get(self, "enabled")
 

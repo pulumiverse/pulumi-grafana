@@ -7,54 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Manages the entire set of permissions for a dashboard. Permissions that aren't specified when applying this resource will be removed.
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard_permissions/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const team = new grafana.Team("team", {});
- * const user = new grafana.User("user", {
- *     email: "user.name@example.com",
- *     password: "my-password",
- *     login: "user.name",
- * });
- * const metrics = new grafana.Dashboard("metrics", {configJson: JSON.stringify({
- *     title: "My Dashboard",
- *     uid: "my-dashboard-uid",
- * })});
- * const collectionPermission = new grafana.DashboardPermission("collectionPermission", {
- *     dashboardUid: metrics.uid,
- *     permissions: [
- *         {
- *             role: "Editor",
- *             permission: "Edit",
- *         },
- *         {
- *             teamId: team.id,
- *             permission: "View",
- *         },
- *         {
- *             userId: user.id,
- *             permission: "Admin",
- *         },
- *     ],
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/dashboardPermission:DashboardPermission name "{{ dashboardUID }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/dashboardPermission:DashboardPermission name "{{ orgID }}:{{ dashboardUID }}"
- * ```
+ * @deprecated grafana.index/dashboardpermission.DashboardPermission has been deprecated in favor of grafana.oss/dashboardpermission.DashboardPermission
  */
 export class DashboardPermission extends pulumi.CustomResource {
     /**
@@ -67,6 +20,7 @@ export class DashboardPermission extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DashboardPermissionState, opts?: pulumi.CustomResourceOptions): DashboardPermission {
+        pulumi.log.warn("DashboardPermission is deprecated: grafana.index/dashboardpermission.DashboardPermission has been deprecated in favor of grafana.oss/dashboardpermission.DashboardPermission")
         return new DashboardPermission(name, <any>state, { ...opts, id: id });
     }
 
@@ -110,8 +64,11 @@ export class DashboardPermission extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/dashboardpermission.DashboardPermission has been deprecated in favor of grafana.oss/dashboardpermission.DashboardPermission */
     constructor(name: string, args?: DashboardPermissionArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/dashboardpermission.DashboardPermission has been deprecated in favor of grafana.oss/dashboardpermission.DashboardPermission */
     constructor(name: string, argsOrState?: DashboardPermissionArgs | DashboardPermissionState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("DashboardPermission is deprecated: grafana.index/dashboardpermission.DashboardPermission has been deprecated in favor of grafana.oss/dashboardpermission.DashboardPermission")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -128,6 +85,8 @@ export class DashboardPermission extends pulumi.CustomResource {
             resourceInputs["permissions"] = args ? args.permissions : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/dashboardPermission:DashboardPermission" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(DashboardPermission.__pulumiType, name, resourceInputs, opts);
     }
 }

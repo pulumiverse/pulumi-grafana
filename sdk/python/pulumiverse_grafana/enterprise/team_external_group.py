@@ -98,7 +98,7 @@ class TeamExternalGroup(pulumi.CustomResource):
                  team_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Equivalent to the the `team_sync` attribute of the `Team` resource. Use one or the other to configure a team's external groups syncing config.
+        Equivalent to the the `team_sync` attribute of the `oss.Team` resource. Use one or the other to configure a team's external groups syncing config.
 
         ## Example Usage
 
@@ -106,7 +106,7 @@ class TeamExternalGroup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        my_team = grafana.Team("myTeam")
+        my_team = grafana.oss.Team("myTeam")
         test_team_group = grafana.enterprise.TeamExternalGroup("test-team-group",
             team_id=my_team.id,
             groups=[
@@ -137,7 +137,7 @@ class TeamExternalGroup(pulumi.CustomResource):
                  args: TeamExternalGroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Equivalent to the the `team_sync` attribute of the `Team` resource. Use one or the other to configure a team's external groups syncing config.
+        Equivalent to the the `team_sync` attribute of the `oss.Team` resource. Use one or the other to configure a team's external groups syncing config.
 
         ## Example Usage
 
@@ -145,7 +145,7 @@ class TeamExternalGroup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        my_team = grafana.Team("myTeam")
+        my_team = grafana.oss.Team("myTeam")
         test_team_group = grafana.enterprise.TeamExternalGroup("test-team-group",
             team_id=my_team.id,
             groups=[

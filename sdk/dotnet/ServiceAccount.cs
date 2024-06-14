@@ -10,46 +10,12 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// **Note:** This resource is available only with Grafana 9.1+.
-    /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var admin = new Grafana.ServiceAccount("admin", new()
-    ///     {
-    ///         IsDisabled = false,
-    ///         Role = "Admin",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/serviceAccount:ServiceAccount name "{{ id }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/serviceAccount:ServiceAccount name "{{ orgID }}:{{ id }}"
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/serviceaccount.ServiceAccount has been deprecated in favor of grafana.oss/serviceaccount.ServiceAccount")]
     [GrafanaResourceType("grafana:index/serviceAccount:ServiceAccount")]
     public partial class ServiceAccount : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The disabled status for the service account. Defaults to `false`.
+        /// The disabled status for the service account.
         /// </summary>
         [Output("isDisabled")]
         public Output<bool?> IsDisabled { get; private set; } = null!;
@@ -96,6 +62,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/serviceAccount:ServiceAccount" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -120,7 +90,7 @@ namespace Pulumiverse.Grafana
     public sealed class ServiceAccountArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The disabled status for the service account. Defaults to `false`.
+        /// The disabled status for the service account.
         /// </summary>
         [Input("isDisabled")]
         public Input<bool>? IsDisabled { get; set; }
@@ -152,7 +122,7 @@ namespace Pulumiverse.Grafana
     public sealed class ServiceAccountState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The disabled status for the service account. Defaults to `false`.
+        /// The disabled status for the service account.
         /// </summary>
         [Input("isDisabled")]
         public Input<bool>? IsDisabled { get; set; }

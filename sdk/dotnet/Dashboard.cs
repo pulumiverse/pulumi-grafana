@@ -10,52 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// Manages Grafana dashboards.
-    /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using System.Text.Json;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var testFolder = new Grafana.Folder("testFolder", new()
-    ///     {
-    ///         Title = "My Folder",
-    ///         Uid = "my-folder-uid",
-    ///     });
-    /// 
-    ///     var testDashboard = new Grafana.Dashboard("testDashboard", new()
-    ///     {
-    ///         Folder = testFolder.Uid,
-    ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///         {
-    ///             ["title"] = "My Dashboard",
-    ///             ["uid"] = "my-dashboard-uid",
-    ///         }),
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/dashboard:Dashboard name "{{ uid }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/dashboard:Dashboard name "{{ orgID }}:{{ uid }}"
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/dashboard.Dashboard has been deprecated in favor of grafana.oss/dashboard.Dashboard")]
     [GrafanaResourceType("grafana:index/dashboard:Dashboard")]
     public partial class Dashboard : global::Pulumi.CustomResource
     {
@@ -90,13 +45,16 @@ namespace Pulumiverse.Grafana
         public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
-        /// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
+        /// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same
+        /// dashboard uid.
         /// </summary>
         [Output("overwrite")]
         public Output<bool?> Overwrite { get; private set; } = null!;
 
         /// <summary>
-        /// The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
+        /// The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided
+        /// when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards
+        /// between multiple Grafana installs.
         /// </summary>
         [Output("uid")]
         public Output<string> Uid { get; private set; } = null!;
@@ -108,7 +66,8 @@ namespace Pulumiverse.Grafana
         public Output<string> Url { get; private set; } = null!;
 
         /// <summary>
-        /// Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your dashboard are not lost.
+        /// Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your
+        /// dashboard are not lost.
         /// </summary>
         [Output("version")]
         public Output<int> Version { get; private set; } = null!;
@@ -137,6 +96,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/dashboard:Dashboard" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -185,7 +148,8 @@ namespace Pulumiverse.Grafana
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
+        /// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same
+        /// dashboard uid.
         /// </summary>
         [Input("overwrite")]
         public Input<bool>? Overwrite { get; set; }
@@ -229,13 +193,16 @@ namespace Pulumiverse.Grafana
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
+        /// Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same
+        /// dashboard uid.
         /// </summary>
         [Input("overwrite")]
         public Input<bool>? Overwrite { get; set; }
 
         /// <summary>
-        /// The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
+        /// The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided
+        /// when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards
+        /// between multiple Grafana installs.
         /// </summary>
         [Input("uid")]
         public Input<string>? Uid { get; set; }
@@ -247,7 +214,8 @@ namespace Pulumiverse.Grafana
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your dashboard are not lost.
+        /// Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your
+        /// dashboard are not lost.
         /// </summary>
         [Input("version")]
         public Input<int>? Version { get; set; }

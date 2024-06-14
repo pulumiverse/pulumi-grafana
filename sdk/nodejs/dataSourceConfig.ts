@@ -5,65 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/datasources/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/data_source/)
- *
- * The required arguments for this resource vary depending on the type of data
- * source selected (via the 'type' argument).
- *
- * Use this resource for configuring multiple datasources, when that configuration (`jsonDataEncoded` field) requires circular references like in the example below.
- *
- * > When using the `grafana.DataSourceConfig` resource, the corresponding `grafana.DataSource` resources must have the `jsonDataEncoded` and `httpHeaders` fields ignored. Otherwise, an infinite update loop will occur. See the example below.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const lokiDataSource = new grafana.DataSource("lokiDataSource", {
- *     type: "loki",
- *     url: "http://localhost:3100",
- * });
- * const tempoDataSource = new grafana.DataSource("tempoDataSource", {
- *     type: "tempo",
- *     url: "http://localhost:3200",
- * });
- * const lokiDataSourceConfig = new grafana.DataSourceConfig("lokiDataSourceConfig", {
- *     uid: lokiDataSource.uid,
- *     jsonDataEncoded: pulumi.jsonStringify({
- *         derivedFields: [{
- *             datasourceUid: tempoDataSource.uid,
- *             matcherRegex: "[tT]race_?[iI][dD]\"?[:=]\"?(\\w+)",
- *             matcherType: "regex",
- *             name: "traceID",
- *             url: "${__value.raw}",
- *         }],
- *     }),
- * });
- * const tempoDataSourceConfig = new grafana.DataSourceConfig("tempoDataSourceConfig", {
- *     uid: tempoDataSource.uid,
- *     jsonDataEncoded: pulumi.jsonStringify({
- *         tracesToLogsV2: {
- *             customQuery: true,
- *             datasourceUid: lokiDataSource.uid,
- *             filterBySpanID: false,
- *             filterByTraceID: false,
- *             query: "|=\"${__trace.traceId}\" | json",
- *         },
- *     }),
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/dataSourceConfig:DataSourceConfig name "{{ uid }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/dataSourceConfig:DataSourceConfig name "{{ orgID }}:{{ uid }}"
- * ```
+ * @deprecated grafana.index/datasourceconfig.DataSourceConfig has been deprecated in favor of grafana.oss/datasourceconfig.DataSourceConfig
  */
 export class DataSourceConfig extends pulumi.CustomResource {
     /**
@@ -76,6 +18,7 @@ export class DataSourceConfig extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DataSourceConfigState, opts?: pulumi.CustomResourceOptions): DataSourceConfig {
+        pulumi.log.warn("DataSourceConfig is deprecated: grafana.index/datasourceconfig.DataSourceConfig has been deprecated in favor of grafana.oss/datasourceconfig.DataSourceConfig")
         return new DataSourceConfig(name, <any>state, { ...opts, id: id });
     }
 
@@ -98,7 +41,9 @@ export class DataSourceConfig extends pulumi.CustomResource {
      */
     public readonly httpHeaders!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+     * Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
+     * source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
+     * from the Grafana UI. Note that keys in this map are usually camelCased.
      */
     public readonly jsonDataEncoded!: pulumi.Output<string | undefined>;
     /**
@@ -106,7 +51,9 @@ export class DataSourceConfig extends pulumi.CustomResource {
      */
     public readonly orgId!: pulumi.Output<string | undefined>;
     /**
-     * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+     * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
+     * to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
+     * saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
     public readonly secureJsonDataEncoded!: pulumi.Output<string | undefined>;
     /**
@@ -121,8 +68,11 @@ export class DataSourceConfig extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/datasourceconfig.DataSourceConfig has been deprecated in favor of grafana.oss/datasourceconfig.DataSourceConfig */
     constructor(name: string, args?: DataSourceConfigArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/datasourceconfig.DataSourceConfig has been deprecated in favor of grafana.oss/datasourceconfig.DataSourceConfig */
     constructor(name: string, argsOrState?: DataSourceConfigArgs | DataSourceConfigState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("DataSourceConfig is deprecated: grafana.index/datasourceconfig.DataSourceConfig has been deprecated in favor of grafana.oss/datasourceconfig.DataSourceConfig")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -141,6 +91,8 @@ export class DataSourceConfig extends pulumi.CustomResource {
             resourceInputs["uid"] = args ? args.uid : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/dataSourceConfig:DataSourceConfig" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["httpHeaders", "secureJsonDataEncoded"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(DataSourceConfig.__pulumiType, name, resourceInputs, opts);
@@ -156,7 +108,9 @@ export interface DataSourceConfigState {
      */
     httpHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+     * Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
+     * source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
+     * from the Grafana UI. Note that keys in this map are usually camelCased.
      */
     jsonDataEncoded?: pulumi.Input<string>;
     /**
@@ -164,7 +118,9 @@ export interface DataSourceConfigState {
      */
     orgId?: pulumi.Input<string>;
     /**
-     * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+     * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
+     * to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
+     * saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
     secureJsonDataEncoded?: pulumi.Input<string>;
     /**
@@ -182,7 +138,9 @@ export interface DataSourceConfigArgs {
      */
     httpHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+     * Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
+     * source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
+     * from the Grafana UI. Note that keys in this map are usually camelCased.
      */
     jsonDataEncoded?: pulumi.Input<string>;
     /**
@@ -190,7 +148,9 @@ export interface DataSourceConfigArgs {
      */
     orgId?: pulumi.Input<string>;
     /**
-     * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+     * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
+     * to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
+     * saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
     secureJsonDataEncoded?: pulumi.Input<string>;
     /**

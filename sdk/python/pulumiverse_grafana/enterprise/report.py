@@ -576,7 +576,7 @@ class Report(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        test_dashboard = grafana.Dashboard("testDashboard",
+        test_dashboard = grafana.oss.Dashboard("testDashboard",
             config_json=\"\"\"{
           "uid": "report-dashboard",
           "title": "report-dashboard"
@@ -637,7 +637,7 @@ class Report(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        test_dashboard = grafana.Dashboard("testDashboard",
+        test_dashboard = grafana.oss.Dashboard("testDashboard",
             config_json=\"\"\"{
           "uid": "report-dashboard",
           "title": "report-dashboard"

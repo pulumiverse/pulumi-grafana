@@ -5,20 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const foo = new grafana.ApiKey("foo", {role: "Viewer"});
- * const bar = new grafana.ApiKey("bar", {
- *     role: "Admin",
- *     secondsToLive: 30,
- * });
- * export const apiKeyFooKeyOnly = foo.key;
- * export const apiKeyBar = bar;
- * ```
+ * @deprecated grafana.index/apikey.ApiKey has been deprecated in favor of grafana.oss/apikey.ApiKey
  */
 export class ApiKey extends pulumi.CustomResource {
     /**
@@ -31,6 +18,7 @@ export class ApiKey extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ApiKeyState, opts?: pulumi.CustomResourceOptions): ApiKey {
+        pulumi.log.warn("ApiKey is deprecated: grafana.index/apikey.ApiKey has been deprecated in favor of grafana.oss/apikey.ApiKey")
         return new ApiKey(name, <any>state, { ...opts, id: id });
     }
 
@@ -65,8 +53,11 @@ export class ApiKey extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/apikey.ApiKey has been deprecated in favor of grafana.oss/apikey.ApiKey */
     constructor(name: string, args: ApiKeyArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/apikey.ApiKey has been deprecated in favor of grafana.oss/apikey.ApiKey */
     constructor(name: string, argsOrState?: ApiKeyArgs | ApiKeyState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ApiKey is deprecated: grafana.index/apikey.ApiKey has been deprecated in favor of grafana.oss/apikey.ApiKey")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -90,6 +81,8 @@ export class ApiKey extends pulumi.CustomResource {
             resourceInputs["key"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/apiKey:ApiKey" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["key"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(ApiKey.__pulumiType, name, resourceInputs, opts);

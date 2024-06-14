@@ -17,6 +17,8 @@ __all__ = [
     'get_folders_output',
 ]
 
+warnings.warn("""grafana.index/getfolders.getFolders has been deprecated in favor of grafana.oss/getfolders.getFolders""", DeprecationWarning)
+
 @pulumi.output_type
 class GetFoldersResult:
     """
@@ -36,9 +38,6 @@ class GetFoldersResult:
     @property
     @pulumi.getter
     def folders(self) -> Sequence['outputs.GetFoldersFolderResult']:
-        """
-        The Grafana instance's folders.
-        """
         return pulumi.get(self, "folders")
 
     @property
@@ -52,9 +51,6 @@ class GetFoldersResult:
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[str]:
-        """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        """
         return pulumi.get(self, "org_id")
 
 
@@ -72,28 +68,9 @@ class AwaitableGetFoldersResult(GetFoldersResult):
 def get_folders(org_id: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFoldersResult:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-    import pulumiverse_grafana as grafana
-
-    test_a = grafana.Folder("testA",
-        title="test-folder-a",
-        uid="test-ds-folder-uid-a")
-    test_b = grafana.Folder("testB",
-        title="test-folder-b",
-        uid="test-ds-folder-uid-b")
-    test = grafana.get_folders()
-    ```
-
-
-    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_folders is deprecated: grafana.index/getfolders.getFolders has been deprecated in favor of grafana.oss/getfolders.getFolders""")
     __args__ = dict()
     __args__['orgId'] = org_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -109,26 +86,7 @@ def get_folders(org_id: Optional[str] = None,
 def get_folders_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFoldersResult]:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-    import pulumiverse_grafana as grafana
-
-    test_a = grafana.Folder("testA",
-        title="test-folder-a",
-        uid="test-ds-folder-uid-a")
-    test_b = grafana.Folder("testB",
-        title="test-folder-b",
-        uid="test-ds-folder-uid-b")
-    test = grafana.get_folders()
-    ```
-
-
-    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_folders is deprecated: grafana.index/getfolders.getFolders has been deprecated in favor of grafana.oss/getfolders.getFolders""")
     ...

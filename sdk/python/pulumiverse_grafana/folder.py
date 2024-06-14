@@ -23,8 +23,9 @@ class FolderArgs:
         The set of arguments for constructing a Folder resource.
         :param pulumi.Input[str] title: The title of the folder.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] parent_folder_uid: The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
-        :param pulumi.Input[bool] prevent_destroy_if_not_empty: Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+        :param pulumi.Input[str] parent_folder_uid: The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
+               folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+        :param pulumi.Input[bool] prevent_destroy_if_not_empty: Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
         :param pulumi.Input[str] uid: Unique identifier.
         """
         pulumi.set(__self__, "title", title)
@@ -65,7 +66,8 @@ class FolderArgs:
     @pulumi.getter(name="parentFolderUid")
     def parent_folder_uid(self) -> Optional[pulumi.Input[str]]:
         """
-        The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+        The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
+        folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
         """
         return pulumi.get(self, "parent_folder_uid")
 
@@ -77,7 +79,7 @@ class FolderArgs:
     @pulumi.getter(name="preventDestroyIfNotEmpty")
     def prevent_destroy_if_not_empty(self) -> Optional[pulumi.Input[bool]]:
         """
-        Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+        Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
         """
         return pulumi.get(self, "prevent_destroy_if_not_empty")
 
@@ -110,8 +112,9 @@ class _FolderState:
         """
         Input properties used for looking up and filtering Folder resources.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] parent_folder_uid: The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
-        :param pulumi.Input[bool] prevent_destroy_if_not_empty: Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+        :param pulumi.Input[str] parent_folder_uid: The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
+               folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+        :param pulumi.Input[bool] prevent_destroy_if_not_empty: Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
         :param pulumi.Input[str] title: The title of the folder.
         :param pulumi.Input[str] uid: Unique identifier.
         :param pulumi.Input[str] url: The full URL of the folder.
@@ -145,7 +148,8 @@ class _FolderState:
     @pulumi.getter(name="parentFolderUid")
     def parent_folder_uid(self) -> Optional[pulumi.Input[str]]:
         """
-        The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+        The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
+        folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
         """
         return pulumi.get(self, "parent_folder_uid")
 
@@ -157,7 +161,7 @@ class _FolderState:
     @pulumi.getter(name="preventDestroyIfNotEmpty")
     def prevent_destroy_if_not_empty(self) -> Optional[pulumi.Input[bool]]:
         """
-        Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+        Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
         """
         return pulumi.get(self, "prevent_destroy_if_not_empty")
 
@@ -202,7 +206,12 @@ class _FolderState:
         pulumi.set(self, "url", value)
 
 
+warnings.warn("""grafana.index/folder.Folder has been deprecated in favor of grafana.oss/folder.Folder""", DeprecationWarning)
+
+
 class Folder(pulumi.CustomResource):
+    warnings.warn("""grafana.index/folder.Folder has been deprecated in favor of grafana.oss/folder.Folder""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -214,43 +223,13 @@ class Folder(pulumi.CustomResource):
                  uid: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test_folder_folder = grafana.Folder("testFolderFolder", title="Terraform Test Folder")
-        test_folder_dashboard = grafana.Dashboard("testFolderDashboard",
-            folder=test_folder_folder.id,
-            config_json=\"\"\"{
-          "title": "Dashboard in folder",
-          "uid": "dashboard-in-folder"
-        }
-        \"\"\")
-        test_folder_with_uid = grafana.Folder("testFolderWithUid",
-            uid="test-folder-uid",
-            title="Terraform Test Folder With UID")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/folder:Folder name "{{ uid }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/folder:Folder name "{{ orgID }}:{{ uid }}"
-        ```
-
+        Create a Folder resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] parent_folder_uid: The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
-        :param pulumi.Input[bool] prevent_destroy_if_not_empty: Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+        :param pulumi.Input[str] parent_folder_uid: The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
+               folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+        :param pulumi.Input[bool] prevent_destroy_if_not_empty: Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
         :param pulumi.Input[str] title: The title of the folder.
         :param pulumi.Input[str] uid: Unique identifier.
         """
@@ -261,38 +240,7 @@ class Folder(pulumi.CustomResource):
                  args: FolderArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test_folder_folder = grafana.Folder("testFolderFolder", title="Terraform Test Folder")
-        test_folder_dashboard = grafana.Dashboard("testFolderDashboard",
-            folder=test_folder_folder.id,
-            config_json=\"\"\"{
-          "title": "Dashboard in folder",
-          "uid": "dashboard-in-folder"
-        }
-        \"\"\")
-        test_folder_with_uid = grafana.Folder("testFolderWithUid",
-            uid="test-folder-uid",
-            title="Terraform Test Folder With UID")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/folder:Folder name "{{ uid }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/folder:Folder name "{{ orgID }}:{{ uid }}"
-        ```
-
+        Create a Folder resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param FolderArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -314,6 +262,7 @@ class Folder(pulumi.CustomResource):
                  title: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""Folder is deprecated: grafana.index/folder.Folder has been deprecated in favor of grafana.oss/folder.Folder""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -330,6 +279,8 @@ class Folder(pulumi.CustomResource):
             __props__.__dict__["title"] = title
             __props__.__dict__["uid"] = uid
             __props__.__dict__["url"] = None
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/folder:Folder")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Folder, __self__).__init__(
             'grafana:index/folder:Folder',
             resource_name,
@@ -354,8 +305,9 @@ class Folder(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] parent_folder_uid: The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
-        :param pulumi.Input[bool] prevent_destroy_if_not_empty: Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+        :param pulumi.Input[str] parent_folder_uid: The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
+               folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+        :param pulumi.Input[bool] prevent_destroy_if_not_empty: Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
         :param pulumi.Input[str] title: The title of the folder.
         :param pulumi.Input[str] uid: Unique identifier.
         :param pulumi.Input[str] url: The full URL of the folder.
@@ -384,7 +336,8 @@ class Folder(pulumi.CustomResource):
     @pulumi.getter(name="parentFolderUid")
     def parent_folder_uid(self) -> pulumi.Output[Optional[str]]:
         """
-        The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+        The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root
+        folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
         """
         return pulumi.get(self, "parent_folder_uid")
 
@@ -392,7 +345,7 @@ class Folder(pulumi.CustomResource):
     @pulumi.getter(name="preventDestroyIfNotEmpty")
     def prevent_destroy_if_not_empty(self) -> pulumi.Output[Optional[bool]]:
         """
-        Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+        Prevent deletion of the folder if it is not empty (contains dashboards or alert rules).
         """
         return pulumi.get(self, "prevent_destroy_if_not_empty")
 

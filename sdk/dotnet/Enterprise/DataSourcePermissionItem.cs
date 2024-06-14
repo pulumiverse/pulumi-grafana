@@ -24,9 +24,9 @@ namespace Pulumiverse.Grafana.Enterprise
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var teamTeam = new Grafana.Team("teamTeam");
+    ///     var teamTeam = new Grafana.Oss.Team("teamTeam");
     /// 
-    ///     var foo = new Grafana.DataSource("foo", new()
+    ///     var foo = new Grafana.Oss.DataSource("foo", new()
     ///     {
     ///         Type = "cloudwatch",
     ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
@@ -41,14 +41,14 @@ namespace Pulumiverse.Grafana.Enterprise
     ///         }),
     ///     });
     /// 
-    ///     var userUser = new Grafana.User("userUser", new()
+    ///     var userUser = new Grafana.Oss.User("userUser", new()
     ///     {
     ///         Email = "test-ds-permissions@example.com",
     ///         Login = "test-ds-permissions",
     ///         Password = "hunter2",
     ///     });
     /// 
-    ///     var sa = new Grafana.ServiceAccount("sa", new()
+    ///     var sa = new Grafana.Oss.ServiceAccount("sa", new()
     ///     {
     ///         Role = "Viewer",
     ///     });

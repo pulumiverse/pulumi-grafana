@@ -10,49 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var viewer = new Grafana.User("viewer", new()
-    ///     {
-    ///         Email = "viewer@example.com",
-    ///         Login = "viewer",
-    ///         Password = "my-password",
-    ///     });
-    /// 
-    ///     var test_team = new Grafana.Team("test-team", new()
-    ///     {
-    ///         Email = "teamemail@example.com",
-    ///         Members = new[]
-    ///         {
-    ///             viewer.Email,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/team:Team name "{{ id }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/team:Team name "{{ orgID }}:{{ id }}"
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/team.Team has been deprecated in favor of grafana.oss/team.Team")]
     [GrafanaResourceType("grafana:index/team:Team")]
     public partial class Team : global::Pulumi.CustomResource
     {
@@ -125,6 +83,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/team:Team" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

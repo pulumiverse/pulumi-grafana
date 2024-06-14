@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Equivalent to the the `teamSync` attribute of the `Team` resource. Use one or the other to configure a team's external groups syncing config.
+// Equivalent to the the `teamSync` attribute of the `oss.Team` resource. Use one or the other to configure a team's external groups syncing config.
 //
 // ## Example Usage
 //
@@ -22,14 +22,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/enterprise"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myTeam, err := grafana.NewTeam(ctx, "myTeam", nil)
+//			myTeam, err := oss.NewTeam(ctx, "myTeam", nil)
 //			if err != nil {
 //				return err
 //			}

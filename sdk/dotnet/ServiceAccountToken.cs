@@ -10,46 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// **Note:** This resource is available only with Grafana 9.1+.
-    /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Grafana.ServiceAccount("test", new()
-    ///     {
-    ///         Role = "Viewer",
-    ///     });
-    /// 
-    ///     var foo = new Grafana.ServiceAccountToken("foo", new()
-    ///     {
-    ///         ServiceAccountId = test.Id,
-    ///     });
-    /// 
-    ///     var bar = new Grafana.ServiceAccountToken("bar", new()
-    ///     {
-    ///         ServiceAccountId = test.Id,
-    ///         SecondsToLive = 30,
-    ///     });
-    /// 
-    ///     return new Dictionary&lt;string, object?&gt;
-    ///     {
-    ///         ["serviceAccountTokenFooKeyOnly"] = foo.Key,
-    ///         ["serviceAccountTokenBar"] = bar,
-    ///     };
-    /// });
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/serviceaccounttoken.ServiceAccountToken has been deprecated in favor of grafana.oss/serviceaccounttoken.ServiceAccountToken")]
     [GrafanaResourceType("grafana:index/serviceAccountToken:ServiceAccountToken")]
     public partial class ServiceAccountToken : global::Pulumi.CustomResource
     {
@@ -78,7 +39,9 @@ namespace Pulumiverse.Grafana
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
+        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
+        /// is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
+        /// never expire.
         /// </summary>
         [Output("secondsToLive")]
         public Output<int?> SecondsToLive { get; private set; } = null!;
@@ -113,6 +76,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/serviceAccountToken:ServiceAccountToken" },
+                },
                 AdditionalSecretOutputs =
                 {
                     "key",
@@ -147,7 +114,9 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
+        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
+        /// is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
+        /// never expire.
         /// </summary>
         [Input("secondsToLive")]
         public Input<int>? SecondsToLive { get; set; }
@@ -201,7 +170,9 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
+        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
+        /// is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
+        /// never expire.
         /// </summary>
         [Input("secondsToLive")]
         public Input<int>? SecondsToLive { get; set; }

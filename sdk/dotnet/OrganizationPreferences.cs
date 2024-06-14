@@ -10,36 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
-    /// <summary>
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Grafana.OrganizationPreferences("test", new()
-    ///     {
-    ///         Theme = "light",
-    ///         Timezone = "utc",
-    ///         WeekStart = "sunday",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:index/organizationPreferences:OrganizationPreferences name "{{ orgID }}"
-    /// ```
-    /// </summary>
+    [Obsolete(@"grafana.index/organizationpreferences.OrganizationPreferences has been deprecated in favor of grafana.oss/organizationpreferences.OrganizationPreferences")]
     [GrafanaResourceType("grafana:index/organizationPreferences:OrganizationPreferences")]
     public partial class OrganizationPreferences : global::Pulumi.CustomResource
     {
@@ -74,7 +45,8 @@ namespace Pulumiverse.Grafana
         public Output<string?> Timezone { get; private set; } = null!;
 
         /// <summary>
-        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+        /// default.
         /// </summary>
         [Output("weekStart")]
         public Output<string?> WeekStart { get; private set; } = null!;
@@ -105,7 +77,7 @@ namespace Pulumiverse.Grafana
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
                 Aliases =
                 {
-                    new global::Pulumi.Alias { Type = "grafana:index/organizationPreference:OrganizationPreference" },
+                    new global::Pulumi.Alias { Type = "grafana:index/organizationPreferences:OrganizationPreferences" },
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -161,7 +133,8 @@ namespace Pulumiverse.Grafana
         public Input<string>? Timezone { get; set; }
 
         /// <summary>
-        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+        /// default.
         /// </summary>
         [Input("weekStart")]
         public Input<string>? WeekStart { get; set; }
@@ -205,7 +178,8 @@ namespace Pulumiverse.Grafana
         public Input<string>? Timezone { get; set; }
 
         /// <summary>
-        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
+        /// default.
         /// </summary>
         [Input("weekStart")]
         public Input<string>? WeekStart { get; set; }

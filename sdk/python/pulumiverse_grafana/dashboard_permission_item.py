@@ -217,7 +217,12 @@ class _DashboardPermissionItemState:
         pulumi.set(self, "user", value)
 
 
+warnings.warn("""grafana.index/dashboardpermissionitem.DashboardPermissionItem has been deprecated in favor of grafana.oss/dashboardpermissionitem.DashboardPermissionItem""", DeprecationWarning)
+
+
 class DashboardPermissionItem(pulumi.CustomResource):
+    warnings.warn("""grafana.index/dashboardpermissionitem.DashboardPermissionItem has been deprecated in favor of grafana.oss/dashboardpermissionitem.DashboardPermissionItem""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -230,48 +235,7 @@ class DashboardPermissionItem(pulumi.CustomResource):
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages a single permission item for a dashboard. Conflicts with the "DashboardPermission" resource which manages the entire set of permissions for a dashboard.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import json
-        import pulumiverse_grafana as grafana
-
-        team_team = grafana.Team("teamTeam")
-        user_user = grafana.User("userUser",
-            email="user.name@example.com",
-            password="my-password",
-            login="user.name")
-        dashboard = grafana.Dashboard("dashboard", config_json=json.dumps({
-            "title": "My Dashboard",
-            "uid": "my-dashboard-uid",
-        }))
-        role = grafana.DashboardPermissionItem("role",
-            dashboard_uid=dashboard.uid,
-            role="Viewer",
-            permission="View")
-        user_dashboard_permission_item = grafana.DashboardPermissionItem("userDashboardPermissionItem",
-            dashboard_uid=dashboard.uid,
-            user=user_user.id,
-            permission="Admin")
-        team_dashboard_permission_item = grafana.DashboardPermissionItem("teamDashboardPermissionItem",
-            dashboard_uid=dashboard.uid,
-            team=team_team.id,
-            permission="Edit")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/dashboardPermissionItem:DashboardPermissionItem name "{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/dashboardPermissionItem:DashboardPermissionItem name "{{ orgID }}:{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-        ```
-
+        Create a DashboardPermissionItem resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dashboard_uid: The UID of the dashboard.
@@ -288,48 +252,7 @@ class DashboardPermissionItem(pulumi.CustomResource):
                  args: DashboardPermissionItemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a single permission item for a dashboard. Conflicts with the "DashboardPermission" resource which manages the entire set of permissions for a dashboard.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import json
-        import pulumiverse_grafana as grafana
-
-        team_team = grafana.Team("teamTeam")
-        user_user = grafana.User("userUser",
-            email="user.name@example.com",
-            password="my-password",
-            login="user.name")
-        dashboard = grafana.Dashboard("dashboard", config_json=json.dumps({
-            "title": "My Dashboard",
-            "uid": "my-dashboard-uid",
-        }))
-        role = grafana.DashboardPermissionItem("role",
-            dashboard_uid=dashboard.uid,
-            role="Viewer",
-            permission="View")
-        user_dashboard_permission_item = grafana.DashboardPermissionItem("userDashboardPermissionItem",
-            dashboard_uid=dashboard.uid,
-            user=user_user.id,
-            permission="Admin")
-        team_dashboard_permission_item = grafana.DashboardPermissionItem("teamDashboardPermissionItem",
-            dashboard_uid=dashboard.uid,
-            team=team_team.id,
-            permission="Edit")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/dashboardPermissionItem:DashboardPermissionItem name "{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/dashboardPermissionItem:DashboardPermissionItem name "{{ orgID }}:{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-        ```
-
+        Create a DashboardPermissionItem resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DashboardPermissionItemArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -352,6 +275,7 @@ class DashboardPermissionItem(pulumi.CustomResource):
                  team: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""DashboardPermissionItem is deprecated: grafana.index/dashboardpermissionitem.DashboardPermissionItem has been deprecated in favor of grafana.oss/dashboardpermissionitem.DashboardPermissionItem""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -370,6 +294,8 @@ class DashboardPermissionItem(pulumi.CustomResource):
             __props__.__dict__["role"] = role
             __props__.__dict__["team"] = team
             __props__.__dict__["user"] = user
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/dashboardPermissionItem:DashboardPermissionItem")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(DashboardPermissionItem, __self__).__init__(
             'grafana:index/dashboardPermissionItem:DashboardPermissionItem',
             resource_name,

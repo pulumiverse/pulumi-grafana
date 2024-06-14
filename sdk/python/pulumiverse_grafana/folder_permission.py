@@ -124,7 +124,12 @@ class _FolderPermissionState:
         pulumi.set(self, "permissions", value)
 
 
+warnings.warn("""grafana.index/folderpermission.FolderPermission has been deprecated in favor of grafana.oss/folderpermission.FolderPermission""", DeprecationWarning)
+
+
 class FolderPermission(pulumi.CustomResource):
+    warnings.warn("""grafana.index/folderpermission.FolderPermission has been deprecated in favor of grafana.oss/folderpermission.FolderPermission""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -134,50 +139,7 @@ class FolderPermission(pulumi.CustomResource):
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FolderPermissionPermissionArgs']]]]] = None,
                  __props__=None):
         """
-        Manages the entire set of permissions for a folder. Permissions that aren't specified when applying this resource will be removed.
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        team = grafana.Team("team")
-        user = grafana.User("user",
-            email="user.name@example.com",
-            login="user.name",
-            password="my-password")
-        collection = grafana.Folder("collection", title="Folder Title")
-        collection_permission = grafana.FolderPermission("collectionPermission",
-            folder_uid=collection.uid,
-            permissions=[
-                grafana.FolderPermissionPermissionArgs(
-                    role="Editor",
-                    permission="Edit",
-                ),
-                grafana.FolderPermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="View",
-                ),
-                grafana.FolderPermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Admin",
-                ),
-            ])
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/folderPermission:FolderPermission name "{{ folderUID }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/folderPermission:FolderPermission name "{{ orgID }}:{{ folderUID }}"
-        ```
-
+        Create a FolderPermission resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder.
@@ -191,50 +153,7 @@ class FolderPermission(pulumi.CustomResource):
                  args: FolderPermissionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages the entire set of permissions for a folder. Permissions that aren't specified when applying this resource will be removed.
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        team = grafana.Team("team")
-        user = grafana.User("user",
-            email="user.name@example.com",
-            login="user.name",
-            password="my-password")
-        collection = grafana.Folder("collection", title="Folder Title")
-        collection_permission = grafana.FolderPermission("collectionPermission",
-            folder_uid=collection.uid,
-            permissions=[
-                grafana.FolderPermissionPermissionArgs(
-                    role="Editor",
-                    permission="Edit",
-                ),
-                grafana.FolderPermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="View",
-                ),
-                grafana.FolderPermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Admin",
-                ),
-            ])
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/folderPermission:FolderPermission name "{{ folderUID }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/folderPermission:FolderPermission name "{{ orgID }}:{{ folderUID }}"
-        ```
-
+        Create a FolderPermission resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param FolderPermissionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -254,6 +173,7 @@ class FolderPermission(pulumi.CustomResource):
                  org_id: Optional[pulumi.Input[str]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FolderPermissionPermissionArgs']]]]] = None,
                  __props__=None):
+        pulumi.log.warn("""FolderPermission is deprecated: grafana.index/folderpermission.FolderPermission has been deprecated in favor of grafana.oss/folderpermission.FolderPermission""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -267,6 +187,8 @@ class FolderPermission(pulumi.CustomResource):
             __props__.__dict__["folder_uid"] = folder_uid
             __props__.__dict__["org_id"] = org_id
             __props__.__dict__["permissions"] = permissions
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/folderPermission:FolderPermission")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(FolderPermission, __self__).__init__(
             'grafana:index/folderPermission:FolderPermission',
             resource_name,

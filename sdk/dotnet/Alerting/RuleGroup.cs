@@ -29,7 +29,7 @@ namespace Pulumiverse.Grafana.Alerting
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var ruleFolder = new Grafana.Folder("ruleFolder", new()
+    ///     var ruleFolder = new Grafana.Oss.Folder("ruleFolder", new()
     ///     {
     ///         Title = "My Alert Rule Folder",
     ///     });

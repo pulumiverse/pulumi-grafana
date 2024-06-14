@@ -265,7 +265,12 @@ class _TeamState:
         pulumi.set(self, "team_sync", value)
 
 
+warnings.warn("""grafana.index/team.Team has been deprecated in favor of grafana.oss/team.Team""", DeprecationWarning)
+
+
 class Team(pulumi.CustomResource):
+    warnings.warn("""grafana.index/team.Team has been deprecated in favor of grafana.oss/team.Team""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -279,34 +284,7 @@ class Team(pulumi.CustomResource):
                  team_sync: Optional[pulumi.Input[pulumi.InputType['TeamTeamSyncArgs']]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        viewer = grafana.User("viewer",
-            email="viewer@example.com",
-            login="viewer",
-            password="my-password")
-        test_team = grafana.Team("test-team",
-            email="teamemail@example.com",
-            members=[viewer.email])
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/team:Team name "{{ id }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/team:Team name "{{ orgID }}:{{ id }}"
-        ```
-
+        Create a Team resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] email: An email address for the team.
@@ -325,34 +303,7 @@ class Team(pulumi.CustomResource):
                  args: Optional[TeamArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        viewer = grafana.User("viewer",
-            email="viewer@example.com",
-            login="viewer",
-            password="my-password")
-        test_team = grafana.Team("test-team",
-            email="teamemail@example.com",
-            members=[viewer.email])
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/team:Team name "{{ id }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/team:Team name "{{ orgID }}:{{ id }}"
-        ```
-
+        Create a Team resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param TeamArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -376,6 +327,7 @@ class Team(pulumi.CustomResource):
                  preferences: Optional[pulumi.Input[pulumi.InputType['TeamPreferencesArgs']]] = None,
                  team_sync: Optional[pulumi.Input[pulumi.InputType['TeamTeamSyncArgs']]] = None,
                  __props__=None):
+        pulumi.log.warn("""Team is deprecated: grafana.index/team.Team has been deprecated in favor of grafana.oss/team.Team""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -392,6 +344,8 @@ class Team(pulumi.CustomResource):
             __props__.__dict__["preferences"] = preferences
             __props__.__dict__["team_sync"] = team_sync
             __props__.__dict__["team_id"] = None
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/team:Team")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Team, __self__).__init__(
             'grafana:index/team:Team',
             resource_name,

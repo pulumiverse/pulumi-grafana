@@ -139,7 +139,12 @@ class _PlaylistState:
         pulumi.set(self, "org_id", value)
 
 
+warnings.warn("""grafana.index/playlist.Playlist has been deprecated in favor of grafana.oss/playlist.Playlist""", DeprecationWarning)
+
+
 class Playlist(pulumi.CustomResource):
+    warnings.warn("""grafana.index/playlist.Playlist has been deprecated in favor of grafana.oss/playlist.Playlist""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -150,43 +155,7 @@ class Playlist(pulumi.CustomResource):
                  org_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test = grafana.Playlist("test",
-            interval="5m",
-            items=[
-                grafana.PlaylistItemArgs(
-                    order=2,
-                    title="Terraform Dashboard By Tag",
-                    type="dashboard_by_tag",
-                    value="terraform",
-                ),
-                grafana.PlaylistItemArgs(
-                    order=1,
-                    title="Terraform Dashboard By ID",
-                    type="dashboard_by_id",
-                    value="3",
-                ),
-            ])
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/playlist:Playlist name "{{ uid }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/playlist:Playlist name "{{ orgID }}:{{ uid }}"
-        ```
-
+        Create a Playlist resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the playlist.
@@ -199,43 +168,7 @@ class Playlist(pulumi.CustomResource):
                  args: PlaylistArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test = grafana.Playlist("test",
-            interval="5m",
-            items=[
-                grafana.PlaylistItemArgs(
-                    order=2,
-                    title="Terraform Dashboard By Tag",
-                    type="dashboard_by_tag",
-                    value="terraform",
-                ),
-                grafana.PlaylistItemArgs(
-                    order=1,
-                    title="Terraform Dashboard By ID",
-                    type="dashboard_by_id",
-                    value="3",
-                ),
-            ])
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/playlist:Playlist name "{{ uid }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/playlist:Playlist name "{{ orgID }}:{{ uid }}"
-        ```
-
+        Create a Playlist resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param PlaylistArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -256,6 +189,7 @@ class Playlist(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""Playlist is deprecated: grafana.index/playlist.Playlist has been deprecated in favor of grafana.oss/playlist.Playlist""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -272,6 +206,8 @@ class Playlist(pulumi.CustomResource):
             __props__.__dict__["items"] = items
             __props__.__dict__["name"] = name
             __props__.__dict__["org_id"] = org_id
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/playlist:Playlist")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Playlist, __self__).__init__(
             'grafana:index/playlist:Playlist',
             resource_name,

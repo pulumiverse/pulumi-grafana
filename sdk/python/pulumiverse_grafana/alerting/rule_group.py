@@ -237,7 +237,7 @@ class RuleGroup(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        rule_folder = grafana.Folder("ruleFolder", title="My Alert Rule Folder")
+        rule_folder = grafana.oss.Folder("ruleFolder", title="My Alert Rule Folder")
         my_alert_rule = grafana.alerting.RuleGroup("myAlertRule",
             folder_uid=rule_folder.uid,
             interval_seconds=240,
@@ -360,7 +360,7 @@ class RuleGroup(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        rule_folder = grafana.Folder("ruleFolder", title="My Alert Rule Folder")
+        rule_folder = grafana.oss.Folder("ruleFolder", title="My Alert Rule Folder")
         my_alert_rule = grafana.alerting.RuleGroup("myAlertRule",
             folder_uid=rule_folder.uid,
             interval_seconds=240,

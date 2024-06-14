@@ -914,11 +914,11 @@ export interface DashboardPermissionPermission {
      */
     role?: string;
     /**
-     * ID of the team to manage permissions for. Defaults to `0`.
+     * ID of the team to manage permissions for.
      */
     teamId?: string;
     /**
-     * ID of the user or service account to manage permissions for. Defaults to `0`.
+     * ID of the user or service account to manage permissions for.
      */
     userId?: string;
 }
@@ -952,11 +952,11 @@ export interface FolderPermissionPermission {
      */
     role?: string;
     /**
-     * ID of the team to manage permissions for. Defaults to `0`.
+     * ID of the team to manage permissions for.
      */
     teamId?: string;
     /**
-     * ID of the user or service account to manage permissions for. Defaults to `0`.
+     * ID of the user or service account to manage permissions for.
      */
     userId?: string;
 }
@@ -2044,11 +2044,11 @@ export interface ServiceAccountPermissionPermission {
      */
     permission: string;
     /**
-     * ID of the team to manage permissions for. Defaults to `0`.
+     * ID of the team to manage permissions for.
      */
     teamId?: string;
     /**
-     * ID of the user or service account to manage permissions for. Defaults to `0`.
+     * ID of the user or service account to manage permissions for.
      */
     userId?: string;
 }
@@ -2067,7 +2067,7 @@ export interface SsoSettingsOauth2Settings {
      */
     allowedDomains?: string;
     /**
-     * List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+     * List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed_groups, you must also configure groups_attribute_path.
      */
     allowedGroups?: string;
     /**
@@ -2079,7 +2079,7 @@ export interface SsoSettingsOauth2Settings {
      */
     apiUrl?: string;
     /**
-     * It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+     * It determines how clientId and clientSecret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
      */
     authStyle?: string;
     /**
@@ -2099,7 +2099,7 @@ export interface SsoSettingsOauth2Settings {
      */
     clientSecret?: string;
     /**
-     * Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+     * Custom fields to configure for OAuth2 such as the [forceUseGraphApi](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
      */
     custom?: {[key: string]: string};
     /**
@@ -2123,11 +2123,11 @@ export interface SsoSettingsOauth2Settings {
      */
     emptyScopes?: boolean;
     /**
-     * Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+     * Define whether this configuration is enabled for the specified provider.
      */
     enabled?: boolean;
     /**
-     * JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+     * JMESPath expression to use for user group lookup. If you configure allowed_groups, you must also configure groups_attribute_path.
      */
     groupsAttributePath?: string;
     /**
@@ -2167,7 +2167,7 @@ export interface SsoSettingsOauth2Settings {
      */
     skipOrgRoleSync?: boolean;
     /**
-     * String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+     * String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team_ids, you must also configure teamsUrl and team_ids_attribute_path.
      */
     teamIds?: string;
     /**
@@ -2175,7 +2175,7 @@ export interface SsoSettingsOauth2Settings {
      */
     teamIdsAttributePath?: string;
     /**
-     * The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+     * The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams_url, you must also configure team_ids_attribute_path. Only applicable to Generic OAuth.
      */
     teamsUrl?: string;
     /**
@@ -2258,7 +2258,7 @@ export interface SsoSettingsSamlSettings {
      */
     certificatePath?: string;
     /**
-     * Define whether this configuration is enabled for SAML. Defaults to `true`.
+     * Define whether this configuration is enabled for SAML.
      */
     enabled?: boolean;
     /**
@@ -4458,6 +4458,446 @@ export namespace onCall {
          * Slack user group id. Members of user group will be updated when on-call users change.
          */
         userGroupId?: string;
+    }
+
+}
+
+export namespace oss {
+    export interface DashboardPermissionPermission {
+        /**
+         * Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+         */
+        permission: string;
+        /**
+         * Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
+         */
+        role?: string;
+        /**
+         * ID of the team to manage permissions for. Defaults to `0`.
+         */
+        teamId?: string;
+        /**
+         * ID of the user or service account to manage permissions for. Defaults to `0`.
+         */
+        userId?: string;
+    }
+
+    export interface FolderPermissionPermission {
+        /**
+         * Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+         */
+        permission: string;
+        /**
+         * Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
+         */
+        role?: string;
+        /**
+         * ID of the team to manage permissions for. Defaults to `0`.
+         */
+        teamId?: string;
+        /**
+         * ID of the user or service account to manage permissions for. Defaults to `0`.
+         */
+        userId?: string;
+    }
+
+    export interface GetDashboardsDashboard {
+        folderTitle: string;
+        title: string;
+        uid: string;
+    }
+
+    export interface GetFoldersFolder {
+        /**
+         * The folder ID.
+         */
+        id: number;
+        /**
+         * The folder title.
+         */
+        title: string;
+        /**
+         * The folder's unique identifier.
+         */
+        uid: string;
+        /**
+         * The folder's URL
+         */
+        url: string;
+    }
+
+    export interface GetTeamPreference {
+        /**
+         * The UID of the dashboard to display when a team member logs in.
+         */
+        homeDashboardUid?: string;
+        /**
+         * The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.
+         */
+        theme?: string;
+        /**
+         * The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.
+         */
+        timezone?: string;
+        /**
+         * The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
+         */
+        weekStart?: string;
+    }
+
+    export interface GetTeamTeamSync {
+        groups?: string[];
+    }
+
+    export interface GetUsersUser {
+        /**
+         * The user's email.
+         */
+        email: string;
+        /**
+         * The user ID.
+         */
+        id: number;
+        /**
+         * Whether the user is admin or not.
+         */
+        isAdmin: boolean;
+        /**
+         * The user's login.
+         */
+        login: string;
+        /**
+         * The user's name.
+         */
+        name: string;
+    }
+
+    export interface PlaylistItem {
+        id: string;
+        order: number;
+        title: string;
+        type?: string;
+        value?: string;
+    }
+
+    export interface ServiceAccountPermissionPermission {
+        /**
+         * Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+         */
+        permission: string;
+        /**
+         * ID of the team to manage permissions for. Defaults to `0`.
+         */
+        teamId?: string;
+        /**
+         * ID of the user or service account to manage permissions for. Defaults to `0`.
+         */
+        userId?: string;
+    }
+
+    export interface SsoSettingsOauth2Settings {
+        /**
+         * If enabled, it will automatically sync the Grafana server administrator role.
+         */
+        allowAssignGrafanaAdmin?: boolean;
+        /**
+         * If not enabled, only existing Grafana users can log in using OAuth.
+         */
+        allowSignUp?: boolean;
+        /**
+         * List of comma- or space-separated domains. The user should belong to at least one domain to log in.
+         */
+        allowedDomains?: string;
+        /**
+         * List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+         */
+        allowedGroups?: string;
+        /**
+         * List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
+         */
+        allowedOrganizations?: string;
+        /**
+         * The user information endpoint of your OAuth2 provider. Required for okta and genericOauth providers.
+         */
+        apiUrl?: string;
+        /**
+         * It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+         */
+        authStyle?: string;
+        /**
+         * The authorization endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+         */
+        authUrl?: string;
+        /**
+         * Log in automatically, skipping the login screen.
+         */
+        autoLogin?: boolean;
+        /**
+         * The client Id of your OAuth2 app.
+         */
+        clientId: string;
+        /**
+         * The client secret of your OAuth2 app.
+         */
+        clientSecret?: string;
+        /**
+         * Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+         */
+        custom?: {[key: string]: string};
+        /**
+         * Define allowed groups.
+         */
+        defineAllowedGroups?: boolean;
+        /**
+         * Define allowed teams ids.
+         */
+        defineAllowedTeamsIds?: boolean;
+        /**
+         * Name of the key to use for user email lookup within the attributes map of OAuth2 ID token. Only applicable to Generic OAuth.
+         */
+        emailAttributeName?: string;
+        /**
+         * JMESPath expression to use for user email lookup from the user information. Only applicable to Generic OAuth.
+         */
+        emailAttributePath?: string;
+        /**
+         * If enabled, no scopes will be sent to the OAuth2 provider.
+         */
+        emptyScopes?: boolean;
+        /**
+         * Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+         */
+        enabled?: boolean;
+        /**
+         * JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+         */
+        groupsAttributePath?: string;
+        /**
+         * The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
+         */
+        idTokenAttributeName?: string;
+        /**
+         * JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
+         */
+        loginAttributePath?: string;
+        /**
+         * Helpful if you use more than one identity providers or SSO protocols.
+         */
+        name?: string;
+        /**
+         * JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+         */
+        nameAttributePath?: string;
+        /**
+         * JMESPath expression to use for Grafana role lookup.
+         */
+        roleAttributePath?: string;
+        /**
+         * If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
+         */
+        roleAttributeStrict?: boolean;
+        /**
+         * List of comma- or space-separated OAuth2 scopes.
+         */
+        scopes?: string;
+        /**
+         * The URL to redirect the user to after signing out from Grafana.
+         */
+        signoutRedirectUrl?: string;
+        /**
+         * Prevent synchronizing users’ organization roles from your IdP.
+         */
+        skipOrgRoleSync?: boolean;
+        /**
+         * String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+         */
+        teamIds?: string;
+        /**
+         * The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teamsUrl endpoint. Only applicable to Generic OAuth.
+         */
+        teamIdsAttributePath?: string;
+        /**
+         * The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+         */
+        teamsUrl?: string;
+        /**
+         * The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
+         */
+        tlsClientCa?: string;
+        /**
+         * The path to the certificate. Is not applicable on Grafana Cloud.
+         */
+        tlsClientCert?: string;
+        /**
+         * The path to the key. Is not applicable on Grafana Cloud.
+         */
+        tlsClientKey?: string;
+        /**
+         * If enabled, the client accepts any certificate presented by the server and any host name in that certificate. You should only use this for testing, because this mode leaves SSL/TLS susceptible to man-in-the-middle attacks.
+         */
+        tlsSkipVerifyInsecure?: boolean;
+        /**
+         * The token endpoint of your OAuth2 provider. Required for azuread, okta and genericOauth providers.
+         */
+        tokenUrl?: string;
+        /**
+         * If enabled, Grafana will use Proof Key for Code Exchange (PKCE) with the OAuth2 Authorization Code Grant.
+         */
+        usePkce?: boolean;
+        /**
+         * If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
+         */
+        useRefreshToken?: boolean;
+    }
+
+    export interface SsoSettingsSamlSettings {
+        /**
+         * Whether SAML IdP-initiated login is allowed.
+         */
+        allowIdpInitiated?: boolean;
+        /**
+         * Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
+         */
+        allowSignUp?: boolean;
+        /**
+         * List of comma- or space-separated organizations. User should be a member of at least one organization to log in.
+         */
+        allowedOrganizations?: string;
+        /**
+         * Friendly name or name of the attribute within the SAML assertion to use as the user email.
+         */
+        assertionAttributeEmail?: string;
+        /**
+         * Friendly name or name of the attribute within the SAML assertion to use as the user groups.
+         */
+        assertionAttributeGroups?: string;
+        /**
+         * Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
+         */
+        assertionAttributeLogin?: string;
+        /**
+         * Friendly name or name of the attribute within the SAML assertion to use as the user name. Alternatively, this can be a template with variables that match the names of attributes within the SAML assertion.
+         */
+        assertionAttributeName?: string;
+        /**
+         * Friendly name or name of the attribute within the SAML assertion to use as the user organization.
+         */
+        assertionAttributeOrg?: string;
+        /**
+         * Friendly name or name of the attribute within the SAML assertion to use as the user roles.
+         */
+        assertionAttributeRole?: string;
+        /**
+         * Whether SAML auto login is enabled.
+         */
+        autoLogin?: boolean;
+        /**
+         * Base64-encoded string for the SP X.509 certificate.
+         */
+        certificate?: string;
+        /**
+         * Path for the SP X.509 certificate.
+         */
+        certificatePath?: string;
+        /**
+         * Define whether this configuration is enabled for SAML. Defaults to `true`.
+         */
+        enabled?: boolean;
+        /**
+         * Base64-encoded string for the IdP SAML metadata XML.
+         */
+        idpMetadata?: string;
+        /**
+         * Path for the IdP SAML metadata XML.
+         */
+        idpMetadataPath?: string;
+        /**
+         * URL for the IdP SAML metadata XML.
+         */
+        idpMetadataUrl?: string;
+        /**
+         * Duration, since the IdP issued a response and the SP is allowed to process it. For example: 90s, 1h.
+         */
+        maxIssueDelay?: string;
+        /**
+         * Duration, for how long the SP metadata is valid. For example: 48h, 5d.
+         */
+        metadataValidDuration?: string;
+        /**
+         * Name used to refer to the SAML authentication.
+         */
+        name?: string;
+        /**
+         * The Name ID Format to request within the SAML assertion. Defaults to urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+         */
+        nameIdFormat?: string;
+        /**
+         * List of comma- or space-separated Organization:OrgId:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: Viewer, Editor or Admin.
+         */
+        orgMapping?: string;
+        /**
+         * Base64-encoded string for the SP private key.
+         */
+        privateKey?: string;
+        /**
+         * Path for the SP private key.
+         */
+        privateKeyPath?: string;
+        /**
+         * Relay state for IdP-initiated login. Should match relay state configured in IdP.
+         */
+        relayState?: string;
+        /**
+         * List of comma- or space-separated roles which will be mapped into the Admin role.
+         */
+        roleValuesAdmin?: string;
+        /**
+         * List of comma- or space-separated roles which will be mapped into the Editor role.
+         */
+        roleValuesEditor?: string;
+        /**
+         * List of comma- or space-separated roles which will be mapped into the Grafana Admin (Super Admin) role.
+         */
+        roleValuesGrafanaAdmin?: string;
+        /**
+         * List of comma- or space-separated roles which will be mapped into the None role.
+         */
+        roleValuesNone?: string;
+        /**
+         * Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
+         */
+        signatureAlgorithm?: string;
+        /**
+         * Whether SAML Single Logout is enabled.
+         */
+        singleLogout?: boolean;
+        /**
+         * Prevent synchronizing users’ organization roles from your IdP.
+         */
+        skipOrgRoleSync?: boolean;
+    }
+
+    export interface TeamPreferences {
+        /**
+         * The UID of the dashboard to display when a team member logs in.
+         */
+        homeDashboardUid?: string;
+        /**
+         * The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.
+         */
+        theme?: string;
+        /**
+         * The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.
+         */
+        timezone?: string;
+        /**
+         * The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
+         */
+        weekStart?: string;
+    }
+
+    export interface TeamTeamSync {
+        groups?: string[];
     }
 
 }

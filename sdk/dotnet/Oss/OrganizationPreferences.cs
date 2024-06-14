@@ -8,11 +8,40 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Oss
 {
-    [Obsolete(@"grafana.index/organizationpreference.OrganizationPreference has been deprecated in favor of grafana.index/organizationpreferences.OrganizationPreferences")]
-    [GrafanaResourceType("grafana:index/organizationPreference:OrganizationPreference")]
-    public partial class OrganizationPreference : global::Pulumi.CustomResource
+    /// <summary>
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Grafana.Oss.OrganizationPreferences("test", new()
+    ///     {
+    ///         Theme = "light",
+    ///         Timezone = "utc",
+    ///         WeekStart = "sunday",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:oss/organizationPreferences:OrganizationPreferences name "{{ orgID }}"
+    /// ```
+    /// </summary>
+    [GrafanaResourceType("grafana:oss/organizationPreferences:OrganizationPreferences")]
+    public partial class OrganizationPreferences : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
@@ -45,27 +74,26 @@ namespace Pulumiverse.Grafana
         public Output<string?> Timezone { get; private set; } = null!;
 
         /// <summary>
-        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-        /// default.
+        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         /// </summary>
         [Output("weekStart")]
         public Output<string?> WeekStart { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a OrganizationPreference resource with the given unique name, arguments, and options.
+        /// Create a OrganizationPreferences resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public OrganizationPreference(string name, OrganizationPreferenceArgs? args = null, CustomResourceOptions? options = null)
-            : base("grafana:index/organizationPreference:OrganizationPreference", name, args ?? new OrganizationPreferenceArgs(), MakeResourceOptions(options, ""))
+        public OrganizationPreferences(string name, OrganizationPreferencesArgs? args = null, CustomResourceOptions? options = null)
+            : base("grafana:oss/organizationPreferences:OrganizationPreferences", name, args ?? new OrganizationPreferencesArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private OrganizationPreference(string name, Input<string> id, OrganizationPreferenceState? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/organizationPreference:OrganizationPreference", name, state, MakeResourceOptions(options, id))
+        private OrganizationPreferences(string name, Input<string> id, OrganizationPreferencesState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:oss/organizationPreferences:OrganizationPreferences", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -75,6 +103,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/organizationPreferences:OrganizationPreferences" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -82,7 +114,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing OrganizationPreference resource's state with the given name, ID, and optional extra
+        /// Get an existing OrganizationPreferences resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -90,13 +122,13 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static OrganizationPreference Get(string name, Input<string> id, OrganizationPreferenceState? state = null, CustomResourceOptions? options = null)
+        public static OrganizationPreferences Get(string name, Input<string> id, OrganizationPreferencesState? state = null, CustomResourceOptions? options = null)
         {
-            return new OrganizationPreference(name, id, state, options);
+            return new OrganizationPreferences(name, id, state, options);
         }
     }
 
-    public sealed class OrganizationPreferenceArgs : global::Pulumi.ResourceArgs
+    public sealed class OrganizationPreferencesArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
@@ -129,19 +161,18 @@ namespace Pulumiverse.Grafana
         public Input<string>? Timezone { get; set; }
 
         /// <summary>
-        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-        /// default.
+        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         /// </summary>
         [Input("weekStart")]
         public Input<string>? WeekStart { get; set; }
 
-        public OrganizationPreferenceArgs()
+        public OrganizationPreferencesArgs()
         {
         }
-        public static new OrganizationPreferenceArgs Empty => new OrganizationPreferenceArgs();
+        public static new OrganizationPreferencesArgs Empty => new OrganizationPreferencesArgs();
     }
 
-    public sealed class OrganizationPreferenceState : global::Pulumi.ResourceArgs
+    public sealed class OrganizationPreferencesState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
@@ -174,15 +205,14 @@ namespace Pulumiverse.Grafana
         public Input<string>? Timezone { get; set; }
 
         /// <summary>
-        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-        /// default.
+        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         /// </summary>
         [Input("weekStart")]
         public Input<string>? WeekStart { get; set; }
 
-        public OrganizationPreferenceState()
+        public OrganizationPreferencesState()
         {
         }
-        public static new OrganizationPreferenceState Empty => new OrganizationPreferenceState();
+        public static new OrganizationPreferencesState Empty => new OrganizationPreferencesState();
     }
 }

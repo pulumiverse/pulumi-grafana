@@ -190,8 +190,8 @@ class DataSourcePermission(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        team = grafana.Team("team")
-        foo = grafana.DataSource("foo",
+        team = grafana.oss.Team("team")
+        foo = grafana.oss.DataSource("foo",
             type="cloudwatch",
             json_data_encoded=json.dumps({
                 "defaultRegion": "us-east-1",
@@ -201,11 +201,11 @@ class DataSourcePermission(pulumi.CustomResource):
                 "accessKey": "123",
                 "secretKey": "456",
             }))
-        user = grafana.User("user",
+        user = grafana.oss.User("user",
             email="test-ds-permissions@example.com",
             login="test-ds-permissions",
             password="hunter2")
-        sa = grafana.ServiceAccount("sa", role="Viewer")
+        sa = grafana.oss.ServiceAccount("sa", role="Viewer")
         foo_permissions = grafana.enterprise.DataSourcePermission("fooPermissions",
             datasource_uid=foo.uid,
             permissions=[
@@ -262,8 +262,8 @@ class DataSourcePermission(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        team = grafana.Team("team")
-        foo = grafana.DataSource("foo",
+        team = grafana.oss.Team("team")
+        foo = grafana.oss.DataSource("foo",
             type="cloudwatch",
             json_data_encoded=json.dumps({
                 "defaultRegion": "us-east-1",
@@ -273,11 +273,11 @@ class DataSourcePermission(pulumi.CustomResource):
                 "accessKey": "123",
                 "secretKey": "456",
             }))
-        user = grafana.User("user",
+        user = grafana.oss.User("user",
             email="test-ds-permissions@example.com",
             login="test-ds-permissions",
             password="hunter2")
-        sa = grafana.ServiceAccount("sa", role="Viewer")
+        sa = grafana.oss.ServiceAccount("sa", role="Viewer")
         foo_permissions = grafana.enterprise.DataSourcePermission("fooPermissions",
             datasource_uid=foo.uid,
             permissions=[

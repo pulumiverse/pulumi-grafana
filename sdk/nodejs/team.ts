@@ -7,35 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const viewer = new grafana.User("viewer", {
- *     email: "viewer@example.com",
- *     login: "viewer",
- *     password: "my-password",
- * });
- * const test_team = new grafana.Team("test-team", {
- *     email: "teamemail@example.com",
- *     members: [viewer.email],
- * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/team:Team name "{{ id }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/team:Team name "{{ orgID }}:{{ id }}"
- * ```
+ * @deprecated grafana.index/team.Team has been deprecated in favor of grafana.oss/team.Team
  */
 export class Team extends pulumi.CustomResource {
     /**
@@ -48,6 +20,7 @@ export class Team extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: TeamState, opts?: pulumi.CustomResourceOptions): Team {
+        pulumi.log.warn("Team is deprecated: grafana.index/team.Team has been deprecated in favor of grafana.oss/team.Team")
         return new Team(name, <any>state, { ...opts, id: id });
     }
 
@@ -102,8 +75,11 @@ export class Team extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/team.Team has been deprecated in favor of grafana.oss/team.Team */
     constructor(name: string, args?: TeamArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/team.Team has been deprecated in favor of grafana.oss/team.Team */
     constructor(name: string, argsOrState?: TeamArgs | TeamState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("Team is deprecated: grafana.index/team.Team has been deprecated in favor of grafana.oss/team.Team")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -128,6 +104,8 @@ export class Team extends pulumi.CustomResource {
             resourceInputs["teamId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/team:Team" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Team.__pulumiType, name, resourceInputs, opts);
     }
 }

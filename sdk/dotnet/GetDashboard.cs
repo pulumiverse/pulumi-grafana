@@ -10,107 +10,12 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    [Obsolete(@"grafana.index/getdashboard.getDashboard has been deprecated in favor of grafana.oss/getdashboard.getDashboard")]
     public static class GetDashboard
     {
-        /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-        /// * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
-        /// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using System.Text.Json;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// using Grafana = Pulumiverse.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = new Grafana.Dashboard("test", new()
-        ///     {
-        ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-        ///         {
-        ///             ["id"] = 12345,
-        ///             ["uid"] = "test-ds-dashboard-uid",
-        ///             ["title"] = "Production Overview",
-        ///             ["tags"] = new[]
-        ///             {
-        ///                 "templated",
-        ///             },
-        ///             ["timezone"] = "browser",
-        ///             ["schemaVersion"] = 16,
-        ///             ["version"] = 0,
-        ///             ["refresh"] = "25s",
-        ///         }),
-        ///     });
-        /// 
-        ///     var fromId = Grafana.GetDashboard.Invoke(new()
-        ///     {
-        ///         DashboardId = test.DashboardId,
-        ///     });
-        /// 
-        ///     var fromUid = Grafana.GetDashboard.Invoke(new()
-        ///     {
-        ///         Uid = "test-ds-dashboard-uid",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Task<GetDashboardResult> InvokeAsync(GetDashboardArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDashboardResult>("grafana:index/getDashboard:getDashboard", args ?? new GetDashboardArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-        /// * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
-        /// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using System.Text.Json;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// using Grafana = Pulumiverse.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = new Grafana.Dashboard("test", new()
-        ///     {
-        ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-        ///         {
-        ///             ["id"] = 12345,
-        ///             ["uid"] = "test-ds-dashboard-uid",
-        ///             ["title"] = "Production Overview",
-        ///             ["tags"] = new[]
-        ///             {
-        ///                 "templated",
-        ///             },
-        ///             ["timezone"] = "browser",
-        ///             ["schemaVersion"] = 16,
-        ///             ["version"] = 0,
-        ///             ["refresh"] = "25s",
-        ///         }),
-        ///     });
-        /// 
-        ///     var fromId = Grafana.GetDashboard.Invoke(new()
-        ///     {
-        ///         DashboardId = test.DashboardId,
-        ///     });
-        /// 
-        ///     var fromUid = Grafana.GetDashboard.Invoke(new()
-        ///     {
-        ///         Uid = "test-ds-dashboard-uid",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Output<GetDashboardResult> Invoke(GetDashboardInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDashboardResult>("grafana:index/getDashboard:getDashboard", args ?? new GetDashboardInvokeArgs(), options.WithDefaults());
     }
@@ -118,21 +23,12 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetDashboardArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
-        /// </summary>
         [Input("dashboardId")]
         public int? DashboardId { get; set; }
 
-        /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        /// </summary>
         [Input("orgId")]
         public string? OrgId { get; set; }
 
-        /// <summary>
-        /// The uid of the Grafana dashboard. Specify either this or `dashboard_id`. Defaults to ``.
-        /// </summary>
         [Input("uid")]
         public string? Uid { get; set; }
 
@@ -144,21 +40,12 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetDashboardInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
-        /// </summary>
         [Input("dashboardId")]
         public Input<int>? DashboardId { get; set; }
 
-        /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
 
-        /// <summary>
-        /// The uid of the Grafana dashboard. Specify either this or `dashboard_id`. Defaults to ``.
-        /// </summary>
         [Input("uid")]
         public Input<string>? Uid { get; set; }
 
@@ -172,53 +59,20 @@ namespace Pulumiverse.Grafana
     [OutputType]
     public sealed class GetDashboardResult
     {
-        /// <summary>
-        /// The complete dashboard model JSON.
-        /// </summary>
         public readonly string ConfigJson;
-        /// <summary>
-        /// The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
-        /// </summary>
         public readonly int? DashboardId;
-        /// <summary>
-        /// Deprecated. Use `folder_uid` instead
-        /// </summary>
         public readonly int Folder;
-        /// <summary>
-        /// The UID of the folder where the Grafana dashboard is found.
-        /// </summary>
         public readonly string FolderUid;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// Whether or not the Grafana dashboard is starred. Starred Dashboards will show up on your own Home Dashboard by default, and are a convenient way to mark Dashboards that you’re interested in.
-        /// </summary>
         public readonly bool IsStarred;
-        /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        /// </summary>
         public readonly string? OrgId;
-        /// <summary>
-        /// URL slug of the dashboard (deprecated).
-        /// </summary>
         public readonly string Slug;
-        /// <summary>
-        /// The title of the Grafana dashboard.
-        /// </summary>
         public readonly string Title;
-        /// <summary>
-        /// The uid of the Grafana dashboard. Specify either this or `dashboard_id`. Defaults to ``.
-        /// </summary>
         public readonly string? Uid;
-        /// <summary>
-        /// The full URL of the dashboard.
-        /// </summary>
         public readonly string Url;
-        /// <summary>
-        /// The numerical version of the Grafana dashboard.
-        /// </summary>
         public readonly int Version;
 
         [OutputConstructor]

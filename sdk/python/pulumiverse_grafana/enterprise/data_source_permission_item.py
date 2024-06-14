@@ -239,8 +239,8 @@ class DataSourcePermissionItem(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        team_team = grafana.Team("teamTeam")
-        foo = grafana.DataSource("foo",
+        team_team = grafana.oss.Team("teamTeam")
+        foo = grafana.oss.DataSource("foo",
             type="cloudwatch",
             json_data_encoded=json.dumps({
                 "defaultRegion": "us-east-1",
@@ -250,11 +250,11 @@ class DataSourcePermissionItem(pulumi.CustomResource):
                 "accessKey": "123",
                 "secretKey": "456",
             }))
-        user_user = grafana.User("userUser",
+        user_user = grafana.oss.User("userUser",
             email="test-ds-permissions@example.com",
             login="test-ds-permissions",
             password="hunter2")
-        sa = grafana.ServiceAccount("sa", role="Viewer")
+        sa = grafana.oss.ServiceAccount("sa", role="Viewer")
         team_data_source_permission_item = grafana.enterprise.DataSourcePermissionItem("teamDataSourcePermissionItem",
             datasource_uid=foo.uid,
             team=team_team.id,
@@ -308,8 +308,8 @@ class DataSourcePermissionItem(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        team_team = grafana.Team("teamTeam")
-        foo = grafana.DataSource("foo",
+        team_team = grafana.oss.Team("teamTeam")
+        foo = grafana.oss.DataSource("foo",
             type="cloudwatch",
             json_data_encoded=json.dumps({
                 "defaultRegion": "us-east-1",
@@ -319,11 +319,11 @@ class DataSourcePermissionItem(pulumi.CustomResource):
                 "accessKey": "123",
                 "secretKey": "456",
             }))
-        user_user = grafana.User("userUser",
+        user_user = grafana.oss.User("userUser",
             email="test-ds-permissions@example.com",
             login="test-ds-permissions",
             password="hunter2")
-        sa = grafana.ServiceAccount("sa", role="Viewer")
+        sa = grafana.oss.ServiceAccount("sa", role="Viewer")
         team_data_source_permission_item = grafana.enterprise.DataSourcePermissionItem("teamDataSourcePermissionItem",
             datasource_uid=foo.uid,
             team=team_team.id,

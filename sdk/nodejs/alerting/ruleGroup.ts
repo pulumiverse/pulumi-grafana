@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const ruleFolder = new grafana.Folder("ruleFolder", {title: "My Alert Rule Folder"});
+ * const ruleFolder = new grafana.oss.Folder("ruleFolder", {title: "My Alert Rule Folder"});
  * const myAlertRule = new grafana.alerting.RuleGroup("myAlertRule", {
  *     folderUid: ruleFolder.uid,
  *     intervalSeconds: 240,

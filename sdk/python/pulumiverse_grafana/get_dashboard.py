@@ -16,6 +16,8 @@ __all__ = [
     'get_dashboard_output',
 ]
 
+warnings.warn("""grafana.index/getdashboard.getDashboard has been deprecated in favor of grafana.oss/getdashboard.getDashboard""", DeprecationWarning)
+
 @pulumi.output_type
 class GetDashboardResult:
     """
@@ -62,25 +64,16 @@ class GetDashboardResult:
     @property
     @pulumi.getter(name="configJson")
     def config_json(self) -> str:
-        """
-        The complete dashboard model JSON.
-        """
         return pulumi.get(self, "config_json")
 
     @property
     @pulumi.getter(name="dashboardId")
     def dashboard_id(self) -> Optional[int]:
-        """
-        The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
-        """
         return pulumi.get(self, "dashboard_id")
 
     @property
     @pulumi.getter
     def folder(self) -> int:
-        """
-        Deprecated. Use `folder_uid` instead
-        """
         warnings.warn("""Use `folder_uid` instead""", DeprecationWarning)
         pulumi.log.warn("""folder is deprecated: Use `folder_uid` instead""")
 
@@ -89,9 +82,6 @@ class GetDashboardResult:
     @property
     @pulumi.getter(name="folderUid")
     def folder_uid(self) -> str:
-        """
-        The UID of the folder where the Grafana dashboard is found.
-        """
         return pulumi.get(self, "folder_uid")
 
     @property
@@ -105,57 +95,36 @@ class GetDashboardResult:
     @property
     @pulumi.getter(name="isStarred")
     def is_starred(self) -> bool:
-        """
-        Whether or not the Grafana dashboard is starred. Starred Dashboards will show up on your own Home Dashboard by default, and are a convenient way to mark Dashboards that you’re interested in.
-        """
         return pulumi.get(self, "is_starred")
 
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[str]:
-        """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        """
         return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter
     def slug(self) -> str:
-        """
-        URL slug of the dashboard (deprecated).
-        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter
     def title(self) -> str:
-        """
-        The title of the Grafana dashboard.
-        """
         return pulumi.get(self, "title")
 
     @property
     @pulumi.getter
     def uid(self) -> Optional[str]:
-        """
-        The uid of the Grafana dashboard. Specify either this or `dashboard_id`. Defaults to ``.
-        """
         return pulumi.get(self, "uid")
 
     @property
     @pulumi.getter
     def url(self) -> str:
-        """
-        The full URL of the dashboard.
-        """
         return pulumi.get(self, "url")
 
     @property
     @pulumi.getter
     def version(self) -> int:
-        """
-        The numerical version of the Grafana dashboard.
-        """
         return pulumi.get(self, "version")
 
 
@@ -184,37 +153,9 @@ def get_dashboard(dashboard_id: Optional[int] = None,
                   uid: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDashboardResult:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-    * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
-    * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import json
-    import pulumi_grafana as grafana
-    import pulumiverse_grafana as grafana
-
-    test = grafana.Dashboard("test", config_json=json.dumps({
-        "id": 12345,
-        "uid": "test-ds-dashboard-uid",
-        "title": "Production Overview",
-        "tags": ["templated"],
-        "timezone": "browser",
-        "schemaVersion": 16,
-        "version": 0,
-        "refresh": "25s",
-    }))
-    from_id = grafana.get_dashboard_output(dashboard_id=test.dashboard_id)
-    from_uid = grafana.get_dashboard(uid="test-ds-dashboard-uid")
-    ```
-
-
-    :param int dashboard_id: The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
-    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-    :param str uid: The uid of the Grafana dashboard. Specify either this or `dashboard_id`. Defaults to ``.
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_dashboard is deprecated: grafana.index/getdashboard.getDashboard has been deprecated in favor of grafana.oss/getdashboard.getDashboard""")
     __args__ = dict()
     __args__['dashboardId'] = dashboard_id
     __args__['orgId'] = org_id
@@ -243,35 +184,7 @@ def get_dashboard_output(dashboard_id: Optional[pulumi.Input[Optional[int]]] = N
                          uid: Optional[pulumi.Input[Optional[str]]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDashboardResult]:
     """
-    * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-    * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
-    * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import json
-    import pulumi_grafana as grafana
-    import pulumiverse_grafana as grafana
-
-    test = grafana.Dashboard("test", config_json=json.dumps({
-        "id": 12345,
-        "uid": "test-ds-dashboard-uid",
-        "title": "Production Overview",
-        "tags": ["templated"],
-        "timezone": "browser",
-        "schemaVersion": 16,
-        "version": 0,
-        "refresh": "25s",
-    }))
-    from_id = grafana.get_dashboard_output(dashboard_id=test.dashboard_id)
-    from_uid = grafana.get_dashboard(uid="test-ds-dashboard-uid")
-    ```
-
-
-    :param int dashboard_id: The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
-    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-    :param str uid: The uid of the Grafana dashboard. Specify either this or `dashboard_id`. Defaults to ``.
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_dashboard is deprecated: grafana.index/getdashboard.getDashboard has been deprecated in favor of grafana.oss/getdashboard.getDashboard""")
     ...
