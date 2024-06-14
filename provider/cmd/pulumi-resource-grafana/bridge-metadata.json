@@ -1412,7 +1412,14 @@
                 ]
             },
             "grafana_oncall_integration": {
-                "current": "grafana:index/getOncallIntegration:getOncallIntegration"
+                "current": "grafana:onCall/getIntegration:getIntegration",
+                "past": [
+                    {
+                        "name": "grafana:index/getOncallIntegration:getOncallIntegration",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_oncall_outgoing_webhook": {
                 "current": "grafana:onCall/getOutgoingWebhook:getOutgoingWebhook",
@@ -2042,6 +2049,11 @@
                     "grafana:index/getOncallEscalationChain:getOncallEscalationChain"
                 ]
             },
+            "grafana_oncall_integration": {
+                "renames": [
+                    "grafana:index/getOncallIntegration:getOncallIntegration"
+                ]
+            },
             "grafana_oncall_outgoing_webhook": {
                 "renames": [
                     "grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook"
@@ -2280,6 +2292,7 @@
             "grafana:index/getUsers:getUsers": 0,
             "grafana:onCall/getAction:getAction": 0,
             "grafana:onCall/getEscalationChain:getEscalationChain": 0,
+            "grafana:onCall/getIntegration:getIntegration": 0,
             "grafana:onCall/getOutgoingWebhook:getOutgoingWebhook": 0,
             "grafana:onCall/getSchedule:getSchedule": 0,
             "grafana:onCall/getSlackChannel:getSlackChannel": 0,

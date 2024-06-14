@@ -24548,13 +24548,12 @@
             }
         },
         "grafana:index/getOncallIntegration:getOncallIntegration": {
-            "description": "* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst exampleIntegration = grafana.getOncallIntegration({\n    id: \"CEXAMPLEID123\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\n\nexample_integration = grafana.get_oncall_integration(id=\"CEXAMPLEID123\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleIntegration = Grafana.GetOncallIntegration.Invoke(new()\n    {\n        Id = \"CEXAMPLEID123\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.LookupOncallIntegration(ctx, \u0026grafana.LookupOncallIntegrationArgs{\n\t\t\tId: \"CEXAMPLEID123\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.GrafanaFunctions;\nimport com.pulumi.grafana.inputs.GetOncallIntegrationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleIntegration = GrafanaFunctions.getOncallIntegration(GetOncallIntegrationArgs.builder()\n            .id(\"CEXAMPLEID123\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  exampleIntegration:\n    fn::invoke:\n      Function: grafana:getOncallIntegration\n      Arguments:\n        id: CEXAMPLEID123\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "deprecationMessage": "grafana.index/getoncallintegration.getOncallIntegration has been deprecated in favor of grafana.oncall/getintegration.getIntegration",
             "inputs": {
                 "description": "A collection of arguments for invoking getOncallIntegration.\n",
                 "properties": {
                     "id": {
-                        "type": "string",
-                        "description": "The integration ID.\n"
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -24566,12 +24565,10 @@
                 "description": "A collection of values returned by getOncallIntegration.\n",
                 "properties": {
                     "id": {
-                        "type": "string",
-                        "description": "The integration ID.\n"
+                        "type": "string"
                     },
                     "name": {
-                        "type": "string",
-                        "description": "The integration name.\n"
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -25312,6 +25309,40 @@
                 "required": [
                     "name",
                     "id"
+                ]
+            }
+        },
+        "grafana:onCall/getIntegration:getIntegration": {
+            "description": "* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\n\nconst exampleIntegration = grafana.onCall.getIntegration({\n    id: \"CEXAMPLEID123\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\n\nexample_integration = grafana.onCall.get_integration(id=\"CEXAMPLEID123\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleIntegration = Grafana.OnCall.GetIntegration.Invoke(new()\n    {\n        Id = \"CEXAMPLEID123\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/onCall\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := onCall.GetIntegration(ctx, \u0026oncall.GetIntegrationArgs{\n\t\t\tId: \"CEXAMPLEID123\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.onCall.OnCallFunctions;\nimport com.pulumi.grafana.onCall.inputs.GetIntegrationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleIntegration = OnCallFunctions.getIntegration(GetIntegrationArgs.builder()\n            .id(\"CEXAMPLEID123\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  exampleIntegration:\n    fn::invoke:\n      Function: grafana:onCall:getIntegration\n      Arguments:\n        id: CEXAMPLEID123\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getIntegration.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The integration ID.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getIntegration.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The integration ID.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The integration name.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "name"
                 ]
             }
         },

@@ -732,6 +732,9 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_oncall_escalation_chain": {
 				Tok: grafanaDataSource(oncallMod, "getEscalationChain"),
 			},
+			"grafana_oncall_integration": {
+				Tok: grafanaDataSource(oncallMod, "getIntegration"),
+			},
 			"grafana_oncall_outgoing_webhook": {
 				Tok: grafanaDataSource(oncallMod, "getOutgoingWebhook"),
 			},

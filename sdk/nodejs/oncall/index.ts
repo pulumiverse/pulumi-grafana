@@ -25,6 +25,11 @@ export const getEscalationChain: typeof import("./getEscalationChain").getEscala
 export const getEscalationChainOutput: typeof import("./getEscalationChain").getEscalationChainOutput = null as any;
 utilities.lazyLoad(exports, ["getEscalationChain","getEscalationChainOutput"], () => require("./getEscalationChain"));
 
+export { GetIntegrationArgs, GetIntegrationResult, GetIntegrationOutputArgs } from "./getIntegration";
+export const getIntegration: typeof import("./getIntegration").getIntegration = null as any;
+export const getIntegrationOutput: typeof import("./getIntegration").getIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getIntegration","getIntegrationOutput"], () => require("./getIntegration"));
+
 export { GetOutgoingWebhookArgs, GetOutgoingWebhookResult, GetOutgoingWebhookOutputArgs } from "./getOutgoingWebhook";
 export const getOutgoingWebhook: typeof import("./getOutgoingWebhook").getOutgoingWebhook = null as any;
 export const getOutgoingWebhookOutput: typeof import("./getOutgoingWebhook").getOutgoingWebhookOutput = null as any;

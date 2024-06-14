@@ -10,53 +10,12 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    [Obsolete(@"grafana.index/getoncallintegration.getOncallIntegration has been deprecated in favor of grafana.oncall/getintegration.getIntegration")]
     public static class GetOncallIntegration
     {
-        /// <summary>
-        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var exampleIntegration = Grafana.GetOncallIntegration.Invoke(new()
-        ///     {
-        ///         Id = "CEXAMPLEID123",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Task<GetOncallIntegrationResult> InvokeAsync(GetOncallIntegrationArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOncallIntegrationResult>("grafana:index/getOncallIntegration:getOncallIntegration", args ?? new GetOncallIntegrationArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var exampleIntegration = Grafana.GetOncallIntegration.Invoke(new()
-        ///     {
-        ///         Id = "CEXAMPLEID123",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Output<GetOncallIntegrationResult> Invoke(GetOncallIntegrationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOncallIntegrationResult>("grafana:index/getOncallIntegration:getOncallIntegration", args ?? new GetOncallIntegrationInvokeArgs(), options.WithDefaults());
     }
@@ -64,9 +23,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetOncallIntegrationArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The integration ID.
-        /// </summary>
         [Input("id", required: true)]
         public string Id { get; set; } = null!;
 
@@ -78,9 +34,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetOncallIntegrationInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The integration ID.
-        /// </summary>
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
 
@@ -94,13 +47,7 @@ namespace Pulumiverse.Grafana
     [OutputType]
     public sealed class GetOncallIntegrationResult
     {
-        /// <summary>
-        /// The integration ID.
-        /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// The integration name.
-        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

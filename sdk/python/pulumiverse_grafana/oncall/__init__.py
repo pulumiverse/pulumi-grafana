@@ -9,6 +9,7 @@ from .escalation import *
 from .escalation_chain import *
 from .get_action import *
 from .get_escalation_chain import *
+from .get_integration import *
 from .get_outgoing_webhook import *
 from .get_schedule import *
 from .get_slack_channel import *

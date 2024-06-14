@@ -110,6 +110,7 @@
         "oncall/escalationChain.ts",
         "oncall/getAction.ts",
         "oncall/getEscalationChain.ts",
+        "oncall/getIntegration.ts",
         "oncall/getOutgoingWebhook.ts",
         "oncall/getSchedule.ts",
         "oncall/getSlackChannel.ts",
