@@ -15,11 +15,10 @@ __all__ = ['JobArgs', 'Job']
 class JobArgs:
     def __init__(__self__, *,
                  datasource_type: pulumi.Input[str],
+                 datasource_uid: pulumi.Input[str],
                  metric: pulumi.Input[str],
                  query_params: pulumi.Input[Mapping[str, Any]],
                  custom_labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 datasource_id: Optional[pulumi.Input[int]] = None,
-                 datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  holidays: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  hyper_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -29,11 +28,10 @@ class JobArgs:
         """
         The set of arguments for constructing a Job resource.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+        :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] metric: The metric used to query the job results.
         :param pulumi.Input[Mapping[str, Any]] query_params: An object representing the query params to query Grafana with.
         :param pulumi.Input[Mapping[str, Any]] custom_labels: An object representing the custom labels added on the forecast.
-        :param pulumi.Input[int] datasource_id: The id of the datasource to query.
-        :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
         :param pulumi.Input[Mapping[str, Any]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
@@ -42,17 +40,11 @@ class JobArgs:
         :param pulumi.Input[int] training_window: The data interval in seconds to train the data on. Defaults to `7776000`.
         """
         pulumi.set(__self__, "datasource_type", datasource_type)
+        pulumi.set(__self__, "datasource_uid", datasource_uid)
         pulumi.set(__self__, "metric", metric)
         pulumi.set(__self__, "query_params", query_params)
         if custom_labels is not None:
             pulumi.set(__self__, "custom_labels", custom_labels)
-        if datasource_id is not None:
-            warnings.warn("""Use datasource_uid instead.""", DeprecationWarning)
-            pulumi.log.warn("""datasource_id is deprecated: Use datasource_uid instead.""")
-        if datasource_id is not None:
-            pulumi.set(__self__, "datasource_id", datasource_id)
-        if datasource_uid is not None:
-            pulumi.set(__self__, "datasource_uid", datasource_uid)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if holidays is not None:
@@ -77,6 +69,18 @@ class JobArgs:
     @datasource_type.setter
     def datasource_type(self, value: pulumi.Input[str]):
         pulumi.set(self, "datasource_type", value)
+
+    @property
+    @pulumi.getter(name="datasourceUid")
+    def datasource_uid(self) -> pulumi.Input[str]:
+        """
+        The uid of the datasource to query.
+        """
+        return pulumi.get(self, "datasource_uid")
+
+    @datasource_uid.setter
+    def datasource_uid(self, value: pulumi.Input[str]):
+        pulumi.set(self, "datasource_uid", value)
 
     @property
     @pulumi.getter
@@ -113,33 +117,6 @@ class JobArgs:
     @custom_labels.setter
     def custom_labels(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
         pulumi.set(self, "custom_labels", value)
-
-    @property
-    @pulumi.getter(name="datasourceId")
-    def datasource_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        The id of the datasource to query.
-        """
-        warnings.warn("""Use datasource_uid instead.""", DeprecationWarning)
-        pulumi.log.warn("""datasource_id is deprecated: Use datasource_uid instead.""")
-
-        return pulumi.get(self, "datasource_id")
-
-    @datasource_id.setter
-    def datasource_id(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "datasource_id", value)
-
-    @property
-    @pulumi.getter(name="datasourceUid")
-    def datasource_uid(self) -> Optional[pulumi.Input[str]]:
-        """
-        The uid of the datasource to query.
-        """
-        return pulumi.get(self, "datasource_uid")
-
-    @datasource_uid.setter
-    def datasource_uid(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "datasource_uid", value)
 
     @property
     @pulumi.getter
@@ -218,7 +195,6 @@ class JobArgs:
 class _JobState:
     def __init__(__self__, *,
                  custom_labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 datasource_id: Optional[pulumi.Input[int]] = None,
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -232,7 +208,6 @@ class _JobState:
         """
         Input properties used for looking up and filtering Job resources.
         :param pulumi.Input[Mapping[str, Any]] custom_labels: An object representing the custom labels added on the forecast.
-        :param pulumi.Input[int] datasource_id: The id of the datasource to query.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
@@ -246,11 +221,6 @@ class _JobState:
         """
         if custom_labels is not None:
             pulumi.set(__self__, "custom_labels", custom_labels)
-        if datasource_id is not None:
-            warnings.warn("""Use datasource_uid instead.""", DeprecationWarning)
-            pulumi.log.warn("""datasource_id is deprecated: Use datasource_uid instead.""")
-        if datasource_id is not None:
-            pulumi.set(__self__, "datasource_id", datasource_id)
         if datasource_type is not None:
             pulumi.set(__self__, "datasource_type", datasource_type)
         if datasource_uid is not None:
@@ -283,21 +253,6 @@ class _JobState:
     @custom_labels.setter
     def custom_labels(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
         pulumi.set(self, "custom_labels", value)
-
-    @property
-    @pulumi.getter(name="datasourceId")
-    def datasource_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        The id of the datasource to query.
-        """
-        warnings.warn("""Use datasource_uid instead.""", DeprecationWarning)
-        pulumi.log.warn("""datasource_id is deprecated: Use datasource_uid instead.""")
-
-        return pulumi.get(self, "datasource_id")
-
-    @datasource_id.setter
-    def datasource_id(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "datasource_id", value)
 
     @property
     @pulumi.getter(name="datasourceType")
@@ -426,7 +381,6 @@ class Job(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  custom_labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 datasource_id: Optional[pulumi.Input[int]] = None,
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -450,7 +404,6 @@ class Job(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, Any]] custom_labels: An object representing the custom labels added on the forecast.
-        :param pulumi.Input[int] datasource_id: The id of the datasource to query.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
@@ -493,7 +446,6 @@ class Job(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  custom_labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 datasource_id: Optional[pulumi.Input[int]] = None,
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -514,10 +466,11 @@ class Job(pulumi.CustomResource):
             __props__ = JobArgs.__new__(JobArgs)
 
             __props__.__dict__["custom_labels"] = custom_labels
-            __props__.__dict__["datasource_id"] = datasource_id
             if datasource_type is None and not opts.urn:
                 raise TypeError("Missing required property 'datasource_type'")
             __props__.__dict__["datasource_type"] = datasource_type
+            if datasource_uid is None and not opts.urn:
+                raise TypeError("Missing required property 'datasource_uid'")
             __props__.__dict__["datasource_uid"] = datasource_uid
             __props__.__dict__["description"] = description
             __props__.__dict__["holidays"] = holidays
@@ -544,7 +497,6 @@ class Job(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             custom_labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-            datasource_id: Optional[pulumi.Input[int]] = None,
             datasource_type: Optional[pulumi.Input[str]] = None,
             datasource_uid: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
@@ -563,7 +515,6 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, Any]] custom_labels: An object representing the custom labels added on the forecast.
-        :param pulumi.Input[int] datasource_id: The id of the datasource to query.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
@@ -580,7 +531,6 @@ class Job(pulumi.CustomResource):
         __props__ = _JobState.__new__(_JobState)
 
         __props__.__dict__["custom_labels"] = custom_labels
-        __props__.__dict__["datasource_id"] = datasource_id
         __props__.__dict__["datasource_type"] = datasource_type
         __props__.__dict__["datasource_uid"] = datasource_uid
         __props__.__dict__["description"] = description
@@ -602,17 +552,6 @@ class Job(pulumi.CustomResource):
         return pulumi.get(self, "custom_labels")
 
     @property
-    @pulumi.getter(name="datasourceId")
-    def datasource_id(self) -> pulumi.Output[Optional[int]]:
-        """
-        The id of the datasource to query.
-        """
-        warnings.warn("""Use datasource_uid instead.""", DeprecationWarning)
-        pulumi.log.warn("""datasource_id is deprecated: Use datasource_uid instead.""")
-
-        return pulumi.get(self, "datasource_id")
-
-    @property
     @pulumi.getter(name="datasourceType")
     def datasource_type(self) -> pulumi.Output[str]:
         """
@@ -622,7 +561,7 @@ class Job(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="datasourceUid")
-    def datasource_uid(self) -> pulumi.Output[Optional[str]]:
+    def datasource_uid(self) -> pulumi.Output[str]:
         """
         The uid of the datasource to query.
         """

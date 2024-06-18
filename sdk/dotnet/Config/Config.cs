@@ -65,16 +65,6 @@ namespace Pulumiverse.Grafana
             set => _cloudAccessPolicyToken.Set(value);
         }
 
-        private static readonly __Value<string?> _cloudApiKey = new __Value<string?>(() => __config.Get("cloudApiKey") ?? Utilities.GetEnv("GRAFANA_CLOUD_API_KEY"));
-        /// <summary>
-        /// Deprecated: Use `cloud_access_policy_token` instead.
-        /// </summary>
-        public static string? CloudApiKey
-        {
-            get => _cloudApiKey.Get();
-            set => _cloudApiKey.Set(value);
-        }
-
         private static readonly __Value<string?> _cloudApiUrl = new __Value<string?>(() => __config.Get("cloudApiUrl") ?? Utilities.GetEnv("GRAFANA_CLOUD_API_URL"));
         /// <summary>
         /// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
@@ -113,16 +103,6 @@ namespace Pulumiverse.Grafana
         {
             get => _oncallUrl.Get();
             set => _oncallUrl.Set(value);
-        }
-
-        private static readonly __Value<int?> _orgId = new __Value<int?>(() => __config.GetInt32("orgId") ?? Utilities.GetEnvInt32("GRAFANA_ORG_ID"));
-        /// <summary>
-        /// Deprecated: Use the `org_id` attributes on resources instead.
-        /// </summary>
-        public static int? OrgId
-        {
-            get => _orgId.Get();
-            set => _orgId.Set(value);
         }
 
         private static readonly __Value<int?> _retries = new __Value<int?>(() => __config.GetInt32("retries") ?? Utilities.GetEnvInt32("GRAFANA_RETRIES"));

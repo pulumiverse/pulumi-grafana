@@ -41,12 +41,6 @@ export interface GetOrganizationPreferencesArgs {
  */
 export interface GetOrganizationPreferencesResult {
     /**
-     * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
-     *
-     * @deprecated Use `homeDashboardUid` instead.
-     */
-    readonly homeDashboardId: number;
-    /**
      * The Organization home dashboard UID. This is only available in Grafana 9.0+.
      */
     readonly homeDashboardUid: string;

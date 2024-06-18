@@ -1273,7 +1273,8 @@ class ContactPointPagerduty(dict):
                  severity: Optional[str] = None,
                  source: Optional[str] = None,
                  summary: Optional[str] = None,
-                 uid: Optional[str] = None):
+                 uid: Optional[str] = None,
+                 url: Optional[str] = None):
         """
         :param str integration_key: The PagerDuty API key.
         :param str class_: The class or type of event, for example `ping failure`.
@@ -1288,6 +1289,7 @@ class ContactPointPagerduty(dict):
         :param str source: The unique location of the affected system.
         :param str summary: The templated summary message of the event.
         :param str uid: The UID of the contact point.
+        :param str url: The URL to send API requests to
         """
         pulumi.set(__self__, "integration_key", integration_key)
         if class_ is not None:
@@ -1314,6 +1316,8 @@ class ContactPointPagerduty(dict):
             pulumi.set(__self__, "summary", summary)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter(name="integrationKey")
@@ -1418,6 +1422,14 @@ class ContactPointPagerduty(dict):
         The UID of the contact point.
         """
         return pulumi.get(self, "uid")
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[str]:
+        """
+        The URL to send API requests to
+        """
+        return pulumi.get(self, "url")
 
 
 @pulumi.output_type
@@ -2285,6 +2297,8 @@ class ContactPointTelegram(dict):
             suggest = "disable_resolve_message"
         elif key == "disableWebPagePreview":
             suggest = "disable_web_page_preview"
+        elif key == "messageThreadId":
+            suggest = "message_thread_id"
         elif key == "parseMode":
             suggest = "parse_mode"
         elif key == "protectContent":
@@ -2308,6 +2322,7 @@ class ContactPointTelegram(dict):
                  disable_resolve_message: Optional[bool] = None,
                  disable_web_page_preview: Optional[bool] = None,
                  message: Optional[str] = None,
+                 message_thread_id: Optional[str] = None,
                  parse_mode: Optional[str] = None,
                  protect_content: Optional[bool] = None,
                  settings: Optional[Mapping[str, str]] = None,
@@ -2319,6 +2334,7 @@ class ContactPointTelegram(dict):
         :param bool disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param bool disable_web_page_preview: When set it disables link previews for links in the message.
         :param str message: The templated content of the message.
+        :param str message_thread_id: The ID of the message thread to send the message to.
         :param str parse_mode: Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
         :param bool protect_content: When set it protects the contents of the message from forwarding and saving.
         :param Mapping[str, str] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
@@ -2334,6 +2350,8 @@ class ContactPointTelegram(dict):
             pulumi.set(__self__, "disable_web_page_preview", disable_web_page_preview)
         if message is not None:
             pulumi.set(__self__, "message", message)
+        if message_thread_id is not None:
+            pulumi.set(__self__, "message_thread_id", message_thread_id)
         if parse_mode is not None:
             pulumi.set(__self__, "parse_mode", parse_mode)
         if protect_content is not None:
@@ -2390,6 +2408,14 @@ class ContactPointTelegram(dict):
         The templated content of the message.
         """
         return pulumi.get(self, "message")
+
+    @property
+    @pulumi.getter(name="messageThreadId")
+    def message_thread_id(self) -> Optional[str]:
+        """
+        The ID of the message thread to send the message to.
+        """
+        return pulumi.get(self, "message_thread_id")
 
     @property
     @pulumi.getter(name="parseMode")

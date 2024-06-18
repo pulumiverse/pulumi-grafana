@@ -29,7 +29,7 @@ type OncallOutgoingWebhook struct {
 	// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
 	// selected the outgoing webhook will trigger for any integration.
 	IntegrationFilters pulumi.StringArrayOutput `pulumi:"integrationFilters"`
-	// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+	// Controls whether the outgoing webhook will trigger or is ignored.
 	IsWebhookEnabled pulumi.BoolPtrOutput `pulumi:"isWebhookEnabled"`
 	// The name of the outgoing webhook.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -112,7 +112,7 @@ type oncallOutgoingWebhookState struct {
 	// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
 	// selected the outgoing webhook will trigger for any integration.
 	IntegrationFilters []string `pulumi:"integrationFilters"`
-	// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+	// Controls whether the outgoing webhook will trigger or is ignored.
 	IsWebhookEnabled *bool `pulumi:"isWebhookEnabled"`
 	// The name of the outgoing webhook.
 	Name *string `pulumi:"name"`
@@ -146,7 +146,7 @@ type OncallOutgoingWebhookState struct {
 	// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
 	// selected the outgoing webhook will trigger for any integration.
 	IntegrationFilters pulumi.StringArrayInput
-	// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+	// Controls whether the outgoing webhook will trigger or is ignored.
 	IsWebhookEnabled pulumi.BoolPtrInput
 	// The name of the outgoing webhook.
 	Name pulumi.StringPtrInput
@@ -184,7 +184,7 @@ type oncallOutgoingWebhookArgs struct {
 	// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
 	// selected the outgoing webhook will trigger for any integration.
 	IntegrationFilters []string `pulumi:"integrationFilters"`
-	// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+	// Controls whether the outgoing webhook will trigger or is ignored.
 	IsWebhookEnabled *bool `pulumi:"isWebhookEnabled"`
 	// The name of the outgoing webhook.
 	Name *string `pulumi:"name"`
@@ -219,7 +219,7 @@ type OncallOutgoingWebhookArgs struct {
 	// Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
 	// selected the outgoing webhook will trigger for any integration.
 	IntegrationFilters pulumi.StringArrayInput
-	// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+	// Controls whether the outgoing webhook will trigger or is ignored.
 	IsWebhookEnabled pulumi.BoolPtrInput
 	// The name of the outgoing webhook.
 	Name pulumi.StringPtrInput
@@ -357,7 +357,7 @@ func (o OncallOutgoingWebhookOutput) IntegrationFilters() pulumi.StringArrayOutp
 	return o.ApplyT(func(v *OncallOutgoingWebhook) pulumi.StringArrayOutput { return v.IntegrationFilters }).(pulumi.StringArrayOutput)
 }
 
-// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+// Controls whether the outgoing webhook will trigger or is ignored.
 func (o OncallOutgoingWebhookOutput) IsWebhookEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OncallOutgoingWebhook) pulumi.BoolPtrOutput { return v.IsWebhookEnabled }).(pulumi.BoolPtrOutput)
 }

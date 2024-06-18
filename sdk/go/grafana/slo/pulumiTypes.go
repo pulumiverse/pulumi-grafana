@@ -1724,6 +1724,8 @@ type GetSlosSlo struct {
 	Description string `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasources []GetSlosSloDestinationDatasource `pulumi:"destinationDatasources"`
+	// UID for the SLO folder
+	FolderUid string `pulumi:"folderUid"`
 	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
 	Labels []GetSlosSloLabel `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
@@ -1758,6 +1760,8 @@ type GetSlosSloArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasources GetSlosSloDestinationDatasourceArrayInput `pulumi:"destinationDatasources"`
+	// UID for the SLO folder
+	FolderUid pulumi.StringInput `pulumi:"folderUid"`
 	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
 	Labels GetSlosSloLabelArrayInput `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
@@ -1839,6 +1843,11 @@ func (o GetSlosSloOutput) Description() pulumi.StringOutput {
 // Destination Datasource sets the datasource defined for an SLO
 func (o GetSlosSloOutput) DestinationDatasources() GetSlosSloDestinationDatasourceArrayOutput {
 	return o.ApplyT(func(v GetSlosSlo) []GetSlosSloDestinationDatasource { return v.DestinationDatasources }).(GetSlosSloDestinationDatasourceArrayOutput)
+}
+
+// UID for the SLO folder
+func (o GetSlosSloOutput) FolderUid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSlo) string { return v.FolderUid }).(pulumi.StringOutput)
 }
 
 // Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"

@@ -15,11 +15,6 @@ export type AccessPolicyToken = import("./accessPolicyToken").AccessPolicyToken;
 export const AccessPolicyToken: typeof import("./accessPolicyToken").AccessPolicyToken = null as any;
 utilities.lazyLoad(exports, ["AccessPolicyToken"], () => require("./accessPolicyToken"));
 
-export { ApiKeyArgs, ApiKeyState } from "./apiKey";
-export type ApiKey = import("./apiKey").ApiKey;
-export const ApiKey: typeof import("./apiKey").ApiKey = null as any;
-utilities.lazyLoad(exports, ["ApiKey"], () => require("./apiKey"));
-
 export { GetIpsResult } from "./getIps";
 export const getIps: typeof import("./getIps").getIps = null as any;
 export const getIpsOutput: typeof import("./getIps").getIpsOutput = null as any;
@@ -50,11 +45,6 @@ export type Stack = import("./stack").Stack;
 export const Stack: typeof import("./stack").Stack = null as any;
 utilities.lazyLoad(exports, ["Stack"], () => require("./stack"));
 
-export { StackApiKeyArgs, StackApiKeyState } from "./stackApiKey";
-export type StackApiKey = import("./stackApiKey").StackApiKey;
-export const StackApiKey: typeof import("./stackApiKey").StackApiKey = null as any;
-utilities.lazyLoad(exports, ["StackApiKey"], () => require("./stackApiKey"));
-
 export { StackServiceAccountArgs, StackServiceAccountState } from "./stackServiceAccount";
 export type StackServiceAccount = import("./stackServiceAccount").StackServiceAccount;
 export const StackServiceAccount: typeof import("./stackServiceAccount").StackServiceAccount = null as any;
@@ -74,16 +64,12 @@ const _module = {
                 return new AccessPolicy(name, <any>undefined, { urn })
             case "grafana:cloud/accessPolicyToken:AccessPolicyToken":
                 return new AccessPolicyToken(name, <any>undefined, { urn })
-            case "grafana:cloud/apiKey:ApiKey":
-                return new ApiKey(name, <any>undefined, { urn })
             case "grafana:cloud/orgMember:OrgMember":
                 return new OrgMember(name, <any>undefined, { urn })
             case "grafana:cloud/pluginInstallation:PluginInstallation":
                 return new PluginInstallation(name, <any>undefined, { urn })
             case "grafana:cloud/stack:Stack":
                 return new Stack(name, <any>undefined, { urn })
-            case "grafana:cloud/stackApiKey:StackApiKey":
-                return new StackApiKey(name, <any>undefined, { urn })
             case "grafana:cloud/stackServiceAccount:StackServiceAccount":
                 return new StackServiceAccount(name, <any>undefined, { urn })
             case "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken":
@@ -95,10 +81,8 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("grafana", "cloud/accessPolicy", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/accessPolicyToken", _module)
-pulumi.runtime.registerResourceModule("grafana", "cloud/apiKey", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/orgMember", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/pluginInstallation", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stack", _module)
-pulumi.runtime.registerResourceModule("grafana", "cloud/stackApiKey", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stackServiceAccount", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stackServiceAccountToken", _module)

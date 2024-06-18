@@ -17,6 +17,7 @@ class ProbeArgs:
                  latitude: pulumi.Input[float],
                  longitude: pulumi.Input[float],
                  region: pulumi.Input[str],
+                 disable_scripted_checks: Optional[pulumi.Input[bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  public: Optional[pulumi.Input[bool]] = None):
@@ -25,6 +26,7 @@ class ProbeArgs:
         :param pulumi.Input[float] latitude: Latitude coordinates.
         :param pulumi.Input[float] longitude: Longitude coordinates.
         :param pulumi.Input[str] region: Region of the probe.
+        :param pulumi.Input[bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs.
         :param pulumi.Input[str] name: Name of the probe.
         :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
@@ -32,6 +34,8 @@ class ProbeArgs:
         pulumi.set(__self__, "latitude", latitude)
         pulumi.set(__self__, "longitude", longitude)
         pulumi.set(__self__, "region", region)
+        if disable_scripted_checks is not None:
+            pulumi.set(__self__, "disable_scripted_checks", disable_scripted_checks)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if name is not None:
@@ -76,6 +80,18 @@ class ProbeArgs:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="disableScriptedChecks")
+    def disable_scripted_checks(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disables scripted checks for this probe. Defaults to `false`.
+        """
+        return pulumi.get(self, "disable_scripted_checks")
+
+    @disable_scripted_checks.setter
+    def disable_scripted_checks(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_scripted_checks", value)
+
+    @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
@@ -116,6 +132,7 @@ class ProbeArgs:
 class _ProbeState:
     def __init__(__self__, *,
                  auth_token: Optional[pulumi.Input[str]] = None,
+                 disable_scripted_checks: Optional[pulumi.Input[bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  latitude: Optional[pulumi.Input[float]] = None,
                  longitude: Optional[pulumi.Input[float]] = None,
@@ -126,6 +143,7 @@ class _ProbeState:
         """
         Input properties used for looking up and filtering Probe resources.
         :param pulumi.Input[str] auth_token: The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
+        :param pulumi.Input[bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs.
         :param pulumi.Input[float] latitude: Latitude coordinates.
         :param pulumi.Input[float] longitude: Longitude coordinates.
@@ -136,6 +154,8 @@ class _ProbeState:
         """
         if auth_token is not None:
             pulumi.set(__self__, "auth_token", auth_token)
+        if disable_scripted_checks is not None:
+            pulumi.set(__self__, "disable_scripted_checks", disable_scripted_checks)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if latitude is not None:
@@ -162,6 +182,18 @@ class _ProbeState:
     @auth_token.setter
     def auth_token(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "auth_token", value)
+
+    @property
+    @pulumi.getter(name="disableScriptedChecks")
+    def disable_scripted_checks(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disables scripted checks for this probe. Defaults to `false`.
+        """
+        return pulumi.get(self, "disable_scripted_checks")
+
+    @disable_scripted_checks.setter
+    def disable_scripted_checks(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_scripted_checks", value)
 
     @property
     @pulumi.getter
@@ -253,6 +285,7 @@ class Probe(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 disable_scripted_checks: Optional[pulumi.Input[bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  latitude: Optional[pulumi.Input[float]] = None,
                  longitude: Optional[pulumi.Input[float]] = None,
@@ -295,6 +328,7 @@ class Probe(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs.
         :param pulumi.Input[float] latitude: Latitude coordinates.
         :param pulumi.Input[float] longitude: Longitude coordinates.
@@ -356,6 +390,7 @@ class Probe(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 disable_scripted_checks: Optional[pulumi.Input[bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  latitude: Optional[pulumi.Input[float]] = None,
                  longitude: Optional[pulumi.Input[float]] = None,
@@ -371,6 +406,7 @@ class Probe(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProbeArgs.__new__(ProbeArgs)
 
+            __props__.__dict__["disable_scripted_checks"] = disable_scripted_checks
             __props__.__dict__["labels"] = labels
             if latitude is None and not opts.urn:
                 raise TypeError("Missing required property 'latitude'")
@@ -400,6 +436,7 @@ class Probe(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             auth_token: Optional[pulumi.Input[str]] = None,
+            disable_scripted_checks: Optional[pulumi.Input[bool]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             latitude: Optional[pulumi.Input[float]] = None,
             longitude: Optional[pulumi.Input[float]] = None,
@@ -415,6 +452,7 @@ class Probe(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auth_token: The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
+        :param pulumi.Input[bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs.
         :param pulumi.Input[float] latitude: Latitude coordinates.
         :param pulumi.Input[float] longitude: Longitude coordinates.
@@ -428,6 +466,7 @@ class Probe(pulumi.CustomResource):
         __props__ = _ProbeState.__new__(_ProbeState)
 
         __props__.__dict__["auth_token"] = auth_token
+        __props__.__dict__["disable_scripted_checks"] = disable_scripted_checks
         __props__.__dict__["labels"] = labels
         __props__.__dict__["latitude"] = latitude
         __props__.__dict__["longitude"] = longitude
@@ -444,6 +483,14 @@ class Probe(pulumi.CustomResource):
         The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
         """
         return pulumi.get(self, "auth_token")
+
+    @property
+    @pulumi.getter(name="disableScriptedChecks")
+    def disable_scripted_checks(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Disables scripted checks for this probe. Defaults to `false`.
+        """
+        return pulumi.get(self, "disable_scripted_checks")
 
     @property
     @pulumi.getter

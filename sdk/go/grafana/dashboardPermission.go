@@ -15,10 +15,6 @@ import (
 type DashboardPermission struct {
 	pulumi.CustomResourceState
 
-	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
-	//
-	// Deprecated: use `dashboardUid` instead
-	DashboardId pulumi.IntOutput `pulumi:"dashboardId"`
 	// UID of the dashboard to apply permissions to.
 	DashboardUid pulumi.StringOutput `pulumi:"dashboardUid"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -63,10 +59,6 @@ func GetDashboardPermission(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DashboardPermission resources.
 type dashboardPermissionState struct {
-	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
-	//
-	// Deprecated: use `dashboardUid` instead
-	DashboardId *int `pulumi:"dashboardId"`
 	// UID of the dashboard to apply permissions to.
 	DashboardUid *string `pulumi:"dashboardUid"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -76,10 +68,6 @@ type dashboardPermissionState struct {
 }
 
 type DashboardPermissionState struct {
-	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
-	//
-	// Deprecated: use `dashboardUid` instead
-	DashboardId pulumi.IntPtrInput
 	// UID of the dashboard to apply permissions to.
 	DashboardUid pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -93,10 +81,6 @@ func (DashboardPermissionState) ElementType() reflect.Type {
 }
 
 type dashboardPermissionArgs struct {
-	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
-	//
-	// Deprecated: use `dashboardUid` instead
-	DashboardId *int `pulumi:"dashboardId"`
 	// UID of the dashboard to apply permissions to.
 	DashboardUid *string `pulumi:"dashboardUid"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -107,10 +91,6 @@ type dashboardPermissionArgs struct {
 
 // The set of arguments for constructing a DashboardPermission resource.
 type DashboardPermissionArgs struct {
-	// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
-	//
-	// Deprecated: use `dashboardUid` instead
-	DashboardId pulumi.IntPtrInput
 	// UID of the dashboard to apply permissions to.
 	DashboardUid pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -204,13 +184,6 @@ func (o DashboardPermissionOutput) ToDashboardPermissionOutput() DashboardPermis
 
 func (o DashboardPermissionOutput) ToDashboardPermissionOutputWithContext(ctx context.Context) DashboardPermissionOutput {
 	return o
-}
-
-// ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
-//
-// Deprecated: use `dashboardUid` instead
-func (o DashboardPermissionOutput) DashboardId() pulumi.IntOutput {
-	return o.ApplyT(func(v *DashboardPermission) pulumi.IntOutput { return v.DashboardId }).(pulumi.IntOutput)
 }
 
 // UID of the dashboard to apply permissions to.

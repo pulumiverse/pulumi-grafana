@@ -56,6 +56,8 @@ type LookupProbeArgs struct {
 
 // A collection of values returned by getProbe.
 type LookupProbeResult struct {
+	// Disables scripted checks for this probe.
+	DisableScriptedChecks bool `pulumi:"disableScriptedChecks"`
 	// The ID of the probe.
 	Id string `pulumi:"id"`
 	// Custom labels to be included with collected metrics and logs.
@@ -110,6 +112,11 @@ func (o LookupProbeResultOutput) ToLookupProbeResultOutput() LookupProbeResultOu
 
 func (o LookupProbeResultOutput) ToLookupProbeResultOutputWithContext(ctx context.Context) LookupProbeResultOutput {
 	return o
+}
+
+// Disables scripted checks for this probe.
+func (o LookupProbeResultOutput) DisableScriptedChecks() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupProbeResult) bool { return v.DisableScriptedChecks }).(pulumi.BoolOutput)
 }
 
 // The ID of the probe.

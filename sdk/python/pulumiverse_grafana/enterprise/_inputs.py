@@ -14,7 +14,6 @@ __all__ = [
     'ReportDashboardArgs',
     'ReportDashboardTimeRangeArgs',
     'ReportScheduleArgs',
-    'ReportTimeRangeArgs',
     'RolePermissionArgs',
 ]
 
@@ -299,45 +298,6 @@ class ReportScheduleArgs:
     @workdays_only.setter
     def workdays_only(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "workdays_only", value)
-
-
-@pulumi.input_type
-class ReportTimeRangeArgs:
-    def __init__(__self__, *,
-                 from_: Optional[pulumi.Input[str]] = None,
-                 to: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] from_: Start of the time range.
-        :param pulumi.Input[str] to: End of the time range.
-        """
-        if from_ is not None:
-            pulumi.set(__self__, "from_", from_)
-        if to is not None:
-            pulumi.set(__self__, "to", to)
-
-    @property
-    @pulumi.getter(name="from")
-    def from_(self) -> Optional[pulumi.Input[str]]:
-        """
-        Start of the time range.
-        """
-        return pulumi.get(self, "from_")
-
-    @from_.setter
-    def from_(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "from_", value)
-
-    @property
-    @pulumi.getter
-    def to(self) -> Optional[pulumi.Input[str]]:
-        """
-        End of the time range.
-        """
-        return pulumi.get(self, "to")
-
-    @to.setter
-    def to(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "to", value)
 
 
 @pulumi.input_type

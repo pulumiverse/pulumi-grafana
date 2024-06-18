@@ -875,6 +875,8 @@ class SsoSettingsSamlSettings(dict):
             suggest = "role_values_grafana_admin"
         elif key == "roleValuesNone":
             suggest = "role_values_none"
+        elif key == "roleValuesViewer":
+            suggest = "role_values_viewer"
         elif key == "signatureAlgorithm":
             suggest = "signature_algorithm"
         elif key == "singleLogout":
@@ -922,6 +924,7 @@ class SsoSettingsSamlSettings(dict):
                  role_values_editor: Optional[str] = None,
                  role_values_grafana_admin: Optional[str] = None,
                  role_values_none: Optional[str] = None,
+                 role_values_viewer: Optional[str] = None,
                  signature_algorithm: Optional[str] = None,
                  single_logout: Optional[bool] = None,
                  skip_org_role_sync: Optional[bool] = None):
@@ -954,6 +957,7 @@ class SsoSettingsSamlSettings(dict):
         :param str role_values_editor: List of comma- or space-separated roles which will be mapped into the Editor role.
         :param str role_values_grafana_admin: List of comma- or space-separated roles which will be mapped into the Grafana Admin (Super Admin) role.
         :param str role_values_none: List of comma- or space-separated roles which will be mapped into the None role.
+        :param str role_values_viewer: List of comma- or space-separated roles which will be mapped into the Viewer role.
         :param str signature_algorithm: Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
         :param bool single_logout: Whether SAML Single Logout is enabled.
         :param bool skip_org_role_sync: Prevent synchronizing users’ organization roles from your IdP.
@@ -1014,6 +1018,8 @@ class SsoSettingsSamlSettings(dict):
             pulumi.set(__self__, "role_values_grafana_admin", role_values_grafana_admin)
         if role_values_none is not None:
             pulumi.set(__self__, "role_values_none", role_values_none)
+        if role_values_viewer is not None:
+            pulumi.set(__self__, "role_values_viewer", role_values_viewer)
         if signature_algorithm is not None:
             pulumi.set(__self__, "signature_algorithm", signature_algorithm)
         if single_logout is not None:
@@ -1244,6 +1250,14 @@ class SsoSettingsSamlSettings(dict):
         List of comma- or space-separated roles which will be mapped into the None role.
         """
         return pulumi.get(self, "role_values_none")
+
+    @property
+    @pulumi.getter(name="roleValuesViewer")
+    def role_values_viewer(self) -> Optional[str]:
+        """
+        List of comma- or space-separated roles which will be mapped into the Viewer role.
+        """
+        return pulumi.get(self, "role_values_viewer")
 
     @property
     @pulumi.getter(name="signatureAlgorithm")

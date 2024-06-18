@@ -117,6 +117,12 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("uid")]
         public Input<string>? Uid { get; set; }
 
+        /// <summary>
+        /// The URL to send API requests to
+        /// </summary>
+        [Input("url")]
+        public Input<string>? Url { get; set; }
+
         public ContactPointPagerdutyGetArgs()
         {
         }

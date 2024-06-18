@@ -39,6 +39,7 @@ type LookupCloudStackResult struct {
 	GraphiteUrl                   string            `pulumi:"graphiteUrl"`
 	GraphiteUserId                int               `pulumi:"graphiteUserId"`
 	Id                            string            `pulumi:"id"`
+	InfluxUrl                     string            `pulumi:"influxUrl"`
 	Labels                        map[string]string `pulumi:"labels"`
 	LogsName                      string            `pulumi:"logsName"`
 	LogsStatus                    string            `pulumi:"logsStatus"`
@@ -144,6 +145,10 @@ func (o LookupCloudStackResultOutput) GraphiteUserId() pulumi.IntOutput {
 
 func (o LookupCloudStackResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudStackResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupCloudStackResultOutput) InfluxUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudStackResult) string { return v.InfluxUrl }).(pulumi.StringOutput)
 }
 
 func (o LookupCloudStackResultOutput) Labels() pulumi.StringMapOutput {

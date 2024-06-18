@@ -18,10 +18,9 @@ class MachineLearningOutlierDetectorArgs:
     def __init__(__self__, *,
                  algorithm: pulumi.Input['MachineLearningOutlierDetectorAlgorithmArgs'],
                  datasource_type: pulumi.Input[str],
+                 datasource_uid: pulumi.Input[str],
                  metric: pulumi.Input[str],
                  query_params: pulumi.Input[Mapping[str, Any]],
-                 datasource_id: Optional[pulumi.Input[int]] = None,
-                 datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None):
@@ -30,25 +29,18 @@ class MachineLearningOutlierDetectorArgs:
         :param pulumi.Input['MachineLearningOutlierDetectorAlgorithmArgs'] algorithm: The algorithm to use and its configuration. See
                https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+        :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] metric: The metric used to query the outlier detector results.
         :param pulumi.Input[Mapping[str, Any]] query_params: An object representing the query params to query Grafana with.
-        :param pulumi.Input[int] datasource_id: The id of the datasource to query.
-        :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the outlier detector.
         :param pulumi.Input[int] interval: The data interval in seconds to monitor.
         :param pulumi.Input[str] name: The name of the outlier detector.
         """
         pulumi.set(__self__, "algorithm", algorithm)
         pulumi.set(__self__, "datasource_type", datasource_type)
+        pulumi.set(__self__, "datasource_uid", datasource_uid)
         pulumi.set(__self__, "metric", metric)
         pulumi.set(__self__, "query_params", query_params)
-        if datasource_id is not None:
-            warnings.warn("""Use datasource_uid instead.""", DeprecationWarning)
-            pulumi.log.warn("""datasource_id is deprecated: Use datasource_uid instead.""")
-        if datasource_id is not None:
-            pulumi.set(__self__, "datasource_id", datasource_id)
-        if datasource_uid is not None:
-            pulumi.set(__self__, "datasource_uid", datasource_uid)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if interval is not None:
@@ -82,6 +74,18 @@ class MachineLearningOutlierDetectorArgs:
         pulumi.set(self, "datasource_type", value)
 
     @property
+    @pulumi.getter(name="datasourceUid")
+    def datasource_uid(self) -> pulumi.Input[str]:
+        """
+        The uid of the datasource to query.
+        """
+        return pulumi.get(self, "datasource_uid")
+
+    @datasource_uid.setter
+    def datasource_uid(self, value: pulumi.Input[str]):
+        pulumi.set(self, "datasource_uid", value)
+
+    @property
     @pulumi.getter
     def metric(self) -> pulumi.Input[str]:
         """
@@ -104,33 +108,6 @@ class MachineLearningOutlierDetectorArgs:
     @query_params.setter
     def query_params(self, value: pulumi.Input[Mapping[str, Any]]):
         pulumi.set(self, "query_params", value)
-
-    @property
-    @pulumi.getter(name="datasourceId")
-    def datasource_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        The id of the datasource to query.
-        """
-        warnings.warn("""Use datasource_uid instead.""", DeprecationWarning)
-        pulumi.log.warn("""datasource_id is deprecated: Use datasource_uid instead.""")
-
-        return pulumi.get(self, "datasource_id")
-
-    @datasource_id.setter
-    def datasource_id(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "datasource_id", value)
-
-    @property
-    @pulumi.getter(name="datasourceUid")
-    def datasource_uid(self) -> Optional[pulumi.Input[str]]:
-        """
-        The uid of the datasource to query.
-        """
-        return pulumi.get(self, "datasource_uid")
-
-    @datasource_uid.setter
-    def datasource_uid(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "datasource_uid", value)
 
     @property
     @pulumi.getter
@@ -173,7 +150,6 @@ class MachineLearningOutlierDetectorArgs:
 class _MachineLearningOutlierDetectorState:
     def __init__(__self__, *,
                  algorithm: Optional[pulumi.Input['MachineLearningOutlierDetectorAlgorithmArgs']] = None,
-                 datasource_id: Optional[pulumi.Input[int]] = None,
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -185,7 +161,6 @@ class _MachineLearningOutlierDetectorState:
         Input properties used for looking up and filtering MachineLearningOutlierDetector resources.
         :param pulumi.Input['MachineLearningOutlierDetectorAlgorithmArgs'] algorithm: The algorithm to use and its configuration. See
                https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
-        :param pulumi.Input[int] datasource_id: The id of the datasource to query.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the outlier detector.
@@ -196,11 +171,6 @@ class _MachineLearningOutlierDetectorState:
         """
         if algorithm is not None:
             pulumi.set(__self__, "algorithm", algorithm)
-        if datasource_id is not None:
-            warnings.warn("""Use datasource_uid instead.""", DeprecationWarning)
-            pulumi.log.warn("""datasource_id is deprecated: Use datasource_uid instead.""")
-        if datasource_id is not None:
-            pulumi.set(__self__, "datasource_id", datasource_id)
         if datasource_type is not None:
             pulumi.set(__self__, "datasource_type", datasource_type)
         if datasource_uid is not None:
@@ -228,21 +198,6 @@ class _MachineLearningOutlierDetectorState:
     @algorithm.setter
     def algorithm(self, value: Optional[pulumi.Input['MachineLearningOutlierDetectorAlgorithmArgs']]):
         pulumi.set(self, "algorithm", value)
-
-    @property
-    @pulumi.getter(name="datasourceId")
-    def datasource_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        The id of the datasource to query.
-        """
-        warnings.warn("""Use datasource_uid instead.""", DeprecationWarning)
-        pulumi.log.warn("""datasource_id is deprecated: Use datasource_uid instead.""")
-
-        return pulumi.get(self, "datasource_id")
-
-    @datasource_id.setter
-    def datasource_id(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "datasource_id", value)
 
     @property
     @pulumi.getter(name="datasourceType")
@@ -340,7 +295,6 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  algorithm: Optional[pulumi.Input[pulumi.InputType['MachineLearningOutlierDetectorAlgorithmArgs']]] = None,
-                 datasource_id: Optional[pulumi.Input[int]] = None,
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -355,7 +309,6 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['MachineLearningOutlierDetectorAlgorithmArgs']] algorithm: The algorithm to use and its configuration. See
                https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
-        :param pulumi.Input[int] datasource_id: The id of the datasource to query.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the outlier detector.
@@ -388,7 +341,6 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  algorithm: Optional[pulumi.Input[pulumi.InputType['MachineLearningOutlierDetectorAlgorithmArgs']]] = None,
-                 datasource_id: Optional[pulumi.Input[int]] = None,
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -409,10 +361,11 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
             if algorithm is None and not opts.urn:
                 raise TypeError("Missing required property 'algorithm'")
             __props__.__dict__["algorithm"] = algorithm
-            __props__.__dict__["datasource_id"] = datasource_id
             if datasource_type is None and not opts.urn:
                 raise TypeError("Missing required property 'datasource_type'")
             __props__.__dict__["datasource_type"] = datasource_type
+            if datasource_uid is None and not opts.urn:
+                raise TypeError("Missing required property 'datasource_uid'")
             __props__.__dict__["datasource_uid"] = datasource_uid
             __props__.__dict__["description"] = description
             __props__.__dict__["interval"] = interval
@@ -436,7 +389,6 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             algorithm: Optional[pulumi.Input[pulumi.InputType['MachineLearningOutlierDetectorAlgorithmArgs']]] = None,
-            datasource_id: Optional[pulumi.Input[int]] = None,
             datasource_type: Optional[pulumi.Input[str]] = None,
             datasource_uid: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
@@ -453,7 +405,6 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['MachineLearningOutlierDetectorAlgorithmArgs']] algorithm: The algorithm to use and its configuration. See
                https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
-        :param pulumi.Input[int] datasource_id: The id of the datasource to query.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the outlier detector.
@@ -467,7 +418,6 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
         __props__ = _MachineLearningOutlierDetectorState.__new__(_MachineLearningOutlierDetectorState)
 
         __props__.__dict__["algorithm"] = algorithm
-        __props__.__dict__["datasource_id"] = datasource_id
         __props__.__dict__["datasource_type"] = datasource_type
         __props__.__dict__["datasource_uid"] = datasource_uid
         __props__.__dict__["description"] = description
@@ -487,17 +437,6 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
         return pulumi.get(self, "algorithm")
 
     @property
-    @pulumi.getter(name="datasourceId")
-    def datasource_id(self) -> pulumi.Output[Optional[int]]:
-        """
-        The id of the datasource to query.
-        """
-        warnings.warn("""Use datasource_uid instead.""", DeprecationWarning)
-        pulumi.log.warn("""datasource_id is deprecated: Use datasource_uid instead.""")
-
-        return pulumi.get(self, "datasource_id")
-
-    @property
     @pulumi.getter(name="datasourceType")
     def datasource_type(self) -> pulumi.Output[str]:
         """
@@ -507,7 +446,7 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="datasourceUid")
-    def datasource_uid(self) -> pulumi.Output[Optional[str]]:
+    def datasource_uid(self) -> pulumi.Output[str]:
         """
         The uid of the datasource to query.
         """

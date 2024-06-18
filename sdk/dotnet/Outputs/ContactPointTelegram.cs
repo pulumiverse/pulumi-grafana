@@ -35,6 +35,10 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? Message;
         /// <summary>
+        /// The ID of the message thread to send the message to.
+        /// </summary>
+        public readonly string? MessageThreadId;
+        /// <summary>
         /// Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
         /// </summary>
         public readonly string? ParseMode;
@@ -67,6 +71,8 @@ namespace Pulumiverse.Grafana.Outputs
 
             string? message,
 
+            string? messageThreadId,
+
             string? parseMode,
 
             bool? protectContent,
@@ -82,6 +88,7 @@ namespace Pulumiverse.Grafana.Outputs
             DisableResolveMessage = disableResolveMessage;
             DisableWebPagePreview = disableWebPagePreview;
             Message = message;
+            MessageThreadId = messageThreadId;
             ParseMode = parseMode;
             ProtectContent = protectContent;
             Settings = settings;

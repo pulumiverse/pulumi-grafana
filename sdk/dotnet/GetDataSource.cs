@@ -23,9 +23,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetDataSourceArgs : global::Pulumi.InvokeArgs
     {
-        [Input("id")]
-        public string? Id { get; set; }
-
         [Input("name")]
         public string? Name { get; set; }
 
@@ -43,9 +40,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetDataSourceInvokeArgs : global::Pulumi.InvokeArgs
     {
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -69,6 +63,9 @@ namespace Pulumiverse.Grafana
         public readonly bool BasicAuthEnabled;
         public readonly string BasicAuthUsername;
         public readonly string DatabaseName;
+        /// <summary>
+        /// The provider-assigned unique ID for this managed resource.
+        /// </summary>
         public readonly string Id;
         public readonly bool IsDefault;
         public readonly string JsonDataEncoded;

@@ -29,6 +29,7 @@ __all__ = [
     'CheckSettingsMultihttpEntryRequestQueryFieldArgs',
     'CheckSettingsMultihttpEntryVariableArgs',
     'CheckSettingsPingArgs',
+    'CheckSettingsScriptedArgs',
     'CheckSettingsTcpArgs',
     'CheckSettingsTcpQueryResponseArgs',
     'CheckSettingsTcpTlsConfigArgs',
@@ -42,6 +43,7 @@ class CheckSettingsArgs:
                  http: Optional[pulumi.Input['CheckSettingsHttpArgs']] = None,
                  multihttp: Optional[pulumi.Input['CheckSettingsMultihttpArgs']] = None,
                  ping: Optional[pulumi.Input['CheckSettingsPingArgs']] = None,
+                 scripted: Optional[pulumi.Input['CheckSettingsScriptedArgs']] = None,
                  tcp: Optional[pulumi.Input['CheckSettingsTcpArgs']] = None,
                  traceroute: Optional[pulumi.Input['CheckSettingsTracerouteArgs']] = None):
         """
@@ -49,6 +51,7 @@ class CheckSettingsArgs:
         :param pulumi.Input['CheckSettingsHttpArgs'] http: Settings for HTTP check. The target must be a URL (http or https).
         :param pulumi.Input['CheckSettingsMultihttpArgs'] multihttp: Settings for MultiHTTP check. The target must be a URL (http or https)
         :param pulumi.Input['CheckSettingsPingArgs'] ping: Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
+        :param pulumi.Input['CheckSettingsScriptedArgs'] scripted: Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
         :param pulumi.Input['CheckSettingsTcpArgs'] tcp: Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
         :param pulumi.Input['CheckSettingsTracerouteArgs'] traceroute: Settings for traceroute check. The target must be a valid hostname or IP address
         """
@@ -60,6 +63,8 @@ class CheckSettingsArgs:
             pulumi.set(__self__, "multihttp", multihttp)
         if ping is not None:
             pulumi.set(__self__, "ping", ping)
+        if scripted is not None:
+            pulumi.set(__self__, "scripted", scripted)
         if tcp is not None:
             pulumi.set(__self__, "tcp", tcp)
         if traceroute is not None:
@@ -112,6 +117,18 @@ class CheckSettingsArgs:
     @ping.setter
     def ping(self, value: Optional[pulumi.Input['CheckSettingsPingArgs']]):
         pulumi.set(self, "ping", value)
+
+    @property
+    @pulumi.getter
+    def scripted(self) -> Optional[pulumi.Input['CheckSettingsScriptedArgs']]:
+        """
+        Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+        """
+        return pulumi.get(self, "scripted")
+
+    @scripted.setter
+    def scripted(self, value: Optional[pulumi.Input['CheckSettingsScriptedArgs']]):
+        pulumi.set(self, "scripted", value)
 
     @property
     @pulumi.getter
@@ -1474,6 +1491,22 @@ class CheckSettingsPingArgs:
     @source_ip_address.setter
     def source_ip_address(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "source_ip_address", value)
+
+
+@pulumi.input_type
+class CheckSettingsScriptedArgs:
+    def __init__(__self__, *,
+                 script: pulumi.Input[str]):
+        pulumi.set(__self__, "script", script)
+
+    @property
+    @pulumi.getter
+    def script(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "script")
+
+    @script.setter
+    def script(self, value: pulumi.Input[str]):
+        pulumi.set(self, "script", value)
 
 
 @pulumi.input_type

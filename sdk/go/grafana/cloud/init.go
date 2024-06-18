@@ -25,16 +25,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AccessPolicy{}
 	case "grafana:cloud/accessPolicyToken:AccessPolicyToken":
 		r = &AccessPolicyToken{}
-	case "grafana:cloud/apiKey:ApiKey":
-		r = &ApiKey{}
 	case "grafana:cloud/orgMember:OrgMember":
 		r = &OrgMember{}
 	case "grafana:cloud/pluginInstallation:PluginInstallation":
 		r = &PluginInstallation{}
 	case "grafana:cloud/stack:Stack":
 		r = &Stack{}
-	case "grafana:cloud/stackApiKey:StackApiKey":
-		r = &StackApiKey{}
 	case "grafana:cloud/stackServiceAccount:StackServiceAccount":
 		r = &StackServiceAccount{}
 	case "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken":
@@ -64,11 +60,6 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"grafana",
-		"cloud/apiKey",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"grafana",
 		"cloud/orgMember",
 		&module{version},
 	)
@@ -80,11 +71,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"cloud/stack",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"grafana",
-		"cloud/stackApiKey",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -1391,6 +1391,8 @@ type SsoSettingsSamlSettings struct {
 	RoleValuesGrafanaAdmin *string `pulumi:"roleValuesGrafanaAdmin"`
 	// List of comma- or space-separated roles which will be mapped into the None role.
 	RoleValuesNone *string `pulumi:"roleValuesNone"`
+	// List of comma- or space-separated roles which will be mapped into the Viewer role.
+	RoleValuesViewer *string `pulumi:"roleValuesViewer"`
 	// Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
 	SignatureAlgorithm *string `pulumi:"signatureAlgorithm"`
 	// Whether SAML Single Logout is enabled.
@@ -1467,6 +1469,8 @@ type SsoSettingsSamlSettingsArgs struct {
 	RoleValuesGrafanaAdmin pulumi.StringPtrInput `pulumi:"roleValuesGrafanaAdmin"`
 	// List of comma- or space-separated roles which will be mapped into the None role.
 	RoleValuesNone pulumi.StringPtrInput `pulumi:"roleValuesNone"`
+	// List of comma- or space-separated roles which will be mapped into the Viewer role.
+	RoleValuesViewer pulumi.StringPtrInput `pulumi:"roleValuesViewer"`
 	// Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
 	SignatureAlgorithm pulumi.StringPtrInput `pulumi:"signatureAlgorithm"`
 	// Whether SAML Single Logout is enabled.
@@ -1690,6 +1694,11 @@ func (o SsoSettingsSamlSettingsOutput) RoleValuesGrafanaAdmin() pulumi.StringPtr
 // List of comma- or space-separated roles which will be mapped into the None role.
 func (o SsoSettingsSamlSettingsOutput) RoleValuesNone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.RoleValuesNone }).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated roles which will be mapped into the Viewer role.
+func (o SsoSettingsSamlSettingsOutput) RoleValuesViewer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.RoleValuesViewer }).(pulumi.StringPtrOutput)
 }
 
 // Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
@@ -2008,6 +2017,16 @@ func (o SsoSettingsSamlSettingsPtrOutput) RoleValuesNone() pulumi.StringPtrOutpu
 			return nil
 		}
 		return v.RoleValuesNone
+	}).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated roles which will be mapped into the Viewer role.
+func (o SsoSettingsSamlSettingsPtrOutput) RoleValuesViewer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RoleValuesViewer
 	}).(pulumi.StringPtrOutput)
 }
 

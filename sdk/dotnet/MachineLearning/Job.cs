@@ -29,12 +29,6 @@ namespace Pulumiverse.Grafana.MachineLearning
         public Output<ImmutableDictionary<string, object>?> CustomLabels { get; private set; } = null!;
 
         /// <summary>
-        /// The id of the datasource to query.
-        /// </summary>
-        [Output("datasourceId")]
-        public Output<int?> DatasourceId { get; private set; } = null!;
-
-        /// <summary>
         /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         /// </summary>
         [Output("datasourceType")]
@@ -44,7 +38,7 @@ namespace Pulumiverse.Grafana.MachineLearning
         /// The uid of the datasource to query.
         /// </summary>
         [Output("datasourceUid")]
-        public Output<string?> DatasourceUid { get; private set; } = null!;
+        public Output<string> DatasourceUid { get; private set; } = null!;
 
         /// <summary>
         /// A description of the job.
@@ -158,12 +152,6 @@ namespace Pulumiverse.Grafana.MachineLearning
         }
 
         /// <summary>
-        /// The id of the datasource to query.
-        /// </summary>
-        [Input("datasourceId")]
-        public Input<int>? DatasourceId { get; set; }
-
-        /// <summary>
         /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         /// </summary>
         [Input("datasourceType", required: true)]
@@ -172,8 +160,8 @@ namespace Pulumiverse.Grafana.MachineLearning
         /// <summary>
         /// The uid of the datasource to query.
         /// </summary>
-        [Input("datasourceUid")]
-        public Input<string>? DatasourceUid { get; set; }
+        [Input("datasourceUid", required: true)]
+        public Input<string> DatasourceUid { get; set; } = null!;
 
         /// <summary>
         /// A description of the job.
@@ -260,12 +248,6 @@ namespace Pulumiverse.Grafana.MachineLearning
             get => _customLabels ?? (_customLabels = new InputMap<object>());
             set => _customLabels = value;
         }
-
-        /// <summary>
-        /// The id of the datasource to query.
-        /// </summary>
-        [Input("datasourceId")]
-        public Input<int>? DatasourceId { get; set; }
 
         /// <summary>
         /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.

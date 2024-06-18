@@ -40,13 +40,6 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('cloudAccessPolicyToken')
 
     @property
-    def cloud_api_key(self) -> Optional[str]:
-        """
-        Deprecated: Use `cloud_access_policy_token` instead.
-        """
-        return __config__.get('cloudApiKey') or _utilities.get_env('GRAFANA_CLOUD_API_KEY')
-
-    @property
     def cloud_api_url(self) -> Optional[str]:
         """
         Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
@@ -73,13 +66,6 @@ class _ExportableConfig(types.ModuleType):
         An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
         """
         return __config__.get('oncallUrl') or _utilities.get_env('GRAFANA_ONCALL_URL')
-
-    @property
-    def org_id(self) -> Optional[int]:
-        """
-        Deprecated: Use the `org_id` attributes on resources instead.
-        """
-        return __config__.get_int('orgId') or _utilities.get_env_int('GRAFANA_ORG_ID')
 
     @property
     def retries(self) -> Optional[int]:

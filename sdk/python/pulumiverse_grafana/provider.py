@@ -17,12 +17,10 @@ class ProviderArgs:
                  auth: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  cloud_access_policy_token: Optional[pulumi.Input[str]] = None,
-                 cloud_api_key: Optional[pulumi.Input[str]] = None,
                  cloud_api_url: Optional[pulumi.Input[str]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  oncall_access_token: Optional[pulumi.Input[str]] = None,
                  oncall_url: Optional[pulumi.Input[str]] = None,
-                 org_id: Optional[pulumi.Input[int]] = None,
                  retries: Optional[pulumi.Input[int]] = None,
                  retry_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  retry_wait: Optional[pulumi.Input[int]] = None,
@@ -40,12 +38,10 @@ class ProviderArgs:
                be set via the `GRAFANA_CA_CERT` environment variable.
         :param pulumi.Input[str] cloud_access_policy_token: Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
                variable.
-        :param pulumi.Input[str] cloud_api_key: Deprecated: Use `cloud_access_policy_token` instead.
         :param pulumi.Input[str] cloud_api_url: Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
-        :param pulumi.Input[int] org_id: Deprecated: Use the `org_id` attributes on resources instead.
         :param pulumi.Input[int] retries: The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
                `GRAFANA_RETRIES` environment variable.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_status_codes: The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
@@ -70,13 +66,6 @@ class ProviderArgs:
             pulumi.set(__self__, "ca_cert", ca_cert)
         if cloud_access_policy_token is not None:
             pulumi.set(__self__, "cloud_access_policy_token", cloud_access_policy_token)
-        if cloud_api_key is not None:
-            warnings.warn("""Use `cloud_access_policy_token` instead.""", DeprecationWarning)
-            pulumi.log.warn("""cloud_api_key is deprecated: Use `cloud_access_policy_token` instead.""")
-        if cloud_api_key is None:
-            cloud_api_key = _utilities.get_env('GRAFANA_CLOUD_API_KEY')
-        if cloud_api_key is not None:
-            pulumi.set(__self__, "cloud_api_key", cloud_api_key)
         if cloud_api_url is None:
             cloud_api_url = _utilities.get_env('GRAFANA_CLOUD_API_URL')
         if cloud_api_url is not None:
@@ -93,13 +82,6 @@ class ProviderArgs:
             oncall_url = _utilities.get_env('GRAFANA_ONCALL_URL')
         if oncall_url is not None:
             pulumi.set(__self__, "oncall_url", oncall_url)
-        if org_id is not None:
-            warnings.warn("""Use the `org_id` attributes on resources instead.""", DeprecationWarning)
-            pulumi.log.warn("""org_id is deprecated: Use the `org_id` attributes on resources instead.""")
-        if org_id is None:
-            org_id = _utilities.get_env_int('GRAFANA_ORG_ID')
-        if org_id is not None:
-            pulumi.set(__self__, "org_id", org_id)
         if retries is None:
             retries = _utilities.get_env_int('GRAFANA_RETRIES')
         if retries is not None:
@@ -173,21 +155,6 @@ class ProviderArgs:
         pulumi.set(self, "cloud_access_policy_token", value)
 
     @property
-    @pulumi.getter(name="cloudApiKey")
-    def cloud_api_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        Deprecated: Use `cloud_access_policy_token` instead.
-        """
-        warnings.warn("""Use `cloud_access_policy_token` instead.""", DeprecationWarning)
-        pulumi.log.warn("""cloud_api_key is deprecated: Use `cloud_access_policy_token` instead.""")
-
-        return pulumi.get(self, "cloud_api_key")
-
-    @cloud_api_key.setter
-    def cloud_api_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "cloud_api_key", value)
-
-    @property
     @pulumi.getter(name="cloudApiUrl")
     def cloud_api_url(self) -> Optional[pulumi.Input[str]]:
         """
@@ -234,21 +201,6 @@ class ProviderArgs:
     @oncall_url.setter
     def oncall_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "oncall_url", value)
-
-    @property
-    @pulumi.getter(name="orgId")
-    def org_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        Deprecated: Use the `org_id` attributes on resources instead.
-        """
-        warnings.warn("""Use the `org_id` attributes on resources instead.""", DeprecationWarning)
-        pulumi.log.warn("""org_id is deprecated: Use the `org_id` attributes on resources instead.""")
-
-        return pulumi.get(self, "org_id")
-
-    @org_id.setter
-    def org_id(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter
@@ -369,12 +321,10 @@ class Provider(pulumi.ProviderResource):
                  auth: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  cloud_access_policy_token: Optional[pulumi.Input[str]] = None,
-                 cloud_api_key: Optional[pulumi.Input[str]] = None,
                  cloud_api_url: Optional[pulumi.Input[str]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  oncall_access_token: Optional[pulumi.Input[str]] = None,
                  oncall_url: Optional[pulumi.Input[str]] = None,
-                 org_id: Optional[pulumi.Input[int]] = None,
                  retries: Optional[pulumi.Input[int]] = None,
                  retry_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  retry_wait: Optional[pulumi.Input[int]] = None,
@@ -399,12 +349,10 @@ class Provider(pulumi.ProviderResource):
                be set via the `GRAFANA_CA_CERT` environment variable.
         :param pulumi.Input[str] cloud_access_policy_token: Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
                variable.
-        :param pulumi.Input[str] cloud_api_key: Deprecated: Use `cloud_access_policy_token` instead.
         :param pulumi.Input[str] cloud_api_url: Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
-        :param pulumi.Input[int] org_id: Deprecated: Use the `org_id` attributes on resources instead.
         :param pulumi.Input[int] retries: The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
                `GRAFANA_RETRIES` environment variable.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_status_codes: The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
@@ -449,12 +397,10 @@ class Provider(pulumi.ProviderResource):
                  auth: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  cloud_access_policy_token: Optional[pulumi.Input[str]] = None,
-                 cloud_api_key: Optional[pulumi.Input[str]] = None,
                  cloud_api_url: Optional[pulumi.Input[str]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  oncall_access_token: Optional[pulumi.Input[str]] = None,
                  oncall_url: Optional[pulumi.Input[str]] = None,
-                 org_id: Optional[pulumi.Input[int]] = None,
                  retries: Optional[pulumi.Input[int]] = None,
                  retry_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  retry_wait: Optional[pulumi.Input[int]] = None,
@@ -480,9 +426,6 @@ class Provider(pulumi.ProviderResource):
                 ca_cert = _utilities.get_env('GRAFANA_CA_CERT')
             __props__.__dict__["ca_cert"] = ca_cert
             __props__.__dict__["cloud_access_policy_token"] = None if cloud_access_policy_token is None else pulumi.Output.secret(cloud_access_policy_token)
-            if cloud_api_key is None:
-                cloud_api_key = _utilities.get_env('GRAFANA_CLOUD_API_KEY')
-            __props__.__dict__["cloud_api_key"] = None if cloud_api_key is None else pulumi.Output.secret(cloud_api_key)
             if cloud_api_url is None:
                 cloud_api_url = _utilities.get_env('GRAFANA_CLOUD_API_URL')
             __props__.__dict__["cloud_api_url"] = cloud_api_url
@@ -495,9 +438,6 @@ class Provider(pulumi.ProviderResource):
             if oncall_url is None:
                 oncall_url = _utilities.get_env('GRAFANA_ONCALL_URL')
             __props__.__dict__["oncall_url"] = oncall_url
-            if org_id is None:
-                org_id = _utilities.get_env_int('GRAFANA_ORG_ID')
-            __props__.__dict__["org_id"] = pulumi.Output.from_input(org_id).apply(pulumi.runtime.to_json) if org_id is not None else None
             if retries is None:
                 retries = _utilities.get_env_int('GRAFANA_RETRIES')
             __props__.__dict__["retries"] = pulumi.Output.from_input(retries).apply(pulumi.runtime.to_json) if retries is not None else None
@@ -521,7 +461,7 @@ class Provider(pulumi.ProviderResource):
             if url is None:
                 url = _utilities.get_env('GRAFANA_URL')
             __props__.__dict__["url"] = url
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["auth", "cloudAccessPolicyToken", "cloudApiKey", "oncallAccessToken", "smAccessToken", "tlsKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["auth", "cloudAccessPolicyToken", "oncallAccessToken", "smAccessToken", "tlsKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'grafana',
@@ -555,17 +495,6 @@ class Provider(pulumi.ProviderResource):
         variable.
         """
         return pulumi.get(self, "cloud_access_policy_token")
-
-    @property
-    @pulumi.getter(name="cloudApiKey")
-    def cloud_api_key(self) -> pulumi.Output[Optional[str]]:
-        """
-        Deprecated: Use `cloud_access_policy_token` instead.
-        """
-        warnings.warn("""Use `cloud_access_policy_token` instead.""", DeprecationWarning)
-        pulumi.log.warn("""cloud_api_key is deprecated: Use `cloud_access_policy_token` instead.""")
-
-        return pulumi.get(self, "cloud_api_key")
 
     @property
     @pulumi.getter(name="cloudApiUrl")

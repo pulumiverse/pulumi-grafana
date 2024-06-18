@@ -27,10 +27,6 @@ type Provider struct {
 	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
 	// variable.
 	CloudAccessPolicyToken pulumi.StringPtrOutput `pulumi:"cloudAccessPolicyToken"`
-	// Deprecated: Use `cloudAccessPolicyToken` instead.
-	//
-	// Deprecated: Use `cloudAccessPolicyToken` instead.
-	CloudApiKey pulumi.StringPtrOutput `pulumi:"cloudApiKey"`
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl pulumi.StringPtrOutput `pulumi:"cloudApiUrl"`
 	// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
@@ -67,11 +63,6 @@ func NewProvider(ctx *pulumi.Context,
 			args.CaCert = pulumi.StringPtr(d.(string))
 		}
 	}
-	if args.CloudApiKey == nil {
-		if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_CLOUD_API_KEY"); d != nil {
-			args.CloudApiKey = pulumi.StringPtr(d.(string))
-		}
-	}
 	if args.CloudApiUrl == nil {
 		if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_CLOUD_API_URL"); d != nil {
 			args.CloudApiUrl = pulumi.StringPtr(d.(string))
@@ -90,11 +81,6 @@ func NewProvider(ctx *pulumi.Context,
 	if args.OncallUrl == nil {
 		if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_ONCALL_URL"); d != nil {
 			args.OncallUrl = pulumi.StringPtr(d.(string))
-		}
-	}
-	if args.OrgId == nil {
-		if d := internal.GetEnvOrDefault(nil, internal.ParseEnvInt, "GRAFANA_ORG_ID"); d != nil {
-			args.OrgId = pulumi.IntPtr(d.(int))
 		}
 	}
 	if args.Retries == nil {
@@ -138,9 +124,6 @@ func NewProvider(ctx *pulumi.Context,
 	if args.CloudAccessPolicyToken != nil {
 		args.CloudAccessPolicyToken = pulumi.ToSecret(args.CloudAccessPolicyToken).(pulumi.StringPtrInput)
 	}
-	if args.CloudApiKey != nil {
-		args.CloudApiKey = pulumi.ToSecret(args.CloudApiKey).(pulumi.StringPtrInput)
-	}
 	if args.OncallAccessToken != nil {
 		args.OncallAccessToken = pulumi.ToSecret(args.OncallAccessToken).(pulumi.StringPtrInput)
 	}
@@ -153,7 +136,6 @@ func NewProvider(ctx *pulumi.Context,
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"auth",
 		"cloudAccessPolicyToken",
-		"cloudApiKey",
 		"oncallAccessToken",
 		"smAccessToken",
 		"tlsKey",
@@ -178,10 +160,6 @@ type providerArgs struct {
 	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
 	// variable.
 	CloudAccessPolicyToken *string `pulumi:"cloudAccessPolicyToken"`
-	// Deprecated: Use `cloudAccessPolicyToken` instead.
-	//
-	// Deprecated: Use `cloudAccessPolicyToken` instead.
-	CloudApiKey *string `pulumi:"cloudApiKey"`
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl *string `pulumi:"cloudApiUrl"`
 	// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
@@ -190,10 +168,6 @@ type providerArgs struct {
 	OncallAccessToken *string `pulumi:"oncallAccessToken"`
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
 	OncallUrl *string `pulumi:"oncallUrl"`
-	// Deprecated: Use the `orgId` attributes on resources instead.
-	//
-	// Deprecated: Use the `orgId` attributes on resources instead.
-	OrgId *int `pulumi:"orgId"`
 	// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
 	// `GRAFANA_RETRIES` environment variable.
 	Retries *int `pulumi:"retries"`
@@ -229,10 +203,6 @@ type ProviderArgs struct {
 	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
 	// variable.
 	CloudAccessPolicyToken pulumi.StringPtrInput
-	// Deprecated: Use `cloudAccessPolicyToken` instead.
-	//
-	// Deprecated: Use `cloudAccessPolicyToken` instead.
-	CloudApiKey pulumi.StringPtrInput
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl pulumi.StringPtrInput
 	// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
@@ -241,10 +211,6 @@ type ProviderArgs struct {
 	OncallAccessToken pulumi.StringPtrInput
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
 	OncallUrl pulumi.StringPtrInput
-	// Deprecated: Use the `orgId` attributes on resources instead.
-	//
-	// Deprecated: Use the `orgId` attributes on resources instead.
-	OrgId pulumi.IntPtrInput
 	// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
 	// `GRAFANA_RETRIES` environment variable.
 	Retries pulumi.IntPtrInput
@@ -322,13 +288,6 @@ func (o ProviderOutput) CaCert() pulumi.StringPtrOutput {
 // variable.
 func (o ProviderOutput) CloudAccessPolicyToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CloudAccessPolicyToken }).(pulumi.StringPtrOutput)
-}
-
-// Deprecated: Use `cloudAccessPolicyToken` instead.
-//
-// Deprecated: Use `cloudAccessPolicyToken` instead.
-func (o ProviderOutput) CloudApiKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CloudApiKey }).(pulumi.StringPtrOutput)
 }
 
 // Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.

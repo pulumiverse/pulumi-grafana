@@ -44,17 +44,6 @@ Object.defineProperty(exports, "cloudAccessPolicyToken", {
 });
 
 /**
- * Deprecated: Use `cloudAccessPolicyToken` instead.
- */
-export declare const cloudApiKey: string | undefined;
-Object.defineProperty(exports, "cloudApiKey", {
-    get() {
-        return __config.get("cloudApiKey") ?? utilities.getEnv("GRAFANA_CLOUD_API_KEY");
-    },
-    enumerable: true,
-});
-
-/**
  * Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
  */
 export declare const cloudApiUrl: string | undefined;
@@ -94,17 +83,6 @@ export declare const oncallUrl: string | undefined;
 Object.defineProperty(exports, "oncallUrl", {
     get() {
         return __config.get("oncallUrl") ?? utilities.getEnv("GRAFANA_ONCALL_URL");
-    },
-    enumerable: true,
-});
-
-/**
- * Deprecated: Use the `orgId` attributes on resources instead.
- */
-export declare const orgId: number | undefined;
-Object.defineProperty(exports, "orgId", {
-    get() {
-        return __config.getObject<number>("orgId") ?? utilities.getEnvNumber("GRAFANA_ORG_ID");
     },
     enumerable: true,
 });

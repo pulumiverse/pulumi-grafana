@@ -24,13 +24,10 @@ class GetDashboardsResult:
     """
     A collection of values returned by getDashboards.
     """
-    def __init__(__self__, dashboards=None, folder_ids=None, folder_uids=None, id=None, limit=None, org_id=None, tags=None):
+    def __init__(__self__, dashboards=None, folder_uids=None, id=None, limit=None, org_id=None, tags=None):
         if dashboards and not isinstance(dashboards, list):
             raise TypeError("Expected argument 'dashboards' to be a list")
         pulumi.set(__self__, "dashboards", dashboards)
-        if folder_ids and not isinstance(folder_ids, list):
-            raise TypeError("Expected argument 'folder_ids' to be a list")
-        pulumi.set(__self__, "folder_ids", folder_ids)
         if folder_uids and not isinstance(folder_uids, list):
             raise TypeError("Expected argument 'folder_uids' to be a list")
         pulumi.set(__self__, "folder_uids", folder_uids)
@@ -51,14 +48,6 @@ class GetDashboardsResult:
     @pulumi.getter
     def dashboards(self) -> Sequence['outputs.GetDashboardsDashboardResult']:
         return pulumi.get(self, "dashboards")
-
-    @property
-    @pulumi.getter(name="folderIds")
-    def folder_ids(self) -> Optional[Sequence[int]]:
-        warnings.warn("""Use `folder_uids` instead.""", DeprecationWarning)
-        pulumi.log.warn("""folder_ids is deprecated: Use `folder_uids` instead.""")
-
-        return pulumi.get(self, "folder_ids")
 
     @property
     @pulumi.getter(name="folderUids")
@@ -96,7 +85,6 @@ class AwaitableGetDashboardsResult(GetDashboardsResult):
             yield self
         return GetDashboardsResult(
             dashboards=self.dashboards,
-            folder_ids=self.folder_ids,
             folder_uids=self.folder_uids,
             id=self.id,
             limit=self.limit,
@@ -104,8 +92,7 @@ class AwaitableGetDashboardsResult(GetDashboardsResult):
             tags=self.tags)
 
 
-def get_dashboards(folder_ids: Optional[Sequence[int]] = None,
-                   folder_uids: Optional[Sequence[str]] = None,
+def get_dashboards(folder_uids: Optional[Sequence[str]] = None,
                    limit: Optional[int] = None,
                    org_id: Optional[str] = None,
                    tags: Optional[Sequence[str]] = None,
@@ -115,7 +102,6 @@ def get_dashboards(folder_ids: Optional[Sequence[int]] = None,
     """
     pulumi.log.warn("""get_dashboards is deprecated: grafana.index/getdashboards.getDashboards has been deprecated in favor of grafana.oss/getdashboards.getDashboards""")
     __args__ = dict()
-    __args__['folderIds'] = folder_ids
     __args__['folderUids'] = folder_uids
     __args__['limit'] = limit
     __args__['orgId'] = org_id
@@ -125,7 +111,6 @@ def get_dashboards(folder_ids: Optional[Sequence[int]] = None,
 
     return AwaitableGetDashboardsResult(
         dashboards=pulumi.get(__ret__, 'dashboards'),
-        folder_ids=pulumi.get(__ret__, 'folder_ids'),
         folder_uids=pulumi.get(__ret__, 'folder_uids'),
         id=pulumi.get(__ret__, 'id'),
         limit=pulumi.get(__ret__, 'limit'),
@@ -134,8 +119,7 @@ def get_dashboards(folder_ids: Optional[Sequence[int]] = None,
 
 
 @_utilities.lift_output_func(get_dashboards)
-def get_dashboards_output(folder_ids: Optional[pulumi.Input[Optional[Sequence[int]]]] = None,
-                          folder_uids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+def get_dashboards_output(folder_uids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                           limit: Optional[pulumi.Input[Optional[int]]] = None,
                           org_id: Optional[pulumi.Input[Optional[str]]] = None,
                           tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,

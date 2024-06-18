@@ -57,6 +57,7 @@ namespace Pulumiverse.Grafana
         public readonly string GraphiteUrl;
         public readonly int GraphiteUserId;
         public readonly string Id;
+        public readonly string InfluxUrl;
         public readonly ImmutableDictionary<string, string> Labels;
         public readonly string LogsName;
         public readonly string LogsStatus;
@@ -107,6 +108,8 @@ namespace Pulumiverse.Grafana
             int graphiteUserId,
 
             string id,
+
+            string influxUrl,
 
             ImmutableDictionary<string, string> labels,
 
@@ -174,6 +177,7 @@ namespace Pulumiverse.Grafana
             GraphiteUrl = graphiteUrl;
             GraphiteUserId = graphiteUserId;
             Id = id;
+            InfluxUrl = influxUrl;
             Labels = labels;
             LogsName = logsName;
             LogsStatus = logsStatus;

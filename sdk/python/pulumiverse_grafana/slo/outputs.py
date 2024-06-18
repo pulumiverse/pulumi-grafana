@@ -462,6 +462,7 @@ class GetSlosSloResult(dict):
                  alertings: Sequence['outputs.GetSlosSloAlertingResult'],
                  description: str,
                  destination_datasources: Sequence['outputs.GetSlosSloDestinationDatasourceResult'],
+                 folder_uid: str,
                  labels: Sequence['outputs.GetSlosSloLabelResult'],
                  name: str,
                  objectives: Sequence['outputs.GetSlosSloObjectiveResult'],
@@ -475,6 +476,7 @@ class GetSlosSloResult(dict):
                				error budget is below a certain threshold. Annotations and Labels support templating.
         :param str description: Description is a free-text field that can provide more context to an SLO.
         :param Sequence['GetSlosSloDestinationDatasourceArgs'] destination_datasources: Destination Datasource sets the datasource defined for an SLO
+        :param str folder_uid: UID for the SLO folder
         :param Sequence['GetSlosSloLabelArgs'] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
         :param str name: Name should be a short description of your indicator. Consider names like "API Availability"
         :param Sequence['GetSlosSloObjectiveArgs'] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
@@ -484,6 +486,7 @@ class GetSlosSloResult(dict):
         pulumi.set(__self__, "alertings", alertings)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "destination_datasources", destination_datasources)
+        pulumi.set(__self__, "folder_uid", folder_uid)
         pulumi.set(__self__, "labels", labels)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "objectives", objectives)
@@ -517,6 +520,14 @@ class GetSlosSloResult(dict):
         Destination Datasource sets the datasource defined for an SLO
         """
         return pulumi.get(self, "destination_datasources")
+
+    @property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> str:
+        """
+        UID for the SLO folder
+        """
+        return pulumi.get(self, "folder_uid")
 
     @property
     @pulumi.getter

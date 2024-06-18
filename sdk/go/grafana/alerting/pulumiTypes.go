@@ -1622,6 +1622,8 @@ type ContactPointPagerduty struct {
 	Summary *string `pulumi:"summary"`
 	// The UID of the contact point.
 	Uid *string `pulumi:"uid"`
+	// The URL to send API requests to
+	Url *string `pulumi:"url"`
 }
 
 // ContactPointPagerdutyInput is an input type that accepts ContactPointPagerdutyArgs and ContactPointPagerdutyOutput values.
@@ -1662,6 +1664,8 @@ type ContactPointPagerdutyArgs struct {
 	Summary pulumi.StringPtrInput `pulumi:"summary"`
 	// The UID of the contact point.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
+	// The URL to send API requests to
+	Url pulumi.StringPtrInput `pulumi:"url"`
 }
 
 func (ContactPointPagerdutyArgs) ElementType() reflect.Type {
@@ -1778,6 +1782,11 @@ func (o ContactPointPagerdutyOutput) Summary() pulumi.StringPtrOutput {
 // The UID of the contact point.
 func (o ContactPointPagerdutyOutput) Uid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointPagerduty) *string { return v.Uid }).(pulumi.StringPtrOutput)
+}
+
+// The URL to send API requests to
+func (o ContactPointPagerdutyOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointPagerduty) *string { return v.Url }).(pulumi.StringPtrOutput)
 }
 
 type ContactPointPagerdutyArrayOutput struct{ *pulumi.OutputState }
@@ -2776,6 +2785,8 @@ type ContactPointTelegram struct {
 	DisableWebPagePreview *bool `pulumi:"disableWebPagePreview"`
 	// The templated content of the message.
 	Message *string `pulumi:"message"`
+	// The ID of the message thread to send the message to.
+	MessageThreadId *string `pulumi:"messageThreadId"`
 	// Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
 	ParseMode *string `pulumi:"parseMode"`
 	// When set it protects the contents of the message from forwarding and saving.
@@ -2810,6 +2821,8 @@ type ContactPointTelegramArgs struct {
 	DisableWebPagePreview pulumi.BoolPtrInput `pulumi:"disableWebPagePreview"`
 	// The templated content of the message.
 	Message pulumi.StringPtrInput `pulumi:"message"`
+	// The ID of the message thread to send the message to.
+	MessageThreadId pulumi.StringPtrInput `pulumi:"messageThreadId"`
 	// Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
 	ParseMode pulumi.StringPtrInput `pulumi:"parseMode"`
 	// When set it protects the contents of the message from forwarding and saving.
@@ -2896,6 +2909,11 @@ func (o ContactPointTelegramOutput) DisableWebPagePreview() pulumi.BoolPtrOutput
 // The templated content of the message.
 func (o ContactPointTelegramOutput) Message() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointTelegram) *string { return v.Message }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the message thread to send the message to.
+func (o ContactPointTelegramOutput) MessageThreadId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointTelegram) *string { return v.MessageThreadId }).(pulumi.StringPtrOutput)
 }
 
 // Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.

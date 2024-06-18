@@ -10,11 +10,6 @@ export type Annotation = import("./annotation").Annotation;
 export const Annotation: typeof import("./annotation").Annotation = null as any;
 utilities.lazyLoad(exports, ["Annotation"], () => require("./annotation"));
 
-export { ApiKeyArgs, ApiKeyState } from "./apiKey";
-export type ApiKey = import("./apiKey").ApiKey;
-export const ApiKey: typeof import("./apiKey").ApiKey = null as any;
-utilities.lazyLoad(exports, ["ApiKey"], () => require("./apiKey"));
-
 export { DashboardArgs, DashboardState } from "./dashboard";
 export type Dashboard = import("./dashboard").Dashboard;
 export const Dashboard: typeof import("./dashboard").Dashboard = null as any;
@@ -182,8 +177,6 @@ const _module = {
         switch (type) {
             case "grafana:oss/annotation:Annotation":
                 return new Annotation(name, <any>undefined, { urn })
-            case "grafana:oss/apiKey:ApiKey":
-                return new ApiKey(name, <any>undefined, { urn })
             case "grafana:oss/dashboard:Dashboard":
                 return new Dashboard(name, <any>undefined, { urn })
             case "grafana:oss/dashboardPermission:DashboardPermission":
@@ -230,7 +223,6 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("grafana", "oss/annotation", _module)
-pulumi.runtime.registerResourceModule("grafana", "oss/apiKey", _module)
 pulumi.runtime.registerResourceModule("grafana", "oss/dashboard", _module)
 pulumi.runtime.registerResourceModule("grafana", "oss/dashboardPermission", _module)
 pulumi.runtime.registerResourceModule("grafana", "oss/dashboardPermissionItem", _module)

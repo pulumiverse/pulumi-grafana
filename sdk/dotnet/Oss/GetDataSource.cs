@@ -51,11 +51,6 @@ namespace Pulumiverse.Grafana.Oss
         ///         Name = prometheus.Name,
         ///     });
         /// 
-        ///     var fromId = Grafana.Oss.GetDataSource.Invoke(new()
-        ///     {
-        ///         Id = prometheus.Id,
-        ///     });
-        /// 
         ///     var fromUid = Grafana.Oss.GetDataSource.Invoke(new()
         ///     {
         ///         Uid = prometheus.Uid,
@@ -106,11 +101,6 @@ namespace Pulumiverse.Grafana.Oss
         ///         Name = prometheus.Name,
         ///     });
         /// 
-        ///     var fromId = Grafana.Oss.GetDataSource.Invoke(new()
-        ///     {
-        ///         Id = prometheus.Id,
-        ///     });
-        /// 
         ///     var fromUid = Grafana.Oss.GetDataSource.Invoke(new()
         ///     {
         ///         Uid = prometheus.Uid,
@@ -126,12 +116,6 @@ namespace Pulumiverse.Grafana.Oss
 
     public sealed class GetDataSourceArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Deprecated: Use `uid` instead of `id`
-        /// </summary>
-        [Input("id")]
-        public string? Id { get; set; }
-
         [Input("name")]
         public string? Name { get; set; }
 
@@ -152,12 +136,6 @@ namespace Pulumiverse.Grafana.Oss
 
     public sealed class GetDataSourceInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Deprecated: Use `uid` instead of `id`
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -197,7 +175,7 @@ namespace Pulumiverse.Grafana.Oss
         /// </summary>
         public readonly string DatabaseName;
         /// <summary>
-        /// Deprecated: Use `uid` instead of `id`
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         /// <summary>

@@ -32,10 +32,6 @@ export interface GetDashboardArgs {
 export interface GetDashboardResult {
     readonly configJson: string;
     readonly dashboardId?: number;
-    /**
-     * @deprecated Use `folderUid` instead
-     */
-    readonly folder: number;
     readonly folderUid: string;
     /**
      * The provider-assigned unique ID for this managed resource.

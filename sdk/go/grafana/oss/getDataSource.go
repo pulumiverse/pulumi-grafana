@@ -61,9 +61,6 @@ import (
 //				Name: prometheus.Name,
 //			}, nil)
 //			_ = oss.LookupDataSourceOutput(ctx, oss.GetDataSourceOutputArgs{
-//				Id: prometheus.ID(),
-//			}, nil)
-//			_ = oss.LookupDataSourceOutput(ctx, oss.GetDataSourceOutputArgs{
 //				Uid: prometheus.Uid,
 //			}, nil)
 //			return nil
@@ -83,10 +80,6 @@ func LookupDataSource(ctx *pulumi.Context, args *LookupDataSourceArgs, opts ...p
 
 // A collection of arguments for invoking getDataSource.
 type LookupDataSourceArgs struct {
-	// Deprecated: Use `uid` instead of `id`
-	//
-	// Deprecated: Use `uid` instead of `id`
-	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
@@ -103,9 +96,7 @@ type LookupDataSourceResult struct {
 	BasicAuthUsername string `pulumi:"basicAuthUsername"`
 	// (Required by some data source types) The name of the database to use on the selected data source server.
 	DatabaseName string `pulumi:"databaseName"`
-	// Deprecated: Use `uid` instead of `id`
-	//
-	// Deprecated: Use `uid` instead of `id`
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Whether to set the data source as default. This should only be `true` to a single data source.
 	IsDefault bool `pulumi:"isDefault"`
@@ -138,10 +129,6 @@ func LookupDataSourceOutput(ctx *pulumi.Context, args LookupDataSourceOutputArgs
 
 // A collection of arguments for invoking getDataSource.
 type LookupDataSourceOutputArgs struct {
-	// Deprecated: Use `uid` instead of `id`
-	//
-	// Deprecated: Use `uid` instead of `id`
-	Id   pulumi.StringPtrInput `pulumi:"id"`
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
@@ -187,9 +174,7 @@ func (o LookupDataSourceResultOutput) DatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDataSourceResult) string { return v.DatabaseName }).(pulumi.StringOutput)
 }
 
-// Deprecated: Use `uid` instead of `id`
-//
-// Deprecated: Use `uid` instead of `id`
+// The provider-assigned unique ID for this managed resource.
 func (o LookupDataSourceResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDataSourceResult) string { return v.Id }).(pulumi.StringOutput)
 }

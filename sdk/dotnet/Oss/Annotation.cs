@@ -46,13 +46,7 @@ namespace Pulumiverse.Grafana.Oss
     public partial class Annotation : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
-        /// </summary>
-        [Output("dashboardId")]
-        public Output<int?> DashboardId { get; private set; } = null!;
-
-        /// <summary>
-        /// The ID of the dashboard on which to create the annotation.
+        /// The UID of the dashboard on which to create the annotation.
         /// </summary>
         [Output("dashboardUid")]
         public Output<string?> DashboardUid { get; private set; } = null!;
@@ -145,13 +139,7 @@ namespace Pulumiverse.Grafana.Oss
     public sealed class AnnotationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
-        /// </summary>
-        [Input("dashboardId")]
-        public Input<int>? DashboardId { get; set; }
-
-        /// <summary>
-        /// The ID of the dashboard on which to create the annotation.
+        /// The UID of the dashboard on which to create the annotation.
         /// </summary>
         [Input("dashboardUid")]
         public Input<string>? DashboardUid { get; set; }
@@ -207,13 +195,7 @@ namespace Pulumiverse.Grafana.Oss
     public sealed class AnnotationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
-        /// </summary>
-        [Input("dashboardId")]
-        public Input<int>? DashboardId { get; set; }
-
-        /// <summary>
-        /// The ID of the dashboard on which to create the annotation.
+        /// The UID of the dashboard on which to create the annotation.
         /// </summary>
         [Input("dashboardUid")]
         public Input<string>? DashboardUid { get; set; }

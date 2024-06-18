@@ -61,6 +61,13 @@ export class CloudStack extends pulumi.CustomResource {
     public /*out*/ readonly graphiteUrl!: pulumi.Output<string>;
     public /*out*/ readonly graphiteUserId!: pulumi.Output<number>;
     /**
+     * Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics'
+     * (`prometheusUserId` attribute of this resource). See
+     * https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use
+     * this.
+     */
+    public /*out*/ readonly influxUrl!: pulumi.Output<string>;
+    /**
      * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and
      * stacks cannot have more than 10 labels.
      */
@@ -86,8 +93,8 @@ export class CloudStack extends pulumi.CustomResource {
      */
     public /*out*/ readonly orgSlug!: pulumi.Output<string>;
     /**
-     * Base URL of the OTLP instance configured for this stack. See
-     * https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+     * Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this
+     * resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
      */
     public /*out*/ readonly otlpUrl!: pulumi.Output<string>;
     public /*out*/ readonly profilesName!: pulumi.Output<string>;
@@ -180,6 +187,7 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["graphiteStatus"] = state ? state.graphiteStatus : undefined;
             resourceInputs["graphiteUrl"] = state ? state.graphiteUrl : undefined;
             resourceInputs["graphiteUserId"] = state ? state.graphiteUserId : undefined;
+            resourceInputs["influxUrl"] = state ? state.influxUrl : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["logsName"] = state ? state.logsName : undefined;
             resourceInputs["logsStatus"] = state ? state.logsStatus : undefined;
@@ -231,6 +239,7 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["graphiteStatus"] = undefined /*out*/;
             resourceInputs["graphiteUrl"] = undefined /*out*/;
             resourceInputs["graphiteUserId"] = undefined /*out*/;
+            resourceInputs["influxUrl"] = undefined /*out*/;
             resourceInputs["logsName"] = undefined /*out*/;
             resourceInputs["logsStatus"] = undefined /*out*/;
             resourceInputs["logsUrl"] = undefined /*out*/;
@@ -291,6 +300,13 @@ export interface CloudStackState {
     graphiteUrl?: pulumi.Input<string>;
     graphiteUserId?: pulumi.Input<number>;
     /**
+     * Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics'
+     * (`prometheusUserId` attribute of this resource). See
+     * https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use
+     * this.
+     */
+    influxUrl?: pulumi.Input<string>;
+    /**
      * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and
      * stacks cannot have more than 10 labels.
      */
@@ -316,8 +332,8 @@ export interface CloudStackState {
      */
     orgSlug?: pulumi.Input<string>;
     /**
-     * Base URL of the OTLP instance configured for this stack. See
-     * https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+     * Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this
+     * resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
      */
     otlpUrl?: pulumi.Input<string>;
     profilesName?: pulumi.Input<string>;

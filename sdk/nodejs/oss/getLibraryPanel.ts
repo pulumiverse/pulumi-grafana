@@ -53,12 +53,6 @@ export interface GetLibraryPanelResult {
      */
     readonly description: string;
     /**
-     * Deprecated. Use `folderUid` instead
-     *
-     * @deprecated Use `folderUid` instead
-     */
-    readonly folderId: string;
-    /**
      * Name of the folder containing the library panel.
      */
     readonly folderName: string;

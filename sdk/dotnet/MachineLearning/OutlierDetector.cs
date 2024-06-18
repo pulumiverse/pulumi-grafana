@@ -33,12 +33,6 @@ namespace Pulumiverse.Grafana.MachineLearning
         public Output<Outputs.OutlierDetectorAlgorithm> Algorithm { get; private set; } = null!;
 
         /// <summary>
-        /// The id of the datasource to query.
-        /// </summary>
-        [Output("datasourceId")]
-        public Output<int?> DatasourceId { get; private set; } = null!;
-
-        /// <summary>
         /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         /// </summary>
         [Output("datasourceType")]
@@ -48,7 +42,7 @@ namespace Pulumiverse.Grafana.MachineLearning
         /// The uid of the datasource to query.
         /// </summary>
         [Output("datasourceUid")]
-        public Output<string?> DatasourceUid { get; private set; } = null!;
+        public Output<string> DatasourceUid { get; private set; } = null!;
 
         /// <summary>
         /// A description of the outlier detector.
@@ -138,12 +132,6 @@ namespace Pulumiverse.Grafana.MachineLearning
         public Input<Inputs.OutlierDetectorAlgorithmArgs> Algorithm { get; set; } = null!;
 
         /// <summary>
-        /// The id of the datasource to query.
-        /// </summary>
-        [Input("datasourceId")]
-        public Input<int>? DatasourceId { get; set; }
-
-        /// <summary>
         /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         /// </summary>
         [Input("datasourceType", required: true)]
@@ -152,8 +140,8 @@ namespace Pulumiverse.Grafana.MachineLearning
         /// <summary>
         /// The uid of the datasource to query.
         /// </summary>
-        [Input("datasourceUid")]
-        public Input<string>? DatasourceUid { get; set; }
+        [Input("datasourceUid", required: true)]
+        public Input<string> DatasourceUid { get; set; } = null!;
 
         /// <summary>
         /// A description of the outlier detector.
@@ -204,12 +192,6 @@ namespace Pulumiverse.Grafana.MachineLearning
         /// </summary>
         [Input("algorithm")]
         public Input<Inputs.OutlierDetectorAlgorithmGetArgs>? Algorithm { get; set; }
-
-        /// <summary>
-        /// The id of the datasource to query.
-        /// </summary>
-        [Input("datasourceId")]
-        public Input<int>? DatasourceId { get; set; }
 
         /// <summary>
         /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.

@@ -44,12 +44,6 @@ namespace Pulumiverse.Grafana.Oss
     public partial class OrganizationPreferences : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
-        /// </summary>
-        [Output("homeDashboardId")]
-        public Output<int?> HomeDashboardId { get; private set; } = null!;
-
-        /// <summary>
         /// The Organization home dashboard UID. This is only available in Grafana 9.0+.
         /// </summary>
         [Output("homeDashboardUid")]
@@ -131,12 +125,6 @@ namespace Pulumiverse.Grafana.Oss
     public sealed class OrganizationPreferencesArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
-        /// </summary>
-        [Input("homeDashboardId")]
-        public Input<int>? HomeDashboardId { get; set; }
-
-        /// <summary>
         /// The Organization home dashboard UID. This is only available in Grafana 9.0+.
         /// </summary>
         [Input("homeDashboardUid")]
@@ -174,12 +162,6 @@ namespace Pulumiverse.Grafana.Oss
 
     public sealed class OrganizationPreferencesState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
-        /// </summary>
-        [Input("homeDashboardId")]
-        public Input<int>? HomeDashboardId { get; set; }
-
         /// <summary>
         /// The Organization home dashboard UID. This is only available in Grafana 9.0+.
         /// </summary>

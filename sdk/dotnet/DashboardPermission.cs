@@ -15,12 +15,6 @@ namespace Pulumiverse.Grafana
     public partial class DashboardPermission : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
-        /// </summary>
-        [Output("dashboardId")]
-        public Output<int> DashboardId { get; private set; } = null!;
-
-        /// <summary>
         /// UID of the dashboard to apply permissions to.
         /// </summary>
         [Output("dashboardUid")]
@@ -90,12 +84,6 @@ namespace Pulumiverse.Grafana
     public sealed class DashboardPermissionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
-        /// </summary>
-        [Input("dashboardId")]
-        public Input<int>? DashboardId { get; set; }
-
-        /// <summary>
         /// UID of the dashboard to apply permissions to.
         /// </summary>
         [Input("dashboardUid")]
@@ -127,12 +115,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class DashboardPermissionState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// ID of the dashboard to apply permissions to. Deprecated: use `dashboard_uid` instead.
-        /// </summary>
-        [Input("dashboardId")]
-        public Input<int>? DashboardId { get; set; }
-
         /// <summary>
         /// UID of the dashboard to apply permissions to.
         /// </summary>

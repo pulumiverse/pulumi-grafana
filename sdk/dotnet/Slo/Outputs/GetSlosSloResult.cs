@@ -31,6 +31,10 @@ namespace Pulumiverse.Grafana.Slo.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloDestinationDatasourceResult> DestinationDatasources;
         /// <summary>
+        /// UID for the SLO folder
+        /// </summary>
+        public readonly string FolderUid;
+        /// <summary>
         /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloLabelResult> Labels;
@@ -59,6 +63,8 @@ namespace Pulumiverse.Grafana.Slo.Outputs
 
             ImmutableArray<Outputs.GetSlosSloDestinationDatasourceResult> destinationDatasources,
 
+            string folderUid,
+
             ImmutableArray<Outputs.GetSlosSloLabelResult> labels,
 
             string name,
@@ -72,6 +78,7 @@ namespace Pulumiverse.Grafana.Slo.Outputs
             Alertings = alertings;
             Description = description;
             DestinationDatasources = destinationDatasources;
+            FolderUid = folderUid;
             Labels = labels;
             Name = name;
             Objectives = objectives;

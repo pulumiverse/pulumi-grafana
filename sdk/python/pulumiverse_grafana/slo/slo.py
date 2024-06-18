@@ -21,6 +21,7 @@ class SLOArgs:
                  queries: pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]],
                  alertings: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]]] = None,
                  destination_datasource: Optional[pulumi.Input['SLODestinationDatasourceArgs']] = None,
+                 folder_uid: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
@@ -34,6 +35,7 @@ class SLOArgs:
                			long-term error budget burn rate is high, or when the remaining
                			error budget is below a certain threshold. Annotations and Labels support templating.
         :param pulumi.Input['SLODestinationDatasourceArgs'] destination_datasource: Destination Datasource sets the datasource defined for an SLO
+        :param pulumi.Input[str] folder_uid: UID for the SLO folder
         :param pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
         """
@@ -44,6 +46,8 @@ class SLOArgs:
             pulumi.set(__self__, "alertings", alertings)
         if destination_datasource is not None:
             pulumi.set(__self__, "destination_datasource", destination_datasource)
+        if folder_uid is not None:
+            pulumi.set(__self__, "folder_uid", folder_uid)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if name is not None:
@@ -114,6 +118,18 @@ class SLOArgs:
         pulumi.set(self, "destination_datasource", value)
 
     @property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> Optional[pulumi.Input[str]]:
+        """
+        UID for the SLO folder
+        """
+        return pulumi.get(self, "folder_uid")
+
+    @folder_uid.setter
+    def folder_uid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "folder_uid", value)
+
+    @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]]]:
         """
@@ -144,6 +160,7 @@ class _SLOState:
                  alertings: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  destination_datasource: Optional[pulumi.Input['SLODestinationDatasourceArgs']] = None,
+                 folder_uid: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  objectives: Optional[pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]]] = None,
@@ -157,6 +174,7 @@ class _SLOState:
                			error budget is below a certain threshold. Annotations and Labels support templating.
         :param pulumi.Input[str] description: Description is a free-text field that can provide more context to an SLO.
         :param pulumi.Input['SLODestinationDatasourceArgs'] destination_datasource: Destination Datasource sets the datasource defined for an SLO
+        :param pulumi.Input[str] folder_uid: UID for the SLO folder
         :param pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
         :param pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
@@ -168,6 +186,8 @@ class _SLOState:
             pulumi.set(__self__, "description", description)
         if destination_datasource is not None:
             pulumi.set(__self__, "destination_datasource", destination_datasource)
+        if folder_uid is not None:
+            pulumi.set(__self__, "folder_uid", folder_uid)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if name is not None:
@@ -216,6 +236,18 @@ class _SLOState:
     @destination_datasource.setter
     def destination_datasource(self, value: Optional[pulumi.Input['SLODestinationDatasourceArgs']]):
         pulumi.set(self, "destination_datasource", value)
+
+    @property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> Optional[pulumi.Input[str]]:
+        """
+        UID for the SLO folder
+        """
+        return pulumi.get(self, "folder_uid")
+
+    @folder_uid.setter
+    def folder_uid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "folder_uid", value)
 
     @property
     @pulumi.getter
@@ -274,6 +306,7 @@ class SLO(pulumi.CustomResource):
                  alertings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOAlertingArgs']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  destination_datasource: Optional[pulumi.Input[pulumi.InputType['SLODestinationDatasourceArgs']]] = None,
+                 folder_uid: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  objectives: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]]] = None,
@@ -303,6 +336,7 @@ class SLO(pulumi.CustomResource):
                			error budget is below a certain threshold. Annotations and Labels support templating.
         :param pulumi.Input[str] description: Description is a free-text field that can provide more context to an SLO.
         :param pulumi.Input[pulumi.InputType['SLODestinationDatasourceArgs']] destination_datasource: Destination Datasource sets the datasource defined for an SLO
+        :param pulumi.Input[str] folder_uid: UID for the SLO folder
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
@@ -347,6 +381,7 @@ class SLO(pulumi.CustomResource):
                  alertings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOAlertingArgs']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  destination_datasource: Optional[pulumi.Input[pulumi.InputType['SLODestinationDatasourceArgs']]] = None,
+                 folder_uid: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  objectives: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]]] = None,
@@ -365,6 +400,7 @@ class SLO(pulumi.CustomResource):
                 raise TypeError("Missing required property 'description'")
             __props__.__dict__["description"] = description
             __props__.__dict__["destination_datasource"] = destination_datasource
+            __props__.__dict__["folder_uid"] = folder_uid
             __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name
             if objectives is None and not opts.urn:
@@ -388,6 +424,7 @@ class SLO(pulumi.CustomResource):
             alertings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOAlertingArgs']]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
             destination_datasource: Optional[pulumi.Input[pulumi.InputType['SLODestinationDatasourceArgs']]] = None,
+            folder_uid: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             objectives: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]]] = None,
@@ -406,6 +443,7 @@ class SLO(pulumi.CustomResource):
                			error budget is below a certain threshold. Annotations and Labels support templating.
         :param pulumi.Input[str] description: Description is a free-text field that can provide more context to an SLO.
         :param pulumi.Input[pulumi.InputType['SLODestinationDatasourceArgs']] destination_datasource: Destination Datasource sets the datasource defined for an SLO
+        :param pulumi.Input[str] folder_uid: UID for the SLO folder
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
@@ -418,6 +456,7 @@ class SLO(pulumi.CustomResource):
         __props__.__dict__["alertings"] = alertings
         __props__.__dict__["description"] = description
         __props__.__dict__["destination_datasource"] = destination_datasource
+        __props__.__dict__["folder_uid"] = folder_uid
         __props__.__dict__["labels"] = labels
         __props__.__dict__["name"] = name
         __props__.__dict__["objectives"] = objectives
@@ -451,6 +490,14 @@ class SLO(pulumi.CustomResource):
         Destination Datasource sets the datasource defined for an SLO
         """
         return pulumi.get(self, "destination_datasource")
+
+    @property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> pulumi.Output[Optional[str]]:
+        """
+        UID for the SLO folder
+        """
+        return pulumi.get(self, "folder_uid")
 
     @property
     @pulumi.getter

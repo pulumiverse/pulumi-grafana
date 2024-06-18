@@ -18,7 +18,6 @@ export function getDashboards(args?: GetDashboardsArgs, opts?: pulumi.InvokeOpti
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:oss/getDashboards:getDashboards", {
-        "folderIds": args.folderIds,
         "folderUids": args.folderUids,
         "limit": args.limit,
         "orgId": args.orgId,
@@ -30,12 +29,6 @@ export function getDashboards(args?: GetDashboardsArgs, opts?: pulumi.InvokeOpti
  * A collection of arguments for invoking getDashboards.
  */
 export interface GetDashboardsArgs {
-    /**
-     * Deprecated, use `folderUids` instead.
-     *
-     * @deprecated Use `folderUids` instead.
-     */
-    folderIds?: number[];
     /**
      * UIDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `["General"]` for General folder), or leave blank to get all dashboards in all folders.
      */
@@ -59,12 +52,6 @@ export interface GetDashboardsArgs {
  */
 export interface GetDashboardsResult {
     readonly dashboards: outputs.oss.GetDashboardsDashboard[];
-    /**
-     * Deprecated, use `folderUids` instead.
-     *
-     * @deprecated Use `folderUids` instead.
-     */
-    readonly folderIds?: number[];
     /**
      * UIDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `["General"]` for General folder), or leave blank to get all dashboards in all folders.
      */
@@ -101,12 +88,6 @@ export function getDashboardsOutput(args?: GetDashboardsOutputArgs, opts?: pulum
  * A collection of arguments for invoking getDashboards.
  */
 export interface GetDashboardsOutputArgs {
-    /**
-     * Deprecated, use `folderUids` instead.
-     *
-     * @deprecated Use `folderUids` instead.
-     */
-    folderIds?: pulumi.Input<pulumi.Input<number>[]>;
     /**
      * UIDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `["General"]` for General folder), or leave blank to get all dashboards in all folders.
      */

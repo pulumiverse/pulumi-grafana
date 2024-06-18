@@ -47,11 +47,6 @@ namespace Pulumiverse.Grafana.Oss
         ///         }),
         ///     });
         /// 
-        ///     var fromId = Grafana.Oss.GetDashboard.Invoke(new()
-        ///     {
-        ///         DashboardId = test.DashboardId,
-        ///     });
-        /// 
         ///     var fromUid = Grafana.Oss.GetDashboard.Invoke(new()
         ///     {
         ///         Uid = "test-ds-dashboard-uid",
@@ -96,11 +91,6 @@ namespace Pulumiverse.Grafana.Oss
         ///             ["version"] = 0,
         ///             ["refresh"] = "25s",
         ///         }),
-        ///     });
-        /// 
-        ///     var fromId = Grafana.Oss.GetDashboard.Invoke(new()
-        ///     {
-        ///         DashboardId = test.DashboardId,
         ///     });
         /// 
         ///     var fromUid = Grafana.Oss.GetDashboard.Invoke(new()
@@ -181,10 +171,6 @@ namespace Pulumiverse.Grafana.Oss
         /// </summary>
         public readonly int? DashboardId;
         /// <summary>
-        /// Deprecated. Use `folder_uid` instead
-        /// </summary>
-        public readonly int Folder;
-        /// <summary>
         /// The UID of the folder where the Grafana dashboard is found.
         /// </summary>
         public readonly string FolderUid;
@@ -227,8 +213,6 @@ namespace Pulumiverse.Grafana.Oss
 
             int? dashboardId,
 
-            int folder,
-
             string folderUid,
 
             string id,
@@ -249,7 +233,6 @@ namespace Pulumiverse.Grafana.Oss
         {
             ConfigJson = configJson;
             DashboardId = dashboardId;
-            Folder = folder;
             FolderUid = folderUid;
             Id = id;
             IsStarred = isStarred;

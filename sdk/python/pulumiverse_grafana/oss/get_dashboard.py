@@ -21,16 +21,13 @@ class GetDashboardResult:
     """
     A collection of values returned by getDashboard.
     """
-    def __init__(__self__, config_json=None, dashboard_id=None, folder=None, folder_uid=None, id=None, is_starred=None, org_id=None, slug=None, title=None, uid=None, url=None, version=None):
+    def __init__(__self__, config_json=None, dashboard_id=None, folder_uid=None, id=None, is_starred=None, org_id=None, slug=None, title=None, uid=None, url=None, version=None):
         if config_json and not isinstance(config_json, str):
             raise TypeError("Expected argument 'config_json' to be a str")
         pulumi.set(__self__, "config_json", config_json)
         if dashboard_id and not isinstance(dashboard_id, int):
             raise TypeError("Expected argument 'dashboard_id' to be a int")
         pulumi.set(__self__, "dashboard_id", dashboard_id)
-        if folder and not isinstance(folder, int):
-            raise TypeError("Expected argument 'folder' to be a int")
-        pulumi.set(__self__, "folder", folder)
         if folder_uid and not isinstance(folder_uid, str):
             raise TypeError("Expected argument 'folder_uid' to be a str")
         pulumi.set(__self__, "folder_uid", folder_uid)
@@ -74,17 +71,6 @@ class GetDashboardResult:
         The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
         """
         return pulumi.get(self, "dashboard_id")
-
-    @property
-    @pulumi.getter
-    def folder(self) -> int:
-        """
-        Deprecated. Use `folder_uid` instead
-        """
-        warnings.warn("""Use `folder_uid` instead""", DeprecationWarning)
-        pulumi.log.warn("""folder is deprecated: Use `folder_uid` instead""")
-
-        return pulumi.get(self, "folder")
 
     @property
     @pulumi.getter(name="folderUid")
@@ -167,7 +153,6 @@ class AwaitableGetDashboardResult(GetDashboardResult):
         return GetDashboardResult(
             config_json=self.config_json,
             dashboard_id=self.dashboard_id,
-            folder=self.folder,
             folder_uid=self.folder_uid,
             id=self.id,
             is_starred=self.is_starred,
@@ -206,7 +191,6 @@ def get_dashboard(dashboard_id: Optional[int] = None,
         "version": 0,
         "refresh": "25s",
     }))
-    from_id = grafana.oss.get_dashboard_output(dashboard_id=test.dashboard_id)
     from_uid = grafana.oss.get_dashboard(uid="test-ds-dashboard-uid")
     ```
 
@@ -225,7 +209,6 @@ def get_dashboard(dashboard_id: Optional[int] = None,
     return AwaitableGetDashboardResult(
         config_json=pulumi.get(__ret__, 'config_json'),
         dashboard_id=pulumi.get(__ret__, 'dashboard_id'),
-        folder=pulumi.get(__ret__, 'folder'),
         folder_uid=pulumi.get(__ret__, 'folder_uid'),
         id=pulumi.get(__ret__, 'id'),
         is_starred=pulumi.get(__ret__, 'is_starred'),
@@ -265,7 +248,6 @@ def get_dashboard_output(dashboard_id: Optional[pulumi.Input[Optional[int]]] = N
         "version": 0,
         "refresh": "25s",
     }))
-    from_id = grafana.oss.get_dashboard_output(dashboard_id=test.dashboard_id)
     from_uid = grafana.oss.get_dashboard(uid="test-ds-dashboard-uid")
     ```
 

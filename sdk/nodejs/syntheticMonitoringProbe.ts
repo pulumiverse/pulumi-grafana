@@ -41,6 +41,10 @@ export class SyntheticMonitoringProbe extends pulumi.CustomResource {
      */
     public /*out*/ readonly authToken!: pulumi.Output<string>;
     /**
+     * Disables scripted checks for this probe.
+     */
+    public readonly disableScriptedChecks!: pulumi.Output<boolean | undefined>;
+    /**
      * Custom labels to be included with collected metrics and logs.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
@@ -87,6 +91,7 @@ export class SyntheticMonitoringProbe extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SyntheticMonitoringProbeState | undefined;
             resourceInputs["authToken"] = state ? state.authToken : undefined;
+            resourceInputs["disableScriptedChecks"] = state ? state.disableScriptedChecks : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["latitude"] = state ? state.latitude : undefined;
             resourceInputs["longitude"] = state ? state.longitude : undefined;
@@ -105,6 +110,7 @@ export class SyntheticMonitoringProbe extends pulumi.CustomResource {
             if ((!args || args.region === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
+            resourceInputs["disableScriptedChecks"] = args ? args.disableScriptedChecks : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["latitude"] = args ? args.latitude : undefined;
             resourceInputs["longitude"] = args ? args.longitude : undefined;
@@ -131,6 +137,10 @@ export interface SyntheticMonitoringProbeState {
      * The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
      */
     authToken?: pulumi.Input<string>;
+    /**
+     * Disables scripted checks for this probe.
+     */
+    disableScriptedChecks?: pulumi.Input<boolean>;
     /**
      * Custom labels to be included with collected metrics and logs.
      */
@@ -166,6 +176,10 @@ export interface SyntheticMonitoringProbeState {
  * The set of arguments for constructing a SyntheticMonitoringProbe resource.
  */
 export interface SyntheticMonitoringProbeArgs {
+    /**
+     * Disables scripted checks for this probe.
+     */
+    disableScriptedChecks?: pulumi.Input<boolean>;
     /**
      * Custom labels to be included with collected metrics and logs.
      */

@@ -41,12 +41,6 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly cloudAccessPolicyToken!: pulumi.Output<string | undefined>;
     /**
-     * Deprecated: Use `cloudAccessPolicyToken` instead.
-     *
-     * @deprecated Use `cloudAccessPolicyToken` instead.
-     */
-    public readonly cloudApiKey!: pulumi.Output<string | undefined>;
-    /**
      * Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
      */
     public readonly cloudApiUrl!: pulumi.Output<string | undefined>;
@@ -92,12 +86,10 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["auth"] = (args?.auth ? pulumi.secret(args.auth) : undefined) ?? utilities.getEnv("GRAFANA_AUTH");
             resourceInputs["caCert"] = (args ? args.caCert : undefined) ?? utilities.getEnv("GRAFANA_CA_CERT");
             resourceInputs["cloudAccessPolicyToken"] = args?.cloudAccessPolicyToken ? pulumi.secret(args.cloudAccessPolicyToken) : undefined;
-            resourceInputs["cloudApiKey"] = (args?.cloudApiKey ? pulumi.secret(args.cloudApiKey) : undefined) ?? utilities.getEnv("GRAFANA_CLOUD_API_KEY");
             resourceInputs["cloudApiUrl"] = (args ? args.cloudApiUrl : undefined) ?? utilities.getEnv("GRAFANA_CLOUD_API_URL");
             resourceInputs["insecureSkipVerify"] = pulumi.output((args ? args.insecureSkipVerify : undefined) ?? utilities.getEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY")).apply(JSON.stringify);
             resourceInputs["oncallAccessToken"] = (args?.oncallAccessToken ? pulumi.secret(args.oncallAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_ACCESS_TOKEN");
             resourceInputs["oncallUrl"] = (args ? args.oncallUrl : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_URL");
-            resourceInputs["orgId"] = pulumi.output((args ? args.orgId : undefined) ?? utilities.getEnvNumber("GRAFANA_ORG_ID")).apply(JSON.stringify);
             resourceInputs["retries"] = pulumi.output((args ? args.retries : undefined) ?? utilities.getEnvNumber("GRAFANA_RETRIES")).apply(JSON.stringify);
             resourceInputs["retryStatusCodes"] = pulumi.output(args ? args.retryStatusCodes : undefined).apply(JSON.stringify);
             resourceInputs["retryWait"] = pulumi.output(args ? args.retryWait : undefined).apply(JSON.stringify);
@@ -109,7 +101,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["url"] = (args ? args.url : undefined) ?? utilities.getEnv("GRAFANA_URL");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["auth", "cloudAccessPolicyToken", "cloudApiKey", "oncallAccessToken", "smAccessToken", "tlsKey"] };
+        const secretOpts = { additionalSecretOutputs: ["auth", "cloudAccessPolicyToken", "oncallAccessToken", "smAccessToken", "tlsKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
@@ -135,12 +127,6 @@ export interface ProviderArgs {
      */
     cloudAccessPolicyToken?: pulumi.Input<string>;
     /**
-     * Deprecated: Use `cloudAccessPolicyToken` instead.
-     *
-     * @deprecated Use `cloudAccessPolicyToken` instead.
-     */
-    cloudApiKey?: pulumi.Input<string>;
-    /**
      * Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
      */
     cloudApiUrl?: pulumi.Input<string>;
@@ -156,12 +142,6 @@ export interface ProviderArgs {
      * An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
      */
     oncallUrl?: pulumi.Input<string>;
-    /**
-     * Deprecated: Use the `orgId` attributes on resources instead.
-     *
-     * @deprecated Use the `orgId` attributes on resources instead.
-     */
-    orgId?: pulumi.Input<number>;
     /**
      * The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
      * `GRAFANA_RETRIES` environment variable.

@@ -202,6 +202,12 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string>? RoleValuesNone { get; set; }
 
         /// <summary>
+        /// List of comma- or space-separated roles which will be mapped into the Viewer role.
+        /// </summary>
+        [Input("roleValuesViewer")]
+        public Input<string>? RoleValuesViewer { get; set; }
+
+        /// <summary>
         /// Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
         /// </summary>
         [Input("signatureAlgorithm")]

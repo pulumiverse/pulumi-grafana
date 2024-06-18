@@ -47,6 +47,7 @@ namespace Pulumiverse.Grafana
     [OutputType]
     public sealed class GetSyntheticMonitoringProbeResult
     {
+        public readonly bool DisableScriptedChecks;
         public readonly string Id;
         public readonly ImmutableDictionary<string, string> Labels;
         public readonly double Latitude;
@@ -58,6 +59,8 @@ namespace Pulumiverse.Grafana
 
         [OutputConstructor]
         private GetSyntheticMonitoringProbeResult(
+            bool disableScriptedChecks,
+
             string id,
 
             ImmutableDictionary<string, string> labels,
@@ -74,6 +77,7 @@ namespace Pulumiverse.Grafana
 
             int tenantId)
         {
+            DisableScriptedChecks = disableScriptedChecks;
             Id = id;
             Labels = labels;
             Latitude = latitude;

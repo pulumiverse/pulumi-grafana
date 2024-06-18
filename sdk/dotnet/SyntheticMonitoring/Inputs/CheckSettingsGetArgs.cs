@@ -38,6 +38,12 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
         public Input<Inputs.CheckSettingsPingGetArgs>? Ping { get; set; }
 
         /// <summary>
+        /// Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+        /// </summary>
+        [Input("scripted")]
+        public Input<Inputs.CheckSettingsScriptedGetArgs>? Scripted { get; set; }
+
+        /// <summary>
         /// Settings for TCP check. The target must be of the form `&lt;host&gt;:&lt;port&gt;`, where the host portion must be a valid hostname or IP address.
         /// </summary>
         [Input("tcp")]

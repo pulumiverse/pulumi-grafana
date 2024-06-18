@@ -6,14 +6,11 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .annotation import *
-from .api_key import *
 from .cloud_access_policy import *
 from .cloud_access_policy_token import *
-from .cloud_api_key import *
 from .cloud_org_member import *
 from .cloud_plugin_installation import *
 from .cloud_stack import *
-from .cloud_stack_api_key import *
 from .cloud_stack_service_account import *
 from .cloud_stack_service_account_token import *
 from .contact_point import *
@@ -38,7 +35,6 @@ from .get_folder import *
 from .get_folders import *
 from .get_library_panel import *
 from .get_on_call_slack_channel import *
-from .get_oncall_action import *
 from .get_oncall_escalation_chain import *
 from .get_oncall_integration import *
 from .get_oncall_outgoing_webhook import *
@@ -186,14 +182,6 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
-  "mod": "cloud/apiKey",
-  "fqn": "pulumiverse_grafana.cloud",
-  "classes": {
-   "grafana:cloud/apiKey:ApiKey": "ApiKey"
-  }
- },
- {
-  "pkg": "grafana",
   "mod": "cloud/orgMember",
   "fqn": "pulumiverse_grafana.cloud",
   "classes": {
@@ -214,14 +202,6 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.cloud",
   "classes": {
    "grafana:cloud/stack:Stack": "Stack"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "cloud/stackApiKey",
-  "fqn": "pulumiverse_grafana.cloud",
-  "classes": {
-   "grafana:cloud/stackApiKey:StackApiKey": "StackApiKey"
   }
  },
  {
@@ -306,14 +286,6 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
-  "mod": "index/apiKey",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/apiKey:ApiKey": "ApiKey"
-  }
- },
- {
-  "pkg": "grafana",
   "mod": "index/cloudAccessPolicy",
   "fqn": "pulumiverse_grafana",
   "classes": {
@@ -326,14 +298,6 @@ _utilities.register(
   "fqn": "pulumiverse_grafana",
   "classes": {
    "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken": "CloudAccessPolicyToken"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/cloudApiKey",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/cloudApiKey:CloudApiKey": "CloudApiKey"
   }
  },
  {
@@ -358,14 +322,6 @@ _utilities.register(
   "fqn": "pulumiverse_grafana",
   "classes": {
    "grafana:index/cloudStack:CloudStack": "CloudStack"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/cloudStackApiKey",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/cloudStackApiKey:CloudStackApiKey": "CloudStackApiKey"
   }
  },
  {
@@ -838,14 +794,6 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.oss",
   "classes": {
    "grafana:oss/annotation:Annotation": "Annotation"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "oss/apiKey",
-  "fqn": "pulumiverse_grafana.oss",
-  "classes": {
-   "grafana:oss/apiKey:ApiKey": "ApiKey"
   }
  },
  {

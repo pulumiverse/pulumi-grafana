@@ -44,19 +44,13 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
      */
     public readonly algorithm!: pulumi.Output<outputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
-     * The id of the datasource to query.
-     *
-     * @deprecated Use datasourceUid instead.
-     */
-    public readonly datasourceId!: pulumi.Output<number | undefined>;
-    /**
      * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
      */
     public readonly datasourceType!: pulumi.Output<string>;
     /**
      * The uid of the datasource to query.
      */
-    public readonly datasourceUid!: pulumi.Output<string | undefined>;
+    public readonly datasourceUid!: pulumi.Output<string>;
     /**
      * A description of the outlier detector.
      */
@@ -95,7 +89,6 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as MachineLearningOutlierDetectorState | undefined;
             resourceInputs["algorithm"] = state ? state.algorithm : undefined;
-            resourceInputs["datasourceId"] = state ? state.datasourceId : undefined;
             resourceInputs["datasourceType"] = state ? state.datasourceType : undefined;
             resourceInputs["datasourceUid"] = state ? state.datasourceUid : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
@@ -111,6 +104,9 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
             if ((!args || args.datasourceType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'datasourceType'");
             }
+            if ((!args || args.datasourceUid === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'datasourceUid'");
+            }
             if ((!args || args.metric === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'metric'");
             }
@@ -118,7 +114,6 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
                 throw new Error("Missing required property 'queryParams'");
             }
             resourceInputs["algorithm"] = args ? args.algorithm : undefined;
-            resourceInputs["datasourceId"] = args ? args.datasourceId : undefined;
             resourceInputs["datasourceType"] = args ? args.datasourceType : undefined;
             resourceInputs["datasourceUid"] = args ? args.datasourceUid : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
@@ -143,12 +138,6 @@ export interface MachineLearningOutlierDetectorState {
      * https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      */
     algorithm?: pulumi.Input<inputs.MachineLearningOutlierDetectorAlgorithm>;
-    /**
-     * The id of the datasource to query.
-     *
-     * @deprecated Use datasourceUid instead.
-     */
-    datasourceId?: pulumi.Input<number>;
     /**
      * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
      */
@@ -189,19 +178,13 @@ export interface MachineLearningOutlierDetectorArgs {
      */
     algorithm: pulumi.Input<inputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
-     * The id of the datasource to query.
-     *
-     * @deprecated Use datasourceUid instead.
-     */
-    datasourceId?: pulumi.Input<number>;
-    /**
      * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
      */
     datasourceType: pulumi.Input<string>;
     /**
      * The uid of the datasource to query.
      */
-    datasourceUid?: pulumi.Input<string>;
+    datasourceUid: pulumi.Input<string>;
     /**
      * A description of the outlier detector.
      */

@@ -95,10 +95,6 @@ namespace Pulumiverse.Grafana.Oss
         /// </summary>
         public readonly string Description;
         /// <summary>
-        /// Deprecated. Use `folder_uid` instead
-        /// </summary>
-        public readonly string FolderId;
-        /// <summary>
         /// Name of the folder containing the library panel.
         /// </summary>
         public readonly string FolderName;
@@ -151,8 +147,6 @@ namespace Pulumiverse.Grafana.Oss
 
             string description,
 
-            string folderId,
-
             string folderName,
 
             string folderUid,
@@ -178,7 +172,6 @@ namespace Pulumiverse.Grafana.Oss
             Created = created;
             DashboardIds = dashboardIds;
             Description = description;
-            FolderId = folderId;
             FolderName = folderName;
             FolderUid = folderUid;
             Id = id;

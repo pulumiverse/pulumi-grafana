@@ -9,7 +9,7 @@ import (
 	// The linter requires unnamed imports to have a doc comment
 	_ "embed"
 
-	grafana "github.com/grafana/terraform-provider-grafana/v2/pkg/provider"
+	grafana "github.com/grafana/terraform-provider-grafana/v3/pkg/provider"
 	pfbridge "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
@@ -103,7 +103,7 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:                "https://grafana.com",
 		Repository:              "https://github.com/pulumiverse/pulumi-grafana",
 		GitHubOrg:               "grafana",
-		TFProviderModuleVersion: "v2",
+		TFProviderModuleVersion: "v3",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"url": {
 				Type: "string",
@@ -151,12 +151,6 @@ func Provider() tfbridge.ProviderInfo {
 			"insecure_skip_verify": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"GRAFANA_INSECURE_SKIP_VERIFY"},
-				},
-			},
-			"cloud_api_key": {
-				Secret: boolRef(true),
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"GRAFANA_CLOUD_API_KEY"},
 				},
 			},
 			"cloud_api_url": {
@@ -253,14 +247,6 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"grafana_cloud_api_key": {
-				Tok: grafanaResource(cloudMod, "ApiKey"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "CloudApiKey"),
-					},
-				},
-			},
 			"grafana_cloud_org_member": {
 				Tok: grafanaResource(cloudMod, "OrgMember"),
 				Aliases: []tfbridge.AliasInfo{
@@ -282,14 +268,6 @@ func Provider() tfbridge.ProviderInfo {
 				Aliases: []tfbridge.AliasInfo{
 					{
 						Type: grafanaResourceAlias(grafanaMod, "CloudStack"),
-					},
-				},
-			},
-			"grafana_cloud_stack_api_key": {
-				Tok: grafanaResource(cloudMod, "StackApiKey"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "CloudStackApiKey"),
 					},
 				},
 			},
@@ -374,14 +352,6 @@ func Provider() tfbridge.ProviderInfo {
 				Aliases: []tfbridge.AliasInfo{
 					{
 						Type: grafanaResourceAlias(grafanaMod, "Annotation"),
-					},
-				},
-			},
-			"grafana_api_key": {
-				Tok: grafanaResource(ossMod, "ApiKey"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "ApiKey"),
 					},
 				},
 			},
@@ -726,9 +696,6 @@ func Provider() tfbridge.ProviderInfo {
 			// Machine Learning
 
 			// OnCall
-			"grafana_oncall_action": {
-				Tok: grafanaDataSource(oncallMod, "getAction"),
-			},
 			"grafana_oncall_escalation_chain": {
 				Tok: grafanaDataSource(oncallMod, "getEscalationChain"),
 			},

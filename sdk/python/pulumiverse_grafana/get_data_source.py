@@ -87,9 +87,9 @@ class GetDataSourceResult:
     @property
     @pulumi.getter
     def id(self) -> str:
-        warnings.warn("""Use `uid` instead of `id`""", DeprecationWarning)
-        pulumi.log.warn("""id is deprecated: Use `uid` instead of `id`""")
-
+        """
+        The provider-assigned unique ID for this managed resource.
+        """
         return pulumi.get(self, "id")
 
     @property
@@ -154,8 +154,7 @@ class AwaitableGetDataSourceResult(GetDataSourceResult):
             username=self.username)
 
 
-def get_data_source(id: Optional[str] = None,
-                    name: Optional[str] = None,
+def get_data_source(name: Optional[str] = None,
                     org_id: Optional[str] = None,
                     uid: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDataSourceResult:
@@ -164,7 +163,6 @@ def get_data_source(id: Optional[str] = None,
     """
     pulumi.log.warn("""get_data_source is deprecated: grafana.index/getdatasource.getDataSource has been deprecated in favor of grafana.oss/getdatasource.getDataSource""")
     __args__ = dict()
-    __args__['id'] = id
     __args__['name'] = name
     __args__['orgId'] = org_id
     __args__['uid'] = uid
@@ -188,8 +186,7 @@ def get_data_source(id: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_data_source)
-def get_data_source_output(id: Optional[pulumi.Input[Optional[str]]] = None,
-                           name: Optional[pulumi.Input[Optional[str]]] = None,
+def get_data_source_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                            org_id: Optional[pulumi.Input[Optional[str]]] = None,
                            uid: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataSourceResult]:

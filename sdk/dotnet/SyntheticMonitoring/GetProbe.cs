@@ -95,6 +95,10 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     public sealed class GetProbeResult
     {
         /// <summary>
+        /// Disables scripted checks for this probe.
+        /// </summary>
+        public readonly bool DisableScriptedChecks;
+        /// <summary>
         /// The ID of the probe.
         /// </summary>
         public readonly string Id;
@@ -129,6 +133,8 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
 
         [OutputConstructor]
         private GetProbeResult(
+            bool disableScriptedChecks,
+
             string id,
 
             ImmutableDictionary<string, string> labels,
@@ -145,6 +151,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
 
             int tenantId)
         {
+            DisableScriptedChecks = disableScriptedChecks;
             Id = id;
             Labels = labels;
             Latitude = latitude;

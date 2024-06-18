@@ -41,12 +41,6 @@ namespace Pulumiverse.Grafana
         public Output<string?> CloudAccessPolicyToken { get; private set; } = null!;
 
         /// <summary>
-        /// Deprecated: Use `cloud_access_policy_token` instead.
-        /// </summary>
-        [Output("cloudApiKey")]
-        public Output<string?> CloudApiKey { get; private set; } = null!;
-
-        /// <summary>
         /// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
         /// </summary>
         [Output("cloudApiUrl")]
@@ -116,7 +110,6 @@ namespace Pulumiverse.Grafana
                 {
                     "auth",
                     "cloudAccessPolicyToken",
-                    "cloudApiKey",
                     "oncallAccessToken",
                     "smAccessToken",
                     "tlsKey",
@@ -172,23 +165,6 @@ namespace Pulumiverse.Grafana
             }
         }
 
-        [Input("cloudApiKey")]
-        private Input<string>? _cloudApiKey;
-
-        /// <summary>
-        /// Deprecated: Use `cloud_access_policy_token` instead.
-        /// </summary>
-        [Obsolete(@"Use `cloud_access_policy_token` instead.")]
-        public Input<string>? CloudApiKey
-        {
-            get => _cloudApiKey;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _cloudApiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
         /// <summary>
         /// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
         /// </summary>
@@ -222,12 +198,6 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("oncallUrl")]
         public Input<string>? OncallUrl { get; set; }
-
-        /// <summary>
-        /// Deprecated: Use the `org_id` attributes on resources instead.
-        /// </summary>
-        [Input("orgId", json: true)]
-        public Input<int>? OrgId { get; set; }
 
         /// <summary>
         /// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
@@ -315,12 +285,10 @@ namespace Pulumiverse.Grafana
         {
             Auth = Utilities.GetEnv("GRAFANA_AUTH");
             CaCert = Utilities.GetEnv("GRAFANA_CA_CERT");
-            CloudApiKey = Utilities.GetEnv("GRAFANA_CLOUD_API_KEY");
             CloudApiUrl = Utilities.GetEnv("GRAFANA_CLOUD_API_URL");
             InsecureSkipVerify = Utilities.GetEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY");
             OncallAccessToken = Utilities.GetEnv("GRAFANA_ONCALL_ACCESS_TOKEN");
             OncallUrl = Utilities.GetEnv("GRAFANA_ONCALL_URL");
-            OrgId = Utilities.GetEnvInt32("GRAFANA_ORG_ID");
             Retries = Utilities.GetEnvInt32("GRAFANA_RETRIES");
             SmAccessToken = Utilities.GetEnv("GRAFANA_SM_ACCESS_TOKEN");
             SmUrl = Utilities.GetEnv("GRAFANA_SM_URL");

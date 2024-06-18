@@ -7,7 +7,6 @@ import typing
 # Export this package's modules as members:
 from .escalation import *
 from .escalation_chain import *
-from .get_action import *
 from .get_escalation_chain import *
 from .get_integration import *
 from .get_outgoing_webhook import *

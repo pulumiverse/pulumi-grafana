@@ -26,10 +26,6 @@ export interface GetOrganizationPreferencesArgs {
  * A collection of values returned by getOrganizationPreferences.
  */
 export interface GetOrganizationPreferencesResult {
-    /**
-     * @deprecated Use `homeDashboardUid` instead.
-     */
-    readonly homeDashboardId: number;
     readonly homeDashboardUid: string;
     /**
      * The provider-assigned unique ID for this managed resource.

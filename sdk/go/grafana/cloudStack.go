@@ -30,6 +30,11 @@ type CloudStack struct {
 	GraphiteStatus pulumi.StringOutput    `pulumi:"graphiteStatus"`
 	GraphiteUrl    pulumi.StringOutput    `pulumi:"graphiteUrl"`
 	GraphiteUserId pulumi.IntOutput       `pulumi:"graphiteUserId"`
+	// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics'
+	// (`prometheusUserId` attribute of this resource). See
+	// https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use
+	// this.
+	InfluxUrl pulumi.StringOutput `pulumi:"influxUrl"`
 	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and
 	// stacks cannot have more than 10 labels.
 	Labels     pulumi.StringMapOutput `pulumi:"labels"`
@@ -45,8 +50,8 @@ type CloudStack struct {
 	OrgName pulumi.StringOutput `pulumi:"orgName"`
 	// Organization slug to assign to this stack.
 	OrgSlug pulumi.StringOutput `pulumi:"orgSlug"`
-	// Base URL of the OTLP instance configured for this stack. See
-	// https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+	// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this
+	// resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
 	OtlpUrl        pulumi.StringOutput `pulumi:"otlpUrl"`
 	ProfilesName   pulumi.StringOutput `pulumi:"profilesName"`
 	ProfilesStatus pulumi.StringOutput `pulumi:"profilesStatus"`
@@ -141,6 +146,11 @@ type cloudStackState struct {
 	GraphiteStatus *string `pulumi:"graphiteStatus"`
 	GraphiteUrl    *string `pulumi:"graphiteUrl"`
 	GraphiteUserId *int    `pulumi:"graphiteUserId"`
+	// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics'
+	// (`prometheusUserId` attribute of this resource). See
+	// https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use
+	// this.
+	InfluxUrl *string `pulumi:"influxUrl"`
 	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and
 	// stacks cannot have more than 10 labels.
 	Labels     map[string]string `pulumi:"labels"`
@@ -156,8 +166,8 @@ type cloudStackState struct {
 	OrgName *string `pulumi:"orgName"`
 	// Organization slug to assign to this stack.
 	OrgSlug *string `pulumi:"orgSlug"`
-	// Base URL of the OTLP instance configured for this stack. See
-	// https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+	// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this
+	// resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
 	OtlpUrl        *string `pulumi:"otlpUrl"`
 	ProfilesName   *string `pulumi:"profilesName"`
 	ProfilesStatus *string `pulumi:"profilesStatus"`
@@ -214,6 +224,11 @@ type CloudStackState struct {
 	GraphiteStatus pulumi.StringPtrInput
 	GraphiteUrl    pulumi.StringPtrInput
 	GraphiteUserId pulumi.IntPtrInput
+	// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics'
+	// (`prometheusUserId` attribute of this resource). See
+	// https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use
+	// this.
+	InfluxUrl pulumi.StringPtrInput
 	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and
 	// stacks cannot have more than 10 labels.
 	Labels     pulumi.StringMapInput
@@ -229,8 +244,8 @@ type CloudStackState struct {
 	OrgName pulumi.StringPtrInput
 	// Organization slug to assign to this stack.
 	OrgSlug pulumi.StringPtrInput
-	// Base URL of the OTLP instance configured for this stack. See
-	// https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+	// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this
+	// resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
 	OtlpUrl        pulumi.StringPtrInput
 	ProfilesName   pulumi.StringPtrInput
 	ProfilesStatus pulumi.StringPtrInput
@@ -453,6 +468,14 @@ func (o CloudStackOutput) GraphiteUserId() pulumi.IntOutput {
 	return o.ApplyT(func(v *CloudStack) pulumi.IntOutput { return v.GraphiteUserId }).(pulumi.IntOutput)
 }
 
+// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics'
+// (`prometheusUserId` attribute of this resource). See
+// https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use
+// this.
+func (o CloudStackOutput) InfluxUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.InfluxUrl }).(pulumi.StringOutput)
+}
+
 // A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and
 // stacks cannot have more than 10 labels.
 func (o CloudStackOutput) Labels() pulumi.StringMapOutput {
@@ -495,8 +518,8 @@ func (o CloudStackOutput) OrgSlug() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.OrgSlug }).(pulumi.StringOutput)
 }
 
-// Base URL of the OTLP instance configured for this stack. See
-// https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this
+// resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
 func (o CloudStackOutput) OtlpUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.OtlpUrl }).(pulumi.StringOutput)
 }

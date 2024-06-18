@@ -66,6 +66,10 @@ export class SLO extends pulumi.CustomResource {
      */
     public readonly destinationDatasource!: pulumi.Output<outputs.slo.SLODestinationDatasource | undefined>;
     /**
+     * UID for the SLO folder
+     */
+    public readonly folderUid!: pulumi.Output<string | undefined>;
+    /**
      * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
      */
     public readonly labels!: pulumi.Output<outputs.slo.SLOLabel[] | undefined>;
@@ -98,6 +102,7 @@ export class SLO extends pulumi.CustomResource {
             resourceInputs["alertings"] = state ? state.alertings : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["destinationDatasource"] = state ? state.destinationDatasource : undefined;
+            resourceInputs["folderUid"] = state ? state.folderUid : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["objectives"] = state ? state.objectives : undefined;
@@ -116,6 +121,7 @@ export class SLO extends pulumi.CustomResource {
             resourceInputs["alertings"] = args ? args.alertings : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["destinationDatasource"] = args ? args.destinationDatasource : undefined;
+            resourceInputs["folderUid"] = args ? args.folderUid : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["objectives"] = args ? args.objectives : undefined;
@@ -148,6 +154,10 @@ export interface SLOState {
      * Destination Datasource sets the datasource defined for an SLO
      */
     destinationDatasource?: pulumi.Input<inputs.slo.SLODestinationDatasource>;
+    /**
+     * UID for the SLO folder
+     */
+    folderUid?: pulumi.Input<string>;
     /**
      * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
      */
@@ -186,6 +196,10 @@ export interface SLOArgs {
      * Destination Datasource sets the datasource defined for an SLO
      */
     destinationDatasource?: pulumi.Input<inputs.slo.SLODestinationDatasource>;
+    /**
+     * UID for the SLO folder
+     */
+    folderUid?: pulumi.Input<string>;
     /**
      * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
      */

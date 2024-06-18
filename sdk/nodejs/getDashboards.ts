@@ -13,7 +13,6 @@ export function getDashboards(args?: GetDashboardsArgs, opts?: pulumi.InvokeOpti
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getDashboards:getDashboards", {
-        "folderIds": args.folderIds,
         "folderUids": args.folderUids,
         "limit": args.limit,
         "orgId": args.orgId,
@@ -25,10 +24,6 @@ export function getDashboards(args?: GetDashboardsArgs, opts?: pulumi.InvokeOpti
  * A collection of arguments for invoking getDashboards.
  */
 export interface GetDashboardsArgs {
-    /**
-     * @deprecated Use `folderUids` instead.
-     */
-    folderIds?: number[];
     folderUids?: string[];
     limit?: number;
     orgId?: string;
@@ -40,10 +35,6 @@ export interface GetDashboardsArgs {
  */
 export interface GetDashboardsResult {
     readonly dashboards: outputs.GetDashboardsDashboard[];
-    /**
-     * @deprecated Use `folderUids` instead.
-     */
-    readonly folderIds?: number[];
     readonly folderUids?: string[];
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -62,10 +53,6 @@ export function getDashboardsOutput(args?: GetDashboardsOutputArgs, opts?: pulum
  * A collection of arguments for invoking getDashboards.
  */
 export interface GetDashboardsOutputArgs {
-    /**
-     * @deprecated Use `folderUids` instead.
-     */
-    folderIds?: pulumi.Input<pulumi.Input<number>[]>;
     folderUids?: pulumi.Input<pulumi.Input<string>[]>;
     limit?: pulumi.Input<number>;
     orgId?: pulumi.Input<string>;

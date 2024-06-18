@@ -185,6 +185,8 @@ class Installation(pulumi.CustomResource):
             scopes=[
                 "metrics:write",
                 "stacks:read",
+                "logs:write",
+                "traces:write",
             ],
             realms=[grafana.cloud.AccessPolicyRealmArgs(
                 type="stack",
@@ -257,6 +259,8 @@ class Installation(pulumi.CustomResource):
             scopes=[
                 "metrics:write",
                 "stacks:read",
+                "logs:write",
+                "traces:write",
             ],
             realms=[grafana.cloud.AccessPolicyRealmArgs(
                 type="stack",

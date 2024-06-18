@@ -89,6 +89,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
+        /// </summary>
+        public readonly string InfluxUrl;
+        /// <summary>
         /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
         /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
@@ -113,7 +117,7 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly string OrgSlug;
         /// <summary>
-        /// Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        /// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         /// </summary>
         public readonly string OtlpUrl;
         public readonly string ProfilesName;
@@ -191,6 +195,8 @@ namespace Pulumiverse.Grafana.Cloud
 
             string id,
 
+            string influxUrl,
+
             ImmutableDictionary<string, string> labels,
 
             string logsName,
@@ -257,6 +263,7 @@ namespace Pulumiverse.Grafana.Cloud
             GraphiteUrl = graphiteUrl;
             GraphiteUserId = graphiteUserId;
             Id = id;
+            InfluxUrl = influxUrl;
             Labels = labels;
             LogsName = logsName;
             LogsStatus = logsStatus;

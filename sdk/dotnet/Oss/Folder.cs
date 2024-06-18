@@ -74,7 +74,7 @@ namespace Pulumiverse.Grafana.Oss
         public Output<string?> ParentFolderUid { get; private set; } = null!;
 
         /// <summary>
-        /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+        /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). This feature requires Grafana 10.2 or later. Defaults to `false`.
         /// </summary>
         [Output("preventDestroyIfNotEmpty")]
         public Output<bool?> PreventDestroyIfNotEmpty { get; private set; } = null!;
@@ -161,7 +161,7 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? ParentFolderUid { get; set; }
 
         /// <summary>
-        /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+        /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). This feature requires Grafana 10.2 or later. Defaults to `false`.
         /// </summary>
         [Input("preventDestroyIfNotEmpty")]
         public Input<bool>? PreventDestroyIfNotEmpty { get; set; }
@@ -199,7 +199,7 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? ParentFolderUid { get; set; }
 
         /// <summary>
-        /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+        /// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). This feature requires Grafana 10.2 or later. Defaults to `false`.
         /// </summary>
         [Input("preventDestroyIfNotEmpty")]
         public Input<bool>? PreventDestroyIfNotEmpty { get; set; }

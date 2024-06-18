@@ -56,12 +56,6 @@ export class OrganizationPreferences extends pulumi.CustomResource {
     }
 
     /**
-     * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
-     *
-     * @deprecated Use `homeDashboardUid` instead.
-     */
-    public readonly homeDashboardId!: pulumi.Output<number | undefined>;
-    /**
      * The Organization home dashboard UID. This is only available in Grafana 9.0+.
      */
     public readonly homeDashboardUid!: pulumi.Output<string | undefined>;
@@ -95,7 +89,6 @@ export class OrganizationPreferences extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OrganizationPreferencesState | undefined;
-            resourceInputs["homeDashboardId"] = state ? state.homeDashboardId : undefined;
             resourceInputs["homeDashboardUid"] = state ? state.homeDashboardUid : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["theme"] = state ? state.theme : undefined;
@@ -103,7 +96,6 @@ export class OrganizationPreferences extends pulumi.CustomResource {
             resourceInputs["weekStart"] = state ? state.weekStart : undefined;
         } else {
             const args = argsOrState as OrganizationPreferencesArgs | undefined;
-            resourceInputs["homeDashboardId"] = args ? args.homeDashboardId : undefined;
             resourceInputs["homeDashboardUid"] = args ? args.homeDashboardUid : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["theme"] = args ? args.theme : undefined;
@@ -121,12 +113,6 @@ export class OrganizationPreferences extends pulumi.CustomResource {
  * Input properties used for looking up and filtering OrganizationPreferences resources.
  */
 export interface OrganizationPreferencesState {
-    /**
-     * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
-     *
-     * @deprecated Use `homeDashboardUid` instead.
-     */
-    homeDashboardId?: pulumi.Input<number>;
     /**
      * The Organization home dashboard UID. This is only available in Grafana 9.0+.
      */
@@ -153,12 +139,6 @@ export interface OrganizationPreferencesState {
  * The set of arguments for constructing a OrganizationPreferences resource.
  */
 export interface OrganizationPreferencesArgs {
-    /**
-     * The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
-     *
-     * @deprecated Use `homeDashboardUid` instead.
-     */
-    homeDashboardId?: pulumi.Input<number>;
     /**
      * The Organization home dashboard UID. This is only available in Grafana 9.0+.
      */

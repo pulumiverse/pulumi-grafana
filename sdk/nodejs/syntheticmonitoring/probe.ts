@@ -71,6 +71,10 @@ export class Probe extends pulumi.CustomResource {
      */
     public /*out*/ readonly authToken!: pulumi.Output<string>;
     /**
+     * Disables scripted checks for this probe. Defaults to `false`.
+     */
+    public readonly disableScriptedChecks!: pulumi.Output<boolean | undefined>;
+    /**
      * Custom labels to be included with collected metrics and logs.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
@@ -113,6 +117,7 @@ export class Probe extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ProbeState | undefined;
             resourceInputs["authToken"] = state ? state.authToken : undefined;
+            resourceInputs["disableScriptedChecks"] = state ? state.disableScriptedChecks : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["latitude"] = state ? state.latitude : undefined;
             resourceInputs["longitude"] = state ? state.longitude : undefined;
@@ -131,6 +136,7 @@ export class Probe extends pulumi.CustomResource {
             if ((!args || args.region === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
+            resourceInputs["disableScriptedChecks"] = args ? args.disableScriptedChecks : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["latitude"] = args ? args.latitude : undefined;
             resourceInputs["longitude"] = args ? args.longitude : undefined;
@@ -157,6 +163,10 @@ export interface ProbeState {
      * The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
      */
     authToken?: pulumi.Input<string>;
+    /**
+     * Disables scripted checks for this probe. Defaults to `false`.
+     */
+    disableScriptedChecks?: pulumi.Input<boolean>;
     /**
      * Custom labels to be included with collected metrics and logs.
      */
@@ -191,6 +201,10 @@ export interface ProbeState {
  * The set of arguments for constructing a Probe resource.
  */
 export interface ProbeArgs {
+    /**
+     * Disables scripted checks for this probe. Defaults to `false`.
+     */
+    disableScriptedChecks?: pulumi.Input<boolean>;
     /**
      * Custom labels to be included with collected metrics and logs.
      */

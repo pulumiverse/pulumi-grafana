@@ -15,11 +15,6 @@ export type EscalationChain = import("./escalationChain").EscalationChain;
 export const EscalationChain: typeof import("./escalationChain").EscalationChain = null as any;
 utilities.lazyLoad(exports, ["EscalationChain"], () => require("./escalationChain"));
 
-export { GetActionArgs, GetActionResult, GetActionOutputArgs } from "./getAction";
-export const getAction: typeof import("./getAction").getAction = null as any;
-export const getActionOutput: typeof import("./getAction").getActionOutput = null as any;
-utilities.lazyLoad(exports, ["getAction","getActionOutput"], () => require("./getAction"));
-
 export { GetEscalationChainArgs, GetEscalationChainResult, GetEscalationChainOutputArgs } from "./getEscalationChain";
 export const getEscalationChain: typeof import("./getEscalationChain").getEscalationChain = null as any;
 export const getEscalationChainOutput: typeof import("./getEscalationChain").getEscalationChainOutput = null as any;

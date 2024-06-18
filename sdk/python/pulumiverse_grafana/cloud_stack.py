@@ -168,6 +168,7 @@ class _CloudStackState:
                  graphite_status: Optional[pulumi.Input[str]] = None,
                  graphite_url: Optional[pulumi.Input[str]] = None,
                  graphite_user_id: Optional[pulumi.Input[int]] = None,
+                 influx_url: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  logs_name: Optional[pulumi.Input[str]] = None,
                  logs_status: Optional[pulumi.Input[str]] = None,
@@ -205,14 +206,18 @@ class _CloudStackState:
         :param pulumi.Input[str] alertmanager_url: Base URL of the Alertmanager instance configured for this stack.
         :param pulumi.Input[int] alertmanager_user_id: User ID of the Alertmanager instance configured for this stack.
         :param pulumi.Input[str] description: Description of stack.
+        :param pulumi.Input[str] influx_url: Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics'
+               (`prometheus_user_id` attribute of this resource). See
+               https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use
+               this.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\\\-.]+$" and
                stacks cannot have more than 10 labels.
         :param pulumi.Input[str] name: Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
         :param pulumi.Input[int] org_id: Organization id to assign to this stack.
         :param pulumi.Input[str] org_name: Organization name to assign to this stack.
         :param pulumi.Input[str] org_slug: Organization slug to assign to this stack.
-        :param pulumi.Input[str] otlp_url: Base URL of the OTLP instance configured for this stack. See
-               https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        :param pulumi.Input[str] otlp_url: Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this
+               resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         :param pulumi.Input[str] prometheus_name: Prometheus name for this instance.
         :param pulumi.Input[str] prometheus_remote_endpoint: Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
         :param pulumi.Input[str] prometheus_remote_write_endpoint: Use this URL to send prometheus metrics to Grafana cloud
@@ -250,6 +255,8 @@ class _CloudStackState:
             pulumi.set(__self__, "graphite_url", graphite_url)
         if graphite_user_id is not None:
             pulumi.set(__self__, "graphite_user_id", graphite_user_id)
+        if influx_url is not None:
+            pulumi.set(__self__, "influx_url", influx_url)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if logs_name is not None:
@@ -408,6 +415,21 @@ class _CloudStackState:
         pulumi.set(self, "graphite_user_id", value)
 
     @property
+    @pulumi.getter(name="influxUrl")
+    def influx_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics'
+        (`prometheus_user_id` attribute of this resource). See
+        https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use
+        this.
+        """
+        return pulumi.get(self, "influx_url")
+
+    @influx_url.setter
+    def influx_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "influx_url", value)
+
+    @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
@@ -508,8 +530,8 @@ class _CloudStackState:
     @pulumi.getter(name="otlpUrl")
     def otlp_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Base URL of the OTLP instance configured for this stack. See
-        https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this
+        resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         """
         return pulumi.get(self, "otlp_url")
 
@@ -838,6 +860,7 @@ class CloudStack(pulumi.CustomResource):
             __props__.__dict__["graphite_status"] = None
             __props__.__dict__["graphite_url"] = None
             __props__.__dict__["graphite_user_id"] = None
+            __props__.__dict__["influx_url"] = None
             __props__.__dict__["logs_name"] = None
             __props__.__dict__["logs_status"] = None
             __props__.__dict__["logs_url"] = None
@@ -882,6 +905,7 @@ class CloudStack(pulumi.CustomResource):
             graphite_status: Optional[pulumi.Input[str]] = None,
             graphite_url: Optional[pulumi.Input[str]] = None,
             graphite_user_id: Optional[pulumi.Input[int]] = None,
+            influx_url: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             logs_name: Optional[pulumi.Input[str]] = None,
             logs_status: Optional[pulumi.Input[str]] = None,
@@ -924,14 +948,18 @@ class CloudStack(pulumi.CustomResource):
         :param pulumi.Input[str] alertmanager_url: Base URL of the Alertmanager instance configured for this stack.
         :param pulumi.Input[int] alertmanager_user_id: User ID of the Alertmanager instance configured for this stack.
         :param pulumi.Input[str] description: Description of stack.
+        :param pulumi.Input[str] influx_url: Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics'
+               (`prometheus_user_id` attribute of this resource). See
+               https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use
+               this.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\\\-.]+$" and
                stacks cannot have more than 10 labels.
         :param pulumi.Input[str] name: Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
         :param pulumi.Input[int] org_id: Organization id to assign to this stack.
         :param pulumi.Input[str] org_name: Organization name to assign to this stack.
         :param pulumi.Input[str] org_slug: Organization slug to assign to this stack.
-        :param pulumi.Input[str] otlp_url: Base URL of the OTLP instance configured for this stack. See
-               https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        :param pulumi.Input[str] otlp_url: Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this
+               resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         :param pulumi.Input[str] prometheus_name: Prometheus name for this instance.
         :param pulumi.Input[str] prometheus_remote_endpoint: Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
         :param pulumi.Input[str] prometheus_remote_write_endpoint: Use this URL to send prometheus metrics to Grafana cloud
@@ -964,6 +992,7 @@ class CloudStack(pulumi.CustomResource):
         __props__.__dict__["graphite_status"] = graphite_status
         __props__.__dict__["graphite_url"] = graphite_url
         __props__.__dict__["graphite_user_id"] = graphite_user_id
+        __props__.__dict__["influx_url"] = influx_url
         __props__.__dict__["labels"] = labels
         __props__.__dict__["logs_name"] = logs_name
         __props__.__dict__["logs_status"] = logs_status
@@ -1057,6 +1086,17 @@ class CloudStack(pulumi.CustomResource):
         return pulumi.get(self, "graphite_user_id")
 
     @property
+    @pulumi.getter(name="influxUrl")
+    def influx_url(self) -> pulumi.Output[str]:
+        """
+        Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics'
+        (`prometheus_user_id` attribute of this resource). See
+        https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use
+        this.
+        """
+        return pulumi.get(self, "influx_url")
+
+    @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
@@ -1121,8 +1161,8 @@ class CloudStack(pulumi.CustomResource):
     @pulumi.getter(name="otlpUrl")
     def otlp_url(self) -> pulumi.Output[str]:
         """
-        Base URL of the OTLP instance configured for this stack. See
-        https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this
+        resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         """
         return pulumi.get(self, "otlp_url")
 

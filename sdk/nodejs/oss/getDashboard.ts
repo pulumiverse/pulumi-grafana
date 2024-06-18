@@ -26,9 +26,6 @@ import * as utilities from "../utilities";
  *     version: 0,
  *     refresh: "25s",
  * })});
- * const fromId = grafana.oss.getDashboardOutput({
- *     dashboardId: test.dashboardId,
- * });
  * const fromUid = grafana.oss.getDashboard({
  *     uid: "test-ds-dashboard-uid",
  * });
@@ -75,12 +72,6 @@ export interface GetDashboardResult {
      * The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
      */
     readonly dashboardId?: number;
-    /**
-     * Deprecated. Use `folderUid` instead
-     *
-     * @deprecated Use `folderUid` instead
-     */
-    readonly folder: number;
     /**
      * The UID of the folder where the Grafana dashboard is found.
      */
@@ -140,9 +131,6 @@ export interface GetDashboardResult {
  *     version: 0,
  *     refresh: "25s",
  * })});
- * const fromId = grafana.oss.getDashboardOutput({
- *     dashboardId: test.dashboardId,
- * });
  * const fromUid = grafana.oss.getDashboard({
  *     uid: "test-ds-dashboard-uid",
  * });

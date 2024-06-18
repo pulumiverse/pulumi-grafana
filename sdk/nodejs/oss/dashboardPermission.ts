@@ -85,12 +85,6 @@ export class DashboardPermission extends pulumi.CustomResource {
     }
 
     /**
-     * ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
-     *
-     * @deprecated use `dashboardUid` instead
-     */
-    public readonly dashboardId!: pulumi.Output<number>;
-    /**
      * UID of the dashboard to apply permissions to.
      */
     public readonly dashboardUid!: pulumi.Output<string>;
@@ -116,13 +110,11 @@ export class DashboardPermission extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DashboardPermissionState | undefined;
-            resourceInputs["dashboardId"] = state ? state.dashboardId : undefined;
             resourceInputs["dashboardUid"] = state ? state.dashboardUid : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["permissions"] = state ? state.permissions : undefined;
         } else {
             const args = argsOrState as DashboardPermissionArgs | undefined;
-            resourceInputs["dashboardId"] = args ? args.dashboardId : undefined;
             resourceInputs["dashboardUid"] = args ? args.dashboardUid : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["permissions"] = args ? args.permissions : undefined;
@@ -138,12 +130,6 @@ export class DashboardPermission extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DashboardPermission resources.
  */
 export interface DashboardPermissionState {
-    /**
-     * ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
-     *
-     * @deprecated use `dashboardUid` instead
-     */
-    dashboardId?: pulumi.Input<number>;
     /**
      * UID of the dashboard to apply permissions to.
      */
@@ -162,12 +148,6 @@ export interface DashboardPermissionState {
  * The set of arguments for constructing a DashboardPermission resource.
  */
 export interface DashboardPermissionArgs {
-    /**
-     * ID of the dashboard to apply permissions to. Deprecated: use `dashboardUid` instead.
-     *
-     * @deprecated use `dashboardUid` instead
-     */
-    dashboardId?: pulumi.Input<number>;
     /**
      * UID of the dashboard to apply permissions to.
      */

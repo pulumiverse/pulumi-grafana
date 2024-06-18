@@ -11,7 +11,6 @@ export function getDataSource(args?: GetDataSourceArgs, opts?: pulumi.InvokeOpti
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getDataSource:getDataSource", {
-        "id": args.id,
         "name": args.name,
         "orgId": args.orgId,
         "uid": args.uid,
@@ -22,10 +21,6 @@ export function getDataSource(args?: GetDataSourceArgs, opts?: pulumi.InvokeOpti
  * A collection of arguments for invoking getDataSource.
  */
 export interface GetDataSourceArgs {
-    /**
-     * @deprecated Use `uid` instead of `id`
-     */
-    id?: string;
     name?: string;
     orgId?: string;
     uid?: string;
@@ -40,7 +35,7 @@ export interface GetDataSourceResult {
     readonly basicAuthUsername: string;
     readonly databaseName: string;
     /**
-     * @deprecated Use `uid` instead of `id`
+     * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly isDefault: boolean;
@@ -61,10 +56,6 @@ export function getDataSourceOutput(args?: GetDataSourceOutputArgs, opts?: pulum
  * A collection of arguments for invoking getDataSource.
  */
 export interface GetDataSourceOutputArgs {
-    /**
-     * @deprecated Use `uid` instead of `id`
-     */
-    id?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     orgId?: pulumi.Input<string>;
     uid?: pulumi.Input<string>;

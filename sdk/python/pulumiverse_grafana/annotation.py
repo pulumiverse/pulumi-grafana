@@ -15,7 +15,6 @@ __all__ = ['AnnotationArgs', 'Annotation']
 class AnnotationArgs:
     def __init__(__self__, *,
                  text: pulumi.Input[str],
-                 dashboard_id: Optional[pulumi.Input[int]] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  panel_id: Optional[pulumi.Input[int]] = None,
@@ -25,8 +24,7 @@ class AnnotationArgs:
         """
         The set of arguments for constructing a Annotation resource.
         :param pulumi.Input[str] text: The text to associate with the annotation.
-        :param pulumi.Input[int] dashboard_id: The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
-        :param pulumi.Input[str] dashboard_uid: The ID of the dashboard on which to create the annotation.
+        :param pulumi.Input[str] dashboard_uid: The UID of the dashboard on which to create the annotation.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[int] panel_id: The ID of the dashboard panel on which to create the annotation.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to associate with the annotation.
@@ -34,11 +32,6 @@ class AnnotationArgs:
         :param pulumi.Input[str] time_end: The RFC 3339-formatted time string indicating the annotation's end time.
         """
         pulumi.set(__self__, "text", text)
-        if dashboard_id is not None:
-            warnings.warn("""Use dashboard_uid instead.""", DeprecationWarning)
-            pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead.""")
-        if dashboard_id is not None:
-            pulumi.set(__self__, "dashboard_id", dashboard_id)
         if dashboard_uid is not None:
             pulumi.set(__self__, "dashboard_uid", dashboard_uid)
         if org_id is not None:
@@ -65,25 +58,10 @@ class AnnotationArgs:
         pulumi.set(self, "text", value)
 
     @property
-    @pulumi.getter(name="dashboardId")
-    def dashboard_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
-        """
-        warnings.warn("""Use dashboard_uid instead.""", DeprecationWarning)
-        pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead.""")
-
-        return pulumi.get(self, "dashboard_id")
-
-    @dashboard_id.setter
-    def dashboard_id(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "dashboard_id", value)
-
-    @property
     @pulumi.getter(name="dashboardUid")
     def dashboard_uid(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the dashboard on which to create the annotation.
+        The UID of the dashboard on which to create the annotation.
         """
         return pulumi.get(self, "dashboard_uid")
 
@@ -155,7 +133,6 @@ class AnnotationArgs:
 @pulumi.input_type
 class _AnnotationState:
     def __init__(__self__, *,
-                 dashboard_id: Optional[pulumi.Input[int]] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  panel_id: Optional[pulumi.Input[int]] = None,
@@ -165,8 +142,7 @@ class _AnnotationState:
                  time_end: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Annotation resources.
-        :param pulumi.Input[int] dashboard_id: The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
-        :param pulumi.Input[str] dashboard_uid: The ID of the dashboard on which to create the annotation.
+        :param pulumi.Input[str] dashboard_uid: The UID of the dashboard on which to create the annotation.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[int] panel_id: The ID of the dashboard panel on which to create the annotation.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to associate with the annotation.
@@ -174,11 +150,6 @@ class _AnnotationState:
         :param pulumi.Input[str] time: The RFC 3339-formatted time string indicating the annotation's time.
         :param pulumi.Input[str] time_end: The RFC 3339-formatted time string indicating the annotation's end time.
         """
-        if dashboard_id is not None:
-            warnings.warn("""Use dashboard_uid instead.""", DeprecationWarning)
-            pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead.""")
-        if dashboard_id is not None:
-            pulumi.set(__self__, "dashboard_id", dashboard_id)
         if dashboard_uid is not None:
             pulumi.set(__self__, "dashboard_uid", dashboard_uid)
         if org_id is not None:
@@ -195,25 +166,10 @@ class _AnnotationState:
             pulumi.set(__self__, "time_end", time_end)
 
     @property
-    @pulumi.getter(name="dashboardId")
-    def dashboard_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
-        """
-        warnings.warn("""Use dashboard_uid instead.""", DeprecationWarning)
-        pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead.""")
-
-        return pulumi.get(self, "dashboard_id")
-
-    @dashboard_id.setter
-    def dashboard_id(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "dashboard_id", value)
-
-    @property
     @pulumi.getter(name="dashboardUid")
     def dashboard_uid(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the dashboard on which to create the annotation.
+        The UID of the dashboard on which to create the annotation.
         """
         return pulumi.get(self, "dashboard_uid")
 
@@ -304,7 +260,6 @@ class Annotation(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 dashboard_id: Optional[pulumi.Input[int]] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  panel_id: Optional[pulumi.Input[int]] = None,
@@ -317,8 +272,7 @@ class Annotation(pulumi.CustomResource):
         Create a Annotation resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] dashboard_id: The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
-        :param pulumi.Input[str] dashboard_uid: The ID of the dashboard on which to create the annotation.
+        :param pulumi.Input[str] dashboard_uid: The UID of the dashboard on which to create the annotation.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[int] panel_id: The ID of the dashboard panel on which to create the annotation.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to associate with the annotation.
@@ -349,7 +303,6 @@ class Annotation(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 dashboard_id: Optional[pulumi.Input[int]] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  panel_id: Optional[pulumi.Input[int]] = None,
@@ -367,7 +320,6 @@ class Annotation(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AnnotationArgs.__new__(AnnotationArgs)
 
-            __props__.__dict__["dashboard_id"] = dashboard_id
             __props__.__dict__["dashboard_uid"] = dashboard_uid
             __props__.__dict__["org_id"] = org_id
             __props__.__dict__["panel_id"] = panel_id
@@ -389,7 +341,6 @@ class Annotation(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            dashboard_id: Optional[pulumi.Input[int]] = None,
             dashboard_uid: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
             panel_id: Optional[pulumi.Input[int]] = None,
@@ -404,8 +355,7 @@ class Annotation(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] dashboard_id: The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
-        :param pulumi.Input[str] dashboard_uid: The ID of the dashboard on which to create the annotation.
+        :param pulumi.Input[str] dashboard_uid: The UID of the dashboard on which to create the annotation.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[int] panel_id: The ID of the dashboard panel on which to create the annotation.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to associate with the annotation.
@@ -417,7 +367,6 @@ class Annotation(pulumi.CustomResource):
 
         __props__ = _AnnotationState.__new__(_AnnotationState)
 
-        __props__.__dict__["dashboard_id"] = dashboard_id
         __props__.__dict__["dashboard_uid"] = dashboard_uid
         __props__.__dict__["org_id"] = org_id
         __props__.__dict__["panel_id"] = panel_id
@@ -428,21 +377,10 @@ class Annotation(pulumi.CustomResource):
         return Annotation(resource_name, opts=opts, __props__=__props__)
 
     @property
-    @pulumi.getter(name="dashboardId")
-    def dashboard_id(self) -> pulumi.Output[Optional[int]]:
-        """
-        The ID of the dashboard on which to create the annotation. Deprecated: Use dashboard_uid instead.
-        """
-        warnings.warn("""Use dashboard_uid instead.""", DeprecationWarning)
-        pulumi.log.warn("""dashboard_id is deprecated: Use dashboard_uid instead.""")
-
-        return pulumi.get(self, "dashboard_id")
-
-    @property
     @pulumi.getter(name="dashboardUid")
     def dashboard_uid(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the dashboard on which to create the annotation.
+        The UID of the dashboard on which to create the annotation.
         """
         return pulumi.get(self, "dashboard_uid")
 

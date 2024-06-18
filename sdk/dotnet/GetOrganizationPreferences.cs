@@ -47,7 +47,6 @@ namespace Pulumiverse.Grafana
     [OutputType]
     public sealed class GetOrganizationPreferencesResult
     {
-        public readonly int HomeDashboardId;
         public readonly string HomeDashboardUid;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -60,8 +59,6 @@ namespace Pulumiverse.Grafana
 
         [OutputConstructor]
         private GetOrganizationPreferencesResult(
-            int homeDashboardId,
-
             string homeDashboardUid,
 
             string id,
@@ -74,7 +71,6 @@ namespace Pulumiverse.Grafana
 
             string weekStart)
         {
-            HomeDashboardId = homeDashboardId;
             HomeDashboardUid = homeDashboardUid;
             Id = id;
             OrgId = orgId;
