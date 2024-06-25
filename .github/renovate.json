@@ -16,12 +16,10 @@
             "matchDatasources": [
                 "go"
             ],
-            "excludePackageNames": [
-                "github.com/pulumi/pulumi-terraform-bridge/pf",
-                "github.com/pulumi/pulumi-terraform-bridge/v3",
-                "github.com/pulumi/pulumi/pkg/v3",
-                "github.com/pulumi/pulumi/sdk/v3",
-                "github.com/grafana/terraform-provider-grafana/v2"
+            "excludePackagePrefixes": [
+                "github.com/pulumi/pulumi-terraform-bridge/",
+                "github.com/pulumi/pulumi/",
+                "github.com/grafana/terraform-provider-grafana"
             ],
             "enabled": true
         },
