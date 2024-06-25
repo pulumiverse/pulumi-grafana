@@ -14,7 +14,6 @@ __all__ = ['OrganizationPreferencesArgs', 'OrganizationPreferences']
 @pulumi.input_type
 class OrganizationPreferencesArgs:
     def __init__(__self__, *,
-                 home_dashboard_id: Optional[pulumi.Input[int]] = None,
                  home_dashboard_uid: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  theme: Optional[pulumi.Input[str]] = None,
@@ -22,7 +21,6 @@ class OrganizationPreferencesArgs:
                  week_start: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a OrganizationPreferences resource.
-        :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
@@ -30,11 +28,6 @@ class OrganizationPreferencesArgs:
         :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
                default.
         """
-        if home_dashboard_id is not None:
-            warnings.warn("""Use `home_dashboard_uid` instead.""", DeprecationWarning)
-            pulumi.log.warn("""home_dashboard_id is deprecated: Use `home_dashboard_uid` instead.""")
-        if home_dashboard_id is not None:
-            pulumi.set(__self__, "home_dashboard_id", home_dashboard_id)
         if home_dashboard_uid is not None:
             pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
         if org_id is not None:
@@ -45,21 +38,6 @@ class OrganizationPreferencesArgs:
             pulumi.set(__self__, "timezone", timezone)
         if week_start is not None:
             pulumi.set(__self__, "week_start", week_start)
-
-    @property
-    @pulumi.getter(name="homeDashboardId")
-    def home_dashboard_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
-        """
-        warnings.warn("""Use `home_dashboard_uid` instead.""", DeprecationWarning)
-        pulumi.log.warn("""home_dashboard_id is deprecated: Use `home_dashboard_uid` instead.""")
-
-        return pulumi.get(self, "home_dashboard_id")
-
-    @home_dashboard_id.setter
-    def home_dashboard_id(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "home_dashboard_id", value)
 
     @property
     @pulumi.getter(name="homeDashboardUid")
@@ -126,7 +104,6 @@ class OrganizationPreferencesArgs:
 @pulumi.input_type
 class _OrganizationPreferencesState:
     def __init__(__self__, *,
-                 home_dashboard_id: Optional[pulumi.Input[int]] = None,
                  home_dashboard_uid: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  theme: Optional[pulumi.Input[str]] = None,
@@ -134,7 +111,6 @@ class _OrganizationPreferencesState:
                  week_start: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering OrganizationPreferences resources.
-        :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
@@ -142,11 +118,6 @@ class _OrganizationPreferencesState:
         :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
                default.
         """
-        if home_dashboard_id is not None:
-            warnings.warn("""Use `home_dashboard_uid` instead.""", DeprecationWarning)
-            pulumi.log.warn("""home_dashboard_id is deprecated: Use `home_dashboard_uid` instead.""")
-        if home_dashboard_id is not None:
-            pulumi.set(__self__, "home_dashboard_id", home_dashboard_id)
         if home_dashboard_uid is not None:
             pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
         if org_id is not None:
@@ -157,21 +128,6 @@ class _OrganizationPreferencesState:
             pulumi.set(__self__, "timezone", timezone)
         if week_start is not None:
             pulumi.set(__self__, "week_start", week_start)
-
-    @property
-    @pulumi.getter(name="homeDashboardId")
-    def home_dashboard_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
-        """
-        warnings.warn("""Use `home_dashboard_uid` instead.""", DeprecationWarning)
-        pulumi.log.warn("""home_dashboard_id is deprecated: Use `home_dashboard_uid` instead.""")
-
-        return pulumi.get(self, "home_dashboard_id")
-
-    @home_dashboard_id.setter
-    def home_dashboard_id(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "home_dashboard_id", value)
 
     @property
     @pulumi.getter(name="homeDashboardUid")
@@ -245,7 +201,6 @@ class OrganizationPreferences(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 home_dashboard_id: Optional[pulumi.Input[int]] = None,
                  home_dashboard_uid: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  theme: Optional[pulumi.Input[str]] = None,
@@ -256,7 +211,6 @@ class OrganizationPreferences(pulumi.CustomResource):
         Create a OrganizationPreferences resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
@@ -287,7 +241,6 @@ class OrganizationPreferences(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 home_dashboard_id: Optional[pulumi.Input[int]] = None,
                  home_dashboard_uid: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  theme: Optional[pulumi.Input[str]] = None,
@@ -303,7 +256,6 @@ class OrganizationPreferences(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = OrganizationPreferencesArgs.__new__(OrganizationPreferencesArgs)
 
-            __props__.__dict__["home_dashboard_id"] = home_dashboard_id
             __props__.__dict__["home_dashboard_uid"] = home_dashboard_uid
             __props__.__dict__["org_id"] = org_id
             __props__.__dict__["theme"] = theme
@@ -321,7 +273,6 @@ class OrganizationPreferences(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            home_dashboard_id: Optional[pulumi.Input[int]] = None,
             home_dashboard_uid: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
             theme: Optional[pulumi.Input[str]] = None,
@@ -334,7 +285,6 @@ class OrganizationPreferences(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] home_dashboard_id: The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
         :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
@@ -346,24 +296,12 @@ class OrganizationPreferences(pulumi.CustomResource):
 
         __props__ = _OrganizationPreferencesState.__new__(_OrganizationPreferencesState)
 
-        __props__.__dict__["home_dashboard_id"] = home_dashboard_id
         __props__.__dict__["home_dashboard_uid"] = home_dashboard_uid
         __props__.__dict__["org_id"] = org_id
         __props__.__dict__["theme"] = theme
         __props__.__dict__["timezone"] = timezone
         __props__.__dict__["week_start"] = week_start
         return OrganizationPreferences(resource_name, opts=opts, __props__=__props__)
-
-    @property
-    @pulumi.getter(name="homeDashboardId")
-    def home_dashboard_id(self) -> pulumi.Output[Optional[int]]:
-        """
-        The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
-        """
-        warnings.warn("""Use `home_dashboard_uid` instead.""", DeprecationWarning)
-        pulumi.log.warn("""home_dashboard_id is deprecated: Use `home_dashboard_uid` instead.""")
-
-        return pulumi.get(self, "home_dashboard_id")
 
     @property
     @pulumi.getter(name="homeDashboardUid")

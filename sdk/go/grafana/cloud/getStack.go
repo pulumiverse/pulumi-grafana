@@ -47,6 +47,8 @@ type LookupStackResult struct {
 	GraphiteUserId int    `pulumi:"graphiteUserId"`
 	// The stack id assigned to this stack by Grafana.
 	Id string `pulumi:"id"`
+	// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheusUserId` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
+	InfluxUrl string `pulumi:"influxUrl"`
 	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
 	Labels     map[string]string `pulumi:"labels"`
 	LogsName   string            `pulumi:"logsName"`
@@ -61,7 +63,7 @@ type LookupStackResult struct {
 	OrgName string `pulumi:"orgName"`
 	// Organization slug to assign to this stack.
 	OrgSlug string `pulumi:"orgSlug"`
-	// Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+	// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
 	OtlpUrl        string `pulumi:"otlpUrl"`
 	ProfilesName   string `pulumi:"profilesName"`
 	ProfilesStatus string `pulumi:"profilesStatus"`
@@ -180,6 +182,11 @@ func (o LookupStackResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheusUserId` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
+func (o LookupStackResultOutput) InfluxUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.InfluxUrl }).(pulumi.StringOutput)
+}
+
 // A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
 func (o LookupStackResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupStackResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
@@ -221,7 +228,7 @@ func (o LookupStackResultOutput) OrgSlug() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.OrgSlug }).(pulumi.StringOutput)
 }
 
-// Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
 func (o LookupStackResultOutput) OtlpUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.OtlpUrl }).(pulumi.StringOutput)
 }

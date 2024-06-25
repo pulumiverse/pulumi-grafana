@@ -28,10 +28,6 @@ func GetDashboards(ctx *pulumi.Context, args *GetDashboardsArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getDashboards.
 type GetDashboardsArgs struct {
-	// Deprecated, use `folderUids` instead.
-	//
-	// Deprecated: Use `folderUids` instead.
-	FolderIds []int `pulumi:"folderIds"`
 	// UIDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `["General"]` for General folder), or leave blank to get all dashboards in all folders.
 	FolderUids []string `pulumi:"folderUids"`
 	// Maximum number of dashboard search results to return. Defaults to `5000`.
@@ -45,10 +41,6 @@ type GetDashboardsArgs struct {
 // A collection of values returned by getDashboards.
 type GetDashboardsResult struct {
 	Dashboards []GetDashboardsDashboard `pulumi:"dashboards"`
-	// Deprecated, use `folderUids` instead.
-	//
-	// Deprecated: Use `folderUids` instead.
-	FolderIds []int `pulumi:"folderIds"`
 	// UIDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `["General"]` for General folder), or leave blank to get all dashboards in all folders.
 	FolderUids []string `pulumi:"folderUids"`
 	// The provider-assigned unique ID for this managed resource.
@@ -76,10 +68,6 @@ func GetDashboardsOutput(ctx *pulumi.Context, args GetDashboardsOutputArgs, opts
 
 // A collection of arguments for invoking getDashboards.
 type GetDashboardsOutputArgs struct {
-	// Deprecated, use `folderUids` instead.
-	//
-	// Deprecated: Use `folderUids` instead.
-	FolderIds pulumi.IntArrayInput `pulumi:"folderIds"`
 	// UIDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `["General"]` for General folder), or leave blank to get all dashboards in all folders.
 	FolderUids pulumi.StringArrayInput `pulumi:"folderUids"`
 	// Maximum number of dashboard search results to return. Defaults to `5000`.
@@ -111,13 +99,6 @@ func (o GetDashboardsResultOutput) ToGetDashboardsResultOutputWithContext(ctx co
 
 func (o GetDashboardsResultOutput) Dashboards() GetDashboardsDashboardArrayOutput {
 	return o.ApplyT(func(v GetDashboardsResult) []GetDashboardsDashboard { return v.Dashboards }).(GetDashboardsDashboardArrayOutput)
-}
-
-// Deprecated, use `folderUids` instead.
-//
-// Deprecated: Use `folderUids` instead.
-func (o GetDashboardsResultOutput) FolderIds() pulumi.IntArrayOutput {
-	return o.ApplyT(func(v GetDashboardsResult) []int { return v.FolderIds }).(pulumi.IntArrayOutput)
 }
 
 // UIDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `["General"]` for General folder), or leave blank to get all dashboards in all folders.

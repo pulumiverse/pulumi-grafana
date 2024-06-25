@@ -46,19 +46,13 @@ export class Job extends pulumi.CustomResource {
      */
     public readonly customLabels!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * The id of the datasource to query.
-     *
-     * @deprecated Use datasourceUid instead.
-     */
-    public readonly datasourceId!: pulumi.Output<number | undefined>;
-    /**
      * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
      */
     public readonly datasourceType!: pulumi.Output<string>;
     /**
      * The uid of the datasource to query.
      */
-    public readonly datasourceUid!: pulumi.Output<string | undefined>;
+    public readonly datasourceUid!: pulumi.Output<string>;
     /**
      * A description of the job.
      */
@@ -106,7 +100,6 @@ export class Job extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as JobState | undefined;
             resourceInputs["customLabels"] = state ? state.customLabels : undefined;
-            resourceInputs["datasourceId"] = state ? state.datasourceId : undefined;
             resourceInputs["datasourceType"] = state ? state.datasourceType : undefined;
             resourceInputs["datasourceUid"] = state ? state.datasourceUid : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
@@ -122,6 +115,9 @@ export class Job extends pulumi.CustomResource {
             if ((!args || args.datasourceType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'datasourceType'");
             }
+            if ((!args || args.datasourceUid === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'datasourceUid'");
+            }
             if ((!args || args.metric === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'metric'");
             }
@@ -129,7 +125,6 @@ export class Job extends pulumi.CustomResource {
                 throw new Error("Missing required property 'queryParams'");
             }
             resourceInputs["customLabels"] = args ? args.customLabels : undefined;
-            resourceInputs["datasourceId"] = args ? args.datasourceId : undefined;
             resourceInputs["datasourceType"] = args ? args.datasourceType : undefined;
             resourceInputs["datasourceUid"] = args ? args.datasourceUid : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
@@ -156,12 +151,6 @@ export interface JobState {
      * An object representing the custom labels added on the forecast.
      */
     customLabels?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The id of the datasource to query.
-     *
-     * @deprecated Use datasourceUid instead.
-     */
-    datasourceId?: pulumi.Input<number>;
     /**
      * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
      */
@@ -213,19 +202,13 @@ export interface JobArgs {
      */
     customLabels?: pulumi.Input<{[key: string]: any}>;
     /**
-     * The id of the datasource to query.
-     *
-     * @deprecated Use datasourceUid instead.
-     */
-    datasourceId?: pulumi.Input<number>;
-    /**
      * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
      */
     datasourceType: pulumi.Input<string>;
     /**
      * The uid of the datasource to query.
      */
-    datasourceUid?: pulumi.Input<string>;
+    datasourceUid: pulumi.Input<string>;
     /**
      * A description of the job.
      */

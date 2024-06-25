@@ -62,6 +62,8 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///         {
     ///             "metrics:write",
     ///             "stacks:read",
+    ///             "logs:write",
+    ///             "traces:write",
     ///         },
     ///         Realms = new[]
     ///         {

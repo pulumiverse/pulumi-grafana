@@ -663,162 +663,6 @@ func (o ReportSchedulePtrOutput) WorkdaysOnly() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-type ReportTimeRange struct {
-	// Start of the time range.
-	From *string `pulumi:"from"`
-	// End of the time range.
-	To *string `pulumi:"to"`
-}
-
-// ReportTimeRangeInput is an input type that accepts ReportTimeRangeArgs and ReportTimeRangeOutput values.
-// You can construct a concrete instance of `ReportTimeRangeInput` via:
-//
-//	ReportTimeRangeArgs{...}
-type ReportTimeRangeInput interface {
-	pulumi.Input
-
-	ToReportTimeRangeOutput() ReportTimeRangeOutput
-	ToReportTimeRangeOutputWithContext(context.Context) ReportTimeRangeOutput
-}
-
-type ReportTimeRangeArgs struct {
-	// Start of the time range.
-	From pulumi.StringPtrInput `pulumi:"from"`
-	// End of the time range.
-	To pulumi.StringPtrInput `pulumi:"to"`
-}
-
-func (ReportTimeRangeArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReportTimeRange)(nil)).Elem()
-}
-
-func (i ReportTimeRangeArgs) ToReportTimeRangeOutput() ReportTimeRangeOutput {
-	return i.ToReportTimeRangeOutputWithContext(context.Background())
-}
-
-func (i ReportTimeRangeArgs) ToReportTimeRangeOutputWithContext(ctx context.Context) ReportTimeRangeOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportTimeRangeOutput)
-}
-
-func (i ReportTimeRangeArgs) ToReportTimeRangePtrOutput() ReportTimeRangePtrOutput {
-	return i.ToReportTimeRangePtrOutputWithContext(context.Background())
-}
-
-func (i ReportTimeRangeArgs) ToReportTimeRangePtrOutputWithContext(ctx context.Context) ReportTimeRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportTimeRangeOutput).ToReportTimeRangePtrOutputWithContext(ctx)
-}
-
-// ReportTimeRangePtrInput is an input type that accepts ReportTimeRangeArgs, ReportTimeRangePtr and ReportTimeRangePtrOutput values.
-// You can construct a concrete instance of `ReportTimeRangePtrInput` via:
-//
-//	        ReportTimeRangeArgs{...}
-//
-//	or:
-//
-//	        nil
-type ReportTimeRangePtrInput interface {
-	pulumi.Input
-
-	ToReportTimeRangePtrOutput() ReportTimeRangePtrOutput
-	ToReportTimeRangePtrOutputWithContext(context.Context) ReportTimeRangePtrOutput
-}
-
-type reportTimeRangePtrType ReportTimeRangeArgs
-
-func ReportTimeRangePtr(v *ReportTimeRangeArgs) ReportTimeRangePtrInput {
-	return (*reportTimeRangePtrType)(v)
-}
-
-func (*reportTimeRangePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ReportTimeRange)(nil)).Elem()
-}
-
-func (i *reportTimeRangePtrType) ToReportTimeRangePtrOutput() ReportTimeRangePtrOutput {
-	return i.ToReportTimeRangePtrOutputWithContext(context.Background())
-}
-
-func (i *reportTimeRangePtrType) ToReportTimeRangePtrOutputWithContext(ctx context.Context) ReportTimeRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportTimeRangePtrOutput)
-}
-
-type ReportTimeRangeOutput struct{ *pulumi.OutputState }
-
-func (ReportTimeRangeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReportTimeRange)(nil)).Elem()
-}
-
-func (o ReportTimeRangeOutput) ToReportTimeRangeOutput() ReportTimeRangeOutput {
-	return o
-}
-
-func (o ReportTimeRangeOutput) ToReportTimeRangeOutputWithContext(ctx context.Context) ReportTimeRangeOutput {
-	return o
-}
-
-func (o ReportTimeRangeOutput) ToReportTimeRangePtrOutput() ReportTimeRangePtrOutput {
-	return o.ToReportTimeRangePtrOutputWithContext(context.Background())
-}
-
-func (o ReportTimeRangeOutput) ToReportTimeRangePtrOutputWithContext(ctx context.Context) ReportTimeRangePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ReportTimeRange) *ReportTimeRange {
-		return &v
-	}).(ReportTimeRangePtrOutput)
-}
-
-// Start of the time range.
-func (o ReportTimeRangeOutput) From() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ReportTimeRange) *string { return v.From }).(pulumi.StringPtrOutput)
-}
-
-// End of the time range.
-func (o ReportTimeRangeOutput) To() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ReportTimeRange) *string { return v.To }).(pulumi.StringPtrOutput)
-}
-
-type ReportTimeRangePtrOutput struct{ *pulumi.OutputState }
-
-func (ReportTimeRangePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ReportTimeRange)(nil)).Elem()
-}
-
-func (o ReportTimeRangePtrOutput) ToReportTimeRangePtrOutput() ReportTimeRangePtrOutput {
-	return o
-}
-
-func (o ReportTimeRangePtrOutput) ToReportTimeRangePtrOutputWithContext(ctx context.Context) ReportTimeRangePtrOutput {
-	return o
-}
-
-func (o ReportTimeRangePtrOutput) Elem() ReportTimeRangeOutput {
-	return o.ApplyT(func(v *ReportTimeRange) ReportTimeRange {
-		if v != nil {
-			return *v
-		}
-		var ret ReportTimeRange
-		return ret
-	}).(ReportTimeRangeOutput)
-}
-
-// Start of the time range.
-func (o ReportTimeRangePtrOutput) From() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ReportTimeRange) *string {
-		if v == nil {
-			return nil
-		}
-		return v.From
-	}).(pulumi.StringPtrOutput)
-}
-
-// End of the time range.
-func (o ReportTimeRangePtrOutput) To() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ReportTimeRange) *string {
-		if v == nil {
-			return nil
-		}
-		return v.To
-	}).(pulumi.StringPtrOutput)
-}
-
 type RolePermission struct {
 	// Specific action users granted with the role will be allowed to perform (for example: `users:read`)
 	Action string `pulumi:"action"`
@@ -1040,8 +884,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ReportDashboardTimeRangePtrInput)(nil)).Elem(), ReportDashboardTimeRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ReportScheduleInput)(nil)).Elem(), ReportScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ReportSchedulePtrInput)(nil)).Elem(), ReportScheduleArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ReportTimeRangeInput)(nil)).Elem(), ReportTimeRangeArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ReportTimeRangePtrInput)(nil)).Elem(), ReportTimeRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RolePermissionInput)(nil)).Elem(), RolePermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RolePermissionArrayInput)(nil)).Elem(), RolePermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRolePermissionInput)(nil)).Elem(), GetRolePermissionArgs{})
@@ -1054,8 +896,6 @@ func init() {
 	pulumi.RegisterOutputType(ReportDashboardTimeRangePtrOutput{})
 	pulumi.RegisterOutputType(ReportScheduleOutput{})
 	pulumi.RegisterOutputType(ReportSchedulePtrOutput{})
-	pulumi.RegisterOutputType(ReportTimeRangeOutput{})
-	pulumi.RegisterOutputType(ReportTimeRangePtrOutput{})
 	pulumi.RegisterOutputType(RolePermissionOutput{})
 	pulumi.RegisterOutputType(RolePermissionArrayOutput{})
 	pulumi.RegisterOutputType(GetRolePermissionOutput{})

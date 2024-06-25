@@ -24,6 +24,8 @@ type SLO struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasource SLODestinationDatasourcePtrOutput `pulumi:"destinationDatasource"`
+	// UID for the SLO folder
+	FolderUid pulumi.StringPtrOutput `pulumi:"folderUid"`
 	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
 	// SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
 	// "^[a-zA-Z_][a-zA-Z0-9_]*$"
@@ -90,6 +92,8 @@ type sloState struct {
 	Description *string `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasource *SLODestinationDatasource `pulumi:"destinationDatasource"`
+	// UID for the SLO folder
+	FolderUid *string `pulumi:"folderUid"`
 	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
 	// SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
 	// "^[a-zA-Z_][a-zA-Z0-9_]*$"
@@ -112,6 +116,8 @@ type SLOState struct {
 	Description pulumi.StringPtrInput
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasource SLODestinationDatasourcePtrInput
+	// UID for the SLO folder
+	FolderUid pulumi.StringPtrInput
 	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
 	// SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
 	// "^[a-zA-Z_][a-zA-Z0-9_]*$"
@@ -138,6 +144,8 @@ type sloArgs struct {
 	Description string `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasource *SLODestinationDatasource `pulumi:"destinationDatasource"`
+	// UID for the SLO folder
+	FolderUid *string `pulumi:"folderUid"`
 	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
 	// SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
 	// "^[a-zA-Z_][a-zA-Z0-9_]*$"
@@ -161,6 +169,8 @@ type SLOArgs struct {
 	Description pulumi.StringInput
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasource SLODestinationDatasourcePtrInput
+	// UID for the SLO folder
+	FolderUid pulumi.StringPtrInput
 	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
 	// SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
 	// "^[a-zA-Z_][a-zA-Z0-9_]*$"
@@ -276,6 +286,11 @@ func (o SLOOutput) Description() pulumi.StringOutput {
 // Destination Datasource sets the datasource defined for an SLO
 func (o SLOOutput) DestinationDatasource() SLODestinationDatasourcePtrOutput {
 	return o.ApplyT(func(v *SLO) SLODestinationDatasourcePtrOutput { return v.DestinationDatasource }).(SLODestinationDatasourcePtrOutput)
+}
+
+// UID for the SLO folder
+func (o SLOOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SLO) pulumi.StringPtrOutput { return v.FolderUid }).(pulumi.StringPtrOutput)
 }
 
 // Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping

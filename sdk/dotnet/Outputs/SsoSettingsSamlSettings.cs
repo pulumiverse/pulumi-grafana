@@ -127,6 +127,10 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? RoleValuesNone;
         /// <summary>
+        /// List of comma- or space-separated roles which will be mapped into the Viewer role.
+        /// </summary>
+        public readonly string? RoleValuesViewer;
+        /// <summary>
         /// Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
         /// </summary>
         public readonly string? SignatureAlgorithm;
@@ -197,6 +201,8 @@ namespace Pulumiverse.Grafana.Outputs
 
             string? roleValuesNone,
 
+            string? roleValuesViewer,
+
             string? signatureAlgorithm,
 
             bool? singleLogout,
@@ -231,6 +237,7 @@ namespace Pulumiverse.Grafana.Outputs
             RoleValuesEditor = roleValuesEditor;
             RoleValuesGrafanaAdmin = roleValuesGrafanaAdmin;
             RoleValuesNone = roleValuesNone;
+            RoleValuesViewer = roleValuesViewer;
             SignatureAlgorithm = signatureAlgorithm;
             SingleLogout = singleLogout;
             SkipOrgRoleSync = skipOrgRoleSync;

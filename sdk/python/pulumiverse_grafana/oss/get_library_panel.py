@@ -21,7 +21,7 @@ class GetLibraryPanelResult:
     """
     A collection of values returned by getLibraryPanel.
     """
-    def __init__(__self__, created=None, dashboard_ids=None, description=None, folder_id=None, folder_name=None, folder_uid=None, id=None, model_json=None, name=None, org_id=None, panel_id=None, type=None, uid=None, updated=None, version=None):
+    def __init__(__self__, created=None, dashboard_ids=None, description=None, folder_name=None, folder_uid=None, id=None, model_json=None, name=None, org_id=None, panel_id=None, type=None, uid=None, updated=None, version=None):
         if created and not isinstance(created, str):
             raise TypeError("Expected argument 'created' to be a str")
         pulumi.set(__self__, "created", created)
@@ -31,9 +31,6 @@ class GetLibraryPanelResult:
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
-        if folder_id and not isinstance(folder_id, str):
-            raise TypeError("Expected argument 'folder_id' to be a str")
-        pulumi.set(__self__, "folder_id", folder_id)
         if folder_name and not isinstance(folder_name, str):
             raise TypeError("Expected argument 'folder_name' to be a str")
         pulumi.set(__self__, "folder_name", folder_name)
@@ -91,17 +88,6 @@ class GetLibraryPanelResult:
         Description of the library panel.
         """
         return pulumi.get(self, "description")
-
-    @property
-    @pulumi.getter(name="folderId")
-    def folder_id(self) -> str:
-        """
-        Deprecated. Use `folder_uid` instead
-        """
-        warnings.warn("""Use `folder_uid` instead""", DeprecationWarning)
-        pulumi.log.warn("""folder_id is deprecated: Use `folder_uid` instead""")
-
-        return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter(name="folderName")
@@ -201,7 +187,6 @@ class AwaitableGetLibraryPanelResult(GetLibraryPanelResult):
             created=self.created,
             dashboard_ids=self.dashboard_ids,
             description=self.description,
-            folder_id=self.folder_id,
             folder_name=self.folder_name,
             folder_uid=self.folder_uid,
             id=self.id,
@@ -238,7 +223,6 @@ def get_library_panel(name: Optional[str] = None,
         created=pulumi.get(__ret__, 'created'),
         dashboard_ids=pulumi.get(__ret__, 'dashboard_ids'),
         description=pulumi.get(__ret__, 'description'),
-        folder_id=pulumi.get(__ret__, 'folder_id'),
         folder_name=pulumi.get(__ret__, 'folder_name'),
         folder_uid=pulumi.get(__ret__, 'folder_uid'),
         id=pulumi.get(__ret__, 'id'),

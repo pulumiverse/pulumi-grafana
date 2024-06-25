@@ -23,7 +23,7 @@ class GetCloudStackResult:
     """
     A collection of values returned by getCloudStack.
     """
-    def __init__(__self__, alertmanager_name=None, alertmanager_status=None, alertmanager_url=None, alertmanager_user_id=None, description=None, graphite_name=None, graphite_status=None, graphite_url=None, graphite_user_id=None, id=None, labels=None, logs_name=None, logs_status=None, logs_url=None, logs_user_id=None, name=None, org_id=None, org_name=None, org_slug=None, otlp_url=None, profiles_name=None, profiles_status=None, profiles_url=None, profiles_user_id=None, prometheus_name=None, prometheus_remote_endpoint=None, prometheus_remote_write_endpoint=None, prometheus_status=None, prometheus_url=None, prometheus_user_id=None, region_slug=None, slug=None, status=None, traces_name=None, traces_status=None, traces_url=None, traces_user_id=None, url=None):
+    def __init__(__self__, alertmanager_name=None, alertmanager_status=None, alertmanager_url=None, alertmanager_user_id=None, description=None, graphite_name=None, graphite_status=None, graphite_url=None, graphite_user_id=None, id=None, influx_url=None, labels=None, logs_name=None, logs_status=None, logs_url=None, logs_user_id=None, name=None, org_id=None, org_name=None, org_slug=None, otlp_url=None, profiles_name=None, profiles_status=None, profiles_url=None, profiles_user_id=None, prometheus_name=None, prometheus_remote_endpoint=None, prometheus_remote_write_endpoint=None, prometheus_status=None, prometheus_url=None, prometheus_user_id=None, region_slug=None, slug=None, status=None, traces_name=None, traces_status=None, traces_url=None, traces_user_id=None, url=None):
         if alertmanager_name and not isinstance(alertmanager_name, str):
             raise TypeError("Expected argument 'alertmanager_name' to be a str")
         pulumi.set(__self__, "alertmanager_name", alertmanager_name)
@@ -54,6 +54,9 @@ class GetCloudStackResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if influx_url and not isinstance(influx_url, str):
+            raise TypeError("Expected argument 'influx_url' to be a str")
+        pulumi.set(__self__, "influx_url", influx_url)
         if labels and not isinstance(labels, dict):
             raise TypeError("Expected argument 'labels' to be a dict")
         pulumi.set(__self__, "labels", labels)
@@ -188,6 +191,11 @@ class GetCloudStackResult:
     @pulumi.getter
     def id(self) -> str:
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="influxUrl")
+    def influx_url(self) -> str:
+        return pulumi.get(self, "influx_url")
 
     @property
     @pulumi.getter
@@ -346,6 +354,7 @@ class AwaitableGetCloudStackResult(GetCloudStackResult):
             graphite_url=self.graphite_url,
             graphite_user_id=self.graphite_user_id,
             id=self.id,
+            influx_url=self.influx_url,
             labels=self.labels,
             logs_name=self.logs_name,
             logs_status=self.logs_status,
@@ -398,6 +407,7 @@ def get_cloud_stack(slug: Optional[str] = None,
         graphite_url=pulumi.get(__ret__, 'graphite_url'),
         graphite_user_id=pulumi.get(__ret__, 'graphite_user_id'),
         id=pulumi.get(__ret__, 'id'),
+        influx_url=pulumi.get(__ret__, 'influx_url'),
         labels=pulumi.get(__ret__, 'labels'),
         logs_name=pulumi.get(__ret__, 'logs_name'),
         logs_status=pulumi.get(__ret__, 'logs_status'),

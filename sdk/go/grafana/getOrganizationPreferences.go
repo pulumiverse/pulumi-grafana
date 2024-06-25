@@ -29,8 +29,6 @@ type LookupOrganizationPreferencesArgs struct {
 
 // A collection of values returned by getOrganizationPreferences.
 type LookupOrganizationPreferencesResult struct {
-	// Deprecated: Use `homeDashboardUid` instead.
-	HomeDashboardId  int    `pulumi:"homeDashboardId"`
 	HomeDashboardUid string `pulumi:"homeDashboardUid"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
@@ -75,11 +73,6 @@ func (o LookupOrganizationPreferencesResultOutput) ToLookupOrganizationPreferenc
 
 func (o LookupOrganizationPreferencesResultOutput) ToLookupOrganizationPreferencesResultOutputWithContext(ctx context.Context) LookupOrganizationPreferencesResultOutput {
 	return o
-}
-
-// Deprecated: Use `homeDashboardUid` instead.
-func (o LookupOrganizationPreferencesResultOutput) HomeDashboardId() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupOrganizationPreferencesResult) int { return v.HomeDashboardId }).(pulumi.IntOutput)
 }
 
 func (o LookupOrganizationPreferencesResultOutput) HomeDashboardUid() pulumi.StringOutput {

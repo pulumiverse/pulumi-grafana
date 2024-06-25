@@ -419,6 +419,10 @@ export interface ContactPointPagerduty {
      * The UID of the contact point.
      */
     uid?: pulumi.Input<string>;
+    /**
+     * The URL to send API requests to
+     */
+    url?: pulumi.Input<string>;
 }
 
 export interface ContactPointPushover {
@@ -687,6 +691,10 @@ export interface ContactPointTelegram {
      * The templated content of the message.
      */
     message?: pulumi.Input<string>;
+    /**
+     * The ID of the message thread to send the message to.
+     */
+    messageThreadId?: pulumi.Input<string>;
     /**
      * Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
      */
@@ -1537,17 +1545,6 @@ export interface ReportSchedule {
     workdaysOnly?: pulumi.Input<boolean>;
 }
 
-export interface ReportTimeRange {
-    /**
-     * Start of the time range.
-     */
-    from?: pulumi.Input<string>;
-    /**
-     * End of the time range.
-     */
-    to?: pulumi.Input<string>;
-}
-
 export interface RolePermission {
     /**
      * Specific action users granted with the role will be allowed to perform (for example: `users:read`)
@@ -2076,6 +2073,10 @@ export interface SsoSettingsSamlSettings {
      */
     roleValuesNone?: pulumi.Input<string>;
     /**
+     * List of comma- or space-separated roles which will be mapped into the Viewer role.
+     */
+    roleValuesViewer?: pulumi.Input<string>;
+    /**
      * Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
      */
     signatureAlgorithm?: pulumi.Input<string>;
@@ -2106,6 +2107,10 @@ export interface SyntheticMonitoringCheckSettings {
      * Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
      */
     ping?: pulumi.Input<inputs.SyntheticMonitoringCheckSettingsPing>;
+    /**
+     * Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+     */
+    scripted?: pulumi.Input<inputs.SyntheticMonitoringCheckSettingsScripted>;
     /**
      * Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
      */
@@ -2473,6 +2478,10 @@ export interface SyntheticMonitoringCheckSettingsPing {
      * Source IP address.
      */
     sourceIpAddress?: pulumi.Input<string>;
+}
+
+export interface SyntheticMonitoringCheckSettingsScripted {
+    script: pulumi.Input<string>;
 }
 
 export interface SyntheticMonitoringCheckSettingsTcp {
@@ -2969,6 +2978,10 @@ export namespace alerting {
          * The UID of the contact point.
          */
         uid?: pulumi.Input<string>;
+        /**
+         * The URL to send API requests to
+         */
+        url?: pulumi.Input<string>;
     }
 
     export interface ContactPointPushover {
@@ -3237,6 +3250,10 @@ export namespace alerting {
          * The templated content of the message.
          */
         message?: pulumi.Input<string>;
+        /**
+         * The ID of the message thread to send the message to.
+         */
+        messageThreadId?: pulumi.Input<string>;
         /**
          * Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
          */
@@ -3912,17 +3929,6 @@ export namespace enterprise {
         workdaysOnly?: pulumi.Input<boolean>;
     }
 
-    export interface ReportTimeRange {
-        /**
-         * Start of the time range.
-         */
-        from?: pulumi.Input<string>;
-        /**
-         * End of the time range.
-         */
-        to?: pulumi.Input<string>;
-    }
-
     export interface RolePermission {
         /**
          * Specific action users granted with the role will be allowed to perform (for example: `users:read`)
@@ -4530,6 +4536,10 @@ export namespace oss {
          */
         roleValuesNone?: pulumi.Input<string>;
         /**
+         * List of comma- or space-separated roles which will be mapped into the Viewer role.
+         */
+        roleValuesViewer?: pulumi.Input<string>;
+        /**
          * Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
          */
         signatureAlgorithm?: pulumi.Input<string>;
@@ -4712,6 +4722,10 @@ export namespace syntheticMonitoring {
          * Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
          */
         ping?: pulumi.Input<inputs.syntheticMonitoring.CheckSettingsPing>;
+        /**
+         * Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+         */
+        scripted?: pulumi.Input<inputs.syntheticMonitoring.CheckSettingsScripted>;
         /**
          * Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
          */
@@ -5079,6 +5093,10 @@ export namespace syntheticMonitoring {
          * Source IP address.
          */
         sourceIpAddress?: pulumi.Input<string>;
+    }
+
+    export interface CheckSettingsScripted {
+        script: pulumi.Input<string>;
     }
 
     export interface CheckSettingsTcp {

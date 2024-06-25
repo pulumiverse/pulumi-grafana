@@ -62,7 +62,6 @@ namespace Pulumiverse.Grafana
         public readonly string Created;
         public readonly ImmutableArray<int> DashboardIds;
         public readonly string Description;
-        public readonly string FolderId;
         public readonly string FolderName;
         public readonly string FolderUid;
         /// <summary>
@@ -85,8 +84,6 @@ namespace Pulumiverse.Grafana
             ImmutableArray<int> dashboardIds,
 
             string description,
-
-            string folderId,
 
             string folderName,
 
@@ -113,7 +110,6 @@ namespace Pulumiverse.Grafana
             Created = created;
             DashboardIds = dashboardIds;
             Description = description;
-            FolderId = folderId;
             FolderName = folderName;
             FolderUid = folderUid;
             Id = id;

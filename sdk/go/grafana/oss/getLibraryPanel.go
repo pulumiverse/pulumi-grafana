@@ -40,10 +40,6 @@ type LookupLibraryPanelResult struct {
 	DashboardIds []int `pulumi:"dashboardIds"`
 	// Description of the library panel.
 	Description string `pulumi:"description"`
-	// Deprecated. Use `folderUid` instead
-	//
-	// Deprecated: Use `folderUid` instead
-	FolderId string `pulumi:"folderId"`
 	// Name of the folder containing the library panel.
 	FolderName string `pulumi:"folderName"`
 	// Unique ID (UID) of the folder containing the library panel.
@@ -123,13 +119,6 @@ func (o LookupLibraryPanelResultOutput) DashboardIds() pulumi.IntArrayOutput {
 // Description of the library panel.
 func (o LookupLibraryPanelResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLibraryPanelResult) string { return v.Description }).(pulumi.StringOutput)
-}
-
-// Deprecated. Use `folderUid` instead
-//
-// Deprecated: Use `folderUid` instead
-func (o LookupLibraryPanelResultOutput) FolderId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLibraryPanelResult) string { return v.FolderId }).(pulumi.StringOutput)
 }
 
 // Name of the folder containing the library panel.

@@ -41,6 +41,10 @@ export interface GetProbeArgs {
  */
 export interface GetProbeResult {
     /**
+     * Disables scripted checks for this probe.
+     */
+    readonly disableScriptedChecks: boolean;
+    /**
      * The ID of the probe.
      */
     readonly id: string;

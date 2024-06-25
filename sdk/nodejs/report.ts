@@ -39,18 +39,6 @@ export class Report extends pulumi.CustomResource {
     }
 
     /**
-     * Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
-     *
-     * @deprecated Use dashboards instead
-     */
-    public readonly dashboardId!: pulumi.Output<number>;
-    /**
-     * Dashboard to be sent in the report.
-     *
-     * @deprecated Use dashboards instead
-     */
-    public readonly dashboardUid!: pulumi.Output<string>;
-    /**
      * List of dashboards to render into the report
      */
     public readonly dashboards!: pulumi.Output<outputs.ReportDashboard[] | undefined>;
@@ -98,12 +86,6 @@ export class Report extends pulumi.CustomResource {
      * Schedule of the report.
      */
     public readonly schedule!: pulumi.Output<outputs.ReportSchedule>;
-    /**
-     * Time range of the report.
-     *
-     * @deprecated Use timeRange in dashboards instead. This field is completely ignored when dashboards is set.
-     */
-    public readonly timeRange!: pulumi.Output<outputs.ReportTimeRange | undefined>;
 
     /**
      * Create a Report resource with the given unique name, arguments, and options.
@@ -121,8 +103,6 @@ export class Report extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ReportState | undefined;
-            resourceInputs["dashboardId"] = state ? state.dashboardId : undefined;
-            resourceInputs["dashboardUid"] = state ? state.dashboardUid : undefined;
             resourceInputs["dashboards"] = state ? state.dashboards : undefined;
             resourceInputs["formats"] = state ? state.formats : undefined;
             resourceInputs["includeDashboardLink"] = state ? state.includeDashboardLink : undefined;
@@ -135,7 +115,6 @@ export class Report extends pulumi.CustomResource {
             resourceInputs["recipients"] = state ? state.recipients : undefined;
             resourceInputs["replyTo"] = state ? state.replyTo : undefined;
             resourceInputs["schedule"] = state ? state.schedule : undefined;
-            resourceInputs["timeRange"] = state ? state.timeRange : undefined;
         } else {
             const args = argsOrState as ReportArgs | undefined;
             if ((!args || args.recipients === undefined) && !opts.urn) {
@@ -144,8 +123,6 @@ export class Report extends pulumi.CustomResource {
             if ((!args || args.schedule === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'schedule'");
             }
-            resourceInputs["dashboardId"] = args ? args.dashboardId : undefined;
-            resourceInputs["dashboardUid"] = args ? args.dashboardUid : undefined;
             resourceInputs["dashboards"] = args ? args.dashboards : undefined;
             resourceInputs["formats"] = args ? args.formats : undefined;
             resourceInputs["includeDashboardLink"] = args ? args.includeDashboardLink : undefined;
@@ -158,7 +135,6 @@ export class Report extends pulumi.CustomResource {
             resourceInputs["recipients"] = args ? args.recipients : undefined;
             resourceInputs["replyTo"] = args ? args.replyTo : undefined;
             resourceInputs["schedule"] = args ? args.schedule : undefined;
-            resourceInputs["timeRange"] = args ? args.timeRange : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/report:Report" }] };
@@ -171,18 +147,6 @@ export class Report extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Report resources.
  */
 export interface ReportState {
-    /**
-     * Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
-     *
-     * @deprecated Use dashboards instead
-     */
-    dashboardId?: pulumi.Input<number>;
-    /**
-     * Dashboard to be sent in the report.
-     *
-     * @deprecated Use dashboards instead
-     */
-    dashboardUid?: pulumi.Input<string>;
     /**
      * List of dashboards to render into the report
      */
@@ -231,30 +195,12 @@ export interface ReportState {
      * Schedule of the report.
      */
     schedule?: pulumi.Input<inputs.ReportSchedule>;
-    /**
-     * Time range of the report.
-     *
-     * @deprecated Use timeRange in dashboards instead. This field is completely ignored when dashboards is set.
-     */
-    timeRange?: pulumi.Input<inputs.ReportTimeRange>;
 }
 
 /**
  * The set of arguments for constructing a Report resource.
  */
 export interface ReportArgs {
-    /**
-     * Dashboard to be sent in the report. This field is deprecated, use `dashboardUid` instead.
-     *
-     * @deprecated Use dashboards instead
-     */
-    dashboardId?: pulumi.Input<number>;
-    /**
-     * Dashboard to be sent in the report.
-     *
-     * @deprecated Use dashboards instead
-     */
-    dashboardUid?: pulumi.Input<string>;
     /**
      * List of dashboards to render into the report
      */
@@ -303,10 +249,4 @@ export interface ReportArgs {
      * Schedule of the report.
      */
     schedule: pulumi.Input<inputs.ReportSchedule>;
-    /**
-     * Time range of the report.
-     *
-     * @deprecated Use timeRange in dashboards instead. This field is completely ignored when dashboards is set.
-     */
-    timeRange?: pulumi.Input<inputs.ReportTimeRange>;
 }

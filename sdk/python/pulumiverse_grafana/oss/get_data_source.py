@@ -98,11 +98,8 @@ class GetDataSourceResult:
     @pulumi.getter
     def id(self) -> str:
         """
-        Deprecated: Use `uid` instead of `id`
+        The provider-assigned unique ID for this managed resource.
         """
-        warnings.warn("""Use `uid` instead of `id`""", DeprecationWarning)
-        pulumi.log.warn("""id is deprecated: Use `uid` instead of `id`""")
-
         return pulumi.get(self, "id")
 
     @property
@@ -185,8 +182,7 @@ class AwaitableGetDataSourceResult(GetDataSourceResult):
             username=self.username)
 
 
-def get_data_source(id: Optional[str] = None,
-                    name: Optional[str] = None,
+def get_data_source(name: Optional[str] = None,
                     org_id: Optional[str] = None,
                     uid: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDataSourceResult:
@@ -216,16 +212,13 @@ def get_data_source(id: Optional[str] = None,
             "basicAuthPassword": "password",
         }))
     from_name = grafana.oss.get_data_source_output(name=prometheus.name)
-    from_id = grafana.oss.get_data_source_output(id=prometheus.id)
     from_uid = grafana.oss.get_data_source_output(uid=prometheus.uid)
     ```
 
 
-    :param str id: Deprecated: Use `uid` instead of `id`
     :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
     __args__ = dict()
-    __args__['id'] = id
     __args__['name'] = name
     __args__['orgId'] = org_id
     __args__['uid'] = uid
@@ -249,8 +242,7 @@ def get_data_source(id: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_data_source)
-def get_data_source_output(id: Optional[pulumi.Input[Optional[str]]] = None,
-                           name: Optional[pulumi.Input[Optional[str]]] = None,
+def get_data_source_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                            org_id: Optional[pulumi.Input[Optional[str]]] = None,
                            uid: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataSourceResult]:
@@ -280,12 +272,10 @@ def get_data_source_output(id: Optional[pulumi.Input[Optional[str]]] = None,
             "basicAuthPassword": "password",
         }))
     from_name = grafana.oss.get_data_source_output(name=prometheus.name)
-    from_id = grafana.oss.get_data_source_output(id=prometheus.id)
     from_uid = grafana.oss.get_data_source_output(uid=prometheus.uid)
     ```
 
 
-    :param str id: Deprecated: Use `uid` instead of `id`
     :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
     ...

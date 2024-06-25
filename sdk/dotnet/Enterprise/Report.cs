@@ -38,10 +38,16 @@ namespace Pulumiverse.Grafana.Enterprise
     /// 
     ///     var testReport = new Grafana.Enterprise.Report("testReport", new()
     ///     {
-    ///         DashboardUid = testDashboard.Uid,
     ///         Recipients = new[]
     ///         {
     ///             "some@email.com",
+    ///         },
+    ///         Dashboards = new[]
+    ///         {
+    ///             new Grafana.Enterprise.Inputs.ReportDashboardArgs
+    ///             {
+    ///                 Uid = testDashboard.Uid,
+    ///             },
     ///         },
     ///         Schedule = new Grafana.Enterprise.Inputs.ReportScheduleArgs
     ///         {
@@ -65,18 +71,6 @@ namespace Pulumiverse.Grafana.Enterprise
     [GrafanaResourceType("grafana:enterprise/report:Report")]
     public partial class Report : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
-        /// </summary>
-        [Output("dashboardId")]
-        public Output<int> DashboardId { get; private set; } = null!;
-
-        /// <summary>
-        /// Dashboard to be sent in the report.
-        /// </summary>
-        [Output("dashboardUid")]
-        public Output<string> DashboardUid { get; private set; } = null!;
-
         /// <summary>
         /// List of dashboards to render into the report
         /// </summary>
@@ -149,12 +143,6 @@ namespace Pulumiverse.Grafana.Enterprise
         [Output("schedule")]
         public Output<Outputs.ReportSchedule> Schedule { get; private set; } = null!;
 
-        /// <summary>
-        /// Time range of the report.
-        /// </summary>
-        [Output("timeRange")]
-        public Output<Outputs.ReportTimeRange?> TimeRange { get; private set; } = null!;
-
 
         /// <summary>
         /// Create a Report resource with the given unique name, arguments, and options.
@@ -206,18 +194,6 @@ namespace Pulumiverse.Grafana.Enterprise
 
     public sealed class ReportArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
-        /// </summary>
-        [Input("dashboardId")]
-        public Input<int>? DashboardId { get; set; }
-
-        /// <summary>
-        /// Dashboard to be sent in the report.
-        /// </summary>
-        [Input("dashboardUid")]
-        public Input<string>? DashboardUid { get; set; }
-
         [Input("dashboards")]
         private InputList<Inputs.ReportDashboardArgs>? _dashboards;
 
@@ -308,12 +284,6 @@ namespace Pulumiverse.Grafana.Enterprise
         [Input("schedule", required: true)]
         public Input<Inputs.ReportScheduleArgs> Schedule { get; set; } = null!;
 
-        /// <summary>
-        /// Time range of the report.
-        /// </summary>
-        [Input("timeRange")]
-        public Input<Inputs.ReportTimeRangeArgs>? TimeRange { get; set; }
-
         public ReportArgs()
         {
         }
@@ -322,18 +292,6 @@ namespace Pulumiverse.Grafana.Enterprise
 
     public sealed class ReportState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Dashboard to be sent in the report. This field is deprecated, use `dashboard_uid` instead.
-        /// </summary>
-        [Input("dashboardId")]
-        public Input<int>? DashboardId { get; set; }
-
-        /// <summary>
-        /// Dashboard to be sent in the report.
-        /// </summary>
-        [Input("dashboardUid")]
-        public Input<string>? DashboardUid { get; set; }
-
         [Input("dashboards")]
         private InputList<Inputs.ReportDashboardGetArgs>? _dashboards;
 
@@ -423,12 +381,6 @@ namespace Pulumiverse.Grafana.Enterprise
         /// </summary>
         [Input("schedule")]
         public Input<Inputs.ReportScheduleGetArgs>? Schedule { get; set; }
-
-        /// <summary>
-        /// Time range of the report.
-        /// </summary>
-        [Input("timeRange")]
-        public Input<Inputs.ReportTimeRangeGetArgs>? TimeRange { get; set; }
 
         public ReportState()
         {

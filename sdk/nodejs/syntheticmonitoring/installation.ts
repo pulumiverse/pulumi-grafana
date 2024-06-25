@@ -43,6 +43,8 @@ import * as utilities from "../utilities";
  *     scopes: [
  *         "metrics:write",
  *         "stacks:read",
+ *         "logs:write",
+ *         "traces:write",
  *     ],
  *     realms: [{
  *         type: "stack",

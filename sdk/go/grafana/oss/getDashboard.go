@@ -47,15 +47,12 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			test, err := oss.NewDashboard(ctx, "test", &oss.DashboardArgs{
+//			_, err = oss.NewDashboard(ctx, "test", &oss.DashboardArgs{
 //				ConfigJson: pulumi.String(json0),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_ = oss.LookupDashboardOutput(ctx, oss.GetDashboardOutputArgs{
-//				DashboardId: test.DashboardId,
-//			}, nil)
 //			_, err = oss.LookupDashboard(ctx, &oss.LookupDashboardArgs{
 //				Uid: pulumi.StringRef("test-ds-dashboard-uid"),
 //			}, nil)
@@ -93,10 +90,6 @@ type LookupDashboardResult struct {
 	ConfigJson string `pulumi:"configJson"`
 	// The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
 	DashboardId *int `pulumi:"dashboardId"`
-	// Deprecated. Use `folderUid` instead
-	//
-	// Deprecated: Use `folderUid` instead
-	Folder int `pulumi:"folder"`
 	// The UID of the folder where the Grafana dashboard is found.
 	FolderUid string `pulumi:"folderUid"`
 	// The provider-assigned unique ID for this managed resource.
@@ -167,13 +160,6 @@ func (o LookupDashboardResultOutput) ConfigJson() pulumi.StringOutput {
 // The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
 func (o LookupDashboardResultOutput) DashboardId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupDashboardResult) *int { return v.DashboardId }).(pulumi.IntPtrOutput)
-}
-
-// Deprecated. Use `folderUid` instead
-//
-// Deprecated: Use `folderUid` instead
-func (o LookupDashboardResultOutput) Folder() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupDashboardResult) int { return v.Folder }).(pulumi.IntOutput)
 }
 
 // The UID of the folder where the Grafana dashboard is found.

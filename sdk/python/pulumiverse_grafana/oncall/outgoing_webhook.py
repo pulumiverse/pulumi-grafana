@@ -37,7 +37,7 @@ class OutgoingWebhookArgs:
         :param pulumi.Input[str] headers: Headers to add to the outgoing webhook request.
         :param pulumi.Input[str] http_method: The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_filters: Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
-        :param pulumi.Input[bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+        :param pulumi.Input[bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
@@ -161,7 +161,7 @@ class OutgoingWebhookArgs:
     @pulumi.getter(name="isWebhookEnabled")
     def is_webhook_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+        Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
         """
         return pulumi.get(self, "is_webhook_enabled")
 
@@ -267,7 +267,7 @@ class _OutgoingWebhookState:
         :param pulumi.Input[str] headers: Headers to add to the outgoing webhook request.
         :param pulumi.Input[str] http_method: The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_filters: Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
-        :param pulumi.Input[bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+        :param pulumi.Input[bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
@@ -381,7 +381,7 @@ class _OutgoingWebhookState:
     @pulumi.getter(name="isWebhookEnabled")
     def is_webhook_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+        Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
         """
         return pulumi.get(self, "is_webhook_enabled")
 
@@ -521,7 +521,7 @@ class OutgoingWebhook(pulumi.CustomResource):
         :param pulumi.Input[str] headers: Headers to add to the outgoing webhook request.
         :param pulumi.Input[str] http_method: The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_filters: Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
-        :param pulumi.Input[bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+        :param pulumi.Input[bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
@@ -650,7 +650,7 @@ class OutgoingWebhook(pulumi.CustomResource):
         :param pulumi.Input[str] headers: Headers to add to the outgoing webhook request.
         :param pulumi.Input[str] http_method: The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_filters: Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
-        :param pulumi.Input[bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+        :param pulumi.Input[bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
         :param pulumi.Input[str] name: The name of the outgoing webhook.
         :param pulumi.Input[str] password: The auth data of the webhook. Used for Basic authentication
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
@@ -731,7 +731,7 @@ class OutgoingWebhook(pulumi.CustomResource):
     @pulumi.getter(name="isWebhookEnabled")
     def is_webhook_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
-        Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+        Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
         """
         return pulumi.get(self, "is_webhook_enabled")
 

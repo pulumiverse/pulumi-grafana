@@ -24,8 +24,6 @@ func GetDashboards(ctx *pulumi.Context, args *GetDashboardsArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getDashboards.
 type GetDashboardsArgs struct {
-	// Deprecated: Use `folderUids` instead.
-	FolderIds  []int    `pulumi:"folderIds"`
 	FolderUids []string `pulumi:"folderUids"`
 	Limit      *int     `pulumi:"limit"`
 	OrgId      *string  `pulumi:"orgId"`
@@ -35,9 +33,7 @@ type GetDashboardsArgs struct {
 // A collection of values returned by getDashboards.
 type GetDashboardsResult struct {
 	Dashboards []GetDashboardsDashboard `pulumi:"dashboards"`
-	// Deprecated: Use `folderUids` instead.
-	FolderIds  []int    `pulumi:"folderIds"`
-	FolderUids []string `pulumi:"folderUids"`
+	FolderUids []string                 `pulumi:"folderUids"`
 	// The provider-assigned unique ID for this managed resource.
 	Id    string   `pulumi:"id"`
 	Limit *int     `pulumi:"limit"`
@@ -60,8 +56,6 @@ func GetDashboardsOutput(ctx *pulumi.Context, args GetDashboardsOutputArgs, opts
 
 // A collection of arguments for invoking getDashboards.
 type GetDashboardsOutputArgs struct {
-	// Deprecated: Use `folderUids` instead.
-	FolderIds  pulumi.IntArrayInput    `pulumi:"folderIds"`
 	FolderUids pulumi.StringArrayInput `pulumi:"folderUids"`
 	Limit      pulumi.IntPtrInput      `pulumi:"limit"`
 	OrgId      pulumi.StringPtrInput   `pulumi:"orgId"`
@@ -89,11 +83,6 @@ func (o GetDashboardsResultOutput) ToGetDashboardsResultOutputWithContext(ctx co
 
 func (o GetDashboardsResultOutput) Dashboards() GetDashboardsDashboardArrayOutput {
 	return o.ApplyT(func(v GetDashboardsResult) []GetDashboardsDashboard { return v.Dashboards }).(GetDashboardsDashboardArrayOutput)
-}
-
-// Deprecated: Use `folderUids` instead.
-func (o GetDashboardsResultOutput) FolderIds() pulumi.IntArrayOutput {
-	return o.ApplyT(func(v GetDashboardsResult) []int { return v.FolderIds }).(pulumi.IntArrayOutput)
 }
 
 func (o GetDashboardsResultOutput) FolderUids() pulumi.StringArrayOutput {

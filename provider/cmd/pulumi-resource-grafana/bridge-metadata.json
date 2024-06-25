@@ -16,16 +16,6 @@
                     }
                 }
             },
-            "grafana_api_key": {
-                "current": "grafana:oss/apiKey:ApiKey",
-                "past": [
-                    {
-                        "name": "grafana:index/apiKey:ApiKey",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ]
-            },
             "grafana_cloud_access_policy": {
                 "current": "grafana:cloud/accessPolicy:AccessPolicy",
                 "past": [
@@ -61,16 +51,6 @@
                     }
                 ]
             },
-            "grafana_cloud_api_key": {
-                "current": "grafana:cloud/apiKey:ApiKey",
-                "past": [
-                    {
-                        "name": "grafana:index/cloudApiKey:CloudApiKey",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ]
-            },
             "grafana_cloud_org_member": {
                 "current": "grafana:cloud/orgMember:OrgMember",
                 "past": [
@@ -96,16 +76,6 @@
                 "past": [
                     {
                         "name": "grafana:index/cloudStack:CloudStack",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ]
-            },
-            "grafana_cloud_stack_api_key": {
-                "current": "grafana:cloud/stackApiKey:StackApiKey",
-                "past": [
-                    {
-                        "name": "grafana:index/cloudStackApiKey:CloudStackApiKey",
                         "inCodegen": true,
                         "majorVersion": 0
                     }
@@ -785,9 +755,6 @@
                     },
                     "schedule": {
                         "maxItemsOne": true
-                    },
-                    "time_range": {
-                        "maxItemsOne": true
                     }
                 }
             },
@@ -1164,6 +1131,9 @@
                                 "ping": {
                                     "maxItemsOne": true
                                 },
+                                "scripted": {
+                                    "maxItemsOne": true
+                                },
                                 "tcp": {
                                     "maxItemsOne": true,
                                     "elem": {
@@ -1330,9 +1300,6 @@
                     "dashboards": {
                         "maxItemsOne": false
                     },
-                    "folder_ids": {
-                        "maxItemsOne": false
-                    },
                     "folder_uids": {
                         "maxItemsOne": false
                     },
@@ -1390,16 +1357,6 @@
                         "maxItemsOne": false
                     }
                 }
-            },
-            "grafana_oncall_action": {
-                "current": "grafana:onCall/getAction:getAction",
-                "past": [
-                    {
-                        "name": "grafana:index/getOncallAction:getOncallAction",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ]
             },
             "grafana_oncall_escalation_chain": {
                 "current": "grafana:onCall/getEscalationChain:getEscalationChain",
@@ -1706,11 +1663,6 @@
                     "grafana:index/annotation:Annotation"
                 ]
             },
-            "grafana_api_key": {
-                "aliases": [
-                    "grafana:index/apiKey:ApiKey"
-                ]
-            },
             "grafana_cloud_access_policy": {
                 "aliases": [
                     "grafana:index/cloudAccessPolicy:CloudAccessPolicy"
@@ -1719,11 +1671,6 @@
             "grafana_cloud_access_policy_token": {
                 "aliases": [
                     "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken"
-                ]
-            },
-            "grafana_cloud_api_key": {
-                "aliases": [
-                    "grafana:index/cloudApiKey:CloudApiKey"
                 ]
             },
             "grafana_cloud_org_member": {
@@ -1739,11 +1686,6 @@
             "grafana_cloud_stack": {
                 "aliases": [
                     "grafana:index/cloudStack:CloudStack"
-                ]
-            },
-            "grafana_cloud_stack_api_key": {
-                "aliases": [
-                    "grafana:index/cloudStackApiKey:CloudStackApiKey"
                 ]
             },
             "grafana_cloud_stack_service_account": {
@@ -2039,11 +1981,6 @@
                     "grafana:index/getLibraryPanel:getLibraryPanel"
                 ]
             },
-            "grafana_oncall_action": {
-                "renames": [
-                    "grafana:index/getOncallAction:getOncallAction"
-                ]
-            },
             "grafana_oncall_escalation_chain": {
                 "renames": [
                     "grafana:index/getOncallEscalationChain:getOncallEscalationChain"
@@ -2149,11 +2086,9 @@
             "grafana:alerting/ruleGroup:RuleGroup": 0,
             "grafana:cloud/accessPolicy:AccessPolicy": 0,
             "grafana:cloud/accessPolicyToken:AccessPolicyToken": 0,
-            "grafana:cloud/apiKey:ApiKey": 0,
             "grafana:cloud/orgMember:OrgMember": 1,
             "grafana:cloud/pluginInstallation:PluginInstallation": 0,
             "grafana:cloud/stack:Stack": 0,
-            "grafana:cloud/stackApiKey:StackApiKey": 0,
             "grafana:cloud/stackServiceAccount:StackServiceAccount": 0,
             "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken": 0,
             "grafana:enterprise/dataSourcePermission:DataSourcePermission": 0,
@@ -2164,14 +2099,11 @@
             "grafana:enterprise/roleAssignmentItem:RoleAssignmentItem": 1,
             "grafana:enterprise/teamExternalGroup:TeamExternalGroup": 0,
             "grafana:index/annotation:Annotation": 0,
-            "grafana:index/apiKey:ApiKey": 0,
             "grafana:index/cloudAccessPolicy:CloudAccessPolicy": 0,
             "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken": 0,
-            "grafana:index/cloudApiKey:CloudApiKey": 0,
             "grafana:index/cloudOrgMember:CloudOrgMember": 1,
             "grafana:index/cloudPluginInstallation:CloudPluginInstallation": 0,
             "grafana:index/cloudStack:CloudStack": 0,
-            "grafana:index/cloudStackApiKey:CloudStackApiKey": 0,
             "grafana:index/cloudStackServiceAccount:CloudStackServiceAccount": 0,
             "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken": 0,
             "grafana:index/contactPoint:ContactPoint": 0,
@@ -2231,7 +2163,6 @@
             "grafana:onCall/route:Route": 0,
             "grafana:onCall/schedule:Schedule": 0,
             "grafana:oss/annotation:Annotation": 0,
-            "grafana:oss/apiKey:ApiKey": 0,
             "grafana:oss/dashboard:Dashboard": 0,
             "grafana:oss/dashboardPermission:DashboardPermission": 0,
             "grafana:oss/dashboardPermissionItem:DashboardPermissionItem": 1,
@@ -2272,7 +2203,6 @@
             "grafana:index/getFolders:getFolders": 0,
             "grafana:index/getLibraryPanel:getLibraryPanel": 0,
             "grafana:index/getOnCallSlackChannel:getOnCallSlackChannel": 0,
-            "grafana:index/getOncallAction:getOncallAction": 0,
             "grafana:index/getOncallEscalationChain:getOncallEscalationChain": 0,
             "grafana:index/getOncallIntegration:getOncallIntegration": 0,
             "grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook": 0,
@@ -2290,7 +2220,6 @@
             "grafana:index/getTeam:getTeam": 0,
             "grafana:index/getUser:getUser": 0,
             "grafana:index/getUsers:getUsers": 0,
-            "grafana:onCall/getAction:getAction": 0,
             "grafana:onCall/getEscalationChain:getEscalationChain": 0,
             "grafana:onCall/getIntegration:getIntegration": 0,
             "grafana:onCall/getOutgoingWebhook:getOutgoingWebhook": 0,
@@ -2319,13 +2248,10 @@
     "renames": {
         "resources": {
             "grafana:index/annotation:Annotation": "grafana_annotation",
-            "grafana:index/apiKey:ApiKey": "grafana_api_key",
             "grafana:index/cloudAccessPolicy:CloudAccessPolicy": "grafana_cloud_access_policy",
             "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken": "grafana_cloud_access_policy_token",
-            "grafana:index/cloudApiKey:CloudApiKey": "grafana_cloud_api_key",
             "grafana:index/cloudPluginInstallation:CloudPluginInstallation": "grafana_cloud_plugin_installation",
             "grafana:index/cloudStack:CloudStack": "grafana_cloud_stack",
-            "grafana:index/cloudStackApiKey:CloudStackApiKey": "grafana_cloud_stack_api_key",
             "grafana:index/cloudStackServiceAccount:CloudStackServiceAccount": "grafana_cloud_stack_service_account",
             "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken": "grafana_cloud_stack_service_account_token",
             "grafana:index/contactPoint:ContactPoint": "grafana_contact_point",
@@ -2380,7 +2306,6 @@
             "grafana:index/getFolders:getFolders": "grafana_folders",
             "grafana:index/getLibraryPanel:getLibraryPanel": "grafana_library_panel",
             "grafana:index/getOnCallSlackChannel:getOnCallSlackChannel": "grafana_oncall_slack_channel",
-            "grafana:index/getOncallAction:getOncallAction": "grafana_oncall_action",
             "grafana:index/getOncallEscalationChain:getOncallEscalationChain": "grafana_oncall_escalation_chain",
             "grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook": "grafana_oncall_outgoing_webhook",
             "grafana:index/getOncallSchedule:getOncallSchedule": "grafana_oncall_schedule",

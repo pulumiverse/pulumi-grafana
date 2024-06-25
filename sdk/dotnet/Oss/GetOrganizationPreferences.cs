@@ -91,10 +91,6 @@ namespace Pulumiverse.Grafana.Oss
     public sealed class GetOrganizationPreferencesResult
     {
         /// <summary>
-        /// The Organization home dashboard ID. Deprecated: Use `home_dashboard_uid` instead.
-        /// </summary>
-        public readonly int HomeDashboardId;
-        /// <summary>
         /// The Organization home dashboard UID. This is only available in Grafana 9.0+.
         /// </summary>
         public readonly string HomeDashboardUid;
@@ -121,8 +117,6 @@ namespace Pulumiverse.Grafana.Oss
 
         [OutputConstructor]
         private GetOrganizationPreferencesResult(
-            int homeDashboardId,
-
             string homeDashboardUid,
 
             string id,
@@ -135,7 +129,6 @@ namespace Pulumiverse.Grafana.Oss
 
             string weekStart)
         {
-            HomeDashboardId = homeDashboardId;
             HomeDashboardUid = homeDashboardUid;
             Id = id;
             OrgId = orgId;

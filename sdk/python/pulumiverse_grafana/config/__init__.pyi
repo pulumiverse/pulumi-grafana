@@ -27,11 +27,6 @@ Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA
 variable.
 """
 
-cloudApiKey: Optional[str]
-"""
-Deprecated: Use `cloud_access_policy_token` instead.
-"""
-
 cloudApiUrl: Optional[str]
 """
 Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
@@ -50,11 +45,6 @@ A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_
 oncallUrl: Optional[str]
 """
 An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
-"""
-
-orgId: Optional[int]
-"""
-Deprecated: Use the `org_id` attributes on resources instead.
 """
 
 retries: Optional[int]

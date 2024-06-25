@@ -35,6 +35,12 @@ namespace Pulumiverse.Grafana
         public Output<Outputs.SLODestinationDatasource?> DestinationDatasource { get; private set; } = null!;
 
         /// <summary>
+        /// UID for the SLO folder
+        /// </summary>
+        [Output("folderUid")]
+        public Output<string?> FolderUid { get; private set; } = null!;
+
+        /// <summary>
         /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping
         /// SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema -
         /// "^[a-zA-Z_][a-zA-Z0-9_]*$"
@@ -138,6 +144,12 @@ namespace Pulumiverse.Grafana
         [Input("destinationDatasource")]
         public Input<Inputs.SLODestinationDatasourceArgs>? DestinationDatasource { get; set; }
 
+        /// <summary>
+        /// UID for the SLO folder
+        /// </summary>
+        [Input("folderUid")]
+        public Input<string>? FolderUid { get; set; }
+
         [Input("labels")]
         private InputList<Inputs.SLOLabelArgs>? _labels;
 
@@ -216,6 +228,12 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("destinationDatasource")]
         public Input<Inputs.SLODestinationDatasourceGetArgs>? DestinationDatasource { get; set; }
+
+        /// <summary>
+        /// UID for the SLO folder
+        /// </summary>
+        [Input("folderUid")]
+        public Input<string>? FolderUid { get; set; }
 
         [Input("labels")]
         private InputList<Inputs.SLOLabelGetArgs>? _labels;

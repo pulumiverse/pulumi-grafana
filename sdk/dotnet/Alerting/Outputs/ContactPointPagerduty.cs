@@ -66,6 +66,10 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// The UID of the contact point.
         /// </summary>
         public readonly string? Uid;
+        /// <summary>
+        /// The URL to send API requests to
+        /// </summary>
+        public readonly string? Url;
 
         [OutputConstructor]
         private ContactPointPagerduty(
@@ -93,7 +97,9 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 
             string? summary,
 
-            string? uid)
+            string? uid,
+
+            string? url)
         {
             Class = @class;
             Client = client;
@@ -108,6 +114,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
             Source = source;
             Summary = summary;
             Uid = uid;
+            Url = url;
         }
     }
 }

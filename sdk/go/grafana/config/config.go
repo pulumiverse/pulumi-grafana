@@ -45,21 +45,6 @@ func GetCloudAccessPolicyToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:cloudAccessPolicyToken")
 }
 
-// Deprecated: Use `cloudAccessPolicyToken` instead.
-//
-// Deprecated: Use `cloudAccessPolicyToken` instead.
-func GetCloudApiKey(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "grafana:cloudApiKey")
-	if err == nil {
-		return v
-	}
-	var value string
-	if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_CLOUD_API_KEY"); d != nil {
-		value = d.(string)
-	}
-	return value
-}
-
 // Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 func GetCloudApiUrl(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:cloudApiUrl")
@@ -108,21 +93,6 @@ func GetOncallUrl(ctx *pulumi.Context) string {
 	var value string
 	if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_ONCALL_URL"); d != nil {
 		value = d.(string)
-	}
-	return value
-}
-
-// Deprecated: Use the `orgId` attributes on resources instead.
-//
-// Deprecated: Use the `orgId` attributes on resources instead.
-func GetOrgId(ctx *pulumi.Context) int {
-	v, err := config.TryInt(ctx, "grafana:orgId")
-	if err == nil {
-		return v
-	}
-	var value int
-	if d := internal.GetEnvOrDefault(nil, internal.ParseEnvInt, "GRAFANA_ORG_ID"); d != nil {
-		value = d.(int)
 	}
 	return value
 }

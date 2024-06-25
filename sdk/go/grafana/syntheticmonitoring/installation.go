@@ -69,6 +69,8 @@ import (
 //				Scopes: pulumi.StringArray{
 //					pulumi.String("metrics:write"),
 //					pulumi.String("stacks:read"),
+//					pulumi.String("logs:write"),
+//					pulumi.String("traces:write"),
 //				},
 //				Realms: cloud.AccessPolicyRealmArray{
 //					&cloud.AccessPolicyRealmArgs{

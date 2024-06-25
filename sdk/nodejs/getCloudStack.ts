@@ -35,6 +35,7 @@ export interface GetCloudStackResult {
     readonly graphiteUrl: string;
     readonly graphiteUserId: number;
     readonly id: string;
+    readonly influxUrl: string;
     readonly labels: {[key: string]: string};
     readonly logsName: string;
     readonly logsStatus: string;

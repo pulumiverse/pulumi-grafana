@@ -29,14 +29,15 @@ type LookupSyntheticMonitoringProbeArgs struct {
 
 // A collection of values returned by getSyntheticMonitoringProbe.
 type LookupSyntheticMonitoringProbeResult struct {
-	Id        string            `pulumi:"id"`
-	Labels    map[string]string `pulumi:"labels"`
-	Latitude  float64           `pulumi:"latitude"`
-	Longitude float64           `pulumi:"longitude"`
-	Name      string            `pulumi:"name"`
-	Public    bool              `pulumi:"public"`
-	Region    string            `pulumi:"region"`
-	TenantId  int               `pulumi:"tenantId"`
+	DisableScriptedChecks bool              `pulumi:"disableScriptedChecks"`
+	Id                    string            `pulumi:"id"`
+	Labels                map[string]string `pulumi:"labels"`
+	Latitude              float64           `pulumi:"latitude"`
+	Longitude             float64           `pulumi:"longitude"`
+	Name                  string            `pulumi:"name"`
+	Public                bool              `pulumi:"public"`
+	Region                string            `pulumi:"region"`
+	TenantId              int               `pulumi:"tenantId"`
 }
 
 func LookupSyntheticMonitoringProbeOutput(ctx *pulumi.Context, args LookupSyntheticMonitoringProbeOutputArgs, opts ...pulumi.InvokeOption) LookupSyntheticMonitoringProbeResultOutput {
@@ -74,6 +75,10 @@ func (o LookupSyntheticMonitoringProbeResultOutput) ToLookupSyntheticMonitoringP
 
 func (o LookupSyntheticMonitoringProbeResultOutput) ToLookupSyntheticMonitoringProbeResultOutputWithContext(ctx context.Context) LookupSyntheticMonitoringProbeResultOutput {
 	return o
+}
+
+func (o LookupSyntheticMonitoringProbeResultOutput) DisableScriptedChecks() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupSyntheticMonitoringProbeResult) bool { return v.DisableScriptedChecks }).(pulumi.BoolOutput)
 }
 
 func (o LookupSyntheticMonitoringProbeResultOutput) Id() pulumi.StringOutput {

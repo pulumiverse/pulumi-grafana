@@ -12,25 +12,14 @@ namespace Pulumiverse.Grafana.Outputs
 {
 
     [OutputType]
-    public sealed class ReportTimeRange
+    public sealed class SyntheticMonitoringCheckSettingsScripted
     {
-        /// <summary>
-        /// Start of the time range.
-        /// </summary>
-        public readonly string? From;
-        /// <summary>
-        /// End of the time range.
-        /// </summary>
-        public readonly string? To;
+        public readonly string Script;
 
         [OutputConstructor]
-        private ReportTimeRange(
-            string? from,
-
-            string? to)
+        private SyntheticMonitoringCheckSettingsScripted(string script)
         {
-            From = from;
-            To = to;
+            Script = script;
         }
     }
 }

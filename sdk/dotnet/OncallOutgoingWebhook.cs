@@ -52,7 +52,7 @@ namespace Pulumiverse.Grafana
         public Output<ImmutableArray<string>> IntegrationFilters { get; private set; } = null!;
 
         /// <summary>
-        /// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+        /// Controls whether the outgoing webhook will trigger or is ignored.
         /// </summary>
         [Output("isWebhookEnabled")]
         public Output<bool?> IsWebhookEnabled { get; private set; } = null!;
@@ -211,7 +211,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+        /// Controls whether the outgoing webhook will trigger or is ignored.
         /// </summary>
         [Input("isWebhookEnabled")]
         public Input<bool>? IsWebhookEnabled { get; set; }
@@ -332,7 +332,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+        /// Controls whether the outgoing webhook will trigger or is ignored.
         /// </summary>
         [Input("isWebhookEnabled")]
         public Input<bool>? IsWebhookEnabled { get; set; }

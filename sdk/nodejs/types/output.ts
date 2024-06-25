@@ -419,6 +419,10 @@ export interface ContactPointPagerduty {
      * The UID of the contact point.
      */
     uid: string;
+    /**
+     * The URL to send API requests to
+     */
+    url?: string;
 }
 
 export interface ContactPointPushover {
@@ -687,6 +691,10 @@ export interface ContactPointTelegram {
      * The templated content of the message.
      */
     message?: string;
+    /**
+     * The ID of the message thread to send the message to.
+     */
+    messageThreadId?: string;
     /**
      * Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
      */
@@ -1014,6 +1022,10 @@ export interface GetSlosSlo {
      * Destination Datasource sets the datasource defined for an SLO
      */
     destinationDatasources: outputs.GetSlosSloDestinationDatasource[];
+    /**
+     * UID for the SLO folder
+     */
+    folderUid: string;
     /**
      * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
      */
@@ -1783,17 +1795,6 @@ export interface ReportSchedule {
     workdaysOnly?: boolean;
 }
 
-export interface ReportTimeRange {
-    /**
-     * Start of the time range.
-     */
-    from?: string;
-    /**
-     * End of the time range.
-     */
-    to?: string;
-}
-
 export interface RolePermission {
     /**
      * Specific action users granted with the role will be allowed to perform (for example: `users:read`)
@@ -2322,6 +2323,10 @@ export interface SsoSettingsSamlSettings {
      */
     roleValuesNone?: string;
     /**
+     * List of comma- or space-separated roles which will be mapped into the Viewer role.
+     */
+    roleValuesViewer?: string;
+    /**
      * Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
      */
     signatureAlgorithm?: string;
@@ -2352,6 +2357,10 @@ export interface SyntheticMonitoringCheckSettings {
      * Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
      */
     ping?: outputs.SyntheticMonitoringCheckSettingsPing;
+    /**
+     * Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+     */
+    scripted?: outputs.SyntheticMonitoringCheckSettingsScripted;
     /**
      * Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
      */
@@ -2719,6 +2728,10 @@ export interface SyntheticMonitoringCheckSettingsPing {
      * Source IP address.
      */
     sourceIpAddress?: string;
+}
+
+export interface SyntheticMonitoringCheckSettingsScripted {
+    script: string;
 }
 
 export interface SyntheticMonitoringCheckSettingsTcp {
@@ -3216,6 +3229,10 @@ export namespace alerting {
          * The UID of the contact point.
          */
         uid: string;
+        /**
+         * The URL to send API requests to
+         */
+        url?: string;
     }
 
     export interface ContactPointPushover {
@@ -3484,6 +3501,10 @@ export namespace alerting {
          * The templated content of the message.
          */
         message?: string;
+        /**
+         * The ID of the message thread to send the message to.
+         */
+        messageThreadId?: string;
         /**
          * Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
          */
@@ -4172,17 +4193,6 @@ export namespace enterprise {
         workdaysOnly?: boolean;
     }
 
-    export interface ReportTimeRange {
-        /**
-         * Start of the time range.
-         */
-        from?: string;
-        /**
-         * End of the time range.
-         */
-        to?: string;
-    }
-
     export interface RolePermission {
         /**
          * Specific action users granted with the role will be allowed to perform (for example: `users:read`)
@@ -4864,6 +4874,10 @@ export namespace oss {
          */
         roleValuesNone?: string;
         /**
+         * List of comma- or space-separated roles which will be mapped into the Viewer role.
+         */
+        roleValuesViewer?: string;
+        /**
          * Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
          */
         signatureAlgorithm?: string;
@@ -4920,6 +4934,10 @@ export namespace slo {
          * Destination Datasource sets the datasource defined for an SLO
          */
         destinationDatasources: outputs.slo.GetSlosSloDestinationDatasource[];
+        /**
+         * UID for the SLO folder
+         */
+        folderUid: string;
         /**
          * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
          */
@@ -5212,6 +5230,10 @@ export namespace syntheticMonitoring {
          * Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
          */
         ping?: outputs.syntheticMonitoring.CheckSettingsPing;
+        /**
+         * Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+         */
+        scripted?: outputs.syntheticMonitoring.CheckSettingsScripted;
         /**
          * Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
          */
@@ -5579,6 +5601,10 @@ export namespace syntheticMonitoring {
          * Source IP address.
          */
         sourceIpAddress?: string;
+    }
+
+    export interface CheckSettingsScripted {
+        script: string;
     }
 
     export interface CheckSettingsTcp {

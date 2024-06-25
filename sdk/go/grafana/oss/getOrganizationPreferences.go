@@ -55,10 +55,6 @@ type LookupOrganizationPreferencesArgs struct {
 
 // A collection of values returned by getOrganizationPreferences.
 type LookupOrganizationPreferencesResult struct {
-	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
-	//
-	// Deprecated: Use `homeDashboardUid` instead.
-	HomeDashboardId int `pulumi:"homeDashboardId"`
 	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid string `pulumi:"homeDashboardUid"`
 	// The provider-assigned unique ID for this managed resource.
@@ -109,13 +105,6 @@ func (o LookupOrganizationPreferencesResultOutput) ToLookupOrganizationPreferenc
 
 func (o LookupOrganizationPreferencesResultOutput) ToLookupOrganizationPreferencesResultOutputWithContext(ctx context.Context) LookupOrganizationPreferencesResultOutput {
 	return o
-}
-
-// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
-//
-// Deprecated: Use `homeDashboardUid` instead.
-func (o LookupOrganizationPreferencesResultOutput) HomeDashboardId() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupOrganizationPreferencesResult) int { return v.HomeDashboardId }).(pulumi.IntOutput)
 }
 
 // The Organization home dashboard UID. This is only available in Grafana 9.0+.

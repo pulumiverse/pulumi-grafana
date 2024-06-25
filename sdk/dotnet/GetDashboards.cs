@@ -23,15 +23,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetDashboardsArgs : global::Pulumi.InvokeArgs
     {
-        [Input("folderIds")]
-        private List<int>? _folderIds;
-        [Obsolete(@"Use `folder_uids` instead.")]
-        public List<int> FolderIds
-        {
-            get => _folderIds ?? (_folderIds = new List<int>());
-            set => _folderIds = value;
-        }
-
         [Input("folderUids")]
         private List<string>? _folderUids;
         public List<string> FolderUids
@@ -62,15 +53,6 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetDashboardsInvokeArgs : global::Pulumi.InvokeArgs
     {
-        [Input("folderIds")]
-        private InputList<int>? _folderIds;
-        [Obsolete(@"Use `folder_uids` instead.")]
-        public InputList<int> FolderIds
-        {
-            get => _folderIds ?? (_folderIds = new InputList<int>());
-            set => _folderIds = value;
-        }
-
         [Input("folderUids")]
         private InputList<string>? _folderUids;
         public InputList<string> FolderUids
@@ -104,7 +86,6 @@ namespace Pulumiverse.Grafana
     public sealed class GetDashboardsResult
     {
         public readonly ImmutableArray<Outputs.GetDashboardsDashboardResult> Dashboards;
-        public readonly ImmutableArray<int> FolderIds;
         public readonly ImmutableArray<string> FolderUids;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -118,8 +99,6 @@ namespace Pulumiverse.Grafana
         private GetDashboardsResult(
             ImmutableArray<Outputs.GetDashboardsDashboardResult> dashboards,
 
-            ImmutableArray<int> folderIds,
-
             ImmutableArray<string> folderUids,
 
             string id,
@@ -131,7 +110,6 @@ namespace Pulumiverse.Grafana
             ImmutableArray<string> tags)
         {
             Dashboards = dashboards;
-            FolderIds = folderIds;
             FolderUids = folderUids;
             Id = id;
             Limit = limit;

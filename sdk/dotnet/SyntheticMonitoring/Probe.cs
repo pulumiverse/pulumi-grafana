@@ -62,6 +62,12 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
         public Output<string> AuthToken { get; private set; } = null!;
 
         /// <summary>
+        /// Disables scripted checks for this probe. Defaults to `false`.
+        /// </summary>
+        [Output("disableScriptedChecks")]
+        public Output<bool?> DisableScriptedChecks { get; private set; } = null!;
+
+        /// <summary>
         /// Custom labels to be included with collected metrics and logs.
         /// </summary>
         [Output("labels")]
@@ -158,6 +164,12 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
 
     public sealed class ProbeArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Disables scripted checks for this probe. Defaults to `false`.
+        /// </summary>
+        [Input("disableScriptedChecks")]
+        public Input<bool>? DisableScriptedChecks { get; set; }
+
         [Input("labels")]
         private InputMap<string>? _labels;
 
@@ -223,6 +235,12 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
                 _authToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// Disables scripted checks for this probe. Defaults to `false`.
+        /// </summary>
+        [Input("disableScriptedChecks")]
+        public Input<bool>? DisableScriptedChecks { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;

@@ -31,6 +31,10 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
         /// </summary>
         public readonly Outputs.CheckSettingsPing? Ping;
         /// <summary>
+        /// Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+        /// </summary>
+        public readonly Outputs.CheckSettingsScripted? Scripted;
+        /// <summary>
         /// Settings for TCP check. The target must be of the form `&lt;host&gt;:&lt;port&gt;`, where the host portion must be a valid hostname or IP address.
         /// </summary>
         public readonly Outputs.CheckSettingsTcp? Tcp;
@@ -49,6 +53,8 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
 
             Outputs.CheckSettingsPing? ping,
 
+            Outputs.CheckSettingsScripted? scripted,
+
             Outputs.CheckSettingsTcp? tcp,
 
             Outputs.CheckSettingsTraceroute? traceroute)
@@ -57,6 +63,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
             Http = http;
             Multihttp = multihttp;
             Ping = ping;
+            Scripted = scripted;
             Tcp = tcp;
             Traceroute = traceroute;
         }

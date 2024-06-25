@@ -62,7 +62,7 @@ export class OncallOutgoingWebhook extends pulumi.CustomResource {
      */
     public readonly integrationFilters!: pulumi.Output<string[] | undefined>;
     /**
-     * Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+     * Controls whether the outgoing webhook will trigger or is ignored.
      */
     public readonly isWebhookEnabled!: pulumi.Output<boolean | undefined>;
     /**
@@ -185,7 +185,7 @@ export interface OncallOutgoingWebhookState {
      */
     integrationFilters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+     * Controls whether the outgoing webhook will trigger or is ignored.
      */
     isWebhookEnabled?: pulumi.Input<boolean>;
     /**
@@ -250,7 +250,7 @@ export interface OncallOutgoingWebhookArgs {
      */
     integrationFilters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Controls whether the outgoing webhook will trigger or is ignored. The default is `true`.
+     * Controls whether the outgoing webhook will trigger or is ignored.
      */
     isWebhookEnabled?: pulumi.Input<boolean>;
     /**

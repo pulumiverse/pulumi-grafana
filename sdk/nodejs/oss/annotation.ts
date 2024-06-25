@@ -56,13 +56,7 @@ export class Annotation extends pulumi.CustomResource {
     }
 
     /**
-     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
-     *
-     * @deprecated Use dashboardUid instead.
-     */
-    public readonly dashboardId!: pulumi.Output<number | undefined>;
-    /**
-     * The ID of the dashboard on which to create the annotation.
+     * The UID of the dashboard on which to create the annotation.
      */
     public readonly dashboardUid!: pulumi.Output<string | undefined>;
     /**
@@ -103,7 +97,6 @@ export class Annotation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AnnotationState | undefined;
-            resourceInputs["dashboardId"] = state ? state.dashboardId : undefined;
             resourceInputs["dashboardUid"] = state ? state.dashboardUid : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["panelId"] = state ? state.panelId : undefined;
@@ -116,7 +109,6 @@ export class Annotation extends pulumi.CustomResource {
             if ((!args || args.text === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'text'");
             }
-            resourceInputs["dashboardId"] = args ? args.dashboardId : undefined;
             resourceInputs["dashboardUid"] = args ? args.dashboardUid : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["panelId"] = args ? args.panelId : undefined;
@@ -137,13 +129,7 @@ export class Annotation extends pulumi.CustomResource {
  */
 export interface AnnotationState {
     /**
-     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
-     *
-     * @deprecated Use dashboardUid instead.
-     */
-    dashboardId?: pulumi.Input<number>;
-    /**
-     * The ID of the dashboard on which to create the annotation.
+     * The UID of the dashboard on which to create the annotation.
      */
     dashboardUid?: pulumi.Input<string>;
     /**
@@ -177,13 +163,7 @@ export interface AnnotationState {
  */
 export interface AnnotationArgs {
     /**
-     * The ID of the dashboard on which to create the annotation. Deprecated: Use dashboardUid instead.
-     *
-     * @deprecated Use dashboardUid instead.
-     */
-    dashboardId?: pulumi.Input<number>;
-    /**
-     * The ID of the dashboard on which to create the annotation.
+     * The UID of the dashboard on which to create the annotation.
      */
     dashboardUid?: pulumi.Input<string>;
     /**

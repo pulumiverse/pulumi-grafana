@@ -50,10 +50,6 @@ import (
 type OrganizationPreferences struct {
 	pulumi.CustomResourceState
 
-	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
-	//
-	// Deprecated: Use `homeDashboardUid` instead.
-	HomeDashboardId pulumi.IntPtrOutput `pulumi:"homeDashboardId"`
 	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid pulumi.StringPtrOutput `pulumi:"homeDashboardUid"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -102,10 +98,6 @@ func GetOrganizationPreferences(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OrganizationPreferences resources.
 type organizationPreferencesState struct {
-	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
-	//
-	// Deprecated: Use `homeDashboardUid` instead.
-	HomeDashboardId *int `pulumi:"homeDashboardId"`
 	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid *string `pulumi:"homeDashboardUid"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -119,10 +111,6 @@ type organizationPreferencesState struct {
 }
 
 type OrganizationPreferencesState struct {
-	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
-	//
-	// Deprecated: Use `homeDashboardUid` instead.
-	HomeDashboardId pulumi.IntPtrInput
 	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -140,10 +128,6 @@ func (OrganizationPreferencesState) ElementType() reflect.Type {
 }
 
 type organizationPreferencesArgs struct {
-	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
-	//
-	// Deprecated: Use `homeDashboardUid` instead.
-	HomeDashboardId *int `pulumi:"homeDashboardId"`
 	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid *string `pulumi:"homeDashboardUid"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -158,10 +142,6 @@ type organizationPreferencesArgs struct {
 
 // The set of arguments for constructing a OrganizationPreferences resource.
 type OrganizationPreferencesArgs struct {
-	// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
-	//
-	// Deprecated: Use `homeDashboardUid` instead.
-	HomeDashboardId pulumi.IntPtrInput
 	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -259,13 +239,6 @@ func (o OrganizationPreferencesOutput) ToOrganizationPreferencesOutput() Organiz
 
 func (o OrganizationPreferencesOutput) ToOrganizationPreferencesOutputWithContext(ctx context.Context) OrganizationPreferencesOutput {
 	return o
-}
-
-// The Organization home dashboard ID. Deprecated: Use `homeDashboardUid` instead.
-//
-// Deprecated: Use `homeDashboardUid` instead.
-func (o OrganizationPreferencesOutput) HomeDashboardId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *OrganizationPreferences) pulumi.IntPtrOutput { return v.HomeDashboardId }).(pulumi.IntPtrOutput)
 }
 
 // The Organization home dashboard UID. This is only available in Grafana 9.0+.

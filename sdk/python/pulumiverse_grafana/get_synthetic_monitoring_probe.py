@@ -23,7 +23,10 @@ class GetSyntheticMonitoringProbeResult:
     """
     A collection of values returned by getSyntheticMonitoringProbe.
     """
-    def __init__(__self__, id=None, labels=None, latitude=None, longitude=None, name=None, public=None, region=None, tenant_id=None):
+    def __init__(__self__, disable_scripted_checks=None, id=None, labels=None, latitude=None, longitude=None, name=None, public=None, region=None, tenant_id=None):
+        if disable_scripted_checks and not isinstance(disable_scripted_checks, bool):
+            raise TypeError("Expected argument 'disable_scripted_checks' to be a bool")
+        pulumi.set(__self__, "disable_scripted_checks", disable_scripted_checks)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -48,6 +51,11 @@ class GetSyntheticMonitoringProbeResult:
         if tenant_id and not isinstance(tenant_id, int):
             raise TypeError("Expected argument 'tenant_id' to be a int")
         pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @property
+    @pulumi.getter(name="disableScriptedChecks")
+    def disable_scripted_checks(self) -> bool:
+        return pulumi.get(self, "disable_scripted_checks")
 
     @property
     @pulumi.getter
@@ -96,6 +104,7 @@ class AwaitableGetSyntheticMonitoringProbeResult(GetSyntheticMonitoringProbeResu
         if False:
             yield self
         return GetSyntheticMonitoringProbeResult(
+            disable_scripted_checks=self.disable_scripted_checks,
             id=self.id,
             labels=self.labels,
             latitude=self.latitude,
@@ -118,6 +127,7 @@ def get_synthetic_monitoring_probe(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe', __args__, opts=opts, typ=GetSyntheticMonitoringProbeResult).value
 
     return AwaitableGetSyntheticMonitoringProbeResult(
+        disable_scripted_checks=pulumi.get(__ret__, 'disable_scripted_checks'),
         id=pulumi.get(__ret__, 'id'),
         labels=pulumi.get(__ret__, 'labels'),
         latitude=pulumi.get(__ret__, 'latitude'),

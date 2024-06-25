@@ -15,7 +15,6 @@ __all__ = [
     'ReportDashboard',
     'ReportDashboardTimeRange',
     'ReportSchedule',
-    'ReportTimeRange',
     'RolePermission',
     'GetRolePermissionResult',
 ]
@@ -319,54 +318,6 @@ class ReportSchedule(dict):
         Whether to send the report only on work days. Defaults to `false`.
         """
         return pulumi.get(self, "workdays_only")
-
-
-@pulumi.output_type
-class ReportTimeRange(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "from":
-            suggest = "from_"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ReportTimeRange. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ReportTimeRange.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ReportTimeRange.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 from_: Optional[str] = None,
-                 to: Optional[str] = None):
-        """
-        :param str from_: Start of the time range.
-        :param str to: End of the time range.
-        """
-        if from_ is not None:
-            pulumi.set(__self__, "from_", from_)
-        if to is not None:
-            pulumi.set(__self__, "to", to)
-
-    @property
-    @pulumi.getter(name="from")
-    def from_(self) -> Optional[str]:
-        """
-        Start of the time range.
-        """
-        return pulumi.get(self, "from_")
-
-    @property
-    @pulumi.getter
-    def to(self) -> Optional[str]:
-        """
-        End of the time range.
-        """
-        return pulumi.get(self, "to")
 
 
 @pulumi.output_type

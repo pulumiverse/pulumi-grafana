@@ -18,6 +18,8 @@ type SyntheticMonitoringProbe struct {
 
 	// The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
 	AuthToken pulumi.StringOutput `pulumi:"authToken"`
+	// Disables scripted checks for this probe.
+	DisableScriptedChecks pulumi.BoolPtrOutput `pulumi:"disableScriptedChecks"`
 	// Custom labels to be included with collected metrics and logs.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Latitude coordinates.
@@ -86,6 +88,8 @@ func GetSyntheticMonitoringProbe(ctx *pulumi.Context,
 type syntheticMonitoringProbeState struct {
 	// The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
 	AuthToken *string `pulumi:"authToken"`
+	// Disables scripted checks for this probe.
+	DisableScriptedChecks *bool `pulumi:"disableScriptedChecks"`
 	// Custom labels to be included with collected metrics and logs.
 	Labels map[string]string `pulumi:"labels"`
 	// Latitude coordinates.
@@ -106,6 +110,8 @@ type syntheticMonitoringProbeState struct {
 type SyntheticMonitoringProbeState struct {
 	// The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
 	AuthToken pulumi.StringPtrInput
+	// Disables scripted checks for this probe.
+	DisableScriptedChecks pulumi.BoolPtrInput
 	// Custom labels to be included with collected metrics and logs.
 	Labels pulumi.StringMapInput
 	// Latitude coordinates.
@@ -128,6 +134,8 @@ func (SyntheticMonitoringProbeState) ElementType() reflect.Type {
 }
 
 type syntheticMonitoringProbeArgs struct {
+	// Disables scripted checks for this probe.
+	DisableScriptedChecks *bool `pulumi:"disableScriptedChecks"`
 	// Custom labels to be included with collected metrics and logs.
 	Labels map[string]string `pulumi:"labels"`
 	// Latitude coordinates.
@@ -145,6 +153,8 @@ type syntheticMonitoringProbeArgs struct {
 
 // The set of arguments for constructing a SyntheticMonitoringProbe resource.
 type SyntheticMonitoringProbeArgs struct {
+	// Disables scripted checks for this probe.
+	DisableScriptedChecks pulumi.BoolPtrInput
 	// Custom labels to be included with collected metrics and logs.
 	Labels pulumi.StringMapInput
 	// Latitude coordinates.
@@ -250,6 +260,11 @@ func (o SyntheticMonitoringProbeOutput) ToSyntheticMonitoringProbeOutputWithCont
 // The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
 func (o SyntheticMonitoringProbeOutput) AuthToken() pulumi.StringOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringProbe) pulumi.StringOutput { return v.AuthToken }).(pulumi.StringOutput)
+}
+
+// Disables scripted checks for this probe.
+func (o SyntheticMonitoringProbeOutput) DisableScriptedChecks() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringProbe) pulumi.BoolPtrOutput { return v.DisableScriptedChecks }).(pulumi.BoolPtrOutput)
 }
 
 // Custom labels to be included with collected metrics and logs.

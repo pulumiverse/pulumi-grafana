@@ -70,7 +70,6 @@ __all__ = [
     'ReportDashboardArgs',
     'ReportDashboardTimeRangeArgs',
     'ReportScheduleArgs',
-    'ReportTimeRangeArgs',
     'RolePermissionArgs',
     'RuleGroupRuleArgs',
     'RuleGroupRuleDataArgs',
@@ -113,6 +112,7 @@ __all__ = [
     'SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs',
     'SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs',
     'SyntheticMonitoringCheckSettingsPingArgs',
+    'SyntheticMonitoringCheckSettingsScriptedArgs',
     'SyntheticMonitoringCheckSettingsTcpArgs',
     'SyntheticMonitoringCheckSettingsTcpQueryResponseArgs',
     'SyntheticMonitoringCheckSettingsTcpTlsConfigArgs',
@@ -1514,7 +1514,8 @@ class ContactPointPagerdutyArgs:
                  severity: Optional[pulumi.Input[str]] = None,
                  source: Optional[pulumi.Input[str]] = None,
                  summary: Optional[pulumi.Input[str]] = None,
-                 uid: Optional[pulumi.Input[str]] = None):
+                 uid: Optional[pulumi.Input[str]] = None,
+                 url: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] integration_key: The PagerDuty API key.
         :param pulumi.Input[str] class_: The class or type of event, for example `ping failure`.
@@ -1529,6 +1530,7 @@ class ContactPointPagerdutyArgs:
         :param pulumi.Input[str] source: The unique location of the affected system.
         :param pulumi.Input[str] summary: The templated summary message of the event.
         :param pulumi.Input[str] uid: The UID of the contact point.
+        :param pulumi.Input[str] url: The URL to send API requests to
         """
         pulumi.set(__self__, "integration_key", integration_key)
         if class_ is not None:
@@ -1555,6 +1557,8 @@ class ContactPointPagerdutyArgs:
             pulumi.set(__self__, "summary", summary)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter(name="integrationKey")
@@ -1711,6 +1715,18 @@ class ContactPointPagerdutyArgs:
     @uid.setter
     def uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "uid", value)
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The URL to send API requests to
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url", value)
 
 
 @pulumi.input_type
@@ -2687,6 +2703,7 @@ class ContactPointTelegramArgs:
                  disable_resolve_message: Optional[pulumi.Input[bool]] = None,
                  disable_web_page_preview: Optional[pulumi.Input[bool]] = None,
                  message: Optional[pulumi.Input[str]] = None,
+                 message_thread_id: Optional[pulumi.Input[str]] = None,
                  parse_mode: Optional[pulumi.Input[str]] = None,
                  protect_content: Optional[pulumi.Input[bool]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -2698,6 +2715,7 @@ class ContactPointTelegramArgs:
         :param pulumi.Input[bool] disable_resolve_message: Whether to disable sending resolve messages.
         :param pulumi.Input[bool] disable_web_page_preview: When set it disables link previews for links in the message.
         :param pulumi.Input[str] message: The templated content of the message.
+        :param pulumi.Input[str] message_thread_id: The ID of the message thread to send the message to.
         :param pulumi.Input[str] parse_mode: Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
         :param pulumi.Input[bool] protect_content: When set it protects the contents of the message from forwarding and saving.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Additional custom properties to attach to the notifier.
@@ -2713,6 +2731,8 @@ class ContactPointTelegramArgs:
             pulumi.set(__self__, "disable_web_page_preview", disable_web_page_preview)
         if message is not None:
             pulumi.set(__self__, "message", message)
+        if message_thread_id is not None:
+            pulumi.set(__self__, "message_thread_id", message_thread_id)
         if parse_mode is not None:
             pulumi.set(__self__, "parse_mode", parse_mode)
         if protect_content is not None:
@@ -2793,6 +2813,18 @@ class ContactPointTelegramArgs:
     @message.setter
     def message(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter(name="messageThreadId")
+    def message_thread_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the message thread to send the message to.
+        """
+        return pulumi.get(self, "message_thread_id")
+
+    @message_thread_id.setter
+    def message_thread_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message_thread_id", value)
 
     @property
     @pulumi.getter(name="parseMode")
@@ -5979,45 +6011,6 @@ class ReportScheduleArgs:
 
 
 @pulumi.input_type
-class ReportTimeRangeArgs:
-    def __init__(__self__, *,
-                 from_: Optional[pulumi.Input[str]] = None,
-                 to: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] from_: Start of the time range.
-        :param pulumi.Input[str] to: End of the time range.
-        """
-        if from_ is not None:
-            pulumi.set(__self__, "from_", from_)
-        if to is not None:
-            pulumi.set(__self__, "to", to)
-
-    @property
-    @pulumi.getter(name="from")
-    def from_(self) -> Optional[pulumi.Input[str]]:
-        """
-        Start of the time range.
-        """
-        return pulumi.get(self, "from_")
-
-    @from_.setter
-    def from_(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "from_", value)
-
-    @property
-    @pulumi.getter
-    def to(self) -> Optional[pulumi.Input[str]]:
-        """
-        End of the time range.
-        """
-        return pulumi.get(self, "to")
-
-    @to.setter
-    def to(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "to", value)
-
-
-@pulumi.input_type
 class RolePermissionArgs:
     def __init__(__self__, *,
                  action: pulumi.Input[str],
@@ -7675,6 +7668,7 @@ class SsoSettingsSamlSettingsArgs:
                  role_values_editor: Optional[pulumi.Input[str]] = None,
                  role_values_grafana_admin: Optional[pulumi.Input[str]] = None,
                  role_values_none: Optional[pulumi.Input[str]] = None,
+                 role_values_viewer: Optional[pulumi.Input[str]] = None,
                  signature_algorithm: Optional[pulumi.Input[str]] = None,
                  single_logout: Optional[pulumi.Input[bool]] = None,
                  skip_org_role_sync: Optional[pulumi.Input[bool]] = None):
@@ -7707,6 +7701,7 @@ class SsoSettingsSamlSettingsArgs:
         :param pulumi.Input[str] role_values_editor: List of comma- or space-separated roles which will be mapped into the Editor role.
         :param pulumi.Input[str] role_values_grafana_admin: List of comma- or space-separated roles which will be mapped into the Grafana Admin (Super Admin) role.
         :param pulumi.Input[str] role_values_none: List of comma- or space-separated roles which will be mapped into the None role.
+        :param pulumi.Input[str] role_values_viewer: List of comma- or space-separated roles which will be mapped into the Viewer role.
         :param pulumi.Input[str] signature_algorithm: Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
         :param pulumi.Input[bool] single_logout: Whether SAML Single Logout is enabled.
         :param pulumi.Input[bool] skip_org_role_sync: Prevent synchronizing users’ organization roles from your IdP.
@@ -7767,6 +7762,8 @@ class SsoSettingsSamlSettingsArgs:
             pulumi.set(__self__, "role_values_grafana_admin", role_values_grafana_admin)
         if role_values_none is not None:
             pulumi.set(__self__, "role_values_none", role_values_none)
+        if role_values_viewer is not None:
+            pulumi.set(__self__, "role_values_viewer", role_values_viewer)
         if signature_algorithm is not None:
             pulumi.set(__self__, "signature_algorithm", signature_algorithm)
         if single_logout is not None:
@@ -8111,6 +8108,18 @@ class SsoSettingsSamlSettingsArgs:
         pulumi.set(self, "role_values_none", value)
 
     @property
+    @pulumi.getter(name="roleValuesViewer")
+    def role_values_viewer(self) -> Optional[pulumi.Input[str]]:
+        """
+        List of comma- or space-separated roles which will be mapped into the Viewer role.
+        """
+        return pulumi.get(self, "role_values_viewer")
+
+    @role_values_viewer.setter
+    def role_values_viewer(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_values_viewer", value)
+
+    @property
     @pulumi.getter(name="signatureAlgorithm")
     def signature_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
@@ -8154,6 +8163,7 @@ class SyntheticMonitoringCheckSettingsArgs:
                  http: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsHttpArgs']] = None,
                  multihttp: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpArgs']] = None,
                  ping: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsPingArgs']] = None,
+                 scripted: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsScriptedArgs']] = None,
                  tcp: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsTcpArgs']] = None,
                  traceroute: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsTracerouteArgs']] = None):
         """
@@ -8161,6 +8171,7 @@ class SyntheticMonitoringCheckSettingsArgs:
         :param pulumi.Input['SyntheticMonitoringCheckSettingsHttpArgs'] http: Settings for HTTP check. The target must be a URL (http or https).
         :param pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpArgs'] multihttp: Settings for MultiHTTP check. The target must be a URL (http or https)
         :param pulumi.Input['SyntheticMonitoringCheckSettingsPingArgs'] ping: Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
+        :param pulumi.Input['SyntheticMonitoringCheckSettingsScriptedArgs'] scripted: Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
         :param pulumi.Input['SyntheticMonitoringCheckSettingsTcpArgs'] tcp: Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
         :param pulumi.Input['SyntheticMonitoringCheckSettingsTracerouteArgs'] traceroute: Settings for traceroute check. The target must be a valid hostname or IP address
         """
@@ -8172,6 +8183,8 @@ class SyntheticMonitoringCheckSettingsArgs:
             pulumi.set(__self__, "multihttp", multihttp)
         if ping is not None:
             pulumi.set(__self__, "ping", ping)
+        if scripted is not None:
+            pulumi.set(__self__, "scripted", scripted)
         if tcp is not None:
             pulumi.set(__self__, "tcp", tcp)
         if traceroute is not None:
@@ -8224,6 +8237,18 @@ class SyntheticMonitoringCheckSettingsArgs:
     @ping.setter
     def ping(self, value: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsPingArgs']]):
         pulumi.set(self, "ping", value)
+
+    @property
+    @pulumi.getter
+    def scripted(self) -> Optional[pulumi.Input['SyntheticMonitoringCheckSettingsScriptedArgs']]:
+        """
+        Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+        """
+        return pulumi.get(self, "scripted")
+
+    @scripted.setter
+    def scripted(self, value: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsScriptedArgs']]):
+        pulumi.set(self, "scripted", value)
 
     @property
     @pulumi.getter
@@ -9586,6 +9611,22 @@ class SyntheticMonitoringCheckSettingsPingArgs:
     @source_ip_address.setter
     def source_ip_address(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "source_ip_address", value)
+
+
+@pulumi.input_type
+class SyntheticMonitoringCheckSettingsScriptedArgs:
+    def __init__(__self__, *,
+                 script: pulumi.Input[str]):
+        pulumi.set(__self__, "script", script)
+
+    @property
+    @pulumi.getter
+    def script(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "script")
+
+    @script.setter
+    def script(self, value: pulumi.Input[str]):
+        pulumi.set(self, "script", value)
 
 
 @pulumi.input_type

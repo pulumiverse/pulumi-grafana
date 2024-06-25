@@ -39,12 +39,6 @@ export class DataSourcePermission extends pulumi.CustomResource {
     }
 
     /**
-     * Deprecated: Use `datasourceUid` instead.
-     *
-     * @deprecated Use `datasourceUid` instead
-     */
-    public readonly datasourceId!: pulumi.Output<string>;
-    /**
      * UID of the datasource to apply permissions to.
      */
     public readonly datasourceUid!: pulumi.Output<string>;
@@ -65,7 +59,7 @@ export class DataSourcePermission extends pulumi.CustomResource {
      * @param opts A bag of options that control this resource's behavior.
      */
     /** @deprecated grafana.index/datasourcepermission.DataSourcePermission has been deprecated in favor of grafana.enterprise/datasourcepermission.DataSourcePermission */
-    constructor(name: string, args?: DataSourcePermissionArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: DataSourcePermissionArgs, opts?: pulumi.CustomResourceOptions)
     /** @deprecated grafana.index/datasourcepermission.DataSourcePermission has been deprecated in favor of grafana.enterprise/datasourcepermission.DataSourcePermission */
     constructor(name: string, argsOrState?: DataSourcePermissionArgs | DataSourcePermissionState, opts?: pulumi.CustomResourceOptions) {
         pulumi.log.warn("DataSourcePermission is deprecated: grafana.index/datasourcepermission.DataSourcePermission has been deprecated in favor of grafana.enterprise/datasourcepermission.DataSourcePermission")
@@ -73,13 +67,14 @@ export class DataSourcePermission extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DataSourcePermissionState | undefined;
-            resourceInputs["datasourceId"] = state ? state.datasourceId : undefined;
             resourceInputs["datasourceUid"] = state ? state.datasourceUid : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["permissions"] = state ? state.permissions : undefined;
         } else {
             const args = argsOrState as DataSourcePermissionArgs | undefined;
-            resourceInputs["datasourceId"] = args ? args.datasourceId : undefined;
+            if ((!args || args.datasourceUid === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'datasourceUid'");
+            }
             resourceInputs["datasourceUid"] = args ? args.datasourceUid : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["permissions"] = args ? args.permissions : undefined;
@@ -95,12 +90,6 @@ export class DataSourcePermission extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DataSourcePermission resources.
  */
 export interface DataSourcePermissionState {
-    /**
-     * Deprecated: Use `datasourceUid` instead.
-     *
-     * @deprecated Use `datasourceUid` instead
-     */
-    datasourceId?: pulumi.Input<string>;
     /**
      * UID of the datasource to apply permissions to.
      */
@@ -120,15 +109,9 @@ export interface DataSourcePermissionState {
  */
 export interface DataSourcePermissionArgs {
     /**
-     * Deprecated: Use `datasourceUid` instead.
-     *
-     * @deprecated Use `datasourceUid` instead
-     */
-    datasourceId?: pulumi.Input<string>;
-    /**
      * UID of the datasource to apply permissions to.
      */
-    datasourceUid?: pulumi.Input<string>;
+    datasourceUid: pulumi.Input<string>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */

@@ -76,7 +76,7 @@ export class Folder extends pulumi.CustomResource {
      */
     public readonly parentFolderUid!: pulumi.Output<string | undefined>;
     /**
-     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). This feature requires Grafana 10.2 or later. Defaults to `false`.
      */
     public readonly preventDestroyIfNotEmpty!: pulumi.Output<boolean | undefined>;
     /**
@@ -143,7 +143,7 @@ export interface FolderState {
      */
     parentFolderUid?: pulumi.Input<string>;
     /**
-     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). This feature requires Grafana 10.2 or later. Defaults to `false`.
      */
     preventDestroyIfNotEmpty?: pulumi.Input<boolean>;
     /**
@@ -173,7 +173,7 @@ export interface FolderArgs {
      */
     parentFolderUid?: pulumi.Input<string>;
     /**
-     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+     * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). This feature requires Grafana 10.2 or later. Defaults to `false`.
      */
     preventDestroyIfNotEmpty?: pulumi.Input<boolean>;
     /**

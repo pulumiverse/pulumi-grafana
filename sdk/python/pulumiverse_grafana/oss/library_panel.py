@@ -15,7 +15,6 @@ __all__ = ['LibraryPanelArgs', 'LibraryPanel']
 class LibraryPanelArgs:
     def __init__(__self__, *,
                  model_json: pulumi.Input[str],
-                 folder_id: Optional[pulumi.Input[str]] = None,
                  folder_uid: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
@@ -23,18 +22,12 @@ class LibraryPanelArgs:
         """
         The set of arguments for constructing a LibraryPanel resource.
         :param pulumi.Input[str] model_json: The JSON model for the library panel.
-        :param pulumi.Input[str] folder_id: Deprecated. Use `folder_uid` instead
         :param pulumi.Input[str] folder_uid: Unique ID (UID) of the folder containing the library panel.
         :param pulumi.Input[str] name: Name of the library panel.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] uid: The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
         """
         pulumi.set(__self__, "model_json", model_json)
-        if folder_id is not None:
-            warnings.warn("""Use `folder_uid` instead""", DeprecationWarning)
-            pulumi.log.warn("""folder_id is deprecated: Use `folder_uid` instead""")
-        if folder_id is not None:
-            pulumi.set(__self__, "folder_id", folder_id)
         if folder_uid is not None:
             pulumi.set(__self__, "folder_uid", folder_uid)
         if name is not None:
@@ -55,21 +48,6 @@ class LibraryPanelArgs:
     @model_json.setter
     def model_json(self, value: pulumi.Input[str]):
         pulumi.set(self, "model_json", value)
-
-    @property
-    @pulumi.getter(name="folderId")
-    def folder_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Deprecated. Use `folder_uid` instead
-        """
-        warnings.warn("""Use `folder_uid` instead""", DeprecationWarning)
-        pulumi.log.warn("""folder_id is deprecated: Use `folder_uid` instead""")
-
-        return pulumi.get(self, "folder_id")
-
-    @folder_id.setter
-    def folder_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "folder_id", value)
 
     @property
     @pulumi.getter(name="folderUid")
@@ -126,7 +104,6 @@ class _LibraryPanelState:
                  created: Optional[pulumi.Input[str]] = None,
                  dashboard_ids: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 folder_id: Optional[pulumi.Input[str]] = None,
                  folder_name: Optional[pulumi.Input[str]] = None,
                  folder_uid: Optional[pulumi.Input[str]] = None,
                  model_json: Optional[pulumi.Input[str]] = None,
@@ -142,7 +119,6 @@ class _LibraryPanelState:
         :param pulumi.Input[str] created: Timestamp when the library panel was created.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] dashboard_ids: Numerical IDs of Grafana dashboards containing the library panel.
         :param pulumi.Input[str] description: Description of the library panel.
-        :param pulumi.Input[str] folder_id: Deprecated. Use `folder_uid` instead
         :param pulumi.Input[str] folder_name: Name of the folder containing the library panel.
         :param pulumi.Input[str] folder_uid: Unique ID (UID) of the folder containing the library panel.
         :param pulumi.Input[str] model_json: The JSON model for the library panel.
@@ -160,11 +136,6 @@ class _LibraryPanelState:
             pulumi.set(__self__, "dashboard_ids", dashboard_ids)
         if description is not None:
             pulumi.set(__self__, "description", description)
-        if folder_id is not None:
-            warnings.warn("""Use `folder_uid` instead""", DeprecationWarning)
-            pulumi.log.warn("""folder_id is deprecated: Use `folder_uid` instead""")
-        if folder_id is not None:
-            pulumi.set(__self__, "folder_id", folder_id)
         if folder_name is not None:
             pulumi.set(__self__, "folder_name", folder_name)
         if folder_uid is not None:
@@ -221,21 +192,6 @@ class _LibraryPanelState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
-
-    @property
-    @pulumi.getter(name="folderId")
-    def folder_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Deprecated. Use `folder_uid` instead
-        """
-        warnings.warn("""Use `folder_uid` instead""", DeprecationWarning)
-        pulumi.log.warn("""folder_id is deprecated: Use `folder_uid` instead""")
-
-        return pulumi.get(self, "folder_id")
-
-    @folder_id.setter
-    def folder_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "folder_id", value)
 
     @property
     @pulumi.getter(name="folderName")
@@ -363,7 +319,6 @@ class LibraryPanel(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 folder_id: Optional[pulumi.Input[str]] = None,
                  folder_uid: Optional[pulumi.Input[str]] = None,
                  model_json: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -408,7 +363,6 @@ class LibraryPanel(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] folder_id: Deprecated. Use `folder_uid` instead
         :param pulumi.Input[str] folder_uid: Unique ID (UID) of the folder containing the library panel.
         :param pulumi.Input[str] model_json: The JSON model for the library panel.
         :param pulumi.Input[str] name: Name of the library panel.
@@ -472,7 +426,6 @@ class LibraryPanel(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 folder_id: Optional[pulumi.Input[str]] = None,
                  folder_uid: Optional[pulumi.Input[str]] = None,
                  model_json: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -487,7 +440,6 @@ class LibraryPanel(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = LibraryPanelArgs.__new__(LibraryPanelArgs)
 
-            __props__.__dict__["folder_id"] = folder_id
             __props__.__dict__["folder_uid"] = folder_uid
             if model_json is None and not opts.urn:
                 raise TypeError("Missing required property 'model_json'")
@@ -518,7 +470,6 @@ class LibraryPanel(pulumi.CustomResource):
             created: Optional[pulumi.Input[str]] = None,
             dashboard_ids: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
-            folder_id: Optional[pulumi.Input[str]] = None,
             folder_name: Optional[pulumi.Input[str]] = None,
             folder_uid: Optional[pulumi.Input[str]] = None,
             model_json: Optional[pulumi.Input[str]] = None,
@@ -539,7 +490,6 @@ class LibraryPanel(pulumi.CustomResource):
         :param pulumi.Input[str] created: Timestamp when the library panel was created.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] dashboard_ids: Numerical IDs of Grafana dashboards containing the library panel.
         :param pulumi.Input[str] description: Description of the library panel.
-        :param pulumi.Input[str] folder_id: Deprecated. Use `folder_uid` instead
         :param pulumi.Input[str] folder_name: Name of the folder containing the library panel.
         :param pulumi.Input[str] folder_uid: Unique ID (UID) of the folder containing the library panel.
         :param pulumi.Input[str] model_json: The JSON model for the library panel.
@@ -558,7 +508,6 @@ class LibraryPanel(pulumi.CustomResource):
         __props__.__dict__["created"] = created
         __props__.__dict__["dashboard_ids"] = dashboard_ids
         __props__.__dict__["description"] = description
-        __props__.__dict__["folder_id"] = folder_id
         __props__.__dict__["folder_name"] = folder_name
         __props__.__dict__["folder_uid"] = folder_uid
         __props__.__dict__["model_json"] = model_json
@@ -594,17 +543,6 @@ class LibraryPanel(pulumi.CustomResource):
         Description of the library panel.
         """
         return pulumi.get(self, "description")
-
-    @property
-    @pulumi.getter(name="folderId")
-    def folder_id(self) -> pulumi.Output[Optional[str]]:
-        """
-        Deprecated. Use `folder_uid` instead
-        """
-        warnings.warn("""Use `folder_uid` instead""", DeprecationWarning)
-        pulumi.log.warn("""folder_id is deprecated: Use `folder_uid` instead""")
-
-        return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter(name="folderName")

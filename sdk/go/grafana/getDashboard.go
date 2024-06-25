@@ -33,9 +33,7 @@ type LookupDashboardArgs struct {
 type LookupDashboardResult struct {
 	ConfigJson  string `pulumi:"configJson"`
 	DashboardId *int   `pulumi:"dashboardId"`
-	// Deprecated: Use `folderUid` instead
-	Folder    int    `pulumi:"folder"`
-	FolderUid string `pulumi:"folderUid"`
+	FolderUid   string `pulumi:"folderUid"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	IsStarred bool    `pulumi:"isStarred"`
@@ -92,11 +90,6 @@ func (o LookupDashboardResultOutput) ConfigJson() pulumi.StringOutput {
 
 func (o LookupDashboardResultOutput) DashboardId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupDashboardResult) *int { return v.DashboardId }).(pulumi.IntPtrOutput)
-}
-
-// Deprecated: Use `folderUid` instead
-func (o LookupDashboardResultOutput) Folder() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupDashboardResult) int { return v.Folder }).(pulumi.IntOutput)
 }
 
 func (o LookupDashboardResultOutput) FolderUid() pulumi.StringOutput {

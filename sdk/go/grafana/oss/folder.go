@@ -71,7 +71,7 @@ type Folder struct {
 	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
 	// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
 	ParentFolderUid pulumi.StringPtrOutput `pulumi:"parentFolderUid"`
-	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). This feature requires Grafana 10.2 or later. Defaults to `false`.
 	PreventDestroyIfNotEmpty pulumi.BoolPtrOutput `pulumi:"preventDestroyIfNotEmpty"`
 	// The title of the folder.
 	Title pulumi.StringOutput `pulumi:"title"`
@@ -124,7 +124,7 @@ type folderState struct {
 	OrgId *string `pulumi:"orgId"`
 	// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
 	ParentFolderUid *string `pulumi:"parentFolderUid"`
-	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). This feature requires Grafana 10.2 or later. Defaults to `false`.
 	PreventDestroyIfNotEmpty *bool `pulumi:"preventDestroyIfNotEmpty"`
 	// The title of the folder.
 	Title *string `pulumi:"title"`
@@ -139,7 +139,7 @@ type FolderState struct {
 	OrgId pulumi.StringPtrInput
 	// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
 	ParentFolderUid pulumi.StringPtrInput
-	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). This feature requires Grafana 10.2 or later. Defaults to `false`.
 	PreventDestroyIfNotEmpty pulumi.BoolPtrInput
 	// The title of the folder.
 	Title pulumi.StringPtrInput
@@ -158,7 +158,7 @@ type folderArgs struct {
 	OrgId *string `pulumi:"orgId"`
 	// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
 	ParentFolderUid *string `pulumi:"parentFolderUid"`
-	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). This feature requires Grafana 10.2 or later. Defaults to `false`.
 	PreventDestroyIfNotEmpty *bool `pulumi:"preventDestroyIfNotEmpty"`
 	// The title of the folder.
 	Title string `pulumi:"title"`
@@ -172,7 +172,7 @@ type FolderArgs struct {
 	OrgId pulumi.StringPtrInput
 	// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
 	ParentFolderUid pulumi.StringPtrInput
-	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+	// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). This feature requires Grafana 10.2 or later. Defaults to `false`.
 	PreventDestroyIfNotEmpty pulumi.BoolPtrInput
 	// The title of the folder.
 	Title pulumi.StringInput
@@ -277,7 +277,7 @@ func (o FolderOutput) ParentFolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Folder) pulumi.StringPtrOutput { return v.ParentFolderUid }).(pulumi.StringPtrOutput)
 }
 
-// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). Defaults to `false`.
+// Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). This feature requires Grafana 10.2 or later. Defaults to `false`.
 func (o FolderOutput) PreventDestroyIfNotEmpty() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Folder) pulumi.BoolPtrOutput { return v.PreventDestroyIfNotEmpty }).(pulumi.BoolPtrOutput)
 }

@@ -80,12 +80,6 @@ export class LibraryPanel extends pulumi.CustomResource {
      */
     public /*out*/ readonly description!: pulumi.Output<string>;
     /**
-     * Deprecated. Use `folderUid` instead
-     *
-     * @deprecated Use `folderUid` instead
-     */
-    public readonly folderId!: pulumi.Output<string | undefined>;
-    /**
      * Name of the folder containing the library panel.
      */
     public /*out*/ readonly folderName!: pulumi.Output<string>;
@@ -142,7 +136,6 @@ export class LibraryPanel extends pulumi.CustomResource {
             resourceInputs["created"] = state ? state.created : undefined;
             resourceInputs["dashboardIds"] = state ? state.dashboardIds : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["folderId"] = state ? state.folderId : undefined;
             resourceInputs["folderName"] = state ? state.folderName : undefined;
             resourceInputs["folderUid"] = state ? state.folderUid : undefined;
             resourceInputs["modelJson"] = state ? state.modelJson : undefined;
@@ -158,7 +151,6 @@ export class LibraryPanel extends pulumi.CustomResource {
             if ((!args || args.modelJson === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'modelJson'");
             }
-            resourceInputs["folderId"] = args ? args.folderId : undefined;
             resourceInputs["folderUid"] = args ? args.folderUid : undefined;
             resourceInputs["modelJson"] = args ? args.modelJson : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -196,12 +188,6 @@ export interface LibraryPanelState {
      * Description of the library panel.
      */
     description?: pulumi.Input<string>;
-    /**
-     * Deprecated. Use `folderUid` instead
-     *
-     * @deprecated Use `folderUid` instead
-     */
-    folderId?: pulumi.Input<string>;
     /**
      * Name of the folder containing the library panel.
      */
@@ -248,12 +234,6 @@ export interface LibraryPanelState {
  * The set of arguments for constructing a LibraryPanel resource.
  */
 export interface LibraryPanelArgs {
-    /**
-     * Deprecated. Use `folderUid` instead
-     *
-     * @deprecated Use `folderUid` instead
-     */
-    folderId?: pulumi.Input<string>;
     /**
      * Unique ID (UID) of the folder containing the library panel.
      */

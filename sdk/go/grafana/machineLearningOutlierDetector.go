@@ -19,14 +19,10 @@ type MachineLearningOutlierDetector struct {
 	// The algorithm to use and its configuration. See
 	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm MachineLearningOutlierDetectorAlgorithmOutput `pulumi:"algorithm"`
-	// The id of the datasource to query.
-	//
-	// Deprecated: Use datasourceUid instead.
-	DatasourceId pulumi.IntPtrOutput `pulumi:"datasourceId"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType pulumi.StringOutput `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
-	DatasourceUid pulumi.StringPtrOutput `pulumi:"datasourceUid"`
+	DatasourceUid pulumi.StringOutput `pulumi:"datasourceUid"`
 	// A description of the outlier detector.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The data interval in seconds to monitor.
@@ -51,6 +47,9 @@ func NewMachineLearningOutlierDetector(ctx *pulumi.Context,
 	}
 	if args.DatasourceType == nil {
 		return nil, errors.New("invalid value for required argument 'DatasourceType'")
+	}
+	if args.DatasourceUid == nil {
+		return nil, errors.New("invalid value for required argument 'DatasourceUid'")
 	}
 	if args.Metric == nil {
 		return nil, errors.New("invalid value for required argument 'Metric'")
@@ -90,10 +89,6 @@ type machineLearningOutlierDetectorState struct {
 	// The algorithm to use and its configuration. See
 	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm *MachineLearningOutlierDetectorAlgorithm `pulumi:"algorithm"`
-	// The id of the datasource to query.
-	//
-	// Deprecated: Use datasourceUid instead.
-	DatasourceId *int `pulumi:"datasourceId"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType *string `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
@@ -114,10 +109,6 @@ type MachineLearningOutlierDetectorState struct {
 	// The algorithm to use and its configuration. See
 	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm MachineLearningOutlierDetectorAlgorithmPtrInput
-	// The id of the datasource to query.
-	//
-	// Deprecated: Use datasourceUid instead.
-	DatasourceId pulumi.IntPtrInput
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType pulumi.StringPtrInput
 	// The uid of the datasource to query.
@@ -142,14 +133,10 @@ type machineLearningOutlierDetectorArgs struct {
 	// The algorithm to use and its configuration. See
 	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm MachineLearningOutlierDetectorAlgorithm `pulumi:"algorithm"`
-	// The id of the datasource to query.
-	//
-	// Deprecated: Use datasourceUid instead.
-	DatasourceId *int `pulumi:"datasourceId"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType string `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
-	DatasourceUid *string `pulumi:"datasourceUid"`
+	DatasourceUid string `pulumi:"datasourceUid"`
 	// A description of the outlier detector.
 	Description *string `pulumi:"description"`
 	// The data interval in seconds to monitor.
@@ -167,14 +154,10 @@ type MachineLearningOutlierDetectorArgs struct {
 	// The algorithm to use and its configuration. See
 	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm MachineLearningOutlierDetectorAlgorithmInput
-	// The id of the datasource to query.
-	//
-	// Deprecated: Use datasourceUid instead.
-	DatasourceId pulumi.IntPtrInput
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType pulumi.StringInput
 	// The uid of the datasource to query.
-	DatasourceUid pulumi.StringPtrInput
+	DatasourceUid pulumi.StringInput
 	// A description of the outlier detector.
 	Description pulumi.StringPtrInput
 	// The data interval in seconds to monitor.
@@ -282,21 +265,14 @@ func (o MachineLearningOutlierDetectorOutput) Algorithm() MachineLearningOutlier
 	}).(MachineLearningOutlierDetectorAlgorithmOutput)
 }
 
-// The id of the datasource to query.
-//
-// Deprecated: Use datasourceUid instead.
-func (o MachineLearningOutlierDetectorOutput) DatasourceId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *MachineLearningOutlierDetector) pulumi.IntPtrOutput { return v.DatasourceId }).(pulumi.IntPtrOutput)
-}
-
 // The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 func (o MachineLearningOutlierDetectorOutput) DatasourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *MachineLearningOutlierDetector) pulumi.StringOutput { return v.DatasourceType }).(pulumi.StringOutput)
 }
 
 // The uid of the datasource to query.
-func (o MachineLearningOutlierDetectorOutput) DatasourceUid() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MachineLearningOutlierDetector) pulumi.StringPtrOutput { return v.DatasourceUid }).(pulumi.StringPtrOutput)
+func (o MachineLearningOutlierDetectorOutput) DatasourceUid() pulumi.StringOutput {
+	return o.ApplyT(func(v *MachineLearningOutlierDetector) pulumi.StringOutput { return v.DatasourceUid }).(pulumi.StringOutput)
 }
 
 // A description of the outlier detector.

@@ -44,6 +44,12 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string>? Message { get; set; }
 
         /// <summary>
+        /// The ID of the message thread to send the message to.
+        /// </summary>
+        [Input("messageThreadId")]
+        public Input<string>? MessageThreadId { get; set; }
+
+        /// <summary>
         /// Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
         /// </summary>
         [Input("parseMode")]

@@ -1831,6 +1831,8 @@ type ContactPointPagerduty struct {
 	Summary *string `pulumi:"summary"`
 	// The UID of the contact point.
 	Uid *string `pulumi:"uid"`
+	// The URL to send API requests to
+	Url *string `pulumi:"url"`
 }
 
 // ContactPointPagerdutyInput is an input type that accepts ContactPointPagerdutyArgs and ContactPointPagerdutyOutput values.
@@ -1871,6 +1873,8 @@ type ContactPointPagerdutyArgs struct {
 	Summary pulumi.StringPtrInput `pulumi:"summary"`
 	// The UID of the contact point.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
+	// The URL to send API requests to
+	Url pulumi.StringPtrInput `pulumi:"url"`
 }
 
 func (ContactPointPagerdutyArgs) ElementType() reflect.Type {
@@ -1987,6 +1991,11 @@ func (o ContactPointPagerdutyOutput) Summary() pulumi.StringPtrOutput {
 // The UID of the contact point.
 func (o ContactPointPagerdutyOutput) Uid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointPagerduty) *string { return v.Uid }).(pulumi.StringPtrOutput)
+}
+
+// The URL to send API requests to
+func (o ContactPointPagerdutyOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointPagerduty) *string { return v.Url }).(pulumi.StringPtrOutput)
 }
 
 type ContactPointPagerdutyArrayOutput struct{ *pulumi.OutputState }
@@ -2985,6 +2994,8 @@ type ContactPointTelegram struct {
 	DisableWebPagePreview *bool `pulumi:"disableWebPagePreview"`
 	// The templated content of the message.
 	Message *string `pulumi:"message"`
+	// The ID of the message thread to send the message to.
+	MessageThreadId *string `pulumi:"messageThreadId"`
 	// Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
 	ParseMode *string `pulumi:"parseMode"`
 	// When set it protects the contents of the message from forwarding and saving.
@@ -3019,6 +3030,8 @@ type ContactPointTelegramArgs struct {
 	DisableWebPagePreview pulumi.BoolPtrInput `pulumi:"disableWebPagePreview"`
 	// The templated content of the message.
 	Message pulumi.StringPtrInput `pulumi:"message"`
+	// The ID of the message thread to send the message to.
+	MessageThreadId pulumi.StringPtrInput `pulumi:"messageThreadId"`
 	// Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
 	ParseMode pulumi.StringPtrInput `pulumi:"parseMode"`
 	// When set it protects the contents of the message from forwarding and saving.
@@ -3105,6 +3118,11 @@ func (o ContactPointTelegramOutput) DisableWebPagePreview() pulumi.BoolPtrOutput
 // The templated content of the message.
 func (o ContactPointTelegramOutput) Message() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointTelegram) *string { return v.Message }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the message thread to send the message to.
+func (o ContactPointTelegramOutput) MessageThreadId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointTelegram) *string { return v.MessageThreadId }).(pulumi.StringPtrOutput)
 }
 
 // Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
@@ -9575,162 +9593,6 @@ func (o ReportSchedulePtrOutput) WorkdaysOnly() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-type ReportTimeRange struct {
-	// Start of the time range.
-	From *string `pulumi:"from"`
-	// End of the time range.
-	To *string `pulumi:"to"`
-}
-
-// ReportTimeRangeInput is an input type that accepts ReportTimeRangeArgs and ReportTimeRangeOutput values.
-// You can construct a concrete instance of `ReportTimeRangeInput` via:
-//
-//	ReportTimeRangeArgs{...}
-type ReportTimeRangeInput interface {
-	pulumi.Input
-
-	ToReportTimeRangeOutput() ReportTimeRangeOutput
-	ToReportTimeRangeOutputWithContext(context.Context) ReportTimeRangeOutput
-}
-
-type ReportTimeRangeArgs struct {
-	// Start of the time range.
-	From pulumi.StringPtrInput `pulumi:"from"`
-	// End of the time range.
-	To pulumi.StringPtrInput `pulumi:"to"`
-}
-
-func (ReportTimeRangeArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReportTimeRange)(nil)).Elem()
-}
-
-func (i ReportTimeRangeArgs) ToReportTimeRangeOutput() ReportTimeRangeOutput {
-	return i.ToReportTimeRangeOutputWithContext(context.Background())
-}
-
-func (i ReportTimeRangeArgs) ToReportTimeRangeOutputWithContext(ctx context.Context) ReportTimeRangeOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportTimeRangeOutput)
-}
-
-func (i ReportTimeRangeArgs) ToReportTimeRangePtrOutput() ReportTimeRangePtrOutput {
-	return i.ToReportTimeRangePtrOutputWithContext(context.Background())
-}
-
-func (i ReportTimeRangeArgs) ToReportTimeRangePtrOutputWithContext(ctx context.Context) ReportTimeRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportTimeRangeOutput).ToReportTimeRangePtrOutputWithContext(ctx)
-}
-
-// ReportTimeRangePtrInput is an input type that accepts ReportTimeRangeArgs, ReportTimeRangePtr and ReportTimeRangePtrOutput values.
-// You can construct a concrete instance of `ReportTimeRangePtrInput` via:
-//
-//	        ReportTimeRangeArgs{...}
-//
-//	or:
-//
-//	        nil
-type ReportTimeRangePtrInput interface {
-	pulumi.Input
-
-	ToReportTimeRangePtrOutput() ReportTimeRangePtrOutput
-	ToReportTimeRangePtrOutputWithContext(context.Context) ReportTimeRangePtrOutput
-}
-
-type reportTimeRangePtrType ReportTimeRangeArgs
-
-func ReportTimeRangePtr(v *ReportTimeRangeArgs) ReportTimeRangePtrInput {
-	return (*reportTimeRangePtrType)(v)
-}
-
-func (*reportTimeRangePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ReportTimeRange)(nil)).Elem()
-}
-
-func (i *reportTimeRangePtrType) ToReportTimeRangePtrOutput() ReportTimeRangePtrOutput {
-	return i.ToReportTimeRangePtrOutputWithContext(context.Background())
-}
-
-func (i *reportTimeRangePtrType) ToReportTimeRangePtrOutputWithContext(ctx context.Context) ReportTimeRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportTimeRangePtrOutput)
-}
-
-type ReportTimeRangeOutput struct{ *pulumi.OutputState }
-
-func (ReportTimeRangeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReportTimeRange)(nil)).Elem()
-}
-
-func (o ReportTimeRangeOutput) ToReportTimeRangeOutput() ReportTimeRangeOutput {
-	return o
-}
-
-func (o ReportTimeRangeOutput) ToReportTimeRangeOutputWithContext(ctx context.Context) ReportTimeRangeOutput {
-	return o
-}
-
-func (o ReportTimeRangeOutput) ToReportTimeRangePtrOutput() ReportTimeRangePtrOutput {
-	return o.ToReportTimeRangePtrOutputWithContext(context.Background())
-}
-
-func (o ReportTimeRangeOutput) ToReportTimeRangePtrOutputWithContext(ctx context.Context) ReportTimeRangePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ReportTimeRange) *ReportTimeRange {
-		return &v
-	}).(ReportTimeRangePtrOutput)
-}
-
-// Start of the time range.
-func (o ReportTimeRangeOutput) From() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ReportTimeRange) *string { return v.From }).(pulumi.StringPtrOutput)
-}
-
-// End of the time range.
-func (o ReportTimeRangeOutput) To() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ReportTimeRange) *string { return v.To }).(pulumi.StringPtrOutput)
-}
-
-type ReportTimeRangePtrOutput struct{ *pulumi.OutputState }
-
-func (ReportTimeRangePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ReportTimeRange)(nil)).Elem()
-}
-
-func (o ReportTimeRangePtrOutput) ToReportTimeRangePtrOutput() ReportTimeRangePtrOutput {
-	return o
-}
-
-func (o ReportTimeRangePtrOutput) ToReportTimeRangePtrOutputWithContext(ctx context.Context) ReportTimeRangePtrOutput {
-	return o
-}
-
-func (o ReportTimeRangePtrOutput) Elem() ReportTimeRangeOutput {
-	return o.ApplyT(func(v *ReportTimeRange) ReportTimeRange {
-		if v != nil {
-			return *v
-		}
-		var ret ReportTimeRange
-		return ret
-	}).(ReportTimeRangeOutput)
-}
-
-// Start of the time range.
-func (o ReportTimeRangePtrOutput) From() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ReportTimeRange) *string {
-		if v == nil {
-			return nil
-		}
-		return v.From
-	}).(pulumi.StringPtrOutput)
-}
-
-// End of the time range.
-func (o ReportTimeRangePtrOutput) To() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ReportTimeRange) *string {
-		if v == nil {
-			return nil
-		}
-		return v.To
-	}).(pulumi.StringPtrOutput)
-}
-
 type RolePermission struct {
 	// Specific action users granted with the role will be allowed to perform (for example: `users:read`)
 	Action string `pulumi:"action"`
@@ -13162,6 +13024,8 @@ type SsoSettingsSamlSettings struct {
 	RoleValuesGrafanaAdmin *string `pulumi:"roleValuesGrafanaAdmin"`
 	// List of comma- or space-separated roles which will be mapped into the None role.
 	RoleValuesNone *string `pulumi:"roleValuesNone"`
+	// List of comma- or space-separated roles which will be mapped into the Viewer role.
+	RoleValuesViewer *string `pulumi:"roleValuesViewer"`
 	// Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
 	SignatureAlgorithm *string `pulumi:"signatureAlgorithm"`
 	// Whether SAML Single Logout is enabled.
@@ -13238,6 +13102,8 @@ type SsoSettingsSamlSettingsArgs struct {
 	RoleValuesGrafanaAdmin pulumi.StringPtrInput `pulumi:"roleValuesGrafanaAdmin"`
 	// List of comma- or space-separated roles which will be mapped into the None role.
 	RoleValuesNone pulumi.StringPtrInput `pulumi:"roleValuesNone"`
+	// List of comma- or space-separated roles which will be mapped into the Viewer role.
+	RoleValuesViewer pulumi.StringPtrInput `pulumi:"roleValuesViewer"`
 	// Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
 	SignatureAlgorithm pulumi.StringPtrInput `pulumi:"signatureAlgorithm"`
 	// Whether SAML Single Logout is enabled.
@@ -13461,6 +13327,11 @@ func (o SsoSettingsSamlSettingsOutput) RoleValuesGrafanaAdmin() pulumi.StringPtr
 // List of comma- or space-separated roles which will be mapped into the None role.
 func (o SsoSettingsSamlSettingsOutput) RoleValuesNone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.RoleValuesNone }).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated roles which will be mapped into the Viewer role.
+func (o SsoSettingsSamlSettingsOutput) RoleValuesViewer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.RoleValuesViewer }).(pulumi.StringPtrOutput)
 }
 
 // Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
@@ -13782,6 +13653,16 @@ func (o SsoSettingsSamlSettingsPtrOutput) RoleValuesNone() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
+// List of comma- or space-separated roles which will be mapped into the Viewer role.
+func (o SsoSettingsSamlSettingsPtrOutput) RoleValuesViewer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RoleValuesViewer
+	}).(pulumi.StringPtrOutput)
+}
+
 // Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
 func (o SsoSettingsSamlSettingsPtrOutput) SignatureAlgorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
@@ -13821,6 +13702,8 @@ type SyntheticMonitoringCheckSettings struct {
 	Multihttp *SyntheticMonitoringCheckSettingsMultihttp `pulumi:"multihttp"`
 	// Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
 	Ping *SyntheticMonitoringCheckSettingsPing `pulumi:"ping"`
+	// Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+	Scripted *SyntheticMonitoringCheckSettingsScripted `pulumi:"scripted"`
 	// Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
 	Tcp *SyntheticMonitoringCheckSettingsTcp `pulumi:"tcp"`
 	// Settings for traceroute check. The target must be a valid hostname or IP address
@@ -13847,6 +13730,8 @@ type SyntheticMonitoringCheckSettingsArgs struct {
 	Multihttp SyntheticMonitoringCheckSettingsMultihttpPtrInput `pulumi:"multihttp"`
 	// Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
 	Ping SyntheticMonitoringCheckSettingsPingPtrInput `pulumi:"ping"`
+	// Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+	Scripted SyntheticMonitoringCheckSettingsScriptedPtrInput `pulumi:"scripted"`
 	// Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
 	Tcp SyntheticMonitoringCheckSettingsTcpPtrInput `pulumi:"tcp"`
 	// Settings for traceroute check. The target must be a valid hostname or IP address
@@ -13952,6 +13837,11 @@ func (o SyntheticMonitoringCheckSettingsOutput) Ping() SyntheticMonitoringCheckS
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettings) *SyntheticMonitoringCheckSettingsPing { return v.Ping }).(SyntheticMonitoringCheckSettingsPingPtrOutput)
 }
 
+// Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+func (o SyntheticMonitoringCheckSettingsOutput) Scripted() SyntheticMonitoringCheckSettingsScriptedPtrOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettings) *SyntheticMonitoringCheckSettingsScripted { return v.Scripted }).(SyntheticMonitoringCheckSettingsScriptedPtrOutput)
+}
+
 // Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
 func (o SyntheticMonitoringCheckSettingsOutput) Tcp() SyntheticMonitoringCheckSettingsTcpPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettings) *SyntheticMonitoringCheckSettingsTcp { return v.Tcp }).(SyntheticMonitoringCheckSettingsTcpPtrOutput)
@@ -14026,6 +13916,16 @@ func (o SyntheticMonitoringCheckSettingsPtrOutput) Ping() SyntheticMonitoringChe
 		}
 		return v.Ping
 	}).(SyntheticMonitoringCheckSettingsPingPtrOutput)
+}
+
+// Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+func (o SyntheticMonitoringCheckSettingsPtrOutput) Scripted() SyntheticMonitoringCheckSettingsScriptedPtrOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettings) *SyntheticMonitoringCheckSettingsScripted {
+		if v == nil {
+			return nil
+		}
+		return v.Scripted
+	}).(SyntheticMonitoringCheckSettingsScriptedPtrOutput)
 }
 
 // Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
@@ -17129,6 +17029,139 @@ func (o SyntheticMonitoringCheckSettingsPingPtrOutput) SourceIpAddress() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
+type SyntheticMonitoringCheckSettingsScripted struct {
+	Script string `pulumi:"script"`
+}
+
+// SyntheticMonitoringCheckSettingsScriptedInput is an input type that accepts SyntheticMonitoringCheckSettingsScriptedArgs and SyntheticMonitoringCheckSettingsScriptedOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsScriptedInput` via:
+//
+//	SyntheticMonitoringCheckSettingsScriptedArgs{...}
+type SyntheticMonitoringCheckSettingsScriptedInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsScriptedOutput() SyntheticMonitoringCheckSettingsScriptedOutput
+	ToSyntheticMonitoringCheckSettingsScriptedOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsScriptedOutput
+}
+
+type SyntheticMonitoringCheckSettingsScriptedArgs struct {
+	Script pulumi.StringInput `pulumi:"script"`
+}
+
+func (SyntheticMonitoringCheckSettingsScriptedArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsScripted)(nil)).Elem()
+}
+
+func (i SyntheticMonitoringCheckSettingsScriptedArgs) ToSyntheticMonitoringCheckSettingsScriptedOutput() SyntheticMonitoringCheckSettingsScriptedOutput {
+	return i.ToSyntheticMonitoringCheckSettingsScriptedOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsScriptedArgs) ToSyntheticMonitoringCheckSettingsScriptedOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsScriptedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsScriptedOutput)
+}
+
+func (i SyntheticMonitoringCheckSettingsScriptedArgs) ToSyntheticMonitoringCheckSettingsScriptedPtrOutput() SyntheticMonitoringCheckSettingsScriptedPtrOutput {
+	return i.ToSyntheticMonitoringCheckSettingsScriptedPtrOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsScriptedArgs) ToSyntheticMonitoringCheckSettingsScriptedPtrOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsScriptedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsScriptedOutput).ToSyntheticMonitoringCheckSettingsScriptedPtrOutputWithContext(ctx)
+}
+
+// SyntheticMonitoringCheckSettingsScriptedPtrInput is an input type that accepts SyntheticMonitoringCheckSettingsScriptedArgs, SyntheticMonitoringCheckSettingsScriptedPtr and SyntheticMonitoringCheckSettingsScriptedPtrOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsScriptedPtrInput` via:
+//
+//	        SyntheticMonitoringCheckSettingsScriptedArgs{...}
+//
+//	or:
+//
+//	        nil
+type SyntheticMonitoringCheckSettingsScriptedPtrInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsScriptedPtrOutput() SyntheticMonitoringCheckSettingsScriptedPtrOutput
+	ToSyntheticMonitoringCheckSettingsScriptedPtrOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsScriptedPtrOutput
+}
+
+type syntheticMonitoringCheckSettingsScriptedPtrType SyntheticMonitoringCheckSettingsScriptedArgs
+
+func SyntheticMonitoringCheckSettingsScriptedPtr(v *SyntheticMonitoringCheckSettingsScriptedArgs) SyntheticMonitoringCheckSettingsScriptedPtrInput {
+	return (*syntheticMonitoringCheckSettingsScriptedPtrType)(v)
+}
+
+func (*syntheticMonitoringCheckSettingsScriptedPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticMonitoringCheckSettingsScripted)(nil)).Elem()
+}
+
+func (i *syntheticMonitoringCheckSettingsScriptedPtrType) ToSyntheticMonitoringCheckSettingsScriptedPtrOutput() SyntheticMonitoringCheckSettingsScriptedPtrOutput {
+	return i.ToSyntheticMonitoringCheckSettingsScriptedPtrOutputWithContext(context.Background())
+}
+
+func (i *syntheticMonitoringCheckSettingsScriptedPtrType) ToSyntheticMonitoringCheckSettingsScriptedPtrOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsScriptedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsScriptedPtrOutput)
+}
+
+type SyntheticMonitoringCheckSettingsScriptedOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsScriptedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsScripted)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsScriptedOutput) ToSyntheticMonitoringCheckSettingsScriptedOutput() SyntheticMonitoringCheckSettingsScriptedOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsScriptedOutput) ToSyntheticMonitoringCheckSettingsScriptedOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsScriptedOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsScriptedOutput) ToSyntheticMonitoringCheckSettingsScriptedPtrOutput() SyntheticMonitoringCheckSettingsScriptedPtrOutput {
+	return o.ToSyntheticMonitoringCheckSettingsScriptedPtrOutputWithContext(context.Background())
+}
+
+func (o SyntheticMonitoringCheckSettingsScriptedOutput) ToSyntheticMonitoringCheckSettingsScriptedPtrOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsScriptedPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SyntheticMonitoringCheckSettingsScripted) *SyntheticMonitoringCheckSettingsScripted {
+		return &v
+	}).(SyntheticMonitoringCheckSettingsScriptedPtrOutput)
+}
+
+func (o SyntheticMonitoringCheckSettingsScriptedOutput) Script() pulumi.StringOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsScripted) string { return v.Script }).(pulumi.StringOutput)
+}
+
+type SyntheticMonitoringCheckSettingsScriptedPtrOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsScriptedPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticMonitoringCheckSettingsScripted)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsScriptedPtrOutput) ToSyntheticMonitoringCheckSettingsScriptedPtrOutput() SyntheticMonitoringCheckSettingsScriptedPtrOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsScriptedPtrOutput) ToSyntheticMonitoringCheckSettingsScriptedPtrOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsScriptedPtrOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsScriptedPtrOutput) Elem() SyntheticMonitoringCheckSettingsScriptedOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsScripted) SyntheticMonitoringCheckSettingsScripted {
+		if v != nil {
+			return *v
+		}
+		var ret SyntheticMonitoringCheckSettingsScripted
+		return ret
+	}).(SyntheticMonitoringCheckSettingsScriptedOutput)
+}
+
+func (o SyntheticMonitoringCheckSettingsScriptedPtrOutput) Script() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsScripted) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Script
+	}).(pulumi.StringPtrOutput)
+}
+
 type SyntheticMonitoringCheckSettingsTcp struct {
 	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
 	IpVersion *string `pulumi:"ipVersion"`
@@ -18523,6 +18556,8 @@ type GetSlosSlo struct {
 	Description string `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasources []GetSlosSloDestinationDatasource `pulumi:"destinationDatasources"`
+	// UID for the SLO folder
+	FolderUid string `pulumi:"folderUid"`
 	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
 	Labels []GetSlosSloLabel `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
@@ -18557,6 +18592,8 @@ type GetSlosSloArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
 	DestinationDatasources GetSlosSloDestinationDatasourceArrayInput `pulumi:"destinationDatasources"`
+	// UID for the SLO folder
+	FolderUid pulumi.StringInput `pulumi:"folderUid"`
 	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
 	Labels GetSlosSloLabelArrayInput `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
@@ -18638,6 +18675,11 @@ func (o GetSlosSloOutput) Description() pulumi.StringOutput {
 // Destination Datasource sets the datasource defined for an SLO
 func (o GetSlosSloOutput) DestinationDatasources() GetSlosSloDestinationDatasourceArrayOutput {
 	return o.ApplyT(func(v GetSlosSlo) []GetSlosSloDestinationDatasource { return v.DestinationDatasources }).(GetSlosSloDestinationDatasourceArrayOutput)
+}
+
+// UID for the SLO folder
+func (o GetSlosSloOutput) FolderUid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSlo) string { return v.FolderUid }).(pulumi.StringOutput)
 }
 
 // Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
@@ -20917,8 +20959,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ReportDashboardTimeRangePtrInput)(nil)).Elem(), ReportDashboardTimeRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ReportScheduleInput)(nil)).Elem(), ReportScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ReportSchedulePtrInput)(nil)).Elem(), ReportScheduleArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ReportTimeRangeInput)(nil)).Elem(), ReportTimeRangeArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ReportTimeRangePtrInput)(nil)).Elem(), ReportTimeRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RolePermissionInput)(nil)).Elem(), RolePermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RolePermissionArrayInput)(nil)).Elem(), RolePermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleInput)(nil)).Elem(), RuleGroupRuleArgs{})
@@ -21002,6 +21042,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsMultihttpEntryVariableArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsPingInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsPingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsPingPtrInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsPingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsScriptedInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsScriptedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsScriptedPtrInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsScriptedArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsTcpInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsTcpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsTcpPtrInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsTcpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsTcpQueryResponseInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsTcpQueryResponseArgs{})
@@ -21178,8 +21220,6 @@ func init() {
 	pulumi.RegisterOutputType(ReportDashboardTimeRangePtrOutput{})
 	pulumi.RegisterOutputType(ReportScheduleOutput{})
 	pulumi.RegisterOutputType(ReportSchedulePtrOutput{})
-	pulumi.RegisterOutputType(ReportTimeRangeOutput{})
-	pulumi.RegisterOutputType(ReportTimeRangePtrOutput{})
 	pulumi.RegisterOutputType(RolePermissionOutput{})
 	pulumi.RegisterOutputType(RolePermissionArrayOutput{})
 	pulumi.RegisterOutputType(RuleGroupRuleOutput{})
@@ -21263,6 +21303,8 @@ func init() {
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsMultihttpEntryVariableArrayOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsPingOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsPingPtrOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsScriptedOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsScriptedPtrOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsTcpOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsTcpPtrOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsTcpQueryResponseOutput{})

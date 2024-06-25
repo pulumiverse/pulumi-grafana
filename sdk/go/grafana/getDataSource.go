@@ -24,8 +24,6 @@ func LookupDataSource(ctx *pulumi.Context, args *LookupDataSourceArgs, opts ...p
 
 // A collection of arguments for invoking getDataSource.
 type LookupDataSourceArgs struct {
-	// Deprecated: Use `uid` instead of `id`
-	Id    *string `pulumi:"id"`
 	Name  *string `pulumi:"name"`
 	OrgId *string `pulumi:"orgId"`
 	Uid   *string `pulumi:"uid"`
@@ -37,7 +35,7 @@ type LookupDataSourceResult struct {
 	BasicAuthEnabled  bool   `pulumi:"basicAuthEnabled"`
 	BasicAuthUsername string `pulumi:"basicAuthUsername"`
 	DatabaseName      string `pulumi:"databaseName"`
-	// Deprecated: Use `uid` instead of `id`
+	// The provider-assigned unique ID for this managed resource.
 	Id              string  `pulumi:"id"`
 	IsDefault       bool    `pulumi:"isDefault"`
 	JsonDataEncoded string  `pulumi:"jsonDataEncoded"`
@@ -64,8 +62,6 @@ func LookupDataSourceOutput(ctx *pulumi.Context, args LookupDataSourceOutputArgs
 
 // A collection of arguments for invoking getDataSource.
 type LookupDataSourceOutputArgs struct {
-	// Deprecated: Use `uid` instead of `id`
-	Id    pulumi.StringPtrInput `pulumi:"id"`
 	Name  pulumi.StringPtrInput `pulumi:"name"`
 	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
 	Uid   pulumi.StringPtrInput `pulumi:"uid"`
@@ -106,7 +102,7 @@ func (o LookupDataSourceResultOutput) DatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDataSourceResult) string { return v.DatabaseName }).(pulumi.StringOutput)
 }
 
-// Deprecated: Use `uid` instead of `id`
+// The provider-assigned unique ID for this managed resource.
 func (o LookupDataSourceResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDataSourceResult) string { return v.Id }).(pulumi.StringOutput)
 }

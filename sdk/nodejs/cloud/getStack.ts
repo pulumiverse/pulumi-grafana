@@ -59,6 +59,10 @@ export interface GetStackResult {
      */
     readonly id: string;
     /**
+     * Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheusUserId` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
+     */
+    readonly influxUrl: string;
+    /**
      * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
      */
     readonly labels: {[key: string]: string};
@@ -83,7 +87,7 @@ export interface GetStackResult {
      */
     readonly orgSlug: string;
     /**
-     * Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+     * Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
      */
     readonly otlpUrl: string;
     readonly profilesName: string;

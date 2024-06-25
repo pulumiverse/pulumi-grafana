@@ -23,10 +23,7 @@ class GetOrganizationPreferencesResult:
     """
     A collection of values returned by getOrganizationPreferences.
     """
-    def __init__(__self__, home_dashboard_id=None, home_dashboard_uid=None, id=None, org_id=None, theme=None, timezone=None, week_start=None):
-        if home_dashboard_id and not isinstance(home_dashboard_id, int):
-            raise TypeError("Expected argument 'home_dashboard_id' to be a int")
-        pulumi.set(__self__, "home_dashboard_id", home_dashboard_id)
+    def __init__(__self__, home_dashboard_uid=None, id=None, org_id=None, theme=None, timezone=None, week_start=None):
         if home_dashboard_uid and not isinstance(home_dashboard_uid, str):
             raise TypeError("Expected argument 'home_dashboard_uid' to be a str")
         pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
@@ -45,14 +42,6 @@ class GetOrganizationPreferencesResult:
         if week_start and not isinstance(week_start, str):
             raise TypeError("Expected argument 'week_start' to be a str")
         pulumi.set(__self__, "week_start", week_start)
-
-    @property
-    @pulumi.getter(name="homeDashboardId")
-    def home_dashboard_id(self) -> int:
-        warnings.warn("""Use `home_dashboard_uid` instead.""", DeprecationWarning)
-        pulumi.log.warn("""home_dashboard_id is deprecated: Use `home_dashboard_uid` instead.""")
-
-        return pulumi.get(self, "home_dashboard_id")
 
     @property
     @pulumi.getter(name="homeDashboardUid")
@@ -94,7 +83,6 @@ class AwaitableGetOrganizationPreferencesResult(GetOrganizationPreferencesResult
         if False:
             yield self
         return GetOrganizationPreferencesResult(
-            home_dashboard_id=self.home_dashboard_id,
             home_dashboard_uid=self.home_dashboard_uid,
             id=self.id,
             org_id=self.org_id,
@@ -115,7 +103,6 @@ def get_organization_preferences(org_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getOrganizationPreferences:getOrganizationPreferences', __args__, opts=opts, typ=GetOrganizationPreferencesResult).value
 
     return AwaitableGetOrganizationPreferencesResult(
-        home_dashboard_id=pulumi.get(__ret__, 'home_dashboard_id'),
         home_dashboard_uid=pulumi.get(__ret__, 'home_dashboard_uid'),
         id=pulumi.get(__ret__, 'id'),
         org_id=pulumi.get(__ret__, 'org_id'),

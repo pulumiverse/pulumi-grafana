@@ -91,6 +91,12 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<int> GraphiteUserId { get; private set; } = null!;
 
         /// <summary>
+        /// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
+        /// </summary>
+        [Output("influxUrl")]
+        public Output<string> InfluxUrl { get; private set; } = null!;
+
+        /// <summary>
         /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
         /// </summary>
         [Output("labels")]
@@ -133,7 +139,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> OrgSlug { get; private set; } = null!;
 
         /// <summary>
-        /// Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        /// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         /// </summary>
         [Output("otlpUrl")]
         public Output<string> OtlpUrl { get; private set; } = null!;
@@ -392,6 +398,12 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("graphiteUserId")]
         public Input<int>? GraphiteUserId { get; set; }
 
+        /// <summary>
+        /// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
+        /// </summary>
+        [Input("influxUrl")]
+        public Input<string>? InfluxUrl { get; set; }
+
         [Input("labels")]
         private InputMap<string>? _labels;
 
@@ -441,7 +453,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Input<string>? OrgSlug { get; set; }
 
         /// <summary>
-        /// Base URL of the OTLP instance configured for this stack. See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        /// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         /// </summary>
         [Input("otlpUrl")]
         public Input<string>? OtlpUrl { get; set; }

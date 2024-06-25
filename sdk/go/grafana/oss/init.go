@@ -23,8 +23,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "grafana:oss/annotation:Annotation":
 		r = &Annotation{}
-	case "grafana:oss/apiKey:ApiKey":
-		r = &ApiKey{}
 	case "grafana:oss/dashboard:Dashboard":
 		r = &Dashboard{}
 	case "grafana:oss/dashboardPermission:DashboardPermission":
@@ -81,11 +79,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"oss/annotation",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"grafana",
-		"oss/apiKey",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

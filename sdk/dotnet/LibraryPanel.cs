@@ -33,12 +33,6 @@ namespace Pulumiverse.Grafana
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Deprecated. Use `folder_uid` instead
-        /// </summary>
-        [Output("folderId")]
-        public Output<string?> FolderId { get; private set; } = null!;
-
-        /// <summary>
         /// Name of the folder containing the library panel.
         /// </summary>
         [Output("folderName")]
@@ -152,12 +146,6 @@ namespace Pulumiverse.Grafana
     public sealed class LibraryPanelArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Deprecated. Use `folder_uid` instead
-        /// </summary>
-        [Input("folderId")]
-        public Input<string>? FolderId { get; set; }
-
-        /// <summary>
         /// Unique ID (UID) of the folder containing the library panel.
         /// </summary>
         [Input("folderUid")]
@@ -220,12 +208,6 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
-
-        /// <summary>
-        /// Deprecated. Use `folder_uid` instead
-        /// </summary>
-        [Input("folderId")]
-        public Input<string>? FolderId { get; set; }
 
         /// <summary>
         /// Name of the folder containing the library panel.

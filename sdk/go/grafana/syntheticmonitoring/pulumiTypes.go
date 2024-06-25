@@ -22,6 +22,8 @@ type CheckSettings struct {
 	Multihttp *CheckSettingsMultihttp `pulumi:"multihttp"`
 	// Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
 	Ping *CheckSettingsPing `pulumi:"ping"`
+	// Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+	Scripted *CheckSettingsScripted `pulumi:"scripted"`
 	// Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
 	Tcp *CheckSettingsTcp `pulumi:"tcp"`
 	// Settings for traceroute check. The target must be a valid hostname or IP address
@@ -48,6 +50,8 @@ type CheckSettingsArgs struct {
 	Multihttp CheckSettingsMultihttpPtrInput `pulumi:"multihttp"`
 	// Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
 	Ping CheckSettingsPingPtrInput `pulumi:"ping"`
+	// Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+	Scripted CheckSettingsScriptedPtrInput `pulumi:"scripted"`
 	// Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
 	Tcp CheckSettingsTcpPtrInput `pulumi:"tcp"`
 	// Settings for traceroute check. The target must be a valid hostname or IP address
@@ -151,6 +155,11 @@ func (o CheckSettingsOutput) Ping() CheckSettingsPingPtrOutput {
 	return o.ApplyT(func(v CheckSettings) *CheckSettingsPing { return v.Ping }).(CheckSettingsPingPtrOutput)
 }
 
+// Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+func (o CheckSettingsOutput) Scripted() CheckSettingsScriptedPtrOutput {
+	return o.ApplyT(func(v CheckSettings) *CheckSettingsScripted { return v.Scripted }).(CheckSettingsScriptedPtrOutput)
+}
+
 // Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
 func (o CheckSettingsOutput) Tcp() CheckSettingsTcpPtrOutput {
 	return o.ApplyT(func(v CheckSettings) *CheckSettingsTcp { return v.Tcp }).(CheckSettingsTcpPtrOutput)
@@ -223,6 +232,16 @@ func (o CheckSettingsPtrOutput) Ping() CheckSettingsPingPtrOutput {
 		}
 		return v.Ping
 	}).(CheckSettingsPingPtrOutput)
+}
+
+// Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+func (o CheckSettingsPtrOutput) Scripted() CheckSettingsScriptedPtrOutput {
+	return o.ApplyT(func(v *CheckSettings) *CheckSettingsScripted {
+		if v == nil {
+			return nil
+		}
+		return v.Scripted
+	}).(CheckSettingsScriptedPtrOutput)
 }
 
 // Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
@@ -3296,6 +3315,139 @@ func (o CheckSettingsPingPtrOutput) SourceIpAddress() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type CheckSettingsScripted struct {
+	Script string `pulumi:"script"`
+}
+
+// CheckSettingsScriptedInput is an input type that accepts CheckSettingsScriptedArgs and CheckSettingsScriptedOutput values.
+// You can construct a concrete instance of `CheckSettingsScriptedInput` via:
+//
+//	CheckSettingsScriptedArgs{...}
+type CheckSettingsScriptedInput interface {
+	pulumi.Input
+
+	ToCheckSettingsScriptedOutput() CheckSettingsScriptedOutput
+	ToCheckSettingsScriptedOutputWithContext(context.Context) CheckSettingsScriptedOutput
+}
+
+type CheckSettingsScriptedArgs struct {
+	Script pulumi.StringInput `pulumi:"script"`
+}
+
+func (CheckSettingsScriptedArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CheckSettingsScripted)(nil)).Elem()
+}
+
+func (i CheckSettingsScriptedArgs) ToCheckSettingsScriptedOutput() CheckSettingsScriptedOutput {
+	return i.ToCheckSettingsScriptedOutputWithContext(context.Background())
+}
+
+func (i CheckSettingsScriptedArgs) ToCheckSettingsScriptedOutputWithContext(ctx context.Context) CheckSettingsScriptedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckSettingsScriptedOutput)
+}
+
+func (i CheckSettingsScriptedArgs) ToCheckSettingsScriptedPtrOutput() CheckSettingsScriptedPtrOutput {
+	return i.ToCheckSettingsScriptedPtrOutputWithContext(context.Background())
+}
+
+func (i CheckSettingsScriptedArgs) ToCheckSettingsScriptedPtrOutputWithContext(ctx context.Context) CheckSettingsScriptedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckSettingsScriptedOutput).ToCheckSettingsScriptedPtrOutputWithContext(ctx)
+}
+
+// CheckSettingsScriptedPtrInput is an input type that accepts CheckSettingsScriptedArgs, CheckSettingsScriptedPtr and CheckSettingsScriptedPtrOutput values.
+// You can construct a concrete instance of `CheckSettingsScriptedPtrInput` via:
+//
+//	        CheckSettingsScriptedArgs{...}
+//
+//	or:
+//
+//	        nil
+type CheckSettingsScriptedPtrInput interface {
+	pulumi.Input
+
+	ToCheckSettingsScriptedPtrOutput() CheckSettingsScriptedPtrOutput
+	ToCheckSettingsScriptedPtrOutputWithContext(context.Context) CheckSettingsScriptedPtrOutput
+}
+
+type checkSettingsScriptedPtrType CheckSettingsScriptedArgs
+
+func CheckSettingsScriptedPtr(v *CheckSettingsScriptedArgs) CheckSettingsScriptedPtrInput {
+	return (*checkSettingsScriptedPtrType)(v)
+}
+
+func (*checkSettingsScriptedPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CheckSettingsScripted)(nil)).Elem()
+}
+
+func (i *checkSettingsScriptedPtrType) ToCheckSettingsScriptedPtrOutput() CheckSettingsScriptedPtrOutput {
+	return i.ToCheckSettingsScriptedPtrOutputWithContext(context.Background())
+}
+
+func (i *checkSettingsScriptedPtrType) ToCheckSettingsScriptedPtrOutputWithContext(ctx context.Context) CheckSettingsScriptedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckSettingsScriptedPtrOutput)
+}
+
+type CheckSettingsScriptedOutput struct{ *pulumi.OutputState }
+
+func (CheckSettingsScriptedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CheckSettingsScripted)(nil)).Elem()
+}
+
+func (o CheckSettingsScriptedOutput) ToCheckSettingsScriptedOutput() CheckSettingsScriptedOutput {
+	return o
+}
+
+func (o CheckSettingsScriptedOutput) ToCheckSettingsScriptedOutputWithContext(ctx context.Context) CheckSettingsScriptedOutput {
+	return o
+}
+
+func (o CheckSettingsScriptedOutput) ToCheckSettingsScriptedPtrOutput() CheckSettingsScriptedPtrOutput {
+	return o.ToCheckSettingsScriptedPtrOutputWithContext(context.Background())
+}
+
+func (o CheckSettingsScriptedOutput) ToCheckSettingsScriptedPtrOutputWithContext(ctx context.Context) CheckSettingsScriptedPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CheckSettingsScripted) *CheckSettingsScripted {
+		return &v
+	}).(CheckSettingsScriptedPtrOutput)
+}
+
+func (o CheckSettingsScriptedOutput) Script() pulumi.StringOutput {
+	return o.ApplyT(func(v CheckSettingsScripted) string { return v.Script }).(pulumi.StringOutput)
+}
+
+type CheckSettingsScriptedPtrOutput struct{ *pulumi.OutputState }
+
+func (CheckSettingsScriptedPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CheckSettingsScripted)(nil)).Elem()
+}
+
+func (o CheckSettingsScriptedPtrOutput) ToCheckSettingsScriptedPtrOutput() CheckSettingsScriptedPtrOutput {
+	return o
+}
+
+func (o CheckSettingsScriptedPtrOutput) ToCheckSettingsScriptedPtrOutputWithContext(ctx context.Context) CheckSettingsScriptedPtrOutput {
+	return o
+}
+
+func (o CheckSettingsScriptedPtrOutput) Elem() CheckSettingsScriptedOutput {
+	return o.ApplyT(func(v *CheckSettingsScripted) CheckSettingsScripted {
+		if v != nil {
+			return *v
+		}
+		var ret CheckSettingsScripted
+		return ret
+	}).(CheckSettingsScriptedOutput)
+}
+
+func (o CheckSettingsScriptedPtrOutput) Script() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CheckSettingsScripted) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Script
+	}).(pulumi.StringPtrOutput)
+}
+
 type CheckSettingsTcp struct {
 	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
 	IpVersion *string `pulumi:"ipVersion"`
@@ -4051,6 +4203,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsMultihttpEntryVariableArrayInput)(nil)).Elem(), CheckSettingsMultihttpEntryVariableArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsPingInput)(nil)).Elem(), CheckSettingsPingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsPingPtrInput)(nil)).Elem(), CheckSettingsPingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsScriptedInput)(nil)).Elem(), CheckSettingsScriptedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsScriptedPtrInput)(nil)).Elem(), CheckSettingsScriptedArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsTcpInput)(nil)).Elem(), CheckSettingsTcpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsTcpPtrInput)(nil)).Elem(), CheckSettingsTcpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsTcpQueryResponseInput)(nil)).Elem(), CheckSettingsTcpQueryResponseArgs{})
@@ -4097,6 +4251,8 @@ func init() {
 	pulumi.RegisterOutputType(CheckSettingsMultihttpEntryVariableArrayOutput{})
 	pulumi.RegisterOutputType(CheckSettingsPingOutput{})
 	pulumi.RegisterOutputType(CheckSettingsPingPtrOutput{})
+	pulumi.RegisterOutputType(CheckSettingsScriptedOutput{})
+	pulumi.RegisterOutputType(CheckSettingsScriptedPtrOutput{})
 	pulumi.RegisterOutputType(CheckSettingsTcpOutput{})
 	pulumi.RegisterOutputType(CheckSettingsTcpPtrOutput{})
 	pulumi.RegisterOutputType(CheckSettingsTcpQueryResponseOutput{})

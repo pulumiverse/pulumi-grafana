@@ -36,19 +36,6 @@ namespace Pulumiverse.Grafana.Oss
 
     public sealed class GetDashboardsArgs : global::Pulumi.InvokeArgs
     {
-        [Input("folderIds")]
-        private List<int>? _folderIds;
-
-        /// <summary>
-        /// Deprecated, use `folder_uids` instead.
-        /// </summary>
-        [Obsolete(@"Use `folder_uids` instead.")]
-        public List<int> FolderIds
-        {
-            get => _folderIds ?? (_folderIds = new List<int>());
-            set => _folderIds = value;
-        }
-
         [Input("folderUids")]
         private List<string>? _folderUids;
 
@@ -93,19 +80,6 @@ namespace Pulumiverse.Grafana.Oss
 
     public sealed class GetDashboardsInvokeArgs : global::Pulumi.InvokeArgs
     {
-        [Input("folderIds")]
-        private InputList<int>? _folderIds;
-
-        /// <summary>
-        /// Deprecated, use `folder_uids` instead.
-        /// </summary>
-        [Obsolete(@"Use `folder_uids` instead.")]
-        public InputList<int> FolderIds
-        {
-            get => _folderIds ?? (_folderIds = new InputList<int>());
-            set => _folderIds = value;
-        }
-
         [Input("folderUids")]
         private InputList<string>? _folderUids;
 
@@ -154,10 +128,6 @@ namespace Pulumiverse.Grafana.Oss
     {
         public readonly ImmutableArray<Outputs.GetDashboardsDashboardResult> Dashboards;
         /// <summary>
-        /// Deprecated, use `folder_uids` instead.
-        /// </summary>
-        public readonly ImmutableArray<int> FolderIds;
-        /// <summary>
         /// UIDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `["General"]` for General folder), or leave blank to get all dashboards in all folders.
         /// </summary>
         public readonly ImmutableArray<string> FolderUids;
@@ -182,8 +152,6 @@ namespace Pulumiverse.Grafana.Oss
         private GetDashboardsResult(
             ImmutableArray<Outputs.GetDashboardsDashboardResult> dashboards,
 
-            ImmutableArray<int> folderIds,
-
             ImmutableArray<string> folderUids,
 
             string id,
@@ -195,7 +163,6 @@ namespace Pulumiverse.Grafana.Oss
             ImmutableArray<string> tags)
         {
             Dashboards = dashboards;
-            FolderIds = folderIds;
             FolderUids = folderUids;
             Id = id;
             Limit = limit;

@@ -25,6 +25,7 @@ export interface GetSyntheticMonitoringProbeArgs {
  * A collection of values returned by getSyntheticMonitoringProbe.
  */
 export interface GetSyntheticMonitoringProbeResult {
+    readonly disableScriptedChecks: boolean;
     readonly id: string;
     readonly labels: {[key: string]: string};
     readonly latitude: number;
