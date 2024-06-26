@@ -105,12 +105,6 @@ func Provider() tfbridge.ProviderInfo {
 		GitHubOrg:               "grafana",
 		TFProviderModuleVersion: "v3",
 		Config: map[string]*tfbridge.SchemaInfo{
-			"url": {
-				Type: "string",
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"GRAFANA_URL"},
-				},
-			},
 			"auth": {
 				Type:   "string",
 				Secret: boolRef(true),
@@ -118,44 +112,56 @@ func Provider() tfbridge.ProviderInfo {
 					EnvVars: []string{"GRAFANA_AUTH"},
 				},
 			},
-			"http_headers": {
-				SuppressEmptyMapElements: boolRef(true),
-				Omit:                     true,
-			},
-			"retries": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"GRAFANA_RETRIES"},
-				},
-			},
-			"org_id": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"GRAFANA_ORG_ID"},
-				},
-			},
-			"tls_key": {
-				Secret: boolRef(true),
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"GRAFANA_TLS_KEY"},
-				},
-			},
-			"tls_cert": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"GRAFANA_TLS_CERT"},
-				},
-			},
 			"ca_cert": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"GRAFANA_CA_CERT"},
 				},
+			},
+			"cloud_access_policy_token": {
+				Type:   "string",
+				Secret: boolRef(true),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"GRAFANA_CLOUD_ACCESS_POLICY_TOKEN"},
+				},
+			},
+			"cloud_api_url": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"GRAFANA_CLOUD_API_URL"},
+				},
+			},
+			"http_headers": {
+				SuppressEmptyMapElements: boolRef(true),
+				Omit:                     true,
 			},
 			"insecure_skip_verify": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"GRAFANA_INSECURE_SKIP_VERIFY"},
 				},
 			},
-			"cloud_api_url": {
+			"oncall_access_token": {
+				Secret: boolRef(true),
 				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"GRAFANA_CLOUD_API_URL"},
+					EnvVars: []string{"GRAFANA_ONCALL_ACCESS_TOKEN"},
+				},
+			},
+			"oncall_url": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"GRAFANA_ONCALL_URL"},
+				},
+			},
+			"retries": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"GRAFANA_RETRIES"},
+				},
+			},
+			"retry_status_codes": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"GRAFANA_RETRY_STATUS_CODES"},
+				},
+			},
+			"retry_wait": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"GRAFANA_RETRY_WAIT"},
 				},
 			},
 			"sm_access_token": {
@@ -174,15 +180,21 @@ func Provider() tfbridge.ProviderInfo {
 					EnvVars: []string{"GRAFANA_STORE_DASHBOARD_SHA256"},
 				},
 			},
-			"oncall_access_token": {
-				Secret: boolRef(true),
+			"tls_cert": {
 				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"GRAFANA_ONCALL_ACCESS_TOKEN"},
+					EnvVars: []string{"GRAFANA_TLS_CERT"},
 				},
 			},
-			"oncall_url": {
+			"tls_key": {
+				Secret: boolRef(true),
 				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"GRAFANA_ONCALL_URL"},
+					EnvVars: []string{"GRAFANA_TLS_KEY"},
+				},
+			},
+			"url": {
+				Type: "string",
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"GRAFANA_URL"},
 				},
 			},
 		},
