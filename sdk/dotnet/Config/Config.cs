@@ -54,7 +54,7 @@ namespace Pulumiverse.Grafana
             set => _caCert.Set(value);
         }
 
-        private static readonly __Value<string?> _cloudAccessPolicyToken = new __Value<string?>(() => __config.Get("cloudAccessPolicyToken"));
+        private static readonly __Value<string?> _cloudAccessPolicyToken = new __Value<string?>(() => __config.Get("cloudAccessPolicyToken") ?? Utilities.GetEnv("GRAFANA_CLOUD_ACCESS_POLICY_TOKEN"));
         /// <summary>
         /// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
         /// variable.
@@ -116,7 +116,7 @@ namespace Pulumiverse.Grafana
             set => _retries.Set(value);
         }
 
-        private static readonly __Value<ImmutableArray<string>> _retryStatusCodes = new __Value<ImmutableArray<string>>(() => __config.GetObject<ImmutableArray<string>>("retryStatusCodes"));
+        private static readonly __Value<ImmutableArray<string>> _retryStatusCodes = new __Value<ImmutableArray<string>>(() => __config.GetObject<ImmutableArray<string>>("retryStatusCodes") ?? Utilities.GetEnv("GRAFANA_RETRY_STATUS_CODES"));
         /// <summary>
         /// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
         /// and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
@@ -127,7 +127,7 @@ namespace Pulumiverse.Grafana
             set => _retryStatusCodes.Set(value);
         }
 
-        private static readonly __Value<int?> _retryWait = new __Value<int?>(() => __config.GetInt32("retryWait"));
+        private static readonly __Value<int?> _retryWait = new __Value<int?>(() => __config.GetInt32("retryWait") ?? Utilities.GetEnvInt32("GRAFANA_RETRY_WAIT"));
         /// <summary>
         /// The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be
         /// set via the `GRAFANA_RETRY_WAIT` environment variable.

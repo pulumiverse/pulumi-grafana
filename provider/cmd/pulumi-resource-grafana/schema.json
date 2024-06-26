@@ -78,6 +78,11 @@
             "cloudAccessPolicyToken": {
                 "type": "string",
                 "description": "Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment\nvariable.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "GRAFANA_CLOUD_ACCESS_POLICY_TOKEN"
+                    ]
+                },
                 "secret": true
             },
             "cloudApiUrl": {
@@ -131,11 +136,21 @@
                 "items": {
                     "type": "string"
                 },
-                "description": "The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429\nand 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.\n"
+                "description": "The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429\nand 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "GRAFANA_RETRY_STATUS_CODES"
+                    ]
+                }
             },
             "retryWait": {
                 "type": "integer",
-                "description": "The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be\nset via the `GRAFANA_RETRY_WAIT` environment variable.\n"
+                "description": "The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be\nset via the `GRAFANA_RETRY_WAIT` environment variable.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "GRAFANA_RETRY_WAIT"
+                    ]
+                }
             },
             "smAccessToken": {
                 "type": "string",
@@ -8528,6 +8543,11 @@
             "cloudAccessPolicyToken": {
                 "type": "string",
                 "description": "Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment\nvariable.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "GRAFANA_CLOUD_ACCESS_POLICY_TOKEN"
+                    ]
+                },
                 "secret": true
             },
             "cloudApiUrl": {
@@ -8581,11 +8601,21 @@
                 "items": {
                     "type": "string"
                 },
-                "description": "The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429\nand 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.\n"
+                "description": "The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429\nand 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "GRAFANA_RETRY_STATUS_CODES"
+                    ]
+                }
             },
             "retryWait": {
                 "type": "integer",
-                "description": "The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be\nset via the `GRAFANA_RETRY_WAIT` environment variable.\n"
+                "description": "The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be\nset via the `GRAFANA_RETRY_WAIT` environment variable.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "GRAFANA_RETRY_WAIT"
+                    ]
+                }
             },
             "smAccessToken": {
                 "type": "string",

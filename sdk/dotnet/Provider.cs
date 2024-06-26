@@ -285,11 +285,14 @@ namespace Pulumiverse.Grafana
         {
             Auth = Utilities.GetEnv("GRAFANA_AUTH");
             CaCert = Utilities.GetEnv("GRAFANA_CA_CERT");
+            CloudAccessPolicyToken = Utilities.GetEnv("GRAFANA_CLOUD_ACCESS_POLICY_TOKEN");
             CloudApiUrl = Utilities.GetEnv("GRAFANA_CLOUD_API_URL");
             InsecureSkipVerify = Utilities.GetEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY");
             OncallAccessToken = Utilities.GetEnv("GRAFANA_ONCALL_ACCESS_TOKEN");
             OncallUrl = Utilities.GetEnv("GRAFANA_ONCALL_URL");
             Retries = Utilities.GetEnvInt32("GRAFANA_RETRIES");
+            RetryStatusCodes = Utilities.GetEnv("GRAFANA_RETRY_STATUS_CODES");
+            RetryWait = Utilities.GetEnvInt32("GRAFANA_RETRY_WAIT");
             SmAccessToken = Utilities.GetEnv("GRAFANA_SM_ACCESS_TOKEN");
             SmUrl = Utilities.GetEnv("GRAFANA_SM_URL");
             StoreDashboardSha256 = Utilities.GetEnvBoolean("GRAFANA_STORE_DASHBOARD_SHA256");

@@ -64,6 +64,8 @@ class ProviderArgs:
             ca_cert = _utilities.get_env('GRAFANA_CA_CERT')
         if ca_cert is not None:
             pulumi.set(__self__, "ca_cert", ca_cert)
+        if cloud_access_policy_token is None:
+            cloud_access_policy_token = _utilities.get_env('GRAFANA_CLOUD_ACCESS_POLICY_TOKEN')
         if cloud_access_policy_token is not None:
             pulumi.set(__self__, "cloud_access_policy_token", cloud_access_policy_token)
         if cloud_api_url is None:
@@ -86,8 +88,12 @@ class ProviderArgs:
             retries = _utilities.get_env_int('GRAFANA_RETRIES')
         if retries is not None:
             pulumi.set(__self__, "retries", retries)
+        if retry_status_codes is None:
+            retry_status_codes = _utilities.get_env('GRAFANA_RETRY_STATUS_CODES')
         if retry_status_codes is not None:
             pulumi.set(__self__, "retry_status_codes", retry_status_codes)
+        if retry_wait is None:
+            retry_wait = _utilities.get_env_int('GRAFANA_RETRY_WAIT')
         if retry_wait is not None:
             pulumi.set(__self__, "retry_wait", retry_wait)
         if sm_access_token is None:
@@ -425,6 +431,8 @@ class Provider(pulumi.ProviderResource):
             if ca_cert is None:
                 ca_cert = _utilities.get_env('GRAFANA_CA_CERT')
             __props__.__dict__["ca_cert"] = ca_cert
+            if cloud_access_policy_token is None:
+                cloud_access_policy_token = _utilities.get_env('GRAFANA_CLOUD_ACCESS_POLICY_TOKEN')
             __props__.__dict__["cloud_access_policy_token"] = None if cloud_access_policy_token is None else pulumi.Output.secret(cloud_access_policy_token)
             if cloud_api_url is None:
                 cloud_api_url = _utilities.get_env('GRAFANA_CLOUD_API_URL')
@@ -441,7 +449,11 @@ class Provider(pulumi.ProviderResource):
             if retries is None:
                 retries = _utilities.get_env_int('GRAFANA_RETRIES')
             __props__.__dict__["retries"] = pulumi.Output.from_input(retries).apply(pulumi.runtime.to_json) if retries is not None else None
+            if retry_status_codes is None:
+                retry_status_codes = _utilities.get_env('GRAFANA_RETRY_STATUS_CODES')
             __props__.__dict__["retry_status_codes"] = pulumi.Output.from_input(retry_status_codes).apply(pulumi.runtime.to_json) if retry_status_codes is not None else None
+            if retry_wait is None:
+                retry_wait = _utilities.get_env_int('GRAFANA_RETRY_WAIT')
             __props__.__dict__["retry_wait"] = pulumi.Output.from_input(retry_wait).apply(pulumi.runtime.to_json) if retry_wait is not None else None
             if sm_access_token is None:
                 sm_access_token = _utilities.get_env('GRAFANA_SM_ACCESS_TOKEN')
