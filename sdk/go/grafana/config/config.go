@@ -42,7 +42,15 @@ func GetCaCert(ctx *pulumi.Context) string {
 // Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
 // variable.
 func GetCloudAccessPolicyToken(ctx *pulumi.Context) string {
-	return config.Get(ctx, "grafana:cloudAccessPolicyToken")
+	v, err := config.Try(ctx, "grafana:cloudAccessPolicyToken")
+	if err == nil {
+		return v
+	}
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_CLOUD_ACCESS_POLICY_TOKEN"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
@@ -120,7 +128,15 @@ func GetRetryStatusCodes(ctx *pulumi.Context) string {
 // The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be
 // set via the `GRAFANA_RETRY_WAIT` environment variable.
 func GetRetryWait(ctx *pulumi.Context) int {
-	return config.GetInt(ctx, "grafana:retryWait")
+	v, err := config.TryInt(ctx, "grafana:retryWait")
+	if err == nil {
+		return v
+	}
+	var value int
+	if d := internal.GetEnvOrDefault(nil, internal.ParseEnvInt, "GRAFANA_RETRY_WAIT"); d != nil {
+		value = d.(int)
+	}
+	return value
 }
 
 // A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.

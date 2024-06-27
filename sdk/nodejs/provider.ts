@@ -85,14 +85,14 @@ export class Provider extends pulumi.ProviderResource {
         {
             resourceInputs["auth"] = (args?.auth ? pulumi.secret(args.auth) : undefined) ?? utilities.getEnv("GRAFANA_AUTH");
             resourceInputs["caCert"] = (args ? args.caCert : undefined) ?? utilities.getEnv("GRAFANA_CA_CERT");
-            resourceInputs["cloudAccessPolicyToken"] = args?.cloudAccessPolicyToken ? pulumi.secret(args.cloudAccessPolicyToken) : undefined;
+            resourceInputs["cloudAccessPolicyToken"] = (args?.cloudAccessPolicyToken ? pulumi.secret(args.cloudAccessPolicyToken) : undefined) ?? utilities.getEnv("GRAFANA_CLOUD_ACCESS_POLICY_TOKEN");
             resourceInputs["cloudApiUrl"] = (args ? args.cloudApiUrl : undefined) ?? utilities.getEnv("GRAFANA_CLOUD_API_URL");
             resourceInputs["insecureSkipVerify"] = pulumi.output((args ? args.insecureSkipVerify : undefined) ?? utilities.getEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY")).apply(JSON.stringify);
             resourceInputs["oncallAccessToken"] = (args?.oncallAccessToken ? pulumi.secret(args.oncallAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_ACCESS_TOKEN");
             resourceInputs["oncallUrl"] = (args ? args.oncallUrl : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_URL");
             resourceInputs["retries"] = pulumi.output((args ? args.retries : undefined) ?? utilities.getEnvNumber("GRAFANA_RETRIES")).apply(JSON.stringify);
             resourceInputs["retryStatusCodes"] = pulumi.output(args ? args.retryStatusCodes : undefined).apply(JSON.stringify);
-            resourceInputs["retryWait"] = pulumi.output(args ? args.retryWait : undefined).apply(JSON.stringify);
+            resourceInputs["retryWait"] = pulumi.output((args ? args.retryWait : undefined) ?? utilities.getEnvNumber("GRAFANA_RETRY_WAIT")).apply(JSON.stringify);
             resourceInputs["smAccessToken"] = (args?.smAccessToken ? pulumi.secret(args.smAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_SM_ACCESS_TOKEN");
             resourceInputs["smUrl"] = (args ? args.smUrl : undefined) ?? utilities.getEnv("GRAFANA_SM_URL");
             resourceInputs["storeDashboardSha256"] = pulumi.output((args ? args.storeDashboardSha256 : undefined) ?? utilities.getEnvBoolean("GRAFANA_STORE_DASHBOARD_SHA256")).apply(JSON.stringify);

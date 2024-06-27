@@ -63,6 +63,11 @@ func NewProvider(ctx *pulumi.Context,
 			args.CaCert = pulumi.StringPtr(d.(string))
 		}
 	}
+	if args.CloudAccessPolicyToken == nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_CLOUD_ACCESS_POLICY_TOKEN"); d != nil {
+			args.CloudAccessPolicyToken = pulumi.StringPtr(d.(string))
+		}
+	}
 	if args.CloudApiUrl == nil {
 		if d := internal.GetEnvOrDefault(nil, nil, "GRAFANA_CLOUD_API_URL"); d != nil {
 			args.CloudApiUrl = pulumi.StringPtr(d.(string))
@@ -86,6 +91,11 @@ func NewProvider(ctx *pulumi.Context,
 	if args.Retries == nil {
 		if d := internal.GetEnvOrDefault(nil, internal.ParseEnvInt, "GRAFANA_RETRIES"); d != nil {
 			args.Retries = pulumi.IntPtr(d.(int))
+		}
+	}
+	if args.RetryWait == nil {
+		if d := internal.GetEnvOrDefault(nil, internal.ParseEnvInt, "GRAFANA_RETRY_WAIT"); d != nil {
+			args.RetryWait = pulumi.IntPtr(d.(int))
 		}
 	}
 	if args.SmAccessToken == nil {

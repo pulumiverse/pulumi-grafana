@@ -78,6 +78,11 @@
             "cloudAccessPolicyToken": {
                 "type": "string",
                 "description": "Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment\nvariable.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "GRAFANA_CLOUD_ACCESS_POLICY_TOKEN"
+                    ]
+                },
                 "secret": true
             },
             "cloudApiUrl": {
@@ -135,7 +140,12 @@
             },
             "retryWait": {
                 "type": "integer",
-                "description": "The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be\nset via the `GRAFANA_RETRY_WAIT` environment variable.\n"
+                "description": "The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be\nset via the `GRAFANA_RETRY_WAIT` environment variable.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "GRAFANA_RETRY_WAIT"
+                    ]
+                }
             },
             "smAccessToken": {
                 "type": "string",
@@ -8528,6 +8538,11 @@
             "cloudAccessPolicyToken": {
                 "type": "string",
                 "description": "Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment\nvariable.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "GRAFANA_CLOUD_ACCESS_POLICY_TOKEN"
+                    ]
+                },
                 "secret": true
             },
             "cloudApiUrl": {
@@ -8585,7 +8600,12 @@
             },
             "retryWait": {
                 "type": "integer",
-                "description": "The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be\nset via the `GRAFANA_RETRY_WAIT` environment variable.\n"
+                "description": "The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be\nset via the `GRAFANA_RETRY_WAIT` environment variable.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "GRAFANA_RETRY_WAIT"
+                    ]
+                }
             },
             "smAccessToken": {
                 "type": "string",

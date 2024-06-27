@@ -37,7 +37,7 @@ class _ExportableConfig(types.ModuleType):
         Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
         variable.
         """
-        return __config__.get('cloudAccessPolicyToken')
+        return __config__.get('cloudAccessPolicyToken') or _utilities.get_env('GRAFANA_CLOUD_ACCESS_POLICY_TOKEN')
 
     @property
     def cloud_api_url(self) -> Optional[str]:
@@ -89,7 +89,7 @@ class _ExportableConfig(types.ModuleType):
         The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be
         set via the `GRAFANA_RETRY_WAIT` environment variable.
         """
-        return __config__.get_int('retryWait')
+        return __config__.get_int('retryWait') or _utilities.get_env_int('GRAFANA_RETRY_WAIT')
 
     @property
     def sm_access_token(self) -> Optional[str]:

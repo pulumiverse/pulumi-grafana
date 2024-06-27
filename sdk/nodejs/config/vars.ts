@@ -38,7 +38,7 @@ Object.defineProperty(exports, "caCert", {
 export declare const cloudAccessPolicyToken: string | undefined;
 Object.defineProperty(exports, "cloudAccessPolicyToken", {
     get() {
-        return __config.get("cloudAccessPolicyToken");
+        return __config.get("cloudAccessPolicyToken") ?? utilities.getEnv("GRAFANA_CLOUD_ACCESS_POLICY_TOKEN");
     },
     enumerable: true,
 });
@@ -118,7 +118,7 @@ Object.defineProperty(exports, "retryStatusCodes", {
 export declare const retryWait: number | undefined;
 Object.defineProperty(exports, "retryWait", {
     get() {
-        return __config.getObject<number>("retryWait");
+        return __config.getObject<number>("retryWait") ?? utilities.getEnvNumber("GRAFANA_RETRY_WAIT");
     },
     enumerable: true,
 });
