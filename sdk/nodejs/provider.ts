@@ -91,7 +91,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["oncallAccessToken"] = (args?.oncallAccessToken ? pulumi.secret(args.oncallAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_ACCESS_TOKEN");
             resourceInputs["oncallUrl"] = (args ? args.oncallUrl : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_URL");
             resourceInputs["retries"] = pulumi.output((args ? args.retries : undefined) ?? utilities.getEnvNumber("GRAFANA_RETRIES")).apply(JSON.stringify);
-            resourceInputs["retryStatusCodes"] = pulumi.output((args ? args.retryStatusCodes : undefined) ?? <any>utilities.getEnv("GRAFANA_RETRY_STATUS_CODES")).apply(JSON.stringify);
+            resourceInputs["retryStatusCodes"] = pulumi.output(args ? args.retryStatusCodes : undefined).apply(JSON.stringify);
             resourceInputs["retryWait"] = pulumi.output((args ? args.retryWait : undefined) ?? utilities.getEnvNumber("GRAFANA_RETRY_WAIT")).apply(JSON.stringify);
             resourceInputs["smAccessToken"] = (args?.smAccessToken ? pulumi.secret(args.smAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_SM_ACCESS_TOKEN");
             resourceInputs["smUrl"] = (args ? args.smUrl : undefined) ?? utilities.getEnv("GRAFANA_SM_URL");

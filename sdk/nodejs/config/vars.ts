@@ -106,7 +106,7 @@ Object.defineProperty(exports, "retries", {
 export declare const retryStatusCodes: string[] | undefined;
 Object.defineProperty(exports, "retryStatusCodes", {
     get() {
-        return __config.getObject<string[]>("retryStatusCodes") ?? <any>utilities.getEnv("GRAFANA_RETRY_STATUS_CODES");
+        return __config.getObject<string[]>("retryStatusCodes");
     },
     enumerable: true,
 });

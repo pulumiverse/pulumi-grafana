@@ -88,8 +88,6 @@ class ProviderArgs:
             retries = _utilities.get_env_int('GRAFANA_RETRIES')
         if retries is not None:
             pulumi.set(__self__, "retries", retries)
-        if retry_status_codes is None:
-            retry_status_codes = _utilities.get_env('GRAFANA_RETRY_STATUS_CODES')
         if retry_status_codes is not None:
             pulumi.set(__self__, "retry_status_codes", retry_status_codes)
         if retry_wait is None:
@@ -449,8 +447,6 @@ class Provider(pulumi.ProviderResource):
             if retries is None:
                 retries = _utilities.get_env_int('GRAFANA_RETRIES')
             __props__.__dict__["retries"] = pulumi.Output.from_input(retries).apply(pulumi.runtime.to_json) if retries is not None else None
-            if retry_status_codes is None:
-                retry_status_codes = _utilities.get_env('GRAFANA_RETRY_STATUS_CODES')
             __props__.__dict__["retry_status_codes"] = pulumi.Output.from_input(retry_status_codes).apply(pulumi.runtime.to_json) if retry_status_codes is not None else None
             if retry_wait is None:
                 retry_wait = _utilities.get_env_int('GRAFANA_RETRY_WAIT')

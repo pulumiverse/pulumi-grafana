@@ -136,12 +136,7 @@
                 "items": {
                     "type": "string"
                 },
-                "description": "The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429\nand 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.\n",
-                "defaultInfo": {
-                    "environment": [
-                        "GRAFANA_RETRY_STATUS_CODES"
-                    ]
-                }
+                "description": "The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429\nand 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.\n"
             },
             "retryWait": {
                 "type": "integer",
@@ -8601,12 +8596,7 @@
                 "items": {
                     "type": "string"
                 },
-                "description": "The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429\nand 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.\n",
-                "defaultInfo": {
-                    "environment": [
-                        "GRAFANA_RETRY_STATUS_CODES"
-                    ]
-                }
+                "description": "The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429\nand 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.\n"
             },
             "retryWait": {
                 "type": "integer",

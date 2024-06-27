@@ -154,11 +154,11 @@ func Provider() tfbridge.ProviderInfo {
 					EnvVars: []string{"GRAFANA_RETRIES"},
 				},
 			},
-			"retry_status_codes": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"GRAFANA_RETRY_STATUS_CODES"},
-				},
-			},
+			// "retry_status_codes": {
+			// 	Default: &tfbridge.DefaultInfo{
+			// 		EnvVars: []string{"GRAFANA_RETRY_STATUS_CODES"},
+			// 	},
+			// },
 			"retry_wait": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"GRAFANA_RETRY_WAIT"},

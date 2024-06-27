@@ -122,15 +122,7 @@ func GetRetries(ctx *pulumi.Context) int {
 // The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
 // and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
 func GetRetryStatusCodes(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "grafana:retryStatusCodes")
-	if err == nil {
-		return v
-	}
-	var value string
-	if d := internal.GetEnvOrDefault(nil, internal.ParseEnvStringArray, "GRAFANA_RETRY_STATUS_CODES"); d != nil {
-		value = d.(pulumi.StringArray)
-	}
-	return value
+	return config.Get(ctx, "grafana:retryStatusCodes")
 }
 
 // The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be

@@ -81,7 +81,7 @@ class _ExportableConfig(types.ModuleType):
         The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
         and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
         """
-        return __config__.get('retryStatusCodes') or _utilities.get_env('GRAFANA_RETRY_STATUS_CODES')
+        return __config__.get('retryStatusCodes')
 
     @property
     def retry_wait(self) -> Optional[int]:

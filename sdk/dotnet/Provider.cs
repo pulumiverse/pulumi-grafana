@@ -291,7 +291,6 @@ namespace Pulumiverse.Grafana
             OncallAccessToken = Utilities.GetEnv("GRAFANA_ONCALL_ACCESS_TOKEN");
             OncallUrl = Utilities.GetEnv("GRAFANA_ONCALL_URL");
             Retries = Utilities.GetEnvInt32("GRAFANA_RETRIES");
-            RetryStatusCodes = Utilities.GetEnv("GRAFANA_RETRY_STATUS_CODES");
             RetryWait = Utilities.GetEnvInt32("GRAFANA_RETRY_WAIT");
             SmAccessToken = Utilities.GetEnv("GRAFANA_SM_ACCESS_TOKEN");
             SmUrl = Utilities.GetEnv("GRAFANA_SM_URL");

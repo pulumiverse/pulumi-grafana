@@ -93,11 +93,6 @@ func NewProvider(ctx *pulumi.Context,
 			args.Retries = pulumi.IntPtr(d.(int))
 		}
 	}
-	if args.RetryStatusCodes == nil {
-		if d := internal.GetEnvOrDefault(nil, internal.ParseEnvStringArray, "GRAFANA_RETRY_STATUS_CODES"); d != nil {
-			args.RetryStatusCodes = pulumi.StringArray(d.(pulumi.StringArray))
-		}
-	}
 	if args.RetryWait == nil {
 		if d := internal.GetEnvOrDefault(nil, internal.ParseEnvInt, "GRAFANA_RETRY_WAIT"); d != nil {
 			args.RetryWait = pulumi.IntPtr(d.(int))
