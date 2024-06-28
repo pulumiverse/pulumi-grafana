@@ -11,6 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
+//   - [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+//
 // Deprecated: grafana.index/getserviceaccount.getServiceAccount has been deprecated in favor of grafana.oss/getserviceaccount.getServiceAccount
 func LookupServiceAccount(ctx *pulumi.Context, args *LookupServiceAccountArgs, opts ...pulumi.InvokeOption) (*LookupServiceAccountResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
@@ -24,18 +27,24 @@ func LookupServiceAccount(ctx *pulumi.Context, args *LookupServiceAccountArgs, o
 
 // A collection of arguments for invoking getServiceAccount.
 type LookupServiceAccountArgs struct {
-	Name  string  `pulumi:"name"`
+	// The name of the Service Account.
+	Name string `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
 }
 
 // A collection of values returned by getServiceAccount.
 type LookupServiceAccountResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id         string  `pulumi:"id"`
-	IsDisabled bool    `pulumi:"isDisabled"`
-	Name       string  `pulumi:"name"`
-	OrgId      *string `pulumi:"orgId"`
-	Role       string  `pulumi:"role"`
+	Id string `pulumi:"id"`
+	// The disabled status for the service account.
+	IsDisabled bool `pulumi:"isDisabled"`
+	// The name of the Service Account.
+	Name string `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
+	// The basic role of the service account in the organization.
+	Role string `pulumi:"role"`
 }
 
 func LookupServiceAccountOutput(ctx *pulumi.Context, args LookupServiceAccountOutputArgs, opts ...pulumi.InvokeOption) LookupServiceAccountResultOutput {
@@ -53,7 +62,9 @@ func LookupServiceAccountOutput(ctx *pulumi.Context, args LookupServiceAccountOu
 
 // A collection of arguments for invoking getServiceAccount.
 type LookupServiceAccountOutputArgs struct {
-	Name  pulumi.StringInput    `pulumi:"name"`
+	// The name of the Service Account.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
 }
 
@@ -81,18 +92,22 @@ func (o LookupServiceAccountResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServiceAccountResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The disabled status for the service account.
 func (o LookupServiceAccountResultOutput) IsDisabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupServiceAccountResult) bool { return v.IsDisabled }).(pulumi.BoolOutput)
 }
 
+// The name of the Service Account.
 func (o LookupServiceAccountResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServiceAccountResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 func (o LookupServiceAccountResultOutput) OrgId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupServiceAccountResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
+// The basic role of the service account in the organization.
 func (o LookupServiceAccountResultOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServiceAccountResult) string { return v.Role }).(pulumi.StringOutput)
 }

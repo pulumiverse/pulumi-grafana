@@ -47,11 +47,11 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexp> FailIfHeaderNotMatchesRegexps;
         /// <summary>
-        /// Fail if SSL is not present.
+        /// Fail if SSL is not present. Defaults to `false`.
         /// </summary>
         public readonly bool? FailIfNotSsl;
         /// <summary>
-        /// Fail if SSL is present.
+        /// Fail if SSL is present. Defaults to `false`.
         /// </summary>
         public readonly bool? FailIfSsl;
         /// <summary>
@@ -59,15 +59,15 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Headers;
         /// <summary>
-        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
+        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
         /// </summary>
         public readonly string? IpVersion;
         /// <summary>
-        /// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE`
+        /// Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
         /// </summary>
         public readonly string? Method;
         /// <summary>
-        /// Do not follow redirects.
+        /// Do not follow redirects. Defaults to `false`.
         /// </summary>
         public readonly bool? NoFollowRedirects;
         /// <summary>

@@ -40,6 +40,9 @@ class GetOncallUserResult:
     @property
     @pulumi.getter
     def email(self) -> str:
+        """
+        The email of the user.
+        """
         return pulumi.get(self, "email")
 
     @property
@@ -53,11 +56,17 @@ class GetOncallUserResult:
     @property
     @pulumi.getter
     def role(self) -> str:
+        """
+        The role of the user.
+        """
         return pulumi.get(self, "role")
 
     @property
     @pulumi.getter
     def username(self) -> str:
+        """
+        The username of the user.
+        """
         return pulumi.get(self, "username")
 
 
@@ -76,7 +85,19 @@ class AwaitableGetOncallUserResult(GetOncallUserResult):
 def get_oncall_user(username: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallUserResult:
     """
-    Use this data source to access information about an existing resource.
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    alex = grafana.onCall.get_user(username="alex")
+    ```
+
+
+    :param str username: The username of the user.
     """
     pulumi.log.warn("""get_oncall_user is deprecated: grafana.index/getoncalluser.getOncallUser has been deprecated in favor of grafana.oncall/getuser.getUser""")
     __args__ = dict()
@@ -95,7 +116,19 @@ def get_oncall_user(username: Optional[str] = None,
 def get_oncall_user_output(username: Optional[pulumi.Input[str]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallUserResult]:
     """
-    Use this data source to access information about an existing resource.
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    alex = grafana.onCall.get_user(username="alex")
+    ```
+
+
+    :param str username: The username of the user.
     """
     pulumi.log.warn("""get_oncall_user is deprecated: grafana.index/getoncalluser.getOncallUser has been deprecated in favor of grafana.oncall/getuser.getUser""")
     ...

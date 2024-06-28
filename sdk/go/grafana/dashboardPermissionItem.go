@@ -12,6 +12,90 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages a single permission item for a dashboard. Conflicts with the "oss.DashboardPermission" resource which manages the entire set of permissions for a dashboard.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			teamTeam, err := oss.NewTeam(ctx, "teamTeam", nil)
+//			if err != nil {
+//				return err
+//			}
+//			userUser, err := oss.NewUser(ctx, "userUser", &oss.UserArgs{
+//				Email:    pulumi.String("user.name@example.com"),
+//				Password: pulumi.String("my-password"),
+//				Login:    pulumi.String("user.name"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"title": "My Dashboard",
+//				"uid":   "my-dashboard-uid",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			dashboard, err := oss.NewDashboard(ctx, "dashboard", &oss.DashboardArgs{
+//				ConfigJson: pulumi.String(json0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oss.NewDashboardPermissionItem(ctx, "role", &oss.DashboardPermissionItemArgs{
+//				DashboardUid: dashboard.Uid,
+//				Role:         pulumi.String("Viewer"),
+//				Permission:   pulumi.String("View"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oss.NewDashboardPermissionItem(ctx, "userDashboardPermissionItem", &oss.DashboardPermissionItemArgs{
+//				DashboardUid: dashboard.Uid,
+//				User:         userUser.ID(),
+//				Permission:   pulumi.String("Admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oss.NewDashboardPermissionItem(ctx, "teamDashboardPermissionItem", &oss.DashboardPermissionItemArgs{
+//				DashboardUid: dashboard.Uid,
+//				Team:         teamTeam.ID(),
+//				Permission:   pulumi.String("Edit"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/dashboardPermissionItem:DashboardPermissionItem name "{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/dashboardPermissionItem:DashboardPermissionItem name "{{ orgID }}:{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+// ```
+//
 // Deprecated: grafana.index/dashboardpermissionitem.DashboardPermissionItem has been deprecated in favor of grafana.oss/dashboardpermissionitem.DashboardPermissionItem
 type DashboardPermissionItem struct {
 	pulumi.CustomResourceState

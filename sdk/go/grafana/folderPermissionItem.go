@@ -12,6 +12,82 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages a single permission item for a folder. Conflicts with the "oss.FolderPermission" resource which manages the entire set of permissions for a folder.
+//   - [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+//   - [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			team, err := oss.NewTeam(ctx, "team", nil)
+//			if err != nil {
+//				return err
+//			}
+//			user, err := oss.NewUser(ctx, "user", &oss.UserArgs{
+//				Email:    pulumi.String("user.name@example.com"),
+//				Login:    pulumi.String("user.name"),
+//				Password: pulumi.String("my-password"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			collection, err := oss.NewFolder(ctx, "collection", &oss.FolderArgs{
+//				Title: pulumi.String("Folder Title"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oss.NewFolderPermissionItem(ctx, "onRole", &oss.FolderPermissionItemArgs{
+//				FolderUid:  collection.Uid,
+//				Role:       pulumi.String("Viewer"),
+//				Permission: pulumi.String("Edit"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oss.NewFolderPermissionItem(ctx, "onTeam", &oss.FolderPermissionItemArgs{
+//				FolderUid:  collection.Uid,
+//				Team:       team.ID(),
+//				Permission: pulumi.String("View"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oss.NewFolderPermissionItem(ctx, "onUser", &oss.FolderPermissionItemArgs{
+//				FolderUid:  collection.Uid,
+//				User:       user.ID(),
+//				Permission: pulumi.String("Admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ orgID }}:{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+// ```
+//
 // Deprecated: grafana.index/folderpermissionitem.FolderPermissionItem has been deprecated in favor of grafana.oss/folderpermissionitem.FolderPermissionItem
 type FolderPermissionItem struct {
 	pulumi.CustomResourceState

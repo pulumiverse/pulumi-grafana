@@ -11,6 +11,16 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// A holiday describes time periods where a time series is expected to behave differently to normal.
+//
+// To use a holiday in a job, use its id in the `holidays` attribute of a `machineLearning.Job`:
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/machineLearningHoliday:MachineLearningHoliday name "{{ id }}"
+// ```
+//
 // Deprecated: grafana.index/machinelearningholiday.MachineLearningHoliday has been deprecated in favor of grafana.machinelearning/holiday.Holiday
 type MachineLearningHoliday struct {
 	pulumi.CustomResourceState

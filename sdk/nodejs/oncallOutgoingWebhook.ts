@@ -5,6 +5,25 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test_acc_outgoingWebhook = new grafana.oncall.OutgoingWebhook("test-acc-outgoingWebhook", {url: "https://example.com/"}, {
+ *     provider: grafana.oncall,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook name "{{ id }}"
+ * ```
+ *
  * @deprecated grafana.index/oncalloutgoingwebhook.OncallOutgoingWebhook has been deprecated in favor of grafana.oncall/outgoingwebhook.OutgoingWebhook
  */
 export class OncallOutgoingWebhook extends pulumi.CustomResource {
@@ -53,16 +72,15 @@ export class OncallOutgoingWebhook extends pulumi.CustomResource {
      */
     public readonly headers!: pulumi.Output<string | undefined>;
     /**
-     * The HTTP method used in the request made by the outgoing webhook.
+     * The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
      */
     public readonly httpMethod!: pulumi.Output<string | undefined>;
     /**
-     * Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
-     * selected the outgoing webhook will trigger for any integration.
+     * Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
      */
     public readonly integrationFilters!: pulumi.Output<string[] | undefined>;
     /**
-     * Controls whether the outgoing webhook will trigger or is ignored.
+     * Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
      */
     public readonly isWebhookEnabled!: pulumi.Output<boolean | undefined>;
     /**
@@ -74,8 +92,7 @@ export class OncallOutgoingWebhook extends pulumi.CustomResource {
      */
     public readonly password!: pulumi.Output<string | undefined>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
      */
     public readonly teamId!: pulumi.Output<string | undefined>;
     /**
@@ -83,8 +100,7 @@ export class OncallOutgoingWebhook extends pulumi.CustomResource {
      */
     public readonly triggerTemplate!: pulumi.Output<string | undefined>;
     /**
-     * The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
-     * group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
+     * The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
      */
     public readonly triggerType!: pulumi.Output<string | undefined>;
     /**
@@ -176,16 +192,15 @@ export interface OncallOutgoingWebhookState {
      */
     headers?: pulumi.Input<string>;
     /**
-     * The HTTP method used in the request made by the outgoing webhook.
+     * The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
      */
     httpMethod?: pulumi.Input<string>;
     /**
-     * Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
-     * selected the outgoing webhook will trigger for any integration.
+     * Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
      */
     integrationFilters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Controls whether the outgoing webhook will trigger or is ignored.
+     * Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
      */
     isWebhookEnabled?: pulumi.Input<boolean>;
     /**
@@ -197,8 +212,7 @@ export interface OncallOutgoingWebhookState {
      */
     password?: pulumi.Input<string>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
      */
     teamId?: pulumi.Input<string>;
     /**
@@ -206,8 +220,7 @@ export interface OncallOutgoingWebhookState {
      */
     triggerTemplate?: pulumi.Input<string>;
     /**
-     * The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
-     * group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
+     * The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
      */
     triggerType?: pulumi.Input<string>;
     /**
@@ -241,16 +254,15 @@ export interface OncallOutgoingWebhookArgs {
      */
     headers?: pulumi.Input<string>;
     /**
-     * The HTTP method used in the request made by the outgoing webhook.
+     * The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
      */
     httpMethod?: pulumi.Input<string>;
     /**
-     * Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are
-     * selected the outgoing webhook will trigger for any integration.
+     * Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
      */
     integrationFilters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Controls whether the outgoing webhook will trigger or is ignored.
+     * Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
      */
     isWebhookEnabled?: pulumi.Input<boolean>;
     /**
@@ -262,8 +274,7 @@ export interface OncallOutgoingWebhookArgs {
      */
     password?: pulumi.Input<string>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-     * with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
      */
     teamId?: pulumi.Input<string>;
     /**
@@ -271,8 +282,7 @@ export interface OncallOutgoingWebhookArgs {
      */
     triggerTemplate?: pulumi.Input<string>;
     /**
-     * The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert
-     * group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`.
+     * The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
      */
     triggerType?: pulumi.Input<string>;
     /**

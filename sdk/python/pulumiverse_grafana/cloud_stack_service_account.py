@@ -21,7 +21,7 @@ class CloudStackServiceAccountArgs:
         """
         The set of arguments for constructing a CloudStackServiceAccount resource.
         :param pulumi.Input[str] role: The basic role of the service account in the organization.
-        :param pulumi.Input[bool] is_disabled: The disabled status for the service account.
+        :param pulumi.Input[bool] is_disabled: The disabled status for the service account. Defaults to `false`.
         :param pulumi.Input[str] name: The name of the service account.
         """
         pulumi.set(__self__, "role", role)
@@ -56,7 +56,7 @@ class CloudStackServiceAccountArgs:
     @pulumi.getter(name="isDisabled")
     def is_disabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        The disabled status for the service account.
+        The disabled status for the service account. Defaults to `false`.
         """
         return pulumi.get(self, "is_disabled")
 
@@ -86,7 +86,7 @@ class _CloudStackServiceAccountState:
                  stack_slug: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CloudStackServiceAccount resources.
-        :param pulumi.Input[bool] is_disabled: The disabled status for the service account.
+        :param pulumi.Input[bool] is_disabled: The disabled status for the service account. Defaults to `false`.
         :param pulumi.Input[str] name: The name of the service account.
         :param pulumi.Input[str] role: The basic role of the service account in the organization.
         """
@@ -103,7 +103,7 @@ class _CloudStackServiceAccountState:
     @pulumi.getter(name="isDisabled")
     def is_disabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        The disabled status for the service account.
+        The disabled status for the service account. Defaults to `false`.
         """
         return pulumi.get(self, "is_disabled")
 
@@ -161,10 +161,38 @@ class CloudStackServiceAccount(pulumi.CustomResource):
                  stack_slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a CloudStackServiceAccount resource with the given unique name, props, and options.
+        Manages service accounts of a Grafana Cloud stack using the Cloud API
+        This can be used to bootstrap a management service account for a new stack
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+
+        Required access policy scopes:
+
+        * stacks:read
+        * stack-service-accounts:write
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        cloud_sa = grafana.cloud.StackServiceAccount("cloudSa",
+            is_disabled=False,
+            role="Admin",
+            stack_slug="<your stack slug>")
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/cloudStackServiceAccount:CloudStackServiceAccount name "{{ stackSlug }}:{{ serviceAccountID }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] is_disabled: The disabled status for the service account.
+        :param pulumi.Input[bool] is_disabled: The disabled status for the service account. Defaults to `false`.
         :param pulumi.Input[str] name: The name of the service account.
         :param pulumi.Input[str] role: The basic role of the service account in the organization.
         """
@@ -175,7 +203,35 @@ class CloudStackServiceAccount(pulumi.CustomResource):
                  args: CloudStackServiceAccountArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a CloudStackServiceAccount resource with the given unique name, props, and options.
+        Manages service accounts of a Grafana Cloud stack using the Cloud API
+        This can be used to bootstrap a management service account for a new stack
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+
+        Required access policy scopes:
+
+        * stacks:read
+        * stack-service-accounts:write
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        cloud_sa = grafana.cloud.StackServiceAccount("cloudSa",
+            is_disabled=False,
+            role="Admin",
+            stack_slug="<your stack slug>")
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/cloudStackServiceAccount:CloudStackServiceAccount name "{{ stackSlug }}:{{ serviceAccountID }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param CloudStackServiceAccountArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -236,7 +292,7 @@ class CloudStackServiceAccount(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] is_disabled: The disabled status for the service account.
+        :param pulumi.Input[bool] is_disabled: The disabled status for the service account. Defaults to `false`.
         :param pulumi.Input[str] name: The name of the service account.
         :param pulumi.Input[str] role: The basic role of the service account in the organization.
         """
@@ -254,7 +310,7 @@ class CloudStackServiceAccount(pulumi.CustomResource):
     @pulumi.getter(name="isDisabled")
     def is_disabled(self) -> pulumi.Output[Optional[bool]]:
         """
-        The disabled status for the service account.
+        The disabled status for the service account. Defaults to `false`.
         """
         return pulumi.get(self, "is_disabled")
 

@@ -5,6 +5,74 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Sets up Synthetic Monitoring on a Grafana cloud stack and generates a token.
+ * Once a Grafana Cloud stack is created, a user can either use this resource or go into the UI to install synthetic monitoring.
+ * This resource cannot be imported but it can be used on an existing Synthetic Monitoring installation without issues.
+ *
+ * **Note that this resource must be used on a provider configured with Grafana Cloud credentials.**
+ *
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/)
+ * * [API documentation](https://github.com/grafana/synthetic-monitoring-api-go-client/blob/main/docs/API.md#apiv1registerinstall)
+ *
+ * Required access policy scopes:
+ *
+ * * stacks:read
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const config = new pulumi.Config();
+ * const cloudAccessPolicyToken = config.requireObject("cloudAccessPolicyToken");
+ * const stackSlug = config.requireObject("stackSlug");
+ * const cloudRegion = config.get("cloudRegion") || "us";
+ * // Step 1: Create a stack
+ * const cloud = new grafana.Provider("cloud", {cloudAccessPolicyToken: cloudAccessPolicyToken});
+ * const smStackStack = new grafana.cloud.Stack("smStackStack", {
+ *     slug: stackSlug,
+ *     regionSlug: cloudRegion,
+ * }, {
+ *     provider: grafana.cloud,
+ * });
+ * // Step 2: Install Synthetic Monitoring on the stack
+ * const smMetricsPublishAccessPolicy = new grafana.cloud.AccessPolicy("smMetricsPublishAccessPolicy", {
+ *     region: cloudRegion,
+ *     scopes: [
+ *         "metrics:write",
+ *         "stacks:read",
+ *         "logs:write",
+ *         "traces:write",
+ *     ],
+ *     realms: [{
+ *         type: "stack",
+ *         identifier: smStackStack.id,
+ *     }],
+ * }, {
+ *     provider: grafana.cloud,
+ * });
+ * const smMetricsPublishAccessPolicyToken = new grafana.cloud.AccessPolicyToken("smMetricsPublishAccessPolicyToken", {
+ *     region: cloudRegion,
+ *     accessPolicyId: smMetricsPublishAccessPolicy.policyId,
+ * }, {
+ *     provider: grafana.cloud,
+ * });
+ * const smStackInstallation = new grafana.syntheticmonitoring.Installation("smStackInstallation", {
+ *     stackId: smStackStack.id,
+ *     metricsPublisherKey: smMetricsPublishAccessPolicyToken.token,
+ * }, {
+ *     provider: grafana.cloud,
+ * });
+ * // Step 3: Interact with Synthetic Monitoring
+ * const sm = new grafana.Provider("sm", {
+ *     smAccessToken: smStackInstallation.smAccessToken,
+ *     smUrl: smStackInstallation.stackSmApiUrl,
+ * });
+ * const main = grafana.syntheticMonitoring.getProbes({});
+ * ```
+ *
  * @deprecated grafana.index/syntheticmonitoringinstallation.SyntheticMonitoringInstallation has been deprecated in favor of grafana.syntheticmonitoring/installation.Installation
  */
 export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
@@ -37,10 +105,7 @@ export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
     }
 
     /**
-     * The [Grafana Cloud access
-     * policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with
-     * the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and
-     * logs to Grafana Cloud stack.
+     * The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
      */
     public readonly metricsPublisherKey!: pulumi.Output<string>;
     /**
@@ -52,10 +117,7 @@ export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
      */
     public readonly stackId!: pulumi.Output<string>;
     /**
-     * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here:
-     * https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url.
-     * A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region,
-     * this field is computed automatically and readable.
+     * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
      */
     public readonly stackSmApiUrl!: pulumi.Output<string>;
 
@@ -106,10 +168,7 @@ export class SyntheticMonitoringInstallation extends pulumi.CustomResource {
  */
 export interface SyntheticMonitoringInstallationState {
     /**
-     * The [Grafana Cloud access
-     * policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with
-     * the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and
-     * logs to Grafana Cloud stack.
+     * The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
      */
     metricsPublisherKey?: pulumi.Input<string>;
     /**
@@ -121,10 +180,7 @@ export interface SyntheticMonitoringInstallationState {
      */
     stackId?: pulumi.Input<string>;
     /**
-     * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here:
-     * https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url.
-     * A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region,
-     * this field is computed automatically and readable.
+     * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
      */
     stackSmApiUrl?: pulumi.Input<string>;
 }
@@ -134,10 +190,7 @@ export interface SyntheticMonitoringInstallationState {
  */
 export interface SyntheticMonitoringInstallationArgs {
     /**
-     * The [Grafana Cloud access
-     * policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with
-     * the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and
-     * logs to Grafana Cloud stack.
+     * The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
      */
     metricsPublisherKey: pulumi.Input<string>;
     /**
@@ -145,10 +198,7 @@ export interface SyntheticMonitoringInstallationArgs {
      */
     stackId: pulumi.Input<string>;
     /**
-     * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here:
-     * https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url.
-     * A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region,
-     * this field is computed automatically and readable.
+     * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
      */
     stackSmApiUrl?: pulumi.Input<string>;
 }

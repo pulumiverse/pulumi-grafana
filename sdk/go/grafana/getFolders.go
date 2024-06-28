@@ -11,6 +11,47 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := oss.NewFolder(ctx, "testA", &oss.FolderArgs{
+//				Title: pulumi.String("test-folder-a"),
+//				Uid:   pulumi.String("test-ds-folder-uid-a"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oss.NewFolder(ctx, "testB", &oss.FolderArgs{
+//				Title: pulumi.String("test-folder-b"),
+//				Uid:   pulumi.String("test-ds-folder-uid-b"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oss.GetFolders(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // Deprecated: grafana.index/getfolders.getFolders has been deprecated in favor of grafana.oss/getfolders.getFolders
 func GetFolders(ctx *pulumi.Context, args *GetFoldersArgs, opts ...pulumi.InvokeOption) (*GetFoldersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
@@ -24,14 +65,17 @@ func GetFolders(ctx *pulumi.Context, args *GetFoldersArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getFolders.
 type GetFoldersArgs struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
 }
 
 // A collection of values returned by getFolders.
 type GetFoldersResult struct {
+	// The Grafana instance's folders.
 	Folders []GetFoldersFolder `pulumi:"folders"`
 	// The provider-assigned unique ID for this managed resource.
-	Id    string  `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
 }
 
@@ -50,6 +94,7 @@ func GetFoldersOutput(ctx *pulumi.Context, args GetFoldersOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getFolders.
 type GetFoldersOutputArgs struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
 }
 
@@ -72,6 +117,7 @@ func (o GetFoldersResultOutput) ToGetFoldersResultOutputWithContext(ctx context.
 	return o
 }
 
+// The Grafana instance's folders.
 func (o GetFoldersResultOutput) Folders() GetFoldersFolderArrayOutput {
 	return o.ApplyT(func(v GetFoldersResult) []GetFoldersFolder { return v.Folders }).(GetFoldersFolderArrayOutput)
 }
@@ -81,6 +127,7 @@ func (o GetFoldersResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFoldersResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 func (o GetFoldersResultOutput) OrgId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetFoldersResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
 }

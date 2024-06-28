@@ -23,20 +23,26 @@ class OrganizationArgs:
                  viewers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Organization resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] admins: A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
-               specified here must already exist in Grafana unless 'create_users' is set to true.
-        :param pulumi.Input[bool] create_users: Whether or not to create Grafana users specified in the organization's membership if they don't already exist in
-               Grafana. If unspecified, this parameter defaults to true, creating placeholder users with the name, login, and email set
-               to the email of the user, and a random password. Setting this option to false will cause an error to be thrown for any
-               users that do not already exist in Grafana.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] editors: A list of email addresses corresponding to users who should be given editor access to the organization. Note: users
-               specified here must already exist in Grafana unless 'create_users' is set to true.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] admins: A list of email addresses corresponding to users who should be given admin
+               access to the organization. Note: users specified here must already exist in
+               Grafana unless 'create_users' is set to true.
+        :param pulumi.Input[bool] create_users: Whether or not to create Grafana users specified in the organization's
+               membership if they don't already exist in Grafana. If unspecified, this
+               parameter defaults to true, creating placeholder users with the name, login,
+               and email set to the email of the user, and a random password. Setting this
+               option to false will cause an error to be thrown for any users that do not
+               already exist in Grafana.
+               Defaults to `true`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] editors: A list of email addresses corresponding to users who should be given editor
+               access to the organization. Note: users specified here must already exist in
+               Grafana unless 'create_users' is set to true.
         :param pulumi.Input[str] name: The display name for the Grafana organization created.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] users_without_accesses: A list of email addresses corresponding to users who should be given none access to the organization. Note: users
-               specified here must already exist in Grafana, unless 'create_users' is set to true. This feature is only available in
-               Grafana 10.2+.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] viewers: A list of email addresses corresponding to users who should be given viewer access to the organization. Note: users
-               specified here must already exist in Grafana unless 'create_users' is set to true.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] users_without_accesses: A list of email addresses corresponding to users who should be given none access to the organization.
+               Note: users specified here must already exist in Grafana, unless 'create_users' is
+               set to true. This feature is only available in Grafana 10.2+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] viewers: A list of email addresses corresponding to users who should be given viewer
+               access to the organization. Note: users specified here must already exist in
+               Grafana unless 'create_users' is set to true.
         """
         if admin_user is not None:
             pulumi.set(__self__, "admin_user", admin_user)
@@ -66,8 +72,9 @@ class OrganizationArgs:
     @pulumi.getter
     def admins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
-        specified here must already exist in Grafana unless 'create_users' is set to true.
+        A list of email addresses corresponding to users who should be given admin
+        access to the organization. Note: users specified here must already exist in
+        Grafana unless 'create_users' is set to true.
         """
         return pulumi.get(self, "admins")
 
@@ -79,10 +86,13 @@ class OrganizationArgs:
     @pulumi.getter(name="createUsers")
     def create_users(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not to create Grafana users specified in the organization's membership if they don't already exist in
-        Grafana. If unspecified, this parameter defaults to true, creating placeholder users with the name, login, and email set
-        to the email of the user, and a random password. Setting this option to false will cause an error to be thrown for any
-        users that do not already exist in Grafana.
+        Whether or not to create Grafana users specified in the organization's
+        membership if they don't already exist in Grafana. If unspecified, this
+        parameter defaults to true, creating placeholder users with the name, login,
+        and email set to the email of the user, and a random password. Setting this
+        option to false will cause an error to be thrown for any users that do not
+        already exist in Grafana.
+        Defaults to `true`.
         """
         return pulumi.get(self, "create_users")
 
@@ -94,8 +104,9 @@ class OrganizationArgs:
     @pulumi.getter
     def editors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of email addresses corresponding to users who should be given editor access to the organization. Note: users
-        specified here must already exist in Grafana unless 'create_users' is set to true.
+        A list of email addresses corresponding to users who should be given editor
+        access to the organization. Note: users specified here must already exist in
+        Grafana unless 'create_users' is set to true.
         """
         return pulumi.get(self, "editors")
 
@@ -119,9 +130,9 @@ class OrganizationArgs:
     @pulumi.getter(name="usersWithoutAccesses")
     def users_without_accesses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of email addresses corresponding to users who should be given none access to the organization. Note: users
-        specified here must already exist in Grafana, unless 'create_users' is set to true. This feature is only available in
-        Grafana 10.2+.
+        A list of email addresses corresponding to users who should be given none access to the organization.
+        Note: users specified here must already exist in Grafana, unless 'create_users' is
+        set to true. This feature is only available in Grafana 10.2+.
         """
         return pulumi.get(self, "users_without_accesses")
 
@@ -133,8 +144,9 @@ class OrganizationArgs:
     @pulumi.getter
     def viewers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of email addresses corresponding to users who should be given viewer access to the organization. Note: users
-        specified here must already exist in Grafana unless 'create_users' is set to true.
+        A list of email addresses corresponding to users who should be given viewer
+        access to the organization. Note: users specified here must already exist in
+        Grafana unless 'create_users' is set to true.
         """
         return pulumi.get(self, "viewers")
 
@@ -156,21 +168,27 @@ class _OrganizationState:
                  viewers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Organization resources.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] admins: A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
-               specified here must already exist in Grafana unless 'create_users' is set to true.
-        :param pulumi.Input[bool] create_users: Whether or not to create Grafana users specified in the organization's membership if they don't already exist in
-               Grafana. If unspecified, this parameter defaults to true, creating placeholder users with the name, login, and email set
-               to the email of the user, and a random password. Setting this option to false will cause an error to be thrown for any
-               users that do not already exist in Grafana.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] editors: A list of email addresses corresponding to users who should be given editor access to the organization. Note: users
-               specified here must already exist in Grafana unless 'create_users' is set to true.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] admins: A list of email addresses corresponding to users who should be given admin
+               access to the organization. Note: users specified here must already exist in
+               Grafana unless 'create_users' is set to true.
+        :param pulumi.Input[bool] create_users: Whether or not to create Grafana users specified in the organization's
+               membership if they don't already exist in Grafana. If unspecified, this
+               parameter defaults to true, creating placeholder users with the name, login,
+               and email set to the email of the user, and a random password. Setting this
+               option to false will cause an error to be thrown for any users that do not
+               already exist in Grafana.
+               Defaults to `true`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] editors: A list of email addresses corresponding to users who should be given editor
+               access to the organization. Note: users specified here must already exist in
+               Grafana unless 'create_users' is set to true.
         :param pulumi.Input[str] name: The display name for the Grafana organization created.
         :param pulumi.Input[int] org_id: The organization id assigned to this organization by Grafana.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] users_without_accesses: A list of email addresses corresponding to users who should be given none access to the organization. Note: users
-               specified here must already exist in Grafana, unless 'create_users' is set to true. This feature is only available in
-               Grafana 10.2+.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] viewers: A list of email addresses corresponding to users who should be given viewer access to the organization. Note: users
-               specified here must already exist in Grafana unless 'create_users' is set to true.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] users_without_accesses: A list of email addresses corresponding to users who should be given none access to the organization.
+               Note: users specified here must already exist in Grafana, unless 'create_users' is
+               set to true. This feature is only available in Grafana 10.2+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] viewers: A list of email addresses corresponding to users who should be given viewer
+               access to the organization. Note: users specified here must already exist in
+               Grafana unless 'create_users' is set to true.
         """
         if admin_user is not None:
             pulumi.set(__self__, "admin_user", admin_user)
@@ -202,8 +220,9 @@ class _OrganizationState:
     @pulumi.getter
     def admins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
-        specified here must already exist in Grafana unless 'create_users' is set to true.
+        A list of email addresses corresponding to users who should be given admin
+        access to the organization. Note: users specified here must already exist in
+        Grafana unless 'create_users' is set to true.
         """
         return pulumi.get(self, "admins")
 
@@ -215,10 +234,13 @@ class _OrganizationState:
     @pulumi.getter(name="createUsers")
     def create_users(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not to create Grafana users specified in the organization's membership if they don't already exist in
-        Grafana. If unspecified, this parameter defaults to true, creating placeholder users with the name, login, and email set
-        to the email of the user, and a random password. Setting this option to false will cause an error to be thrown for any
-        users that do not already exist in Grafana.
+        Whether or not to create Grafana users specified in the organization's
+        membership if they don't already exist in Grafana. If unspecified, this
+        parameter defaults to true, creating placeholder users with the name, login,
+        and email set to the email of the user, and a random password. Setting this
+        option to false will cause an error to be thrown for any users that do not
+        already exist in Grafana.
+        Defaults to `true`.
         """
         return pulumi.get(self, "create_users")
 
@@ -230,8 +252,9 @@ class _OrganizationState:
     @pulumi.getter
     def editors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of email addresses corresponding to users who should be given editor access to the organization. Note: users
-        specified here must already exist in Grafana unless 'create_users' is set to true.
+        A list of email addresses corresponding to users who should be given editor
+        access to the organization. Note: users specified here must already exist in
+        Grafana unless 'create_users' is set to true.
         """
         return pulumi.get(self, "editors")
 
@@ -267,9 +290,9 @@ class _OrganizationState:
     @pulumi.getter(name="usersWithoutAccesses")
     def users_without_accesses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of email addresses corresponding to users who should be given none access to the organization. Note: users
-        specified here must already exist in Grafana, unless 'create_users' is set to true. This feature is only available in
-        Grafana 10.2+.
+        A list of email addresses corresponding to users who should be given none access to the organization.
+        Note: users specified here must already exist in Grafana, unless 'create_users' is
+        set to true. This feature is only available in Grafana 10.2+.
         """
         return pulumi.get(self, "users_without_accesses")
 
@@ -281,8 +304,9 @@ class _OrganizationState:
     @pulumi.getter
     def viewers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of email addresses corresponding to users who should be given viewer access to the organization. Note: users
-        specified here must already exist in Grafana unless 'create_users' is set to true.
+        A list of email addresses corresponding to users who should be given viewer
+        access to the organization. Note: users specified here must already exist in
+        Grafana unless 'create_users' is set to true.
         """
         return pulumi.get(self, "viewers")
 
@@ -310,23 +334,61 @@ class Organization(pulumi.CustomResource):
                  viewers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Create a Organization resource with the given unique name, props, and options.
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
+
+        This resource represents an instance-scoped resource and uses Grafana's admin APIs.
+        It does not work with API tokens or service accounts which are org-scoped.
+        You must use basic auth.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.oss.Organization("test",
+            admin_user="admin",
+            admins=["admin@example.com"],
+            create_users=True,
+            editors=[
+                "editor-01@example.com",
+                "editor-02@example.com",
+            ],
+            viewers=[
+                "viewer-01@example.com",
+                "viewer-02@example.com",
+            ])
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/organization:Organization name "{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] admins: A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
-               specified here must already exist in Grafana unless 'create_users' is set to true.
-        :param pulumi.Input[bool] create_users: Whether or not to create Grafana users specified in the organization's membership if they don't already exist in
-               Grafana. If unspecified, this parameter defaults to true, creating placeholder users with the name, login, and email set
-               to the email of the user, and a random password. Setting this option to false will cause an error to be thrown for any
-               users that do not already exist in Grafana.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] editors: A list of email addresses corresponding to users who should be given editor access to the organization. Note: users
-               specified here must already exist in Grafana unless 'create_users' is set to true.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] admins: A list of email addresses corresponding to users who should be given admin
+               access to the organization. Note: users specified here must already exist in
+               Grafana unless 'create_users' is set to true.
+        :param pulumi.Input[bool] create_users: Whether or not to create Grafana users specified in the organization's
+               membership if they don't already exist in Grafana. If unspecified, this
+               parameter defaults to true, creating placeholder users with the name, login,
+               and email set to the email of the user, and a random password. Setting this
+               option to false will cause an error to be thrown for any users that do not
+               already exist in Grafana.
+               Defaults to `true`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] editors: A list of email addresses corresponding to users who should be given editor
+               access to the organization. Note: users specified here must already exist in
+               Grafana unless 'create_users' is set to true.
         :param pulumi.Input[str] name: The display name for the Grafana organization created.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] users_without_accesses: A list of email addresses corresponding to users who should be given none access to the organization. Note: users
-               specified here must already exist in Grafana, unless 'create_users' is set to true. This feature is only available in
-               Grafana 10.2+.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] viewers: A list of email addresses corresponding to users who should be given viewer access to the organization. Note: users
-               specified here must already exist in Grafana unless 'create_users' is set to true.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] users_without_accesses: A list of email addresses corresponding to users who should be given none access to the organization.
+               Note: users specified here must already exist in Grafana, unless 'create_users' is
+               set to true. This feature is only available in Grafana 10.2+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] viewers: A list of email addresses corresponding to users who should be given viewer
+               access to the organization. Note: users specified here must already exist in
+               Grafana unless 'create_users' is set to true.
         """
         ...
     @overload
@@ -335,7 +397,39 @@ class Organization(pulumi.CustomResource):
                  args: Optional[OrganizationArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Organization resource with the given unique name, props, and options.
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
+
+        This resource represents an instance-scoped resource and uses Grafana's admin APIs.
+        It does not work with API tokens or service accounts which are org-scoped.
+        You must use basic auth.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.oss.Organization("test",
+            admin_user="admin",
+            admins=["admin@example.com"],
+            create_users=True,
+            editors=[
+                "editor-01@example.com",
+                "editor-02@example.com",
+            ],
+            viewers=[
+                "viewer-01@example.com",
+                "viewer-02@example.com",
+            ])
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/organization:Organization name "{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param OrganizationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -403,21 +497,27 @@ class Organization(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] admins: A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
-               specified here must already exist in Grafana unless 'create_users' is set to true.
-        :param pulumi.Input[bool] create_users: Whether or not to create Grafana users specified in the organization's membership if they don't already exist in
-               Grafana. If unspecified, this parameter defaults to true, creating placeholder users with the name, login, and email set
-               to the email of the user, and a random password. Setting this option to false will cause an error to be thrown for any
-               users that do not already exist in Grafana.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] editors: A list of email addresses corresponding to users who should be given editor access to the organization. Note: users
-               specified here must already exist in Grafana unless 'create_users' is set to true.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] admins: A list of email addresses corresponding to users who should be given admin
+               access to the organization. Note: users specified here must already exist in
+               Grafana unless 'create_users' is set to true.
+        :param pulumi.Input[bool] create_users: Whether or not to create Grafana users specified in the organization's
+               membership if they don't already exist in Grafana. If unspecified, this
+               parameter defaults to true, creating placeholder users with the name, login,
+               and email set to the email of the user, and a random password. Setting this
+               option to false will cause an error to be thrown for any users that do not
+               already exist in Grafana.
+               Defaults to `true`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] editors: A list of email addresses corresponding to users who should be given editor
+               access to the organization. Note: users specified here must already exist in
+               Grafana unless 'create_users' is set to true.
         :param pulumi.Input[str] name: The display name for the Grafana organization created.
         :param pulumi.Input[int] org_id: The organization id assigned to this organization by Grafana.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] users_without_accesses: A list of email addresses corresponding to users who should be given none access to the organization. Note: users
-               specified here must already exist in Grafana, unless 'create_users' is set to true. This feature is only available in
-               Grafana 10.2+.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] viewers: A list of email addresses corresponding to users who should be given viewer access to the organization. Note: users
-               specified here must already exist in Grafana unless 'create_users' is set to true.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] users_without_accesses: A list of email addresses corresponding to users who should be given none access to the organization.
+               Note: users specified here must already exist in Grafana, unless 'create_users' is
+               set to true. This feature is only available in Grafana 10.2+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] viewers: A list of email addresses corresponding to users who should be given viewer
+               access to the organization. Note: users specified here must already exist in
+               Grafana unless 'create_users' is set to true.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -442,8 +542,9 @@ class Organization(pulumi.CustomResource):
     @pulumi.getter
     def admins(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        A list of email addresses corresponding to users who should be given admin access to the organization. Note: users
-        specified here must already exist in Grafana unless 'create_users' is set to true.
+        A list of email addresses corresponding to users who should be given admin
+        access to the organization. Note: users specified here must already exist in
+        Grafana unless 'create_users' is set to true.
         """
         return pulumi.get(self, "admins")
 
@@ -451,10 +552,13 @@ class Organization(pulumi.CustomResource):
     @pulumi.getter(name="createUsers")
     def create_users(self) -> pulumi.Output[Optional[bool]]:
         """
-        Whether or not to create Grafana users specified in the organization's membership if they don't already exist in
-        Grafana. If unspecified, this parameter defaults to true, creating placeholder users with the name, login, and email set
-        to the email of the user, and a random password. Setting this option to false will cause an error to be thrown for any
-        users that do not already exist in Grafana.
+        Whether or not to create Grafana users specified in the organization's
+        membership if they don't already exist in Grafana. If unspecified, this
+        parameter defaults to true, creating placeholder users with the name, login,
+        and email set to the email of the user, and a random password. Setting this
+        option to false will cause an error to be thrown for any users that do not
+        already exist in Grafana.
+        Defaults to `true`.
         """
         return pulumi.get(self, "create_users")
 
@@ -462,8 +566,9 @@ class Organization(pulumi.CustomResource):
     @pulumi.getter
     def editors(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        A list of email addresses corresponding to users who should be given editor access to the organization. Note: users
-        specified here must already exist in Grafana unless 'create_users' is set to true.
+        A list of email addresses corresponding to users who should be given editor
+        access to the organization. Note: users specified here must already exist in
+        Grafana unless 'create_users' is set to true.
         """
         return pulumi.get(self, "editors")
 
@@ -487,9 +592,9 @@ class Organization(pulumi.CustomResource):
     @pulumi.getter(name="usersWithoutAccesses")
     def users_without_accesses(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        A list of email addresses corresponding to users who should be given none access to the organization. Note: users
-        specified here must already exist in Grafana, unless 'create_users' is set to true. This feature is only available in
-        Grafana 10.2+.
+        A list of email addresses corresponding to users who should be given none access to the organization.
+        Note: users specified here must already exist in Grafana, unless 'create_users' is
+        set to true. This feature is only available in Grafana 10.2+.
         """
         return pulumi.get(self, "users_without_accesses")
 
@@ -497,8 +602,9 @@ class Organization(pulumi.CustomResource):
     @pulumi.getter
     def viewers(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        A list of email addresses corresponding to users who should be given viewer access to the organization. Note: users
-        specified here must already exist in Grafana unless 'create_users' is set to true.
+        A list of email addresses corresponding to users who should be given viewer
+        access to the organization. Note: users specified here must already exist in
+        Grafana unless 'create_users' is set to true.
         """
         return pulumi.get(self, "viewers")
 

@@ -10,6 +10,41 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#stacks/)
+    /// 
+    /// Required access policy scopes:
+    /// 
+    /// * stacks:read
+    /// * stacks:write
+    /// * stacks:delete
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Grafana.Cloud.Stack("test", new()
+    ///     {
+    ///         Description = "Test Grafana Cloud Stack",
+    ///         RegionSlug = "eu",
+    ///         Slug = "gcloudstacktest",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/cloudStack:CloudStack name "{{ stackSlugOrID }}"
+    /// ```
+    /// </summary>
     [Obsolete(@"grafana.index/cloudstack.CloudStack has been deprecated in favor of grafana.cloud/stack.Stack")]
     [GrafanaResourceType("grafana:index/cloudStack:CloudStack")]
     public partial class CloudStack : global::Pulumi.CustomResource
@@ -57,17 +92,13 @@ namespace Pulumiverse.Grafana
         public Output<int> GraphiteUserId { get; private set; } = null!;
 
         /// <summary>
-        /// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics'
-        /// (`prometheus_user_id` attribute of this resource). See
-        /// https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use
-        /// this.
+        /// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
         /// </summary>
         [Output("influxUrl")]
         public Output<string> InfluxUrl { get; private set; } = null!;
 
         /// <summary>
-        /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and
-        /// stacks cannot have more than 10 labels.
+        /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
@@ -109,8 +140,7 @@ namespace Pulumiverse.Grafana
         public Output<string> OrgSlug { get; private set; } = null!;
 
         /// <summary>
-        /// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this
-        /// resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        /// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         /// </summary>
         [Output("otlpUrl")]
         public Output<string> OtlpUrl { get; private set; } = null!;
@@ -164,16 +194,13 @@ namespace Pulumiverse.Grafana
         public Output<int> PrometheusUserId { get; private set; } = null!;
 
         /// <summary>
-        /// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired
-        /// region. Use the region list API to get the list of available regions:
-        /// https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        /// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         /// </summary>
         [Output("regionSlug")]
         public Output<string?> RegionSlug { get; private set; } = null!;
 
         /// <summary>
-        /// Subdomain that the Grafana instance will be available at. Setting slug to `&lt;stack_slug&gt;` will make the instance
-        /// available at `https://&lt;stack_slug&gt;.grafana.net`.
+        /// Subdomain that the Grafana instance will be available at. Setting slug to `&lt;stack_slug&gt;` will make the instance available at `https://&lt;stack_slug&gt;.grafana.net`.
         /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
@@ -191,8 +218,7 @@ namespace Pulumiverse.Grafana
         public Output<string> TracesStatus { get; private set; } = null!;
 
         /// <summary>
-        /// Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append
-        /// `/tempo` to the URL.
+        /// Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
         /// </summary>
         [Output("tracesUrl")]
         public Output<string> TracesUrl { get; private set; } = null!;
@@ -207,14 +233,13 @@ namespace Pulumiverse.Grafana
         public Output<string?> Url { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana
-        /// instance).
+        /// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
         /// </summary>
         [Output("waitForReadiness")]
         public Output<bool?> WaitForReadiness { get; private set; } = null!;
 
         /// <summary>
-        /// How long to wait for readiness (if enabled).
+        /// How long to wait for readiness (if enabled). Defaults to `5m0s`.
         /// </summary>
         [Output("waitForReadinessTimeout")]
         public Output<string?> WaitForReadinessTimeout { get; private set; } = null!;
@@ -280,8 +305,7 @@ namespace Pulumiverse.Grafana
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and
-        /// stacks cannot have more than 10 labels.
+        /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -296,16 +320,13 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired
-        /// region. Use the region list API to get the list of available regions:
-        /// https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        /// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         /// </summary>
         [Input("regionSlug")]
         public Input<string>? RegionSlug { get; set; }
 
         /// <summary>
-        /// Subdomain that the Grafana instance will be available at. Setting slug to `&lt;stack_slug&gt;` will make the instance
-        /// available at `https://&lt;stack_slug&gt;.grafana.net`.
+        /// Subdomain that the Grafana instance will be available at. Setting slug to `&lt;stack_slug&gt;` will make the instance available at `https://&lt;stack_slug&gt;.grafana.net`.
         /// </summary>
         [Input("slug", required: true)]
         public Input<string> Slug { get; set; } = null!;
@@ -317,14 +338,13 @@ namespace Pulumiverse.Grafana
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana
-        /// instance).
+        /// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
         /// </summary>
         [Input("waitForReadiness")]
         public Input<bool>? WaitForReadiness { get; set; }
 
         /// <summary>
-        /// How long to wait for readiness (if enabled).
+        /// How long to wait for readiness (if enabled). Defaults to `5m0s`.
         /// </summary>
         [Input("waitForReadinessTimeout")]
         public Input<string>? WaitForReadinessTimeout { get; set; }
@@ -380,10 +400,7 @@ namespace Pulumiverse.Grafana
         public Input<int>? GraphiteUserId { get; set; }
 
         /// <summary>
-        /// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics'
-        /// (`prometheus_user_id` attribute of this resource). See
-        /// https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use
-        /// this.
+        /// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
         /// </summary>
         [Input("influxUrl")]
         public Input<string>? InfluxUrl { get; set; }
@@ -392,8 +409,7 @@ namespace Pulumiverse.Grafana
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and
-        /// stacks cannot have more than 10 labels.
+        /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -438,8 +454,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? OrgSlug { get; set; }
 
         /// <summary>
-        /// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this
-        /// resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        /// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         /// </summary>
         [Input("otlpUrl")]
         public Input<string>? OtlpUrl { get; set; }
@@ -493,16 +508,13 @@ namespace Pulumiverse.Grafana
         public Input<int>? PrometheusUserId { get; set; }
 
         /// <summary>
-        /// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired
-        /// region. Use the region list API to get the list of available regions:
-        /// https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        /// Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         /// </summary>
         [Input("regionSlug")]
         public Input<string>? RegionSlug { get; set; }
 
         /// <summary>
-        /// Subdomain that the Grafana instance will be available at. Setting slug to `&lt;stack_slug&gt;` will make the instance
-        /// available at `https://&lt;stack_slug&gt;.grafana.net`.
+        /// Subdomain that the Grafana instance will be available at. Setting slug to `&lt;stack_slug&gt;` will make the instance available at `https://&lt;stack_slug&gt;.grafana.net`.
         /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
@@ -520,8 +532,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? TracesStatus { get; set; }
 
         /// <summary>
-        /// Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append
-        /// `/tempo` to the URL.
+        /// Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
         /// </summary>
         [Input("tracesUrl")]
         public Input<string>? TracesUrl { get; set; }
@@ -536,14 +547,13 @@ namespace Pulumiverse.Grafana
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana
-        /// instance).
+        /// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
         /// </summary>
         [Input("waitForReadiness")]
         public Input<bool>? WaitForReadiness { get; set; }
 
         /// <summary>
-        /// How long to wait for readiness (if enabled).
+        /// How long to wait for readiness (if enabled). Defaults to `5m0s`.
         /// </summary>
         [Input("waitForReadinessTimeout")]
         public Input<string>? WaitForReadinessTimeout { get; set; }

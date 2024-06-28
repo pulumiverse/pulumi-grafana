@@ -12,11 +12,101 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages Grafana SSO Settings for OAuth2 and SAML. Support for SAML is currently in preview, it will be available in Grafana Enterprise starting with v11.1.
+//
+// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/sso-settings/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Configure SSO for GitHub using OAuth2
+//			_, err := oss.NewSsoSettings(ctx, "githubSsoSettings", &oss.SsoSettingsArgs{
+//				Oauth2Settings: &oss.SsoSettingsOauth2SettingsArgs{
+//					AllowSignUp:          pulumi.Bool(true),
+//					AllowedDomains:       pulumi.String("mycompany.com mycompany.org"),
+//					AllowedOrganizations: pulumi.String("[\"My Organization\", \"Octocats\"]"),
+//					AutoLogin:            pulumi.Bool(false),
+//					ClientId:             pulumi.String("<your GitHub app client id>"),
+//					ClientSecret:         pulumi.String("<your GitHub app client secret>"),
+//					Name:                 pulumi.String("Github"),
+//					Scopes:               pulumi.String("user:email,read:org"),
+//					TeamIds:              pulumi.String("150,300"),
+//				},
+//				ProviderName: pulumi.String("github"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Configure SSO using generic OAuth2
+//			_, err = oss.NewSsoSettings(ctx, "genericSsoSettings", &oss.SsoSettingsArgs{
+//				Oauth2Settings: &oss.SsoSettingsOauth2SettingsArgs{
+//					AllowSignUp:     pulumi.Bool(true),
+//					ApiUrl:          pulumi.String("https://<domain>/userinfo"),
+//					AuthUrl:         pulumi.String("https://<domain>/authorize"),
+//					AutoLogin:       pulumi.Bool(false),
+//					ClientId:        pulumi.String("<client id>"),
+//					ClientSecret:    pulumi.String("<client secret>"),
+//					Name:            pulumi.String("Auth0"),
+//					Scopes:          pulumi.String("openid profile email offline_access"),
+//					TokenUrl:        pulumi.String("https://<domain>/oauth/token"),
+//					UsePkce:         pulumi.Bool(true),
+//					UseRefreshToken: pulumi.Bool(true),
+//				},
+//				ProviderName: pulumi.String("generic_oauth"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Configure SSO using SAML
+//			_, err = oss.NewSsoSettings(ctx, "samlSsoSettings", &oss.SsoSettingsArgs{
+//				ProviderName: pulumi.String("saml"),
+//				SamlSettings: &oss.SsoSettingsSamlSettingsArgs{
+//					AllowSignUp:             pulumi.Bool(true),
+//					AssertionAttributeEmail: pulumi.String("email"),
+//					AssertionAttributeLogin: pulumi.String("login"),
+//					CertificatePath:         pulumi.String("devenv/docker/blocks/auth/saml-enterprise/cert.crt"),
+//					IdpMetadataUrl:          pulumi.String("https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml"),
+//					NameIdFormat:            pulumi.String("urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"),
+//					PrivateKeyPath:          pulumi.String("devenv/docker/blocks/auth/saml-enterprise/key.pem"),
+//					SignatureAlgorithm:      pulumi.String("rsa-sha256"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/ssoSettings:SsoSettings name "{{ provider }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/ssoSettings:SsoSettings name "{{ orgID }}:{{ provider }}"
+// ```
+//
 // Deprecated: grafana.index/ssosettings.SsoSettings has been deprecated in favor of grafana.oss/ssosettings.SsoSettings
 type SsoSettings struct {
 	pulumi.CustomResourceState
 
-	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
+	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
 	Oauth2Settings SsoSettingsOauth2SettingsPtrOutput `pulumi:"oauth2Settings"`
 	// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
@@ -63,7 +153,7 @@ func GetSsoSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SsoSettings resources.
 type ssoSettingsState struct {
-	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
+	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
 	Oauth2Settings *SsoSettingsOauth2Settings `pulumi:"oauth2Settings"`
 	// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
 	ProviderName *string `pulumi:"providerName"`
@@ -72,7 +162,7 @@ type ssoSettingsState struct {
 }
 
 type SsoSettingsState struct {
-	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
+	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
 	Oauth2Settings SsoSettingsOauth2SettingsPtrInput
 	// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
 	ProviderName pulumi.StringPtrInput
@@ -85,7 +175,7 @@ func (SsoSettingsState) ElementType() reflect.Type {
 }
 
 type ssoSettingsArgs struct {
-	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
+	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
 	Oauth2Settings *SsoSettingsOauth2Settings `pulumi:"oauth2Settings"`
 	// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
 	ProviderName string `pulumi:"providerName"`
@@ -95,7 +185,7 @@ type ssoSettingsArgs struct {
 
 // The set of arguments for constructing a SsoSettings resource.
 type SsoSettingsArgs struct {
-	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
+	// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
 	Oauth2Settings SsoSettingsOauth2SettingsPtrInput
 	// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
 	ProviderName pulumi.StringInput
@@ -190,7 +280,7 @@ func (o SsoSettingsOutput) ToSsoSettingsOutputWithContext(ctx context.Context) S
 	return o
 }
 
-// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
+// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
 func (o SsoSettingsOutput) Oauth2Settings() SsoSettingsOauth2SettingsPtrOutput {
 	return o.ApplyT(func(v *SsoSettings) SsoSettingsOauth2SettingsPtrOutput { return v.Oauth2Settings }).(SsoSettingsOauth2SettingsPtrOutput)
 }

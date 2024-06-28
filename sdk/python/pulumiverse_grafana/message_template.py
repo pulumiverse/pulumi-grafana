@@ -162,7 +162,35 @@ class MessageTemplate(pulumi.CustomResource):
                  template: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a MessageTemplate resource with the given unique name, props, and options.
+        Manages Grafana Alerting message templates.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/template-notifications/create-notification-templates/)
+        * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#templates)
+
+        This resource requires Grafana 9.1.0 or later.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        my_template = grafana.alerting.MessageTemplate("myTemplate", template=\"\"\"{{define "My Reusable Template" }}
+         template content
+        {{ end }}
+        \"\"\")
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/messageTemplate:MessageTemplate name "{{ name }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/messageTemplate:MessageTemplate name "{{ orgID }}:{{ name }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the message template.
@@ -176,7 +204,35 @@ class MessageTemplate(pulumi.CustomResource):
                  args: MessageTemplateArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a MessageTemplate resource with the given unique name, props, and options.
+        Manages Grafana Alerting message templates.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/template-notifications/create-notification-templates/)
+        * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#templates)
+
+        This resource requires Grafana 9.1.0 or later.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        my_template = grafana.alerting.MessageTemplate("myTemplate", template=\"\"\"{{define "My Reusable Template" }}
+         template content
+        {{ end }}
+        \"\"\")
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/messageTemplate:MessageTemplate name "{{ name }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/messageTemplate:MessageTemplate name "{{ orgID }}:{{ name }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param MessageTemplateArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

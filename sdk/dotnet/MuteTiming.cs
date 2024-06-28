@@ -10,6 +10,76 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// Manages Grafana Alerting mute timings.
+    /// 
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/mute-timings/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#mute-timings)
+    /// 
+    /// This resource requires Grafana 9.1.0 or later.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myMuteTiming = new Grafana.Alerting.MuteTiming("myMuteTiming", new()
+    ///     {
+    ///         Intervals = new[]
+    ///         {
+    ///             new Grafana.Alerting.Inputs.MuteTimingIntervalArgs
+    ///             {
+    ///                 DaysOfMonths = new[]
+    ///                 {
+    ///                     "1:7",
+    ///                     "-1",
+    ///                 },
+    ///                 Location = "America/New_York",
+    ///                 Months = new[]
+    ///                 {
+    ///                     "1:3",
+    ///                     "december",
+    ///                 },
+    ///                 Times = new[]
+    ///                 {
+    ///                     new Grafana.Alerting.Inputs.MuteTimingIntervalTimeArgs
+    ///                     {
+    ///                         End = "14:17",
+    ///                         Start = "04:56",
+    ///                     },
+    ///                 },
+    ///                 Weekdays = new[]
+    ///                 {
+    ///                     "monday",
+    ///                     "tuesday:thursday",
+    ///                 },
+    ///                 Years = new[]
+    ///                 {
+    ///                     "2030",
+    ///                     "2025:2026",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/muteTiming:MuteTiming name "{{ name }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/muteTiming:MuteTiming name "{{ orgID }}:{{ name }}"
+    /// ```
+    /// </summary>
     [Obsolete(@"grafana.index/mutetiming.MuteTiming has been deprecated in favor of grafana.alerting/mutetiming.MuteTiming")]
     [GrafanaResourceType("grafana:index/muteTiming:MuteTiming")]
     public partial class MuteTiming : global::Pulumi.CustomResource

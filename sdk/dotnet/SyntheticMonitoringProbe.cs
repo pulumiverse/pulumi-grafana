@@ -10,6 +10,48 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// Besides the public probes run by Grafana Labs, you can also install your
+    /// own private probes. These are only accessible to you and only write data to
+    /// your Grafana Cloud account. Private probes are instances of the open source
+    /// Grafana Synthetic Monitoring Agent.
+    /// 
+    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Grafana.SyntheticMonitoring.Probe("main", new()
+    ///     {
+    ///         Labels = 
+    ///         {
+    ///             { "type", "mountain" },
+    ///         },
+    ///         Latitude = 27.98606,
+    ///         Longitude = 86.92262,
+    ///         Region = "APAC",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe name "{{ id }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe name "{{ id }}:{{ authToken }}"
+    /// ```
+    /// </summary>
     [Obsolete(@"grafana.index/syntheticmonitoringprobe.SyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/probe.Probe")]
     [GrafanaResourceType("grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe")]
     public partial class SyntheticMonitoringProbe : global::Pulumi.CustomResource
@@ -21,7 +63,7 @@ namespace Pulumiverse.Grafana
         public Output<string> AuthToken { get; private set; } = null!;
 
         /// <summary>
-        /// Disables scripted checks for this probe.
+        /// Disables scripted checks for this probe. Defaults to `false`.
         /// </summary>
         [Output("disableScriptedChecks")]
         public Output<bool?> DisableScriptedChecks { get; private set; } = null!;
@@ -51,8 +93,7 @@ namespace Pulumiverse.Grafana
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-        /// to `true`.
+        /// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
         /// </summary>
         [Output("public")]
         public Output<bool?> Public { get; private set; } = null!;
@@ -125,7 +166,7 @@ namespace Pulumiverse.Grafana
     public sealed class SyntheticMonitoringProbeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Disables scripted checks for this probe.
+        /// Disables scripted checks for this probe. Defaults to `false`.
         /// </summary>
         [Input("disableScriptedChecks")]
         public Input<bool>? DisableScriptedChecks { get; set; }
@@ -161,8 +202,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-        /// to `true`.
+        /// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
         /// </summary>
         [Input("public")]
         public Input<bool>? Public { get; set; }
@@ -198,7 +238,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// Disables scripted checks for this probe.
+        /// Disables scripted checks for this probe. Defaults to `false`.
         /// </summary>
         [Input("disableScriptedChecks")]
         public Input<bool>? DisableScriptedChecks { get; set; }
@@ -234,8 +274,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-        /// to `true`.
+        /// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
         /// </summary>
         [Input("public")]
         public Input<bool>? Public { get; set; }

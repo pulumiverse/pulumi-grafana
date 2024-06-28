@@ -51,6 +51,9 @@ class GetCloudOrganizationResult:
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        The ID of this resource.
+        """
         return pulumi.get(self, "id")
 
     @property
@@ -92,7 +95,17 @@ def get_cloud_organization(id: Optional[str] = None,
                            slug: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudOrganizationResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    test = grafana.cloud.get_organization(slug="my-org")
+    ```
+
+
+    :param str id: The ID of this resource.
     """
     pulumi.log.warn("""get_cloud_organization is deprecated: grafana.index/getcloudorganization.getCloudOrganization has been deprecated in favor of grafana.cloud/getorganization.getOrganization""")
     __args__ = dict()
@@ -115,7 +128,17 @@ def get_cloud_organization_output(id: Optional[pulumi.Input[Optional[str]]] = No
                                   slug: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudOrganizationResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    test = grafana.cloud.get_organization(slug="my-org")
+    ```
+
+
+    :param str id: The ID of this resource.
     """
     pulumi.log.warn("""get_cloud_organization is deprecated: grafana.index/getcloudorganization.getCloudOrganization has been deprecated in favor of grafana.cloud/getorganization.getOrganization""")
     ...

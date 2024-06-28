@@ -12,6 +12,64 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages Grafana library panels.
+//
+// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/library_element/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"gridPos": map[string]interface{}{
+//					"x": 0,
+//					"y": 0,
+//					"h": 10,
+//					"w": 10,
+//				},
+//				"title":   "panel",
+//				"type":    "text",
+//				"version": 0,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			_, err = oss.NewLibraryPanel(ctx, "test", &oss.LibraryPanelArgs{
+//				ModelJson: pulumi.String(json0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/libraryPanel:LibraryPanel name "{{ uid }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/libraryPanel:LibraryPanel name "{{ orgID }}:{{ uid }}"
+// ```
+//
 // Deprecated: grafana.index/librarypanel.LibraryPanel has been deprecated in favor of grafana.oss/librarypanel.LibraryPanel
 type LibraryPanel struct {
 	pulumi.CustomResourceState
@@ -36,9 +94,7 @@ type LibraryPanel struct {
 	PanelId pulumi.IntOutput `pulumi:"panelId"`
 	// Type of the library panel (eg. text).
 	Type pulumi.StringOutput `pulumi:"type"`
-	// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs.
-	// It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for
-	// accessing library panels and when syncing library panels between multiple Grafana installs.
+	// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
 	Uid pulumi.StringOutput `pulumi:"uid"`
 	// Timestamp when the library panel was last modified.
 	Updated pulumi.StringOutput `pulumi:"updated"`
@@ -105,9 +161,7 @@ type libraryPanelState struct {
 	PanelId *int `pulumi:"panelId"`
 	// Type of the library panel (eg. text).
 	Type *string `pulumi:"type"`
-	// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs.
-	// It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for
-	// accessing library panels and when syncing library panels between multiple Grafana installs.
+	// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
 	Uid *string `pulumi:"uid"`
 	// Timestamp when the library panel was last modified.
 	Updated *string `pulumi:"updated"`
@@ -136,9 +190,7 @@ type LibraryPanelState struct {
 	PanelId pulumi.IntPtrInput
 	// Type of the library panel (eg. text).
 	Type pulumi.StringPtrInput
-	// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs.
-	// It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for
-	// accessing library panels and when syncing library panels between multiple Grafana installs.
+	// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
 	Uid pulumi.StringPtrInput
 	// Timestamp when the library panel was last modified.
 	Updated pulumi.StringPtrInput
@@ -159,9 +211,7 @@ type libraryPanelArgs struct {
 	Name *string `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
-	// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs.
-	// It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for
-	// accessing library panels and when syncing library panels between multiple Grafana installs.
+	// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
 	Uid *string `pulumi:"uid"`
 }
 
@@ -175,9 +225,7 @@ type LibraryPanelArgs struct {
 	Name pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
-	// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs.
-	// It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for
-	// accessing library panels and when syncing library panels between multiple Grafana installs.
+	// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
 	Uid pulumi.StringPtrInput
 }
 
@@ -318,9 +366,7 @@ func (o LibraryPanelOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *LibraryPanel) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs.
-// It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for
-// accessing library panels and when syncing library panels between multiple Grafana installs.
+// The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
 func (o LibraryPanelOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v *LibraryPanel) pulumi.StringOutput { return v.Uid }).(pulumi.StringOutput)
 }

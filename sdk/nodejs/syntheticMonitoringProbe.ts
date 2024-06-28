@@ -5,6 +5,39 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Besides the public probes run by Grafana Labs, you can also install your
+ * own private probes. These are only accessible to you and only write data to
+ * your Grafana Cloud account. Private probes are instances of the open source
+ * Grafana Synthetic Monitoring Agent.
+ *
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const main = new grafana.syntheticmonitoring.Probe("main", {
+ *     labels: {
+ *         type: "mountain",
+ *     },
+ *     latitude: 27.98606,
+ *     longitude: 86.92262,
+ *     region: "APAC",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe name "{{ id }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe name "{{ id }}:{{ authToken }}"
+ * ```
+ *
  * @deprecated grafana.index/syntheticmonitoringprobe.SyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/probe.Probe
  */
 export class SyntheticMonitoringProbe extends pulumi.CustomResource {
@@ -41,7 +74,7 @@ export class SyntheticMonitoringProbe extends pulumi.CustomResource {
      */
     public /*out*/ readonly authToken!: pulumi.Output<string>;
     /**
-     * Disables scripted checks for this probe.
+     * Disables scripted checks for this probe. Defaults to `false`.
      */
     public readonly disableScriptedChecks!: pulumi.Output<boolean | undefined>;
     /**
@@ -61,8 +94,7 @@ export class SyntheticMonitoringProbe extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-     * to `true`.
+     * Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
      */
     public readonly public!: pulumi.Output<boolean | undefined>;
     /**
@@ -138,7 +170,7 @@ export interface SyntheticMonitoringProbeState {
      */
     authToken?: pulumi.Input<string>;
     /**
-     * Disables scripted checks for this probe.
+     * Disables scripted checks for this probe. Defaults to `false`.
      */
     disableScriptedChecks?: pulumi.Input<boolean>;
     /**
@@ -158,8 +190,7 @@ export interface SyntheticMonitoringProbeState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-     * to `true`.
+     * Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
      */
     public?: pulumi.Input<boolean>;
     /**
@@ -177,7 +208,7 @@ export interface SyntheticMonitoringProbeState {
  */
 export interface SyntheticMonitoringProbeArgs {
     /**
-     * Disables scripted checks for this probe.
+     * Disables scripted checks for this probe. Defaults to `false`.
      */
     disableScriptedChecks?: pulumi.Input<boolean>;
     /**
@@ -197,8 +228,7 @@ export interface SyntheticMonitoringProbeArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-     * to `true`.
+     * Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
      */
     public?: pulumi.Input<boolean>;
     /**

@@ -155,7 +155,43 @@ class Playlist(pulumi.CustomResource):
                  org_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Playlist resource with the given unique name, props, and options.
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.oss.Playlist("test",
+            interval="5m",
+            items=[
+                grafana.oss.PlaylistItemArgs(
+                    order=2,
+                    title="Terraform Dashboard By Tag",
+                    type="dashboard_by_tag",
+                    value="terraform",
+                ),
+                grafana.oss.PlaylistItemArgs(
+                    order=1,
+                    title="Terraform Dashboard By ID",
+                    type="dashboard_by_id",
+                    value="3",
+                ),
+            ])
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/playlist:Playlist name "{{ uid }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/playlist:Playlist name "{{ orgID }}:{{ uid }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the playlist.
@@ -168,7 +204,43 @@ class Playlist(pulumi.CustomResource):
                  args: PlaylistArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Playlist resource with the given unique name, props, and options.
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.oss.Playlist("test",
+            interval="5m",
+            items=[
+                grafana.oss.PlaylistItemArgs(
+                    order=2,
+                    title="Terraform Dashboard By Tag",
+                    type="dashboard_by_tag",
+                    value="terraform",
+                ),
+                grafana.oss.PlaylistItemArgs(
+                    order=1,
+                    title="Terraform Dashboard By ID",
+                    type="dashboard_by_id",
+                    value="3",
+                ),
+            ])
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/playlist:Playlist name "{{ uid }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/playlist:Playlist name "{{ orgID }}:{{ uid }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param PlaylistArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

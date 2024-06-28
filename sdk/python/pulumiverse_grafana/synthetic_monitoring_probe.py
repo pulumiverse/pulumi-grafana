@@ -26,11 +26,10 @@ class SyntheticMonitoringProbeArgs:
         :param pulumi.Input[float] latitude: Latitude coordinates.
         :param pulumi.Input[float] longitude: Longitude coordinates.
         :param pulumi.Input[str] region: Region of the probe.
-        :param pulumi.Input[bool] disable_scripted_checks: Disables scripted checks for this probe.
+        :param pulumi.Input[bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs.
         :param pulumi.Input[str] name: Name of the probe.
-        :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-               to `true`.
+        :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
         """
         pulumi.set(__self__, "latitude", latitude)
         pulumi.set(__self__, "longitude", longitude)
@@ -84,7 +83,7 @@ class SyntheticMonitoringProbeArgs:
     @pulumi.getter(name="disableScriptedChecks")
     def disable_scripted_checks(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disables scripted checks for this probe.
+        Disables scripted checks for this probe. Defaults to `false`.
         """
         return pulumi.get(self, "disable_scripted_checks")
 
@@ -120,8 +119,7 @@ class SyntheticMonitoringProbeArgs:
     @pulumi.getter
     def public(self) -> Optional[pulumi.Input[bool]]:
         """
-        Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-        to `true`.
+        Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
         """
         return pulumi.get(self, "public")
 
@@ -145,13 +143,12 @@ class _SyntheticMonitoringProbeState:
         """
         Input properties used for looking up and filtering SyntheticMonitoringProbe resources.
         :param pulumi.Input[str] auth_token: The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
-        :param pulumi.Input[bool] disable_scripted_checks: Disables scripted checks for this probe.
+        :param pulumi.Input[bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs.
         :param pulumi.Input[float] latitude: Latitude coordinates.
         :param pulumi.Input[float] longitude: Longitude coordinates.
         :param pulumi.Input[str] name: Name of the probe.
-        :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-               to `true`.
+        :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
         :param pulumi.Input[str] region: Region of the probe.
         :param pulumi.Input[int] tenant_id: The tenant ID of the probe.
         """
@@ -190,7 +187,7 @@ class _SyntheticMonitoringProbeState:
     @pulumi.getter(name="disableScriptedChecks")
     def disable_scripted_checks(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disables scripted checks for this probe.
+        Disables scripted checks for this probe. Defaults to `false`.
         """
         return pulumi.get(self, "disable_scripted_checks")
 
@@ -250,8 +247,7 @@ class _SyntheticMonitoringProbeState:
     @pulumi.getter
     def public(self) -> Optional[pulumi.Input[bool]]:
         """
-        Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-        to `true`.
+        Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
         """
         return pulumi.get(self, "public")
 
@@ -303,16 +299,46 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a SyntheticMonitoringProbe resource with the given unique name, props, and options.
+        Besides the public probes run by Grafana Labs, you can also install your
+        own private probes. These are only accessible to you and only write data to
+        your Grafana Cloud account. Private probes are instances of the open source
+        Grafana Synthetic Monitoring Agent.
+
+        * [Official documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        main = grafana.synthetic_monitoring.Probe("main",
+            labels={
+                "type": "mountain",
+            },
+            latitude=27.98606,
+            longitude=86.92262,
+            region="APAC")
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe name "{{ id }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe name "{{ id }}:{{ authToken }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] disable_scripted_checks: Disables scripted checks for this probe.
+        :param pulumi.Input[bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs.
         :param pulumi.Input[float] latitude: Latitude coordinates.
         :param pulumi.Input[float] longitude: Longitude coordinates.
         :param pulumi.Input[str] name: Name of the probe.
-        :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-               to `true`.
+        :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
         :param pulumi.Input[str] region: Region of the probe.
         """
         ...
@@ -322,7 +348,38 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
                  args: SyntheticMonitoringProbeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a SyntheticMonitoringProbe resource with the given unique name, props, and options.
+        Besides the public probes run by Grafana Labs, you can also install your
+        own private probes. These are only accessible to you and only write data to
+        your Grafana Cloud account. Private probes are instances of the open source
+        Grafana Synthetic Monitoring Agent.
+
+        * [Official documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        main = grafana.synthetic_monitoring.Probe("main",
+            labels={
+                "type": "mountain",
+            },
+            latitude=27.98606,
+            longitude=86.92262,
+            region="APAC")
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe name "{{ id }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe name "{{ id }}:{{ authToken }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param SyntheticMonitoringProbeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -401,13 +458,12 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auth_token: The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
-        :param pulumi.Input[bool] disable_scripted_checks: Disables scripted checks for this probe.
+        :param pulumi.Input[bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs.
         :param pulumi.Input[float] latitude: Latitude coordinates.
         :param pulumi.Input[float] longitude: Longitude coordinates.
         :param pulumi.Input[str] name: Name of the probe.
-        :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-               to `true`.
+        :param pulumi.Input[bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
         :param pulumi.Input[str] region: Region of the probe.
         :param pulumi.Input[int] tenant_id: The tenant ID of the probe.
         """
@@ -438,7 +494,7 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
     @pulumi.getter(name="disableScriptedChecks")
     def disable_scripted_checks(self) -> pulumi.Output[Optional[bool]]:
         """
-        Disables scripted checks for this probe.
+        Disables scripted checks for this probe. Defaults to `false`.
         """
         return pulumi.get(self, "disable_scripted_checks")
 
@@ -478,8 +534,7 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
     @pulumi.getter
     def public(self) -> pulumi.Output[Optional[bool]]:
         """
-        Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set
-        to `true`.
+        Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
         """
         return pulumi.get(self, "public")
 

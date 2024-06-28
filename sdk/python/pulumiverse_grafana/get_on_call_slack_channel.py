@@ -45,11 +45,17 @@ class GetOnCallSlackChannelResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The Slack channel name.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="slackId")
     def slack_id(self) -> str:
+        """
+        The Slack ID of the channel.
+        """
         return pulumi.get(self, "slack_id")
 
 
@@ -67,7 +73,19 @@ class AwaitableGetOnCallSlackChannelResult(GetOnCallSlackChannelResult):
 def get_on_call_slack_channel(name: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOnCallSlackChannelResult:
     """
-    Use this data source to access information about an existing resource.
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    example_slack_channel = grafana.onCall.get_slack_channel(name="example_slack_channel")
+    ```
+
+
+    :param str name: The Slack channel name.
     """
     pulumi.log.warn("""get_on_call_slack_channel is deprecated: grafana.index/getoncallslackchannel.getOnCallSlackChannel has been deprecated in favor of grafana.oncall/getslackchannel.getSlackChannel""")
     __args__ = dict()
@@ -85,7 +103,19 @@ def get_on_call_slack_channel(name: Optional[str] = None,
 def get_on_call_slack_channel_output(name: Optional[pulumi.Input[str]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOnCallSlackChannelResult]:
     """
-    Use this data source to access information about an existing resource.
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    example_slack_channel = grafana.onCall.get_slack_channel(name="example_slack_channel")
+    ```
+
+
+    :param str name: The Slack channel name.
     """
     pulumi.log.warn("""get_on_call_slack_channel is deprecated: grafana.index/getoncallslackchannel.getOnCallSlackChannel has been deprecated in favor of grafana.oncall/getslackchannel.getSlackChannel""")
     ...

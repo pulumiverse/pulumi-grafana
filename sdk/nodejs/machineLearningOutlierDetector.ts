@@ -7,6 +7,18 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * An outlier detector monitors the results of a query and reports when its values are outside normal bands.
+ *
+ * The normal band is configured by choice of algorithm, its sensitivity and other configuration.
+ *
+ * Visit https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for more details.
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector name "{{ id }}"
+ * ```
+ *
  * @deprecated grafana.index/machinelearningoutlierdetector.MachineLearningOutlierDetector has been deprecated in favor of grafana.machinelearning/outlierdetector.OutlierDetector
  */
 export class MachineLearningOutlierDetector extends pulumi.CustomResource {
@@ -39,8 +51,7 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
     }
 
     /**
-     * The algorithm to use and its configuration. See
-     * https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+     * The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      */
     public readonly algorithm!: pulumi.Output<outputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
@@ -56,7 +67,7 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The data interval in seconds to monitor.
+     * The data interval in seconds to monitor. Defaults to `300`.
      */
     public readonly interval!: pulumi.Output<number | undefined>;
     /**
@@ -134,8 +145,7 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
  */
 export interface MachineLearningOutlierDetectorState {
     /**
-     * The algorithm to use and its configuration. See
-     * https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+     * The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      */
     algorithm?: pulumi.Input<inputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
@@ -151,7 +161,7 @@ export interface MachineLearningOutlierDetectorState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The data interval in seconds to monitor.
+     * The data interval in seconds to monitor. Defaults to `300`.
      */
     interval?: pulumi.Input<number>;
     /**
@@ -173,8 +183,7 @@ export interface MachineLearningOutlierDetectorState {
  */
 export interface MachineLearningOutlierDetectorArgs {
     /**
-     * The algorithm to use and its configuration. See
-     * https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+     * The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      */
     algorithm: pulumi.Input<inputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
@@ -190,7 +199,7 @@ export interface MachineLearningOutlierDetectorArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The data interval in seconds to monitor.
+     * The data interval in seconds to monitor. Defaults to `300`.
      */
     interval?: pulumi.Input<number>;
     /**

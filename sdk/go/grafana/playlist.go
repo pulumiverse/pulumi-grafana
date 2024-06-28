@@ -12,6 +12,59 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := oss.NewPlaylist(ctx, "test", &oss.PlaylistArgs{
+//				Interval: pulumi.String("5m"),
+//				Items: oss.PlaylistItemArray{
+//					&oss.PlaylistItemArgs{
+//						Order: pulumi.Int(2),
+//						Title: pulumi.String("Terraform Dashboard By Tag"),
+//						Type:  pulumi.String("dashboard_by_tag"),
+//						Value: pulumi.String("terraform"),
+//					},
+//					&oss.PlaylistItemArgs{
+//						Order: pulumi.Int(1),
+//						Title: pulumi.String("Terraform Dashboard By ID"),
+//						Type:  pulumi.String("dashboard_by_id"),
+//						Value: pulumi.String("3"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/playlist:Playlist name "{{ uid }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/playlist:Playlist name "{{ orgID }}:{{ uid }}"
+// ```
+//
 // Deprecated: grafana.index/playlist.Playlist has been deprecated in favor of grafana.oss/playlist.Playlist
 type Playlist struct {
 	pulumi.CustomResourceState

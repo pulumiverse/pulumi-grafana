@@ -42,6 +42,9 @@ class GetOncallOutgoingWebhookResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The outgoing webhook name.
+        """
         return pulumi.get(self, "name")
 
 
@@ -58,7 +61,19 @@ class AwaitableGetOncallOutgoingWebhookResult(GetOncallOutgoingWebhookResult):
 def get_oncall_outgoing_webhook(name: Optional[str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallOutgoingWebhookResult:
     """
-    Use this data source to access information about an existing resource.
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    example_outgoing_webhook = grafana.onCall.get_outgoing_webhook(name="example_outgoing_webhook")
+    ```
+
+
+    :param str name: The outgoing webhook name.
     """
     pulumi.log.warn("""get_oncall_outgoing_webhook is deprecated: grafana.index/getoncalloutgoingwebhook.getOncallOutgoingWebhook has been deprecated in favor of grafana.oncall/getoutgoingwebhook.getOutgoingWebhook""")
     __args__ = dict()
@@ -75,7 +90,19 @@ def get_oncall_outgoing_webhook(name: Optional[str] = None,
 def get_oncall_outgoing_webhook_output(name: Optional[pulumi.Input[str]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallOutgoingWebhookResult]:
     """
-    Use this data source to access information about an existing resource.
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    example_outgoing_webhook = grafana.onCall.get_outgoing_webhook(name="example_outgoing_webhook")
+    ```
+
+
+    :param str name: The outgoing webhook name.
     """
     pulumi.log.warn("""get_oncall_outgoing_webhook is deprecated: grafana.index/getoncalloutgoingwebhook.getOncallOutgoingWebhook has been deprecated in favor of grafana.oncall/getoutgoingwebhook.getOutgoingWebhook""")
     ...

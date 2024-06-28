@@ -7,6 +7,66 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Manages the entire set of permissions for a datasource. Permissions that aren't specified when applying this resource will be removed.
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const team = new grafana.oss.Team("team", {});
+ * const foo = new grafana.oss.DataSource("foo", {
+ *     type: "cloudwatch",
+ *     jsonDataEncoded: JSON.stringify({
+ *         defaultRegion: "us-east-1",
+ *         authType: "keys",
+ *     }),
+ *     secureJsonDataEncoded: JSON.stringify({
+ *         accessKey: "123",
+ *         secretKey: "456",
+ *     }),
+ * });
+ * const user = new grafana.oss.User("user", {
+ *     email: "test-ds-permissions@example.com",
+ *     login: "test-ds-permissions",
+ *     password: "hunter2",
+ * });
+ * const sa = new grafana.oss.ServiceAccount("sa", {role: "Viewer"});
+ * const fooPermissions = new grafana.enterprise.DataSourcePermission("fooPermissions", {
+ *     datasourceUid: foo.uid,
+ *     permissions: [
+ *         {
+ *             teamId: team.id,
+ *             permission: "Edit",
+ *         },
+ *         {
+ *             userId: user.id,
+ *             permission: "Edit",
+ *         },
+ *         {
+ *             builtInRole: "Viewer",
+ *             permission: "Query",
+ *         },
+ *         {
+ *             userId: sa.id,
+ *             permission: "Query",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/dataSourcePermission:DataSourcePermission name "{{ datasourceID }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/dataSourcePermission:DataSourcePermission name "{{ orgID }}:{{ datasourceID }}"
+ * ```
+ *
  * @deprecated grafana.index/datasourcepermission.DataSourcePermission has been deprecated in favor of grafana.enterprise/datasourcepermission.DataSourcePermission
  */
 export class DataSourcePermission extends pulumi.CustomResource {

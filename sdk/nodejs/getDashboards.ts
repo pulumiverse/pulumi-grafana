@@ -6,6 +6,13 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
+ *
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
+ * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+ * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
+ */
 /** @deprecated grafana.index/getdashboards.getDashboards has been deprecated in favor of grafana.oss/getdashboards.getDashboards */
 export function getDashboards(args?: GetDashboardsArgs, opts?: pulumi.InvokeOptions): Promise<GetDashboardsResult> {
     pulumi.log.warn("getDashboards is deprecated: grafana.index/getdashboards.getDashboards has been deprecated in favor of grafana.oss/getdashboards.getDashboards")
@@ -24,9 +31,21 @@ export function getDashboards(args?: GetDashboardsArgs, opts?: pulumi.InvokeOpti
  * A collection of arguments for invoking getDashboards.
  */
 export interface GetDashboardsArgs {
+    /**
+     * UIDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `["General"]` for General folder), or leave blank to get all dashboards in all folders.
+     */
     folderUids?: string[];
+    /**
+     * Maximum number of dashboard search results to return. Defaults to `5000`.
+     */
     limit?: number;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
     orgId?: string;
+    /**
+     * List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
+     */
     tags?: string[];
 }
 
@@ -35,15 +54,34 @@ export interface GetDashboardsArgs {
  */
 export interface GetDashboardsResult {
     readonly dashboards: outputs.GetDashboardsDashboard[];
+    /**
+     * UIDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `["General"]` for General folder), or leave blank to get all dashboards in all folders.
+     */
     readonly folderUids?: string[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Maximum number of dashboard search results to return. Defaults to `5000`.
+     */
     readonly limit?: number;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
     readonly orgId?: string;
+    /**
+     * List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
+     */
     readonly tags?: string[];
 }
+/**
+ * Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
+ *
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
+ * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+ * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
+ */
 /** @deprecated grafana.index/getdashboards.getDashboards has been deprecated in favor of grafana.oss/getdashboards.getDashboards */
 export function getDashboardsOutput(args?: GetDashboardsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDashboardsResult> {
     return pulumi.output(args).apply((a: any) => getDashboards(a, opts))
@@ -53,8 +91,20 @@ export function getDashboardsOutput(args?: GetDashboardsOutputArgs, opts?: pulum
  * A collection of arguments for invoking getDashboards.
  */
 export interface GetDashboardsOutputArgs {
+    /**
+     * UIDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `["General"]` for General folder), or leave blank to get all dashboards in all folders.
+     */
     folderUids?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Maximum number of dashboard search results to return. Defaults to `5000`.
+     */
     limit?: pulumi.Input<number>;
+    /**
+     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     */
     orgId?: pulumi.Input<string>;
+    /**
+     * List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
+     */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -20,7 +20,7 @@ class ServiceAccountTokenArgs:
         """
         The set of arguments for constructing a ServiceAccountToken resource.
         :param pulumi.Input[str] service_account_id: The ID of the service account to which the token belongs.
-        :param pulumi.Input[str] name: The name of the service account token.
+        :param pulumi.Input[str] name: The name of the service account.
         :param pulumi.Input[int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
                is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
                never expire.
@@ -47,7 +47,7 @@ class ServiceAccountTokenArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the service account token.
+        The name of the service account.
         """
         return pulumi.get(self, "name")
 
@@ -84,7 +84,7 @@ class _ServiceAccountTokenState:
         :param pulumi.Input[str] expiration: The expiration date of the service account token.
         :param pulumi.Input[bool] has_expired: The status of the service account token.
         :param pulumi.Input[str] key: The key of the service account token.
-        :param pulumi.Input[str] name: The name of the service account token.
+        :param pulumi.Input[str] name: The name of the service account.
         :param pulumi.Input[int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
                is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
                never expire.
@@ -143,7 +143,7 @@ class _ServiceAccountTokenState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the service account token.
+        The name of the service account.
         """
         return pulumi.get(self, "name")
 
@@ -193,10 +193,35 @@ class ServiceAccountToken(pulumi.CustomResource):
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ServiceAccountToken resource with the given unique name, props, and options.
+        **Note:** This resource is available only with Grafana 9.1+.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        admin = grafana.oss.ServiceAccount("admin",
+            is_disabled=False,
+            role="Admin")
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/serviceAccountToken:ServiceAccountToken name "{{ id }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/serviceAccountToken:ServiceAccountToken name "{{ orgID }}:{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the service account token.
+        :param pulumi.Input[str] name: The name of the service account.
         :param pulumi.Input[int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
                is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
                never expire.
@@ -209,7 +234,32 @@ class ServiceAccountToken(pulumi.CustomResource):
                  args: ServiceAccountTokenArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ServiceAccountToken resource with the given unique name, props, and options.
+        **Note:** This resource is available only with Grafana 9.1+.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        admin = grafana.oss.ServiceAccount("admin",
+            is_disabled=False,
+            role="Admin")
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/serviceAccountToken:ServiceAccountToken name "{{ id }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/serviceAccountToken:ServiceAccountToken name "{{ orgID }}:{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param ServiceAccountTokenArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -276,7 +326,7 @@ class ServiceAccountToken(pulumi.CustomResource):
         :param pulumi.Input[str] expiration: The expiration date of the service account token.
         :param pulumi.Input[bool] has_expired: The status of the service account token.
         :param pulumi.Input[str] key: The key of the service account token.
-        :param pulumi.Input[str] name: The name of the service account token.
+        :param pulumi.Input[str] name: The name of the service account.
         :param pulumi.Input[int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
                is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
                never expire.
@@ -322,7 +372,7 @@ class ServiceAccountToken(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the service account token.
+        The name of the service account.
         """
         return pulumi.get(self, "name")
 

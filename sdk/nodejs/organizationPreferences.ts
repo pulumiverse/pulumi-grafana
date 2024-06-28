@@ -5,6 +5,28 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = new grafana.oss.OrganizationPreferences("test", {
+ *     theme: "light",
+ *     timezone: "utc",
+ *     weekStart: "sunday",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/organizationPreferences:OrganizationPreferences name "{{ orgID }}"
+ * ```
+ *
  * @deprecated grafana.index/organizationpreferences.OrganizationPreferences has been deprecated in favor of grafana.oss/organizationpreferences.OrganizationPreferences
  */
 export class OrganizationPreferences extends pulumi.CustomResource {
@@ -53,8 +75,7 @@ export class OrganizationPreferences extends pulumi.CustomResource {
      */
     public readonly timezone!: pulumi.Output<string | undefined>;
     /**
-     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-     * default.
+     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
      */
     public readonly weekStart!: pulumi.Output<string | undefined>;
 
@@ -115,8 +136,7 @@ export interface OrganizationPreferencesState {
      */
     timezone?: pulumi.Input<string>;
     /**
-     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-     * default.
+     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
      */
     weekStart?: pulumi.Input<string>;
 }
@@ -142,8 +162,7 @@ export interface OrganizationPreferencesArgs {
      */
     timezone?: pulumi.Input<string>;
     /**
-     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-     * default.
+     * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
      */
     weekStart?: pulumi.Input<string>;
 }

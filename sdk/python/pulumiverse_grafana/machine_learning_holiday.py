@@ -206,7 +206,16 @@ class MachineLearningHoliday(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a MachineLearningHoliday resource with the given unique name, props, and options.
+        A holiday describes time periods where a time series is expected to behave differently to normal.
+
+        To use a holiday in a job, use its id in the `holidays` attribute of a `machineLearning.Job`:
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/machineLearningHoliday:MachineLearningHoliday name "{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MachineLearningHolidayCustomPeriodArgs']]]] custom_periods: A list of custom periods for the holiday.
@@ -222,7 +231,16 @@ class MachineLearningHoliday(pulumi.CustomResource):
                  args: Optional[MachineLearningHolidayArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a MachineLearningHoliday resource with the given unique name, props, and options.
+        A holiday describes time periods where a time series is expected to behave differently to normal.
+
+        To use a holiday in a job, use its id in the `holidays` attribute of a `machineLearning.Job`:
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/machineLearningHoliday:MachineLearningHoliday name "{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param MachineLearningHolidayArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

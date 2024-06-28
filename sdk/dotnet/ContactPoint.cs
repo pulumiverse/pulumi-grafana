@@ -10,6 +10,56 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// Manages Grafana Alerting contact points.
+    /// 
+    /// * [Official documentation](https://grafana.com/docs/grafana/next/alerting/fundamentals/notifications/contact-points/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#contact-points)
+    /// 
+    /// This resource requires Grafana 9.1.0 or later.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myContactPoint = new Grafana.Alerting.ContactPoint("myContactPoint", new()
+    ///     {
+    ///         Emails = new[]
+    ///         {
+    ///             new Grafana.Alerting.Inputs.ContactPointEmailArgs
+    ///             {
+    ///                 Addresses = new[]
+    ///                 {
+    ///                     "one@company.org",
+    ///                     "two@company.org",
+    ///                 },
+    ///                 DisableResolveMessage = false,
+    ///                 Message = "{{ len .Alerts.Firing }} firing.",
+    ///                 SingleEmail = true,
+    ///                 Subject = "{{ template \"default.title\" .}}",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/contactPoint:ContactPoint name "{{ name }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/contactPoint:ContactPoint name "{{ orgID }}:{{ name }}"
+    /// ```
+    /// </summary>
     [Obsolete(@"grafana.index/contactpoint.ContactPoint has been deprecated in favor of grafana.alerting/contactpoint.ContactPoint")]
     [GrafanaResourceType("grafana:index/contactPoint:ContactPoint")]
     public partial class ContactPoint : global::Pulumi.CustomResource
@@ -144,8 +194,7 @@ namespace Pulumiverse.Grafana
         public Output<ImmutableArray<Outputs.ContactPointWebex>> Webexes { get; private set; } = null!;
 
         /// <summary>
-        /// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
-        /// https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+        /// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
         /// </summary>
         [Output("webhooks")]
         public Output<ImmutableArray<Outputs.ContactPointWebhook>> Webhooks { get; private set; } = null!;
@@ -454,8 +503,7 @@ namespace Pulumiverse.Grafana
         private InputList<Inputs.ContactPointWebhookArgs>? _webhooks;
 
         /// <summary>
-        /// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
-        /// https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+        /// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
         /// </summary>
         public InputList<Inputs.ContactPointWebhookArgs> Webhooks
         {
@@ -730,8 +778,7 @@ namespace Pulumiverse.Grafana
         private InputList<Inputs.ContactPointWebhookGetArgs>? _webhooks;
 
         /// <summary>
-        /// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here:
-        /// https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+        /// A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
         /// </summary>
         public InputList<Inputs.ContactPointWebhookGetArgs> Webhooks
         {

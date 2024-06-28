@@ -12,6 +12,92 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages a single assignment for a role. Conflicts with the "enterprise.RoleAssignment" resource which manages the entire set of assignments for a role.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/enterprise"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testRole, err := enterprise.NewRole(ctx, "testRole", &enterprise.RoleArgs{
+//				Uid:     pulumi.String("testrole"),
+//				Version: pulumi.Int(1),
+//				Global:  pulumi.Bool(true),
+//				Permissions: enterprise.RolePermissionArray{
+//					&enterprise.RolePermissionArgs{
+//						Action: pulumi.String("org.users:add"),
+//						Scope:  pulumi.String("users:*"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testTeam, err := oss.NewTeam(ctx, "testTeam", nil)
+//			if err != nil {
+//				return err
+//			}
+//			testUser, err := oss.NewUser(ctx, "testUser", &oss.UserArgs{
+//				Email:    pulumi.String("terraform_user@test.com"),
+//				Login:    pulumi.String("terraform_user@test.com"),
+//				Password: pulumi.String("password"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testSa, err := oss.NewServiceAccount(ctx, "testSa", &oss.ServiceAccountArgs{
+//				Role: pulumi.String("Viewer"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = enterprise.NewRoleAssignmentItem(ctx, "user", &enterprise.RoleAssignmentItemArgs{
+//				RoleUid: testRole.Uid,
+//				UserId:  testUser.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = enterprise.NewRoleAssignmentItem(ctx, "team", &enterprise.RoleAssignmentItemArgs{
+//				RoleUid: testRole.Uid,
+//				TeamId:  testTeam.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = enterprise.NewRoleAssignmentItem(ctx, "serviceAccount", &enterprise.RoleAssignmentItemArgs{
+//				RoleUid:          testRole.Uid,
+//				ServiceAccountId: testSa.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/roleAssignmentItem:RoleAssignmentItem name "{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/roleAssignmentItem:RoleAssignmentItem name "{{ orgID }}:{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+// ```
+//
 // Deprecated: grafana.index/roleassignmentitem.RoleAssignmentItem has been deprecated in favor of grafana.enterprise/roleassignmentitem.RoleAssignmentItem
 type RoleAssignmentItem struct {
 	pulumi.CustomResourceState

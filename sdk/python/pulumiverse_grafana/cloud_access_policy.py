@@ -23,11 +23,8 @@ class CloudAccessPolicyArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CloudAccessPolicy resource.
-        :param pulumi.Input[str] region: Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of
-               available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: Scopes of the access policy. See
-               https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for
-               possible values.
+        :param pulumi.Input[str] region: Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         :param pulumi.Input[str] display_name: Display name of the access policy. Defaults to the name.
         :param pulumi.Input[str] name: Name of the access policy.
         """
@@ -52,8 +49,7 @@ class CloudAccessPolicyArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[str]:
         """
-        Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of
-        available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         """
         return pulumi.get(self, "region")
 
@@ -65,9 +61,7 @@ class CloudAccessPolicyArgs:
     @pulumi.getter
     def scopes(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        Scopes of the access policy. See
-        https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for
-        possible values.
+        Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         """
         return pulumi.get(self, "scopes")
 
@@ -117,11 +111,8 @@ class _CloudAccessPolicyState:
         :param pulumi.Input[str] display_name: Display name of the access policy. Defaults to the name.
         :param pulumi.Input[str] name: Name of the access policy.
         :param pulumi.Input[str] policy_id: ID of the access policy.
-        :param pulumi.Input[str] region: Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of
-               available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: Scopes of the access policy. See
-               https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for
-               possible values.
+        :param pulumi.Input[str] region: Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         :param pulumi.Input[str] updated_at: Last update date of the access policy.
         """
         if created_at is not None:
@@ -202,8 +193,7 @@ class _CloudAccessPolicyState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of
-        available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         """
         return pulumi.get(self, "region")
 
@@ -215,9 +205,7 @@ class _CloudAccessPolicyState:
     @pulumi.getter
     def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Scopes of the access policy. See
-        https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for
-        possible values.
+        Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         """
         return pulumi.get(self, "scopes")
 
@@ -255,16 +243,56 @@ class CloudAccessPolicy(pulumi.CustomResource):
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Create a CloudAccessPolicy resource with the given unique name, props, and options.
+        * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
+        * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-an-access-policy)
+
+        Required access policy scopes:
+
+        * accesspolicies:read
+        * accesspolicies:write
+        * accesspolicies:delete
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_grafana as grafana
+        import pulumiverse_grafana as grafana
+
+        current = grafana.cloud.get_organization(slug="<your org slug>")
+        test_access_policy = grafana.cloud.AccessPolicy("testAccessPolicy",
+            region="us",
+            display_name="My Policy",
+            scopes=[
+                "metrics:read",
+                "logs:read",
+            ],
+            realms=[grafana.cloud.AccessPolicyRealmArgs(
+                type="org",
+                identifier=current.id,
+                label_policies=[grafana.cloud.AccessPolicyRealmLabelPolicyArgs(
+                    selector="{namespace=\\"default\\"}",
+                )],
+            )])
+        test_access_policy_token = grafana.cloud.AccessPolicyToken("testAccessPolicyToken",
+            region="us",
+            access_policy_id=test_access_policy.policy_id,
+            display_name="My Policy Token",
+            expires_at="2023-01-01T00:00:00Z")
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy name "{{ region }}:{{ policyId }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] display_name: Display name of the access policy. Defaults to the name.
         :param pulumi.Input[str] name: Name of the access policy.
-        :param pulumi.Input[str] region: Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of
-               available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: Scopes of the access policy. See
-               https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for
-               possible values.
+        :param pulumi.Input[str] region: Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         """
         ...
     @overload
@@ -273,7 +301,50 @@ class CloudAccessPolicy(pulumi.CustomResource):
                  args: CloudAccessPolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a CloudAccessPolicy resource with the given unique name, props, and options.
+        * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
+        * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-an-access-policy)
+
+        Required access policy scopes:
+
+        * accesspolicies:read
+        * accesspolicies:write
+        * accesspolicies:delete
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_grafana as grafana
+        import pulumiverse_grafana as grafana
+
+        current = grafana.cloud.get_organization(slug="<your org slug>")
+        test_access_policy = grafana.cloud.AccessPolicy("testAccessPolicy",
+            region="us",
+            display_name="My Policy",
+            scopes=[
+                "metrics:read",
+                "logs:read",
+            ],
+            realms=[grafana.cloud.AccessPolicyRealmArgs(
+                type="org",
+                identifier=current.id,
+                label_policies=[grafana.cloud.AccessPolicyRealmLabelPolicyArgs(
+                    selector="{namespace=\\"default\\"}",
+                )],
+            )])
+        test_access_policy_token = grafana.cloud.AccessPolicyToken("testAccessPolicyToken",
+            region="us",
+            access_policy_id=test_access_policy.policy_id,
+            display_name="My Policy Token",
+            expires_at="2023-01-01T00:00:00Z")
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy name "{{ region }}:{{ policyId }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param CloudAccessPolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -349,11 +420,8 @@ class CloudAccessPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] display_name: Display name of the access policy. Defaults to the name.
         :param pulumi.Input[str] name: Name of the access policy.
         :param pulumi.Input[str] policy_id: ID of the access policy.
-        :param pulumi.Input[str] region: Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of
-               available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: Scopes of the access policy. See
-               https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for
-               possible values.
+        :param pulumi.Input[str] region: Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         :param pulumi.Input[str] updated_at: Last update date of the access policy.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -411,8 +479,7 @@ class CloudAccessPolicy(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of
-        available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
+        Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         """
         return pulumi.get(self, "region")
 
@@ -420,9 +487,7 @@ class CloudAccessPolicy(pulumi.CustomResource):
     @pulumi.getter
     def scopes(self) -> pulumi.Output[Sequence[str]]:
         """
-        Scopes of the access policy. See
-        https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for
-        possible values.
+        Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         """
         return pulumi.get(self, "scopes")
 

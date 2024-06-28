@@ -20,7 +20,7 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string>? ApiUrl { get; set; }
 
         /// <summary>
-        /// Whether to disable sending resolve messages.
+        /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
         [Input("disableResolveMessage")]
         public Input<bool>? DisableResolveMessage { get; set; }
@@ -41,7 +41,7 @@ namespace Pulumiverse.Grafana.Inputs
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Additional custom properties to attach to the notifier.
+        /// Additional custom properties to attach to the notifier. Defaults to `map[]`.
         /// </summary>
         public InputMap<string> Settings
         {

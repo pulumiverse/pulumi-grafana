@@ -10,6 +10,69 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// Manages the entire set of permissions for a service account. Permissions that aren't specified when applying this resource will be removed.
+    /// 
+    /// **Note:** This resource is available from Grafana 9.2.4 onwards.
+    /// 
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Grafana.Oss.ServiceAccount("test", new()
+    ///     {
+    ///         Role = "Editor",
+    ///         IsDisabled = false,
+    ///     });
+    /// 
+    ///     var testTeam = new Grafana.Oss.Team("testTeam");
+    /// 
+    ///     var testUser = new Grafana.Oss.User("testUser", new()
+    ///     {
+    ///         Email = "tf_user@test.com",
+    ///         Login = "tf_user@test.com",
+    ///         Password = "password",
+    ///     });
+    /// 
+    ///     var testPermissions = new Grafana.Oss.ServiceAccountPermission("testPermissions", new()
+    ///     {
+    ///         ServiceAccountId = test.Id,
+    ///         Permissions = new[]
+    ///         {
+    ///             new Grafana.Oss.Inputs.ServiceAccountPermissionPermissionArgs
+    ///             {
+    ///                 UserId = testUser.Id,
+    ///                 Permission = "Edit",
+    ///             },
+    ///             new Grafana.Oss.Inputs.ServiceAccountPermissionPermissionArgs
+    ///             {
+    ///                 TeamId = testTeam.Id,
+    ///                 Permission = "Admin",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/serviceAccountPermission:ServiceAccountPermission name "{{ serviceAccountID }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/serviceAccountPermission:ServiceAccountPermission name "{{ orgID }}:{{ serviceAccountID }}"
+    /// ```
+    /// </summary>
     [Obsolete(@"grafana.index/serviceaccountpermission.ServiceAccountPermission has been deprecated in favor of grafana.oss/serviceaccountpermission.ServiceAccountPermission")]
     [GrafanaResourceType("grafana:index/serviceAccountPermission:ServiceAccountPermission")]
     public partial class ServiceAccountPermission : global::Pulumi.CustomResource

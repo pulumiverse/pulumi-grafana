@@ -5,6 +5,35 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Manages Grafana Cloud Plugin Installations.
+ *
+ * * [Plugin Catalog](https://grafana.com/grafana/plugins/)
+ *
+ * Required access policy scopes:
+ *
+ * * stack-plugins:read
+ * * stack-plugins:write
+ * * stack-plugins:delete
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = new grafana.cloud.PluginInstallation("test", {
+ *     slug: "some-plugin",
+ *     stackSlug: "stackname",
+ *     version: "1.2.3",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/cloudPluginInstallation:CloudPluginInstallation name "{{ stackSlug }}:{{ pluginSlug }}"
+ * ```
+ *
  * @deprecated grafana.index/cloudplugininstallation.CloudPluginInstallation has been deprecated in favor of grafana.cloud/plugininstallation.PluginInstallation
  */
 export class CloudPluginInstallation extends pulumi.CustomResource {

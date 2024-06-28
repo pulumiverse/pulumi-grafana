@@ -27,8 +27,7 @@ class NotificationPolicyArgs:
         """
         The set of arguments for constructing a NotificationPolicy resource.
         :param pulumi.Input[str] contact_point: The default contact point to route all unmatched notifications to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
-               effectively disabling grouping.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -66,8 +65,7 @@ class NotificationPolicyArgs:
     @pulumi.getter(name="groupBies")
     def group_bies(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
-        effectively disabling grouping.
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
         """
         return pulumi.get(self, "group_bies")
 
@@ -159,8 +157,7 @@ class _NotificationPolicyState:
         """
         Input properties used for looking up and filtering NotificationPolicy resources.
         :param pulumi.Input[str] contact_point: The default contact point to route all unmatched notifications to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
-               effectively disabling grouping.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -209,8 +206,7 @@ class _NotificationPolicyState:
     @pulumi.getter(name="groupBies")
     def group_bies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
-        effectively disabling grouping.
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
         """
         return pulumi.get(self, "group_bies")
 
@@ -299,12 +295,98 @@ class NotificationPolicy(pulumi.CustomResource):
                  repeat_interval: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a NotificationPolicy resource with the given unique name, props, and options.
+        Sets the global notification policy for Grafana.
+
+        !> This resource manages the entire notification policy tree, and will overwrite any existing policies.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/)
+
+        This resource requires Grafana 9.1.0 or later.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        a_contact_point = grafana.alerting.ContactPoint("aContactPoint", emails=[grafana.alerting.ContactPointEmailArgs(
+            addresses=[
+                "one@company.org",
+                "two@company.org",
+            ],
+            message="{{ len .Alerts.Firing }} firing.",
+        )])
+        a_mute_timing = grafana.alerting.MuteTiming("aMuteTiming", intervals=[grafana.alerting.MuteTimingIntervalArgs(
+            weekdays=["monday"],
+        )])
+        my_notification_policy = grafana.alerting.NotificationPolicy("myNotificationPolicy",
+            group_bies=["..."],
+            contact_point=a_contact_point.name,
+            group_wait="45s",
+            group_interval="6m",
+            repeat_interval="3h",
+            policies=[
+                grafana.alerting.NotificationPolicyPolicyArgs(
+                    matchers=[
+                        grafana.alerting.NotificationPolicyPolicyMatcherArgs(
+                            label="mylabel",
+                            match="=",
+                            value="myvalue",
+                        ),
+                        grafana.alerting.NotificationPolicyPolicyMatcherArgs(
+                            label="alertname",
+                            match="=",
+                            value="CPU Usage",
+                        ),
+                        grafana.alerting.NotificationPolicyPolicyMatcherArgs(
+                            label="Name",
+                            match="=~",
+                            value="host.*|host-b.*",
+                        ),
+                    ],
+                    contact_point=a_contact_point.name,
+                    continue_=True,
+                    mute_timings=[a_mute_timing.name],
+                    group_wait="45s",
+                    group_interval="6m",
+                    repeat_interval="3h",
+                    policies=[grafana.alerting.NotificationPolicyPolicyPolicyArgs(
+                        matchers=[grafana.alerting.NotificationPolicyPolicyPolicyMatcherArgs(
+                            label="sublabel",
+                            match="=",
+                            value="subvalue",
+                        )],
+                        contact_point=a_contact_point.name,
+                        group_bies=["..."],
+                    )],
+                ),
+                grafana.alerting.NotificationPolicyPolicyArgs(
+                    matchers=[grafana.alerting.NotificationPolicyPolicyMatcherArgs(
+                        label="anotherlabel",
+                        match="=~",
+                        value="another value.*",
+                    )],
+                    contact_point=a_contact_point.name,
+                    group_bies=["..."],
+                ),
+            ])
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/notificationPolicy:NotificationPolicy name "{{ anyString }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/notificationPolicy:NotificationPolicy name "{{ orgID }}:{{ anyString }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] contact_point: The default contact point to route all unmatched notifications to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
-               effectively disabling grouping.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -318,7 +400,94 @@ class NotificationPolicy(pulumi.CustomResource):
                  args: NotificationPolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a NotificationPolicy resource with the given unique name, props, and options.
+        Sets the global notification policy for Grafana.
+
+        !> This resource manages the entire notification policy tree, and will overwrite any existing policies.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/)
+
+        This resource requires Grafana 9.1.0 or later.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        a_contact_point = grafana.alerting.ContactPoint("aContactPoint", emails=[grafana.alerting.ContactPointEmailArgs(
+            addresses=[
+                "one@company.org",
+                "two@company.org",
+            ],
+            message="{{ len .Alerts.Firing }} firing.",
+        )])
+        a_mute_timing = grafana.alerting.MuteTiming("aMuteTiming", intervals=[grafana.alerting.MuteTimingIntervalArgs(
+            weekdays=["monday"],
+        )])
+        my_notification_policy = grafana.alerting.NotificationPolicy("myNotificationPolicy",
+            group_bies=["..."],
+            contact_point=a_contact_point.name,
+            group_wait="45s",
+            group_interval="6m",
+            repeat_interval="3h",
+            policies=[
+                grafana.alerting.NotificationPolicyPolicyArgs(
+                    matchers=[
+                        grafana.alerting.NotificationPolicyPolicyMatcherArgs(
+                            label="mylabel",
+                            match="=",
+                            value="myvalue",
+                        ),
+                        grafana.alerting.NotificationPolicyPolicyMatcherArgs(
+                            label="alertname",
+                            match="=",
+                            value="CPU Usage",
+                        ),
+                        grafana.alerting.NotificationPolicyPolicyMatcherArgs(
+                            label="Name",
+                            match="=~",
+                            value="host.*|host-b.*",
+                        ),
+                    ],
+                    contact_point=a_contact_point.name,
+                    continue_=True,
+                    mute_timings=[a_mute_timing.name],
+                    group_wait="45s",
+                    group_interval="6m",
+                    repeat_interval="3h",
+                    policies=[grafana.alerting.NotificationPolicyPolicyPolicyArgs(
+                        matchers=[grafana.alerting.NotificationPolicyPolicyPolicyMatcherArgs(
+                            label="sublabel",
+                            match="=",
+                            value="subvalue",
+                        )],
+                        contact_point=a_contact_point.name,
+                        group_bies=["..."],
+                    )],
+                ),
+                grafana.alerting.NotificationPolicyPolicyArgs(
+                    matchers=[grafana.alerting.NotificationPolicyPolicyMatcherArgs(
+                        label="anotherlabel",
+                        match="=~",
+                        value="another value.*",
+                    )],
+                    contact_point=a_contact_point.name,
+                    group_bies=["..."],
+                ),
+            ])
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/notificationPolicy:NotificationPolicy name "{{ anyString }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/notificationPolicy:NotificationPolicy name "{{ orgID }}:{{ anyString }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param NotificationPolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -392,8 +561,7 @@ class NotificationPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] contact_point: The default contact point to route all unmatched notifications to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
-               effectively disabling grouping.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -431,8 +599,7 @@ class NotificationPolicy(pulumi.CustomResource):
     @pulumi.getter(name="groupBies")
     def group_bies(self) -> pulumi.Output[Sequence[str]]:
         """
-        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels,
-        effectively disabling grouping.
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
         """
         return pulumi.get(self, "group_bies")
 

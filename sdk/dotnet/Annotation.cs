@@ -10,6 +10,38 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Grafana.Oss.Annotation("test", new()
+    ///     {
+    ///         Text = "basic text",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/annotation:Annotation name "{{ id }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/annotation:Annotation name "{{ orgID }}:{{ id }}"
+    /// ```
+    /// </summary>
     [Obsolete(@"grafana.index/annotation.Annotation has been deprecated in favor of grafana.oss/annotation.Annotation")]
     [GrafanaResourceType("grafana:index/annotation:Annotation")]
     public partial class Annotation : global::Pulumi.CustomResource

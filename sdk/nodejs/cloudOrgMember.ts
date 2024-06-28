@@ -5,6 +5,14 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Manages the membership of a user in an organization.
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/cloudOrgMember:CloudOrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
+ * ```
+ *
  * @deprecated grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember
  */
 export class CloudOrgMember extends pulumi.CustomResource {

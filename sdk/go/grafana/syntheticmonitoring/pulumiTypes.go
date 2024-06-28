@@ -16,6 +16,8 @@ var _ = internal.GetEnvOrDefault
 type CheckSettings struct {
 	// Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
 	Dns *CheckSettingsDns `pulumi:"dns"`
+	// Settings for gRPC Health check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
+	Grpc *CheckSettingsGrpc `pulumi:"grpc"`
 	// Settings for HTTP check. The target must be a URL (http or https).
 	Http *CheckSettingsHttp `pulumi:"http"`
 	// Settings for MultiHTTP check. The target must be a URL (http or https)
@@ -44,6 +46,8 @@ type CheckSettingsInput interface {
 type CheckSettingsArgs struct {
 	// Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
 	Dns CheckSettingsDnsPtrInput `pulumi:"dns"`
+	// Settings for gRPC Health check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
+	Grpc CheckSettingsGrpcPtrInput `pulumi:"grpc"`
 	// Settings for HTTP check. The target must be a URL (http or https).
 	Http CheckSettingsHttpPtrInput `pulumi:"http"`
 	// Settings for MultiHTTP check. The target must be a URL (http or https)
@@ -140,6 +144,11 @@ func (o CheckSettingsOutput) Dns() CheckSettingsDnsPtrOutput {
 	return o.ApplyT(func(v CheckSettings) *CheckSettingsDns { return v.Dns }).(CheckSettingsDnsPtrOutput)
 }
 
+// Settings for gRPC Health check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
+func (o CheckSettingsOutput) Grpc() CheckSettingsGrpcPtrOutput {
+	return o.ApplyT(func(v CheckSettings) *CheckSettingsGrpc { return v.Grpc }).(CheckSettingsGrpcPtrOutput)
+}
+
 // Settings for HTTP check. The target must be a URL (http or https).
 func (o CheckSettingsOutput) Http() CheckSettingsHttpPtrOutput {
 	return o.ApplyT(func(v CheckSettings) *CheckSettingsHttp { return v.Http }).(CheckSettingsHttpPtrOutput)
@@ -202,6 +211,16 @@ func (o CheckSettingsPtrOutput) Dns() CheckSettingsDnsPtrOutput {
 		}
 		return v.Dns
 	}).(CheckSettingsDnsPtrOutput)
+}
+
+// Settings for gRPC Health check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
+func (o CheckSettingsPtrOutput) Grpc() CheckSettingsGrpcPtrOutput {
+	return o.ApplyT(func(v *CheckSettings) *CheckSettingsGrpc {
+		if v == nil {
+			return nil
+		}
+		return v.Grpc
+	}).(CheckSettingsGrpcPtrOutput)
 }
 
 // Settings for HTTP check. The target must be a URL (http or https).
@@ -988,6 +1007,413 @@ func (o CheckSettingsDnsValidateAuthorityRrsPtrOutput) FailIfNotMatchesRegexps()
 		}
 		return v.FailIfNotMatchesRegexps
 	}).(pulumi.StringArrayOutput)
+}
+
+type CheckSettingsGrpc struct {
+	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+	IpVersion *string `pulumi:"ipVersion"`
+	// gRPC service.
+	Service *string `pulumi:"service"`
+	// Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+	Tls *bool `pulumi:"tls"`
+	// TLS config.
+	TlsConfig *CheckSettingsGrpcTlsConfig `pulumi:"tlsConfig"`
+}
+
+// CheckSettingsGrpcInput is an input type that accepts CheckSettingsGrpcArgs and CheckSettingsGrpcOutput values.
+// You can construct a concrete instance of `CheckSettingsGrpcInput` via:
+//
+//	CheckSettingsGrpcArgs{...}
+type CheckSettingsGrpcInput interface {
+	pulumi.Input
+
+	ToCheckSettingsGrpcOutput() CheckSettingsGrpcOutput
+	ToCheckSettingsGrpcOutputWithContext(context.Context) CheckSettingsGrpcOutput
+}
+
+type CheckSettingsGrpcArgs struct {
+	// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+	IpVersion pulumi.StringPtrInput `pulumi:"ipVersion"`
+	// gRPC service.
+	Service pulumi.StringPtrInput `pulumi:"service"`
+	// Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+	Tls pulumi.BoolPtrInput `pulumi:"tls"`
+	// TLS config.
+	TlsConfig CheckSettingsGrpcTlsConfigPtrInput `pulumi:"tlsConfig"`
+}
+
+func (CheckSettingsGrpcArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CheckSettingsGrpc)(nil)).Elem()
+}
+
+func (i CheckSettingsGrpcArgs) ToCheckSettingsGrpcOutput() CheckSettingsGrpcOutput {
+	return i.ToCheckSettingsGrpcOutputWithContext(context.Background())
+}
+
+func (i CheckSettingsGrpcArgs) ToCheckSettingsGrpcOutputWithContext(ctx context.Context) CheckSettingsGrpcOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckSettingsGrpcOutput)
+}
+
+func (i CheckSettingsGrpcArgs) ToCheckSettingsGrpcPtrOutput() CheckSettingsGrpcPtrOutput {
+	return i.ToCheckSettingsGrpcPtrOutputWithContext(context.Background())
+}
+
+func (i CheckSettingsGrpcArgs) ToCheckSettingsGrpcPtrOutputWithContext(ctx context.Context) CheckSettingsGrpcPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckSettingsGrpcOutput).ToCheckSettingsGrpcPtrOutputWithContext(ctx)
+}
+
+// CheckSettingsGrpcPtrInput is an input type that accepts CheckSettingsGrpcArgs, CheckSettingsGrpcPtr and CheckSettingsGrpcPtrOutput values.
+// You can construct a concrete instance of `CheckSettingsGrpcPtrInput` via:
+//
+//	        CheckSettingsGrpcArgs{...}
+//
+//	or:
+//
+//	        nil
+type CheckSettingsGrpcPtrInput interface {
+	pulumi.Input
+
+	ToCheckSettingsGrpcPtrOutput() CheckSettingsGrpcPtrOutput
+	ToCheckSettingsGrpcPtrOutputWithContext(context.Context) CheckSettingsGrpcPtrOutput
+}
+
+type checkSettingsGrpcPtrType CheckSettingsGrpcArgs
+
+func CheckSettingsGrpcPtr(v *CheckSettingsGrpcArgs) CheckSettingsGrpcPtrInput {
+	return (*checkSettingsGrpcPtrType)(v)
+}
+
+func (*checkSettingsGrpcPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CheckSettingsGrpc)(nil)).Elem()
+}
+
+func (i *checkSettingsGrpcPtrType) ToCheckSettingsGrpcPtrOutput() CheckSettingsGrpcPtrOutput {
+	return i.ToCheckSettingsGrpcPtrOutputWithContext(context.Background())
+}
+
+func (i *checkSettingsGrpcPtrType) ToCheckSettingsGrpcPtrOutputWithContext(ctx context.Context) CheckSettingsGrpcPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckSettingsGrpcPtrOutput)
+}
+
+type CheckSettingsGrpcOutput struct{ *pulumi.OutputState }
+
+func (CheckSettingsGrpcOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CheckSettingsGrpc)(nil)).Elem()
+}
+
+func (o CheckSettingsGrpcOutput) ToCheckSettingsGrpcOutput() CheckSettingsGrpcOutput {
+	return o
+}
+
+func (o CheckSettingsGrpcOutput) ToCheckSettingsGrpcOutputWithContext(ctx context.Context) CheckSettingsGrpcOutput {
+	return o
+}
+
+func (o CheckSettingsGrpcOutput) ToCheckSettingsGrpcPtrOutput() CheckSettingsGrpcPtrOutput {
+	return o.ToCheckSettingsGrpcPtrOutputWithContext(context.Background())
+}
+
+func (o CheckSettingsGrpcOutput) ToCheckSettingsGrpcPtrOutputWithContext(ctx context.Context) CheckSettingsGrpcPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CheckSettingsGrpc) *CheckSettingsGrpc {
+		return &v
+	}).(CheckSettingsGrpcPtrOutput)
+}
+
+// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+func (o CheckSettingsGrpcOutput) IpVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CheckSettingsGrpc) *string { return v.IpVersion }).(pulumi.StringPtrOutput)
+}
+
+// gRPC service.
+func (o CheckSettingsGrpcOutput) Service() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CheckSettingsGrpc) *string { return v.Service }).(pulumi.StringPtrOutput)
+}
+
+// Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+func (o CheckSettingsGrpcOutput) Tls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CheckSettingsGrpc) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
+}
+
+// TLS config.
+func (o CheckSettingsGrpcOutput) TlsConfig() CheckSettingsGrpcTlsConfigPtrOutput {
+	return o.ApplyT(func(v CheckSettingsGrpc) *CheckSettingsGrpcTlsConfig { return v.TlsConfig }).(CheckSettingsGrpcTlsConfigPtrOutput)
+}
+
+type CheckSettingsGrpcPtrOutput struct{ *pulumi.OutputState }
+
+func (CheckSettingsGrpcPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CheckSettingsGrpc)(nil)).Elem()
+}
+
+func (o CheckSettingsGrpcPtrOutput) ToCheckSettingsGrpcPtrOutput() CheckSettingsGrpcPtrOutput {
+	return o
+}
+
+func (o CheckSettingsGrpcPtrOutput) ToCheckSettingsGrpcPtrOutputWithContext(ctx context.Context) CheckSettingsGrpcPtrOutput {
+	return o
+}
+
+func (o CheckSettingsGrpcPtrOutput) Elem() CheckSettingsGrpcOutput {
+	return o.ApplyT(func(v *CheckSettingsGrpc) CheckSettingsGrpc {
+		if v != nil {
+			return *v
+		}
+		var ret CheckSettingsGrpc
+		return ret
+	}).(CheckSettingsGrpcOutput)
+}
+
+// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+func (o CheckSettingsGrpcPtrOutput) IpVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CheckSettingsGrpc) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IpVersion
+	}).(pulumi.StringPtrOutput)
+}
+
+// gRPC service.
+func (o CheckSettingsGrpcPtrOutput) Service() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CheckSettingsGrpc) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Service
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+func (o CheckSettingsGrpcPtrOutput) Tls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CheckSettingsGrpc) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Tls
+	}).(pulumi.BoolPtrOutput)
+}
+
+// TLS config.
+func (o CheckSettingsGrpcPtrOutput) TlsConfig() CheckSettingsGrpcTlsConfigPtrOutput {
+	return o.ApplyT(func(v *CheckSettingsGrpc) *CheckSettingsGrpcTlsConfig {
+		if v == nil {
+			return nil
+		}
+		return v.TlsConfig
+	}).(CheckSettingsGrpcTlsConfigPtrOutput)
+}
+
+type CheckSettingsGrpcTlsConfig struct {
+	// CA certificate in PEM format.
+	CaCert *string `pulumi:"caCert"`
+	// Client certificate in PEM format.
+	ClientCert *string `pulumi:"clientCert"`
+	// Client key in PEM format.
+	ClientKey *string `pulumi:"clientKey"`
+	// Disable target certificate validation. Defaults to `false`.
+	InsecureSkipVerify *bool `pulumi:"insecureSkipVerify"`
+	// Used to verify the hostname for the targets.
+	ServerName *string `pulumi:"serverName"`
+}
+
+// CheckSettingsGrpcTlsConfigInput is an input type that accepts CheckSettingsGrpcTlsConfigArgs and CheckSettingsGrpcTlsConfigOutput values.
+// You can construct a concrete instance of `CheckSettingsGrpcTlsConfigInput` via:
+//
+//	CheckSettingsGrpcTlsConfigArgs{...}
+type CheckSettingsGrpcTlsConfigInput interface {
+	pulumi.Input
+
+	ToCheckSettingsGrpcTlsConfigOutput() CheckSettingsGrpcTlsConfigOutput
+	ToCheckSettingsGrpcTlsConfigOutputWithContext(context.Context) CheckSettingsGrpcTlsConfigOutput
+}
+
+type CheckSettingsGrpcTlsConfigArgs struct {
+	// CA certificate in PEM format.
+	CaCert pulumi.StringPtrInput `pulumi:"caCert"`
+	// Client certificate in PEM format.
+	ClientCert pulumi.StringPtrInput `pulumi:"clientCert"`
+	// Client key in PEM format.
+	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
+	// Disable target certificate validation. Defaults to `false`.
+	InsecureSkipVerify pulumi.BoolPtrInput `pulumi:"insecureSkipVerify"`
+	// Used to verify the hostname for the targets.
+	ServerName pulumi.StringPtrInput `pulumi:"serverName"`
+}
+
+func (CheckSettingsGrpcTlsConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CheckSettingsGrpcTlsConfig)(nil)).Elem()
+}
+
+func (i CheckSettingsGrpcTlsConfigArgs) ToCheckSettingsGrpcTlsConfigOutput() CheckSettingsGrpcTlsConfigOutput {
+	return i.ToCheckSettingsGrpcTlsConfigOutputWithContext(context.Background())
+}
+
+func (i CheckSettingsGrpcTlsConfigArgs) ToCheckSettingsGrpcTlsConfigOutputWithContext(ctx context.Context) CheckSettingsGrpcTlsConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckSettingsGrpcTlsConfigOutput)
+}
+
+func (i CheckSettingsGrpcTlsConfigArgs) ToCheckSettingsGrpcTlsConfigPtrOutput() CheckSettingsGrpcTlsConfigPtrOutput {
+	return i.ToCheckSettingsGrpcTlsConfigPtrOutputWithContext(context.Background())
+}
+
+func (i CheckSettingsGrpcTlsConfigArgs) ToCheckSettingsGrpcTlsConfigPtrOutputWithContext(ctx context.Context) CheckSettingsGrpcTlsConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckSettingsGrpcTlsConfigOutput).ToCheckSettingsGrpcTlsConfigPtrOutputWithContext(ctx)
+}
+
+// CheckSettingsGrpcTlsConfigPtrInput is an input type that accepts CheckSettingsGrpcTlsConfigArgs, CheckSettingsGrpcTlsConfigPtr and CheckSettingsGrpcTlsConfigPtrOutput values.
+// You can construct a concrete instance of `CheckSettingsGrpcTlsConfigPtrInput` via:
+//
+//	        CheckSettingsGrpcTlsConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type CheckSettingsGrpcTlsConfigPtrInput interface {
+	pulumi.Input
+
+	ToCheckSettingsGrpcTlsConfigPtrOutput() CheckSettingsGrpcTlsConfigPtrOutput
+	ToCheckSettingsGrpcTlsConfigPtrOutputWithContext(context.Context) CheckSettingsGrpcTlsConfigPtrOutput
+}
+
+type checkSettingsGrpcTlsConfigPtrType CheckSettingsGrpcTlsConfigArgs
+
+func CheckSettingsGrpcTlsConfigPtr(v *CheckSettingsGrpcTlsConfigArgs) CheckSettingsGrpcTlsConfigPtrInput {
+	return (*checkSettingsGrpcTlsConfigPtrType)(v)
+}
+
+func (*checkSettingsGrpcTlsConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CheckSettingsGrpcTlsConfig)(nil)).Elem()
+}
+
+func (i *checkSettingsGrpcTlsConfigPtrType) ToCheckSettingsGrpcTlsConfigPtrOutput() CheckSettingsGrpcTlsConfigPtrOutput {
+	return i.ToCheckSettingsGrpcTlsConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *checkSettingsGrpcTlsConfigPtrType) ToCheckSettingsGrpcTlsConfigPtrOutputWithContext(ctx context.Context) CheckSettingsGrpcTlsConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckSettingsGrpcTlsConfigPtrOutput)
+}
+
+type CheckSettingsGrpcTlsConfigOutput struct{ *pulumi.OutputState }
+
+func (CheckSettingsGrpcTlsConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CheckSettingsGrpcTlsConfig)(nil)).Elem()
+}
+
+func (o CheckSettingsGrpcTlsConfigOutput) ToCheckSettingsGrpcTlsConfigOutput() CheckSettingsGrpcTlsConfigOutput {
+	return o
+}
+
+func (o CheckSettingsGrpcTlsConfigOutput) ToCheckSettingsGrpcTlsConfigOutputWithContext(ctx context.Context) CheckSettingsGrpcTlsConfigOutput {
+	return o
+}
+
+func (o CheckSettingsGrpcTlsConfigOutput) ToCheckSettingsGrpcTlsConfigPtrOutput() CheckSettingsGrpcTlsConfigPtrOutput {
+	return o.ToCheckSettingsGrpcTlsConfigPtrOutputWithContext(context.Background())
+}
+
+func (o CheckSettingsGrpcTlsConfigOutput) ToCheckSettingsGrpcTlsConfigPtrOutputWithContext(ctx context.Context) CheckSettingsGrpcTlsConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CheckSettingsGrpcTlsConfig) *CheckSettingsGrpcTlsConfig {
+		return &v
+	}).(CheckSettingsGrpcTlsConfigPtrOutput)
+}
+
+// CA certificate in PEM format.
+func (o CheckSettingsGrpcTlsConfigOutput) CaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CheckSettingsGrpcTlsConfig) *string { return v.CaCert }).(pulumi.StringPtrOutput)
+}
+
+// Client certificate in PEM format.
+func (o CheckSettingsGrpcTlsConfigOutput) ClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CheckSettingsGrpcTlsConfig) *string { return v.ClientCert }).(pulumi.StringPtrOutput)
+}
+
+// Client key in PEM format.
+func (o CheckSettingsGrpcTlsConfigOutput) ClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CheckSettingsGrpcTlsConfig) *string { return v.ClientKey }).(pulumi.StringPtrOutput)
+}
+
+// Disable target certificate validation. Defaults to `false`.
+func (o CheckSettingsGrpcTlsConfigOutput) InsecureSkipVerify() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CheckSettingsGrpcTlsConfig) *bool { return v.InsecureSkipVerify }).(pulumi.BoolPtrOutput)
+}
+
+// Used to verify the hostname for the targets.
+func (o CheckSettingsGrpcTlsConfigOutput) ServerName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CheckSettingsGrpcTlsConfig) *string { return v.ServerName }).(pulumi.StringPtrOutput)
+}
+
+type CheckSettingsGrpcTlsConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (CheckSettingsGrpcTlsConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CheckSettingsGrpcTlsConfig)(nil)).Elem()
+}
+
+func (o CheckSettingsGrpcTlsConfigPtrOutput) ToCheckSettingsGrpcTlsConfigPtrOutput() CheckSettingsGrpcTlsConfigPtrOutput {
+	return o
+}
+
+func (o CheckSettingsGrpcTlsConfigPtrOutput) ToCheckSettingsGrpcTlsConfigPtrOutputWithContext(ctx context.Context) CheckSettingsGrpcTlsConfigPtrOutput {
+	return o
+}
+
+func (o CheckSettingsGrpcTlsConfigPtrOutput) Elem() CheckSettingsGrpcTlsConfigOutput {
+	return o.ApplyT(func(v *CheckSettingsGrpcTlsConfig) CheckSettingsGrpcTlsConfig {
+		if v != nil {
+			return *v
+		}
+		var ret CheckSettingsGrpcTlsConfig
+		return ret
+	}).(CheckSettingsGrpcTlsConfigOutput)
+}
+
+// CA certificate in PEM format.
+func (o CheckSettingsGrpcTlsConfigPtrOutput) CaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CheckSettingsGrpcTlsConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CaCert
+	}).(pulumi.StringPtrOutput)
+}
+
+// Client certificate in PEM format.
+func (o CheckSettingsGrpcTlsConfigPtrOutput) ClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CheckSettingsGrpcTlsConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientCert
+	}).(pulumi.StringPtrOutput)
+}
+
+// Client key in PEM format.
+func (o CheckSettingsGrpcTlsConfigPtrOutput) ClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CheckSettingsGrpcTlsConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Disable target certificate validation. Defaults to `false`.
+func (o CheckSettingsGrpcTlsConfigPtrOutput) InsecureSkipVerify() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CheckSettingsGrpcTlsConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.InsecureSkipVerify
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Used to verify the hostname for the targets.
+func (o CheckSettingsGrpcTlsConfigPtrOutput) ServerName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CheckSettingsGrpcTlsConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ServerName
+	}).(pulumi.StringPtrOutput)
 }
 
 type CheckSettingsHttp struct {
@@ -4175,6 +4601,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsDnsValidateAnswerRrsPtrInput)(nil)).Elem(), CheckSettingsDnsValidateAnswerRrsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsDnsValidateAuthorityRrsInput)(nil)).Elem(), CheckSettingsDnsValidateAuthorityRrsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsDnsValidateAuthorityRrsPtrInput)(nil)).Elem(), CheckSettingsDnsValidateAuthorityRrsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsGrpcInput)(nil)).Elem(), CheckSettingsGrpcArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsGrpcPtrInput)(nil)).Elem(), CheckSettingsGrpcArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsGrpcTlsConfigInput)(nil)).Elem(), CheckSettingsGrpcTlsConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsGrpcTlsConfigPtrInput)(nil)).Elem(), CheckSettingsGrpcTlsConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsHttpInput)(nil)).Elem(), CheckSettingsHttpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsHttpPtrInput)(nil)).Elem(), CheckSettingsHttpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsHttpBasicAuthInput)(nil)).Elem(), CheckSettingsHttpBasicAuthArgs{})
@@ -4223,6 +4653,10 @@ func init() {
 	pulumi.RegisterOutputType(CheckSettingsDnsValidateAnswerRrsPtrOutput{})
 	pulumi.RegisterOutputType(CheckSettingsDnsValidateAuthorityRrsOutput{})
 	pulumi.RegisterOutputType(CheckSettingsDnsValidateAuthorityRrsPtrOutput{})
+	pulumi.RegisterOutputType(CheckSettingsGrpcOutput{})
+	pulumi.RegisterOutputType(CheckSettingsGrpcPtrOutput{})
+	pulumi.RegisterOutputType(CheckSettingsGrpcTlsConfigOutput{})
+	pulumi.RegisterOutputType(CheckSettingsGrpcTlsConfigPtrOutput{})
 	pulumi.RegisterOutputType(CheckSettingsHttpOutput{})
 	pulumi.RegisterOutputType(CheckSettingsHttpPtrOutput{})
 	pulumi.RegisterOutputType(CheckSettingsHttpBasicAuthOutput{})

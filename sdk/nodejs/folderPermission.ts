@@ -7,6 +7,52 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Manages the entire set of permissions for a folder. Permissions that aren't specified when applying this resource will be removed.
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const team = new grafana.oss.Team("team", {});
+ * const user = new grafana.oss.User("user", {
+ *     email: "user.name@example.com",
+ *     login: "user.name",
+ *     password: "my-password",
+ * });
+ * const collection = new grafana.oss.Folder("collection", {title: "Folder Title"});
+ * const collectionPermission = new grafana.oss.FolderPermission("collectionPermission", {
+ *     folderUid: collection.uid,
+ *     permissions: [
+ *         {
+ *             role: "Editor",
+ *             permission: "Edit",
+ *         },
+ *         {
+ *             teamId: team.id,
+ *             permission: "View",
+ *         },
+ *         {
+ *             userId: user.id,
+ *             permission: "Admin",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/folderPermission:FolderPermission name "{{ folderUID }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/folderPermission:FolderPermission name "{{ orgID }}:{{ folderUID }}"
+ * ```
+ *
  * @deprecated grafana.index/folderpermission.FolderPermission has been deprecated in favor of grafana.oss/folderpermission.FolderPermission
  */
 export class FolderPermission extends pulumi.CustomResource {

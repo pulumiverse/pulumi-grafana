@@ -11,6 +11,34 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Data source for retrieving a single probe by name.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticMonitoring"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := syntheticMonitoring.GetProbe(ctx, &syntheticmonitoring.GetProbeArgs{
+//				Name: "Atlanta",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // Deprecated: grafana.index/getsyntheticmonitoringprobe.getSyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/getprobe.getProbe
 func LookupSyntheticMonitoringProbe(ctx *pulumi.Context, args *LookupSyntheticMonitoringProbeArgs, opts ...pulumi.InvokeOption) (*LookupSyntheticMonitoringProbeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
@@ -24,20 +52,30 @@ func LookupSyntheticMonitoringProbe(ctx *pulumi.Context, args *LookupSyntheticMo
 
 // A collection of arguments for invoking getSyntheticMonitoringProbe.
 type LookupSyntheticMonitoringProbeArgs struct {
+	// Name of the probe.
 	Name string `pulumi:"name"`
 }
 
 // A collection of values returned by getSyntheticMonitoringProbe.
 type LookupSyntheticMonitoringProbeResult struct {
-	DisableScriptedChecks bool              `pulumi:"disableScriptedChecks"`
-	Id                    string            `pulumi:"id"`
-	Labels                map[string]string `pulumi:"labels"`
-	Latitude              float64           `pulumi:"latitude"`
-	Longitude             float64           `pulumi:"longitude"`
-	Name                  string            `pulumi:"name"`
-	Public                bool              `pulumi:"public"`
-	Region                string            `pulumi:"region"`
-	TenantId              int               `pulumi:"tenantId"`
+	// Disables scripted checks for this probe.
+	DisableScriptedChecks bool `pulumi:"disableScriptedChecks"`
+	// The ID of the probe.
+	Id string `pulumi:"id"`
+	// Custom labels to be included with collected metrics and logs.
+	Labels map[string]string `pulumi:"labels"`
+	// Latitude coordinates.
+	Latitude float64 `pulumi:"latitude"`
+	// Longitude coordinates.
+	Longitude float64 `pulumi:"longitude"`
+	// Name of the probe.
+	Name string `pulumi:"name"`
+	// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`.
+	Public bool `pulumi:"public"`
+	// Region of the probe.
+	Region string `pulumi:"region"`
+	// The tenant ID of the probe.
+	TenantId int `pulumi:"tenantId"`
 }
 
 func LookupSyntheticMonitoringProbeOutput(ctx *pulumi.Context, args LookupSyntheticMonitoringProbeOutputArgs, opts ...pulumi.InvokeOption) LookupSyntheticMonitoringProbeResultOutput {
@@ -55,6 +93,7 @@ func LookupSyntheticMonitoringProbeOutput(ctx *pulumi.Context, args LookupSynthe
 
 // A collection of arguments for invoking getSyntheticMonitoringProbe.
 type LookupSyntheticMonitoringProbeOutputArgs struct {
+	// Name of the probe.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -77,38 +116,47 @@ func (o LookupSyntheticMonitoringProbeResultOutput) ToLookupSyntheticMonitoringP
 	return o
 }
 
+// Disables scripted checks for this probe.
 func (o LookupSyntheticMonitoringProbeResultOutput) DisableScriptedChecks() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupSyntheticMonitoringProbeResult) bool { return v.DisableScriptedChecks }).(pulumi.BoolOutput)
 }
 
+// The ID of the probe.
 func (o LookupSyntheticMonitoringProbeResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSyntheticMonitoringProbeResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Custom labels to be included with collected metrics and logs.
 func (o LookupSyntheticMonitoringProbeResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupSyntheticMonitoringProbeResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Latitude coordinates.
 func (o LookupSyntheticMonitoringProbeResultOutput) Latitude() pulumi.Float64Output {
 	return o.ApplyT(func(v LookupSyntheticMonitoringProbeResult) float64 { return v.Latitude }).(pulumi.Float64Output)
 }
 
+// Longitude coordinates.
 func (o LookupSyntheticMonitoringProbeResultOutput) Longitude() pulumi.Float64Output {
 	return o.ApplyT(func(v LookupSyntheticMonitoringProbeResult) float64 { return v.Longitude }).(pulumi.Float64Output)
 }
 
+// Name of the probe.
 func (o LookupSyntheticMonitoringProbeResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSyntheticMonitoringProbeResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`.
 func (o LookupSyntheticMonitoringProbeResultOutput) Public() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupSyntheticMonitoringProbeResult) bool { return v.Public }).(pulumi.BoolOutput)
 }
 
+// Region of the probe.
 func (o LookupSyntheticMonitoringProbeResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSyntheticMonitoringProbeResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// The tenant ID of the probe.
 func (o LookupSyntheticMonitoringProbeResultOutput) TenantId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSyntheticMonitoringProbeResult) int { return v.TenantId }).(pulumi.IntOutput)
 }

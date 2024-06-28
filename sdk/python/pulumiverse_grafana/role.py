@@ -29,13 +29,12 @@ class RoleArgs:
                  version: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a Role resource.
-        :param pulumi.Input[bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
-               `version` should be set.
+        :param pulumi.Input[bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
         :param pulumi.Input[str] description: Description of the role.
         :param pulumi.Input[str] display_name: Display name of the role. Available with Grafana 8.5+.
-        :param pulumi.Input[bool] global_: Boolean to state whether the role is available across all organizations or not.
+        :param pulumi.Input[bool] global_: Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
         :param pulumi.Input[str] group: Group of the role. Available with Grafana 8.5+.
-        :param pulumi.Input[bool] hidden: Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
+        :param pulumi.Input[bool] hidden: Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
         :param pulumi.Input[str] name: Name of the role
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['RolePermissionArgs']]] permissions: Specific set of actions granted by the role.
@@ -69,8 +68,7 @@ class RoleArgs:
     @pulumi.getter(name="autoIncrementVersion")
     def auto_increment_version(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
-        `version` should be set.
+        Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
         """
         return pulumi.get(self, "auto_increment_version")
 
@@ -106,7 +104,7 @@ class RoleArgs:
     @pulumi.getter(name="global")
     def global_(self) -> Optional[pulumi.Input[bool]]:
         """
-        Boolean to state whether the role is available across all organizations or not.
+        Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
         """
         return pulumi.get(self, "global_")
 
@@ -130,7 +128,7 @@ class RoleArgs:
     @pulumi.getter
     def hidden(self) -> Optional[pulumi.Input[bool]]:
         """
-        Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
+        Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
         """
         return pulumi.get(self, "hidden")
 
@@ -215,13 +213,12 @@ class _RoleState:
                  version: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering Role resources.
-        :param pulumi.Input[bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
-               `version` should be set.
+        :param pulumi.Input[bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
         :param pulumi.Input[str] description: Description of the role.
         :param pulumi.Input[str] display_name: Display name of the role. Available with Grafana 8.5+.
-        :param pulumi.Input[bool] global_: Boolean to state whether the role is available across all organizations or not.
+        :param pulumi.Input[bool] global_: Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
         :param pulumi.Input[str] group: Group of the role. Available with Grafana 8.5+.
-        :param pulumi.Input[bool] hidden: Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
+        :param pulumi.Input[bool] hidden: Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
         :param pulumi.Input[str] name: Name of the role
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['RolePermissionArgs']]] permissions: Specific set of actions granted by the role.
@@ -255,8 +252,7 @@ class _RoleState:
     @pulumi.getter(name="autoIncrementVersion")
     def auto_increment_version(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
-        `version` should be set.
+        Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
         """
         return pulumi.get(self, "auto_increment_version")
 
@@ -292,7 +288,7 @@ class _RoleState:
     @pulumi.getter(name="global")
     def global_(self) -> Optional[pulumi.Input[bool]]:
         """
-        Boolean to state whether the role is available across all organizations or not.
+        Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
         """
         return pulumi.get(self, "global_")
 
@@ -316,7 +312,7 @@ class _RoleState:
     @pulumi.getter
     def hidden(self) -> Optional[pulumi.Input[bool]]:
         """
-        Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
+        Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
         """
         return pulumi.get(self, "hidden")
 
@@ -408,16 +404,56 @@ class Role(pulumi.CustomResource):
                  version: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Create a Role resource with the given unique name, props, and options.
+        **Note:** This resource is available only with Grafana Enterprise 8.+.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        super_user = grafana.enterprise.Role("superUser",
+            description="My Super User description",
+            global_=True,
+            permissions=[
+                grafana.enterprise.RolePermissionArgs(
+                    action="org.users:add",
+                    scope="users:*",
+                ),
+                grafana.enterprise.RolePermissionArgs(
+                    action="org.users:write",
+                    scope="users:*",
+                ),
+                grafana.enterprise.RolePermissionArgs(
+                    action="org.users:read",
+                    scope="users:*",
+                ),
+            ],
+            uid="superuseruid",
+            version=1)
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/role:Role name "{{ uid }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/role:Role name "{{ orgID }}:{{ uid }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
-               `version` should be set.
+        :param pulumi.Input[bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
         :param pulumi.Input[str] description: Description of the role.
         :param pulumi.Input[str] display_name: Display name of the role. Available with Grafana 8.5+.
-        :param pulumi.Input[bool] global_: Boolean to state whether the role is available across all organizations or not.
+        :param pulumi.Input[bool] global_: Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
         :param pulumi.Input[str] group: Group of the role. Available with Grafana 8.5+.
-        :param pulumi.Input[bool] hidden: Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
+        :param pulumi.Input[bool] hidden: Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
         :param pulumi.Input[str] name: Name of the role
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RolePermissionArgs']]]] permissions: Specific set of actions granted by the role.
@@ -431,7 +467,48 @@ class Role(pulumi.CustomResource):
                  args: Optional[RoleArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Role resource with the given unique name, props, and options.
+        **Note:** This resource is available only with Grafana Enterprise 8.+.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        super_user = grafana.enterprise.Role("superUser",
+            description="My Super User description",
+            global_=True,
+            permissions=[
+                grafana.enterprise.RolePermissionArgs(
+                    action="org.users:add",
+                    scope="users:*",
+                ),
+                grafana.enterprise.RolePermissionArgs(
+                    action="org.users:write",
+                    scope="users:*",
+                ),
+                grafana.enterprise.RolePermissionArgs(
+                    action="org.users:read",
+                    scope="users:*",
+                ),
+            ],
+            uid="superuseruid",
+            version=1)
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/role:Role name "{{ uid }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/role:Role name "{{ orgID }}:{{ uid }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param RoleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -509,13 +586,12 @@ class Role(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
-               `version` should be set.
+        :param pulumi.Input[bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
         :param pulumi.Input[str] description: Description of the role.
         :param pulumi.Input[str] display_name: Display name of the role. Available with Grafana 8.5+.
-        :param pulumi.Input[bool] global_: Boolean to state whether the role is available across all organizations or not.
+        :param pulumi.Input[bool] global_: Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
         :param pulumi.Input[str] group: Group of the role. Available with Grafana 8.5+.
-        :param pulumi.Input[bool] hidden: Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
+        :param pulumi.Input[bool] hidden: Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
         :param pulumi.Input[str] name: Name of the role
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RolePermissionArgs']]]] permissions: Specific set of actions granted by the role.
@@ -543,8 +619,7 @@ class Role(pulumi.CustomResource):
     @pulumi.getter(name="autoIncrementVersion")
     def auto_increment_version(self) -> pulumi.Output[Optional[bool]]:
         """
-        Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or
-        `version` should be set.
+        Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
         """
         return pulumi.get(self, "auto_increment_version")
 
@@ -568,7 +643,7 @@ class Role(pulumi.CustomResource):
     @pulumi.getter(name="global")
     def global_(self) -> pulumi.Output[Optional[bool]]:
         """
-        Boolean to state whether the role is available across all organizations or not.
+        Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
         """
         return pulumi.get(self, "global_")
 
@@ -584,7 +659,7 @@ class Role(pulumi.CustomResource):
     @pulumi.getter
     def hidden(self) -> pulumi.Output[Optional[bool]]:
         """
-        Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+.
+        Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
         """
         return pulumi.get(self, "hidden")
 

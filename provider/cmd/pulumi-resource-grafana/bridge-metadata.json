@@ -1055,6 +1055,16 @@
                                         }
                                     }
                                 },
+                                "grpc": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "tls_config": {
+                                                "maxItemsOne": true
+                                            }
+                                        }
+                                    }
+                                },
                                 "http": {
                                     "maxItemsOne": true,
                                     "elem": {

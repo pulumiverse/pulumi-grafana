@@ -5,6 +5,28 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = new grafana.oss.Annotation("test", {text: "basic text"});
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/annotation:Annotation name "{{ id }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/annotation:Annotation name "{{ orgID }}:{{ id }}"
+ * ```
+ *
  * @deprecated grafana.index/annotation.Annotation has been deprecated in favor of grafana.oss/annotation.Annotation
  */
 export class Annotation extends pulumi.CustomResource {

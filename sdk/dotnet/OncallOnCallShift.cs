@@ -10,6 +10,15 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/on_call_shifts/)
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/oncallOnCallShift:OncallOnCallShift name "{{ id }}"
+    /// ```
+    /// </summary>
     [Obsolete(@"grafana.index/oncalloncallshift.OncallOnCallShift has been deprecated in favor of grafana.oncall/oncallshift.OnCallShift")]
     [GrafanaResourceType("grafana:index/oncallOnCallShift:OncallOnCallShift")]
     public partial class OncallOnCallShift : global::Pulumi.CustomResource
@@ -21,7 +30,7 @@ namespace Pulumiverse.Grafana
         public Output<ImmutableArray<string>> ByDays { get; private set; } = null!;
 
         /// <summary>
-        /// This parameter takes a list of days of the month. Valid values are 1 to 31 or -31 to -1
+        /// This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
         /// </summary>
         [Output("byMonthdays")]
         public Output<ImmutableArray<int>> ByMonthdays { get; private set; } = null!;
@@ -69,8 +78,7 @@ namespace Pulumiverse.Grafana
         public Output<ImmutableArray<ImmutableArray<string>>> RollingUsers { get; private set; } = null!;
 
         /// <summary>
-        /// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example
-        /// "2020-09-05T08:00:00")
+        /// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
         /// </summary>
         [Output("start")]
         public Output<string> Start { get; private set; } = null!;
@@ -82,26 +90,25 @@ namespace Pulumiverse.Grafana
         public Output<int?> StartRotationFromUserIndex { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-        /// with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
         /// </summary>
         [Output("teamId")]
         public Output<string?> TeamId { get; private set; } = null!;
 
         /// <summary>
-        /// The shift's timezone. Overrides schedule's timezone.
+        /// The shift's timezone.  Overrides schedule's timezone.
         /// </summary>
         [Output("timeZone")]
         public Output<string?> TimeZone { get; private set; } = null!;
 
         /// <summary>
-        /// The shift's type. Can be rolling_users, recurrent_event, single_event
+        /// The shift's type. Can be rolling*users, recurrent*event, single_event
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The list of on-call users (for single_event and recurrent_event event type).
+        /// The list of on-call users (for single*event and recurrent*event event type).
         /// </summary>
         [Output("users")]
         public Output<ImmutableArray<string>> Users { get; private set; } = null!;
@@ -179,7 +186,7 @@ namespace Pulumiverse.Grafana
         private InputList<int>? _byMonthdays;
 
         /// <summary>
-        /// This parameter takes a list of days of the month. Valid values are 1 to 31 or -31 to -1
+        /// This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
         /// </summary>
         public InputList<int> ByMonthdays
         {
@@ -242,8 +249,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example
-        /// "2020-09-05T08:00:00")
+        /// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
         /// </summary>
         [Input("start", required: true)]
         public Input<string> Start { get; set; } = null!;
@@ -255,20 +261,19 @@ namespace Pulumiverse.Grafana
         public Input<int>? StartRotationFromUserIndex { get; set; }
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-        /// with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 
         /// <summary>
-        /// The shift's timezone. Overrides schedule's timezone.
+        /// The shift's timezone.  Overrides schedule's timezone.
         /// </summary>
         [Input("timeZone")]
         public Input<string>? TimeZone { get; set; }
 
         /// <summary>
-        /// The shift's type. Can be rolling_users, recurrent_event, single_event
+        /// The shift's type. Can be rolling*users, recurrent*event, single_event
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -277,7 +282,7 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _users;
 
         /// <summary>
-        /// The list of on-call users (for single_event and recurrent_event event type).
+        /// The list of on-call users (for single*event and recurrent*event event type).
         /// </summary>
         public InputList<string> Users
         {
@@ -315,7 +320,7 @@ namespace Pulumiverse.Grafana
         private InputList<int>? _byMonthdays;
 
         /// <summary>
-        /// This parameter takes a list of days of the month. Valid values are 1 to 31 or -31 to -1
+        /// This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
         /// </summary>
         public InputList<int> ByMonthdays
         {
@@ -378,8 +383,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example
-        /// "2020-09-05T08:00:00")
+        /// The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
         /// </summary>
         [Input("start")]
         public Input<string>? Start { get; set; }
@@ -391,20 +395,19 @@ namespace Pulumiverse.Grafana
         public Input<int>? StartRotationFromUserIndex { get; set; }
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-        /// with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 
         /// <summary>
-        /// The shift's timezone. Overrides schedule's timezone.
+        /// The shift's timezone.  Overrides schedule's timezone.
         /// </summary>
         [Input("timeZone")]
         public Input<string>? TimeZone { get; set; }
 
         /// <summary>
-        /// The shift's type. Can be rolling_users, recurrent_event, single_event
+        /// The shift's type. Can be rolling*users, recurrent*event, single_event
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -413,7 +416,7 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _users;
 
         /// <summary>
-        /// The list of on-call users (for single_event and recurrent_event event type).
+        /// The list of on-call users (for single*event and recurrent*event event type).
         /// </summary>
         public InputList<string> Users
         {

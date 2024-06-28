@@ -13,9 +13,67 @@ namespace Pulumiverse.Grafana
     [Obsolete(@"grafana.index/getfolder.getFolder has been deprecated in favor of grafana.oss/getfolder.getFolder")]
     public static class GetFolder
     {
+        /// <summary>
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = new Grafana.Oss.Folder("test", new()
+        ///     {
+        ///         Title = "test-folder",
+        ///         Uid = "test-ds-folder-uid",
+        ///     });
+        /// 
+        ///     var fromTitle = Grafana.Oss.GetFolder.Invoke(new()
+        ///     {
+        ///         Title = test.Title,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetFolderResult> InvokeAsync(GetFolderArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFolderResult>("grafana:index/getFolder:getFolder", args ?? new GetFolderArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = new Grafana.Oss.Folder("test", new()
+        ///     {
+        ///         Title = "test-folder",
+        ///         Uid = "test-ds-folder-uid",
+        ///     });
+        /// 
+        ///     var fromTitle = Grafana.Oss.GetFolder.Invoke(new()
+        ///     {
+        ///         Title = test.Title,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetFolderResult> Invoke(GetFolderInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFolderResult>("grafana:index/getFolder:getFolder", args ?? new GetFolderInvokeArgs(), options.WithDefaults());
     }
@@ -23,9 +81,15 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetFolderArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
         [Input("orgId")]
         public string? OrgId { get; set; }
 
+        /// <summary>
+        /// The title of the folder.
+        /// </summary>
         [Input("title", required: true)]
         public string Title { get; set; } = null!;
 
@@ -37,9 +101,15 @@ namespace Pulumiverse.Grafana
 
     public sealed class GetFolderInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
 
+        /// <summary>
+        /// The title of the folder.
+        /// </summary>
         [Input("title", required: true)]
         public Input<string> Title { get; set; } = null!;
 
@@ -57,10 +127,25 @@ namespace Pulumiverse.Grafana
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// </summary>
         public readonly string? OrgId;
+        /// <summary>
+        /// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
+        /// </summary>
         public readonly string ParentFolderUid;
+        /// <summary>
+        /// The title of the folder.
+        /// </summary>
         public readonly string Title;
+        /// <summary>
+        /// Unique identifier.
+        /// </summary>
         public readonly string Uid;
+        /// <summary>
+        /// The full URL of the folder.
+        /// </summary>
         public readonly string Url;
 
         [OutputConstructor]

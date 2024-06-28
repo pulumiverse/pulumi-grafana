@@ -10,6 +10,72 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// Manages a single permission item for a dashboard. Conflicts with the "grafana.oss.DashboardPermission" resource which manages the entire set of permissions for a dashboard.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var teamTeam = new Grafana.Oss.Team("teamTeam");
+    /// 
+    ///     var userUser = new Grafana.Oss.User("userUser", new()
+    ///     {
+    ///         Email = "user.name@example.com",
+    ///         Password = "my-password",
+    ///         Login = "user.name",
+    ///     });
+    /// 
+    ///     var dashboard = new Grafana.Oss.Dashboard("dashboard", new()
+    ///     {
+    ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["title"] = "My Dashboard",
+    ///             ["uid"] = "my-dashboard-uid",
+    ///         }),
+    ///     });
+    /// 
+    ///     var role = new Grafana.Oss.DashboardPermissionItem("role", new()
+    ///     {
+    ///         DashboardUid = dashboard.Uid,
+    ///         Role = "Viewer",
+    ///         Permission = "View",
+    ///     });
+    /// 
+    ///     var userDashboardPermissionItem = new Grafana.Oss.DashboardPermissionItem("userDashboardPermissionItem", new()
+    ///     {
+    ///         DashboardUid = dashboard.Uid,
+    ///         User = userUser.Id,
+    ///         Permission = "Admin",
+    ///     });
+    /// 
+    ///     var teamDashboardPermissionItem = new Grafana.Oss.DashboardPermissionItem("teamDashboardPermissionItem", new()
+    ///     {
+    ///         DashboardUid = dashboard.Uid,
+    ///         Team = teamTeam.Id,
+    ///         Permission = "Edit",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/dashboardPermissionItem:DashboardPermissionItem name "{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/dashboardPermissionItem:DashboardPermissionItem name "{{ orgID }}:{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+    /// ```
+    /// </summary>
     [Obsolete(@"grafana.index/dashboardpermissionitem.DashboardPermissionItem has been deprecated in favor of grafana.oss/dashboardpermissionitem.DashboardPermissionItem")]
     [GrafanaResourceType("grafana:index/dashboardPermissionItem:DashboardPermissionItem")]
     public partial class DashboardPermissionItem : global::Pulumi.CustomResource

@@ -31,7 +31,7 @@ class OncallRouteArgs:
         :param pulumi.Input[int] position: The position of the route (starts from 0).
         :param pulumi.Input[str] routing_regex: Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
         :param pulumi.Input['OncallRouteMsteamsArgs'] msteams: MS teams-specific settings for a route.
-        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex
+        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex Defaults to `regex`.
         :param pulumi.Input['OncallRouteSlackArgs'] slack: Slack-specific settings for a route.
         :param pulumi.Input['OncallRouteTelegramArgs'] telegram: Telegram-specific settings for a route.
         """
@@ -112,7 +112,7 @@ class OncallRouteArgs:
     @pulumi.getter(name="routingType")
     def routing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of route. Can be jinja2, regex
+        The type of route. Can be jinja2, regex Defaults to `regex`.
         """
         return pulumi.get(self, "routing_type")
 
@@ -163,7 +163,7 @@ class _OncallRouteState:
         :param pulumi.Input['OncallRouteMsteamsArgs'] msteams: MS teams-specific settings for a route.
         :param pulumi.Input[int] position: The position of the route (starts from 0).
         :param pulumi.Input[str] routing_regex: Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
-        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex
+        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex Defaults to `regex`.
         :param pulumi.Input['OncallRouteSlackArgs'] slack: Slack-specific settings for a route.
         :param pulumi.Input['OncallRouteTelegramArgs'] telegram: Telegram-specific settings for a route.
         """
@@ -248,7 +248,7 @@ class _OncallRouteState:
     @pulumi.getter(name="routingType")
     def routing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of route. Can be jinja2, regex
+        The type of route. Can be jinja2, regex Defaults to `regex`.
         """
         return pulumi.get(self, "routing_type")
 
@@ -301,7 +301,45 @@ class OncallRoute(pulumi.CustomResource):
                  telegram: Optional[pulumi.Input[pulumi.InputType['OncallRouteTelegramArgs']]] = None,
                  __props__=None):
         """
-        Create a OncallRoute resource with the given unique name, props, and options.
+        * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/routes/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_grafana as grafana
+        import pulumiverse_grafana as grafana
+
+        example_slack_channel = grafana.onCall.get_slack_channel(name="example_slack_channel")
+        default = grafana.on_call.EscalationChain("default")
+        example_integration = grafana.on_call.Integration("exampleIntegration",
+            type="grafana",
+            default_route=grafana.on_call.IntegrationDefaultRouteArgs())
+        example_route = grafana.on_call.Route("exampleRoute",
+            integration_id=example_integration.id,
+            escalation_chain_id=default.id,
+            routing_regex="us-(east|west)",
+            position=0,
+            slack=grafana.on_call.RouteSlackArgs(
+                channel_id=example_slack_channel.slack_id,
+                enabled=True,
+            ),
+            telegram=grafana.on_call.RouteTelegramArgs(
+                id="ONCALLTELEGRAMID",
+                enabled=True,
+            ),
+            msteams=grafana.on_call.RouteMsteamsArgs(
+                id="ONCALLMSTEAMSID",
+                enabled=False,
+            ))
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/oncallRoute:OncallRoute name "{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] escalation_chain_id: The ID of the escalation chain.
@@ -309,7 +347,7 @@ class OncallRoute(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['OncallRouteMsteamsArgs']] msteams: MS teams-specific settings for a route.
         :param pulumi.Input[int] position: The position of the route (starts from 0).
         :param pulumi.Input[str] routing_regex: Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
-        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex
+        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex Defaults to `regex`.
         :param pulumi.Input[pulumi.InputType['OncallRouteSlackArgs']] slack: Slack-specific settings for a route.
         :param pulumi.Input[pulumi.InputType['OncallRouteTelegramArgs']] telegram: Telegram-specific settings for a route.
         """
@@ -320,7 +358,45 @@ class OncallRoute(pulumi.CustomResource):
                  args: OncallRouteArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a OncallRoute resource with the given unique name, props, and options.
+        * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/routes/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_grafana as grafana
+        import pulumiverse_grafana as grafana
+
+        example_slack_channel = grafana.onCall.get_slack_channel(name="example_slack_channel")
+        default = grafana.on_call.EscalationChain("default")
+        example_integration = grafana.on_call.Integration("exampleIntegration",
+            type="grafana",
+            default_route=grafana.on_call.IntegrationDefaultRouteArgs())
+        example_route = grafana.on_call.Route("exampleRoute",
+            integration_id=example_integration.id,
+            escalation_chain_id=default.id,
+            routing_regex="us-(east|west)",
+            position=0,
+            slack=grafana.on_call.RouteSlackArgs(
+                channel_id=example_slack_channel.slack_id,
+                enabled=True,
+            ),
+            telegram=grafana.on_call.RouteTelegramArgs(
+                id="ONCALLTELEGRAMID",
+                enabled=True,
+            ),
+            msteams=grafana.on_call.RouteMsteamsArgs(
+                id="ONCALLMSTEAMSID",
+                enabled=False,
+            ))
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/oncallRoute:OncallRoute name "{{ id }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param OncallRouteArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -402,7 +478,7 @@ class OncallRoute(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['OncallRouteMsteamsArgs']] msteams: MS teams-specific settings for a route.
         :param pulumi.Input[int] position: The position of the route (starts from 0).
         :param pulumi.Input[str] routing_regex: Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
-        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex
+        :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex Defaults to `regex`.
         :param pulumi.Input[pulumi.InputType['OncallRouteSlackArgs']] slack: Slack-specific settings for a route.
         :param pulumi.Input[pulumi.InputType['OncallRouteTelegramArgs']] telegram: Telegram-specific settings for a route.
         """
@@ -464,7 +540,7 @@ class OncallRoute(pulumi.CustomResource):
     @pulumi.getter(name="routingType")
     def routing_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The type of route. Can be jinja2, regex
+        The type of route. Can be jinja2, regex Defaults to `regex`.
         """
         return pulumi.get(self, "routing_type")
 

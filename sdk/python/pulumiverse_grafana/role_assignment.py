@@ -203,7 +203,48 @@ class RoleAssignment(pulumi.CustomResource):
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  __props__=None):
         """
-        Create a RoleAssignment resource with the given unique name, props, and options.
+        Manages the entire set of assignments for a role. Assignments that aren't specified when applying this resource will be removed.
+        **Note:** This resource is available only with Grafana Enterprise 9.2+.
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test_role = grafana.enterprise.Role("testRole",
+            uid="testrole",
+            version=1,
+            global_=True,
+            permissions=[grafana.enterprise.RolePermissionArgs(
+                action="org.users:add",
+                scope="users:*",
+            )])
+        test_team = grafana.oss.Team("testTeam")
+        test_user = grafana.oss.User("testUser",
+            email="terraform_user@test.com",
+            login="terraform_user@test.com",
+            password="password")
+        test_sa = grafana.oss.ServiceAccount("testSa", role="Viewer")
+        test = grafana.enterprise.RoleAssignment("test",
+            role_uid=test_role.uid,
+            users=[test_user.id],
+            teams=[test_team.id],
+            service_accounts=[test_sa.id])
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/roleAssignment:RoleAssignment name "{{ roleUID }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/roleAssignment:RoleAssignment name "{{ orgID }}:{{ roleUID }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -219,7 +260,48 @@ class RoleAssignment(pulumi.CustomResource):
                  args: RoleAssignmentArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a RoleAssignment resource with the given unique name, props, and options.
+        Manages the entire set of assignments for a role. Assignments that aren't specified when applying this resource will be removed.
+        **Note:** This resource is available only with Grafana Enterprise 9.2+.
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test_role = grafana.enterprise.Role("testRole",
+            uid="testrole",
+            version=1,
+            global_=True,
+            permissions=[grafana.enterprise.RolePermissionArgs(
+                action="org.users:add",
+                scope="users:*",
+            )])
+        test_team = grafana.oss.Team("testTeam")
+        test_user = grafana.oss.User("testUser",
+            email="terraform_user@test.com",
+            login="terraform_user@test.com",
+            password="password")
+        test_sa = grafana.oss.ServiceAccount("testSa", role="Viewer")
+        test = grafana.enterprise.RoleAssignment("test",
+            role_uid=test_role.uid,
+            users=[test_user.id],
+            teams=[test_team.id],
+            service_accounts=[test_sa.id])
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/roleAssignment:RoleAssignment name "{{ roleUID }}"
+        ```
+
+        ```sh
+        $ pulumi import grafana:index/roleAssignment:RoleAssignment name "{{ orgID }}:{{ roleUID }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param RoleAssignmentArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

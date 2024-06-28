@@ -11,6 +11,32 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloud.GetOrganization(ctx, &cloud.GetOrganizationArgs{
+//				Slug: pulumi.StringRef("my-org"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // Deprecated: grafana.index/getcloudorganization.getCloudOrganization has been deprecated in favor of grafana.cloud/getorganization.getOrganization
 func GetCloudOrganization(ctx *pulumi.Context, args *GetCloudOrganizationArgs, opts ...pulumi.InvokeOption) (*GetCloudOrganizationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
@@ -24,6 +50,7 @@ func GetCloudOrganization(ctx *pulumi.Context, args *GetCloudOrganizationArgs, o
 
 // A collection of arguments for invoking getCloudOrganization.
 type GetCloudOrganizationArgs struct {
+	// The ID of this resource.
 	Id   *string `pulumi:"id"`
 	Slug *string `pulumi:"slug"`
 }
@@ -31,6 +58,7 @@ type GetCloudOrganizationArgs struct {
 // A collection of values returned by getCloudOrganization.
 type GetCloudOrganizationResult struct {
 	CreatedAt string `pulumi:"createdAt"`
+	// The ID of this resource.
 	Id        string `pulumi:"id"`
 	Name      string `pulumi:"name"`
 	Slug      string `pulumi:"slug"`
@@ -53,6 +81,7 @@ func GetCloudOrganizationOutput(ctx *pulumi.Context, args GetCloudOrganizationOu
 
 // A collection of arguments for invoking getCloudOrganization.
 type GetCloudOrganizationOutputArgs struct {
+	// The ID of this resource.
 	Id   pulumi.StringPtrInput `pulumi:"id"`
 	Slug pulumi.StringPtrInput `pulumi:"slug"`
 }
@@ -80,6 +109,7 @@ func (o GetCloudOrganizationResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudOrganizationResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The ID of this resource.
 func (o GetCloudOrganizationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudOrganizationResult) string { return v.Id }).(pulumi.StringOutput)
 }

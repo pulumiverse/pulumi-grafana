@@ -7,6 +7,54 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Manages Grafana Alerting mute timings.
+ *
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/mute-timings/)
+ * * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#mute-timings)
+ *
+ * This resource requires Grafana 9.1.0 or later.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const myMuteTiming = new grafana.alerting.MuteTiming("myMuteTiming", {intervals: [{
+ *     daysOfMonths: [
+ *         "1:7",
+ *         "-1",
+ *     ],
+ *     location: "America/New_York",
+ *     months: [
+ *         "1:3",
+ *         "december",
+ *     ],
+ *     times: [{
+ *         end: "14:17",
+ *         start: "04:56",
+ *     }],
+ *     weekdays: [
+ *         "monday",
+ *         "tuesday:thursday",
+ *     ],
+ *     years: [
+ *         "2030",
+ *         "2025:2026",
+ *     ],
+ * }]});
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/muteTiming:MuteTiming name "{{ name }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/muteTiming:MuteTiming name "{{ orgID }}:{{ name }}"
+ * ```
+ *
  * @deprecated grafana.index/mutetiming.MuteTiming has been deprecated in favor of grafana.alerting/mutetiming.MuteTiming
  */
 export class MuteTiming extends pulumi.CustomResource {

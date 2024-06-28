@@ -11,6 +11,33 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := oss.LookupOrganizationPreferences(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // Deprecated: grafana.index/getorganizationpreferences.getOrganizationPreferences has been deprecated in favor of grafana.oss/getorganizationpreferences.getOrganizationPreferences
 func LookupOrganizationPreferences(ctx *pulumi.Context, args *LookupOrganizationPreferencesArgs, opts ...pulumi.InvokeOption) (*LookupOrganizationPreferencesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
@@ -24,18 +51,24 @@ func LookupOrganizationPreferences(ctx *pulumi.Context, args *LookupOrganization
 
 // A collection of arguments for invoking getOrganizationPreferences.
 type LookupOrganizationPreferencesArgs struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
 }
 
 // A collection of values returned by getOrganizationPreferences.
 type LookupOrganizationPreferencesResult struct {
+	// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 	HomeDashboardUid string `pulumi:"homeDashboardUid"`
 	// The provider-assigned unique ID for this managed resource.
-	Id        string  `pulumi:"id"`
-	OrgId     *string `pulumi:"orgId"`
-	Theme     string  `pulumi:"theme"`
-	Timezone  string  `pulumi:"timezone"`
-	WeekStart string  `pulumi:"weekStart"`
+	Id string `pulumi:"id"`
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	OrgId *string `pulumi:"orgId"`
+	// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+	Theme string `pulumi:"theme"`
+	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+	Timezone string `pulumi:"timezone"`
+	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
+	WeekStart string `pulumi:"weekStart"`
 }
 
 func LookupOrganizationPreferencesOutput(ctx *pulumi.Context, args LookupOrganizationPreferencesOutputArgs, opts ...pulumi.InvokeOption) LookupOrganizationPreferencesResultOutput {
@@ -53,6 +86,7 @@ func LookupOrganizationPreferencesOutput(ctx *pulumi.Context, args LookupOrganiz
 
 // A collection of arguments for invoking getOrganizationPreferences.
 type LookupOrganizationPreferencesOutputArgs struct {
+	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
 }
 
@@ -75,6 +109,7 @@ func (o LookupOrganizationPreferencesResultOutput) ToLookupOrganizationPreferenc
 	return o
 }
 
+// The Organization home dashboard UID. This is only available in Grafana 9.0+.
 func (o LookupOrganizationPreferencesResultOutput) HomeDashboardUid() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOrganizationPreferencesResult) string { return v.HomeDashboardUid }).(pulumi.StringOutput)
 }
@@ -84,18 +119,22 @@ func (o LookupOrganizationPreferencesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOrganizationPreferencesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 func (o LookupOrganizationPreferencesResultOutput) OrgId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupOrganizationPreferencesResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
+// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
 func (o LookupOrganizationPreferencesResultOutput) Theme() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOrganizationPreferencesResult) string { return v.Theme }).(pulumi.StringOutput)
 }
 
+// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
 func (o LookupOrganizationPreferencesResultOutput) Timezone() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOrganizationPreferencesResult) string { return v.Timezone }).(pulumi.StringOutput)
 }
 
+// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
 func (o LookupOrganizationPreferencesResultOutput) WeekStart() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOrganizationPreferencesResult) string { return v.WeekStart }).(pulumi.StringOutput)
 }
