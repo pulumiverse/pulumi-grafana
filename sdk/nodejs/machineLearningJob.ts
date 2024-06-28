@@ -5,6 +5,14 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * A job defines the queries and model parameters for a machine learning task.
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/machineLearningJob:MachineLearningJob name "{{ id }}"
+ * ```
+ *
  * @deprecated grafana.index/machinelearningjob.MachineLearningJob has been deprecated in favor of grafana.machinelearning/job.Job
  */
 export class MachineLearningJob extends pulumi.CustomResource {
@@ -57,12 +65,11 @@ export class MachineLearningJob extends pulumi.CustomResource {
      */
     public readonly holidays!: pulumi.Output<string[] | undefined>;
     /**
-     * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-     * for the full list of available hyperparameters.
+     * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
      */
     public readonly hyperParams!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * The data interval in seconds to train the data on.
+     * The data interval in seconds to train the data on. Defaults to `300`.
      */
     public readonly interval!: pulumi.Output<number | undefined>;
     /**
@@ -78,7 +85,7 @@ export class MachineLearningJob extends pulumi.CustomResource {
      */
     public readonly queryParams!: pulumi.Output<{[key: string]: any}>;
     /**
-     * The data interval in seconds to train the data on.
+     * The data interval in seconds to train the data on. Defaults to `7776000`.
      */
     public readonly trainingWindow!: pulumi.Output<number | undefined>;
 
@@ -167,12 +174,11 @@ export interface MachineLearningJobState {
      */
     holidays?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-     * for the full list of available hyperparameters.
+     * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
      */
     hyperParams?: pulumi.Input<{[key: string]: any}>;
     /**
-     * The data interval in seconds to train the data on.
+     * The data interval in seconds to train the data on. Defaults to `300`.
      */
     interval?: pulumi.Input<number>;
     /**
@@ -188,7 +194,7 @@ export interface MachineLearningJobState {
      */
     queryParams?: pulumi.Input<{[key: string]: any}>;
     /**
-     * The data interval in seconds to train the data on.
+     * The data interval in seconds to train the data on. Defaults to `7776000`.
      */
     trainingWindow?: pulumi.Input<number>;
 }
@@ -218,12 +224,11 @@ export interface MachineLearningJobArgs {
      */
     holidays?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-     * for the full list of available hyperparameters.
+     * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
      */
     hyperParams?: pulumi.Input<{[key: string]: any}>;
     /**
-     * The data interval in seconds to train the data on.
+     * The data interval in seconds to train the data on. Defaults to `300`.
      */
     interval?: pulumi.Input<number>;
     /**
@@ -239,7 +244,7 @@ export interface MachineLearningJobArgs {
      */
     queryParams: pulumi.Input<{[key: string]: any}>;
     /**
-     * The data interval in seconds to train the data on.
+     * The data interval in seconds to train the data on. Defaults to `7776000`.
      */
     trainingWindow?: pulumi.Input<number>;
 }

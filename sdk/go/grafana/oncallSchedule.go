@@ -12,11 +12,74 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/onCall"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleSlackChannel, err := onCall.GetSlackChannel(ctx, &oncall.GetSlackChannelArgs{
+//				Name: "example_slack_channel",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			exampleUserGroup, err := onCall.GetUserGroup(ctx, &oncall.GetUserGroupArgs{
+//				SlackHandle: "example_slack_handle",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// ICal based schedule
+//			_, err = onCall.NewSchedule(ctx, "exampleScheduleSchedule", &onCall.ScheduleArgs{
+//				Type:             pulumi.String("ical"),
+//				IcalUrlPrimary:   pulumi.String("https://example.com/example_ical.ics"),
+//				IcalUrlOverrides: pulumi.String("https://example.com/example_overrides_ical.ics"),
+//				Slack: &oncall.ScheduleSlackArgs{
+//					ChannelId:   pulumi.String(exampleSlackChannel.SlackId),
+//					UserGroupId: pulumi.String(exampleUserGroup.SlackId),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Shift based schedule
+//			_, err = onCall.NewSchedule(ctx, "exampleScheduleOnCall/scheduleSchedule", &onCall.ScheduleArgs{
+//				Type:             pulumi.String("calendar"),
+//				TimeZone:         pulumi.String("America/New_York"),
+//				Shifts:           pulumi.StringArray{},
+//				IcalUrlOverrides: pulumi.String("https://example.com/example_overrides_ical.ics"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/oncallSchedule:OncallSchedule name "{{ id }}"
+// ```
+//
 // Deprecated: grafana.index/oncallschedule.OncallSchedule has been deprecated in favor of grafana.oncall/schedule.Schedule
 type OncallSchedule struct {
 	pulumi.CustomResourceState
 
-	// Enable overrides via web UI (it will ignore ical_url_overrides).
+	// Enable overrides via web UI (it will ignore ical*url*overrides).
 	EnableWebOverrides pulumi.BoolPtrOutput `pulumi:"enableWebOverrides"`
 	// The URL of external iCal calendar which override primary events.
 	IcalUrlOverrides pulumi.StringPtrOutput `pulumi:"icalUrlOverrides"`
@@ -28,8 +91,7 @@ type OncallSchedule struct {
 	Shifts pulumi.StringArrayOutput `pulumi:"shifts"`
 	// The Slack-specific settings for a schedule.
 	Slack OncallScheduleSlackPtrOutput `pulumi:"slack"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
 	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
 	// The schedule's time zone.
 	TimeZone pulumi.StringPtrOutput `pulumi:"timeZone"`
@@ -76,7 +138,7 @@ func GetOncallSchedule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OncallSchedule resources.
 type oncallScheduleState struct {
-	// Enable overrides via web UI (it will ignore ical_url_overrides).
+	// Enable overrides via web UI (it will ignore ical*url*overrides).
 	EnableWebOverrides *bool `pulumi:"enableWebOverrides"`
 	// The URL of external iCal calendar which override primary events.
 	IcalUrlOverrides *string `pulumi:"icalUrlOverrides"`
@@ -88,8 +150,7 @@ type oncallScheduleState struct {
 	Shifts []string `pulumi:"shifts"`
 	// The Slack-specific settings for a schedule.
 	Slack *OncallScheduleSlack `pulumi:"slack"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
 	TeamId *string `pulumi:"teamId"`
 	// The schedule's time zone.
 	TimeZone *string `pulumi:"timeZone"`
@@ -98,7 +159,7 @@ type oncallScheduleState struct {
 }
 
 type OncallScheduleState struct {
-	// Enable overrides via web UI (it will ignore ical_url_overrides).
+	// Enable overrides via web UI (it will ignore ical*url*overrides).
 	EnableWebOverrides pulumi.BoolPtrInput
 	// The URL of external iCal calendar which override primary events.
 	IcalUrlOverrides pulumi.StringPtrInput
@@ -110,8 +171,7 @@ type OncallScheduleState struct {
 	Shifts pulumi.StringArrayInput
 	// The Slack-specific settings for a schedule.
 	Slack OncallScheduleSlackPtrInput
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
 	TeamId pulumi.StringPtrInput
 	// The schedule's time zone.
 	TimeZone pulumi.StringPtrInput
@@ -124,7 +184,7 @@ func (OncallScheduleState) ElementType() reflect.Type {
 }
 
 type oncallScheduleArgs struct {
-	// Enable overrides via web UI (it will ignore ical_url_overrides).
+	// Enable overrides via web UI (it will ignore ical*url*overrides).
 	EnableWebOverrides *bool `pulumi:"enableWebOverrides"`
 	// The URL of external iCal calendar which override primary events.
 	IcalUrlOverrides *string `pulumi:"icalUrlOverrides"`
@@ -136,8 +196,7 @@ type oncallScheduleArgs struct {
 	Shifts []string `pulumi:"shifts"`
 	// The Slack-specific settings for a schedule.
 	Slack *OncallScheduleSlack `pulumi:"slack"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
 	TeamId *string `pulumi:"teamId"`
 	// The schedule's time zone.
 	TimeZone *string `pulumi:"timeZone"`
@@ -147,7 +206,7 @@ type oncallScheduleArgs struct {
 
 // The set of arguments for constructing a OncallSchedule resource.
 type OncallScheduleArgs struct {
-	// Enable overrides via web UI (it will ignore ical_url_overrides).
+	// Enable overrides via web UI (it will ignore ical*url*overrides).
 	EnableWebOverrides pulumi.BoolPtrInput
 	// The URL of external iCal calendar which override primary events.
 	IcalUrlOverrides pulumi.StringPtrInput
@@ -159,8 +218,7 @@ type OncallScheduleArgs struct {
 	Shifts pulumi.StringArrayInput
 	// The Slack-specific settings for a schedule.
 	Slack OncallScheduleSlackPtrInput
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-	// with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
 	TeamId pulumi.StringPtrInput
 	// The schedule's time zone.
 	TimeZone pulumi.StringPtrInput
@@ -255,7 +313,7 @@ func (o OncallScheduleOutput) ToOncallScheduleOutputWithContext(ctx context.Cont
 	return o
 }
 
-// Enable overrides via web UI (it will ignore ical_url_overrides).
+// Enable overrides via web UI (it will ignore ical*url*overrides).
 func (o OncallScheduleOutput) EnableWebOverrides() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OncallSchedule) pulumi.BoolPtrOutput { return v.EnableWebOverrides }).(pulumi.BoolPtrOutput)
 }
@@ -285,8 +343,7 @@ func (o OncallScheduleOutput) Slack() OncallScheduleSlackPtrOutput {
 	return o.ApplyT(func(v *OncallSchedule) OncallScheduleSlackPtrOutput { return v.Slack }).(OncallScheduleSlackPtrOutput)
 }
 
-// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team
-// with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
 func (o OncallScheduleOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallSchedule) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
 }

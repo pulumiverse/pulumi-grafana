@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Inputs
     public sealed class SyntheticMonitoringCheckSettingsTcpGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available.
+        /// Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
         /// </summary>
         [Input("ipVersion")]
         public Input<string>? IpVersion { get; set; }
@@ -38,7 +38,7 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string>? SourceIpAddress { get; set; }
 
         /// <summary>
-        /// Whether or not TLS is used when the connection is initiated.
+        /// Whether or not TLS is used when the connection is initiated. Defaults to `false`.
         /// </summary>
         [Input("tls")]
         public Input<bool>? Tls { get; set; }

@@ -10,6 +10,41 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// **Note:** This resource is available only with Grafana 9.1+.
+    /// 
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var admin = new Grafana.Oss.ServiceAccount("admin", new()
+    ///     {
+    ///         IsDisabled = false,
+    ///         Role = "Admin",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/serviceAccountToken:ServiceAccountToken name "{{ id }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/serviceAccountToken:ServiceAccountToken name "{{ orgID }}:{{ id }}"
+    /// ```
+    /// </summary>
     [Obsolete(@"grafana.index/serviceaccounttoken.ServiceAccountToken has been deprecated in favor of grafana.oss/serviceaccounttoken.ServiceAccountToken")]
     [GrafanaResourceType("grafana:index/serviceAccountToken:ServiceAccountToken")]
     public partial class ServiceAccountToken : global::Pulumi.CustomResource
@@ -33,7 +68,7 @@ namespace Pulumiverse.Grafana
         public Output<string> Key { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the service account token.
+        /// The name of the service account.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -108,7 +143,7 @@ namespace Pulumiverse.Grafana
     public sealed class ServiceAccountTokenArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the service account token.
+        /// The name of the service account.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -164,7 +199,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The name of the service account token.
+        /// The name of the service account.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

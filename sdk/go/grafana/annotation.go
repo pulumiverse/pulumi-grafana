@@ -12,6 +12,45 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := oss.NewAnnotation(ctx, "test", &oss.AnnotationArgs{
+//				Text: pulumi.String("basic text"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/annotation:Annotation name "{{ id }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/annotation:Annotation name "{{ orgID }}:{{ id }}"
+// ```
+//
 // Deprecated: grafana.index/annotation.Annotation has been deprecated in favor of grafana.oss/annotation.Annotation
 type Annotation struct {
 	pulumi.CustomResourceState

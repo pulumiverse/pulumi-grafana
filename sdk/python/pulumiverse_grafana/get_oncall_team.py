@@ -58,6 +58,9 @@ class GetOncallTeamResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The team name.
+        """
         return pulumi.get(self, "name")
 
 
@@ -76,7 +79,17 @@ class AwaitableGetOncallTeamResult(GetOncallTeamResult):
 def get_oncall_team(name: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallTeamResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    example_team = grafana.onCall.get_team(name="example_team")
+    ```
+
+
+    :param str name: The team name.
     """
     pulumi.log.warn("""get_oncall_team is deprecated: grafana.index/getoncallteam.getOncallTeam has been deprecated in favor of grafana.oncall/getteam.getTeam""")
     __args__ = dict()
@@ -95,7 +108,17 @@ def get_oncall_team(name: Optional[str] = None,
 def get_oncall_team_output(name: Optional[pulumi.Input[str]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallTeamResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    example_team = grafana.onCall.get_team(name="example_team")
+    ```
+
+
+    :param str name: The team name.
     """
     pulumi.log.warn("""get_oncall_team is deprecated: grafana.index/getoncallteam.getOncallTeam has been deprecated in favor of grafana.oncall/getteam.getTeam""")
     ...

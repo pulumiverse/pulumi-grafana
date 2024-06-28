@@ -10,6 +10,44 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// Equivalent to the the `team_sync` attribute of the `grafana.oss.Team` resource. Use one or the other to configure a team's external groups syncing config.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myTeam = new Grafana.Oss.Team("myTeam");
+    /// 
+    ///     var test_team_group = new Grafana.Enterprise.TeamExternalGroup("test-team-group", new()
+    ///     {
+    ///         TeamId = myTeam.Id,
+    ///         Groups = new[]
+    ///         {
+    ///             "test-group-1",
+    ///             "test-group-2",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup name "{{ teamID }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup name "{{ orgID }}:{{ teamID }}"
+    /// ```
+    /// </summary>
     [Obsolete(@"grafana.index/teamexternalgroup.TeamExternalGroup has been deprecated in favor of grafana.enterprise/teamexternalgroup.TeamExternalGroup")]
     [GrafanaResourceType("grafana:index/teamExternalGroup:TeamExternalGroup")]
     public partial class TeamExternalGroup : global::Pulumi.CustomResource

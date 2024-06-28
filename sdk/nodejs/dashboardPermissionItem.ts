@@ -5,6 +5,51 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Manages a single permission item for a dashboard. Conflicts with the "grafana.oss.DashboardPermission" resource which manages the entire set of permissions for a dashboard.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const teamTeam = new grafana.oss.Team("teamTeam", {});
+ * const userUser = new grafana.oss.User("userUser", {
+ *     email: "user.name@example.com",
+ *     password: "my-password",
+ *     login: "user.name",
+ * });
+ * const dashboard = new grafana.oss.Dashboard("dashboard", {configJson: JSON.stringify({
+ *     title: "My Dashboard",
+ *     uid: "my-dashboard-uid",
+ * })});
+ * const role = new grafana.oss.DashboardPermissionItem("role", {
+ *     dashboardUid: dashboard.uid,
+ *     role: "Viewer",
+ *     permission: "View",
+ * });
+ * const userDashboardPermissionItem = new grafana.oss.DashboardPermissionItem("userDashboardPermissionItem", {
+ *     dashboardUid: dashboard.uid,
+ *     user: userUser.id,
+ *     permission: "Admin",
+ * });
+ * const teamDashboardPermissionItem = new grafana.oss.DashboardPermissionItem("teamDashboardPermissionItem", {
+ *     dashboardUid: dashboard.uid,
+ *     team: teamTeam.id,
+ *     permission: "Edit",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/dashboardPermissionItem:DashboardPermissionItem name "{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/dashboardPermissionItem:DashboardPermissionItem name "{{ orgID }}:{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+ * ```
+ *
  * @deprecated grafana.index/dashboardpermissionitem.DashboardPermissionItem has been deprecated in favor of grafana.oss/dashboardpermissionitem.DashboardPermissionItem
  */
 export class DashboardPermissionItem extends pulumi.CustomResource {

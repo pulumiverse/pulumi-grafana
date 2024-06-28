@@ -67,7 +67,16 @@ class AwaitableGetOncallUserGroupResult(GetOncallUserGroupResult):
 def get_oncall_user_group(slack_handle: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOncallUserGroupResult:
     """
-    Use this data source to access information about an existing resource.
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    example_user_group = grafana.onCall.get_user_group(slack_handle="example_slack_handle")
+    ```
     """
     pulumi.log.warn("""get_oncall_user_group is deprecated: grafana.index/getoncallusergroup.getOncallUserGroup has been deprecated in favor of grafana.oncall/getusergroup.getUserGroup""")
     __args__ = dict()
@@ -85,7 +94,16 @@ def get_oncall_user_group(slack_handle: Optional[str] = None,
 def get_oncall_user_group_output(slack_handle: Optional[pulumi.Input[str]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallUserGroupResult]:
     """
-    Use this data source to access information about an existing resource.
+    * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    example_user_group = grafana.onCall.get_user_group(slack_handle="example_slack_handle")
+    ```
     """
     pulumi.log.warn("""get_oncall_user_group is deprecated: grafana.index/getoncallusergroup.getOncallUserGroup has been deprecated in favor of grafana.oncall/getusergroup.getUserGroup""")
     ...

@@ -27,7 +27,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// The method of finding the variable value to extract. JSON_PATH, REGEX, CSS_SELECTOR
+        /// The method of finding the variable value to extract. JSON*PATH, REGEX, CSS*SELECTOR
         /// </summary>
         public readonly string Type;
 

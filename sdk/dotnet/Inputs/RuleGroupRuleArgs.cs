@@ -17,7 +17,7 @@ namespace Pulumiverse.Grafana.Inputs
         private InputMap<string>? _annotations;
 
         /// <summary>
-        /// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing.
+        /// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
         /// </summary>
         public InputMap<string> Annotations
         {
@@ -44,19 +44,19 @@ namespace Pulumiverse.Grafana.Inputs
         }
 
         /// <summary>
-        /// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
+        /// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
         /// </summary>
         [Input("execErrState")]
         public Input<string>? ExecErrState { get; set; }
 
         /// <summary>
-        /// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
+        /// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
         /// </summary>
         [Input("for")]
         public Input<string>? For { get; set; }
 
         /// <summary>
-        /// Sets whether the alert should be paused or not.
+        /// Sets whether the alert should be paused or not. Defaults to `false`.
         /// </summary>
         [Input("isPaused")]
         public Input<bool>? IsPaused { get; set; }
@@ -65,7 +65,7 @@ namespace Pulumiverse.Grafana.Inputs
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
+        /// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -80,7 +80,7 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
+        /// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
         /// </summary>
         [Input("noDataState")]
         public Input<string>? NoDataState { get; set; }

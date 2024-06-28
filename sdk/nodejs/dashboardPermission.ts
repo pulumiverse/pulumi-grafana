@@ -7,6 +7,55 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Manages the entire set of permissions for a dashboard. Permissions that aren't specified when applying this resource will be removed.
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard_permissions/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const team = new grafana.oss.Team("team", {});
+ * const user = new grafana.oss.User("user", {
+ *     email: "user.name@example.com",
+ *     password: "my-password",
+ *     login: "user.name",
+ * });
+ * const metrics = new grafana.oss.Dashboard("metrics", {configJson: JSON.stringify({
+ *     title: "My Dashboard",
+ *     uid: "my-dashboard-uid",
+ * })});
+ * const collectionPermission = new grafana.oss.DashboardPermission("collectionPermission", {
+ *     dashboardUid: metrics.uid,
+ *     permissions: [
+ *         {
+ *             role: "Editor",
+ *             permission: "Edit",
+ *         },
+ *         {
+ *             teamId: team.id,
+ *             permission: "View",
+ *         },
+ *         {
+ *             userId: user.id,
+ *             permission: "Admin",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/dashboardPermission:DashboardPermission name "{{ dashboardUID }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/dashboardPermission:DashboardPermission name "{{ orgID }}:{{ dashboardUID }}"
+ * ```
+ *
  * @deprecated grafana.index/dashboardpermission.DashboardPermission has been deprecated in favor of grafana.oss/dashboardpermission.DashboardPermission
  */
 export class DashboardPermission extends pulumi.CustomResource {

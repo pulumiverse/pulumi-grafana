@@ -7,6 +7,75 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Manages Grafana SSO Settings for OAuth2 and SAML. Support for SAML is currently in preview, it will be available in Grafana Enterprise starting with v11.1.
+ *
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/sso-settings/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * // Configure SSO for GitHub using OAuth2
+ * const githubSsoSettings = new grafana.oss.SsoSettings("githubSsoSettings", {
+ *     oauth2Settings: {
+ *         allowSignUp: true,
+ *         allowedDomains: "mycompany.com mycompany.org",
+ *         allowedOrganizations: "[\"My Organization\", \"Octocats\"]",
+ *         autoLogin: false,
+ *         clientId: "<your GitHub app client id>",
+ *         clientSecret: "<your GitHub app client secret>",
+ *         name: "Github",
+ *         scopes: "user:email,read:org",
+ *         teamIds: "150,300",
+ *     },
+ *     providerName: "github",
+ * });
+ * // Configure SSO using generic OAuth2
+ * const genericSsoSettings = new grafana.oss.SsoSettings("genericSsoSettings", {
+ *     oauth2Settings: {
+ *         allowSignUp: true,
+ *         apiUrl: "https://<domain>/userinfo",
+ *         authUrl: "https://<domain>/authorize",
+ *         autoLogin: false,
+ *         clientId: "<client id>",
+ *         clientSecret: "<client secret>",
+ *         name: "Auth0",
+ *         scopes: "openid profile email offline_access",
+ *         tokenUrl: "https://<domain>/oauth/token",
+ *         usePkce: true,
+ *         useRefreshToken: true,
+ *     },
+ *     providerName: "generic_oauth",
+ * });
+ * // Configure SSO using SAML
+ * const samlSsoSettings = new grafana.oss.SsoSettings("samlSsoSettings", {
+ *     providerName: "saml",
+ *     samlSettings: {
+ *         allowSignUp: true,
+ *         assertionAttributeEmail: "email",
+ *         assertionAttributeLogin: "login",
+ *         certificatePath: "devenv/docker/blocks/auth/saml-enterprise/cert.crt",
+ *         idpMetadataUrl: "https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml",
+ *         nameIdFormat: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
+ *         privateKeyPath: "devenv/docker/blocks/auth/saml-enterprise/key.pem",
+ *         signatureAlgorithm: "rsa-sha256",
+ *     },
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/ssoSettings:SsoSettings name "{{ provider }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/ssoSettings:SsoSettings name "{{ orgID }}:{{ provider }}"
+ * ```
+ *
  * @deprecated grafana.index/ssosettings.SsoSettings has been deprecated in favor of grafana.oss/ssosettings.SsoSettings
  */
 export class SsoSettings extends pulumi.CustomResource {
@@ -39,7 +108,7 @@ export class SsoSettings extends pulumi.CustomResource {
     }
 
     /**
-     * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
+     * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
      */
     public readonly oauth2Settings!: pulumi.Output<outputs.SsoSettingsOauth2Settings | undefined>;
     /**
@@ -91,7 +160,7 @@ export class SsoSettings extends pulumi.CustomResource {
  */
 export interface SsoSettingsState {
     /**
-     * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
+     * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
      */
     oauth2Settings?: pulumi.Input<inputs.SsoSettingsOauth2Settings>;
     /**
@@ -109,7 +178,7 @@ export interface SsoSettingsState {
  */
 export interface SsoSettingsArgs {
     /**
-     * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, genericOauth providers.
+     * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
      */
     oauth2Settings?: pulumi.Input<inputs.SsoSettingsOauth2Settings>;
     /**

@@ -20,6 +20,12 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<Inputs.SyntheticMonitoringCheckSettingsDnsGetArgs>? Dns { get; set; }
 
         /// <summary>
+        /// Settings for gRPC Health check. The target must be of the form `&lt;host&gt;:&lt;port&gt;`, where the host portion must be a valid hostname or IP address.
+        /// </summary>
+        [Input("grpc")]
+        public Input<Inputs.SyntheticMonitoringCheckSettingsGrpcGetArgs>? Grpc { get; set; }
+
+        /// <summary>
         /// Settings for HTTP check. The target must be a URL (http or https).
         /// </summary>
         [Input("http")]

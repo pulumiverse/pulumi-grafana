@@ -10,6 +10,76 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// * [Official documentation](https://grafana.com/docs/oncall/latest/configure/escalation-chains-and-routes/)
+    /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_policies/)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumi.Grafana;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var @default = new Grafana.OnCall.EscalationChain("default", new()
+    ///     {
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         Provider = grafana.Oncall,
+    ///     });
+    /// 
+    ///     var alex = Grafana.OnCall.GetUser.Invoke(new()
+    ///     {
+    ///         Username = "alex",
+    ///     });
+    /// 
+    ///     // Notify step
+    ///     var exampleNotifyStepEscalation = new Grafana.OnCall.Escalation("exampleNotifyStepEscalation", new()
+    ///     {
+    ///         EscalationChainId = @default.Id,
+    ///         Type = "notify_persons",
+    ///         PersonsToNotifies = new[]
+    ///         {
+    ///             alex.Apply(getUserResult =&gt; getUserResult.Id),
+    ///         },
+    ///         Position = 0,
+    ///     });
+    /// 
+    ///     // Wait step
+    ///     var exampleNotifyStepOnCall_escalationEscalation = new Grafana.OnCall.Escalation("exampleNotifyStepOnCall/escalationEscalation", new()
+    ///     {
+    ///         EscalationChainId = @default.Id,
+    ///         Type = "wait",
+    ///         Duration = 300,
+    ///         Position = 1,
+    ///     });
+    /// 
+    ///     // Important step
+    ///     var exampleNotifyStepGrafanaOnCall_escalationEscalation = new Grafana.OnCall.Escalation("exampleNotifyStepGrafanaOnCall/escalationEscalation", new()
+    ///     {
+    ///         EscalationChainId = @default.Id,
+    ///         Type = "notify_persons",
+    ///         Important = true,
+    ///         PersonsToNotifies = new[]
+    ///         {
+    ///             alex.Apply(getUserResult =&gt; getUserResult.Id),
+    ///         },
+    ///         Position = 0,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/oncallEscalation:OncallEscalation name "{{ id }}"
+    /// ```
+    /// </summary>
     [Obsolete(@"grafana.index/oncallescalation.OncallEscalation has been deprecated in favor of grafana.oncall/escalation.Escalation")]
     [GrafanaResourceType("grafana:index/oncallEscalation:OncallEscalation")]
     public partial class OncallEscalation : global::Pulumi.CustomResource
@@ -33,38 +103,37 @@ namespace Pulumiverse.Grafana
         public Output<string> EscalationChainId { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of a User Group for notify_user_group type step.
+        /// The ID of a User Group for notify*user*group type step.
         /// </summary>
         [Output("groupToNotify")]
         public Output<string?> GroupToNotify { get; private set; } = null!;
 
         /// <summary>
-        /// Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-        /// and notify_user_group,notify_team_members
+        /// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
         /// </summary>
         [Output("important")]
         public Output<bool?> Important { get; private set; } = null!;
 
         /// <summary>
-        /// The beginning of the time interval for notify_if_time_from_to type step in UTC (for example 08:00:00Z).
+        /// The beginning of the time interval for notify*if*time*from*to type step in UTC (for example 08:00:00Z).
         /// </summary>
         [Output("notifyIfTimeFrom")]
         public Output<string?> NotifyIfTimeFrom { get; private set; } = null!;
 
         /// <summary>
-        /// The end of the time interval for notify_if_time_from_to type step in UTC (for example 18:00:00Z).
+        /// The end of the time interval for notify*if*time*from*to type step in UTC (for example 18:00:00Z).
         /// </summary>
         [Output("notifyIfTimeTo")]
         public Output<string?> NotifyIfTimeTo { get; private set; } = null!;
 
         /// <summary>
-        /// ID of a Schedule for notify_on_call_from_schedule type step.
+        /// ID of a Schedule for notify*on*call*from*schedule type step.
         /// </summary>
         [Output("notifyOnCallFromSchedule")]
         public Output<string?> NotifyOnCallFromSchedule { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of a Team for a notify_team_members type step.
+        /// The ID of a Team for a notify*team*members type step.
         /// </summary>
         [Output("notifyToTeamMembers")]
         public Output<string?> NotifyToTeamMembers { get; private set; } = null!;
@@ -76,7 +145,7 @@ namespace Pulumiverse.Grafana
         public Output<ImmutableArray<string>> PersonsToNotifies { get; private set; } = null!;
 
         /// <summary>
-        /// The list of ID's of users for notify_person_next_each_time type step.
+        /// The list of ID's of users for notify*person*next*each*time type step.
         /// </summary>
         [Output("personsToNotifyNextEachTimes")]
         public Output<ImmutableArray<string>> PersonsToNotifyNextEachTimes { get; private set; } = null!;
@@ -88,9 +157,7 @@ namespace Pulumiverse.Grafana
         public Output<int> Position { get; private set; } = null!;
 
         /// <summary>
-        /// The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-        /// trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
-        /// notify_team_members
+        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -165,38 +232,37 @@ namespace Pulumiverse.Grafana
         public Input<string> EscalationChainId { get; set; } = null!;
 
         /// <summary>
-        /// The ID of a User Group for notify_user_group type step.
+        /// The ID of a User Group for notify*user*group type step.
         /// </summary>
         [Input("groupToNotify")]
         public Input<string>? GroupToNotify { get; set; }
 
         /// <summary>
-        /// Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-        /// and notify_user_group,notify_team_members
+        /// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
         /// </summary>
         [Input("important")]
         public Input<bool>? Important { get; set; }
 
         /// <summary>
-        /// The beginning of the time interval for notify_if_time_from_to type step in UTC (for example 08:00:00Z).
+        /// The beginning of the time interval for notify*if*time*from*to type step in UTC (for example 08:00:00Z).
         /// </summary>
         [Input("notifyIfTimeFrom")]
         public Input<string>? NotifyIfTimeFrom { get; set; }
 
         /// <summary>
-        /// The end of the time interval for notify_if_time_from_to type step in UTC (for example 18:00:00Z).
+        /// The end of the time interval for notify*if*time*from*to type step in UTC (for example 18:00:00Z).
         /// </summary>
         [Input("notifyIfTimeTo")]
         public Input<string>? NotifyIfTimeTo { get; set; }
 
         /// <summary>
-        /// ID of a Schedule for notify_on_call_from_schedule type step.
+        /// ID of a Schedule for notify*on*call*from*schedule type step.
         /// </summary>
         [Input("notifyOnCallFromSchedule")]
         public Input<string>? NotifyOnCallFromSchedule { get; set; }
 
         /// <summary>
-        /// The ID of a Team for a notify_team_members type step.
+        /// The ID of a Team for a notify*team*members type step.
         /// </summary>
         [Input("notifyToTeamMembers")]
         public Input<string>? NotifyToTeamMembers { get; set; }
@@ -217,7 +283,7 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _personsToNotifyNextEachTimes;
 
         /// <summary>
-        /// The list of ID's of users for notify_person_next_each_time type step.
+        /// The list of ID's of users for notify*person*next*each*time type step.
         /// </summary>
         public InputList<string> PersonsToNotifyNextEachTimes
         {
@@ -232,9 +298,7 @@ namespace Pulumiverse.Grafana
         public Input<int> Position { get; set; } = null!;
 
         /// <summary>
-        /// The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-        /// trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
-        /// notify_team_members
+        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -266,38 +330,37 @@ namespace Pulumiverse.Grafana
         public Input<string>? EscalationChainId { get; set; }
 
         /// <summary>
-        /// The ID of a User Group for notify_user_group type step.
+        /// The ID of a User Group for notify*user*group type step.
         /// </summary>
         [Input("groupToNotify")]
         public Input<string>? GroupToNotify { get; set; }
 
         /// <summary>
-        /// Will activate "important" personal notification rules. Actual for steps: notify_persons, notify_on_call_from_schedule
-        /// and notify_user_group,notify_team_members
+        /// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
         /// </summary>
         [Input("important")]
         public Input<bool>? Important { get; set; }
 
         /// <summary>
-        /// The beginning of the time interval for notify_if_time_from_to type step in UTC (for example 08:00:00Z).
+        /// The beginning of the time interval for notify*if*time*from*to type step in UTC (for example 08:00:00Z).
         /// </summary>
         [Input("notifyIfTimeFrom")]
         public Input<string>? NotifyIfTimeFrom { get; set; }
 
         /// <summary>
-        /// The end of the time interval for notify_if_time_from_to type step in UTC (for example 18:00:00Z).
+        /// The end of the time interval for notify*if*time*from*to type step in UTC (for example 18:00:00Z).
         /// </summary>
         [Input("notifyIfTimeTo")]
         public Input<string>? NotifyIfTimeTo { get; set; }
 
         /// <summary>
-        /// ID of a Schedule for notify_on_call_from_schedule type step.
+        /// ID of a Schedule for notify*on*call*from*schedule type step.
         /// </summary>
         [Input("notifyOnCallFromSchedule")]
         public Input<string>? NotifyOnCallFromSchedule { get; set; }
 
         /// <summary>
-        /// The ID of a Team for a notify_team_members type step.
+        /// The ID of a Team for a notify*team*members type step.
         /// </summary>
         [Input("notifyToTeamMembers")]
         public Input<string>? NotifyToTeamMembers { get; set; }
@@ -318,7 +381,7 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _personsToNotifyNextEachTimes;
 
         /// <summary>
-        /// The list of ID's of users for notify_person_next_each_time type step.
+        /// The list of ID's of users for notify*person*next*each*time type step.
         /// </summary>
         public InputList<string> PersonsToNotifyNextEachTimes
         {
@@ -333,9 +396,7 @@ namespace Pulumiverse.Grafana
         public Input<int>? Position { get; set; }
 
         /// <summary>
-        /// The type of escalation policy. Can be wait, notify_persons, notify_person_next_each_time, notify_on_call_from_schedule,
-        /// trigger_webhook, notify_user_group, resolve, notify_whole_channel, notify_if_time_from_to, repeat_escalation,
-        /// notify_team_members
+        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

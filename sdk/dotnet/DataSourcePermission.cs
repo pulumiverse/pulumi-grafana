@@ -10,6 +10,91 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// Manages the entire set of permissions for a datasource. Permissions that aren't specified when applying this resource will be removed.
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var team = new Grafana.Oss.Team("team");
+    /// 
+    ///     var foo = new Grafana.Oss.DataSource("foo", new()
+    ///     {
+    ///         Type = "cloudwatch",
+    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["defaultRegion"] = "us-east-1",
+    ///             ["authType"] = "keys",
+    ///         }),
+    ///         SecureJsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["accessKey"] = "123",
+    ///             ["secretKey"] = "456",
+    ///         }),
+    ///     });
+    /// 
+    ///     var user = new Grafana.Oss.User("user", new()
+    ///     {
+    ///         Email = "test-ds-permissions@example.com",
+    ///         Login = "test-ds-permissions",
+    ///         Password = "hunter2",
+    ///     });
+    /// 
+    ///     var sa = new Grafana.Oss.ServiceAccount("sa", new()
+    ///     {
+    ///         Role = "Viewer",
+    ///     });
+    /// 
+    ///     var fooPermissions = new Grafana.Enterprise.DataSourcePermission("fooPermissions", new()
+    ///     {
+    ///         DatasourceUid = foo.Uid,
+    ///         Permissions = new[]
+    ///         {
+    ///             new Grafana.Enterprise.Inputs.DataSourcePermissionPermissionArgs
+    ///             {
+    ///                 TeamId = team.Id,
+    ///                 Permission = "Edit",
+    ///             },
+    ///             new Grafana.Enterprise.Inputs.DataSourcePermissionPermissionArgs
+    ///             {
+    ///                 UserId = user.Id,
+    ///                 Permission = "Edit",
+    ///             },
+    ///             new Grafana.Enterprise.Inputs.DataSourcePermissionPermissionArgs
+    ///             {
+    ///                 BuiltInRole = "Viewer",
+    ///                 Permission = "Query",
+    ///             },
+    ///             new Grafana.Enterprise.Inputs.DataSourcePermissionPermissionArgs
+    ///             {
+    ///                 UserId = sa.Id,
+    ///                 Permission = "Query",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/dataSourcePermission:DataSourcePermission name "{{ datasourceID }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/dataSourcePermission:DataSourcePermission name "{{ orgID }}:{{ datasourceID }}"
+    /// ```
+    /// </summary>
     [Obsolete(@"grafana.index/datasourcepermission.DataSourcePermission has been deprecated in favor of grafana.enterprise/datasourcepermission.DataSourcePermission")]
     [GrafanaResourceType("grafana:index/dataSourcePermission:DataSourcePermission")]
     public partial class DataSourcePermission : global::Pulumi.CustomResource

@@ -11,6 +11,75 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages Grafana Alerting mute timings.
+//
+// * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/mute-timings/)
+// * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/alerting_provisioning/#mute-timings)
+//
+// This resource requires Grafana 9.1.0 or later.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/alerting"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := alerting.NewMuteTiming(ctx, "myMuteTiming", &alerting.MuteTimingArgs{
+//				Intervals: alerting.MuteTimingIntervalArray{
+//					&alerting.MuteTimingIntervalArgs{
+//						DaysOfMonths: pulumi.StringArray{
+//							pulumi.String("1:7"),
+//							pulumi.String("-1"),
+//						},
+//						Location: pulumi.String("America/New_York"),
+//						Months: pulumi.StringArray{
+//							pulumi.String("1:3"),
+//							pulumi.String("december"),
+//						},
+//						Times: alerting.MuteTimingIntervalTimeArray{
+//							&alerting.MuteTimingIntervalTimeArgs{
+//								End:   pulumi.String("14:17"),
+//								Start: pulumi.String("04:56"),
+//							},
+//						},
+//						Weekdays: pulumi.StringArray{
+//							pulumi.String("monday"),
+//							pulumi.String("tuesday:thursday"),
+//						},
+//						Years: pulumi.StringArray{
+//							pulumi.String("2030"),
+//							pulumi.String("2025:2026"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/muteTiming:MuteTiming name "{{ name }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/muteTiming:MuteTiming name "{{ orgID }}:{{ name }}"
+// ```
+//
 // Deprecated: grafana.index/mutetiming.MuteTiming has been deprecated in favor of grafana.alerting/mutetiming.MuteTiming
 type MuteTiming struct {
 	pulumi.CustomResourceState

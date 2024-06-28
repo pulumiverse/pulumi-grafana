@@ -11,6 +11,42 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := oss.NewTeam(ctx, "test", &oss.TeamArgs{
+//				Email: pulumi.String("test-team-email@test.com"),
+//				Preferences: &oss.TeamPreferencesArgs{
+//					Theme:    pulumi.String("dark"),
+//					Timezone: pulumi.String("utc"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = oss.LookupTeamOutput(ctx, oss.GetTeamOutputArgs{
+//				Name: test.Name,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // Deprecated: grafana.index/getteam.getTeam has been deprecated in favor of grafana.oss/getteam.getTeam
 func LookupTeam(ctx *pulumi.Context, args *LookupTeamArgs, opts ...pulumi.InvokeOption) (*LookupTeamResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

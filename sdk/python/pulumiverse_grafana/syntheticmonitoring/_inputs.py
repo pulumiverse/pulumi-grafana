@@ -15,6 +15,8 @@ __all__ = [
     'CheckSettingsDnsValidateAdditionalRrArgs',
     'CheckSettingsDnsValidateAnswerRrsArgs',
     'CheckSettingsDnsValidateAuthorityRrsArgs',
+    'CheckSettingsGrpcArgs',
+    'CheckSettingsGrpcTlsConfigArgs',
     'CheckSettingsHttpArgs',
     'CheckSettingsHttpBasicAuthArgs',
     'CheckSettingsHttpFailIfHeaderMatchesRegexpArgs',
@@ -40,6 +42,7 @@ __all__ = [
 class CheckSettingsArgs:
     def __init__(__self__, *,
                  dns: Optional[pulumi.Input['CheckSettingsDnsArgs']] = None,
+                 grpc: Optional[pulumi.Input['CheckSettingsGrpcArgs']] = None,
                  http: Optional[pulumi.Input['CheckSettingsHttpArgs']] = None,
                  multihttp: Optional[pulumi.Input['CheckSettingsMultihttpArgs']] = None,
                  ping: Optional[pulumi.Input['CheckSettingsPingArgs']] = None,
@@ -48,6 +51,7 @@ class CheckSettingsArgs:
                  traceroute: Optional[pulumi.Input['CheckSettingsTracerouteArgs']] = None):
         """
         :param pulumi.Input['CheckSettingsDnsArgs'] dns: Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
+        :param pulumi.Input['CheckSettingsGrpcArgs'] grpc: Settings for gRPC Health check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
         :param pulumi.Input['CheckSettingsHttpArgs'] http: Settings for HTTP check. The target must be a URL (http or https).
         :param pulumi.Input['CheckSettingsMultihttpArgs'] multihttp: Settings for MultiHTTP check. The target must be a URL (http or https)
         :param pulumi.Input['CheckSettingsPingArgs'] ping: Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
@@ -57,6 +61,8 @@ class CheckSettingsArgs:
         """
         if dns is not None:
             pulumi.set(__self__, "dns", dns)
+        if grpc is not None:
+            pulumi.set(__self__, "grpc", grpc)
         if http is not None:
             pulumi.set(__self__, "http", http)
         if multihttp is not None:
@@ -81,6 +87,18 @@ class CheckSettingsArgs:
     @dns.setter
     def dns(self, value: Optional[pulumi.Input['CheckSettingsDnsArgs']]):
         pulumi.set(self, "dns", value)
+
+    @property
+    @pulumi.getter
+    def grpc(self) -> Optional[pulumi.Input['CheckSettingsGrpcArgs']]:
+        """
+        Settings for gRPC Health check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
+        """
+        return pulumi.get(self, "grpc")
+
+    @grpc.setter
+    def grpc(self, value: Optional[pulumi.Input['CheckSettingsGrpcArgs']]):
+        pulumi.set(self, "grpc", value)
 
     @property
     @pulumi.getter
@@ -437,6 +455,164 @@ class CheckSettingsDnsValidateAuthorityRrsArgs:
     @fail_if_not_matches_regexps.setter
     def fail_if_not_matches_regexps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "fail_if_not_matches_regexps", value)
+
+
+@pulumi.input_type
+class CheckSettingsGrpcArgs:
+    def __init__(__self__, *,
+                 ip_version: Optional[pulumi.Input[str]] = None,
+                 service: Optional[pulumi.Input[str]] = None,
+                 tls: Optional[pulumi.Input[bool]] = None,
+                 tls_config: Optional[pulumi.Input['CheckSettingsGrpcTlsConfigArgs']] = None):
+        """
+        :param pulumi.Input[str] ip_version: Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        :param pulumi.Input[str] service: gRPC service.
+        :param pulumi.Input[bool] tls: Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+        :param pulumi.Input['CheckSettingsGrpcTlsConfigArgs'] tls_config: TLS config.
+        """
+        if ip_version is not None:
+            pulumi.set(__self__, "ip_version", ip_version)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if tls is not None:
+            pulumi.set(__self__, "tls", tls)
+        if tls_config is not None:
+            pulumi.set(__self__, "tls_config", tls_config)
+
+    @property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        """
+        return pulumi.get(self, "ip_version")
+
+    @ip_version.setter
+    def ip_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip_version", value)
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[pulumi.Input[str]]:
+        """
+        gRPC service.
+        """
+        return pulumi.get(self, "service")
+
+    @service.setter
+    def service(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service", value)
+
+    @property
+    @pulumi.getter
+    def tls(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+        """
+        return pulumi.get(self, "tls")
+
+    @tls.setter
+    def tls(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "tls", value)
+
+    @property
+    @pulumi.getter(name="tlsConfig")
+    def tls_config(self) -> Optional[pulumi.Input['CheckSettingsGrpcTlsConfigArgs']]:
+        """
+        TLS config.
+        """
+        return pulumi.get(self, "tls_config")
+
+    @tls_config.setter
+    def tls_config(self, value: Optional[pulumi.Input['CheckSettingsGrpcTlsConfigArgs']]):
+        pulumi.set(self, "tls_config", value)
+
+
+@pulumi.input_type
+class CheckSettingsGrpcTlsConfigArgs:
+    def __init__(__self__, *,
+                 ca_cert: Optional[pulumi.Input[str]] = None,
+                 client_cert: Optional[pulumi.Input[str]] = None,
+                 client_key: Optional[pulumi.Input[str]] = None,
+                 insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
+                 server_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] ca_cert: CA certificate in PEM format.
+        :param pulumi.Input[str] client_cert: Client certificate in PEM format.
+        :param pulumi.Input[str] client_key: Client key in PEM format.
+        :param pulumi.Input[bool] insecure_skip_verify: Disable target certificate validation. Defaults to `false`.
+        :param pulumi.Input[str] server_name: Used to verify the hostname for the targets.
+        """
+        if ca_cert is not None:
+            pulumi.set(__self__, "ca_cert", ca_cert)
+        if client_cert is not None:
+            pulumi.set(__self__, "client_cert", client_cert)
+        if client_key is not None:
+            pulumi.set(__self__, "client_key", client_key)
+        if insecure_skip_verify is not None:
+            pulumi.set(__self__, "insecure_skip_verify", insecure_skip_verify)
+        if server_name is not None:
+            pulumi.set(__self__, "server_name", server_name)
+
+    @property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA certificate in PEM format.
+        """
+        return pulumi.get(self, "ca_cert")
+
+    @ca_cert.setter
+    def ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_cert", value)
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client certificate in PEM format.
+        """
+        return pulumi.get(self, "client_cert")
+
+    @client_cert.setter
+    def client_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_cert", value)
+
+    @property
+    @pulumi.getter(name="clientKey")
+    def client_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client key in PEM format.
+        """
+        return pulumi.get(self, "client_key")
+
+    @client_key.setter
+    def client_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_key", value)
+
+    @property
+    @pulumi.getter(name="insecureSkipVerify")
+    def insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable target certificate validation. Defaults to `false`.
+        """
+        return pulumi.get(self, "insecure_skip_verify")
+
+    @insecure_skip_verify.setter
+    def insecure_skip_verify(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "insecure_skip_verify", value)
+
+    @property
+    @pulumi.getter(name="serverName")
+    def server_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Used to verify the hostname for the targets.
+        """
+        return pulumi.get(self, "server_name")
+
+    @server_name.setter
+    def server_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_name", value)
 
 
 @pulumi.input_type

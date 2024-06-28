@@ -11,21 +11,121 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// * [Official documentation](https://grafana.com/docs/grafana/latest/datasources/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/data_source/)
+//
+// The required arguments for this resource vary depending on the type of data
+// source selected (via the 'type' argument).
+//
+// Use this resource for configuring multiple datasources, when that configuration (`jsonDataEncoded` field) requires circular references like in the example below.
+//
+// > When using the `oss.DataSourceConfig` resource, the corresponding `oss.DataSource` resources must have the `jsonDataEncoded` and `httpHeaders` fields ignored. Otherwise, an infinite update loop will occur. See the example below.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			lokiDataSource, err := oss.NewDataSource(ctx, "lokiDataSource", &oss.DataSourceArgs{
+//				Type: pulumi.String("loki"),
+//				Url:  pulumi.String("http://localhost:3100"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tempoDataSource, err := oss.NewDataSource(ctx, "tempoDataSource", &oss.DataSourceArgs{
+//				Type: pulumi.String("tempo"),
+//				Url:  pulumi.String("http://localhost:3200"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oss.NewDataSourceConfig(ctx, "lokiDataSourceConfig", &oss.DataSourceConfigArgs{
+//				Uid: lokiDataSource.Uid,
+//				JsonDataEncoded: tempoDataSource.Uid.ApplyT(func(uid string) (pulumi.String, error) {
+//					var _zero pulumi.String
+//					tmpJSON0, err := json.Marshal(map[string]interface{}{
+//						"derivedFields": []map[string]interface{}{
+//							map[string]interface{}{
+//								"datasourceUid": uid,
+//								"matcherRegex":  "[tT]race_?[iI][dD]\"?[:=]\"?(\\w+)",
+//								"matcherType":   "regex",
+//								"name":          "traceID",
+//								"url":           "${__value.raw}",
+//							},
+//						},
+//					})
+//					if err != nil {
+//						return _zero, err
+//					}
+//					json0 := string(tmpJSON0)
+//					return pulumi.String(json0), nil
+//				}).(pulumi.StringOutput),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oss.NewDataSourceConfig(ctx, "tempoDataSourceConfig", &oss.DataSourceConfigArgs{
+//				Uid: tempoDataSource.Uid,
+//				JsonDataEncoded: lokiDataSource.Uid.ApplyT(func(uid string) (pulumi.String, error) {
+//					var _zero pulumi.String
+//					tmpJSON1, err := json.Marshal(map[string]interface{}{
+//						"tracesToLogsV2": map[string]interface{}{
+//							"customQuery":     true,
+//							"datasourceUid":   uid,
+//							"filterBySpanID":  false,
+//							"filterByTraceID": false,
+//							"query":           "|=\"${__trace.traceId}\" | json",
+//						},
+//					})
+//					if err != nil {
+//						return _zero, err
+//					}
+//					json1 := string(tmpJSON1)
+//					return pulumi.String(json1), nil
+//				}).(pulumi.StringOutput),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/dataSourceConfig:DataSourceConfig name "{{ uid }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/dataSourceConfig:DataSourceConfig name "{{ orgID }}:{{ uid }}"
+// ```
+//
 // Deprecated: grafana.index/datasourceconfig.DataSourceConfig has been deprecated in favor of grafana.oss/datasourceconfig.DataSourceConfig
 type DataSourceConfig struct {
 	pulumi.CustomResourceState
 
 	// Custom HTTP headers
 	HttpHeaders pulumi.StringMapOutput `pulumi:"httpHeaders"`
-	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
-	// source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
-	// from the Grafana UI. Note that keys in this map are usually camelCased.
+	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	JsonDataEncoded pulumi.StringPtrOutput `pulumi:"jsonDataEncoded"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
-	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
-	// to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
-	// saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded pulumi.StringPtrOutput `pulumi:"secureJsonDataEncoded"`
 	// Unique identifier. If unset, this will be automatically generated.
 	Uid pulumi.StringOutput `pulumi:"uid"`
@@ -80,15 +180,11 @@ func GetDataSourceConfig(ctx *pulumi.Context,
 type dataSourceConfigState struct {
 	// Custom HTTP headers
 	HttpHeaders map[string]string `pulumi:"httpHeaders"`
-	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
-	// source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
-	// from the Grafana UI. Note that keys in this map are usually camelCased.
+	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	JsonDataEncoded *string `pulumi:"jsonDataEncoded"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
-	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
-	// to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
-	// saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded *string `pulumi:"secureJsonDataEncoded"`
 	// Unique identifier. If unset, this will be automatically generated.
 	Uid *string `pulumi:"uid"`
@@ -97,15 +193,11 @@ type dataSourceConfigState struct {
 type DataSourceConfigState struct {
 	// Custom HTTP headers
 	HttpHeaders pulumi.StringMapInput
-	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
-	// source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
-	// from the Grafana UI. Note that keys in this map are usually camelCased.
+	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	JsonDataEncoded pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
-	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
-	// to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
-	// saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded pulumi.StringPtrInput
 	// Unique identifier. If unset, this will be automatically generated.
 	Uid pulumi.StringPtrInput
@@ -118,15 +210,11 @@ func (DataSourceConfigState) ElementType() reflect.Type {
 type dataSourceConfigArgs struct {
 	// Custom HTTP headers
 	HttpHeaders map[string]string `pulumi:"httpHeaders"`
-	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
-	// source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
-	// from the Grafana UI. Note that keys in this map are usually camelCased.
+	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	JsonDataEncoded *string `pulumi:"jsonDataEncoded"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
-	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
-	// to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
-	// saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded *string `pulumi:"secureJsonDataEncoded"`
 	// Unique identifier. If unset, this will be automatically generated.
 	Uid *string `pulumi:"uid"`
@@ -136,15 +224,11 @@ type dataSourceConfigArgs struct {
 type DataSourceConfigArgs struct {
 	// Custom HTTP headers
 	HttpHeaders pulumi.StringMapInput
-	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
-	// source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
-	// from the Grafana UI. Note that keys in this map are usually camelCased.
+	// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	JsonDataEncoded pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
-	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
-	// to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
-	// saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded pulumi.StringPtrInput
 	// Unique identifier. If unset, this will be automatically generated.
 	Uid pulumi.StringPtrInput
@@ -242,9 +326,7 @@ func (o DataSourceConfigOutput) HttpHeaders() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *DataSourceConfig) pulumi.StringMapOutput { return v.HttpHeaders }).(pulumi.StringMapOutput)
 }
 
-// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data
-// source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it
-// from the Grafana UI. Note that keys in this map are usually camelCased.
+// Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 func (o DataSourceConfigOutput) JsonDataEncoded() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DataSourceConfig) pulumi.StringPtrOutput { return v.JsonDataEncoded }).(pulumi.StringPtrOutput)
 }
@@ -254,9 +336,7 @@ func (o DataSourceConfigOutput) OrgId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DataSourceConfig) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
-// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options
-// to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when
-// saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 func (o DataSourceConfigOutput) SecureJsonDataEncoded() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DataSourceConfig) pulumi.StringPtrOutput { return v.SecureJsonDataEncoded }).(pulumi.StringPtrOutput)
 }

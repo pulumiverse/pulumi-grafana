@@ -5,6 +5,34 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Equivalent to the the `teamSync` attribute of the `grafana.oss.Team` resource. Use one or the other to configure a team's external groups syncing config.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const myTeam = new grafana.oss.Team("myTeam", {});
+ * const test_team_group = new grafana.enterprise.TeamExternalGroup("test-team-group", {
+ *     teamId: myTeam.id,
+ *     groups: [
+ *         "test-group-1",
+ *         "test-group-2",
+ *     ],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup name "{{ teamID }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/teamExternalGroup:TeamExternalGroup name "{{ orgID }}:{{ teamID }}"
+ * ```
+ *
  * @deprecated grafana.index/teamexternalgroup.TeamExternalGroup has been deprecated in favor of grafana.enterprise/teamexternalgroup.TeamExternalGroup
  */
 export class TeamExternalGroup extends pulumi.CustomResource {

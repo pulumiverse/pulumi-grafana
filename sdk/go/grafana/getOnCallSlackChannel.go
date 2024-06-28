@@ -11,6 +11,34 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/onCall"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := onCall.GetSlackChannel(ctx, &oncall.GetSlackChannelArgs{
+//				Name: "example_slack_channel",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // Deprecated: grafana.index/getoncallslackchannel.getOnCallSlackChannel has been deprecated in favor of grafana.oncall/getslackchannel.getSlackChannel
 func GetOnCallSlackChannel(ctx *pulumi.Context, args *GetOnCallSlackChannelArgs, opts ...pulumi.InvokeOption) (*GetOnCallSlackChannelResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
@@ -24,14 +52,17 @@ func GetOnCallSlackChannel(ctx *pulumi.Context, args *GetOnCallSlackChannelArgs,
 
 // A collection of arguments for invoking getOnCallSlackChannel.
 type GetOnCallSlackChannelArgs struct {
+	// The Slack channel name.
 	Name string `pulumi:"name"`
 }
 
 // A collection of values returned by getOnCallSlackChannel.
 type GetOnCallSlackChannelResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id      string `pulumi:"id"`
-	Name    string `pulumi:"name"`
+	Id string `pulumi:"id"`
+	// The Slack channel name.
+	Name string `pulumi:"name"`
+	// The Slack ID of the channel.
 	SlackId string `pulumi:"slackId"`
 }
 
@@ -50,6 +81,7 @@ func GetOnCallSlackChannelOutput(ctx *pulumi.Context, args GetOnCallSlackChannel
 
 // A collection of arguments for invoking getOnCallSlackChannel.
 type GetOnCallSlackChannelOutputArgs struct {
+	// The Slack channel name.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -77,10 +109,12 @@ func (o GetOnCallSlackChannelResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOnCallSlackChannelResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The Slack channel name.
 func (o GetOnCallSlackChannelResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOnCallSlackChannelResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The Slack ID of the channel.
 func (o GetOnCallSlackChannelResultOutput) SlackId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOnCallSlackChannelResult) string { return v.SlackId }).(pulumi.StringOutput)
 }

@@ -10,6 +10,79 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// Manages a single assignment for a role. Conflicts with the "grafana.enterprise.RoleAssignment" resource which manages the entire set of assignments for a role.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testRole = new Grafana.Enterprise.Role("testRole", new()
+    ///     {
+    ///         Uid = "testrole",
+    ///         Version = 1,
+    ///         Global = true,
+    ///         Permissions = new[]
+    ///         {
+    ///             new Grafana.Enterprise.Inputs.RolePermissionArgs
+    ///             {
+    ///                 Action = "org.users:add",
+    ///                 Scope = "users:*",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var testTeam = new Grafana.Oss.Team("testTeam");
+    /// 
+    ///     var testUser = new Grafana.Oss.User("testUser", new()
+    ///     {
+    ///         Email = "terraform_user@test.com",
+    ///         Login = "terraform_user@test.com",
+    ///         Password = "password",
+    ///     });
+    /// 
+    ///     var testSa = new Grafana.Oss.ServiceAccount("testSa", new()
+    ///     {
+    ///         Role = "Viewer",
+    ///     });
+    /// 
+    ///     var user = new Grafana.Enterprise.RoleAssignmentItem("user", new()
+    ///     {
+    ///         RoleUid = testRole.Uid,
+    ///         UserId = testUser.Id,
+    ///     });
+    /// 
+    ///     var team = new Grafana.Enterprise.RoleAssignmentItem("team", new()
+    ///     {
+    ///         RoleUid = testRole.Uid,
+    ///         TeamId = testTeam.Id,
+    ///     });
+    /// 
+    ///     var serviceAccount = new Grafana.Enterprise.RoleAssignmentItem("serviceAccount", new()
+    ///     {
+    ///         RoleUid = testRole.Uid,
+    ///         ServiceAccountId = testSa.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/roleAssignmentItem:RoleAssignmentItem name "{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/roleAssignmentItem:RoleAssignmentItem name "{{ orgID }}:{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+    /// ```
+    /// </summary>
     [Obsolete(@"grafana.index/roleassignmentitem.RoleAssignmentItem has been deprecated in favor of grafana.enterprise/roleassignmentitem.RoleAssignmentItem")]
     [GrafanaResourceType("grafana:index/roleAssignmentItem:RoleAssignmentItem")]
     public partial class RoleAssignmentItem : global::Pulumi.CustomResource

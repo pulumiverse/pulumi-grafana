@@ -5,6 +5,33 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * **Note:** This resource is available only with Grafana 9.1+.
+ *
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const admin = new grafana.oss.ServiceAccount("admin", {
+ *     isDisabled: false,
+ *     role: "Admin",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/serviceAccountToken:ServiceAccountToken name "{{ id }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/serviceAccountToken:ServiceAccountToken name "{{ orgID }}:{{ id }}"
+ * ```
+ *
  * @deprecated grafana.index/serviceaccounttoken.ServiceAccountToken has been deprecated in favor of grafana.oss/serviceaccounttoken.ServiceAccountToken
  */
 export class ServiceAccountToken extends pulumi.CustomResource {
@@ -49,7 +76,7 @@ export class ServiceAccountToken extends pulumi.CustomResource {
      */
     public /*out*/ readonly key!: pulumi.Output<string>;
     /**
-     * The name of the service account token.
+     * The name of the service account.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -123,7 +150,7 @@ export interface ServiceAccountTokenState {
      */
     key?: pulumi.Input<string>;
     /**
-     * The name of the service account token.
+     * The name of the service account.
      */
     name?: pulumi.Input<string>;
     /**
@@ -143,7 +170,7 @@ export interface ServiceAccountTokenState {
  */
 export interface ServiceAccountTokenArgs {
     /**
-     * The name of the service account token.
+     * The name of the service account.
      */
     name?: pulumi.Input<string>;
     /**

@@ -5,6 +5,54 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Manages a single assignment for a role. Conflicts with the "grafana.enterprise.RoleAssignment" resource which manages the entire set of assignments for a role.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const testRole = new grafana.enterprise.Role("testRole", {
+ *     uid: "testrole",
+ *     version: 1,
+ *     global: true,
+ *     permissions: [{
+ *         action: "org.users:add",
+ *         scope: "users:*",
+ *     }],
+ * });
+ * const testTeam = new grafana.oss.Team("testTeam", {});
+ * const testUser = new grafana.oss.User("testUser", {
+ *     email: "terraform_user@test.com",
+ *     login: "terraform_user@test.com",
+ *     password: "password",
+ * });
+ * const testSa = new grafana.oss.ServiceAccount("testSa", {role: "Viewer"});
+ * const user = new grafana.enterprise.RoleAssignmentItem("user", {
+ *     roleUid: testRole.uid,
+ *     userId: testUser.id,
+ * });
+ * const team = new grafana.enterprise.RoleAssignmentItem("team", {
+ *     roleUid: testRole.uid,
+ *     teamId: testTeam.id,
+ * });
+ * const serviceAccount = new grafana.enterprise.RoleAssignmentItem("serviceAccount", {
+ *     roleUid: testRole.uid,
+ *     serviceAccountId: testSa.id,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/roleAssignmentItem:RoleAssignmentItem name "{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/roleAssignmentItem:RoleAssignmentItem name "{{ orgID }}:{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+ * ```
+ *
  * @deprecated grafana.index/roleassignmentitem.RoleAssignmentItem has been deprecated in favor of grafana.enterprise/roleassignmentitem.RoleAssignmentItem
  */
 export class RoleAssignmentItem extends pulumi.CustomResource {

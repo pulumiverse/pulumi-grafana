@@ -67,21 +67,33 @@ class GetDataSourceResult:
     @property
     @pulumi.getter(name="accessMode")
     def access_mode(self) -> str:
+        """
+        The method by which Grafana will access the data source: `proxy` or `direct`.
+        """
         return pulumi.get(self, "access_mode")
 
     @property
     @pulumi.getter(name="basicAuthEnabled")
     def basic_auth_enabled(self) -> bool:
+        """
+        Whether to enable basic auth for the data source.
+        """
         return pulumi.get(self, "basic_auth_enabled")
 
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> str:
+        """
+        Basic auth username.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @property
     @pulumi.getter(name="databaseName")
     def database_name(self) -> str:
+        """
+        (Required by some data source types) The name of the database to use on the selected data source server.
+        """
         return pulumi.get(self, "database_name")
 
     @property
@@ -95,11 +107,17 @@ class GetDataSourceResult:
     @property
     @pulumi.getter(name="isDefault")
     def is_default(self) -> bool:
+        """
+        Whether to set the data source as default. This should only be `true` to a single data source.
+        """
         return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter(name="jsonDataEncoded")
     def json_data_encoded(self) -> str:
+        """
+        Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
+        """
         return pulumi.get(self, "json_data_encoded")
 
     @property
@@ -110,11 +128,17 @@ class GetDataSourceResult:
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[str]:
+        """
+        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        """
         return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        The data source type. Must be one of the supported data source keywords.
+        """
         return pulumi.get(self, "type")
 
     @property
@@ -125,11 +149,17 @@ class GetDataSourceResult:
     @property
     @pulumi.getter
     def url(self) -> str:
+        """
+        The URL for the data source. The type of URL required varies depending on the chosen data source type.
+        """
         return pulumi.get(self, "url")
 
     @property
     @pulumi.getter
     def username(self) -> str:
+        """
+        (Required by some data source types) The username to use to authenticate to the data source.
+        """
         return pulumi.get(self, "username")
 
 
@@ -159,7 +189,36 @@ def get_data_source(name: Optional[str] = None,
                     uid: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDataSourceResult:
     """
-    Use this data source to access information about an existing resource.
+    Get details about a Grafana Datasource querying by either name, uid or ID
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import json
+    import pulumi_grafana as grafana
+    import pulumiverse_grafana as grafana
+
+    prometheus = grafana.oss.DataSource("prometheus",
+        type="prometheus",
+        uid="prometheus-ds-test-uid",
+        url="https://my-instance.com",
+        basic_auth_enabled=True,
+        basic_auth_username="username",
+        json_data_encoded=json.dumps({
+            "httpMethod": "POST",
+            "prometheusType": "Mimir",
+            "prometheusVersion": "2.4.0",
+        }),
+        secure_json_data_encoded=json.dumps({
+            "basicAuthPassword": "password",
+        }))
+    from_name = grafana.oss.get_data_source_output(name=prometheus.name)
+    from_uid = grafana.oss.get_data_source_output(uid=prometheus.uid)
+    ```
+
+
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
     pulumi.log.warn("""get_data_source is deprecated: grafana.index/getdatasource.getDataSource has been deprecated in favor of grafana.oss/getdatasource.getDataSource""")
     __args__ = dict()
@@ -191,7 +250,36 @@ def get_data_source_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                            uid: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataSourceResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get details about a Grafana Datasource querying by either name, uid or ID
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import json
+    import pulumi_grafana as grafana
+    import pulumiverse_grafana as grafana
+
+    prometheus = grafana.oss.DataSource("prometheus",
+        type="prometheus",
+        uid="prometheus-ds-test-uid",
+        url="https://my-instance.com",
+        basic_auth_enabled=True,
+        basic_auth_username="username",
+        json_data_encoded=json.dumps({
+            "httpMethod": "POST",
+            "prometheusType": "Mimir",
+            "prometheusVersion": "2.4.0",
+        }),
+        secure_json_data_encoded=json.dumps({
+            "basicAuthPassword": "password",
+        }))
+    from_name = grafana.oss.get_data_source_output(name=prometheus.name)
+    from_uid = grafana.oss.get_data_source_output(uid=prometheus.uid)
+    ```
+
+
+    :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
     pulumi.log.warn("""get_data_source is deprecated: grafana.index/getdatasource.getDataSource has been deprecated in favor of grafana.oss/getdatasource.getDataSource""")
     ...

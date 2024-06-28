@@ -19,6 +19,10 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
         /// </summary>
         public readonly Outputs.CheckSettingsDns? Dns;
         /// <summary>
+        /// Settings for gRPC Health check. The target must be of the form `&lt;host&gt;:&lt;port&gt;`, where the host portion must be a valid hostname or IP address.
+        /// </summary>
+        public readonly Outputs.CheckSettingsGrpc? Grpc;
+        /// <summary>
         /// Settings for HTTP check. The target must be a URL (http or https).
         /// </summary>
         public readonly Outputs.CheckSettingsHttp? Http;
@@ -47,6 +51,8 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
         private CheckSettings(
             Outputs.CheckSettingsDns? dns,
 
+            Outputs.CheckSettingsGrpc? grpc,
+
             Outputs.CheckSettingsHttp? http,
 
             Outputs.CheckSettingsMultihttp? multihttp,
@@ -60,6 +66,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
             Outputs.CheckSettingsTraceroute? traceroute)
         {
             Dns = dns;
+            Grpc = grpc;
             Http = http;
             Multihttp = multihttp;
             Ping = ping;

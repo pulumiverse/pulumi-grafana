@@ -5,6 +5,51 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Manages the entire set of assignments for a role. Assignments that aren't specified when applying this resource will be removed.
+ * **Note:** This resource is available only with Grafana Enterprise 9.2+.
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const testRole = new grafana.enterprise.Role("testRole", {
+ *     uid: "testrole",
+ *     version: 1,
+ *     global: true,
+ *     permissions: [{
+ *         action: "org.users:add",
+ *         scope: "users:*",
+ *     }],
+ * });
+ * const testTeam = new grafana.oss.Team("testTeam", {});
+ * const testUser = new grafana.oss.User("testUser", {
+ *     email: "terraform_user@test.com",
+ *     login: "terraform_user@test.com",
+ *     password: "password",
+ * });
+ * const testSa = new grafana.oss.ServiceAccount("testSa", {role: "Viewer"});
+ * const test = new grafana.enterprise.RoleAssignment("test", {
+ *     roleUid: testRole.uid,
+ *     users: [testUser.id],
+ *     teams: [testTeam.id],
+ *     serviceAccounts: [testSa.id],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/roleAssignment:RoleAssignment name "{{ roleUID }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/roleAssignment:RoleAssignment name "{{ orgID }}:{{ roleUID }}"
+ * ```
+ *
  * @deprecated grafana.index/roleassignment.RoleAssignment has been deprecated in favor of grafana.enterprise/roleassignment.RoleAssignment
  */
 export class RoleAssignment extends pulumi.CustomResource {

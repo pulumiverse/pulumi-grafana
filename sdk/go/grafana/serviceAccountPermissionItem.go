@@ -12,6 +12,74 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages a single permission item for a service account. Conflicts with the "oss.ServiceAccountPermission" resource which manages the entire set of permissions for a service account.
+// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/#manage-users-and-teams-permissions-for-a-service-account-in-grafana)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := oss.NewServiceAccount(ctx, "test", &oss.ServiceAccountArgs{
+//				Role:       pulumi.String("Editor"),
+//				IsDisabled: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			team, err := oss.NewTeam(ctx, "team", nil)
+//			if err != nil {
+//				return err
+//			}
+//			user, err := oss.NewUser(ctx, "user", &oss.UserArgs{
+//				Email:    pulumi.String("user.name@example.com"),
+//				Login:    pulumi.String("user.name"),
+//				Password: pulumi.String("my-password"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oss.NewServiceAccountPermissionItem(ctx, "onTeam", &oss.ServiceAccountPermissionItemArgs{
+//				ServiceAccountId: test.ID(),
+//				Team:             team.ID(),
+//				Permission:       pulumi.String("Admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oss.NewServiceAccountPermissionItem(ctx, "onUser", &oss.ServiceAccountPermissionItemArgs{
+//				ServiceAccountId: test.ID(),
+//				User:             user.ID(),
+//				Permission:       pulumi.String("Admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ orgID }}:{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+// ```
+//
 // Deprecated: grafana.index/serviceaccountpermissionitem.ServiceAccountPermissionItem has been deprecated in favor of grafana.oss/serviceaccountpermissionitem.ServiceAccountPermissionItem
 type ServiceAccountPermissionItem struct {
 	pulumi.CustomResourceState

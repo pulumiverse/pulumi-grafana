@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * * [Official documentation](https://grafana.com/docs/oncall/latest/manage/on-call-schedules/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const schedule = grafana.onCall.getSchedule({
+ *     name: "example_schedule",
+ * });
+ * ```
+ */
 /** @deprecated grafana.index/getoncallschedule.getOncallSchedule has been deprecated in favor of grafana.oncall/getschedule.getSchedule */
 export function getOncallSchedule(args: GetOncallScheduleArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallScheduleResult> {
     pulumi.log.warn("getOncallSchedule is deprecated: grafana.index/getoncallschedule.getOncallSchedule has been deprecated in favor of grafana.oncall/getschedule.getSchedule")
@@ -18,6 +33,9 @@ export function getOncallSchedule(args: GetOncallScheduleArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getOncallSchedule.
  */
 export interface GetOncallScheduleArgs {
+    /**
+     * The schedule name.
+     */
     name: string;
 }
 
@@ -29,9 +47,30 @@ export interface GetOncallScheduleResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The schedule name.
+     */
     readonly name: string;
+    /**
+     * The schedule type.
+     */
     readonly type: string;
 }
+/**
+ * * [Official documentation](https://grafana.com/docs/oncall/latest/manage/on-call-schedules/)
+ * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ *
+ * const schedule = grafana.onCall.getSchedule({
+ *     name: "example_schedule",
+ * });
+ * ```
+ */
 /** @deprecated grafana.index/getoncallschedule.getOncallSchedule has been deprecated in favor of grafana.oncall/getschedule.getSchedule */
 export function getOncallScheduleOutput(args: GetOncallScheduleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallScheduleResult> {
     return pulumi.output(args).apply((a: any) => getOncallSchedule(a, opts))
@@ -41,5 +80,8 @@ export function getOncallScheduleOutput(args: GetOncallScheduleOutputArgs, opts?
  * A collection of arguments for invoking getOncallSchedule.
  */
 export interface GetOncallScheduleOutputArgs {
+    /**
+     * The schedule name.
+     */
     name: pulumi.Input<string>;
 }

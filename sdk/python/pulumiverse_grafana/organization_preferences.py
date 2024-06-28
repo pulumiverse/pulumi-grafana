@@ -25,8 +25,7 @@ class OrganizationPreferencesArgs:
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         :param pulumi.Input[str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
-        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-               default.
+        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
         if home_dashboard_uid is not None:
             pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
@@ -91,8 +90,7 @@ class OrganizationPreferencesArgs:
     @pulumi.getter(name="weekStart")
     def week_start(self) -> Optional[pulumi.Input[str]]:
         """
-        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-        default.
+        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
         return pulumi.get(self, "week_start")
 
@@ -115,8 +113,7 @@ class _OrganizationPreferencesState:
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         :param pulumi.Input[str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
-        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-               default.
+        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
         if home_dashboard_uid is not None:
             pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
@@ -181,8 +178,7 @@ class _OrganizationPreferencesState:
     @pulumi.getter(name="weekStart")
     def week_start(self) -> Optional[pulumi.Input[str]]:
         """
-        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-        default.
+        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
         return pulumi.get(self, "week_start")
 
@@ -208,15 +204,34 @@ class OrganizationPreferences(pulumi.CustomResource):
                  week_start: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a OrganizationPreferences resource with the given unique name, props, and options.
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.oss.OrganizationPreferences("test",
+            theme="light",
+            timezone="utc",
+            week_start="sunday")
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/organizationPreferences:OrganizationPreferences name "{{ orgID }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         :param pulumi.Input[str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
-        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-               default.
+        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
         ...
     @overload
@@ -225,7 +240,27 @@ class OrganizationPreferences(pulumi.CustomResource):
                  args: Optional[OrganizationPreferencesArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a OrganizationPreferences resource with the given unique name, props, and options.
+        * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.oss.OrganizationPreferences("test",
+            theme="light",
+            timezone="utc",
+            week_start="sunday")
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import grafana:index/organizationPreferences:OrganizationPreferences name "{{ orgID }}"
+        ```
+
         :param str resource_name: The name of the resource.
         :param OrganizationPreferencesArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -289,8 +324,7 @@ class OrganizationPreferences(pulumi.CustomResource):
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
         :param pulumi.Input[str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
-        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-               default.
+        :param pulumi.Input[str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -339,8 +373,7 @@ class OrganizationPreferences(pulumi.CustomResource):
     @pulumi.getter(name="weekStart")
     def week_start(self) -> pulumi.Output[Optional[str]]:
         """
-        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the
-        default.
+        The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
         return pulumi.get(self, "week_start")
 

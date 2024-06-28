@@ -7,6 +7,36 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const viewer = new grafana.oss.User("viewer", {
+ *     email: "viewer@example.com",
+ *     login: "viewer",
+ *     password: "my-password",
+ * });
+ * const test_team = new grafana.oss.Team("test-team", {
+ *     email: "teamemail@example.com",
+ *     members: [viewer.email],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/team:Team name "{{ id }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/team:Team name "{{ orgID }}:{{ id }}"
+ * ```
+ *
  * @deprecated grafana.index/team.Team has been deprecated in favor of grafana.oss/team.Team
  */
 export class Team extends pulumi.CustomResource {

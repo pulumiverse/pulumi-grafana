@@ -10,6 +10,65 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    /// <summary>
+    /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/routes/)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumi.Grafana;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleSlackChannel = Grafana.OnCall.GetSlackChannel.Invoke(new()
+    ///     {
+    ///         Name = "example_slack_channel",
+    ///     });
+    /// 
+    ///     var @default = new Grafana.OnCall.EscalationChain("default");
+    /// 
+    ///     var exampleIntegration = new Grafana.OnCall.Integration("exampleIntegration", new()
+    ///     {
+    ///         Type = "grafana",
+    ///         DefaultRoute = null,
+    ///     });
+    /// 
+    ///     var exampleRoute = new Grafana.OnCall.Route("exampleRoute", new()
+    ///     {
+    ///         IntegrationId = exampleIntegration.Id,
+    ///         EscalationChainId = @default.Id,
+    ///         RoutingRegex = "us-(east|west)",
+    ///         Position = 0,
+    ///         Slack = new Grafana.OnCall.Inputs.RouteSlackArgs
+    ///         {
+    ///             ChannelId = exampleSlackChannel.Apply(getSlackChannelResult =&gt; getSlackChannelResult.SlackId),
+    ///             Enabled = true,
+    ///         },
+    ///         Telegram = new Grafana.OnCall.Inputs.RouteTelegramArgs
+    ///         {
+    ///             Id = "ONCALLTELEGRAMID",
+    ///             Enabled = true,
+    ///         },
+    ///         Msteams = new Grafana.OnCall.Inputs.RouteMsteamsArgs
+    ///         {
+    ///             Id = "ONCALLMSTEAMSID",
+    ///             Enabled = false,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import grafana:index/oncallRoute:OncallRoute name "{{ id }}"
+    /// ```
+    /// </summary>
     [Obsolete(@"grafana.index/oncallroute.OncallRoute has been deprecated in favor of grafana.oncall/route.Route")]
     [GrafanaResourceType("grafana:index/oncallRoute:OncallRoute")]
     public partial class OncallRoute : global::Pulumi.CustomResource
@@ -45,7 +104,7 @@ namespace Pulumiverse.Grafana
         public Output<string> RoutingRegex { get; private set; } = null!;
 
         /// <summary>
-        /// The type of route. Can be jinja2, regex
+        /// The type of route. Can be jinja2, regex Defaults to `regex`.
         /// </summary>
         [Output("routingType")]
         public Output<string?> RoutingType { get; private set; } = null!;
@@ -144,7 +203,7 @@ namespace Pulumiverse.Grafana
         public Input<string> RoutingRegex { get; set; } = null!;
 
         /// <summary>
-        /// The type of route. Can be jinja2, regex
+        /// The type of route. Can be jinja2, regex Defaults to `regex`.
         /// </summary>
         [Input("routingType")]
         public Input<string>? RoutingType { get; set; }
@@ -200,7 +259,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? RoutingRegex { get; set; }
 
         /// <summary>
-        /// The type of route. Can be jinja2, regex
+        /// The type of route. Can be jinja2, regex Defaults to `regex`.
         /// </summary>
         [Input("routingType")]
         public Input<string>? RoutingType { get; set; }

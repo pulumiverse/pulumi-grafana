@@ -12,6 +12,48 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// **Note:** This resource is available only with Grafana 9.1+.
+//
+// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := oss.NewServiceAccount(ctx, "admin", &oss.ServiceAccountArgs{
+//				IsDisabled: pulumi.Bool(false),
+//				Role:       pulumi.String("Admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/serviceAccountToken:ServiceAccountToken name "{{ id }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/serviceAccountToken:ServiceAccountToken name "{{ orgID }}:{{ id }}"
+// ```
+//
 // Deprecated: grafana.index/serviceaccounttoken.ServiceAccountToken has been deprecated in favor of grafana.oss/serviceaccounttoken.ServiceAccountToken
 type ServiceAccountToken struct {
 	pulumi.CustomResourceState
@@ -22,7 +64,7 @@ type ServiceAccountToken struct {
 	HasExpired pulumi.BoolOutput `pulumi:"hasExpired"`
 	// The key of the service account token.
 	Key pulumi.StringOutput `pulumi:"key"`
-	// The name of the service account token.
+	// The name of the service account.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
 	// is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
@@ -81,7 +123,7 @@ type serviceAccountTokenState struct {
 	HasExpired *bool `pulumi:"hasExpired"`
 	// The key of the service account token.
 	Key *string `pulumi:"key"`
-	// The name of the service account token.
+	// The name of the service account.
 	Name *string `pulumi:"name"`
 	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
 	// is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
@@ -98,7 +140,7 @@ type ServiceAccountTokenState struct {
 	HasExpired pulumi.BoolPtrInput
 	// The key of the service account token.
 	Key pulumi.StringPtrInput
-	// The name of the service account token.
+	// The name of the service account.
 	Name pulumi.StringPtrInput
 	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
 	// is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
@@ -113,7 +155,7 @@ func (ServiceAccountTokenState) ElementType() reflect.Type {
 }
 
 type serviceAccountTokenArgs struct {
-	// The name of the service account token.
+	// The name of the service account.
 	Name *string `pulumi:"name"`
 	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
 	// is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
@@ -125,7 +167,7 @@ type serviceAccountTokenArgs struct {
 
 // The set of arguments for constructing a ServiceAccountToken resource.
 type ServiceAccountTokenArgs struct {
-	// The name of the service account token.
+	// The name of the service account.
 	Name pulumi.StringPtrInput
 	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
 	// is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
@@ -237,7 +279,7 @@ func (o ServiceAccountTokenOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServiceAccountToken) pulumi.StringOutput { return v.Key }).(pulumi.StringOutput)
 }
 
-// The name of the service account token.
+// The name of the service account.
 func (o ServiceAccountTokenOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServiceAccountToken) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

@@ -12,6 +12,108 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
+// Manages the entire set of permissions for a datasource. Permissions that aren't specified when applying this resource will be removed.
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/datasource_permissions/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/enterprise"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			team, err := oss.NewTeam(ctx, "team", nil)
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"defaultRegion": "us-east-1",
+//				"authType":      "keys",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//				"accessKey": "123",
+//				"secretKey": "456",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json1 := string(tmpJSON1)
+//			foo, err := oss.NewDataSource(ctx, "foo", &oss.DataSourceArgs{
+//				Type:                  pulumi.String("cloudwatch"),
+//				JsonDataEncoded:       pulumi.String(json0),
+//				SecureJsonDataEncoded: pulumi.String(json1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			user, err := oss.NewUser(ctx, "user", &oss.UserArgs{
+//				Email:    pulumi.String("test-ds-permissions@example.com"),
+//				Login:    pulumi.String("test-ds-permissions"),
+//				Password: pulumi.String("hunter2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			sa, err := oss.NewServiceAccount(ctx, "sa", &oss.ServiceAccountArgs{
+//				Role: pulumi.String("Viewer"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = enterprise.NewDataSourcePermission(ctx, "fooPermissions", &enterprise.DataSourcePermissionArgs{
+//				DatasourceUid: foo.Uid,
+//				Permissions: enterprise.DataSourcePermissionPermissionArray{
+//					&enterprise.DataSourcePermissionPermissionArgs{
+//						TeamId:     team.ID(),
+//						Permission: pulumi.String("Edit"),
+//					},
+//					&enterprise.DataSourcePermissionPermissionArgs{
+//						UserId:     user.ID(),
+//						Permission: pulumi.String("Edit"),
+//					},
+//					&enterprise.DataSourcePermissionPermissionArgs{
+//						BuiltInRole: pulumi.String("Viewer"),
+//						Permission:  pulumi.String("Query"),
+//					},
+//					&enterprise.DataSourcePermissionPermissionArgs{
+//						UserId:     sa.ID(),
+//						Permission: pulumi.String("Query"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import grafana:index/dataSourcePermission:DataSourcePermission name "{{ datasourceID }}"
+// ```
+//
+// ```sh
+// $ pulumi import grafana:index/dataSourcePermission:DataSourcePermission name "{{ orgID }}:{{ datasourceID }}"
+// ```
+//
 // Deprecated: grafana.index/datasourcepermission.DataSourcePermission has been deprecated in favor of grafana.enterprise/datasourcepermission.DataSourcePermission
 type DataSourcePermission struct {
 	pulumi.CustomResourceState

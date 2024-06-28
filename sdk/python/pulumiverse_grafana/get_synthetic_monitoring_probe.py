@@ -55,46 +55,73 @@ class GetSyntheticMonitoringProbeResult:
     @property
     @pulumi.getter(name="disableScriptedChecks")
     def disable_scripted_checks(self) -> bool:
+        """
+        Disables scripted checks for this probe.
+        """
         return pulumi.get(self, "disable_scripted_checks")
 
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        The ID of the probe.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        Custom labels to be included with collected metrics and logs.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def latitude(self) -> float:
+        """
+        Latitude coordinates.
+        """
         return pulumi.get(self, "latitude")
 
     @property
     @pulumi.getter
     def longitude(self) -> float:
+        """
+        Longitude coordinates.
+        """
         return pulumi.get(self, "longitude")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of the probe.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def public(self) -> bool:
+        """
+        Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`.
+        """
         return pulumi.get(self, "public")
 
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        Region of the probe.
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> int:
+        """
+        The tenant ID of the probe.
+        """
         return pulumi.get(self, "tenant_id")
 
 
@@ -118,7 +145,19 @@ class AwaitableGetSyntheticMonitoringProbeResult(GetSyntheticMonitoringProbeResu
 def get_synthetic_monitoring_probe(name: Optional[str] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSyntheticMonitoringProbeResult:
     """
-    Use this data source to access information about an existing resource.
+    Data source for retrieving a single probe by name.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    atlanta = grafana.syntheticMonitoring.get_probe(name="Atlanta")
+    ```
+
+
+    :param str name: Name of the probe.
     """
     pulumi.log.warn("""get_synthetic_monitoring_probe is deprecated: grafana.index/getsyntheticmonitoringprobe.getSyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/getprobe.getProbe""")
     __args__ = dict()
@@ -142,7 +181,19 @@ def get_synthetic_monitoring_probe(name: Optional[str] = None,
 def get_synthetic_monitoring_probe_output(name: Optional[pulumi.Input[str]] = None,
                                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSyntheticMonitoringProbeResult]:
     """
-    Use this data source to access information about an existing resource.
+    Data source for retrieving a single probe by name.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+
+    atlanta = grafana.syntheticMonitoring.get_probe(name="Atlanta")
+    ```
+
+
+    :param str name: Name of the probe.
     """
     pulumi.log.warn("""get_synthetic_monitoring_probe is deprecated: grafana.index/getsyntheticmonitoringprobe.getSyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/getprobe.getProbe""")
     ...

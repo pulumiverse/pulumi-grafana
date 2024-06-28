@@ -5,6 +5,31 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Manages service account tokens of a Grafana Cloud stack using the Cloud API
+ * This can be used to bootstrap a management service account token for a new stack
+ *
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+ *
+ * Required access policy scopes:
+ *
+ * * stack-service-accounts:write
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const cloudSa = new grafana.cloud.StackServiceAccount("cloudSa", {
+ *     stackSlug: "<your stack slug>",
+ *     role: "Admin",
+ *     isDisabled: false,
+ * });
+ * const foo = new grafana.cloud.StackServiceAccountToken("foo", {serviceAccountId: cloudSa.id});
+ * export const serviceAccountTokenFooKey = foo.key;
+ * ```
+ *
  * @deprecated grafana.index/cloudstackserviceaccounttoken.CloudStackServiceAccountToken has been deprecated in favor of grafana.cloud/stackserviceaccounttoken.StackServiceAccountToken
  */
 export class CloudStackServiceAccountToken extends pulumi.CustomResource {

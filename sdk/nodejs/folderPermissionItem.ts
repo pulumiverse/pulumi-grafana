@@ -5,6 +5,50 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Manages a single permission item for a folder. Conflicts with the "grafana.oss.FolderPermission" resource which manages the entire set of permissions for a folder.
+ * 		* [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+ * 		* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_permissions/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const team = new grafana.oss.Team("team", {});
+ * const user = new grafana.oss.User("user", {
+ *     email: "user.name@example.com",
+ *     login: "user.name",
+ *     password: "my-password",
+ * });
+ * const collection = new grafana.oss.Folder("collection", {title: "Folder Title"});
+ * const onRole = new grafana.oss.FolderPermissionItem("onRole", {
+ *     folderUid: collection.uid,
+ *     role: "Viewer",
+ *     permission: "Edit",
+ * });
+ * const onTeam = new grafana.oss.FolderPermissionItem("onTeam", {
+ *     folderUid: collection.uid,
+ *     team: team.id,
+ *     permission: "View",
+ * });
+ * const onUser = new grafana.oss.FolderPermissionItem("onUser", {
+ *     folderUid: collection.uid,
+ *     user: user.id,
+ *     permission: "Admin",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import grafana:index/folderPermissionItem:FolderPermissionItem name "{{ orgID }}:{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+ * ```
+ *
  * @deprecated grafana.index/folderpermissionitem.FolderPermissionItem has been deprecated in favor of grafana.oss/folderpermissionitem.FolderPermissionItem
  */
 export class FolderPermissionItem extends pulumi.CustomResource {
