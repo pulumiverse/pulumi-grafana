@@ -208,6 +208,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "ContactPoint"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "contact_point.md",
+				},
 			},
 			"grafana_message_template": {
 				Tok: grafanaResource(alertingMod, "MessageTemplate"),
@@ -215,6 +218,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "MessageTemplate"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "message_template.md",
 				},
 			},
 			"grafana_mute_timing": {
@@ -224,6 +230,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "MuteTiming"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "mute_timing.md",
+				},
 			},
 			"grafana_notification_policy": {
 				Tok: grafanaResource(alertingMod, "NotificationPolicy"),
@@ -232,6 +241,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "NotificationPolicy"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "notification_policy.md",
+				},
 			},
 			"grafana_rule_group": {
 				Tok: grafanaResource(alertingMod, "RuleGroup"),
@@ -239,6 +251,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "RuleGroup"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "rule_group.md",
 				},
 			},
 
@@ -250,6 +265,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "CloudAccessPolicy"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "cloud_access_policy.md",
+				},
 			},
 			"grafana_cloud_access_policy_token": {
 				Tok: grafanaResource(cloudMod, "AccessPolicyToken"),
@@ -257,6 +275,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "CloudAccessPolicyToken"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "cloud_access_policy_token.md",
 				},
 			},
 			"grafana_cloud_org_member": {
@@ -266,6 +287,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "CloudOrgMember"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "cloud_org_member.md",
+				},
 			},
 			"grafana_cloud_plugin_installation": {
 				Tok: grafanaResource(cloudMod, "PluginInstallation"),
@@ -273,6 +297,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "CloudPluginInstallation"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "cloud_plugin_installation.md",
 				},
 			},
 			"grafana_cloud_stack": {
@@ -282,6 +309,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "CloudStack"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "cloud_stack.md",
+				},
 			},
 			"grafana_cloud_stack_service_account": {
 				Tok: grafanaResource(cloudMod, "StackServiceAccount"),
@@ -290,6 +320,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "CloudStackServiceAccount"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "cloud_stack_service_account.md",
+				},
 			},
 			"grafana_cloud_stack_service_account_token": {
 				Tok: grafanaResource(cloudMod, "StackServiceAccountToken"),
@@ -297,6 +330,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "CloudStackServiceAccountToken"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "cloud_stack_service_account_token.md",
 				},
 			},
 
@@ -308,6 +344,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "DataSourcePermission"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "data_source_permission.md",
+				},
 			},
 			"grafana_data_source_permission_item": {
 				Tok: grafanaResource(enterpriseMod, "DataSourcePermissionItem"),
@@ -315,6 +354,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "DataSourcePermissionItem"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "data_source_permission_item.md",
 				},
 			},
 			"grafana_report": {
@@ -324,6 +366,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "Report"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "report.md",
+				},
 			},
 			"grafana_role": {
 				Tok: grafanaResource(enterpriseMod, "Role"),
@@ -331,6 +376,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "Role"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "role.md",
 				},
 			},
 			"grafana_role_assignment": {
@@ -340,6 +388,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "RoleAssignment"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "role_assignment.md",
+				},
 			},
 			"grafana_role_assignment_item": {
 				Tok: grafanaResource(enterpriseMod, "RoleAssignmentItem"),
@@ -348,6 +399,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "RoleAssignmentItem"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "role_assignment_item.md",
+				},
 			},
 			"grafana_team_external_group": {
 				Tok: grafanaResource(enterpriseMod, "TeamExternalGroup"),
@@ -355,6 +409,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "TeamExternalGroup"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "team_external_group.md",
 				},
 			},
 
@@ -366,6 +423,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "Annotation"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "annotation.md",
+				},
 			},
 			"grafana_dashboard": {
 				Tok: grafanaResource(ossMod, "Dashboard"),
@@ -373,6 +433,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "Dashboard"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "dashboard.md",
 				},
 			},
 			"grafana_dashboard_permission": {
@@ -382,6 +445,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "DashboardPermission"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "dashboard_permission.md",
+				},
 			},
 			"grafana_dashboard_permission_item": {
 				Tok: grafanaResource(ossMod, "DashboardPermissionItem"),
@@ -389,6 +455,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "DashboardPermissionItem"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "dashboard_permission_item.md",
 				},
 			},
 			"grafana_dashboard_public": {
@@ -398,6 +467,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "DashboardPublic"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "dashboard_public.md",
+				},
 			},
 			"grafana_data_source": {
 				Tok: grafanaResource(ossMod, "DataSource"),
@@ -405,6 +477,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "DataSource"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "data_source.md",
 				},
 			},
 			"grafana_data_source_config": {
@@ -414,6 +489,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "DataSourceConfig"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "data_source_config.md",
+				},
 			},
 			"grafana_folder": {
 				Tok: grafanaResource(ossMod, "Folder"),
@@ -421,6 +499,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "Folder"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "folder.md",
 				},
 			},
 			"grafana_folder_permission": {
@@ -430,6 +511,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "FolderPermission"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "folder_permission.md",
+				},
 			},
 			"grafana_folder_permission_item": {
 				Tok: grafanaResource(ossMod, "FolderPermissionItem"),
@@ -437,6 +521,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "FolderPermissionItem"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "folder_permission_item.md",
 				},
 			},
 			"grafana_library_panel": {
@@ -446,6 +533,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "LibraryPanel"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "library_panel.md",
+				},
 			},
 			"grafana_organization": {
 				Tok: grafanaResource(ossMod, "Organization"),
@@ -453,6 +543,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "Organization"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "organization.md",
 				},
 			},
 			"grafana_organization_preferences": {
@@ -462,6 +555,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "OrganizationPreferences"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "organization_preferences.md",
+				},
 			},
 			"grafana_playlist": {
 				Tok: grafanaResource(ossMod, "Playlist"),
@@ -469,6 +565,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "Playlist"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "playlist.md",
 				},
 			},
 			"grafana_service_account": {
@@ -478,6 +577,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "ServiceAccount"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "service_account.md",
+				},
 			},
 			"grafana_service_account_permission": {
 				Tok: grafanaResource(ossMod, "ServiceAccountPermission"),
@@ -485,6 +587,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "ServiceAccountPermission"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "service_account_permission.md",
 				},
 			},
 			"grafana_service_account_permission_item": {
@@ -494,6 +599,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "ServiceAccountPermissionItem"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "service_account_permission_item.md",
+				},
 			},
 			"grafana_service_account_token": {
 				Tok: grafanaResource(ossMod, "ServiceAccountToken"),
@@ -501,6 +609,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "ServiceAccountToken"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "service_account.md",
 				},
 			},
 			"grafana_sso_settings": {
@@ -510,6 +621,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "SsoSettings"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "sso_settings.md",
+				},
 			},
 			"grafana_team": {
 				Tok: grafanaResource(ossMod, "Team"),
@@ -518,6 +632,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "Team"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "team.md",
+				},
 			},
 			"grafana_user": {
 				Tok: grafanaResource(ossMod, "User"),
@@ -525,6 +642,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "User"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "user.md",
 				},
 			},
 
@@ -536,6 +656,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "MachineLearningHoliday"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "machine_learning_holiday.md",
+				},
 			},
 			"grafana_machine_learning_job": {
 				Tok: grafanaResource(mlMod, "Job"),
@@ -544,6 +667,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "MachineLearningJob"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "machine_learning_job.md",
+				},
 			},
 			"grafana_machine_learning_outlier_detector": {
 				Tok: grafanaResource(mlMod, "OutlierDetector"),
@@ -551,6 +677,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "MachineLearningOutlierDetector"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "machine_learning_outlier_detector.md",
 				},
 			},
 
@@ -562,6 +691,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "OncallEscalation"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "oncall_escalation.md",
+				},
 			},
 			"grafana_oncall_escalation_chain": {
 				Tok: grafanaResource(oncallMod, "EscalationChain"),
@@ -569,6 +701,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "OncallEscalationChain"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "oncall_escalation_chain.md",
 				},
 			},
 			"grafana_oncall_integration": {
@@ -578,6 +713,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "OncallIntegration"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "oncall_integration.md",
+				},
 			},
 			"grafana_oncall_on_call_shift": {
 				Tok: grafanaResource(oncallMod, "OnCallShift"),
@@ -585,6 +723,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "OncallOnCallShift"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "oncall_on_call_shift.md",
 				},
 			},
 			"grafana_oncall_outgoing_webhook": {
@@ -594,6 +735,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "OncallOutgoingWebhook"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "oncall_outgoing_webhook.md",
+				},
 			},
 			"grafana_oncall_route": {
 				Tok: grafanaResource(oncallMod, "Route"),
@@ -602,6 +746,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "OncallRoute"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "oncall_route.md",
+				},
 			},
 			"grafana_oncall_schedule": {
 				Tok: grafanaResource(oncallMod, "Schedule"),
@@ -609,6 +756,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "OncallSchedule"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "oncall_schedule.md",
 				},
 			},
 
@@ -620,6 +770,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "SLO"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "slo.md",
+				},
 			},
 
 			// Synthetic Monitoring
@@ -630,6 +783,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "SyntheticMonitoringCheck"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "synthetic_monitoring_check.md",
+				},
 			},
 			"grafana_synthetic_monitoring_installation": {
 				Tok: grafanaResource(syntheticMonitoringMod, "Installation"),
@@ -637,6 +793,9 @@ func Provider() tfbridge.ProviderInfo {
 					{
 						Type: grafanaResourceAlias(grafanaMod, "SyntheticMonitoringInstallation"),
 					},
+				},
+				Docs: &tfbridge.DocInfo{
+					Source: "synthetic_monitoring_installation.md",
 				},
 			},
 			"grafana_synthetic_monitoring_probe": {
@@ -646,6 +805,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(grafanaMod, "SyntheticMonitoringProbe"),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "synthetic_monitoring_probe.md",
+				},
 			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
@@ -654,55 +816,103 @@ func Provider() tfbridge.ProviderInfo {
 			// Cloud
 			"grafana_cloud_ips": {
 				Tok: grafanaDataSource(cloudMod, "getIps"),
+				Docs: &tfbridge.DocInfo{
+					Source: "cloud_ips.md",
+				},
 			},
 			"grafana_cloud_organization": {
 				Tok: grafanaDataSource(cloudMod, "getOrganization"),
+				Docs: &tfbridge.DocInfo{
+					Source: "cloud_organization.md",
+				},
 			},
 			"grafana_cloud_stack": {
 				Tok: grafanaDataSource(cloudMod, "getStack"),
+				Docs: &tfbridge.DocInfo{
+					Source: "cloud_stack.md",
+				},
 			},
 
 			// Enterprise
 			"grafana_role": {
 				Tok: grafanaDataSource(enterpriseMod, "getRole"),
+				Docs: &tfbridge.DocInfo{
+					Source: "role.md",
+				},
 			},
 
 			// OSS
 			"grafana_dashboard": {
 				Tok: grafanaDataSource(ossMod, "getDashboard"),
+				Docs: &tfbridge.DocInfo{
+					Source: "dashboard.md",
+				},
 			},
 			"grafana_dashboards": {
 				Tok: grafanaDataSource(ossMod, "getDashboards"),
+				Docs: &tfbridge.DocInfo{
+					Source: "dashboards.md",
+				},
 			},
 			"grafana_data_source": {
 				Tok: grafanaDataSource(ossMod, "getDataSource"),
+				Docs: &tfbridge.DocInfo{
+					Source: "data_source.md",
+				},
 			},
 			"grafana_folder": {
 				Tok: grafanaDataSource(ossMod, "getFolder"),
+				Docs: &tfbridge.DocInfo{
+					Source: "folder.md",
+				},
 			},
 			"grafana_folders": {
 				Tok: grafanaDataSource(ossMod, "getFolders"),
+				Docs: &tfbridge.DocInfo{
+					Source: "folders.md",
+				},
 			},
 			"grafana_library_panel": {
 				Tok: grafanaDataSource(ossMod, "getLibraryPanel"),
+				Docs: &tfbridge.DocInfo{
+					Source: "library_panel.md",
+				},
 			},
 			"grafana_organization": {
 				Tok: grafanaDataSource(ossMod, "getOrganization"),
+				Docs: &tfbridge.DocInfo{
+					Source: "organization.md",
+				},
 			},
 			"grafana_organization_preferences": {
 				Tok: grafanaDataSource(ossMod, "getOrganizationPreferences"),
+				Docs: &tfbridge.DocInfo{
+					Source: "organization_preferences.md",
+				},
 			},
 			"grafana_service_account": {
 				Tok: grafanaDataSource(ossMod, "getServiceAccount"),
+				Docs: &tfbridge.DocInfo{
+					Source: "service_account.md",
+				},
 			},
 			"grafana_team": {
 				Tok: grafanaDataSource(ossMod, "getTeam"),
+				Docs: &tfbridge.DocInfo{
+					Source: "team.md",
+				},
 			},
 			"grafana_user": {
 				Tok: grafanaDataSource(ossMod, "getUser"),
+				Docs: &tfbridge.DocInfo{
+					Source: "user.md",
+				},
 			},
 			"grafana_users": {
 				Tok: grafanaDataSource(ossMod, "getUsers"),
+				Docs: &tfbridge.DocInfo{
+					Source: "users.md",
+				},
 			},
 
 			// Machine Learning
@@ -710,40 +920,73 @@ func Provider() tfbridge.ProviderInfo {
 			// OnCall
 			"grafana_oncall_escalation_chain": {
 				Tok: grafanaDataSource(oncallMod, "getEscalationChain"),
+				Docs: &tfbridge.DocInfo{
+					Source: "oncall_escalation_chain.md",
+				},
 			},
 			"grafana_oncall_integration": {
 				Tok: grafanaDataSource(oncallMod, "getIntegration"),
+				Docs: &tfbridge.DocInfo{
+					Source: "oncall_integration.md",
+				},
 			},
 			"grafana_oncall_outgoing_webhook": {
 				Tok: grafanaDataSource(oncallMod, "getOutgoingWebhook"),
+				Docs: &tfbridge.DocInfo{
+					Source: "oncall_outgoing_webhook.md",
+				},
 			},
 			"grafana_oncall_schedule": {
 				Tok: grafanaDataSource(oncallMod, "getSchedule"),
+				Docs: &tfbridge.DocInfo{
+					Source: "oncall_schedule.md",
+				},
 			},
 			"grafana_oncall_slack_channel": {
 				Tok: grafanaDataSource(oncallMod, "getSlackChannel"),
+				Docs: &tfbridge.DocInfo{
+					Source: "oncall_slack_channel.md",
+				},
 			},
 			"grafana_oncall_team": {
 				Tok: grafanaDataSource(oncallMod, "getTeam"),
+				Docs: &tfbridge.DocInfo{
+					Source: "oncall_team.md",
+				},
 			},
 			"grafana_oncall_user": {
 				Tok: grafanaDataSource(oncallMod, "getUser"),
+				Docs: &tfbridge.DocInfo{
+					Source: "oncall_user.md",
+				},
 			},
 			"grafana_oncall_user_group": {
 				Tok: grafanaDataSource(oncallMod, "getUserGroup"),
+				Docs: &tfbridge.DocInfo{
+					Source: "oncall_user_group.md",
+				},
 			},
 
 			// SLO
 			"grafana_slos": {
 				Tok: grafanaDataSource(sloMod, "getSlos"),
+				Docs: &tfbridge.DocInfo{
+					Source: "slos.md",
+				},
 			},
 
 			// Synthetic Monitoring
 			"grafana_synthetic_monitoring_probe": {
 				Tok: grafanaDataSource(syntheticMonitoringMod, "getProbe"),
+				Docs: &tfbridge.DocInfo{
+					Source: "synthetic_monitoring_probe.md",
+				},
 			},
 			"grafana_synthetic_monitoring_probes": {
 				Tok: grafanaDataSource(syntheticMonitoringMod, "getProbes"),
+				Docs: &tfbridge.DocInfo{
+					Source: "synthetic_monitoring_probes.md",
+				},
 			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
