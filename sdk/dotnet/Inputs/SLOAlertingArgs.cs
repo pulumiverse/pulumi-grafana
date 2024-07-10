@@ -13,6 +13,12 @@ namespace Pulumiverse.Grafana.Inputs
 
     public sealed class SLOAlertingArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Advanced Options for Alert Rules
+        /// </summary>
+        [Input("advancedOptions")]
+        public Input<Inputs.SLOAlertingAdvancedOptionsArgs>? AdvancedOptions { get; set; }
+
         [Input("annotations")]
         private InputList<Inputs.SLOAlertingAnnotationArgs>? _annotations;
 

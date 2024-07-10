@@ -673,6 +673,9 @@
                     }
                 }
             },
+            "grafana_oncall_user_notification_rule": {
+                "current": "grafana:index/oncallUserNotificationRule:OncallUserNotificationRule"
+            },
             "grafana_organization": {
                 "current": "grafana:oss/organization:Organization",
                 "past": [
@@ -905,6 +908,9 @@
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
+                                "advanced_options": {
+                                    "maxItemsOne": true
+                                },
                                 "annotation": {
                                     "maxItemsOne": false
                                 },
@@ -1522,6 +1528,9 @@
                                     "maxItemsOne": false,
                                     "elem": {
                                         "fields": {
+                                            "advanced_options": {
+                                                "maxItemsOne": true
+                                            },
                                             "annotation": {
                                                 "maxItemsOne": false
                                             },
@@ -2142,6 +2151,7 @@
             "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook": 0,
             "grafana:index/oncallRoute:OncallRoute": 0,
             "grafana:index/oncallSchedule:OncallSchedule": 0,
+            "grafana:index/oncallUserNotificationRule:OncallUserNotificationRule": 1,
             "grafana:index/organization:Organization": 0,
             "grafana:index/organizationPreferences:OrganizationPreferences": 0,
             "grafana:index/playlist:Playlist": 0,
