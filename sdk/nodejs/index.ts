@@ -310,6 +310,11 @@ export type OncallSchedule = import("./oncallSchedule").OncallSchedule;
 export const OncallSchedule: typeof import("./oncallSchedule").OncallSchedule = null as any;
 utilities.lazyLoad(exports, ["OncallSchedule"], () => require("./oncallSchedule"));
 
+export { OncallUserNotificationRuleArgs, OncallUserNotificationRuleState } from "./oncallUserNotificationRule";
+export type OncallUserNotificationRule = import("./oncallUserNotificationRule").OncallUserNotificationRule;
+export const OncallUserNotificationRule: typeof import("./oncallUserNotificationRule").OncallUserNotificationRule = null as any;
+utilities.lazyLoad(exports, ["OncallUserNotificationRule"], () => require("./oncallUserNotificationRule"));
+
 export { OrganizationArgs, OrganizationState } from "./organization";
 export type Organization = import("./organization").Organization;
 export const Organization: typeof import("./organization").Organization = null as any;
@@ -513,6 +518,8 @@ const _module = {
                 return new OncallRoute(name, <any>undefined, { urn })
             case "grafana:index/oncallSchedule:OncallSchedule":
                 return new OncallSchedule(name, <any>undefined, { urn })
+            case "grafana:index/oncallUserNotificationRule:OncallUserNotificationRule":
+                return new OncallUserNotificationRule(name, <any>undefined, { urn })
             case "grafana:index/organization:Organization":
                 return new Organization(name, <any>undefined, { urn })
             case "grafana:index/organizationPreferences:OrganizationPreferences":
@@ -592,6 +599,7 @@ pulumi.runtime.registerResourceModule("grafana", "index/oncallOnCallShift", _mod
 pulumi.runtime.registerResourceModule("grafana", "index/oncallOutgoingWebhook", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/oncallRoute", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/oncallSchedule", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/oncallUserNotificationRule", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/organization", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/organizationPreferences", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/playlist", _module)
