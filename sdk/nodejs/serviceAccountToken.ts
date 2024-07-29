@@ -16,20 +16,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const admin = new grafana.oss.ServiceAccount("admin", {
- *     isDisabled: false,
- *     role: "Admin",
+ * const test = new grafana.oss.ServiceAccount("test", {role: "Viewer"});
+ * const foo = new grafana.oss.ServiceAccountToken("foo", {serviceAccountId: test.id});
+ * const bar = new grafana.oss.ServiceAccountToken("bar", {
+ *     serviceAccountId: test.id,
+ *     secondsToLive: 30,
  * });
- * ```
- *
- * ## Import
- *
- * ```sh
- * $ pulumi import grafana:index/serviceAccountToken:ServiceAccountToken name "{{ id }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:index/serviceAccountToken:ServiceAccountToken name "{{ orgID }}:{{ id }}"
+ * export const serviceAccountTokenFooKeyOnly = foo.key;
+ * export const serviceAccountTokenBar = bar;
  * ```
  *
  * @deprecated grafana.index/serviceaccounttoken.ServiceAccountToken has been deprecated in favor of grafana.oss/serviceaccounttoken.ServiceAccountToken
@@ -76,13 +70,11 @@ export class ServiceAccountToken extends pulumi.CustomResource {
      */
     public /*out*/ readonly key!: pulumi.Output<string>;
     /**
-     * The name of the service account.
+     * The name of the service account token.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-     * is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
-     * expire.
+     * The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
      */
     public readonly secondsToLive!: pulumi.Output<number | undefined>;
     /**
@@ -150,13 +142,11 @@ export interface ServiceAccountTokenState {
      */
     key?: pulumi.Input<string>;
     /**
-     * The name of the service account.
+     * The name of the service account token.
      */
     name?: pulumi.Input<string>;
     /**
-     * The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-     * is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
-     * expire.
+     * The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
      */
     secondsToLive?: pulumi.Input<number>;
     /**
@@ -170,13 +160,11 @@ export interface ServiceAccountTokenState {
  */
 export interface ServiceAccountTokenArgs {
     /**
-     * The name of the service account.
+     * The name of the service account token.
      */
     name?: pulumi.Input<string>;
     /**
-     * The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-     * is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never
-     * expire.
+     * The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
      */
     secondsToLive?: pulumi.Input<number>;
     /**
