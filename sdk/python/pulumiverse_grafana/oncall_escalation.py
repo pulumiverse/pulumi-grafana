@@ -475,7 +475,7 @@ class OncallEscalation(pulumi.CustomResource):
         import pulumi_grafana as grafana
         import pulumiverse_grafana as grafana
 
-        default = grafana.on_call.EscalationChain("default", opts=pulumi.ResourceOptions(provider=grafana["oncall"]))
+        default = grafana.on_call.EscalationChain("default", opts = pulumi.ResourceOptions(provider=grafana["oncall"]))
         alex = grafana.onCall.get_user(username="alex")
         # Notify step
         example_notify_step_escalation = grafana.on_call.Escalation("exampleNotifyStepEscalation",
@@ -537,7 +537,7 @@ class OncallEscalation(pulumi.CustomResource):
         import pulumi_grafana as grafana
         import pulumiverse_grafana as grafana
 
-        default = grafana.on_call.EscalationChain("default", opts=pulumi.ResourceOptions(provider=grafana["oncall"]))
+        default = grafana.on_call.EscalationChain("default", opts = pulumi.ResourceOptions(provider=grafana["oncall"]))
         alex = grafana.onCall.get_user(username="alex")
         # Notify step
         example_notify_step_escalation = grafana.on_call.Escalation("exampleNotifyStepEscalation",

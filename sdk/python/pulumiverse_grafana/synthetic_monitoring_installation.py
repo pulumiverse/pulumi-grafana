@@ -183,7 +183,7 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
         sm_stack_stack = grafana.cloud.Stack("smStackStack",
             slug=stack_slug,
             region_slug=cloud_region,
-            opts=pulumi.ResourceOptions(provider=grafana["cloud"]))
+            opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
         # Step 2: Install Synthetic Monitoring on the stack
         sm_metrics_publish_access_policy = grafana.cloud.AccessPolicy("smMetricsPublishAccessPolicy",
             region=cloud_region,
@@ -197,15 +197,15 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
                 type="stack",
                 identifier=sm_stack_stack.id,
             )],
-            opts=pulumi.ResourceOptions(provider=grafana["cloud"]))
+            opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
         sm_metrics_publish_access_policy_token = grafana.cloud.AccessPolicyToken("smMetricsPublishAccessPolicyToken",
             region=cloud_region,
             access_policy_id=sm_metrics_publish_access_policy.policy_id,
-            opts=pulumi.ResourceOptions(provider=grafana["cloud"]))
+            opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
         sm_stack_installation = grafana.synthetic_monitoring.Installation("smStackInstallation",
             stack_id=sm_stack_stack.id,
             metrics_publisher_key=sm_metrics_publish_access_policy_token.token,
-            opts=pulumi.ResourceOptions(provider=grafana["cloud"]))
+            opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
         # Step 3: Interact with Synthetic Monitoring
         sm = grafana.Provider("sm",
             sm_access_token=sm_stack_installation.sm_access_token,
@@ -257,7 +257,7 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
         sm_stack_stack = grafana.cloud.Stack("smStackStack",
             slug=stack_slug,
             region_slug=cloud_region,
-            opts=pulumi.ResourceOptions(provider=grafana["cloud"]))
+            opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
         # Step 2: Install Synthetic Monitoring on the stack
         sm_metrics_publish_access_policy = grafana.cloud.AccessPolicy("smMetricsPublishAccessPolicy",
             region=cloud_region,
@@ -271,15 +271,15 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
                 type="stack",
                 identifier=sm_stack_stack.id,
             )],
-            opts=pulumi.ResourceOptions(provider=grafana["cloud"]))
+            opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
         sm_metrics_publish_access_policy_token = grafana.cloud.AccessPolicyToken("smMetricsPublishAccessPolicyToken",
             region=cloud_region,
             access_policy_id=sm_metrics_publish_access_policy.policy_id,
-            opts=pulumi.ResourceOptions(provider=grafana["cloud"]))
+            opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
         sm_stack_installation = grafana.synthetic_monitoring.Installation("smStackInstallation",
             stack_id=sm_stack_stack.id,
             metrics_publisher_key=sm_metrics_publish_access_policy_token.token,
-            opts=pulumi.ResourceOptions(provider=grafana["cloud"]))
+            opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
         # Step 3: Interact with Synthetic Monitoring
         sm = grafana.Provider("sm",
             sm_access_token=sm_stack_installation.sm_access_token,
