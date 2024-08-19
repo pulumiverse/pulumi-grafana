@@ -136,7 +136,7 @@ class FolderPermission(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  folder_uid: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FolderPermissionPermissionArgs']]]]] = None,
+                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FolderPermissionPermissionArgs', 'FolderPermissionPermissionArgsDict']]]]] = None,
                  __props__=None):
         """
         Manages the entire set of permissions for a folder. Permissions that aren't specified when applying this resource will be removed.
@@ -158,18 +158,18 @@ class FolderPermission(pulumi.CustomResource):
         collection_permission = grafana.oss.FolderPermission("collectionPermission",
             folder_uid=collection.uid,
             permissions=[
-                grafana.oss.FolderPermissionPermissionArgs(
-                    role="Editor",
-                    permission="Edit",
-                ),
-                grafana.oss.FolderPermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="View",
-                ),
-                grafana.oss.FolderPermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Admin",
-                ),
+                {
+                    "role": "Editor",
+                    "permission": "Edit",
+                },
+                {
+                    "team_id": team.id,
+                    "permission": "View",
+                },
+                {
+                    "user_id": user.id,
+                    "permission": "Admin",
+                },
             ])
         ```
 
@@ -187,7 +187,7 @@ class FolderPermission(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FolderPermissionPermissionArgs']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FolderPermissionPermissionArgs', 'FolderPermissionPermissionArgsDict']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         ...
     @overload
@@ -215,18 +215,18 @@ class FolderPermission(pulumi.CustomResource):
         collection_permission = grafana.oss.FolderPermission("collectionPermission",
             folder_uid=collection.uid,
             permissions=[
-                grafana.oss.FolderPermissionPermissionArgs(
-                    role="Editor",
-                    permission="Edit",
-                ),
-                grafana.oss.FolderPermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="View",
-                ),
-                grafana.oss.FolderPermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Admin",
-                ),
+                {
+                    "role": "Editor",
+                    "permission": "Edit",
+                },
+                {
+                    "team_id": team.id,
+                    "permission": "View",
+                },
+                {
+                    "user_id": user.id,
+                    "permission": "Admin",
+                },
             ])
         ```
 
@@ -257,7 +257,7 @@ class FolderPermission(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  folder_uid: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FolderPermissionPermissionArgs']]]]] = None,
+                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FolderPermissionPermissionArgs', 'FolderPermissionPermissionArgsDict']]]]] = None,
                  __props__=None):
         pulumi.log.warn("""FolderPermission is deprecated: grafana.index/folderpermission.FolderPermission has been deprecated in favor of grafana.oss/folderpermission.FolderPermission""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -287,7 +287,7 @@ class FolderPermission(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             folder_uid: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
-            permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FolderPermissionPermissionArgs']]]]] = None) -> 'FolderPermission':
+            permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FolderPermissionPermissionArgs', 'FolderPermissionPermissionArgsDict']]]]] = None) -> 'FolderPermission':
         """
         Get an existing FolderPermission resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -297,7 +297,7 @@ class FolderPermission(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FolderPermissionPermissionArgs']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FolderPermissionPermissionArgs', 'FolderPermissionPermissionArgsDict']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -136,7 +136,7 @@ class DataSourcePermission(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourcePermissionPermissionArgs']]]]] = None,
+                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DataSourcePermissionPermissionArgs', 'DataSourcePermissionPermissionArgsDict']]]]] = None,
                  __props__=None):
         """
         Manages the entire set of permissions for a datasource. Permissions that aren't specified when applying this resource will be removed.
@@ -168,22 +168,22 @@ class DataSourcePermission(pulumi.CustomResource):
         foo_permissions = grafana.enterprise.DataSourcePermission("fooPermissions",
             datasource_uid=foo.uid,
             permissions=[
-                grafana.enterprise.DataSourcePermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="Edit",
-                ),
-                grafana.enterprise.DataSourcePermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Edit",
-                ),
-                grafana.enterprise.DataSourcePermissionPermissionArgs(
-                    built_in_role="Viewer",
-                    permission="Query",
-                ),
-                grafana.enterprise.DataSourcePermissionPermissionArgs(
-                    user_id=sa.id,
-                    permission="Query",
-                ),
+                {
+                    "team_id": team.id,
+                    "permission": "Edit",
+                },
+                {
+                    "user_id": user.id,
+                    "permission": "Edit",
+                },
+                {
+                    "built_in_role": "Viewer",
+                    "permission": "Query",
+                },
+                {
+                    "user_id": sa.id,
+                    "permission": "Query",
+                },
             ])
         ```
 
@@ -201,7 +201,7 @@ class DataSourcePermission(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] datasource_uid: UID of the datasource to apply permissions to.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourcePermissionPermissionArgs']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DataSourcePermissionPermissionArgs', 'DataSourcePermissionPermissionArgsDict']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         ...
     @overload
@@ -239,22 +239,22 @@ class DataSourcePermission(pulumi.CustomResource):
         foo_permissions = grafana.enterprise.DataSourcePermission("fooPermissions",
             datasource_uid=foo.uid,
             permissions=[
-                grafana.enterprise.DataSourcePermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="Edit",
-                ),
-                grafana.enterprise.DataSourcePermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Edit",
-                ),
-                grafana.enterprise.DataSourcePermissionPermissionArgs(
-                    built_in_role="Viewer",
-                    permission="Query",
-                ),
-                grafana.enterprise.DataSourcePermissionPermissionArgs(
-                    user_id=sa.id,
-                    permission="Query",
-                ),
+                {
+                    "team_id": team.id,
+                    "permission": "Edit",
+                },
+                {
+                    "user_id": user.id,
+                    "permission": "Edit",
+                },
+                {
+                    "built_in_role": "Viewer",
+                    "permission": "Query",
+                },
+                {
+                    "user_id": sa.id,
+                    "permission": "Query",
+                },
             ])
         ```
 
@@ -285,7 +285,7 @@ class DataSourcePermission(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourcePermissionPermissionArgs']]]]] = None,
+                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DataSourcePermissionPermissionArgs', 'DataSourcePermissionPermissionArgsDict']]]]] = None,
                  __props__=None):
         pulumi.log.warn("""DataSourcePermission is deprecated: grafana.index/datasourcepermission.DataSourcePermission has been deprecated in favor of grafana.enterprise/datasourcepermission.DataSourcePermission""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -315,7 +315,7 @@ class DataSourcePermission(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             datasource_uid: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
-            permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourcePermissionPermissionArgs']]]]] = None) -> 'DataSourcePermission':
+            permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DataSourcePermissionPermissionArgs', 'DataSourcePermissionPermissionArgsDict']]]]] = None) -> 'DataSourcePermission':
         """
         Get an existing DataSourcePermission resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -325,7 +325,7 @@ class DataSourcePermission(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] datasource_uid: UID of the datasource to apply permissions to.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataSourcePermissionPermissionArgs']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DataSourcePermissionPermissionArgs', 'DataSourcePermissionPermissionArgsDict']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

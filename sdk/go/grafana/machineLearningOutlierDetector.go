@@ -43,7 +43,7 @@ type MachineLearningOutlierDetector struct {
 	// The name of the outlier detector.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
-	QueryParams pulumi.MapOutput `pulumi:"queryParams"`
+	QueryParams pulumi.StringMapOutput `pulumi:"queryParams"`
 }
 
 // NewMachineLearningOutlierDetector registers a new resource with the given unique name, arguments, and options.
@@ -112,7 +112,7 @@ type machineLearningOutlierDetectorState struct {
 	// The name of the outlier detector.
 	Name *string `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
-	QueryParams map[string]interface{} `pulumi:"queryParams"`
+	QueryParams map[string]string `pulumi:"queryParams"`
 }
 
 type MachineLearningOutlierDetectorState struct {
@@ -131,7 +131,7 @@ type MachineLearningOutlierDetectorState struct {
 	// The name of the outlier detector.
 	Name pulumi.StringPtrInput
 	// An object representing the query params to query Grafana with.
-	QueryParams pulumi.MapInput
+	QueryParams pulumi.StringMapInput
 }
 
 func (MachineLearningOutlierDetectorState) ElementType() reflect.Type {
@@ -154,7 +154,7 @@ type machineLearningOutlierDetectorArgs struct {
 	// The name of the outlier detector.
 	Name *string `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
-	QueryParams map[string]interface{} `pulumi:"queryParams"`
+	QueryParams map[string]string `pulumi:"queryParams"`
 }
 
 // The set of arguments for constructing a MachineLearningOutlierDetector resource.
@@ -174,7 +174,7 @@ type MachineLearningOutlierDetectorArgs struct {
 	// The name of the outlier detector.
 	Name pulumi.StringPtrInput
 	// An object representing the query params to query Grafana with.
-	QueryParams pulumi.MapInput
+	QueryParams pulumi.StringMapInput
 }
 
 func (MachineLearningOutlierDetectorArgs) ElementType() reflect.Type {
@@ -302,8 +302,8 @@ func (o MachineLearningOutlierDetectorOutput) Name() pulumi.StringOutput {
 }
 
 // An object representing the query params to query Grafana with.
-func (o MachineLearningOutlierDetectorOutput) QueryParams() pulumi.MapOutput {
-	return o.ApplyT(func(v *MachineLearningOutlierDetector) pulumi.MapOutput { return v.QueryParams }).(pulumi.MapOutput)
+func (o MachineLearningOutlierDetectorOutput) QueryParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *MachineLearningOutlierDetector) pulumi.StringMapOutput { return v.QueryParams }).(pulumi.StringMapOutput)
 }
 
 type MachineLearningOutlierDetectorArrayOutput struct{ *pulumi.OutputState }

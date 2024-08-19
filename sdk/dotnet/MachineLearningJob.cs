@@ -27,7 +27,7 @@ namespace Pulumiverse.Grafana
         /// An object representing the custom labels added on the forecast.
         /// </summary>
         [Output("customLabels")]
-        public Output<ImmutableDictionary<string, object>?> CustomLabels { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> CustomLabels { get; private set; } = null!;
 
         /// <summary>
         /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
@@ -57,7 +57,7 @@ namespace Pulumiverse.Grafana
         /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
         /// </summary>
         [Output("hyperParams")]
-        public Output<ImmutableDictionary<string, object>?> HyperParams { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> HyperParams { get; private set; } = null!;
 
         /// <summary>
         /// The data interval in seconds to train the data on. Defaults to `300`.
@@ -81,7 +81,7 @@ namespace Pulumiverse.Grafana
         /// An object representing the query params to query Grafana with.
         /// </summary>
         [Output("queryParams")]
-        public Output<ImmutableDictionary<string, object>> QueryParams { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> QueryParams { get; private set; } = null!;
 
         /// <summary>
         /// The data interval in seconds to train the data on. Defaults to `7776000`.
@@ -141,14 +141,14 @@ namespace Pulumiverse.Grafana
     public sealed class MachineLearningJobArgs : global::Pulumi.ResourceArgs
     {
         [Input("customLabels")]
-        private InputMap<object>? _customLabels;
+        private InputMap<string>? _customLabels;
 
         /// <summary>
         /// An object representing the custom labels added on the forecast.
         /// </summary>
-        public InputMap<object> CustomLabels
+        public InputMap<string> CustomLabels
         {
-            get => _customLabels ?? (_customLabels = new InputMap<object>());
+            get => _customLabels ?? (_customLabels = new InputMap<string>());
             set => _customLabels = value;
         }
 
@@ -183,14 +183,14 @@ namespace Pulumiverse.Grafana
         }
 
         [Input("hyperParams")]
-        private InputMap<object>? _hyperParams;
+        private InputMap<string>? _hyperParams;
 
         /// <summary>
         /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
         /// </summary>
-        public InputMap<object> HyperParams
+        public InputMap<string> HyperParams
         {
-            get => _hyperParams ?? (_hyperParams = new InputMap<object>());
+            get => _hyperParams ?? (_hyperParams = new InputMap<string>());
             set => _hyperParams = value;
         }
 
@@ -213,14 +213,14 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         [Input("queryParams", required: true)]
-        private InputMap<object>? _queryParams;
+        private InputMap<string>? _queryParams;
 
         /// <summary>
         /// An object representing the query params to query Grafana with.
         /// </summary>
-        public InputMap<object> QueryParams
+        public InputMap<string> QueryParams
         {
-            get => _queryParams ?? (_queryParams = new InputMap<object>());
+            get => _queryParams ?? (_queryParams = new InputMap<string>());
             set => _queryParams = value;
         }
 
@@ -239,14 +239,14 @@ namespace Pulumiverse.Grafana
     public sealed class MachineLearningJobState : global::Pulumi.ResourceArgs
     {
         [Input("customLabels")]
-        private InputMap<object>? _customLabels;
+        private InputMap<string>? _customLabels;
 
         /// <summary>
         /// An object representing the custom labels added on the forecast.
         /// </summary>
-        public InputMap<object> CustomLabels
+        public InputMap<string> CustomLabels
         {
-            get => _customLabels ?? (_customLabels = new InputMap<object>());
+            get => _customLabels ?? (_customLabels = new InputMap<string>());
             set => _customLabels = value;
         }
 
@@ -281,14 +281,14 @@ namespace Pulumiverse.Grafana
         }
 
         [Input("hyperParams")]
-        private InputMap<object>? _hyperParams;
+        private InputMap<string>? _hyperParams;
 
         /// <summary>
         /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
         /// </summary>
-        public InputMap<object> HyperParams
+        public InputMap<string> HyperParams
         {
-            get => _hyperParams ?? (_hyperParams = new InputMap<object>());
+            get => _hyperParams ?? (_hyperParams = new InputMap<string>());
             set => _hyperParams = value;
         }
 
@@ -311,14 +311,14 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         [Input("queryParams")]
-        private InputMap<object>? _queryParams;
+        private InputMap<string>? _queryParams;
 
         /// <summary>
         /// An object representing the query params to query Grafana with.
         /// </summary>
-        public InputMap<object> QueryParams
+        public InputMap<string> QueryParams
         {
-            get => _queryParams ?? (_queryParams = new InputMap<object>());
+            get => _queryParams ?? (_queryParams = new InputMap<string>());
             set => _queryParams = value;
         }
 

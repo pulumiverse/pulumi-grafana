@@ -189,18 +189,18 @@ def get_role(name: Optional[str] = None,
         global_=True,
         hidden=False,
         permissions=[
-            grafana.enterprise.RolePermissionArgs(
-                action="org.users:add",
-                scope="users:*",
-            ),
-            grafana.enterprise.RolePermissionArgs(
-                action="org.users:write",
-                scope="users:*",
-            ),
-            grafana.enterprise.RolePermissionArgs(
-                action="org.users:read",
-                scope="users:*",
-            ),
+            {
+                "action": "org.users:add",
+                "scope": "users:*",
+            },
+            {
+                "action": "org.users:write",
+                "scope": "users:*",
+            },
+            {
+                "action": "org.users:read",
+                "scope": "users:*",
+            },
         ])
     from_name = grafana.enterprise.get_role_output(name=test.name)
     ```
@@ -251,18 +251,18 @@ def get_role_output(name: Optional[pulumi.Input[str]] = None,
         global_=True,
         hidden=False,
         permissions=[
-            grafana.enterprise.RolePermissionArgs(
-                action="org.users:add",
-                scope="users:*",
-            ),
-            grafana.enterprise.RolePermissionArgs(
-                action="org.users:write",
-                scope="users:*",
-            ),
-            grafana.enterprise.RolePermissionArgs(
-                action="org.users:read",
-                scope="users:*",
-            ),
+            {
+                "action": "org.users:add",
+                "scope": "users:*",
+            },
+            {
+                "action": "org.users:write",
+                "scope": "users:*",
+            },
+            {
+                "action": "org.users:read",
+                "scope": "users:*",
+            },
         ])
     from_name = grafana.enterprise.get_role_output(name=test.name)
     ```

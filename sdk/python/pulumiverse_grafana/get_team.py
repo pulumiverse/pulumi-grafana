@@ -136,10 +136,10 @@ def get_team(name: Optional[str] = None,
 
     test = grafana.oss.Team("test",
         email="test-team-email@test.com",
-        preferences=grafana.oss.TeamPreferencesArgs(
-            theme="dark",
-            timezone="utc",
-        ))
+        preferences={
+            "theme": "dark",
+            "timezone": "utc",
+        })
     from_name = grafana.oss.get_team_output(name=test.name)
     ```
     """
@@ -181,10 +181,10 @@ def get_team_output(name: Optional[pulumi.Input[str]] = None,
 
     test = grafana.oss.Team("test",
         email="test-team-email@test.com",
-        preferences=grafana.oss.TeamPreferencesArgs(
-            theme="dark",
-            timezone="utc",
-        ))
+        preferences={
+            "theme": "dark",
+            "timezone": "utc",
+        })
     from_name = grafana.oss.get_team_output(name=test.name)
     ```
     """

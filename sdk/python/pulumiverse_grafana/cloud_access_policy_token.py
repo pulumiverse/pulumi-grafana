@@ -270,13 +270,13 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
                 "metrics:read",
                 "logs:read",
             ],
-            realms=[grafana.cloud.AccessPolicyRealmArgs(
-                type="org",
-                identifier=current.id,
-                label_policies=[grafana.cloud.AccessPolicyRealmLabelPolicyArgs(
-                    selector="{namespace=\\"default\\"}",
-                )],
-            )])
+            realms=[{
+                "type": "org",
+                "identifier": current.id,
+                "label_policies": [{
+                    "selector": "{namespace=\\"default\\"}",
+                }],
+            }])
         test_access_policy_token = grafana.cloud.AccessPolicyToken("testAccessPolicyToken",
             region="us",
             access_policy_id=test_access_policy.policy_id,
@@ -329,13 +329,13 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
                 "metrics:read",
                 "logs:read",
             ],
-            realms=[grafana.cloud.AccessPolicyRealmArgs(
-                type="org",
-                identifier=current.id,
-                label_policies=[grafana.cloud.AccessPolicyRealmLabelPolicyArgs(
-                    selector="{namespace=\\"default\\"}",
-                )],
-            )])
+            realms=[{
+                "type": "org",
+                "identifier": current.id,
+                "label_policies": [{
+                    "selector": "{namespace=\\"default\\"}",
+                }],
+            }])
         test_access_policy_token = grafana.cloud.AccessPolicyToken("testAccessPolicyToken",
             region="us",
             access_policy_id=test_access_policy.policy_id,

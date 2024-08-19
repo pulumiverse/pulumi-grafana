@@ -155,7 +155,7 @@ class MuteTiming(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  disable_provenance: Optional[pulumi.Input[bool]] = None,
-                 intervals: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]]] = None,
+                 intervals: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MuteTimingIntervalArgs', 'MuteTimingIntervalArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -173,29 +173,29 @@ class MuteTiming(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        my_mute_timing = grafana.alerting.MuteTiming("myMuteTiming", intervals=[grafana.alerting.MuteTimingIntervalArgs(
-            days_of_months=[
+        my_mute_timing = grafana.alerting.MuteTiming("myMuteTiming", intervals=[{
+            "days_of_months": [
                 "1:7",
                 "-1",
             ],
-            location="America/New_York",
-            months=[
+            "location": "America/New_York",
+            "months": [
                 "1:3",
                 "december",
             ],
-            times=[grafana.alerting.MuteTimingIntervalTimeArgs(
-                end="14:17",
-                start="04:56",
-            )],
-            weekdays=[
+            "times": [{
+                "end": "14:17",
+                "start": "04:56",
+            }],
+            "weekdays": [
                 "monday",
                 "tuesday:thursday",
             ],
-            years=[
+            "years": [
                 "2030",
                 "2025:2026",
             ],
-        )])
+        }])
         ```
 
         ## Import
@@ -210,7 +210,7 @@ class MuteTiming(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]] intervals: The time intervals at which to mute notifications. Use an empty block to mute all the time.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MuteTimingIntervalArgs', 'MuteTimingIntervalArgsDict']]]] intervals: The time intervals at which to mute notifications. Use an empty block to mute all the time.
         :param pulumi.Input[str] name: The name of the mute timing.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
@@ -234,29 +234,29 @@ class MuteTiming(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        my_mute_timing = grafana.alerting.MuteTiming("myMuteTiming", intervals=[grafana.alerting.MuteTimingIntervalArgs(
-            days_of_months=[
+        my_mute_timing = grafana.alerting.MuteTiming("myMuteTiming", intervals=[{
+            "days_of_months": [
                 "1:7",
                 "-1",
             ],
-            location="America/New_York",
-            months=[
+            "location": "America/New_York",
+            "months": [
                 "1:3",
                 "december",
             ],
-            times=[grafana.alerting.MuteTimingIntervalTimeArgs(
-                end="14:17",
-                start="04:56",
-            )],
-            weekdays=[
+            "times": [{
+                "end": "14:17",
+                "start": "04:56",
+            }],
+            "weekdays": [
                 "monday",
                 "tuesday:thursday",
             ],
-            years=[
+            "years": [
                 "2030",
                 "2025:2026",
             ],
-        )])
+        }])
         ```
 
         ## Import
@@ -285,7 +285,7 @@ class MuteTiming(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  disable_provenance: Optional[pulumi.Input[bool]] = None,
-                 intervals: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]]] = None,
+                 intervals: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MuteTimingIntervalArgs', 'MuteTimingIntervalArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -314,7 +314,7 @@ class MuteTiming(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             disable_provenance: Optional[pulumi.Input[bool]] = None,
-            intervals: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]]] = None,
+            intervals: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MuteTimingIntervalArgs', 'MuteTimingIntervalArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None) -> 'MuteTiming':
         """
@@ -324,7 +324,7 @@ class MuteTiming(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]] intervals: The time intervals at which to mute notifications. Use an empty block to mute all the time.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MuteTimingIntervalArgs', 'MuteTimingIntervalArgsDict']]]] intervals: The time intervals at which to mute notifications. Use an empty block to mute all the time.
         :param pulumi.Input[str] name: The name of the mute timing.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """

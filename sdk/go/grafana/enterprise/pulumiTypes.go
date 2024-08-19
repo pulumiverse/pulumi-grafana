@@ -139,7 +139,7 @@ func (o DataSourcePermissionPermissionArrayOutput) Index(i pulumi.IntInput) Data
 
 type ReportDashboard struct {
 	// Add report variables to the dashboard. Values should be separated by commas.
-	ReportVariables map[string]interface{} `pulumi:"reportVariables"`
+	ReportVariables map[string]string `pulumi:"reportVariables"`
 	// Time range of the report.
 	TimeRange *ReportDashboardTimeRange `pulumi:"timeRange"`
 	// Dashboard uid.
@@ -159,7 +159,7 @@ type ReportDashboardInput interface {
 
 type ReportDashboardArgs struct {
 	// Add report variables to the dashboard. Values should be separated by commas.
-	ReportVariables pulumi.MapInput `pulumi:"reportVariables"`
+	ReportVariables pulumi.StringMapInput `pulumi:"reportVariables"`
 	// Time range of the report.
 	TimeRange ReportDashboardTimeRangePtrInput `pulumi:"timeRange"`
 	// Dashboard uid.
@@ -218,8 +218,8 @@ func (o ReportDashboardOutput) ToReportDashboardOutputWithContext(ctx context.Co
 }
 
 // Add report variables to the dashboard. Values should be separated by commas.
-func (o ReportDashboardOutput) ReportVariables() pulumi.MapOutput {
-	return o.ApplyT(func(v ReportDashboard) map[string]interface{} { return v.ReportVariables }).(pulumi.MapOutput)
+func (o ReportDashboardOutput) ReportVariables() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ReportDashboard) map[string]string { return v.ReportVariables }).(pulumi.StringMapOutput)
 }
 
 // Time range of the report.

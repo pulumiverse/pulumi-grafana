@@ -150,7 +150,7 @@ class Playlist(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  interval: Optional[pulumi.Input[str]] = None,
-                 items: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PlaylistItemArgs']]]]] = None,
+                 items: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PlaylistItemArgs', 'PlaylistItemArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -167,18 +167,18 @@ class Playlist(pulumi.CustomResource):
         test = grafana.oss.Playlist("test",
             interval="5m",
             items=[
-                grafana.oss.PlaylistItemArgs(
-                    order=2,
-                    title="Terraform Dashboard By Tag",
-                    type="dashboard_by_tag",
-                    value="terraform",
-                ),
-                grafana.oss.PlaylistItemArgs(
-                    order=1,
-                    title="Terraform Dashboard By ID",
-                    type="dashboard_by_id",
-                    value="3",
-                ),
+                {
+                    "order": 2,
+                    "title": "Terraform Dashboard By Tag",
+                    "type": "dashboard_by_tag",
+                    "value": "terraform",
+                },
+                {
+                    "order": 1,
+                    "title": "Terraform Dashboard By ID",
+                    "type": "dashboard_by_id",
+                    "value": "3",
+                },
             ])
         ```
 
@@ -216,18 +216,18 @@ class Playlist(pulumi.CustomResource):
         test = grafana.oss.Playlist("test",
             interval="5m",
             items=[
-                grafana.oss.PlaylistItemArgs(
-                    order=2,
-                    title="Terraform Dashboard By Tag",
-                    type="dashboard_by_tag",
-                    value="terraform",
-                ),
-                grafana.oss.PlaylistItemArgs(
-                    order=1,
-                    title="Terraform Dashboard By ID",
-                    type="dashboard_by_id",
-                    value="3",
-                ),
+                {
+                    "order": 2,
+                    "title": "Terraform Dashboard By Tag",
+                    "type": "dashboard_by_tag",
+                    "value": "terraform",
+                },
+                {
+                    "order": 1,
+                    "title": "Terraform Dashboard By ID",
+                    "type": "dashboard_by_id",
+                    "value": "3",
+                },
             ])
         ```
 
@@ -257,7 +257,7 @@ class Playlist(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  interval: Optional[pulumi.Input[str]] = None,
-                 items: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PlaylistItemArgs']]]]] = None,
+                 items: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PlaylistItemArgs', 'PlaylistItemArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -291,7 +291,7 @@ class Playlist(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             interval: Optional[pulumi.Input[str]] = None,
-            items: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PlaylistItemArgs']]]]] = None,
+            items: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PlaylistItemArgs', 'PlaylistItemArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None) -> 'Playlist':
         """

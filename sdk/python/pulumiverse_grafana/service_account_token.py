@@ -20,10 +20,8 @@ class ServiceAccountTokenArgs:
         """
         The set of arguments for constructing a ServiceAccountToken resource.
         :param pulumi.Input[str] service_account_id: The ID of the service account to which the token belongs.
-        :param pulumi.Input[str] name: The name of the service account.
-        :param pulumi.Input[int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-               is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-               never expire.
+        :param pulumi.Input[str] name: The name of the service account token.
+        :param pulumi.Input[int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
         """
         pulumi.set(__self__, "service_account_id", service_account_id)
         if name is not None:
@@ -47,7 +45,7 @@ class ServiceAccountTokenArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the service account.
+        The name of the service account token.
         """
         return pulumi.get(self, "name")
 
@@ -59,9 +57,7 @@ class ServiceAccountTokenArgs:
     @pulumi.getter(name="secondsToLive")
     def seconds_to_live(self) -> Optional[pulumi.Input[int]]:
         """
-        The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-        is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-        never expire.
+        The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
         """
         return pulumi.get(self, "seconds_to_live")
 
@@ -84,10 +80,8 @@ class _ServiceAccountTokenState:
         :param pulumi.Input[str] expiration: The expiration date of the service account token.
         :param pulumi.Input[bool] has_expired: The status of the service account token.
         :param pulumi.Input[str] key: The key of the service account token.
-        :param pulumi.Input[str] name: The name of the service account.
-        :param pulumi.Input[int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-               is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-               never expire.
+        :param pulumi.Input[str] name: The name of the service account token.
+        :param pulumi.Input[int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
         :param pulumi.Input[str] service_account_id: The ID of the service account to which the token belongs.
         """
         if expiration is not None:
@@ -143,7 +137,7 @@ class _ServiceAccountTokenState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the service account.
+        The name of the service account token.
         """
         return pulumi.get(self, "name")
 
@@ -155,9 +149,7 @@ class _ServiceAccountTokenState:
     @pulumi.getter(name="secondsToLive")
     def seconds_to_live(self) -> Optional[pulumi.Input[int]]:
         """
-        The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-        is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-        never expire.
+        The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
         """
         return pulumi.get(self, "seconds_to_live")
 
@@ -204,27 +196,19 @@ class ServiceAccountToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        admin = grafana.oss.ServiceAccount("admin",
-            is_disabled=False,
-            role="Admin")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/serviceAccountToken:ServiceAccountToken name "{{ id }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/serviceAccountToken:ServiceAccountToken name "{{ orgID }}:{{ id }}"
+        test = grafana.oss.ServiceAccount("test", role="Viewer")
+        foo = grafana.oss.ServiceAccountToken("foo", service_account_id=test.id)
+        bar = grafana.oss.ServiceAccountToken("bar",
+            service_account_id=test.id,
+            seconds_to_live=30)
+        pulumi.export("serviceAccountTokenFooKeyOnly", foo.key)
+        pulumi.export("serviceAccountTokenBar", bar)
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the service account.
-        :param pulumi.Input[int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-               is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-               never expire.
+        :param pulumi.Input[str] name: The name of the service account token.
+        :param pulumi.Input[int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
         :param pulumi.Input[str] service_account_id: The ID of the service account to which the token belongs.
         """
         ...
@@ -245,19 +229,13 @@ class ServiceAccountToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        admin = grafana.oss.ServiceAccount("admin",
-            is_disabled=False,
-            role="Admin")
-        ```
-
-        ## Import
-
-        ```sh
-        $ pulumi import grafana:index/serviceAccountToken:ServiceAccountToken name "{{ id }}"
-        ```
-
-        ```sh
-        $ pulumi import grafana:index/serviceAccountToken:ServiceAccountToken name "{{ orgID }}:{{ id }}"
+        test = grafana.oss.ServiceAccount("test", role="Viewer")
+        foo = grafana.oss.ServiceAccountToken("foo", service_account_id=test.id)
+        bar = grafana.oss.ServiceAccountToken("bar",
+            service_account_id=test.id,
+            seconds_to_live=30)
+        pulumi.export("serviceAccountTokenFooKeyOnly", foo.key)
+        pulumi.export("serviceAccountTokenBar", bar)
         ```
 
         :param str resource_name: The name of the resource.
@@ -326,10 +304,8 @@ class ServiceAccountToken(pulumi.CustomResource):
         :param pulumi.Input[str] expiration: The expiration date of the service account token.
         :param pulumi.Input[bool] has_expired: The status of the service account token.
         :param pulumi.Input[str] key: The key of the service account token.
-        :param pulumi.Input[str] name: The name of the service account.
-        :param pulumi.Input[int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-               is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-               never expire.
+        :param pulumi.Input[str] name: The name of the service account token.
+        :param pulumi.Input[int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
         :param pulumi.Input[str] service_account_id: The ID of the service account to which the token belongs.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -372,7 +348,7 @@ class ServiceAccountToken(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the service account.
+        The name of the service account token.
         """
         return pulumi.get(self, "name")
 
@@ -380,9 +356,7 @@ class ServiceAccountToken(pulumi.CustomResource):
     @pulumi.getter(name="secondsToLive")
     def seconds_to_live(self) -> pulumi.Output[Optional[int]]:
         """
-        The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it
-        is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will
-        never expire.
+        The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
         """
         return pulumi.get(self, "seconds_to_live")
 

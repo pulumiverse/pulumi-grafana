@@ -799,30 +799,30 @@ class ContactPoint(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alertmanagers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointAlertmanagerArgs']]]]] = None,
-                 dingdings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDingdingArgs']]]]] = None,
+                 alertmanagers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointAlertmanagerArgs', 'ContactPointAlertmanagerArgsDict']]]]] = None,
+                 dingdings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointDingdingArgs', 'ContactPointDingdingArgsDict']]]]] = None,
                  disable_provenance: Optional[pulumi.Input[bool]] = None,
-                 discords: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDiscordArgs']]]]] = None,
-                 emails: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]]] = None,
-                 googlechats: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]]] = None,
-                 kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]]] = None,
-                 lines: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]]] = None,
+                 discords: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointDiscordArgs', 'ContactPointDiscordArgsDict']]]]] = None,
+                 emails: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointEmailArgs', 'ContactPointEmailArgsDict']]]]] = None,
+                 googlechats: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointGooglechatArgs', 'ContactPointGooglechatArgsDict']]]]] = None,
+                 kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointKafkaArgs', 'ContactPointKafkaArgsDict']]]]] = None,
+                 lines: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointLineArgs', 'ContactPointLineArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 oncalls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]]] = None,
-                 opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]]] = None,
+                 oncalls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointOncallArgs', 'ContactPointOncallArgsDict']]]]] = None,
+                 opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointOpsgenyArgs', 'ContactPointOpsgenyArgsDict']]]]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]]] = None,
-                 pushovers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPushoverArgs']]]]] = None,
-                 sensugos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSensugoArgs']]]]] = None,
-                 slacks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSlackArgs']]]]] = None,
-                 sns: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSnArgs']]]]] = None,
-                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTeamArgs']]]]] = None,
-                 telegrams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTelegramArgs']]]]] = None,
-                 threemas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]]] = None,
-                 victorops: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointVictoropArgs']]]]] = None,
-                 webexes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebexArgs']]]]] = None,
-                 webhooks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebhookArgs']]]]] = None,
-                 wecoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWecomArgs']]]]] = None,
+                 pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointPagerdutyArgs', 'ContactPointPagerdutyArgsDict']]]]] = None,
+                 pushovers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointPushoverArgs', 'ContactPointPushoverArgsDict']]]]] = None,
+                 sensugos: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointSensugoArgs', 'ContactPointSensugoArgsDict']]]]] = None,
+                 slacks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointSlackArgs', 'ContactPointSlackArgsDict']]]]] = None,
+                 sns: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointSnArgs', 'ContactPointSnArgsDict']]]]] = None,
+                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointTeamArgs', 'ContactPointTeamArgsDict']]]]] = None,
+                 telegrams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointTelegramArgs', 'ContactPointTelegramArgsDict']]]]] = None,
+                 threemas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointThreemaArgs', 'ContactPointThreemaArgsDict']]]]] = None,
+                 victorops: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointVictoropArgs', 'ContactPointVictoropArgsDict']]]]] = None,
+                 webexes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointWebexArgs', 'ContactPointWebexArgsDict']]]]] = None,
+                 webhooks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointWebhookArgs', 'ContactPointWebhookArgsDict']]]]] = None,
+                 wecoms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointWecomArgs', 'ContactPointWecomArgsDict']]]]] = None,
                  __props__=None):
         """
         Manages Grafana Alerting contact points.
@@ -838,16 +838,16 @@ class ContactPoint(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        my_contact_point = grafana.alerting.ContactPoint("myContactPoint", emails=[grafana.alerting.ContactPointEmailArgs(
-            addresses=[
+        my_contact_point = grafana.alerting.ContactPoint("myContactPoint", emails=[{
+            "addresses": [
                 "one@company.org",
                 "two@company.org",
             ],
-            disable_resolve_message=False,
-            message="{{ len .Alerts.Firing }} firing.",
-            single_email=True,
-            subject="{{ template \\"default.title\\" .}}",
-        )])
+            "disable_resolve_message": False,
+            "message": "{{ len .Alerts.Firing }} firing.",
+            "single_email": True,
+            "subject": "{{ template \\"default.title\\" .}}",
+        }])
         ```
 
         ## Import
@@ -862,29 +862,29 @@ class ContactPoint(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointAlertmanagerArgs']]]] alertmanagers: A contact point that sends notifications to other Alertmanager instances.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDingdingArgs']]]] dingdings: A contact point that sends notifications to DingDing.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDiscordArgs']]]] discords: A contact point that sends notifications as Discord messages
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]] emails: A contact point that sends notifications to an email address.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]] googlechats: A contact point that sends notifications to Google Chat.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]] lines: A contact point that sends notifications to LINE.me.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointAlertmanagerArgs', 'ContactPointAlertmanagerArgsDict']]]] alertmanagers: A contact point that sends notifications to other Alertmanager instances.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointDingdingArgs', 'ContactPointDingdingArgsDict']]]] dingdings: A contact point that sends notifications to DingDing.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointDiscordArgs', 'ContactPointDiscordArgsDict']]]] discords: A contact point that sends notifications as Discord messages
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointEmailArgs', 'ContactPointEmailArgsDict']]]] emails: A contact point that sends notifications to an email address.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointGooglechatArgs', 'ContactPointGooglechatArgsDict']]]] googlechats: A contact point that sends notifications to Google Chat.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointKafkaArgs', 'ContactPointKafkaArgsDict']]]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointLineArgs', 'ContactPointLineArgsDict']]]] lines: A contact point that sends notifications to LINE.me.
         :param pulumi.Input[str] name: The name of the contact point.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]] oncalls: A contact point that sends notifications to Grafana On-Call.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]] opsgenies: A contact point that sends notifications to OpsGenie.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointOncallArgs', 'ContactPointOncallArgsDict']]]] oncalls: A contact point that sends notifications to Grafana On-Call.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointOpsgenyArgs', 'ContactPointOpsgenyArgsDict']]]] opsgenies: A contact point that sends notifications to OpsGenie.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]] pagerduties: A contact point that sends notifications to PagerDuty.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPushoverArgs']]]] pushovers: A contact point that sends notifications to Pushover.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSensugoArgs']]]] sensugos: A contact point that sends notifications to SensuGo.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSlackArgs']]]] slacks: A contact point that sends notifications to Slack.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSnArgs']]]] sns: A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTeamArgs']]]] teams: A contact point that sends notifications to Microsoft Teams.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTelegramArgs']]]] telegrams: A contact point that sends notifications to Telegram.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]] threemas: A contact point that sends notifications to Threema.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointVictoropArgs']]]] victorops: A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebexArgs']]]] webexes: A contact point that sends notifications to Cisco Webex.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebhookArgs']]]] webhooks: A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWecomArgs']]]] wecoms: A contact point that sends notifications to WeCom.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointPagerdutyArgs', 'ContactPointPagerdutyArgsDict']]]] pagerduties: A contact point that sends notifications to PagerDuty.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointPushoverArgs', 'ContactPointPushoverArgsDict']]]] pushovers: A contact point that sends notifications to Pushover.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointSensugoArgs', 'ContactPointSensugoArgsDict']]]] sensugos: A contact point that sends notifications to SensuGo.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointSlackArgs', 'ContactPointSlackArgsDict']]]] slacks: A contact point that sends notifications to Slack.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointSnArgs', 'ContactPointSnArgsDict']]]] sns: A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointTeamArgs', 'ContactPointTeamArgsDict']]]] teams: A contact point that sends notifications to Microsoft Teams.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointTelegramArgs', 'ContactPointTelegramArgsDict']]]] telegrams: A contact point that sends notifications to Telegram.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointThreemaArgs', 'ContactPointThreemaArgsDict']]]] threemas: A contact point that sends notifications to Threema.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointVictoropArgs', 'ContactPointVictoropArgsDict']]]] victorops: A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointWebexArgs', 'ContactPointWebexArgsDict']]]] webexes: A contact point that sends notifications to Cisco Webex.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointWebhookArgs', 'ContactPointWebhookArgsDict']]]] webhooks: A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointWecomArgs', 'ContactPointWecomArgsDict']]]] wecoms: A contact point that sends notifications to WeCom.
         """
         ...
     @overload
@@ -906,16 +906,16 @@ class ContactPoint(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        my_contact_point = grafana.alerting.ContactPoint("myContactPoint", emails=[grafana.alerting.ContactPointEmailArgs(
-            addresses=[
+        my_contact_point = grafana.alerting.ContactPoint("myContactPoint", emails=[{
+            "addresses": [
                 "one@company.org",
                 "two@company.org",
             ],
-            disable_resolve_message=False,
-            message="{{ len .Alerts.Firing }} firing.",
-            single_email=True,
-            subject="{{ template \\"default.title\\" .}}",
-        )])
+            "disable_resolve_message": False,
+            "message": "{{ len .Alerts.Firing }} firing.",
+            "single_email": True,
+            "subject": "{{ template \\"default.title\\" .}}",
+        }])
         ```
 
         ## Import
@@ -943,30 +943,30 @@ class ContactPoint(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alertmanagers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointAlertmanagerArgs']]]]] = None,
-                 dingdings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDingdingArgs']]]]] = None,
+                 alertmanagers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointAlertmanagerArgs', 'ContactPointAlertmanagerArgsDict']]]]] = None,
+                 dingdings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointDingdingArgs', 'ContactPointDingdingArgsDict']]]]] = None,
                  disable_provenance: Optional[pulumi.Input[bool]] = None,
-                 discords: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDiscordArgs']]]]] = None,
-                 emails: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]]] = None,
-                 googlechats: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]]] = None,
-                 kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]]] = None,
-                 lines: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]]] = None,
+                 discords: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointDiscordArgs', 'ContactPointDiscordArgsDict']]]]] = None,
+                 emails: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointEmailArgs', 'ContactPointEmailArgsDict']]]]] = None,
+                 googlechats: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointGooglechatArgs', 'ContactPointGooglechatArgsDict']]]]] = None,
+                 kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointKafkaArgs', 'ContactPointKafkaArgsDict']]]]] = None,
+                 lines: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointLineArgs', 'ContactPointLineArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 oncalls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]]] = None,
-                 opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]]] = None,
+                 oncalls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointOncallArgs', 'ContactPointOncallArgsDict']]]]] = None,
+                 opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointOpsgenyArgs', 'ContactPointOpsgenyArgsDict']]]]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]]] = None,
-                 pushovers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPushoverArgs']]]]] = None,
-                 sensugos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSensugoArgs']]]]] = None,
-                 slacks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSlackArgs']]]]] = None,
-                 sns: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSnArgs']]]]] = None,
-                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTeamArgs']]]]] = None,
-                 telegrams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTelegramArgs']]]]] = None,
-                 threemas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]]] = None,
-                 victorops: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointVictoropArgs']]]]] = None,
-                 webexes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebexArgs']]]]] = None,
-                 webhooks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebhookArgs']]]]] = None,
-                 wecoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWecomArgs']]]]] = None,
+                 pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointPagerdutyArgs', 'ContactPointPagerdutyArgsDict']]]]] = None,
+                 pushovers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointPushoverArgs', 'ContactPointPushoverArgsDict']]]]] = None,
+                 sensugos: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointSensugoArgs', 'ContactPointSensugoArgsDict']]]]] = None,
+                 slacks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointSlackArgs', 'ContactPointSlackArgsDict']]]]] = None,
+                 sns: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointSnArgs', 'ContactPointSnArgsDict']]]]] = None,
+                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointTeamArgs', 'ContactPointTeamArgsDict']]]]] = None,
+                 telegrams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointTelegramArgs', 'ContactPointTelegramArgsDict']]]]] = None,
+                 threemas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointThreemaArgs', 'ContactPointThreemaArgsDict']]]]] = None,
+                 victorops: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointVictoropArgs', 'ContactPointVictoropArgsDict']]]]] = None,
+                 webexes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointWebexArgs', 'ContactPointWebexArgsDict']]]]] = None,
+                 webhooks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointWebhookArgs', 'ContactPointWebhookArgsDict']]]]] = None,
+                 wecoms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointWecomArgs', 'ContactPointWecomArgsDict']]]]] = None,
                  __props__=None):
         pulumi.log.warn("""ContactPoint is deprecated: grafana.index/contactpoint.ContactPoint has been deprecated in favor of grafana.alerting/contactpoint.ContactPoint""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1013,30 +1013,30 @@ class ContactPoint(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alertmanagers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointAlertmanagerArgs']]]]] = None,
-            dingdings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDingdingArgs']]]]] = None,
+            alertmanagers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointAlertmanagerArgs', 'ContactPointAlertmanagerArgsDict']]]]] = None,
+            dingdings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointDingdingArgs', 'ContactPointDingdingArgsDict']]]]] = None,
             disable_provenance: Optional[pulumi.Input[bool]] = None,
-            discords: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDiscordArgs']]]]] = None,
-            emails: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]]] = None,
-            googlechats: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]]] = None,
-            kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]]] = None,
-            lines: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]]] = None,
+            discords: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointDiscordArgs', 'ContactPointDiscordArgsDict']]]]] = None,
+            emails: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointEmailArgs', 'ContactPointEmailArgsDict']]]]] = None,
+            googlechats: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointGooglechatArgs', 'ContactPointGooglechatArgsDict']]]]] = None,
+            kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointKafkaArgs', 'ContactPointKafkaArgsDict']]]]] = None,
+            lines: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointLineArgs', 'ContactPointLineArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            oncalls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]]] = None,
-            opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]]] = None,
+            oncalls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointOncallArgs', 'ContactPointOncallArgsDict']]]]] = None,
+            opsgenies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointOpsgenyArgs', 'ContactPointOpsgenyArgsDict']]]]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
-            pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]]] = None,
-            pushovers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPushoverArgs']]]]] = None,
-            sensugos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSensugoArgs']]]]] = None,
-            slacks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSlackArgs']]]]] = None,
-            sns: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSnArgs']]]]] = None,
-            teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTeamArgs']]]]] = None,
-            telegrams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTelegramArgs']]]]] = None,
-            threemas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]]] = None,
-            victorops: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointVictoropArgs']]]]] = None,
-            webexes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebexArgs']]]]] = None,
-            webhooks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebhookArgs']]]]] = None,
-            wecoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWecomArgs']]]]] = None) -> 'ContactPoint':
+            pagerduties: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointPagerdutyArgs', 'ContactPointPagerdutyArgsDict']]]]] = None,
+            pushovers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointPushoverArgs', 'ContactPointPushoverArgsDict']]]]] = None,
+            sensugos: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointSensugoArgs', 'ContactPointSensugoArgsDict']]]]] = None,
+            slacks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointSlackArgs', 'ContactPointSlackArgsDict']]]]] = None,
+            sns: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointSnArgs', 'ContactPointSnArgsDict']]]]] = None,
+            teams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointTeamArgs', 'ContactPointTeamArgsDict']]]]] = None,
+            telegrams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointTelegramArgs', 'ContactPointTelegramArgsDict']]]]] = None,
+            threemas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointThreemaArgs', 'ContactPointThreemaArgsDict']]]]] = None,
+            victorops: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointVictoropArgs', 'ContactPointVictoropArgsDict']]]]] = None,
+            webexes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointWebexArgs', 'ContactPointWebexArgsDict']]]]] = None,
+            webhooks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointWebhookArgs', 'ContactPointWebhookArgsDict']]]]] = None,
+            wecoms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointWecomArgs', 'ContactPointWecomArgsDict']]]]] = None) -> 'ContactPoint':
         """
         Get an existing ContactPoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1044,29 +1044,29 @@ class ContactPoint(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointAlertmanagerArgs']]]] alertmanagers: A contact point that sends notifications to other Alertmanager instances.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDingdingArgs']]]] dingdings: A contact point that sends notifications to DingDing.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointDiscordArgs']]]] discords: A contact point that sends notifications as Discord messages
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointEmailArgs']]]] emails: A contact point that sends notifications to an email address.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointGooglechatArgs']]]] googlechats: A contact point that sends notifications to Google Chat.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointKafkaArgs']]]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointLineArgs']]]] lines: A contact point that sends notifications to LINE.me.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointAlertmanagerArgs', 'ContactPointAlertmanagerArgsDict']]]] alertmanagers: A contact point that sends notifications to other Alertmanager instances.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointDingdingArgs', 'ContactPointDingdingArgsDict']]]] dingdings: A contact point that sends notifications to DingDing.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointDiscordArgs', 'ContactPointDiscordArgsDict']]]] discords: A contact point that sends notifications as Discord messages
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointEmailArgs', 'ContactPointEmailArgsDict']]]] emails: A contact point that sends notifications to an email address.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointGooglechatArgs', 'ContactPointGooglechatArgsDict']]]] googlechats: A contact point that sends notifications to Google Chat.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointKafkaArgs', 'ContactPointKafkaArgsDict']]]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointLineArgs', 'ContactPointLineArgsDict']]]] lines: A contact point that sends notifications to LINE.me.
         :param pulumi.Input[str] name: The name of the contact point.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOncallArgs']]]] oncalls: A contact point that sends notifications to Grafana On-Call.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointOpsgenyArgs']]]] opsgenies: A contact point that sends notifications to OpsGenie.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointOncallArgs', 'ContactPointOncallArgsDict']]]] oncalls: A contact point that sends notifications to Grafana On-Call.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointOpsgenyArgs', 'ContactPointOpsgenyArgsDict']]]] opsgenies: A contact point that sends notifications to OpsGenie.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPagerdutyArgs']]]] pagerduties: A contact point that sends notifications to PagerDuty.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointPushoverArgs']]]] pushovers: A contact point that sends notifications to Pushover.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSensugoArgs']]]] sensugos: A contact point that sends notifications to SensuGo.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSlackArgs']]]] slacks: A contact point that sends notifications to Slack.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointSnArgs']]]] sns: A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTeamArgs']]]] teams: A contact point that sends notifications to Microsoft Teams.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointTelegramArgs']]]] telegrams: A contact point that sends notifications to Telegram.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointThreemaArgs']]]] threemas: A contact point that sends notifications to Threema.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointVictoropArgs']]]] victorops: A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebexArgs']]]] webexes: A contact point that sends notifications to Cisco Webex.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWebhookArgs']]]] webhooks: A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContactPointWecomArgs']]]] wecoms: A contact point that sends notifications to WeCom.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointPagerdutyArgs', 'ContactPointPagerdutyArgsDict']]]] pagerduties: A contact point that sends notifications to PagerDuty.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointPushoverArgs', 'ContactPointPushoverArgsDict']]]] pushovers: A contact point that sends notifications to Pushover.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointSensugoArgs', 'ContactPointSensugoArgsDict']]]] sensugos: A contact point that sends notifications to SensuGo.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointSlackArgs', 'ContactPointSlackArgsDict']]]] slacks: A contact point that sends notifications to Slack.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointSnArgs', 'ContactPointSnArgsDict']]]] sns: A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointTeamArgs', 'ContactPointTeamArgsDict']]]] teams: A contact point that sends notifications to Microsoft Teams.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointTelegramArgs', 'ContactPointTelegramArgsDict']]]] telegrams: A contact point that sends notifications to Telegram.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointThreemaArgs', 'ContactPointThreemaArgsDict']]]] threemas: A contact point that sends notifications to Threema.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointVictoropArgs', 'ContactPointVictoropArgsDict']]]] victorops: A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointWebexArgs', 'ContactPointWebexArgsDict']]]] webexes: A contact point that sends notifications to Cisco Webex.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointWebhookArgs', 'ContactPointWebhookArgsDict']]]] webhooks: A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointWecomArgs', 'ContactPointWecomArgsDict']]]] wecoms: A contact point that sends notifications to WeCom.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

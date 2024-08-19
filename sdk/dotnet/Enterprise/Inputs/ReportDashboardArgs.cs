@@ -14,14 +14,14 @@ namespace Pulumiverse.Grafana.Enterprise.Inputs
     public sealed class ReportDashboardArgs : global::Pulumi.ResourceArgs
     {
         [Input("reportVariables")]
-        private InputMap<object>? _reportVariables;
+        private InputMap<string>? _reportVariables;
 
         /// <summary>
         /// Add report variables to the dashboard. Values should be separated by commas.
         /// </summary>
-        public InputMap<object> ReportVariables
+        public InputMap<string> ReportVariables
         {
-            get => _reportVariables ?? (_reportVariables = new InputMap<object>());
+            get => _reportVariables ?? (_reportVariables = new InputMap<string>());
             set => _reportVariables = value;
         }
 

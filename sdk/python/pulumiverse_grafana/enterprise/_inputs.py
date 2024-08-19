@@ -91,11 +91,11 @@ class DataSourcePermissionPermissionArgs:
 class ReportDashboardArgs:
     def __init__(__self__, *,
                  uid: pulumi.Input[str],
-                 report_variables: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 report_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  time_range: Optional[pulumi.Input['ReportDashboardTimeRangeArgs']] = None):
         """
         :param pulumi.Input[str] uid: Dashboard uid.
-        :param pulumi.Input[Mapping[str, Any]] report_variables: Add report variables to the dashboard. Values should be separated by commas.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] report_variables: Add report variables to the dashboard. Values should be separated by commas.
         :param pulumi.Input['ReportDashboardTimeRangeArgs'] time_range: Time range of the report.
         """
         pulumi.set(__self__, "uid", uid)
@@ -118,14 +118,14 @@ class ReportDashboardArgs:
 
     @property
     @pulumi.getter(name="reportVariables")
-    def report_variables(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def report_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Add report variables to the dashboard. Values should be separated by commas.
         """
         return pulumi.get(self, "report_variables")
 
     @report_variables.setter
-    def report_variables(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def report_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "report_variables", value)
 
     @property
