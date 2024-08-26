@@ -25,7 +25,7 @@ type MachineLearningJob struct {
 	pulumi.CustomResourceState
 
 	// An object representing the custom labels added on the forecast.
-	CustomLabels pulumi.MapOutput `pulumi:"customLabels"`
+	CustomLabels pulumi.StringMapOutput `pulumi:"customLabels"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType pulumi.StringOutput `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
@@ -35,7 +35,7 @@ type MachineLearningJob struct {
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays pulumi.StringArrayOutput `pulumi:"holidays"`
 	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
-	HyperParams pulumi.MapOutput `pulumi:"hyperParams"`
+	HyperParams pulumi.StringMapOutput `pulumi:"hyperParams"`
 	// The data interval in seconds to train the data on. Defaults to `300`.
 	Interval pulumi.IntPtrOutput `pulumi:"interval"`
 	// The metric used to query the job results.
@@ -43,7 +43,7 @@ type MachineLearningJob struct {
 	// The name of the job.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
-	QueryParams pulumi.MapOutput `pulumi:"queryParams"`
+	QueryParams pulumi.StringMapOutput `pulumi:"queryParams"`
 	// The data interval in seconds to train the data on. Defaults to `7776000`.
 	TrainingWindow pulumi.IntPtrOutput `pulumi:"trainingWindow"`
 }
@@ -97,7 +97,7 @@ func GetMachineLearningJob(ctx *pulumi.Context,
 // Input properties used for looking up and filtering MachineLearningJob resources.
 type machineLearningJobState struct {
 	// An object representing the custom labels added on the forecast.
-	CustomLabels map[string]interface{} `pulumi:"customLabels"`
+	CustomLabels map[string]string `pulumi:"customLabels"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType *string `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
@@ -107,7 +107,7 @@ type machineLearningJobState struct {
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays []string `pulumi:"holidays"`
 	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
-	HyperParams map[string]interface{} `pulumi:"hyperParams"`
+	HyperParams map[string]string `pulumi:"hyperParams"`
 	// The data interval in seconds to train the data on. Defaults to `300`.
 	Interval *int `pulumi:"interval"`
 	// The metric used to query the job results.
@@ -115,14 +115,14 @@ type machineLearningJobState struct {
 	// The name of the job.
 	Name *string `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
-	QueryParams map[string]interface{} `pulumi:"queryParams"`
+	QueryParams map[string]string `pulumi:"queryParams"`
 	// The data interval in seconds to train the data on. Defaults to `7776000`.
 	TrainingWindow *int `pulumi:"trainingWindow"`
 }
 
 type MachineLearningJobState struct {
 	// An object representing the custom labels added on the forecast.
-	CustomLabels pulumi.MapInput
+	CustomLabels pulumi.StringMapInput
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType pulumi.StringPtrInput
 	// The uid of the datasource to query.
@@ -132,7 +132,7 @@ type MachineLearningJobState struct {
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays pulumi.StringArrayInput
 	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
-	HyperParams pulumi.MapInput
+	HyperParams pulumi.StringMapInput
 	// The data interval in seconds to train the data on. Defaults to `300`.
 	Interval pulumi.IntPtrInput
 	// The metric used to query the job results.
@@ -140,7 +140,7 @@ type MachineLearningJobState struct {
 	// The name of the job.
 	Name pulumi.StringPtrInput
 	// An object representing the query params to query Grafana with.
-	QueryParams pulumi.MapInput
+	QueryParams pulumi.StringMapInput
 	// The data interval in seconds to train the data on. Defaults to `7776000`.
 	TrainingWindow pulumi.IntPtrInput
 }
@@ -151,7 +151,7 @@ func (MachineLearningJobState) ElementType() reflect.Type {
 
 type machineLearningJobArgs struct {
 	// An object representing the custom labels added on the forecast.
-	CustomLabels map[string]interface{} `pulumi:"customLabels"`
+	CustomLabels map[string]string `pulumi:"customLabels"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType string `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
@@ -161,7 +161,7 @@ type machineLearningJobArgs struct {
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays []string `pulumi:"holidays"`
 	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
-	HyperParams map[string]interface{} `pulumi:"hyperParams"`
+	HyperParams map[string]string `pulumi:"hyperParams"`
 	// The data interval in seconds to train the data on. Defaults to `300`.
 	Interval *int `pulumi:"interval"`
 	// The metric used to query the job results.
@@ -169,7 +169,7 @@ type machineLearningJobArgs struct {
 	// The name of the job.
 	Name *string `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
-	QueryParams map[string]interface{} `pulumi:"queryParams"`
+	QueryParams map[string]string `pulumi:"queryParams"`
 	// The data interval in seconds to train the data on. Defaults to `7776000`.
 	TrainingWindow *int `pulumi:"trainingWindow"`
 }
@@ -177,7 +177,7 @@ type machineLearningJobArgs struct {
 // The set of arguments for constructing a MachineLearningJob resource.
 type MachineLearningJobArgs struct {
 	// An object representing the custom labels added on the forecast.
-	CustomLabels pulumi.MapInput
+	CustomLabels pulumi.StringMapInput
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType pulumi.StringInput
 	// The uid of the datasource to query.
@@ -187,7 +187,7 @@ type MachineLearningJobArgs struct {
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays pulumi.StringArrayInput
 	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
-	HyperParams pulumi.MapInput
+	HyperParams pulumi.StringMapInput
 	// The data interval in seconds to train the data on. Defaults to `300`.
 	Interval pulumi.IntPtrInput
 	// The metric used to query the job results.
@@ -195,7 +195,7 @@ type MachineLearningJobArgs struct {
 	// The name of the job.
 	Name pulumi.StringPtrInput
 	// An object representing the query params to query Grafana with.
-	QueryParams pulumi.MapInput
+	QueryParams pulumi.StringMapInput
 	// The data interval in seconds to train the data on. Defaults to `7776000`.
 	TrainingWindow pulumi.IntPtrInput
 }
@@ -288,8 +288,8 @@ func (o MachineLearningJobOutput) ToMachineLearningJobOutputWithContext(ctx cont
 }
 
 // An object representing the custom labels added on the forecast.
-func (o MachineLearningJobOutput) CustomLabels() pulumi.MapOutput {
-	return o.ApplyT(func(v *MachineLearningJob) pulumi.MapOutput { return v.CustomLabels }).(pulumi.MapOutput)
+func (o MachineLearningJobOutput) CustomLabels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *MachineLearningJob) pulumi.StringMapOutput { return v.CustomLabels }).(pulumi.StringMapOutput)
 }
 
 // The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
@@ -313,8 +313,8 @@ func (o MachineLearningJobOutput) Holidays() pulumi.StringArrayOutput {
 }
 
 // The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
-func (o MachineLearningJobOutput) HyperParams() pulumi.MapOutput {
-	return o.ApplyT(func(v *MachineLearningJob) pulumi.MapOutput { return v.HyperParams }).(pulumi.MapOutput)
+func (o MachineLearningJobOutput) HyperParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *MachineLearningJob) pulumi.StringMapOutput { return v.HyperParams }).(pulumi.StringMapOutput)
 }
 
 // The data interval in seconds to train the data on. Defaults to `300`.
@@ -333,8 +333,8 @@ func (o MachineLearningJobOutput) Name() pulumi.StringOutput {
 }
 
 // An object representing the query params to query Grafana with.
-func (o MachineLearningJobOutput) QueryParams() pulumi.MapOutput {
-	return o.ApplyT(func(v *MachineLearningJob) pulumi.MapOutput { return v.QueryParams }).(pulumi.MapOutput)
+func (o MachineLearningJobOutput) QueryParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *MachineLearningJob) pulumi.StringMapOutput { return v.QueryParams }).(pulumi.StringMapOutput)
 }
 
 // The data interval in seconds to train the data on. Defaults to `7776000`.

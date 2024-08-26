@@ -394,7 +394,7 @@ class Role(pulumi.CustomResource):
                  hidden: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RolePermissionArgs']]]]] = None,
+                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RolePermissionArgs', 'RolePermissionArgsDict']]]]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -414,18 +414,18 @@ class Role(pulumi.CustomResource):
             description="My Super User description",
             global_=True,
             permissions=[
-                grafana.enterprise.RolePermissionArgs(
-                    action="org.users:add",
-                    scope="users:*",
-                ),
-                grafana.enterprise.RolePermissionArgs(
-                    action="org.users:write",
-                    scope="users:*",
-                ),
-                grafana.enterprise.RolePermissionArgs(
-                    action="org.users:read",
-                    scope="users:*",
-                ),
+                {
+                    "action": "org.users:add",
+                    "scope": "users:*",
+                },
+                {
+                    "action": "org.users:write",
+                    "scope": "users:*",
+                },
+                {
+                    "action": "org.users:read",
+                    "scope": "users:*",
+                },
             ],
             uid="superuseruid",
             version=1)
@@ -451,7 +451,7 @@ class Role(pulumi.CustomResource):
         :param pulumi.Input[bool] hidden: Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
         :param pulumi.Input[str] name: Name of the role
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RolePermissionArgs']]]] permissions: Specific set of actions granted by the role.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RolePermissionArgs', 'RolePermissionArgsDict']]]] permissions: Specific set of actions granted by the role.
         :param pulumi.Input[str] uid: Unique identifier of the role. Used for assignments.
         :param pulumi.Input[int] version: Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
         """
@@ -477,18 +477,18 @@ class Role(pulumi.CustomResource):
             description="My Super User description",
             global_=True,
             permissions=[
-                grafana.enterprise.RolePermissionArgs(
-                    action="org.users:add",
-                    scope="users:*",
-                ),
-                grafana.enterprise.RolePermissionArgs(
-                    action="org.users:write",
-                    scope="users:*",
-                ),
-                grafana.enterprise.RolePermissionArgs(
-                    action="org.users:read",
-                    scope="users:*",
-                ),
+                {
+                    "action": "org.users:add",
+                    "scope": "users:*",
+                },
+                {
+                    "action": "org.users:write",
+                    "scope": "users:*",
+                },
+                {
+                    "action": "org.users:read",
+                    "scope": "users:*",
+                },
             ],
             uid="superuseruid",
             version=1)
@@ -527,7 +527,7 @@ class Role(pulumi.CustomResource):
                  hidden: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RolePermissionArgs']]]]] = None,
+                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RolePermissionArgs', 'RolePermissionArgsDict']]]]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -570,7 +570,7 @@ class Role(pulumi.CustomResource):
             hidden: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
-            permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RolePermissionArgs']]]]] = None,
+            permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RolePermissionArgs', 'RolePermissionArgsDict']]]]] = None,
             uid: Optional[pulumi.Input[str]] = None,
             version: Optional[pulumi.Input[int]] = None) -> 'Role':
         """
@@ -588,7 +588,7 @@ class Role(pulumi.CustomResource):
         :param pulumi.Input[bool] hidden: Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
         :param pulumi.Input[str] name: Name of the role
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RolePermissionArgs']]]] permissions: Specific set of actions granted by the role.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RolePermissionArgs', 'RolePermissionArgsDict']]]] permissions: Specific set of actions granted by the role.
         :param pulumi.Input[str] uid: Unique identifier of the role. Used for assignments.
         :param pulumi.Input[int] version: Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
         """

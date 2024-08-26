@@ -188,10 +188,10 @@ class Installation(pulumi.CustomResource):
                 "logs:write",
                 "traces:write",
             ],
-            realms=[grafana.cloud.AccessPolicyRealmArgs(
-                type="stack",
-                identifier=sm_stack_stack.id,
-            )],
+            realms=[{
+                "type": "stack",
+                "identifier": sm_stack_stack.id,
+            }],
             opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
         sm_metrics_publish_access_policy_token = grafana.cloud.AccessPolicyToken("smMetricsPublishAccessPolicyToken",
             region=cloud_region,
@@ -262,10 +262,10 @@ class Installation(pulumi.CustomResource):
                 "logs:write",
                 "traces:write",
             ],
-            realms=[grafana.cloud.AccessPolicyRealmArgs(
-                type="stack",
-                identifier=sm_stack_stack.id,
-            )],
+            realms=[{
+                "type": "stack",
+                "identifier": sm_stack_stack.id,
+            }],
             opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
         sm_metrics_publish_access_policy_token = grafana.cloud.AccessPolicyToken("smMetricsPublishAccessPolicyToken",
             region=cloud_region,

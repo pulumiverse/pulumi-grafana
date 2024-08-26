@@ -20,7 +20,7 @@ class MachineLearningOutlierDetectorArgs:
                  datasource_type: pulumi.Input[str],
                  datasource_uid: pulumi.Input[str],
                  metric: pulumi.Input[str],
-                 query_params: pulumi.Input[Mapping[str, Any]],
+                 query_params: pulumi.Input[Mapping[str, pulumi.Input[str]]],
                  description: Optional[pulumi.Input[str]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None):
@@ -30,7 +30,7 @@ class MachineLearningOutlierDetectorArgs:
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] metric: The metric used to query the outlier detector results.
-        :param pulumi.Input[Mapping[str, Any]] query_params: An object representing the query params to query Grafana with.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] query_params: An object representing the query params to query Grafana with.
         :param pulumi.Input[str] description: A description of the outlier detector.
         :param pulumi.Input[int] interval: The data interval in seconds to monitor. Defaults to `300`.
         :param pulumi.Input[str] name: The name of the outlier detector.
@@ -97,14 +97,14 @@ class MachineLearningOutlierDetectorArgs:
 
     @property
     @pulumi.getter(name="queryParams")
-    def query_params(self) -> pulumi.Input[Mapping[str, Any]]:
+    def query_params(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
         """
         An object representing the query params to query Grafana with.
         """
         return pulumi.get(self, "query_params")
 
     @query_params.setter
-    def query_params(self, value: pulumi.Input[Mapping[str, Any]]):
+    def query_params(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
         pulumi.set(self, "query_params", value)
 
     @property
@@ -154,7 +154,7 @@ class _MachineLearningOutlierDetectorState:
                  interval: Optional[pulumi.Input[int]] = None,
                  metric: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 query_params: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+                 query_params: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering MachineLearningOutlierDetector resources.
         :param pulumi.Input['MachineLearningOutlierDetectorAlgorithmArgs'] algorithm: The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
@@ -164,7 +164,7 @@ class _MachineLearningOutlierDetectorState:
         :param pulumi.Input[int] interval: The data interval in seconds to monitor. Defaults to `300`.
         :param pulumi.Input[str] metric: The metric used to query the outlier detector results.
         :param pulumi.Input[str] name: The name of the outlier detector.
-        :param pulumi.Input[Mapping[str, Any]] query_params: An object representing the query params to query Grafana with.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] query_params: An object representing the query params to query Grafana with.
         """
         if algorithm is not None:
             pulumi.set(__self__, "algorithm", algorithm)
@@ -269,14 +269,14 @@ class _MachineLearningOutlierDetectorState:
 
     @property
     @pulumi.getter(name="queryParams")
-    def query_params(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def query_params(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         An object representing the query params to query Grafana with.
         """
         return pulumi.get(self, "query_params")
 
     @query_params.setter
-    def query_params(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def query_params(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "query_params", value)
 
 
@@ -290,14 +290,14 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 algorithm: Optional[pulumi.Input[pulumi.InputType['MachineLearningOutlierDetectorAlgorithmArgs']]] = None,
+                 algorithm: Optional[pulumi.Input[Union['MachineLearningOutlierDetectorAlgorithmArgs', 'MachineLearningOutlierDetectorAlgorithmArgsDict']]] = None,
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  metric: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 query_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 query_params: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         An outlier detector monitors the results of a query and reports when its values are outside normal bands.
@@ -314,14 +314,14 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['MachineLearningOutlierDetectorAlgorithmArgs']] algorithm: The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        :param pulumi.Input[Union['MachineLearningOutlierDetectorAlgorithmArgs', 'MachineLearningOutlierDetectorAlgorithmArgsDict']] algorithm: The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the outlier detector.
         :param pulumi.Input[int] interval: The data interval in seconds to monitor. Defaults to `300`.
         :param pulumi.Input[str] metric: The metric used to query the outlier detector results.
         :param pulumi.Input[str] name: The name of the outlier detector.
-        :param pulumi.Input[Mapping[str, Any]] query_params: An object representing the query params to query Grafana with.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] query_params: An object representing the query params to query Grafana with.
         """
         ...
     @overload
@@ -357,14 +357,14 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 algorithm: Optional[pulumi.Input[pulumi.InputType['MachineLearningOutlierDetectorAlgorithmArgs']]] = None,
+                 algorithm: Optional[pulumi.Input[Union['MachineLearningOutlierDetectorAlgorithmArgs', 'MachineLearningOutlierDetectorAlgorithmArgsDict']]] = None,
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  metric: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 query_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 query_params: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         pulumi.log.warn("""MachineLearningOutlierDetector is deprecated: grafana.index/machinelearningoutlierdetector.MachineLearningOutlierDetector has been deprecated in favor of grafana.machinelearning/outlierdetector.OutlierDetector""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -405,14 +405,14 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            algorithm: Optional[pulumi.Input[pulumi.InputType['MachineLearningOutlierDetectorAlgorithmArgs']]] = None,
+            algorithm: Optional[pulumi.Input[Union['MachineLearningOutlierDetectorAlgorithmArgs', 'MachineLearningOutlierDetectorAlgorithmArgsDict']]] = None,
             datasource_type: Optional[pulumi.Input[str]] = None,
             datasource_uid: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             interval: Optional[pulumi.Input[int]] = None,
             metric: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            query_params: Optional[pulumi.Input[Mapping[str, Any]]] = None) -> 'MachineLearningOutlierDetector':
+            query_params: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'MachineLearningOutlierDetector':
         """
         Get an existing MachineLearningOutlierDetector resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -420,14 +420,14 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['MachineLearningOutlierDetectorAlgorithmArgs']] algorithm: The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        :param pulumi.Input[Union['MachineLearningOutlierDetectorAlgorithmArgs', 'MachineLearningOutlierDetectorAlgorithmArgsDict']] algorithm: The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the outlier detector.
         :param pulumi.Input[int] interval: The data interval in seconds to monitor. Defaults to `300`.
         :param pulumi.Input[str] metric: The metric used to query the outlier detector results.
         :param pulumi.Input[str] name: The name of the outlier detector.
-        :param pulumi.Input[Mapping[str, Any]] query_params: An object representing the query params to query Grafana with.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] query_params: An object representing the query params to query Grafana with.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -501,7 +501,7 @@ class MachineLearningOutlierDetector(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="queryParams")
-    def query_params(self) -> pulumi.Output[Mapping[str, Any]]:
+    def query_params(self) -> pulumi.Output[Mapping[str, str]]:
         """
         An object representing the query params to query Grafana with.
         """

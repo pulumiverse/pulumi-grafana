@@ -331,7 +331,7 @@ class OncallSchedule(pulumi.CustomResource):
                  ical_url_primary: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  shifts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 slack: Optional[pulumi.Input[pulumi.InputType['OncallScheduleSlackArgs']]] = None,
+                 slack: Optional[pulumi.Input[Union['OncallScheduleSlackArgs', 'OncallScheduleSlackArgsDict']]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
                  time_zone: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -353,10 +353,10 @@ class OncallSchedule(pulumi.CustomResource):
             type="ical",
             ical_url_primary="https://example.com/example_ical.ics",
             ical_url_overrides="https://example.com/example_overrides_ical.ics",
-            slack=grafana.on_call.ScheduleSlackArgs(
-                channel_id=example_slack_channel.slack_id,
-                user_group_id=example_user_group.slack_id,
-            ))
+            slack={
+                "channel_id": example_slack_channel.slack_id,
+                "user_group_id": example_user_group.slack_id,
+            })
         # Shift based schedule
         example_schedule_on_call_schedule_schedule = grafana.on_call.Schedule("exampleScheduleOnCall/scheduleSchedule",
             type="calendar",
@@ -378,7 +378,7 @@ class OncallSchedule(pulumi.CustomResource):
         :param pulumi.Input[str] ical_url_primary: The URL of the external calendar iCal file.
         :param pulumi.Input[str] name: The schedule's name.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] shifts: The list of ID's of on-call shifts.
-        :param pulumi.Input[pulumi.InputType['OncallScheduleSlackArgs']] slack: The Slack-specific settings for a schedule.
+        :param pulumi.Input[Union['OncallScheduleSlackArgs', 'OncallScheduleSlackArgsDict']] slack: The Slack-specific settings for a schedule.
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
         :param pulumi.Input[str] time_zone: The schedule's time zone.
         :param pulumi.Input[str] type: The schedule's type. Valid values are `ical`, `calendar`.
@@ -406,10 +406,10 @@ class OncallSchedule(pulumi.CustomResource):
             type="ical",
             ical_url_primary="https://example.com/example_ical.ics",
             ical_url_overrides="https://example.com/example_overrides_ical.ics",
-            slack=grafana.on_call.ScheduleSlackArgs(
-                channel_id=example_slack_channel.slack_id,
-                user_group_id=example_user_group.slack_id,
-            ))
+            slack={
+                "channel_id": example_slack_channel.slack_id,
+                "user_group_id": example_user_group.slack_id,
+            })
         # Shift based schedule
         example_schedule_on_call_schedule_schedule = grafana.on_call.Schedule("exampleScheduleOnCall/scheduleSchedule",
             type="calendar",
@@ -444,7 +444,7 @@ class OncallSchedule(pulumi.CustomResource):
                  ical_url_primary: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  shifts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 slack: Optional[pulumi.Input[pulumi.InputType['OncallScheduleSlackArgs']]] = None,
+                 slack: Optional[pulumi.Input[Union['OncallScheduleSlackArgs', 'OncallScheduleSlackArgsDict']]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
                  time_zone: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -486,7 +486,7 @@ class OncallSchedule(pulumi.CustomResource):
             ical_url_primary: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             shifts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            slack: Optional[pulumi.Input[pulumi.InputType['OncallScheduleSlackArgs']]] = None,
+            slack: Optional[pulumi.Input[Union['OncallScheduleSlackArgs', 'OncallScheduleSlackArgsDict']]] = None,
             team_id: Optional[pulumi.Input[str]] = None,
             time_zone: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'OncallSchedule':
@@ -502,7 +502,7 @@ class OncallSchedule(pulumi.CustomResource):
         :param pulumi.Input[str] ical_url_primary: The URL of the external calendar iCal file.
         :param pulumi.Input[str] name: The schedule's name.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] shifts: The list of ID's of on-call shifts.
-        :param pulumi.Input[pulumi.InputType['OncallScheduleSlackArgs']] slack: The Slack-specific settings for a schedule.
+        :param pulumi.Input[Union['OncallScheduleSlackArgs', 'OncallScheduleSlackArgsDict']] slack: The Slack-specific settings for a schedule.
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
         :param pulumi.Input[str] time_zone: The schedule's time zone.
         :param pulumi.Input[str] type: The schedule's type. Valid values are `ical`, `calendar`.

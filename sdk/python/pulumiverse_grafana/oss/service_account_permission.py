@@ -130,7 +130,7 @@ class ServiceAccountPermission(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceAccountPermissionPermissionArgs']]]]] = None,
+                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceAccountPermissionPermissionArgs', 'ServiceAccountPermissionPermissionArgsDict']]]]] = None,
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -157,14 +157,14 @@ class ServiceAccountPermission(pulumi.CustomResource):
         test_permissions = grafana.oss.ServiceAccountPermission("testPermissions",
             service_account_id=test.id,
             permissions=[
-                grafana.oss.ServiceAccountPermissionPermissionArgs(
-                    user_id=test_user.id,
-                    permission="Edit",
-                ),
-                grafana.oss.ServiceAccountPermissionPermissionArgs(
-                    team_id=test_team.id,
-                    permission="Admin",
-                ),
+                {
+                    "user_id": test_user.id,
+                    "permission": "Edit",
+                },
+                {
+                    "team_id": test_team.id,
+                    "permission": "Admin",
+                },
             ])
         ```
 
@@ -181,7 +181,7 @@ class ServiceAccountPermission(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceAccountPermissionPermissionArgs']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceAccountPermissionPermissionArgs', 'ServiceAccountPermissionPermissionArgsDict']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         :param pulumi.Input[str] service_account_id: The id of the service account.
         """
         ...
@@ -214,14 +214,14 @@ class ServiceAccountPermission(pulumi.CustomResource):
         test_permissions = grafana.oss.ServiceAccountPermission("testPermissions",
             service_account_id=test.id,
             permissions=[
-                grafana.oss.ServiceAccountPermissionPermissionArgs(
-                    user_id=test_user.id,
-                    permission="Edit",
-                ),
-                grafana.oss.ServiceAccountPermissionPermissionArgs(
-                    team_id=test_team.id,
-                    permission="Admin",
-                ),
+                {
+                    "user_id": test_user.id,
+                    "permission": "Edit",
+                },
+                {
+                    "team_id": test_team.id,
+                    "permission": "Admin",
+                },
             ])
         ```
 
@@ -251,7 +251,7 @@ class ServiceAccountPermission(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceAccountPermissionPermissionArgs']]]]] = None,
+                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceAccountPermissionPermissionArgs', 'ServiceAccountPermissionPermissionArgsDict']]]]] = None,
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -280,7 +280,7 @@ class ServiceAccountPermission(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             org_id: Optional[pulumi.Input[str]] = None,
-            permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceAccountPermissionPermissionArgs']]]]] = None,
+            permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceAccountPermissionPermissionArgs', 'ServiceAccountPermissionPermissionArgsDict']]]]] = None,
             service_account_id: Optional[pulumi.Input[str]] = None) -> 'ServiceAccountPermission':
         """
         Get an existing ServiceAccountPermission resource's state with the given name, id, and optional extra
@@ -290,7 +290,7 @@ class ServiceAccountPermission(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceAccountPermissionPermissionArgs']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceAccountPermissionPermissionArgs', 'ServiceAccountPermissionPermissionArgsDict']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         :param pulumi.Input[str] service_account_id: The id of the service account.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

@@ -199,7 +199,7 @@ class MachineLearningHoliday(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 custom_periods: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MachineLearningHolidayCustomPeriodArgs']]]]] = None,
+                 custom_periods: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MachineLearningHolidayCustomPeriodArgs', 'MachineLearningHolidayCustomPeriodArgsDict']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  ical_timezone: Optional[pulumi.Input[str]] = None,
                  ical_url: Optional[pulumi.Input[str]] = None,
@@ -218,7 +218,7 @@ class MachineLearningHoliday(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MachineLearningHolidayCustomPeriodArgs']]]] custom_periods: A list of custom periods for the holiday.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MachineLearningHolidayCustomPeriodArgs', 'MachineLearningHolidayCustomPeriodArgsDict']]]] custom_periods: A list of custom periods for the holiday.
         :param pulumi.Input[str] description: A description of the holiday.
         :param pulumi.Input[str] ical_timezone: The timezone to use for events in the iCal file pointed to by ical_url.
         :param pulumi.Input[str] ical_url: A URL to an iCal file containing all occurrences of the holiday.
@@ -256,7 +256,7 @@ class MachineLearningHoliday(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 custom_periods: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MachineLearningHolidayCustomPeriodArgs']]]]] = None,
+                 custom_periods: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MachineLearningHolidayCustomPeriodArgs', 'MachineLearningHolidayCustomPeriodArgsDict']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  ical_timezone: Optional[pulumi.Input[str]] = None,
                  ical_url: Optional[pulumi.Input[str]] = None,
@@ -288,7 +288,7 @@ class MachineLearningHoliday(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            custom_periods: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MachineLearningHolidayCustomPeriodArgs']]]]] = None,
+            custom_periods: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MachineLearningHolidayCustomPeriodArgs', 'MachineLearningHolidayCustomPeriodArgsDict']]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
             ical_timezone: Optional[pulumi.Input[str]] = None,
             ical_url: Optional[pulumi.Input[str]] = None,
@@ -300,7 +300,7 @@ class MachineLearningHoliday(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MachineLearningHolidayCustomPeriodArgs']]]] custom_periods: A list of custom periods for the holiday.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MachineLearningHolidayCustomPeriodArgs', 'MachineLearningHolidayCustomPeriodArgsDict']]]] custom_periods: A list of custom periods for the holiday.
         :param pulumi.Input[str] description: A description of the holiday.
         :param pulumi.Input[str] ical_timezone: The timezone to use for events in the iCal file pointed to by ical_url.
         :param pulumi.Input[str] ical_url: A URL to an iCal file containing all occurrences of the holiday.

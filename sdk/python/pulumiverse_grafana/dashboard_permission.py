@@ -137,7 +137,7 @@ class DashboardPermission(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DashboardPermissionPermissionArgs']]]]] = None,
+                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DashboardPermissionPermissionArgs', 'DashboardPermissionPermissionArgsDict']]]]] = None,
                  __props__=None):
         """
         Manages the entire set of permissions for a dashboard. Permissions that aren't specified when applying this resource will be removed.
@@ -163,18 +163,18 @@ class DashboardPermission(pulumi.CustomResource):
         collection_permission = grafana.oss.DashboardPermission("collectionPermission",
             dashboard_uid=metrics.uid,
             permissions=[
-                grafana.oss.DashboardPermissionPermissionArgs(
-                    role="Editor",
-                    permission="Edit",
-                ),
-                grafana.oss.DashboardPermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="View",
-                ),
-                grafana.oss.DashboardPermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Admin",
-                ),
+                {
+                    "role": "Editor",
+                    "permission": "Edit",
+                },
+                {
+                    "team_id": team.id,
+                    "permission": "View",
+                },
+                {
+                    "user_id": user.id,
+                    "permission": "Admin",
+                },
             ])
         ```
 
@@ -192,7 +192,7 @@ class DashboardPermission(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dashboard_uid: UID of the dashboard to apply permissions to.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DashboardPermissionPermissionArgs']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DashboardPermissionPermissionArgs', 'DashboardPermissionPermissionArgsDict']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         ...
     @overload
@@ -224,18 +224,18 @@ class DashboardPermission(pulumi.CustomResource):
         collection_permission = grafana.oss.DashboardPermission("collectionPermission",
             dashboard_uid=metrics.uid,
             permissions=[
-                grafana.oss.DashboardPermissionPermissionArgs(
-                    role="Editor",
-                    permission="Edit",
-                ),
-                grafana.oss.DashboardPermissionPermissionArgs(
-                    team_id=team.id,
-                    permission="View",
-                ),
-                grafana.oss.DashboardPermissionPermissionArgs(
-                    user_id=user.id,
-                    permission="Admin",
-                ),
+                {
+                    "role": "Editor",
+                    "permission": "Edit",
+                },
+                {
+                    "team_id": team.id,
+                    "permission": "View",
+                },
+                {
+                    "user_id": user.id,
+                    "permission": "Admin",
+                },
             ])
         ```
 
@@ -266,7 +266,7 @@ class DashboardPermission(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dashboard_uid: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DashboardPermissionPermissionArgs']]]]] = None,
+                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DashboardPermissionPermissionArgs', 'DashboardPermissionPermissionArgsDict']]]]] = None,
                  __props__=None):
         pulumi.log.warn("""DashboardPermission is deprecated: grafana.index/dashboardpermission.DashboardPermission has been deprecated in favor of grafana.oss/dashboardpermission.DashboardPermission""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -294,7 +294,7 @@ class DashboardPermission(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dashboard_uid: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
-            permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DashboardPermissionPermissionArgs']]]]] = None) -> 'DashboardPermission':
+            permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DashboardPermissionPermissionArgs', 'DashboardPermissionPermissionArgsDict']]]]] = None) -> 'DashboardPermission':
         """
         Get an existing DashboardPermission resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -304,7 +304,7 @@ class DashboardPermission(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dashboard_uid: UID of the dashboard to apply permissions to.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DashboardPermissionPermissionArgs']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DashboardPermissionPermissionArgs', 'DashboardPermissionPermissionArgsDict']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

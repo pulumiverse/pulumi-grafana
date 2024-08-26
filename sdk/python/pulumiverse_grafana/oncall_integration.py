@@ -213,10 +213,10 @@ class OncallIntegration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 default_route: Optional[pulumi.Input[pulumi.InputType['OncallIntegrationDefaultRouteArgs']]] = None,
+                 default_route: Optional[pulumi.Input[Union['OncallIntegrationDefaultRouteArgs', 'OncallIntegrationDefaultRouteArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
-                 templates: Optional[pulumi.Input[pulumi.InputType['OncallIntegrationTemplatesArgs']]] = None,
+                 templates: Optional[pulumi.Input[Union['OncallIntegrationTemplatesArgs', 'OncallIntegrationTemplatesArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -231,10 +231,10 @@ class OncallIntegration(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['OncallIntegrationDefaultRouteArgs']] default_route: The Default route for all alerts from the given integration
+        :param pulumi.Input[Union['OncallIntegrationDefaultRouteArgs', 'OncallIntegrationDefaultRouteArgsDict']] default_route: The Default route for all alerts from the given integration
         :param pulumi.Input[str] name: The name of the service integration.
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
-        :param pulumi.Input[pulumi.InputType['OncallIntegrationTemplatesArgs']] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
+        :param pulumi.Input[Union['OncallIntegrationTemplatesArgs', 'OncallIntegrationTemplatesArgsDict']] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
         :param pulumi.Input[str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
         """
         ...
@@ -268,10 +268,10 @@ class OncallIntegration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 default_route: Optional[pulumi.Input[pulumi.InputType['OncallIntegrationDefaultRouteArgs']]] = None,
+                 default_route: Optional[pulumi.Input[Union['OncallIntegrationDefaultRouteArgs', 'OncallIntegrationDefaultRouteArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
-                 templates: Optional[pulumi.Input[pulumi.InputType['OncallIntegrationTemplatesArgs']]] = None,
+                 templates: Optional[pulumi.Input[Union['OncallIntegrationTemplatesArgs', 'OncallIntegrationTemplatesArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         pulumi.log.warn("""OncallIntegration is deprecated: grafana.index/oncallintegration.OncallIntegration has been deprecated in favor of grafana.oncall/integration.Integration""")
@@ -305,11 +305,11 @@ class OncallIntegration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            default_route: Optional[pulumi.Input[pulumi.InputType['OncallIntegrationDefaultRouteArgs']]] = None,
+            default_route: Optional[pulumi.Input[Union['OncallIntegrationDefaultRouteArgs', 'OncallIntegrationDefaultRouteArgsDict']]] = None,
             link: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             team_id: Optional[pulumi.Input[str]] = None,
-            templates: Optional[pulumi.Input[pulumi.InputType['OncallIntegrationTemplatesArgs']]] = None,
+            templates: Optional[pulumi.Input[Union['OncallIntegrationTemplatesArgs', 'OncallIntegrationTemplatesArgsDict']]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'OncallIntegration':
         """
         Get an existing OncallIntegration resource's state with the given name, id, and optional extra
@@ -318,11 +318,11 @@ class OncallIntegration(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['OncallIntegrationDefaultRouteArgs']] default_route: The Default route for all alerts from the given integration
+        :param pulumi.Input[Union['OncallIntegrationDefaultRouteArgs', 'OncallIntegrationDefaultRouteArgsDict']] default_route: The Default route for all alerts from the given integration
         :param pulumi.Input[str] link: The link for using in an integrated tool.
         :param pulumi.Input[str] name: The name of the service integration.
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
-        :param pulumi.Input[pulumi.InputType['OncallIntegrationTemplatesArgs']] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
+        :param pulumi.Input[Union['OncallIntegrationTemplatesArgs', 'OncallIntegrationTemplatesArgsDict']] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
         :param pulumi.Input[str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
