@@ -2384,6 +2384,7 @@
                 "sendTagsAs": "send_tags_as"
             },
             "grafana:index/ContactPointPagerduty:ContactPointPagerduty": {
+                "url": "url",
                 "clientUrl": "client_url",
                 "disableResolveMessage": "disable_resolve_message",
                 "integrationKey": "integration_key"
