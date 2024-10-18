@@ -10,7 +10,7 @@ require (
 	github.com/grafana/terraform-provider-grafana/v3 v3.2.1
 	github.com/pulumi/pulumi-terraform-bridge/pf v0.41.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.88.0
-	github.com/pulumi/pulumi/sdk/v3 v3.126.0
+	github.com/pulumi/pulumi/sdk/v3 v3.137.0
 )
 
 require (
