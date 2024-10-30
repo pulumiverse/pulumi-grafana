@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -190,18 +195,18 @@ def get_role(name: Optional[str] = None,
         global_=True,
         hidden=False,
         permissions=[
-            grafana.enterprise.RolePermissionArgs(
-                action="org.users:add",
-                scope="users:*",
-            ),
-            grafana.enterprise.RolePermissionArgs(
-                action="org.users:write",
-                scope="users:*",
-            ),
-            grafana.enterprise.RolePermissionArgs(
-                action="org.users:read",
-                scope="users:*",
-            ),
+            {
+                "action": "org.users:add",
+                "scope": "users:*",
+            },
+            {
+                "action": "org.users:write",
+                "scope": "users:*",
+            },
+            {
+                "action": "org.users:read",
+                "scope": "users:*",
+            },
         ])
     from_name = grafana.enterprise.get_role_output(name=test.name)
     ```
@@ -227,9 +232,6 @@ def get_role(name: Optional[str] = None,
         permissions=pulumi.get(__ret__, 'permissions'),
         uid=pulumi.get(__ret__, 'uid'),
         version=pulumi.get(__ret__, 'version'))
-
-
-@_utilities.lift_output_func(get_role)
 def get_role_output(name: Optional[pulumi.Input[str]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRoleResult]:
     """
@@ -253,18 +255,18 @@ def get_role_output(name: Optional[pulumi.Input[str]] = None,
         global_=True,
         hidden=False,
         permissions=[
-            grafana.enterprise.RolePermissionArgs(
-                action="org.users:add",
-                scope="users:*",
-            ),
-            grafana.enterprise.RolePermissionArgs(
-                action="org.users:write",
-                scope="users:*",
-            ),
-            grafana.enterprise.RolePermissionArgs(
-                action="org.users:read",
-                scope="users:*",
-            ),
+            {
+                "action": "org.users:add",
+                "scope": "users:*",
+            },
+            {
+                "action": "org.users:write",
+                "scope": "users:*",
+            },
+            {
+                "action": "org.users:read",
+                "scope": "users:*",
+            },
         ])
     from_name = grafana.enterprise.get_role_output(name=test.name)
     ```
@@ -273,4 +275,19 @@ def get_role_output(name: Optional[pulumi.Input[str]] = None,
     :param str name: Name of the role
     """
     pulumi.log.warn("""get_role is deprecated: grafana.index/getrole.getRole has been deprecated in favor of grafana.enterprise/getrole.getRole""")
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:index/getRole:getRole', __args__, opts=opts, typ=GetRoleResult)
+    return __ret__.apply(lambda __response__: GetRoleResult(
+        description=pulumi.get(__response__, 'description'),
+        display_name=pulumi.get(__response__, 'display_name'),
+        global_=pulumi.get(__response__, 'global_'),
+        group=pulumi.get(__response__, 'group'),
+        hidden=pulumi.get(__response__, 'hidden'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        permissions=pulumi.get(__response__, 'permissions'),
+        uid=pulumi.get(__response__, 'uid'),
+        version=pulumi.get(__response__, 'version')))

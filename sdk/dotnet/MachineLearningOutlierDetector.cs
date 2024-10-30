@@ -73,7 +73,7 @@ namespace Pulumiverse.Grafana
         /// An object representing the query params to query Grafana with.
         /// </summary>
         [Output("queryParams")]
-        public Output<ImmutableDictionary<string, object>> QueryParams { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> QueryParams { get; private set; } = null!;
 
 
         /// <summary>
@@ -169,14 +169,14 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         [Input("queryParams", required: true)]
-        private InputMap<object>? _queryParams;
+        private InputMap<string>? _queryParams;
 
         /// <summary>
         /// An object representing the query params to query Grafana with.
         /// </summary>
-        public InputMap<object> QueryParams
+        public InputMap<string> QueryParams
         {
-            get => _queryParams ?? (_queryParams = new InputMap<object>());
+            get => _queryParams ?? (_queryParams = new InputMap<string>());
             set => _queryParams = value;
         }
 
@@ -231,14 +231,14 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         [Input("queryParams")]
-        private InputMap<object>? _queryParams;
+        private InputMap<string>? _queryParams;
 
         /// <summary>
         /// An object representing the query params to query Grafana with.
         /// </summary>
-        public InputMap<object> QueryParams
+        public InputMap<string> QueryParams
         {
-            get => _queryParams ?? (_queryParams = new InputMap<object>());
+            get => _queryParams ?? (_queryParams = new InputMap<string>());
             set => _queryParams = value;
         }
 

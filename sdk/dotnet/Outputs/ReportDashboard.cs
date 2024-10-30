@@ -17,7 +17,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// <summary>
         /// Add report variables to the dashboard. Values should be separated by commas.
         /// </summary>
-        public readonly ImmutableDictionary<string, object>? ReportVariables;
+        public readonly ImmutableDictionary<string, string>? ReportVariables;
         /// <summary>
         /// Time range of the report.
         /// </summary>
@@ -29,7 +29,7 @@ namespace Pulumiverse.Grafana.Outputs
 
         [OutputConstructor]
         private ReportDashboard(
-            ImmutableDictionary<string, object>? reportVariables,
+            ImmutableDictionary<string, string>? reportVariables,
 
             Outputs.ReportDashboardTimeRange? timeRange,
 

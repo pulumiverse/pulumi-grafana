@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -118,9 +123,6 @@ def get_organization(id: Optional[str] = None,
         slug=pulumi.get(__ret__, 'slug'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         url=pulumi.get(__ret__, 'url'))
-
-
-@_utilities.lift_output_func(get_organization)
 def get_organization_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                             slug: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationResult]:
@@ -137,4 +139,15 @@ def get_organization_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     :param str id: The ID of this resource.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['slug'] = slug
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:cloud/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult)
+    return __ret__.apply(lambda __response__: GetOrganizationResult(
+        created_at=pulumi.get(__response__, 'created_at'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        slug=pulumi.get(__response__, 'slug'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        url=pulumi.get(__response__, 'url')))

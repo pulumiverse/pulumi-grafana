@@ -19,7 +19,6 @@ import * as utilities from "./utilities";
 /** @deprecated grafana.index/getcloudips.getCloudIps has been deprecated in favor of grafana.cloud/getips.getIps */
 export function getCloudIps(opts?: pulumi.InvokeOptions): Promise<GetCloudIpsResult> {
     pulumi.log.warn("getCloudIps is deprecated: grafana.index/getcloudips.getCloudIps has been deprecated in favor of grafana.cloud/getips.getIps")
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getCloudIps:getCloudIps", {
     }, opts);
@@ -68,5 +67,8 @@ export interface GetCloudIpsResult {
  */
 /** @deprecated grafana.index/getcloudips.getCloudIps has been deprecated in favor of grafana.cloud/getips.getIps */
 export function getCloudIpsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudIpsResult> {
-    return pulumi.output(getCloudIps(opts))
+    pulumi.log.warn("getCloudIps is deprecated: grafana.index/getcloudips.getCloudIps has been deprecated in favor of grafana.cloud/getips.getIps")
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getCloudIps:getCloudIps", {
+    }, opts);
 }

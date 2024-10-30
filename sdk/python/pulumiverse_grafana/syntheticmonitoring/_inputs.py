@@ -4,39 +4,109 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'CheckSettingsArgs',
+    'CheckSettingsArgsDict',
     'CheckSettingsDnsArgs',
+    'CheckSettingsDnsArgsDict',
     'CheckSettingsDnsValidateAdditionalRrArgs',
+    'CheckSettingsDnsValidateAdditionalRrArgsDict',
     'CheckSettingsDnsValidateAnswerRrsArgs',
+    'CheckSettingsDnsValidateAnswerRrsArgsDict',
     'CheckSettingsDnsValidateAuthorityRrsArgs',
+    'CheckSettingsDnsValidateAuthorityRrsArgsDict',
     'CheckSettingsGrpcArgs',
+    'CheckSettingsGrpcArgsDict',
     'CheckSettingsGrpcTlsConfigArgs',
+    'CheckSettingsGrpcTlsConfigArgsDict',
     'CheckSettingsHttpArgs',
+    'CheckSettingsHttpArgsDict',
     'CheckSettingsHttpBasicAuthArgs',
+    'CheckSettingsHttpBasicAuthArgsDict',
     'CheckSettingsHttpFailIfHeaderMatchesRegexpArgs',
+    'CheckSettingsHttpFailIfHeaderMatchesRegexpArgsDict',
     'CheckSettingsHttpFailIfHeaderNotMatchesRegexpArgs',
+    'CheckSettingsHttpFailIfHeaderNotMatchesRegexpArgsDict',
     'CheckSettingsHttpTlsConfigArgs',
+    'CheckSettingsHttpTlsConfigArgsDict',
     'CheckSettingsMultihttpArgs',
+    'CheckSettingsMultihttpArgsDict',
     'CheckSettingsMultihttpEntryArgs',
+    'CheckSettingsMultihttpEntryArgsDict',
     'CheckSettingsMultihttpEntryAssertionArgs',
+    'CheckSettingsMultihttpEntryAssertionArgsDict',
     'CheckSettingsMultihttpEntryRequestArgs',
+    'CheckSettingsMultihttpEntryRequestArgsDict',
     'CheckSettingsMultihttpEntryRequestBodyArgs',
+    'CheckSettingsMultihttpEntryRequestBodyArgsDict',
     'CheckSettingsMultihttpEntryRequestHeaderArgs',
+    'CheckSettingsMultihttpEntryRequestHeaderArgsDict',
     'CheckSettingsMultihttpEntryRequestQueryFieldArgs',
+    'CheckSettingsMultihttpEntryRequestQueryFieldArgsDict',
     'CheckSettingsMultihttpEntryVariableArgs',
+    'CheckSettingsMultihttpEntryVariableArgsDict',
     'CheckSettingsPingArgs',
+    'CheckSettingsPingArgsDict',
     'CheckSettingsScriptedArgs',
+    'CheckSettingsScriptedArgsDict',
     'CheckSettingsTcpArgs',
+    'CheckSettingsTcpArgsDict',
     'CheckSettingsTcpQueryResponseArgs',
+    'CheckSettingsTcpQueryResponseArgsDict',
     'CheckSettingsTcpTlsConfigArgs',
+    'CheckSettingsTcpTlsConfigArgsDict',
     'CheckSettingsTracerouteArgs',
+    'CheckSettingsTracerouteArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class CheckSettingsArgsDict(TypedDict):
+        dns: NotRequired[pulumi.Input['CheckSettingsDnsArgsDict']]
+        """
+        Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
+        """
+        grpc: NotRequired[pulumi.Input['CheckSettingsGrpcArgsDict']]
+        """
+        Settings for gRPC Health check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
+        """
+        http: NotRequired[pulumi.Input['CheckSettingsHttpArgsDict']]
+        """
+        Settings for HTTP check. The target must be a URL (http or https).
+        """
+        multihttp: NotRequired[pulumi.Input['CheckSettingsMultihttpArgsDict']]
+        """
+        Settings for MultiHTTP check. The target must be a URL (http or https)
+        """
+        ping: NotRequired[pulumi.Input['CheckSettingsPingArgsDict']]
+        """
+        Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
+        """
+        scripted: NotRequired[pulumi.Input['CheckSettingsScriptedArgsDict']]
+        """
+        Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+        """
+        tcp: NotRequired[pulumi.Input['CheckSettingsTcpArgsDict']]
+        """
+        Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
+        """
+        traceroute: NotRequired[pulumi.Input['CheckSettingsTracerouteArgsDict']]
+        """
+        Settings for traceroute check. The target must be a valid hostname or IP address
+        """
+elif False:
+    CheckSettingsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CheckSettingsArgs:
@@ -172,6 +242,51 @@ class CheckSettingsArgs:
     def traceroute(self, value: Optional[pulumi.Input['CheckSettingsTracerouteArgs']]):
         pulumi.set(self, "traceroute", value)
 
+
+if not MYPY:
+    class CheckSettingsDnsArgsDict(TypedDict):
+        ip_version: NotRequired[pulumi.Input[str]]
+        """
+        Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        Port to target. Defaults to `53`.
+        """
+        protocol: NotRequired[pulumi.Input[str]]
+        """
+        `TCP` or `UDP`. Defaults to `UDP`.
+        """
+        record_type: NotRequired[pulumi.Input[str]]
+        """
+        One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+        """
+        server: NotRequired[pulumi.Input[str]]
+        """
+        DNS server address to target. Defaults to `8.8.8.8`.
+        """
+        source_ip_address: NotRequired[pulumi.Input[str]]
+        """
+        Source IP address.
+        """
+        valid_r_codes: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of valid response codes. Options include `NOERROR`, `BADALG`, `BADMODE`, `BADKEY`, `BADCOOKIE`, `BADNAME`, `BADSIG`, `BADTIME`, `BADTRUNC`, `BADVERS`, `FORMERR`, `NOTIMP`, `NOTAUTH`, `NOTZONE`, `NXDOMAIN`, `NXRRSET`, `REFUSED`, `SERVFAIL`, `YXDOMAIN`, `YXRRSET`.
+        """
+        validate_additional_rrs: NotRequired[pulumi.Input[Sequence[pulumi.Input['CheckSettingsDnsValidateAdditionalRrArgsDict']]]]
+        """
+        Validate additional matches.
+        """
+        validate_answer_rrs: NotRequired[pulumi.Input['CheckSettingsDnsValidateAnswerRrsArgsDict']]
+        """
+        Validate response answer.
+        """
+        validate_authority_rrs: NotRequired[pulumi.Input['CheckSettingsDnsValidateAuthorityRrsArgsDict']]
+        """
+        Validate response authority.
+        """
+elif False:
+    CheckSettingsDnsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CheckSettingsDnsArgs:
@@ -340,6 +455,19 @@ class CheckSettingsDnsArgs:
         pulumi.set(self, "validate_authority_rrs", value)
 
 
+if not MYPY:
+    class CheckSettingsDnsValidateAdditionalRrArgsDict(TypedDict):
+        fail_if_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Fail if value matches regex.
+        """
+        fail_if_not_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Fail if value does not match regex.
+        """
+elif False:
+    CheckSettingsDnsValidateAdditionalRrArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CheckSettingsDnsValidateAdditionalRrArgs:
     def __init__(__self__, *,
@@ -378,6 +506,19 @@ class CheckSettingsDnsValidateAdditionalRrArgs:
     def fail_if_not_matches_regexps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "fail_if_not_matches_regexps", value)
 
+
+if not MYPY:
+    class CheckSettingsDnsValidateAnswerRrsArgsDict(TypedDict):
+        fail_if_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Fail if value matches regex.
+        """
+        fail_if_not_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Fail if value does not match regex.
+        """
+elif False:
+    CheckSettingsDnsValidateAnswerRrsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CheckSettingsDnsValidateAnswerRrsArgs:
@@ -418,6 +559,19 @@ class CheckSettingsDnsValidateAnswerRrsArgs:
         pulumi.set(self, "fail_if_not_matches_regexps", value)
 
 
+if not MYPY:
+    class CheckSettingsDnsValidateAuthorityRrsArgsDict(TypedDict):
+        fail_if_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Fail if value matches regex.
+        """
+        fail_if_not_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Fail if value does not match regex.
+        """
+elif False:
+    CheckSettingsDnsValidateAuthorityRrsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CheckSettingsDnsValidateAuthorityRrsArgs:
     def __init__(__self__, *,
@@ -456,6 +610,27 @@ class CheckSettingsDnsValidateAuthorityRrsArgs:
     def fail_if_not_matches_regexps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "fail_if_not_matches_regexps", value)
 
+
+if not MYPY:
+    class CheckSettingsGrpcArgsDict(TypedDict):
+        ip_version: NotRequired[pulumi.Input[str]]
+        """
+        Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        """
+        service: NotRequired[pulumi.Input[str]]
+        """
+        gRPC service.
+        """
+        tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+        """
+        tls_config: NotRequired[pulumi.Input['CheckSettingsGrpcTlsConfigArgsDict']]
+        """
+        TLS config.
+        """
+elif False:
+    CheckSettingsGrpcArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CheckSettingsGrpcArgs:
@@ -527,6 +702,31 @@ class CheckSettingsGrpcArgs:
     def tls_config(self, value: Optional[pulumi.Input['CheckSettingsGrpcTlsConfigArgs']]):
         pulumi.set(self, "tls_config", value)
 
+
+if not MYPY:
+    class CheckSettingsGrpcTlsConfigArgsDict(TypedDict):
+        ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        CA certificate in PEM format.
+        """
+        client_cert: NotRequired[pulumi.Input[str]]
+        """
+        Client certificate in PEM format.
+        """
+        client_key: NotRequired[pulumi.Input[str]]
+        """
+        Client key in PEM format.
+        """
+        insecure_skip_verify: NotRequired[pulumi.Input[bool]]
+        """
+        Disable target certificate validation. Defaults to `false`.
+        """
+        server_name: NotRequired[pulumi.Input[str]]
+        """
+        Used to verify the hostname for the targets.
+        """
+elif False:
+    CheckSettingsGrpcTlsConfigArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CheckSettingsGrpcTlsConfigArgs:
@@ -614,6 +814,87 @@ class CheckSettingsGrpcTlsConfigArgs:
     def server_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_name", value)
 
+
+if not MYPY:
+    class CheckSettingsHttpArgsDict(TypedDict):
+        basic_auth: NotRequired[pulumi.Input['CheckSettingsHttpBasicAuthArgsDict']]
+        """
+        Basic auth settings.
+        """
+        bearer_token: NotRequired[pulumi.Input[str]]
+        """
+        Token for use with bearer authorization header.
+        """
+        body: NotRequired[pulumi.Input[str]]
+        """
+        The body of the HTTP request used in probe.
+        """
+        cache_busting_query_param_name: NotRequired[pulumi.Input[str]]
+        """
+        The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
+        """
+        fail_if_body_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of regexes. If any match the response body, the check will fail.
+        """
+        fail_if_body_not_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of regexes. If any do not match the response body, the check will fail.
+        """
+        fail_if_header_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input['CheckSettingsHttpFailIfHeaderMatchesRegexpArgsDict']]]]
+        """
+        Check fails if headers match.
+        """
+        fail_if_header_not_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input['CheckSettingsHttpFailIfHeaderNotMatchesRegexpArgsDict']]]]
+        """
+        Check fails if headers do not match.
+        """
+        fail_if_not_ssl: NotRequired[pulumi.Input[bool]]
+        """
+        Fail if SSL is not present. Defaults to `false`.
+        """
+        fail_if_ssl: NotRequired[pulumi.Input[bool]]
+        """
+        Fail if SSL is present. Defaults to `false`.
+        """
+        headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        The HTTP headers set for the probe.
+        """
+        ip_version: NotRequired[pulumi.Input[str]]
+        """
+        Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        """
+        method: NotRequired[pulumi.Input[str]]
+        """
+        Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+        """
+        no_follow_redirects: NotRequired[pulumi.Input[bool]]
+        """
+        Do not follow redirects. Defaults to `false`.
+        """
+        proxy_connect_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        The HTTP headers sent to the proxy URL
+        """
+        proxy_url: NotRequired[pulumi.Input[str]]
+        """
+        Proxy URL.
+        """
+        tls_config: NotRequired[pulumi.Input['CheckSettingsHttpTlsConfigArgsDict']]
+        """
+        TLS config.
+        """
+        valid_http_versions: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of valid HTTP versions. Options include `HTTP/1.0`, `HTTP/1.1`, `HTTP/2.0`
+        """
+        valid_status_codes: NotRequired[pulumi.Input[Sequence[pulumi.Input[int]]]]
+        """
+        Accepted status codes. If unset, defaults to 2xx.
+        """
+elif False:
+    CheckSettingsHttpArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CheckSettingsHttpArgs:
@@ -926,6 +1207,19 @@ class CheckSettingsHttpArgs:
         pulumi.set(self, "valid_status_codes", value)
 
 
+if not MYPY:
+    class CheckSettingsHttpBasicAuthArgsDict(TypedDict):
+        password: pulumi.Input[str]
+        """
+        Basic auth password.
+        """
+        username: pulumi.Input[str]
+        """
+        Basic auth username.
+        """
+elif False:
+    CheckSettingsHttpBasicAuthArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CheckSettingsHttpBasicAuthArgs:
     def __init__(__self__, *,
@@ -962,6 +1256,23 @@ class CheckSettingsHttpBasicAuthArgs:
     def username(self, value: pulumi.Input[str]):
         pulumi.set(self, "username", value)
 
+
+if not MYPY:
+    class CheckSettingsHttpFailIfHeaderMatchesRegexpArgsDict(TypedDict):
+        header: pulumi.Input[str]
+        """
+        Header name.
+        """
+        regexp: pulumi.Input[str]
+        """
+        Regex that header value should match.
+        """
+        allow_missing: NotRequired[pulumi.Input[bool]]
+        """
+        Allow header to be missing from responses. Defaults to `false`.
+        """
+elif False:
+    CheckSettingsHttpFailIfHeaderMatchesRegexpArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CheckSettingsHttpFailIfHeaderMatchesRegexpArgs:
@@ -1016,6 +1327,23 @@ class CheckSettingsHttpFailIfHeaderMatchesRegexpArgs:
         pulumi.set(self, "allow_missing", value)
 
 
+if not MYPY:
+    class CheckSettingsHttpFailIfHeaderNotMatchesRegexpArgsDict(TypedDict):
+        header: pulumi.Input[str]
+        """
+        Header name.
+        """
+        regexp: pulumi.Input[str]
+        """
+        Regex that header value should match.
+        """
+        allow_missing: NotRequired[pulumi.Input[bool]]
+        """
+        Allow header to be missing from responses. Defaults to `false`.
+        """
+elif False:
+    CheckSettingsHttpFailIfHeaderNotMatchesRegexpArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CheckSettingsHttpFailIfHeaderNotMatchesRegexpArgs:
     def __init__(__self__, *,
@@ -1068,6 +1396,31 @@ class CheckSettingsHttpFailIfHeaderNotMatchesRegexpArgs:
     def allow_missing(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "allow_missing", value)
 
+
+if not MYPY:
+    class CheckSettingsHttpTlsConfigArgsDict(TypedDict):
+        ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        CA certificate in PEM format.
+        """
+        client_cert: NotRequired[pulumi.Input[str]]
+        """
+        Client certificate in PEM format.
+        """
+        client_key: NotRequired[pulumi.Input[str]]
+        """
+        Client key in PEM format.
+        """
+        insecure_skip_verify: NotRequired[pulumi.Input[bool]]
+        """
+        Disable target certificate validation. Defaults to `false`.
+        """
+        server_name: NotRequired[pulumi.Input[str]]
+        """
+        Used to verify the hostname for the targets.
+        """
+elif False:
+    CheckSettingsHttpTlsConfigArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CheckSettingsHttpTlsConfigArgs:
@@ -1156,6 +1509,12 @@ class CheckSettingsHttpTlsConfigArgs:
         pulumi.set(self, "server_name", value)
 
 
+if not MYPY:
+    class CheckSettingsMultihttpArgsDict(TypedDict):
+        entries: NotRequired[pulumi.Input[Sequence[pulumi.Input['CheckSettingsMultihttpEntryArgsDict']]]]
+elif False:
+    CheckSettingsMultihttpArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CheckSettingsMultihttpArgs:
     def __init__(__self__, *,
@@ -1172,6 +1531,23 @@ class CheckSettingsMultihttpArgs:
     def entries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CheckSettingsMultihttpEntryArgs']]]]):
         pulumi.set(self, "entries", value)
 
+
+if not MYPY:
+    class CheckSettingsMultihttpEntryArgsDict(TypedDict):
+        assertions: NotRequired[pulumi.Input[Sequence[pulumi.Input['CheckSettingsMultihttpEntryAssertionArgsDict']]]]
+        """
+        Assertions to make on the request response
+        """
+        request: NotRequired[pulumi.Input['CheckSettingsMultihttpEntryRequestArgsDict']]
+        """
+        An individual MultiHTTP request
+        """
+        variables: NotRequired[pulumi.Input[Sequence[pulumi.Input['CheckSettingsMultihttpEntryVariableArgsDict']]]]
+        """
+        Variables to extract from the request response
+        """
+elif False:
+    CheckSettingsMultihttpEntryArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CheckSettingsMultihttpEntryArgs:
@@ -1227,6 +1603,31 @@ class CheckSettingsMultihttpEntryArgs:
     def variables(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CheckSettingsMultihttpEntryVariableArgs']]]]):
         pulumi.set(self, "variables", value)
 
+
+if not MYPY:
+    class CheckSettingsMultihttpEntryAssertionArgsDict(TypedDict):
+        type: pulumi.Input[str]
+        """
+        The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+        """
+        condition: NotRequired[pulumi.Input[str]]
+        """
+        The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+        """
+        expression: NotRequired[pulumi.Input[str]]
+        """
+        The expression of the assertion. Should start with $.
+        """
+        subject: NotRequired[pulumi.Input[str]]
+        """
+        The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+        """
+        value: NotRequired[pulumi.Input[str]]
+        """
+        The value of the assertion
+        """
+elif False:
+    CheckSettingsMultihttpEntryAssertionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CheckSettingsMultihttpEntryAssertionArgs:
@@ -1314,6 +1715,31 @@ class CheckSettingsMultihttpEntryAssertionArgs:
         pulumi.set(self, "value", value)
 
 
+if not MYPY:
+    class CheckSettingsMultihttpEntryRequestArgsDict(TypedDict):
+        method: pulumi.Input[str]
+        """
+        The HTTP method to use
+        """
+        url: pulumi.Input[str]
+        """
+        The URL for the request
+        """
+        bodies: NotRequired[pulumi.Input[Sequence[pulumi.Input['CheckSettingsMultihttpEntryRequestBodyArgsDict']]]]
+        """
+        The body of the HTTP request used in probe.
+        """
+        headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['CheckSettingsMultihttpEntryRequestHeaderArgsDict']]]]
+        """
+        The headers to send with the request
+        """
+        query_fields: NotRequired[pulumi.Input[Sequence[pulumi.Input['CheckSettingsMultihttpEntryRequestQueryFieldArgsDict']]]]
+        """
+        Query fields to send with the request
+        """
+elif False:
+    CheckSettingsMultihttpEntryRequestArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CheckSettingsMultihttpEntryRequestArgs:
     def __init__(__self__, *,
@@ -1399,6 +1825,23 @@ class CheckSettingsMultihttpEntryRequestArgs:
         pulumi.set(self, "query_fields", value)
 
 
+if not MYPY:
+    class CheckSettingsMultihttpEntryRequestBodyArgsDict(TypedDict):
+        content_encoding: NotRequired[pulumi.Input[str]]
+        """
+        The content encoding of the body
+        """
+        content_type: NotRequired[pulumi.Input[str]]
+        """
+        The content type of the body
+        """
+        payload: NotRequired[pulumi.Input[str]]
+        """
+        The body payload
+        """
+elif False:
+    CheckSettingsMultihttpEntryRequestBodyArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CheckSettingsMultihttpEntryRequestBodyArgs:
     def __init__(__self__, *,
@@ -1454,6 +1897,19 @@ class CheckSettingsMultihttpEntryRequestBodyArgs:
         pulumi.set(self, "payload", value)
 
 
+if not MYPY:
+    class CheckSettingsMultihttpEntryRequestHeaderArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the header to send
+        """
+        value: pulumi.Input[str]
+        """
+        Value of the header to send
+        """
+elif False:
+    CheckSettingsMultihttpEntryRequestHeaderArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CheckSettingsMultihttpEntryRequestHeaderArgs:
     def __init__(__self__, *,
@@ -1491,6 +1947,19 @@ class CheckSettingsMultihttpEntryRequestHeaderArgs:
         pulumi.set(self, "value", value)
 
 
+if not MYPY:
+    class CheckSettingsMultihttpEntryRequestQueryFieldArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the query field to send
+        """
+        value: pulumi.Input[str]
+        """
+        Value of the query field to send
+        """
+elif False:
+    CheckSettingsMultihttpEntryRequestQueryFieldArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CheckSettingsMultihttpEntryRequestQueryFieldArgs:
     def __init__(__self__, *,
@@ -1527,6 +1996,27 @@ class CheckSettingsMultihttpEntryRequestQueryFieldArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class CheckSettingsMultihttpEntryVariableArgsDict(TypedDict):
+        type: pulumi.Input[str]
+        """
+        The method of finding the variable value to extract. JSON*PATH, REGEX, CSS*SELECTOR
+        """
+        attribute: NotRequired[pulumi.Input[str]]
+        """
+        The attribute to use when finding the variable value. Only used when type is CSS_SELECTOR
+        """
+        expression: NotRequired[pulumi.Input[str]]
+        """
+        The expression to when finding the variable. Should start with $. Only use when type is JSON_PATH or REGEX
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        The name of the variable to extract
+        """
+elif False:
+    CheckSettingsMultihttpEntryVariableArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CheckSettingsMultihttpEntryVariableArgs:
@@ -1597,6 +2087,27 @@ class CheckSettingsMultihttpEntryVariableArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+
+if not MYPY:
+    class CheckSettingsPingArgsDict(TypedDict):
+        dont_fragment: NotRequired[pulumi.Input[bool]]
+        """
+        Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+        """
+        ip_version: NotRequired[pulumi.Input[str]]
+        """
+        Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        """
+        payload_size: NotRequired[pulumi.Input[int]]
+        """
+        Payload size. Defaults to `0`.
+        """
+        source_ip_address: NotRequired[pulumi.Input[str]]
+        """
+        Source IP address.
+        """
+elif False:
+    CheckSettingsPingArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CheckSettingsPingArgs:
@@ -1669,6 +2180,12 @@ class CheckSettingsPingArgs:
         pulumi.set(self, "source_ip_address", value)
 
 
+if not MYPY:
+    class CheckSettingsScriptedArgsDict(TypedDict):
+        script: pulumi.Input[str]
+elif False:
+    CheckSettingsScriptedArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CheckSettingsScriptedArgs:
     def __init__(__self__, *,
@@ -1684,6 +2201,31 @@ class CheckSettingsScriptedArgs:
     def script(self, value: pulumi.Input[str]):
         pulumi.set(self, "script", value)
 
+
+if not MYPY:
+    class CheckSettingsTcpArgsDict(TypedDict):
+        ip_version: NotRequired[pulumi.Input[str]]
+        """
+        Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        """
+        query_responses: NotRequired[pulumi.Input[Sequence[pulumi.Input['CheckSettingsTcpQueryResponseArgsDict']]]]
+        """
+        The query sent in the TCP probe and the expected associated response.
+        """
+        source_ip_address: NotRequired[pulumi.Input[str]]
+        """
+        Source IP address.
+        """
+        tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+        """
+        tls_config: NotRequired[pulumi.Input['CheckSettingsTcpTlsConfigArgsDict']]
+        """
+        TLS config.
+        """
+elif False:
+    CheckSettingsTcpArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CheckSettingsTcpArgs:
@@ -1772,6 +2314,23 @@ class CheckSettingsTcpArgs:
         pulumi.set(self, "tls_config", value)
 
 
+if not MYPY:
+    class CheckSettingsTcpQueryResponseArgsDict(TypedDict):
+        expect: pulumi.Input[str]
+        """
+        Response to expect.
+        """
+        send: pulumi.Input[str]
+        """
+        Data to send.
+        """
+        start_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Upgrade TCP connection to TLS. Defaults to `false`.
+        """
+elif False:
+    CheckSettingsTcpQueryResponseArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CheckSettingsTcpQueryResponseArgs:
     def __init__(__self__, *,
@@ -1824,6 +2383,31 @@ class CheckSettingsTcpQueryResponseArgs:
     def start_tls(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "start_tls", value)
 
+
+if not MYPY:
+    class CheckSettingsTcpTlsConfigArgsDict(TypedDict):
+        ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        CA certificate in PEM format.
+        """
+        client_cert: NotRequired[pulumi.Input[str]]
+        """
+        Client certificate in PEM format.
+        """
+        client_key: NotRequired[pulumi.Input[str]]
+        """
+        Client key in PEM format.
+        """
+        insecure_skip_verify: NotRequired[pulumi.Input[bool]]
+        """
+        Disable target certificate validation. Defaults to `false`.
+        """
+        server_name: NotRequired[pulumi.Input[str]]
+        """
+        Used to verify the hostname for the targets.
+        """
+elif False:
+    CheckSettingsTcpTlsConfigArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CheckSettingsTcpTlsConfigArgs:
@@ -1911,6 +2495,23 @@ class CheckSettingsTcpTlsConfigArgs:
     def server_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_name", value)
 
+
+if not MYPY:
+    class CheckSettingsTracerouteArgsDict(TypedDict):
+        max_hops: NotRequired[pulumi.Input[int]]
+        """
+        Maximum TTL for the trace Defaults to `64`.
+        """
+        max_unknown_hops: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of hosts to travers that give no response Defaults to `15`.
+        """
+        ptr_lookup: NotRequired[pulumi.Input[bool]]
+        """
+        Reverse lookup hostnames from IP addresses Defaults to `true`.
+        """
+elif False:
+    CheckSettingsTracerouteArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CheckSettingsTracerouteArgs:

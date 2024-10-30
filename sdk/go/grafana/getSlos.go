@@ -97,7 +97,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = slo.GetSlos(ctx, nil, nil)
+//			_, err = slo.GetSlos(ctx, map[string]interface{}{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -127,13 +127,19 @@ type GetSlosResult struct {
 }
 
 func GetSlosOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetSlosResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetSlosResult, error) {
-		r, err := GetSlos(ctx, opts...)
-		var s GetSlosResult
-		if r != nil {
-			s = *r
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetSlosResultOutput, error) {
+		opts = internal.PkgInvokeDefaultOpts(opts)
+		var rv GetSlosResult
+		secret, err := ctx.InvokePackageRaw("grafana:index/getSlos:getSlos", nil, &rv, "", opts...)
+		if err != nil {
+			return GetSlosResultOutput{}, err
 		}
-		return s, err
+
+		output := pulumi.ToOutput(rv).(GetSlosResultOutput)
+		if secret {
+			return pulumi.ToSecret(output).(GetSlosResultOutput), nil
+		}
+		return output, nil
 	}).(GetSlosResultOutput)
 }
 

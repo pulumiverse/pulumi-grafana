@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -233,7 +238,7 @@ class AccessPolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 realms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccessPolicyRealmArgs']]]]] = None,
+                 realms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AccessPolicyRealmArgs', 'AccessPolicyRealmArgsDict']]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -263,13 +268,13 @@ class AccessPolicy(pulumi.CustomResource):
                 "metrics:read",
                 "logs:read",
             ],
-            realms=[grafana.cloud.AccessPolicyRealmArgs(
-                type="org",
-                identifier=current.id,
-                label_policies=[grafana.cloud.AccessPolicyRealmLabelPolicyArgs(
-                    selector="{namespace=\\"default\\"}",
-                )],
-            )])
+            realms=[{
+                "type": "org",
+                "identifier": current.id,
+                "label_policies": [{
+                    "selector": "{namespace=\\"default\\"}",
+                }],
+            }])
         test_access_policy_token = grafana.cloud.AccessPolicyToken("test",
             region="us",
             access_policy_id=test.policy_id,
@@ -323,13 +328,13 @@ class AccessPolicy(pulumi.CustomResource):
                 "metrics:read",
                 "logs:read",
             ],
-            realms=[grafana.cloud.AccessPolicyRealmArgs(
-                type="org",
-                identifier=current.id,
-                label_policies=[grafana.cloud.AccessPolicyRealmLabelPolicyArgs(
-                    selector="{namespace=\\"default\\"}",
-                )],
-            )])
+            realms=[{
+                "type": "org",
+                "identifier": current.id,
+                "label_policies": [{
+                    "selector": "{namespace=\\"default\\"}",
+                }],
+            }])
         test_access_policy_token = grafana.cloud.AccessPolicyToken("test",
             region="us",
             access_policy_id=test.policy_id,
@@ -361,7 +366,7 @@ class AccessPolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 realms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccessPolicyRealmArgs']]]]] = None,
+                 realms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AccessPolicyRealmArgs', 'AccessPolicyRealmArgsDict']]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -403,7 +408,7 @@ class AccessPolicy(pulumi.CustomResource):
             display_name: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             policy_id: Optional[pulumi.Input[str]] = None,
-            realms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccessPolicyRealmArgs']]]]] = None,
+            realms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AccessPolicyRealmArgs', 'AccessPolicyRealmArgsDict']]]]] = None,
             region: Optional[pulumi.Input[str]] = None,
             scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             updated_at: Optional[pulumi.Input[str]] = None) -> 'AccessPolicy':

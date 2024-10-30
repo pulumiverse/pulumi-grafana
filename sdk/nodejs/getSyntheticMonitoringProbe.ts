@@ -21,7 +21,6 @@ import * as utilities from "./utilities";
 /** @deprecated grafana.index/getsyntheticmonitoringprobe.getSyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/getprobe.getProbe */
 export function getSyntheticMonitoringProbe(args: GetSyntheticMonitoringProbeArgs, opts?: pulumi.InvokeOptions): Promise<GetSyntheticMonitoringProbeResult> {
     pulumi.log.warn("getSyntheticMonitoringProbe is deprecated: grafana.index/getsyntheticmonitoringprobe.getSyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/getprobe.getProbe")
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe", {
         "name": args.name,
@@ -95,7 +94,11 @@ export interface GetSyntheticMonitoringProbeResult {
  */
 /** @deprecated grafana.index/getsyntheticmonitoringprobe.getSyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/getprobe.getProbe */
 export function getSyntheticMonitoringProbeOutput(args: GetSyntheticMonitoringProbeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSyntheticMonitoringProbeResult> {
-    return pulumi.output(args).apply((a: any) => getSyntheticMonitoringProbe(a, opts))
+    pulumi.log.warn("getSyntheticMonitoringProbe is deprecated: grafana.index/getsyntheticmonitoringprobe.getSyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/getprobe.getProbe")
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe", {
+        "name": args.name,
+    }, opts);
 }
 
 /**

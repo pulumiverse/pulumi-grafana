@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -234,9 +239,6 @@ def get_library_panel(name: Optional[str] = None,
         uid=pulumi.get(__ret__, 'uid'),
         updated=pulumi.get(__ret__, 'updated'),
         version=pulumi.get(__ret__, 'version'))
-
-
-@_utilities.lift_output_func(get_library_panel)
 def get_library_panel_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                              org_id: Optional[pulumi.Input[Optional[str]]] = None,
                              uid: Optional[pulumi.Input[Optional[str]]] = None,
@@ -249,4 +251,24 @@ def get_library_panel_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     :param str uid: The unique identifier (UID) of the library panel.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['orgId'] = org_id
+    __args__['uid'] = uid
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:oss/getLibraryPanel:getLibraryPanel', __args__, opts=opts, typ=GetLibraryPanelResult)
+    return __ret__.apply(lambda __response__: GetLibraryPanelResult(
+        created=pulumi.get(__response__, 'created'),
+        dashboard_ids=pulumi.get(__response__, 'dashboard_ids'),
+        description=pulumi.get(__response__, 'description'),
+        folder_name=pulumi.get(__response__, 'folder_name'),
+        folder_uid=pulumi.get(__response__, 'folder_uid'),
+        id=pulumi.get(__response__, 'id'),
+        model_json=pulumi.get(__response__, 'model_json'),
+        name=pulumi.get(__response__, 'name'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        panel_id=pulumi.get(__response__, 'panel_id'),
+        type=pulumi.get(__response__, 'type'),
+        uid=pulumi.get(__response__, 'uid'),
+        updated=pulumi.get(__response__, 'updated'),
+        version=pulumi.get(__response__, 'version')))

@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  */
 export function getLibraryPanel(args?: GetLibraryPanelArgs, opts?: pulumi.InvokeOptions): Promise<GetLibraryPanelResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:oss/getLibraryPanel:getLibraryPanel", {
         "name": args.name,
@@ -101,7 +100,13 @@ export interface GetLibraryPanelResult {
  * Data source for retrieving a single library panel by name or uid.
  */
 export function getLibraryPanelOutput(args?: GetLibraryPanelOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLibraryPanelResult> {
-    return pulumi.output(args).apply((a: any) => getLibraryPanel(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:oss/getLibraryPanel:getLibraryPanel", {
+        "name": args.name,
+        "orgId": args.orgId,
+        "uid": args.uid,
+    }, opts);
 }
 
 /**

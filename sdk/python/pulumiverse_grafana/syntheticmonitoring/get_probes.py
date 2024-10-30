@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -94,9 +99,6 @@ def get_probes(filter_deprecated: Optional[bool] = None,
         filter_deprecated=pulumi.get(__ret__, 'filter_deprecated'),
         id=pulumi.get(__ret__, 'id'),
         probes=pulumi.get(__ret__, 'probes'))
-
-
-@_utilities.lift_output_func(get_probes)
 def get_probes_output(filter_deprecated: Optional[pulumi.Input[Optional[bool]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProbesResult]:
     """
@@ -114,4 +116,11 @@ def get_probes_output(filter_deprecated: Optional[pulumi.Input[Optional[bool]]] 
 
     :param bool filter_deprecated: If true, only probes that are not deprecated will be returned. Defaults to `true`.
     """
-    ...
+    __args__ = dict()
+    __args__['filterDeprecated'] = filter_deprecated
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:syntheticMonitoring/getProbes:getProbes', __args__, opts=opts, typ=GetProbesResult)
+    return __ret__.apply(lambda __response__: GetProbesResult(
+        filter_deprecated=pulumi.get(__response__, 'filter_deprecated'),
+        id=pulumi.get(__response__, 'id'),
+        probes=pulumi.get(__response__, 'probes')))

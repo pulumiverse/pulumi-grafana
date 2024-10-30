@@ -19,7 +19,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getEscalationChain(args: GetEscalationChainArgs, opts?: pulumi.InvokeOptions): Promise<GetEscalationChainResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:onCall/getEscalationChain:getEscalationChain", {
         "name": args.name,
@@ -64,7 +63,10 @@ export interface GetEscalationChainResult {
  * ```
  */
 export function getEscalationChainOutput(args: GetEscalationChainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEscalationChainResult> {
-    return pulumi.output(args).apply((a: any) => getEscalationChain(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:onCall/getEscalationChain:getEscalationChain", {
+        "name": args.name,
+    }, opts);
 }
 
 /**

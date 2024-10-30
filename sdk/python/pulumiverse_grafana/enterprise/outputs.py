@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 
@@ -117,11 +122,11 @@ class ReportDashboard(dict):
 
     def __init__(__self__, *,
                  uid: str,
-                 report_variables: Optional[Mapping[str, Any]] = None,
+                 report_variables: Optional[Mapping[str, str]] = None,
                  time_range: Optional['outputs.ReportDashboardTimeRange'] = None):
         """
         :param str uid: Dashboard uid.
-        :param Mapping[str, Any] report_variables: Add report variables to the dashboard. Values should be separated by commas.
+        :param Mapping[str, str] report_variables: Add report variables to the dashboard. Values should be separated by commas.
         :param 'ReportDashboardTimeRangeArgs' time_range: Time range of the report.
         """
         pulumi.set(__self__, "uid", uid)
@@ -140,7 +145,7 @@ class ReportDashboard(dict):
 
     @property
     @pulumi.getter(name="reportVariables")
-    def report_variables(self) -> Optional[Mapping[str, Any]]:
+    def report_variables(self) -> Optional[Mapping[str, str]]:
         """
         Add report variables to the dashboard. Values should be separated by commas.
         """

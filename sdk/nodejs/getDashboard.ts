@@ -35,7 +35,6 @@ import * as utilities from "./utilities";
 export function getDashboard(args?: GetDashboardArgs, opts?: pulumi.InvokeOptions): Promise<GetDashboardResult> {
     pulumi.log.warn("getDashboard is deprecated: grafana.index/getdashboard.getDashboard has been deprecated in favor of grafana.oss/getdashboard.getDashboard")
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getDashboard:getDashboard", {
         "dashboardId": args.dashboardId,
@@ -140,7 +139,14 @@ export interface GetDashboardResult {
  */
 /** @deprecated grafana.index/getdashboard.getDashboard has been deprecated in favor of grafana.oss/getdashboard.getDashboard */
 export function getDashboardOutput(args?: GetDashboardOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDashboardResult> {
-    return pulumi.output(args).apply((a: any) => getDashboard(a, opts))
+    pulumi.log.warn("getDashboard is deprecated: grafana.index/getdashboard.getDashboard has been deprecated in favor of grafana.oss/getdashboard.getDashboard")
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getDashboard:getDashboard", {
+        "dashboardId": args.dashboardId,
+        "orgId": args.orgId,
+        "uid": args.uid,
+    }, opts);
 }
 
 /**

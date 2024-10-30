@@ -43,7 +43,7 @@ import (
 //			exampleIntegration, err := onCall.NewIntegration(ctx, "example_integration", &onCall.IntegrationArgs{
 //				Name:         pulumi.String("Grafana Integration"),
 //				Type:         pulumi.String("grafana"),
-//				DefaultRoute: nil,
+//				DefaultRoute: &oncall.IntegrationDefaultRouteArgs{},
 //			})
 //			if err != nil {
 //				return err

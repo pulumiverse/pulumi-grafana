@@ -32,7 +32,6 @@ import * as utilities from "./utilities";
 /** @deprecated grafana.index/getorganization.getOrganization has been deprecated in favor of grafana.oss/getorganization.getOrganization */
 export function getOrganization(args: GetOrganizationArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationResult> {
     pulumi.log.warn("getOrganization is deprecated: grafana.index/getorganization.getOrganization has been deprecated in favor of grafana.oss/getorganization.getOrganization")
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOrganization:getOrganization", {
         "name": args.name,
@@ -101,7 +100,11 @@ export interface GetOrganizationResult {
  */
 /** @deprecated grafana.index/getorganization.getOrganization has been deprecated in favor of grafana.oss/getorganization.getOrganization */
 export function getOrganizationOutput(args: GetOrganizationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationResult> {
-    return pulumi.output(args).apply((a: any) => getOrganization(a, opts))
+    pulumi.log.warn("getOrganization is deprecated: grafana.index/getorganization.getOrganization has been deprecated in favor of grafana.oss/getorganization.getOrganization")
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getOrganization:getOrganization", {
+        "name": args.name,
+    }, opts);
 }
 
 /**

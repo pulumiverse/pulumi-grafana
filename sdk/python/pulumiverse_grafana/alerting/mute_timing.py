@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -155,7 +160,7 @@ class MuteTiming(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  disable_provenance: Optional[pulumi.Input[bool]] = None,
-                 intervals: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]]] = None,
+                 intervals: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MuteTimingIntervalArgs', 'MuteTimingIntervalArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -175,29 +180,29 @@ class MuteTiming(pulumi.CustomResource):
 
         my_mute_timing = grafana.alerting.MuteTiming("my_mute_timing",
             name="My Mute Timing",
-            intervals=[grafana.alerting.MuteTimingIntervalArgs(
-                times=[grafana.alerting.MuteTimingIntervalTimeArgs(
-                    start="04:56",
-                    end="14:17",
-                )],
-                weekdays=[
+            intervals=[{
+                "times": [{
+                    "start": "04:56",
+                    "end": "14:17",
+                }],
+                "weekdays": [
                     "monday",
                     "tuesday:thursday",
                 ],
-                days_of_months=[
+                "days_of_months": [
                     "1:7",
                     "-1",
                 ],
-                months=[
+                "months": [
                     "1:3",
                     "december",
                 ],
-                years=[
+                "years": [
                     "2030",
                     "2025:2026",
                 ],
-                location="America/New_York",
-            )])
+                "location": "America/New_York",
+            }])
         ```
 
         ## Import
@@ -212,7 +217,7 @@ class MuteTiming(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]] intervals: The time intervals at which to mute notifications. Use an empty block to mute all the time.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MuteTimingIntervalArgs', 'MuteTimingIntervalArgsDict']]]] intervals: The time intervals at which to mute notifications. Use an empty block to mute all the time.
         :param pulumi.Input[str] name: The name of the mute timing.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
@@ -238,29 +243,29 @@ class MuteTiming(pulumi.CustomResource):
 
         my_mute_timing = grafana.alerting.MuteTiming("my_mute_timing",
             name="My Mute Timing",
-            intervals=[grafana.alerting.MuteTimingIntervalArgs(
-                times=[grafana.alerting.MuteTimingIntervalTimeArgs(
-                    start="04:56",
-                    end="14:17",
-                )],
-                weekdays=[
+            intervals=[{
+                "times": [{
+                    "start": "04:56",
+                    "end": "14:17",
+                }],
+                "weekdays": [
                     "monday",
                     "tuesday:thursday",
                 ],
-                days_of_months=[
+                "days_of_months": [
                     "1:7",
                     "-1",
                 ],
-                months=[
+                "months": [
                     "1:3",
                     "december",
                 ],
-                years=[
+                "years": [
                     "2030",
                     "2025:2026",
                 ],
-                location="America/New_York",
-            )])
+                "location": "America/New_York",
+            }])
         ```
 
         ## Import
@@ -289,7 +294,7 @@ class MuteTiming(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  disable_provenance: Optional[pulumi.Input[bool]] = None,
-                 intervals: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]]] = None,
+                 intervals: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MuteTimingIntervalArgs', 'MuteTimingIntervalArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -318,7 +323,7 @@ class MuteTiming(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             disable_provenance: Optional[pulumi.Input[bool]] = None,
-            intervals: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]]] = None,
+            intervals: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MuteTimingIntervalArgs', 'MuteTimingIntervalArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None) -> 'MuteTiming':
         """
@@ -328,7 +333,7 @@ class MuteTiming(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MuteTimingIntervalArgs']]]] intervals: The time intervals at which to mute notifications. Use an empty block to mute all the time.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MuteTimingIntervalArgs', 'MuteTimingIntervalArgsDict']]]] intervals: The time intervals at which to mute notifications. Use an empty block to mute all the time.
         :param pulumi.Input[str] name: The name of the mute timing.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """

@@ -67,7 +67,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getSlos(opts?: pulumi.InvokeOptions): Promise<GetSlosResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:slo/getSlos:getSlos", {
     }, opts);
@@ -147,5 +146,7 @@ export interface GetSlosResult {
  * ```
  */
 export function getSlosOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetSlosResult> {
-    return pulumi.output(getSlos(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:slo/getSlos:getSlos", {
+    }, opts);
 }

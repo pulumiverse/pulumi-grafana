@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloud.GetIps(ctx, nil, nil)
+//			_, err := cloud.GetIps(ctx, map[string]interface{}{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -63,13 +63,19 @@ type GetIpsResult struct {
 }
 
 func GetIpsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetIpsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetIpsResult, error) {
-		r, err := GetIps(ctx, opts...)
-		var s GetIpsResult
-		if r != nil {
-			s = *r
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetIpsResultOutput, error) {
+		opts = internal.PkgInvokeDefaultOpts(opts)
+		var rv GetIpsResult
+		secret, err := ctx.InvokePackageRaw("grafana:cloud/getIps:getIps", nil, &rv, "", opts...)
+		if err != nil {
+			return GetIpsResultOutput{}, err
 		}
-		return s, err
+
+		output := pulumi.ToOutput(rv).(GetIpsResultOutput)
+		if secret {
+			return pulumi.ToSecret(output).(GetIpsResultOutput), nil
+		}
+		return output, nil
 	}).(GetIpsResultOutput)
 }
 

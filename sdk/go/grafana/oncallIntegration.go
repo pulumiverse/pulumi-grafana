@@ -32,7 +32,7 @@ import (
 //			_, err := onCall.NewIntegration(ctx, "test-acc-integration", &onCall.IntegrationArgs{
 //				Name:         pulumi.String("my integration"),
 //				Type:         pulumi.String("grafana"),
-//				DefaultRoute: nil,
+//				DefaultRoute: &oncall.IntegrationDefaultRouteArgs{},
 //			})
 //			if err != nil {
 //				return err
@@ -42,7 +42,7 @@ import (
 //			_, err = onCall.NewIntegration(ctx, "integration_with_templates", &onCall.IntegrationArgs{
 //				Name:         pulumi.String("integration_with_templates"),
 //				Type:         pulumi.String("webhook"),
-//				DefaultRoute: nil,
+//				DefaultRoute: &oncall.IntegrationDefaultRouteArgs{},
 //				Templates: &oncall.IntegrationTemplatesArgs{
 //					GroupingKey: pulumi.String("{{ payload.group_id }}"),
 //					Slack: &oncall.IntegrationTemplatesSlackArgs{

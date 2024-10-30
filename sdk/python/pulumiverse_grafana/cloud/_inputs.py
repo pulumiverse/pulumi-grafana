@@ -4,15 +4,38 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'AccessPolicyRealmArgs',
+    'AccessPolicyRealmArgsDict',
     'AccessPolicyRealmLabelPolicyArgs',
+    'AccessPolicyRealmLabelPolicyArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class AccessPolicyRealmArgsDict(TypedDict):
+        identifier: pulumi.Input[str]
+        """
+        The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
+        """
+        type: pulumi.Input[str]
+        """
+        Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.
+        """
+        label_policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['AccessPolicyRealmLabelPolicyArgsDict']]]]
+elif False:
+    AccessPolicyRealmArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class AccessPolicyRealmArgs:
@@ -62,6 +85,15 @@ class AccessPolicyRealmArgs:
     def label_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AccessPolicyRealmLabelPolicyArgs']]]]):
         pulumi.set(self, "label_policies", value)
 
+
+if not MYPY:
+    class AccessPolicyRealmLabelPolicyArgsDict(TypedDict):
+        selector: pulumi.Input[str]
+        """
+        The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
+        """
+elif False:
+    AccessPolicyRealmLabelPolicyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class AccessPolicyRealmLabelPolicyArgs:

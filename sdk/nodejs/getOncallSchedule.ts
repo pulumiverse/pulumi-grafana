@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
 /** @deprecated grafana.index/getoncallschedule.getOncallSchedule has been deprecated in favor of grafana.oncall/getschedule.getSchedule */
 export function getOncallSchedule(args: GetOncallScheduleArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallScheduleResult> {
     pulumi.log.warn("getOncallSchedule is deprecated: grafana.index/getoncallschedule.getOncallSchedule has been deprecated in favor of grafana.oncall/getschedule.getSchedule")
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOncallSchedule:getOncallSchedule", {
         "name": args.name,
@@ -73,7 +72,11 @@ export interface GetOncallScheduleResult {
  */
 /** @deprecated grafana.index/getoncallschedule.getOncallSchedule has been deprecated in favor of grafana.oncall/getschedule.getSchedule */
 export function getOncallScheduleOutput(args: GetOncallScheduleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallScheduleResult> {
-    return pulumi.output(args).apply((a: any) => getOncallSchedule(a, opts))
+    pulumi.log.warn("getOncallSchedule is deprecated: grafana.index/getoncallschedule.getOncallSchedule has been deprecated in favor of grafana.oncall/getschedule.getSchedule")
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getOncallSchedule:getOncallSchedule", {
+        "name": args.name,
+    }, opts);
 }
 
 /**

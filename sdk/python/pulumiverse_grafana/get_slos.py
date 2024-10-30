@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -77,45 +82,45 @@ def get_slos(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSlosRes
     test = grafana.slo.SLO("test",
         name="Terraform Testing",
         description="Terraform Description",
-        queries=[grafana.slo.SLOQueryArgs(
-            freeform=grafana.slo.SLOQueryFreeformArgs(
-                query="sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
-            ),
-            type="freeform",
-        )],
-        objectives=[grafana.slo.SLOObjectiveArgs(
-            value=0.995,
-            window="30d",
-        )],
-        destination_datasource=grafana.slo.SLODestinationDatasourceArgs(
-            uid="grafanacloud-prom",
-        ),
-        labels=[grafana.slo.SLOLabelArgs(
-            key="custom",
-            value="value",
-        )],
-        alertings=[grafana.slo.SLOAlertingArgs(
-            fastburns=[grafana.slo.SLOAlertingFastburnArgs(
-                annotations=[grafana.slo.SLOAlertingFastburnAnnotationArgs(
-                    key="name",
-                    value="Critical - SLO Burn Rate Alert",
-                )],
-                labels=[grafana.slo.SLOAlertingFastburnLabelArgs(
-                    key="type",
-                    value="slo",
-                )],
-            )],
-            slowburns=[grafana.slo.SLOAlertingSlowburnArgs(
-                annotations=[grafana.slo.SLOAlertingSlowburnAnnotationArgs(
-                    key="name",
-                    value="Warning - SLO Burn Rate Alert",
-                )],
-                labels=[grafana.slo.SLOAlertingSlowburnLabelArgs(
-                    key="type",
-                    value="slo",
-                )],
-            )],
-        )])
+        queries=[{
+            "freeform": {
+                "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+            },
+            "type": "freeform",
+        }],
+        objectives=[{
+            "value": 0.995,
+            "window": "30d",
+        }],
+        destination_datasource={
+            "uid": "grafanacloud-prom",
+        },
+        labels=[{
+            "key": "custom",
+            "value": "value",
+        }],
+        alertings=[{
+            "fastburns": [{
+                "annotations": [{
+                    "key": "name",
+                    "value": "Critical - SLO Burn Rate Alert",
+                }],
+                "labels": [{
+                    "key": "type",
+                    "value": "slo",
+                }],
+            }],
+            "slowburns": [{
+                "annotations": [{
+                    "key": "name",
+                    "value": "Warning - SLO Burn Rate Alert",
+                }],
+                "labels": [{
+                    "key": "type",
+                    "value": "slo",
+                }],
+            }],
+        }])
     slos = grafana.slo.get_slos()
     ```
     """
@@ -127,9 +132,6 @@ def get_slos(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSlosRes
     return AwaitableGetSlosResult(
         id=pulumi.get(__ret__, 'id'),
         slos=pulumi.get(__ret__, 'slos'))
-
-
-@_utilities.lift_output_func(get_slos)
 def get_slos_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSlosResult]:
     """
     Datasource for retrieving all SLOs.
@@ -148,47 +150,52 @@ def get_slos_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Outpu
     test = grafana.slo.SLO("test",
         name="Terraform Testing",
         description="Terraform Description",
-        queries=[grafana.slo.SLOQueryArgs(
-            freeform=grafana.slo.SLOQueryFreeformArgs(
-                query="sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
-            ),
-            type="freeform",
-        )],
-        objectives=[grafana.slo.SLOObjectiveArgs(
-            value=0.995,
-            window="30d",
-        )],
-        destination_datasource=grafana.slo.SLODestinationDatasourceArgs(
-            uid="grafanacloud-prom",
-        ),
-        labels=[grafana.slo.SLOLabelArgs(
-            key="custom",
-            value="value",
-        )],
-        alertings=[grafana.slo.SLOAlertingArgs(
-            fastburns=[grafana.slo.SLOAlertingFastburnArgs(
-                annotations=[grafana.slo.SLOAlertingFastburnAnnotationArgs(
-                    key="name",
-                    value="Critical - SLO Burn Rate Alert",
-                )],
-                labels=[grafana.slo.SLOAlertingFastburnLabelArgs(
-                    key="type",
-                    value="slo",
-                )],
-            )],
-            slowburns=[grafana.slo.SLOAlertingSlowburnArgs(
-                annotations=[grafana.slo.SLOAlertingSlowburnAnnotationArgs(
-                    key="name",
-                    value="Warning - SLO Burn Rate Alert",
-                )],
-                labels=[grafana.slo.SLOAlertingSlowburnLabelArgs(
-                    key="type",
-                    value="slo",
-                )],
-            )],
-        )])
+        queries=[{
+            "freeform": {
+                "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+            },
+            "type": "freeform",
+        }],
+        objectives=[{
+            "value": 0.995,
+            "window": "30d",
+        }],
+        destination_datasource={
+            "uid": "grafanacloud-prom",
+        },
+        labels=[{
+            "key": "custom",
+            "value": "value",
+        }],
+        alertings=[{
+            "fastburns": [{
+                "annotations": [{
+                    "key": "name",
+                    "value": "Critical - SLO Burn Rate Alert",
+                }],
+                "labels": [{
+                    "key": "type",
+                    "value": "slo",
+                }],
+            }],
+            "slowburns": [{
+                "annotations": [{
+                    "key": "name",
+                    "value": "Warning - SLO Burn Rate Alert",
+                }],
+                "labels": [{
+                    "key": "type",
+                    "value": "slo",
+                }],
+            }],
+        }])
     slos = grafana.slo.get_slos()
     ```
     """
     pulumi.log.warn("""get_slos is deprecated: grafana.index/getslos.getSlos has been deprecated in favor of grafana.slo/getslos.getSlos""")
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:index/getSlos:getSlos', __args__, opts=opts, typ=GetSlosResult)
+    return __ret__.apply(lambda __response__: GetSlosResult(
+        id=pulumi.get(__response__, 'id'),
+        slos=pulumi.get(__response__, 'slos')))

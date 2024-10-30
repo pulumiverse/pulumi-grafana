@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -416,7 +421,7 @@ class Report(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 dashboards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDashboardArgs']]]]] = None,
+                 dashboards: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ReportDashboardArgs', 'ReportDashboardArgsDict']]]]] = None,
                  formats: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  include_dashboard_link: Optional[pulumi.Input[bool]] = None,
                  include_table_csv: Optional[pulumi.Input[bool]] = None,
@@ -427,7 +432,7 @@ class Report(pulumi.CustomResource):
                  orientation: Optional[pulumi.Input[str]] = None,
                  recipients: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  reply_to: Optional[pulumi.Input[str]] = None,
-                 schedule: Optional[pulumi.Input[pulumi.InputType['ReportScheduleArgs']]] = None,
+                 schedule: Optional[pulumi.Input[Union['ReportScheduleArgs', 'ReportScheduleArgsDict']]] = None,
                  __props__=None):
         """
         **Note:** This resource is available only with Grafana Enterprise 7.+.
@@ -451,12 +456,12 @@ class Report(pulumi.CustomResource):
         test_report = grafana.enterprise.Report("test",
             name="my report",
             recipients=["some@email.com"],
-            dashboards=[grafana.enterprise.ReportDashboardArgs(
-                uid=test.uid,
-            )],
-            schedule=grafana.enterprise.ReportScheduleArgs(
-                frequency="hourly",
-            ))
+            dashboards=[{
+                "uid": test.uid,
+            }],
+            schedule={
+                "frequency": "hourly",
+            })
         ```
 
         ## Import
@@ -471,7 +476,7 @@ class Report(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDashboardArgs']]]] dashboards: List of dashboards to render into the report
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ReportDashboardArgs', 'ReportDashboardArgsDict']]]] dashboards: List of dashboards to render into the report
         :param pulumi.Input[Sequence[pulumi.Input[str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
         :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
         :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
@@ -482,7 +487,7 @@ class Report(pulumi.CustomResource):
         :param pulumi.Input[str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] recipients: List of recipients of the report.
         :param pulumi.Input[str] reply_to: Reply-to email address of the report.
-        :param pulumi.Input[pulumi.InputType['ReportScheduleArgs']] schedule: Schedule of the report.
+        :param pulumi.Input[Union['ReportScheduleArgs', 'ReportScheduleArgsDict']] schedule: Schedule of the report.
         """
         ...
     @overload
@@ -512,12 +517,12 @@ class Report(pulumi.CustomResource):
         test_report = grafana.enterprise.Report("test",
             name="my report",
             recipients=["some@email.com"],
-            dashboards=[grafana.enterprise.ReportDashboardArgs(
-                uid=test.uid,
-            )],
-            schedule=grafana.enterprise.ReportScheduleArgs(
-                frequency="hourly",
-            ))
+            dashboards=[{
+                "uid": test.uid,
+            }],
+            schedule={
+                "frequency": "hourly",
+            })
         ```
 
         ## Import
@@ -545,7 +550,7 @@ class Report(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 dashboards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDashboardArgs']]]]] = None,
+                 dashboards: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ReportDashboardArgs', 'ReportDashboardArgsDict']]]]] = None,
                  formats: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  include_dashboard_link: Optional[pulumi.Input[bool]] = None,
                  include_table_csv: Optional[pulumi.Input[bool]] = None,
@@ -556,7 +561,7 @@ class Report(pulumi.CustomResource):
                  orientation: Optional[pulumi.Input[str]] = None,
                  recipients: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  reply_to: Optional[pulumi.Input[str]] = None,
-                 schedule: Optional[pulumi.Input[pulumi.InputType['ReportScheduleArgs']]] = None,
+                 schedule: Optional[pulumi.Input[Union['ReportScheduleArgs', 'ReportScheduleArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -594,7 +599,7 @@ class Report(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            dashboards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDashboardArgs']]]]] = None,
+            dashboards: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ReportDashboardArgs', 'ReportDashboardArgsDict']]]]] = None,
             formats: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             include_dashboard_link: Optional[pulumi.Input[bool]] = None,
             include_table_csv: Optional[pulumi.Input[bool]] = None,
@@ -605,7 +610,7 @@ class Report(pulumi.CustomResource):
             orientation: Optional[pulumi.Input[str]] = None,
             recipients: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             reply_to: Optional[pulumi.Input[str]] = None,
-            schedule: Optional[pulumi.Input[pulumi.InputType['ReportScheduleArgs']]] = None) -> 'Report':
+            schedule: Optional[pulumi.Input[Union['ReportScheduleArgs', 'ReportScheduleArgsDict']]] = None) -> 'Report':
         """
         Get an existing Report resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -613,7 +618,7 @@ class Report(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDashboardArgs']]]] dashboards: List of dashboards to render into the report
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ReportDashboardArgs', 'ReportDashboardArgsDict']]]] dashboards: List of dashboards to render into the report
         :param pulumi.Input[Sequence[pulumi.Input[str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
         :param pulumi.Input[bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
         :param pulumi.Input[bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
@@ -624,7 +629,7 @@ class Report(pulumi.CustomResource):
         :param pulumi.Input[str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] recipients: List of recipients of the report.
         :param pulumi.Input[str] reply_to: Reply-to email address of the report.
-        :param pulumi.Input[pulumi.InputType['ReportScheduleArgs']] schedule: Schedule of the report.
+        :param pulumi.Input[Union['ReportScheduleArgs', 'ReportScheduleArgsDict']] schedule: Schedule of the report.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

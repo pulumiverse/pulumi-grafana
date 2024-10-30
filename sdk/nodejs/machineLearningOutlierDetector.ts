@@ -81,7 +81,7 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
     /**
      * An object representing the query params to query Grafana with.
      */
-    public readonly queryParams!: pulumi.Output<{[key: string]: any}>;
+    public readonly queryParams!: pulumi.Output<{[key: string]: string}>;
 
     /**
      * Create a MachineLearningOutlierDetector resource with the given unique name, arguments, and options.
@@ -175,7 +175,7 @@ export interface MachineLearningOutlierDetectorState {
     /**
      * An object representing the query params to query Grafana with.
      */
-    queryParams?: pulumi.Input<{[key: string]: any}>;
+    queryParams?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 /**
@@ -213,5 +213,5 @@ export interface MachineLearningOutlierDetectorArgs {
     /**
      * An object representing the query params to query Grafana with.
      */
-    queryParams: pulumi.Input<{[key: string]: any}>;
+    queryParams: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

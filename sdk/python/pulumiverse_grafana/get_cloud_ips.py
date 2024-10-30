@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -131,9 +136,6 @@ def get_cloud_ips(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCl
         hosted_metrics=pulumi.get(__ret__, 'hosted_metrics'),
         hosted_traces=pulumi.get(__ret__, 'hosted_traces'),
         id=pulumi.get(__ret__, 'id'))
-
-
-@_utilities.lift_output_func(get_cloud_ips)
 def get_cloud_ips_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudIpsResult]:
     """
     Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
@@ -148,4 +150,13 @@ def get_cloud_ips_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.
     ```
     """
     pulumi.log.warn("""get_cloud_ips is deprecated: grafana.index/getcloudips.getCloudIps has been deprecated in favor of grafana.cloud/getips.getIps""")
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:index/getCloudIps:getCloudIps', __args__, opts=opts, typ=GetCloudIpsResult)
+    return __ret__.apply(lambda __response__: GetCloudIpsResult(
+        hosted_alerts=pulumi.get(__response__, 'hosted_alerts'),
+        hosted_grafanas=pulumi.get(__response__, 'hosted_grafanas'),
+        hosted_logs=pulumi.get(__response__, 'hosted_logs'),
+        hosted_metrics=pulumi.get(__response__, 'hosted_metrics'),
+        hosted_traces=pulumi.get(__response__, 'hosted_traces'),
+        id=pulumi.get(__response__, 'id')))

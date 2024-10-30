@@ -27,7 +27,6 @@ import * as utilities from "./utilities";
 /** @deprecated grafana.index/getfolder.getFolder has been deprecated in favor of grafana.oss/getfolder.getFolder */
 export function getFolder(args: GetFolderArgs, opts?: pulumi.InvokeOptions): Promise<GetFolderResult> {
     pulumi.log.warn("getFolder is deprecated: grafana.index/getfolder.getFolder has been deprecated in favor of grafana.oss/getfolder.getFolder")
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getFolder:getFolder", {
         "orgId": args.orgId,
@@ -100,7 +99,12 @@ export interface GetFolderResult {
  */
 /** @deprecated grafana.index/getfolder.getFolder has been deprecated in favor of grafana.oss/getfolder.getFolder */
 export function getFolderOutput(args: GetFolderOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFolderResult> {
-    return pulumi.output(args).apply((a: any) => getFolder(a, opts))
+    pulumi.log.warn("getFolder is deprecated: grafana.index/getfolder.getFolder has been deprecated in favor of grafana.oss/getfolder.getFolder")
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getFolder:getFolder", {
+        "orgId": args.orgId,
+        "title": args.title,
+    }, opts);
 }
 
 /**

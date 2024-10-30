@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -225,7 +230,7 @@ class RuleGroup(pulumi.CustomResource):
                  interval_seconds: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]]] = None,
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RuleGroupRuleArgs', 'RuleGroupRuleArgsDict']]]]] = None,
                  __props__=None):
         """
         Manages Grafana Alerting rule groups.
@@ -248,46 +253,46 @@ class RuleGroup(pulumi.CustomResource):
             folder_uid=rule_folder.uid,
             interval_seconds=240,
             org_id="1",
-            rules=[grafana.alerting.RuleGroupRuleArgs(
-                name="My Alert Rule 1",
-                for_="2m",
-                condition="B",
-                no_data_state="NoData",
-                exec_err_state="Alerting",
-                annotations={
+            rules=[{
+                "name": "My Alert Rule 1",
+                "for_": "2m",
+                "condition": "B",
+                "no_data_state": "NoData",
+                "exec_err_state": "Alerting",
+                "annotations": {
                     "a": "b",
                     "c": "d",
                 },
-                labels={
+                "labels": {
                     "e": "f",
                     "g": "h",
                 },
-                is_paused=False,
-                datas=[
-                    grafana.alerting.RuleGroupRuleDataArgs(
-                        ref_id="A",
-                        query_type="",
-                        relative_time_range=grafana.alerting.RuleGroupRuleDataRelativeTimeRangeArgs(
-                            from_=600,
-                            to=0,
-                        ),
-                        datasource_uid="PD8C576611E62080A",
-                        model=json.dumps({
+                "is_paused": False,
+                "datas": [
+                    {
+                        "ref_id": "A",
+                        "query_type": "",
+                        "relative_time_range": {
+                            "from_": 600,
+                            "to": 0,
+                        },
+                        "datasource_uid": "PD8C576611E62080A",
+                        "model": json.dumps({
                             "hide": False,
-                            "intervalMs": 1000,
-                            "maxDataPoints": 43200,
-                            "refId": "A",
+                            "interval_ms": 1000,
+                            "max_data_points": 43200,
+                            "ref_id": "A",
                         }),
-                    ),
-                    grafana.alerting.RuleGroupRuleDataArgs(
-                        ref_id="B",
-                        query_type="",
-                        relative_time_range=grafana.alerting.RuleGroupRuleDataRelativeTimeRangeArgs(
-                            from_=0,
-                            to=0,
-                        ),
-                        datasource_uid="-100",
-                        model=\"\"\"{
+                    },
+                    {
+                        "ref_id": "B",
+                        "query_type": "",
+                        "relative_time_range": {
+                            "from_": 0,
+                            "to": 0,
+                        },
+                        "datasource_uid": "-100",
+                        "model": \"\"\"{
             "conditions": [
                 {
                 "evaluator": {
@@ -322,9 +327,9 @@ class RuleGroup(pulumi.CustomResource):
             "type": "classic_conditions"
         }
         \"\"\",
-                    ),
+                    },
                 ],
-            )])
+            }])
         ```
 
         ## Import
@@ -343,7 +348,7 @@ class RuleGroup(pulumi.CustomResource):
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[str] name: The name of the rule group.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]] rules: The rules within the group.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RuleGroupRuleArgs', 'RuleGroupRuleArgsDict']]]] rules: The rules within the group.
         """
         ...
     @overload
@@ -372,46 +377,46 @@ class RuleGroup(pulumi.CustomResource):
             folder_uid=rule_folder.uid,
             interval_seconds=240,
             org_id="1",
-            rules=[grafana.alerting.RuleGroupRuleArgs(
-                name="My Alert Rule 1",
-                for_="2m",
-                condition="B",
-                no_data_state="NoData",
-                exec_err_state="Alerting",
-                annotations={
+            rules=[{
+                "name": "My Alert Rule 1",
+                "for_": "2m",
+                "condition": "B",
+                "no_data_state": "NoData",
+                "exec_err_state": "Alerting",
+                "annotations": {
                     "a": "b",
                     "c": "d",
                 },
-                labels={
+                "labels": {
                     "e": "f",
                     "g": "h",
                 },
-                is_paused=False,
-                datas=[
-                    grafana.alerting.RuleGroupRuleDataArgs(
-                        ref_id="A",
-                        query_type="",
-                        relative_time_range=grafana.alerting.RuleGroupRuleDataRelativeTimeRangeArgs(
-                            from_=600,
-                            to=0,
-                        ),
-                        datasource_uid="PD8C576611E62080A",
-                        model=json.dumps({
+                "is_paused": False,
+                "datas": [
+                    {
+                        "ref_id": "A",
+                        "query_type": "",
+                        "relative_time_range": {
+                            "from_": 600,
+                            "to": 0,
+                        },
+                        "datasource_uid": "PD8C576611E62080A",
+                        "model": json.dumps({
                             "hide": False,
-                            "intervalMs": 1000,
-                            "maxDataPoints": 43200,
-                            "refId": "A",
+                            "interval_ms": 1000,
+                            "max_data_points": 43200,
+                            "ref_id": "A",
                         }),
-                    ),
-                    grafana.alerting.RuleGroupRuleDataArgs(
-                        ref_id="B",
-                        query_type="",
-                        relative_time_range=grafana.alerting.RuleGroupRuleDataRelativeTimeRangeArgs(
-                            from_=0,
-                            to=0,
-                        ),
-                        datasource_uid="-100",
-                        model=\"\"\"{
+                    },
+                    {
+                        "ref_id": "B",
+                        "query_type": "",
+                        "relative_time_range": {
+                            "from_": 0,
+                            "to": 0,
+                        },
+                        "datasource_uid": "-100",
+                        "model": \"\"\"{
             "conditions": [
                 {
                 "evaluator": {
@@ -446,9 +451,9 @@ class RuleGroup(pulumi.CustomResource):
             "type": "classic_conditions"
         }
         \"\"\",
-                    ),
+                    },
                 ],
-            )])
+            }])
         ```
 
         ## Import
@@ -481,7 +486,7 @@ class RuleGroup(pulumi.CustomResource):
                  interval_seconds: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]]] = None,
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RuleGroupRuleArgs', 'RuleGroupRuleArgsDict']]]]] = None,
                  __props__=None):
         pulumi.log.warn("""RuleGroup is deprecated: grafana.index/rulegroup.RuleGroup has been deprecated in favor of grafana.alerting/rulegroup.RuleGroup""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -521,7 +526,7 @@ class RuleGroup(pulumi.CustomResource):
             interval_seconds: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
-            rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]]] = None) -> 'RuleGroup':
+            rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RuleGroupRuleArgs', 'RuleGroupRuleArgsDict']]]]] = None) -> 'RuleGroup':
         """
         Get an existing RuleGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -533,7 +538,7 @@ class RuleGroup(pulumi.CustomResource):
         :param pulumi.Input[int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[str] name: The name of the rule group.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleGroupRuleArgs']]]] rules: The rules within the group.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RuleGroupRuleArgs', 'RuleGroupRuleArgsDict']]]] rules: The rules within the group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

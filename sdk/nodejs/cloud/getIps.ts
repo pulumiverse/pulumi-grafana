@@ -17,7 +17,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getIps(opts?: pulumi.InvokeOptions): Promise<GetIpsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:cloud/getIps:getIps", {
     }, opts);
@@ -65,5 +64,7 @@ export interface GetIpsResult {
  * ```
  */
 export function getIpsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetIpsResult> {
-    return pulumi.output(getIps(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:cloud/getIps:getIps", {
+    }, opts);
 }

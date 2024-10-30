@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -141,9 +146,6 @@ def get_folder(org_id: Optional[str] = None,
         title=pulumi.get(__ret__, 'title'),
         uid=pulumi.get(__ret__, 'uid'),
         url=pulumi.get(__ret__, 'url'))
-
-
-@_utilities.lift_output_func(get_folder)
 def get_folder_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
                       title: Optional[pulumi.Input[str]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFolderResult]:
@@ -168,4 +170,15 @@ def get_folder_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     :param str title: The title of the folder.
     """
-    ...
+    __args__ = dict()
+    __args__['orgId'] = org_id
+    __args__['title'] = title
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:oss/getFolder:getFolder', __args__, opts=opts, typ=GetFolderResult)
+    return __ret__.apply(lambda __response__: GetFolderResult(
+        id=pulumi.get(__response__, 'id'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        parent_folder_uid=pulumi.get(__response__, 'parent_folder_uid'),
+        title=pulumi.get(__response__, 'title'),
+        uid=pulumi.get(__response__, 'uid'),
+        url=pulumi.get(__response__, 'url')))

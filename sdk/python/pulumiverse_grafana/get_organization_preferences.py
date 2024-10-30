@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -137,9 +142,6 @@ def get_organization_preferences(org_id: Optional[str] = None,
         theme=pulumi.get(__ret__, 'theme'),
         timezone=pulumi.get(__ret__, 'timezone'),
         week_start=pulumi.get(__ret__, 'week_start'))
-
-
-@_utilities.lift_output_func(get_organization_preferences)
 def get_organization_preferences_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationPreferencesResult]:
     """
@@ -159,4 +161,14 @@ def get_organization_preferences_output(org_id: Optional[pulumi.Input[Optional[s
     :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
     pulumi.log.warn("""get_organization_preferences is deprecated: grafana.index/getorganizationpreferences.getOrganizationPreferences has been deprecated in favor of grafana.oss/getorganizationpreferences.getOrganizationPreferences""")
-    ...
+    __args__ = dict()
+    __args__['orgId'] = org_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:index/getOrganizationPreferences:getOrganizationPreferences', __args__, opts=opts, typ=GetOrganizationPreferencesResult)
+    return __ret__.apply(lambda __response__: GetOrganizationPreferencesResult(
+        home_dashboard_uid=pulumi.get(__response__, 'home_dashboard_uid'),
+        id=pulumi.get(__response__, 'id'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        theme=pulumi.get(__response__, 'theme'),
+        timezone=pulumi.get(__response__, 'timezone'),
+        week_start=pulumi.get(__response__, 'week_start')))

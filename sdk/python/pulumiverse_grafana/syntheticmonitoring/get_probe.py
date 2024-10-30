@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -172,9 +177,6 @@ def get_probe(name: Optional[str] = None,
         public=pulumi.get(__ret__, 'public'),
         region=pulumi.get(__ret__, 'region'),
         tenant_id=pulumi.get(__ret__, 'tenant_id'))
-
-
-@_utilities.lift_output_func(get_probe)
 def get_probe_output(name: Optional[pulumi.Input[str]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProbeResult]:
     """
@@ -192,4 +194,17 @@ def get_probe_output(name: Optional[pulumi.Input[str]] = None,
 
     :param str name: Name of the probe.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:syntheticMonitoring/getProbe:getProbe', __args__, opts=opts, typ=GetProbeResult)
+    return __ret__.apply(lambda __response__: GetProbeResult(
+        disable_scripted_checks=pulumi.get(__response__, 'disable_scripted_checks'),
+        id=pulumi.get(__response__, 'id'),
+        labels=pulumi.get(__response__, 'labels'),
+        latitude=pulumi.get(__response__, 'latitude'),
+        longitude=pulumi.get(__response__, 'longitude'),
+        name=pulumi.get(__response__, 'name'),
+        public=pulumi.get(__response__, 'public'),
+        region=pulumi.get(__response__, 'region'),
+        tenant_id=pulumi.get(__response__, 'tenant_id')))

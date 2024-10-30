@@ -28,7 +28,6 @@ import * as utilities from "./utilities";
 /** @deprecated grafana.index/getcloudstack.getCloudStack has been deprecated in favor of grafana.cloud/getstack.getStack */
 export function getCloudStack(args: GetCloudStackArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudStackResult> {
     pulumi.log.warn("getCloudStack is deprecated: grafana.index/getcloudstack.getCloudStack has been deprecated in favor of grafana.cloud/getstack.getStack")
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getCloudStack:getCloudStack", {
         "slug": args.slug,
@@ -186,7 +185,11 @@ export interface GetCloudStackResult {
  */
 /** @deprecated grafana.index/getcloudstack.getCloudStack has been deprecated in favor of grafana.cloud/getstack.getStack */
 export function getCloudStackOutput(args: GetCloudStackOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudStackResult> {
-    return pulumi.output(args).apply((a: any) => getCloudStack(a, opts))
+    pulumi.log.warn("getCloudStack is deprecated: grafana.index/getcloudstack.getCloudStack has been deprecated in favor of grafana.cloud/getstack.getStack")
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getCloudStack:getCloudStack", {
+        "slug": args.slug,
+    }, opts);
 }
 
 /**

@@ -32,7 +32,6 @@ import * as utilities from "./utilities";
 export function getFolders(args?: GetFoldersArgs, opts?: pulumi.InvokeOptions): Promise<GetFoldersResult> {
     pulumi.log.warn("getFolders is deprecated: grafana.index/getfolders.getFolders has been deprecated in favor of grafana.oss/getfolders.getFolders")
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getFolders:getFolders", {
         "orgId": args.orgId,
@@ -90,7 +89,12 @@ export interface GetFoldersResult {
  */
 /** @deprecated grafana.index/getfolders.getFolders has been deprecated in favor of grafana.oss/getfolders.getFolders */
 export function getFoldersOutput(args?: GetFoldersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFoldersResult> {
-    return pulumi.output(args).apply((a: any) => getFolders(a, opts))
+    pulumi.log.warn("getFolders is deprecated: grafana.index/getfolders.getFolders has been deprecated in favor of grafana.oss/getfolders.getFolders")
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getFolders:getFolders", {
+        "orgId": args.orgId,
+    }, opts);
 }
 
 /**

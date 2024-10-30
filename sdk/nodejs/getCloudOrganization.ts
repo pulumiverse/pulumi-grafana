@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
 export function getCloudOrganization(args?: GetCloudOrganizationArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudOrganizationResult> {
     pulumi.log.warn("getCloudOrganization is deprecated: grafana.index/getcloudorganization.getCloudOrganization has been deprecated in favor of grafana.cloud/getorganization.getOrganization")
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getCloudOrganization:getCloudOrganization", {
         "id": args.id,
@@ -67,7 +66,13 @@ export interface GetCloudOrganizationResult {
  */
 /** @deprecated grafana.index/getcloudorganization.getCloudOrganization has been deprecated in favor of grafana.cloud/getorganization.getOrganization */
 export function getCloudOrganizationOutput(args?: GetCloudOrganizationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudOrganizationResult> {
-    return pulumi.output(args).apply((a: any) => getCloudOrganization(a, opts))
+    pulumi.log.warn("getCloudOrganization is deprecated: grafana.index/getcloudorganization.getCloudOrganization has been deprecated in favor of grafana.cloud/getorganization.getOrganization")
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getCloudOrganization:getCloudOrganization", {
+        "id": args.id,
+        "slug": args.slug,
+    }, opts);
 }
 
 /**

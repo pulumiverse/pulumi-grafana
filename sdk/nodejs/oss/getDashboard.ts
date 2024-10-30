@@ -33,7 +33,6 @@ import * as utilities from "../utilities";
  */
 export function getDashboard(args?: GetDashboardArgs, opts?: pulumi.InvokeOptions): Promise<GetDashboardResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:oss/getDashboard:getDashboard", {
         "dashboardId": args.dashboardId,
@@ -137,7 +136,13 @@ export interface GetDashboardResult {
  * ```
  */
 export function getDashboardOutput(args?: GetDashboardOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDashboardResult> {
-    return pulumi.output(args).apply((a: any) => getDashboard(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:oss/getDashboard:getDashboard", {
+        "dashboardId": args.dashboardId,
+        "orgId": args.orgId,
+        "uid": args.uid,
+    }, opts);
 }
 
 /**

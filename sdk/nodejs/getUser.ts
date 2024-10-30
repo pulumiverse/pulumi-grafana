@@ -40,7 +40,6 @@ import * as utilities from "./utilities";
 export function getUser(args?: GetUserArgs, opts?: pulumi.InvokeOptions): Promise<GetUserResult> {
     pulumi.log.warn("getUser is deprecated: grafana.index/getuser.getUser has been deprecated in favor of grafana.oss/getuser.getUser")
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getUser:getUser", {
         "email": args.email,
@@ -130,7 +129,14 @@ export interface GetUserResult {
  */
 /** @deprecated grafana.index/getuser.getUser has been deprecated in favor of grafana.oss/getuser.getUser */
 export function getUserOutput(args?: GetUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserResult> {
-    return pulumi.output(args).apply((a: any) => getUser(a, opts))
+    pulumi.log.warn("getUser is deprecated: grafana.index/getuser.getUser has been deprecated in favor of grafana.oss/getuser.getUser")
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getUser:getUser", {
+        "email": args.email,
+        "login": args.login,
+        "userId": args.userId,
+    }, opts);
 }
 
 /**

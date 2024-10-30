@@ -19,7 +19,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getIntegration(args: GetIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetIntegrationResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:onCall/getIntegration:getIntegration", {
         "id": args.id,
@@ -64,7 +63,10 @@ export interface GetIntegrationResult {
  * ```
  */
 export function getIntegrationOutput(args: GetIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIntegrationResult> {
-    return pulumi.output(args).apply((a: any) => getIntegration(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:onCall/getIntegration:getIntegration", {
+        "id": args.id,
+    }, opts);
 }
 
 /**

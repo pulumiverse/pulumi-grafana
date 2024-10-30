@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -84,9 +89,6 @@ def get_oncall_integration(id: Optional[str] = None,
     return AwaitableGetOncallIntegrationResult(
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'))
-
-
-@_utilities.lift_output_func(get_oncall_integration)
 def get_oncall_integration_output(id: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallIntegrationResult]:
     """
@@ -105,4 +107,10 @@ def get_oncall_integration_output(id: Optional[pulumi.Input[str]] = None,
     :param str id: The integration ID.
     """
     pulumi.log.warn("""get_oncall_integration is deprecated: grafana.index/getoncallintegration.getOncallIntegration has been deprecated in favor of grafana.oncall/getintegration.getIntegration""")
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:index/getOncallIntegration:getOncallIntegration', __args__, opts=opts, typ=GetOncallIntegrationResult)
+    return __ret__.apply(lambda __response__: GetOncallIntegrationResult(
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name')))

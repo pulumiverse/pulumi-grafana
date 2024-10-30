@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -175,9 +180,6 @@ def get_synthetic_monitoring_probe(name: Optional[str] = None,
         public=pulumi.get(__ret__, 'public'),
         region=pulumi.get(__ret__, 'region'),
         tenant_id=pulumi.get(__ret__, 'tenant_id'))
-
-
-@_utilities.lift_output_func(get_synthetic_monitoring_probe)
 def get_synthetic_monitoring_probe_output(name: Optional[pulumi.Input[str]] = None,
                                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSyntheticMonitoringProbeResult]:
     """
@@ -196,4 +198,17 @@ def get_synthetic_monitoring_probe_output(name: Optional[pulumi.Input[str]] = No
     :param str name: Name of the probe.
     """
     pulumi.log.warn("""get_synthetic_monitoring_probe is deprecated: grafana.index/getsyntheticmonitoringprobe.getSyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/getprobe.getProbe""")
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe', __args__, opts=opts, typ=GetSyntheticMonitoringProbeResult)
+    return __ret__.apply(lambda __response__: GetSyntheticMonitoringProbeResult(
+        disable_scripted_checks=pulumi.get(__response__, 'disable_scripted_checks'),
+        id=pulumi.get(__response__, 'id'),
+        labels=pulumi.get(__response__, 'labels'),
+        latitude=pulumi.get(__response__, 'latitude'),
+        longitude=pulumi.get(__response__, 'longitude'),
+        name=pulumi.get(__response__, 'name'),
+        public=pulumi.get(__response__, 'public'),
+        region=pulumi.get(__response__, 'region'),
+        tenant_id=pulumi.get(__response__, 'tenant_id')))

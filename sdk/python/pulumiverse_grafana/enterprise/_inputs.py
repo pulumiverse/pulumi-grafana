@@ -4,18 +4,51 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'DataSourcePermissionPermissionArgs',
+    'DataSourcePermissionPermissionArgsDict',
     'ReportDashboardArgs',
+    'ReportDashboardArgsDict',
     'ReportDashboardTimeRangeArgs',
+    'ReportDashboardTimeRangeArgsDict',
     'ReportScheduleArgs',
+    'ReportScheduleArgsDict',
     'RolePermissionArgs',
+    'RolePermissionArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class DataSourcePermissionPermissionArgsDict(TypedDict):
+        permission: pulumi.Input[str]
+        """
+        Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
+        """
+        built_in_role: NotRequired[pulumi.Input[str]]
+        """
+        Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
+        """
+        team_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the team to manage permissions for. Defaults to `0`.
+        """
+        user_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the user or service account to manage permissions for. Defaults to `0`.
+        """
+elif False:
+    DataSourcePermissionPermissionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DataSourcePermissionPermissionArgs:
@@ -87,15 +120,32 @@ class DataSourcePermissionPermissionArgs:
         pulumi.set(self, "user_id", value)
 
 
+if not MYPY:
+    class ReportDashboardArgsDict(TypedDict):
+        uid: pulumi.Input[str]
+        """
+        Dashboard uid.
+        """
+        report_variables: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Add report variables to the dashboard. Values should be separated by commas.
+        """
+        time_range: NotRequired[pulumi.Input['ReportDashboardTimeRangeArgsDict']]
+        """
+        Time range of the report.
+        """
+elif False:
+    ReportDashboardArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ReportDashboardArgs:
     def __init__(__self__, *,
                  uid: pulumi.Input[str],
-                 report_variables: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 report_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  time_range: Optional[pulumi.Input['ReportDashboardTimeRangeArgs']] = None):
         """
         :param pulumi.Input[str] uid: Dashboard uid.
-        :param pulumi.Input[Mapping[str, Any]] report_variables: Add report variables to the dashboard. Values should be separated by commas.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] report_variables: Add report variables to the dashboard. Values should be separated by commas.
         :param pulumi.Input['ReportDashboardTimeRangeArgs'] time_range: Time range of the report.
         """
         pulumi.set(__self__, "uid", uid)
@@ -118,14 +168,14 @@ class ReportDashboardArgs:
 
     @property
     @pulumi.getter(name="reportVariables")
-    def report_variables(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def report_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Add report variables to the dashboard. Values should be separated by commas.
         """
         return pulumi.get(self, "report_variables")
 
     @report_variables.setter
-    def report_variables(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def report_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "report_variables", value)
 
     @property
@@ -140,6 +190,19 @@ class ReportDashboardArgs:
     def time_range(self, value: Optional[pulumi.Input['ReportDashboardTimeRangeArgs']]):
         pulumi.set(self, "time_range", value)
 
+
+if not MYPY:
+    class ReportDashboardTimeRangeArgsDict(TypedDict):
+        from_: NotRequired[pulumi.Input[str]]
+        """
+        Start of the time range.
+        """
+        to: NotRequired[pulumi.Input[str]]
+        """
+        End of the time range.
+        """
+elif False:
+    ReportDashboardTimeRangeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ReportDashboardTimeRangeArgs:
@@ -179,6 +242,40 @@ class ReportDashboardTimeRangeArgs:
     def to(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "to", value)
 
+
+if not MYPY:
+    class ReportScheduleArgsDict(TypedDict):
+        frequency: pulumi.Input[str]
+        """
+        Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
+        """
+        custom_interval: NotRequired[pulumi.Input[str]]
+        """
+        Custom interval of the report.
+        **Note:** This field is only available when frequency is set to `custom`.
+        """
+        end_time: NotRequired[pulumi.Input[str]]
+        """
+        End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
+        """
+        last_day_of_month: NotRequired[pulumi.Input[bool]]
+        """
+        Send the report on the last day of the month Defaults to `false`.
+        """
+        start_time: NotRequired[pulumi.Input[str]]
+        """
+        Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
+        """
+        timezone: NotRequired[pulumi.Input[str]]
+        """
+        Set the report time zone. Defaults to `GMT`.
+        """
+        workdays_only: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to send the report only on work days. Defaults to `false`.
+        """
+elif False:
+    ReportScheduleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ReportScheduleArgs:
@@ -299,6 +396,19 @@ class ReportScheduleArgs:
     def workdays_only(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "workdays_only", value)
 
+
+if not MYPY:
+    class RolePermissionArgsDict(TypedDict):
+        action: pulumi.Input[str]
+        """
+        Specific action users granted with the role will be allowed to perform (for example: `users:read`)
+        """
+        scope: NotRequired[pulumi.Input[str]]
+        """
+        Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
+        """
+elif False:
+    RolePermissionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class RolePermissionArgs:

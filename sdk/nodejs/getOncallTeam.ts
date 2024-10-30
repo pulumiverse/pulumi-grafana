@@ -19,7 +19,6 @@ import * as utilities from "./utilities";
 /** @deprecated grafana.index/getoncallteam.getOncallTeam has been deprecated in favor of grafana.oncall/getteam.getTeam */
 export function getOncallTeam(args: GetOncallTeamArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallTeamResult> {
     pulumi.log.warn("getOncallTeam is deprecated: grafana.index/getoncallteam.getOncallTeam has been deprecated in favor of grafana.oncall/getteam.getTeam")
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOncallTeam:getOncallTeam", {
         "name": args.name,
@@ -65,7 +64,11 @@ export interface GetOncallTeamResult {
  */
 /** @deprecated grafana.index/getoncallteam.getOncallTeam has been deprecated in favor of grafana.oncall/getteam.getTeam */
 export function getOncallTeamOutput(args: GetOncallTeamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallTeamResult> {
-    return pulumi.output(args).apply((a: any) => getOncallTeam(a, opts))
+    pulumi.log.warn("getOncallTeam is deprecated: grafana.index/getoncallteam.getOncallTeam has been deprecated in favor of grafana.oncall/getteam.getTeam")
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getOncallTeam:getOncallTeam", {
+        "name": args.name,
+    }, opts);
 }
 
 /**

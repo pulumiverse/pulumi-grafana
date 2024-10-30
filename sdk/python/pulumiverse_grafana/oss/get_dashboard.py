@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -218,9 +223,6 @@ def get_dashboard(dashboard_id: Optional[int] = None,
         uid=pulumi.get(__ret__, 'uid'),
         url=pulumi.get(__ret__, 'url'),
         version=pulumi.get(__ret__, 'version'))
-
-
-@_utilities.lift_output_func(get_dashboard)
 def get_dashboard_output(dashboard_id: Optional[pulumi.Input[Optional[int]]] = None,
                          org_id: Optional[pulumi.Input[Optional[str]]] = None,
                          uid: Optional[pulumi.Input[Optional[str]]] = None,
@@ -256,4 +258,21 @@ def get_dashboard_output(dashboard_id: Optional[pulumi.Input[Optional[int]]] = N
     :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     :param str uid: The uid of the Grafana dashboard. Specify either this or `dashboard_id`. Defaults to ``.
     """
-    ...
+    __args__ = dict()
+    __args__['dashboardId'] = dashboard_id
+    __args__['orgId'] = org_id
+    __args__['uid'] = uid
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:oss/getDashboard:getDashboard', __args__, opts=opts, typ=GetDashboardResult)
+    return __ret__.apply(lambda __response__: GetDashboardResult(
+        config_json=pulumi.get(__response__, 'config_json'),
+        dashboard_id=pulumi.get(__response__, 'dashboard_id'),
+        folder_uid=pulumi.get(__response__, 'folder_uid'),
+        id=pulumi.get(__response__, 'id'),
+        is_starred=pulumi.get(__response__, 'is_starred'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        slug=pulumi.get(__response__, 'slug'),
+        title=pulumi.get(__response__, 'title'),
+        uid=pulumi.get(__response__, 'uid'),
+        url=pulumi.get(__response__, 'url'),
+        version=pulumi.get(__response__, 'version')))

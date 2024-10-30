@@ -18,7 +18,6 @@ import * as utilities from "../utilities";
  */
 export function getProbes(args?: GetProbesArgs, opts?: pulumi.InvokeOptions): Promise<GetProbesResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:syntheticMonitoring/getProbes:getProbes", {
         "filterDeprecated": args.filterDeprecated,
@@ -65,7 +64,11 @@ export interface GetProbesResult {
  * ```
  */
 export function getProbesOutput(args?: GetProbesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProbesResult> {
-    return pulumi.output(args).apply((a: any) => getProbes(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:syntheticMonitoring/getProbes:getProbes", {
+        "filterDeprecated": args.filterDeprecated,
+    }, opts);
 }
 
 /**

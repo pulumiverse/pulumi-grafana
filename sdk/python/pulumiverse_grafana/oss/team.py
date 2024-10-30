@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -275,8 +280,8 @@ class Team(pulumi.CustomResource):
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 preferences: Optional[pulumi.Input[pulumi.InputType['TeamPreferencesArgs']]] = None,
-                 team_sync: Optional[pulumi.Input[pulumi.InputType['TeamTeamSyncArgs']]] = None,
+                 preferences: Optional[pulumi.Input[Union['TeamPreferencesArgs', 'TeamPreferencesArgsDict']]] = None,
+                 team_sync: Optional[pulumi.Input[Union['TeamTeamSyncArgs', 'TeamTeamSyncArgsDict']]] = None,
                  __props__=None):
         """
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
@@ -316,7 +321,7 @@ class Team(pulumi.CustomResource):
                must already exist in Grafana.
         :param pulumi.Input[str] name: The display name for the Grafana team created.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[pulumi.InputType['TeamTeamSyncArgs']] team_sync: Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
+        :param pulumi.Input[Union['TeamTeamSyncArgs', 'TeamTeamSyncArgsDict']] team_sync: Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
                documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
                API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
         """
@@ -377,8 +382,8 @@ class Team(pulumi.CustomResource):
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 preferences: Optional[pulumi.Input[pulumi.InputType['TeamPreferencesArgs']]] = None,
-                 team_sync: Optional[pulumi.Input[pulumi.InputType['TeamTeamSyncArgs']]] = None,
+                 preferences: Optional[pulumi.Input[Union['TeamPreferencesArgs', 'TeamPreferencesArgsDict']]] = None,
+                 team_sync: Optional[pulumi.Input[Union['TeamTeamSyncArgs', 'TeamTeamSyncArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -413,9 +418,9 @@ class Team(pulumi.CustomResource):
             members: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
-            preferences: Optional[pulumi.Input[pulumi.InputType['TeamPreferencesArgs']]] = None,
+            preferences: Optional[pulumi.Input[Union['TeamPreferencesArgs', 'TeamPreferencesArgsDict']]] = None,
             team_id: Optional[pulumi.Input[int]] = None,
-            team_sync: Optional[pulumi.Input[pulumi.InputType['TeamTeamSyncArgs']]] = None) -> 'Team':
+            team_sync: Optional[pulumi.Input[Union['TeamTeamSyncArgs', 'TeamTeamSyncArgsDict']]] = None) -> 'Team':
         """
         Get an existing Team resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -429,7 +434,7 @@ class Team(pulumi.CustomResource):
         :param pulumi.Input[str] name: The display name for the Grafana team created.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[int] team_id: The team id assigned to this team by Grafana.
-        :param pulumi.Input[pulumi.InputType['TeamTeamSyncArgs']] team_sync: Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
+        :param pulumi.Input[Union['TeamTeamSyncArgs', 'TeamTeamSyncArgsDict']] team_sync: Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
                documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
                API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
         """

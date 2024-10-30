@@ -19,7 +19,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getProbe(args: GetProbeArgs, opts?: pulumi.InvokeOptions): Promise<GetProbeResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:syntheticMonitoring/getProbe:getProbe", {
         "name": args.name,
@@ -92,7 +91,10 @@ export interface GetProbeResult {
  * ```
  */
 export function getProbeOutput(args: GetProbeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProbeResult> {
-    return pulumi.output(args).apply((a: any) => getProbe(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:syntheticMonitoring/getProbe:getProbe", {
+        "name": args.name,
+    }, opts);
 }
 
 /**

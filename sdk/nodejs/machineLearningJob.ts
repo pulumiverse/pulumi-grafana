@@ -47,7 +47,7 @@ export class MachineLearningJob extends pulumi.CustomResource {
     /**
      * An object representing the custom labels added on the forecast.
      */
-    public readonly customLabels!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly customLabels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
      */
@@ -67,7 +67,7 @@ export class MachineLearningJob extends pulumi.CustomResource {
     /**
      * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
      */
-    public readonly hyperParams!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly hyperParams!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The data interval in seconds to train the data on. Defaults to `300`.
      */
@@ -83,7 +83,7 @@ export class MachineLearningJob extends pulumi.CustomResource {
     /**
      * An object representing the query params to query Grafana with.
      */
-    public readonly queryParams!: pulumi.Output<{[key: string]: any}>;
+    public readonly queryParams!: pulumi.Output<{[key: string]: string}>;
     /**
      * The data interval in seconds to train the data on. Defaults to `7776000`.
      */
@@ -156,7 +156,7 @@ export interface MachineLearningJobState {
     /**
      * An object representing the custom labels added on the forecast.
      */
-    customLabels?: pulumi.Input<{[key: string]: any}>;
+    customLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
      */
@@ -176,7 +176,7 @@ export interface MachineLearningJobState {
     /**
      * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
      */
-    hyperParams?: pulumi.Input<{[key: string]: any}>;
+    hyperParams?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The data interval in seconds to train the data on. Defaults to `300`.
      */
@@ -192,7 +192,7 @@ export interface MachineLearningJobState {
     /**
      * An object representing the query params to query Grafana with.
      */
-    queryParams?: pulumi.Input<{[key: string]: any}>;
+    queryParams?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The data interval in seconds to train the data on. Defaults to `7776000`.
      */
@@ -206,7 +206,7 @@ export interface MachineLearningJobArgs {
     /**
      * An object representing the custom labels added on the forecast.
      */
-    customLabels?: pulumi.Input<{[key: string]: any}>;
+    customLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
      */
@@ -226,7 +226,7 @@ export interface MachineLearningJobArgs {
     /**
      * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
      */
-    hyperParams?: pulumi.Input<{[key: string]: any}>;
+    hyperParams?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The data interval in seconds to train the data on. Defaults to `300`.
      */
@@ -242,7 +242,7 @@ export interface MachineLearningJobArgs {
     /**
      * An object representing the query params to query Grafana with.
      */
-    queryParams: pulumi.Input<{[key: string]: any}>;
+    queryParams: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The data interval in seconds to train the data on. Defaults to `7776000`.
      */

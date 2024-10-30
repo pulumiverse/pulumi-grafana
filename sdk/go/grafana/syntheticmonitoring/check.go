@@ -36,7 +36,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, nil, nil)
+//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -51,7 +51,7 @@ import (
 //					"foo": pulumi.String("bar"),
 //				},
 //				Settings: &syntheticmonitoring.CheckSettingsArgs{
-//					Dns: nil,
+//					Dns: &syntheticmonitoring.CheckSettingsDnsArgs{},
 //				},
 //			})
 //			if err != nil {
@@ -77,7 +77,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, nil, nil)
+//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -155,7 +155,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, nil, nil)
+//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -170,7 +170,7 @@ import (
 //					"foo": pulumi.String("bar"),
 //				},
 //				Settings: &syntheticmonitoring.CheckSettingsArgs{
-//					Http: nil,
+//					Http: &syntheticmonitoring.CheckSettingsHttpArgs{},
 //				},
 //			})
 //			if err != nil {
@@ -196,7 +196,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, nil, nil)
+//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -310,7 +310,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, nil, nil)
+//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -325,7 +325,7 @@ import (
 //					"foo": pulumi.String("bar"),
 //				},
 //				Settings: &syntheticmonitoring.CheckSettingsArgs{
-//					Ping: nil,
+//					Ping: &syntheticmonitoring.CheckSettingsPingArgs{},
 //				},
 //			})
 //			if err != nil {
@@ -351,7 +351,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, nil, nil)
+//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -397,7 +397,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, nil, nil)
+//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -412,7 +412,7 @@ import (
 //					"foo": pulumi.String("bar"),
 //				},
 //				Settings: &syntheticmonitoring.CheckSettingsArgs{
-//					Tcp: nil,
+//					Tcp: &syntheticmonitoring.CheckSettingsTcpArgs{},
 //				},
 //			})
 //			if err != nil {
@@ -438,7 +438,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, nil, nil)
+//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -527,7 +527,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, nil, nil)
+//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -544,7 +544,7 @@ import (
 //					"foo": pulumi.String("bar"),
 //				},
 //				Settings: &syntheticmonitoring.CheckSettingsArgs{
-//					Traceroute: nil,
+//					Traceroute: &syntheticmonitoring.CheckSettingsTracerouteArgs{},
 //				},
 //			})
 //			if err != nil {
@@ -570,7 +570,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, nil, nil)
+//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}

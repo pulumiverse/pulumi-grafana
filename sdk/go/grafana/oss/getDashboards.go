@@ -55,14 +55,20 @@ type GetDashboardsResult struct {
 
 func GetDashboardsOutput(ctx *pulumi.Context, args GetDashboardsOutputArgs, opts ...pulumi.InvokeOption) GetDashboardsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetDashboardsResult, error) {
+		ApplyT(func(v interface{}) (GetDashboardsResultOutput, error) {
 			args := v.(GetDashboardsArgs)
-			r, err := GetDashboards(ctx, &args, opts...)
-			var s GetDashboardsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetDashboardsResult
+			secret, err := ctx.InvokePackageRaw("grafana:oss/getDashboards:getDashboards", args, &rv, "", opts...)
+			if err != nil {
+				return GetDashboardsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetDashboardsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetDashboardsResultOutput), nil
+			}
+			return output, nil
 		}).(GetDashboardsResultOutput)
 }
 

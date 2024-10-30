@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -97,9 +102,6 @@ def get_on_call_slack_channel(name: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         slack_id=pulumi.get(__ret__, 'slack_id'))
-
-
-@_utilities.lift_output_func(get_on_call_slack_channel)
 def get_on_call_slack_channel_output(name: Optional[pulumi.Input[str]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOnCallSlackChannelResult]:
     """
@@ -118,4 +120,11 @@ def get_on_call_slack_channel_output(name: Optional[pulumi.Input[str]] = None,
     :param str name: The Slack channel name.
     """
     pulumi.log.warn("""get_on_call_slack_channel is deprecated: grafana.index/getoncallslackchannel.getOnCallSlackChannel has been deprecated in favor of grafana.oncall/getslackchannel.getSlackChannel""")
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:index/getOnCallSlackChannel:getOnCallSlackChannel', __args__, opts=opts, typ=GetOnCallSlackChannelResult)
+    return __ret__.apply(lambda __response__: GetOnCallSlackChannelResult(
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        slack_id=pulumi.get(__response__, 'slack_id')))

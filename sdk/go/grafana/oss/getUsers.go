@@ -40,7 +40,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oss.GetUsers(ctx, nil, nil)
+//			_, err = oss.GetUsers(ctx, map[string]interface{}{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -68,13 +68,19 @@ type GetUsersResult struct {
 }
 
 func GetUsersOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetUsersResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetUsersResult, error) {
-		r, err := GetUsers(ctx, opts...)
-		var s GetUsersResult
-		if r != nil {
-			s = *r
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetUsersResultOutput, error) {
+		opts = internal.PkgInvokeDefaultOpts(opts)
+		var rv GetUsersResult
+		secret, err := ctx.InvokePackageRaw("grafana:oss/getUsers:getUsers", nil, &rv, "", opts...)
+		if err != nil {
+			return GetUsersResultOutput{}, err
 		}
-		return s, err
+
+		output := pulumi.ToOutput(rv).(GetUsersResultOutput)
+		if secret {
+			return pulumi.ToSecret(output).(GetUsersResultOutput), nil
+		}
+		return output, nil
 	}).(GetUsersResultOutput)
 }
 
