@@ -30,11 +30,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			teamTeam, err := oss.NewTeam(ctx, "teamTeam", nil)
+//			team, err := oss.NewTeam(ctx, "team", &oss.TeamArgs{
+//				Name: pulumi.String("Team Name"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			userUser, err := oss.NewUser(ctx, "userUser", &oss.UserArgs{
+//			user, err := oss.NewUser(ctx, "user", &oss.UserArgs{
 //				Email:    pulumi.String("user.name@example.com"),
 //				Password: pulumi.String("my-password"),
 //				Login:    pulumi.String("user.name"),
@@ -64,17 +66,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oss.NewDashboardPermissionItem(ctx, "userDashboardPermissionItem", &oss.DashboardPermissionItemArgs{
+//			_, err = oss.NewDashboardPermissionItem(ctx, "user", &oss.DashboardPermissionItemArgs{
 //				DashboardUid: dashboard.Uid,
-//				User:         userUser.ID(),
+//				User:         user.ID(),
 //				Permission:   pulumi.String("Admin"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oss.NewDashboardPermissionItem(ctx, "teamDashboardPermissionItem", &oss.DashboardPermissionItemArgs{
+//			_, err = oss.NewDashboardPermissionItem(ctx, "team", &oss.DashboardPermissionItemArgs{
 //				DashboardUid: dashboard.Uid,
-//				Team:         teamTeam.ID(),
+//				Team:         team.ID(),
 //				Permission:   pulumi.String("Edit"),
 //			})
 //			if err != nil {

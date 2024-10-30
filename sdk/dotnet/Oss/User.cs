@@ -31,9 +31,10 @@ namespace Pulumiverse.Grafana.Oss
     ///     var staff = new Grafana.Oss.User("staff", new()
     ///     {
     ///         Email = "staff.name@example.com",
-    ///         IsAdmin = false,
+    ///         Name = "Staff Name",
     ///         Login = "staff",
     ///         Password = "my-password",
+    ///         IsAdmin = false,
     ///     });
     /// 
     /// });

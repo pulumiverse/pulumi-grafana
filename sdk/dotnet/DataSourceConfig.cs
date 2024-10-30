@@ -32,28 +32,30 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var lokiDataSource = new Grafana.Oss.DataSource("lokiDataSource", new()
+    ///     var loki = new Grafana.Oss.DataSource("loki", new()
     ///     {
     ///         Type = "loki",
+    ///         Name = "loki",
     ///         Url = "http://localhost:3100",
     ///     });
     /// 
-    ///     var tempoDataSource = new Grafana.Oss.DataSource("tempoDataSource", new()
+    ///     var tempo = new Grafana.Oss.DataSource("tempo", new()
     ///     {
     ///         Type = "tempo",
+    ///         Name = "tempo",
     ///         Url = "http://localhost:3200",
     ///     });
     /// 
-    ///     var lokiDataSourceConfig = new Grafana.Oss.DataSourceConfig("lokiDataSourceConfig", new()
+    ///     var lokiDataSourceConfig = new Grafana.Oss.DataSourceConfig("loki", new()
     ///     {
-    ///         Uid = lokiDataSource.Uid,
+    ///         Uid = loki.Uid,
     ///         JsonDataEncoded = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["derivedFields"] = new[]
     ///             {
     ///                 new Dictionary&lt;string, object?&gt;
     ///                 {
-    ///                     ["datasourceUid"] = tempoDataSource.Uid,
+    ///                     ["datasourceUid"] = tempo.Uid,
     ///                     ["matcherRegex"] = "[tT]race_?[iI][dD]\"?[:=]\"?(\\w+)",
     ///                     ["matcherType"] = "regex",
     ///                     ["name"] = "traceID",
@@ -63,15 +65,15 @@ namespace Pulumiverse.Grafana
     ///         })),
     ///     });
     /// 
-    ///     var tempoDataSourceConfig = new Grafana.Oss.DataSourceConfig("tempoDataSourceConfig", new()
+    ///     var tempoDataSourceConfig = new Grafana.Oss.DataSourceConfig("tempo", new()
     ///     {
-    ///         Uid = tempoDataSource.Uid,
+    ///         Uid = tempo.Uid,
     ///         JsonDataEncoded = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["tracesToLogsV2"] = new Dictionary&lt;string, object?&gt;
     ///             {
     ///                 ["customQuery"] = true,
-    ///                 ["datasourceUid"] = lokiDataSource.Uid,
+    ///                 ["datasourceUid"] = loki.Uid,
     ///                 ["filterBySpanID"] = false,
     ///                 ["filterByTraceID"] = false,
     ///                 ["query"] = "|=\"${__trace.traceId}\" | json",

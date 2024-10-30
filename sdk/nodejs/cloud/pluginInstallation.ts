@@ -22,8 +22,8 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.cloud.PluginInstallation("test", {
- *     slug: "some-plugin",
  *     stackSlug: "stackname",
+ *     slug: "some-plugin",
  *     version: "1.2.3",
  * });
  * ```

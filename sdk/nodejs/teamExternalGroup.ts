@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const myTeam = new grafana.oss.Team("myTeam", {});
+ * const myTeam = new grafana.oss.Team("my_team", {name: "My Team"});
  * const test_team_group = new grafana.enterprise.TeamExternalGroup("test-team-group", {
  *     teamId: myTeam.id,
  *     groups: [

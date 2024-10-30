@@ -207,18 +207,19 @@ class ServiceAccountPermissionItem(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.oss.ServiceAccount("test",
+            name="terraform-sa",
             role="Editor",
             is_disabled=False)
-        team = grafana.oss.Team("team")
+        team = grafana.oss.Team("team", name="Team Name")
         user = grafana.oss.User("user",
             email="user.name@example.com",
             login="user.name",
             password="my-password")
-        on_team = grafana.oss.ServiceAccountPermissionItem("onTeam",
+        on_team = grafana.oss.ServiceAccountPermissionItem("on_team",
             service_account_id=test.id,
             team=team.id,
             permission="Admin")
-        on_user = grafana.oss.ServiceAccountPermissionItem("onUser",
+        on_user = grafana.oss.ServiceAccountPermissionItem("on_user",
             service_account_id=test.id,
             user=user.id,
             permission="Admin")
@@ -259,18 +260,19 @@ class ServiceAccountPermissionItem(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.oss.ServiceAccount("test",
+            name="terraform-sa",
             role="Editor",
             is_disabled=False)
-        team = grafana.oss.Team("team")
+        team = grafana.oss.Team("team", name="Team Name")
         user = grafana.oss.User("user",
             email="user.name@example.com",
             login="user.name",
             password="my-password")
-        on_team = grafana.oss.ServiceAccountPermissionItem("onTeam",
+        on_team = grafana.oss.ServiceAccountPermissionItem("on_team",
             service_account_id=test.id,
             team=team.id,
             permission="Admin")
-        on_user = grafana.oss.ServiceAccountPermissionItem("onUser",
+        on_user = grafana.oss.ServiceAccountPermissionItem("on_user",
             service_account_id=test.id,
             user=user.id,
             permission="Admin")

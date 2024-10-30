@@ -20,9 +20,10 @@ import * as utilities from "./utilities";
  *
  * const staff = new grafana.oss.User("staff", {
  *     email: "staff.name@example.com",
- *     isAdmin: false,
+ *     name: "Staff Name",
  *     login: "staff",
  *     password: "my-password",
+ *     isAdmin: false,
  * });
  * ```
  *

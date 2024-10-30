@@ -20,29 +20,32 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const myMuteTiming = new grafana.alerting.MuteTiming("myMuteTiming", {intervals: [{
- *     daysOfMonths: [
- *         "1:7",
- *         "-1",
- *     ],
- *     location: "America/New_York",
- *     months: [
- *         "1:3",
- *         "december",
- *     ],
- *     times: [{
- *         end: "14:17",
- *         start: "04:56",
+ * const myMuteTiming = new grafana.alerting.MuteTiming("my_mute_timing", {
+ *     name: "My Mute Timing",
+ *     intervals: [{
+ *         times: [{
+ *             start: "04:56",
+ *             end: "14:17",
+ *         }],
+ *         weekdays: [
+ *             "monday",
+ *             "tuesday:thursday",
+ *         ],
+ *         daysOfMonths: [
+ *             "1:7",
+ *             "-1",
+ *         ],
+ *         months: [
+ *             "1:3",
+ *             "december",
+ *         ],
+ *         years: [
+ *             "2030",
+ *             "2025:2026",
+ *         ],
+ *         location: "America/New_York",
  *     }],
- *     weekdays: [
- *         "monday",
- *         "tuesday:thursday",
- *     ],
- *     years: [
- *         "2030",
- *         "2025:2026",
- *     ],
- * }]});
+ * });
  * ```
  *
  * ## Import

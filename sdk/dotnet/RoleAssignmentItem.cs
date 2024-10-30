@@ -23,8 +23,9 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testRole = new Grafana.Enterprise.Role("testRole", new()
+    ///     var testRole = new Grafana.Enterprise.Role("test_role", new()
     ///     {
+    ///         Name = "Test Role",
     ///         Uid = "testrole",
     ///         Version = 1,
     ///         Global = true,
@@ -38,17 +39,21 @@ namespace Pulumiverse.Grafana
     ///         },
     ///     });
     /// 
-    ///     var testTeam = new Grafana.Oss.Team("testTeam");
+    ///     var testTeam = new Grafana.Oss.Team("test_team", new()
+    ///     {
+    ///         Name = "terraform_test_team",
+    ///     });
     /// 
-    ///     var testUser = new Grafana.Oss.User("testUser", new()
+    ///     var testUser = new Grafana.Oss.User("test_user", new()
     ///     {
     ///         Email = "terraform_user@test.com",
     ///         Login = "terraform_user@test.com",
     ///         Password = "password",
     ///     });
     /// 
-    ///     var testSa = new Grafana.Oss.ServiceAccount("testSa", new()
+    ///     var testSa = new Grafana.Oss.ServiceAccount("test_sa", new()
     ///     {
+    ///         Name = "terraform_test_sa",
     ///         Role = "Viewer",
     ///     });
     /// 
@@ -64,7 +69,7 @@ namespace Pulumiverse.Grafana
     ///         TeamId = testTeam.Id,
     ///     });
     /// 
-    ///     var serviceAccount = new Grafana.Enterprise.RoleAssignmentItem("serviceAccount", new()
+    ///     var serviceAccount = new Grafana.Enterprise.RoleAssignmentItem("service_account", new()
     ///     {
     ///         RoleUid = testRole.Uid,
     ///         ServiceAccountId = testSa.Id,

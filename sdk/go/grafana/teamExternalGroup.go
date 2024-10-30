@@ -29,7 +29,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myTeam, err := oss.NewTeam(ctx, "myTeam", nil)
+//			myTeam, err := oss.NewTeam(ctx, "my_team", &oss.TeamArgs{
+//				Name: pulumi.String("My Team"),
+//			})
 //			if err != nil {
 //				return err
 //			}

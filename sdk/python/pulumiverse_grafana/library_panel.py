@@ -343,17 +343,19 @@ class LibraryPanel(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        test = grafana.oss.LibraryPanel("test", model_json=json.dumps({
-            "gridPos": {
-                "x": 0,
-                "y": 0,
-                "h": 10,
-                "w": 10,
-            },
-            "title": "panel",
-            "type": "text",
-            "version": 0,
-        }))
+        test = grafana.oss.LibraryPanel("test",
+            name="panel",
+            model_json=json.dumps({
+                "gridPos": {
+                    "x": 0,
+                    "y": 0,
+                    "h": 10,
+                    "w": 10,
+                },
+                "title": "panel",
+                "type": "text",
+                "version": 0,
+            }))
         ```
 
         ## Import
@@ -393,17 +395,19 @@ class LibraryPanel(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        test = grafana.oss.LibraryPanel("test", model_json=json.dumps({
-            "gridPos": {
-                "x": 0,
-                "y": 0,
-                "h": 10,
-                "w": 10,
-            },
-            "title": "panel",
-            "type": "text",
-            "version": 0,
-        }))
+        test = grafana.oss.LibraryPanel("test",
+            name="panel",
+            model_json=json.dumps({
+                "gridPos": {
+                    "x": 0,
+                    "y": 0,
+                    "h": 10,
+                    "w": 10,
+                },
+                "title": "panel",
+                "type": "text",
+                "version": 0,
+            }))
         ```
 
         ## Import

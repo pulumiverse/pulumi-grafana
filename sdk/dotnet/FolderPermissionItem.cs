@@ -25,7 +25,10 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var team = new Grafana.Oss.Team("team");
+    ///     var team = new Grafana.Oss.Team("team", new()
+    ///     {
+    ///         Name = "Team Name",
+    ///     });
     /// 
     ///     var user = new Grafana.Oss.User("user", new()
     ///     {
@@ -39,21 +42,21 @@ namespace Pulumiverse.Grafana
     ///         Title = "Folder Title",
     ///     });
     /// 
-    ///     var onRole = new Grafana.Oss.FolderPermissionItem("onRole", new()
+    ///     var onRole = new Grafana.Oss.FolderPermissionItem("on_role", new()
     ///     {
     ///         FolderUid = collection.Uid,
     ///         Role = "Viewer",
     ///         Permission = "Edit",
     ///     });
     /// 
-    ///     var onTeam = new Grafana.Oss.FolderPermissionItem("onTeam", new()
+    ///     var onTeam = new Grafana.Oss.FolderPermissionItem("on_team", new()
     ///     {
     ///         FolderUid = collection.Uid,
     ///         Team = team.Id,
     ///         Permission = "View",
     ///     });
     /// 
-    ///     var onUser = new Grafana.Oss.FolderPermissionItem("onUser", new()
+    ///     var onUser = new Grafana.Oss.FolderPermissionItem("on_user", new()
     ///     {
     ///         FolderUid = collection.Uid,
     ///         User = user.Id,

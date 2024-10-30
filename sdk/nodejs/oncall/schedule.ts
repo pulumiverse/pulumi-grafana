@@ -9,38 +9,6 @@ import * as utilities from "../utilities";
 /**
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const exampleSlackChannel = grafana.onCall.getSlackChannel({
- *     name: "example_slack_channel",
- * });
- * const exampleUserGroup = grafana.onCall.getUserGroup({
- *     slackHandle: "example_slack_handle",
- * });
- * // ICal based schedule
- * const exampleScheduleSchedule = new grafana.oncall.Schedule("exampleScheduleSchedule", {
- *     type: "ical",
- *     icalUrlPrimary: "https://example.com/example_ical.ics",
- *     icalUrlOverrides: "https://example.com/example_overrides_ical.ics",
- *     slack: {
- *         channelId: exampleSlackChannel.then(exampleSlackChannel => exampleSlackChannel.slackId),
- *         userGroupId: exampleUserGroup.then(exampleUserGroup => exampleUserGroup.slackId),
- *     },
- * });
- * // Shift based schedule
- * const exampleScheduleOnCall_scheduleSchedule = new grafana.oncall.Schedule("exampleScheduleOnCall/scheduleSchedule", {
- *     type: "calendar",
- *     timeZone: "America/New_York",
- *     shifts: [],
- *     icalUrlOverrides: "https://example.com/example_overrides_ical.ics",
- * });
- * ```
- *
  * ## Import
  *
  * ```sh

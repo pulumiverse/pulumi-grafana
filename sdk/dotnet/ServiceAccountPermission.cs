@@ -29,20 +29,24 @@ namespace Pulumiverse.Grafana
     /// {
     ///     var test = new Grafana.Oss.ServiceAccount("test", new()
     ///     {
+    ///         Name = "sa-terraform-test",
     ///         Role = "Editor",
     ///         IsDisabled = false,
     ///     });
     /// 
-    ///     var testTeam = new Grafana.Oss.Team("testTeam");
+    ///     var testTeam = new Grafana.Oss.Team("test_team", new()
+    ///     {
+    ///         Name = "tf_test_team",
+    ///     });
     /// 
-    ///     var testUser = new Grafana.Oss.User("testUser", new()
+    ///     var testUser = new Grafana.Oss.User("test_user", new()
     ///     {
     ///         Email = "tf_user@test.com",
     ///         Login = "tf_user@test.com",
     ///         Password = "password",
     ///     });
     /// 
-    ///     var testPermissions = new Grafana.Oss.ServiceAccountPermission("testPermissions", new()
+    ///     var testPermissions = new Grafana.Oss.ServiceAccountPermission("test_permissions", new()
     ///     {
     ///         ServiceAccountId = test.Id,
     ///         Permissions = new[]

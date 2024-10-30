@@ -113,7 +113,7 @@ class OncallEscalationChain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        default = grafana.on_call.EscalationChain("default", opts = pulumi.ResourceOptions(provider=grafana["oncall"]))
+        default = grafana.on_call.EscalationChain("default", name="default")
         ```
 
         ## Import
@@ -142,7 +142,7 @@ class OncallEscalationChain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        default = grafana.on_call.EscalationChain("default", opts = pulumi.ResourceOptions(provider=grafana["oncall"]))
+        default = grafana.on_call.EscalationChain("default", name="default")
         ```
 
         ## Import

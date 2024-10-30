@@ -31,7 +31,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			teamTeam, err := oss.NewTeam(ctx, "teamTeam", nil)
+//			team, err := oss.NewTeam(ctx, "team", &oss.TeamArgs{
+//				Name: pulumi.String("Team Name"),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -53,13 +55,15 @@ import (
 //			json1 := string(tmpJSON1)
 //			foo, err := oss.NewDataSource(ctx, "foo", &oss.DataSourceArgs{
 //				Type:                  pulumi.String("cloudwatch"),
+//				Name:                  pulumi.String("cw-example"),
 //				JsonDataEncoded:       pulumi.String(json0),
 //				SecureJsonDataEncoded: pulumi.String(json1),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			userUser, err := oss.NewUser(ctx, "userUser", &oss.UserArgs{
+//			user, err := oss.NewUser(ctx, "user", &oss.UserArgs{
+//				Name:     pulumi.String("test-ds-permissions"),
 //				Email:    pulumi.String("test-ds-permissions@example.com"),
 //				Login:    pulumi.String("test-ds-permissions"),
 //				Password: pulumi.String("hunter2"),
@@ -68,22 +72,23 @@ import (
 //				return err
 //			}
 //			sa, err := oss.NewServiceAccount(ctx, "sa", &oss.ServiceAccountArgs{
+//				Name: pulumi.String("test-ds-permissions"),
 //				Role: pulumi.String("Viewer"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = enterprise.NewDataSourcePermissionItem(ctx, "teamDataSourcePermissionItem", &enterprise.DataSourcePermissionItemArgs{
+//			_, err = enterprise.NewDataSourcePermissionItem(ctx, "team", &enterprise.DataSourcePermissionItemArgs{
 //				DatasourceUid: foo.Uid,
-//				Team:          teamTeam.ID(),
+//				Team:          team.ID(),
 //				Permission:    pulumi.String("Edit"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = enterprise.NewDataSourcePermissionItem(ctx, "userDataSourcePermissionItem", &enterprise.DataSourcePermissionItemArgs{
+//			_, err = enterprise.NewDataSourcePermissionItem(ctx, "user", &enterprise.DataSourcePermissionItemArgs{
 //				DatasourceUid: foo.Uid,
-//				User:          userUser.ID(),
+//				User:          user.ID(),
 //				Permission:    pulumi.String("Edit"),
 //			})
 //			if err != nil {
@@ -97,7 +102,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = enterprise.NewDataSourcePermissionItem(ctx, "serviceAccount", &enterprise.DataSourcePermissionItemArgs{
+//			_, err = enterprise.NewDataSourcePermissionItem(ctx, "service_account", &enterprise.DataSourcePermissionItemArgs{
 //				DatasourceUid: foo.Uid,
 //				User:          sa.ID(),
 //				Permission:    pulumi.String("Query"),

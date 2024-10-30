@@ -10,6 +10,36 @@ import * as utilities from "../utilities";
  * * [Official documentation](https://grafana.com/docs/oncall/latest/integrations/)
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test_acc_integration = new grafana.oncall.Integration("test-acc-integration", {
+ *     name: "my integration",
+ *     type: "grafana",
+ *     defaultRoute: {},
+ * });
+ * // Also it's possible to manage integration templates.
+ * // Check docs to see all available templates.
+ * const integrationWithTemplates = new grafana.oncall.Integration("integration_with_templates", {
+ *     name: "integration_with_templates",
+ *     type: "webhook",
+ *     defaultRoute: {},
+ *     templates: {
+ *         groupingKey: "{{ payload.group_id }}",
+ *         slack: {
+ *             title: "Slack title",
+ *             message: `This is example of multiline template
+ * {{ payload.message }}
+ * `,
+ *             imageUrl: "{{ payload.image_url }}",
+ *         },
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * ```sh

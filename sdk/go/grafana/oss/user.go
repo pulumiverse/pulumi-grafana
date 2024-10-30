@@ -35,9 +35,10 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := oss.NewUser(ctx, "staff", &oss.UserArgs{
 //				Email:    pulumi.String("staff.name@example.com"),
-//				IsAdmin:  pulumi.Bool(false),
+//				Name:     pulumi.String("Staff Name"),
 //				Login:    pulumi.String("staff"),
 //				Password: pulumi.String("my-password"),
+//				IsAdmin:  pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err

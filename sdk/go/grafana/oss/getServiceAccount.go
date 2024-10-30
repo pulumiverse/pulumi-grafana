@@ -13,6 +13,37 @@ import (
 
 // * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
 //   - [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			adminServiceAccount, err := oss.NewServiceAccount(ctx, "admin", &oss.ServiceAccountArgs{
+//				Name:       pulumi.String("admin sa"),
+//				Role:       pulumi.String("Admin"),
+//				IsDisabled: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = oss.LookupServiceAccountOutput(ctx, oss.GetServiceAccountOutputArgs{
+//				Name: adminServiceAccount.Name,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupServiceAccount(ctx *pulumi.Context, args *LookupServiceAccountArgs, opts ...pulumi.InvokeOption) (*LookupServiceAccountResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupServiceAccountResult

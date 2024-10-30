@@ -29,6 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			viewer, err := oss.NewUser(ctx, "viewer", &oss.UserArgs{
+//				Name:     pulumi.String("Viewer"),
 //				Email:    pulumi.String("viewer@example.com"),
 //				Login:    pulumi.String("viewer"),
 //				Password: pulumi.String("my-password"),
@@ -37,6 +38,7 @@ import (
 //				return err
 //			}
 //			_, err = oss.NewTeam(ctx, "test-team", &oss.TeamArgs{
+//				Name:  pulumi.String("Test Team"),
 //				Email: pulumi.String("teamemail@example.com"),
 //				Members: pulumi.StringArray{
 //					viewer.Email,

@@ -228,15 +228,15 @@ class Folder(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        test_folder_folder = grafana.oss.Folder("testFolderFolder", title="Terraform Test Folder")
-        test_folder_dashboard = grafana.oss.Dashboard("testFolderDashboard",
-            folder=test_folder_folder.id,
+        test_folder = grafana.oss.Folder("test_folder", title="Terraform Test Folder")
+        test_folder_dashboard = grafana.oss.Dashboard("test_folder",
+            folder=test_folder.id,
             config_json=\"\"\"{
           "title": "Dashboard in folder",
           "uid": "dashboard-in-folder"
         }
         \"\"\")
-        test_folder_with_uid = grafana.oss.Folder("testFolderWithUid",
+        test_folder_with_uid = grafana.oss.Folder("test_folder_with_uid",
             uid="test-folder-uid",
             title="Terraform Test Folder With UID")
         ```
@@ -275,15 +275,15 @@ class Folder(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        test_folder_folder = grafana.oss.Folder("testFolderFolder", title="Terraform Test Folder")
-        test_folder_dashboard = grafana.oss.Dashboard("testFolderDashboard",
-            folder=test_folder_folder.id,
+        test_folder = grafana.oss.Folder("test_folder", title="Terraform Test Folder")
+        test_folder_dashboard = grafana.oss.Dashboard("test_folder",
+            folder=test_folder.id,
             config_json=\"\"\"{
           "title": "Dashboard in folder",
           "uid": "dashboard-in-folder"
         }
         \"\"\")
-        test_folder_with_uid = grafana.oss.Folder("testFolderWithUid",
+        test_folder_with_uid = grafana.oss.Folder("test_folder_with_uid",
             uid="test-folder-uid",
             title="Terraform Test Folder With UID")
         ```

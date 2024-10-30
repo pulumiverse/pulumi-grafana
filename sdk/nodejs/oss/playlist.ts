@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.oss.Playlist("test", {
+ *     name: "My Playlist!",
  *     interval: "5m",
  *     items: [
  *         {

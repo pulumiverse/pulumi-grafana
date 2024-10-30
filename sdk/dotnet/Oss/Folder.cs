@@ -24,14 +24,14 @@ namespace Pulumiverse.Grafana.Oss
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testFolderFolder = new Grafana.Oss.Folder("testFolderFolder", new()
+    ///     var testFolder = new Grafana.Oss.Folder("test_folder", new()
     ///     {
     ///         Title = "Terraform Test Folder",
     ///     });
     /// 
-    ///     var testFolderDashboard = new Grafana.Oss.Dashboard("testFolderDashboard", new()
+    ///     var testFolderDashboard = new Grafana.Oss.Dashboard("test_folder", new()
     ///     {
-    ///         Folder = testFolderFolder.Id,
+    ///         Folder = testFolder.Id,
     ///         ConfigJson = @"{
     ///   ""title"": ""Dashboard in folder"",
     ///   ""uid"": ""dashboard-in-folder""
@@ -39,7 +39,7 @@ namespace Pulumiverse.Grafana.Oss
     /// ",
     ///     });
     /// 
-    ///     var testFolderWithUid = new Grafana.Oss.Folder("testFolderWithUid", new()
+    ///     var testFolderWithUid = new Grafana.Oss.Folder("test_folder_with_uid", new()
     ///     {
     ///         Uid = "test-folder-uid",
     ///         Title = "Terraform Test Folder With UID",

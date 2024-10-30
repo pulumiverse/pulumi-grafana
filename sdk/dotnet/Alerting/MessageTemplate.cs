@@ -28,12 +28,12 @@ namespace Pulumiverse.Grafana.Alerting
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myTemplate = new Grafana.Alerting.MessageTemplate("myTemplate", new()
+    ///     var myTemplate = new Grafana.Alerting.MessageTemplate("my_template", new()
     ///     {
+    ///         Name = "My Reusable Template",
     ///         Template = @"{{define ""My Reusable Template"" }}
     ///  template content
-    /// {{ end }}
-    /// ",
+    /// {{ end }}",
     ///     });
     /// 
     /// });

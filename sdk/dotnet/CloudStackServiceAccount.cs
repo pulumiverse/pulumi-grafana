@@ -32,11 +32,12 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var cloudSa = new Grafana.Cloud.StackServiceAccount("cloudSa", new()
+    ///     var cloudSa = new Grafana.Cloud.StackServiceAccount("cloud_sa", new()
     ///     {
-    ///         IsDisabled = false,
-    ///         Role = "Admin",
     ///         StackSlug = "&lt;your stack slug&gt;",
+    ///         Name = "cloud service account",
+    ///         Role = "Admin",
+    ///         IsDisabled = false,
     ///     });
     /// 
     /// });

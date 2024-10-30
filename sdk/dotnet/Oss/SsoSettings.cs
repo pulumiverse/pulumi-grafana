@@ -27,57 +27,57 @@ namespace Pulumiverse.Grafana.Oss
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Configure SSO for GitHub using OAuth2
-    ///     var githubSsoSettings = new Grafana.Oss.SsoSettings("githubSsoSettings", new()
+    ///     var githubSsoSettings = new Grafana.Oss.SsoSettings("github_sso_settings", new()
     ///     {
+    ///         ProviderName = "github",
     ///         Oauth2Settings = new Grafana.Oss.Inputs.SsoSettingsOauth2SettingsArgs
     ///         {
-    ///             AllowSignUp = true,
-    ///             AllowedDomains = "mycompany.com mycompany.org",
-    ///             AllowedOrganizations = "[\"My Organization\", \"Octocats\"]",
-    ///             AutoLogin = false,
+    ///             Name = "Github",
     ///             ClientId = "&lt;your GitHub app client id&gt;",
     ///             ClientSecret = "&lt;your GitHub app client secret&gt;",
-    ///             Name = "Github",
+    ///             AllowSignUp = true,
+    ///             AutoLogin = false,
     ///             Scopes = "user:email,read:org",
     ///             TeamIds = "150,300",
+    ///             AllowedOrganizations = "[\"My Organization\", \"Octocats\"]",
+    ///             AllowedDomains = "mycompany.com mycompany.org",
     ///         },
-    ///         ProviderName = "github",
     ///     });
     /// 
     ///     // Configure SSO using generic OAuth2
-    ///     var genericSsoSettings = new Grafana.Oss.SsoSettings("genericSsoSettings", new()
+    ///     var genericSsoSettings = new Grafana.Oss.SsoSettings("generic_sso_settings", new()
     ///     {
+    ///         ProviderName = "generic_oauth",
     ///         Oauth2Settings = new Grafana.Oss.Inputs.SsoSettingsOauth2SettingsArgs
     ///         {
-    ///             AllowSignUp = true,
-    ///             ApiUrl = "https://&lt;domain&gt;/userinfo",
+    ///             Name = "Auth0",
     ///             AuthUrl = "https://&lt;domain&gt;/authorize",
-    ///             AutoLogin = false,
+    ///             TokenUrl = "https://&lt;domain&gt;/oauth/token",
+    ///             ApiUrl = "https://&lt;domain&gt;/userinfo",
     ///             ClientId = "&lt;client id&gt;",
     ///             ClientSecret = "&lt;client secret&gt;",
-    ///             Name = "Auth0",
+    ///             AllowSignUp = true,
+    ///             AutoLogin = false,
     ///             Scopes = "openid profile email offline_access",
-    ///             TokenUrl = "https://&lt;domain&gt;/oauth/token",
     ///             UsePkce = true,
     ///             UseRefreshToken = true,
     ///         },
-    ///         ProviderName = "generic_oauth",
     ///     });
     /// 
     ///     // Configure SSO using SAML
-    ///     var samlSsoSettings = new Grafana.Oss.SsoSettings("samlSsoSettings", new()
+    ///     var samlSsoSettings = new Grafana.Oss.SsoSettings("saml_sso_settings", new()
     ///     {
     ///         ProviderName = "saml",
     ///         SamlSettings = new Grafana.Oss.Inputs.SsoSettingsSamlSettingsArgs
     ///         {
     ///             AllowSignUp = true,
-    ///             AssertionAttributeEmail = "email",
-    ///             AssertionAttributeLogin = "login",
     ///             CertificatePath = "devenv/docker/blocks/auth/saml-enterprise/cert.crt",
-    ///             IdpMetadataUrl = "https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml",
-    ///             NameIdFormat = "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
     ///             PrivateKeyPath = "devenv/docker/blocks/auth/saml-enterprise/key.pem",
+    ///             IdpMetadataUrl = "https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml",
     ///             SignatureAlgorithm = "rsa-sha256",
+    ///             AssertionAttributeLogin = "login",
+    ///             AssertionAttributeEmail = "email",
+    ///             NameIdFormat = "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
     ///         },
     ///     });
     /// 

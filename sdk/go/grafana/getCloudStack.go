@@ -13,6 +13,38 @@ import (
 
 // Data source for Grafana Stack
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testStack, err := cloud.NewStack(ctx, "test", &cloud.StackArgs{
+//				Name:        pulumi.String("gcloudstacktest"),
+//				Slug:        pulumi.String("gcloudstacktest"),
+//				RegionSlug:  pulumi.String("eu"),
+//				Description: pulumi.String("Test Grafana Cloud Stack"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = cloud.LookupStackOutput(ctx, cloud.GetStackOutputArgs{
+//				Slug: testStack.Slug,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // Deprecated: grafana.index/getcloudstack.getCloudStack has been deprecated in favor of grafana.cloud/getstack.getStack
 func LookupCloudStack(ctx *pulumi.Context, args *LookupCloudStackArgs, opts ...pulumi.InvokeOption) (*LookupCloudStackResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

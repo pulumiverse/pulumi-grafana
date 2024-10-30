@@ -17,8 +17,9 @@ import * as utilities from "./utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const admin = new grafana.oss.ServiceAccount("admin", {
- *     isDisabled: false,
+ *     name: "admin sa",
  *     role: "Admin",
+ *     isDisabled: false,
  * });
  * ```
  *

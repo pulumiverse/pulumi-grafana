@@ -28,16 +28,19 @@ namespace Pulumiverse.Grafana.Oss
     /// {
     ///     var test = new Grafana.Oss.ServiceAccount("test", new()
     ///     {
+    ///         Name = "test-service-account",
     ///         Role = "Viewer",
     ///     });
     /// 
     ///     var foo = new Grafana.Oss.ServiceAccountToken("foo", new()
     ///     {
+    ///         Name = "key_foo",
     ///         ServiceAccountId = test.Id,
     ///     });
     /// 
     ///     var bar = new Grafana.Oss.ServiceAccountToken("bar", new()
     ///     {
+    ///         Name = "key_bar",
     ///         ServiceAccountId = test.Id,
     ///         SecondsToLive = 30,
     ///     });

@@ -4,9 +4,11 @@ package main
 
 import (
 	"context"
+
 	_ "embed"
 
 	"github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
+
 	grafana "github.com/pulumiverse/pulumi-grafana/provider"
 )
 

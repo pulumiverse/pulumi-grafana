@@ -173,29 +173,31 @@ class MuteTiming(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        my_mute_timing = grafana.alerting.MuteTiming("myMuteTiming", intervals=[grafana.alerting.MuteTimingIntervalArgs(
-            days_of_months=[
-                "1:7",
-                "-1",
-            ],
-            location="America/New_York",
-            months=[
-                "1:3",
-                "december",
-            ],
-            times=[grafana.alerting.MuteTimingIntervalTimeArgs(
-                end="14:17",
-                start="04:56",
-            )],
-            weekdays=[
-                "monday",
-                "tuesday:thursday",
-            ],
-            years=[
-                "2030",
-                "2025:2026",
-            ],
-        )])
+        my_mute_timing = grafana.alerting.MuteTiming("my_mute_timing",
+            name="My Mute Timing",
+            intervals=[grafana.alerting.MuteTimingIntervalArgs(
+                times=[grafana.alerting.MuteTimingIntervalTimeArgs(
+                    start="04:56",
+                    end="14:17",
+                )],
+                weekdays=[
+                    "monday",
+                    "tuesday:thursday",
+                ],
+                days_of_months=[
+                    "1:7",
+                    "-1",
+                ],
+                months=[
+                    "1:3",
+                    "december",
+                ],
+                years=[
+                    "2030",
+                    "2025:2026",
+                ],
+                location="America/New_York",
+            )])
         ```
 
         ## Import
@@ -234,29 +236,31 @@ class MuteTiming(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        my_mute_timing = grafana.alerting.MuteTiming("myMuteTiming", intervals=[grafana.alerting.MuteTimingIntervalArgs(
-            days_of_months=[
-                "1:7",
-                "-1",
-            ],
-            location="America/New_York",
-            months=[
-                "1:3",
-                "december",
-            ],
-            times=[grafana.alerting.MuteTimingIntervalTimeArgs(
-                end="14:17",
-                start="04:56",
-            )],
-            weekdays=[
-                "monday",
-                "tuesday:thursday",
-            ],
-            years=[
-                "2030",
-                "2025:2026",
-            ],
-        )])
+        my_mute_timing = grafana.alerting.MuteTiming("my_mute_timing",
+            name="My Mute Timing",
+            intervals=[grafana.alerting.MuteTimingIntervalArgs(
+                times=[grafana.alerting.MuteTimingIntervalTimeArgs(
+                    start="04:56",
+                    end="14:17",
+                )],
+                weekdays=[
+                    "monday",
+                    "tuesday:thursday",
+                ],
+                days_of_months=[
+                    "1:7",
+                    "-1",
+                ],
+                months=[
+                    "1:3",
+                    "december",
+                ],
+                years=[
+                    "2030",
+                    "2025:2026",
+                ],
+                location="America/New_York",
+            )])
         ```
 
         ## Import

@@ -37,10 +37,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloud.NewStackServiceAccount(ctx, "cloudSa", &cloud.StackServiceAccountArgs{
-//				IsDisabled: pulumi.Bool(false),
-//				Role:       pulumi.String("Admin"),
+//			_, err := cloud.NewStackServiceAccount(ctx, "cloud_sa", &cloud.StackServiceAccountArgs{
 //				StackSlug:  pulumi.String("<your stack slug>"),
+//				Name:       pulumi.String("cloud service account"),
+//				Role:       pulumi.String("Admin"),
+//				IsDisabled: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err

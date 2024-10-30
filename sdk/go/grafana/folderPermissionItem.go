@@ -30,7 +30,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			team, err := oss.NewTeam(ctx, "team", nil)
+//			team, err := oss.NewTeam(ctx, "team", &oss.TeamArgs{
+//				Name: pulumi.String("Team Name"),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -48,7 +50,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oss.NewFolderPermissionItem(ctx, "onRole", &oss.FolderPermissionItemArgs{
+//			_, err = oss.NewFolderPermissionItem(ctx, "on_role", &oss.FolderPermissionItemArgs{
 //				FolderUid:  collection.Uid,
 //				Role:       pulumi.String("Viewer"),
 //				Permission: pulumi.String("Edit"),
@@ -56,7 +58,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oss.NewFolderPermissionItem(ctx, "onTeam", &oss.FolderPermissionItemArgs{
+//			_, err = oss.NewFolderPermissionItem(ctx, "on_team", &oss.FolderPermissionItemArgs{
 //				FolderUid:  collection.Uid,
 //				Team:       team.ID(),
 //				Permission: pulumi.String("View"),
@@ -64,7 +66,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oss.NewFolderPermissionItem(ctx, "onUser", &oss.FolderPermissionItemArgs{
+//			_, err = oss.NewFolderPermissionItem(ctx, "on_user", &oss.FolderPermissionItemArgs{
 //				FolderUid:  collection.Uid,
 //				User:       user.ID(),
 //				Permission: pulumi.String("Admin"),

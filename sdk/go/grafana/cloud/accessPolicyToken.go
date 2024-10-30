@@ -41,8 +41,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testAccessPolicy, err := cloud.NewAccessPolicy(ctx, "testAccessPolicy", &cloud.AccessPolicyArgs{
+//			test, err := cloud.NewAccessPolicy(ctx, "test", &cloud.AccessPolicyArgs{
 //				Region:      pulumi.String("us"),
+//				Name:        pulumi.String("my-policy"),
 //				DisplayName: pulumi.String("My Policy"),
 //				Scopes: pulumi.StringArray{
 //					pulumi.String("metrics:read"),
@@ -63,9 +64,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cloud.NewAccessPolicyToken(ctx, "testAccessPolicyToken", &cloud.AccessPolicyTokenArgs{
+//			_, err = cloud.NewAccessPolicyToken(ctx, "test", &cloud.AccessPolicyTokenArgs{
 //				Region:         pulumi.String("us"),
-//				AccessPolicyId: testAccessPolicy.PolicyId,
+//				AccessPolicyId: test.PolicyId,
+//				Name:           pulumi.String("my-policy-token"),
 //				DisplayName:    pulumi.String("My Policy Token"),
 //				ExpiresAt:      pulumi.String("2023-01-01T00:00:00Z"),
 //			})

@@ -13,9 +13,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const teamTeam = new grafana.oss.Team("teamTeam", {});
+ * const team = new grafana.oss.Team("team", {name: "Team Name"});
  * const foo = new grafana.oss.DataSource("foo", {
  *     type: "cloudwatch",
+ *     name: "cw-example",
  *     jsonDataEncoded: JSON.stringify({
  *         defaultRegion: "us-east-1",
  *         authType: "keys",
@@ -25,20 +26,24 @@ import * as utilities from "../utilities";
  *         secretKey: "456",
  *     }),
  * });
- * const userUser = new grafana.oss.User("userUser", {
+ * const user = new grafana.oss.User("user", {
+ *     name: "test-ds-permissions",
  *     email: "test-ds-permissions@example.com",
  *     login: "test-ds-permissions",
  *     password: "hunter2",
  * });
- * const sa = new grafana.oss.ServiceAccount("sa", {role: "Viewer"});
- * const teamDataSourcePermissionItem = new grafana.enterprise.DataSourcePermissionItem("teamDataSourcePermissionItem", {
+ * const sa = new grafana.oss.ServiceAccount("sa", {
+ *     name: "test-ds-permissions",
+ *     role: "Viewer",
+ * });
+ * const teamDataSourcePermissionItem = new grafana.enterprise.DataSourcePermissionItem("team", {
  *     datasourceUid: foo.uid,
- *     team: teamTeam.id,
+ *     team: team.id,
  *     permission: "Edit",
  * });
- * const userDataSourcePermissionItem = new grafana.enterprise.DataSourcePermissionItem("userDataSourcePermissionItem", {
+ * const userDataSourcePermissionItem = new grafana.enterprise.DataSourcePermissionItem("user", {
  *     datasourceUid: foo.uid,
- *     user: userUser.id,
+ *     user: user.id,
  *     permission: "Edit",
  * });
  * const role = new grafana.enterprise.DataSourcePermissionItem("role", {
@@ -46,7 +51,7 @@ import * as utilities from "../utilities";
  *     role: "Viewer",
  *     permission: "Query",
  * });
- * const serviceAccount = new grafana.enterprise.DataSourcePermissionItem("serviceAccount", {
+ * const serviceAccount = new grafana.enterprise.DataSourcePermissionItem("service_account", {
  *     datasourceUid: foo.uid,
  *     user: sa.id,
  *     permission: "Query",

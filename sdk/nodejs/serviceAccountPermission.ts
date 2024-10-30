@@ -20,16 +20,17 @@ import * as utilities from "./utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.oss.ServiceAccount("test", {
+ *     name: "sa-terraform-test",
  *     role: "Editor",
  *     isDisabled: false,
  * });
- * const testTeam = new grafana.oss.Team("testTeam", {});
- * const testUser = new grafana.oss.User("testUser", {
+ * const testTeam = new grafana.oss.Team("test_team", {name: "tf_test_team"});
+ * const testUser = new grafana.oss.User("test_user", {
  *     email: "tf_user@test.com",
  *     login: "tf_user@test.com",
  *     password: "password",
  * });
- * const testPermissions = new grafana.oss.ServiceAccountPermission("testPermissions", {
+ * const testPermissions = new grafana.oss.ServiceAccountPermission("test_permissions", {
  *     serviceAccountId: test.id,
  *     permissions: [
  *         {

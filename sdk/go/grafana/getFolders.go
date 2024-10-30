@@ -28,14 +28,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := oss.NewFolder(ctx, "testA", &oss.FolderArgs{
+//			_, err := oss.NewFolder(ctx, "test_a", &oss.FolderArgs{
 //				Title: pulumi.String("test-folder-a"),
 //				Uid:   pulumi.String("test-ds-folder-uid-a"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oss.NewFolder(ctx, "testB", &oss.FolderArgs{
+//			_, err = oss.NewFolder(ctx, "test_b", &oss.FolderArgs{
 //				Title: pulumi.String("test-folder-b"),
 //				Uid:   pulumi.String("test-ds-folder-uid-b"),
 //			})

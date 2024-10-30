@@ -20,9 +20,10 @@ import * as utilities from "./utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.cloud.Stack("test", {
- *     description: "Test Grafana Cloud Stack",
- *     regionSlug: "eu",
+ *     name: "gcloudstacktest",
  *     slug: "gcloudstacktest",
+ *     regionSlug: "eu",
+ *     description: "Test Grafana Cloud Stack",
  * });
  * ```
  *

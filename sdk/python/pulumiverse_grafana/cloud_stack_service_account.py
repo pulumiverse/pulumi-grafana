@@ -178,10 +178,11 @@ class CloudStackServiceAccount(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        cloud_sa = grafana.cloud.StackServiceAccount("cloudSa",
-            is_disabled=False,
+        cloud_sa = grafana.cloud.StackServiceAccount("cloud_sa",
+            stack_slug="<your stack slug>",
+            name="cloud service account",
             role="Admin",
-            stack_slug="<your stack slug>")
+            is_disabled=False)
         ```
 
         ## Import
@@ -220,10 +221,11 @@ class CloudStackServiceAccount(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        cloud_sa = grafana.cloud.StackServiceAccount("cloudSa",
-            is_disabled=False,
+        cloud_sa = grafana.cloud.StackServiceAccount("cloud_sa",
+            stack_slug="<your stack slug>",
+            name="cloud service account",
             role="Admin",
-            stack_slug="<your stack slug>")
+            is_disabled=False)
         ```
 
         ## Import

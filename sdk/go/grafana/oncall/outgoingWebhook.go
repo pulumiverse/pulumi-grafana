@@ -28,9 +28,10 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := onCall.NewOutgoingWebhook(ctx, "test-acc-outgoingWebhook", &onCall.OutgoingWebhookArgs{
-//				Url: pulumi.String("https://example.com/"),
-//			}, pulumi.Provider(grafana.Oncall))
+//			_, err := onCall.NewOutgoingWebhook(ctx, "test-acc-outgoing_webhook", &onCall.OutgoingWebhookArgs{
+//				Name: pulumi.String("my outgoing webhook"),
+//				Url:  pulumi.String("https://example.com/"),
+//			})
 //			if err != nil {
 //				return err
 //			}

@@ -14,61 +14,6 @@ import (
 
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/onCall"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleSlackChannel, err := onCall.GetSlackChannel(ctx, &oncall.GetSlackChannelArgs{
-//				Name: "example_slack_channel",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			exampleUserGroup, err := onCall.GetUserGroup(ctx, &oncall.GetUserGroupArgs{
-//				SlackHandle: "example_slack_handle",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			// ICal based schedule
-//			_, err = onCall.NewSchedule(ctx, "exampleScheduleSchedule", &onCall.ScheduleArgs{
-//				Type:             pulumi.String("ical"),
-//				IcalUrlPrimary:   pulumi.String("https://example.com/example_ical.ics"),
-//				IcalUrlOverrides: pulumi.String("https://example.com/example_overrides_ical.ics"),
-//				Slack: &oncall.ScheduleSlackArgs{
-//					ChannelId:   pulumi.String(exampleSlackChannel.SlackId),
-//					UserGroupId: pulumi.String(exampleUserGroup.SlackId),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// Shift based schedule
-//			_, err = onCall.NewSchedule(ctx, "exampleScheduleOnCall/scheduleSchedule", &onCall.ScheduleArgs{
-//				Type:             pulumi.String("calendar"),
-//				TimeZone:         pulumi.String("America/New_York"),
-//				Shifts:           pulumi.StringArray{},
-//				IcalUrlOverrides: pulumi.String("https://example.com/example_overrides_ical.ics"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // ```sh

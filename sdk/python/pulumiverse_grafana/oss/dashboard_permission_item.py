@@ -239,8 +239,8 @@ class DashboardPermissionItem(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        team_team = grafana.oss.Team("teamTeam")
-        user_user = grafana.oss.User("userUser",
+        team = grafana.oss.Team("team", name="Team Name")
+        user = grafana.oss.User("user",
             email="user.name@example.com",
             password="my-password",
             login="user.name")
@@ -252,13 +252,13 @@ class DashboardPermissionItem(pulumi.CustomResource):
             dashboard_uid=dashboard.uid,
             role="Viewer",
             permission="View")
-        user_dashboard_permission_item = grafana.oss.DashboardPermissionItem("userDashboardPermissionItem",
+        user_dashboard_permission_item = grafana.oss.DashboardPermissionItem("user",
             dashboard_uid=dashboard.uid,
-            user=user_user.id,
+            user=user.id,
             permission="Admin")
-        team_dashboard_permission_item = grafana.oss.DashboardPermissionItem("teamDashboardPermissionItem",
+        team_dashboard_permission_item = grafana.oss.DashboardPermissionItem("team",
             dashboard_uid=dashboard.uid,
-            team=team_team.id,
+            team=team.id,
             permission="Edit")
         ```
 
@@ -297,8 +297,8 @@ class DashboardPermissionItem(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        team_team = grafana.oss.Team("teamTeam")
-        user_user = grafana.oss.User("userUser",
+        team = grafana.oss.Team("team", name="Team Name")
+        user = grafana.oss.User("user",
             email="user.name@example.com",
             password="my-password",
             login="user.name")
@@ -310,13 +310,13 @@ class DashboardPermissionItem(pulumi.CustomResource):
             dashboard_uid=dashboard.uid,
             role="Viewer",
             permission="View")
-        user_dashboard_permission_item = grafana.oss.DashboardPermissionItem("userDashboardPermissionItem",
+        user_dashboard_permission_item = grafana.oss.DashboardPermissionItem("user",
             dashboard_uid=dashboard.uid,
-            user=user_user.id,
+            user=user.id,
             permission="Admin")
-        team_dashboard_permission_item = grafana.oss.DashboardPermissionItem("teamDashboardPermissionItem",
+        team_dashboard_permission_item = grafana.oss.DashboardPermissionItem("team",
             dashboard_uid=dashboard.uid,
-            team=team_team.id,
+            team=team.id,
             permission="Edit")
         ```
 

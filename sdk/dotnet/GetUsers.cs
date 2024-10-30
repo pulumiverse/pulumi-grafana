@@ -31,9 +31,10 @@ namespace Pulumiverse.Grafana
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testAllUsers = new Grafana.Oss.User("testAllUsers", new()
+        ///     var testAllUsers = new Grafana.Oss.User("test_all_users", new()
         ///     {
         ///         Email = "all_users@example.com",
+        ///         Name = "Testing grafana_users",
         ///         Login = "test-grafana-users",
         ///         Password = "my-password",
         ///     });
@@ -64,9 +65,10 @@ namespace Pulumiverse.Grafana
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testAllUsers = new Grafana.Oss.User("testAllUsers", new()
+        ///     var testAllUsers = new Grafana.Oss.User("test_all_users", new()
         ///     {
         ///         Email = "all_users@example.com",
+        ///         Name = "Testing grafana_users",
         ///         Login = "test-grafana-users",
         ///         Password = "my-password",
         ///     });

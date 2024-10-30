@@ -36,12 +36,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Optional (On-premise, not supported in Grafana Cloud): Create an organization
-//			myOrg, err := oss.NewOrganization(ctx, "myOrg", nil)
+//			myOrg, err := oss.NewOrganization(ctx, "my_org", &oss.OrganizationArgs{
+//				Name: pulumi.String("test 1"),
+//			})
 //			if err != nil {
 //				return err
 //			}
 //			// Create resources (optional: within the organization)
-//			myFolder, err := oss.NewFolder(ctx, "myFolder", &oss.FolderArgs{
+//			myFolder, err := oss.NewFolder(ctx, "my_folder", &oss.FolderArgs{
 //				OrgId: myOrg.OrgId,
 //				Title: pulumi.String("test Folder"),
 //			})
@@ -56,7 +58,7 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			testDash, err := oss.NewDashboard(ctx, "testDash", &oss.DashboardArgs{
+//			testDash, err := oss.NewDashboard(ctx, "test_dash", &oss.DashboardArgs{
 //				OrgId:      myOrg.OrgId,
 //				Folder:     myFolder.ID(),
 //				ConfigJson: pulumi.String(json0),
@@ -64,7 +66,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oss.NewDashboardPublic(ctx, "myPublicDashboard", &oss.DashboardPublicArgs{
+//			_, err = oss.NewDashboardPublic(ctx, "my_public_dashboard", &oss.DashboardPublicArgs{
 //				OrgId:                myOrg.OrgId,
 //				DashboardUid:         testDash.Uid,
 //				Uid:                  pulumi.String("my-custom-public-uid"),
@@ -78,7 +80,9 @@ import (
 //				return err
 //			}
 //			// Optional (On-premise, not supported in Grafana Cloud): Create an organization
-//			myOrg2, err := oss.NewOrganization(ctx, "myOrg2", nil)
+//			myOrg2, err := oss.NewOrganization(ctx, "my_org2", &oss.OrganizationArgs{
+//				Name: pulumi.String("test 2"),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -90,14 +94,14 @@ import (
 //				return err
 //			}
 //			json1 := string(tmpJSON1)
-//			testDash2, err := oss.NewDashboard(ctx, "testDash2", &oss.DashboardArgs{
+//			testDash2, err := oss.NewDashboard(ctx, "test_dash2", &oss.DashboardArgs{
 //				OrgId:      myOrg2.OrgId,
 //				ConfigJson: pulumi.String(json1),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oss.NewDashboardPublic(ctx, "myPublicDashboard2", &oss.DashboardPublicArgs{
+//			_, err = oss.NewDashboardPublic(ctx, "my_public_dashboard2", &oss.DashboardPublicArgs{
 //				OrgId:        myOrg2.OrgId,
 //				DashboardUid: testDash2.Uid,
 //				Share:        pulumi.String("public"),

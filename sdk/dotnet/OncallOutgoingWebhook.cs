@@ -23,12 +23,10 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test_acc_outgoingWebhook = new Grafana.OnCall.OutgoingWebhook("test-acc-outgoingWebhook", new()
+    ///     var test_acc_outgoingWebhook = new Grafana.OnCall.OutgoingWebhook("test-acc-outgoing_webhook", new()
     ///     {
+    ///         Name = "my outgoing webhook",
     ///         Url = "https://example.com/",
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         Provider = grafana.Oncall,
     ///     });
     /// 
     /// });

@@ -16,12 +16,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const testFolder = new grafana.oss.Folder("testFolder", {
+ * const test = new grafana.oss.Folder("test", {
  *     title: "My Folder",
  *     uid: "my-folder-uid",
  * });
- * const testDashboard = new grafana.oss.Dashboard("testDashboard", {
- *     folder: testFolder.uid,
+ * const testDashboard = new grafana.oss.Dashboard("test", {
+ *     folder: test.uid,
  *     configJson: JSON.stringify({
  *         title: "My Dashboard",
  *         uid: "my-dashboard-uid",

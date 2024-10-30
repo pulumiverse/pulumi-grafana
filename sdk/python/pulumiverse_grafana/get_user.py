@@ -126,6 +126,7 @@ def get_user(email: Optional[str] = None,
 
     test = grafana.oss.User("test",
         email="test.datasource@example.com",
+        name="Testing Datasource",
         login="test-datasource",
         password="my-password",
         is_admin=True)
@@ -177,6 +178,7 @@ def get_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
 
     test = grafana.oss.User("test",
         email="test.datasource@example.com",
+        name="Testing Datasource",
         login="test-datasource",
         password="my-password",
         is_admin=True)

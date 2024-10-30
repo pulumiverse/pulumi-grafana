@@ -216,29 +216,31 @@ class DataSourceConfig(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        loki_data_source = grafana.oss.DataSource("lokiDataSource",
+        loki = grafana.oss.DataSource("loki",
             type="loki",
+            name="loki",
             url="http://localhost:3100")
-        tempo_data_source = grafana.oss.DataSource("tempoDataSource",
+        tempo = grafana.oss.DataSource("tempo",
             type="tempo",
+            name="tempo",
             url="http://localhost:3200")
-        loki_data_source_config = grafana.oss.DataSourceConfig("lokiDataSourceConfig",
-            uid=loki_data_source.uid,
+        loki_data_source_config = grafana.oss.DataSourceConfig("loki",
+            uid=loki.uid,
             json_data_encoded=pulumi.Output.json_dumps({
                 "derivedFields": [{
-                    "datasourceUid": tempo_data_source.uid,
+                    "datasourceUid": tempo.uid,
                     "matcherRegex": "[tT]race_?[iI][dD]\\"?[:=]\\"?(\\\\w+)",
                     "matcherType": "regex",
                     "name": "traceID",
                     "url": "${__value.raw}",
                 }],
             }))
-        tempo_data_source_config = grafana.oss.DataSourceConfig("tempoDataSourceConfig",
-            uid=tempo_data_source.uid,
+        tempo_data_source_config = grafana.oss.DataSourceConfig("tempo",
+            uid=tempo.uid,
             json_data_encoded=pulumi.Output.json_dumps({
                 "tracesToLogsV2": {
                     "customQuery": True,
-                    "datasourceUid": loki_data_source.uid,
+                    "datasourceUid": loki.uid,
                     "filterBySpanID": False,
                     "filterByTraceID": False,
                     "query": "|=\\"${__trace.traceId}\\" | json",
@@ -288,29 +290,31 @@ class DataSourceConfig(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        loki_data_source = grafana.oss.DataSource("lokiDataSource",
+        loki = grafana.oss.DataSource("loki",
             type="loki",
+            name="loki",
             url="http://localhost:3100")
-        tempo_data_source = grafana.oss.DataSource("tempoDataSource",
+        tempo = grafana.oss.DataSource("tempo",
             type="tempo",
+            name="tempo",
             url="http://localhost:3200")
-        loki_data_source_config = grafana.oss.DataSourceConfig("lokiDataSourceConfig",
-            uid=loki_data_source.uid,
+        loki_data_source_config = grafana.oss.DataSourceConfig("loki",
+            uid=loki.uid,
             json_data_encoded=pulumi.Output.json_dumps({
                 "derivedFields": [{
-                    "datasourceUid": tempo_data_source.uid,
+                    "datasourceUid": tempo.uid,
                     "matcherRegex": "[tT]race_?[iI][dD]\\"?[:=]\\"?(\\\\w+)",
                     "matcherType": "regex",
                     "name": "traceID",
                     "url": "${__value.raw}",
                 }],
             }))
-        tempo_data_source_config = grafana.oss.DataSourceConfig("tempoDataSourceConfig",
-            uid=tempo_data_source.uid,
+        tempo_data_source_config = grafana.oss.DataSourceConfig("tempo",
+            uid=tempo.uid,
             json_data_encoded=pulumi.Output.json_dumps({
                 "tracesToLogsV2": {
                     "customQuery": True,
-                    "datasourceUid": loki_data_source.uid,
+                    "datasourceUid": loki.uid,
                     "filterBySpanID": False,
                     "filterByTraceID": False,
                     "query": "|=\\"${__trace.traceId}\\" | json",

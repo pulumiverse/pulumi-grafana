@@ -49,6 +49,7 @@ import (
 //			}
 //			json0 := string(tmpJSON0)
 //			_, err = oss.NewLibraryPanel(ctx, "test", &oss.LibraryPanelArgs{
+//				Name:      pulumi.String("panel"),
 //				ModelJson: pulumi.String(json0),
 //			})
 //			if err != nil {

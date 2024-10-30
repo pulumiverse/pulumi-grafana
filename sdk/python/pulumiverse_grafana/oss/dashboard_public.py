@@ -312,19 +312,19 @@ class DashboardPublic(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         # Optional (On-premise, not supported in Grafana Cloud): Create an organization
-        my_org = grafana.oss.Organization("myOrg")
+        my_org = grafana.oss.Organization("my_org", name="test 1")
         # Create resources (optional: within the organization)
-        my_folder = grafana.oss.Folder("myFolder",
+        my_folder = grafana.oss.Folder("my_folder",
             org_id=my_org.org_id,
             title="test Folder")
-        test_dash = grafana.oss.Dashboard("testDash",
+        test_dash = grafana.oss.Dashboard("test_dash",
             org_id=my_org.org_id,
             folder=my_folder.id,
             config_json=json.dumps({
                 "title": "My Terraform Dashboard",
                 "uid": "my-dashboard-uid",
             }))
-        my_public_dashboard = grafana.oss.DashboardPublic("myPublicDashboard",
+        my_public_dashboard = grafana.oss.DashboardPublic("my_public_dashboard",
             org_id=my_org.org_id,
             dashboard_uid=test_dash.uid,
             uid="my-custom-public-uid",
@@ -334,14 +334,14 @@ class DashboardPublic(pulumi.CustomResource):
             annotations_enabled=True,
             share="public")
         # Optional (On-premise, not supported in Grafana Cloud): Create an organization
-        my_org2 = grafana.oss.Organization("myOrg2")
-        test_dash2 = grafana.oss.Dashboard("testDash2",
+        my_org2 = grafana.oss.Organization("my_org2", name="test 2")
+        test_dash2 = grafana.oss.Dashboard("test_dash2",
             org_id=my_org2.org_id,
             config_json=json.dumps({
                 "title": "My Terraform Dashboard2",
                 "uid": "my-dashboard-uid2",
             }))
-        my_public_dashboard2 = grafana.oss.DashboardPublic("myPublicDashboard2",
+        my_public_dashboard2 = grafana.oss.DashboardPublic("my_public_dashboard2",
             org_id=my_org2.org_id,
             dashboard_uid=test_dash2.uid,
             share="public")
@@ -390,19 +390,19 @@ class DashboardPublic(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         # Optional (On-premise, not supported in Grafana Cloud): Create an organization
-        my_org = grafana.oss.Organization("myOrg")
+        my_org = grafana.oss.Organization("my_org", name="test 1")
         # Create resources (optional: within the organization)
-        my_folder = grafana.oss.Folder("myFolder",
+        my_folder = grafana.oss.Folder("my_folder",
             org_id=my_org.org_id,
             title="test Folder")
-        test_dash = grafana.oss.Dashboard("testDash",
+        test_dash = grafana.oss.Dashboard("test_dash",
             org_id=my_org.org_id,
             folder=my_folder.id,
             config_json=json.dumps({
                 "title": "My Terraform Dashboard",
                 "uid": "my-dashboard-uid",
             }))
-        my_public_dashboard = grafana.oss.DashboardPublic("myPublicDashboard",
+        my_public_dashboard = grafana.oss.DashboardPublic("my_public_dashboard",
             org_id=my_org.org_id,
             dashboard_uid=test_dash.uid,
             uid="my-custom-public-uid",
@@ -412,14 +412,14 @@ class DashboardPublic(pulumi.CustomResource):
             annotations_enabled=True,
             share="public")
         # Optional (On-premise, not supported in Grafana Cloud): Create an organization
-        my_org2 = grafana.oss.Organization("myOrg2")
-        test_dash2 = grafana.oss.Dashboard("testDash2",
+        my_org2 = grafana.oss.Organization("my_org2", name="test 2")
+        test_dash2 = grafana.oss.Dashboard("test_dash2",
             org_id=my_org2.org_id,
             config_json=json.dumps({
                 "title": "My Terraform Dashboard2",
                 "uid": "my-dashboard-uid2",
             }))
-        my_public_dashboard2 = grafana.oss.DashboardPublic("myPublicDashboard2",
+        my_public_dashboard2 = grafana.oss.DashboardPublic("my_public_dashboard2",
             org_id=my_org2.org_id,
             dashboard_uid=test_dash2.uid,
             share="public")

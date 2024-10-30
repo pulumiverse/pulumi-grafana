@@ -15,6 +15,32 @@ namespace Pulumiverse.Grafana.Oss
         /// <summary>
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
         /// 		* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var adminServiceAccount = new Grafana.Oss.ServiceAccount("admin", new()
+        ///     {
+        ///         Name = "admin sa",
+        ///         Role = "Admin",
+        ///         IsDisabled = false,
+        ///     });
+        /// 
+        ///     var admin = Grafana.Oss.GetServiceAccount.Invoke(new()
+        ///     {
+        ///         Name = adminServiceAccount.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetServiceAccountResult> InvokeAsync(GetServiceAccountArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServiceAccountResult>("grafana:oss/getServiceAccount:getServiceAccount", args ?? new GetServiceAccountArgs(), options.WithDefaults());
@@ -22,6 +48,32 @@ namespace Pulumiverse.Grafana.Oss
         /// <summary>
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
         /// 		* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var adminServiceAccount = new Grafana.Oss.ServiceAccount("admin", new()
+        ///     {
+        ///         Name = "admin sa",
+        ///         Role = "Admin",
+        ///         IsDisabled = false,
+        ///     });
+        /// 
+        ///     var admin = Grafana.Oss.GetServiceAccount.Invoke(new()
+        ///     {
+        ///         Name = adminServiceAccount.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetServiceAccountResult> Invoke(GetServiceAccountInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetServiceAccountResult>("grafana:oss/getServiceAccount:getServiceAccount", args ?? new GetServiceAccountInvokeArgs(), options.WithDefaults());

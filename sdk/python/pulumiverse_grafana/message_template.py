@@ -175,10 +175,11 @@ class MessageTemplate(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        my_template = grafana.alerting.MessageTemplate("myTemplate", template=\"\"\"{{define "My Reusable Template" }}
+        my_template = grafana.alerting.MessageTemplate("my_template",
+            name="My Reusable Template",
+            template=\"\"\"{{define "My Reusable Template" }}
          template content
-        {{ end }}
-        \"\"\")
+        {{ end }}\"\"\")
         ```
 
         ## Import
@@ -217,10 +218,11 @@ class MessageTemplate(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        my_template = grafana.alerting.MessageTemplate("myTemplate", template=\"\"\"{{define "My Reusable Template" }}
+        my_template = grafana.alerting.MessageTemplate("my_template",
+            name="My Reusable Template",
+            template=\"\"\"{{define "My Reusable Template" }}
          template content
-        {{ end }}
-        \"\"\")
+        {{ end }}\"\"\")
         ```
 
         ## Import

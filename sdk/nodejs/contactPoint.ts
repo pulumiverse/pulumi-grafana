@@ -20,16 +20,19 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const myContactPoint = new grafana.alerting.ContactPoint("myContactPoint", {emails: [{
- *     addresses: [
- *         "one@company.org",
- *         "two@company.org",
- *     ],
- *     disableResolveMessage: false,
- *     message: "{{ len .Alerts.Firing }} firing.",
- *     singleEmail: true,
- *     subject: "{{ template \"default.title\" .}}",
- * }]});
+ * const myContactPoint = new grafana.alerting.ContactPoint("my_contact_point", {
+ *     name: "My Contact Point",
+ *     emails: [{
+ *         addresses: [
+ *             "one@company.org",
+ *             "two@company.org",
+ *         ],
+ *         message: "{{ len .Alerts.Firing }} firing.",
+ *         subject: "{{ template \"default.title\" .}}",
+ *         singleEmail: true,
+ *         disableResolveMessage: false,
+ *     }],
+ * });
  * ```
  *
  * ## Import

@@ -32,55 +32,55 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Configure SSO for GitHub using OAuth2
-//			_, err := oss.NewSsoSettings(ctx, "githubSsoSettings", &oss.SsoSettingsArgs{
+//			_, err := oss.NewSsoSettings(ctx, "github_sso_settings", &oss.SsoSettingsArgs{
+//				ProviderName: pulumi.String("github"),
 //				Oauth2Settings: &oss.SsoSettingsOauth2SettingsArgs{
-//					AllowSignUp:          pulumi.Bool(true),
-//					AllowedDomains:       pulumi.String("mycompany.com mycompany.org"),
-//					AllowedOrganizations: pulumi.String("[\"My Organization\", \"Octocats\"]"),
-//					AutoLogin:            pulumi.Bool(false),
+//					Name:                 pulumi.String("Github"),
 //					ClientId:             pulumi.String("<your GitHub app client id>"),
 //					ClientSecret:         pulumi.String("<your GitHub app client secret>"),
-//					Name:                 pulumi.String("Github"),
+//					AllowSignUp:          pulumi.Bool(true),
+//					AutoLogin:            pulumi.Bool(false),
 //					Scopes:               pulumi.String("user:email,read:org"),
 //					TeamIds:              pulumi.String("150,300"),
+//					AllowedOrganizations: pulumi.String("[\"My Organization\", \"Octocats\"]"),
+//					AllowedDomains:       pulumi.String("mycompany.com mycompany.org"),
 //				},
-//				ProviderName: pulumi.String("github"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Configure SSO using generic OAuth2
-//			_, err = oss.NewSsoSettings(ctx, "genericSsoSettings", &oss.SsoSettingsArgs{
+//			_, err = oss.NewSsoSettings(ctx, "generic_sso_settings", &oss.SsoSettingsArgs{
+//				ProviderName: pulumi.String("generic_oauth"),
 //				Oauth2Settings: &oss.SsoSettingsOauth2SettingsArgs{
-//					AllowSignUp:     pulumi.Bool(true),
-//					ApiUrl:          pulumi.String("https://<domain>/userinfo"),
+//					Name:            pulumi.String("Auth0"),
 //					AuthUrl:         pulumi.String("https://<domain>/authorize"),
-//					AutoLogin:       pulumi.Bool(false),
+//					TokenUrl:        pulumi.String("https://<domain>/oauth/token"),
+//					ApiUrl:          pulumi.String("https://<domain>/userinfo"),
 //					ClientId:        pulumi.String("<client id>"),
 //					ClientSecret:    pulumi.String("<client secret>"),
-//					Name:            pulumi.String("Auth0"),
+//					AllowSignUp:     pulumi.Bool(true),
+//					AutoLogin:       pulumi.Bool(false),
 //					Scopes:          pulumi.String("openid profile email offline_access"),
-//					TokenUrl:        pulumi.String("https://<domain>/oauth/token"),
 //					UsePkce:         pulumi.Bool(true),
 //					UseRefreshToken: pulumi.Bool(true),
 //				},
-//				ProviderName: pulumi.String("generic_oauth"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Configure SSO using SAML
-//			_, err = oss.NewSsoSettings(ctx, "samlSsoSettings", &oss.SsoSettingsArgs{
+//			_, err = oss.NewSsoSettings(ctx, "saml_sso_settings", &oss.SsoSettingsArgs{
 //				ProviderName: pulumi.String("saml"),
 //				SamlSettings: &oss.SsoSettingsSamlSettingsArgs{
 //					AllowSignUp:             pulumi.Bool(true),
-//					AssertionAttributeEmail: pulumi.String("email"),
-//					AssertionAttributeLogin: pulumi.String("login"),
 //					CertificatePath:         pulumi.String("devenv/docker/blocks/auth/saml-enterprise/cert.crt"),
-//					IdpMetadataUrl:          pulumi.String("https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml"),
-//					NameIdFormat:            pulumi.String("urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"),
 //					PrivateKeyPath:          pulumi.String("devenv/docker/blocks/auth/saml-enterprise/key.pem"),
+//					IdpMetadataUrl:          pulumi.String("https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml"),
 //					SignatureAlgorithm:      pulumi.String("rsa-sha256"),
+//					AssertionAttributeLogin: pulumi.String("login"),
+//					AssertionAttributeEmail: pulumi.String("email"),
+//					NameIdFormat:            pulumi.String("urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"),
 //				},
 //			})
 //			if err != nil {

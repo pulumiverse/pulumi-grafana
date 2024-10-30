@@ -27,7 +27,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := onCall.NewEscalationChain(ctx, "default", nil, pulumi.Provider(grafana.Oncall))
+//			_, err := onCall.NewEscalationChain(ctx, "default", &onCall.EscalationChainArgs{
+//				Name: pulumi.String("default"),
+//			})
 //			if err != nil {
 //				return err
 //			}

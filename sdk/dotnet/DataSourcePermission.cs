@@ -25,11 +25,15 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var team = new Grafana.Oss.Team("team");
+    ///     var team = new Grafana.Oss.Team("team", new()
+    ///     {
+    ///         Name = "Team Name",
+    ///     });
     /// 
     ///     var foo = new Grafana.Oss.DataSource("foo", new()
     ///     {
     ///         Type = "cloudwatch",
+    ///         Name = "cw-example",
     ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["defaultRegion"] = "us-east-1",
@@ -44,6 +48,7 @@ namespace Pulumiverse.Grafana
     /// 
     ///     var user = new Grafana.Oss.User("user", new()
     ///     {
+    ///         Name = "test-ds-permissions",
     ///         Email = "test-ds-permissions@example.com",
     ///         Login = "test-ds-permissions",
     ///         Password = "hunter2",
@@ -51,6 +56,7 @@ namespace Pulumiverse.Grafana
     /// 
     ///     var sa = new Grafana.Oss.ServiceAccount("sa", new()
     ///     {
+    ///         Name = "test-ds-permissions",
     ///         Role = "Viewer",
     ///     });
     /// 

@@ -463,6 +463,21 @@ def get_cloud_stack(slug: Optional[str] = None,
     """
     Data source for Grafana Stack
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+    import pulumiverse_grafana as grafana
+
+    test_stack = grafana.cloud.Stack("test",
+        name="gcloudstacktest",
+        slug="gcloudstacktest",
+        region_slug="eu",
+        description="Test Grafana Cloud Stack")
+    test = grafana.cloud.get_stack_output(slug=test_stack.slug)
+    ```
+
 
     :param str slug: Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
            available at “https://\\n\\n.grafana.net".
@@ -520,6 +535,21 @@ def get_cloud_stack_output(slug: Optional[pulumi.Input[str]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudStackResult]:
     """
     Data source for Grafana Stack
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+    import pulumiverse_grafana as grafana
+
+    test_stack = grafana.cloud.Stack("test",
+        name="gcloudstacktest",
+        slug="gcloudstacktest",
+        region_slug="eu",
+        description="Test Grafana Cloud Stack")
+    test = grafana.cloud.get_stack_output(slug=test_stack.slug)
+    ```
 
 
     :param str slug: Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance

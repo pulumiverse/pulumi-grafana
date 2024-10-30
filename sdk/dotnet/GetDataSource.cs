@@ -31,6 +31,7 @@ namespace Pulumiverse.Grafana
         ///     var prometheus = new Grafana.Oss.DataSource("prometheus", new()
         ///     {
         ///         Type = "prometheus",
+        ///         Name = "prometheus-ds-test",
         ///         Uid = "prometheus-ds-test-uid",
         ///         Url = "https://my-instance.com",
         ///         BasicAuthEnabled = true,
@@ -81,6 +82,7 @@ namespace Pulumiverse.Grafana
         ///     var prometheus = new Grafana.Oss.DataSource("prometheus", new()
         ///     {
         ///         Type = "prometheus",
+        ///         Name = "prometheus-ds-test",
         ///         Uid = "prometheus-ds-test-uid",
         ///         Url = "https://my-instance.com",
         ///         BasicAuthEnabled = true,

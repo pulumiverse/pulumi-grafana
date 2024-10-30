@@ -31,9 +31,10 @@ namespace Pulumiverse.Grafana
     /// {
     ///     var test = new Grafana.Cloud.Stack("test", new()
     ///     {
-    ///         Description = "Test Grafana Cloud Stack",
-    ///         RegionSlug = "eu",
+    ///         Name = "gcloudstacktest",
     ///         Slug = "gcloudstacktest",
+    ///         RegionSlug = "eu",
+    ///         Description = "Test Grafana Cloud Stack",
     ///     });
     /// 
     /// });

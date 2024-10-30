@@ -31,15 +31,17 @@ namespace Pulumiverse.Grafana.Cloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var cloudSa = new Grafana.Cloud.StackServiceAccount("cloudSa", new()
+    ///     var cloudSa = new Grafana.Cloud.StackServiceAccount("cloud_sa", new()
     ///     {
     ///         StackSlug = "&lt;your stack slug&gt;",
+    ///         Name = "cloud service account",
     ///         Role = "Admin",
     ///         IsDisabled = false,
     ///     });
     /// 
     ///     var foo = new Grafana.Cloud.StackServiceAccountToken("foo", new()
     ///     {
+    ///         Name = "key_foo",
     ///         ServiceAccountId = cloudSa.Id,
     ///     });
     /// 

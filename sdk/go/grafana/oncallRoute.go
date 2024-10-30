@@ -34,18 +34,21 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = onCall.NewEscalationChain(ctx, "default", nil)
+//			_, err = onCall.NewEscalationChain(ctx, "default", &onCall.EscalationChainArgs{
+//				Name: pulumi.String("default"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleIntegration, err := onCall.NewIntegration(ctx, "exampleIntegration", &onCall.IntegrationArgs{
+//			exampleIntegration, err := onCall.NewIntegration(ctx, "example_integration", &onCall.IntegrationArgs{
+//				Name:         pulumi.String("Grafana Integration"),
 //				Type:         pulumi.String("grafana"),
 //				DefaultRoute: nil,
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = onCall.NewRoute(ctx, "exampleRoute", &onCall.RouteArgs{
+//			_, err = onCall.NewRoute(ctx, "example_route", &onCall.RouteArgs{
 //				IntegrationId:     exampleIntegration.ID(),
 //				EscalationChainId: _default.ID(),
 //				RoutingRegex:      pulumi.String("us-(east|west)"),

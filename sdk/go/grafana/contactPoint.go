@@ -32,17 +32,18 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := alerting.NewContactPoint(ctx, "myContactPoint", &alerting.ContactPointArgs{
+//			_, err := alerting.NewContactPoint(ctx, "my_contact_point", &alerting.ContactPointArgs{
+//				Name: pulumi.String("My Contact Point"),
 //				Emails: alerting.ContactPointEmailArray{
 //					&alerting.ContactPointEmailArgs{
 //						Addresses: pulumi.StringArray{
 //							pulumi.String("one@company.org"),
 //							pulumi.String("two@company.org"),
 //						},
-//						DisableResolveMessage: pulumi.Bool(false),
 //						Message:               pulumi.String("{{ len .Alerts.Firing }} firing."),
-//						SingleEmail:           pulumi.Bool(true),
 //						Subject:               pulumi.String("{{ template \"default.title\" .}}"),
+//						SingleEmail:           pulumi.Bool(true),
+//						DisableResolveMessage: pulumi.Bool(false),
 //					},
 //				},
 //			})

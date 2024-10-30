@@ -19,6 +19,216 @@ namespace Pulumiverse.Grafana.Slo
     /// 
     /// ## Example Usage
     /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Grafana.Slo.SLO("test", new()
+    ///     {
+    ///         Name = "Terraform Testing",
+    ///         Description = "Terraform Description",
+    ///         Queries = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOQueryArgs
+    ///             {
+    ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
+    ///                 {
+    ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+    ///                 },
+    ///                 Type = "freeform",
+    ///             },
+    ///         },
+    ///         Objectives = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
+    ///             {
+    ///                 Value = 0.995,
+    ///                 Window = "30d",
+    ///             },
+    ///         },
+    ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
+    ///         {
+    ///             Uid = "grafanacloud-prom",
+    ///         },
+    ///         Labels = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOLabelArgs
+    ///             {
+    ///                 Key = "slo",
+    ///                 Value = "terraform",
+    ///             },
+    ///         },
+    ///         Alertings = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOAlertingArgs
+    ///             {
+    ///                 Fastburns = new[]
+    ///                 {
+    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
+    ///                     {
+    ///                         Annotations = new[]
+    ///                         {
+    ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
+    ///                             {
+    ///                                 Key = "name",
+    ///                                 Value = "SLO Burn Rate Very High",
+    ///                             },
+    ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
+    ///                             {
+    ///                                 Key = "description",
+    ///                                 Value = "Error budget is burning too fast",
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Slowburns = new[]
+    ///                 {
+    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+    ///                     {
+    ///                         Annotations = new[]
+    ///                         {
+    ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
+    ///                             {
+    ///                                 Key = "name",
+    ///                                 Value = "SLO Burn Rate High",
+    ///                             },
+    ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
+    ///                             {
+    ///                                 Key = "description",
+    ///                                 Value = "Error budget is burning too fast",
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Advanced
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Grafana.Slo.SLO("test", new()
+    ///     {
+    ///         Name = "Complex Resource - Terraform Ratio Query Example",
+    ///         Description = "Complex Resource - Terraform Ratio Query Description",
+    ///         Queries = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOQueryArgs
+    ///             {
+    ///                 Ratio = new Grafana.Slo.Inputs.SLOQueryRatioArgs
+    ///                 {
+    ///                     SuccessMetric = "kubelet_http_requests_total{status!~\"5..\"}",
+    ///                     TotalMetric = "kubelet_http_requests_total",
+    ///                     GroupByLabels = new[]
+    ///                     {
+    ///                         "job",
+    ///                         "instance",
+    ///                     },
+    ///                 },
+    ///                 Type = "ratio",
+    ///             },
+    ///         },
+    ///         Objectives = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
+    ///             {
+    ///                 Value = 0.995,
+    ///                 Window = "30d",
+    ///             },
+    ///         },
+    ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
+    ///         {
+    ///             Uid = "grafanacloud-prom",
+    ///         },
+    ///         Labels = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOLabelArgs
+    ///             {
+    ///                 Key = "slo",
+    ///                 Value = "terraform",
+    ///             },
+    ///         },
+    ///         Alertings = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOAlertingArgs
+    ///             {
+    ///                 Fastburns = new[]
+    ///                 {
+    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
+    ///                     {
+    ///                         Annotations = new[]
+    ///                         {
+    ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
+    ///                             {
+    ///                                 Key = "name",
+    ///                                 Value = "SLO Burn Rate Very High",
+    ///                             },
+    ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
+    ///                             {
+    ///                                 Key = "description",
+    ///                                 Value = "Error budget is burning too fast",
+    ///                             },
+    ///                         },
+    ///                         Labels = new[]
+    ///                         {
+    ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnLabelArgs
+    ///                             {
+    ///                                 Key = "type",
+    ///                                 Value = "slo",
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Slowburns = new[]
+    ///                 {
+    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+    ///                     {
+    ///                         Annotations = new[]
+    ///                         {
+    ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
+    ///                             {
+    ///                                 Key = "name",
+    ///                                 Value = "SLO Burn Rate High",
+    ///                             },
+    ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
+    ///                             {
+    ///                                 Key = "description",
+    ///                                 Value = "Error budget is burning too fast",
+    ///                             },
+    ///                         },
+    ///                         Labels = new[]
+    ///                         {
+    ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnLabelArgs
+    ///                             {
+    ///                                 Key = "type",
+    ///                                 Value = "slo",
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// ```sh

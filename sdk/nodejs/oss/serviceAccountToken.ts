@@ -16,9 +16,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const test = new grafana.oss.ServiceAccount("test", {role: "Viewer"});
- * const foo = new grafana.oss.ServiceAccountToken("foo", {serviceAccountId: test.id});
+ * const test = new grafana.oss.ServiceAccount("test", {
+ *     name: "test-service-account",
+ *     role: "Viewer",
+ * });
+ * const foo = new grafana.oss.ServiceAccountToken("foo", {
+ *     name: "key_foo",
+ *     serviceAccountId: test.id,
+ * });
  * const bar = new grafana.oss.ServiceAccountToken("bar", {
+ *     name: "key_bar",
  *     serviceAccountId: test.id,
  *     secondsToLive: 30,
  * });

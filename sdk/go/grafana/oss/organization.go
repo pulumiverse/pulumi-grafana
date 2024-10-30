@@ -33,11 +33,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := oss.NewOrganization(ctx, "test", &oss.OrganizationArgs{
-//				AdminUser: pulumi.String("admin"),
+//				Name:        pulumi.String("Test Organization"),
+//				AdminUser:   pulumi.String("admin"),
+//				CreateUsers: pulumi.Bool(true),
 //				Admins: pulumi.StringArray{
 //					pulumi.String("admin@example.com"),
 //				},
-//				CreateUsers: pulumi.Bool(true),
 //				Editors: pulumi.StringArray{
 //					pulumi.String("editor-01@example.com"),
 //					pulumi.String("editor-02@example.com"),

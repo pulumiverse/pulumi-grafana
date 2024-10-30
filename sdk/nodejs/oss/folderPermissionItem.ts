@@ -15,24 +15,24 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const team = new grafana.oss.Team("team", {});
+ * const team = new grafana.oss.Team("team", {name: "Team Name"});
  * const user = new grafana.oss.User("user", {
  *     email: "user.name@example.com",
  *     login: "user.name",
  *     password: "my-password",
  * });
  * const collection = new grafana.oss.Folder("collection", {title: "Folder Title"});
- * const onRole = new grafana.oss.FolderPermissionItem("onRole", {
+ * const onRole = new grafana.oss.FolderPermissionItem("on_role", {
  *     folderUid: collection.uid,
  *     role: "Viewer",
  *     permission: "Edit",
  * });
- * const onTeam = new grafana.oss.FolderPermissionItem("onTeam", {
+ * const onTeam = new grafana.oss.FolderPermissionItem("on_team", {
  *     folderUid: collection.uid,
  *     team: team.id,
  *     permission: "View",
  * });
- * const onUser = new grafana.oss.FolderPermissionItem("onUser", {
+ * const onUser = new grafana.oss.FolderPermissionItem("on_user", {
  *     folderUid: collection.uid,
  *     user: user.id,
  *     permission: "Admin",

@@ -15,6 +15,52 @@ import (
 // * [Official documentation](https://grafana.com/docs/oncall/latest/integrations/)
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/onCall"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := onCall.NewIntegration(ctx, "test-acc-integration", &onCall.IntegrationArgs{
+//				Name:         pulumi.String("my integration"),
+//				Type:         pulumi.String("grafana"),
+//				DefaultRoute: nil,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Also it's possible to manage integration templates.
+//			// Check docs to see all available templates.
+//			_, err = onCall.NewIntegration(ctx, "integration_with_templates", &onCall.IntegrationArgs{
+//				Name:         pulumi.String("integration_with_templates"),
+//				Type:         pulumi.String("webhook"),
+//				DefaultRoute: nil,
+//				Templates: &oncall.IntegrationTemplatesArgs{
+//					GroupingKey: pulumi.String("{{ payload.group_id }}"),
+//					Slack: &oncall.IntegrationTemplatesSlackArgs{
+//						Title:    pulumi.String("Slack title"),
+//						Message:  pulumi.String("This is example of multiline template\n{{ payload.message }}\n"),
+//						ImageUrl: pulumi.String("{{ payload.image_url }}"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // ```sh

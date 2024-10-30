@@ -25,9 +25,7 @@ namespace Pulumiverse.Grafana
     /// {
     ///     var @default = new Grafana.OnCall.EscalationChain("default", new()
     ///     {
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         Provider = grafana.Oncall,
+    ///         Name = "default",
     ///     });
     /// 
     /// });

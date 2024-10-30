@@ -19,6 +19,109 @@ namespace Pulumiverse.Grafana
         /// * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
         /// * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
         /// * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = new Grafana.Slo.SLO("test", new()
+        ///     {
+        ///         Name = "Terraform Testing",
+        ///         Description = "Terraform Description",
+        ///         Queries = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOQueryArgs
+        ///             {
+        ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
+        ///                 {
+        ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+        ///                 },
+        ///                 Type = "freeform",
+        ///             },
+        ///         },
+        ///         Objectives = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
+        ///             {
+        ///                 Value = 0.995,
+        ///                 Window = "30d",
+        ///             },
+        ///         },
+        ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
+        ///         {
+        ///             Uid = "grafanacloud-prom",
+        ///         },
+        ///         Labels = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOLabelArgs
+        ///             {
+        ///                 Key = "custom",
+        ///                 Value = "value",
+        ///             },
+        ///         },
+        ///         Alertings = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOAlertingArgs
+        ///             {
+        ///                 Fastburns = new[]
+        ///                 {
+        ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
+        ///                     {
+        ///                         Annotations = new[]
+        ///                         {
+        ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
+        ///                             {
+        ///                                 Key = "name",
+        ///                                 Value = "Critical - SLO Burn Rate Alert",
+        ///                             },
+        ///                         },
+        ///                         Labels = new[]
+        ///                         {
+        ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnLabelArgs
+        ///                             {
+        ///                                 Key = "type",
+        ///                                 Value = "slo",
+        ///                             },
+        ///                         },
+        ///                     },
+        ///                 },
+        ///                 Slowburns = new[]
+        ///                 {
+        ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+        ///                     {
+        ///                         Annotations = new[]
+        ///                         {
+        ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
+        ///                             {
+        ///                                 Key = "name",
+        ///                                 Value = "Warning - SLO Burn Rate Alert",
+        ///                             },
+        ///                         },
+        ///                         Labels = new[]
+        ///                         {
+        ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnLabelArgs
+        ///                             {
+        ///                                 Key = "type",
+        ///                                 Value = "slo",
+        ///                             },
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var slos = Grafana.Slo.GetSlos.Invoke();
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetSlosResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSlosResult>("grafana:index/getSlos:getSlos", InvokeArgs.Empty, options.WithDefaults());
@@ -29,6 +132,109 @@ namespace Pulumiverse.Grafana
         /// * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
         /// * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
         /// * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = new Grafana.Slo.SLO("test", new()
+        ///     {
+        ///         Name = "Terraform Testing",
+        ///         Description = "Terraform Description",
+        ///         Queries = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOQueryArgs
+        ///             {
+        ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
+        ///                 {
+        ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+        ///                 },
+        ///                 Type = "freeform",
+        ///             },
+        ///         },
+        ///         Objectives = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
+        ///             {
+        ///                 Value = 0.995,
+        ///                 Window = "30d",
+        ///             },
+        ///         },
+        ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
+        ///         {
+        ///             Uid = "grafanacloud-prom",
+        ///         },
+        ///         Labels = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOLabelArgs
+        ///             {
+        ///                 Key = "custom",
+        ///                 Value = "value",
+        ///             },
+        ///         },
+        ///         Alertings = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOAlertingArgs
+        ///             {
+        ///                 Fastburns = new[]
+        ///                 {
+        ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
+        ///                     {
+        ///                         Annotations = new[]
+        ///                         {
+        ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
+        ///                             {
+        ///                                 Key = "name",
+        ///                                 Value = "Critical - SLO Burn Rate Alert",
+        ///                             },
+        ///                         },
+        ///                         Labels = new[]
+        ///                         {
+        ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnLabelArgs
+        ///                             {
+        ///                                 Key = "type",
+        ///                                 Value = "slo",
+        ///                             },
+        ///                         },
+        ///                     },
+        ///                 },
+        ///                 Slowburns = new[]
+        ///                 {
+        ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+        ///                     {
+        ///                         Annotations = new[]
+        ///                         {
+        ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
+        ///                             {
+        ///                                 Key = "name",
+        ///                                 Value = "Warning - SLO Burn Rate Alert",
+        ///                             },
+        ///                         },
+        ///                         Labels = new[]
+        ///                         {
+        ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnLabelArgs
+        ///                             {
+        ///                                 Key = "type",
+        ///                                 Value = "slo",
+        ///                             },
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var slos = Grafana.Slo.GetSlos.Invoke();
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetSlosResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSlosResult>("grafana:index/getSlos:getSlos", InvokeArgs.Empty, options.WithDefaults());

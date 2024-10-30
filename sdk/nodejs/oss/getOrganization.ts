@@ -16,6 +16,7 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.oss.Organization("test", {
+ *     name: "test-org",
  *     adminUser: "admin",
  *     createUsers: true,
  *     viewers: [
@@ -83,6 +84,7 @@ export interface GetOrganizationResult {
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.oss.Organization("test", {
+ *     name: "test-org",
  *     adminUser: "admin",
  *     createUsers: true,
  *     viewers: [

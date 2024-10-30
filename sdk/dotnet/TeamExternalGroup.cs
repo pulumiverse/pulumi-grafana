@@ -23,7 +23,10 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myTeam = new Grafana.Oss.Team("myTeam");
+    ///     var myTeam = new Grafana.Oss.Team("my_team", new()
+    ///     {
+    ///         Name = "My Team",
+    ///     });
     /// 
     ///     var test_team_group = new Grafana.Enterprise.TeamExternalGroup("test-team-group", new()
     ///     {

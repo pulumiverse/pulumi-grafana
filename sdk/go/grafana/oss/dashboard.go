@@ -33,7 +33,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testFolder, err := oss.NewFolder(ctx, "testFolder", &oss.FolderArgs{
+//			test, err := oss.NewFolder(ctx, "test", &oss.FolderArgs{
 //				Title: pulumi.String("My Folder"),
 //				Uid:   pulumi.String("my-folder-uid"),
 //			})
@@ -48,8 +48,8 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err = oss.NewDashboard(ctx, "testDashboard", &oss.DashboardArgs{
-//				Folder:     testFolder.Uid,
+//			_, err = oss.NewDashboard(ctx, "test", &oss.DashboardArgs{
+//				Folder:     test.Uid,
 //				ConfigJson: pulumi.String(json0),
 //			})
 //			if err != nil {

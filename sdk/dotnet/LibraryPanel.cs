@@ -29,6 +29,7 @@ namespace Pulumiverse.Grafana
     /// {
     ///     var test = new Grafana.Oss.LibraryPanel("test", new()
     ///     {
+    ///         Name = "panel",
     ///         ModelJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["gridPos"] = new Dictionary&lt;string, object?&gt;

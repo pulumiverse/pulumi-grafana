@@ -769,9 +769,10 @@ class CloudStack(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.cloud.Stack("test",
-            description="Test Grafana Cloud Stack",
+            name="gcloudstacktest",
+            slug="gcloudstacktest",
             region_slug="eu",
-            slug="gcloudstacktest")
+            description="Test Grafana Cloud Stack")
         ```
 
         ## Import
@@ -813,9 +814,10 @@ class CloudStack(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.cloud.Stack("test",
-            description="Test Grafana Cloud Stack",
+            name="gcloudstacktest",
+            slug="gcloudstacktest",
             region_slug="eu",
-            slug="gcloudstacktest")
+            description="Test Grafana Cloud Stack")
         ```
 
         ## Import

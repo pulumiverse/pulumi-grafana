@@ -144,7 +144,7 @@ class FolderPermission(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        team = grafana.oss.Team("team")
+        team = grafana.oss.Team("team", name="Team Name")
         user = grafana.oss.User("user",
             email="user.name@example.com",
             login="user.name",
@@ -201,7 +201,7 @@ class FolderPermission(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        team = grafana.oss.Team("team")
+        team = grafana.oss.Team("team", name="Team Name")
         user = grafana.oss.User("user",
             email="user.name@example.com",
             login="user.name",

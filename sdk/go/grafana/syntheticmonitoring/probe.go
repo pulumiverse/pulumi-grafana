@@ -34,12 +34,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := syntheticMonitoring.NewProbe(ctx, "main", &syntheticMonitoring.ProbeArgs{
-//				Labels: pulumi.StringMap{
-//					"type": pulumi.String("mountain"),
-//				},
+//				Name:      pulumi.String("Mount Everest"),
 //				Latitude:  pulumi.Float64(27.98606),
 //				Longitude: pulumi.Float64(86.92262),
 //				Region:    pulumi.String("APAC"),
+//				Labels: pulumi.StringMap{
+//					"type": pulumi.String("mountain"),
+//				},
 //			})
 //			if err != nil {
 //				return err

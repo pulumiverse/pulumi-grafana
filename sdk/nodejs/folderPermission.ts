@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const team = new grafana.oss.Team("team", {});
+ * const team = new grafana.oss.Team("team", {name: "Team Name"});
  * const user = new grafana.oss.User("user", {
  *     email: "user.name@example.com",
  *     login: "user.name",

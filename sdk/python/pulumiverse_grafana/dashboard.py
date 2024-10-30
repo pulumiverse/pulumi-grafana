@@ -279,11 +279,11 @@ class Dashboard(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        test_folder = grafana.oss.Folder("testFolder",
+        test = grafana.oss.Folder("test",
             title="My Folder",
             uid="my-folder-uid")
-        test_dashboard = grafana.oss.Dashboard("testDashboard",
-            folder=test_folder.uid,
+        test_dashboard = grafana.oss.Dashboard("test",
+            folder=test.uid,
             config_json=json.dumps({
                 "title": "My Dashboard",
                 "uid": "my-dashboard-uid",
@@ -327,11 +327,11 @@ class Dashboard(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        test_folder = grafana.oss.Folder("testFolder",
+        test = grafana.oss.Folder("test",
             title="My Folder",
             uid="my-folder-uid")
-        test_dashboard = grafana.oss.Dashboard("testDashboard",
-            folder=test_folder.uid,
+        test_dashboard = grafana.oss.Dashboard("test",
+            folder=test.uid,
             config_json=json.dumps({
                 "title": "My Dashboard",
                 "uid": "my-dashboard-uid",

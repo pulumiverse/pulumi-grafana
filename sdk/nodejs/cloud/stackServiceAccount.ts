@@ -22,10 +22,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const cloudSa = new grafana.cloud.StackServiceAccount("cloudSa", {
- *     isDisabled: false,
- *     role: "Admin",
+ * const cloudSa = new grafana.cloud.StackServiceAccount("cloud_sa", {
  *     stackSlug: "<your stack slug>",
+ *     name: "cloud service account",
+ *     role: "Admin",
+ *     isDisabled: false,
  * });
  * ```
  *

@@ -6,6 +6,24 @@ import * as utilities from "./utilities";
 
 /**
  * Data source for Grafana Stack
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const testStack = new grafana.cloud.Stack("test", {
+ *     name: "gcloudstacktest",
+ *     slug: "gcloudstacktest",
+ *     regionSlug: "eu",
+ *     description: "Test Grafana Cloud Stack",
+ * });
+ * const test = grafana.cloud.getStackOutput({
+ *     slug: testStack.slug,
+ * });
+ * ```
  */
 /** @deprecated grafana.index/getcloudstack.getCloudStack has been deprecated in favor of grafana.cloud/getstack.getStack */
 export function getCloudStack(args: GetCloudStackArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudStackResult> {
@@ -147,6 +165,24 @@ export interface GetCloudStackResult {
 }
 /**
  * Data source for Grafana Stack
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const testStack = new grafana.cloud.Stack("test", {
+ *     name: "gcloudstacktest",
+ *     slug: "gcloudstacktest",
+ *     regionSlug: "eu",
+ *     description: "Test Grafana Cloud Stack",
+ * });
+ * const test = grafana.cloud.getStackOutput({
+ *     slug: testStack.slug,
+ * });
+ * ```
  */
 /** @deprecated grafana.index/getcloudstack.getCloudStack has been deprecated in favor of grafana.cloud/getstack.getStack */
 export function getCloudStackOutput(args: GetCloudStackOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudStackResult> {

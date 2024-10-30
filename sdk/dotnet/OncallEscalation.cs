@@ -14,66 +14,6 @@ namespace Pulumiverse.Grafana
     /// * [Official documentation](https://grafana.com/docs/oncall/latest/configure/escalation-chains-and-routes/)
     /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_policies/)
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var @default = new Grafana.OnCall.EscalationChain("default", new()
-    ///     {
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         Provider = grafana.Oncall,
-    ///     });
-    /// 
-    ///     var alex = Grafana.OnCall.GetUser.Invoke(new()
-    ///     {
-    ///         Username = "alex",
-    ///     });
-    /// 
-    ///     // Notify step
-    ///     var exampleNotifyStepEscalation = new Grafana.OnCall.Escalation("exampleNotifyStepEscalation", new()
-    ///     {
-    ///         EscalationChainId = @default.Id,
-    ///         Type = "notify_persons",
-    ///         PersonsToNotifies = new[]
-    ///         {
-    ///             alex.Apply(getUserResult =&gt; getUserResult.Id),
-    ///         },
-    ///         Position = 0,
-    ///     });
-    /// 
-    ///     // Wait step
-    ///     var exampleNotifyStepOnCall_escalationEscalation = new Grafana.OnCall.Escalation("exampleNotifyStepOnCall/escalationEscalation", new()
-    ///     {
-    ///         EscalationChainId = @default.Id,
-    ///         Type = "wait",
-    ///         Duration = 300,
-    ///         Position = 1,
-    ///     });
-    /// 
-    ///     // Important step
-    ///     var exampleNotifyStepGrafanaOnCall_escalationEscalation = new Grafana.OnCall.Escalation("exampleNotifyStepGrafanaOnCall/escalationEscalation", new()
-    ///     {
-    ///         EscalationChainId = @default.Id,
-    ///         Type = "notify_persons",
-    ///         Important = true,
-    ///         PersonsToNotifies = new[]
-    ///         {
-    ///             alex.Apply(getUserResult =&gt; getUserResult.Id),
-    ///         },
-    ///         Position = 0,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// ```sh

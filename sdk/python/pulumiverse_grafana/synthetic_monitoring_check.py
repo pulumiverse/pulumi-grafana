@@ -405,7 +405,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             job="DNS Defaults",
             target="grafana.com",
             enabled=False,
-            probes=[main.probes["Atlanta"]],
+            probes=[main.probes["atlanta"]],
             labels={
                 "foo": "bar",
             },
@@ -427,8 +427,8 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             target="grafana.net",
             enabled=False,
             probes=[
-                main.probes["Frankfurt"],
-                main.probes["London"],
+                main.probes["frankfurt"],
+                main.probes["london"],
             ],
             labels={
                 "foo": "baz",
@@ -472,7 +472,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             job="HTTP Defaults",
             target="https://grafana.com",
             enabled=False,
-            probes=[main.probes["Atlanta"]],
+            probes=[main.probes["atlanta"]],
             labels={
                 "foo": "bar",
             },
@@ -494,8 +494,8 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             target="https://grafana.org",
             enabled=False,
             probes=[
-                main.probes["Bangalore"],
-                main.probes["Mumbai"],
+                main.probes["bangalore"],
+                main.probes["mumbai"],
             ],
             labels={
                 "foo": "bar",
@@ -579,7 +579,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             job="Ping Defaults",
             target="grafana.com",
             enabled=False,
-            probes=[main.probes["Atlanta"]],
+            probes=[main.probes["atlanta"]],
             labels={
                 "foo": "bar",
             },
@@ -601,8 +601,8 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             target="grafana.net",
             enabled=False,
             probes=[
-                main.probes["Frankfurt"],
-                main.probes["London"],
+                main.probes["frankfurt"],
+                main.probes["london"],
             ],
             labels={
                 "foo": "baz",
@@ -628,7 +628,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             job="TCP Defaults",
             target="grafana.com:80",
             enabled=False,
-            probes=[main.probes["Atlanta"]],
+            probes=[main.probes["atlanta"]],
             labels={
                 "foo": "bar",
             },
@@ -650,8 +650,8 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             target="grafana.com:443",
             enabled=False,
             probes=[
-                main.probes["Frankfurt"],
-                main.probes["London"],
+                main.probes["frankfurt"],
+                main.probes["london"],
             ],
             labels={
                 "foo": "baz",
@@ -720,7 +720,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             enabled=False,
             frequency=120000,
             timeout=30000,
-            probes=[main.probes["Atlanta"]],
+            probes=[main.probes["atlanta"]],
             labels={
                 "foo": "bar",
             },
@@ -744,8 +744,8 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             frequency=120000,
             timeout=30000,
             probes=[
-                main.probes["Frankfurt"],
-                main.probes["London"],
+                main.probes["frankfurt"],
+                main.probes["london"],
             ],
             labels={
                 "foo": "baz",
@@ -807,7 +807,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             job="DNS Defaults",
             target="grafana.com",
             enabled=False,
-            probes=[main.probes["Atlanta"]],
+            probes=[main.probes["atlanta"]],
             labels={
                 "foo": "bar",
             },
@@ -829,8 +829,8 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             target="grafana.net",
             enabled=False,
             probes=[
-                main.probes["Frankfurt"],
-                main.probes["London"],
+                main.probes["frankfurt"],
+                main.probes["london"],
             ],
             labels={
                 "foo": "baz",
@@ -874,7 +874,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             job="HTTP Defaults",
             target="https://grafana.com",
             enabled=False,
-            probes=[main.probes["Atlanta"]],
+            probes=[main.probes["atlanta"]],
             labels={
                 "foo": "bar",
             },
@@ -896,8 +896,8 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             target="https://grafana.org",
             enabled=False,
             probes=[
-                main.probes["Bangalore"],
-                main.probes["Mumbai"],
+                main.probes["bangalore"],
+                main.probes["mumbai"],
             ],
             labels={
                 "foo": "bar",
@@ -981,7 +981,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             job="Ping Defaults",
             target="grafana.com",
             enabled=False,
-            probes=[main.probes["Atlanta"]],
+            probes=[main.probes["atlanta"]],
             labels={
                 "foo": "bar",
             },
@@ -1003,8 +1003,8 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             target="grafana.net",
             enabled=False,
             probes=[
-                main.probes["Frankfurt"],
-                main.probes["London"],
+                main.probes["frankfurt"],
+                main.probes["london"],
             ],
             labels={
                 "foo": "baz",
@@ -1030,7 +1030,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             job="TCP Defaults",
             target="grafana.com:80",
             enabled=False,
-            probes=[main.probes["Atlanta"]],
+            probes=[main.probes["atlanta"]],
             labels={
                 "foo": "bar",
             },
@@ -1052,8 +1052,8 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             target="grafana.com:443",
             enabled=False,
             probes=[
-                main.probes["Frankfurt"],
-                main.probes["London"],
+                main.probes["frankfurt"],
+                main.probes["london"],
             ],
             labels={
                 "foo": "baz",
@@ -1122,7 +1122,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             enabled=False,
             frequency=120000,
             timeout=30000,
-            probes=[main.probes["Atlanta"]],
+            probes=[main.probes["atlanta"]],
             labels={
                 "foo": "bar",
             },
@@ -1146,8 +1146,8 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             frequency=120000,
             timeout=30000,
             probes=[
-                main.probes["Frankfurt"],
-                main.probes["London"],
+                main.probes["frankfurt"],
+                main.probes["london"],
             ],
             labels={
                 "foo": "baz",

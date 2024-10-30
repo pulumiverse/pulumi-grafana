@@ -147,14 +147,15 @@ class ServiceAccountPermission(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.oss.ServiceAccount("test",
+            name="sa-terraform-test",
             role="Editor",
             is_disabled=False)
-        test_team = grafana.oss.Team("testTeam")
-        test_user = grafana.oss.User("testUser",
+        test_team = grafana.oss.Team("test_team", name="tf_test_team")
+        test_user = grafana.oss.User("test_user",
             email="tf_user@test.com",
             login="tf_user@test.com",
             password="password")
-        test_permissions = grafana.oss.ServiceAccountPermission("testPermissions",
+        test_permissions = grafana.oss.ServiceAccountPermission("test_permissions",
             service_account_id=test.id,
             permissions=[
                 grafana.oss.ServiceAccountPermissionPermissionArgs(
@@ -204,14 +205,15 @@ class ServiceAccountPermission(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.oss.ServiceAccount("test",
+            name="sa-terraform-test",
             role="Editor",
             is_disabled=False)
-        test_team = grafana.oss.Team("testTeam")
-        test_user = grafana.oss.User("testUser",
+        test_team = grafana.oss.Team("test_team", name="tf_test_team")
+        test_user = grafana.oss.User("test_user",
             email="tf_user@test.com",
             login="tf_user@test.com",
             password="password")
-        test_permissions = grafana.oss.ServiceAccountPermission("testPermissions",
+        test_permissions = grafana.oss.ServiceAccountPermission("test_permissions",
             service_account_id=test.id,
             permissions=[
                 grafana.oss.ServiceAccountPermissionPermissionArgs(

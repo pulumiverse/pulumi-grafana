@@ -16,17 +16,20 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const test = new grafana.oss.LibraryPanel("test", {modelJson: JSON.stringify({
- *     gridPos: {
- *         x: 0,
- *         y: 0,
- *         h: 10,
- *         w: 10,
- *     },
- *     title: "panel",
- *     type: "text",
- *     version: 0,
- * })});
+ * const test = new grafana.oss.LibraryPanel("test", {
+ *     name: "panel",
+ *     modelJson: JSON.stringify({
+ *         gridPos: {
+ *             x: 0,
+ *             y: 0,
+ *             h: 10,
+ *             w: 10,
+ *         },
+ *         title: "panel",
+ *         type: "text",
+ *         version: 0,
+ *     }),
+ * });
  * ```
  *
  * ## Import

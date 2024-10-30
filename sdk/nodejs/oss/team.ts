@@ -17,11 +17,13 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const viewer = new grafana.oss.User("viewer", {
+ *     name: "Viewer",
  *     email: "viewer@example.com",
  *     login: "viewer",
  *     password: "my-password",
  * });
  * const test_team = new grafana.oss.Team("test-team", {
+ *     name: "Test Team",
  *     email: "teamemail@example.com",
  *     members: [viewer.email],
  * });

@@ -14,6 +14,47 @@ namespace Pulumiverse.Grafana.OnCall
     /// * [Official documentation](https://grafana.com/docs/oncall/latest/integrations/)
     /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test_acc_integration = new Grafana.OnCall.Integration("test-acc-integration", new()
+    ///     {
+    ///         Name = "my integration",
+    ///         Type = "grafana",
+    ///         DefaultRoute = null,
+    ///     });
+    /// 
+    ///     // Also it's possible to manage integration templates.
+    ///     // Check docs to see all available templates.
+    ///     var integrationWithTemplates = new Grafana.OnCall.Integration("integration_with_templates", new()
+    ///     {
+    ///         Name = "integration_with_templates",
+    ///         Type = "webhook",
+    ///         DefaultRoute = null,
+    ///         Templates = new Grafana.OnCall.Inputs.IntegrationTemplatesArgs
+    ///         {
+    ///             GroupingKey = "{{ payload.group_id }}",
+    ///             Slack = new Grafana.OnCall.Inputs.IntegrationTemplatesSlackArgs
+    ///             {
+    ///                 Title = "Slack title",
+    ///                 Message = @"This is example of multiline template
+    /// {{ payload.message }}
+    /// ",
+    ///                 ImageUrl = "{{ payload.image_url }}",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// ```sh

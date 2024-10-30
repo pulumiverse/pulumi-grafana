@@ -31,8 +31,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := oss.NewUser(ctx, "testAllUsers", &oss.UserArgs{
+//			_, err := oss.NewUser(ctx, "test_all_users", &oss.UserArgs{
 //				Email:    pulumi.String("all_users@example.com"),
+//				Name:     pulumi.String("Testing grafana_users"),
 //				Login:    pulumi.String("test-grafana-users"),
 //				Password: pulumi.String("my-password"),
 //			})

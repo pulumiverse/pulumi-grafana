@@ -37,23 +37,25 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			lokiDataSource, err := oss.NewDataSource(ctx, "lokiDataSource", &oss.DataSourceArgs{
+//			loki, err := oss.NewDataSource(ctx, "loki", &oss.DataSourceArgs{
 //				Type: pulumi.String("loki"),
+//				Name: pulumi.String("loki"),
 //				Url:  pulumi.String("http://localhost:3100"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			tempoDataSource, err := oss.NewDataSource(ctx, "tempoDataSource", &oss.DataSourceArgs{
+//			tempo, err := oss.NewDataSource(ctx, "tempo", &oss.DataSourceArgs{
 //				Type: pulumi.String("tempo"),
+//				Name: pulumi.String("tempo"),
 //				Url:  pulumi.String("http://localhost:3200"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oss.NewDataSourceConfig(ctx, "lokiDataSourceConfig", &oss.DataSourceConfigArgs{
-//				Uid: lokiDataSource.Uid,
-//				JsonDataEncoded: tempoDataSource.Uid.ApplyT(func(uid string) (pulumi.String, error) {
+//			_, err = oss.NewDataSourceConfig(ctx, "loki", &oss.DataSourceConfigArgs{
+//				Uid: loki.Uid,
+//				JsonDataEncoded: tempo.Uid.ApplyT(func(uid string) (pulumi.String, error) {
 //					var _zero pulumi.String
 //					tmpJSON0, err := json.Marshal(map[string]interface{}{
 //						"derivedFields": []map[string]interface{}{
@@ -76,9 +78,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oss.NewDataSourceConfig(ctx, "tempoDataSourceConfig", &oss.DataSourceConfigArgs{
-//				Uid: tempoDataSource.Uid,
-//				JsonDataEncoded: lokiDataSource.Uid.ApplyT(func(uid string) (pulumi.String, error) {
+//			_, err = oss.NewDataSourceConfig(ctx, "tempo", &oss.DataSourceConfigArgs{
+//				Uid: tempo.Uid,
+//				JsonDataEncoded: loki.Uid.ApplyT(func(uid string) (pulumi.String, error) {
 //					var _zero pulumi.String
 //					tmpJSON1, err := json.Marshal(map[string]interface{}{
 //						"tracesToLogsV2": map[string]interface{}{

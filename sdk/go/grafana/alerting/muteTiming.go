@@ -32,32 +32,33 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := alerting.NewMuteTiming(ctx, "myMuteTiming", &alerting.MuteTimingArgs{
+//			_, err := alerting.NewMuteTiming(ctx, "my_mute_timing", &alerting.MuteTimingArgs{
+//				Name: pulumi.String("My Mute Timing"),
 //				Intervals: alerting.MuteTimingIntervalArray{
 //					&alerting.MuteTimingIntervalArgs{
-//						DaysOfMonths: pulumi.StringArray{
-//							pulumi.String("1:7"),
-//							pulumi.String("-1"),
-//						},
-//						Location: pulumi.String("America/New_York"),
-//						Months: pulumi.StringArray{
-//							pulumi.String("1:3"),
-//							pulumi.String("december"),
-//						},
 //						Times: alerting.MuteTimingIntervalTimeArray{
 //							&alerting.MuteTimingIntervalTimeArgs{
-//								End:   pulumi.String("14:17"),
 //								Start: pulumi.String("04:56"),
+//								End:   pulumi.String("14:17"),
 //							},
 //						},
 //						Weekdays: pulumi.StringArray{
 //							pulumi.String("monday"),
 //							pulumi.String("tuesday:thursday"),
 //						},
+//						DaysOfMonths: pulumi.StringArray{
+//							pulumi.String("1:7"),
+//							pulumi.String("-1"),
+//						},
+//						Months: pulumi.StringArray{
+//							pulumi.String("1:3"),
+//							pulumi.String("december"),
+//						},
 //						Years: pulumi.StringArray{
 //							pulumi.String("2030"),
 //							pulumi.String("2025:2026"),
 //						},
+//						Location: pulumi.String("America/New_York"),
 //					},
 //				},
 //			})

@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  *     job: "DNS Defaults",
  *     target: "grafana.com",
  *     enabled: false,
- *     probes: [main.then(main => main.probes?.Atlanta)],
+ *     probes: [main.then(main => main.probes?.atlanta)],
  *     labels: {
  *         foo: "bar",
  *     },
@@ -52,8 +52,8 @@ import * as utilities from "./utilities";
  *     target: "grafana.net",
  *     enabled: false,
  *     probes: [
- *         main.then(main => main.probes?.Frankfurt),
- *         main.then(main => main.probes?.London),
+ *         main.then(main => main.probes?.frankfurt),
+ *         main.then(main => main.probes?.london),
  *     ],
  *     labels: {
  *         foo: "baz",
@@ -98,7 +98,7 @@ import * as utilities from "./utilities";
  *     job: "HTTP Defaults",
  *     target: "https://grafana.com",
  *     enabled: false,
- *     probes: [main.then(main => main.probes?.Atlanta)],
+ *     probes: [main.then(main => main.probes?.atlanta)],
  *     labels: {
  *         foo: "bar",
  *     },
@@ -121,8 +121,8 @@ import * as utilities from "./utilities";
  *     target: "https://grafana.org",
  *     enabled: false,
  *     probes: [
- *         main.then(main => main.probes?.Bangalore),
- *         main.then(main => main.probes?.Mumbai),
+ *         main.then(main => main.probes?.bangalore),
+ *         main.then(main => main.probes?.mumbai),
  *     ],
  *     labels: {
  *         foo: "bar",
@@ -207,7 +207,7 @@ import * as utilities from "./utilities";
  *     job: "Ping Defaults",
  *     target: "grafana.com",
  *     enabled: false,
- *     probes: [main.then(main => main.probes?.Atlanta)],
+ *     probes: [main.then(main => main.probes?.atlanta)],
  *     labels: {
  *         foo: "bar",
  *     },
@@ -230,8 +230,8 @@ import * as utilities from "./utilities";
  *     target: "grafana.net",
  *     enabled: false,
  *     probes: [
- *         main.then(main => main.probes?.Frankfurt),
- *         main.then(main => main.probes?.London),
+ *         main.then(main => main.probes?.frankfurt),
+ *         main.then(main => main.probes?.london),
  *     ],
  *     labels: {
  *         foo: "baz",
@@ -258,7 +258,7 @@ import * as utilities from "./utilities";
  *     job: "TCP Defaults",
  *     target: "grafana.com:80",
  *     enabled: false,
- *     probes: [main.then(main => main.probes?.Atlanta)],
+ *     probes: [main.then(main => main.probes?.atlanta)],
  *     labels: {
  *         foo: "bar",
  *     },
@@ -281,8 +281,8 @@ import * as utilities from "./utilities";
  *     target: "grafana.com:443",
  *     enabled: false,
  *     probes: [
- *         main.then(main => main.probes?.Frankfurt),
- *         main.then(main => main.probes?.London),
+ *         main.then(main => main.probes?.frankfurt),
+ *         main.then(main => main.probes?.london),
  *     ],
  *     labels: {
  *         foo: "baz",
@@ -352,7 +352,7 @@ import * as utilities from "./utilities";
  *     enabled: false,
  *     frequency: 120000,
  *     timeout: 30000,
- *     probes: [main.then(main => main.probes?.Atlanta)],
+ *     probes: [main.then(main => main.probes?.atlanta)],
  *     labels: {
  *         foo: "bar",
  *     },
@@ -377,8 +377,8 @@ import * as utilities from "./utilities";
  *     frequency: 120000,
  *     timeout: 30000,
  *     probes: [
- *         main.then(main => main.probes?.Frankfurt),
- *         main.then(main => main.probes?.London),
+ *         main.then(main => main.probes?.frankfurt),
+ *         main.then(main => main.probes?.london),
  *     ],
  *     labels: {
  *         foo: "baz",

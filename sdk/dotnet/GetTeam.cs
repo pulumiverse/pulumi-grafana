@@ -30,6 +30,7 @@ namespace Pulumiverse.Grafana
         /// {
         ///     var test = new Grafana.Oss.Team("test", new()
         ///     {
+        ///         Name = "test-team",
         ///         Email = "test-team-email@test.com",
         ///         Preferences = new Grafana.Oss.Inputs.TeamPreferencesArgs
         ///         {
@@ -66,6 +67,7 @@ namespace Pulumiverse.Grafana
         /// {
         ///     var test = new Grafana.Oss.Team("test", new()
         ///     {
+        ///         Name = "test-team",
         ///         Email = "test-team-email@test.com",
         ///         Preferences = new Grafana.Oss.Inputs.TeamPreferencesArgs
         ///         {

@@ -13,52 +13,6 @@ namespace Pulumiverse.Grafana.OnCall
     /// <summary>
     /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var exampleSlackChannel = Grafana.OnCall.GetSlackChannel.Invoke(new()
-    ///     {
-    ///         Name = "example_slack_channel",
-    ///     });
-    /// 
-    ///     var exampleUserGroup = Grafana.OnCall.GetUserGroup.Invoke(new()
-    ///     {
-    ///         SlackHandle = "example_slack_handle",
-    ///     });
-    /// 
-    ///     // ICal based schedule
-    ///     var exampleScheduleSchedule = new Grafana.OnCall.Schedule("exampleScheduleSchedule", new()
-    ///     {
-    ///         Type = "ical",
-    ///         IcalUrlPrimary = "https://example.com/example_ical.ics",
-    ///         IcalUrlOverrides = "https://example.com/example_overrides_ical.ics",
-    ///         Slack = new Grafana.OnCall.Inputs.ScheduleSlackArgs
-    ///         {
-    ///             ChannelId = exampleSlackChannel.Apply(getSlackChannelResult =&gt; getSlackChannelResult.SlackId),
-    ///             UserGroupId = exampleUserGroup.Apply(getUserGroupResult =&gt; getUserGroupResult.SlackId),
-    ///         },
-    ///     });
-    /// 
-    ///     // Shift based schedule
-    ///     var exampleScheduleOnCall_scheduleSchedule = new Grafana.OnCall.Schedule("exampleScheduleOnCall/scheduleSchedule", new()
-    ///     {
-    ///         Type = "calendar",
-    ///         TimeZone = "America/New_York",
-    ///         Shifts = new[] {},
-    ///         IcalUrlOverrides = "https://example.com/example_overrides_ical.ics",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// ```sh

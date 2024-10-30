@@ -441,17 +441,18 @@ class Report(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        test_dashboard = grafana.oss.Dashboard("testDashboard",
+        test = grafana.oss.Dashboard("test",
             config_json=\"\"\"{
           "uid": "report-dashboard",
           "title": "report-dashboard"
         }
         \"\"\",
             message="inital commit.")
-        test_report = grafana.enterprise.Report("testReport",
+        test_report = grafana.enterprise.Report("test",
+            name="my report",
             recipients=["some@email.com"],
             dashboards=[grafana.enterprise.ReportDashboardArgs(
-                uid=test_dashboard.uid,
+                uid=test.uid,
             )],
             schedule=grafana.enterprise.ReportScheduleArgs(
                 frequency="hourly",
@@ -501,17 +502,18 @@ class Report(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        test_dashboard = grafana.oss.Dashboard("testDashboard",
+        test = grafana.oss.Dashboard("test",
             config_json=\"\"\"{
           "uid": "report-dashboard",
           "title": "report-dashboard"
         }
         \"\"\",
             message="inital commit.")
-        test_report = grafana.enterprise.Report("testReport",
+        test_report = grafana.enterprise.Report("test",
+            name="my report",
             recipients=["some@email.com"],
             dashboards=[grafana.enterprise.ReportDashboardArgs(
-                uid=test_dashboard.uid,
+                uid=test.uid,
             )],
             schedule=grafana.enterprise.ReportScheduleArgs(
                 frequency="hourly",

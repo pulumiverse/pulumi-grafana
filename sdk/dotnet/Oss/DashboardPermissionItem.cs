@@ -24,9 +24,12 @@ namespace Pulumiverse.Grafana.Oss
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var teamTeam = new Grafana.Oss.Team("teamTeam");
+    ///     var team = new Grafana.Oss.Team("team", new()
+    ///     {
+    ///         Name = "Team Name",
+    ///     });
     /// 
-    ///     var userUser = new Grafana.Oss.User("userUser", new()
+    ///     var user = new Grafana.Oss.User("user", new()
     ///     {
     ///         Email = "user.name@example.com",
     ///         Password = "my-password",
@@ -49,17 +52,17 @@ namespace Pulumiverse.Grafana.Oss
     ///         Permission = "View",
     ///     });
     /// 
-    ///     var userDashboardPermissionItem = new Grafana.Oss.DashboardPermissionItem("userDashboardPermissionItem", new()
+    ///     var userDashboardPermissionItem = new Grafana.Oss.DashboardPermissionItem("user", new()
     ///     {
     ///         DashboardUid = dashboard.Uid,
-    ///         User = userUser.Id,
+    ///         User = user.Id,
     ///         Permission = "Admin",
     ///     });
     /// 
-    ///     var teamDashboardPermissionItem = new Grafana.Oss.DashboardPermissionItem("teamDashboardPermissionItem", new()
+    ///     var teamDashboardPermissionItem = new Grafana.Oss.DashboardPermissionItem("team", new()
     ///     {
     ///         DashboardUid = dashboard.Uid,
-    ///         Team = teamTeam.Id,
+    ///         Team = team.Id,
     ///         Permission = "Edit",
     ///     });
     /// 

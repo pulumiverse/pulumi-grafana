@@ -36,8 +36,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			cloudSa, err := cloud.NewStackServiceAccount(ctx, "cloudSa", &cloud.StackServiceAccountArgs{
+//			cloudSa, err := cloud.NewStackServiceAccount(ctx, "cloud_sa", &cloud.StackServiceAccountArgs{
 //				StackSlug:  pulumi.String("<your stack slug>"),
+//				Name:       pulumi.String("cloud service account"),
 //				Role:       pulumi.String("Admin"),
 //				IsDisabled: pulumi.Bool(false),
 //			})
@@ -45,6 +46,7 @@ import (
 //				return err
 //			}
 //			foo, err := cloud.NewStackServiceAccountToken(ctx, "foo", &cloud.StackServiceAccountTokenArgs{
+//				Name:             pulumi.String("key_foo"),
 //				ServiceAccountId: cloudSa.ID(),
 //			})
 //			if err != nil {

@@ -144,9 +144,10 @@ class DataSourcePermission(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        team = grafana.oss.Team("team")
+        team = grafana.oss.Team("team", name="Team Name")
         foo = grafana.oss.DataSource("foo",
             type="cloudwatch",
+            name="cw-example",
             json_data_encoded=json.dumps({
                 "defaultRegion": "us-east-1",
                 "authType": "keys",
@@ -156,10 +157,13 @@ class DataSourcePermission(pulumi.CustomResource):
                 "secretKey": "456",
             }))
         user = grafana.oss.User("user",
+            name="test-ds-permissions",
             email="test-ds-permissions@example.com",
             login="test-ds-permissions",
             password="hunter2")
-        sa = grafana.oss.ServiceAccount("sa", role="Viewer")
+        sa = grafana.oss.ServiceAccount("sa",
+            name="test-ds-permissions",
+            role="Viewer")
         foo_permissions = grafana.enterprise.DataSourcePermission("fooPermissions",
             datasource_uid=foo.uid,
             permissions=[
@@ -215,9 +219,10 @@ class DataSourcePermission(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        team = grafana.oss.Team("team")
+        team = grafana.oss.Team("team", name="Team Name")
         foo = grafana.oss.DataSource("foo",
             type="cloudwatch",
+            name="cw-example",
             json_data_encoded=json.dumps({
                 "defaultRegion": "us-east-1",
                 "authType": "keys",
@@ -227,10 +232,13 @@ class DataSourcePermission(pulumi.CustomResource):
                 "secretKey": "456",
             }))
         user = grafana.oss.User("user",
+            name="test-ds-permissions",
             email="test-ds-permissions@example.com",
             login="test-ds-permissions",
             password="hunter2")
-        sa = grafana.oss.ServiceAccount("sa", role="Viewer")
+        sa = grafana.oss.ServiceAccount("sa",
+            name="test-ds-permissions",
+            role="Viewer")
         foo_permissions = grafana.enterprise.DataSourcePermission("fooPermissions",
             datasource_uid=foo.uid,
             permissions=[

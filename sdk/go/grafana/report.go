@@ -32,20 +32,21 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testDashboard, err := oss.NewDashboard(ctx, "testDashboard", &oss.DashboardArgs{
+//			test, err := oss.NewDashboard(ctx, "test", &oss.DashboardArgs{
 //				ConfigJson: pulumi.String("{\n  \"uid\": \"report-dashboard\",\n  \"title\": \"report-dashboard\"\n}\n"),
 //				Message:    pulumi.String("inital commit."),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = enterprise.NewReport(ctx, "testReport", &enterprise.ReportArgs{
+//			_, err = enterprise.NewReport(ctx, "test", &enterprise.ReportArgs{
+//				Name: pulumi.String("my report"),
 //				Recipients: pulumi.StringArray{
 //					pulumi.String("some@email.com"),
 //				},
 //				Dashboards: enterprise.ReportDashboardArray{
 //					&enterprise.ReportDashboardArgs{
-//						Uid: testDashboard.Uid,
+//						Uid: test.Uid,
 //					},
 //				},
 //				Schedule: &enterprise.ReportScheduleArgs{

@@ -19,9 +19,10 @@ import * as utilities from "./utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.oss.Organization("test", {
+ *     name: "Test Organization",
  *     adminUser: "admin",
- *     admins: ["admin@example.com"],
  *     createUsers: true,
+ *     admins: ["admin@example.com"],
  *     editors: [
  *         "editor-01@example.com",
  *         "editor-02@example.com",

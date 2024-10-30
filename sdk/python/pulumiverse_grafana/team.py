@@ -294,10 +294,12 @@ class Team(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         viewer = grafana.oss.User("viewer",
+            name="Viewer",
             email="viewer@example.com",
             login="viewer",
             password="my-password")
         test_team = grafana.oss.Team("test-team",
+            name="Test Team",
             email="teamemail@example.com",
             members=[viewer.email])
         ```
@@ -340,10 +342,12 @@ class Team(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         viewer = grafana.oss.User("viewer",
+            name="Viewer",
             email="viewer@example.com",
             login="viewer",
             password="my-password")
         test_team = grafana.oss.Team("test-team",
+            name="Test Team",
             email="teamemail@example.com",
             members=[viewer.email])
         ```

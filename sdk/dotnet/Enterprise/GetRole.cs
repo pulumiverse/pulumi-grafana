@@ -31,6 +31,7 @@ namespace Pulumiverse.Grafana.Enterprise
         /// {
         ///     var test = new Grafana.Enterprise.Role("test", new()
         ///     {
+        ///         Name = "test-role",
         ///         Description = "test-role description",
         ///         Uid = "test-ds-role-uid",
         ///         Version = 1,
@@ -86,6 +87,7 @@ namespace Pulumiverse.Grafana.Enterprise
         /// {
         ///     var test = new Grafana.Enterprise.Role("test", new()
         ///     {
+        ///         Name = "test-role",
         ///         Description = "test-role description",
         ///         Uid = "test-ds-role-uid",
         ///         Version = 1,

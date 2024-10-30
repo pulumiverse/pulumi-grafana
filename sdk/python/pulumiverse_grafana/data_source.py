@@ -515,6 +515,7 @@ class DataSource(pulumi.CustomResource):
 
         arbitrary_data = grafana.oss.DataSource("arbitrary-data",
             type="stackdriver",
+            name="sd-arbitrary-data",
             json_data_encoded=json.dumps({
                 "tokenUri": "https://oauth2.googleapis.com/token",
                 "authenticationType": "jwt",
@@ -529,6 +530,7 @@ class DataSource(pulumi.CustomResource):
             }))
         influxdb = grafana.oss.DataSource("influxdb",
             type="influxdb",
+            name="myapp-metrics",
             url="http://influxdb.example.net:8086/",
             basic_auth_enabled=True,
             basic_auth_username="username",
@@ -539,6 +541,7 @@ class DataSource(pulumi.CustomResource):
             }))
         cloudwatch = grafana.oss.DataSource("cloudwatch",
             type="cloudwatch",
+            name="cw-example",
             json_data_encoded=json.dumps({
                 "defaultRegion": "us-east-1",
                 "authType": "keys",
@@ -549,6 +552,7 @@ class DataSource(pulumi.CustomResource):
             }))
         prometheus = grafana.oss.DataSource("prometheus",
             type="prometheus",
+            name="mimir",
             url="https://my-instances.com",
             basic_auth_enabled=True,
             basic_auth_username="username",
@@ -611,6 +615,7 @@ class DataSource(pulumi.CustomResource):
 
         arbitrary_data = grafana.oss.DataSource("arbitrary-data",
             type="stackdriver",
+            name="sd-arbitrary-data",
             json_data_encoded=json.dumps({
                 "tokenUri": "https://oauth2.googleapis.com/token",
                 "authenticationType": "jwt",
@@ -625,6 +630,7 @@ class DataSource(pulumi.CustomResource):
             }))
         influxdb = grafana.oss.DataSource("influxdb",
             type="influxdb",
+            name="myapp-metrics",
             url="http://influxdb.example.net:8086/",
             basic_auth_enabled=True,
             basic_auth_username="username",
@@ -635,6 +641,7 @@ class DataSource(pulumi.CustomResource):
             }))
         cloudwatch = grafana.oss.DataSource("cloudwatch",
             type="cloudwatch",
+            name="cw-example",
             json_data_encoded=json.dumps({
                 "defaultRegion": "us-east-1",
                 "authType": "keys",
@@ -645,6 +652,7 @@ class DataSource(pulumi.CustomResource):
             }))
         prometheus = grafana.oss.DataSource("prometheus",
             type="prometheus",
+            name="mimir",
             url="https://my-instances.com",
             basic_auth_enabled=True,
             basic_auth_username="username",

@@ -18,8 +18,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const superUser = new grafana.enterprise.Role("superUser", {
+ * const superUser = new grafana.enterprise.Role("super_user", {
+ *     name: "Super User",
  *     description: "My Super User description",
+ *     uid: "superuseruid",
+ *     version: 1,
  *     global: true,
  *     permissions: [
  *         {
@@ -35,8 +38,6 @@ import * as utilities from "../utilities";
  *             scope: "users:*",
  *         },
  *     ],
- *     uid: "superuseruid",
- *     version: 1,
  * });
  * ```
  *

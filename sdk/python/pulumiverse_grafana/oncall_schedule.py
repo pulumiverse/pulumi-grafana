@@ -339,32 +339,6 @@ class OncallSchedule(pulumi.CustomResource):
         """
         * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_grafana as grafana
-        import pulumiverse_grafana as grafana
-
-        example_slack_channel = grafana.onCall.get_slack_channel(name="example_slack_channel")
-        example_user_group = grafana.onCall.get_user_group(slack_handle="example_slack_handle")
-        # ICal based schedule
-        example_schedule_schedule = grafana.on_call.Schedule("exampleScheduleSchedule",
-            type="ical",
-            ical_url_primary="https://example.com/example_ical.ics",
-            ical_url_overrides="https://example.com/example_overrides_ical.ics",
-            slack=grafana.on_call.ScheduleSlackArgs(
-                channel_id=example_slack_channel.slack_id,
-                user_group_id=example_user_group.slack_id,
-            ))
-        # Shift based schedule
-        example_schedule_on_call_schedule_schedule = grafana.on_call.Schedule("exampleScheduleOnCall/scheduleSchedule",
-            type="calendar",
-            time_zone="America/New_York",
-            shifts=[],
-            ical_url_overrides="https://example.com/example_overrides_ical.ics")
-        ```
-
         ## Import
 
         ```sh
@@ -391,32 +365,6 @@ class OncallSchedule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_grafana as grafana
-        import pulumiverse_grafana as grafana
-
-        example_slack_channel = grafana.onCall.get_slack_channel(name="example_slack_channel")
-        example_user_group = grafana.onCall.get_user_group(slack_handle="example_slack_handle")
-        # ICal based schedule
-        example_schedule_schedule = grafana.on_call.Schedule("exampleScheduleSchedule",
-            type="ical",
-            ical_url_primary="https://example.com/example_ical.ics",
-            ical_url_overrides="https://example.com/example_overrides_ical.ics",
-            slack=grafana.on_call.ScheduleSlackArgs(
-                channel_id=example_slack_channel.slack_id,
-                user_group_id=example_user_group.slack_id,
-            ))
-        # Shift based schedule
-        example_schedule_on_call_schedule_schedule = grafana.on_call.Schedule("exampleScheduleOnCall/scheduleSchedule",
-            type="calendar",
-            time_zone="America/New_York",
-            shifts=[],
-            ical_url_overrides="https://example.com/example_overrides_ical.ics")
-        ```
 
         ## Import
 

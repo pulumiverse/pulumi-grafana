@@ -508,8 +508,9 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        test_acc_outgoing_webhook = grafana.on_call.OutgoingWebhook("test-acc-outgoingWebhook", url="https://example.com/",
-        opts = pulumi.ResourceOptions(provider=grafana["oncall"]))
+        test_acc_outgoing_webhook = grafana.on_call.OutgoingWebhook("test-acc-outgoing_webhook",
+            name="my outgoing webhook",
+            url="https://example.com/")
         ```
 
         ## Import
@@ -550,8 +551,9 @@ class OncallOutgoingWebhook(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        test_acc_outgoing_webhook = grafana.on_call.OutgoingWebhook("test-acc-outgoingWebhook", url="https://example.com/",
-        opts = pulumi.ResourceOptions(provider=grafana["oncall"]))
+        test_acc_outgoing_webhook = grafana.on_call.OutgoingWebhook("test-acc-outgoing_webhook",
+            name="my outgoing webhook",
+            url="https://example.com/")
         ```
 
         ## Import

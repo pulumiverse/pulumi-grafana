@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.enterprise.Role("test", {
+ *     name: "test-role",
  *     description: "test-role description",
  *     uid: "test-ds-role-uid",
  *     version: 1,
@@ -126,6 +127,7 @@ export interface GetRoleResult {
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.enterprise.Role("test", {
+ *     name: "test-role",
  *     description: "test-role description",
  *     uid: "test-ds-role-uid",
  *     version: 1,

@@ -463,36 +463,6 @@ class Escalation(pulumi.CustomResource):
         * [Official documentation](https://grafana.com/docs/oncall/latest/configure/escalation-chains-and-routes/)
         * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_policies/)
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_grafana as grafana
-        import pulumiverse_grafana as grafana
-
-        default = grafana.on_call.EscalationChain("default", opts = pulumi.ResourceOptions(provider=grafana["oncall"]))
-        alex = grafana.onCall.get_user(username="alex")
-        # Notify step
-        example_notify_step_escalation = grafana.on_call.Escalation("exampleNotifyStepEscalation",
-            escalation_chain_id=default.id,
-            type="notify_persons",
-            persons_to_notifies=[alex.id],
-            position=0)
-        # Wait step
-        example_notify_step_on_call_escalation_escalation = grafana.on_call.Escalation("exampleNotifyStepOnCall/escalationEscalation",
-            escalation_chain_id=default.id,
-            type="wait",
-            duration=300,
-            position=1)
-        # Important step
-        example_notify_step_grafana_on_call_escalation_escalation = grafana.on_call.Escalation("exampleNotifyStepGrafanaOnCall/escalationEscalation",
-            escalation_chain_id=default.id,
-            type="notify_persons",
-            important=True,
-            persons_to_notifies=[alex.id],
-            position=0)
-        ```
-
         ## Import
 
         ```sh
@@ -524,36 +494,6 @@ class Escalation(pulumi.CustomResource):
         """
         * [Official documentation](https://grafana.com/docs/oncall/latest/configure/escalation-chains-and-routes/)
         * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_policies/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_grafana as grafana
-        import pulumiverse_grafana as grafana
-
-        default = grafana.on_call.EscalationChain("default", opts = pulumi.ResourceOptions(provider=grafana["oncall"]))
-        alex = grafana.onCall.get_user(username="alex")
-        # Notify step
-        example_notify_step_escalation = grafana.on_call.Escalation("exampleNotifyStepEscalation",
-            escalation_chain_id=default.id,
-            type="notify_persons",
-            persons_to_notifies=[alex.id],
-            position=0)
-        # Wait step
-        example_notify_step_on_call_escalation_escalation = grafana.on_call.Escalation("exampleNotifyStepOnCall/escalationEscalation",
-            escalation_chain_id=default.id,
-            type="wait",
-            duration=300,
-            position=1)
-        # Important step
-        example_notify_step_grafana_on_call_escalation_escalation = grafana.on_call.Escalation("exampleNotifyStepGrafanaOnCall/escalationEscalation",
-            escalation_chain_id=default.id,
-            type="notify_persons",
-            important=True,
-            persons_to_notifies=[alex.id],
-            position=0)
-        ```
 
         ## Import
 

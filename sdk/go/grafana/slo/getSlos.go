@@ -16,6 +16,96 @@ import (
 // * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
 // * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
 // * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/slo"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := slo.NewSLO(ctx, "test", &slo.SLOArgs{
+//				Name:        pulumi.String("Terraform Testing"),
+//				Description: pulumi.String("Terraform Description"),
+//				Queries: slo.SLOQueryArray{
+//					&slo.SLOQueryArgs{
+//						Freeform: &slo.SLOQueryFreeformArgs{
+//							Query: pulumi.String("sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))"),
+//						},
+//						Type: pulumi.String("freeform"),
+//					},
+//				},
+//				Objectives: slo.SLOObjectiveArray{
+//					&slo.SLOObjectiveArgs{
+//						Value:  pulumi.Float64(0.995),
+//						Window: pulumi.String("30d"),
+//					},
+//				},
+//				DestinationDatasource: &slo.SLODestinationDatasourceArgs{
+//					Uid: pulumi.String("grafanacloud-prom"),
+//				},
+//				Labels: slo.SLOLabelArray{
+//					&slo.SLOLabelArgs{
+//						Key:   pulumi.String("custom"),
+//						Value: pulumi.String("value"),
+//					},
+//				},
+//				Alertings: slo.SLOAlertingArray{
+//					&slo.SLOAlertingArgs{
+//						Fastburns: slo.SLOAlertingFastburnArray{
+//							&slo.SLOAlertingFastburnArgs{
+//								Annotations: slo.SLOAlertingFastburnAnnotationArray{
+//									&slo.SLOAlertingFastburnAnnotationArgs{
+//										Key:   pulumi.String("name"),
+//										Value: pulumi.String("Critical - SLO Burn Rate Alert"),
+//									},
+//								},
+//								Labels: slo.SLOAlertingFastburnLabelArray{
+//									&slo.SLOAlertingFastburnLabelArgs{
+//										Key:   pulumi.String("type"),
+//										Value: pulumi.String("slo"),
+//									},
+//								},
+//							},
+//						},
+//						Slowburns: slo.SLOAlertingSlowburnArray{
+//							&slo.SLOAlertingSlowburnArgs{
+//								Annotations: slo.SLOAlertingSlowburnAnnotationArray{
+//									&slo.SLOAlertingSlowburnAnnotationArgs{
+//										Key:   pulumi.String("name"),
+//										Value: pulumi.String("Warning - SLO Burn Rate Alert"),
+//									},
+//								},
+//								Labels: slo.SLOAlertingSlowburnLabelArray{
+//									&slo.SLOAlertingSlowburnLabelArgs{
+//										Key:   pulumi.String("type"),
+//										Value: pulumi.String("slo"),
+//									},
+//								},
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = slo.GetSlos(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetSlos(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetSlosResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSlosResult

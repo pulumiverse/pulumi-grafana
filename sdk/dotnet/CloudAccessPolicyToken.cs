@@ -36,9 +36,10 @@ namespace Pulumiverse.Grafana
     ///         Slug = "&lt;your org slug&gt;",
     ///     });
     /// 
-    ///     var testAccessPolicy = new Grafana.Cloud.AccessPolicy("testAccessPolicy", new()
+    ///     var test = new Grafana.Cloud.AccessPolicy("test", new()
     ///     {
     ///         Region = "us",
+    ///         Name = "my-policy",
     ///         DisplayName = "My Policy",
     ///         Scopes = new[]
     ///         {
@@ -62,10 +63,11 @@ namespace Pulumiverse.Grafana
     ///         },
     ///     });
     /// 
-    ///     var testAccessPolicyToken = new Grafana.Cloud.AccessPolicyToken("testAccessPolicyToken", new()
+    ///     var testAccessPolicyToken = new Grafana.Cloud.AccessPolicyToken("test", new()
     ///     {
     ///         Region = "us",
-    ///         AccessPolicyId = testAccessPolicy.PolicyId,
+    ///         AccessPolicyId = test.PolicyId,
+    ///         Name = "my-policy-token",
     ///         DisplayName = "My Policy Token",
     ///         ExpiresAt = "2023-01-01T00:00:00Z",
     ///     });

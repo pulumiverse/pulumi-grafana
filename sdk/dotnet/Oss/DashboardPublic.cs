@@ -30,16 +30,19 @@ namespace Pulumiverse.Grafana.Oss
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Optional (On-premise, not supported in Grafana Cloud): Create an organization
-    ///     var myOrg = new Grafana.Oss.Organization("myOrg");
+    ///     var myOrg = new Grafana.Oss.Organization("my_org", new()
+    ///     {
+    ///         Name = "test 1",
+    ///     });
     /// 
     ///     // Create resources (optional: within the organization)
-    ///     var myFolder = new Grafana.Oss.Folder("myFolder", new()
+    ///     var myFolder = new Grafana.Oss.Folder("my_folder", new()
     ///     {
     ///         OrgId = myOrg.OrgId,
     ///         Title = "test Folder",
     ///     });
     /// 
-    ///     var testDash = new Grafana.Oss.Dashboard("testDash", new()
+    ///     var testDash = new Grafana.Oss.Dashboard("test_dash", new()
     ///     {
     ///         OrgId = myOrg.OrgId,
     ///         Folder = myFolder.Id,
@@ -50,7 +53,7 @@ namespace Pulumiverse.Grafana.Oss
     ///         }),
     ///     });
     /// 
-    ///     var myPublicDashboard = new Grafana.Oss.DashboardPublic("myPublicDashboard", new()
+    ///     var myPublicDashboard = new Grafana.Oss.DashboardPublic("my_public_dashboard", new()
     ///     {
     ///         OrgId = myOrg.OrgId,
     ///         DashboardUid = testDash.Uid,
@@ -63,9 +66,12 @@ namespace Pulumiverse.Grafana.Oss
     ///     });
     /// 
     ///     // Optional (On-premise, not supported in Grafana Cloud): Create an organization
-    ///     var myOrg2 = new Grafana.Oss.Organization("myOrg2");
+    ///     var myOrg2 = new Grafana.Oss.Organization("my_org2", new()
+    ///     {
+    ///         Name = "test 2",
+    ///     });
     /// 
-    ///     var testDash2 = new Grafana.Oss.Dashboard("testDash2", new()
+    ///     var testDash2 = new Grafana.Oss.Dashboard("test_dash2", new()
     ///     {
     ///         OrgId = myOrg2.OrgId,
     ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
@@ -75,7 +81,7 @@ namespace Pulumiverse.Grafana.Oss
     ///         }),
     ///     });
     /// 
-    ///     var myPublicDashboard2 = new Grafana.Oss.DashboardPublic("myPublicDashboard2", new()
+    ///     var myPublicDashboard2 = new Grafana.Oss.DashboardPublic("my_public_dashboard2", new()
     ///     {
     ///         OrgId = myOrg2.OrgId,
     ///         DashboardUid = testDash2.Uid,

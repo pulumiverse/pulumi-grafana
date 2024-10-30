@@ -10,6 +10,7 @@ import (
 	_ "embed"
 
 	grafana "github.com/grafana/terraform-provider-grafana/v3/pkg/provider"
+
 	pfbridge "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
@@ -17,6 +18,7 @@ import (
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+
 	"github.com/pulumiverse/pulumi-grafana/provider/pkg/version"
 )
 
@@ -70,7 +72,7 @@ func grafanaResourceAlias(mod string, res string) *string {
 	return &alias
 }
 
-func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
+func preConfigureCallback(_ resource.PropertyMap, _ shim.ResourceConfig) error {
 	return nil
 }
 
@@ -90,11 +92,12 @@ func Provider() tfbridge.ProviderInfo {
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:                       p,
-		Name:                    "grafana",
-		DisplayName:             "Grafana",
-		Publisher:               "pulumiverse",
-		LogoURL:                 "https://raw.githubusercontent.com/pulumiverse/pulumi-grafana/main/assets/grafana.png", // nolint[:lll]
+		P:           p,
+		Name:        "grafana",
+		DisplayName: "Grafana",
+		Publisher:   "pulumiverse",
+		//nolint:lll
+		LogoURL:                 "https://raw.githubusercontent.com/pulumiverse/pulumi-grafana/main/assets/grafana.png",
 		PluginDownloadURL:       "github://api.github.com/pulumiverse",
 		Version:                 version.Version,
 		Description:             "A Pulumi package for creating and managing grafana.",
@@ -1003,6 +1006,7 @@ func Provider() tfbridge.ProviderInfo {
 			// section, or refer to the AWS provider. Delete this section if there are
 			// no overlay files.
 			//Overlay: &tfbridge.OverlayInfo{},
+			RespectSchemaVersion: true,
 		},
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
@@ -1010,7 +1014,8 @@ func Provider() tfbridge.ProviderInfo {
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
-			PyProject: struct{ Enabled bool }{true},
+			PyProject:            struct{ Enabled bool }{true},
+			RespectSchemaVersion: true,
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
@@ -1020,12 +1025,14 @@ func Provider() tfbridge.ProviderInfo {
 				grafanaPkg,
 			),
 			GenerateResourceContainerTypes: true,
+			RespectSchemaVersion:           true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			RootNamespace: "Pulumiverse",
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
+			RespectSchemaVersion: true,
 		},
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 	}

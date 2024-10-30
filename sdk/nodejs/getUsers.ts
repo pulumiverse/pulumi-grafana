@@ -20,8 +20,9 @@ import * as utilities from "./utilities";
  * import * as grafana from "@pulumi/grafana";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const testAllUsers = new grafana.oss.User("testAllUsers", {
+ * const testAllUsers = new grafana.oss.User("test_all_users", {
  *     email: "all_users@example.com",
+ *     name: "Testing grafana_users",
  *     login: "test-grafana-users",
  *     password: "my-password",
  * });
@@ -64,8 +65,9 @@ export interface GetUsersResult {
  * import * as grafana from "@pulumi/grafana";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const testAllUsers = new grafana.oss.User("testAllUsers", {
+ * const testAllUsers = new grafana.oss.User("test_all_users", {
  *     email: "all_users@example.com",
+ *     name: "Testing grafana_users",
  *     login: "test-grafana-users",
  *     password: "my-password",
  * });

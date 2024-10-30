@@ -72,8 +72,9 @@ def get_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersR
     import pulumi_grafana as grafana
     import pulumiverse_grafana as grafana
 
-    test_all_users = grafana.oss.User("testAllUsers",
+    test_all_users = grafana.oss.User("test_all_users",
         email="all_users@example.com",
+        name="Testing grafana_users",
         login="test-grafana-users",
         password="my-password")
     all_users = grafana.oss.get_users()
@@ -104,8 +105,9 @@ def get_users_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Outp
     import pulumi_grafana as grafana
     import pulumiverse_grafana as grafana
 
-    test_all_users = grafana.oss.User("testAllUsers",
+    test_all_users = grafana.oss.User("test_all_users",
         email="all_users@example.com",
+        name="Testing grafana_users",
         login="test-grafana-users",
         password="my-password")
     all_users = grafana.oss.get_users()

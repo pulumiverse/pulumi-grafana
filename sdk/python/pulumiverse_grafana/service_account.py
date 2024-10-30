@@ -182,8 +182,9 @@ class ServiceAccount(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         admin = grafana.oss.ServiceAccount("admin",
-            is_disabled=False,
-            role="Admin")
+            name="admin sa",
+            role="Admin",
+            is_disabled=False)
         ```
 
         ## Import
@@ -222,8 +223,9 @@ class ServiceAccount(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         admin = grafana.oss.ServiceAccount("admin",
-            is_disabled=False,
-            role="Admin")
+            name="admin sa",
+            role="Admin",
+            is_disabled=False)
         ```
 
         ## Import

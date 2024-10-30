@@ -26,7 +26,7 @@ namespace Pulumiverse.Grafana.Enterprise
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testDashboard = new Grafana.Oss.Dashboard("testDashboard", new()
+    ///     var test = new Grafana.Oss.Dashboard("test", new()
     ///     {
     ///         ConfigJson = @"{
     ///   ""uid"": ""report-dashboard"",
@@ -36,8 +36,9 @@ namespace Pulumiverse.Grafana.Enterprise
     ///         Message = "inital commit.",
     ///     });
     /// 
-    ///     var testReport = new Grafana.Enterprise.Report("testReport", new()
+    ///     var testReport = new Grafana.Enterprise.Report("test", new()
     ///     {
+    ///         Name = "my report",
     ///         Recipients = new[]
     ///         {
     ///             "some@email.com",
@@ -46,7 +47,7 @@ namespace Pulumiverse.Grafana.Enterprise
     ///         {
     ///             new Grafana.Enterprise.Inputs.ReportDashboardArgs
     ///             {
-    ///                 Uid = testDashboard.Uid,
+    ///                 Uid = test.Uid,
     ///             },
     ///         },
     ///         Schedule = new Grafana.Enterprise.Inputs.ReportScheduleArgs

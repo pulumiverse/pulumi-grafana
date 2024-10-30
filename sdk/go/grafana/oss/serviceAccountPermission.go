@@ -33,17 +33,20 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			test, err := oss.NewServiceAccount(ctx, "test", &oss.ServiceAccountArgs{
+//				Name:       pulumi.String("sa-terraform-test"),
 //				Role:       pulumi.String("Editor"),
 //				IsDisabled: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			testTeam, err := oss.NewTeam(ctx, "testTeam", nil)
+//			testTeam, err := oss.NewTeam(ctx, "test_team", &oss.TeamArgs{
+//				Name: pulumi.String("tf_test_team"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			testUser, err := oss.NewUser(ctx, "testUser", &oss.UserArgs{
+//			testUser, err := oss.NewUser(ctx, "test_user", &oss.UserArgs{
 //				Email:    pulumi.String("tf_user@test.com"),
 //				Login:    pulumi.String("tf_user@test.com"),
 //				Password: pulumi.String("password"),
@@ -51,7 +54,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oss.NewServiceAccountPermission(ctx, "testPermissions", &oss.ServiceAccountPermissionArgs{
+//			_, err = oss.NewServiceAccountPermission(ctx, "test_permissions", &oss.ServiceAccountPermissionArgs{
 //				ServiceAccountId: test.ID(),
 //				Permissions: oss.ServiceAccountPermissionPermissionArray{
 //					&oss.ServiceAccountPermissionPermissionArgs{

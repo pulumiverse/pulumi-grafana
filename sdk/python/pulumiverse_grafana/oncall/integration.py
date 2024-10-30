@@ -218,6 +218,34 @@ class Integration(pulumi.CustomResource):
         * [Official documentation](https://grafana.com/docs/oncall/latest/integrations/)
         * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test_acc_integration = grafana.on_call.Integration("test-acc-integration",
+            name="my integration",
+            type="grafana",
+            default_route=grafana.on_call.IntegrationDefaultRouteArgs())
+        # Also it's possible to manage integration templates.
+        # Check docs to see all available templates.
+        integration_with_templates = grafana.on_call.Integration("integration_with_templates",
+            name="integration_with_templates",
+            type="webhook",
+            default_route=grafana.on_call.IntegrationDefaultRouteArgs(),
+            templates=grafana.on_call.IntegrationTemplatesArgs(
+                grouping_key="{{ payload.group_id }}",
+                slack=grafana.on_call.IntegrationTemplatesSlackArgs(
+                    title="Slack title",
+                    message=\"\"\"This is example of multiline template
+        {{ payload.message }}
+        \"\"\",
+                    image_url="{{ payload.image_url }}",
+                ),
+            ))
+        ```
+
         ## Import
 
         ```sh
@@ -241,6 +269,34 @@ class Integration(pulumi.CustomResource):
         """
         * [Official documentation](https://grafana.com/docs/oncall/latest/integrations/)
         * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test_acc_integration = grafana.on_call.Integration("test-acc-integration",
+            name="my integration",
+            type="grafana",
+            default_route=grafana.on_call.IntegrationDefaultRouteArgs())
+        # Also it's possible to manage integration templates.
+        # Check docs to see all available templates.
+        integration_with_templates = grafana.on_call.Integration("integration_with_templates",
+            name="integration_with_templates",
+            type="webhook",
+            default_route=grafana.on_call.IntegrationDefaultRouteArgs(),
+            templates=grafana.on_call.IntegrationTemplatesArgs(
+                grouping_key="{{ payload.group_id }}",
+                slack=grafana.on_call.IntegrationTemplatesSlackArgs(
+                    title="Slack title",
+                    message=\"\"\"This is example of multiline template
+        {{ payload.message }}
+        \"\"\",
+                    image_url="{{ payload.image_url }}",
+                ),
+            ))
+        ```
 
         ## Import
 

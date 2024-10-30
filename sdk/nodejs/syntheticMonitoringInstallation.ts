@@ -26,20 +26,19 @@ import * as utilities from "./utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const config = new pulumi.Config();
+ * // Cloud Access Policy token for Grafana Cloud with the following scopes: accesspolicies:read|write|delete, stacks:read|write|delete
  * const cloudAccessPolicyToken = config.requireObject("cloudAccessPolicyToken");
  * const stackSlug = config.requireObject("stackSlug");
  * const cloudRegion = config.get("cloudRegion") || "us";
- * // Step 1: Create a stack
- * const cloud = new grafana.Provider("cloud", {cloudAccessPolicyToken: cloudAccessPolicyToken});
- * const smStackStack = new grafana.cloud.Stack("smStackStack", {
+ * const smStack = new grafana.cloud.Stack("sm_stack", {
+ *     name: stackSlug,
  *     slug: stackSlug,
  *     regionSlug: cloudRegion,
- * }, {
- *     provider: grafana.cloud,
  * });
  * // Step 2: Install Synthetic Monitoring on the stack
- * const smMetricsPublishAccessPolicy = new grafana.cloud.AccessPolicy("smMetricsPublishAccessPolicy", {
+ * const smMetricsPublish = new grafana.cloud.AccessPolicy("sm_metrics_publish", {
  *     region: cloudRegion,
+ *     name: "metric-publisher-for-sm",
  *     scopes: [
  *         "metrics:write",
  *         "stacks:read",
@@ -48,27 +47,17 @@ import * as utilities from "./utilities";
  *     ],
  *     realms: [{
  *         type: "stack",
- *         identifier: smStackStack.id,
+ *         identifier: smStack.id,
  *     }],
- * }, {
- *     provider: grafana.cloud,
  * });
- * const smMetricsPublishAccessPolicyToken = new grafana.cloud.AccessPolicyToken("smMetricsPublishAccessPolicyToken", {
+ * const smMetricsPublishAccessPolicyToken = new grafana.cloud.AccessPolicyToken("sm_metrics_publish", {
  *     region: cloudRegion,
- *     accessPolicyId: smMetricsPublishAccessPolicy.policyId,
- * }, {
- *     provider: grafana.cloud,
+ *     accessPolicyId: smMetricsPublish.policyId,
+ *     name: "metric-publisher-for-sm",
  * });
- * const smStackInstallation = new grafana.syntheticmonitoring.Installation("smStackInstallation", {
- *     stackId: smStackStack.id,
+ * const smStackInstallation = new grafana.syntheticmonitoring.Installation("sm_stack", {
+ *     stackId: smStack.id,
  *     metricsPublisherKey: smMetricsPublishAccessPolicyToken.token,
- * }, {
- *     provider: grafana.cloud,
- * });
- * // Step 3: Interact with Synthetic Monitoring
- * const sm = new grafana.Provider("sm", {
- *     smAccessToken: smStackInstallation.smAccessToken,
- *     smUrl: smStackInstallation.stackSmApiUrl,
  * });
  * const main = grafana.syntheticMonitoring.getProbes({});
  * ```

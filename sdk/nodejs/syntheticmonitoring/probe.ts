@@ -19,12 +19,13 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const main = new grafana.syntheticmonitoring.Probe("main", {
- *     labels: {
- *         type: "mountain",
- *     },
+ *     name: "Mount Everest",
  *     latitude: 27.98606,
  *     longitude: 86.92262,
  *     region: "APAC",
+ *     labels: {
+ *         type: "mountain",
+ *     },
  * });
  * ```
  *

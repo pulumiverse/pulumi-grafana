@@ -19,13 +19,13 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * // Optional (On-premise, not supported in Grafana Cloud): Create an organization
- * const myOrg = new grafana.oss.Organization("myOrg", {});
+ * const myOrg = new grafana.oss.Organization("my_org", {name: "test 1"});
  * // Create resources (optional: within the organization)
- * const myFolder = new grafana.oss.Folder("myFolder", {
+ * const myFolder = new grafana.oss.Folder("my_folder", {
  *     orgId: myOrg.orgId,
  *     title: "test Folder",
  * });
- * const testDash = new grafana.oss.Dashboard("testDash", {
+ * const testDash = new grafana.oss.Dashboard("test_dash", {
  *     orgId: myOrg.orgId,
  *     folder: myFolder.id,
  *     configJson: JSON.stringify({
@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  *         uid: "my-dashboard-uid",
  *     }),
  * });
- * const myPublicDashboard = new grafana.oss.DashboardPublic("myPublicDashboard", {
+ * const myPublicDashboard = new grafana.oss.DashboardPublic("my_public_dashboard", {
  *     orgId: myOrg.orgId,
  *     dashboardUid: testDash.uid,
  *     uid: "my-custom-public-uid",
@@ -44,15 +44,15 @@ import * as utilities from "../utilities";
  *     share: "public",
  * });
  * // Optional (On-premise, not supported in Grafana Cloud): Create an organization
- * const myOrg2 = new grafana.oss.Organization("myOrg2", {});
- * const testDash2 = new grafana.oss.Dashboard("testDash2", {
+ * const myOrg2 = new grafana.oss.Organization("my_org2", {name: "test 2"});
+ * const testDash2 = new grafana.oss.Dashboard("test_dash2", {
  *     orgId: myOrg2.orgId,
  *     configJson: JSON.stringify({
  *         title: "My Terraform Dashboard2",
  *         uid: "my-dashboard-uid2",
  *     }),
  * });
- * const myPublicDashboard2 = new grafana.oss.DashboardPublic("myPublicDashboard2", {
+ * const myPublicDashboard2 = new grafana.oss.DashboardPublic("my_public_dashboard2", {
  *     orgId: myOrg2.orgId,
  *     dashboardUid: testDash2.uid,
  *     share: "public",

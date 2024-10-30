@@ -31,6 +31,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			test, err := enterprise.NewRole(ctx, "test", &enterprise.RoleArgs{
+//				Name:        pulumi.String("test-role"),
 //				Description: pulumi.String("test-role description"),
 //				Uid:         pulumi.String("test-ds-role-uid"),
 //				Version:     pulumi.Int(1),

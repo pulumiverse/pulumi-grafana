@@ -32,18 +32,21 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			test, err := oss.NewServiceAccount(ctx, "test", &oss.ServiceAccountArgs{
+//				Name: pulumi.String("test-service-account"),
 //				Role: pulumi.String("Viewer"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			foo, err := oss.NewServiceAccountToken(ctx, "foo", &oss.ServiceAccountTokenArgs{
+//				Name:             pulumi.String("key_foo"),
 //				ServiceAccountId: test.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			bar, err := oss.NewServiceAccountToken(ctx, "bar", &oss.ServiceAccountTokenArgs{
+//				Name:             pulumi.String("key_bar"),
 //				ServiceAccountId: test.ID(),
 //				SecondsToLive:    pulumi.Int(30),
 //			})

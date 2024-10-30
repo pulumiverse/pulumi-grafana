@@ -111,7 +111,7 @@ class TeamExternalGroup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        my_team = grafana.oss.Team("myTeam")
+        my_team = grafana.oss.Team("my_team", name="My Team")
         test_team_group = grafana.enterprise.TeamExternalGroup("test-team-group",
             team_id=my_team.id,
             groups=[
@@ -150,7 +150,7 @@ class TeamExternalGroup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        my_team = grafana.oss.Team("myTeam")
+        my_team = grafana.oss.Team("my_team", name="My Team")
         test_team_group = grafana.enterprise.TeamExternalGroup("test-team-group",
             team_id=my_team.id,
             groups=[

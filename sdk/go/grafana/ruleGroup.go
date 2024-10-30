@@ -36,7 +36,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			ruleFolder, err := oss.NewFolder(ctx, "ruleFolder", &oss.FolderArgs{
+//			ruleFolder, err := oss.NewFolder(ctx, "rule_folder", &oss.FolderArgs{
 //				Title: pulumi.String("My Alert Rule Folder"),
 //			})
 //			if err != nil {
@@ -52,7 +52,8 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err = alerting.NewRuleGroup(ctx, "myAlertRule", &alerting.RuleGroupArgs{
+//			_, err = alerting.NewRuleGroup(ctx, "my_alert_rule", &alerting.RuleGroupArgs{
+//				Name:            pulumi.String("My Rule Group"),
 //				FolderUid:       ruleFolder.Uid,
 //				IntervalSeconds: pulumi.Int(240),
 //				OrgId:           pulumi.String("1"),

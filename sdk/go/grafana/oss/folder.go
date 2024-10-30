@@ -29,20 +29,20 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testFolderFolder, err := oss.NewFolder(ctx, "testFolderFolder", &oss.FolderArgs{
+//			testFolder, err := oss.NewFolder(ctx, "test_folder", &oss.FolderArgs{
 //				Title: pulumi.String("Terraform Test Folder"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oss.NewDashboard(ctx, "testFolderDashboard", &oss.DashboardArgs{
-//				Folder:     testFolderFolder.ID(),
+//			_, err = oss.NewDashboard(ctx, "test_folder", &oss.DashboardArgs{
+//				Folder:     testFolder.ID(),
 //				ConfigJson: pulumi.String("{\n  \"title\": \"Dashboard in folder\",\n  \"uid\": \"dashboard-in-folder\"\n}\n"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oss.NewFolder(ctx, "testFolderWithUid", &oss.FolderArgs{
+//			_, err = oss.NewFolder(ctx, "test_folder_with_uid", &oss.FolderArgs{
 //				Uid:   pulumi.String("test-folder-uid"),
 //				Title: pulumi.String("Terraform Test Folder With UID"),
 //			})

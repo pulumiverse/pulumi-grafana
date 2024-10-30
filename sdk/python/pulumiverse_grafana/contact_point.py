@@ -838,16 +838,18 @@ class ContactPoint(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        my_contact_point = grafana.alerting.ContactPoint("myContactPoint", emails=[grafana.alerting.ContactPointEmailArgs(
-            addresses=[
-                "one@company.org",
-                "two@company.org",
-            ],
-            disable_resolve_message=False,
-            message="{{ len .Alerts.Firing }} firing.",
-            single_email=True,
-            subject="{{ template \\"default.title\\" .}}",
-        )])
+        my_contact_point = grafana.alerting.ContactPoint("my_contact_point",
+            name="My Contact Point",
+            emails=[grafana.alerting.ContactPointEmailArgs(
+                addresses=[
+                    "one@company.org",
+                    "two@company.org",
+                ],
+                message="{{ len .Alerts.Firing }} firing.",
+                subject="{{ template \\"default.title\\" .}}",
+                single_email=True,
+                disable_resolve_message=False,
+            )])
         ```
 
         ## Import
@@ -906,16 +908,18 @@ class ContactPoint(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        my_contact_point = grafana.alerting.ContactPoint("myContactPoint", emails=[grafana.alerting.ContactPointEmailArgs(
-            addresses=[
-                "one@company.org",
-                "two@company.org",
-            ],
-            disable_resolve_message=False,
-            message="{{ len .Alerts.Firing }} firing.",
-            single_email=True,
-            subject="{{ template \\"default.title\\" .}}",
-        )])
+        my_contact_point = grafana.alerting.ContactPoint("my_contact_point",
+            name="My Contact Point",
+            emails=[grafana.alerting.ContactPointEmailArgs(
+                addresses=[
+                    "one@company.org",
+                    "two@company.org",
+                ],
+                message="{{ len .Alerts.Firing }} firing.",
+                subject="{{ template \\"default.title\\" .}}",
+                single_email=True,
+                disable_resolve_message=False,
+            )])
         ```
 
         ## Import

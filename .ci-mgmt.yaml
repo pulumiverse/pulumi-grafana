@@ -1,11 +1,30 @@
-# Required values:
-provider: grafana # substitute the name of your provider, without the pulumi- prefix
-#env: # A map of required configuration for any integration tests, etc.
-#  AN_OPTION: value
-#  ANOTHER_OPTION: true
-  # etc.
-lint: true # Linting should be true in most cases, unless failing rules in the upstream provider makes this impractical.
-
-# Optional values:
-#docker: true # Whether the provider's tests use Docker to run. If set to true, a file `testing/docker-compose.yml` must be present in the provider repository.
-#setup-script: testing/setup.sh # Path to a script that's used for testing bootstraps
+template: external-bridged-provider
+provider: grafana
+organization: pulumiverse
+major-version: 0
+providerDefaultBranch: main
+upstreamProviderOrg: grafana
+publishRegistry: false
+enableAutoRelease: false
+plugins:
+  - name: terraform
+    version: "1.0.19"
+    kind: converter
+  - name: random
+    version: "4.16.7"
+  - name: aws
+    version: "6.56.1"
+languages:
+  - dotnet
+  - go
+  - nodejs
+  - python
+publish:
+  sdk: "all,!java"
+  cdn: false
+# license:
+#   ignore:
+pr-assign: ringods
+toolVersions:
+  go: "1.22.x"
+pulumiConvert: 1

@@ -214,7 +214,8 @@ class RoleAssignment(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        test_role = grafana.enterprise.Role("testRole",
+        test_role = grafana.enterprise.Role("test_role",
+            name="Test Role",
             uid="testrole",
             version=1,
             global_=True,
@@ -222,12 +223,14 @@ class RoleAssignment(pulumi.CustomResource):
                 action="org.users:add",
                 scope="users:*",
             )])
-        test_team = grafana.oss.Team("testTeam")
-        test_user = grafana.oss.User("testUser",
+        test_team = grafana.oss.Team("test_team", name="terraform_test_team")
+        test_user = grafana.oss.User("test_user",
             email="terraform_user@test.com",
             login="terraform_user@test.com",
             password="password")
-        test_sa = grafana.oss.ServiceAccount("testSa", role="Viewer")
+        test_sa = grafana.oss.ServiceAccount("test_sa",
+            name="terraform_test_sa",
+            role="Viewer")
         test = grafana.enterprise.RoleAssignment("test",
             role_uid=test_role.uid,
             users=[test_user.id],
@@ -271,7 +274,8 @@ class RoleAssignment(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        test_role = grafana.enterprise.Role("testRole",
+        test_role = grafana.enterprise.Role("test_role",
+            name="Test Role",
             uid="testrole",
             version=1,
             global_=True,
@@ -279,12 +283,14 @@ class RoleAssignment(pulumi.CustomResource):
                 action="org.users:add",
                 scope="users:*",
             )])
-        test_team = grafana.oss.Team("testTeam")
-        test_user = grafana.oss.User("testUser",
+        test_team = grafana.oss.Team("test_team", name="terraform_test_team")
+        test_user = grafana.oss.User("test_user",
             email="terraform_user@test.com",
             login="terraform_user@test.com",
             password="password")
-        test_sa = grafana.oss.ServiceAccount("testSa", role="Viewer")
+        test_sa = grafana.oss.ServiceAccount("test_sa",
+            name="terraform_test_sa",
+            role="Viewer")
         test = grafana.enterprise.RoleAssignment("test",
             role_uid=test_role.uid,
             users=[test_user.id],

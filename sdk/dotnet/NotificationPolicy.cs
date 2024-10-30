@@ -30,8 +30,9 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var aContactPoint = new Grafana.Alerting.ContactPoint("aContactPoint", new()
+    ///     var aContactPoint = new Grafana.Alerting.ContactPoint("a_contact_point", new()
     ///     {
+    ///         Name = "A Contact Point",
     ///         Emails = new[]
     ///         {
     ///             new Grafana.Alerting.Inputs.ContactPointEmailArgs
@@ -46,8 +47,9 @@ namespace Pulumiverse.Grafana
     ///         },
     ///     });
     /// 
-    ///     var aMuteTiming = new Grafana.Alerting.MuteTiming("aMuteTiming", new()
+    ///     var aMuteTiming = new Grafana.Alerting.MuteTiming("a_mute_timing", new()
     ///     {
+    ///         Name = "Some Mute Timing",
     ///         Intervals = new[]
     ///         {
     ///             new Grafana.Alerting.Inputs.MuteTimingIntervalArgs
@@ -60,7 +62,7 @@ namespace Pulumiverse.Grafana
     ///         },
     ///     });
     /// 
-    ///     var myNotificationPolicy = new Grafana.Alerting.NotificationPolicy("myNotificationPolicy", new()
+    ///     var myNotificationPolicy = new Grafana.Alerting.NotificationPolicy("my_notification_policy", new()
     ///     {
     ///         GroupBies = new[]
     ///         {

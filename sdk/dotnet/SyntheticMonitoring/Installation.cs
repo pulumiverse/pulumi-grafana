@@ -36,28 +36,22 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     var config = new Config();
+    ///     // Cloud Access Policy token for Grafana Cloud with the following scopes: accesspolicies:read|write|delete, stacks:read|write|delete
     ///     var cloudAccessPolicyToken = config.RequireObject&lt;dynamic&gt;("cloudAccessPolicyToken");
     ///     var stackSlug = config.RequireObject&lt;dynamic&gt;("stackSlug");
     ///     var cloudRegion = config.Get("cloudRegion") ?? "us";
-    ///     // Step 1: Create a stack
-    ///     var cloud = new Grafana.Provider("cloud", new()
+    ///     var smStack = new Grafana.Cloud.Stack("sm_stack", new()
     ///     {
-    ///         CloudAccessPolicyToken = cloudAccessPolicyToken,
-    ///     });
-    /// 
-    ///     var smStackStack = new Grafana.Cloud.Stack("smStackStack", new()
-    ///     {
+    ///         Name = stackSlug,
     ///         Slug = stackSlug,
     ///         RegionSlug = cloudRegion,
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         Provider = grafana.Cloud,
     ///     });
     /// 
     ///     // Step 2: Install Synthetic Monitoring on the stack
-    ///     var smMetricsPublishAccessPolicy = new Grafana.Cloud.AccessPolicy("smMetricsPublishAccessPolicy", new()
+    ///     var smMetricsPublish = new Grafana.Cloud.AccessPolicy("sm_metrics_publish", new()
     ///     {
     ///         Region = cloudRegion,
+    ///         Name = "metric-publisher-for-sm",
     ///         Scopes = new[]
     ///         {
     ///             "metrics:write",
@@ -70,37 +64,22 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///             new Grafana.Cloud.Inputs.AccessPolicyRealmArgs
     ///             {
     ///                 Type = "stack",
-    ///                 Identifier = smStackStack.Id,
+    ///                 Identifier = smStack.Id,
     ///             },
     ///         },
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         Provider = grafana.Cloud,
     ///     });
     /// 
-    ///     var smMetricsPublishAccessPolicyToken = new Grafana.Cloud.AccessPolicyToken("smMetricsPublishAccessPolicyToken", new()
+    ///     var smMetricsPublishAccessPolicyToken = new Grafana.Cloud.AccessPolicyToken("sm_metrics_publish", new()
     ///     {
     ///         Region = cloudRegion,
-    ///         AccessPolicyId = smMetricsPublishAccessPolicy.PolicyId,
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         Provider = grafana.Cloud,
+    ///         AccessPolicyId = smMetricsPublish.PolicyId,
+    ///         Name = "metric-publisher-for-sm",
     ///     });
     /// 
-    ///     var smStackInstallation = new Grafana.SyntheticMonitoring.Installation("smStackInstallation", new()
+    ///     var smStackInstallation = new Grafana.SyntheticMonitoring.Installation("sm_stack", new()
     ///     {
-    ///         StackId = smStackStack.Id,
+    ///         StackId = smStack.Id,
     ///         MetricsPublisherKey = smMetricsPublishAccessPolicyToken.Token,
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         Provider = grafana.Cloud,
-    ///     });
-    /// 
-    ///     // Step 3: Interact with Synthetic Monitoring
-    ///     var sm = new Grafana.Provider("sm", new()
-    ///     {
-    ///         SmAccessToken = smStackInstallation.SmAccessToken,
-    ///         SmUrl = smStackInstallation.StackSmApiUrl,
     ///     });
     /// 
     ///     var main = Grafana.SyntheticMonitoring.GetProbes.Invoke();

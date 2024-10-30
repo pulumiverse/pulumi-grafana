@@ -26,8 +26,9 @@ namespace Pulumiverse.Grafana.Enterprise
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testRole = new Grafana.Enterprise.Role("testRole", new()
+    ///     var testRole = new Grafana.Enterprise.Role("test_role", new()
     ///     {
+    ///         Name = "Test Role",
     ///         Uid = "testrole",
     ///         Version = 1,
     ///         Global = true,
@@ -41,17 +42,21 @@ namespace Pulumiverse.Grafana.Enterprise
     ///         },
     ///     });
     /// 
-    ///     var testTeam = new Grafana.Oss.Team("testTeam");
+    ///     var testTeam = new Grafana.Oss.Team("test_team", new()
+    ///     {
+    ///         Name = "terraform_test_team",
+    ///     });
     /// 
-    ///     var testUser = new Grafana.Oss.User("testUser", new()
+    ///     var testUser = new Grafana.Oss.User("test_user", new()
     ///     {
     ///         Email = "terraform_user@test.com",
     ///         Login = "terraform_user@test.com",
     ///         Password = "password",
     ///     });
     /// 
-    ///     var testSa = new Grafana.Oss.ServiceAccount("testSa", new()
+    ///     var testSa = new Grafana.Oss.ServiceAccount("test_sa", new()
     ///     {
+    ///         Name = "terraform_test_sa",
     ///         Role = "Viewer",
     ///     });
     /// 

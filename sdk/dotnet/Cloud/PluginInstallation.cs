@@ -33,8 +33,8 @@ namespace Pulumiverse.Grafana.Cloud
     /// {
     ///     var test = new Grafana.Cloud.PluginInstallation("test", new()
     ///     {
-    ///         Slug = "some-plugin",
     ///         StackSlug = "stackname",
+    ///         Slug = "some-plugin",
     ///         Version = "1.2.3",
     ///     });
     /// 

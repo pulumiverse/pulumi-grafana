@@ -32,7 +32,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			team, err := oss.NewTeam(ctx, "team", nil)
+//			team, err := oss.NewTeam(ctx, "team", &oss.TeamArgs{
+//				Name: pulumi.String("Team Name"),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -54,6 +56,7 @@ import (
 //			json1 := string(tmpJSON1)
 //			foo, err := oss.NewDataSource(ctx, "foo", &oss.DataSourceArgs{
 //				Type:                  pulumi.String("cloudwatch"),
+//				Name:                  pulumi.String("cw-example"),
 //				JsonDataEncoded:       pulumi.String(json0),
 //				SecureJsonDataEncoded: pulumi.String(json1),
 //			})
@@ -61,6 +64,7 @@ import (
 //				return err
 //			}
 //			user, err := oss.NewUser(ctx, "user", &oss.UserArgs{
+//				Name:     pulumi.String("test-ds-permissions"),
 //				Email:    pulumi.String("test-ds-permissions@example.com"),
 //				Login:    pulumi.String("test-ds-permissions"),
 //				Password: pulumi.String("hunter2"),
@@ -69,6 +73,7 @@ import (
 //				return err
 //			}
 //			sa, err := oss.NewServiceAccount(ctx, "sa", &oss.ServiceAccountArgs{
+//				Name: pulumi.String("test-ds-permissions"),
 //				Role: pulumi.String("Viewer"),
 //			})
 //			if err != nil {

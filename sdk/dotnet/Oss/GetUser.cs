@@ -33,6 +33,7 @@ namespace Pulumiverse.Grafana.Oss
         ///     var test = new Grafana.Oss.User("test", new()
         ///     {
         ///         Email = "test.datasource@example.com",
+        ///         Name = "Testing Datasource",
         ///         Login = "test-datasource",
         ///         Password = "my-password",
         ///         IsAdmin = true,
@@ -80,6 +81,7 @@ namespace Pulumiverse.Grafana.Oss
         ///     var test = new Grafana.Oss.User("test", new()
         ///     {
         ///         Email = "test.datasource@example.com",
+        ///         Name = "Testing Datasource",
         ///         Login = "test-datasource",
         ///         Password = "my-password",
         ///         IsAdmin = true,

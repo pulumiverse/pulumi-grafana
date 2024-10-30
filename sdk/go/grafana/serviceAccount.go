@@ -32,8 +32,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := oss.NewServiceAccount(ctx, "admin", &oss.ServiceAccountArgs{
-//				IsDisabled: pulumi.Bool(false),
+//				Name:       pulumi.String("admin sa"),
 //				Role:       pulumi.String("Admin"),
+//				IsDisabled: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err

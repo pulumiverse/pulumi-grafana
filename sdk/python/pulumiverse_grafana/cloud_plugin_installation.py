@@ -152,8 +152,8 @@ class CloudPluginInstallation(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.cloud.PluginInstallation("test",
-            slug="some-plugin",
             stack_slug="stackname",
+            slug="some-plugin",
             version="1.2.3")
         ```
 
@@ -193,8 +193,8 @@ class CloudPluginInstallation(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.cloud.PluginInstallation("test",
-            slug="some-plugin",
             stack_slug="stackname",
+            slug="some-plugin",
             version="1.2.3")
         ```
 

@@ -19,49 +19,49 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * // Configure SSO for GitHub using OAuth2
- * const githubSsoSettings = new grafana.oss.SsoSettings("githubSsoSettings", {
+ * const githubSsoSettings = new grafana.oss.SsoSettings("github_sso_settings", {
+ *     providerName: "github",
  *     oauth2Settings: {
- *         allowSignUp: true,
- *         allowedDomains: "mycompany.com mycompany.org",
- *         allowedOrganizations: "[\"My Organization\", \"Octocats\"]",
- *         autoLogin: false,
+ *         name: "Github",
  *         clientId: "<your GitHub app client id>",
  *         clientSecret: "<your GitHub app client secret>",
- *         name: "Github",
+ *         allowSignUp: true,
+ *         autoLogin: false,
  *         scopes: "user:email,read:org",
  *         teamIds: "150,300",
+ *         allowedOrganizations: "[\"My Organization\", \"Octocats\"]",
+ *         allowedDomains: "mycompany.com mycompany.org",
  *     },
- *     providerName: "github",
  * });
  * // Configure SSO using generic OAuth2
- * const genericSsoSettings = new grafana.oss.SsoSettings("genericSsoSettings", {
+ * const genericSsoSettings = new grafana.oss.SsoSettings("generic_sso_settings", {
+ *     providerName: "generic_oauth",
  *     oauth2Settings: {
- *         allowSignUp: true,
- *         apiUrl: "https://<domain>/userinfo",
+ *         name: "Auth0",
  *         authUrl: "https://<domain>/authorize",
- *         autoLogin: false,
+ *         tokenUrl: "https://<domain>/oauth/token",
+ *         apiUrl: "https://<domain>/userinfo",
  *         clientId: "<client id>",
  *         clientSecret: "<client secret>",
- *         name: "Auth0",
+ *         allowSignUp: true,
+ *         autoLogin: false,
  *         scopes: "openid profile email offline_access",
- *         tokenUrl: "https://<domain>/oauth/token",
  *         usePkce: true,
  *         useRefreshToken: true,
  *     },
- *     providerName: "generic_oauth",
  * });
  * // Configure SSO using SAML
- * const samlSsoSettings = new grafana.oss.SsoSettings("samlSsoSettings", {
+ * const samlSsoSettings = new grafana.oss.SsoSettings("saml_sso_settings", {
  *     providerName: "saml",
  *     samlSettings: {
  *         allowSignUp: true,
- *         assertionAttributeEmail: "email",
- *         assertionAttributeLogin: "login",
  *         certificatePath: "devenv/docker/blocks/auth/saml-enterprise/cert.crt",
- *         idpMetadataUrl: "https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml",
- *         nameIdFormat: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
  *         privateKeyPath: "devenv/docker/blocks/auth/saml-enterprise/key.pem",
+ *         idpMetadataUrl: "https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml",
  *         signatureAlgorithm: "rsa-sha256",
+ *         assertionAttributeLogin: "login",
+ *         assertionAttributeEmail: "email",
+ *         nameIdFormat: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
  *     },
  * });
  * ```

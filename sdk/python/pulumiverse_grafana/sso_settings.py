@@ -151,47 +151,47 @@ class SsoSettings(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         # Configure SSO for GitHub using OAuth2
-        github_sso_settings = grafana.oss.SsoSettings("githubSsoSettings",
+        github_sso_settings = grafana.oss.SsoSettings("github_sso_settings",
+            provider_name="github",
             oauth2_settings=grafana.oss.SsoSettingsOauth2SettingsArgs(
-                allow_sign_up=True,
-                allowed_domains="mycompany.com mycompany.org",
-                allowed_organizations="[\\"My Organization\\", \\"Octocats\\"]",
-                auto_login=False,
+                name="Github",
                 client_id="<your GitHub app client id>",
                 client_secret="<your GitHub app client secret>",
-                name="Github",
+                allow_sign_up=True,
+                auto_login=False,
                 scopes="user:email,read:org",
                 team_ids="150,300",
-            ),
-            provider_name="github")
+                allowed_organizations="[\\"My Organization\\", \\"Octocats\\"]",
+                allowed_domains="mycompany.com mycompany.org",
+            ))
         # Configure SSO using generic OAuth2
-        generic_sso_settings = grafana.oss.SsoSettings("genericSsoSettings",
+        generic_sso_settings = grafana.oss.SsoSettings("generic_sso_settings",
+            provider_name="generic_oauth",
             oauth2_settings=grafana.oss.SsoSettingsOauth2SettingsArgs(
-                allow_sign_up=True,
-                api_url="https://<domain>/userinfo",
+                name="Auth0",
                 auth_url="https://<domain>/authorize",
-                auto_login=False,
+                token_url="https://<domain>/oauth/token",
+                api_url="https://<domain>/userinfo",
                 client_id="<client id>",
                 client_secret="<client secret>",
-                name="Auth0",
+                allow_sign_up=True,
+                auto_login=False,
                 scopes="openid profile email offline_access",
-                token_url="https://<domain>/oauth/token",
                 use_pkce=True,
                 use_refresh_token=True,
-            ),
-            provider_name="generic_oauth")
+            ))
         # Configure SSO using SAML
-        saml_sso_settings = grafana.oss.SsoSettings("samlSsoSettings",
+        saml_sso_settings = grafana.oss.SsoSettings("saml_sso_settings",
             provider_name="saml",
             saml_settings=grafana.oss.SsoSettingsSamlSettingsArgs(
                 allow_sign_up=True,
-                assertion_attribute_email="email",
-                assertion_attribute_login="login",
                 certificate_path="devenv/docker/blocks/auth/saml-enterprise/cert.crt",
-                idp_metadata_url="https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml",
-                name_id_format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
                 private_key_path="devenv/docker/blocks/auth/saml-enterprise/key.pem",
+                idp_metadata_url="https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml",
                 signature_algorithm="rsa-sha256",
+                assertion_attribute_login="login",
+                assertion_attribute_email="email",
+                name_id_format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
             ))
         ```
 
@@ -230,47 +230,47 @@ class SsoSettings(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         # Configure SSO for GitHub using OAuth2
-        github_sso_settings = grafana.oss.SsoSettings("githubSsoSettings",
+        github_sso_settings = grafana.oss.SsoSettings("github_sso_settings",
+            provider_name="github",
             oauth2_settings=grafana.oss.SsoSettingsOauth2SettingsArgs(
-                allow_sign_up=True,
-                allowed_domains="mycompany.com mycompany.org",
-                allowed_organizations="[\\"My Organization\\", \\"Octocats\\"]",
-                auto_login=False,
+                name="Github",
                 client_id="<your GitHub app client id>",
                 client_secret="<your GitHub app client secret>",
-                name="Github",
+                allow_sign_up=True,
+                auto_login=False,
                 scopes="user:email,read:org",
                 team_ids="150,300",
-            ),
-            provider_name="github")
+                allowed_organizations="[\\"My Organization\\", \\"Octocats\\"]",
+                allowed_domains="mycompany.com mycompany.org",
+            ))
         # Configure SSO using generic OAuth2
-        generic_sso_settings = grafana.oss.SsoSettings("genericSsoSettings",
+        generic_sso_settings = grafana.oss.SsoSettings("generic_sso_settings",
+            provider_name="generic_oauth",
             oauth2_settings=grafana.oss.SsoSettingsOauth2SettingsArgs(
-                allow_sign_up=True,
-                api_url="https://<domain>/userinfo",
+                name="Auth0",
                 auth_url="https://<domain>/authorize",
-                auto_login=False,
+                token_url="https://<domain>/oauth/token",
+                api_url="https://<domain>/userinfo",
                 client_id="<client id>",
                 client_secret="<client secret>",
-                name="Auth0",
+                allow_sign_up=True,
+                auto_login=False,
                 scopes="openid profile email offline_access",
-                token_url="https://<domain>/oauth/token",
                 use_pkce=True,
                 use_refresh_token=True,
-            ),
-            provider_name="generic_oauth")
+            ))
         # Configure SSO using SAML
-        saml_sso_settings = grafana.oss.SsoSettings("samlSsoSettings",
+        saml_sso_settings = grafana.oss.SsoSettings("saml_sso_settings",
             provider_name="saml",
             saml_settings=grafana.oss.SsoSettingsSamlSettingsArgs(
                 allow_sign_up=True,
-                assertion_attribute_email="email",
-                assertion_attribute_login="login",
                 certificate_path="devenv/docker/blocks/auth/saml-enterprise/cert.crt",
-                idp_metadata_url="https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml",
-                name_id_format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
                 private_key_path="devenv/docker/blocks/auth/saml-enterprise/key.pem",
+                idp_metadata_url="https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml",
                 signature_algorithm="rsa-sha256",
+                assertion_attribute_login="login",
+                assertion_attribute_email="email",
+                name_id_format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
             ))
         ```
 

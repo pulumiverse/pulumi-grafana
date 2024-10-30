@@ -133,6 +133,7 @@ def get_team(name: Optional[str] = None,
     import pulumiverse_grafana as grafana
 
     test = grafana.oss.Team("test",
+        name="test-team",
         email="test-team-email@test.com",
         preferences=grafana.oss.TeamPreferencesArgs(
             theme="dark",
@@ -177,6 +178,7 @@ def get_team_output(name: Optional[pulumi.Input[str]] = None,
     import pulumiverse_grafana as grafana
 
     test = grafana.oss.Team("test",
+        name="test-team",
         email="test-team-email@test.com",
         preferences=grafana.oss.TeamPreferencesArgs(
             theme="dark",

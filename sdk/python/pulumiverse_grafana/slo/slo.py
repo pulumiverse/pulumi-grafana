@@ -321,6 +321,127 @@ class SLO(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.slo.SLO("test",
+            name="Terraform Testing",
+            description="Terraform Description",
+            queries=[grafana.slo.SLOQueryArgs(
+                freeform=grafana.slo.SLOQueryFreeformArgs(
+                    query="sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+                ),
+                type="freeform",
+            )],
+            objectives=[grafana.slo.SLOObjectiveArgs(
+                value=0.995,
+                window="30d",
+            )],
+            destination_datasource=grafana.slo.SLODestinationDatasourceArgs(
+                uid="grafanacloud-prom",
+            ),
+            labels=[grafana.slo.SLOLabelArgs(
+                key="slo",
+                value="terraform",
+            )],
+            alertings=[grafana.slo.SLOAlertingArgs(
+                fastburns=[grafana.slo.SLOAlertingFastburnArgs(
+                    annotations=[
+                        grafana.slo.SLOAlertingFastburnAnnotationArgs(
+                            key="name",
+                            value="SLO Burn Rate Very High",
+                        ),
+                        grafana.slo.SLOAlertingFastburnAnnotationArgs(
+                            key="description",
+                            value="Error budget is burning too fast",
+                        ),
+                    ],
+                )],
+                slowburns=[grafana.slo.SLOAlertingSlowburnArgs(
+                    annotations=[
+                        grafana.slo.SLOAlertingSlowburnAnnotationArgs(
+                            key="name",
+                            value="SLO Burn Rate High",
+                        ),
+                        grafana.slo.SLOAlertingSlowburnAnnotationArgs(
+                            key="description",
+                            value="Error budget is burning too fast",
+                        ),
+                    ],
+                )],
+            )])
+        ```
+
+        ### Advanced
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.slo.SLO("test",
+            name="Complex Resource - Terraform Ratio Query Example",
+            description="Complex Resource - Terraform Ratio Query Description",
+            queries=[grafana.slo.SLOQueryArgs(
+                ratio=grafana.slo.SLOQueryRatioArgs(
+                    success_metric="kubelet_http_requests_total{status!~\\"5..\\"}",
+                    total_metric="kubelet_http_requests_total",
+                    group_by_labels=[
+                        "job",
+                        "instance",
+                    ],
+                ),
+                type="ratio",
+            )],
+            objectives=[grafana.slo.SLOObjectiveArgs(
+                value=0.995,
+                window="30d",
+            )],
+            destination_datasource=grafana.slo.SLODestinationDatasourceArgs(
+                uid="grafanacloud-prom",
+            ),
+            labels=[grafana.slo.SLOLabelArgs(
+                key="slo",
+                value="terraform",
+            )],
+            alertings=[grafana.slo.SLOAlertingArgs(
+                fastburns=[grafana.slo.SLOAlertingFastburnArgs(
+                    annotations=[
+                        grafana.slo.SLOAlertingFastburnAnnotationArgs(
+                            key="name",
+                            value="SLO Burn Rate Very High",
+                        ),
+                        grafana.slo.SLOAlertingFastburnAnnotationArgs(
+                            key="description",
+                            value="Error budget is burning too fast",
+                        ),
+                    ],
+                    labels=[grafana.slo.SLOAlertingFastburnLabelArgs(
+                        key="type",
+                        value="slo",
+                    )],
+                )],
+                slowburns=[grafana.slo.SLOAlertingSlowburnArgs(
+                    annotations=[
+                        grafana.slo.SLOAlertingSlowburnAnnotationArgs(
+                            key="name",
+                            value="SLO Burn Rate High",
+                        ),
+                        grafana.slo.SLOAlertingSlowburnAnnotationArgs(
+                            key="description",
+                            value="Error budget is burning too fast",
+                        ),
+                    ],
+                    labels=[grafana.slo.SLOAlertingSlowburnLabelArgs(
+                        key="type",
+                        value="slo",
+                    )],
+                )],
+            )])
+        ```
+
         ## Import
 
         ```sh
@@ -356,6 +477,127 @@ class SLO(pulumi.CustomResource):
         * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
 
         ## Example Usage
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.slo.SLO("test",
+            name="Terraform Testing",
+            description="Terraform Description",
+            queries=[grafana.slo.SLOQueryArgs(
+                freeform=grafana.slo.SLOQueryFreeformArgs(
+                    query="sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+                ),
+                type="freeform",
+            )],
+            objectives=[grafana.slo.SLOObjectiveArgs(
+                value=0.995,
+                window="30d",
+            )],
+            destination_datasource=grafana.slo.SLODestinationDatasourceArgs(
+                uid="grafanacloud-prom",
+            ),
+            labels=[grafana.slo.SLOLabelArgs(
+                key="slo",
+                value="terraform",
+            )],
+            alertings=[grafana.slo.SLOAlertingArgs(
+                fastburns=[grafana.slo.SLOAlertingFastburnArgs(
+                    annotations=[
+                        grafana.slo.SLOAlertingFastburnAnnotationArgs(
+                            key="name",
+                            value="SLO Burn Rate Very High",
+                        ),
+                        grafana.slo.SLOAlertingFastburnAnnotationArgs(
+                            key="description",
+                            value="Error budget is burning too fast",
+                        ),
+                    ],
+                )],
+                slowburns=[grafana.slo.SLOAlertingSlowburnArgs(
+                    annotations=[
+                        grafana.slo.SLOAlertingSlowburnAnnotationArgs(
+                            key="name",
+                            value="SLO Burn Rate High",
+                        ),
+                        grafana.slo.SLOAlertingSlowburnAnnotationArgs(
+                            key="description",
+                            value="Error budget is burning too fast",
+                        ),
+                    ],
+                )],
+            )])
+        ```
+
+        ### Advanced
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.slo.SLO("test",
+            name="Complex Resource - Terraform Ratio Query Example",
+            description="Complex Resource - Terraform Ratio Query Description",
+            queries=[grafana.slo.SLOQueryArgs(
+                ratio=grafana.slo.SLOQueryRatioArgs(
+                    success_metric="kubelet_http_requests_total{status!~\\"5..\\"}",
+                    total_metric="kubelet_http_requests_total",
+                    group_by_labels=[
+                        "job",
+                        "instance",
+                    ],
+                ),
+                type="ratio",
+            )],
+            objectives=[grafana.slo.SLOObjectiveArgs(
+                value=0.995,
+                window="30d",
+            )],
+            destination_datasource=grafana.slo.SLODestinationDatasourceArgs(
+                uid="grafanacloud-prom",
+            ),
+            labels=[grafana.slo.SLOLabelArgs(
+                key="slo",
+                value="terraform",
+            )],
+            alertings=[grafana.slo.SLOAlertingArgs(
+                fastburns=[grafana.slo.SLOAlertingFastburnArgs(
+                    annotations=[
+                        grafana.slo.SLOAlertingFastburnAnnotationArgs(
+                            key="name",
+                            value="SLO Burn Rate Very High",
+                        ),
+                        grafana.slo.SLOAlertingFastburnAnnotationArgs(
+                            key="description",
+                            value="Error budget is burning too fast",
+                        ),
+                    ],
+                    labels=[grafana.slo.SLOAlertingFastburnLabelArgs(
+                        key="type",
+                        value="slo",
+                    )],
+                )],
+                slowburns=[grafana.slo.SLOAlertingSlowburnArgs(
+                    annotations=[
+                        grafana.slo.SLOAlertingSlowburnAnnotationArgs(
+                            key="name",
+                            value="SLO Burn Rate High",
+                        ),
+                        grafana.slo.SLOAlertingSlowburnAnnotationArgs(
+                            key="description",
+                            value="Error budget is burning too fast",
+                        ),
+                    ],
+                    labels=[grafana.slo.SLOAlertingSlowburnLabelArgs(
+                        key="type",
+                        value="slo",
+                    )],
+                )],
+            )])
+        ```
 
         ## Import
 

@@ -8,43 +8,6 @@ import * as utilities from "../utilities";
  * * [Official documentation](https://grafana.com/docs/oncall/latest/configure/escalation-chains-and-routes/)
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_policies/)
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const _default = new grafana.oncall.EscalationChain("default", {}, {
- *     provider: grafana.oncall,
- * });
- * const alex = grafana.onCall.getUser({
- *     username: "alex",
- * });
- * // Notify step
- * const exampleNotifyStepEscalation = new grafana.oncall.Escalation("exampleNotifyStepEscalation", {
- *     escalationChainId: _default.id,
- *     type: "notify_persons",
- *     personsToNotifies: [alex.then(alex => alex.id)],
- *     position: 0,
- * });
- * // Wait step
- * const exampleNotifyStepOnCall_escalationEscalation = new grafana.oncall.Escalation("exampleNotifyStepOnCall/escalationEscalation", {
- *     escalationChainId: _default.id,
- *     type: "wait",
- *     duration: 300,
- *     position: 1,
- * });
- * // Important step
- * const exampleNotifyStepGrafanaOnCall_escalationEscalation = new grafana.oncall.Escalation("exampleNotifyStepGrafanaOnCall/escalationEscalation", {
- *     escalationChainId: _default.id,
- *     type: "notify_persons",
- *     important: true,
- *     personsToNotifies: [alex.then(alex => alex.id)],
- *     position: 0,
- * });
- * ```
- *
  * ## Import
  *
  * ```sh

@@ -18,10 +18,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const myTemplate = new grafana.alerting.MessageTemplate("myTemplate", {template: `{{define "My Reusable Template" }}
+ * const myTemplate = new grafana.alerting.MessageTemplate("my_template", {
+ *     name: "My Reusable Template",
+ *     template: `{{define "My Reusable Template" }}
  *  template content
- * {{ end }}
- * `});
+ * {{ end }}`,
+ * });
  * ```
  *
  * ## Import

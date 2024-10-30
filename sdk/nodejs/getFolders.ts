@@ -17,11 +17,11 @@ import * as utilities from "./utilities";
  * import * as grafana from "@pulumi/grafana";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const testA = new grafana.oss.Folder("testA", {
+ * const testA = new grafana.oss.Folder("test_a", {
  *     title: "test-folder-a",
  *     uid: "test-ds-folder-uid-a",
  * });
- * const testB = new grafana.oss.Folder("testB", {
+ * const testB = new grafana.oss.Folder("test_b", {
  *     title: "test-folder-b",
  *     uid: "test-ds-folder-uid-b",
  * });
@@ -77,11 +77,11 @@ export interface GetFoldersResult {
  * import * as grafana from "@pulumi/grafana";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const testA = new grafana.oss.Folder("testA", {
+ * const testA = new grafana.oss.Folder("test_a", {
  *     title: "test-folder-a",
  *     uid: "test-ds-folder-uid-a",
  * });
- * const testB = new grafana.oss.Folder("testB", {
+ * const testB = new grafana.oss.Folder("test_b", {
  *     title: "test-folder-b",
  *     uid: "test-ds-folder-uid-b",
  * });

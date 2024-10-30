@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  *
  * const test = new grafana.oss.User("test", {
  *     email: "test.datasource@example.com",
+ *     name: "Testing Datasource",
  *     login: "test-datasource",
  *     password: "my-password",
  *     isAdmin: true,
@@ -109,6 +110,7 @@ export interface GetUserResult {
  *
  * const test = new grafana.oss.User("test", {
  *     email: "test.datasource@example.com",
+ *     name: "Testing Datasource",
  *     login: "test-datasource",
  *     password: "my-password",
  *     isAdmin: true,

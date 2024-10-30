@@ -35,7 +35,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			aContactPoint, err := alerting.NewContactPoint(ctx, "aContactPoint", &alerting.ContactPointArgs{
+//			aContactPoint, err := alerting.NewContactPoint(ctx, "a_contact_point", &alerting.ContactPointArgs{
+//				Name: pulumi.String("A Contact Point"),
 //				Emails: alerting.ContactPointEmailArray{
 //					&alerting.ContactPointEmailArgs{
 //						Addresses: pulumi.StringArray{
@@ -49,7 +50,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			aMuteTiming, err := alerting.NewMuteTiming(ctx, "aMuteTiming", &alerting.MuteTimingArgs{
+//			aMuteTiming, err := alerting.NewMuteTiming(ctx, "a_mute_timing", &alerting.MuteTimingArgs{
+//				Name: pulumi.String("Some Mute Timing"),
 //				Intervals: alerting.MuteTimingIntervalArray{
 //					&alerting.MuteTimingIntervalArgs{
 //						Weekdays: pulumi.StringArray{
@@ -61,7 +63,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = alerting.NewNotificationPolicy(ctx, "myNotificationPolicy", &alerting.NotificationPolicyArgs{
+//			_, err = alerting.NewNotificationPolicy(ctx, "my_notification_policy", &alerting.NotificationPolicyArgs{
 //				GroupBies: pulumi.StringArray{
 //					pulumi.String("..."),
 //				},

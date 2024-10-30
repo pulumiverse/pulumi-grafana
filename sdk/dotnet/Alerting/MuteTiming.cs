@@ -28,29 +28,19 @@ namespace Pulumiverse.Grafana.Alerting
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myMuteTiming = new Grafana.Alerting.MuteTiming("myMuteTiming", new()
+    ///     var myMuteTiming = new Grafana.Alerting.MuteTiming("my_mute_timing", new()
     ///     {
+    ///         Name = "My Mute Timing",
     ///         Intervals = new[]
     ///         {
     ///             new Grafana.Alerting.Inputs.MuteTimingIntervalArgs
     ///             {
-    ///                 DaysOfMonths = new[]
-    ///                 {
-    ///                     "1:7",
-    ///                     "-1",
-    ///                 },
-    ///                 Location = "America/New_York",
-    ///                 Months = new[]
-    ///                 {
-    ///                     "1:3",
-    ///                     "december",
-    ///                 },
     ///                 Times = new[]
     ///                 {
     ///                     new Grafana.Alerting.Inputs.MuteTimingIntervalTimeArgs
     ///                     {
-    ///                         End = "14:17",
     ///                         Start = "04:56",
+    ///                         End = "14:17",
     ///                     },
     ///                 },
     ///                 Weekdays = new[]
@@ -58,11 +48,22 @@ namespace Pulumiverse.Grafana.Alerting
     ///                     "monday",
     ///                     "tuesday:thursday",
     ///                 },
+    ///                 DaysOfMonths = new[]
+    ///                 {
+    ///                     "1:7",
+    ///                     "-1",
+    ///                 },
+    ///                 Months = new[]
+    ///                 {
+    ///                     "1:3",
+    ///                     "december",
+    ///                 },
     ///                 Years = new[]
     ///                 {
     ///                     "2030",
     ///                     "2025:2026",
     ///                 },
+    ///                 Location = "America/New_York",
     ///             },
     ///         },
     ///     });

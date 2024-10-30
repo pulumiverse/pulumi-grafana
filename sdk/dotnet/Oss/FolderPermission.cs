@@ -25,7 +25,10 @@ namespace Pulumiverse.Grafana.Oss
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var team = new Grafana.Oss.Team("team");
+    ///     var team = new Grafana.Oss.Team("team", new()
+    ///     {
+    ///         Name = "Team Name",
+    ///     });
     /// 
     ///     var user = new Grafana.Oss.User("user", new()
     ///     {

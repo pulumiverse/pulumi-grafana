@@ -305,17 +305,21 @@ class NotificationPolicy(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        a_contact_point = grafana.alerting.ContactPoint("aContactPoint", emails=[grafana.alerting.ContactPointEmailArgs(
-            addresses=[
-                "one@company.org",
-                "two@company.org",
-            ],
-            message="{{ len .Alerts.Firing }} firing.",
-        )])
-        a_mute_timing = grafana.alerting.MuteTiming("aMuteTiming", intervals=[grafana.alerting.MuteTimingIntervalArgs(
-            weekdays=["monday"],
-        )])
-        my_notification_policy = grafana.alerting.NotificationPolicy("myNotificationPolicy",
+        a_contact_point = grafana.alerting.ContactPoint("a_contact_point",
+            name="A Contact Point",
+            emails=[grafana.alerting.ContactPointEmailArgs(
+                addresses=[
+                    "one@company.org",
+                    "two@company.org",
+                ],
+                message="{{ len .Alerts.Firing }} firing.",
+            )])
+        a_mute_timing = grafana.alerting.MuteTiming("a_mute_timing",
+            name="Some Mute Timing",
+            intervals=[grafana.alerting.MuteTimingIntervalArgs(
+                weekdays=["monday"],
+            )])
+        my_notification_policy = grafana.alerting.NotificationPolicy("my_notification_policy",
             group_bies=["..."],
             contact_point=a_contact_point.name,
             group_wait="45s",
@@ -410,17 +414,21 @@ class NotificationPolicy(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        a_contact_point = grafana.alerting.ContactPoint("aContactPoint", emails=[grafana.alerting.ContactPointEmailArgs(
-            addresses=[
-                "one@company.org",
-                "two@company.org",
-            ],
-            message="{{ len .Alerts.Firing }} firing.",
-        )])
-        a_mute_timing = grafana.alerting.MuteTiming("aMuteTiming", intervals=[grafana.alerting.MuteTimingIntervalArgs(
-            weekdays=["monday"],
-        )])
-        my_notification_policy = grafana.alerting.NotificationPolicy("myNotificationPolicy",
+        a_contact_point = grafana.alerting.ContactPoint("a_contact_point",
+            name="A Contact Point",
+            emails=[grafana.alerting.ContactPointEmailArgs(
+                addresses=[
+                    "one@company.org",
+                    "two@company.org",
+                ],
+                message="{{ len .Alerts.Firing }} firing.",
+            )])
+        a_mute_timing = grafana.alerting.MuteTiming("a_mute_timing",
+            name="Some Mute Timing",
+            intervals=[grafana.alerting.MuteTimingIntervalArgs(
+                weekdays=["monday"],
+            )])
+        my_notification_policy = grafana.alerting.NotificationPolicy("my_notification_policy",
             group_bies=["..."],
             contact_point=a_contact_point.name,
             group_wait="45s",

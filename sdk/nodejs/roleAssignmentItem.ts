@@ -13,7 +13,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const testRole = new grafana.enterprise.Role("testRole", {
+ * const testRole = new grafana.enterprise.Role("test_role", {
+ *     name: "Test Role",
  *     uid: "testrole",
  *     version: 1,
  *     global: true,
@@ -22,13 +23,16 @@ import * as utilities from "./utilities";
  *         scope: "users:*",
  *     }],
  * });
- * const testTeam = new grafana.oss.Team("testTeam", {});
- * const testUser = new grafana.oss.User("testUser", {
+ * const testTeam = new grafana.oss.Team("test_team", {name: "terraform_test_team"});
+ * const testUser = new grafana.oss.User("test_user", {
  *     email: "terraform_user@test.com",
  *     login: "terraform_user@test.com",
  *     password: "password",
  * });
- * const testSa = new grafana.oss.ServiceAccount("testSa", {role: "Viewer"});
+ * const testSa = new grafana.oss.ServiceAccount("test_sa", {
+ *     name: "terraform_test_sa",
+ *     role: "Viewer",
+ * });
  * const user = new grafana.enterprise.RoleAssignmentItem("user", {
  *     roleUid: testRole.uid,
  *     userId: testUser.id,
@@ -37,7 +41,7 @@ import * as utilities from "./utilities";
  *     roleUid: testRole.uid,
  *     teamId: testTeam.id,
  * });
- * const serviceAccount = new grafana.enterprise.RoleAssignmentItem("serviceAccount", {
+ * const serviceAccount = new grafana.enterprise.RoleAssignmentItem("service_account", {
  *     roleUid: testRole.uid,
  *     serviceAccountId: testSa.id,
  * });

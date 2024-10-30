@@ -14,16 +14,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const testFolderFolder = new grafana.oss.Folder("testFolderFolder", {title: "Terraform Test Folder"});
- * const testFolderDashboard = new grafana.oss.Dashboard("testFolderDashboard", {
- *     folder: testFolderFolder.id,
+ * const testFolder = new grafana.oss.Folder("test_folder", {title: "Terraform Test Folder"});
+ * const testFolderDashboard = new grafana.oss.Dashboard("test_folder", {
+ *     folder: testFolder.id,
  *     configJson: `{
  *   "title": "Dashboard in folder",
  *   "uid": "dashboard-in-folder"
  * }
  * `,
  * });
- * const testFolderWithUid = new grafana.oss.Folder("testFolderWithUid", {
+ * const testFolderWithUid = new grafana.oss.Folder("test_folder_with_uid", {
  *     uid: "test-folder-uid",
  *     title: "Terraform Test Folder With UID",
  * });

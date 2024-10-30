@@ -6,6 +6,24 @@ import * as utilities from "../utilities";
 
 /**
  * Data source for Grafana Stack
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const testStack = new grafana.cloud.Stack("test", {
+ *     name: "gcloudstacktest",
+ *     slug: "gcloudstacktest",
+ *     regionSlug: "eu",
+ *     description: "Test Grafana Cloud Stack",
+ * });
+ * const test = grafana.cloud.getStackOutput({
+ *     slug: testStack.slug,
+ * });
+ * ```
  */
 export function getStack(args: GetStackArgs, opts?: pulumi.InvokeOptions): Promise<GetStackResult> {
 
@@ -145,6 +163,24 @@ export interface GetStackResult {
 }
 /**
  * Data source for Grafana Stack
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const testStack = new grafana.cloud.Stack("test", {
+ *     name: "gcloudstacktest",
+ *     slug: "gcloudstacktest",
+ *     regionSlug: "eu",
+ *     description: "Test Grafana Cloud Stack",
+ * });
+ * const test = grafana.cloud.getStackOutput({
+ *     slug: testStack.slug,
+ * });
+ * ```
  */
 export function getStackOutput(args: GetStackOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStackResult> {
     return pulumi.output(args).apply((a: any) => getStack(a, opts))

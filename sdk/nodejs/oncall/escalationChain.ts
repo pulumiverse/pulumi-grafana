@@ -13,9 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const _default = new grafana.oncall.EscalationChain("default", {}, {
- *     provider: grafana.oncall,
- * });
+ * const _default = new grafana.oncall.EscalationChain("default", {name: "default"});
  * ```
  *
  * ## Import

@@ -22,17 +22,23 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const aContactPoint = new grafana.alerting.ContactPoint("aContactPoint", {emails: [{
- *     addresses: [
- *         "one@company.org",
- *         "two@company.org",
- *     ],
- *     message: "{{ len .Alerts.Firing }} firing.",
- * }]});
- * const aMuteTiming = new grafana.alerting.MuteTiming("aMuteTiming", {intervals: [{
- *     weekdays: ["monday"],
- * }]});
- * const myNotificationPolicy = new grafana.alerting.NotificationPolicy("myNotificationPolicy", {
+ * const aContactPoint = new grafana.alerting.ContactPoint("a_contact_point", {
+ *     name: "A Contact Point",
+ *     emails: [{
+ *         addresses: [
+ *             "one@company.org",
+ *             "two@company.org",
+ *         ],
+ *         message: "{{ len .Alerts.Firing }} firing.",
+ *     }],
+ * });
+ * const aMuteTiming = new grafana.alerting.MuteTiming("a_mute_timing", {
+ *     name: "Some Mute Timing",
+ *     intervals: [{
+ *         weekdays: ["monday"],
+ *     }],
+ * });
+ * const myNotificationPolicy = new grafana.alerting.NotificationPolicy("my_notification_policy", {
  *     groupBies: ["..."],
  *     contactPoint: aContactPoint.name,
  *     groupWait: "45s",

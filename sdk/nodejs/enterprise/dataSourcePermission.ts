@@ -16,9 +16,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const team = new grafana.oss.Team("team", {});
+ * const team = new grafana.oss.Team("team", {name: "Team Name"});
  * const foo = new grafana.oss.DataSource("foo", {
  *     type: "cloudwatch",
+ *     name: "cw-example",
  *     jsonDataEncoded: JSON.stringify({
  *         defaultRegion: "us-east-1",
  *         authType: "keys",
@@ -29,11 +30,15 @@ import * as utilities from "../utilities";
  *     }),
  * });
  * const user = new grafana.oss.User("user", {
+ *     name: "test-ds-permissions",
  *     email: "test-ds-permissions@example.com",
  *     login: "test-ds-permissions",
  *     password: "hunter2",
  * });
- * const sa = new grafana.oss.ServiceAccount("sa", {role: "Viewer"});
+ * const sa = new grafana.oss.ServiceAccount("sa", {
+ *     name: "test-ds-permissions",
+ *     role: "Viewer",
+ * });
  * const fooPermissions = new grafana.enterprise.DataSourcePermission("fooPermissions", {
  *     datasourceUid: foo.uid,
  *     permissions: [

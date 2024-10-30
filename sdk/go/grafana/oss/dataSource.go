@@ -53,6 +53,7 @@ import (
 //			json1 := string(tmpJSON1)
 //			_, err = oss.NewDataSource(ctx, "arbitrary-data", &oss.DataSourceArgs{
 //				Type:                  pulumi.String("stackdriver"),
+//				Name:                  pulumi.String("sd-arbitrary-data"),
 //				JsonDataEncoded:       pulumi.String(json0),
 //				SecureJsonDataEncoded: pulumi.String(json1),
 //			})
@@ -69,6 +70,7 @@ import (
 //			json2 := string(tmpJSON2)
 //			_, err = oss.NewDataSource(ctx, "influxdb", &oss.DataSourceArgs{
 //				Type:              pulumi.String("influxdb"),
+//				Name:              pulumi.String("myapp-metrics"),
 //				Url:               pulumi.String("http://influxdb.example.net:8086/"),
 //				BasicAuthEnabled:  pulumi.Bool(true),
 //				BasicAuthUsername: pulumi.String("username"),
@@ -96,6 +98,7 @@ import (
 //			json4 := string(tmpJSON4)
 //			_, err = oss.NewDataSource(ctx, "cloudwatch", &oss.DataSourceArgs{
 //				Type:                  pulumi.String("cloudwatch"),
+//				Name:                  pulumi.String("cw-example"),
 //				JsonDataEncoded:       pulumi.String(json3),
 //				SecureJsonDataEncoded: pulumi.String(json4),
 //			})
@@ -120,6 +123,7 @@ import (
 //			json6 := string(tmpJSON6)
 //			_, err = oss.NewDataSource(ctx, "prometheus", &oss.DataSourceArgs{
 //				Type:                  pulumi.String("prometheus"),
+//				Name:                  pulumi.String("mimir"),
 //				Url:                   pulumi.String("https://my-instances.com"),
 //				BasicAuthEnabled:      pulumi.Bool(true),
 //				BasicAuthUsername:     pulumi.String("username"),

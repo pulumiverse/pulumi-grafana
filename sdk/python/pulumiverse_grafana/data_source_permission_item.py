@@ -244,9 +244,10 @@ class DataSourcePermissionItem(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        team_team = grafana.oss.Team("teamTeam")
+        team = grafana.oss.Team("team", name="Team Name")
         foo = grafana.oss.DataSource("foo",
             type="cloudwatch",
+            name="cw-example",
             json_data_encoded=json.dumps({
                 "defaultRegion": "us-east-1",
                 "authType": "keys",
@@ -255,24 +256,27 @@ class DataSourcePermissionItem(pulumi.CustomResource):
                 "accessKey": "123",
                 "secretKey": "456",
             }))
-        user_user = grafana.oss.User("userUser",
+        user = grafana.oss.User("user",
+            name="test-ds-permissions",
             email="test-ds-permissions@example.com",
             login="test-ds-permissions",
             password="hunter2")
-        sa = grafana.oss.ServiceAccount("sa", role="Viewer")
-        team_data_source_permission_item = grafana.enterprise.DataSourcePermissionItem("teamDataSourcePermissionItem",
+        sa = grafana.oss.ServiceAccount("sa",
+            name="test-ds-permissions",
+            role="Viewer")
+        team_data_source_permission_item = grafana.enterprise.DataSourcePermissionItem("team",
             datasource_uid=foo.uid,
-            team=team_team.id,
+            team=team.id,
             permission="Edit")
-        user_data_source_permission_item = grafana.enterprise.DataSourcePermissionItem("userDataSourcePermissionItem",
+        user_data_source_permission_item = grafana.enterprise.DataSourcePermissionItem("user",
             datasource_uid=foo.uid,
-            user=user_user.id,
+            user=user.id,
             permission="Edit")
         role = grafana.enterprise.DataSourcePermissionItem("role",
             datasource_uid=foo.uid,
             role="Viewer",
             permission="Query")
-        service_account = grafana.enterprise.DataSourcePermissionItem("serviceAccount",
+        service_account = grafana.enterprise.DataSourcePermissionItem("service_account",
             datasource_uid=foo.uid,
             user=sa.id,
             permission="Query")
@@ -313,9 +317,10 @@ class DataSourcePermissionItem(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        team_team = grafana.oss.Team("teamTeam")
+        team = grafana.oss.Team("team", name="Team Name")
         foo = grafana.oss.DataSource("foo",
             type="cloudwatch",
+            name="cw-example",
             json_data_encoded=json.dumps({
                 "defaultRegion": "us-east-1",
                 "authType": "keys",
@@ -324,24 +329,27 @@ class DataSourcePermissionItem(pulumi.CustomResource):
                 "accessKey": "123",
                 "secretKey": "456",
             }))
-        user_user = grafana.oss.User("userUser",
+        user = grafana.oss.User("user",
+            name="test-ds-permissions",
             email="test-ds-permissions@example.com",
             login="test-ds-permissions",
             password="hunter2")
-        sa = grafana.oss.ServiceAccount("sa", role="Viewer")
-        team_data_source_permission_item = grafana.enterprise.DataSourcePermissionItem("teamDataSourcePermissionItem",
+        sa = grafana.oss.ServiceAccount("sa",
+            name="test-ds-permissions",
+            role="Viewer")
+        team_data_source_permission_item = grafana.enterprise.DataSourcePermissionItem("team",
             datasource_uid=foo.uid,
-            team=team_team.id,
+            team=team.id,
             permission="Edit")
-        user_data_source_permission_item = grafana.enterprise.DataSourcePermissionItem("userDataSourcePermissionItem",
+        user_data_source_permission_item = grafana.enterprise.DataSourcePermissionItem("user",
             datasource_uid=foo.uid,
-            user=user_user.id,
+            user=user.id,
             permission="Edit")
         role = grafana.enterprise.DataSourcePermissionItem("role",
             datasource_uid=foo.uid,
             role="Viewer",
             permission="Query")
-        service_account = grafana.enterprise.DataSourcePermissionItem("serviceAccount",
+        service_account = grafana.enterprise.DataSourcePermissionItem("service_account",
             datasource_uid=foo.uid,
             user=sa.id,
             permission="Query")

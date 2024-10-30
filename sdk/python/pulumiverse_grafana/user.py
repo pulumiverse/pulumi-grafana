@@ -233,9 +233,10 @@ class User(pulumi.CustomResource):
 
         staff = grafana.oss.User("staff",
             email="staff.name@example.com",
-            is_admin=False,
+            name="Staff Name",
             login="staff",
-            password="my-password")
+            password="my-password",
+            is_admin=False)
         ```
 
         ## Import
@@ -274,9 +275,10 @@ class User(pulumi.CustomResource):
 
         staff = grafana.oss.User("staff",
             email="staff.name@example.com",
-            is_admin=False,
+            name="Staff Name",
             login="staff",
-            password="my-password")
+            password="my-password",
+            is_admin=False)
         ```
 
         ## Import

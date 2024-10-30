@@ -311,11 +311,12 @@ class OncallRoute(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         example_slack_channel = grafana.onCall.get_slack_channel(name="example_slack_channel")
-        default = grafana.on_call.EscalationChain("default")
-        example_integration = grafana.on_call.Integration("exampleIntegration",
+        default = grafana.on_call.EscalationChain("default", name="default")
+        example_integration = grafana.on_call.Integration("example_integration",
+            name="Grafana Integration",
             type="grafana",
             default_route=grafana.on_call.IntegrationDefaultRouteArgs())
-        example_route = grafana.on_call.Route("exampleRoute",
+        example_route = grafana.on_call.Route("example_route",
             integration_id=example_integration.id,
             escalation_chain_id=default.id,
             routing_regex="us-(east|west)",
@@ -368,11 +369,12 @@ class OncallRoute(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         example_slack_channel = grafana.onCall.get_slack_channel(name="example_slack_channel")
-        default = grafana.on_call.EscalationChain("default")
-        example_integration = grafana.on_call.Integration("exampleIntegration",
+        default = grafana.on_call.EscalationChain("default", name="default")
+        example_integration = grafana.on_call.Integration("example_integration",
+            name="Grafana Integration",
             type="grafana",
             default_route=grafana.on_call.IntegrationDefaultRouteArgs())
-        example_route = grafana.on_call.Route("exampleRoute",
+        example_route = grafana.on_call.Route("example_route",
             integration_id=example_integration.id,
             escalation_chain_id=default.id,
             routing_regex="us-(east|west)",

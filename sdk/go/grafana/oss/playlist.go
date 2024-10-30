@@ -30,6 +30,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := oss.NewPlaylist(ctx, "test", &oss.PlaylistArgs{
+//				Name:     pulumi.String("My Playlist!"),
 //				Interval: pulumi.String("5m"),
 //				Items: oss.PlaylistItemArray{
 //					&oss.PlaylistItemArgs{

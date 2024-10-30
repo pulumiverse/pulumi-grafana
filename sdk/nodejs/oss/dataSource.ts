@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  *
  * const arbitrary_data = new grafana.oss.DataSource("arbitrary-data", {
  *     type: "stackdriver",
+ *     name: "sd-arbitrary-data",
  *     jsonDataEncoded: JSON.stringify({
  *         tokenUri: "https://oauth2.googleapis.com/token",
  *         authenticationType: "jwt",
@@ -34,6 +35,7 @@ import * as utilities from "../utilities";
  * });
  * const influxdb = new grafana.oss.DataSource("influxdb", {
  *     type: "influxdb",
+ *     name: "myapp-metrics",
  *     url: "http://influxdb.example.net:8086/",
  *     basicAuthEnabled: true,
  *     basicAuthUsername: "username",
@@ -45,6 +47,7 @@ import * as utilities from "../utilities";
  * });
  * const cloudwatch = new grafana.oss.DataSource("cloudwatch", {
  *     type: "cloudwatch",
+ *     name: "cw-example",
  *     jsonDataEncoded: JSON.stringify({
  *         defaultRegion: "us-east-1",
  *         authType: "keys",
@@ -56,6 +59,7 @@ import * as utilities from "../utilities";
  * });
  * const prometheus = new grafana.oss.DataSource("prometheus", {
  *     type: "prometheus",
+ *     name: "mimir",
  *     url: "https://my-instances.com",
  *     basicAuthEnabled: true,
  *     basicAuthUsername: "username",

@@ -30,6 +30,7 @@ namespace Pulumiverse.Grafana
         /// {
         ///     var test = new Grafana.Oss.Organization("test", new()
         ///     {
+        ///         Name = "test-org",
         ///         AdminUser = "admin",
         ///         CreateUsers = true,
         ///         Viewers = new[]
@@ -67,6 +68,7 @@ namespace Pulumiverse.Grafana
         /// {
         ///     var test = new Grafana.Oss.Organization("test", new()
         ///     {
+        ///         Name = "test-org",
         ///         AdminUser = "admin",
         ///         CreateUsers = true,
         ///         Viewers = new[]

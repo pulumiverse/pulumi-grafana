@@ -47,6 +47,7 @@ import (
 //			json1 := string(tmpJSON1)
 //			prometheus, err := oss.NewDataSource(ctx, "prometheus", &oss.DataSourceArgs{
 //				Type:                  pulumi.String("prometheus"),
+//				Name:                  pulumi.String("prometheus-ds-test"),
 //				Uid:                   pulumi.String("prometheus-ds-test-uid"),
 //				Url:                   pulumi.String("https://my-instance.com"),
 //				BasicAuthEnabled:      pulumi.Bool(true),

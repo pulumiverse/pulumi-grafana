@@ -106,6 +106,7 @@ def get_organization(name: Optional[str] = None,
     import pulumiverse_grafana as grafana
 
     test = grafana.oss.Organization("test",
+        name="test-org",
         admin_user="admin",
         create_users=True,
         viewers=[
@@ -146,6 +147,7 @@ def get_organization_output(name: Optional[pulumi.Input[str]] = None,
     import pulumiverse_grafana as grafana
 
     test = grafana.oss.Organization("test",
+        name="test-org",
         admin_user="admin",
         create_users=True,
         viewers=[

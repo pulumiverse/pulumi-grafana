@@ -24,8 +24,9 @@ import * as utilities from "./utilities";
  * const current = grafana.cloud.getOrganization({
  *     slug: "<your org slug>",
  * });
- * const testAccessPolicy = new grafana.cloud.AccessPolicy("testAccessPolicy", {
+ * const test = new grafana.cloud.AccessPolicy("test", {
  *     region: "us",
+ *     name: "my-policy",
  *     displayName: "My Policy",
  *     scopes: [
  *         "metrics:read",
@@ -39,9 +40,10 @@ import * as utilities from "./utilities";
  *         }],
  *     }],
  * });
- * const testAccessPolicyToken = new grafana.cloud.AccessPolicyToken("testAccessPolicyToken", {
+ * const testAccessPolicyToken = new grafana.cloud.AccessPolicyToken("test", {
  *     region: "us",
- *     accessPolicyId: testAccessPolicy.policyId,
+ *     accessPolicyId: test.policyId,
+ *     name: "my-policy-token",
  *     displayName: "My Policy Token",
  *     expiresAt: "2023-01-01T00:00:00Z",
  * });

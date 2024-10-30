@@ -16,6 +16,7 @@ import * as utilities from "../utilities";
  *
  * const prometheus = new grafana.oss.DataSource("prometheus", {
  *     type: "prometheus",
+ *     name: "prometheus-ds-test",
  *     uid: "prometheus-ds-test-uid",
  *     url: "https://my-instance.com",
  *     basicAuthEnabled: true,
@@ -123,6 +124,7 @@ export interface GetDataSourceResult {
  *
  * const prometheus = new grafana.oss.DataSource("prometheus", {
  *     type: "prometheus",
+ *     name: "prometheus-ds-test",
  *     uid: "prometheus-ds-test-uid",
  *     url: "https://my-instance.com",
  *     basicAuthEnabled: true,

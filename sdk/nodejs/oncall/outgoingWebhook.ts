@@ -13,8 +13,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const test_acc_outgoingWebhook = new grafana.oncall.OutgoingWebhook("test-acc-outgoingWebhook", {url: "https://example.com/"}, {
- *     provider: grafana.oncall,
+ * const test_acc_outgoingWebhook = new grafana.oncall.OutgoingWebhook("test-acc-outgoing_webhook", {
+ *     name: "my outgoing webhook",
+ *     url: "https://example.com/",
  * });
  * ```
  *

@@ -348,9 +348,10 @@ class Organization(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.oss.Organization("test",
+            name="Test Organization",
             admin_user="admin",
-            admins=["admin@example.com"],
             create_users=True,
+            admins=["admin@example.com"],
             editors=[
                 "editor-01@example.com",
                 "editor-02@example.com",
@@ -411,9 +412,10 @@ class Organization(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.oss.Organization("test",
+            name="Test Organization",
             admin_user="admin",
-            admins=["admin@example.com"],
             create_users=True,
+            admins=["admin@example.com"],
             editors=[
                 "editor-01@example.com",
                 "editor-02@example.com",

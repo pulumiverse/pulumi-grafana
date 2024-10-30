@@ -29,13 +29,14 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var ruleFolder = new Grafana.Oss.Folder("ruleFolder", new()
+    ///     var ruleFolder = new Grafana.Oss.Folder("rule_folder", new()
     ///     {
     ///         Title = "My Alert Rule Folder",
     ///     });
     /// 
-    ///     var myAlertRule = new Grafana.Alerting.RuleGroup("myAlertRule", new()
+    ///     var myAlertRule = new Grafana.Alerting.RuleGroup("my_alert_rule", new()
     ///     {
+    ///         Name = "My Rule Group",
     ///         FolderUid = ruleFolder.Uid,
     ///         IntervalSeconds = 240,
     ///         OrgId = "1",

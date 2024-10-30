@@ -30,12 +30,13 @@ namespace Pulumiverse.Grafana
     /// {
     ///     var test = new Grafana.Oss.Organization("test", new()
     ///     {
+    ///         Name = "Test Organization",
     ///         AdminUser = "admin",
+    ///         CreateUsers = true,
     ///         Admins = new[]
     ///         {
     ///             "admin@example.com",
     ///         },
-    ///         CreateUsers = true,
     ///         Editors = new[]
     ///         {
     ///             "editor-01@example.com",

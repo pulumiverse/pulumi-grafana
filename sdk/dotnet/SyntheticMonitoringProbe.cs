@@ -30,13 +30,14 @@ namespace Pulumiverse.Grafana
     /// {
     ///     var main = new Grafana.SyntheticMonitoring.Probe("main", new()
     ///     {
+    ///         Name = "Mount Everest",
+    ///         Latitude = 27.98606,
+    ///         Longitude = 86.92262,
+    ///         Region = "APAC",
     ///         Labels = 
     ///         {
     ///             { "type", "mountain" },
     ///         },
-    ///         Latitude = 27.98606,
-    ///         Longitude = 86.92262,
-    ///         Region = "APAC",
     ///     });
     /// 
     /// });

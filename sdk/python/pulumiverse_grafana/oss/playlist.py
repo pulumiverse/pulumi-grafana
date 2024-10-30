@@ -160,6 +160,7 @@ class Playlist(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.oss.Playlist("test",
+            name="My Playlist!",
             interval="5m",
             items=[
                 grafana.oss.PlaylistItemArgs(
@@ -209,6 +210,7 @@ class Playlist(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.oss.Playlist("test",
+            name="My Playlist!",
             interval="5m",
             items=[
                 grafana.oss.PlaylistItemArgs(

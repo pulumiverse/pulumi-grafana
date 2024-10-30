@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/pulumi/pulumi-terraform-bridge/pf/tfgen"
+
 	grafana "github.com/pulumiverse/pulumi-grafana/provider"
 )
 

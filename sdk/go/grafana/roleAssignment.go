@@ -32,7 +32,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testRole, err := enterprise.NewRole(ctx, "testRole", &enterprise.RoleArgs{
+//			testRole, err := enterprise.NewRole(ctx, "test_role", &enterprise.RoleArgs{
+//				Name:    pulumi.String("Test Role"),
 //				Uid:     pulumi.String("testrole"),
 //				Version: pulumi.Int(1),
 //				Global:  pulumi.Bool(true),
@@ -46,11 +47,13 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testTeam, err := oss.NewTeam(ctx, "testTeam", nil)
+//			testTeam, err := oss.NewTeam(ctx, "test_team", &oss.TeamArgs{
+//				Name: pulumi.String("terraform_test_team"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			testUser, err := oss.NewUser(ctx, "testUser", &oss.UserArgs{
+//			testUser, err := oss.NewUser(ctx, "test_user", &oss.UserArgs{
 //				Email:    pulumi.String("terraform_user@test.com"),
 //				Login:    pulumi.String("terraform_user@test.com"),
 //				Password: pulumi.String("password"),
@@ -58,7 +61,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testSa, err := oss.NewServiceAccount(ctx, "testSa", &oss.ServiceAccountArgs{
+//			testSa, err := oss.NewServiceAccount(ctx, "test_sa", &oss.ServiceAccountArgs{
+//				Name: pulumi.String("terraform_test_sa"),
 //				Role: pulumi.String("Viewer"),
 //			})
 //			if err != nil {

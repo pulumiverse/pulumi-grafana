@@ -263,8 +263,9 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         current = grafana.cloud.get_organization(slug="<your org slug>")
-        test_access_policy = grafana.cloud.AccessPolicy("testAccessPolicy",
+        test = grafana.cloud.AccessPolicy("test",
             region="us",
+            name="my-policy",
             display_name="My Policy",
             scopes=[
                 "metrics:read",
@@ -277,9 +278,10 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
                     selector="{namespace=\\"default\\"}",
                 )],
             )])
-        test_access_policy_token = grafana.cloud.AccessPolicyToken("testAccessPolicyToken",
+        test_access_policy_token = grafana.cloud.AccessPolicyToken("test",
             region="us",
-            access_policy_id=test_access_policy.policy_id,
+            access_policy_id=test.policy_id,
+            name="my-policy-token",
             display_name="My Policy Token",
             expires_at="2023-01-01T00:00:00Z")
         ```
@@ -322,8 +324,9 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         current = grafana.cloud.get_organization(slug="<your org slug>")
-        test_access_policy = grafana.cloud.AccessPolicy("testAccessPolicy",
+        test = grafana.cloud.AccessPolicy("test",
             region="us",
+            name="my-policy",
             display_name="My Policy",
             scopes=[
                 "metrics:read",
@@ -336,9 +339,10 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
                     selector="{namespace=\\"default\\"}",
                 )],
             )])
-        test_access_policy_token = grafana.cloud.AccessPolicyToken("testAccessPolicyToken",
+        test_access_policy_token = grafana.cloud.AccessPolicyToken("test",
             region="us",
-            access_policy_id=test_access_policy.policy_id,
+            access_policy_id=test.policy_id,
+            name="my-policy-token",
             display_name="My Policy Token",
             expires_at="2023-01-01T00:00:00Z")
         ```

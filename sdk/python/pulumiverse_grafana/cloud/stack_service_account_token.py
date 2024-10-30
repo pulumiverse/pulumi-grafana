@@ -184,11 +184,14 @@ class StackServiceAccountToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        cloud_sa = grafana.cloud.StackServiceAccount("cloudSa",
+        cloud_sa = grafana.cloud.StackServiceAccount("cloud_sa",
             stack_slug="<your stack slug>",
+            name="cloud service account",
             role="Admin",
             is_disabled=False)
-        foo = grafana.cloud.StackServiceAccountToken("foo", service_account_id=cloud_sa.id)
+        foo = grafana.cloud.StackServiceAccountToken("foo",
+            name="key_foo",
+            service_account_id=cloud_sa.id)
         pulumi.export("serviceAccountTokenFooKey", foo.key)
         ```
 
@@ -218,11 +221,14 @@ class StackServiceAccountToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        cloud_sa = grafana.cloud.StackServiceAccount("cloudSa",
+        cloud_sa = grafana.cloud.StackServiceAccount("cloud_sa",
             stack_slug="<your stack slug>",
+            name="cloud service account",
             role="Admin",
             is_disabled=False)
-        foo = grafana.cloud.StackServiceAccountToken("foo", service_account_id=cloud_sa.id)
+        foo = grafana.cloud.StackServiceAccountToken("foo",
+            name="key_foo",
+            service_account_id=cloud_sa.id)
         pulumi.export("serviceAccountTokenFooKey", foo.key)
         ```
 

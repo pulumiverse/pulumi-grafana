@@ -240,21 +240,21 @@ class FolderPermissionItem(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        team = grafana.oss.Team("team")
+        team = grafana.oss.Team("team", name="Team Name")
         user = grafana.oss.User("user",
             email="user.name@example.com",
             login="user.name",
             password="my-password")
         collection = grafana.oss.Folder("collection", title="Folder Title")
-        on_role = grafana.oss.FolderPermissionItem("onRole",
+        on_role = grafana.oss.FolderPermissionItem("on_role",
             folder_uid=collection.uid,
             role="Viewer",
             permission="Edit")
-        on_team = grafana.oss.FolderPermissionItem("onTeam",
+        on_team = grafana.oss.FolderPermissionItem("on_team",
             folder_uid=collection.uid,
             team=team.id,
             permission="View")
-        on_user = grafana.oss.FolderPermissionItem("onUser",
+        on_user = grafana.oss.FolderPermissionItem("on_user",
             folder_uid=collection.uid,
             user=user.id,
             permission="Admin")
@@ -296,21 +296,21 @@ class FolderPermissionItem(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        team = grafana.oss.Team("team")
+        team = grafana.oss.Team("team", name="Team Name")
         user = grafana.oss.User("user",
             email="user.name@example.com",
             login="user.name",
             password="my-password")
         collection = grafana.oss.Folder("collection", title="Folder Title")
-        on_role = grafana.oss.FolderPermissionItem("onRole",
+        on_role = grafana.oss.FolderPermissionItem("on_role",
             folder_uid=collection.uid,
             role="Viewer",
             permission="Edit")
-        on_team = grafana.oss.FolderPermissionItem("onTeam",
+        on_team = grafana.oss.FolderPermissionItem("on_team",
             folder_uid=collection.uid,
             team=team.id,
             permission="View")
-        on_user = grafana.oss.FolderPermissionItem("onUser",
+        on_user = grafana.oss.FolderPermissionItem("on_user",
             folder_uid=collection.uid,
             user=user.id,
             permission="Admin")

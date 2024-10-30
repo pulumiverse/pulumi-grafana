@@ -24,11 +24,15 @@ namespace Pulumiverse.Grafana.Enterprise
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var teamTeam = new Grafana.Oss.Team("teamTeam");
+    ///     var team = new Grafana.Oss.Team("team", new()
+    ///     {
+    ///         Name = "Team Name",
+    ///     });
     /// 
     ///     var foo = new Grafana.Oss.DataSource("foo", new()
     ///     {
     ///         Type = "cloudwatch",
+    ///         Name = "cw-example",
     ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["defaultRegion"] = "us-east-1",
@@ -41,8 +45,9 @@ namespace Pulumiverse.Grafana.Enterprise
     ///         }),
     ///     });
     /// 
-    ///     var userUser = new Grafana.Oss.User("userUser", new()
+    ///     var user = new Grafana.Oss.User("user", new()
     ///     {
+    ///         Name = "test-ds-permissions",
     ///         Email = "test-ds-permissions@example.com",
     ///         Login = "test-ds-permissions",
     ///         Password = "hunter2",
@@ -50,20 +55,21 @@ namespace Pulumiverse.Grafana.Enterprise
     /// 
     ///     var sa = new Grafana.Oss.ServiceAccount("sa", new()
     ///     {
+    ///         Name = "test-ds-permissions",
     ///         Role = "Viewer",
     ///     });
     /// 
-    ///     var teamDataSourcePermissionItem = new Grafana.Enterprise.DataSourcePermissionItem("teamDataSourcePermissionItem", new()
+    ///     var teamDataSourcePermissionItem = new Grafana.Enterprise.DataSourcePermissionItem("team", new()
     ///     {
     ///         DatasourceUid = foo.Uid,
-    ///         Team = teamTeam.Id,
+    ///         Team = team.Id,
     ///         Permission = "Edit",
     ///     });
     /// 
-    ///     var userDataSourcePermissionItem = new Grafana.Enterprise.DataSourcePermissionItem("userDataSourcePermissionItem", new()
+    ///     var userDataSourcePermissionItem = new Grafana.Enterprise.DataSourcePermissionItem("user", new()
     ///     {
     ///         DatasourceUid = foo.Uid,
-    ///         User = userUser.Id,
+    ///         User = user.Id,
     ///         Permission = "Edit",
     ///     });
     /// 
@@ -74,7 +80,7 @@ namespace Pulumiverse.Grafana.Enterprise
     ///         Permission = "Query",
     ///     });
     /// 
-    ///     var serviceAccount = new Grafana.Enterprise.DataSourcePermissionItem("serviceAccount", new()
+    ///     var serviceAccount = new Grafana.Enterprise.DataSourcePermissionItem("service_account", new()
     ///     {
     ///         DatasourceUid = foo.Uid,
     ///         User = sa.Id,

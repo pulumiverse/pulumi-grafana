@@ -19,12 +19,13 @@ import * as utilities from "../utilities";
  * const exampleSlackChannel = grafana.onCall.getSlackChannel({
  *     name: "example_slack_channel",
  * });
- * const _default = new grafana.oncall.EscalationChain("default", {});
- * const exampleIntegration = new grafana.oncall.Integration("exampleIntegration", {
+ * const _default = new grafana.oncall.EscalationChain("default", {name: "default"});
+ * const exampleIntegration = new grafana.oncall.Integration("example_integration", {
+ *     name: "Grafana Integration",
  *     type: "grafana",
  *     defaultRoute: {},
  * });
- * const exampleRoute = new grafana.oncall.Route("exampleRoute", {
+ * const exampleRoute = new grafana.oncall.Route("example_route", {
  *     integrationId: exampleIntegration.id,
  *     escalationChainId: _default.id,
  *     routingRegex: "us-(east|west)",

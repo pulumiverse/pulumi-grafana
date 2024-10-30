@@ -15,21 +15,22 @@ import * as utilities from "./utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.oss.ServiceAccount("test", {
+ *     name: "terraform-sa",
  *     role: "Editor",
  *     isDisabled: false,
  * });
- * const team = new grafana.oss.Team("team", {});
+ * const team = new grafana.oss.Team("team", {name: "Team Name"});
  * const user = new grafana.oss.User("user", {
  *     email: "user.name@example.com",
  *     login: "user.name",
  *     password: "my-password",
  * });
- * const onTeam = new grafana.oss.ServiceAccountPermissionItem("onTeam", {
+ * const onTeam = new grafana.oss.ServiceAccountPermissionItem("on_team", {
  *     serviceAccountId: test.id,
  *     team: team.id,
  *     permission: "Admin",
  * });
- * const onUser = new grafana.oss.ServiceAccountPermissionItem("onUser", {
+ * const onUser = new grafana.oss.ServiceAccountPermissionItem("on_user", {
  *     serviceAccountId: test.id,
  *     user: user.id,
  *     permission: "Admin",

@@ -26,11 +26,15 @@ namespace Pulumiverse.Grafana.Oss
     /// {
     ///     var test = new Grafana.Oss.ServiceAccount("test", new()
     ///     {
+    ///         Name = "terraform-sa",
     ///         Role = "Editor",
     ///         IsDisabled = false,
     ///     });
     /// 
-    ///     var team = new Grafana.Oss.Team("team");
+    ///     var team = new Grafana.Oss.Team("team", new()
+    ///     {
+    ///         Name = "Team Name",
+    ///     });
     /// 
     ///     var user = new Grafana.Oss.User("user", new()
     ///     {
@@ -39,14 +43,14 @@ namespace Pulumiverse.Grafana.Oss
     ///         Password = "my-password",
     ///     });
     /// 
-    ///     var onTeam = new Grafana.Oss.ServiceAccountPermissionItem("onTeam", new()
+    ///     var onTeam = new Grafana.Oss.ServiceAccountPermissionItem("on_team", new()
     ///     {
     ///         ServiceAccountId = test.Id,
     ///         Team = team.Id,
     ///         Permission = "Admin",
     ///     });
     /// 
-    ///     var onUser = new Grafana.Oss.ServiceAccountPermissionItem("onUser", new()
+    ///     var onUser = new Grafana.Oss.ServiceAccountPermissionItem("on_user", new()
     ///     {
     ///         ServiceAccountId = test.Id,
     ///         User = user.Id,

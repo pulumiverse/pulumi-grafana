@@ -28,8 +28,9 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myContactPoint = new Grafana.Alerting.ContactPoint("myContactPoint", new()
+    ///     var myContactPoint = new Grafana.Alerting.ContactPoint("my_contact_point", new()
     ///     {
+    ///         Name = "My Contact Point",
     ///         Emails = new[]
     ///         {
     ///             new Grafana.Alerting.Inputs.ContactPointEmailArgs
@@ -39,10 +40,10 @@ namespace Pulumiverse.Grafana
     ///                     "one@company.org",
     ///                     "two@company.org",
     ///                 },
-    ///                 DisableResolveMessage = false,
     ///                 Message = "{{ len .Alerts.Firing }} firing.",
-    ///                 SingleEmail = true,
     ///                 Subject = "{{ template \"default.title\" .}}",
+    ///                 SingleEmail = true,
+    ///                 DisableResolveMessage = false,
     ///             },
     ///         },
     ///     });

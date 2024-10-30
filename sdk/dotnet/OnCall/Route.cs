@@ -29,15 +29,19 @@ namespace Pulumiverse.Grafana.OnCall
     ///         Name = "example_slack_channel",
     ///     });
     /// 
-    ///     var @default = new Grafana.OnCall.EscalationChain("default");
-    /// 
-    ///     var exampleIntegration = new Grafana.OnCall.Integration("exampleIntegration", new()
+    ///     var @default = new Grafana.OnCall.EscalationChain("default", new()
     ///     {
+    ///         Name = "default",
+    ///     });
+    /// 
+    ///     var exampleIntegration = new Grafana.OnCall.Integration("example_integration", new()
+    ///     {
+    ///         Name = "Grafana Integration",
     ///         Type = "grafana",
     ///         DefaultRoute = null,
     ///     });
     /// 
-    ///     var exampleRoute = new Grafana.OnCall.Route("exampleRoute", new()
+    ///     var exampleRoute = new Grafana.OnCall.Route("example_route", new()
     ///     {
     ///         IntegrationId = exampleIntegration.Id,
     ///         EscalationChainId = @default.Id,

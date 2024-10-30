@@ -181,6 +181,7 @@ def get_role(name: Optional[str] = None,
     import pulumiverse_grafana as grafana
 
     test = grafana.enterprise.Role("test",
+        name="test-role",
         description="test-role description",
         uid="test-ds-role-uid",
         version=1,
@@ -242,6 +243,7 @@ def get_role_output(name: Optional[pulumi.Input[str]] = None,
     import pulumiverse_grafana as grafana
 
     test = grafana.enterprise.Role("test",
+        name="test-role",
         description="test-role description",
         uid="test-ds-role-uid",
         version=1,

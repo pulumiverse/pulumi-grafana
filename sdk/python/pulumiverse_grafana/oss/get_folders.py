@@ -82,10 +82,10 @@ def get_folders(org_id: Optional[str] = None,
     import pulumi_grafana as grafana
     import pulumiverse_grafana as grafana
 
-    test_a = grafana.oss.Folder("testA",
+    test_a = grafana.oss.Folder("test_a",
         title="test-folder-a",
         uid="test-ds-folder-uid-a")
-    test_b = grafana.oss.Folder("testB",
+    test_b = grafana.oss.Folder("test_b",
         title="test-folder-b",
         uid="test-ds-folder-uid-b")
     test = grafana.oss.get_folders()
@@ -119,10 +119,10 @@ def get_folders_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi_grafana as grafana
     import pulumiverse_grafana as grafana
 
-    test_a = grafana.oss.Folder("testA",
+    test_a = grafana.oss.Folder("test_a",
         title="test-folder-a",
         uid="test-ds-folder-uid-a")
-    test_b = grafana.oss.Folder("testB",
+    test_b = grafana.oss.Folder("test_b",
         title="test-folder-b",
         uid="test-ds-folder-uid-b")
     test = grafana.oss.get_folders()

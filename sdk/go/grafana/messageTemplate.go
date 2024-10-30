@@ -33,8 +33,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := alerting.NewMessageTemplate(ctx, "myTemplate", &alerting.MessageTemplateArgs{
-//				Template: pulumi.String("{{define \"My Reusable Template\" }}\n template content\n{{ end }}\n"),
+//			_, err := alerting.NewMessageTemplate(ctx, "my_template", &alerting.MessageTemplateArgs{
+//				Name:     pulumi.String("My Reusable Template"),
+//				Template: pulumi.String("{{define \"My Reusable Template\" }}\n template content\n{{ end }}"),
 //			})
 //			if err != nil {
 //				return err

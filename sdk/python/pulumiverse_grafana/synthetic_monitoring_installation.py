@@ -173,20 +173,20 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         config = pulumi.Config()
+        # Cloud Access Policy token for Grafana Cloud with the following scopes: accesspolicies:read|write|delete, stacks:read|write|delete
         cloud_access_policy_token = config.require_object("cloudAccessPolicyToken")
         stack_slug = config.require_object("stackSlug")
         cloud_region = config.get("cloudRegion")
         if cloud_region is None:
             cloud_region = "us"
-        # Step 1: Create a stack
-        cloud = grafana.Provider("cloud", cloud_access_policy_token=cloud_access_policy_token)
-        sm_stack_stack = grafana.cloud.Stack("smStackStack",
+        sm_stack = grafana.cloud.Stack("sm_stack",
+            name=stack_slug,
             slug=stack_slug,
-            region_slug=cloud_region,
-            opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
+            region_slug=cloud_region)
         # Step 2: Install Synthetic Monitoring on the stack
-        sm_metrics_publish_access_policy = grafana.cloud.AccessPolicy("smMetricsPublishAccessPolicy",
+        sm_metrics_publish = grafana.cloud.AccessPolicy("sm_metrics_publish",
             region=cloud_region,
+            name="metric-publisher-for-sm",
             scopes=[
                 "metrics:write",
                 "stacks:read",
@@ -195,21 +195,15 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
             ],
             realms=[grafana.cloud.AccessPolicyRealmArgs(
                 type="stack",
-                identifier=sm_stack_stack.id,
-            )],
-            opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
-        sm_metrics_publish_access_policy_token = grafana.cloud.AccessPolicyToken("smMetricsPublishAccessPolicyToken",
+                identifier=sm_stack.id,
+            )])
+        sm_metrics_publish_access_policy_token = grafana.cloud.AccessPolicyToken("sm_metrics_publish",
             region=cloud_region,
-            access_policy_id=sm_metrics_publish_access_policy.policy_id,
-            opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
-        sm_stack_installation = grafana.synthetic_monitoring.Installation("smStackInstallation",
-            stack_id=sm_stack_stack.id,
-            metrics_publisher_key=sm_metrics_publish_access_policy_token.token,
-            opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
-        # Step 3: Interact with Synthetic Monitoring
-        sm = grafana.Provider("sm",
-            sm_access_token=sm_stack_installation.sm_access_token,
-            sm_url=sm_stack_installation.stack_sm_api_url)
+            access_policy_id=sm_metrics_publish.policy_id,
+            name="metric-publisher-for-sm")
+        sm_stack_installation = grafana.synthetic_monitoring.Installation("sm_stack",
+            stack_id=sm_stack.id,
+            metrics_publisher_key=sm_metrics_publish_access_policy_token.token)
         main = grafana.syntheticMonitoring.get_probes()
         ```
 
@@ -247,20 +241,20 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         config = pulumi.Config()
+        # Cloud Access Policy token for Grafana Cloud with the following scopes: accesspolicies:read|write|delete, stacks:read|write|delete
         cloud_access_policy_token = config.require_object("cloudAccessPolicyToken")
         stack_slug = config.require_object("stackSlug")
         cloud_region = config.get("cloudRegion")
         if cloud_region is None:
             cloud_region = "us"
-        # Step 1: Create a stack
-        cloud = grafana.Provider("cloud", cloud_access_policy_token=cloud_access_policy_token)
-        sm_stack_stack = grafana.cloud.Stack("smStackStack",
+        sm_stack = grafana.cloud.Stack("sm_stack",
+            name=stack_slug,
             slug=stack_slug,
-            region_slug=cloud_region,
-            opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
+            region_slug=cloud_region)
         # Step 2: Install Synthetic Monitoring on the stack
-        sm_metrics_publish_access_policy = grafana.cloud.AccessPolicy("smMetricsPublishAccessPolicy",
+        sm_metrics_publish = grafana.cloud.AccessPolicy("sm_metrics_publish",
             region=cloud_region,
+            name="metric-publisher-for-sm",
             scopes=[
                 "metrics:write",
                 "stacks:read",
@@ -269,21 +263,15 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
             ],
             realms=[grafana.cloud.AccessPolicyRealmArgs(
                 type="stack",
-                identifier=sm_stack_stack.id,
-            )],
-            opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
-        sm_metrics_publish_access_policy_token = grafana.cloud.AccessPolicyToken("smMetricsPublishAccessPolicyToken",
+                identifier=sm_stack.id,
+            )])
+        sm_metrics_publish_access_policy_token = grafana.cloud.AccessPolicyToken("sm_metrics_publish",
             region=cloud_region,
-            access_policy_id=sm_metrics_publish_access_policy.policy_id,
-            opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
-        sm_stack_installation = grafana.synthetic_monitoring.Installation("smStackInstallation",
-            stack_id=sm_stack_stack.id,
-            metrics_publisher_key=sm_metrics_publish_access_policy_token.token,
-            opts = pulumi.ResourceOptions(provider=grafana["cloud"]))
-        # Step 3: Interact with Synthetic Monitoring
-        sm = grafana.Provider("sm",
-            sm_access_token=sm_stack_installation.sm_access_token,
-            sm_url=sm_stack_installation.stack_sm_api_url)
+            access_policy_id=sm_metrics_publish.policy_id,
+            name="metric-publisher-for-sm")
+        sm_stack_installation = grafana.synthetic_monitoring.Installation("sm_stack",
+            stack_id=sm_stack.id,
+            metrics_publisher_key=sm_metrics_publish_access_policy_token.token)
         main = grafana.syntheticMonitoring.get_probes()
         ```
 

@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const testDashboard = new grafana.oss.Dashboard("testDashboard", {
+ * const test = new grafana.oss.Dashboard("test", {
  *     configJson: `{
  *   "uid": "report-dashboard",
  *   "title": "report-dashboard"
@@ -26,10 +26,11 @@ import * as utilities from "./utilities";
  * `,
  *     message: "inital commit.",
  * });
- * const testReport = new grafana.enterprise.Report("testReport", {
+ * const testReport = new grafana.enterprise.Report("test", {
+ *     name: "my report",
  *     recipients: ["some@email.com"],
  *     dashboards: [{
- *         uid: testDashboard.uid,
+ *         uid: test.uid,
  *     }],
  *     schedule: {
  *         frequency: "hourly",

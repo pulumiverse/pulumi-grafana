@@ -37,8 +37,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloud.NewPluginInstallation(ctx, "test", &cloud.PluginInstallationArgs{
-//				Slug:      pulumi.String("some-plugin"),
 //				StackSlug: pulumi.String("stackname"),
+//				Slug:      pulumi.String("some-plugin"),
 //				Version:   pulumi.String("1.2.3"),
 //			})
 //			if err != nil {

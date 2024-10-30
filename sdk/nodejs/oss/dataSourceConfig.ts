@@ -21,19 +21,21 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const lokiDataSource = new grafana.oss.DataSource("lokiDataSource", {
+ * const loki = new grafana.oss.DataSource("loki", {
  *     type: "loki",
+ *     name: "loki",
  *     url: "http://localhost:3100",
  * });
- * const tempoDataSource = new grafana.oss.DataSource("tempoDataSource", {
+ * const tempo = new grafana.oss.DataSource("tempo", {
  *     type: "tempo",
+ *     name: "tempo",
  *     url: "http://localhost:3200",
  * });
- * const lokiDataSourceConfig = new grafana.oss.DataSourceConfig("lokiDataSourceConfig", {
- *     uid: lokiDataSource.uid,
+ * const lokiDataSourceConfig = new grafana.oss.DataSourceConfig("loki", {
+ *     uid: loki.uid,
  *     jsonDataEncoded: pulumi.jsonStringify({
  *         derivedFields: [{
- *             datasourceUid: tempoDataSource.uid,
+ *             datasourceUid: tempo.uid,
  *             matcherRegex: "[tT]race_?[iI][dD]\"?[:=]\"?(\\w+)",
  *             matcherType: "regex",
  *             name: "traceID",
@@ -41,12 +43,12 @@ import * as utilities from "../utilities";
  *         }],
  *     }),
  * });
- * const tempoDataSourceConfig = new grafana.oss.DataSourceConfig("tempoDataSourceConfig", {
- *     uid: tempoDataSource.uid,
+ * const tempoDataSourceConfig = new grafana.oss.DataSourceConfig("tempo", {
+ *     uid: tempo.uid,
  *     jsonDataEncoded: pulumi.jsonStringify({
  *         tracesToLogsV2: {
  *             customQuery: true,
- *             datasourceUid: lokiDataSource.uid,
+ *             datasourceUid: loki.uid,
  *             filterBySpanID: false,
  *             filterByTraceID: false,
  *             query: "|=\"${__trace.traceId}\" | json",

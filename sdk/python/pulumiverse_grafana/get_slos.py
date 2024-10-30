@@ -66,6 +66,58 @@ def get_slos(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSlosRes
     * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
     * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
     * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+    import pulumiverse_grafana as grafana
+
+    test = grafana.slo.SLO("test",
+        name="Terraform Testing",
+        description="Terraform Description",
+        queries=[grafana.slo.SLOQueryArgs(
+            freeform=grafana.slo.SLOQueryFreeformArgs(
+                query="sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+            ),
+            type="freeform",
+        )],
+        objectives=[grafana.slo.SLOObjectiveArgs(
+            value=0.995,
+            window="30d",
+        )],
+        destination_datasource=grafana.slo.SLODestinationDatasourceArgs(
+            uid="grafanacloud-prom",
+        ),
+        labels=[grafana.slo.SLOLabelArgs(
+            key="custom",
+            value="value",
+        )],
+        alertings=[grafana.slo.SLOAlertingArgs(
+            fastburns=[grafana.slo.SLOAlertingFastburnArgs(
+                annotations=[grafana.slo.SLOAlertingFastburnAnnotationArgs(
+                    key="name",
+                    value="Critical - SLO Burn Rate Alert",
+                )],
+                labels=[grafana.slo.SLOAlertingFastburnLabelArgs(
+                    key="type",
+                    value="slo",
+                )],
+            )],
+            slowburns=[grafana.slo.SLOAlertingSlowburnArgs(
+                annotations=[grafana.slo.SLOAlertingSlowburnAnnotationArgs(
+                    key="name",
+                    value="Warning - SLO Burn Rate Alert",
+                )],
+                labels=[grafana.slo.SLOAlertingSlowburnLabelArgs(
+                    key="type",
+                    value="slo",
+                )],
+            )],
+        )])
+    slos = grafana.slo.get_slos()
+    ```
     """
     pulumi.log.warn("""get_slos is deprecated: grafana.index/getslos.getSlos has been deprecated in favor of grafana.slo/getslos.getSlos""")
     __args__ = dict()
@@ -85,6 +137,58 @@ def get_slos_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Outpu
     * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
     * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
     * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+    import pulumiverse_grafana as grafana
+
+    test = grafana.slo.SLO("test",
+        name="Terraform Testing",
+        description="Terraform Description",
+        queries=[grafana.slo.SLOQueryArgs(
+            freeform=grafana.slo.SLOQueryFreeformArgs(
+                query="sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+            ),
+            type="freeform",
+        )],
+        objectives=[grafana.slo.SLOObjectiveArgs(
+            value=0.995,
+            window="30d",
+        )],
+        destination_datasource=grafana.slo.SLODestinationDatasourceArgs(
+            uid="grafanacloud-prom",
+        ),
+        labels=[grafana.slo.SLOLabelArgs(
+            key="custom",
+            value="value",
+        )],
+        alertings=[grafana.slo.SLOAlertingArgs(
+            fastburns=[grafana.slo.SLOAlertingFastburnArgs(
+                annotations=[grafana.slo.SLOAlertingFastburnAnnotationArgs(
+                    key="name",
+                    value="Critical - SLO Burn Rate Alert",
+                )],
+                labels=[grafana.slo.SLOAlertingFastburnLabelArgs(
+                    key="type",
+                    value="slo",
+                )],
+            )],
+            slowburns=[grafana.slo.SLOAlertingSlowburnArgs(
+                annotations=[grafana.slo.SLOAlertingSlowburnAnnotationArgs(
+                    key="name",
+                    value="Warning - SLO Burn Rate Alert",
+                )],
+                labels=[grafana.slo.SLOAlertingSlowburnLabelArgs(
+                    key="type",
+                    value="slo",
+                )],
+            )],
+        )])
+    slos = grafana.slo.get_slos()
+    ```
     """
     pulumi.log.warn("""get_slos is deprecated: grafana.index/getslos.getSlos has been deprecated in favor of grafana.slo/getslos.getSlos""")
     ...

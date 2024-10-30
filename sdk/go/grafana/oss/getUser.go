@@ -33,6 +33,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			test, err := oss.NewUser(ctx, "test", &oss.UserArgs{
 //				Email:    pulumi.String("test.datasource@example.com"),
+//				Name:     pulumi.String("Testing Datasource"),
 //				Login:    pulumi.String("test-datasource"),
 //				Password: pulumi.String("my-password"),
 //				IsAdmin:  pulumi.Bool(true),

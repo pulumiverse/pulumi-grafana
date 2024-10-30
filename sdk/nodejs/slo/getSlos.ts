@@ -12,6 +12,59 @@ import * as utilities from "../utilities";
  * * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
  * * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
  * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = new grafana.slo.SLO("test", {
+ *     name: "Terraform Testing",
+ *     description: "Terraform Description",
+ *     queries: [{
+ *         freeform: {
+ *             query: "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+ *         },
+ *         type: "freeform",
+ *     }],
+ *     objectives: [{
+ *         value: 0.995,
+ *         window: "30d",
+ *     }],
+ *     destinationDatasource: {
+ *         uid: "grafanacloud-prom",
+ *     },
+ *     labels: [{
+ *         key: "custom",
+ *         value: "value",
+ *     }],
+ *     alertings: [{
+ *         fastburns: [{
+ *             annotations: [{
+ *                 key: "name",
+ *                 value: "Critical - SLO Burn Rate Alert",
+ *             }],
+ *             labels: [{
+ *                 key: "type",
+ *                 value: "slo",
+ *             }],
+ *         }],
+ *         slowburns: [{
+ *             annotations: [{
+ *                 key: "name",
+ *                 value: "Warning - SLO Burn Rate Alert",
+ *             }],
+ *             labels: [{
+ *                 key: "type",
+ *                 value: "slo",
+ *             }],
+ *         }],
+ *     }],
+ * });
+ * const slos = grafana.slo.getSlos({});
+ * ```
  */
 export function getSlos(opts?: pulumi.InvokeOptions): Promise<GetSlosResult> {
 
@@ -39,6 +92,59 @@ export interface GetSlosResult {
  * * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
  * * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
  * * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = new grafana.slo.SLO("test", {
+ *     name: "Terraform Testing",
+ *     description: "Terraform Description",
+ *     queries: [{
+ *         freeform: {
+ *             query: "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+ *         },
+ *         type: "freeform",
+ *     }],
+ *     objectives: [{
+ *         value: 0.995,
+ *         window: "30d",
+ *     }],
+ *     destinationDatasource: {
+ *         uid: "grafanacloud-prom",
+ *     },
+ *     labels: [{
+ *         key: "custom",
+ *         value: "value",
+ *     }],
+ *     alertings: [{
+ *         fastburns: [{
+ *             annotations: [{
+ *                 key: "name",
+ *                 value: "Critical - SLO Burn Rate Alert",
+ *             }],
+ *             labels: [{
+ *                 key: "type",
+ *                 value: "slo",
+ *             }],
+ *         }],
+ *         slowburns: [{
+ *             annotations: [{
+ *                 key: "name",
+ *                 value: "Warning - SLO Burn Rate Alert",
+ *             }],
+ *             labels: [{
+ *                 key: "type",
+ *                 value: "slo",
+ *             }],
+ *         }],
+ *     }],
+ * });
+ * const slos = grafana.slo.getSlos({});
+ * ```
  */
 export function getSlosOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetSlosResult> {
     return pulumi.output(getSlos(opts))

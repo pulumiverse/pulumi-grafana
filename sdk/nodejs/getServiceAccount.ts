@@ -7,6 +7,23 @@ import * as utilities from "./utilities";
 /**
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
  *         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const adminServiceAccount = new grafana.oss.ServiceAccount("admin", {
+ *     name: "admin sa",
+ *     role: "Admin",
+ *     isDisabled: false,
+ * });
+ * const admin = grafana.oss.getServiceAccountOutput({
+ *     name: adminServiceAccount.name,
+ * });
+ * ```
  */
 /** @deprecated grafana.index/getserviceaccount.getServiceAccount has been deprecated in favor of grafana.oss/getserviceaccount.getServiceAccount */
 export function getServiceAccount(args: GetServiceAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceAccountResult> {
@@ -61,6 +78,23 @@ export interface GetServiceAccountResult {
 /**
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
  *         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumi/grafana";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const adminServiceAccount = new grafana.oss.ServiceAccount("admin", {
+ *     name: "admin sa",
+ *     role: "Admin",
+ *     isDisabled: false,
+ * });
+ * const admin = grafana.oss.getServiceAccountOutput({
+ *     name: adminServiceAccount.name,
+ * });
+ * ```
  */
 /** @deprecated grafana.index/getserviceaccount.getServiceAccount has been deprecated in favor of grafana.oss/getserviceaccount.getServiceAccount */
 export function getServiceAccountOutput(args: GetServiceAccountOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServiceAccountResult> {

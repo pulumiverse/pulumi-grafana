@@ -31,6 +31,7 @@ namespace Pulumiverse.Grafana
     ///     var arbitrary_data = new Grafana.Oss.DataSource("arbitrary-data", new()
     ///     {
     ///         Type = "stackdriver",
+    ///         Name = "sd-arbitrary-data",
     ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["tokenUri"] = "https://oauth2.googleapis.com/token",
@@ -50,6 +51,7 @@ namespace Pulumiverse.Grafana
     ///     var influxdb = new Grafana.Oss.DataSource("influxdb", new()
     ///     {
     ///         Type = "influxdb",
+    ///         Name = "myapp-metrics",
     ///         Url = "http://influxdb.example.net:8086/",
     ///         BasicAuthEnabled = true,
     ///         BasicAuthUsername = "username",
@@ -64,6 +66,7 @@ namespace Pulumiverse.Grafana
     ///     var cloudwatch = new Grafana.Oss.DataSource("cloudwatch", new()
     ///     {
     ///         Type = "cloudwatch",
+    ///         Name = "cw-example",
     ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["defaultRegion"] = "us-east-1",
@@ -79,6 +82,7 @@ namespace Pulumiverse.Grafana
     ///     var prometheus = new Grafana.Oss.DataSource("prometheus", new()
     ///     {
     ///         Type = "prometheus",
+    ///         Name = "mimir",
     ///         Url = "https://my-instances.com",
     ///         BasicAuthEnabled = true,
     ///         BasicAuthUsername = "username",

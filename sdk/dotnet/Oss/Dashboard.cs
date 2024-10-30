@@ -27,15 +27,15 @@ namespace Pulumiverse.Grafana.Oss
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testFolder = new Grafana.Oss.Folder("testFolder", new()
+    ///     var test = new Grafana.Oss.Folder("test", new()
     ///     {
     ///         Title = "My Folder",
     ///         Uid = "my-folder-uid",
     ///     });
     /// 
-    ///     var testDashboard = new Grafana.Oss.Dashboard("testDashboard", new()
+    ///     var testDashboard = new Grafana.Oss.Dashboard("test", new()
     ///     {
-    ///         Folder = testFolder.Uid,
+    ///         Folder = test.Uid,
     ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["title"] = "My Dashboard",

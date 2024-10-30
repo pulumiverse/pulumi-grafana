@@ -34,7 +34,6 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticMonitoring"
 //
@@ -43,29 +42,25 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			cfg := config.New(ctx, "")
+//			// Cloud Access Policy token for Grafana Cloud with the following scopes: accesspolicies:read|write|delete, stacks:read|write|delete
 //			cloudAccessPolicyToken := cfg.RequireObject("cloudAccessPolicyToken")
 //			stackSlug := cfg.RequireObject("stackSlug")
 //			cloudRegion := "us"
 //			if param := cfg.Get("cloudRegion"); param != "" {
 //				cloudRegion = param
 //			}
-//			// Step 1: Create a stack
-//			_, err := grafana.NewProvider(ctx, "cloud", &grafana.ProviderArgs{
-//				CloudAccessPolicyToken: pulumi.Any(cloudAccessPolicyToken),
+//			smStack, err := cloud.NewStack(ctx, "sm_stack", &cloud.StackArgs{
+//				Name:       pulumi.Any(stackSlug),
+//				Slug:       pulumi.Any(stackSlug),
+//				RegionSlug: pulumi.String(cloudRegion),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			smStackStack, err := cloud.NewStack(ctx, "smStackStack", &cloud.StackArgs{
-//				Slug:       pulumi.Any(stackSlug),
-//				RegionSlug: pulumi.String(cloudRegion),
-//			}, pulumi.Provider(grafana.Cloud))
-//			if err != nil {
-//				return err
-//			}
 //			// Step 2: Install Synthetic Monitoring on the stack
-//			smMetricsPublishAccessPolicy, err := cloud.NewAccessPolicy(ctx, "smMetricsPublishAccessPolicy", &cloud.AccessPolicyArgs{
+//			smMetricsPublish, err := cloud.NewAccessPolicy(ctx, "sm_metrics_publish", &cloud.AccessPolicyArgs{
 //				Region: pulumi.String(cloudRegion),
+//				Name:   pulumi.String("metric-publisher-for-sm"),
 //				Scopes: pulumi.StringArray{
 //					pulumi.String("metrics:write"),
 //					pulumi.String("stacks:read"),
@@ -75,31 +70,24 @@ import (
 //				Realms: cloud.AccessPolicyRealmArray{
 //					&cloud.AccessPolicyRealmArgs{
 //						Type:       pulumi.String("stack"),
-//						Identifier: smStackStack.ID(),
+//						Identifier: smStack.ID(),
 //					},
 //				},
-//			}, pulumi.Provider(grafana.Cloud))
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			smMetricsPublishAccessPolicyToken, err := cloud.NewAccessPolicyToken(ctx, "smMetricsPublishAccessPolicyToken", &cloud.AccessPolicyTokenArgs{
+//			smMetricsPublishAccessPolicyToken, err := cloud.NewAccessPolicyToken(ctx, "sm_metrics_publish", &cloud.AccessPolicyTokenArgs{
 //				Region:         pulumi.String(cloudRegion),
-//				AccessPolicyId: smMetricsPublishAccessPolicy.PolicyId,
-//			}, pulumi.Provider(grafana.Cloud))
+//				AccessPolicyId: smMetricsPublish.PolicyId,
+//				Name:           pulumi.String("metric-publisher-for-sm"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			smStackInstallation, err := syntheticMonitoring.NewInstallation(ctx, "smStackInstallation", &syntheticMonitoring.InstallationArgs{
-//				StackId:             smStackStack.ID(),
+//			_, err = syntheticMonitoring.NewInstallation(ctx, "sm_stack", &syntheticMonitoring.InstallationArgs{
+//				StackId:             smStack.ID(),
 //				MetricsPublisherKey: smMetricsPublishAccessPolicyToken.Token,
-//			}, pulumi.Provider(grafana.Cloud))
-//			if err != nil {
-//				return err
-//			}
-//			// Step 3: Interact with Synthetic Monitoring
-//			_, err = grafana.NewProvider(ctx, "sm", &grafana.ProviderArgs{
-//				SmAccessToken: smStackInstallation.SmAccessToken,
-//				SmUrl:         smStackInstallation.StackSmApiUrl,
 //			})
 //			if err != nil {
 //				return err

@@ -26,6 +26,7 @@ namespace Pulumiverse.Grafana
     /// {
     ///     var viewer = new Grafana.Oss.User("viewer", new()
     ///     {
+    ///         Name = "Viewer",
     ///         Email = "viewer@example.com",
     ///         Login = "viewer",
     ///         Password = "my-password",
@@ -33,6 +34,7 @@ namespace Pulumiverse.Grafana
     /// 
     ///     var test_team = new Grafana.Oss.Team("test-team", new()
     ///     {
+    ///         Name = "Test Team",
     ///         Email = "teamemail@example.com",
     ///         Members = new[]
     ///         {

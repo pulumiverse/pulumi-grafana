@@ -196,9 +196,14 @@ class ServiceAccountToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        test = grafana.oss.ServiceAccount("test", role="Viewer")
-        foo = grafana.oss.ServiceAccountToken("foo", service_account_id=test.id)
+        test = grafana.oss.ServiceAccount("test",
+            name="test-service-account",
+            role="Viewer")
+        foo = grafana.oss.ServiceAccountToken("foo",
+            name="key_foo",
+            service_account_id=test.id)
         bar = grafana.oss.ServiceAccountToken("bar",
+            name="key_bar",
             service_account_id=test.id,
             seconds_to_live=30)
         pulumi.export("serviceAccountTokenFooKeyOnly", foo.key)
@@ -229,9 +234,14 @@ class ServiceAccountToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        test = grafana.oss.ServiceAccount("test", role="Viewer")
-        foo = grafana.oss.ServiceAccountToken("foo", service_account_id=test.id)
+        test = grafana.oss.ServiceAccount("test",
+            name="test-service-account",
+            role="Viewer")
+        foo = grafana.oss.ServiceAccountToken("foo",
+            name="key_foo",
+            service_account_id=test.id)
         bar = grafana.oss.ServiceAccountToken("bar",
+            name="key_bar",
             service_account_id=test.id,
             seconds_to_live=30)
         pulumi.export("serviceAccountTokenFooKeyOnly", foo.key)

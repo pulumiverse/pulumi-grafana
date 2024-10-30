@@ -29,6 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			test, err := oss.NewTeam(ctx, "test", &oss.TeamArgs{
+//				Name:  pulumi.String("test-team"),
 //				Email: pulumi.String("test-team-email@test.com"),
 //				Preferences: &oss.TeamPreferencesArgs{
 //					Theme:    pulumi.String("dark"),

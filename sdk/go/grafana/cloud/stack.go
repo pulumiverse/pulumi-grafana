@@ -35,9 +35,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloud.NewStack(ctx, "test", &cloud.StackArgs{
-//				Description: pulumi.String("Test Grafana Cloud Stack"),
-//				RegionSlug:  pulumi.String("eu"),
+//				Name:        pulumi.String("gcloudstacktest"),
 //				Slug:        pulumi.String("gcloudstacktest"),
+//				RegionSlug:  pulumi.String("eu"),
+//				Description: pulumi.String("Test Grafana Cloud Stack"),
 //			})
 //			if err != nil {
 //				return err

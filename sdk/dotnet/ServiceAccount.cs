@@ -28,8 +28,9 @@ namespace Pulumiverse.Grafana
     /// {
     ///     var admin = new Grafana.Oss.ServiceAccount("admin", new()
     ///     {
-    ///         IsDisabled = false,
+    ///         Name = "admin sa",
     ///         Role = "Admin",
+    ///         IsDisabled = false,
     ///     });
     /// 
     /// });

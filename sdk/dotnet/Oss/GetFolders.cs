@@ -27,13 +27,13 @@ namespace Pulumiverse.Grafana.Oss
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testA = new Grafana.Oss.Folder("testA", new()
+        ///     var testA = new Grafana.Oss.Folder("test_a", new()
         ///     {
         ///         Title = "test-folder-a",
         ///         Uid = "test-ds-folder-uid-a",
         ///     });
         /// 
-        ///     var testB = new Grafana.Oss.Folder("testB", new()
+        ///     var testB = new Grafana.Oss.Folder("test_b", new()
         ///     {
         ///         Title = "test-folder-b",
         ///         Uid = "test-ds-folder-uid-b",
@@ -62,13 +62,13 @@ namespace Pulumiverse.Grafana.Oss
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testA = new Grafana.Oss.Folder("testA", new()
+        ///     var testA = new Grafana.Oss.Folder("test_a", new()
         ///     {
         ///         Title = "test-folder-a",
         ///         Uid = "test-ds-folder-uid-a",
         ///     });
         /// 
-        ///     var testB = new Grafana.Oss.Folder("testB", new()
+        ///     var testB = new Grafana.Oss.Folder("test_b", new()
         ///     {
         ///         Title = "test-folder-b",
         ///         Uid = "test-ds-folder-uid-b",

@@ -13,8 +13,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const teamTeam = new grafana.oss.Team("teamTeam", {});
- * const userUser = new grafana.oss.User("userUser", {
+ * const team = new grafana.oss.Team("team", {name: "Team Name"});
+ * const user = new grafana.oss.User("user", {
  *     email: "user.name@example.com",
  *     password: "my-password",
  *     login: "user.name",
@@ -28,14 +28,14 @@ import * as utilities from "./utilities";
  *     role: "Viewer",
  *     permission: "View",
  * });
- * const userDashboardPermissionItem = new grafana.oss.DashboardPermissionItem("userDashboardPermissionItem", {
+ * const userDashboardPermissionItem = new grafana.oss.DashboardPermissionItem("user", {
  *     dashboardUid: dashboard.uid,
- *     user: userUser.id,
+ *     user: user.id,
  *     permission: "Admin",
  * });
- * const teamDashboardPermissionItem = new grafana.oss.DashboardPermissionItem("teamDashboardPermissionItem", {
+ * const teamDashboardPermissionItem = new grafana.oss.DashboardPermissionItem("team", {
  *     dashboardUid: dashboard.uid,
- *     team: teamTeam.id,
+ *     team: team.id,
  *     permission: "Edit",
  * });
  * ```
