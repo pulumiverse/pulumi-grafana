@@ -7,7 +7,7 @@ toolchain go1.22.4
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240520223432-0c0bf0d65f10
 
 require (
-	github.com/grafana/terraform-provider-grafana/v3 v3.2.1
+	github.com/grafana/terraform-provider-grafana/v3 v3.3.0
 	github.com/pulumi/pulumi-terraform-bridge/pf v0.41.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.88.0
 	github.com/pulumi/pulumi/sdk/v3 v3.126.0
@@ -119,14 +119,14 @@ require (
 	github.com/googleapis/enterprise-certificate-proxy v0.3.2 // indirect
 	github.com/googleapis/gax-go/v2 v2.12.2 // indirect
 	github.com/gorilla/mux v1.8.1 // indirect
-	github.com/grafana/amixr-api-go-client v0.0.12-0.20240410110211-c9f68db085c4 // indirect
+	github.com/grafana/amixr-api-go-client v0.0.12 // indirect
 	github.com/grafana/grafana-com-public-clients/go/gcom v0.0.0-20240322153219-42c6a1d2bcab // indirect
 	github.com/grafana/grafana-openapi-client-go v0.0.0-20240523010106-657d101fcbd9 // indirect
 	github.com/grafana/grafana-plugin-sdk-go v0.235.0 // indirect
 	github.com/grafana/machine-learning-go-client v0.7.0 // indirect
 	github.com/grafana/otel-profiling-go v0.5.1 // indirect
 	github.com/grafana/pyroscope-go/godeltaprof v0.1.7 // indirect
-	github.com/grafana/slo-openapi-client/go v0.0.0-20240507015908-bf9e85638f2f // indirect
+	github.com/grafana/slo-openapi-client/go v0.0.0-20240626093634-e6741482b090 // indirect
 	github.com/grafana/synthetic-monitoring-agent v0.24.3 // indirect
 	github.com/grafana/synthetic-monitoring-api-go-client v0.8.0 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus v1.0.1 // indirect
