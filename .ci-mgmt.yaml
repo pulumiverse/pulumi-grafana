@@ -22,8 +22,10 @@ languages:
 publish:
   sdk: "all,!java"
   cdn: false
-# license:
-#   ignore:
+license:
+  ignore:
+    - github.com/apache/arrow/go/v15
+    - github.com/grafana/grafana-com-public-clients/go/gcom # Temporary while Grafana provider hasn't been upgraded yet
 pr-assign: ringods
 toolVersions:
   go: "1.22.x"
